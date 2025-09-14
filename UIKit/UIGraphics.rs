@@ -11,7 +11,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetcurrentcontext()?language=objc)
+/// Returns the current graphics context.
+///
+/// ## Return Value
+///
+/// The current graphics context.
+///
+///
+///
+/// ## Discussion
+///
+/// The current graphics context is `nil` by default. Prior to calling its `drawRect:` method, view objects push a valid context onto the stack, making it current. If you are not using a `UIView` object to do your drawing, however, you must push a valid context onto the stack manually using the [`UIGraphicsPushContext`](https://developer.apple.com/documentation/uikit/uigraphicspushcontext(_:)) function.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGContext>> {
@@ -23,17 +37,51 @@ pub extern "C-unwind" fn UIGraphicsGetCurrentContext() -> Option<CFRetained<CGCo
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspushcontext(_:)?language=objc)
+    /// Makes the specified graphics context the current context.
+    ///
+    /// Parameters:
+    /// - context: The graphics context to make the current context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to save the previous graphics state and make the specified context the current context. You must balance calls to this function with matching calls to the [`UIGraphicsPopContext`](https://developer.apple.com/documentation/uikit/uigraphicspopcontext()) function.
+    ///
+    /// This function may be called from any thread of your app.
+    ///
+    ///
     #[cfg(feature = "objc2-core-graphics")]
     pub fn UIGraphicsPushContext(context: &CGContext);
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspopcontext()?language=objc)
+    /// Removes the current graphics context from the top of the stack, restoring the previous context.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to balance calls to the [`UIGraphicsPushContext`](https://developer.apple.com/documentation/uikit/uigraphicspushcontext(_:)) function.
+    ///
+    /// This function may be called from any thread of your app.
+    ///
+    ///
     pub fn UIGraphicsPopContext();
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectfillusingblendmode(_:_:)?language=objc)
+/// Fills a rectangle with the current fill color using the specified blend mode.
+///
+/// Parameters:
+/// - rect: The rectangle defining the area in which to draw.
+///
+/// - blendMode: The blend mode to use during drawing.
+///
+///
+/// ## Discussion
+///
+/// This function draws the rectangle in the current graphics context. If the current graphics context is `nil`, this function does nothing.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
@@ -43,7 +91,19 @@ pub extern "C-unwind" fn UIRectFillUsingBlendMode(rect: CGRect, blend_mode: CGBl
     unsafe { UIRectFillUsingBlendMode(rect, blend_mode) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectfill(_:)?language=objc)
+/// Fills the specified rectangle with the current color.
+///
+/// Parameters:
+/// - rect: The rectangle defining the area in which to draw.
+///
+///
+/// ## Discussion
+///
+/// Fills the specified rectangle using the fill color of the current graphics context and the `kCGBlendModeCopy` blend mode.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
@@ -53,7 +113,23 @@ pub extern "C-unwind" fn UIRectFill(rect: CGRect) {
     unsafe { UIRectFill(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectframeusingblendmode(_:_:)?language=objc)
+/// Draws a frame around the inside of a rectangle using the specified blend mode.
+///
+/// Parameters:
+/// - rect: The rectangle defining the area in which to draw.
+///
+/// - blendMode: The blend mode to use during drawing.
+///
+///
+/// ## Discussion
+///
+/// This function draws a frame around the inside of rect in the fill color of the current graphics context and using the specified blend mode. The width is equal to 1.0 in the current coordinate system. Since the frame is drawn inside the rectangle, it’s visible even if drawing is clipped to the rectangle. If the current graphics context is `nil`, this function does nothing.
+///
+/// Because this function doesn’t draw directly on the line, but rather inside it, it uses the current fill color (not stroke color) when drawing.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
 #[inline]
 pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGBlendMode) {
@@ -63,7 +139,19 @@ pub extern "C-unwind" fn UIRectFrameUsingBlendMode(rect: CGRect, blend_mode: CGB
     unsafe { UIRectFrameUsingBlendMode(rect, blend_mode) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectframe(_:)?language=objc)
+/// Draws a frame around the inside of the specified rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle defining the area in which to draw.
+///
+///
+/// ## Discussion
+///
+/// This function draws a frame around the inside of `rect` in the stroke color of the current graphics context and using the `kCGBlendModeCopy` blend mode. The width is equal to 1.0 in the current coordinate system. Because the frame is drawn inside the rectangle, it is visible even if drawing is clipped to the rectangle. If the current graphics context is `nil`, this function does nothing.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
@@ -73,7 +161,21 @@ pub extern "C-unwind" fn UIRectFrame(rect: CGRect) {
     unsafe { UIRectFrame(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectclip(_:)?language=objc)
+/// Modifies the current clipping path by intersecting it with the specified rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle to intersect with the clipping region. If the width or height of the rectangle are less than 0, this function does not change the clipping path.
+///
+///
+/// ## Discussion
+///
+/// Each call to this function permanently shrinks the clipping path of the current graphics context using the specified rectangle. You cannot use this function to expand the clipping region path. If the current graphics context is `nil`, this function does nothing.
+///
+/// If you need to return the clipping path to its original shape in your drawing code, you should save the current graphics context before calling this function. To save the current state of the graphics context, call the [`CGContextSaveGState`](https://developer.apple.com/documentation/coregraphics/cgcontext/savegstate()) function before making your modifications. When you are ready to restore the original clipping region, you can then use the [`CGContextRestoreGState`](https://developer.apple.com/documentation/coregraphics/cgcontext/restoregstate()) function to restore the previous graphics state.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
@@ -83,7 +185,19 @@ pub extern "C-unwind" fn UIRectClip(rect: CGRect) {
     unsafe { UIRectClip(rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontext(_:)?language=objc)
+/// Creates a bitmap-based graphics context and makes it the current context.
+///
+/// Parameters:
+/// - size: The size of the new bitmap context. This represents the size of the image returned by the [`UIGraphicsGetImageFromCurrentImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()) function.
+///
+///
+/// ## Discussion
+///
+/// This function is equivalent to calling the [`UIGraphicsBeginImageContextWithOptions`](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontextwithoptions(_:_:_:)) function with the opaque parameter set to [`false`](https://developer.apple.com/documentation/swift/false) and a scale factor of `1.0`.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContext with UIGraphicsImageRenderer."]
 #[inline]
@@ -94,7 +208,29 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContext(size: CGSize) {
     unsafe { UIGraphicsBeginImageContext(size) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontextwithoptions(_:_:_:)?language=objc)
+/// Creates a bitmap-based graphics context with the specified options.
+///
+/// Parameters:
+/// - size: The size (measured in points) of the new bitmap context. This represents the size of the image returned by the [`UIGraphicsGetImageFromCurrentImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()) function. To get the size of the bitmap in pixels, you must multiply the width and height values by the value in the `scale` parameter.
+///
+/// - opaque: A Boolean flag indicating whether the bitmap is opaque. If you know the bitmap is fully opaque, specify [`true`](https://developer.apple.com/documentation/swift/true) to ignore the alpha channel and optimize the bitmap’s storage. Specifying [`false`](https://developer.apple.com/documentation/swift/false) means that the bitmap must include an alpha channel to handle any partially transparent pixels.
+///
+/// - scale: The scale factor to apply to the bitmap. If you specify a value of `0.0`, the scale factor is set to the scale factor of the device’s main screen.
+///
+///
+/// ## Discussion
+///
+/// You use this function to configure the drawing environment for rendering into a bitmap. The format for the bitmap is a ARGB 32-bit integer pixel format using host-byte order. If the opaque parameter is [`true`](https://developer.apple.com/documentation/swift/true), the alpha channel is ignored and the bitmap is treated as fully opaque ([`kCGImageAlphaNoneSkipFirst`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/noneskipfirst) | [`kCGBitmapByteOrder32Host`](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder32host)). Otherwise, each pixel uses a premultipled ARGB format ([`kCGImageAlphaPremultipliedFirst`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/premultipliedfirst) | [`kCGBitmapByteOrder32Host`](https://developer.apple.com/documentation/coregraphics/kcgbitmapbyteorder32host)).
+///
+/// The environment also uses the default coordinate system for UIKit views, where the origin is in the upper-left corner and the positive axes extend down and to the right of the origin. The supplied scale factor is also applied to the coordinate system and resulting images. The drawing environment is pushed onto the graphics context stack immediately.
+///
+/// While the context created by this function is the current context, you can call the [`UIGraphicsGetImageFromCurrentImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()) function to retrieve an image object based on the current contents of the context. When you are done modifying the context, you must call the [`UIGraphicsEndImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsendimagecontext()) function to clean up the bitmap drawing environment and remove the graphics context from the top of the context stack. You should not use the [`UIGraphicsPopContext`](https://developer.apple.com/documentation/uikit/uigraphicspopcontext()) function to remove this type of context from the stack.
+///
+/// In most other respects, the graphics context created by this function behaves like any other graphics context. You can change the context by pushing and popping other graphics contexts. You can also get the bitmap context using the [`UIGraphicsGetCurrentContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetcurrentcontext()) function.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "Replace usage of UIGraphicsBeginImageContextWithOptions with UIGraphicsImageRenderer."]
 #[inline]
@@ -109,7 +245,21 @@ pub extern "C-unwind" fn UIGraphicsBeginImageContextWithOptions(
     unsafe { UIGraphicsBeginImageContextWithOptions(size, Bool::new(opaque), scale) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetimagefromcurrentimagecontext()?language=objc)
+/// Returns an image from the contents of the current bitmap-based graphics context.
+///
+/// ## Return Value
+///
+/// A image object containing the contents of the current bitmap graphics context.
+///
+///
+///
+/// ## Discussion
+///
+/// You should call this function only when a bitmap-based graphics context is the current graphics context. If the current context is `nil` or was not created by a call to [`UIGraphicsBeginImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontext(_:)), this function returns `nil`.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[cfg(feature = "UIImage")]
 #[deprecated = "Replace usage of UIGraphicsGetImageFromCurrentImageContext with UIGraphicsImageRendererContext.currentImage."]
 #[inline]
@@ -121,7 +271,15 @@ pub extern "C-unwind" fn UIGraphicsGetImageFromCurrentImageContext() -> Option<R
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsendimagecontext()?language=objc)
+/// Removes the current bitmap-based graphics context from the top of the stack.
+///
+/// ## Discussion
+///
+/// You use this function to clean up the drawing environment put in place by the [`UIGraphicsBeginImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontext(_:)) function and to remove the corresponding bitmap-based graphics context from the top of the stack. If the current context was not created using the [`UIGraphicsBeginImageContext`](https://developer.apple.com/documentation/uikit/uigraphicsbeginimagecontext(_:)) function, this function does nothing.
+///
+/// This function may be called from any thread of your app.
+///
+///
 #[deprecated = "UIGraphicsEndImageContext should only be used alongside UIGraphicsBeginImageContext[WithOptions]."]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsEndImageContext() {
@@ -131,7 +289,33 @@ pub extern "C-unwind" fn UIGraphicsEndImageContext() {
     unsafe { UIGraphicsEndImageContext() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfcontexttofile(_:_:_:)?language=objc)
+/// Creates a PDF graphics context that targets a file at the specified path.
+///
+/// Parameters:
+/// - path: A POSIX-style path string identifying the location of the resulting PDF file. The specified path may be relative or a full path name. If a file does not exist at the specified path, one is created; otherwise, the contents of any existing file are deleted. The directories in the path must exist.
+///
+/// - bounds: A rectangle that specifies the default size and location of PDF pages. (This value is used as the default media box for each new page.) The origin of the rectangle should typically be (0, 0). Specifying an empty rectangle ([`CGRectZero`](https://developer.apple.com/documentation/coregraphics/cgrectzero)) sets the default page size to 8.5 by 11 inches (612 by 792 points).
+///
+/// - documentInfo: A dictionary that specifies additional information to be associated with the PDF file. You can use these keys to specify additional metadata and security information for the PDF, such as the author of the PDF or the password for accessing it. The keys in this dictionary are the same keys you pass to the [`CGPDFContextCreate`](https://developer.apple.com/documentation/coregraphics/cgcontext/init(consumer:mediabox:_:)) function and are described in [Auxiliary Dictionary Keys](https://developer.apple.com/documentation/coregraphics/auxiliary-dictionary-keys). The dictionary is retained by the new context, so on return you may safely release it.
+///
+/// Specify `nil` if you do not want to associate any additional information with the PDF document.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the PDF context was created successfully or [`false`](https://developer.apple.com/documentation/swift/false) if it was not.
+///
+///
+///
+/// ## Discussion
+///
+/// After creating the graphics context, this function makes it the current drawing context. Any subsequent drawing commands are therefore captured and turned into PDF data. When you are done drawing, you must call the [`UIGraphicsEndPDFContext`](https://developer.apple.com/documentation/uikit/uigraphicsendpdfcontext()) function to close the PDF graphics context.
+///
+/// You can use all of the same drawing routines that you would normally use to draw the contents of your application. However, before you issue any drawing commands to a PDF context, you must start a new page by calling the [`UIGraphicsBeginPDFPage`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpage()) or [`UIGraphicsBeginPDFPageWithInfo`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)) function. You can also use these functions to define additional pages later.
+///
+/// After creating it, you can get the PDF context using the [`UIGraphicsGetCurrentContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetcurrentcontext()) function.
+///
+///
 ///
 /// # Safety
 ///
@@ -154,7 +338,27 @@ pub unsafe extern "C-unwind" fn UIGraphicsBeginPDFContextToFile(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfcontexttodata(_:_:_:)?language=objc)
+    /// Creates a PDF graphics context that targets the specified mutable data object.
+    ///
+    /// Parameters:
+    /// - data: The data object to receive the PDF output data.
+    ///
+    /// - bounds: A rectangle that specifies the default size and location of PDF pages. (This value is used as the default media box for each new page.) The origin of the rectangle should typically be (0, 0). Specifying an empty rectangle ([`CGRectZero`](https://developer.apple.com/documentation/coregraphics/cgrectzero)) sets the default page size to 8.5 by 11 inches (612 by 792 points).
+    ///
+    /// - documentInfo: A dictionary that specifies additional information to be associated with the PDF file. You can use these keys to specify additional metadata and security information for the PDF, such as the author of the PDF or the password for accessing it. The keys in this dictionary are the same keys you pass to the [`CGPDFContextCreate`](https://developer.apple.com/documentation/coregraphics/cgcontext/init(consumer:mediabox:_:)) function and are described in [Auxiliary Dictionary Keys](https://developer.apple.com/documentation/coregraphics/auxiliary-dictionary-keys). The dictionary is retained by the new context, so on return you may safely release it.
+    ///
+    /// Specify `nil` if you do not want to associate any additional information with the PDF document.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After creating the graphics context, this function makes it the current drawing context. Any subsequent drawing commands are therefore captured and turned into PDF data. When you are done drawing, you must call the [`UIGraphicsEndPDFContext`](https://developer.apple.com/documentation/uikit/uigraphicsendpdfcontext()) function to close the PDF graphics context.
+    ///
+    /// You can use all of the same drawing routines that you would normally use to draw the contents of your application. The graphics context converts all drawing commands into PDF drawing commands automatically. However, before you issue any drawing commands to a PDF context, you must start a new page by calling the [`UIGraphicsBeginPDFPage`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpage()) or [`UIGraphicsBeginPDFPageWithInfo`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)) function. You can also use these functions to define additional pages later.
+    ///
+    /// After creating it, you can get the PDF context using the [`UIGraphicsGetCurrentContext`](https://developer.apple.com/documentation/uikit/uigraphicsgetcurrentcontext()) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -167,7 +371,13 @@ extern "C-unwind" {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsendpdfcontext()?language=objc)
+/// Closes a PDF graphics context and pops it from the current context stack.
+///
+/// ## Discussion
+///
+/// You must call this function after you finish drawing to a PDF graphics context. This function closes the current open page and removes the PDF context from the graphics context stack. It also releases the [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) associated with the PDF context.  If the current graphics context is not a PDF context, this function does nothing.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
     extern "C-unwind" {
@@ -176,7 +386,17 @@ pub extern "C-unwind" fn UIGraphicsEndPDFContext() {
     unsafe { UIGraphicsEndPDFContext() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpage()?language=objc)
+/// Marks the beginning of a new page in a PDF context and configures it using default values.
+///
+/// ## Discussion
+///
+/// This function ends any previous page before beginning a new one. It sets the media box of the new page to the rectangle you specified when you created the PDF context.
+///
+/// If the current graphics context is not a PDF context, this function does nothing.
+///
+/// You must call this function or the [`UIGraphicsBeginPDFPageWithInfo`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)) function before you issue any drawing commands.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
     extern "C-unwind" {
@@ -186,7 +406,25 @@ pub extern "C-unwind" fn UIGraphicsBeginPDFPage() {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)?language=objc)
+    /// Marks the beginning of a new page in a PDF context and configures it using the specified custom values.
+    ///
+    /// Parameters:
+    /// - bounds: A rectangle that specifies the size and location of the new PDF page. This rectangle corresponds to the media box rectangle for the page.
+    ///
+    /// - pageInfo: A dictionary that specifies additional page-related information, such as the boxes that define different parts of the page. For a list of keys you can include in this dictionary, see Box Keys in [Auxiliary Dictionary Keys](https://developer.apple.com/documentation/coregraphics/auxiliary-dictionary-keys). The dictionary is retained by the new page, so you may release it after this function returns.
+    ///
+    /// Specify `nil` if you do not want to associate any additional information with the page.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function ends any previous page before beginning a new one. It sets the media box of the new page to the value in the [`kCGPDFContextMediaBox`](https://developer.apple.com/documentation/coregraphics/kcgpdfcontextmediabox) key of the `pageInfo` dictionary, or to the value in the `bounds` parameter if the dictionary does not contain the key.
+    ///
+    /// If the current graphics context is not a PDF context, this function does nothing.
+    ///
+    /// You must call this function or the [`UIGraphicsBeginPDFPageWithInfo`](https://developer.apple.com/documentation/uikit/uigraphicsbeginpdfpagewithinfo(_:_:)) function before you issue any drawing commands.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +433,19 @@ extern "C-unwind" {
     pub fn UIGraphicsBeginPDFPageWithInfo(bounds: CGRect, page_info: Option<&NSDictionary>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsgetpdfcontextbounds()?language=objc)
+/// Returns the current page bounds.
+///
+/// ## Return Value
+///
+/// The current page bounds associated with the PDF context or [`CGRectZero`](https://developer.apple.com/documentation/coregraphics/cgrectzero) if the current context is not a PDF context.
+///
+///
+///
+/// ## Discussion
+///
+/// If a page has not yet been started, this function returns the default media box you specified when you created the PDF context; otherwise, it returns the page bounds for the current page.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
@@ -205,7 +455,21 @@ pub extern "C-unwind" fn UIGraphicsGetPDFContextBounds() -> CGRect {
     unsafe { UIGraphicsGetPDFContextBounds() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicssetpdfcontexturlforrect(_:_:)?language=objc)
+/// Links a rectangular area on the current page to the specified URL.
+///
+/// Parameters:
+/// - url: The URL to open.
+///
+/// - rect: A rectangle on the current page of the PDF context.
+///
+///
+/// ## Discussion
+///
+/// You use this function to create external links within a PDF document. If the URL you specify is a type handled by a different application, tapping the rectangle opens that application.
+///
+/// If the current graphics context is not a PDF context, this function does nothing.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CGRect) {
@@ -215,7 +479,23 @@ pub extern "C-unwind" fn UIGraphicsSetPDFContextURLForRect(url: &NSURL, rect: CG
     unsafe { UIGraphicsSetPDFContextURLForRect(url, rect) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsaddpdfcontextdestinationatpoint(_:_:)?language=objc)
+/// Creates a jump destination in the current page.
+///
+/// Parameters:
+/// - name: The name of the destination point. The name you assign is local to the PDF document and is what you use when creating links to this destination.
+///
+/// - point: A point on the current page of the PDF context.
+///
+///
+/// ## Discussion
+///
+/// This function marks the specified point in the current page as the destination of a jump. When the user taps a link that takes them to this jump destination, the PDF document scrolls until the specified point is visible.
+///
+/// If the current graphics context is not a PDF context, this function does nothing.
+///
+/// For information on how to create links to this destination, see the [`UIGraphicsSetPDFContextDestinationForRect`](https://developer.apple.com/documentation/uikit/uigraphicssetpdfcontextdestinationforrect(_:_:)) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
@@ -228,7 +508,21 @@ pub extern "C-unwind" fn UIGraphicsAddPDFContextDestinationAtPoint(
     unsafe { UIGraphicsAddPDFContextDestinationAtPoint(name, point) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicssetpdfcontextdestinationforrect(_:_:)?language=objc)
+/// Links a rectangular area on the current page to the specified jump destination.
+///
+/// Parameters:
+/// - name: A named destination in the PDF document. This is the same name you used when creating the jump destination using the [`UIGraphicsAddPDFContextDestinationAtPoint`](https://developer.apple.com/documentation/uikit/uigraphicsaddpdfcontextdestinationatpoint(_:_:)) function.
+///
+/// - rect: A rectangle on the current page of the PDF context.
+///
+///
+/// ## Discussion
+///
+/// You use this function to create live links within a PDF document. Tapping the specified rectangle in the PDF document causes the document to display the contents at the associated jump destination.
+///
+/// If the current graphics context is not a PDF context, this function does nothing.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn UIGraphicsSetPDFContextDestinationForRect(name: &NSString, rect: CGRect) {

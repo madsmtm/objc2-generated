@@ -7,12 +7,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelement/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIDeferredMenuElementIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelement?language=objc)
+    /// A placeholder menu element that the system replaces with the result of the block’s completion handler.
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -146,11 +145,15 @@ impl UIDeferredMenuElement {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// Represents an element provider for a deferred menu element. When the containing menu for a responder-based deferred element is presented, the system asks the responder chain for one of these element providers for the deferred element.
+    ///
+    ///
     /// Represents an element provider for a deferred menu element.
     /// When the containing menu for a responder-based deferred element is presented, the system asks the
     /// responder chain for one of these element providers for the deferred element.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelement/provider?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

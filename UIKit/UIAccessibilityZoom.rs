@@ -8,13 +8,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/zoomtype?language=objc)
+/// The types of system Zoom that can be in effect.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityZoomType(pub NSInteger);
 impl UIAccessibilityZoomType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/zoomtype/insertionpoint?language=objc)
+    /// The system zoom type is the text insertion point.
     #[doc(alias = "UIAccessibilityZoomTypeInsertionPoint")]
     pub const InsertionPoint: Self = Self(0);
 }
@@ -27,7 +27,15 @@ unsafe impl RefEncode for UIAccessibilityZoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/zoomfocuschanged(zoomtype:toframe:in:)?language=objc)
+/// Notifies the system when the app’s focus changes to a new location.
+///
+/// Parameters:
+/// - type: A `UIKit Functions` constant that identifies the type of Zoom.
+///
+/// - frame: The frame that’s currently zoomed, in screen coordinates.
+///
+/// - view: The view that contains the zoomed frame.
+///
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -49,7 +57,13 @@ pub extern "C-unwind" fn UIAccessibilityZoomFocusChanged(
     unsafe { UIAccessibilityZoomFocusChanged(r#type, frame, view) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/registergestureconflictwithzoom()?language=objc)
+/// Warns users that app-specific gestures conflict with the system-defined Zoom accessibility gestures.
+///
+/// ## Discussion
+///
+/// Use this function if your application uses multi-finger gestures that conflict with the gestures used by system Zoom (that is, three-finger gestures). When this is the case, the user is presented with the choice of turning off Zoom or continuing.
+///
+///
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityRegisterGestureConflictWithZoom() {
     extern "C-unwind" {

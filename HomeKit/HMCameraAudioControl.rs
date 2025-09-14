@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraaudiocontrol?language=objc)
+    /// An object that controls a camera’s audio settings.
     #[unsafe(super(HMCameraControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMCameraControl")]

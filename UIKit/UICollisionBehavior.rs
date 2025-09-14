@@ -9,20 +9,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode?language=objc)
+/// The types of edges that participate in collisions for a collision behavior.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollisionBehaviorMode(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollisionBehaviorMode: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/items?language=objc)
+/// Specifies that the dynamic items, associated with the collision behavior, collide only with each other and not with specified collision boundaries.
         #[doc(alias = "UICollisionBehaviorModeItems")]
         const Items = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/boundaries?language=objc)
+/// Specifies that the dynamic items, associated with the collision behavior, collide only with specified collision boundaries and don’t collide with each other.
         #[doc(alias = "UICollisionBehaviorModeBoundaries")]
         const Boundaries = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior/mode/everything?language=objc)
+/// Specifies that the dynamic items, associated with the collision behavior, collide with each other _and_ with specified collision boundaries.
+///
+/// ## Discussion
+///
+/// This is the default collision behavior mode.
+///
+///
         #[doc(alias = "UICollisionBehaviorModeEverything")]
         const Everything = NSUIntegerMax as _;
     }
@@ -37,7 +43,13 @@ unsafe impl RefEncode for UICollisionBehaviorMode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehaviordelegate?language=objc)
+    /// To respond to UIKit dynamic item collisions, configure a custom class to adopt the [`UICollisionBehaviorDelegate`](https://developer.apple.com/documentation/uikit/uicollisionbehaviordelegate) protocol. Then, in a collision behavior (an instance of the [`UICollisionBehavior`](https://developer.apple.com/documentation/uikit/uicollisionbehavior) class), set the delegate to be an instance of your custom class.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate is notified of collisions that occur between the behavior’s dynamic items, or between a dynamic item and a boundary, depending on the behavior’s mode (as set with its [`collisionMode`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/collisionmode) property). In the case of a collision between an item and the boundary defined by a reference view, the identifier passed to the delegate method is `nil`. (For more on the reference view and the different ways to initialize a dynamic animator, read the Overview in [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).)
+    ///
+    ///
     pub unsafe trait UICollisionBehaviorDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
         #[optional]
@@ -94,7 +106,39 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollisionbehavior?language=objc)
+    /// An object that confers to a specified array of dynamic items the ability to engage in collisions with each other and with the behavior’s specified boundaries.
+    ///
+    /// ## Overview
+    ///
+    /// A collision behavior also specifies some characteristics of its items’ collisions, with other characteristics optionally specified by a [`UIDynamicItemBehavior`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior) object. A _dynamic item_ is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol starting in iOS 7.0. You can use a custom object as a dynamic item for such purposes as reacting to rotation or position changes computed by a dynamic animator—an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class.
+    ///
+    /// To use a collision behavior with a dynamic item, perform these two steps:
+    ///
+    /// 1. Associate the item with the behavior using the [`addItem:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/additem(_:)) method, or initialize a new collision behavior with an array of items using the [`initWithItems:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/init(items:)) method.
+    ///
+    /// 2. Enable the behavior by adding it to an animator using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method
+    ///
+    /// The coordinate system that pertains to a collision behavior, and the types of dynamic items you can use with the behavior, depend on how you initialized the associated animator. For details, read the Overview of [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    /// You can add multiple collision behaviors to a dynamic animator. A dynamic item can be part of any number of collision behaviors, provided those behaviors belong to the same animator. For example, you can specify a collision behavior for a set of say, blue, items and another for, say, pink items. When you add both behaviors to a dynamic animator, blue items can collide with each other and pink items can collide with each other, but a blue item and a pink item would not collide—they would ignore each other.
+    ///
+    /// By default, a collision behavior’s items can collide with each other _and_ with any boundaries you’ve specified for the behavior. If you want to specify that a behavior’s items collide only with each other, or only with boundaries, explicitly set the [`collisionMode`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/collisionmode) property.
+    ///
+    /// You can define a collision boundary with a bezier path (see the [`addBoundaryWithIdentifier:forPath:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/addboundary(withidentifier:for:)) method) or with a line segment (see the [`addBoundaryWithIdentifier:fromPoint:toPoint:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/addboundary(withidentifier:from:to:)) method). When you use a collision behavior with a dynamic animator you’ve initialized with a reference view or a collection view layout, you can also specify a collision boundary according to the bounds of the dynamic animator’s coordinate system (see the [`setTranslatesReferenceBoundsIntoBoundaryWithInsets:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/settranslatesreferenceboundsintoboundary(with:)) method).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When setting the initial position for a dynamic item, you must ensure that its bounds do not intersect any collision boundaries. The animation behavior for such a misplaced item is undefined.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To respond to collisions, implement a delegate object that adopts the [`UICollisionBehaviorDelegate`](https://developer.apple.com/documentation/uikit/uicollisionbehaviordelegate) protocol. Add the delegate to the behavior using the [`collisionDelegate`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/collisiondelegate) property.
+    ///
+    /// You can include a collision behavior in a custom, composite behavior by starting with a [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) object and adding a collision behavior with the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method.  If you want to influence a collision behavior at each step of a dynamic animation, implement the inherited [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) method.
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,6 +8,15 @@ use crate::*;
 extern_protocol!(
     /// A protocol that defines a set of properties you implement to make a preview of your application’s content.
     ///
+    /// ## Overview
+    ///
+    /// Implement the properties in this protocol to make your application’s content visible in a Quick Look preview. Use  [`QLPreviewController`](https://developer.apple.com/documentation/quicklook/qlpreviewcontroller) to display a Quick Look preview on iOS, [`QLPreviewPanel`](https://developer.apple.com/documentation/quicklookui/qlpreviewpanel) and [`QLPreviewView`](https://developer.apple.com/documentation/quicklookui/qlpreviewview) on macOS.
+    ///
+    /// The properties in the [`QLPreviewItem`](https://developer.apple.com/documentation/quicklookui/qlpreviewitem) protocol are also declared as a category on the `NSURL` class. As a result, you can use [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects directly as preview items — provided that you want to use the default titles of those items. The default title for an NSURL object is the last path component of an item’s URL. To supply custom titles for preview objects, implement a class conforming to this protocol, supplying the title with the [`previewItemTitle`](https://developer.apple.com/documentation/quicklookui/qlpreviewitem/previewitemtitle) property.
+    ///
+    ///
+    /// A protocol that defines a set of properties you implement to make a preview of your application’s content.
+    ///
     /// Implement the properties in this protocol to make your application’s content visible in a Quick Look preview. Use
     /// <doc
     /// ://com.apple.documentation/documentation/quicklook/qlpreviewcontroller> to display a Quick Look preview on iOS, ``QLPreviewPanel`` and ``QLPreviewView`` on macOS.
@@ -16,8 +25,6 @@ extern_protocol!(
     /// <doc
     /// ://com.apple.documentation/documentation/foundation/nsurl> objects directly as preview items — provided that you want to use the default titles of those items. The default title for an NSURL object is the last path component of an item’s URL.
     /// To supply custom titles for preview objects, implement a class conforming to this protocol, supplying the title with the ``previewItemTitle`` property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewitem?language=objc)
     pub unsafe trait QLPreviewItem: NSObjectProtocol {
         /// The URL of the item to preview.
         ///

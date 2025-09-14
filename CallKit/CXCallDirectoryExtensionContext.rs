@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontextdelegate?language=objc)
+    /// A collection of methods a Call Directory extension context object calls when a request fails.
     pub unsafe trait CXCallDirectoryExtensionContextDelegate: NSObjectProtocol {
         #[unsafe(method(requestFailedForExtensionContext:withError:))]
         #[unsafe(method_family = none)]
@@ -21,7 +21,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext?language=objc)
+    /// A programmatic interface for adding identification and blocking entries to a Call Directory app extension.
+    ///
+    /// ## Overview
+    ///
+    /// The system doesn’t initialize [`CXCallDirectoryExtensionContext`](https://developer.apple.com/documentation/callkit/cxcalldirectoryextensioncontext) objects directly, but instead passes them as arguments to the [`CXCallDirectoryProvider`](https://developer.apple.com/documentation/callkit/cxcalldirectoryprovider) instance method [`beginRequestWithExtensionContext:`](https://developer.apple.com/documentation/callkit/cxcalldirectoryprovider/beginrequest(with:)).
+    ///
+    ///
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXCallDirectoryExtensionContext;

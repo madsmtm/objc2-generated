@@ -7,7 +7,37 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)
+    /// An object that modifies the content of a remote notification before it’s delivered to the user.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension) object provides the entry point for a notification service app extension. This object lets you customize the content of a remote notification before the system delivers it to the user. A notification service app extension doesn’t present any UI of its own. Instead, it’s launched on demand when the system delivers a notification of the appropriate type to the user’s device. You use this extension to modify the notification’s content or download content related to the extension. For example, you could use the extension to decrypt an encrypted data block or to download images associated with the notification.
+    ///
+    /// You don’t create [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension) objects yourself. Instead, the Xcode template for a notification service extension target contains a subclass for you to modify. Use the methods of that subclass to implement your app extension’s behavior. When your app receives a remote notification for your app, the system loads your extension and calls its [`didReceiveNotificationRequest:withContentHandler:`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)) method given the following conditions:
+    ///
+    /// - Your app has configured the remote notification to display an alert.
+    ///
+    /// - The remote notification’s `aps` dictionary includes the `mutable-content` key with the value set to `1`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can’t modify silent notifications or those that only play a sound or badge the app’s icon.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`didReceiveNotificationRequest:withContentHandler:`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)) method performs the main work of your extension. You use that method to make any changes to the notification’s content. That method has a limited amount of time to perform its task and execute the provided completion block. If your method doesn’t finish in time, the system calls the [`serviceExtensionTimeWillExpire`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension/serviceextensiontimewillexpire()) method to give you one last chance to submit your changes. If you don’t update the notification content before time expires, the system displays the original content.
+    ///
+    /// As for any app extension, you deliver a notification service app extension class as a bundle inside your app. The template that Xcode provides configures the `Info.plist` file automatically for this app extension type. Specifically, it sets the value of the [NSExtensionPointIdentifier](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW15) key to `com.apple.usernotifications.service` and sets the value of the [NSExtensionPrincipalClass](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/AppExtensionKeys.html#//apple_ref/doc/uid/TP40014212-SW16) key to the name of your [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension) subclass.
+    ///
+    /// For information about how to set up and send remote notifications, see [Setting up a remote notification server](https://developer.apple.com/documentation/usernotifications/setting-up-a-remote-notification-server).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The Xcode templates provide a subclass of [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension) for you to modify. You must implement the [`didReceiveNotificationRequest:withContentHandler:`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension/didreceive(_:withcontenthandler:)) method and use it to process incoming notifications. It’s also strongly recommended that you override the [`serviceExtensionTimeWillExpire`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension/serviceextensiontimewillexpire()) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationServiceExtension;

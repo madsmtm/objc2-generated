@@ -5,19 +5,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason?language=objc)
+/// Constants indicating the reason the app can’t support starting the call.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallCallCapabilityUnsupportedReason(pub NSInteger);
 impl INStartCallCallCapabilityUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/videocallunsupported?language=objc)
+    /// The app doesn’t support video calls.
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonVideoCallUnsupported")]
     pub const VideoCallUnsupported: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/microphonenotaccessible?language=objc)
+    /// The microphone isn’t accessible.
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonMicrophoneNotAccessible")]
     pub const MicrophoneNotAccessible: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityunsupportedreason/cameranotaccessible?language=objc)
+    /// The camera isn’t accessible.
     #[doc(alias = "INStartCallCallCapabilityUnsupportedReasonCameraNotAccessible")]
     pub const CameraNotAccessible: Self = Self(3);
 }
@@ -31,7 +31,15 @@ unsafe impl RefEncode for INStartCallCallCapabilityUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcallcapabilityresolutionresult?language=objc)
+    /// A resolution result for the call capability for the call.
+    ///
+    /// ## Overview
+    ///
+    /// You return an `INStartCallCallCapabilityResolutionResult` object when resolving parameters containing an [`INCallCapability`](https://developer.apple.com/documentation/intents/incallcapability) value. Use the creation method that best reflects your ability to resolve the parameter successfully. The resolved value can be different than the original [`INCallCapability`](https://developer.apple.com/documentation/intents/incallcapability). This flexibility allows app extensions to apply business logic constraints.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INCallCapabilityResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

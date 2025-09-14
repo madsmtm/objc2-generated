@@ -7,10 +7,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A sample that represents a discrete quantity.
+    ///
+    /// ## Overview
+    ///
+    /// A quantity sample contains one or more [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data representing independent measurements, such as height, heart rate, or temperature.
+    ///
+    /// The [`HKDiscreteQuantitySample`](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample) class is a concrete subclass of the [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample) class. Discrete quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+    ///
+    /// ### Extend Discrete Quantity Samples
+    ///
+    /// Like many HealthKit classes, you should not subclass the [`HKDiscreteQuantitySample`](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample) class. You may extend this class by adding metadata with custom keys to save related data used by your app.
+    ///
+    /// For more information, see [`quantitySampleWithType:quantity:startDate:endDate:metadata:`](https://developer.apple.com/documentation/healthkit/hkquantitysample/init(type:quantity:start:end:metadata:)).
+    ///
+    ///
     /// An HKQuantitySample subclass representing a quantity measurement with
     /// discrete aggregation style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample?language=objc)
     #[unsafe(super(HKQuantitySample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -202,36 +215,78 @@ impl HKDiscreteQuantitySample {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmin?language=objc)
+    /// The key path for the sample’s minimum quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMin: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverage?language=objc)
+    /// The key path for the sample’s average quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathAverage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmax?language=objc)
+    /// The key path for the sample’s maximum quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMax: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecent?language=objc)
+    /// The key path for the sample’s most recent quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMostRecent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentstartdate?language=objc)
+    /// The key path for the start date of the sample’s most recent quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMostRecentStartDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentenddate?language=objc)
+    /// The key path for the end date of the sample’s most recent quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMostRecentEndDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmostrecentduration?language=objc)
+    /// A key path for the duration of the sample’s most recent quantity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include a sample’s quantity in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathMostRecentDuration: &'static NSString;
 }

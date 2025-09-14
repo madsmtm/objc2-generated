@@ -10,17 +10,12 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4number?language=objc)
 pub const icVersion4Number: c_uint = 0x04000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4point4number?language=objc)
 pub const icVersion4Point4Number: c_uint = 0x04400000;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_profile_install_entitlement?language=objc)
 pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.ColorSync.profile.install\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_md5_length?language=objc)
 pub const COLORSYNC_MD5_LENGTH: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofile?language=objc)
 #[doc(alias = "ColorSyncProfileRef")]
 #[repr(C)]
 pub struct ColorSyncProfile {
@@ -36,7 +31,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"ColorSyncProfile"> for ColorSyncProfile {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmutableprofile?language=objc)
 #[doc(alias = "ColorSyncMutableProfileRef")]
 #[repr(C)]
 pub struct ColorSyncMutableProfile {
@@ -53,332 +47,266 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgrayprofile?language=objc)
     pub static kColorSyncGenericGrayProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericgraygamma22profile?language=objc)
     pub static kColorSyncGenericGrayGamma22Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericrgbprofile?language=objc)
     pub static kColorSyncGenericRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericcmykprofile?language=objc)
     pub static kColorSyncGenericCMYKProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdisplayp3profile?language=objc)
     pub static kColorSyncDisplayP3Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsrgbprofile?language=objc)
     pub static kColorSyncSRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncadobergb1998profile?language=objc)
     pub static kColorSyncAdobeRGB1998Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericlabprofile?language=objc)
     pub static kColorSyncGenericLabProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncgenericxyzprofile?language=objc)
     pub static kColorSyncGenericXYZProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncacescglinearprofile?language=objc)
     pub static kColorSyncACESCGLinearProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdcip3profile?language=objc)
     pub static kColorSyncDCIP3Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur709profile?language=objc)
     pub static kColorSyncITUR709Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncitur2020profile?language=objc)
     pub static kColorSyncITUR2020Profile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrommrgbprofile?language=objc)
     pub static kColorSyncROMMRGBProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwebsafecolorsprofile?language=objc)
     pub static kColorSyncWebSafeColorsProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileheader?language=objc)
     pub static kColorSyncProfileHeader: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileclass?language=objc)
     pub static kColorSyncProfileClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecolorspace?language=objc)
     pub static kColorSyncProfileColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilepcs?language=objc)
     pub static kColorSyncProfilePCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileurl?language=objc)
     pub static kColorSyncProfileURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofiledescription?language=objc)
     pub static kColorSyncProfileDescription: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilemd5digest?language=objc)
     pub static kColorSyncProfileMD5Digest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileisvalid?language=objc)
     pub static kColorSyncProfileIsValid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob0tag?language=objc)
     pub static kColorSyncSigAToB0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob1tag?language=objc)
     pub static kColorSyncSigAToB1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigatob2tag?language=objc)
     pub static kColorSyncSigAToB2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa0tag?language=objc)
     pub static kColorSyncSigBToA0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa1tag?language=objc)
     pub static kColorSyncSigBToA1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbtoa2tag?language=objc)
     pub static kColorSyncSigBToA2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcmykdata?language=objc)
     pub static kColorSyncSigCmykData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraydata?language=objc)
     pub static kColorSyncSigGrayData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglabdata?language=objc)
     pub static kColorSyncSigLabData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigrgbdata?language=objc)
     pub static kColorSyncSigRgbData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigxyzdata?language=objc)
     pub static kColorSyncSigXYZData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigabstractclass?language=objc)
     pub static kColorSyncSigAbstractClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluetrctag?language=objc)
     pub static kColorSyncSigBlueTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigbluecoloranttag?language=objc)
     pub static kColorSyncSigBlueColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediablackpointtag?language=objc)
     pub static kColorSyncSigMediaBlackPointTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcopyrighttag?language=objc)
     pub static kColorSyncSigCopyrightTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofiledescriptiontag?language=objc)
     pub static kColorSyncSigProfileDescriptionTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemodeldesctag?language=objc)
     pub static kColorSyncSigDeviceModelDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdevicemfgdesctag?language=objc)
     pub static kColorSyncSigDeviceMfgDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreentrctag?language=objc)
     pub static kColorSyncSigGreenTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggreencoloranttag?language=objc)
     pub static kColorSyncSigGreenColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggamuttag?language=objc)
     pub static kColorSyncSigGamutTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiggraytrctag?language=objc)
     pub static kColorSyncSigGrayTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiglinkclass?language=objc)
     pub static kColorSyncSigLinkClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigdisplayclass?language=objc)
     pub static kColorSyncSigDisplayClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolor2tag?language=objc)
     pub static kColorSyncSigNamedColor2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsignamedcolorclass?language=objc)
     pub static kColorSyncSigNamedColorClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview0tag?language=objc)
     pub static kColorSyncSigPreview0Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview1tag?language=objc)
     pub static kColorSyncSigPreview1Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigpreview2tag?language=objc)
     pub static kColorSyncSigPreview2Tag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigoutputclass?language=objc)
     pub static kColorSyncSigOutputClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigprofilesequencedesctag?language=objc)
     pub static kColorSyncSigProfileSequenceDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredtrctag?language=objc)
     pub static kColorSyncSigRedTRCTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigredcoloranttag?language=objc)
     pub static kColorSyncSigRedColorantTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsiginputclass?language=objc)
     pub static kColorSyncSigInputClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigcolorspaceclass?language=objc)
     pub static kColorSyncSigColorSpaceClass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigtechnologytag?language=objc)
     pub static kColorSyncSigTechnologyTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconditionstag?language=objc)
     pub static kColorSyncSigViewingConditionsTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigviewingconddesctag?language=objc)
     pub static kColorSyncSigViewingCondDescTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncsigmediawhitepointtag?language=objc)
     pub static kColorSyncSigMediaWhitePointTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecomputerdomain?language=objc)
     pub static kColorSyncProfileComputerDomain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofileuserdomain?language=objc)
     pub static kColorSyncProfileUserDomain: &'static CFString;
 }
 
 unsafe impl ConcreteType for ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegettypeid()?language=objc)
     #[doc(alias = "ColorSyncProfileGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -390,8 +318,6 @@ unsafe impl ConcreteType for ColorSyncProfile {
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreate(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -411,8 +337,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithurl(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -434,13 +358,10 @@ impl ColorSyncProfile {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdonotsubstituteprofiles?language=objc)
     pub static kColorSyncDoNotSubstituteProfiles: &'static CFString;
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithurlandoptions(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -464,7 +385,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithname(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateWithName")]
     #[inline]
     pub unsafe fn with_name(name: &CFString) -> Option<CFRetained<ColorSyncProfile>> {
@@ -476,7 +396,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatewithdisplayid(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateWithDisplayID")]
     #[inline]
     pub unsafe fn with_display_id(display_id: u32) -> Option<CFRetained<ColorSyncProfile>> {
@@ -489,8 +408,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatedeviceprofile(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `profile_id` should be of the correct type.
@@ -515,7 +432,6 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatemutable()?language=objc)
     #[doc(alias = "ColorSyncProfileCreateMutable")]
     #[inline]
     pub unsafe fn new() -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -526,7 +442,6 @@ impl ColorSyncMutableProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatemutablecopy(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(prof: &ColorSyncProfile) -> Option<CFRetained<ColorSyncMutableProfile>> {
@@ -541,8 +456,6 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatelink(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `profile_info` generic must be of the correct type.
@@ -564,8 +477,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileverify(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `errors` must be a valid pointer or null.
@@ -583,7 +494,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileVerify(self, errors, warnings) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiswidegamut(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsWideGamut")]
     #[inline]
     pub unsafe fn is_wide_gamut(&self) -> bool {
@@ -593,7 +503,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsWideGamut(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileismatrixbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsMatrixBased")]
     #[inline]
     pub unsafe fn is_matrix_based(&self) -> bool {
@@ -603,7 +512,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsMatrixBased(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileispqbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsPQBased")]
     #[inline]
     pub unsafe fn is_pq_based(&self) -> bool {
@@ -613,7 +521,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsPQBased(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileishlgbased(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileIsHLGBased")]
     #[inline]
     pub unsafe fn is_hlg_based(&self) -> bool {
@@ -623,7 +530,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegettagcount(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileGetTagCount")]
     #[inline]
     pub unsafe fn tag_count(&self) -> usize {
@@ -633,8 +539,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetTagCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileestimategammawithdisplayid(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -653,8 +557,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegetdisplaytransferformulafromvcgt(_:_:_:_:_:_:_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `red_min` must be a valid pointer.
@@ -710,8 +612,6 @@ impl ColorSyncProfile {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecreatedisplaytransfertablesfromvcgt(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `n_samples_per_channel` must be a valid pointer.
@@ -733,8 +633,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileestimategamma(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -751,7 +649,6 @@ impl ColorSyncProfile {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncmd5?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ColorSyncMD5 {
@@ -769,7 +666,6 @@ unsafe impl RefEncode for ColorSyncMD5 {
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegetmd5(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileGetMD5")]
     #[inline]
     pub unsafe fn md_5(&self) -> ColorSyncMD5 {
@@ -779,8 +675,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileGetMD5(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopydata(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -799,8 +693,6 @@ impl ColorSyncProfile {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilegeturl(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -819,7 +711,6 @@ impl ColorSyncProfile {
         unsafe { CFRetained::retain(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopyheader(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyHeader")]
     #[inline]
     pub unsafe fn header(&self) -> CFRetained<CFData> {
@@ -834,7 +725,6 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilesetheader(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileSetHeader")]
     #[inline]
     pub unsafe fn set_header(&self, header: &CFData) {
@@ -846,7 +736,6 @@ impl ColorSyncMutableProfile {
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopydescriptionstring(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyDescriptionString")]
     #[inline]
     pub unsafe fn description_string(&self) -> Option<CFRetained<CFString>> {
@@ -859,7 +748,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopytagsignatures(_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyTagSignatures")]
     #[inline]
     pub unsafe fn tag_signatures(&self) -> Option<CFRetained<CFArray>> {
@@ -872,7 +760,6 @@ impl ColorSyncProfile {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecontainstag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileContainsTag")]
     #[inline]
     pub unsafe fn contains_tag(&self, signature: &CFString) -> bool {
@@ -882,7 +769,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileContainsTag(self, signature) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilecopytag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileCopyTag")]
     #[inline]
     pub unsafe fn tag(&self, signature: &CFString) -> Option<CFRetained<CFData>> {
@@ -898,7 +784,6 @@ impl ColorSyncProfile {
 }
 
 impl ColorSyncMutableProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofilesettag(_:_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileSetTag")]
     #[inline]
     pub unsafe fn set_tag(&self, signature: &CFString, data: &CFData) {
@@ -912,7 +797,6 @@ impl ColorSyncMutableProfile {
         unsafe { ColorSyncProfileSetTag(self, signature, data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileremovetag(_:_:)?language=objc)
     #[doc(alias = "ColorSyncProfileRemoveTag")]
     #[inline]
     pub unsafe fn remove_tag(&self, signature: &CFString) {
@@ -923,18 +807,14 @@ impl ColorSyncMutableProfile {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileiteratecallback?language=objc)
 pub type ColorSyncProfileIterateCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<CFDictionary>, NonNull<c_void>) -> bool>;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofilecacheseed?language=objc)
     pub static kColorSyncProfileCacheSeed: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledprofiles(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -950,13 +830,10 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncwaitforcachereply?language=objc)
     pub static kColorSyncWaitForCacheReply: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynciterateinstalledprofileswithoptions(_:_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `call_back` must be implemented correctly.
@@ -975,8 +852,6 @@ extern "C-unwind" {
 }
 
 impl ColorSyncProfile {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileinstall(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -999,8 +874,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileInstall(self, domain, subpath, error) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncprofileuninstall(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.

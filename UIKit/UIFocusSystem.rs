@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// UIFocusSystem instances manage focus state within a part of the user interface. They are in charge of tracking the current focused item, as well as processing focus updates.
+    /// Queries and reevaluates the currently focused item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`UIFocusSystem`](https://developer.apple.com/documentation/uikit/uifocussystem) object to obtain the focus-related state for the objects of your app. You can get state information for your app’s views, view controllers, windows, and other objects that adopt the [`UIFocusEnvironment`](https://developer.apple.com/documentation/uikit/uifocusenvironment) protocol. The [`UIFocusSystem`](https://developer.apple.com/documentation/uikit/uifocussystem) object lists the currently focused item, if any, for a window or view hierarchy. You can use it to force the system to update the focus state, and you can register custom sounds to be played during focus changes.
+    ///
+    ///
+    /// UIFocusSystem instances manage focus state within a part of the user interface. They are in charge of tracking the current focused item, as well as processing focus updates.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

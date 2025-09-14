@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caremotelayerclient?language=objc)
+    /// A legacy class for cross-process rendering.
+    ///
+    /// ## Overview
+    ///
+    /// `CARemoteLaterClient` is a legacy class for cross-process rendering. [`IOSurfaceCreateMachPort`](https://developer.apple.com/documentation/iosurface/iosurfacecreatemachport(_:)) and [`IOSurfaceCreateXPCObject`](https://developer.apple.com/documentation/iosurface/iosurfacecreatexpcobject(_:)), available with [`IOSurface`](https://developer.apple.com/documentation/iosurface/iosurface), offer an improved way to perform cross-process rendering.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CARemoteLayerClient;

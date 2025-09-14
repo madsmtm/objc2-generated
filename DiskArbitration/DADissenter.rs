@@ -10,40 +10,26 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnsuccess?language=objc)
 pub const kDAReturnSuccess: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnerror?language=objc)
 pub const kDAReturnError: c_int = -119930879;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnbusy?language=objc)
 pub const kDAReturnBusy: c_int = -119930878;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnbadargument?language=objc)
 pub const kDAReturnBadArgument: c_int = -119930877;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnexclusiveaccess?language=objc)
 pub const kDAReturnExclusiveAccess: c_int = -119930876;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnoresources?language=objc)
 pub const kDAReturnNoResources: c_int = -119930875;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotfound?language=objc)
 pub const kDAReturnNotFound: c_int = -119930874;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotmounted?language=objc)
 pub const kDAReturnNotMounted: c_int = -119930873;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotpermitted?language=objc)
 pub const kDAReturnNotPermitted: c_int = -119930872;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotprivileged?language=objc)
 pub const kDAReturnNotPrivileged: c_int = -119930871;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotready?language=objc)
 pub const kDAReturnNotReady: c_int = -119930870;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnnotwritable?language=objc)
 pub const kDAReturnNotWritable: c_int = -119930869;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdareturnunsupported?language=objc)
 pub const kDAReturnUnsupported: c_int = -119930868;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dareturn?language=objc)
+/// A return code.
 #[cfg(feature = "libc")]
 pub type DAReturn = libc::mach_error_t;
 
 /// Type of a reference to DADissenter instances.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissenter?language=objc)
+/// Type of a reference to DADissenter instances.
 #[doc(alias = "DADissenterRef")]
 #[repr(C)]
 pub struct DADissenter {
@@ -62,6 +48,21 @@ cf_objc2_type!(
 impl DADissenter {
     /// Creates a new dissenter object.
     ///
+    /// Parameters:
+    /// - allocator: The allocator object to be used to allocate memory.
+    ///
+    /// - status: The return code.
+    ///
+    /// - string: The return code string. Pass NULL for no reason.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a new DADissenter.
+    ///
+    ///
+    /// Creates a new dissenter object.
+    ///
     /// Parameter `allocator`: The allocator object to be used to allocate memory.
     ///
     /// Parameter `status`: The return code.
@@ -69,8 +70,6 @@ impl DADissenter {
     /// Parameter `string`: The return code string.  Pass NULL for no reason.
     ///
     /// Returns: A reference to a new DADissenter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentercreate(_:_:_:)?language=objc)
     #[doc(alias = "DADissenterCreate")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -94,11 +93,20 @@ impl DADissenter {
 
     /// Obtains the return code.
     ///
+    /// Parameters:
+    /// - dissenter: The DADissenter for which to obtain the return code.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The return code. A BSD return code, if applicable, is encoded with unix_err().
+    ///
+    ///
+    /// Obtains the return code.
+    ///
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code.
     ///
     /// Returns: The return code.  A BSD return code, if applicable, is encoded with unix_err().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentergetstatus(_:)?language=objc)
     #[doc(alias = "DADissenterGetStatus")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -111,11 +119,20 @@ impl DADissenter {
 
     /// Obtains the return code string.
     ///
+    /// Parameters:
+    /// - dissenter: The DADissenter for which to obtain the return code string.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The return code string.
+    ///
+    ///
+    /// Obtains the return code string.
+    ///
     /// Parameter `dissenter`: The DADissenter for which to obtain the return code string.
     ///
     /// Returns: The return code string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadissentergetstatusstring(_:)?language=objc)
     #[doc(alias = "DADissenterGetStatusString")]
     #[inline]
     pub unsafe fn status_string(&self) -> Option<CFRetained<CFString>> {

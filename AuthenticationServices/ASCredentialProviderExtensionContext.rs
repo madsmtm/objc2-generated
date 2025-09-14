@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderextensioncontext?language=objc)
+    /// A mechanism that credential provider extensions use to communicate with the system.
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialProviderExtensionContext;

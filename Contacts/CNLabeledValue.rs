@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A contact property that has a value and label.
+    /// An immutable object that combines a contact property value with a label that describes that property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeledvalue?language=objc)
+    /// ## Overview
+    ///
+    /// Labels describe the context for a property. For example, the label for a phone number indicates whether it corresponds to the user’s home, work, or iPhone number.
+    ///
+    /// `CNLabeledValue` objects are thread-safe, and you can access their properties from any thread of your app.
+    ///
+    ///
+    /// A contact property that has a value and label.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNLabeledValue<ValueType: ?Sized = AnyObject>;
@@ -144,36 +151,72 @@ impl<ValueType: Message + NSCopying + NSSecureCoding> CNLabeledValue<ValueType> 
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelhome?language=objc)
+    /// The label for identifying home information.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelHome: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelwork?language=objc)
+    /// The label for identifying work information.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelWork: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelschool?language=objc)
+    /// The label for the contact’s school.
     pub static CNLabelSchool: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelother?language=objc)
+    /// The label for identifying other information.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelOther: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelemailicloud?language=objc)
+    /// The label for identifying the contact’s iCloud email information.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelEmailiCloud: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabelurladdresshomepage?language=objc)
+    /// The label for identifying URL information.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelURLAddressHomePage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnlabeldateanniversary?language=objc)
+    /// The label for identifying the contact’s anniversary date.
+    ///
+    /// ## Discussion
+    ///
+    /// This label takes a string value.
+    ///
+    ///
     pub static CNLabelDateAnniversary: &'static NSString;
 }

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class is used to represent a significant time event.
+    /// An event that fires at a time offset from a significant time-based event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificanttimeevent?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to represent an event that fires at a time relative to a significant event, for example “30 minutes before sunset”.
+    ///
+    ///
+    /// This class is used to represent a significant time event.
     #[unsafe(super(HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
@@ -115,9 +120,8 @@ impl HMSignificantTimeEvent {
 }
 
 extern_class!(
+    /// A mutable event that fires at the specified temporal offset to a significant event.
     /// This class is used to represent a significant time event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablesignificanttimeevent?language=objc)
     #[unsafe(super(HMSignificantTimeEvent, HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]

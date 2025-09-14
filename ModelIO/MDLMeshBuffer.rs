@@ -7,21 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for the content of a mesh buffer, used by the [`type`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer/type) property and by [`MDLMeshBufferAllocator`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator) methods for creating buffers.
 /// Type of data a MDLMeshBuffer has been allocated for
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLMeshBufferType(pub NSUInteger);
 impl MDLMeshBufferType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/vertex?language=objc)
+    /// The buffer contains per-vertex data for one or more vertex attributes of a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object.
     #[doc(alias = "MDLMeshBufferTypeVertex")]
     pub const Vertex: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/index?language=objc)
+    /// The buffer contains index data for a [`MDLSubmesh`](https://developer.apple.com/documentation/modelio/mdlsubmesh) object.
     #[doc(alias = "MDLMeshBufferTypeIndex")]
     pub const Index: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffertype/custom?language=objc)
     #[doc(alias = "MDLMeshBufferTypeCustom")]
     pub const Custom: Self = Self(3);
 }
@@ -35,9 +33,22 @@ unsafe impl RefEncode for MDLMeshBufferType {
 }
 
 extern_class!(
-    /// Represents a reference to memory of a mapped MeshBuffer
+    /// An object that manages access to a memory buffer used for the data storage of a Model I/O mesh.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffermap?language=objc)
+    /// ## Overview
+    ///
+    /// Typically, you do not create [`MDLMeshBufferMap`](https://developer.apple.com/documentation/modelio/mdlmeshbuffermap) objects directly. Instead, you use classes supporting the [`MDLMeshBuffer`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer) protocol to manage mesh buffer memory shared with a rendering technology—for example, the [`MTKMeshBuffer`](https://developer.apple.com/documentation/metalkit/mtkmeshbuffer) class for rendering with Metal. A mesh buffer object vends a [`MDLMeshBufferMap`](https://developer.apple.com/documentation/modelio/mdlmeshbuffermap) objects when you use the [`map`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer/map()) method to gain temporary access to the shared memory.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When you use a mesh buffer’s [`map`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer/map()) method, the buffer remains mapped for as long as that [`MDLMeshBufferMap`](https://developer.apple.com/documentation/modelio/mdlmeshbuffermap) object exists. Mapping a buffer may impose restrictions on a system. For example, a buffer in shared GPU memory may be unavailable for rendering while mapped, causing draw calls that use the buffer to fail until the corresponding [`MDLMeshBufferMap`](https://developer.apple.com/documentation/modelio/mdlmeshbuffermap) object is deallocated.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Represents a reference to memory of a mapped MeshBuffer
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMeshBufferMap;
@@ -85,12 +96,17 @@ impl MDLMeshBufferMap {
 }
 
 extern_protocol!(
+    /// The general interface for managing storage of vertex and index data used in loading, processing, and rendering meshes.
+    ///
+    /// ## Overview
+    ///
+    /// Model I/O creates buffers using an allocator that you specify when loading mesh data from a file with the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class or generating meshes with the [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) class. You can also create buffers using an allocator method such as [`newBufferWithData:type:`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator/newbuffer(with:type:)). The allocator you choose determines the concrete class of a mesh buffer and thus its storage mechanism—for example, the MetalKit [`MTKMeshBufferAllocator`](https://developer.apple.com/documentation/metalkit/mtkmeshbufferallocator) class allocates [`MTKMeshBuffer`](https://developer.apple.com/documentation/metalkit/mtkmeshbuffer) objects, which share storage with Metal buffers for use in rendering.
+    ///
+    ///
     /// Used by ModelIO to represent a buffer to be filled with vertex and
     /// index data
     ///
     /// Supports deep copy of data by conforming to the NSCopying protocol
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbuffer?language=objc)
     pub unsafe trait MDLMeshBuffer: NSObjectProtocol + NSCopying {
         /// Fills buffer with data at offset
         ///
@@ -147,9 +163,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A CPU memory backed mesh buffer
+    /// A memory buffer that stores vertex or index data for a Model I/O mesh.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbufferdata?language=objc)
+    /// ## Overview
+    ///
+    /// This class is the simplest concrete implementation of the [`MDLMeshBuffer`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer) protocol—use this class when you need only a single data store for loading or processing mesh data. To share mesh data for other uses, use another concrete implementation of the [`MDLMeshBuffer`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer) protocol—for example, the [`MTKMeshBuffer`](https://developer.apple.com/documentation/metalkit/mtkmeshbuffer) class shares mesh data with Metal buffers, ensuring that data is copied a minimal number of times between loading, processing, and rendering.If you do not specify a [`MDLMeshBufferAllocator`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator) object for loading meshes from a file with the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class or generating meshes with the [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) class, Model I/O uses [`MDLMeshBufferData`](https://developer.apple.com/documentation/modelio/mdlmeshbufferdata) objects to store mesh data.
+    ///
+    ///
+    /// A CPU memory backed mesh buffer
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMeshBufferData;
@@ -219,10 +240,15 @@ impl MDLMeshBufferData {
 }
 
 extern_protocol!(
+    /// The general interface for logical pools of memory used in allocation of related mesh data buffers.
+    ///
+    /// ## Overview
+    ///
+    /// The concrete type of a zone is often private—you obtain zones by creating them from a [`MDLMeshBufferAllocator`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator) object, then use zones with allocator methods such as [`newBufferFromZone:data:type:`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator/newbuffer(from:data:type:)) when you need to ensure that related buffers are allocated together.
+    ///
+    ///
     /// A reference to a logical pool of memory from which mesh buffers would
     /// be allocated
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbufferzone?language=objc)
     pub unsafe trait MDLMeshBufferZone: NSObjectProtocol {
         /// Total size of memory in the zone
         #[unsafe(method(capacity))]
@@ -237,13 +263,20 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The general interface for managing allocation of data buffers to be used in loading, processing, and rendering meshes.
+    ///
+    /// ## Overview
+    ///
+    /// Classes adopting this protocol provide different ways of handling mesh buffer data. For example, the [`MTKMeshBufferAllocator`](https://developer.apple.com/documentation/metalkit/mtkmeshbufferallocator) class can share mesh data with Metal buffers for use in rendering.
+    ///
+    /// When you load meshes from a file with the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class or generate meshes with the [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) class, you must specify an allocator. By choosing an allocator specific to how you use a mesh, you can ensure that vertex and index data for the mesh is copied and transformed a minimal number of times between loading and use.
+    ///
+    ///
     /// Object for allocating buffers to back vertex and index data
     ///
     /// Accepted by MDLAsset init method.  Implementor creates objects
     /// implementing MDLMeshBuffer with memory to be filled with vertex and
     /// index data during 3d file loading and parsing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator?language=objc)
     pub unsafe trait MDLMeshBufferAllocator: NSObjectProtocol {
         /// Create a zone which can be used to allocate MDLMeshBuffer objects
         ///
@@ -352,9 +385,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// An allocator to use when backing with an NSData is appropriate.
+    /// A basic allocator implementation that allocates from main memory using data objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbufferdataallocator?language=objc)
+    /// ## Overview
+    ///
+    /// Model I/O uses this allocator by default if you do not specify an allocator when loading, creating, or modifying objects that require mesh buffer storage (for example, when loading an asset with the [`initWithURL:vertexDescriptor:bufferAllocator:`](https://developer.apple.com/documentation/modelio/mdlasset/init(url:vertexdescriptor:bufferallocator:)) initializer). Use this allocator only if sharing mesh buffer memory with GPU-based renderers is not a concern. To minimize data copying when rendering with Metal or OpenGL, use the [`MTKMeshBufferAllocator`](https://developer.apple.com/documentation/metalkit/mtkmeshbufferallocator) or [`GLKMeshBufferAllocator`](https://developer.apple.com/documentation/glkit/glkmeshbufferallocator) class instead.This class declares no methods or properties of its own. For the key functionality of all mesh buffer allocator objects, see [`MDLMeshBufferAllocator`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator).
+    ///
+    ///
+    /// An allocator to use when backing with an NSData is appropriate.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMeshBufferDataAllocator;
@@ -386,9 +424,14 @@ impl MDLMeshBufferDataAllocator {
 }
 
 extern_class!(
-    /// A default zone that can be use for convenience
+    /// A standard implementation of the [`MDLMeshBufferZone`](https://developer.apple.com/documentation/modelio/mdlmeshbufferzone) protocol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmeshbufferzonedefault?language=objc)
+    /// ## Overview
+    ///
+    /// Model I/O uses zones to ensure that related allocations—such as the multiple vertex and index buffers associated with a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object—use contiguous blocks of memory for optimal performance. When working with a [`MDLMeshBufferAllocator`](https://developer.apple.com/documentation/modelio/mdlmeshbufferallocator) object that does not implement its own zone management, Model I/O uses this zone class.This class declares no methods or properties of its own. For the key functionality of all mesh buffer zone objects, see [`MDLMeshBufferZone`](https://developer.apple.com/documentation/modelio/mdlmeshbufferzone).
+    ///
+    ///
+    /// A default zone that can be use for convenience
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMeshBufferZoneDefault;

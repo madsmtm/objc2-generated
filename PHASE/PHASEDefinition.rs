@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A base class that adds a name to framework definitions.
+    ///
+    /// ## Overview
+    ///
+    /// Various PHASE classes derive from this class, for example, [`PHASEMixerDefinition`](https://developer.apple.com/documentation/phase/phasemixerdefinition), [`PHASEMetaParameterDefinition`](https://developer.apple.com/documentation/phase/phasemetaparameterdefinition), and [`PHASESoundEventNodeDefinition`](https://developer.apple.com/documentation/phase/phasesoundeventnodedefinition).
+    ///
+    /// This class represents a template from which PHASE creates concrete [`PHASEAsset`](https://developer.apple.com/documentation/phase/phaseasset) subclasses at runtime. For example, when you register a global metaparameter definition using [`registerGlobalMetaParameter:error:`](https://developer.apple.com/documentation/phase/phaseassetregistry/registerglobalmetaparameter(metaparameterdefinition:)), PHASE returns a [`PHASEAsset`](https://developer.apple.com/documentation/phase/phaseasset) subclass, [`PHASEGlobalMetaParameterAsset`](https://developer.apple.com/documentation/phase/phaseglobalmetaparameterasset), that identifies a usable metaparameter by name. To access the usable metaparameter, pass the [`PHASEGlobalMetaParameterAsset`](https://developer.apple.com/documentation/phase/phaseglobalmetaparameterasset) [`identifier`](https://developer.apple.com/documentation/phase/phaseasset/identifier) into the [`globalMetaParameters`](https://developer.apple.com/documentation/phase/phaseassetregistry/globalmetaparameters) dictionary.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -14,8 +23,6 @@ extern_class!(
     /// The base class for a definition.
     ///
     /// Contains an identifer that uniquely represents this definition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasedefinition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEDefinition;

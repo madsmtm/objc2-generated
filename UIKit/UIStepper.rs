@@ -13,7 +13,23 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistepper?language=objc)
+    /// A control for incrementing or decrementing a value.
+    ///
+    /// ## Overview
+    ///
+    /// By default, pressing and holding a stepper’s button increments or decrements the stepper’s value repeatedly. The rate of change depends on how long the user continues pressing the control. To turn off this behavior, set the [`autorepeat`](https://developer.apple.com/documentation/uikit/uistepper/autorepeat) property to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// The maximum value must be greater than or equal to the minimum value. If you set a maximum or minimum value that would break this invariant, both values are set to the new value. For example, if the minimum value is 200 and you set a maximum value of 100, then both the minimum and maximum become 200.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`UIStepper`](https://developer.apple.com/documentation/uikit/uistepper) isn’t available when the user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

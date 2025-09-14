@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerdelegate?language=objc)
+    /// An interface for providing information about the outcome of an authorization request.
     pub unsafe trait ASAuthorizationControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -44,7 +44,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontrollerpresentationcontextproviding?language=objc)
+    /// An interface the controller uses to ask a delegate for a presentation context.
     pub unsafe trait ASAuthorizationControllerPresentationContextProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -60,17 +60,16 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/requestoptions?language=objc)
+/// Options that modify how a controller performs authorization requests.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationControllerRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationControllerRequestOptions: NSUInteger {
+/// Tells the authorization controller to prefer credentials that are immediately available on the local device.
 /// When used for sign-in requests, tell the authorization controller that it should only be presented if there are credentials immediately available on the local device.
 /// When used for registration requests, tell the authorization controller that it should only be presented if the local device is currently set up to fulfill at least one of the request types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/requestoptions/preferimmediatelyavailablecredentials?language=objc)
         #[doc(alias = "ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials")]
         const PreferImmediatelyAvailableCredentials = 1<<0;
     }
@@ -85,7 +84,17 @@ unsafe impl RefEncode for ASAuthorizationControllerRequestOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller?language=objc)
+    /// A controller that manages authorization requests that a provider creates.
+    ///
+    /// ## Overview
+    ///
+    /// Create authorization requests for the credential types your app supports, such as [`ASAuthorizationAppleIDRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest) for Sign in with Apple, or [`ASAuthorizationPasswordRequest`](https://developer.apple.com/documentation/authenticationservices/asauthorizationpasswordrequest) for password credentials. Create an authorization controller using [`initWithAuthorizationRequests:`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/init(authorizationrequests:)), supplying the authorization requests you create. Set the authorization controller’s [`delegate`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/delegate) to receive responses when requests succeed or fail, and set its [`presentationContextProvider`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/presentationcontextprovider) so that the authorization controller can present UI.
+    ///
+    /// Call [`performAutoFillAssistedRequests`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/performautofillassistedrequests()) to present inline UI to request credentials, or [`performRequests`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/performrequests()) or [`performRequestsWithOptions:`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller/performrequests(options:)) to request credentials using modal UI. [`ASAuthorizationController`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller) calls your delegate’s methods when the request completes.
+    ///
+    /// Set the content type of text fields in your app’s login UI so that [`ASAuthorizationController`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller) can detect when to offer AutoFill suggestions. Use [`UITextContentTypeUsername`](https://developer.apple.com/documentation/uikit/uitextcontenttype/username) as the content type for user name text fields, and [`UITextContentTypePassword`](https://developer.apple.com/documentation/uikit/uitextcontenttype/password) for password fields.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationController;

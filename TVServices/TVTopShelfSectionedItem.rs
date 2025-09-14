@@ -7,27 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants indicating the aspect ratio of an image.
 /// The shape of an image in the sectioned content style.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTopShelfSectionedItemImageShape(pub NSInteger);
 impl TVTopShelfSectionedItemImageShape {
+    /// An image with a 1:1 aspect ratio.
     /// A 1:1 image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/square?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapeSquare")]
     pub const Square: Self = Self(0);
+    /// A poster-shaped image with a 2:3 aspect ratio.
     /// A 2:3 poster image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/poster?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapePoster")]
     pub const Poster: Self = Self(1);
+    /// An image with a 16:9 aspect ratio.
     /// A 16:9 image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum/hdtv?language=objc)
     #[doc(alias = "TVTopShelfSectionedItemImageShapeHDTV")]
     pub const HDTV: Self = Self(2);
 }
@@ -41,9 +37,14 @@ unsafe impl RefEncode for TVTopShelfSectionedItemImageShape {
 }
 
 extern_class!(
-    /// An object that represents a single item in the sectioned content style.
+    /// An item to display in a section-based interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem?language=objc)
+    /// ## Overview
+    ///
+    /// Create a [`TVTopShelfSectionedItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem) object for each item you want to display in the top shelf. Each sectioned item corresponds to one item of your app’s content. For example, a video playback app uses sectioned items to represent movies or shows. Specify the image for the item using the [`setImageURL:forTraits:`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/setimageurl(_:for:)) method. Use the inherited [`playAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/playaction) and [`displayAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/displayaction) properties to let the system know what to do when the user interacts with the item.
+    ///
+    ///
+    /// An object that represents a single item in the sectioned content style.
     #[unsafe(super(TVTopShelfItem, TVTopShelfObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]

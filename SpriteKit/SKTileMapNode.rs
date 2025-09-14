@@ -13,9 +13,34 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A SpriteKit node used to render a 2D array of textured sprites. Uses SKTileSet to determine what textures it can use to render. Separate tile map nodes can be layered on top of one another to achieve various effects, such as parallax scrolling.
+    /// A two-dimensional array of images.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilemapnode?language=objc)
+    /// ## Overview
+    ///
+    /// `SKTileMapNode` does the work of laying out predefined tiles in a grid of any size. Typically, you configure 9-slice images (tile groups) in Xcode’s SpriteKit scene editor and paint the look of your tile map ahead of time versus configuring the tile map in code.
+    ///
+    /// As with sprite nodes, you can layer tile maps with different blend modes or control it with actions and physics, for example, for the purpose of parallax scrolling. The rendered tile map can be post processed with an [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) to add effects such as motion blur or atmospheric perspective.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A tile map can only render tile definitions that exist within the [`SKTileSet`](https://developer.apple.com/documentation/spritekit/sktileset) you have provided it.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A tile map does not expose its tiles as nodes, and therefore you cannot assign individual tiles with a different [`zPosition`](https://developer.apple.com/documentation/spritekit/sknode/zposition) or [`physicsBody`](https://developer.apple.com/documentation/spritekit/sknode/physicsbody). Instead, layer tile map nodes on top of each other at the varying zPositions, and layer invisible `SKNodes` on top of the tile map node to attach physicsBodies to your tile map node.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To work with a tile map programmatically, you supply `SKTileMapNode` with a tile set that defines the tile definitions it can render. Then, fill each tile in the tile map with the [`fillWithTileGroup:`](https://developer.apple.com/documentation/spritekit/sktilemapnode/fill(with:)) method and set individual tiles with [`setTileGroup:andTileDefinition:forColumn:row:`](https://developer.apple.com/documentation/spritekit/sktilemapnode/settilegroup(_:andtiledefinition:forcolumn:row:)).
+    ///
+    ///
+    /// A SpriteKit node used to render a 2D array of textured sprites. Uses SKTileSet to determine what textures it can use to render. Separate tile map nodes can be layered on top of one another to achieve various effects, such as parallax scrolling.
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

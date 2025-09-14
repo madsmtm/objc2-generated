@@ -12,8 +12,6 @@ extern_class!(
     /// For custom text view implementations that implement drag and drop functionality, use this animator providing either your own UITextCursorView
     /// implementation or a concrete implementation to indicate at which point in your document the dropped item will be inserted. Using this animator provides
     /// you with all of the default system animations for how the text cursor would behave.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursordroppositionanimator?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

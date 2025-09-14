@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialparameters?language=objc)
+    /// An object that provides required parameters for the credential during registration.
+    ///
+    /// ## Overview
+    ///
+    /// This object is mainly for signing algorithm negotiation, and is only relevant for physical security keys.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialParameters;

@@ -8,9 +8,34 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// SCNSkinner controls the deformation of skinned geometries
+    /// An object that manages the relationship between skeletal animations and the nodes and geometries they animate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnskinner?language=objc)
+    /// ## Overview
+    ///
+    /// Skeletal animation is a technique for simplifying the animation of complex geometries, such as humanoid characters in a game. An animation skeleton is a simple hierarchy of control nodes, which themselves have no visible geometry. Associating the skeleton with a geometry (also called “skinning” the skeleton or creating a skinned model) allows SceneKit to automatically deform the geometry when you move the skeleton’s control nodes, as shown below.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/171656cd5d3d3b9b2e3c16e67e23641f/media-2929790%402x.png)
+    ///
+    ///
+    /// ### Working with an Animation Skeleton
+    ///
+    /// Typically, an artist creates a skinned model using external 3D authoring tools and saves it, along with animations that use the skeleton, in a scene file. You load the model from the scene file and pose or animate it in your app, either by using animation objects also loaded from the scene file or by directly manipulating the nodes in the skeleton.
+    ///
+    /// You can also create a skinned model from separately defined geometry and skeleton data using the [`skinnerWithBaseGeometry:bones:boneInverseBindTransforms:boneWeights:boneIndices:`](https://developer.apple.com/documentation/scenekit/scnskinner/init(basegeometry:bones:boneinversebindtransforms:boneweights:boneindices:)) method.
+    ///
+    /// ### Sharing a Skinner Object
+    ///
+    /// To work with a skinned model’s skeleton, use the [`skinner`](https://developer.apple.com/documentation/scenekit/scnnode/skinner) property of the model’s root node. For example, one file might contain an animated game character, and other files might contain accessories (such as hats or backpacks) for the character to wear. An artist using 3D authoring tools can specify that the character and the accessories be animated using identical skeletons. To attach a hat to the character so that they animate together, you link the skinner object responsible for animating the hat to the skeleton associated with the animated character, as in the following example:
+    ///
+    /// ```objc
+    /// SCNNode *hero = [SCNScene sceneNamed:@"Hero"].rootNode;
+    /// SCNNode *hat = [SCNScene sceneNamed:@"FancyFedora"].rootNode;
+    /// hat.skinner.skeleton = hero.skinner.skeleton;
+    /// ```
+    ///
+    ///
+    /// SCNSkinner controls the deformation of skinned geometries
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNSkinner;

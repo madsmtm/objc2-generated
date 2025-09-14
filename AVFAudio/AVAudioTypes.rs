@@ -6,62 +6,72 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// A position in an audio file or stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioframeposition?language=objc)
+/// A position in an audio file or stream.
 pub type AVAudioFramePosition = i64;
 
 /// A number of audio sample frames.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioframecount?language=objc)
+/// A number of audio sample frames.
 pub type AVAudioFrameCount = u32;
 
+/// The number of packets of audio data.
 /// A number of packets of compressed audio data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiopacketcount?language=objc)
 pub type AVAudioPacketCount = u32;
 
+/// The number of audio channels.
 /// A number of audio channels.
 ///
 ///
 /// Rationale: making this a potentially larger-than-32-bit type like NSUInteger would open the
 /// door to a large set of runtime failures due to underlying implementations' use of UInt32.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiochannelcount?language=objc)
 pub type AVAudioChannelCount = u32;
 
+/// A general callback handler for an audio node.
 /// Generic callback handler.
 ///
 /// Various AVAudioEngine objects issue callbacks to generic blocks of this type. In general
 /// the callback arrives on a non-main thread and it is the client's responsibility to handle it
 /// in a thread-safe manner.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVAudioNodeCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
 
+/// The index of a bus on an audio node.
+///
+/// ## Discussion
+///
+/// An [`AVAudioNodeBus`](https://developer.apple.com/documentation/avfaudio/avaudionodebus) represents a bus as a zero-based index. [`AVAudioNode`](https://developer.apple.com/documentation/avfaudio/avaudionode) objects potentially have multiple input and output busses.
+///
+///
 /// The index of a bus on an AVAudioNode.
 ///
 /// AVAudioNode objects potentially have multiple input and/or output busses.
 /// AVAudioNodeBus represents a bus as a zero-based index.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodebus?language=objc)
 pub type AVAudioNodeBus = NSUInteger;
 
+/// A fractional number of beats.
+///
+/// ## Discussion
+///
+/// Use this value for all sequencer timeline-related methods. The tempo of the sequence determines the relationship between this value and time (in seconds).
+///
+///
 /// The time position in beats of playback and events in the AVAudioSequencer and its components.
 ///
 /// AVMusicTimeStamp allows the position and duration of events and actions in the AVAudioSequencer to
 /// function independently from the tempo of the sequence being played.  At the default tempo of 120.0,
 /// a time stamp of 1.0 represents 0.5 seconds of time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictimestamp?language=objc)
 pub type AVMusicTimeStamp = c_double;
 
+/// A structure that represents a point in 3D space.
+///
+/// ## Overview
+///
+/// Classes that deal with 3D audio, such as those adopting [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) and [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode), use this structure. The system represents this point in meters.
+///
+///
 /// Struct representing a point in 3D space
 ///
 /// This struct is used by classes dealing with 3D audio such as `AVAudioMixing`
 /// and `AVAudioEnvironmentNode` and represents a point in 3D space.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dpoint?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DPoint {
@@ -87,23 +97,33 @@ unsafe impl RefEncode for AVAudio3DPoint {
 
 // TODO: pub fn AVAudioMake3DPoint(x: c_float,y: c_float,z: c_float,) -> AVAudio3DPoint;
 
+/// A structure that represents a vector in 3D space, in degrees.
+///
+/// ## Discussion
+///
+/// Classes that deal with 3D audio use this structure, such as those that adopt the [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) protocol and the [`AVAudioEnvironmentNode`](https://developer.apple.com/documentation/avfaudio/avaudioenvironmentnode) class.
+///
+///
 /// Struct representing a vector in 3D space
 ///
 /// This struct is used by classes dealing with 3D audio such as `AVAudioMixing`
 /// and `AVAudioEnvironmentNode`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dvector?language=objc)
 pub type AVAudio3DVector = AVAudio3DPoint;
 
 // TODO: pub fn AVAudioMake3DVector(x: c_float,y: c_float,z: c_float,) -> AVAudio3DVector;
 
+/// A structure that represents two orthogonal vectors that describe the orientation of the listener in 3D space.
+///
+/// ## Overview
+///
+/// Two orthogonal vectors describe the orientation of the listener. The forward vector points in the direction the listener faces. The up vector is orthogonal to the forward vector and points upward from the listener’s head.
+///
+///
 /// Struct representing the orientation of the listener in 3D space
 ///
 /// Two orthogonal vectors describe the orientation of the listener. The forward
 /// vector points in the direction that the listener is facing. The up vector is orthogonal
 /// to the forward vector and points upwards from the listener's head.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dvectororientation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DVectorOrientation {
@@ -124,6 +144,13 @@ unsafe impl RefEncode for AVAudio3DVectorOrientation {
 
 // TODO: pub fn AVAudioMake3DVectorOrientation(forward: AVAudio3DVector,up: AVAudio3DVector,) -> AVAudio3DVectorOrientation;
 
+/// A structure that represents the angular orientation of the listener in 3D space.
+///
+/// ## Overview
+///
+/// This represents the three angles that describe the orientation of a listener’s head — yaw, pitch, and roll.
+///
+///
 /// Struct representing the orientation of the listener in 3D space
 ///
 /// Three angles describe the orientation of a listener's head - yaw, pitch and roll.
@@ -144,8 +171,6 @@ unsafe impl RefEncode for AVAudio3DVectorOrientation {
 /// The roll axis is perpendicular to the other two axes with its origin at the center of the
 /// listener's head and is directed towards the listener's nose. A positive roll is to the right
 /// going from 0 to 180 degrees. A negative roll is to the left going from 0 to -180 degrees.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dangularorientation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DAngularOrientation {

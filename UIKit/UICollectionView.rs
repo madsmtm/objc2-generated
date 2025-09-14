@@ -12,32 +12,68 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition?language=objc)
+/// Constants that indicate how to scroll an item into the visible portion of the collection view.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionViewScrollPosition: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrollposition/uicollectionviewscrollpositionnone?language=objc)
+/// Don’t scroll the item into view.
         #[doc(alias = "UICollectionViewScrollPositionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/top?language=objc)
+/// Scroll so that the item is positioned at the top of the collection view’s bounds.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionCenteredVertically`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredvertically) and [`UICollectionViewScrollPositionBottom`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/bottom) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionTop")]
         const Top = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredvertically?language=objc)
+/// Scroll so that the item is centered vertically in the collection view.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionTop`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/top) and [`UICollectionViewScrollPositionBottom`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/bottom) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionCenteredVertically")]
         const CenteredVertically = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/bottom?language=objc)
+/// Scroll so that the item is positioned at the bottom of the collection view’s bounds.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionTop`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/top) and [`UICollectionViewScrollPositionCenteredVertically`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredvertically) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionBottom")]
         const Bottom = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/left?language=objc)
+/// Scroll so that the item is positioned at the left edge of the collection view’s bounds.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredhorizontally) and [`UICollectionViewScrollPositionRight`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/right) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionLeft")]
         const Left = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredhorizontally?language=objc)
+/// Scroll so that the item is centered horizontally in the collection view.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/left) and [`UICollectionViewScrollPositionRight`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/right) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionCenteredHorizontally")]
         const CenteredHorizontally = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/right?language=objc)
+/// Scroll so that the item is positioned at the right edge of the collection view’s bounds.
+///
+/// ## Discussion
+///
+/// This option is mutually exclusive with the [`UICollectionViewScrollPositionLeft`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/left) and [`UICollectionViewScrollPositionCenteredHorizontally`](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition/centeredhorizontally) options.
+///
+///
         #[doc(alias = "UICollectionViewScrollPositionRight")]
         const Right = 1<<5;
     }
@@ -51,19 +87,19 @@ unsafe impl RefEncode for UICollectionViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum?language=objc)
+/// Constants indicating the speed at which collection view items are reorganized during a drop.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewReorderingCadence(pub NSInteger);
 impl UICollectionViewReorderingCadence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/immediate?language=objc)
+    /// Items are reordered into place immediately.
     #[doc(alias = "UICollectionViewReorderingCadenceImmediate")]
     pub const Immediate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/fast?language=objc)
+    /// Items are reordered quickly, but with a short delay.
     #[doc(alias = "UICollectionViewReorderingCadenceFast")]
     pub const Fast: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum/slow?language=objc)
+    /// Items are reordered after a delay.
     #[doc(alias = "UICollectionViewReorderingCadenceSlow")]
     pub const Slow: Self = Self(2);
 }
@@ -76,26 +112,47 @@ unsafe impl RefEncode for UICollectionViewReorderingCadence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum?language=objc)
+/// Constants that describe modes for invalidating the size of self-sizing collection view cells.
+///
+/// ## Discussion
+///
+/// Use these constants with the [`selfSizingInvalidation`](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewSelfSizingInvalidation(pub NSInteger);
 impl UICollectionViewSelfSizingInvalidation {
-    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    /// A mode that disables self-sizing invalidation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/disabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, no sizing updates occur after calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview).
+    ///
+    ///
+    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
     #[doc(alias = "UICollectionViewSelfSizingInvalidationDisabled")]
     pub const Disabled: Self = Self(0);
-    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    /// A mode that enables manual self-sizing invalidation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/enabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview) causes the cell to resize if necessary.
+    ///
+    ///
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
     #[doc(alias = "UICollectionViewSelfSizingInvalidationEnabled")]
     pub const Enabled: Self = Self(1);
+    /// A mode that enables automatic self-sizing invalidation after Auto Layout changes.
+    ///
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview) causes the cell to resize if necessary. Additionally, any Auto Layout change within the [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview) of a self-sizing cell automatically calls [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()).
+    ///
+    ///
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
     /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum/enabledincludingconstraints?language=objc)
     #[doc(alias = "UICollectionViewSelfSizingInvalidationEnabledIncludingConstraints")]
     pub const EnabledIncludingConstraints: Self = Self(2);
 }
@@ -108,13 +165,29 @@ unsafe impl RefEncode for UICollectionViewSelfSizingInvalidation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/layoutinteractivetransitioncompletion?language=objc)
+/// The completion block called at the end of an interactive transition for a collection view.
+///
+/// ## Discussion
+///
+/// This completion block takes the following parameters:
+///
+/// - completed: A Boolean indicating whether the animations ran to completion.
+///
+/// - finish: A Boolean indicating whether the transition finished or was canceled. This parameter is [`true`](https://developer.apple.com/documentation/swift/true) if the transition ran to completion and the new layout is installed. It is [`false`](https://developer.apple.com/documentation/swift/false) if the user canceled the transition and the old layout is installed.
+///
+///
 #[cfg(feature = "block2")]
 pub type UICollectionViewLayoutInteractiveTransitionCompletion =
     *mut block2::DynBlock<dyn Fn(Bool, Bool)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewfocusupdatecontext?language=objc)
+    /// A context object that stores information specific to a focus update in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// When focus changes, the collection view delegate receives a context object with the relevant information. Your delegate methods use the information in this object to create animations or to perform other tasks related to the change in focus.
+    ///
+    ///
     #[unsafe(super(UIFocusUpdateContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -155,7 +228,19 @@ impl UICollectionViewFocusUpdateContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource?language=objc)
+    /// The methods adopted by the object you use to manage data and provide cells for a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A data source object manages the data in your collection view. It represents your app’s data model and vends information to the collection view as needed. It also creates and configures the cells and supplementary views that the collection view uses to display your data.
+    ///
+    /// A collection view data source must conform to the [`UICollectionViewDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource) protocol. You can use a [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa) object as your data source object, which already conforms to this protocol.
+    ///
+    /// Alternatively, you can create a custom data source object by adopting the [`UICollectionViewDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource) protocol. At a minimum, all data source objects must implement the [`collectionView:numberOfItemsInSection:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/collectionview(_:numberofitemsinsection:)) and [`collectionView:cellForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/collectionview(_:cellforitemat:)) methods. These methods are responsible for returning the number of items in the collection view along with the items themselves. The remaining methods of the protocol are optional and only needed if your collection view organizes items into multiple sections or provides headers and footers for a given section.
+    ///
+    /// When you configure the collection view object, assign your data source to its [`dataSource`](https://developer.apple.com/documentation/uikit/uicollectionview/datasource) property. For more information about how a collection view works with its data source to present content, see [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview).
+    ///
+    ///
     pub unsafe trait UICollectionViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[unsafe(method(collectionView:numberOfItemsInSection:))]
@@ -250,7 +335,47 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching?language=objc)
+    /// A protocol that provides advance warning of the data requirements for a collection view, allowing the triggering of asynchronous data load operations.
+    ///
+    /// ## Overview
+    ///
+    /// You use a prefetch data source object in conjunction with your collection view’s data source to begin loading data for cells before the [`collectionView:cellForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/collectionview(_:cellforitemat:)) data source method is called.
+    ///
+    /// Follow these steps to add a prefetch data source to your collection view:
+    ///
+    /// 1. Create the collection view and its data source.
+    ///
+    /// 2. Create an object that adopts the [`UICollectionViewDataSourcePrefetching`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching) protocol, and assign it to the [`prefetchDataSource`](https://developer.apple.com/documentation/uikit/uicollectionview/prefetchdatasource) property on the collection view.
+    ///
+    /// 3. Initiate asynchronous loading of the data required for the cells at the specified index paths in your implementation of [`collectionView:prefetchItemsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching/collectionview(_:prefetchitemsat:)).
+    ///
+    /// 4. Prepare the cell for display using the prefetched data in your implementation of the [`collectionView:cellForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/collectionview(_:cellforitemat:)) data source method.
+    ///
+    /// 5. Cancel pending data load operations when the collection view informs you that the data is no longer required in the [`collectionView:cancelPrefetchingForItemsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching/collectionview(_:cancelprefetchingforitemsat:)) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The prefetch method isn’t necessarily called for every cell in the collection view. See [Load data asynchronously](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching#load-data-asynchronously) for details on a suggested approach to loading data.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information, see [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview).
+    ///
+    /// ### Load data asynchronously
+    ///
+    /// The [`collectionView:prefetchItemsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching/collectionview(_:prefetchitemsat:)) method isn’t necessarily called for every cell in the collection view. Your implementation of [`collectionView:cellForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource/collectionview(_:cellforitemat:)) must therefore be able to cope with the following potential situations:
+    ///
+    /// - Data has been loaded via the prefetch request, and is ready to be displayed.
+    ///
+    /// - Data is currently being prefetched, but isn’t yet available.
+    ///
+    /// - Data hasn’t yet been requested.
+    ///
+    /// One approach that handles all of these situations is to use [`NSOperation`](https://developer.apple.com/documentation/foundation/operation) to load the data for each row. You create the [`NSOperation`](https://developer.apple.com/documentation/foundation/operation) object and store it in the prefetch method. The data source method can then either retrieve the operation and the result, or create it if it doesn’t exist. For further information about how you can use asynchronous programming models to achieve this desired behavior, see [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091).
+    ///
+    ///
     pub unsafe trait UICollectionViewDataSourcePrefetching:
         NSObjectProtocol + MainThreadOnly
     {
@@ -276,7 +401,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdelegate?language=objc)
+    /// The methods adopted by the object you use to manage user interactions with items in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A collection view delegate manages user interactions with the collection view’s contents, including item selection, highlighting, and performing actions on those items. The methods of this protocol are all optional.
+    ///
+    /// When configuring the collection view object, assign your delegate object to its [`delegate`](https://developer.apple.com/documentation/uikit/uicollectionview/delegate) property. For more information, see [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview).
+    ///
+    ///
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UICollectionViewDelegate:
         UIScrollViewDelegate + MainThreadOnly
@@ -939,7 +1072,88 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview?language=objc)
+    /// An object that manages an ordered collection of data items and presents them using customizable layouts.
+    ///
+    /// ## Overview
+    ///
+    /// When you add a collection view to your user interface, your app’s main job is to manage the data associated with that collection view. The collection view gets its data from the data source object, stored in the collection view’s [`dataSource`](https://developer.apple.com/documentation/uikit/uicollectionview/datasource) property. For your data source, you can use a [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa) object, which provides the behavior you need to simply and efficiently manage updates to your collection view’s data and user interface. Alternatively, you can create a custom data source object by adopting the [`UICollectionViewDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource) protocol.
+    ///
+    /// Data in the collection view is organized into individual items, which you can group into sections for presentation. An item is the smallest unit of data you want to present. For example, in a photos app, an item might be a single image. The collection view presents items onscreen using a cell, which is an instance of the [`UICollectionViewCell`](https://developer.apple.com/documentation/uikit/uicollectionviewcell) class that your data source configures and provides.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d66f980258c467193db87fe0e660287e/uicollectionview-1~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/6b21b5041dface01efa4373940c4c7b7/uicollectionview-1%402x.png 2x" />
+    ///     <img alt="A collection view using the flow layout." src="https://docs-assets.developer.apple.com/published/d66f980258c467193db87fe0e660287e/uicollectionview-1~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// In addition to its cells, a collection view can present data using other types of views. These supplementary views can be, for example, section headers and footers that are separate from the individual cells but still convey information. Support for supplementary views is optional and defined by the collection view’s layout object, which is also responsible for defining the placement of those views.
+    ///
+    /// Besides embedding a [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) in your user interface, you use the methods of the collection view to ensure that the visual presentation of items matches the order in your data source object. A [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa) object manages this process automatically. If you’re using a custom data source, then whenever you add, delete, or rearrange data in your collection, you use the methods of [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) to insert, delete, and rearrange the corresponding cells.
+    ///
+    /// You also use the collection view object to manage the selected items, although for this behavior the collection view works with its associated [`delegate`](https://developer.apple.com/documentation/uikit/uicollectionview/delegate) object.
+    ///
+    /// ### Layouts
+    ///
+    /// A layout object defines the visual arrangement of the content in the collection view. A subclass of the [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout) class, the layout object defines the organization and location of all cells and supplementary views inside the collection view. Although it defines their locations, the layout object doesn’t actually apply that information to the corresponding views. The collection view applies layout information to the corresponding views because the creation of cells and supplementary views involves coordination between the collection view and your data source object. The layout object is like another data source, except it provides visual information instead of item data.
+    ///
+    /// You typically specify a layout object when you create a collection view, but you can also change the layout of a collection view dynamically. The layout object is stored in the [`collectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionview/collectionviewlayout) property. Setting this property directly updates the layout immediately, without animating the changes. If you want to animate the changes, call the [`setCollectionViewLayout:animated:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/setcollectionviewlayout(_:animated:completion:)) method instead.
+    ///
+    /// To create an interactive transition — one that is driven by a gesture recognizer or touch events — use the [`startInteractiveTransitionToCollectionViewLayout:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/startinteractivetransition(to:completion:)) method to change the layout object. That method installs an intermediate layout object, which works with your gesture recognizer or event-handling code to track the transition progress. When your event-handling code determines that the transition is finished, it calls the [`finishInteractiveTransition`](https://developer.apple.com/documentation/uikit/uicollectionview/finishinteractivetransition()) or [`cancelInteractiveTransition`](https://developer.apple.com/documentation/uikit/uicollectionview/cancelinteractivetransition()) method to remove the intermediate layout object and install the intended target layout object.
+    ///
+    /// For more information, see [Layouts](https://developer.apple.com/documentation/uikit/layouts).
+    ///
+    /// ### Cells and supplementary views
+    ///
+    /// The collection view’s data source object provides both the content for items and the views used to present that content. When the collection view first loads its content, it asks its data source to provide a view for each visible item. The collection view maintains a queue or list of view objects that the data source has marked for reuse. Instead of creating new views explicitly in your code, you always dequeue views.
+    ///
+    /// There are two methods for dequeueing views. The one you use depends on which type of view has been requested:
+    ///
+    /// - Use the [`dequeueReusableCellWithReuseIdentifier:forIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeuereusablecell(withreuseidentifier:for:)) to get a cell for an item in the collection view.
+    ///
+    /// - Use the [`dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeuereusablesupplementaryview(ofkind:withreuseidentifier:for:)) method to get a supplementary view requested by the layout object.
+    ///
+    /// Before you call either of these methods, you must tell the collection view how to create the corresponding view if one doesn’t already exist. For this, you must register either a class or a nib file with the collection view. For example, when registering cells, you use the [`registerClass:forCellWithReuseIdentifier:`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-3vaho) method to register a class or the [`registerNib:forCellWithReuseIdentifier:`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-6z6t4) method to register a nib file. As part of the registration process, you specify the reuse identifier that identifies the purpose of the view. This is the same string you use when dequeueing the view later.
+    ///
+    /// After dequeueing the appropriate view in your data source method, configure its content and return it to the collection view for use. After getting the layout information from the layout object, the collection view applies it to the view and displays it.
+    ///
+    /// ### Data prefetching
+    ///
+    /// Collection views provide two prefetching techniques you can use to improve responsiveness:
+    ///
+    /// - _Cell prefetching_ prepares cells in advance of the time they’re required. When a collection view requires a large number of cells simultaneously — for example, a new row of cells in grid layout — the cells are requested earlier than the time required for display. Cell rendering is therefore spread across multiple layout passes, resulting in a smoother scrolling experience. Cell prefetching is enabled by default.
+    ///
+    /// - _Data prefetching_ provides a mechanism whereby you’re notified of the data requirements of a collection view in advance of the requests for cells. This is useful if the content of your cells relies on an expensive data loading process, such as a network request. Assign an object that conforms to the [`UICollectionViewDataSourcePrefetching`](https://developer.apple.com/documentation/uikit/uicollectionviewdatasourceprefetching) protocol to the [`prefetchDataSource`](https://developer.apple.com/documentation/uikit/uicollectionview/prefetchdatasource) property to receive notifications of when to prefetch data for cells.
+    ///
+    /// ### Reorder items interactively
+    ///
+    /// Collection views allow you to move items around based on user interactions. Typically, the order of items in a collection view is defined by your data source. If you allow users to reorder items, you can configure a gesture recognizer to track the user’s interactions with a collection view item and update that item’s position.
+    ///
+    /// To begin the interactive repositioning of an item, call the [`beginInteractiveMovementForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/begininteractivemovementforitem(at:)) method of the collection view. While your gesture recognizer is tracking touch events, call the [`updateInteractiveMovementTargetPosition:`](https://developer.apple.com/documentation/uikit/uicollectionview/updateinteractivemovementtargetposition(_:)) method to report changes in the touch location. When you’re done tracking the gesture, call the [`endInteractiveMovement`](https://developer.apple.com/documentation/uikit/uicollectionview/endinteractivemovement()) or [`cancelInteractiveMovement`](https://developer.apple.com/documentation/uikit/uicollectionview/cancelinteractivemovement()) method to conclude the interactions and update the collection view.
+    ///
+    /// During user interactions, the collection view invalidates its layout dynamically to reflect the current position of the item. If you do nothing, the default layout behavior repositions the items for you, but you can customize the layout animations if you want. When interactions finish, the collection view updates its data source object with the new location of the item.
+    ///
+    /// The [`UICollectionViewController`](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller) class provides a default gesture recognizer that you can use to rearrange items in its managed collection view. To install this gesture recognizer, set the [`installsStandardGestureForInteractiveMovement`](https://developer.apple.com/documentation/uikit/uicollectionviewcontroller/installsstandardgestureforinteractivemovement) property of the collection view controller to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// ### Interface Builder attributes
+    ///
+    /// The following table lists the attributes that you configure for collection views in Interface Builder.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Items" }] }], [Paragraph { inline_content: [Text { text: "The number of prototype cells. This property controls the specified number of prototype cells for you to configure in your storyboard. Collection views must always have at least one cell and may have multiple cells for displaying different types of content or for displaying the same content in different ways." }] }]], [[Paragraph { inline_content: [Text { text: "Layout" }] }], [Paragraph { inline_content: [Text { text: "The layout object to use. Use this control to select between the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UICollectionViewFlowLayout", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object and a custom layout object that you define. " }, Image { identifier: "spacer", metadata: None }, Text { text: " When the flow layout is selected, you can also configure the scrolling direction for the collection view’s content and whether the flow layout has header and footer views. Enabling header and footer views adds reusable views to your storyboard that you can configure with your header and footer content. You can also create those views programmatically. " }, Image { identifier: "spacer", metadata: None }, Text { text: " When a custom layout is selected, you must specify the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UICollectionViewLayout", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " subclass to use." }] }]]], alignments: None, metadata: None })
+    /// When the Flow layout is selected, the Size inspector for the collection view contains additional attributes for configuring flow layout metrics. Use those attributes to configure the size of your cells, the size of headers and footers, the minimum spacing between cells, and any margins around each section of cells. For more information about the meaning of the flow layout metrics, see [`UICollectionViewFlowLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout).
+    ///
+    /// ### Internationalization
+    ///
+    /// A collection view has no direct content of its own to internationalize. Instead, you internationalize the cells and reusable views of the collection view. For more information about internationalization, see [Localization](https://developer.apple.com/localization/).
+    ///
+    /// ### Accessibility
+    ///
+    /// A collection view has no content of its own to make accessible. If your cells and reusable views contain standard UIKit controls such as [`UILabel`](https://developer.apple.com/documentation/uikit/uilabel) and [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield), you can make those controls accessible. When a collection view changes its onscreen layout, it posts the [`UIAccessibilityLayoutChangedNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/layoutchanged) notification.
+    ///
+    /// For general information about making your interface accessible, see [Accessibility for UIKit](https://developer.apple.com/documentation/uikit/accessibility-for-uikit).
+    ///
+    ///
     #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1704,7 +1918,15 @@ extern_conformance!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdragdelegate?language=objc)
+    /// The interface for initiating drags from a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in the object that you use to initiate drags from your collection view. The only required method of this protocol is the [`collectionView:itemsForBeginningDragSession:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdragdelegate/collectionview(_:itemsforbeginning:at:)) method, but you can implement other methods as needed to customize the drag behavior of your collection view.
+    ///
+    /// Assign your custom delegate object to the [`dragDelegate`](https://developer.apple.com/documentation/uikit/uicollectionview/dragdelegate) property of your collection view.
+    ///
+    ///
     pub unsafe trait UICollectionViewDragDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1822,7 +2044,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropdelegate?language=objc)
+    /// The interface for handling drops in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in the object that you use to incorporate dropped data into your collection view. The only required method of this protocol is the [`collectionView:performDropWithCoordinator:`](https://developer.apple.com/documentation/uikit/uicollectionviewdropdelegate/collectionview(_:performdropwith:)) method, but you can implement other methods as needed to customize the drop behavior of your collection view.
+    ///
+    /// Assign your custom delegate object to the [`dropDelegate`](https://developer.apple.com/documentation/uikit/uicollectionview/dropdelegate) property of your collection view.
+    ///
+    ///
     pub unsafe trait UICollectionViewDropDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -1930,19 +2160,25 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum?language=objc)
+/// Constants indicating how you intend to handle a drop.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewDropIntent(pub NSInteger);
 impl UICollectionViewDropIntent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/unspecified?language=objc)
+    /// No drop proposal was specified.
     #[doc(alias = "UICollectionViewDropIntentUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/insertatdestinationindexpath?language=objc)
+    /// Insert the dropped items at the specified index path.
     #[doc(alias = "UICollectionViewDropIntentInsertAtDestinationIndexPath")]
     pub const InsertAtDestinationIndexPath: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum/insertintodestinationindexpath?language=objc)
+    /// Incorporate the dropped items into the item at the specified index path.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option when the drop target has nested content. Dropping items with this proposal causes them to be added to the drop target’s children. For example, if the drop target is a folder, use this option to add the items to the contents of that folder.
+    ///
+    ///
     #[doc(alias = "UICollectionViewDropIntentInsertIntoDestinationIndexPath")]
     pub const InsertIntoDestinationIndexPath: Self = Self(2);
 }
@@ -1956,7 +2192,13 @@ unsafe impl RefEncode for UICollectionViewDropIntent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal?language=objc)
+    /// Your proposed solution for handling a drop in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of this class in the [`collectionView:dropSessionDidUpdate:withDestinationIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewdropdelegate/collectionview(_:dropsessiondidupdate:withdestinationindexpath:)) method of your drop delegate object. You create drop proposals to let the collection view know how you intend to handle a drop at the currently specified location. The collection view uses that information to provide appropriate visual feedback to the user.
+    ///
+    ///
     #[unsafe(super(UIDropProposal, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2018,7 +2260,13 @@ impl UICollectionViewDropProposal {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator?language=objc)
+    /// An interface for coordinating your custom drop-related actions with the collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. When a drop occurs in the collection view, UIKit creates an instance of this class and passes it to your [`collectionView:performDropWithCoordinator:`](https://developer.apple.com/documentation/uikit/uicollectionviewdropdelegate/collectionview(_:performdropwith:)) method. Use the object to let the collection view know how you want to animate the dropped items into position.
+    ///
+    ///
     pub unsafe trait UICollectionViewDropCoordinator:
         NSObjectProtocol + MainThreadOnly
     {
@@ -2089,7 +2337,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewplaceholder?language=objc)
+    /// A placeholder for an item dragged or dropped on a collection view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2152,7 +2400,27 @@ impl UICollectionViewPlaceholder {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholder?language=objc)
+    /// A placeholder for an item dropped on a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// When you want to insert a placeholder cell into your collection view, create a `UICollectionViewDropPlaceholder` object and pass it to the [`dropItem:toPlaceholder:`](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator/drop(_:to:)-l5tg) method of your [`UICollectionViewDropCoordinator`](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator). You use a placeholder cell to display a temporary interface while you load the cell’s contents asynchronously. For example, your placeholder cell might display a progress indicator or a message that the cell content isn’t yet available. The placeholder object contains the reuse identifier of the temporary cell you want to display in your collection view. It can also include a custom preview to use during the drop.
+    ///
+    /// You must register the cells you use with your placeholders in advance. In your storyboard file, add a collection view cell object to your collection view, configure its appearance, set its class to [`UICollectionViewCell`](https://developer.apple.com/documentation/uikit/uicollectionviewcell) (or an appropriate subclass), and assign a reuse identifier to it. When you create your `UICollectionViewDropPlaceholder` object, pass the cell’s reuse identifier to [`initWithInsertionIndexPath:reuseIdentifier:`](https://developer.apple.com/documentation/uikit/uicollectionviewplaceholder/init(insertionindexpath:reuseidentifier:)). The collection view uses the information in your placeholder object to insert the cell into the collection view.
+    ///
+    /// Set the [`cellUpdateHandler`](https://developer.apple.com/documentation/uikit/uicollectionviewplaceholder/cellupdatehandler) to a block of code that configures the cell as a placeholder for the incoming data.
+    ///
+    /// For more information, see [Supporting Drag and Drop in Collection Views](https://developer.apple.com/documentation/uikit/supporting-drag-and-drop-in-collection-views).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Placeholder cells are meant to be a temporary part of your collection view. Always replace them with actual cells as soon as possible, or cancel the drop to remove them from the collection view. Use the methods of a [`UICollectionViewDropPlaceholderContext`](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholdercontext) object to remove placeholders from your collection view.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UICollectionViewPlaceholder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2234,7 +2502,13 @@ impl UICollectionViewDropPlaceholder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropitem?language=objc)
+    /// The data associated with an item being dropped into the collection view.
+    ///
+    /// ## Overview
+    ///
+    /// When handling a drop, you get instances of this class from the [`items`](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator/items) property of the [`UICollectionViewDropCoordinator`](https://developer.apple.com/documentation/uikit/uicollectionviewdropcoordinator) object. Use them to retrieve the data for the items being dragged and to plan any animations related to dropping the items. You do not create instances of this class yourself.
+    ///
+    ///
     pub unsafe trait UICollectionViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[unsafe(method(dragItem))]
@@ -2253,7 +2527,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropplaceholdercontext?language=objc)
+    /// An object that contains information about a placeholder in the collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class yourself. For each placeholder cell that you insert into the collection view, the drop coordinator provides you with an instance of this class. You use this context object later to remove the placeholder cell, either by committing the actual data to your data source object or by deleting the placeholder cell.
+    ///
+    ///
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UICollectionViewDropPlaceholderContext:
         UIDragAnimating + MainThreadOnly

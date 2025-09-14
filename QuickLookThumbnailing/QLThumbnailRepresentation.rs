@@ -15,19 +15,19 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype?language=objc)
+/// The different types of thumbnails that you can create.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLThumbnailRepresentationType(pub NSInteger);
 impl QLThumbnailRepresentationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/icon?language=objc)
+    /// A file icon representation of an image.
     #[doc(alias = "QLThumbnailRepresentationTypeIcon")]
     pub const Icon: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/lowqualitythumbnail?language=objc)
+    /// A cached thumbnail representation of an image.
     #[doc(alias = "QLThumbnailRepresentationTypeLowQualityThumbnail")]
     pub const LowQualityThumbnail: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype/thumbnail?language=objc)
+    /// A thumbnail representation of an image.
     #[doc(alias = "QLThumbnailRepresentationTypeThumbnail")]
     pub const Thumbnail: Self = Self(2);
 }
@@ -41,7 +41,15 @@ unsafe impl RefEncode for QLThumbnailRepresentationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation?language=objc)
+    /// Information about the thumbnail that the thumbnail generator returns.
+    ///
+    /// ## Overview
+    ///
+    /// QuickLook Thumbnailing is a non-UI framework, so your app doesn’t have to link to either [`UIKit`](https://developer.apple.com/documentation/uikit) or [`AppKit`](https://developer.apple.com/documentation/appkit). Quicklook Thumbnailing generates a thumbnail as a Core Graphics image object and makes the thumbnail available as the [`CGImage`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/cgimage) property. If an app links to AppKit or UIKit, the thumbnail is available through the [`NSImage`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/nsimage) or [`UIImage`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/uiimage) properties.
+    ///
+    /// For more information on the different types of thumbnails that [`QLThumbnailGenerator`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator) can create, see [`QLThumbnailGenerationRequestRepresentationTypes`](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailRepresentation;

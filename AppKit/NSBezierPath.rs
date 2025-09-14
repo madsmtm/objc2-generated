@@ -12,19 +12,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum?language=objc)
+/// Constants that specify the shape of endpoints for an open path when it is stroked.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineCapStyle(pub NSUInteger);
 impl NSLineCapStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/butt?language=objc)
+    /// Specifies a butt line cap style for endpoints for an open path when stroked.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the butt line cap style.](https://docs-assets.developer.apple.com/published/55f4560ea57e003d22575615b367c028/media-3670932%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineCapStyleButt")]
     pub const Butt: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/round?language=objc)
+    /// Specifies a round line cap style for endpoints for an open path when stroked.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the round line cap style.](https://docs-assets.developer.apple.com/published/a4375de4f678a4c65ee0780f7a1946ed/media-3670934%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineCapStyleRound")]
     pub const Round: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum/square?language=objc)
+    /// Specifies a square line cap style for endpoints for an open path when stroked.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the square line cap style.](https://docs-assets.developer.apple.com/published/a3cd231f2dc0cf94a29bb49fc6fece5d/media-3670933%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineCapStyleSquare")]
     pub const Square: Self = Self(2);
 }
@@ -37,19 +67,49 @@ unsafe impl RefEncode for NSLineCapStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum?language=objc)
+/// Constants that specify the shape of the joins between connected segments of a stroked path.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineJoinStyle(pub NSUInteger);
 impl NSLineJoinStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/miter?language=objc)
+    /// Specifies a miter line shape of the joints between connected segments of a stroked path.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the miter line join style.](https://docs-assets.developer.apple.com/published/24a8040812f1885bb21312a7ca550f6c/media-3670930%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineJoinStyleMiter")]
     pub const Miter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/round?language=objc)
+    /// Specifies a round line shape of the joints between connected segments of a stroked path.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the round line join style.](https://docs-assets.developer.apple.com/published/dee3d1377e86998ce0a636ff90571ac3/media-3670931%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineJoinStyleRound")]
     pub const Round: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum/bevel?language=objc)
+    /// Specifies a bevel line shape of the joints between connected segments of a stroked path.
+    ///
+    /// ## Discussion
+    ///
+    /// Here is an example of the appearance of this style:
+    ///
+    ///
+    /// ![Diagram that shows the bevel line join style.](https://docs-assets.developer.apple.com/published/bc0b448e0197d150d0153756da15c6a4/media-3670929%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "NSLineJoinStyleBevel")]
     pub const Bevel: Self = Self(2);
 }
@@ -62,16 +122,34 @@ unsafe impl RefEncode for NSLineJoinStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum?language=objc)
+/// Constants that specify the winding rule a Bézier path uses.
+///
+/// ## Overview
+///
+/// These constants are described in more detail in [Paths](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindingRule(pub NSUInteger);
 impl NSWindingRule {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum/nonzero?language=objc)
+    /// Specifies the non-zero winding rule.
+    ///
+    /// ## Discussion
+    ///
+    /// Count each left-to-right path as +1, and each right-to-left path as -1. If the sum of all crossings is 0, the point is outside the path. If the sum is nonzero, the point is inside the path and the region containing it is filled. This is the default winding rule.
+    ///
+    ///
     #[doc(alias = "NSWindingRuleNonZero")]
     pub const NonZero: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum/evenodd?language=objc)
+    /// Specifies the even-odd winding rule.
+    ///
+    /// ## Discussion
+    ///
+    /// Count the total number of path crossings. If the number of crossings is even, the point is outside the path. If the number of crossings is odd, the point is inside the path and the region that contains it is filled.
+    ///
+    ///
     #[doc(alias = "NSWindingRuleEvenOdd")]
     pub const EvenOdd: Self = Self(1);
 }
@@ -84,28 +162,32 @@ unsafe impl RefEncode for NSWindingRule {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype?language=objc)
+/// Constants that specify basic path element commands.
+///
+/// ## Overview
+///
+/// These commands are enough to define all of the possible path shapes. Each command has one or more points that contain information needed to position the path element. Most path elements use the current drawing point as the starting point for drawing. For more details, see [Paths](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBezierPathElement(pub NSUInteger);
 impl NSBezierPathElement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/moveto?language=objc)
+    /// Moves the path object’s current drawing point to the specified point.
     #[doc(alias = "NSBezierPathElementMoveTo")]
     pub const MoveTo: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/lineto?language=objc)
+    /// Creates a straight line from the current drawing point to the specified point.
     #[doc(alias = "NSBezierPathElementLineTo")]
     pub const LineTo: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/cubiccurveto?language=objc)
     #[doc(alias = "NSBezierPathElementCubicCurveTo")]
     pub const CubicCurveTo: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/closepath?language=objc)
+    /// Marks the end of the current subpath at the specified point.
     #[doc(alias = "NSBezierPathElementClosePath")]
     pub const ClosePath: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/quadraticcurveto?language=objc)
     #[doc(alias = "NSBezierPathElementQuadraticCurveTo")]
     pub const QuadraticCurveTo: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype/curveto?language=objc)
+    /// Creates a curved line segment from the current point to the specified endpoint using two control points to define the curve.
     #[doc(alias = "NSBezierPathElementCurveTo")]
     #[deprecated]
     pub const CurveTo: Self = Self(NSBezierPathElement::CubicCurveTo.0);
@@ -120,7 +202,19 @@ unsafe impl RefEncode for NSBezierPathElement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath?language=objc)
+    /// An object that can create paths using PostScript-style commands.
+    ///
+    /// ## Overview
+    ///
+    /// Paths consist of straight and curved line segments joined together. Paths can form recognizable shapes such as rectangles, ovals, arcs, and glyphs; they can also form complex polygons using either straight or curved line segments. A single path can be closed by connecting its two endpoints, or it can be left open.
+    ///
+    /// An [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) object can contain multiple disconnected paths, whether they are closed or open. Each of these paths is referred to as a subpath. The subpaths of a Bézier path object must be manipulated as a group. The only way to manipulate subpaths individually is to create separate [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) objects for each.
+    ///
+    /// For a given [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath) object, you can stroke the path’s outline or fill the region occupied by the path. You can also use the path as a clipping region for views or other regions. Using methods of [`NSBezierPath`](https://developer.apple.com/documentation/appkit/nsbezierpath), you can also perform hit detection on the filled or stroked path. Hit detection is needed to implement interactive graphics, as in rubber banding and dragging operations.
+    ///
+    /// The current graphics context is automatically saved and restored for all drawing operations involving Bézier path objects, so your application does not need to worry about the graphics settings changing across invocations.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBezierPath;
@@ -634,54 +728,156 @@ impl NSBezierPath {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttlinecapstyle?language=objc)
+/// Specifies a butt line cap style for endpoints for an open path when stroked.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the butt line cap style.](https://docs-assets.developer.apple.com/published/55f4560ea57e003d22575615b367c028/media-2934721%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSButtLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Butt.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinecapstyle?language=objc)
+/// Specifies a round line cap style for endpoints for an open path when stroked.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the round line cap style.](https://docs-assets.developer.apple.com/published/a4375de4f678a4c65ee0780f7a1946ed/media-2934723%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSRoundLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Round.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssquarelinecapstyle?language=objc)
+/// Specifies a square line cap style for endpoints for an open path when stroked.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the square line cap style.](https://docs-assets.developer.apple.com/published/a3cd231f2dc0cf94a29bb49fc6fece5d/media-2934722%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSSquareLineCapStyle: NSLineCapStyle = NSLineCapStyle(NSLineCapStyle::Square.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmiterlinejoinstyle?language=objc)
+/// Specifies a miter line shape of the joints between connected segments of a stroked path.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the miter line join style.](https://docs-assets.developer.apple.com/published/24a8040812f1885bb21312a7ca550f6c/media-2934725%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSMiterLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Miter.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundlinejoinstyle?language=objc)
+/// Specifies a round line shape of the joints between connected segments of a stroked path.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the round line join style.](https://docs-assets.developer.apple.com/published/dee3d1377e86998ce0a636ff90571ac3/media-2934720%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSRoundLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Round.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbevellinejoinstyle?language=objc)
+/// Specifies a bevel line shape of the joints between connected segments of a stroked path.
+///
+/// ## Discussion
+///
+/// Here is an example of the appearance of this style:
+///
+///
+/// ![Diagram that shows the bevel line join style.](https://docs-assets.developer.apple.com/published/bc0b448e0197d150d0153756da15c6a4/media-2934724%402x.png)
+///
+///
+///
 #[deprecated]
 pub static NSBevelLineJoinStyle: NSLineJoinStyle = NSLineJoinStyle(NSLineJoinStyle::Bevel.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnonzerowindingrule?language=objc)
+/// Specifies the non-zero winding rule.
+///
+/// ## Discussion
+///
+/// Count each left-to-right path as +1, and each right-to-left path as -1. If the sum of all crossings is 0, the point is outside the path. If the sum is nonzero, the point is inside the path and the region containing it is filled. This is the default winding rule.
+///
+///
 #[deprecated]
 pub static NSNonZeroWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::NonZero.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevenoddwindingrule?language=objc)
+/// Specifies the even-odd winding rule.
+///
+/// ## Discussion
+///
+/// Count the total number of path crossings. If the number of crossings is even, the point is outside the path. If the number of crossings is odd, the point is inside the path and the region that contains it is filled.
+///
+///
 #[deprecated]
 pub static NSEvenOddWindingRule: NSWindingRule = NSWindingRule(NSWindingRule::EvenOdd.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmovetobezierpathelement?language=objc)
+/// Moves the path object’s current drawing point to the specified point.
+///
+/// ## Discussion
+///
+/// This path element does not result in any drawing. Using this command in the middle of a path results in a disconnected line segment.
+///
+/// Contains 1 point.
+///
+///
 #[deprecated]
 pub static NSMoveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::MoveTo.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinetobezierpathelement?language=objc)
+/// Creates a straight line from the current drawing point to the specified point.
+///
+/// ## Discussion
+///
+/// Lines and rectangles are specified using this path element.
+///
+/// Contains 1 point.
+///
+///
 #[deprecated]
 pub static NSLineToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::LineTo.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscurvetobezierpathelement?language=objc)
+/// Creates a curved line segment from the current point to the specified endpoint using two control points to define the curve.
+///
+/// ## Discussion
+///
+/// The points are stored in the following order: controlPoint1, controlPoint2, endPoint. Ovals, arcs, and Bezier curves all use curve elements to specify their geometry.
+///
+/// Contains 3 points.
+///
+///
 #[deprecated]
 pub static NSCurveToBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::CurveTo.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclosepathbezierpathelement?language=objc)
+/// Marks the end of the current subpath at the specified point.
+///
+/// ## Discussion
+///
+/// Note that the point specified for the Close Path element is essentially the same as the current point.
+///
+///
 #[deprecated]
 pub static NSClosePathBezierPathElement: NSBezierPathElement =
     NSBezierPathElement(NSBezierPathElement::ClosePath.0);

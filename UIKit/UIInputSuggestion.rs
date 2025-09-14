@@ -7,8 +7,7 @@ use crate::*;
 
 extern_class!(
     /// A base class you use to handle suggestions from the keyboard or system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinputsuggestion?language=objc)
+    /// A base class you use to handle suggestions from the keyboard or system.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIInputSuggestion;

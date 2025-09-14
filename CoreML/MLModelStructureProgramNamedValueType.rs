@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class representing a named value type in a Program.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramnamedvaluetype?language=objc)
+    /// A class representing a named value type in a Program.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramNamedValueType;

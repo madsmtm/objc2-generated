@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxanswercallaction?language=objc)
+    /// An encapsulation of the act of answering an incoming call.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXAnswerCallAction`](https://developer.apple.com/documentation/callkit/cxanswercallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction).
+    ///
+    /// When an incoming call is allowed by the system and approved by the user, the provider sends [`provider:performAnswerCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-h4in) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed. To indicate that the call connected at a time other than the current time, you can instead call the [`fulfillWithDateConnected:`](https://developer.apple.com/documentation/callkit/cxanswercallaction/fulfill(withdateconnected:)).
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

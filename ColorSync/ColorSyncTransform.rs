@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransform?language=objc)
 #[doc(alias = "ColorSyncTransformRef")]
 #[repr(C)]
 pub struct ColorSyncTransform {
@@ -27,7 +26,6 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for ColorSyncTransform {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformgettypeid()?language=objc)
     #[doc(alias = "ColorSyncTransformGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,8 +37,6 @@ unsafe impl ConcreteType for ColorSyncTransform {
 }
 
 impl ColorSyncTransform {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformcreate(_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `profile_sequence` generic must be of the correct type.
@@ -62,8 +58,6 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformcopyproperty(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -87,8 +81,6 @@ impl ColorSyncTransform {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformsetproperty(_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `key` should be of the correct type.
@@ -106,7 +98,6 @@ impl ColorSyncTransform {
         unsafe { ColorSyncTransformSetProperty(self, key, property) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformgetprofilesequence(_:)?language=objc)
     #[doc(alias = "ColorSyncTransformGetProfileSequence")]
     #[inline]
     pub unsafe fn profile_sequence(&self) -> Option<CFRetained<CFArray>> {
@@ -120,33 +111,24 @@ impl ColorSyncTransform {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatadepth?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ColorSyncDataDepth(pub c_uint);
 impl ColorSyncDataDepth {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync1bitgamut?language=objc)
     #[doc(alias = "kColorSync1BitGamut")]
     pub const Sync1BitGamut: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync8bitinteger?language=objc)
     #[doc(alias = "kColorSync8BitInteger")]
     pub const Sync8BitInteger: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync16bitinteger?language=objc)
     #[doc(alias = "kColorSync16BitInteger")]
     pub const Sync16BitInteger: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync16bitfloat?language=objc)
     #[doc(alias = "kColorSync16BitFloat")]
     pub const Sync16BitFloat: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitinteger?language=objc)
     #[doc(alias = "kColorSync32BitInteger")]
     pub const Sync32BitInteger: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitnamedcolorindex?language=objc)
     #[doc(alias = "kColorSync32BitNamedColorIndex")]
     pub const Sync32BitNamedColorIndex: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync32bitfloat?language=objc)
     #[doc(alias = "kColorSync32BitFloat")]
     pub const Sync32BitFloat: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsync10bitinteger?language=objc)
     #[doc(alias = "kColorSync10BitInteger")]
     pub const Sync10BitInteger: Self = Self(8);
 }
@@ -161,30 +143,22 @@ unsafe impl RefEncode for ColorSyncDataDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncalphainfo?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ColorSyncAlphaInfo(pub c_uint);
 impl ColorSyncAlphaInfo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanone?language=objc)
     #[doc(alias = "kColorSyncAlphaNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphapremultipliedlast?language=objc)
     #[doc(alias = "kColorSyncAlphaPremultipliedLast")]
     pub const PremultipliedLast: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphapremultipliedfirst?language=objc)
     #[doc(alias = "kColorSyncAlphaPremultipliedFirst")]
     pub const PremultipliedFirst: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphalast?language=objc)
     #[doc(alias = "kColorSyncAlphaLast")]
     pub const Last: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphafirst?language=objc)
     #[doc(alias = "kColorSyncAlphaFirst")]
     pub const First: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanoneskiplast?language=objc)
     #[doc(alias = "kColorSyncAlphaNoneSkipLast")]
     pub const NoneSkipLast: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphanoneskipfirst?language=objc)
     #[doc(alias = "kColorSyncAlphaNoneSkipFirst")]
     pub const NoneSkipFirst: Self = Self(6);
 }
@@ -199,27 +173,17 @@ unsafe impl RefEncode for ColorSyncAlphaInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncalphainfomask?language=objc)
 pub const kColorSyncAlphaInfoMask: c_uint = 0x1F;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteordermask?language=objc)
 pub const kColorSyncByteOrderMask: c_uint = 0x7000;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorderdefault?language=objc)
 pub const kColorSyncByteOrderDefault: c_uint = 0 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16little?language=objc)
 pub const kColorSyncByteOrder16Little: c_uint = 1 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32little?language=objc)
 pub const kColorSyncByteOrder32Little: c_uint = 2 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder16big?language=objc)
 pub const kColorSyncByteOrder16Big: c_uint = 3 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbyteorder32big?language=objc)
 pub const kColorSyncByteOrder32Big: c_uint = 4 << 12;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsyncdatalayout?language=objc)
 pub type ColorSyncDataLayout = u32;
 
 impl ColorSyncTransform {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynctransformconvert(_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `dst` must be a valid pointer.
@@ -278,257 +242,205 @@ impl ColorSyncTransform {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncprofile?language=objc)
     pub static kColorSyncProfile: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintent?language=objc)
     pub static kColorSyncRenderingIntent: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentperceptual?language=objc)
     pub static kColorSyncRenderingIntentPerceptual: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentrelative?language=objc)
     pub static kColorSyncRenderingIntentRelative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentsaturation?language=objc)
     pub static kColorSyncRenderingIntentSaturation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentabsolute?language=objc)
     pub static kColorSyncRenderingIntentAbsolute: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncrenderingintentuseprofileheader?language=objc)
     pub static kColorSyncRenderingIntentUseProfileHeader: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformtag?language=objc)
     pub static kColorSyncTransformTag: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetopcs?language=objc)
     pub static kColorSyncTransformDeviceToPCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstopcs?language=objc)
     pub static kColorSyncTransformPCSToPCS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformpcstodevice?language=objc)
     pub static kColorSyncTransformPCSToDevice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdevicetodevice?language=objc)
     pub static kColorSyncTransformDeviceToDevice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformgamutcheck?language=objc)
     pub static kColorSyncTransformGamutCheck: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncblackpointcompensation?language=objc)
     pub static kColorSyncBlackPointCompensation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncextendedrange?language=objc)
     pub static kColorSyncExtendedRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchdrderivative?language=objc)
     pub static kColorSyncHDRDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpqderivative?language=objc)
     pub static kColorSyncPQDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynchlgderivative?language=objc)
     pub static kColorSyncHLGDerivative: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncpreferredcmm?language=objc)
     pub static kColorSyncPreferredCMM: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertquality?language=objc)
     pub static kColorSyncConvertQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncbestquality?language=objc)
     pub static kColorSyncBestQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncnormalquality?language=objc)
     pub static kColorSyncNormalQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdraftquality?language=objc)
     pub static kColorSyncDraftQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconvertuseextendedrange?language=objc)
     pub static kColorSyncConvertUseExtendedRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransforminfo?language=objc)
     pub static kColorSyncTransformInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcreator?language=objc)
     pub static kColorSyncTransformCreator: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsrcspace?language=objc)
     pub static kColorSyncTransformSrcSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformdstspace?language=objc)
     pub static kColorSyncTransformDstSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmenttype?language=objc)
     pub static kColorSyncTransformCodeFragmentType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformcodefragmentmd5?language=objc)
     pub static kColorSyncTransformCodeFragmentMD5: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformfullconversiondata?language=objc)
     pub static kColorSyncTransformFullConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformsimplifiedconversiondata?language=objc)
     pub static kColorSyncTransformSimplifiedConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformparametricconversiondata?language=objc)
     pub static kColorSyncTransformParametricConversionData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformprofilesequnce?language=objc)
     pub static kColorSyncTransformProfileSequnce: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsynctransformuseitu709oetf?language=objc)
     pub static kColorSyncTransformUseITU709OETF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionmatrix?language=objc)
     pub static kColorSyncConversionMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve0?language=objc)
     pub static kColorSyncConversionParamCurve0: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve1?language=objc)
     pub static kColorSyncConversionParamCurve1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve2?language=objc)
     pub static kColorSyncConversionParamCurve2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve3?language=objc)
     pub static kColorSyncConversionParamCurve3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionparamcurve4?language=objc)
     pub static kColorSyncConversionParamCurve4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion1dlut?language=objc)
     pub static kColorSyncConversion1DLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversiongridpoints?language=objc)
     pub static kColorSyncConversionGridPoints: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionchannelid?language=objc)
     pub static kColorSyncConversionChannelID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversion3dlut?language=objc)
     pub static kColorSyncConversion3DLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionndlut?language=objc)
     pub static kColorSyncConversionNDLut: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversioninpchan?language=objc)
     pub static kColorSyncConversionInpChan: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionoutchan?language=objc)
     pub static kColorSyncConversionOutChan: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncconversionbpc?language=objc)
     pub static kColorSyncConversionBPC: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncfixedpointrange?language=objc)
     pub static kColorSyncFixedPointRange: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsynccreatecodefragment(_:_:)?language=objc)
-///
 /// # Safety
 ///
 /// - `profile_sequence` generic must be of the correct type.

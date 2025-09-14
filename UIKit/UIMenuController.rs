@@ -9,27 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum?language=objc)
+/// The direction the arrow of the editing menu is pointing.
 // NS_ENUM
 #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuControllerArrowDirection(pub NSInteger);
 impl UIMenuControllerArrowDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/default?language=objc)
+    /// The arrow is pointing up or down at the object of focus based on its location in the screen.
     #[doc(alias = "UIMenuControllerArrowDefault")]
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/up?language=objc)
+    /// The arrow is pointing up at the object of focus.
     #[doc(alias = "UIMenuControllerArrowUp")]
     pub const Up: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/down?language=objc)
+    /// The arrow is pointing down at the object of focus.
     #[doc(alias = "UIMenuControllerArrowDown")]
     pub const Down: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/left?language=objc)
+    /// The arrow is pointing left at the object of focus.
     #[doc(alias = "UIMenuControllerArrowLeft")]
     pub const Left: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum/right?language=objc)
+    /// The arrow is pointing right at the object of focus.
     #[doc(alias = "UIMenuControllerArrowRight")]
     pub const Right: Self = Self(4);
 }
@@ -43,7 +43,17 @@ unsafe impl RefEncode for UIMenuControllerArrowDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller?language=objc)
+    /// The menu interface for the Cut, Copy, Paste, Select, Select All, and Delete commands.
+    ///
+    /// ## Overview
+    ///
+    /// The singleton [`UIMenuController`](https://developer.apple.com/documentation/uikit/uimenucontroller) instance is referred to as the editing menu. When you make this menu visible, [`UIMenuController`](https://developer.apple.com/documentation/uikit/uimenucontroller) positions it relative to a target rectangle on the screen; this rectangle usually defines a selection. The menu appears above the target rectangle or, if there isn’t enough space for it, below it. The menu’s pointer is placed at the center of the top or bottom of the target rectangle, as appropriate. Be sure to set the tracking rectangle before you make the menu visible. You’re also responsible for detecting, tracking, and displaying selections.
+    ///
+    /// The [`UIResponderStandardEditActions`](https://developer.apple.com/documentation/uikit/uiresponderstandardeditactions) informal protocol declares methods that are invoked when the user taps a menu command. The [`canPerformAction:withSender:`](https://developer.apple.com/documentation/uikit/uiresponder/canperformaction(_:withsender:)) method of [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) is also related to the editing menu. A responder implements this method to enable and disable commands of the editing menu just before the menu is displayed. You can force the menu commands enabled state to update by calling the [`update`](https://developer.apple.com/documentation/uikit/uimenucontroller/update()) method.
+    ///
+    /// You can also provide your own menu items via the [`menuItems`](https://developer.apple.com/documentation/uikit/uimenucontroller/menuitems) property. When you modify the menu items, you can use the [`update`](https://developer.apple.com/documentation/uikit/uimenucontroller/update()) method to force the menu to update its display.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -153,37 +163,73 @@ impl UIMenuController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/willshowmenunotification?language=objc)
+    /// Posted by the menu controller just before it shows the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerWillShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/didshowmenunotification?language=objc)
+    /// Posted by the menu controller just after it shows the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerDidShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/willhidemenunotification?language=objc)
+    /// Posted by the menu controller just before it hides the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerWillHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/didhidemenunotification?language=objc)
+    /// Posted by the menu controller just after it hides the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerDidHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/menuframedidchangenotification?language=objc)
+    /// Posted when the frame of a visible menu changes.
+    ///
+    /// ## Discussion
+    ///
+    /// There is no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerMenuFrameDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuitem?language=objc)
+    /// A custom item in the editing menu managed by the menu controller.
+    ///
+    /// ## Overview
+    ///
+    /// Custom menu items appear in the menu after any validated system items. A [`UIMenuItem`](https://developer.apple.com/documentation/uikit/uimenuitem) object has two properties: a title and an action selector identifying the method to invoke in the handling responder object. Targets aren’t specified; a suitable target is found via normal traversal of the responder chain. To have custom menu items appear in the editing menu, you must add them to the [`menuItems`](https://developer.apple.com/documentation/uikit/uimenucontroller/menuitems) property of the [`UIMenuController`](https://developer.apple.com/documentation/uikit/uimenucontroller) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

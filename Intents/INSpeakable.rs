@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspeakable?language=objc)
+    /// Pronunciation hints for strings used in a spoken interface.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INSpeakable`](https://developer.apple.com/documentation/intents/inspeakable) protocol is adopted by the [`INSpeakableString`](https://developer.apple.com/documentation/intents/inspeakablestring) class and used to provide pronunciation hints for strings spoken by Siri. You do not need to adopt this protocol in your own classes. Instead, create instances of the [`INSpeakableString`](https://developer.apple.com/documentation/intents/inspeakablestring) class and use them when resolving parameters in your intent handlers.
+    ///
+    ///
     pub unsafe trait INSpeakable: NSObjectProtocol {
         #[unsafe(method(spokenPhrase))]
         #[unsafe(method_family = none)]

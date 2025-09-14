@@ -6,37 +6,65 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errormessage?language=objc)
+    /// An `NSString` that supplies a detailed description of the error condition.
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errornumber?language=objc)
+    /// An `NSNumber` that specifies the error number.
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorappname?language=objc)
+    /// An `NSString` that specifies the name of the application that generated the error.
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorAppName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorbriefmessage?language=objc)
+    /// An `NSString` that provides a brief description of the error.
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorBriefMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorrange?language=objc)
+    /// An `NSValue` that specifies a range.
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorRange: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript?language=objc)
+    /// An object that provides the ability to load, compile, and execute scripts.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides applications with the ability to
+    ///
+    /// - load a script from a URL or from a text string
+    ///
+    /// - compile or execute a script or an individual Apple event
+    ///
+    /// - obtain an `NSAppleEventDescriptor` containing the reply from an executed script or event
+    ///
+    /// - obtain an attributed string for a compiled script, suitable for display in a script editor
+    ///
+    /// - obtain various kinds of information about any errors that may occur
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `NSAppleScript` provides the [`executeAppleEvent:error:`](https://developer.apple.com/documentation/foundation/nsapplescript/executeappleevent(_:error:)) method so that you can send an Apple event to invoke a handler in a script. (In an AppleScript script, a handler is the equivalent of a function.) However, you cannot use this method to send Apple events to other applications.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When you create an instance of `NSAppleScript` object, you can use a URL to specify a script that can be in either text or compiled form, or you can supply the script as a string. Should an error occur when compiling or executing the script, several of the methods return a dictionary containing error information. The keys for obtaining error information, such as [`NSAppleScriptErrorMessage`](https://developer.apple.com/documentation/foundation/nsapplescript/errormessage), are described in the Constants section.
+    ///
+    /// See also NSAppleScript Additions Reference in the Application Kit framework, which defines a method that returns the syntax-highlighted source code for a script.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAppleScript;

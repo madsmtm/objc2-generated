@@ -7,28 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate?language=objc)
+/// The music player playback state modes.
+///
+/// ## Overview
+///
+/// You determine a music player’s state by checking the [`playbackState`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/playbackstate) property. Depending on the property’s value, you can update your application’s user interface or take other appropriate action.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicPlaybackState(pub NSInteger);
 impl MPMusicPlaybackState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/stopped?language=objc)
+    /// The music player is stopped.
     #[doc(alias = "MPMusicPlaybackStateStopped")]
     pub const Stopped: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/playing?language=objc)
+    /// The music player is playing.
     #[doc(alias = "MPMusicPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/paused?language=objc)
+    /// The music player is paused.
     #[doc(alias = "MPMusicPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/interrupted?language=objc)
+    /// The music player has been interrupted, such as by an incoming phone call.
     #[doc(alias = "MPMusicPlaybackStateInterrupted")]
     pub const Interrupted: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/seekingforward?language=objc)
+    /// The music player is seeking forward.
     #[doc(alias = "MPMusicPlaybackStateSeekingForward")]
     pub const SeekingForward: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate/seekingbackward?language=objc)
+    /// The music player is seeking backward.
     #[doc(alias = "MPMusicPlaybackStateSeekingBackward")]
     pub const SeekingBackward: Self = Self(5);
 }
@@ -41,22 +47,22 @@ unsafe impl RefEncode for MPMusicPlaybackState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode?language=objc)
+/// The repeat modes for the media player.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicRepeatMode(pub NSInteger);
 impl MPMusicRepeatMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/default?language=objc)
+    /// The user’s preferred repeat mode.
     #[doc(alias = "MPMusicRepeatModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/none?language=objc)
+    /// The music player will not repeat the current song or playlist.
     #[doc(alias = "MPMusicRepeatModeNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/one?language=objc)
+    /// The music player will repeat the current song.
     #[doc(alias = "MPMusicRepeatModeOne")]
     pub const One: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode/all?language=objc)
+    /// The music player will repeat the current playlist.
     #[doc(alias = "MPMusicRepeatModeAll")]
     pub const All: Self = Self(3);
 }
@@ -69,22 +75,22 @@ unsafe impl RefEncode for MPMusicRepeatMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode?language=objc)
+/// The shuffle modes for the media player.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicShuffleMode(pub NSInteger);
 impl MPMusicShuffleMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/default?language=objc)
+    /// The user’s preferred shuffle mode.
     #[doc(alias = "MPMusicShuffleModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/off?language=objc)
+    /// The playlist is not shuffled.
     #[doc(alias = "MPMusicShuffleModeOff")]
     pub const Off: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/songs?language=objc)
+    /// The playlist is shuffled by song.
     #[doc(alias = "MPMusicShuffleModeSongs")]
     pub const Songs: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode/albums?language=objc)
+    /// The playlist is shuffled by album.
     #[doc(alias = "MPMusicShuffleModeAlbums")]
     pub const Albums: Self = Self(3);
 }
@@ -98,7 +104,7 @@ unsafe impl RefEncode for MPMusicShuffleMode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpsystemmusicplayercontroller?language=objc)
+    /// A protocol for playing videos in the Music app.
     pub unsafe trait MPSystemMusicPlayerController: NSObjectProtocol {
         #[cfg(feature = "MPMusicPlayerQueueDescriptor")]
         /// Switches to Music to play the content provided by the queue descriptor.
@@ -109,7 +115,39 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller?language=objc)
+    /// An object that plays audio media items from the device’s Music app library.
+    ///
+    /// ## Overview
+    ///
+    /// Create an instance of a music player to play media items in your app. There are two types of music players:
+    ///
+    /// - An _application music player_ plays music locally within your app. It isn’t aware of the Music app’s Now Playing item, nor does it affect the Music app’s state. There are two application music players: [`applicationMusicPlayer`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/applicationmusicplayer) and [`applicationQueuePlayer`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/applicationqueueplayer). The application queue player provides greater control over the contents of the queue and is the preferred player.
+    ///
+    /// - The _system music player_ employs the built-in Music app on your behalf. On instantiation, it takes on the current Music app state, such as the identification of the Now Playing item. If a user switches away from your app while music is playing, that music continues to play. The Music app then has your music player’s most recently-set repeat mode, shuffle mode, playback state, and Now Playing item.
+    ///
+    /// Creating a new instance of `MPMusicPlayerController` and not specifying the player type returns a system music player.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only use a music player on the app’s main thread.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Accessing limited playback information while using Home Sharing
+    ///
+    /// The built-in Music and Videos apps can play media from shared libraries using Home Sharing. However, third-party apps using the Media Player framework only have access to the device music library. This means that your app can’t display the title of a home-shared song in your user interface. Specifically, if the Music app is playing a home-shared song, and you’re using a system music player, the value of the [`nowPlayingItem`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/nowplayingitem) property of your music player is [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0). However, other playback information is available when playing shared media. For example, the framework updates the value of the [`playbackState`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller/playbackstate) property when the system music player plays a home-shared item.
+    ///
+    /// ### Choosing how the system handles remote control events
+    ///
+    /// Users can initiate audio playback commands through an external headset or accessory.
+    ///
+    /// - If you use an _application music player_, the system sends these commands as remote control events to your app, but you don’t provide code to handle them. The framework receives and handles the remote control events.
+    ///
+    /// - If you use the _system music player_, your app uses the Music app to play audio, which means that the Music app is the Now Playing app. The Music app receives and handles the remote control events. For example, if your app plays audio using the system music player, and the user switches from your app to the iOS device’s Now Playing controls, the controls work as expected. That is, they can play or pause audio, or skip to the next and previous items.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMusicPlayerController;
@@ -265,18 +303,36 @@ impl MPMusicPlayerController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollerplaybackstatedidchangenotification?language=objc)
+    /// Posted when the playback state changes programmatically or by user action.
+    ///
+    /// ## Discussion
+    ///
+    /// The object associated with the notification is the music player whose playback state changed. The notification has no `userInfo` dictionary.
+    ///
+    ///
     pub static MPMusicPlayerControllerPlaybackStateDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollernowplayingitemdidchangenotification?language=objc)
+    /// Posted when the currently playing media item has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The object associated with the notification is the music player whose Now Playing item changed. The notification has no `userInfo` dictionary.
+    ///
+    ///
     pub static MPMusicPlayerControllerNowPlayingItemDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontrollervolumedidchangenotification?language=objc)
+    /// Posted when the audio playback volume for the music player has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The object associated with the notification is the music player whose playback volume changed. The notification has no `userInfo` dictionary.
+    ///
+    ///
     pub static MPMusicPlayerControllerVolumeDidChangeNotification: &'static NSNotificationName;
 }

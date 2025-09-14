@@ -7,13 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/completionhandler?language=objc)
+/// A completion handler block for a search operation.
+///
+/// ## Discussion
+///
+/// This block takes two parameters:
+///
+/// - The `response` parameter contains the search results. If an error occurs, this parameter is `nil` and the framework provides an appropriate error object in the `error` parameter.
+///
+/// - The `error` parameter is `nil` if the search is successful. If an error occurs during the operation, the framework sets this parameter to an appropriate error object.
+///
+/// This block has no return value.
+///
+///
 #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
 pub type MKLocalSearchCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch?language=objc)
+    /// A utility object for initiating map-based searches and processing the results.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`MKLocalSearch`](https://developer.apple.com/documentation/mapkit/mklocalsearch) object to execute a single search request. You might use this class to search for addresses or points of interest on the map. Upon completion of the request, the object delivers the results to the completion handler that you provide.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearch;

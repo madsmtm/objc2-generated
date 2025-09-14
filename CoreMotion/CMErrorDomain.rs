@@ -6,6 +6,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrordomain?language=objc)
+    /// The error domain for Core Motion.
     pub static CMErrorDomain: &'static NSString;
 }

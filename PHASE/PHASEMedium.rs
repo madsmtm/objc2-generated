@@ -5,15 +5,20 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Medium preset
+/// Predetermined qualities of an environment that affect how sound transmits.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemedium/preset?language=objc)
+/// ## Overview
+///
+/// Currently, this enumeration refers only to sound traveling through air.
+///
+///
+/// Medium preset
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHASEMediumPreset(pub NSInteger);
 impl PHASEMediumPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasemedium/preset/air?language=objc)
+    /// A medium that simulates sound traveling through air.
     #[doc(alias = "PHASEMediumPresetAir")]
     pub const Air: Self = Self(0x6d644172);
 }
@@ -27,13 +32,18 @@ unsafe impl RefEncode for PHASEMediumPreset {
 }
 
 extern_class!(
+    /// A property or quality of the environment that affects how sound travels.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines choices for the engine’s [`defaultMedium`](https://developer.apple.com/documentation/phase/phaseengine/defaultmedium). Currently, this property provides only sound traveling through air.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEMedium describes the acoustic properties of a medium.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemedium?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEMedium;

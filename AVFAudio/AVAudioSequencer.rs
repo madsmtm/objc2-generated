@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A structure that defines whether data on different MIDI channels map to multiple tracks, or whether the framework preserves the tracks as they are.
 /// Determines whether data on different MIDI channels is mapped to multiple tracks, or
 /// if the tracks are preserved as-is.
 ///
@@ -21,18 +22,28 @@ use crate::*;
 /// in the SMF).
 ///
 /// API_AVAILABLE(macos(10.11), ios(9.0), watchos(2.0), tvos(9.0))
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMusicSequenceLoadOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMusicSequenceLoadOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions/avmusicsequenceloadsmf_preservetracks?language=objc)
+/// An option that preserves the tracks as they are.
+///
+/// ## Discussion
+///
+/// The MIDI sequence contains one track for each track in the SMF, plus a tempo track (if it isn’t in the SMF).
+///
+///
         #[doc(alias = "AVMusicSequenceLoadSMF_PreserveTracks")]
         const SMF_PreserveTracks = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicsequenceloadoptions/smf_channelstotracks?language=objc)
+/// An option that represents data on different MIDI channels mapped to multiple tracks.
+///
+/// ## Discussion
+///
+/// The MIDI sequence contains a tempo track, one track for each MIDI channel in the SMF, and one track (the last track) for `SysEx` and `MetaEvents`.
+///
+///
         #[doc(alias = "AVMusicSequenceLoadSMF_ChannelsToTracks")]
         const SMF_ChannelsToTracks = 1<<0;
     }
@@ -70,144 +81,157 @@ unsafe impl RefEncode for AVBeatRange {
 
 // TODO: pub fn AVMakeBeatRange(start_beat: AVMusicTimeStamp,length_in_beats: AVMusicTimeStamp,) -> AVBeatRange;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey?language=objc)
+/// Constants that defines metadata keys for a sequencer.
 // NS_TYPED_ENUM
 pub type AVAudioSequencerInfoDictionaryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/album?language=objc)
+    /// A key that represents the album.
     pub static AVAudioSequencerInfoDictionaryKeyAlbum: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/approximatedurationinseconds?language=objc)
+    /// A key that represents the approximate duration.
     pub static AVAudioSequencerInfoDictionaryKeyApproximateDurationInSeconds:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/artist?language=objc)
+    /// A key that represents the artist.
     pub static AVAudioSequencerInfoDictionaryKeyArtist: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/channellayout?language=objc)
+    /// A key that represents the channel layout.
     pub static AVAudioSequencerInfoDictionaryKeyChannelLayout:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/comments?language=objc)
+    /// A key that represents the comments.
     pub static AVAudioSequencerInfoDictionaryKeyComments:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/composer?language=objc)
+    /// A key that represents the composer.
     pub static AVAudioSequencerInfoDictionaryKeyComposer:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/copyright?language=objc)
+    /// A key that represents the copyright statement.
     pub static AVAudioSequencerInfoDictionaryKeyCopyright:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/encodingapplication?language=objc)
+    /// A key that represents the encoding application.
     pub static AVAudioSequencerInfoDictionaryKeyEncodingApplication:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/genre?language=objc)
+    /// A key that represents the genre.
     pub static AVAudioSequencerInfoDictionaryKeyGenre: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/isrc?language=objc)
+    /// A key that represents the international standard recording code.
     pub static AVAudioSequencerInfoDictionaryKeyISRC: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/keysignature?language=objc)
+    /// A key that represents the key signature.
     pub static AVAudioSequencerInfoDictionaryKeyKeySignature:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/lyricist?language=objc)
+    /// A key that represents the lyricist.
     pub static AVAudioSequencerInfoDictionaryKeyLyricist:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/nominalbitrate?language=objc)
+    /// A key that represents the nominal bit rate.
     pub static AVAudioSequencerInfoDictionaryKeyNominalBitRate:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/recordeddate?language=objc)
+    /// A key that represents the date of the recording.
     pub static AVAudioSequencerInfoDictionaryKeyRecordedDate:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/sourcebitdepth?language=objc)
+    /// A key that represents the bit depth of the source.
     pub static AVAudioSequencerInfoDictionaryKeySourceBitDepth:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/sourceencoder?language=objc)
+    /// A key that represents the encoder the source uses.
     pub static AVAudioSequencerInfoDictionaryKeySourceEncoder:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/subtitle?language=objc)
+    /// A key that represents the subtitle.
     pub static AVAudioSequencerInfoDictionaryKeySubTitle:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/tempo?language=objc)
+    /// A key that represents the tempo.
     pub static AVAudioSequencerInfoDictionaryKeyTempo: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/timesignature?language=objc)
+    /// A key that represents the time signature.
     pub static AVAudioSequencerInfoDictionaryKeyTimeSignature:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/title?language=objc)
+    /// A key that represents the title.
     pub static AVAudioSequencerInfoDictionaryKeyTitle: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/tracknumber?language=objc)
+    /// A key that represents the track number.
     pub static AVAudioSequencerInfoDictionaryKeyTrackNumber:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/year?language=objc)
+    /// A key that represents the year.
     pub static AVAudioSequencerInfoDictionaryKeyYear: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerusercallback?language=objc)
+/// A callback the sequencer calls asynchronously during playback when it encounters a user event.
+///
+/// Parameters:
+/// - track: The track that contains the user event.
+///
+/// - userData: The data used to initialize the user event.
+///
+/// - timeStamp: The beat location of the event.
+///
+///
+/// ## Discussion
+///
+/// The sequencer delivers this callback asynchronously to the rendering thread on an internal queue. The `userData` this returns is unique to each [`AVMusicUserEvent`](https://developer.apple.com/documentation/avfaudio/avmusicuserevent) instance.
+///
+///
 #[cfg(all(feature = "AVAudioTypes", feature = "block2"))]
 pub type AVAudioSequencerUserCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
 
 extern_class!(
+    /// An object that plays audio from a collection of MIDI events the system organizes into music tracks.
     /// A collection of MIDI events organized into AVMusicTracks, plus a player to play back the events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSequencer;
@@ -468,13 +492,13 @@ impl AVAudioSequencer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrackloopcount?language=objc)
+/// Options that define the number of times a track loops.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVMusicTrackLoopCount(pub NSInteger);
 impl AVMusicTrackLoopCount {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrackloopcount/forever?language=objc)
+    /// A track that loops forever.
     #[doc(alias = "AVMusicTrackLoopCountForever")]
     pub const Forever: Self = Self(-1);
 }
@@ -488,14 +512,13 @@ unsafe impl RefEncode for AVMusicTrackLoopCount {
 }
 
 extern_class!(
+    /// A collection of music events that you can offset, set to a muted state, modify independently from other track events, and send to a specified destination.
     /// A collection of music events which will be sent to a given destination, and which can be
     /// offset, muted, etc. independently of events in other tracks.
     ///
     /// AVMusicTrack is not a container of AVMusicEvents - it will not hold references to
     /// AVMusicEvents that are added, so an application should maintain its own if it is
     /// desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusictrack?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicTrack;
@@ -674,6 +697,21 @@ impl AVMusicTrack {
     );
 }
 
+/// A type you use to enumerate and remove music events, if necessary.
+///
+/// Parameters:
+/// - event: The music event the block returns.
+///
+/// - timeStamp: The beat position of the event in the music track.
+///
+/// - removeEvent: A value that determines whether to remove the event from the track.
+///
+///
+/// ## Discussion
+///
+/// You use this type when you use [`enumerateEventsInRange:usingBlock:`](https://developer.apple.com/documentation/avfaudio/avmusictrack/enumerateevents(in:using:)). If you modify `event` or `timeStamp`, you change the corresponding value in the track event.
+///
+///
 /// The block type used to enumerate and optionally remove AVMusicEvents when using
 /// `AVMusicTrack(enumerateEventsInRange:usingBlock:)`
 ///
@@ -686,8 +724,6 @@ impl AVMusicTrack {
 ///
 /// Parameter `removeEvent`: If the block sets *removeEvent to YES, the current event will be
 /// removed from the track.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusiceventenumerationblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "AVMusicEvents",

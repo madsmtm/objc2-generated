@@ -6,12 +6,68 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitypersistentidentifier?language=objc)
+/// The type that defines a persistent identifier value for a user activity.
+///
+/// ## Discussion
+///
+/// In Objective-C, [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) persistent identifiers are a type alias of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). In Swift, [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) persistent identifiers use the [`NSUserActivityPersistentIdentifier`](https://developer.apple.com/documentation/foundation/nsuseractivitypersistentidentifier) structure.
+///
+///
 #[cfg(feature = "NSString")]
 pub type NSUserActivityPersistentIdentifier = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc)
+    /// A representation of the state of your app at a moment in time.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object provides a lightweight way to capture the state of your app and put it to use later. Create this object to capture information about what a person was doing, such as viewing app content, editing a document, viewing a web page, or watching a video. When the system launches your app and an activity object is available, your app can use the information in that object to restore itself to an appropriate state. Spotlight also uses these objects to improve search results for people. To allow people to continue an activity on another device, see [Implementing Handoff in Your App](https://developer.apple.com/documentation/foundation/implementing-handoff-in-your-app).
+    ///
+    /// ### Siri
+    ///
+    /// If SiriKit needs to launch your app for any reason, it creates a user activity object and assigns an appropriate doc://com.apple.documentation/documentation/sirikit/ininteraction object to its [`interaction`](https://developer.apple.com/documentation/foundation/nsuseractivity/interaction) property. Your app can use the interaction information to configure itself and display information related to the interaction started by SiriKit. You can also provide SiriKit with a custom user activity object containing additional data that you want passed to your app.
+    ///
+    /// In iOS 15 and later, a person can share content they’re viewing by asking Siri to “share this”. Apps built with Mac Catalyst provide the same capability with an [`NSSharingServicePickerToolbarItem`](https://developer.apple.com/documentation/appkit/nssharingservicepickertoolbaritem) in the toolbar. You can use [`activityItemsConfiguration`](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationproviding/activityitemsconfiguration) or [`activityItemsConfigurationSource`](https://developer.apple.com/documentation/uikit/uiwindowscene/activityitemsconfigurationsource) to provide shareable content. In iOS, if both of those properties are [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0), Siri uses the [`webpageURL`](https://developer.apple.com/documentation/foundation/nsuseractivity/webpageurl) property of your app’s current user activity as a fallback value.
+    ///
+    /// ### Quick Note
+    ///
+    /// Quick Note on macOS and iOS can link to any app content represented as an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity). To appear as a link, the content must be the app’s current activity, and provide at least one of the following identifiers:
+    ///
+    /// - [`webpageURL`](https://developer.apple.com/documentation/foundation/nsuseractivity/webpageurl): An `https:` URL, ideally in a canonical form that’s consistent every time a person visits the same content.
+    ///
+    /// - [`persistentIdentifier`](https://developer.apple.com/documentation/foundation/nsuseractivity/persistentidentifier): A string that uniquely identifies the content in this domain. The identifier should identify the same content across devices.
+    ///
+    /// - [`targetContentIdentifier`](https://developer.apple.com/documentation/foundation/nsuseractivity/targetcontentidentifier): A string that uniquely identifies the content in this domain, but also allows disambiguating between multiple scenes of an app. The identifier should identify the same content across devices.
+    ///
+    /// To work well with Quick Note, content must adhere to the following guidelines:
+    ///
+    /// - The activity [`title`](https://developer.apple.com/documentation/foundation/nsuseractivity/title) should be clear and concise. This text describes the content of the link, like “Photo taken on July 27, 2020” or “Conversation with Maria”. Use nouns for activity titles.
+    ///
+    /// - Keep the app’s current activity up to date, using [`becomeCurrent`](https://developer.apple.com/documentation/foundation/nsuseractivity/becomecurrent()) and [`resignCurrent`](https://developer.apple.com/documentation/foundation/nsuseractivity/resigncurrent()).
+    ///
+    /// - Linkable identifiers (listed above) must be stable and consistent for the same content. When you link from a note to a document in an app, and later revisit that document, the system shows an indicator linking back to the note. The system compares identifiers to check that the document is the same as the original source of the link.
+    ///
+    /// - Maintain support for activities provided by your app, and support navigating to linked content indefinitely. Links added to notes are important to people, who may feel that a broken link indicates data loss.
+    ///
+    /// - Gracefully handle attempts to navigate to an activity that points to content that doesn’t exist. For example, you can redirect to the new location of moved content, or show an error message. This situation may happen with shared notes, when a person links to content that exists only on another person’s device.
+    ///
+    /// ### Search results
+    ///
+    /// If your [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) objects contain information that a person might want to search for later, set the [`eligibleForSearch`](https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforsearch) property to [`true`](https://developer.apple.com/documentation/swift/true). When you enable search, Spotlight indexes your user activity objects and considers them during subsequent on-device searches. For example, if a person viewed information about a particular restaurant in your app, you’d enable search for the corresponding user activity object. Subsequent searches for restaurants using Spotlight could then include the results obtained from your user activity object.
+    ///
+    /// In addition to on-device searches, you can contribute URLs accessed by your app with the global Spotlight search engine. Sharing a URL helps Spotlight improve its own search results for other people. To contribute a URL, put the URL in the [`webpageURL`](https://developer.apple.com/documentation/foundation/nsuseractivity/webpageurl) property of your activity object and set the [`eligibleForPublicIndexing`](https://developer.apple.com/documentation/foundation/nsuseractivity/iseligibleforpublicindexing) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your app must maintain a strong reference to any activity objects that you use for search results.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Employ user activity objects to record user-initiated activities, not as a general-purpose indexing mechanism of your app’s data. To index all of your app’s content, and not just the content touched by people, use the APIs of the [`Core Spotlight`](https://developer.apple.com/documentation/corespotlight) framework.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserActivity;
@@ -303,13 +359,29 @@ impl DefaultRetained for NSUserActivity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb?language=objc)
+    /// An activity that continues from Handoff or a universal link.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object with an [`activityType`](https://developer.apple.com/documentation/foundation/nsuseractivity/activitytype) value of [`NSUserActivityTypeBrowsingWeb`](https://developer.apple.com/documentation/foundation/nsuseractivitytypebrowsingweb) indicates either an activity continued from a web browser-to-native app Handoff or a universal link. For this activity type, the [`webpageURL`](https://developer.apple.com/documentation/foundation/nsuseractivity/webpageurl) property contains the `http` or `https` URL associated with the activity.
+    ///
+    /// For more information on universal links, see [Allowing apps and websites to link to your content](https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content). For more information on web browser-to-native app Handoff, see [Web Browser–to–Native App Handoff](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/Handoff/AdoptingHandoff/AdoptingHandoff.html#//apple_ref/doc/uid/TP40014338-CH2-SW10).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSUserActivityTypeBrowsingWeb: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivitydelegate?language=objc)
+    /// The interface through which a user activity instance notifies its delegate of updates.
+    ///
+    /// ## Overview
+    ///
+    /// An object conforming to the [`NSUserActivityDelegate`](https://developer.apple.com/documentation/foundation/nsuseractivitydelegate) protocol works with an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object, which encapsulates the state of a user activity in an application on a particular device and enables the same activity to be continued on another device. For example, a user browsing an article in Safari on a Mac can move to an iOS device where the same webpage automatically opens in Safari with the same scroll position.
+    ///
+    /// The user activity delegate is responsible for updating the state of an activity and is also notified when an activity has been continued on another device. The user activity delegate is typically a top-level object in the app—such as a window, view controller, or the app delegate—that manages the activity’s interaction with the app.
+    ///
+    ///
     pub unsafe trait NSUserActivityDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(userActivityWillSave:))]

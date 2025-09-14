@@ -6,7 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsscriptcommanddescription?language=objc)
+    /// A script command that a macOS app supports.
+    ///
+    /// ## Overview
+    ///
+    /// A scriptable application provides scriptability information that describes the commands and objects scripters can use in scripts that target the application. An application’s scripting information is collected automatically by an instance of [`NSScriptSuiteRegistry`](https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry), which creates an `NSScriptCommandDescription` for each command it finds, caches these objects in memory, and installs a command handler for each command.
+    ///
+    /// A script command instance stores the name, class, argument types, and return type of a command. For example, commands in AppleScript’s Core suite include `clone`, `count`, `create`, `delete`, `exists`, and `move`.
+    ///
+    /// The public methods of `NSScriptCommandDescription` are used primarily by Cocoa’s built-in scripting support in responding to Apple events that target the application. Although you can subclass the `NSScriptCommandDescription` class, it is unlikely that you would need to do so, or to create instances of it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSScriptCommandDescription;

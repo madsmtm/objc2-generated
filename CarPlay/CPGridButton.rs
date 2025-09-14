@@ -11,8 +11,6 @@ use crate::*;
 
 extern_class!(
     /// `CPMessageGridItemConfiguration`encapsulates the message configuration options for the grid item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagegriditemconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPMessageGridItemConfiguration;
@@ -71,7 +69,7 @@ impl CPMessageGridItemConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpgridbutton?language=objc)
+    /// A menu item button displayed on a grid template.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPGridButton;

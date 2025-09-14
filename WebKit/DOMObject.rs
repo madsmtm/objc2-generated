@@ -7,11 +7,9 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/domtimestamp?language=objc)
 pub type DOMTimeStamp = c_ulonglong;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domobject?language=objc)
     #[unsafe(super(WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WebScriptObject")]

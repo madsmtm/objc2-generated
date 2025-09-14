@@ -8,18 +8,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentstyle?language=objc)
+/// An enumerated type used to specify the style in which you want your content to be displayed.
 // NS_ENUM
 #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVTopShelfContentStyle(pub NSInteger);
 impl TVTopShelfContentStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentstyle/inset?language=objc)
+    /// When the using the inset style, your extension should return a flat array of TV content items. The images of the content items will take up most of the area of the Top Shelf, which will slowly rotate through the items.
     #[doc(alias = "TVTopShelfContentStyleInset")]
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     pub const Inset: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentstyle/sectioned?language=objc)
+    /// When using the sectioned style, your extension should return an array that contains content items that represent sections. Each section object should have an array of content items that represent the available media in that section.
     #[doc(alias = "TVTopShelfContentStyleSectioned")]
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContent"]
     pub const Sectioned: Self = Self(2);
@@ -34,6 +34,13 @@ unsafe impl RefEncode for TVTopShelfContentStyle {
 }
 
 extern_protocol!(
+    /// The interface for providing items to display in the main menu’s Top Shelf user interface on an Apple TV.
+    ///
+    /// ## Overview
+    ///
+    /// You adopt this protocol in the principal class of your app’s TV Services extension. Apps that implement this extension can provide dynamic content to the Top Shelf element rather than having the system use the static image submitted with the app. The [`topShelfStyle`](https://developer.apple.com/documentation/tvservices/tvtopshelfprovider/topshelfstyle) property specifies the interface style you want, and the [`topShelfItems`](https://developer.apple.com/documentation/tvservices/tvtopshelfprovider/topshelfitems) property specifies the content items to display. Whenever you change the content provided by the extension, post a [`TVTopShelfItemsDidChangeNotification`](https://developer.apple.com/documentation/tvservices/tvtopshelfitemsdidchangenotification) notification to prompt the system to reload your content.
+    ///
+    ///
     /// A protocol implemented by applications to provided items for
     /// display in the main menu's top shelf of an Apple TV.
     ///
@@ -45,8 +52,6 @@ extern_protocol!(
     /// this protocol. The various supported user interface styles
     /// for the display of the content items are given by the
     /// TVTopShelfContentStyle enumeration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfprovider?language=objc)
     #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContentProvider"]
     pub unsafe trait TVTopShelfProvider {
         #[deprecated = "TVTopShelfProvider has been replaced by TVTopShelfContentProvider"]
@@ -63,6 +68,13 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// A notification to post when your app’s Top Shelf content has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// When the content has changed, post a new notification using the default notification center (`[NSNotificationCenter defaultCenter]`). At some point in the future, the system will fetch the new data from your extension. The notification’s parameters are ignored and should be `nil`.
+    ///
+    ///
     /// The name of a notification the extension or containing app can
     /// post to tell observers within the process, and the system, that
     /// the Top Shelf data has changed.
@@ -72,20 +84,29 @@ extern "C" {
     /// the object or userInfo of the notification. The system will refetch
     /// the data from the extension, at some point in the future (not
     /// necessarily right away).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitemsdidchangenotification?language=objc)
     #[deprecated = "TVTopShelfItemsDidChangeNotification has been replaced by [TVTopShelfContentProvider topShelfContentDidChange]"]
     pub static TVTopShelfItemsDidChangeNotification: &'static NSString;
 }
 
 extern "C-unwind" {
+    /// Returns the ideal size for an image, according to its particular shape and style.
+    ///
+    /// Parameters:
+    /// - shape: The shape of the content item.
+    ///
+    /// - style: The style of the TV Top Shelf user interface.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to determine the ideal image size to use to avoid image scaling. Typically, if your app has access to multiple images for a given piece of content, you use this function to choose which image most closely matches the ideal size for the version of the operating system that your app is running on. An image provided in that size does not require any image scaling. If you request the size of a shape that is not allowed in the given style, the function returns [`CGSizeZero`](https://developer.apple.com/documentation/coregraphics/cgsizezero).
+    ///
+    ///
     /// Returns the ideal size of an image, the size which doesn't require
     /// scaling, for the given user interface style and image shape, in the
     /// current running version of the OS.
     ///
     /// For shapes not supported in the given style, returns CGSizeZero.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfimagesize(shape:style:)?language=objc)
     #[cfg(all(feature = "TVContentItem", feature = "objc2-core-foundation"))]
     #[deprecated = "TVTopShelfImageSizeForShape has been replaced by [TVTopShelfSectionedContent imageSizeForImageShape:] and [TVTopShelfInsetContent imageSize]"]
     pub fn TVTopShelfImageSizeForShape(

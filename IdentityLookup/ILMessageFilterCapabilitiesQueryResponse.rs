@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A response to a message filter capabilities query request.
     /// A response to an ILMessageFilterCapabilitiesQueryRequest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltercapabilitiesqueryresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILMessageFilterCapabilitiesQueryResponse;

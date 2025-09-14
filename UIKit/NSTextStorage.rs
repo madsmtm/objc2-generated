@@ -7,17 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/editactions?language=objc)
+/// Constants that indicate the types of changes.
+///
+/// ## Overview
+///
+/// These values are also OR’ed together in notifications to inform instances of `NSLayoutManager` was changed—see [`textStorage:edited:range:changeInLength:invalidatedRange:`](https://developer.apple.com/documentation/appkit/nslayoutmanager/textstorage(_:edited:range:changeinlength:invalidatedrange:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextStorageEditActions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextStorageEditActions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/editactions/editedattributes?language=objc)
+/// Attributes were added, removed, or changed.
         #[doc(alias = "NSTextStorageEditedAttributes")]
         const EditedAttributes = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/editactions/editedcharacters?language=objc)
+/// Characters were added, removed, or replaced.
         #[doc(alias = "NSTextStorageEditedCharacters")]
         const EditedCharacters = 1<<1;
     }
@@ -32,7 +38,33 @@ unsafe impl RefEncode for NSTextStorageEditActions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage?language=objc)
+    /// The fundamental storage mechanism of TextKit that contains the text managed by the system.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTextStorage`](https://developer.apple.com/documentation/uikit/nstextstorage) is a semi-concrete subclass of [`NSMutableAttributedString`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring) that adds behavior for managing a set of client [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) objects. A text storage object notifies its layout managers of changes to its characters or attributes, which lets the layout managers redisplay the text as needed.
+    ///
+    /// You can access a text storage object from any thread of your app, but your app must guarantee access from only one thread at a time.
+    ///
+    /// In macOS, this class also defines properties for getting and setting scriptable attributes of [`NSTextStorage`](https://developer.apple.com/documentation/uikit/nstextstorage) objects. Unless you’re dealing with scriptability, you shouldn’t access these properties directly. In particular, using the [`characters`](https://developer.apple.com/documentation/appkit/nstextstorage/characters), [`words`](https://developer.apple.com/documentation/appkit/nstextstorage/words), or [`paragraphs`](https://developer.apple.com/documentation/appkit/nstextstorage/paragraphs) properties is an inefficient way to manipulate the text storage, since accessing these properties involves the creation of many objects. Instead, use the text access methods defined by [`NSMutableAttributedString`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring), and [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) to perform character-level manipulation.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The [`NSTextStorage`](https://developer.apple.com/documentation/uikit/nstextstorage) class implements change management through the [`beginEditing`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring/beginediting()) and [`endEditing`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring/endediting()) methods, as well as verification of attributes, delegate handling, and layout management notification. The one aspect it doesn’t implement is managing the actual attributed string storage, which subclasses manage by overriding the two [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) primitives:
+    ///
+    /// - [`string`](https://developer.apple.com/documentation/foundation/nsattributedstring/string)
+    ///
+    /// - [`attributesAtIndex:effectiveRange:`](https://developer.apple.com/documentation/foundation/nsattributedstring/attributes(at:effectiverange:))
+    ///
+    /// Subclasses must also override two [`NSMutableAttributedString`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring) primitives:
+    ///
+    /// - [`replaceCharactersInRange:withString:`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring/replacecharacters(in:with:)-6oq9r)
+    ///
+    /// - [`setAttributes:range:`](https://developer.apple.com/documentation/foundation/nsmutableattributedstring/setattributes(_:range:))
+    ///
+    /// These primitives should perform the change, then call [`edited:range:changeInLength:`](https://developer.apple.com/documentation/uikit/nstextstorage/edited(_:range:changeinlength:)) to let the parent class know there are changes.
+    ///
+    ///
     #[unsafe(super(NSMutableAttributedString, NSAttributedString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextStorage;
@@ -160,9 +192,8 @@ impl DefaultRetained for NSTextStorage {
 }
 
 extern_protocol!(
+    /// The optional methods that delegates of text storage objects implement to handle text-edit processing.
     /// **  NSTextStorage delegate methods ***
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragedelegate?language=objc)
     pub unsafe trait NSTextStorageDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(textStorage:willProcessEditing:range:changeInLength:))]
@@ -189,19 +220,30 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// ** Notifications ***
+    /// A notification that posts before a text storage begins processing edits.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/willprocesseditingnotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework posts this notification before a text storage begins processing edits in [`processEditing`](https://developer.apple.com/documentation/uikit/nstextstorage/processediting()). Observers other than the delegate shouldn’t make further changes to the text storage. The notification object is the text storage object that’s about to process the edits. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
+    /// ** Notifications ***
     pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/didprocesseditingnotification?language=objc)
+    /// A notification that posts after a text storage finishes processing edits.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework posts this notification after a text storage finishes processing edits in [`processEditing`](https://developer.apple.com/documentation/uikit/nstextstorage/processediting()). Observers other than the delegate shouldn’t make further changes to the text storage. The notification object is the text storage object that processed the edits. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSTextStorageDidProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorageobserving?language=objc)
+    /// Optional methods that delegates implement to handle editing and transaction processing.
     pub unsafe trait NSTextStorageObserving: NSObjectProtocol {
         #[unsafe(method(textStorage))]
         #[unsafe(method_family = none)]

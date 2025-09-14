@@ -10,7 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewgridlayout?language=objc)
+    /// A layout that displays a single section of items in a row and column grid.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSCollectionViewGridLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewgridlayout) object provides the same layout behavior offered by the [`NSCollectionView`](https://developer.apple.com/documentation/appkit/nscollectionview) class prior to macOS 10.11, and you can use it in cases where you want to maintain the old appearance while still taking advantage of newer collection view features.
+    ///
+    /// ### Configuring a Collection View to Use a Grid Layout
+    ///
+    /// You can configure a collection view to use a grid layout object programmatically or at design time:
+    ///
+    /// - At design time, set the Layout attribute of your collection view to Grid.
+    ///
+    /// - Create an `NSCollectionViewGridLayout` object programmatically and assign it to the collection view’s [`collectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout) property.
+    ///
+    /// A grid layout displays only items and does not display supplementary views or decoration views. Use the properties of this class to configure the number of rows and columns in the grid. You can also use these properties to configure the spacing between items and the minimum sizes.
+    ///
+    ///
     #[unsafe(super(NSCollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCollectionViewLayout")]

@@ -8,60 +8,86 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttypealembic?language=objc)
+    /// The Alembic file format (common extension `.abc`).
     pub static kUTTypeAlembic: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttype3dobject?language=objc)
+    /// The Object file format (common extension `.obj`).
+    ///
+    /// ## Discussion
+    ///
+    /// When importing assets in this file format, Model I/O also implements materials from companion files in `.mtl` format. Paths to MTL files are assumed to be relative to the referencing OBJ file, and paths to textures are assumed to be relative to the referencing MTL file.
+    ///
+    ///
     pub static kUTType3dObject: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttypepolygon?language=objc)
+    /// The Polygon file format (common extension `.ply`).
     pub static kUTTypePolygon: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttypestereolithography?language=objc)
+    /// The Stereolithography file format (common extension `.stl`), also known as the Standard Tessellated Geometry format.
     pub static kUTTypeStereolithography: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttypeuniversalscenedescription?language=objc)
+    /// The Universal Scene Description file format (common extension `.usd`).
     pub static kUTTypeUniversalSceneDescription: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/kuttypeuniversalscenedescriptionmobile?language=objc)
     pub static kUTTypeUniversalSceneDescriptionMobile: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth?language=objc)
+/// Options for the size of integer data in a submesh’s index buffer, used by the [`indexType`](https://developer.apple.com/documentation/modelio/mdlsubmesh/indextype) property.
+///
+/// ## Overview
+///
+/// For optimum performance, an index buffer should generally use the smallest data type that fits the number of indices it contains.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLIndexBitDepth(pub NSUInteger);
 impl MDLIndexBitDepth {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/invalid?language=objc)
+    /// The submesh has not been initialized or its data type is unknown.
     #[doc(alias = "MDLIndexBitDepthInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint8-swift.enum.case?language=objc)
+    /// Each index in the submesh’s index buffer is an 8-bit integer.
+    ///
+    /// ## Discussion
+    ///
+    /// An index buffer with this data type can contain a maximum of 256 indices.
+    ///
+    ///
     #[doc(alias = "MDLIndexBitDepthUInt8")]
     pub const UInt8: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint8-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint8")]
     pub const Uint8: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint16-swift.enum.case?language=objc)
+    /// Each index in the submesh’s index buffer is a 16-bit integer.
+    ///
+    /// ## Discussion
+    ///
+    /// An index buffer with this data type can contain a maximum of 65,536 indices.
+    ///
+    ///
     #[doc(alias = "MDLIndexBitDepthUInt16")]
     pub const UInt16: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint16-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint16")]
     pub const Uint16: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint32-swift.enum.case?language=objc)
+    /// Each index in the submesh’s index buffer is a 32-bit integer.
+    ///
+    /// ## Discussion
+    ///
+    /// An index buffer with this data type can contain a maximum of 4,294,967,296 indices.
+    ///
+    ///
     #[doc(alias = "MDLIndexBitDepthUInt32")]
     pub const UInt32: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth/uint32-swift.type.property?language=objc)
     #[doc(alias = "MDLIndexBitDepthUint32")]
     pub const Uint32: Self = Self(32);
 }
@@ -74,28 +100,34 @@ unsafe impl RefEncode for MDLIndexBitDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype?language=objc)
+/// Types of geometric primitives for rendering a submesh, used by the [`geometryType`](https://developer.apple.com/documentation/modelio/mdlsubmesh/geometrytype) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLGeometryType(pub NSInteger);
 impl MDLGeometryType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/points?language=objc)
+    /// Each index in the submesh refers to a vertex to be rendered as a single point.
     #[doc(alias = "MDLGeometryTypePoints")]
     pub const Points: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/lines?language=objc)
+    /// Each pair of consecutive indices in the submesh refers to two vertices to be rendered as a line segment.
     #[doc(alias = "MDLGeometryTypeLines")]
     pub const Lines: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/triangles?language=objc)
+    /// Each set of three consecutive indices in the submesh refers to three vertices to be rendered as a triangle.
     #[doc(alias = "MDLGeometryTypeTriangles")]
     pub const Triangles: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/trianglestrips?language=objc)
+    /// The first three consecutive indices in the submesh refer to three vertices to be rendered as a triangle. Each subsequent index refers to another vertex that completes a triangle formed by connecting it to the previous two vertices.
     #[doc(alias = "MDLGeometryTypeTriangleStrips")]
     pub const TriangleStrips: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/quads?language=objc)
+    /// Each set of four consecutive indices in the submesh refers to four vertices to be rendered as a quadrilateral.
     #[doc(alias = "MDLGeometryTypeQuads")]
     pub const Quads: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype/variabletopology?language=objc)
+    /// The submesh’s index buffer does not contain a uniform set of primitives.
+    ///
+    /// ## Discussion
+    ///
+    /// If a submesh has non-uniform topology, its [`topology`](https://developer.apple.com/documentation/modelio/mdlsubmesh/topology) property contains an object describing how the arrangement of values in the index buffer combine to produce the submesh’s shape.
+    ///
+    ///
     #[doc(alias = "MDLGeometryTypeVariableTopology")]
     pub const VariableTopology: Self = Self(5);
 }
@@ -108,16 +140,22 @@ unsafe impl RefEncode for MDLGeometryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement?language=objc)
+/// Options affecting automatic placement of light probes in a scene, used with the [`placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:`](https://developer.apple.com/documentation/modelio/mdlasset/placelightprobes(withdensity:heuristic:using:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLProbePlacement(pub NSInteger);
 impl MDLProbePlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement/uniformgrid?language=objc)
+    /// An option to place light probes at each unit coordinate in a three-dimensional grid that evenly divides the region being evaluated.
     #[doc(alias = "MDLProbePlacementUniformGrid")]
     pub const UniformGrid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement/irradiancedistribution?language=objc)
+    /// An option to examine the lighting conditions at various positions in the scene being evaluated, then place light probes only at the locations where each contributes optimally to scene lighting.
+    ///
+    /// ## Discussion
+    ///
+    /// If you use this heuristic, your data source must implement the [`sphericalHarmonicsCoefficientsAtPosition:`](https://developer.apple.com/documentation/modelio/mdllightprobeirradiancedatasource/sphericalharmonicscoefficients(atposition:)) method.
+    ///
+    ///
     #[doc(alias = "MDLProbePlacementIrradianceDistribution")]
     pub const IrradianceDistribution: Self = Self(1);
 }
@@ -130,19 +168,15 @@ unsafe impl RefEncode for MDLProbePlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLDataPrecision(pub NSUInteger);
 impl MDLDataPrecision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/undefined?language=objc)
     #[doc(alias = "MDLDataPrecisionUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/float?language=objc)
     #[doc(alias = "MDLDataPrecisionFloat")]
     pub const Float: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision/double?language=objc)
     #[doc(alias = "MDLDataPrecisionDouble")]
     pub const Double: Self = Self(2);
 }
@@ -156,7 +190,13 @@ unsafe impl RefEncode for MDLDataPrecision {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnamed?language=objc)
+    /// The common interface for Model I/O objects that expose a human-readable name.
+    ///
+    /// ## Overview
+    ///
+    /// The [`name`](https://developer.apple.com/documentation/modelio/mdlnamed/name) property defined by this protocol is adopted by many classes in Model I/O. You can use this property to assign descriptive names to objects such as meshes, materials, cameras, and scattering functions to better keep track of the objects in your app. When you load objects from or export objects to a file using the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class, this property corresponds to the names and labels for objects that appear in popular 3D authoring tools.
+    ///
+    ///
     pub unsafe trait MDLNamed {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -172,12 +212,50 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcomponent?language=objc)
+    /// The base protocol for extensible file format support in Model I/O.
+    ///
+    /// ## Overview
+    ///
+    /// By extending this protocol in your own custom protocols, you can define new functionality to add to the [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) instances in the object graph corresponding to a [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) instance.
+    ///
+    /// Model I/O adopts this pattern to support container objects (with the [`MDLObjectContainerComponent`](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent) protocol) and objects with associated transformations (with the [`MDLTransformComponent`](https://developer.apple.com/documentation/modelio/mdltransformcomponent) protocol). To work with these aspects of a Model I/O object, call the object’s [`componentConformingToProtocol:`](https://developer.apple.com/documentation/modelio/mdlobject/componentconforming(to:)) method with the appropriate protocol. (The [`MDLObject`](https://developer.apple.com/documentation/modelio/mdlobject) class also provides convenience methods and properties for accessing features of these components without directly accessing the component instances.)
+    ///
+    /// To add your own object features, first define a protocol that extends the [`MDLComponent`](https://developer.apple.com/documentation/modelio/mdlcomponent) protocol, implement a class that adopts that protocol, and then use the [`setComponent:forProtocol:`](https://developer.apple.com/documentation/modelio/mdlobject/setcomponent(_:for:)) method to add your component to each object that needs it. The example below shows how you might implement a file format that associates scripting event triggers with parts of a game scene.
+    ///
+    /// ```objc
+    /// @protocol MyScriptTriggerComponent <MDLComponent>
+    /// // key: trigger identifier, value: scripting-language code
+    /// @property NSDictionary<NSString *, NSString *> *scriptTriggers;
+    /// @end
+    ///  
+    /// @interface MyScriptTriggerStorage <MyScriptTriggerComponent>
+    /// @property NSDictionary<NSString *, NSString *> *scriptTriggers;
+    /// @end
+    ///  
+    /// @implementation MDLObject (MyScriptTriggers)
+    /// - (void)setScriptTriggers:(NSDictionary<NSString *, NSString *>)triggers {
+    ///     MyScriptTriggerStorage *storage = [self componentConformingToProtocol:@protocol(MyScriptTriggerComponent)];
+    ///     if (storage == nil) {
+    ///         storage = // ... allocate / manage storage ...
+    ///         [self setComponent:storage forProtocol:@protocol(MyScriptTriggerComponent)];
+    ///     }
+    ///     storage.scriptTriggers = triggers;
+    /// }
+    /// @end
+    /// ```
+    ///
+    ///
     pub unsafe trait MDLComponent: NSObjectProtocol {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlobjectcontainercomponent?language=objc)
+    /// The general interface for classes that can act as containers in an object hierarchy.
+    ///
+    /// ## Overview
+    ///
+    /// Model I/O uses this interface to represent content loaded from an asset file. Various asset file formats define collections of information to describe their contents, such as a hierarchy of transforms to model the spatial relationships between models, lights, and meshes contained in an asset. When Model I/O imports such asset formats, the contents of the asset are objects implementing this protocol. You can also adopt this protocol in your own classes to describe your own custom asset formats—for example, one that includes collections of scripts and their triggers associated with the objects in a scene.
+    ///
+    ///
     pub unsafe trait MDLObjectContainerComponent: MDLComponent + NSFastEnumeration {
         #[cfg(feature = "MDLObject")]
         #[unsafe(method(addObject:))]

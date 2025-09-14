@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// The value of a voice analysis metric.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfacousticfeature?language=objc)
+    /// The value of a voice analysis metric.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAcousticFeature;
@@ -65,6 +64,23 @@ impl SFAcousticFeature {
 extern_class!(
     /// A collection of vocal analysis metrics.
     ///
+    /// ## Overview
+    ///
+    /// Use an [`SFAcousticFeature`](https://developer.apple.com/documentation/speech/sfacousticfeature) object to access the `SFVoiceAnalytics` insights. Voice analytics include the following features:
+    ///
+    /// - Use [`jitter`](https://developer.apple.com/documentation/speech/sfvoiceanalytics/jitter) to measure how pitch varies in audio.
+    ///
+    /// - Use [`shimmer`](https://developer.apple.com/documentation/speech/sfvoiceanalytics/shimmer) to measure how amplitude varies in audio.
+    ///
+    /// - Use [`pitch`](https://developer.apple.com/documentation/speech/sfvoiceanalytics/pitch) to measure the highness and lowness of the tone.
+    ///
+    /// - Use [`voicing`](https://developer.apple.com/documentation/speech/sfvoiceanalytics/voicing) to identify voiced regions in speech.
+    ///
+    /// These results are part of the [`SFTranscriptionSegment`](https://developer.apple.com/documentation/speech/sftranscriptionsegment) object and are available when the system sends the [`final`](https://developer.apple.com/documentation/speech/sfspeechrecognitionresult/isfinal) flag.
+    ///
+    ///
+    /// A collection of vocal analysis metrics.
+    ///
     /// Use an ``SFAcousticFeature`` object to access the `SFVoiceAnalytics` insights. Voice analytics include the following features:
     ///
     /// - Use ``jitter`` to measure how pitch varies in audio.
@@ -73,8 +89,6 @@ extern_class!(
     /// - Use ``voicing`` to identify voiced regions in speech.
     ///
     /// These results are part of the ``SFTranscriptionSegment`` object and are available when the system sends the ``SFSpeechRecognitionResult/isFinal`` flag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfvoiceanalytics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFVoiceAnalytics;

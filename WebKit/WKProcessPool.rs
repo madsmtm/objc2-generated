@@ -7,13 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An opaque token that you use to run multiple web views in a single process.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKProcessPool`](https://developer.apple.com/documentation/webkit/wkprocesspool) object represents a single process that WebKit uses to manage web content. To provide a more secure and stable experience, WebKit renders the content of web views in separate processes, rather than in your app’s process space. By default, WebKit gives each web view its own process space until it reaches an implementation-defined process limit. After that, web views with the same [`WKProcessPool`](https://developer.apple.com/documentation/webkit/wkprocesspool) object share the same web content process.
+    ///
+    /// If your app creates multiple web views, assign the same [`WKProcessPool`](https://developer.apple.com/documentation/webkit/wkprocesspool) object to web views that may safely share a process space. Instantiate an instance of this class and assign it to the [`processPool`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/processpool) property of each web view’s [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object.
+    ///
+    ///
     /// A WKProcessPool object represents a pool of web content processes.
     /// The process pool associated with a web view is specified by its web view
     /// configuration. Each web view is given its own web content process until an
     /// implementation-defined process limit is reached; after that, web views
     /// with the same process pool end up sharing web content processes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkprocesspool?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

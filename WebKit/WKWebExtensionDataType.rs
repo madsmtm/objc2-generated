@@ -4,29 +4,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants for specifying data types for a [`WKWebExtensionDataRecord`](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord).
 /// Constants for specifying data types for a ``WKWebExtensionDataRecord``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype?language=objc)
 // NS_TYPED_ENUM
 pub type WKWebExtensionDataType = NSString;
 
 extern "C" {
     /// Specifies local storage, including `browser.storage.local`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/local?language=objc)
+    /// Specifies local storage, including `browser.storage.local`.
     pub static WKWebExtensionDataTypeLocal: Option<&'static WKWebExtensionDataType>;
 }
 
 extern "C" {
     /// Specifies session storage, including `browser.storage.session`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/session?language=objc)
+    /// Specifies session storage, including `browser.storage.session`.
     pub static WKWebExtensionDataTypeSession: Option<&'static WKWebExtensionDataType>;
 }
 
 extern "C" {
     /// Specifies synchronized storage, including `browser.storage.sync`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/synchronized?language=objc)
+    /// Specifies synchronized storage, including `browser.storage.sync`.
     pub static WKWebExtensionDataTypeSynchronized: Option<&'static WKWebExtensionDataType>;
 }

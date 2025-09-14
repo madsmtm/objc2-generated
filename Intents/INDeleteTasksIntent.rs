@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintent?language=objc)
+    /// A request to delete one or more tasks.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INDeleteTasksIntent`](https://developer.apple.com/documentation/intents/indeletetasksintent) object when the user marks one or more tasks for deletion. The intent object can contain the task information.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INDeleteTasksIntentHandling`](https://developer.apple.com/documentation/intents/indeletetasksintenthandling) protocol. Your handler should confirm the request and create an [`INDeleteTasksIntentResponse`](https://developer.apple.com/documentation/intents/indeletetasksintentresponse) object with the updated task information.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to delete tasks in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Remove my buy milk reminder" }] }], [Paragraph { inline_content: [Text { text: "Delete all my reminders" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "删除买牛奶的提醒事项" }] }], [Paragraph { inline_content: [Text { text: "删除全部提醒事项" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "刪除買牛奶嘅提醒事項" }] }], [Paragraph { inline_content: [Text { text: "刪除全部提醒事項" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "刪除買牛奶的提醒事項" }] }], [Paragraph { inline_content: [Text { text: "刪除所有提醒事項" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "删除买牛奶嘅提醒事项" }] }], [Paragraph { inline_content: [Text { text: "删除全部提醒事项" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "مسح تذكير شراء الحليب" }] }], [Paragraph { inline_content: [Text { text: "مسح جميع التذكيرات" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Fjern min køb mælk påmindelse" }] }], [Paragraph { inline_content: [Text { text: "Slet alle mine påmindelser" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Entferne meine Milch kaufen Erinnerung" }] }], [Paragraph { inline_content: [Text { text: "Lösche alle meine Erinnerungen" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Elimina mi recordatorio comprar leche" }] }], [Paragraph { inline_content: [Text { text: "Elimina todos mis recordatorios" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Poista muistutus osta maitoa" }] }], [Paragraph { inline_content: [Text { text: "Poista kaikki muistutukset" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Efface mon rappel pour acheter du lait" }] }], [Paragraph { inline_content: [Text { text: "Supprime tous mes rappels" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תמחק את התזכורת לקנות חלב" }] }], [Paragraph { inline_content: [Text { text: "תמחקי את כל התזכורות שלי" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Rimuovi il promemoria comprare il latte" }] }], [Paragraph { inline_content: [Text { text: "Elimina tutti i miei promemoria" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "牛乳を買うというリマインダーを削除して" }] }], [Paragraph { inline_content: [Text { text: "リマインダーを全部削除して" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "우유 사기 미리 알림 지워" }] }], [Paragraph { inline_content: [Text { text: "모든 미리 알림 삭제해" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Padamkan peringatan beli susu saya" }] }], [Paragraph { inline_content: [Text { text: "Padamkan semua peringatan saya" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Fjern min kjøpe melk påminnelse" }] }], [Paragraph { inline_content: [Text { text: "Slett alle påminnelsene mine" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Verwijder melk kopen herinnering" }] }], [Paragraph { inline_content: [Text { text: "Wis al mijn herinneringen" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Remova o lembrete comprar leite" }] }], [Paragraph { inline_content: [Text { text: "Remover todos os meus lembretes" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Удали моё напоминание купить молоко" }] }], [Paragraph { inline_content: [Text { text: "Удали все мои напоминания" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Ta bort min köp mjölk påminnelse" }] }], [Paragraph { inline_content: [Text { text: "Radera alla mina påminnelser" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "ลบเต\u{e37}อนความจำซ\u{e37}\u{e49}อนม" }] }], [Paragraph { inline_content: [Text { text: "ลบเต\u{e37}อนความจำท\u{e31}\u{e49}งหมด" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Süt al anımsatıcımı kaldır" }] }], [Paragraph { inline_content: [Text { text: "Tüm hatırlatmalarımı sil" }] }]]], alignments: None, metadata: None })
+    /// In the preceding examples, `<appName>` represents the name of the app whose Intents extension handles the request.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -89,11 +109,18 @@ impl INDeleteTasksIntent {
 }
 
 extern_protocol!(
+    /// An interface that handles requests to delete tasks from a task list.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INDeleteTasksIntentHandling`](https://developer.apple.com/documentation/intents/indeletetasksintenthandling) protocol to resolve, confirm, and handle requests to delete tasks from a task list. Adopt this protocol in an object of your Intents extension capable of handling the request directly or forwarding the request to your app or task management service.
+    ///
+    /// Siri delivers an [`INDeleteTasksIntent`](https://developer.apple.com/documentation/intents/indeletetasksintent) object to your handler when the user asks to delete tasks from a task list in your app. The provided intent object contains descriptions of the tasks and any triggers to associate with each task. Use the methods of this protocol to resolve the parameters and delete the tasks.
+    ///
+    ///
     /// Protocol to declare support for handling an INDeleteTasksIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintenthandling?language=objc)
     #[deprecated = "INDeleteTasksIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INDeleteTasksIntentHandling: NSObjectProtocol {
         #[cfg(all(

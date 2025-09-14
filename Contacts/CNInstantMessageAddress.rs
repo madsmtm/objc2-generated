@@ -7,12 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable object representing an instant message address for the contact.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods and properties of `CNInstantMessageAddress` to identify instant messaging addresses. Some instant message services, such as Facebook and Skype are predefined in this class. You can also specify your own instant message service using the [`initWithUsername:service:`](https://developer.apple.com/documentation/contacts/cninstantmessageaddress/init(username:service:)) method.
+    ///
+    /// `CNInstantMessageAddress` objects are thread-safe, and you may access their properties from any thread of your app.
+    ///
+    ///
     /// An immutable value object representing an instant message address.
     ///
     ///
     /// CNInstantMessageAddress is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNInstantMessageAddress;
@@ -82,61 +89,133 @@ impl CNInstantMessageAddress {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddressusernamekey?language=objc)
+    /// Instant message address username key.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageAddressUsernameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageaddressservicekey?language=objc)
+    /// Instant message address service key.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageAddressServiceKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceaim?language=objc)
+    /// Instant message service for AIM.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceAIM: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicefacebook?language=objc)
+    /// Instant message service for Facebook.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceFacebook: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicegadugadu?language=objc)
+    /// Instant message service for Gadu Gadu.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceGaduGadu: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicegoogletalk?language=objc)
+    /// Instant message service for Google Talk.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceGoogleTalk: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceicq?language=objc)
+    /// Instant message service for ICQ.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceICQ: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicejabber?language=objc)
+    /// Instant message service for Jabber.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceJabber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageservicemsn?language=objc)
+    /// Instant message service for MSN.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceMSN: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceqq?language=objc)
+    /// Instant message service for QQ.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceQQ: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceskype?language=objc)
+    /// Instant message service for Skype.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceSkype: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cninstantmessageserviceyahoo?language=objc)
+    /// Instant message service for Yahoo.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNInstantMessageServiceYahoo: &'static NSString;
 }

@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontroller?language=objc)
+    /// A view controller that specializes in managing a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Subclass [`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller) when your interface consists of a table view and little or no other content. Table view controllers already adopt the protocols you need to manage your table view’s content and respond to changes. In addition, [`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller) implements the following behaviors:
+    ///
+    /// - Automatically loads the table view archived in a storyboard or nib file, which you can access using the [`tableView`](https://developer.apple.com/documentation/uikit/uitableviewcontroller/tableview) property
+    ///
+    /// - Sets the data source and the delegate of the table view to `self`
+    ///
+    /// - Implements the [`viewWillAppear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwillappear(_:)) method, automatically reloads the data for its table view on first appearance, and clears its selection (with or without animation, depending on the request) every time the table view appears (disable this last behavior by changing the value of [`clearsSelectionOnViewWillAppear`](https://developer.apple.com/documentation/uikit/uitableviewcontroller/clearsselectiononviewwillappear))
+    ///
+    /// - Implements the [`viewDidAppear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewdidappear(_:)) method and automatically flashes the table view’s scroll indicators when it first appears
+    ///
+    /// - Implements the [`setEditing:animated:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/setediting(_:animated:)) method and automatically toggles the edit mode of the table when the user taps an Edit|Done button in the navigation bar
+    ///
+    /// - Automatically resizes its table view to accommodate the appearance or disappearance of the onscreen keyboard
+    ///
+    /// Create a custom subclass of [`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller) for each table view that you manage. When you initialize the table view controller, you must specify the style of the table view (plain or grouped). You must also override the data source and delegate methods required to fill your table with data. You may override [`loadView`](https://developer.apple.com/documentation/uikit/uiviewcontroller/loadview()) or any other superclass method, but if you do, be sure to invoke the superclass implementation of the method, usually as the first method call.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

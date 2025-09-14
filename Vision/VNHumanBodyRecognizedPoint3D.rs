@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodyrecognizedpoint3d?language=objc)
+    /// A recognized 3D point that includes a parent joint.
     #[unsafe(super(VNRecognizedPoint3D, VNPoint3D, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNGeometry", feature = "VNRecognizedPoint3D"))]

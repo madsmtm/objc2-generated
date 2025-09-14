@@ -10,38 +10,34 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The key specifying whether the drawable surface retains its contents after displaying them.  The value for this key is an `NSNumber` object containing a `BOOL` data type. If `false`, you may not rely on the contents being the same after the contents are displayed.  If `true`, then the contents will not change after being displayed. Setting the value to `true` is recommended only when you need the content to remain unchanged, as using it can result in both reduced performance and additional memory usage. The default value is `false`.
     /// *********************************************************************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/keagldrawablepropertyretainedbacking?language=objc)
     pub static kEAGLDrawablePropertyRetainedBacking: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/keagldrawablepropertycolorformat?language=objc)
+    /// The key specifying the internal color buffer format for the drawable surface. The value for this key is an `NSString` object that specifies a specific color buffer format. This color buffer format is used by the `EAGLContext` object to create the storage for a renderbuffer. The default value is `kEAGLColorFormatRGBA8`.
     pub static kEAGLDrawablePropertyColorFormat: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies a 32-bit RGBA format that corresponds to the OpenGL ES `GL_RGBA8888` format.
     /// *********************************************************************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/keaglcolorformatrgba8?language=objc)
     pub static kEAGLColorFormatRGBA8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/keaglcolorformatrgb565?language=objc)
+    /// Specifies a 16-bit RGB format that corresponds to the OpenGL ES `GL_RGB565` format.
     pub static kEAGLColorFormatRGB565: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/keaglcolorformatsrgba8?language=objc)
     pub static kEAGLColorFormatSRGBA8: &'static NSString;
 }
 
 extern_protocol!(
+    /// iOS objects that implement the `EAGLDrawable` protocol can be used as a rendering surface and displayed to the screen by an `EAGLContext` object. In iOS 2.0, this protocol is implemented only by the `CAEAGLLayer` class, but in the future other classes may choose to implement the protocol. The `EAGLDrawable` protocol is not intended to be implemented by objects outside of the iOS.
     /// *********************************************************************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eagldrawable?language=objc)
     pub unsafe trait EAGLDrawable {
         #[unsafe(method(drawableProperties))]
         #[unsafe(method_family = none)]

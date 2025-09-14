@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a peripheral's service or a service's included service.
+    /// A collection of data and associated behaviors that accomplish a function or feature of a device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbservice?language=objc)
+    /// ## Overview
+    ///
+    /// [`CBService`](https://developer.apple.com/documentation/corebluetooth/cbservice) objects represent services of a remote peripheral. Services are either primary or secondary and may contain multiple characteristics or included services (references to other services).
+    ///
+    ///
+    /// Represents a peripheral's service or a service's included service.
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -70,6 +75,13 @@ impl CBService {
 }
 
 extern_class!(
+    /// A service with writeable property values.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CBMutableService`](https://developer.apple.com/documentation/corebluetooth/cbmutableservice) class adds write access to all of the properties in the [`CBService`](https://developer.apple.com/documentation/corebluetooth/cbservice) class it inherits from. You use this class to create a service or an included service on a local peripheral device (represented by a [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) object). After creating a service, you can add it to the peripheral’s local database using the [`addService:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/add(_:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class. After you add a service to the peripheral’s local database, Core Bluetooth caches the service and you can no longer make changes to it.
+    ///
+    ///
     /// Used to create a local service or included service, which can be added to the local database via
     /// <code>
     /// CBPeripheralManager
@@ -82,8 +94,6 @@ extern_class!(
     /// ```
     ///
     /// class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutableservice?language=objc)
     #[unsafe(super(CBService, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]

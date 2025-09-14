@@ -11,14 +11,21 @@ use objc2_core_media::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output that records scene depth information on compatible camera devices.
+    ///
+    /// ## Overview
+    ///
+    /// This output type captures [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) objects containing per-pixel depth or disparity information, following a streaming delivery model similar to that used by [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput). Alternatively, you can capture depth data alongside photos using [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) (see the [`AVCapturePhotoSettings`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings) [`depthDataDeliveryEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/isdepthdatadeliveryenabled) property).
+    ///
+    /// This object always provides depth data in the format expressed by the source [`AVCaptureDevice`](https://developer.apple.com/documentation/avfoundation/avcapturedevice) object’s [`activeDepthDataFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activedepthdataformat) property. If you wish to receive depth data in another format, choose a new value for that property from those listed in the [`supportedDepthDataFormats`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/supporteddepthdataformats) array of the device’s [`activeFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat) object.
+    ///
+    ///
     /// AVCaptureDepthDataOutput is a concrete subclass of AVCaptureOutput that can be used to process depth data in a streaming fashion.
     ///
     ///
     /// Instances of AVCaptureDepthDataOutput capture AVDepthData objects expressing disparity/depth. Applications can access the frames with the depthDataOutput:didOutputDepthData:fromConnection: delegate method.
     ///
     /// AVCaptureDepthDataOutput always provides depth data in the format expressed by its source's -[AVCaptureDevice activeDepthDataFormat] property. If you wish to receive depth data in another format, you may choose from the -[AVCaptureDevice activeFormat]'s -[AVCaptureDeviceFormat supportedDepthDataFormats], and set it using -[AVCaptureDevice setActiveDepthDataFormat:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -115,9 +122,8 @@ impl AVCaptureDepthDataOutput {
 }
 
 extern_protocol!(
+    /// Methods for receiving depth data produced by a depth capture output.
     /// Defines an interface for delegates of AVCaptureDepthDataOutput to receive captured depth data and be notified of late depth data that were dropped.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutputdelegate?language=objc)
     pub unsafe trait AVCaptureDepthDataOutputDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",

@@ -9,8 +9,6 @@ use crate::*;
 extern_class!(
     /// An object used to evaluate navigation events in an authentication session. When the session navigates
     /// to a matching URL, it will pass the URL to the session completion handler.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/callback?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASWebAuthenticationSessionCallback;

@@ -6,11 +6,10 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing the current state of the playable endpoint.
     /// MPPlayableContentManagerContext represents the current state of
     /// the playable content endpoint. A context is retrievable from an instance
     /// of MPPlayableContentManager.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanagercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use CarPlay framework"]

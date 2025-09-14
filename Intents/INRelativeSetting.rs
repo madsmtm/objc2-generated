@@ -4,30 +4,30 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting?language=objc)
+/// Constants indicating relative settings.
 // NS_ENUM
 #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRelativeSetting(pub NSInteger);
 impl INRelativeSetting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/unknown?language=objc)
+    /// An unknown setting.
     #[doc(alias = "INRelativeSettingUnknown")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/lowest?language=objc)
+    /// The lowest setting.
     #[doc(alias = "INRelativeSettingLowest")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lowest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/lower?language=objc)
+    /// The next lower setting.
     #[doc(alias = "INRelativeSettingLower")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Lower: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/higher?language=objc)
+    /// The next higher setting.
     #[doc(alias = "INRelativeSettingHigher")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Higher: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativesetting/highest?language=objc)
+    /// The highest setting.
     #[doc(alias = "INRelativeSettingHighest")]
     #[deprecated = "INRelativeSetting is deprecated. There is no replacement."]
     pub const Highest: Self = Self(4);

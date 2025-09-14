@@ -10,9 +10,46 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Class representing a timer bound to the display vsync. *
+    /// A timer object that allows your app to synchronize its drawing to the refresh rate of the display.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cadisplaylink?language=objc)
+    /// ## Overview
+    ///
+    /// Your app initializes a new display link by providing a target object and a selector to call when the system updates the screen. To synchronize your display loop with the display, your application adds it to a run loop using the [`addToRunLoop:forMode:`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/add(to:formode:)) method.
+    ///
+    /// Once you associate the display link with a run loop, the system calls the selector on the target when the screen’s contents need to update. The target can read the display link’s [`timestamp`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/timestamp) property to retrieve the time the system displayed the previous frame. For example, an app that displays movies might use `timestamp` to calculate which video frame to display next. An app that performs its own animations might use `timestamp` to determine where and how visible objects appear in the upcoming frame.
+    ///
+    /// The [`duration`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/duration) property provides the amount of time between frames at the [`maximumFramesPerSecond`](https://developer.apple.com/documentation/uikit/uiscreen/maximumframespersecond). To calculate the actual frame duration, use [`targetTimestamp`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/targettimestamp) - [`timestamp`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/timestamp). You can use this value in your app to calculate the frame rate of the display, the approximate time the system displays the next frame, and to adjust the drawing behavior so that the next frame is ready in time to display.
+    ///
+    /// Your app can disable notifications by setting [`paused`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/ispaused) to `true`. Also, if your app can’t provide frames in the time the system provides, you may want to choose a slower frame rate. An app with a slower but consistent frame rate appears smoother to the user than an app that skips frames. You can define the number of frames per second by setting [`preferredFramesPerSecond`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/preferredframespersecond).
+    ///
+    /// When your app finishes with a display link, call [`invalidate`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/invalidate()) to remove it from all run loops and to disassociate it from the target.
+    ///
+    /// The code listing below shows how to create a display link and add it to the current run loop. The display link invokes the step function, which prints the target timestamp with each screen update.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func createDisplayLink() {", "    let displaylink = CADisplayLink(target: self,", "                                    selector: #selector(step))", "    ", "    displaylink.add(to: .current,", "                    forMode: .defaultRunLoopMode)", "}", "     ", "func step(displaylink: CADisplayLink) {", "    print(displaylink.targetTimestamp)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)createDisplayLink {", "    CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:self", "                                                             selector:@selector(step:)];", "    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]", "                      forMode:NSRunLoopCommonModes];", "}", "", "- (void)step:(CADisplayLink *)sender {", "    NSLog(@\"%f\", sender.targetTimestamp);", "}"], metadata: None }] }] })
+    /// You shouldn’t subclass [`CADisplayLink`](https://developer.apple.com/documentation/quartzcore/cadisplaylink).
+    ///
+    /// ### Preferred and Actual Frame Rates
+    ///
+    /// You control a display link’s frame rate (the number of times the system calls the selector of its target, per second) by setting [`preferredFramesPerSecond`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/preferredframespersecond). However, the actual frames per second may differ from the preferred value you set; actual frame rates are always a factor of the maximum refresh rate of the device. For example, if your device’s maximum refresh rate is 60 frames per second (defined by [`maximumFramesPerSecond`](https://developer.apple.com/documentation/uikit/uiscreen/maximumframespersecond)), actual frame rates include 15, 20, 30, and 60 frames per second. If you set a display link’s preferred frame rate to a value higher than the maximum, the actual frame rate is the maximum.
+    ///
+    /// In iOS 15, frame rate availability can change due to the system factoring in the system policy and user preference — including Low Power Mode, critical thermal state, and accessibility settings.
+    ///
+    /// The system rounds, to the nearest factor, preferred frame rates that aren’t a divisor of the maximum frame rate. For example, setting a preferred frame rate to either 26 or 35 frames per second on a device with a maximum refresh rate of 60 frames per second yields an actual frame rate of 30 times per second.
+    ///
+    /// The code listing below shows how to calculate the actual frame rate by dividing 1 by your display link’s [`timestamp`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/timestamp) subtracted from its [`targetTimestamp`](https://developer.apple.com/documentation/quartzcore/cadisplaylink/targettimestamp).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Calculate the actual frame rate.", "let actualFramesPerSecond = 1 / (displaylink.targetTimestamp - displaylink.timestamp)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Calculate the actual frame rate.", "double actualFramesPerSecond = 1 / (displaylink.targetTimestamp - displaylink.timestamp);"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your app needs more control over refresh rate to ensure smooth rendering of frames, use [`CAMetalDisplayLink`](https://developer.apple.com/documentation/quartzcore/cametaldisplaylink) and the information from [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) instances to render frames.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Class representing a timer bound to the display vsync. *
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CADisplayLink;

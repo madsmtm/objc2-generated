@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediaselection?language=objc)
+    /// An object that represents a complete rendition of media selection options on an asset.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaSelection;
@@ -87,7 +87,7 @@ impl AVMediaSelection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemediaselection?language=objc)
+    /// A mutable object that represents a complete rendition of media selection options on an asset.
     #[unsafe(super(AVMediaSelection, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableMediaSelection;

@@ -4,43 +4,43 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype?language=objc)
+/// Constants describing the destination of a call.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallDestinationType(pub NSInteger);
 impl INCallDestinationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/unknown?language=objc)
+    /// An unknown call destination.
     #[doc(alias = "INCallDestinationTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/normal?language=objc)
+    /// A call routed to its expected destination.
     #[doc(alias = "INCallDestinationTypeNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/emergency?language=objc)
+    /// A call routed to an emergency number.
     #[doc(alias = "INCallDestinationTypeEmergency")]
     pub const Emergency: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/voicemail?language=objc)
+    /// A call routed to the user’s voicemail.
     #[doc(alias = "INCallDestinationTypeVoicemail")]
     pub const Voicemail: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/redial?language=objc)
+    /// A call that was the result of redialing a previous call.
     #[doc(alias = "INCallDestinationTypeRedial")]
     pub const Redial: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/callback?language=objc)
+    /// A call that was the result of a call back.
     #[doc(alias = "INCallDestinationTypeCallBack")]
     pub const CallBack: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/normaldestination?language=objc)
+    /// A call routed to its expected destination.
     #[doc(alias = "INCallDestinationTypeNormalDestination")]
     #[deprecated = "Use INCallDestinationTypeNormal instead"]
     pub const NormalDestination: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/emergencydestination?language=objc)
+    /// A call routed to an emergency number.
     #[doc(alias = "INCallDestinationTypeEmergencyDestination")]
     #[deprecated = "Use INCallDestinationTypeEmergency instead"]
     pub const EmergencyDestination: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/voicemaildestination?language=objc)
+    /// A call routed to the user’s voicemail.
     #[doc(alias = "INCallDestinationTypeVoicemailDestination")]
     #[deprecated = "Use INCallDestinationTypeVoicemail instead"]
     pub const VoicemailDestination: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incalldestinationtype/redialdestination?language=objc)
+    /// A call that was the result of redialing a previous call.
     #[doc(alias = "INCallDestinationTypeRedialDestination")]
     #[deprecated = "Use INCallDestinationTypeRedial instead"]
     pub const RedialDestination: Self = Self(4);

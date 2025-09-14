@@ -10,21 +10,16 @@ use objc2_io_bluetooth::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/bluetoothkeyboardreturntype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothKeyboardReturnType(pub c_uint);
 impl BluetoothKeyboardReturnType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardansireturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardANSIReturn")]
     pub const ANSIReturn: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardisoreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardISOReturn")]
     pub const ISOReturn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardjisreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardJISReturn")]
     pub const JISReturn: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/kbluetoothkeyboardnoreturn?language=objc)
     #[doc(alias = "kBluetoothKeyboardNoReturn")]
     pub const NoReturn: Self = Self(3);
 }
@@ -38,7 +33,6 @@ unsafe impl RefEncode for BluetoothKeyboardReturnType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothpasskeydisplay?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothPasskeyDisplay;
@@ -278,7 +272,6 @@ impl IOBluetoothPasskeyDisplay {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothaccessibilityignoredtextfieldcell?language=objc)
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothAccessibilityIgnoredTextFieldCell;
@@ -358,7 +351,6 @@ impl IOBluetoothAccessibilityIgnoredTextFieldCell {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/iobluetoothaccessibilityignoredimagecell?language=objc)
     #[unsafe(super(NSImageCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothAccessibilityIgnoredImageCell;

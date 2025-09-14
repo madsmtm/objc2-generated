@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctsubscriberinfo?language=objc)
+    /// An object that provides an array of cellular network subscribers.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`CTSubscriber`](https://developer.apple.com/documentation/coretelephony/ctsubscriber) instances provided by this class to identify individual subscribers by their [`carrierToken`](https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken) or [`identifier`](https://developer.apple.com/documentation/coretelephony/ctsubscriber/identifier) properties.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTSubscriberInfo;

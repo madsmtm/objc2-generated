@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// A value describing the target of a ray used for raycasting.
+/// The types of surface you allow a raycast to intersect with.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum?language=objc)
+/// ## Discussion
+///
+/// The available target types are plane, infinite plane, and estimated plane.
+///
+///
+/// A value describing the target of a ray used for raycasting.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -16,21 +21,28 @@ use crate::*;
 pub struct ARRaycastTarget(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTarget {
+    /// A raycast target that requires a plane to have a definitive size and shape.
     /// Ray's target is an already detected plane, considering the plane's estimated size and shape.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/existingplanegeometry?language=objc)
     #[doc(alias = "ARRaycastTargetExistingPlaneGeometry")]
     pub const ExistingPlaneGeometry: Self = Self(0);
+    /// A raycast target that specifies a detected plane, regardless of its size and shape.
     /// Ray's target is an already detected plane, without considering the plane's size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/existingplaneinfinite?language=objc)
     #[doc(alias = "ARRaycastTargetExistingPlaneInfinite")]
     pub const ExistingPlaneInfinite: Self = Self(1);
+    /// A raycast target that specifies nonplanar surfaces, or planes about which ARKit can only estimate.
+    ///
+    /// ## Discussion
+    ///
+    /// A raycast with this target intersects feature points around the ray that ARKit estimates may be a real-world surface.
+    ///
+    /// When combined with [`ARRaycastTargetAlignmentAny`](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/any), ARKit bases estimated plane alignment on the normal of the surface.
+    ///
+    /// When you set your world-tracking configuration’s [`sceneReconstruction`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/scenereconstruction) to one of the `mesh` options, ARKit allows a raycast with this target (and target-alignment [`ARRaycastTargetAlignmentAny`](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/any)) to intersect the scene mesh. Then the raycast result can include points even on nonplanar surfaces or surfaces that have few or no features, such as a white wall. If you set [`sceneReconstruction`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/scenereconstruction) to [`ARSceneReconstructionNone`](https://developer.apple.com/documentation/arkit/arscenereconstruction/arscenereconstructionnone), raycasts ignore the scene mesh.
+    ///
+    ///
     /// Ray's target is a plane that is estimated using the feature points around the ray.
     /// When alignment is ARRaycastTargetAlignmentAny, alignment of estimated planes is based on the normal of the real world
     /// surface corresponding to the estimated plane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/estimatedplane?language=objc)
     #[doc(alias = "ARRaycastTargetEstimatedPlane")]
     pub const EstimatedPlane: Self = Self(2);
 }
@@ -45,9 +57,14 @@ unsafe impl RefEncode for ARRaycastTarget {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A value describing the alignment of a target.
+/// A specification that indicates a target’s alignment with respect to gravity
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum?language=objc)
+/// ## Discussion
+///
+/// A raycast ignores potential targets with an alignment different than the one you specify in the raycast query.
+///
+///
+/// A value describing the alignment of a target.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -55,19 +72,16 @@ unsafe impl RefEncode for ARRaycastTarget {
 pub struct ARRaycastTargetAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTargetAlignment {
+    /// The case that indicates a target is aligned horizontally with respect to gravity.
     /// A target that is horizontal with respect to gravity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/horizontal?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentHorizontal")]
     pub const Horizontal: Self = Self(0);
+    /// The case that indicates a target is aligned vertically with respect to gravity.
     /// A target that is vertical with respect to gravity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/vertical?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentVertical")]
     pub const Vertical: Self = Self(1);
+    /// The case that indicates a target may be aligned in any way with respect to gravity.
     /// A target that is in any alignment, inclusive of horizontal and vertical.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum/any?language=objc)
     #[doc(alias = "ARRaycastTargetAlignmentAny")]
     pub const Any: Self = Self(2);
 }
@@ -84,11 +98,20 @@ unsafe impl RefEncode for ARRaycastTargetAlignment {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A mathematical ray you use to find 3D positions on real-world surfaces.
+    ///
+    /// ## Overview
+    ///
+    /// You create a raycast query by providing a 3D vector and starting place.
+    ///
+    /// To create a raycast query using a 2D screen location and default vector that casts outward in the z-direction from the user, use the convenience functions, [`makeRaycastQuery(from:allowing:alignment:)`](https://developer.apple.com/documentation/realitykit/arview/makeraycastquery(from:allowing:alignment:)) on [`ARView`](https://developer.apple.com/documentation/realitykit/arview), or [`raycastQueryFromPoint:allowingTarget:alignment:`](https://developer.apple.com/documentation/arkit/arscnview/raycastquery(from:allowing:alignment:)) on [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview).
+    ///
+    /// Raycasts can intersect with planes (flat surfaces) or meshes (uneven surfaces). To intersect with planes, see [`ARRaycastTarget`](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum). To intersect with meshes, see [`ARRaycastTargetEstimatedPlane`](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum/estimatedplane).
+    ///
+    ///
     /// Representation of a ray and its target which is used for raycasting.
     ///
     /// Represents a 3D ray and its target which is used to perform raycasting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

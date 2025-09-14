@@ -8,30 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 /// A bitfield of options to create a stitched library
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStitchedLibraryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStitchedLibraryOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/mtlstitchedlibraryoptionnone?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionNone")]
         const None = 0;
 /// Library creation fails (i.e nil is returned) if:
 /// - A lookup binary archive has been specified
 /// - The library has not been found in the archive
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/failonbinaryarchivemiss?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<0;
 /// stores and tracks this library in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with stitched libraries via the metal-source tool. It is not required for recompilation, nor for storing stitched libraries in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibraryoptions/storelibraryinmetalpipelinesscript?language=objc)
         #[doc(alias = "MTLStitchedLibraryOptionStoreLibraryInMetalPipelinesScript")]
         const StoreLibraryInMetalPipelinesScript = 1<<1;
     }
@@ -46,16 +39,20 @@ unsafe impl RefEncode for MTLStitchedLibraryOptions {
 }
 
 extern_protocol!(
+    /// A protocol to identify types that customize how the Metal compiler stitches a function together.
     /// An attribute to be applied to the produced stitched function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingattribute?language=objc)
     pub unsafe trait MTLFunctionStitchingAttribute: NSObjectProtocol {}
 );
 
 extern_class!(
-    /// Applies the `__attribute__((always_inline))` attribute to the produced stitched function.
+    /// An attribute to specify that Metal needs to inline all of the function calls when generating the stitched function.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingattributealwaysinline?language=objc)
+    /// ## Overview
+    ///
+    /// To inline functions in a call graph, instantiate an instance of this class and assign it as an attribute on the [`MTLFunctionStitchingGraph`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph).
+    ///
+    ///
+    /// Applies the `__attribute__((always_inline))` attribute to the produced stitched function.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingAttributeAlwaysInline;
@@ -94,16 +91,20 @@ impl DefaultRetained for MTLFunctionStitchingAttributeAlwaysInline {
 }
 
 extern_protocol!(
+    /// A protocol to identify call graph nodes.
     /// A node used in a graph for stitching.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingnode?language=objc)
     pub unsafe trait MTLFunctionStitchingNode: NSObjectProtocol + NSCopying {}
 );
 
 extern_class!(
-    /// An indexed input node of the produced stitched function.
+    /// A call graph node that describes an input to the call graph.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchinginputnode?language=objc)
+    /// ## Overview
+    ///
+    /// An input node contains data from one of the stitched function’s parameters. The output data type of an input node has the same type as the matching parameter.
+    ///
+    ///
+    /// An indexed input node of the produced stitched function.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingInputNode;
@@ -173,9 +174,16 @@ impl DefaultRetained for MTLFunctionStitchingInputNode {
 }
 
 extern_class!(
-    /// A function node that calls the specified function with arguments and ordering determined by data and control dependencies.
+    /// A call graph node that describes a function call and its inputs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode?language=objc)
+    /// ## Overview
+    ///
+    /// When the Metal device object evaluates the function graph to compile the stitched function, it evaluates the nodes stored in the [`arguments`](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode/arguments) property that it hasn’t already evaluated, and then calls the function specified by [`name`](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode/name) to generate the node’s output.
+    ///
+    /// If the function has side effects on the input data, use the [`controlDependencies`](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode/controldependencies) property on other nodes to specify whether the Metal device object must evaluate this node first.
+    ///
+    ///
+    /// A function node that calls the specified function with arguments and ordering determined by data and control dependencies.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingFunctionNode;
@@ -270,11 +278,71 @@ impl DefaultRetained for MTLFunctionStitchingFunctionNode {
 }
 
 extern_class!(
+    /// A description of a new stitched function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLFunctionStitchingGraph`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph) instance describes the function graph for a stitched function. A _stitched function_ is a visible function you create by composing other Metal shader functions together in a function graph. A function stitching graph contains nodes for the function’s arguments and any functions it calls in the implementation. Data flows from the arguments to the end of the graph until the stitched function evaluates all of the graph’s nodes.
+    ///
+    /// The graph in the figure below constructs a new function that adds numbers from two source arrays, storing the result in a third array. The function’s parameters are pointers to the source and destination arrays, and an index for performing the array lookup. The graph uses three separate MSL functions to construct the stitched function: a function to look up a value from an array, a function that adds two numbers together, and a function that stores a value to an array.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f123f8a3ffeb3749a42fabbe146c4239/media-3842304~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/76256ecf7b056395a2c570d8dc8b2570/media-3842304%402x.png 2x" />
+    ///     <img alt="A function graph with four columns. The first column shows the function’s arguments, which consist of two source arrays, an index, and a destination array. The second column shows two function calls to look up numbers in the source arrays in the first column. The third column shows a function call to add the numbers, and the final column calls a function to store the sum to the destination array in the first column." src="https://docs-assets.developer.apple.com/published/f123f8a3ffeb3749a42fabbe146c4239/media-3842304~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Create an [`MTLFunctionStitchingGraph`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph) instance for each stitched function you want to create. Configure its properties to describe the new function and the nodes that define its behavior, as described below. To create a new library with these stitched functions, see [`MTLStitchedLibraryDescriptor`](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor).
+    ///
+    /// ### Configuring a function stitching graph
+    ///
+    /// To create a valid stitched function, the function stitching graph and shader code must meet some requirements:
+    ///
+    /// - Implement the MSL functions that you use to create the new function, adding the `stitchable` attribute to each. Stitchable functions are visible functions that you can also use in a function graph. Stitchable functions may require the compiler to do additional work or emit larger instance code, so mark functions as stitchable only when necessary.
+    ///
+    /// - Declare the stitched function’s name and signature in a header file to include in any shader code that calls the new function. Alternatively, you can add the function to a function table with a matching type and pass the function table as an argument.
+    ///
+    /// - Create an [`MTLFunctionStitchingInputNode`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinginputnode) node for each of the function’s arguments, specifying which parameter each node references. The output type of each input node is the type of that parameter in your function signature.
+    ///
+    /// - Create an [`MTLFunctionStitchingFunctionNode`](https://developer.apple.com/documentation/metal/mtlfunctionstitchingfunctionnode) for each function the implementation calls. A function node’s output type is the return type of the MSL function.
+    ///
+    /// - Make sure the output types of each node match the types of the node they pass to. For example, if a function takes a `float` parameter, the node that provides that data must output a `float` value. If you don’t match the types correctly, Metal doesn’t define the behavior of the resulting function.
+    ///
+    /// - Create an array from the node instances and assign it to the [`nodes`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph/nodes) property.
+    ///
+    /// - If the function produces an output, create another node and assign it to the [`outputNode`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph/outputnode) property. The output type of this node must match the function’s return type. Don’t include this node in the array of nodes you assign to the [`nodes`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph/nodes) property.
+    ///
+    /// The MSL code below implements the functions in the example graph above, as well as the function’s signature:
+    ///
+    /// ```metal
+    /// [[stitchable]] float add(float a, float b)
+    /// {
+    ///     return a + b;
+    /// }
+    ///
+    /// [[stitchable]] float lookup(const constant float *a, uint index)
+    /// {
+    ///     return a[index];
+    /// }
+    ///
+    /// [[stitchable]] float store(float value, device float *a, uint index)
+    /// {
+    ///     a[index] = value;
+    /// }
+    ///
+    /// // The output function declaration.
+    /// [[visible]] void add_arrays(constant float *a, constant float *b, device float*c, uint tid);
+    /// ```
+    ///
+    /// The following code creates the graph above:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Load the functions from the library.", "let functions = [", "    library.makeFunction(name: \"add\"),", "    library.makeFunction(name: \"lookup\"),", "    library.makeFunction(name: \"store\")", "]", "", "// Create nodes for the input parameters.", "let srcA = MTLFunctionStitchingInputNode.init(argumentIndex: 0)", "let srcB = MTLFunctionStitchingInputNode.init(argumentIndex: 1)", "let dest = MTLFunctionStitchingInputNode.init(argumentIndex: 2)", "let index = MTLFunctionStitchingInputNode.init(argumentIndex: 3)", "", "// Create nodes for the functions.", "let lookup_a = MTLFunctionStitchingFunctionNode.init(name: \"read\", arguments: [srcA, index], controlDependencies: [])", "let lookup_b = MTLFunctionStitchingFunctionNode.init(name: \"read\", arguments: [srcB, index], controlDependencies: [])", "let sum = MTLFunctionStitchingFunctionNode.init(name: \"add\", arguments: [lookup_a, lookup_b], controlDependencies: [])", "let store = MTLFunctionStitchingFunctionNode.init(name: \"store\", arguments: [sum, dest, index], controlDependencies: [])", "", "// Create the stitching graph.", "let graph = MTLFunctionStitchingGraph.init(functionName: \"add_arrays\", nodes: [lookup_a, lookup_b, sum, store], outputNode: nil, attributes: [])"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["// Load the functions from the library.", "NSArray *functions = @[", "    [library newFunctionWithName:@\"add\"],", "    [library newFunctionWithName:@\"lookup\"],", "    [library newFunctionWithName:@\"store\"],", "];", "", "// Create nodes for the input parameters.", "MTLFunctionStitchingInputNode *srcA = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:0];", "MTLFunctionStitchingInputNode *srcB = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:1];", "MTLFunctionStitchingInputNode *dest = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:2];", "MTLFunctionStitchingInputNode *index = [[MTLFunctionStitchingInputNode alloc] initWithArgumentIndex:3];", "", "// Create nodes for the functions.", "MTLFunctionStitchingFunctionNode *lookup_a =", "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"read\" arguments:@[srcA, index] controlDependencies:@[]];", "MTLFunctionStitchingFunctionNode *lookup_b =", "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"read\" arguments:@[srcB, index] controlDependencies:@[]];", "MTLFunctionStitchingFunctionNode *sum =", "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"add\" arguments:@[lookup_a, lookup_b] controlDependencies:@[]];", "MTLFunctionStitchingFunctionNode *store =", "    [[MTLFunctionStitchingFunctionNode alloc] initWithName:@\"store\" arguments:@[sum, dest, index] controlDependencies:@[]];", "", "// Create the stitching graph.", "MTLFunctionStitchingGraph *graph =", "    [[MTLFunctionStitchingGraph alloc] initWithFunctionName:@\"add_arrays\" nodes:@[lookup_a, lookup_b, sum, store]", "                                                 outputNode:nil attributes:@[]];"], metadata: None }] }] })
+    ///
     /// A function graph that describes a directed acyclic graph.
     ///
     /// The return value of the output node will be used as the return value for the final stitched graph.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionStitchingGraph;
@@ -374,9 +442,18 @@ impl DefaultRetained for MTLFunctionStitchingGraph {
 }
 
 extern_class!(
-    /// A container for the graphs and functions needed to create the stitched functions described by the graphs.
+    /// A description of a new library of procedurally generated functions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MTLStitchedLibraryDescriptor`](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor) describes a library of new stitched functions. A _stitched function_ is a visible function you create by composing other Metal shader functions together in a function graph.
+    ///
+    /// Configure a stitched library descriptor by assigning an array of one or more [`MTLFunctionStitchingGraph`](https://developer.apple.com/documentation/metal/mtlfunctionstitchinggraph) instances, each describing a stitched function, to the [`functionGraphs`](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor/functiongraphs) property. Then assign an [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) array that includes all the functions the graphs depend on to the [`functions`](https://developer.apple.com/documentation/metal/mtlstitchedlibrarydescriptor/functions) property.
+    ///
+    /// Create a stitched library from the descriptor by passing it to the [`newLibraryWithStitchedDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makelibrary(stitcheddescriptor:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice). You can change the descriptor to create other libraries without affecting any existing ones.
+    ///
+    ///
+    /// A container for the graphs and functions needed to create the stitched functions described by the graphs.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStitchedLibraryDescriptor;

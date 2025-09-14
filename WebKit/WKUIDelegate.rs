@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision?language=objc)
+/// An enumeration of possible permission decisions for device resource access.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPermissionDecision(pub NSInteger);
 impl WKPermissionDecision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/prompt?language=objc)
+    /// Prompt the user for permission for the requested resource.
     #[doc(alias = "WKPermissionDecisionPrompt")]
     pub const Prompt: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/grant?language=objc)
+    /// Grant permission for the requested resource.
     #[doc(alias = "WKPermissionDecisionGrant")]
     pub const Grant: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision/deny?language=objc)
+    /// Deny permission for the requested resource.
     #[doc(alias = "WKPermissionDecisionDeny")]
     pub const Deny: Self = Self(2);
 }
@@ -32,19 +32,19 @@ unsafe impl RefEncode for WKPermissionDecision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype?language=objc)
+/// An enumeration listing the types of media devices that can capture audio, video, or both.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureType(pub NSInteger);
 impl WKMediaCaptureType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/camera?language=objc)
+    /// A media device that can capture video.
     #[doc(alias = "WKMediaCaptureTypeCamera")]
     pub const Camera: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/microphone?language=objc)
+    /// A media device that can capture audio.
     #[doc(alias = "WKMediaCaptureTypeMicrophone")]
     pub const Microphone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype/cameraandmicrophone?language=objc)
+    /// A media device or devices that can capture audio and video.
     #[doc(alias = "WKMediaCaptureTypeCameraAndMicrophone")]
     pub const CameraAndMicrophone: Self = Self(2);
 }
@@ -57,21 +57,26 @@ unsafe impl RefEncode for WKMediaCaptureType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration that lists the possible ways a delegate handled displaying a custom Lockdown Mode first use dialog.
 /// Constants returned by showLockdownModeFirstUseMessage to indicate how WebKit should treat first use.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKDialogResult(pub NSInteger);
 impl WKDialogResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/showdefault?language=objc)
+    /// A result that indicates the delegate didn’t display a message, so the web view should show the default Lockdown Mode message.
     #[doc(alias = "WKDialogResultShowDefault")]
     pub const ShowDefault: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/askagain?language=objc)
+    /// A result that indicates the delegate didn’t display a message, so other web views should check again.
     #[doc(alias = "WKDialogResultAskAgain")]
     pub const AskAgain: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdialogresult/handled?language=objc)
+    /// A result that indicates the delegate displayed the first use message.
+    ///
+    /// ## Discussion
+    ///
+    /// This result tells the system that it does not need to check any more whether it needs to display the Lockdown Mode first use message.
+    ///
+    ///
     #[doc(alias = "WKDialogResultHandled")]
     pub const Handled: Self = Self(3);
 }
@@ -85,10 +90,15 @@ unsafe impl RefEncode for WKDialogResult {
 }
 
 extern_protocol!(
+    /// The methods for presenting native user interface elements on behalf of a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Web view user interface delegates implement this protocol to control the opening of new windows, augment the behavior of default menu items displayed when the user clicks elements, and perform other user interface-related tasks. These methods can be invoked as a result of handling JavaScript or other plug-in content. The default web view implementation assumes one window per web view, so nonconventional user interfaces might implement a user interface delegate.
+    ///
+    ///
     /// A class conforming to the WKUIDelegate protocol provides methods for
     /// presenting native UI on behalf of a webpage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuidelegate?language=objc)
     pub unsafe trait WKUIDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",

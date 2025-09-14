@@ -8,7 +8,62 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdiffabledatasourcesnapshotreference?language=objc)
+    /// A representation of the state of the data in a view at a specific point in time.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you’re working in a Swift codebase, always use [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/appkit/nsdiffabledatasourcesnapshot-swift.struct) instead of `NSDiffableDataSourceSnapshotReference`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Diffable data sources use _snapshots_ to provide data for collection views and table views. Through a snapshot, you set up the initial state of the data that displays in a view, and later update that data.
+    ///
+    /// The data in a snapshot is made up of the sections and items you want to display, in the specific order you want to display them. You configure what to display by adding, deleting, or moving the sections and items.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Each of your sections and items must have unique identifiers.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To display data in a view using a snapshot:
+    ///
+    /// 1. Create a snapshot and populate it with the state of the data you want to display.
+    ///
+    /// 2. Apply the snapshot to reflect the changes in the UI.
+    ///
+    /// You can create and configure a snapshot in one of these ways:
+    ///
+    /// - Create an empty snapshot, then append sections and items to it.
+    ///
+    /// - Get the current snapshot by calling the diffable data source’s [`snapshot`](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcereference/snapshot()) method, then modify that snapshot to reflect the new state of the data that you want to display.
+    ///
+    /// For example, the following code creates an empty snapshot, and populates it with a single section with three items. Then, it applies the snapshot, animating the UI updates between the previous state and the new state represented in the snapshot.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create a snapshot.", "var snapshot = NSDiffableDataSourceSnapshot<Int, UUID>()        ", "", "// Populate the snapshot.", "snapshot.appendSections([0])", "snapshot.appendItems([UUID(), UUID(), UUID()])", "", "// Apply the snapshot.", "dataSource.apply(snapshot, animatingDifferences: true)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create a snapshot.", "NSDiffableDataSourceSnapshot<NSNumber *, NSUUID *> *snapshot = [[NSDiffableDataSourceSnapshot alloc] init];", "", "// Populate the snapshot.", "[snapshot appendSectionsWithIdentifiers:@[@0]];", "[snapshot appendItemsWithIdentifiers:@[[NSUUID UUID], [NSUUID UUID], [NSUUID UUID]]];", "", "// Apply the snapshot.", "[self.dataSource applySnapshot:snapshot animatingDifferences:YES];"], metadata: None }] }] })
+    /// For more information, see the diffable data source types:
+    ///
+    /// - [`UICollectionViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa)
+    ///
+    /// - [`UITableViewDiffableDataSource`](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasource-2euir)
+    ///
+    /// - [`NSCollectionViewDiffableDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcereference)
+    ///
+    /// ### Bridging
+    ///
+    /// Avoid using this type in Swift code. Only use this type to bridge from Objective-C code to Swift code by typecasting from a snapshot reference to a snapshot:
+    ///
+    /// ```swift
+    /// let snapshot = snapshotReference as NSDiffableDataSourceSnapshot<Int, UUID>
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
@@ -243,7 +298,21 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcereferencesupplementaryviewprovider?language=objc)
+/// A closure that configures and returns a collection view’s supplementary view, such as a header or footer, from a diffable data source.
+///
+/// Parameters:
+/// - collectionView: The collection view to configure this supplementary view for.
+///
+/// - kind: The kind of supplementary view to provide. The layout object that supports the supplementary view defines the value of this string.
+///
+/// - indexPath: The index path that specifies the location of the supplementary view in the collection view.
+///
+///
+/// ## Return Value
+///
+/// A non-`nil` configured supplementary view object. The supplementary view provider must return a valid view object to the collection view.
+///
+///
 #[cfg(all(
     feature = "NSCollectionView",
     feature = "NSResponder",
@@ -255,7 +324,42 @@ pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcereference?language=objc)
+    /// The object you use to manage data and provide items for a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you’re working in a Swift codebase, always use [`NSCollectionViewDiffableDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasource-axww) instead of `NSCollectionViewDiffableDataSourceReference`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A _diffable data source_ object is a specialized type of data source that works together with your collection view object. It provides the behavior you need to manage updates to your collection view’s data and UI in a simple, efficient way. It also conforms to the [`NSCollectionViewDataSource`](https://developer.apple.com/documentation/appkit/nscollectionviewdatasource) protocol and provides implementations for all of the protocol’s methods.
+    ///
+    /// To fill a collection view with data:
+    ///
+    /// 1. Connect a diffable data source to your collection view.
+    ///
+    /// 2. Implement an item provider to configure your collection view’s items.
+    ///
+    /// 3. Generate the current state of the data.
+    ///
+    /// 4. Display the data in the UI.
+    ///
+    /// To connect a diffable data source to a collection view, you create the diffable data source using its [`initWithCollectionView:itemProvider:`](https://developer.apple.com/documentation/appkit/nscollectionviewdiffabledatasourcereference/init(collectionview:itemprovider:)) initializer, passing in the collection view you want to associate with that data source. You also pass in an item provider, where you configure each of your items to determine how to display your data in the UI.
+    ///
+    /// ```swift
+    /// dataSource = NSCollectionViewDiffableDataSource<Int, UUID>(collectionView: collectionView) {
+    ///     (collectionView: NSCollectionView, indexPath: IndexPath, itemIdentifier: UUID) -> NSCollectionViewItem? in
+    ///     // configure and return item
+    /// }
+    /// ```
+    ///
+    /// Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/appkit/nsdiffabledatasourcesnapshotreference).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCollectionViewDiffableDataSource<

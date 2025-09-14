@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellregistrationconfigurationhandler?language=objc)
+/// A closure that handles the cell registration and configuration.
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
@@ -19,7 +19,44 @@ pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::Dyn
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellregistration?language=objc)
+    /// A registration for the collection view’s cells.
+    ///
+    /// ## Overview
+    ///
+    /// Use a cell registration to register cells with your collection view and configure each cell for display. You create a cell registration with your cell type and data item type as the registration’s generic parameters, passing in a registration handler to configure the cell. In the registration handler, you specify how to configure the content and appearance of that type of cell.
+    ///
+    /// The following example creates a cell registration for cells of type [`UICollectionViewListCell`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell). It creates a content configuration with a system default style, customizes the content and appearance of the configuration, and then assigns the configuration to the cell.
+    ///
+    /// ```objc
+    /// UICollectionViewCellRegistration *cellRegistration = [UICollectionViewCellRegistration registrationWithCellClass:[UICollectionViewListCell class] configurationHandler:^(UICollectionViewListCell *cell, NSIndexPath *indexPath, id item) {
+    ///     UIListContentConfiguration *contentConfiguration = cell.defaultContentConfiguration;
+    ///     
+    ///     contentConfiguration.text = [NSString stringWithFormat:@"%@", item];
+    ///     contentConfiguration.textProperties.color = UIColor.lightGrayColor;
+    ///     
+    ///     cell.contentConfiguration = contentConfiguration;
+    /// }];
+    /// ```
+    ///
+    /// After you create a cell registration, you pass it in to [`dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablecellwithregistration:forindexpath:item:), which you call from your data source’s cell provider.
+    ///
+    /// ```objc
+    /// self.dataSource = [[UICollectionViewDiffableDataSource alloc] initWithCollectionView:self.collectionView cellProvider:^UICollectionViewCell *(UICollectionView *collectionView, NSIndexPath *indexPath, id item) {
+    ///     return [collectionView dequeueConfiguredReusableCellWithRegistration:cellRegistration forIndexPath:indexPath item:item];
+    /// }];
+    /// ```
+    ///
+    /// You don’t need to call [`register(_:forCellWithReuseIdentifier:)`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-6z6t4) or [`register(_:forCellWithReuseIdentifier:)`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forcellwithreuseidentifier:)-3vaho). The collection view registers your cell automatically when you pass the cell registration to [`dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablecellwithregistration:forindexpath:item:).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t create your cell registration inside a [`UICollectionViewDiffableDataSourceReferenceCellProvider`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencecellprovider) closure; doing so prevents cell reuse, and generates an exception in iOS 15 and higher.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,7 +146,7 @@ impl UICollectionViewCellRegistration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewsupplementaryregistrationconfigurationhandler?language=objc)
+/// A block that handles the supplementary view registration and configuration.
 #[cfg(all(
     feature = "UICollectionViewCell",
     feature = "UIResponder",
@@ -121,7 +158,40 @@ pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut bl
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewsupplementaryregistration?language=objc)
+    /// A registration for the collection view’s supplementary views.
+    ///
+    /// ## Overview
+    ///
+    /// Use a supplementary registration to register supplementary views, like headers and footers, with your collection view and configure each view for display. You create a supplementary registration with your supplementary view type and data item type as the registration’s generic parameters, passing in a registration handler to configure the view. In the registration handler, you specify how to configure the content and appearance of that type of supplementary view.
+    ///
+    /// The following example creates a supplementary registration for a custom header view subclass.
+    ///
+    /// ```objc
+    /// UICollectionViewSupplementaryRegistration *headerRegistration = [UICollectionViewSupplementaryRegistration registrationWithSupplementaryClass:[HeaderView class] elementKind:@"Header" configurationHandler:^(HeaderView *supplementaryView, NSString *elementKind, NSIndexPath *indexPath) {
+    ///     supplementaryView.label.text = [NSString stringWithFormat:@"%@ for section %ld", elementKind, (long)indexPath.section];
+    ///     supplementaryView.backgroundColor = UIColor.lightGrayColor;
+    /// }];
+    /// ```
+    ///
+    /// After you create a supplementary registration, you pass it in to [`dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablesupplementaryviewwithregistration:forindexpath:), which you call from your data source’s [`supplementaryViewProvider`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource-9tqpa/supplementaryviewprovider-swift.property).
+    ///
+    /// ```objc
+    /// self.dataSource.supplementaryViewProvider = ^UICollectionReusableView *(UICollectionView *collectionView, NSString *elementKind, NSIndexPath *indexPath) {
+    ///     return [collectionView dequeueConfiguredReusableSupplementaryViewWithRegistration:headerRegistration forIndexPath:indexPath];
+    /// };
+    /// ```
+    ///
+    /// You don’t need to call [`register(_:forSupplementaryViewOfKind:withReuseIdentifier:)`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forsupplementaryviewofkind:withreuseidentifier:)-661io) or [`register(_:forSupplementaryViewOfKind:withReuseIdentifier:)`](https://developer.apple.com/documentation/uikit/uicollectionview/register(_:forsupplementaryviewofkind:withreuseidentifier:)-9hn73). The registration occurs automatically when you pass the supplementary view registration to [`dequeueConfiguredReusableSupplementaryViewWithRegistration:forIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablesupplementaryviewwithregistration:forindexpath:).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t create your supplementary view registration inside a [`UICollectionViewDiffableDataSourceReferenceSupplementaryViewProvider`](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencesupplementaryviewprovider) closure; doing so prevents reuse, and generates an exception in iOS 15 and higher.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

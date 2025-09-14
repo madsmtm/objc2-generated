@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An optimizer that represents the root mean square propagation algorithm.
     /// The MLCRMSPropOptimizer specifies the RMSProp optimizer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrmspropoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]

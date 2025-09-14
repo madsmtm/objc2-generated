@@ -7,28 +7,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode?language=objc)
+/// Constants that indicate the status of the request for reservations details.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetReservationDetailsIntentResponseCode(pub NSInteger);
 impl INGetReservationDetailsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/unspecified?language=objc)
+    /// The response code is unspecified.
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/ready?language=objc)
+    /// Your app is ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/inprogress?language=objc)
+    /// Your app is processing the request for reservation details.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if it may take more than a few seconds to get the reservation details.
+    ///
+    ///
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/success?language=objc)
+    /// Your app successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully retrieved the reservation details.
+    ///
+    ///
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/failure?language=objc)
+    /// Your app is unable to retrieve the reservation details.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from retrieving the reservation details.
+    ///
+    ///
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to retrieve the reservation details.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INGetReservationDetailsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +72,13 @@ unsafe impl RefEncode for INGetReservationDetailsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse?language=objc)
+    /// Your app’s response to a request for reservation details.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INGetReservationDetailsIntentResponse`](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse) object to specify the results of a user requesting reservation details in your app. After getting the reservation details action using the criteria specified in the [`INGetReservationDetailsIntent`](https://developer.apple.com/documentation/intents/ingetreservationdetailsintent) object, create an instance of this class with the results of the action. Siri can then use this information for system integrations, such as populating the calendar with an event.
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

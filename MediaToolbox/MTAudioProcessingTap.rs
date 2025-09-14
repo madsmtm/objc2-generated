@@ -14,7 +14,7 @@ use objc2_core_media::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtap?language=objc)
+/// An audio processing tap object.
 #[doc(alias = "MTAudioProcessingTapRef")]
 #[repr(C)]
 pub struct MTAudioProcessingTap {
@@ -31,7 +31,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for MTAudioProcessingTap {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgettypeid()?language=objc)
+    /// Retrieves the type identifier for this audio processing tap.
     #[doc(alias = "MTAudioProcessingTapGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,6 +42,13 @@ unsafe impl ConcreteType for MTAudioProcessingTap {
     }
 }
 
+/// Flags to use when creating audio processing taps.
+///
+/// ## Discussion
+///
+/// You must set the pre or post flag, but not both.
+///
+///
 /// Flags used when creating audio processing taps.
 ///
 ///
@@ -51,15 +58,14 @@ unsafe impl ConcreteType for MTAudioProcessingTap {
 /// Signifies that the processing tap is inserted before any effects.
 ///
 /// Signifies that the processing tap is inserted after any effects.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapcreationflags?language=objc)
 pub type MTAudioProcessingTapCreationFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcreationflag_preeffects?language=objc)
+/// Signifies that the processing tap is inserted before any effects.
 pub const kMTAudioProcessingTapCreationFlag_PreEffects: MTAudioProcessingTapCreationFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcreationflag_posteffects?language=objc)
+/// Signifies that the processing tap is inserted before any effects.
 pub const kMTAudioProcessingTapCreationFlag_PostEffects: MTAudioProcessingTapCreationFlags = 1 << 1;
 
+/// Flags that indicate where to tap the audio.
 /// Flags passed to the process callback and from GetSourceAudio.
 ///
 ///
@@ -71,15 +77,40 @@ pub const kMTAudioProcessingTapCreationFlag_PostEffects: MTAudioProcessingTapCre
 /// the audio queue is being stopped asynchronously and has finished playing
 /// all of its data. Returned from GetSourceAudio and should be propagated
 /// on return from the process callback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapflags?language=objc)
 pub type MTAudioProcessingTapFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapflag_startofstream?language=objc)
+/// Signifies that the source audio is the beginning of a continuous stream.
+///
+/// ## Discussion
+///
+/// Returned from [`MTAudioProcessingTapGetSourceAudio`](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)).
+///
+///
 pub const kMTAudioProcessingTapFlag_StartOfStream: MTAudioProcessingTapFlags = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapflag_endofstream?language=objc)
+/// Signifies that the source audio is past the end of stream.
+///
+/// ## Discussion
+///
+/// This happens when the audio queue is being stopped asynchronously and has finished playing all of its data. Returned from GetSourceAudio and should be propagated on return from the process callback.
+///
+///
 pub const kMTAudioProcessingTapFlag_EndOfStream: MTAudioProcessingTapFlags = 1 << 9;
 
+/// An initialization callback function.
+///
+/// Parameters:
+/// - tap: The processing tap.
+///
+/// - clientInfo: The client data of the processing tap passed in callbacks struct in MTAudioProcessingTapCreate().
+///
+/// - tapStorageOut: Additional client data.  The intent is for clients to allocate a block of memory for use within their custom  MTAudioProcessingTap implementation that will be freed when the finalize callback is invoked.  This argument is optional.
+///
+///
+/// ## Overview
+///
+/// An init callback that is invoked when MTAudioProcessingTapCreate() is called. The init callback is always balanced by a finalize callback when the MTAudioProcessingTap object is released.
+///
+///
 /// Init callback.
 ///
 ///
@@ -95,12 +126,21 @@ pub const kMTAudioProcessingTapFlag_EndOfStream: MTAudioProcessingTapFlags = 1 <
 /// Parameter `tapStorageOut`: Additional client data.  The intent is for clients to allocate a block of memory for use within their custom
 /// MTAudioProcessingTap implementation that will be freed when the finalize callback is invoked.  This argument
 /// is optional.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapinitcallback?language=objc)
 pub type MTAudioProcessingTapInitCallback = Option<
     unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>, *mut c_void, NonNull<*mut c_void>),
 >;
 
+/// A finalization callback function.
+///
+/// Parameters:
+/// - tap: The processing tap.
+///
+///
+/// ## Overview
+///
+/// This callback is called when it is safe to free any buffers or other state associated with the tap. This callback will be called exactly once when the MTAudioProcessingTap object is finalized. If tapStorage was allocated in the init callback, it should be freed here.
+///
+///
 /// Finalize callback.
 ///
 ///
@@ -110,11 +150,30 @@ pub type MTAudioProcessingTapInitCallback = Option<
 ///
 ///
 /// Parameter `tap`: The processing tap.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapfinalizecallback?language=objc)
 pub type MTAudioProcessingTapFinalizeCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>)>;
 
+/// An audio processing preparation callback function.
+///
+/// Parameters:
+/// - tap: The processing tap.
+///
+/// - maxFrames: The maximum number of sample frames that can be requested of a processing tap at any one time. Typically this will be approximately 50 msec of audio (2048 samples @ 44.1kHz).
+///
+/// - processingFormat: The format in which the client will receive the audio data to be processed. This will always be the same sample rate as the client format and usually the same number of channels as the client format of the audio queue. (NOTE: the number of channels may be different in some cases if the client format has some channel count restrictions; for example, if the client provides 5.1 AAC, but the decoder can only produce stereo). The channel order, if the same as the client format, will be the same as the client channel order. If the channel count is changed, it will be to either 1 (mono) or 2 (stereo, in which case the first channel is left, the second right).
+///
+/// If the data is not in a convenient format for the client to process in, then the client should convert the data to and from that format. This is the most   efficient mechanism to use, as the audio system may choose a format that is most efficient from its playback requirement.
+///
+///
+/// ## Overview
+///
+/// A preparation callback that is invoked when the underlying audio machinery is initialized.
+///
+/// The preparation callback should be where output buffers that will be returned by the ProcessingTapCallback are allocated (unless in-place processing is desired).
+///
+/// Note that the preparation callback can potentially be called multiple times over the lifetime of the tap object, if the client performs an operation that requires the underlying audio machinery to be torn down and rebuilt.
+///
+///
 /// Audio processing preparation callback.
 ///
 ///
@@ -150,8 +209,6 @@ pub type MTAudioProcessingTapFinalizeCallback =
 /// the client should convert the data to and from that format. This is the most
 /// efficient mechanism to use, as the audio system may choose a format that is
 /// most efficient from its playback requirement.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtappreparecallback?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
 pub type MTAudioProcessingTapPrepareCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -161,6 +218,21 @@ pub type MTAudioProcessingTapPrepareCallback = Option<
     ),
 >;
 
+/// An audio processing unpreparation callback function.
+///
+/// Parameters:
+/// - tap: The processing tap.
+///
+///
+/// ## Overview
+///
+/// The unpreparation callback is invoked when the underlying audio machinery stops calling the process callback.
+///
+/// Preparation and unpreparation callbacks are always paired.
+///
+/// Process callbacks will only ever be called after the prepare callback returns, and before unprepare is called.
+///
+///
 /// Audio processing unpreparation callback.
 ///
 ///
@@ -172,11 +244,48 @@ pub type MTAudioProcessingTapPrepareCallback = Option<
 ///
 ///
 /// Parameter `tap`: The processing tap.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapunpreparecallback?language=objc)
 pub type MTAudioProcessingTapUnprepareCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<MTAudioProcessingTap>)>;
 
+/// An audio processing callback function.
+///
+/// Parameters:
+/// - tap: The processing tap.
+///
+/// - numberFrames: The requested number of sample frames that should be rendered.
+///
+/// - flags: The flags passed at construction time are provided.
+///
+/// - bufferListInOut: The audio buffer list which will contain processed source data. On input, all fields except for the buffer pointers will be filled in, and can be passed directly to [`MTAudioProcessingTapGetSourceAudio`](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)) if in-place processing is desired. On output, the buffer list should contain the processed audio buffers.
+///
+/// - numberFramesOut: The number of frames of audio data provided in the processed data. Can be 0.
+///
+/// - flagsOut: The start/end of stream flags should be set when appropriate.
+///
+///
+/// ## Overview
+///
+/// The system calls this function when the audio track has data that can be processed by a given tap.
+///
+/// The processing callback will be called when there is sufficient input data to provide for processing. The callback should then go and request as much source data as it needs in order to produce the requested number of processed samples. When the callback requests source data, it may receive less data than it requests.
+///
+/// The tap must provide the same number of samples that are being requested. Under normal circumstances, the source data it requests should be satisfied (as the client running the audio queue is also providing the queue with the audio source material). If there is insufficient source data available (this is indicated by the number of frames from the [`MTAudioProcessingTapGetSourceAudio`](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)) call), then the processing tap should cope as best as it can; it can either return less data than was requested, insert silence, insert noise, etc. If less data is returned than requested, the remainder will be filled with silence.
+///
+/// A processing tap is a real-time operation, so the general Core Audio limitations for real-time processing apply.  For example, care should be taken not to allocate memory or call into blocking system calls, as this will interfere with the real-time nature of audio playback.
+///
+/// Under normal operation, the source data will be continuous from the last time the callback was called, and the processed samples should be continuous from the previous samples returned. If there is any discontinuity between the last samples provided for processing, the audio queue will set the [`kMTAudioProcessingTapFlag_StartOfStream`](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapflag_startofstream) bit in the flags. After a discontinuity, the first sample that the processing tap outputs should correspond to the first sample that was provided in the source samples (so a reset + consequent process serves to re-anchor a relationship between the processing tap’s source and processed samples). In this case, the processing tap will typically discard any previous state (for example, if a processing tap was adding a reverb to a signal, then the discontinuity flag would act the same as AudioUnitReset; any previous source information in the processing tap should be discarded).
+///
+/// The caller is responsible for absorbing any processing delays. For example, if the processing is to be done by an audio unit that reports a processing latency, then the caller should remove those latency samples from the audio unit’s rendering and not return them to the tap.
+///
+/// The processing tap may operate on the provided source data in place (“in-place processing”) and return pointers to that buffer, rather than its own. This is similar to audio unit render operations. The processing tap will be provided with a bufferList on input where the mData pointers are `NULL`.
+///
+/// When the output audio is stopped asynchronously, the processing tap will see the [`kMTAudioProcessingTapFlag_EndOfStream`](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapflag_endofstream) bit set on return from [`MTAudioProcessingTapGetSourceAudio`](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)), and is responsible for propagating this bit from the callback when its processing has reached this point.
+///
+/// A processing tap never sees the same source data again, so, it should keep its own copy, if it needs to keep it for further reference past the duration of this call. It also cannot assume that the pointers to the source data that it retrieves will remain valid after the processing tap has executed.
+///
+/// Should the processing tap provide custom buffers in `bufferListInOut`, it should ensure that the data pointers remain valid until the tap is executed again.
+///
+///
 /// A function called when an audio track has data to be processed by its tap.
 ///
 ///
@@ -249,8 +358,6 @@ pub type MTAudioProcessingTapUnprepareCallback =
 /// Parameter `numberFramesOut`: The number of frames of audio data provided in the processed data. Can be 0.
 ///
 /// Parameter `flagsOut`: The start/end of stream flags should be set when appropriate (see Discussion, above).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapprocesscallback?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
 pub type MTAudioProcessingTapProcessCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -263,9 +370,16 @@ pub type MTAudioProcessingTapProcessCallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcallbacksversion_0?language=objc)
+/// An identifier for version 0 of the callbacks structure.
 pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
 
+/// A structure that defines life cycle callbacks for an audio processing tap object.
+///
+/// ## Overview
+///
+/// On 64-bit architectures, this struct contains misaligned function pointers. To avoid link-time issues, fill its function pointer fields by using assignment statements, rather than declaring them as global or static structs.
+///
+///
 /// Note that for 64-bit architectures, this struct contains misaligned function pointers.
 /// To avoid link-time issues, it is recommended that clients fill MTAudioProcessingTapCallbacks' function pointer fields
 /// by using assignment statements, rather than declaring them as global or static structs.
@@ -287,8 +401,6 @@ pub const kMTAudioProcessingTapCallbacksVersion_0: c_int = 0;
 /// A callback to allow the client to perform any necessary cleanup for which that is prepared. Can be NULL.
 /// Field: process
 /// A callback for processing the audio.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapcallbacks?language=objc)
 #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -333,6 +445,33 @@ unsafe impl RefEncode for MTAudioProcessingTapCallbacks {
 }
 
 impl MTAudioProcessingTap {
+    /// Creates a new audio processing tap.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new tap. Pass `NULL` or `kCFAllocatorDefault` to use the current default allocator.
+    ///
+    /// - callbacks: An callbacks struct. [`MTAudioProcessingTapRef`](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtap) makes a copy of this struct.
+    ///
+    /// - flags: Flags that are used to control aspects of the processing tap. Valid flags are:
+    ///
+    /// - [`kMTAudioProcessingTapCreationFlag_PreEffects`](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcreationflag_preeffects): processing is done before any further effects are applied by the audio queue to the audio.
+    ///
+    /// - [`kMTAudioProcessingTapCreationFlag_PostEffects`](https://developer.apple.com/documentation/mediatoolbox/kmtaudioprocessingtapcreationflag_posteffects): processing is done after all processing is done, including that of other taps.
+    ///
+    /// - tapOut: The processing tap object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Overview
+    ///
+    /// The processing tap will then be used to process decoded data. The processing is performed on audio either before or after any effects or other processing (varispeed, etc) is applied by the audio queue.
+    ///
+    ///
     /// Create a new processing tap.
     ///
     /// This function creates a processing tap.
@@ -361,8 +500,6 @@ impl MTAudioProcessingTap {
     ///
     /// - `callbacks` must be a valid pointer.
     /// - `tap_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapCreate")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]
@@ -383,6 +520,17 @@ impl MTAudioProcessingTap {
         unsafe { MTAudioProcessingTapCreate(allocator, callbacks, flags, tap_out) }
     }
 
+    /// Retrieves a custom storage pointer for an audio processing tap.
+    ///
+    /// Parameters:
+    /// - tap: The processing tap.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The tap storage returned by the init callback.
+    ///
+    ///
     /// Used by a processing tap to retrieve a custom storage pointer.
     ///
     ///
@@ -390,8 +538,6 @@ impl MTAudioProcessingTap {
     ///
     ///
     /// Returns: The tapStorage returned by the init callback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetstorage(_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapGetStorage")]
     #[inline]
     pub unsafe fn storage(&self) -> NonNull<c_void> {
@@ -404,6 +550,33 @@ impl MTAudioProcessingTap {
         ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
+    /// Retrieves source audio for an audio processing tap.
+    ///
+    /// Parameters:
+    /// - tap: The processing tap.
+    ///
+    /// - numberFrames: The number of frames the processing tap requires for its processing.
+    ///
+    /// - bufferListInOut: The audio buffer list which will contain the source data. On input, all fields except for the buffer pointers must be filled in. If the buffer pointers are NULL (recommended), non-NULL pointers will be returned and system owns the source buffers; these buffers are only applicable for the duration of the processing tap callback. If the buffer pointers are non-NULL, then they must be big enough to hold numberFrames, and the source data will be copied into these buffers.
+    ///
+    /// - flagsOut: Flags to describe state about the input requested, e.g., discontinuity/complete. Can be NULL.
+    ///
+    /// - timeRangeOut: The asset time range corresponding to the provided source audio frames. Can be NULL.
+    ///
+    /// - numberFramesOut: The number of source frames that have been provided. Can be NULL. This can be less than the number of requested frames specified in numberFrames.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Overview
+    ///
+    /// This function may only be called from the processing tap’s callback.
+    ///
+    ///
     /// Used by a processing tap to retrieve source audio.
     ///
     /// This function may only be called from the processing tap's callback.
@@ -437,8 +610,6 @@ impl MTAudioProcessingTap {
     /// - `flags_out` must be a valid pointer or null.
     /// - `time_range_out` must be a valid pointer or null.
     /// - `number_frames_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediatoolbox/mtaudioprocessingtapgetsourceaudio(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "MTAudioProcessingTapGetSourceAudio")]
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
     #[inline]

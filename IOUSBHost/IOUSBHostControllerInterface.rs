@@ -25,8 +25,6 @@ use crate::*;
 /// Commands with a type targeting a device (IOUSBHostCIMessageTypeDevice*) should be processed by a client-created IOUSBHostCIDeviceStateMachine.
 ///
 /// Commands with a type targeting an endpoint (IOUSBHostCIMessageTypeEndpoint*) should be processed by a client-created IOUSBHostCIEndpointStateMachine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterfacecommandhandler?language=objc)
 #[cfg(all(
     feature = "IOUSBHostControllerInterfaceDefinitions",
     feature = "block2"
@@ -38,8 +36,6 @@ pub type IOUSBHostControllerInterfaceCommandHandler =
 ///
 /// The kernel driver sends IOUSBHostCIDoorbell messages to notify the client that transfer structures for specific endpoints have been updated.  Doorbell messages
 /// should be processed by a client-created IOUSBHostCIEndpointStateMachine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterfacedoorbellhandler?language=objc)
 #[cfg(all(
     feature = "IOUSBHostControllerInterfaceDefinitions",
     feature = "block2"
@@ -49,7 +45,6 @@ pub type IOUSBHostControllerInterfaceDoorbellHandler = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcontrollerinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOUSBHostControllerInterface;

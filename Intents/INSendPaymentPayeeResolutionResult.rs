@@ -6,22 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason?language=objc)
+/// Constants indicating the reason for being unable to resolve the payee.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSendPaymentPayeeUnsupportedReason(pub NSInteger);
 impl INSendPaymentPayeeUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/credentialsunverified?language=objc)
+    /// The payee’s credentials are unverifiable.
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonCredentialsUnverified")]
     pub const CredentialsUnverified: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/insufficientfunds?language=objc)
+    /// The current user’s account has insufficient funds to make the payment.
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonInsufficientFunds")]
     pub const InsufficientFunds: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/noaccount?language=objc)
+    /// The payee does not have an account in your app.
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonNoAccount")]
     pub const NoAccount: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeunsupportedreason/novalidhandle?language=objc)
+    /// The unique handle that you use to identify the payee is invalid or missing.
     #[doc(alias = "INSendPaymentPayeeUnsupportedReasonNoValidHandle")]
     pub const NoValidHandle: Self = Self(4);
 }
@@ -35,7 +35,15 @@ unsafe impl RefEncode for INSendPaymentPayeeUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentpayeeresolutionresult?language=objc)
+    /// A resolution result for the recipient of a payment.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSendPaymentPayeeResolutionResult`](https://developer.apple.com/documentation/intents/insendpaymentpayeeresolutionresult) object is what you return when resolving parameters containing an [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object. Use the creation method that best reflects your ability to resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INPersonResolutionResult`](https://developer.apple.com/documentation/intents/inpersonresolutionresult) and [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INPersonResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

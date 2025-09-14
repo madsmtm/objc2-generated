@@ -7,28 +7,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode?language=objc)
+/// Constants that indicate the status of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetCarPowerLevelStatusIntentResponseCode(pub NSInteger);
 impl INGetCarPowerLevelStatusIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/unspecified?language=objc)
+    /// A response code indicating that the status was not specified.
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/ready?language=objc)
+    /// A response code indicating that you are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/inprogress?language=objc)
+    /// A response code indicating that your app has requested the power level data, but has not yet received the results.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if your request may take longer than a few seconds to complete.
+    ///
+    ///
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/success?language=objc)
+    /// A response code indicating that you successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully received the car’s current power levels.
+    ///
+    ///
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/failure?language=objc)
+    /// An error code indicating that you were unable to get the car’s power level.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from getting the car’s power levels.
+    ///
+    ///
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// An error code indicating that the user must launch your app to get the car’s current power level.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up the car in your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INGetCarPowerLevelStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +72,17 @@ unsafe impl RefEncode for INGetCarPowerLevelStatusIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponse?language=objc)
+    /// Your app’s response to a request for the vehicle power level.
+    ///
+    /// ## Overview
+    ///
+    /// Use an `INGetCarPowerLevelStatusIntentResponse` object to specify the result of a request for a vehicle’s current power level. You create instances of this class when confirming or handling a power level status intent, or when reporting abrupt changes in an electric vehicle’s battery charge. Use this object to confirm that the request is valid, to communicate whether the app receives the power level data from the vehicle, or to report any errors that occur.
+    ///
+    /// You create an `INGetCarPowerLevelStatusIntentResponse` object in the [`confirmGetCarPowerLevelStatus:completion:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling/confirm(intent:completion:)) and [`handleGetCarPowerLevelStatus:completion:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling/handle(intent:completion:)) methods of your intent handler object, and when calling [`getCarPowerLevelStatusResponseDidUpdate:`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintentresponseobserver/didupdate(getcarpowerlevelstatus:)) to notify Maps about abrupt battery charge changes in the user’s electric vehicle.
+    ///
+    /// For more information about implementing your intent handler object, see [`INGetCarPowerLevelStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

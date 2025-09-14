@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintent?language=objc)
+    /// A request to search for a media item.
+    ///
+    /// ## Overview
+    ///
+    /// The system creates an [`INSearchForMediaIntent`](https://developer.apple.com/documentation/intents/insearchformediaintent) object when the user asks Siri to search for a media item, or searches for a musician or band in Spotlight.
+    ///
+    /// To handle this intent, provide a handler that conforms to the [`INSearchForMediaIntentHandling`](https://developer.apple.com/documentation/intents/insearchformediaintenthandling) protocol. Your handler should confirm the request and create an [`INSearchForMediaIntentResponse`](https://developer.apple.com/documentation/intents/insearchformediaintentresponse) object with the media to search for.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (audio only)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -79,11 +92,18 @@ impl INSearchForMediaIntent {
 }
 
 extern_protocol!(
+    /// The interface that handles media search requests.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSearchForMediaIntentHandling`](https://developer.apple.com/documentation/intents/insearchformediaintenthandling) protocol to resolve, confirm, and handle requests to search for media. Adopt this protocol in an object of your Intents extension capable of searching for media.
+    ///
+    /// Siri delivers an [`INSearchForMediaIntent`](https://developer.apple.com/documentation/intents/insearchformediaintent) object to your handler when the user asks Siri to search for media using your app, or when Spotlight search results include an artist. Use the methods of this protocol to resolve the parameters and search for the media.
+    ///
+    ///
     /// Protocol to declare support for handling an INSearchForMediaIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintenthandling?language=objc)
     pub unsafe trait INSearchForMediaIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

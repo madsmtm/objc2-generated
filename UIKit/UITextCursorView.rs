@@ -6,11 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface you use to draw the insertion point in a piece of text.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`UITextCursorView`](https://developer.apple.com/documentation/uikit/uitextcursorview) protocol in a custom view you use to draw the insertion caret in one of your text views. Use your custom view in conjunction with a [`UITextSelectionDisplayInteraction`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction) object to apply your custom selection UI to one of your text views. This protocol provides details about when to display the blink animations. Use [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) objects or your view’s [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method to draw and animate the caret.
+    ///
+    /// After adopting this protocol in your custom view, assign your view to the [`cursorView`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction/cursorview) property of the interaction object you attached to your text view.
+    ///
+    ///
     /// A view that displays a flashing cursor (aka "caret") view.
     ///
     /// When a selection is not ranged (or has a zero-length), a cursor view is displayed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcursorview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextCursorView: UICoordinateSpace + MainThreadOnly {
         /// Enables the blink animation. Disabled by default.

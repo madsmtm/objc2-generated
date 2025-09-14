@@ -9,9 +9,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A tracked raycast representation.
+    /// A raycast query that ARKit repeats in succession to give you refined results over time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/artrackedraycast?language=objc)
+    /// ## Overview
+    ///
+    /// Tracked raycasting improves hit-testing techniques by repeating the query for a 3D position in succession. ARKit provides you with an updated position as it refines its understanding of world over time.
+    ///
+    /// To start a tracked raycast, you call [`trackedRaycast:updateHandler:`](https://developer.apple.com/documentation/arkit/arsession/trackedraycast(_:updatehandler:)) on your app’s current [`ARSession`](https://developer.apple.com/documentation/arkit/arsession).
+    ///
+    ///
+    /// A tracked raycast representation.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

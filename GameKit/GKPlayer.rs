@@ -11,14 +11,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// Deprecated methods that previously returned player IDs will return GKPlayerIDNoLongerAvailable instead.
+    /// A constant for a player ID that’s no longer available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayeridnolongeravailable?language=objc)
+    /// ## Discussion
+    ///
+    /// Deprecated methods that previously returned the player ID return this constant.
+    ///
+    ///
+    /// Deprecated methods that previously returned player IDs will return GKPlayerIDNoLongerAvailable instead.
     pub static GKPlayerIDNoLongerAvailable: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer?language=objc)
+    /// A remote player who the local player running your game can invite and communicate with through Game Center.
+    ///
+    /// ## Overview
+    ///
+    /// Before using Game Center for the first time, players create a single account that identifies them across all Game Center games. The player only needs to sign in to Game Center once per device to start using GameKit features in your game. A player sets a nickname and avatar in their account that provide a consistent and familiar look in your game. Game Center then uses the account to record leaderboard scores and achievements, and to start games with other players.
+    ///
+    /// In your code, [`GKPlayer`](https://developer.apple.com/documentation/gamekit/gkplayer) represents remote or other players who the local player running your app can invite and communicate with. [`GKPlayer`](https://developer.apple.com/documentation/gamekit/gkplayer) is also the superclass for the local player [`GKLocalPlayer`](https://developer.apple.com/documentation/gamekit/gklocalplayer) class that provides common data and methods for all players. For example, use the [`alias`](https://developer.apple.com/documentation/gamekit/gkplayer/alias) property to get the nickname for a player. To load the player avatars, use the [`loadPhotoForSize:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkplayer/loadphoto(for:withcompletionhandler:)) method.
+    ///
+    /// To create a guest player who doesn’t have a Game Center account, use the [`anonymousGuestPlayerWithIdentifier:`](https://developer.apple.com/documentation/gamekit/gkplayer/anonymousguestplayer(withidentifier:)) method. GameKit treats guest players similar to Game Center players except they can’t earn achievements, post to leaderboards, or participate in challenges.
+    ///
+    /// Use the [`gamePlayerID`](https://developer.apple.com/documentation/gamekit/gkplayer/gameplayerid) property as a unique identifier for just your game, and the [`teamPlayerID`](https://developer.apple.com/documentation/gamekit/gkplayer/teamplayerid) property as a unique identifier for all games that you offer through your developer account. For more information, see [Protecting the player’s privacy using scoped identifiers](https://developer.apple.com/documentation/gamekit/protecting-the-player-s-privacy-using-scoped-identifiers).
+    ///
+    ///
     #[unsafe(super(GKBasePlayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKBasePlayer")]
@@ -98,16 +115,16 @@ impl GKPlayer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer/photosize?language=objc)
+/// The size of a photo that Game Center loads.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPhotoSize(pub NSInteger);
 impl GKPhotoSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer/photosize/small?language=objc)
+    /// Loads a small photo.
     #[doc(alias = "GKPhotoSizeSmall")]
     pub const Small: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayer/photosize/normal?language=objc)
+    /// Loads a normal-sized photo.
     #[doc(alias = "GKPhotoSizeNormal")]
     pub const Normal: Self = Self(1);
 }
@@ -140,9 +157,8 @@ impl GKPlayer {
 }
 
 extern "C" {
+    /// A notification that posts when a player object’s data changes.
     /// Notification will be posted whenever the player details changes. The object of the notification will be the player.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerdidchangenotificationname?language=objc)
     pub static GKPlayerDidChangeNotificationName: &'static NSNotificationName;
 }
 

@@ -11,21 +11,30 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// Presentation styles that describe your iMessage app’s appearance.
 /// Describes how the extension is presented in Messages.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationStyle(pub NSUInteger);
 impl MSMessagesAppPresentationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/compact?language=objc)
+    /// The iMessage App is displayed inside the keyboard area.
+    ///
+    /// ## Discussion
+    ///
+    /// When you use the compact presentation style, the extension’s user interface replaces the keyboard. Because the keyboard is not available, adding text fields or text views to your compact layout is not recommended.
+    ///
+    /// If you have a control that requires input from the keyboard (for example, a text field), you must call [`requestPresentationStyle:`](https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/requestpresentationstyle(_:)) to expand the extension as soon as the user selects that control. This allows you to display both the extension’s user interface and the keyboard at the same time.
+    ///
+    /// Additionally, do not include horizontally scrolling elements in a compact layout. This includes gesture recognizers for horizontal swipes.
+    ///
+    ///
     #[doc(alias = "MSMessagesAppPresentationStyleCompact")]
     pub const Compact: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/expanded?language=objc)
+    /// The iMessage App expands to fill most of the screen.
     #[doc(alias = "MSMessagesAppPresentationStyleExpanded")]
     pub const Expanded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/transcript?language=objc)
+    /// The iMessage app is displayed in the Messages app’s transcript or input field.
     #[doc(alias = "MSMessagesAppPresentationStyleTranscript")]
     pub const Transcript: Self = Self(2);
 }
@@ -38,18 +47,35 @@ unsafe impl RefEncode for MSMessagesAppPresentationStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Presentation contexts describing where your iMessage app appears.
 /// Describes the context for which the extension was launched
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationContext(pub NSUInteger);
 impl MSMessagesAppPresentationContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/messages?language=objc)
+    /// A constant that indicates the iMessage app appears in Messages in the list of iMessage apps that appears when you press the plus button.
+    ///
+    /// ## Discussion
+    ///
+    /// iMessage apps presented in a messages context have access to the full iMessage API.
+    ///
+    ///
     #[doc(alias = "MSMessagesAppPresentationContextMessages")]
     pub const Messages: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/media?language=objc)
+    /// A constant that indicates the iMessage app appears inside the Stickers app throughout iOS including in Messages, FaceTime, the emoji keyboard, and Markup.
+    ///
+    /// ## Discussion
+    ///
+    /// The media context supports only a subset of the Messages framework API. Specifically, the following limits apply:
+    ///
+    /// - The iMessage app can only insert sticker and image attachments. You can’t insert [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) objects, text, or non-image assets.
+    ///
+    /// - You can’t use any of the [`MSConversation`](https://developer.apple.com/documentation/messages/msconversation) class’s `send` messages ([`sendAttachment:withAlternateFilename:completionHandler:`](https://developer.apple.com/documentation/messages/msconversation/sendattachment(_:withalternatefilename:completionhandler:)), [`sendMessage:completionHandler:`](https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-9krz), [`sendSticker:completionHandler:`](https://developer.apple.com/documentation/messages/msconversation/send(_:completionhandler:)-4kje0), or [`sendText:completionHandler:`](https://developer.apple.com/documentation/messages/msconversation/sendtext(_:completionhandler:))).
+    ///
+    /// - You can’t display a camera inside an [`MSMessagesAppPresentationContextMedia`](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/media) context.
+    ///
+    ///
     #[doc(alias = "MSMessagesAppPresentationContextMedia")]
     pub const Media: Self = Self(1);
 }
@@ -63,7 +89,13 @@ unsafe impl RefEncode for MSMessagesAppPresentationContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapptranscriptpresentation?language=objc)
+    /// A protocol that provides support for displaying live messages in the transcript of the Messages app.
+    ///
+    /// ## Overview
+    ///
+    /// These methods are called when a view controller is presented using a [`MSMessagesAppPresentationStyleTranscript`](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle/transcript) presentation style.
+    ///
+    ///
     pub unsafe trait MSMessagesAppTranscriptPresentation {
         #[cfg(feature = "objc2-core-foundation")]
         /// The content size of the view controller's view fitting the constraining size.
@@ -101,7 +133,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesappviewcontroller?language=objc)
+    /// The principal view controller for iMessage apps.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to manage your extension. For more information on app extensions, see [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

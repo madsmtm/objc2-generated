@@ -14,15 +14,30 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
+    /// The maximum number of images that an image row can contain.
+    ///
+    /// ## Discussion
+    ///
+    /// At runtime, use this value to determine the total number of images that CarPlay allows in an image row. The list item may display fewer images, depending on the width of the vehicle’s primary screen.
+    ///
+    ///
     /// The maximum number of images allowed in a
     /// `CPListImageRowItem.`The system may display fewer than this number of images, depending on the available width of the car screen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaximumnumberofgridimages?language=objc)
     pub static CPMaximumNumberOfGridImages: NSUInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitem?language=objc)
+    /// A list template row that displays a series of images.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CPListImageRowItem` to display a series of images as a row in a list template. At runtime, use [`CPMaximumNumberOfGridImages`](https://developer.apple.com/documentation/carplay/cpmaximumnumberofgridimages) to determine the maximum number of images that the row displays. CarPlay may display fewer images, depending on the width of the vehicle’s primary screen. Provide images that are display-ready, and include light and dark variants of each. See [`initWithText:images:`](https://developer.apple.com/documentation/carplay/cplistimagerowitem/init(text:images:)) for more information.
+    ///
+    /// You assign a [`handler`](https://developer.apple.com/documentation/carplay/cplistimagerowitem/handler) to the list item that CarPlay executes when the user selects the item. You can assign a second handler, [`listImageRowHandler`](https://developer.apple.com/documentation/carplay/cplistimagerowitem/listimagerowhandler), which CarPlay calls when the user selects an individual image.
+    ///
+    /// CarPlay doesn’t support custom list item types. Instead, use the `userInfo` property to attach a value to the list item that provides additional context, such as specifying  a model object that corresponds to the item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

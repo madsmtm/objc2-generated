@@ -4,22 +4,69 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1571648-keyreplyportattr/keyreplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyReplyPortAttr: AEKeyword = 0x72657070;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1571649-typereplyportattr/typereplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449736-aegetregisteredmachport?language=objc)
+    /// Returns the Mach port (in the form of a `mach_port_t`) that was registered with the bootstrap server for this process.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a Mach message port header.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Apple events in macOS are implemented in terms of Mach messages. If your application links with the Carbon umbrella framework, it includes the HIToolbox framework, which initializes a Mach port and registers it with the run loop for the application. That port is considered public, and is used for sending and receiving Apple events.
+    ///
+    /// Linking with the HIToolbox also requires that the application have a connection to the window server. To facilitate writing server processes that can send and receive Apple events, the Apple Event Manager provides the following functions (in macOS only): `AEGetRegisteredMachPort`, [`AEDecodeMessage`](https://developer.apple.com/documentation/coreservices/1447827-aedecodemessage), [`AESendMessage`](https://developer.apple.com/documentation/coreservices/1442994-aesendmessage), and [`AEProcessMessage`](https://developer.apple.com/documentation/coreservices/1444387-aeprocessmessage). Daemons and other processes with no user interface can take advantage of these functions, while typical high-level applications will have no need for them.
+    ///
+    /// If your code doesn’t link with the HIToolbox or doesn’t have a run loop, it can call `AEGetRegisteredMachPort` to register a port directly, then listen on that port for Apple events. It can use the other low-level functions to process incoming Apple events on the port and to send Apple events through it.
+    ///
+    ///
     #[cfg(feature = "libc")]
     pub fn AEGetRegisteredMachPort() -> libc::mach_port_t;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442994-aesendmessage?language=objc)
+    /// Sends an AppleEvent to a target process without some of the overhead required by `AESend`.
+    ///
+    /// Parameters:
+    /// - event: A pointer to the Apple event to send.
+    ///
+    /// - reply: A pointer to a reply Apple event. On return, contains the reply Apple event from the server application, if you specified the `kAEWaitReply` flag in the `sendMode` parameter. If you specify the `kAEQueueReply` flag in the `sendMode` parameter, you receive the reply Apple event in your event queue. If you specify `kAENoReply` flag, the reply Apple event is a null descriptor (one with descriptor type `typeNull`). If you specify `kAEWaitReply` in the `sendMode` parameter, and if the function returns successfully (see function result below), your application is responsible for using the [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc) function to dispose of the descriptor returned in the `reply` parameter.
+    ///
+    /// - sendMode: Specifies various options for how the server application should handle the Apple event. To obtain a value for this parameter, you add together constants to set bits that specify the reply mode, the interaction level, the application switch mode, the reconnection mode, and the return receipt mode. For more information, see [`AESendMode`](https://developer.apple.com/documentation/coreservices/aesendmode).
+    ///
+    /// - timeOutInTicks: If the reply mode specified in the `sendMode` parameter is `kAEWaitReply`, or if a return receipt is requested, this parameter specifies the length of time (in ticks) that the client application is willing to wait for the reply or return receipt from the server application before timing out. Most applications should use the `kAEDefaultTimeout` constant, which tells the Apple Event Manager to provide an appropriate timeout duration. If the value of this parameter is `kNoTimeOut`, the Apple event never times out. These constants are described in [`Timeout Constants`](https://developer.apple.com/documentation/coreservices/1542814-timeout_constants).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `AESendMessage` function allows you to send Apple events without linking to the entire Carbon framework, as required by `AESend`. Linking with Carbon brings in the HIToolbox framework, which requires that your application have a connection to the window server. Daemons and other applications that have no interface but wish to send and receive Apple events can use the following functions for working with Apple events at a lower level: `AESendMessage`, [`AEGetRegisteredMachPort`](https://developer.apple.com/documentation/coreservices/1449736-aegetregisteredmachport), [`AEDecodeMessage`](https://developer.apple.com/documentation/coreservices/1447827-aedecodemessage), and [`AEProcessMessage`](https://developer.apple.com/documentation/coreservices/1444387-aeprocessmessage). See the descriptions for those functions for more information on when you might use them.
+    ///
+    /// If the target of an event sent with `AESendMessage` is the current process (as specified by using `typeProcessSerialNumber` of `{ 0, kCurrentProcess }` in the Apple event being sent), the Apple event is dispatched directly to the appropriate event handler in your process and not serialized.
+    ///
+    /// <a id="1819521"></a>
+    /// ### Special Considerations
+    ///
+    /// The `AESendMessage` function is both asynchronous and thread-safe, so you could, for example, set up a thread to send an Apple event and wait for a reply. If you use threads, you must add a `typeReplyPortAttr` attribute to your event that identifies the Mach port on which to receive the reply.
+    ///
+    /// However, due to a bug that was present prior to OS X version 10.5, you could not safely dispose of a Mach port you created to use as the reply port. Disposing of the port could, rarely, lead to a crash, while failing to dispose of if leaked resources. The sample code project AESendThreadSafe shows how to safely work around the bug in earlier Mac OS versions.
+    ///
+    ///
     ///
     /// # Safety
     ///

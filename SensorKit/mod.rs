@@ -39,24 +39,45 @@ use objc2_speech::*;
 
 use crate::*;
 
-/// A type of data stream stored in the SensorKit data store.
+/// The sensors an app can read.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor?language=objc)
+/// ## Discussion
+///
+/// Use the properties in this structure to access the different sensors.
+///
+///
+/// A type of data stream stored in the SensorKit data store.
 // NS_TYPED_ENUM
 pub type SRSensor = NSString;
 
 extern "C" {
+    /// A sensor that provides ambient light information.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRAmbientLightSample`](https://developer.apple.com/documentation/sensorkit/srambientlightsample).
+    ///
+    /// You need to provide a reason to record ambient light by adding the [`SRSensorUsageAmbientLightSensor`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusageambientlightsensor) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Environmental Brightness and Color.
     ///
     ///
     /// This data stream stores ambient light sensor data from devices when the screen is on.
     /// Fetches from this stream return objects of type SRAmbientLightSample.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/ambientlightsensor?language=objc)
     pub static SRSensorAmbientLightSensor: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides acceleration motion data.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [[`CMRecordedAccelerometerData`](https://developer.apple.com/documentation/coremotion/cmrecordedaccelerometerdata)].
+    ///
+    /// You need to provide a reason to record accelerometer data by adding the [`SRSensorUsageMotion`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagemotion) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Accelerometer sensor stream for Motion.
     ///
     ///
@@ -64,12 +85,19 @@ extern "C" {
     /// Fetches from this stream return objects of type NSArray
     /// <CMRecordedAccelerometerData
     /// *> * as defined in the CoreMotion framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/accelerometer?language=objc)
     pub static SRSensorAccelerometer: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides rotation motion data.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [[`CMRecordedRotationRateData`](https://developer.apple.com/documentation/coremotion/cmrecordedrotationratedata)].
+    ///
+    /// You need to provide a reason to record rotation rate data by adding the [`SRSensorUsageMotion`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagemotion) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Rotation rate sensor stream for Motion.
     ///
     ///
@@ -77,12 +105,19 @@ extern "C" {
     /// Fetches from this stream return objects of type NSArray
     /// <CMRecordedRotationRateData
     /// *> * as defined in the CoreMotion framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/rotationrate?language=objc)
     pub static SRSensorRotationRate: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about frequently visited locations.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRVisit`](https://developer.apple.com/documentation/sensorkit/srvisit).
+    ///
+    /// You need to provide a reason to record visited locations by adding the [`SRSensorUsageVisits`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagevisits) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Frequently Visited Locations.
     ///
     ///
@@ -95,23 +130,37 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRVisit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/visits?language=objc)
     pub static SRSensorVisits: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about the user’s steps.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`CMPedometerData`](https://developer.apple.com/documentation/coremotion/cmpedometerdata).
+    ///
+    /// You need to provide a reason to record pedometer data by adding the [`SRSensorUsagePedometer`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagepedometer) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Pedometer.
     ///
     ///
     /// This stream stores information about your step count.
     /// Fetches from this stream return objects of type CMPedometerData as defined in the CoreMotion framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/pedometerdata?language=objc)
     pub static SRSensorPedometerData: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about device usage.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRDeviceUsageReport`](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport).
+    ///
+    /// You need to provide a reason to record the device usage by adding the [`SRSensorUsageDeviceUsage`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagedeviceusage) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Device Usage.
     ///
     ///
@@ -126,12 +175,19 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRDeviceUsageReport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/deviceusagereport?language=objc)
     pub static SRSensorDeviceUsageReport: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about use of the Messages app.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRMessagesUsageReport`](https://developer.apple.com/documentation/sensorkit/srmessagesusagereport).
+    ///
+    /// You need to provide a reason to record Messages app usage by adding the [`SRSensorUsageMessageUsage`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagemessageusage) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Messages Usage.
     ///
     ///
@@ -143,12 +199,19 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRMessagesUsageReport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/messagesusagereport?language=objc)
     pub static SRSensorMessagesUsageReport: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that reports the amount of time that the user is on phone calls.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRPhoneUsageReport`](https://developer.apple.com/documentation/sensorkit/srphoneusagereport).
+    ///
+    /// You need to provide a reason to record phone usage by adding the [`SRSensorUsagePhoneUsage`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagephoneusage) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Phone Usage
     ///
     ///
@@ -160,12 +223,19 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRPhoneUsageReport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/phoneusagereport?language=objc)
     pub static SRSensorPhoneUsageReport: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that describes the watch’s position on the wrist.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRWristDetection`](https://developer.apple.com/documentation/sensorkit/srwristdetection)
+    ///
+    /// You need to provide a reason to detect the watch position by adding the [`SRSensorUsageWristDetection`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagewristdetection) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Watch on Wrist
     ///
     ///
@@ -177,12 +247,19 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRWristDetection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/onwriststate?language=objc)
     pub static SRSensorOnWristState: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about keyboard usage.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRKeyboardMetrics`](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics).
+    ///
+    /// You need to provide a reason to record keyboard metrics by adding the [`SRSensorUsageKeyboardMetrics`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagekeyboardmetrics) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Keyboard Usage
     ///
     ///
@@ -196,12 +273,23 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRKeyboardMetrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/keyboardmetrics?language=objc)
     pub static SRSensorKeyboardMetrics: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides data describing a user’s speech to Siri.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRSpeechMetrics`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics).
+    ///
+    /// The metrics provide details about the user’s voice, such as tenor, pitch, cadence, and speech timing, which includes words per minute and the average duration between words.
+    ///
+    /// This sensor doesn’t provide raw audio data. For user privacy, SensorKit removes any transcript strings from the result.
+    ///
+    /// You need to provide a reason to analyze speech by adding the [`SRSensorUsageSpeechMetrics`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagespeechmetrics) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Siri sensor stream for Speech Metrics
     ///
     ///
@@ -216,12 +304,23 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type
     /// `SRSpeechMetrics`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/sirispeechmetrics?language=objc)
     pub static SRSensorSiriSpeechMetrics: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides data describing speech during phone calls.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRSpeechMetrics`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics).
+    ///
+    /// The metrics provide details about the user’s voice, such as tenor, pitch, cadence, and speech timing, which includes words per minute and the average duration between words.
+    ///
+    /// This sensor doesn’t provide raw audio data.
+    ///
+    /// You need to provide a reason to analyze speech by adding the [`SRSensorUsageSpeechMetrics`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagespeechmetrics) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Telephony sensor stream for Speech Metrics
     ///
     ///
@@ -236,12 +335,19 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type
     /// `SRSpeechMetrics`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/telephonyspeechmetrics?language=objc)
     pub static SRSensorTelephonySpeechMetrics: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides pressure and temperature metrics.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is `[`[`CMRecordedPressureData`](https://developer.apple.com/documentation/coremotion/cmrecordedpressuredata)`]`.
+    ///
+    /// You need to provide a reason to record ambient pressure by adding the [`SRSensorUsageElevation`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusageelevation) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Ambient pressure sensor stream
     ///
     ///
@@ -255,12 +361,19 @@ extern "C" {
     /// Fetches from this stream return objects of type NSArray
     /// <CMRecordedPressureData
     /// *> * as defined in the CoreMotion framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/ambientpressure?language=objc)
     pub static SRSensorAmbientPressure: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about interactions with media, such as images and videos, in messaging apps.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRMediaEvent`](https://developer.apple.com/documentation/sensorkit/srmediaevent).
+    ///
+    /// You need to provide a reason to observe the user’s interactions with media by adding the [`SRSensorUsageMediaEvents`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagemediaevents) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Media events sensor stream
     ///
     ///
@@ -272,12 +385,19 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRMediaEvent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/mediaevents?language=objc)
     pub static SRSensorMediaEvents: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides wrist temperature while the user sleeps.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRWristTemperature`](https://developer.apple.com/documentation/sensorkit/srwristtemperature).
+    ///
+    /// You need to provide a reason to record wrist temperatures by adding the [`SRSensorUsageWristTemperature`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagewristtemperature) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for Apple Watch temperatures on wrist while sleeping
     ///
     ///
@@ -291,23 +411,37 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRWristTemperatureSession.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/wristtemperature?language=objc)
     pub static SRSensorWristTemperature: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides the user’s heart rate data.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`CMHighFrequencyHeartRateData`](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedata).
+    ///
+    /// You need to provide a reason to record heart rates by adding the [`SRSensorUsageHeartRate`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusageheartrate) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Estimated heart rate
     ///
     ///
     /// Fetches from this stream return objects of type
     /// `CMHighFrequencyHeartRateData`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/heartrate?language=objc)
     pub static SRSensorHeartRate: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides data describing a user’s face.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`SRFaceMetrics`](https://developer.apple.com/documentation/sensorkit/srfacemetrics).
+    ///
+    /// You need to provide a reason to record face metrics by adding the [`SRSensorUsageFacialMetrics`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusagefacialmetrics) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Sensor stream for face metrics collection
     ///
     ///
@@ -320,86 +454,173 @@ extern "C" {
     /// ```
     ///
     /// Fetches from this stream return objects of type SRFaceMetrics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/facemetrics?language=objc)
     pub static SRSensorFaceMetrics: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that provides information about speed and slope.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type for this sensor is [`CMOdometerData`](https://developer.apple.com/documentation/coremotion/cmodometerdata).
+    ///
+    /// You need to provide a reason to record the user’s odometer by adding the [`SRSensorUsageOdometer`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail/srsensorusageodometer) dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    ///
     /// Odometer sensor stream
     ///
     ///
     /// This stream stores measurements of your distance and speed
     /// Fetches from this stream return objects of type
     /// `CMOdometerData`as defined in the CoreMotion framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/odometer?language=objc)
     pub static SRSensorOdometer: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that streams sample ECG sensor data.
+    ///
+    /// ## Discussion
+    ///
+    /// The sample for this sensor is an array of [`SRElectrocardiogramSample`](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample) objects.
+    ///
+    /// You need to provide a reason to record electrocardiogram (ECG) data by adding the `SRSensorUsageECG` dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    /// You also need to add the `ecg` key to the `com.apple.developer.sensorkit.reader.allow` entitlement, as in:
+    ///
+    /// ```plist
+    /// <plist version="1.0">
+    /// <dict>
+    ///         <key>com.apple.developer.sensorkit.reader.allow</key>
+    ///         <array>
+    ///                 <string>ecg</string>
+    ///         </array>
+    /// </dict>
+    /// </plist>
+    /// ```
+    ///
+    ///
     /// ECG sensor stream
     ///
     ///
     /// This stream stores samples of the ECG sensor
     /// Fetches from this stream return objects of type
     /// `NSArray<SRElectrocardiogramSample`*> *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/electrocardiogram?language=objc)
     pub static SRSensorElectrocardiogram: &'static SRSensor;
 }
 
 extern "C" {
+    /// A sensor that streams sample PPG sensor data.
+    ///
+    /// ## Discussion
+    ///
+    /// The sample for this sensor is an array of [`SRPhotoplethysmogramSample`](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample) objects.
+    ///
+    /// You need to provide a reason to record photoplethysmogram (PPG) data by adding the `SRSensorUsagePPG` dictionary to the [`NSSensorKitUsageDetail`](https://developer.apple.com/documentation/bundleresources/information-property-list/nssensorkitusagedetail) key in the information property list.
+    ///
+    /// You also need the `ppg` key added to the `com.apple.developer.sensorkit.reader.allow` entitlement, as in:
+    ///
+    /// ```plist
+    /// <plist version="1.0">
+    /// <dict>
+    ///         <key>com.apple.developer.sensorkit.reader.allow</key>
+    ///         <array>
+    ///                 <string>ppg</string>
+    ///         </array>
+    /// </dict>
+    /// </plist>
+    /// ```
+    ///
+    ///
     /// PPG sensor stream
     ///
     ///
     /// This stream stores samples of the PPG sensor
     /// Fetches from this stream return objects of type
     /// `NSArray<SRPhotoplethysmogramSample`*> *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/photoplethysmogram?language=objc)
     pub static SRSensorPhotoplethysmogram: &'static SRSensor;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Sensor stream for Acoustic Settings
+    ///
+    /// This stream stores samples of the Acoustic Settings sensor Fetches from this stream return objects of type \c SRAcousticSettings
+    ///
+    ///
     /// Sensor stream for Acoustic Settings
     ///
     ///
     /// This stream stores samples of the Acoustic Settings sensor
     /// Fetches from this stream return objects of type
     /// `SRAcousticSettings`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/acousticsettings?language=objc)
     pub static SRSensorAcousticSettings: &'static SRSensor;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Sesnor stream for sleep sessions collection
+    ///
+    /// This stream stores samples of the Sleep Sessions sensor Fetches from this stream return objects of type \c SRSleepSession
+    ///
+    ///
     /// Sesnor stream for sleep sessions collection
     ///
     ///
     /// This stream stores samples of the Sleep Sessions sensor
     /// Fetches from this stream return objects of type
     /// `SRSleepSession`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/sleepsessions?language=objc)
     pub static SRSensorSleepSessions: &'static SRSensor;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime?language=objc)
+/// A value that describes when the system records the data.
+///
+/// ## Discussion
+///
+/// This value tracks monotonically increasing device-specific time, unlike [`mach_continuous_time`](https://developer.apple.com/documentation/kernel/1646199-mach_continuous_time), which keeps tracking across reboots.
+///
+/// Although a fetch can query a [`device`](https://developer.apple.com/documentation/sensorkit/srfetchrequest/device) other than a phone (such as a paired watch), the framework consistently describes time according to the phone. Any fetch results from a paired watch are in the phone’s version of [`SRAbsoluteTime`](https://developer.apple.com/documentation/sensorkit/srabsolutetime).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 pub type SRAbsoluteTime = CFTimeInterval;
 
 extern "C-unwind" {
+    /// Provides the current absolute time.
+    ///
+    /// ## Return Value
+    ///
+    /// The absolute time of the current device.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each device has their own absolute time. This function returns the absolute time of the [`currentDevice`](https://developer.apple.com/documentation/sensorkit/srdevice/current) device.
+    ///
+    ///
     /// Get the current SRAbsoluteTime for this device.
     ///
     /// This timestamp ticks across sleeps and reboots.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime/current()?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeGetCurrent() -> SRAbsoluteTime;
 }
 
 extern "C-unwind" {
+    /// Provides an absolute time equivalent to the argument continuous time.
+    ///
+    /// Parameters:
+    /// - cont: The continuous time to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An absolute time equivalent to the argument continuous time.
+    ///
+    ///
     /// Convert a mach_continuous_time to an SRAbsoluteTime.
     ///
     /// Because mach_continuous_time is volatile and hardware specific, the
@@ -407,32 +628,44 @@ extern "C-unwind" {
     /// that SRAbsoluteTimeFromContinuousTime() is called from.
     /// The return value for mach_continuous_times spanning boot sessions or devices
     /// is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetimefromcontinuoustime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeFromContinuousTime(cont: u64) -> SRAbsoluteTime;
 }
 
 extern "C-unwind" {
+    /// Converts an absolute time to a core-foundation absolute time.
+    ///
+    /// ## Return Value
+    ///
+    /// The core-foundation absolute time.
+    ///
+    ///
     /// Convert a SRAbsoluteTime to a CFAbsoluteTime.
     ///
     /// The CFAbsoluteTime returned is based on calculations relative to the current
     /// wall clock. This means that if the system time is 5 seconds fast against UTC,
     /// the result will be 5 seconds fast to when the event happened relative to UTC.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetime/tocfabsolutetime()?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeToCFAbsoluteTime(sr: SRAbsoluteTime) -> CFAbsoluteTime;
 }
 
 extern "C-unwind" {
+    /// Provides an absolute time equivalent to the argument core-foundation absolute time.
+    ///
+    /// Parameters:
+    /// - cf: The core-foundation absolute time to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An absolute time equivalent to the argument core-foundatoin absolute time.
+    ///
+    ///
     /// Convert a CFAbsoluteTime to an SRAbsoluteTime.
     ///
     /// The SRAbsoluteTime returned is based on calculations relative to the current
     /// wall clock. This means that if the system time is 5 seconds fast against UTC,
     /// the result will be 5 seconds fast to when the event happened relative to UTC.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srabsolutetimefromcfabsolutetime?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn SRAbsoluteTimeFromCFAbsoluteTime(cf: CFAbsoluteTime) -> SRAbsoluteTime;
 }
@@ -471,7 +704,15 @@ impl private_NSDateSensorKit::Sealed for NSDate {}
 unsafe impl NSDateSensorKit for NSDate {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfetchresult?language=objc)
+    /// Recorded data that a sensor reader fetches.
+    ///
+    /// ## Overview
+    ///
+    /// A sensor reader’s [`delegate`](https://developer.apple.com/documentation/sensorkit/srsensorreader/delegate) receives instances of this class from the [`sensorReader:didCompleteFetch:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didcompletefetch:)) when a fetch request finishes successfully.
+    ///
+    /// Results are in the form of samples, which are of varying types depending on the reader’s sensor. For a list of sample types per sensor, see [Sample types](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample#sample-types).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRFetchResult<SampleType: ?Sized = AnyObject>;
@@ -532,7 +773,13 @@ impl<SampleType: Message> SRFetchResult<SampleType> {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdevice?language=objc)
+    /// A representation of a device that provides sample data.
+    ///
+    /// ## Overview
+    ///
+    /// This class supports iOS and watchOS devices.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRDevice;
@@ -600,7 +847,19 @@ impl SRDevice {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfetchrequest?language=objc)
+    /// An object that defines the criteria for a sample query.
+    ///
+    /// ## Overview
+    ///
+    /// An app configures an instance of this class to select the device from which to query sensor data. The time range ([`from`](https://developer.apple.com/documentation/sensorkit/srfetchrequest/from), [`to`](https://developer.apple.com/documentation/sensorkit/srfetchrequest/to)) specifies when the framework records the data. A fetch query can retrieve only sensor data that the app records by first calling [`startRecording`](https://developer.apple.com/documentation/sensorkit/srsensorreader/startrecording()).
+    ///
+    /// To execute a fetch request, an app passes the instance of this class to its sensor reader’s [`fetch:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/fetch(_:)) function.
+    ///
+    /// The framework notifies the sensor reader’s [`delegate`](https://developer.apple.com/documentation/sensorkit/srsensorreader/delegate) upon fetch-request completion with [`sensorReader:didCompleteFetch:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didcompletefetch:)). If the fetch fails, the framework calls the delegate’s [`sensorReader:fetchingRequest:failedWithError:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:fetching:failedwitherror:)).
+    ///
+    /// SensorKit places a 24-hour holding period on newly recorded data before an app can access it. This gives the user an opportunity to delete any data they don’t want to share with the app. A fetch request doesn’t return any results if its time range overlaps this holding period.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRFetchRequest;
@@ -675,26 +934,23 @@ impl SRFetchRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus?language=objc)
+/// The states that model whether the user approves the app to read a particular sensor.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAuthorizationStatus(pub NSInteger);
 impl SRAuthorizationStatus {
     /// User has not yet made a choice regarding this application
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/notdetermined?language=objc)
+    /// User has not yet made a choice regarding this application
     #[doc(alias = "SRAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
     /// User has granted authorization to this application
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/authorized?language=objc)
+    /// User has granted authorization to this application
     #[doc(alias = "SRAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(1);
+    /// User has denied authorization to this application or data collection is disabled in Settings.
     /// User has denied authorization to this application or
     /// data collection is disabled in Settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/denied?language=objc)
     #[doc(alias = "SRAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
 }
@@ -708,7 +964,13 @@ unsafe impl RefEncode for SRAuthorizationStatus {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate?language=objc)
+    /// A set of callbacks the framework invokes to notify the app of sensor-related events.
+    ///
+    /// ## Overview
+    ///
+    /// To access sensor data, assign an object as the delegate and implement its callbacks.
+    ///
+    ///
     pub unsafe trait SRSensorReaderDelegate: NSObjectProtocol {
         /// Invoked when a sample has been fetched
         ///
@@ -827,7 +1089,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorreader?language=objc)
+    /// An object that establishes user authorization and records data for a particular sensor.
+    ///
+    /// ## Overview
+    ///
+    /// To acquire data from a particular sensor using a reader, an app creates an instance of this class using [`initWithSensor:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/init(sensor:)) and passes in one sensor from the available options in `Sensors`.
+    ///
+    /// A reader is a data stream for a particular sensor that the user must authorize before use. When an app calls [`requestAuthorizationForSensors:completion:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/requestauthorization(sensors:completion:)), the OS prompts the user for approval to use the particular sensor and determines the app’s authorization according to the user’s answer. The framework notifies the delegate with the  [`sensorReader:didChangeAuthorizationStatus:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didchange:)) callback if the authorization status changes as a result of the [`requestAuthorizationForSensors:completion:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/requestauthorization(sensors:completion:)) call. When a reader’s [`authorizationStatus`](https://developer.apple.com/documentation/sensorkit/srsensorreader/authorizationstatus) is [`SRAuthorizationStatusAuthorized`](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus/authorized), an app starts collecting sensor data by beginning recording.
+    ///
+    /// When an app calls [`startRecording`](https://developer.apple.com/documentation/sensorkit/srsensorreader/startrecording()), the framework starts the reader’s sensor if it isn’t already running because of a request from another app or a system process. An app has access to 7 days of prior recorded data for an active sensor. When an app calls [`stopRecording`](https://developer.apple.com/documentation/sensorkit/srsensorreader/stoprecording()), the app relinquishes stakeholdership in the sensor. When a sensor has no app or system stakeholders, the framework deactivates the sensor and, thereby, stops recording data.
+    ///
+    /// To fetch a sensor’s data, pass a request object to the [`fetch:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/fetch(_:)) function. [`SRFetchRequest`](https://developer.apple.com/documentation/sensorkit/srfetchrequest) specifies a time range that defines the age of the data, and a device, such as a phone or a watch, from which to collect the data. Use [`fetchDevices`](https://developer.apple.com/documentation/sensorkit/srsensorreader/fetchdevices()) to list the available devices, and use the time convenience-functions in Defining the Time Range to specify the time range.
+    ///
+    /// If the fetch query succeeds, the framework notifies the delegate with [`sensorReader:didCompleteFetch:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:didcompletefetch:)). The delegate receives sensor data in the form of _samples_ from [`sensorReader:fetchingRequest:didFetchResult:`](https://developer.apple.com/documentation/sensorkit/srsensorreaderdelegate/sensorreader(_:fetching:didfetchresult:)). A fetch result’s [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type is different depending on the particular sensor for the reader. For a mapping of sensors to their samples, see [Sample types](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample#sample-types).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRSensorReader;
@@ -985,39 +1261,58 @@ impl SRSensorReader {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerrordomain?language=objc)
+    /// An error domain that’s unique to the framework.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about error domains, see [Error domains](https://developer.apple.com/documentation/corefoundation/error-domains).
+    ///
+    ///
     pub static SRErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code?language=objc)
+/// The kinds of problems that stop a recording or a fetch.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRErrorCode(pub NSInteger);
 impl SRErrorCode {
-    /// No valid entitlement found
+    /// Occurs when the app lacks the required entitlement.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/invalidentitlement?language=objc)
+    /// ## Discussion
+    ///
+    /// To allow the app to read sensor data, the system requires that the app’s code signature contain a special entitlement. For more information, see [Configuring your project for sensor reading](https://developer.apple.com/documentation/sensorkit/configuring-your-project-for-sensor-reading).
+    ///
+    ///
+    /// No valid entitlement found
     #[doc(alias = "SRErrorInvalidEntitlement")]
     pub const InvalidEntitlement: Self = Self(0);
-    /// Insufficient authorization to perform the action.
+    /// Occurs when the user declines sensor access in the Settings app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/noauthorization?language=objc)
+    /// ## Discussion
+    ///
+    /// This error code indicates the user denied access for the sensor on the in-app prompt, or by switching off authorization for the sensor in Settings.
+    ///
+    ///
+    /// Insufficient authorization to perform the action.
     #[doc(alias = "SRErrorNoAuthorization")]
     pub const NoAuthorization: Self = Self(1);
+    /// Occurs when the app can’t access the sensor’s data.
     /// Data is not accessible at this time
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/datainaccessible?language=objc)
     #[doc(alias = "SRErrorDataInaccessible")]
     pub const DataInaccessible: Self = Self(2);
+    /// Occurs when the app misconfigures a fetch request.
     /// Fetch request contained invalid values
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/fetchrequestinvalid?language=objc)
     #[doc(alias = "SRErrorFetchRequestInvalid")]
     pub const FetchRequestInvalid: Self = Self(3);
-    /// Authorization request not completed
+    /// Occurs when the user cancels the sensor approval workflow.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code/promptdeclined?language=objc)
+    /// ## Discussion
+    ///
+    /// The [`requestAuthorizationForSensors:completion:`](https://developer.apple.com/documentation/sensorkit/srsensorreader/requestauthorization(sensors:completion:)) passes this error into the completion closure if the user declines the prompt by pressing Cancel. The framework also cancels the prompt if you call this function after the user had already responded to the prompt either by approving or denying access to the argument sensors.
+    ///
+    ///
+    /// Authorization request not completed
     #[doc(alias = "SRErrorPromptDeclined")]
     pub const PromptDeclined: Self = Self(4);
 }
@@ -1030,37 +1325,37 @@ unsafe impl RefEncode for SRErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement?language=objc)
+/// Directional values that describe light-source location with respect to the sensor.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAmbientLightSensorPlacement(pub NSInteger);
 impl SRAmbientLightSensorPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/unknown?language=objc)
+    /// Indicates that the sensor can’t determine the light source’s location.
     #[doc(alias = "SRAmbientLightSensorPlacementUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttop?language=objc)
+    /// Indicates that the light source is toward the top of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTop")]
     pub const FrontTop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottom?language=objc)
+    /// Indicates that the light source is toward the bottom of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottom")]
     pub const FrontBottom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontright?language=objc)
+    /// Indicates that the light source is toward the right of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontRight")]
     pub const FrontRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontleft?language=objc)
+    /// Indicates that the light source is toward the left of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontLeft")]
     pub const FrontLeft: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttopright?language=objc)
+    /// Indicates that the light source is toward the top-right of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTopRight")]
     pub const FrontTopRight: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/fronttopleft?language=objc)
+    /// Indicates that the light source is toward the top-left of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontTopLeft")]
     pub const FrontTopLeft: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottomright?language=objc)
+    /// Indicates that the light source is toward the bottom-right of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottomRight")]
     pub const FrontBottomRight: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement/frontbottomleft?language=objc)
+    /// Indicates that the light source is toward the bottom-left of the sensor.
     #[doc(alias = "SRAmbientLightSensorPlacementFrontBottomLeft")]
     pub const FrontBottomLeft: Self = Self(8);
 }
@@ -1073,7 +1368,13 @@ unsafe impl RefEncode for SRAmbientLightSensorPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/chromaticity-swift.struct?language=objc)
+/// A coordinate pair that describes light brightness and tint.
+///
+/// ## Overview
+///
+/// The [`SRAmbientLightSample`](https://developer.apple.com/documentation/sensorkit/srambientlightsample) class provides read-only access to an instance of this structure through its [`chromaticity`](https://developer.apple.com/documentation/sensorkit/srambientlightsample/chromaticity-swift.property) property.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SRAmbientLightChromaticity {
@@ -1090,7 +1391,13 @@ unsafe impl RefEncode for SRAmbientLightChromaticity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample?language=objc)
+    /// The amount of ambient light in the user’s environment.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorAmbientLightSensor`](https://developer.apple.com/documentation/sensorkit/srsensor/ambientlightsensor) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAmbientLightSample;
@@ -1131,25 +1438,25 @@ impl SRAmbientLightSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum?language=objc)
+/// Types of locations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRLocationCategory(pub NSInteger);
 impl SRLocationCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/unknown?language=objc)
+    /// A location the user frequents that’s an unknown type.
     #[doc(alias = "SRLocationCategoryUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/home?language=objc)
+    /// The user’s home.
     #[doc(alias = "SRLocationCategoryHome")]
     pub const Home: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/work?language=objc)
+    /// The user’s workplace.
     #[doc(alias = "SRLocationCategoryWork")]
     pub const Work: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/school?language=objc)
+    /// The user’s school.
     #[doc(alias = "SRLocationCategorySchool")]
     pub const School: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum/gym?language=objc)
+    /// The user’s gym.
     #[doc(alias = "SRLocationCategoryGym")]
     pub const Gym: Self = Self(4);
 }
@@ -1163,7 +1470,13 @@ unsafe impl RefEncode for SRLocationCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit?language=objc)
+    /// The user’s progress in their daily travel routine.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorVisits`](https://developer.apple.com/documentation/sensorkit/srsensor/visits) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRVisit;
@@ -1216,156 +1529,163 @@ impl SRVisit {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey?language=objc)
+/// Categories of apps or websites that the user uses.
 // NS_TYPED_ENUM
 pub type SRDeviceUsageCategoryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/games?language=objc)
+    /// An app category for gaming.
     pub static SRDeviceUsageCategoryGames: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/business?language=objc)
+    /// An app category for doing business.
     pub static SRDeviceUsageCategoryBusiness: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/weather?language=objc)
+    /// An app category for weather.
     pub static SRDeviceUsageCategoryWeather: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/utilities?language=objc)
+    /// An app category for utilities.
     pub static SRDeviceUsageCategoryUtilities: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/travel?language=objc)
+    /// An app category for travel.
     pub static SRDeviceUsageCategoryTravel: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/sports?language=objc)
+    /// An app category for sports.
     pub static SRDeviceUsageCategorySports: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/socialnetworking?language=objc)
+    /// An app category for social networking.
     pub static SRDeviceUsageCategorySocialNetworking: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/reference?language=objc)
+    /// An app category for reference.
     pub static SRDeviceUsageCategoryReference: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/productivity?language=objc)
+    /// An app category for productivity.
     pub static SRDeviceUsageCategoryProductivity: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/photoandvideo?language=objc)
+    /// An app category for photography and film.
     pub static SRDeviceUsageCategoryPhotoAndVideo: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/news?language=objc)
+    /// An app category for news.
     pub static SRDeviceUsageCategoryNews: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/navigation?language=objc)
+    /// An app category for navigation.
     pub static SRDeviceUsageCategoryNavigation: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/music?language=objc)
+    /// An app category for music.
     pub static SRDeviceUsageCategoryMusic: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/lifestyle?language=objc)
+    /// An app category for lifestyle.
     pub static SRDeviceUsageCategoryLifestyle: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/healthandfitness?language=objc)
+    /// An app category for health and fitness.
     pub static SRDeviceUsageCategoryHealthAndFitness: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/finance?language=objc)
+    /// An app category for finance.
     pub static SRDeviceUsageCategoryFinance: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/entertainment?language=objc)
+    /// An app category for entertainment.
     pub static SRDeviceUsageCategoryEntertainment: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/education?language=objc)
+    /// An app category for learning.
     pub static SRDeviceUsageCategoryEducation: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/books?language=objc)
+    /// An app category for reading books.
     pub static SRDeviceUsageCategoryBooks: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/medical?language=objc)
+    /// An app category for healthcare.
     pub static SRDeviceUsageCategoryMedical: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/newsstand?language=objc)
+    /// An app category for Apple News.
     pub static SRDeviceUsageCategoryNewsstand: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/catalogs?language=objc)
+    /// An app category for reading catalogs.
     pub static SRDeviceUsageCategoryCatalogs: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/kids?language=objc)
+    /// An app category for children.
     pub static SRDeviceUsageCategoryKids: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/miscellaneous?language=objc)
+    /// An app category for miscellaneous apps.
     pub static SRDeviceUsageCategoryMiscellaneous: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/foodanddrink?language=objc)
+    /// An app category for dining.
     pub static SRDeviceUsageCategoryFoodAndDrink: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/developertools?language=objc)
+    /// An app category for creating apps.
     pub static SRDeviceUsageCategoryDeveloperTools: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/graphicsanddesign?language=objc)
+    /// An app category for graphic design.
     pub static SRDeviceUsageCategoryGraphicsAndDesign: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/shopping?language=objc)
+    /// An app category for shopping.
     pub static SRDeviceUsageCategoryShopping: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/stickers?language=objc)
+    /// An app category for stickers.
     pub static SRDeviceUsageCategoryStickers: &'static SRDeviceUsageCategoryKey;
 }
 
 extern_class!(
+    /// A more detailed category that provides additional context to the app category.
+    ///
+    /// ## Overview
+    ///
+    /// This category provides more information about the app while keeping its identity private.
+    ///
+    ///
     /// A supplemental category to provide more context than just the app category
     ///
     ///
@@ -1373,8 +1693,6 @@ extern_class!(
     /// `SRDeviceUsageCategoryKey`are very general.
     /// Providing a supplemental category allows more context about the specific app while
     /// not revealing the exact app identity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsupplementalcategory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRSupplementalCategory;
@@ -1430,7 +1748,13 @@ impl SRSupplementalCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport?language=objc)
+    /// The frequency and relative duration that the user uses their device, particular Apple apps, or websites.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorDeviceUsageReport`](https://developer.apple.com/documentation/sensorkit/srsensor/deviceusagereport) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRDeviceUsageReport;
@@ -1512,22 +1836,28 @@ impl SRDeviceUsageReport {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum?language=objc)
+/// Methods to input text during a session.
+///
+/// ## Overview
+///
+/// This class defines available options for the [`sessionType`](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRTextInputSessionType(pub NSInteger);
 impl SRTextInputSessionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/keyboard?language=objc)
+    /// Indicates that the session contains text from keyboard input.
     #[doc(alias = "SRTextInputSessionTypeKeyboard")]
     pub const Keyboard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/thirdpartykeyboard?language=objc)
+    /// Indicates that the session contains text from a third-party keyboard.
     #[doc(alias = "SRTextInputSessionTypeThirdPartyKeyboard")]
     pub const ThirdPartyKeyboard: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/pencil?language=objc)
+    /// Indicates that the session contains text drawn with Apple Pencil.
     #[doc(alias = "SRTextInputSessionTypePencil")]
     pub const Pencil: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum/dictation?language=objc)
+    /// Indicates that the session contains spoken text.
     #[doc(alias = "SRTextInputSessionTypeDictation")]
     pub const Dictation: Self = Self(4);
 }
@@ -1541,7 +1871,13 @@ unsafe impl RefEncode for SRTextInputSessionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession?language=objc)
+    /// The characters a user types for a particular keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// The framework instantiates a new instance of this class every time the keyboard displays after dismissal.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRTextInputSession;
@@ -1582,7 +1918,13 @@ impl SRTextInputSession {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/applicationusage?language=objc)
+    /// An object that describes the user’s app activity over a period of time.
+    ///
+    /// ## Overview
+    ///
+    /// Each instance of this class represents an app in a particular app category. For more information, see [`applicationUsageByCategory`](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/applicationusagebycategory).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRApplicationUsage;
@@ -1653,61 +1995,67 @@ impl SRApplicationUsage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum?language=objc)
+/// The ways that a user interacts with notifications.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRNotificationEvent(pub NSInteger);
 impl SRNotificationEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/unknown?language=objc)
+    /// A notification of an unknown event.
     #[doc(alias = "SRNotificationEventUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/received?language=objc)
+    /// A notification of a received event.
     #[doc(alias = "SRNotificationEventReceived")]
     pub const Received: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/defaultaction?language=objc)
+    /// A notification of a default action.
     #[doc(alias = "SRNotificationEventDefaultAction")]
     pub const DefaultAction: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/supplementaryaction?language=objc)
+    /// A notification of a supplementary action.
     #[doc(alias = "SRNotificationEventSupplementaryAction")]
     pub const SupplementaryAction: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/clear?language=objc)
+    /// A notification of a clear event.
     #[doc(alias = "SRNotificationEventClear")]
     pub const Clear: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/notificationcenterclearall?language=objc)
+    /// A notification of clear-all event.
+    ///
+    /// ## Discussion
+    ///
+    /// Device usage reports this event when the user clears all notifications in Notification Center.
+    ///
+    ///
     #[doc(alias = "SRNotificationEventNotificationCenterClearAll")]
     pub const NotificationCenterClearAll: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/removed?language=objc)
+    /// A notification of a removed event.
     #[doc(alias = "SRNotificationEventRemoved")]
     pub const Removed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/hide?language=objc)
+    /// A notification of a hide event.
     #[doc(alias = "SRNotificationEventHide")]
     pub const Hide: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/longlook?language=objc)
+    /// A notification of a long look.
     #[doc(alias = "SRNotificationEventLongLook")]
     pub const LongLook: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/silence?language=objc)
+    /// A notification of a silence event.
     #[doc(alias = "SRNotificationEventSilence")]
     pub const Silence: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/applaunch?language=objc)
+    /// A notification of an app launch.
     #[doc(alias = "SRNotificationEventAppLaunch")]
     pub const AppLaunch: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/expired?language=objc)
+    /// A notification of an expiration event.
     #[doc(alias = "SRNotificationEventExpired")]
     pub const Expired: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/bannerpulldown?language=objc)
+    /// A notification of a banner pull down.
     #[doc(alias = "SRNotificationEventBannerPulldown")]
     pub const BannerPulldown: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/tapcoalesce?language=objc)
+    /// A notification of a tap-coalesce event.
     #[doc(alias = "SRNotificationEventTapCoalesce")]
     pub const TapCoalesce: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deduped?language=objc)
+    /// A notification of a deduped event.
     #[doc(alias = "SRNotificationEventDeduped")]
     pub const Deduped: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deviceactivated?language=objc)
+    /// A notification of device activation.
     #[doc(alias = "SRNotificationEventDeviceActivated")]
     pub const DeviceActivated: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum/deviceunlocked?language=objc)
+    /// A notification of a device unlock.
     #[doc(alias = "SRNotificationEventDeviceUnlocked")]
     pub const DeviceUnlocked: Self = Self(16);
 }
@@ -1721,7 +2069,13 @@ unsafe impl RefEncode for SRNotificationEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage?language=objc)
+    /// An object that describes notification frequency and the manner in which the user interacts with notifications.
+    ///
+    /// ## Overview
+    ///
+    /// Each instance of this class represents a user notification in a particular app category. For more information, see [`notificationUsageByCategory`](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusagebycategory).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRNotificationUsage;
@@ -1758,7 +2112,13 @@ impl SRNotificationUsage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/webusage?language=objc)
+    /// An object that describes a user’s website usage.
+    ///
+    /// ## Overview
+    ///
+    /// Each instance of this class represents a website in a particular app category. For more information, see [`webUsageByCategory`](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/webusagebycategory).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWebUsage;
@@ -1790,7 +2150,15 @@ impl SRWebUsage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmessagesusagereport?language=objc)
+    /// An object that describes the user’s Messages app activity over a period of time.
+    ///
+    /// ## Overview
+    ///
+    /// This object describes the frequency that the user sends or receives messages, and the relative amount of time the user uses the Messages app.
+    ///
+    /// The [`SRSensorMessagesUsageReport`](https://developer.apple.com/documentation/sensorkit/srsensor/messagesusagereport) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRMessagesUsageReport;
@@ -1834,7 +2202,15 @@ impl SRMessagesUsageReport {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphoneusagereport?language=objc)
+    /// An object that describes the user’s phone activity over a period of time.
+    ///
+    /// ## Overview
+    ///
+    /// This object describes the frequency that a device makes or receives phone calls, and the relative amount of time the user is on a call.
+    ///
+    /// The [`SRSensorPhoneUsageReport`](https://developer.apple.com/documentation/sensorkit/srsensor/phoneusagereport) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhoneUsageReport;
@@ -1882,7 +2258,13 @@ impl SRPhoneUsageReport {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics?language=objc)
+    /// The configuration of a device’s keyboard and its usage patterns.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorKeyboardMetrics`](https://developer.apple.com/documentation/sensorkit/srsensor/keyboardmetrics) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRKeyboardMetrics;
@@ -2045,7 +2427,13 @@ impl SRKeyboardMetrics {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/probabilitymetric?language=objc)
+    /// A likelihood of occurrence.
+    ///
+    /// ## Overview
+    ///
+    /// The framework derives these values based on raw sensor data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRKeyboardProbabilityMetric<UnitType: ?Sized = AnyObject>;
@@ -2448,42 +2836,47 @@ impl SRKeyboardMetrics {
     );
 }
 
-/// Categories of sentiment from words or emoji
+/// Moods that the framework determines by analyzing the user’s input.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory?language=objc)
+/// ## Overview
+///
+/// This class describes possible values for [`wordCountForSentimentCategory:`](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/wordcount(for:)) and [`emojiCountForSentimentCategory:`](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/emojicount(for:)) properties of a keyboard report.
+///
+///
+/// Categories of sentiment from words or emoji
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRKeyboardMetricsSentimentCategory(pub NSInteger);
 impl SRKeyboardMetricsSentimentCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/absolutist?language=objc)
+    /// A mood that embodies absolutism.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAbsolutist")]
     pub const Absolutist: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/down?language=objc)
+    /// A mood that embodies depression.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/death?language=objc)
+    /// A mood that expresses death.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryDeath")]
     pub const Death: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/anxiety?language=objc)
+    /// A mood that embodies worrying.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAnxiety")]
     pub const Anxiety: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/anger?language=objc)
+    /// A mood that embodies anger.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAnger")]
     pub const Anger: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/health?language=objc)
+    /// A general concern for health.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryHealth")]
     pub const Health: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/positive?language=objc)
+    /// A mood that embodies positivity.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryPositive")]
     pub const Positive: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/sad?language=objc)
+    /// A mood that embodies sadness.
     #[doc(alias = "SRKeyboardMetricsSentimentCategorySad")]
     pub const Sad: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/lowenergy?language=objc)
+    /// A mood that indicates low energy.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryLowEnergy")]
     pub const LowEnergy: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory/confused?language=objc)
+    /// A mood that embodies confusion.
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryConfused")]
     pub const Confused: Self = Self(9);
 }
@@ -2520,35 +2913,36 @@ impl SRKeyboardMetrics {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason?language=objc)
+/// Reasons that the framework deletes samples.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRDeletionReason(pub NSInteger);
 impl SRDeletionReason {
+    /// Indicates that the user requests deletion.
     /// The user initiated deletion
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/userinitiated?language=objc)
     #[doc(alias = "SRDeletionReasonUserInitiated")]
     pub const UserInitiated: Self = Self(0);
+    /// Indicates that the system’s disk space is low.
     /// Samples were removed due to low disk conditions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/lowdiskspace?language=objc)
     #[doc(alias = "SRDeletionReasonLowDiskSpace")]
     pub const LowDiskSpace: Self = Self(1);
+    /// Indicates that the sample outlived the framework’s retention limit.
     /// Samples were removed because they were recorded beyond our retention limit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/agelimit?language=objc)
     #[doc(alias = "SRDeletionReasonAgeLimit")]
     pub const AgeLimit: Self = Self(2);
-    /// Samples were removed because there are no longer any interested clients
+    /// Indicates that the sensor has no active stakeholders.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/nointerestedclients?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework deletes samples for this reason when there’s been no recording activity for a particular sensor.
+    ///
+    ///
+    /// Samples were removed because there are no longer any interested clients
     #[doc(alias = "SRDeletionReasonNoInterestedClients")]
     pub const NoInterestedClients: Self = Self(3);
+    /// Indicates that the system requests deletion.
     /// Samples were removed because the system was in an invalid state
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason/systeminitiated?language=objc)
     #[doc(alias = "SRDeletionReasonSystemInitiated")]
     pub const SystemInitiated: Self = Self(4);
 }
@@ -2562,7 +2956,20 @@ unsafe impl RefEncode for SRDeletionReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionrecord?language=objc)
+    /// An object that describes the reason the framework deletes samples.
+    ///
+    /// ## Overview
+    ///
+    /// When there are gaps in a recorded sensor’s data, deletion records account for the occasions when the framework deliberately removes the records. A deletion record specifies the time range when records are unavailable (see [`startTime`](https://developer.apple.com/documentation/sensorkit/srdeletionrecord/starttime) and [`endTime`](https://developer.apple.com/documentation/sensorkit/srdeletionrecord/endtime)), and the [`reason`](https://developer.apple.com/documentation/sensorkit/srdeletionrecord/reason) for removal.
+    ///
+    /// To access deletion records for a particular sensor, create a new reader by applying the `sr_sensorForDeletionRecordsFromSensor()` extension of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) to the source sensor.
+    ///
+    /// ```swift
+    /// let deletionRecordsReader = SRSensorReader(sensor: ambientLightSensor.rawValue.sr_sensorForDeletionRecordsFromSensor())
+    /// deletionRecordsReader.delegate = myAmbientLightDeletionRecordsDelegate
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRDeletionRecord;
@@ -2639,16 +3046,16 @@ pub unsafe trait NSStringSRDeletionRecord:
 impl private_NSStringSRDeletionRecord::Sealed for NSString {}
 unsafe impl NSStringSRDeletionRecord for NSString {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum?language=objc)
+/// Preferences for where a user wears a watch.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRWristLocation(pub NSInteger);
 impl SRWristLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum/left?language=objc)
+    /// Indicates that the user wears a watch on the left wrist.
     #[doc(alias = "SRWristLocationLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum/right?language=objc)
+    /// Indicates that the user wears a watch on the right wrist.
     #[doc(alias = "SRWristLocationRight")]
     pub const Right: Self = Self(1);
 }
@@ -2661,16 +3068,16 @@ unsafe impl RefEncode for SRWristLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum?language=objc)
+/// Directions the Digital Crown can face with respect to the wearer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRCrownOrientation(pub NSInteger);
 impl SRCrownOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum/left?language=objc)
+    /// Indicates that the Digital Crown faces to the left with respect to the wearer.
     #[doc(alias = "SRCrownOrientationLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum/right?language=objc)
+    /// Indicates that the Digital Crown faces to the right with respect to the wearer.
     #[doc(alias = "SRCrownOrientationRight")]
     pub const Right: Self = Self(1);
 }
@@ -2684,7 +3091,13 @@ unsafe impl RefEncode for SRCrownOrientation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection?language=objc)
+    /// The configuration of a watch on the wearer’s wrist.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorOnWristState`](https://developer.apple.com/documentation/sensorkit/srsensor/onwriststate) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWristDetection;
@@ -2741,23 +3154,22 @@ impl SRWristDetection {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct?language=objc)
+/// The user activities with the watch that can impact the temperature measurement.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRWristTemperatureCondition(pub NSUInteger);
 bitflags::bitflags! {
     impl SRWristTemperatureCondition: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperaturecondition/srwristtemperatureconditionnone?language=objc)
         #[doc(alias = "SRWristTemperatureConditionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/offwrist?language=objc)
+/// The watch being off the wrist impacts the accuracy.
         #[doc(alias = "SRWristTemperatureConditionOffWrist")]
         const OffWrist = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/oncharger?language=objc)
+/// The watch being on the charger impacts the accuracy.
         #[doc(alias = "SRWristTemperatureConditionOnCharger")]
         const OnCharger = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct/inmotion?language=objc)
+/// The watch being in motion impacts the accuracy.
         #[doc(alias = "SRWristTemperatureConditionInMotion")]
         const InMotion = 1<<2;
     }
@@ -2772,7 +3184,13 @@ unsafe impl RefEncode for SRWristTemperatureCondition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature?language=objc)
+    /// The temperature of the user’s wrist while the user sleeps.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorWristTemperature`](https://developer.apple.com/documentation/sensorkit/srsensor/wristtemperature) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWristTemperature;
@@ -2860,7 +3278,13 @@ impl SRWristTemperature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperaturesession?language=objc)
+    /// An object that represents wrist temperatures that a device records during a period of time.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`startDate`](https://developer.apple.com/documentation/sensorkit/srwristtemperaturesession/startdate) and [`duration`](https://developer.apple.com/documentation/sensorkit/srwristtemperaturesession/duration) properties to get the range of time of the measurements. Use the [`temperatures`](https://developer.apple.com/documentation/sensorkit/srwristtemperaturesession/temperatures-8bqrl) property to get the sequence of measurements.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWristTemperatureSession;
@@ -2947,16 +3371,16 @@ impl SRWristTemperatureSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaeventtype?language=objc)
+/// The types of user interaction with media that the sensor tracks.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRMediaEventType(pub NSInteger);
 impl SRMediaEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaeventtype/onscreen?language=objc)
+    /// An event that occurs when the media appears on the screen.
     #[doc(alias = "SRMediaEventOnScreen")]
     pub const OnScreen: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaeventtype/offscreen?language=objc)
+    /// An event that occurs when the media disappears from the screen.
     #[doc(alias = "SRMediaEventOffScreen")]
     pub const OffScreen: Self = Self(2);
 }
@@ -2970,7 +3394,7 @@ unsafe impl RefEncode for SRMediaEventType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srmediaevent?language=objc)
+    /// A user interaction with a media object, such as an image or a video.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRMediaEvent;
@@ -3046,7 +3470,13 @@ impl SRMediaEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechexpression?language=objc)
+    /// An object that represents the metrics and voice analytics for a range of speech.
+    ///
+    /// ## Overview
+    ///
+    /// Use the properties of this class to get the characteristics of the speech, such as the user’s confidence level and mood.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRSpeechExpression;
@@ -3185,7 +3615,13 @@ impl SRSpeechExpression {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sraudiolevel?language=objc)
+    /// An object that represents the audio level for a range of speech.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`loudness`](https://developer.apple.com/documentation/sensorkit/sraudiolevel/loudness) property to get the value of the audio level.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAudioLevel;
@@ -3251,6 +3687,13 @@ impl SRAudioLevel {
     );
 }
 
+/// Possible details about processing an audio stream.
+///
+/// ## Overview
+///
+/// Use these flags to determine whether audio processing went through the system voice processor.
+///
+///
 /// Flags indicating more information about how audio processing was done
 /// on the audio stream
 ///
@@ -3261,18 +3704,16 @@ impl SRAudioLevel {
 ///
 ///
 /// Audio stream bypassed the system voice processor.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/sessionflags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRSpeechMetricsSessionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRSpeechMetricsSessionFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetricssessionflags/srspeechmetricssessionflagsdefault?language=objc)
+/// Audio processing went through the system voice processor.
         #[doc(alias = "SRSpeechMetricsSessionFlagsDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/sessionflags-swift.struct/bypassvoiceprocessing?language=objc)
+/// Audio processing bypasses the system voice processor.
         #[doc(alias = "SRSpeechMetricsSessionFlagsBypassVoiceProcessing")]
         const BypassVoiceProcessing = 1<<0;
     }
@@ -3287,7 +3728,15 @@ unsafe impl RefEncode for SRSpeechMetricsSessionFlags {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetrics?language=objc)
+    /// An object that represents metrics about a range of speech.
+    ///
+    /// ## Overview
+    ///
+    /// To get the audio level, use the [`audioLevel`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/audiolevel) property. Otherwise, use the [`speechRecognition`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/speechrecognition), [`soundClassification`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/soundclassification), and [`speechExpression`](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/speechexpression) properties to get characteristics of the speech.
+    ///
+    /// The [`SRSensorSiriSpeechMetrics`](https://developer.apple.com/documentation/sensorkit/srsensor/sirispeechmetrics) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRSpeechMetrics;
@@ -3414,17 +3863,17 @@ impl SRSpeechMetrics {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct?language=objc)
+/// The context of the system during the camera session.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRFaceMetricsContext(pub NSUInteger);
 bitflags::bitflags! {
     impl SRFaceMetricsContext: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct/deviceunlock?language=objc)
+/// The camera session occurs while the user has the device unlocked.
         #[doc(alias = "SRFaceMetricsContextDeviceUnlock")]
         const DeviceUnlock = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct/messagingappusage?language=objc)
+/// The camera session occurs while the user is in the app with messaging capability.
         #[doc(alias = "SRFaceMetricsContextMessagingAppUsage")]
         const MessagingAppUsage = 1<<1;
     }
@@ -3439,7 +3888,13 @@ unsafe impl RefEncode for SRFaceMetricsContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetricsexpression?language=objc)
+    /// An object that represents a facial expression.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`identifier`](https://developer.apple.com/documentation/sensorkit/srfacemetricsexpression/identifier) property to determine the facial expression.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRFaceMetricsExpression;
@@ -3506,7 +3961,13 @@ impl SRFaceMetricsExpression {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics?language=objc)
+    /// An object that represents metrics about the user’s face.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SRSensorFaceMetrics`](https://developer.apple.com/documentation/sensorkit/srsensor/facemetrics) sensor provides this class as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRFaceMetrics;
@@ -3613,21 +4074,20 @@ impl SRFaceMetrics {
     );
 }
 
+/// The state of a session used to record a ECG sample.
 /// The state of the ECG session when this sample was taken
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramSessionState(pub NSInteger);
 impl SRElectrocardiogramSessionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/begin?language=objc)
+    /// The session begins.
     #[doc(alias = "SRElectrocardiogramSessionStateBegin")]
     pub const Begin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/active?language=objc)
+    /// The session is ongoing.
     #[doc(alias = "SRElectrocardiogramSessionStateActive")]
     pub const Active: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum/end?language=objc)
+    /// The session ends.
     #[doc(alias = "SRElectrocardiogramSessionStateEnd")]
     pub const End: Self = Self(3);
 }
@@ -3640,6 +4100,7 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type of session guidance used to record a ECG sample.
 /// The type of session used to record the ECG sample
 ///
 ///
@@ -3649,17 +4110,27 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
 ///
 ///
 /// A session, usually of undefined duration, where the user is not provided coaching to guide the ECG readings
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramSessionGuidance(pub NSInteger);
 impl SRElectrocardiogramSessionGuidance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum/guided?language=objc)
+    /// The system coaches the user to guide the ECG readings.
+    ///
+    /// ## Discussion
+    ///
+    /// The duration of this type of session is usually fixed.
+    ///
+    ///
     #[doc(alias = "SRElectrocardiogramSessionGuidanceGuided")]
     pub const Guided: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum/unguided?language=objc)
+    /// The system doesn’t coach the user to guide the ECG readings.
+    ///
+    /// ## Discussion
+    ///
+    /// The duration of this type of session is usually undefined.
+    ///
+    ///
     #[doc(alias = "SRElectrocardiogramSessionGuidanceUnguided")]
     pub const Unguided: Self = Self(2);
 }
@@ -3673,7 +4144,7 @@ unsafe impl RefEncode for SRElectrocardiogramSessionGuidance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession?language=objc)
+    /// An object that represents ECG data that a device records during a period of time.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRElectrocardiogramSession;
@@ -3749,31 +4220,28 @@ impl SRElectrocardiogramSession {
     );
 }
 
+/// Sensor context or events that occur during a sample ECG data reading.
 /// Flags indicating sensor context or events that occurred during
 /// the sample reading
 ///
 ///
 /// These flags can provide some indication of data validity or other system conditions
 /// that may influence how the recorded data should be treated.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRElectrocardiogramDataFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRElectrocardiogramDataFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdataflags/srelectrocardiogramdataflagsnone?language=objc)
+/// Flag that indicates no context or events occur.
         #[doc(alias = "SRElectrocardiogramDataFlagsNone")]
         const None = 0;
+/// An invalid sensor signal occurs in the ECG data.
 /// Indicates an invalid sensor signal in the ECG data
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct/signalinvalid?language=objc)
         #[doc(alias = "SRElectrocardiogramDataFlagsSignalInvalid")]
         const SignalInvalid = 1<<0;
+/// The system records the ECG data when the person touches the crown.
 /// Indicates ECG data was recorded when the crown was being touched
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct/crowntouched?language=objc)
         #[doc(alias = "SRElectrocardiogramDataFlagsCrownTouched")]
         const CrownTouched = 1<<1;
     }
@@ -3788,7 +4256,7 @@ unsafe impl RefEncode for SRElectrocardiogramDataFlags {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata?language=objc)
+    /// A representation of the ECG data that the sensor records.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRElectrocardiogramData;
@@ -3850,18 +4318,17 @@ impl SRElectrocardiogramData {
     );
 }
 
+/// The location of the lead that a person uses to record the ECG data.
 /// Which lead was used to record the ECG data
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRElectrocardiogramLead(pub NSInteger);
 impl SRElectrocardiogramLead {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum/rightarmminusleftarm?language=objc)
+    /// The lead that records the sample is on the left arm.
     #[doc(alias = "SRElectrocardiogramLeadRightArmMinusLeftArm")]
     pub const RightArmMinusLeftArm: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum/leftarmminusrightarm?language=objc)
+    /// The lead that records the sample is on the right arm.
     #[doc(alias = "SRElectrocardiogramLeadLeftArmMinusRightArm")]
     pub const LeftArmMinusRightArm: Self = Self(2);
 }
@@ -3875,7 +4342,13 @@ unsafe impl RefEncode for SRElectrocardiogramLead {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample?language=objc)
+    /// The sample electrocardiogram sensor data.
+    ///
+    /// ## Overview
+    ///
+    /// The electrocardiogram (ECG) sensor provides an array of these objects as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRElectrocardiogramSample;
@@ -3968,24 +4441,60 @@ impl SRElectrocardiogramSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition?language=objc)
+/// The conditions that may occur when recording photoplethysmogram optical data.
 // NS_TYPED_ENUM
 pub type SRPhotoplethysmogramOpticalSampleCondition = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition/signalsaturation?language=objc)
+    /// The signal exceeds the measurement capacity of the sensor.
     pub static SRPhotoplethysmogramOpticalSampleConditionSignalSaturation:
         &'static SRPhotoplethysmogramOpticalSampleCondition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition/unreliablenoise?language=objc)
+    /// The signal noise is unreliable.
     pub static SRPhotoplethysmogramOpticalSampleConditionUnreliableNoise:
         &'static SRPhotoplethysmogramOpticalSampleCondition;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample?language=objc)
+    /// A data sample from the photoplethysmogram (PPG) optical sensor.
+    ///
+    /// ## Overview
+    ///
+    /// To get the PPG waveform, use the [`normalizedReflectance`](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/normalizedreflectance-9aidm) property. Apple Watch uses an arrangement of emitters and photodiodes to measure the PPG waveform.
+    ///
+    /// ### Interpret second-generation PPG sensors data
+    ///
+    /// Second-generation optical heart sensors, in Apple Watch 4, 5, and SE models, use green or infrared (IR) LED lights paired with light-sensitive photodiodes. The active photodiode’s indices show which photodiode or combination of photodiodes the Apple Watch uses.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/5c78854397f4fa4fe8f472bc4914e1f6/media-4403032~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8a99680724a958fe34132ab0ee2e1eab/media-4403032%402x.png 2x" />
+    ///     <img alt="Two diagrams of the back of Apple Watch 4, 5, and SE models that show the location of infrared LED lights and light-sensitive photodiodes." src="https://docs-assets.developer.apple.com/published/8a99680724a958fe34132ab0ee2e1eab/media-4403032%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For the second-generation sensors, the mapping of the optical heart sensor (SE, Series 4 and 5) emitter is:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Emitter index" }] }], [Paragraph { inline_content: [Text { text: "LED arrangement" }] }]], [[Paragraph { inline_content: [Text { text: "0" }] }], [Paragraph { inline_content: [Text { text: "0, Infrared (940 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "1" }] }], [Paragraph { inline_content: [Text { text: "1, Infrared (940 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "2" }] }], [Paragraph { inline_content: [Text { text: "2, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "3" }] }], [Paragraph { inline_content: [Text { text: "3, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "4" }] }], [Paragraph { inline_content: [Text { text: "4, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "5" }] }], [Paragraph { inline_content: [Text { text: "5, Green (525 nm)" }] }]]], alignments: None, metadata: None })
+    /// ### Interpret third-generation PPG sensors
+    ///
+    /// Third-generation optical heart sensor, in Apple Watch Series 6 and later, plus Apple Watch Ultra and Ultra 2, use an additional red LED with a different arrangement of emitters and photodiodes than the second-generation PPG sensors. The active photodiodes indices show which photodiode or combination of photodiodes the Apple Watch uses.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/bbb8e9fd04ab00febe5fda750f633c8f/media-4403033~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bbb8e9fd04ab00febe5fda750f633c8f/media-4403033%402x.png 2x" />
+    ///     <img alt="Two diagrams of Apple Series 6 and later, plus Apple Watch Ultra and Ultra 2, that show the location of the emitters and photodiodes." src="https://docs-assets.developer.apple.com/published/bbb8e9fd04ab00febe5fda750f633c8f/media-4403033~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// For the third-generation sensors, the mapping of the optical heart sensor (Series 6, 7, 8, 9, Ultra, and Ultra 2) emitter is:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Emitter index" }] }], [Paragraph { inline_content: [Text { text: "LED arrangement" }] }]], [[Paragraph { inline_content: [Text { text: "0" }] }], [Paragraph { inline_content: [Text { text: "0, Infrared (850 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "1" }] }], [Paragraph { inline_content: [Text { text: "1, Infrared (850 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "2" }] }], [Paragraph { inline_content: [Text { text: "2, Infrared (850 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "3" }] }], [Paragraph { inline_content: [Text { text: "3, Infrared (850 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "4" }] }], [Paragraph { inline_content: [Text { text: "4, Infrared (940 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "5" }] }], [Paragraph { inline_content: [Text { text: "5, Red (660 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "6" }] }], [Paragraph { inline_content: [Text { text: "6, Red (660 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "7" }] }], [Paragraph { inline_content: [Text { text: "7, Red (660 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "8" }] }], [Paragraph { inline_content: [Text { text: "8, Red (660 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "9" }] }], [Paragraph { inline_content: [Text { text: "9, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "10" }] }], [Paragraph { inline_content: [Text { text: "10, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "11" }] }], [Paragraph { inline_content: [Text { text: "11, Green (525 nm)" }] }]], [[Paragraph { inline_content: [Text { text: "12" }] }], [Paragraph { inline_content: [Text { text: "12, Green (525 nm)" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhotoplethysmogramOpticalSample;
@@ -4211,7 +4720,7 @@ impl SRPhotoplethysmogramOpticalSample {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramaccelerometersample?language=objc)
+    /// A data sample from the photoplethysmogram (PPG) accelerometer.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhotoplethysmogramAccelerometerSample;
@@ -4310,58 +4819,96 @@ impl SRPhotoplethysmogramAccelerometerSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct?language=objc)
+/// The possible ways that a person or the system may take a photoplethysmogram (PPG) reading.
 // NS_TYPED_ENUM
 pub type SRPhotoplethysmogramSampleUsage = NSString;
 
 extern "C" {
+    /// A heart rate reading that a person takes while using an app.
+    ///
+    /// ## Discussion
+    ///
+    /// An example is a sample of a heart rate reading from a person using the Heart Rate or a workout app.
+    ///
+    ///
     /// A heart rate reading actively taken by a user in an app context
     ///
     ///
     /// Typically driven by the user using the HeartRate app or a workout session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/foregroundheartrate?language=objc)
     pub static SRPhotoplethysmogramSampleUsageForegroundHeartRate:
         &'static SRPhotoplethysmogramSampleUsage;
 }
 
 extern "C" {
+    /// A deep breathing sensor reading that a person takes while using an app.
+    ///
+    /// ## Discussion
+    ///
+    /// An example is a sample of a reading from a person performing a reflect or breathe session in the Mindfulness app.
+    ///
+    ///
     /// A sensor reading actively taken by a user in a deep breathing context
     ///
     ///
     /// Typically driven by the user performing a reflect or breathe session
     /// in the Mindfulness app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/deepbreathing?language=objc)
     pub static SRPhotoplethysmogramSampleUsageDeepBreathing:
         &'static SRPhotoplethysmogramSampleUsage;
 }
 
 extern "C" {
+    /// A blood oxygen reading that a person takes while using an app.
+    ///
+    /// ## Discussion
+    ///
+    /// An example is a sample of a reading from a person using the BloodOxygen app.
+    ///
+    ///
     /// A blood oxygen reading actively taken by a user in app context
     ///
     ///
     /// Typically driven by the user using the BloodOxygen app
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/foregroundbloodoxygen?language=objc)
     pub static SRPhotoplethysmogramSampleUsageForegroundBloodOxygen:
         &'static SRPhotoplethysmogramSampleUsage;
 }
 
 extern "C" {
+    /// A reading taken by the system in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The system takes this reading while performing various heart features on watchOS — such as background blood oxygen, atrial fibrillation (AFib), and low-cardio notifications.
+    ///
+    ///
     /// A sample reading passively taken by the system
     ///
     ///
     /// These are driven by the system to perform the various heart features of watchOS
     /// (e.g., background blood oxygen, afib notifications, low cardio notifications, etc)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/backgroundsystem?language=objc)
     pub static SRPhotoplethysmogramSampleUsageBackgroundSystem:
         &'static SRPhotoplethysmogramSampleUsage;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample?language=objc)
+    /// The sample photoplethysmogram (PPG) sensor data.
+    ///
+    /// ## Overview
+    ///
+    /// The PPG sensor provides an array of these objects as its [`sample`](https://developer.apple.com/documentation/sensorkit/srfetchresult/sample) type.
+    ///
+    /// Apple Watch uses LED lights, paired with light-sensitive photodiodes (PD), to track the heartbeat-induced pulsations. Different Apple Watch models can have different numbers of LEDs and PDs. For more information, see [`SRPhotoplethysmogramOpticalSample`](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample).
+    ///
+    /// For more details, see:
+    ///
+    /// - [Monitor your heart rate with Apple Watch](https://support.apple.com/en-us/HT204666)
+    ///
+    /// - [Using Apple Watch for Arrhythmia Detection](https://www.apple.com/healthcare/docs/site/Apple_Watch_Arrhythmia_Detection.pdf)
+    ///
+    /// - [How to use the Blood Oxygen app on Apple Watch](https://support.apple.com/en-us/HT211027)
+    ///
+    /// - [Blood Oxygen app on Apple Watch](https://www.apple.com/healthcare/docs/site/Blood_Oxygen_app_on_Apple_Watch_October_2022.pdf)
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRPhotoplethysmogramSample;
@@ -4475,16 +5022,13 @@ impl SRPhotoplethysmogramSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsSampleLifetime(pub NSInteger);
 impl SRAcousticSettingsSampleLifetime {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime/eightdays?language=objc)
     #[doc(alias = "SRAcousticSettingsSampleLifetimeEightDays")]
     pub const EightDays: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime/untiluserdeletes?language=objc)
     #[doc(alias = "SRAcousticSettingsSampleLifetimeUntilUserDeletes")]
     pub const UntilUserDeletes: Self = Self(2);
 }
@@ -4497,58 +5041,41 @@ unsafe impl RefEncode for SRAcousticSettingsSampleLifetime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsAccessibilityBackgroundSoundsName(pub NSInteger);
 impl SRAcousticSettingsAccessibilityBackgroundSoundsName {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/balancednoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBalancedNoise")]
     pub const BalancedNoise: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/brightnoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBrightNoise")]
     pub const BrightNoise: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/darknoise?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameDarkNoise")]
     pub const DarkNoise: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/ocean?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameOcean")]
     pub const Ocean: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/rain?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRain")]
     pub const Rain: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/stream?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameStream")]
     pub const Stream: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/night?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameNight")]
     pub const Night: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/fire?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameFire")]
     pub const Fire: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/babble?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBabble")]
     pub const Babble: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/steam?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameSteam")]
     pub const Steam: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/airplane?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameAirplane")]
     pub const Airplane: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/boat?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBoat")]
     pub const Boat: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/bus?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameBus")]
     pub const Bus: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/train?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameTrain")]
     pub const Train: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/rainonroof?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameRainOnRoof")]
     pub const RainOnRoof: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name/quietnight?language=objc)
     #[doc(alias = "SRAcousticSettingsAccessibilityBackgroundSoundsNameQuietNight")]
     pub const QuietNight: Self = Self(16);
 }
@@ -4561,23 +5088,19 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning(pub NSInteger);
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuning {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/balancedtone?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBalancedTone"
     )]
     pub const BalancedTone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/vocalrange?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningVocalRange"
     )]
     pub const VocalRange: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum/brightness?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceTuningBrightness"
     )]
@@ -4592,7 +5115,6 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityHeadphoneAccommodations
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4600,17 +5122,14 @@ pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoo
     pub NSInteger,
 );
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoosting {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/slight?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingSlight"
     )]
     pub const Slight: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/moderate?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingModerate"
     )]
     pub const Moderate: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum/strong?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceBoostingStrong"
     )]
@@ -4627,7 +5146,6 @@ unsafe impl RefEncode
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4635,22 +5153,18 @@ pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApp
     pub NSInteger,
 );
 impl SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/none?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationNone"
     )]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/phone?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhone"
     )]
     pub const Phone: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/media?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationMedia"
     )]
     pub const Media: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum/phoneandmedia?language=objc)
     #[doc(
         alias = "SRAcousticSettingsAccessibilityHeadphoneAccommodationsMediaEnhanceApplicationPhoneAndMedia"
     )]
@@ -4670,7 +5184,6 @@ unsafe impl RefEncode
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/musiceq?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsMusicEQ;
@@ -4743,7 +5256,6 @@ impl SRAcousticSettingsMusicEQ {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibilityBackgroundSounds;
@@ -4866,7 +5378,6 @@ impl SRAcousticSettingsAccessibilityBackgroundSounds {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodations;
@@ -4973,7 +5484,6 @@ impl SRAcousticSettingsAccessibilityHeadphoneAccommodations {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibility;
@@ -5069,7 +5579,6 @@ impl SRAcousticSettingsAccessibility {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettings;
@@ -5175,7 +5684,6 @@ impl SRAcousticSettings {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsleepsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRSleepSession;

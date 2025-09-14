@@ -16,6 +16,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The modes that an action can use to adjust the apparent timing of the action.
 /// Adjust the timing of an action
 ///
 ///
@@ -27,23 +28,51 @@ use crate::*;
 ///
 /// ease-in ease-out animation begins slowly, accelerates through the middle
 /// of its duration, and then slows again before completing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKActionTimingMode(pub NSInteger);
 impl SKActionTimingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/linear?language=objc)
+    /// Specifies linear pacing. Linear pacing causes an animation to occur evenly over its duration.
     #[doc(alias = "SKActionTimingLinear")]
     pub const Linear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easein?language=objc)
+    /// Specifies ease-in pacing. Ease-in pacing causes the animation to begin slowly and then speed up as it progresses.
+    ///
+    /// ## Discussion
+    ///
+    /// By creating two separate actions, a [`moveToX:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(x:duration:)) and a [`moveToY:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(y:duration:)), and setting the former to [`SKActionTimingEaseIn`](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easein), you can visualize the effect of this timing mode by tracing the path of a circular shape node running the actions in a group:
+    ///
+    ///
+    /// ![Visualizing ease-in pacing](https://docs-assets.developer.apple.com/published/7895212b238c557342d596909bd37941/media-2743318%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKActionTimingEaseIn")]
     pub const EaseIn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeout?language=objc)
+    /// Specifies ease-out pacing. Ease-out pacing causes the animation to begin quickly and then slow as it completes.
+    ///
+    /// ## Discussion
+    ///
+    /// By creating two separate actions, a [`moveToX:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(x:duration:)) and a [`moveToY:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(y:duration:)), and setting the former to [`SKActionTimingEaseOut`](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeout), you can visualize the effect of this timing mode by tracing the path of a circular shape node running the actions in a group:
+    ///
+    ///
+    /// ![Visualizing ease-out pacing](https://docs-assets.developer.apple.com/published/6ab64b2a3a37905fd0711cf788c1e02c/media-2743419%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKActionTimingEaseOut")]
     pub const EaseOut: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeineaseout?language=objc)
+    /// Specifies ease-in ease-out pacing. An ease-in ease-out animation begins slowly, accelerates through the middle of its duration, and then slows again before completing.
+    ///
+    /// ## Discussion
+    ///
+    /// By creating two separate actions, a [`moveToX:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(x:duration:)) and a [`moveToY:duration:`](https://developer.apple.com/documentation/spritekit/skaction/moveto(y:duration:)), and setting the former to [`SKActionTimingEaseInEaseOut`](https://developer.apple.com/documentation/spritekit/skactiontimingmode/easeineaseout), you can visualize the effect of this timing mode by tracing the path of a circular shape node running the actions in a group:
+    ///
+    ///
+    /// ![Visualizing ease-in ease-out pacing](https://docs-assets.developer.apple.com/published/d02f7aaaa7c37622b8122696ab384500/media-2743420%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "SKActionTimingEaseInEaseOut")]
     pub const EaseInEaseOut: Self = Self(3);
 }
@@ -56,21 +85,35 @@ unsafe impl RefEncode for SKActionTimingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The signature for the custom timing block.
+///
+/// ## Discussion
+///
+/// The block parameters are defined as follows:
+///
+/// - `time`: The input time, where `0.0` represents the start time of the animation and `1.0` represents the end time of the animation.
+///
+/// The input value will be a value between `0.0` and `1.0`, inclusive. The block must also return a value between `0.0` and `1.0`. When the input time is `0.0`, the output value should be `0.0`. When the input time is `1.0`, the output value should also be `1.0`.
+///
+///
 /// A custom timing function for SKActions. Input time will be linear 0.0-1.0
 /// over the duration of the action. Return values must be 0.0-1.0 and increasing
 /// and the function must return 1.0 when the input time reaches 1.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
 pub type SKActionTimingFunction = *mut block2::DynBlock<dyn Fn(c_float) -> c_float>;
 
 extern_class!(
+    /// An object that is run by a node to change its structure or content.
+    ///
+    /// ## Overview
+    ///
+    /// [`SKAction`](https://developer.apple.com/documentation/spritekit/skaction) is an animation that is executed by a node in the scene. Actions are used to change a node in some way (like move its position over time), but you can also use actions to change the scene, like doing a fadeout. When the scene processes its nodes, the actions associated with those nodes are processed.
+    ///
+    ///
     /// An SKAction object is an action that is executed by a node in the scene.
     /// Actions are most often used to change the structure and content of the node to
     /// which they are attached, but can also make other changes to the scene. When
     /// the scene processes its nodes, actions associated with those nodes are evaluated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAction;

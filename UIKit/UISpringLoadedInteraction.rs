@@ -8,6 +8,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The spring-loaded interaction states that determine the style of the interaction view.
 /// An object conforming to UISpringLoadedInteractionEffect uses UISpringLoadedInteractionEffectState
 /// to style the interaction view for the current springloading state.
 ///
@@ -15,23 +16,45 @@ use crate::*;
 /// - UISpringLoadedInteractionEffectStatePossible: the view may springload and should provide a visual cue to the user. The default effect highlights the view.
 /// - UISpringLoadedInteractionEffectStateActivating: the view is about to springload. The default effect will briefly flash while in this state.
 /// - UISpringLoadedInteractionEffectStateActivated: the view springloaded and the activation handler is called. The default effect will restore the view to its original appearance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISpringLoadedInteractionEffectState(pub NSInteger);
 impl UISpringLoadedInteractionEffectState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/inactive?language=objc)
+    /// An interaction state that indicates that spring loading is not engaged.
+    ///
+    /// ## Discussion
+    ///
+    /// This state has no effect on the styling of the interaction view. It remains in its original style.
+    ///
+    ///
     #[doc(alias = "UISpringLoadedInteractionEffectStateInactive")]
     pub const Inactive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/possible?language=objc)
+    /// An interaction state that indicates that spring loading is available.
+    ///
+    /// ## Discussion
+    ///
+    /// The interaction view provides a visual cue to the user that spring loading is available.
+    ///
+    ///
     #[doc(alias = "UISpringLoadedInteractionEffectStatePossible")]
     pub const Possible: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/activating?language=objc)
+    /// An interaction state that indicates that spring loading is about to start.
+    ///
+    /// ## Discussion
+    ///
+    /// The interaction view is briefly styled with the default effect, then it returns to its original style.
+    ///
+    ///
     #[doc(alias = "UISpringLoadedInteractionEffectStateActivating")]
     pub const Activating: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffectstate/activated?language=objc)
+    /// An interaction state that indicates that the view was spring loaded.
+    ///
+    /// ## Discussion
+    ///
+    /// The interaction view is styled with the default effect, and the activation handler for the [`UISpringLoadedInteraction`](https://developer.apple.com/documentation/uikit/uispringloadedinteraction) object is called.
+    ///
+    ///
     #[doc(alias = "UISpringLoadedInteractionEffectStateActivated")]
     pub const Activated: Self = Self(3);
 }
@@ -45,7 +68,7 @@ unsafe impl RefEncode for UISpringLoadedInteractionEffectState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteraction?language=objc)
+    /// An interaction object for configuring and controlling spring-loaded, user-driven navigation during a drag activity.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -130,9 +153,8 @@ impl UISpringLoadedInteraction {
 }
 
 extern_protocol!(
+    /// The interface for specifying the behavior of a spring-loaded interaction.
     /// The interaction behavior of a `UISpringLoadedInteraction` object must adopt the `UISpringLoadedInteractionBehavior` protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractionbehavior?language=objc)
     pub unsafe trait UISpringLoadedInteractionBehavior:
         NSObjectProtocol + MainThreadOnly
     {
@@ -164,10 +186,9 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The interface for providing visual styling to a spring-loaded interaction based on the interaction state.
     /// The interaction effect of a `UISpringLoadedInteraction` object must adopt the `UISpringLoadedInteractionEffect` protocol.
     /// It is responsible for styling the interaction view according to the current springloading state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioneffect?language=objc)
     pub unsafe trait UISpringLoadedInteractionEffect:
         NSObjectProtocol + MainThreadOnly
     {
@@ -188,9 +209,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The interface an object implements to provide information about a spring-loaded interaction.
     /// UISpringLoadedContext supplies information about the springloading state and current drag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uispringloadedinteractioncontext?language=objc)
     pub unsafe trait UISpringLoadedInteractionContext:
         NSObjectProtocol + MainThreadOnly
     {

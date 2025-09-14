@@ -11,16 +11,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation?language=objc)
+/// Constants that describe the text layout orientation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/horizontal?language=objc)
+    /// Lines render horizontally, each line following the previous from top to bottom.
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/vertical?language=objc)
+    /// Lines render vertically, each line following the previous from right to left.
     #[doc(alias = "NSTextLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -33,23 +33,35 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty?language=objc)
+/// Glyph properties.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/null?language=objc)
+/// The null glyph, which the layout manager ignores.
         #[doc(alias = "NSGlyphPropertyNull")]
         const Null = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/controlcharacter?language=objc)
+/// A glyph representing a control character.
+///
+/// ## Discussion
+///
+/// Control character such as tab, attachment, and so on, that has associated special behavior.
+///
+///
         #[doc(alias = "NSGlyphPropertyControlCharacter")]
         const ControlCharacter = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/elastic?language=objc)
+/// A glyph with a changeable width, such as a white space character.
         #[doc(alias = "NSGlyphPropertyElastic")]
         const Elastic = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/glyphproperty/nonbasecharacter?language=objc)
+/// A glyph that combines several properties.
+///
+/// ## Discussion
+///
+/// A glyph of this type typically represents characters in the Unicode Mn class.
+///
+///
         #[doc(alias = "NSGlyphPropertyNonBaseCharacter")]
         const NonBaseCharacter = 1<<3;
     }
@@ -63,29 +75,53 @@ unsafe impl RefEncode for NSGlyphProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction?language=objc)
+/// Constants that describe actions for control characters.
+///
+/// ## Overview
+///
+/// These constants [`layoutManager:shouldUseAction:forControlCharacterAtIndex:`](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:shoulduse:forcontrolcharacterat:)) delegate method uses.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/zeroadvancement?language=objc)
+/// An action that removes the glyph from layout.
+///
+/// ## Discussion
+///
+/// Glyphs with this action are filtered out from layout ([`notShownAttributeForGlyphAtIndex:`](https://developer.apple.com/documentation/uikit/nslayoutmanager/notshownattribute(forglyphat:)) `== YES` for the glyph).
+///
+///
         #[doc(alias = "NSControlCharacterActionZeroAdvancement")]
         const ZeroAdvancement = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/whitespace?language=objc)
+/// An action that adds whitespace.
+///
+/// ## Discussion
+///
+/// The width for a glyph with this action is determined by the delegate method [`layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:`](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:boundingboxforcontrolglyphat:for:proposedlinefragment:glyphposition:characterindex:)) if the method is implemented; otherwise, same as `NSControlCharacterZeroAdvancementAction`.
+///
+///
         #[doc(alias = "NSControlCharacterActionWhitespace")]
         const Whitespace = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/horizontaltab?language=objc)
+/// An action that inserts a horizontal tab.
         #[doc(alias = "NSControlCharacterActionHorizontalTab")]
         const HorizontalTab = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/linebreak?language=objc)
+/// An action that causes a line break.
         #[doc(alias = "NSControlCharacterActionLineBreak")]
         const LineBreak = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/paragraphbreak?language=objc)
+/// An action that causes a paragraph break.
+///
+/// ## Discussion
+///
+/// The value in [`firstLineHeadIndent`](https://developer.apple.com/documentation/uikit/nsparagraphstyle/firstlineheadindent) is used for the following glyph.
+///
+///
         #[doc(alias = "NSControlCharacterActionParagraphBreak")]
         const ParagraphBreak = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager/controlcharacteraction/containerbreak?language=objc)
+/// An action that triggers a break in layout for the current container.
         #[doc(alias = "NSControlCharacterActionContainerBreak")]
         const ContainerBreak = 1<<5;
     }
@@ -100,7 +136,13 @@ unsafe impl RefEncode for NSControlCharacterAction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutorientationprovider?language=objc)
+    /// A set of methods that define the orientation of text for an object.
+    ///
+    /// ## Overview
+    ///
+    /// In macOS, the [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) and [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) classes adopt this protocol; in iOS, only the [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) class implements it. An [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) object returns the value from its associated text view when present; otherwise, it returns [`NSTextLayoutOrientationHorizontal`](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/horizontal) by default. If you define a custom [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) object, you can override this method and return [`NSTextLayoutOrientationVertical`](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/vertical) to support laying out text vertically.
+    ///
+    ///
     pub unsafe trait NSTextLayoutOrientationProvider {
         #[unsafe(method(layoutOrientation))]
         #[unsafe(method_family = none)]
@@ -109,7 +151,31 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanager?language=objc)
+    /// An object that coordinates the layout and display of text characters.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) maps Unicode character codes to glyphs, sets the glyphs in a series of [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) objects, and displays them in a series of [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) objects. In addition to its core function of laying out text, a layout manager object coordinates its text view objects, provides services to those text views to support [`NSRulerView`](https://developer.apple.com/documentation/appkit/nsrulerview) instances for editing paragraph styles, and handles the layout and display of text attributes not inherent in glyphs (such as underline or strikethrough). You can create a subclass of [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) to handle additional text attributes, whether inherent or not.
+    ///
+    /// ### Text Antialiasing
+    ///
+    /// [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) provides the threshold for text antialiasing. It looks at the `AppleAntiAliasingThreshold` default value. If the font size is smaller than or equal to this threshold size, the text is rendered aliased by [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager). In macOS, you can change the threshold value from the Appearance pane of System Preferences.
+    ///
+    /// ### Thread Safety of NSLayoutManager
+    ///
+    /// Generally speaking, a specific layout manager (and associated objects) should not be used in more than one block, operation, or thread at a time. Most layout managers are used on the main thread, since it is the main thread on which their text views are displayed, and since background layout occurs on the main thread.
+    ///
+    /// If you want to use a layout manager on a background thread, first make sure that text views associated with that layout manager (if any) are not displayed while the layout manager is being used on the background thread, and, second, turn off background layout for that layout manager while it is being used on the background thread. The most effective way to ensure that no text view is displayed, without knowing deep implementation, is just not to connect a text view to the layout manager.
+    ///
+    /// ### Noncontiguous Layout
+    ///
+    /// Noncontiguous layout is an optional layout manager behavior. Previously, both glyph generation and layout were always performed, in order, from the beginning to the end of the document. When noncontiguous layout is turned on, however, the layout manager gains the option of performing glyph generation or layout for one portion of the document without having done so for previous sections. This can provide significant performance improvements for large documents.
+    ///
+    /// Noncontiguous layout is not turned on automatically because direct clients of `NSLayoutManager` typically have relied on the previous behavior—for example, by forcing layout for a specific glyph range, and then assuming that previous glyphs would therefore be laid out. Clients who use [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) only indirectly—for example, those who use [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) without directly calling the underlying layout manager—can usually turn on noncontiguous layout without difficulty. Clients using [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) directly need to examine their usage before turning on noncontiguous layout.
+    ///
+    /// Enable noncontiguous layout using the [`allowsNonContiguousLayout`](https://developer.apple.com/documentation/uikit/nslayoutmanager/allowsnoncontiguouslayout) property. In addition, see the other methods in [Causing glyph generation and layout](https://developer.apple.com/documentation/uikit/nslayoutmanager#causing-glyph-generation-and-layout), many of which enable you to ensure that glyph generation and layout are performed for specified portions of the text. The behavior of a number of other layout manager methods is affected by the state of noncontiguous layout, as noted in the discussion sections of those method descriptions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLayoutManager;
@@ -881,7 +947,7 @@ impl DefaultRetained for NSLayoutManager {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate?language=objc)
+    /// A set of optional methods that delegates of layout manager objects implement.
     pub unsafe trait NSLayoutManagerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIFont", feature = "objc2-core-graphics"))]
         /// ********************** Glyph generation ***********************
@@ -1029,25 +1095,43 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterzeroadvancementaction?language=objc)
+/// An action that removes the glyph from layout.
+///
+/// ## Discussion
+///
+/// Glyphs with this action are filtered out from layout ([`notShownAttributeForGlyphAtIndex:`](https://developer.apple.com/documentation/uikit/nslayoutmanager/notshownattribute(forglyphat:)) `== YES` for the glyph).
+///
+///
 #[deprecated]
 pub const NSControlCharacterZeroAdvancementAction: NSInteger =
     NSControlCharacterAction::ZeroAdvancement.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterwhitespaceaction?language=objc)
+/// An action that programmatically changes the white space around the glyph.
+///
+/// ## Discussion
+///
+/// The width for a glyph with this action is determined by the delegate method [`layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:`](https://developer.apple.com/documentation/uikit/nslayoutmanagerdelegate/layoutmanager(_:boundingboxforcontrolglyphat:for:proposedlinefragment:glyphposition:characterindex:)) if the method is implemented; otherwise, same as `NSControlCharacterZeroAdvancementAction`.
+///
+///
 #[deprecated]
 pub const NSControlCharacterWhitespaceAction: NSInteger = NSControlCharacterAction::Whitespace.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterhorizontaltabaction?language=objc)
+/// An action that inserts a horizontal tab.
 #[deprecated]
 pub const NSControlCharacterHorizontalTabAction: NSInteger =
     NSControlCharacterAction::HorizontalTab.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterlinebreakaction?language=objc)
+/// An action that causes a line break.
 #[deprecated]
 pub const NSControlCharacterLineBreakAction: NSInteger = NSControlCharacterAction::LineBreak.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacterparagraphbreakaction?language=objc)
+/// An action that causes a paragraph break.
+///
+/// ## Discussion
+///
+/// The value in [`firstLineHeadIndent`](https://developer.apple.com/documentation/uikit/nsparagraphstyle/firstlineheadindent) is used for the following glyph.
+///
+///
 #[deprecated]
 pub const NSControlCharacterParagraphBreakAction: NSInteger =
     NSControlCharacterAction::ParagraphBreak.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharactercontainerbreakaction?language=objc)
+/// A character that causes a break in layout.
 #[deprecated]
 pub const NSControlCharacterContainerBreakAction: NSInteger =
     NSControlCharacterAction::ContainerBreak.0;

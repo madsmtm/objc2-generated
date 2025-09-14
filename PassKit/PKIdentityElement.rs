@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the elements an app requests from identity documents.
+    ///
+    /// ## Overview
+    ///
+    /// If an app requests an element from a document type that doesn’t support it, the system ignores the element.
+    ///
+    ///
     /// Elements that can be requested from identity documents. Not
     /// all elements are supported by all document types. If an element
     /// is requested from a type that does not support it, the element
     /// is ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityelement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityElement;

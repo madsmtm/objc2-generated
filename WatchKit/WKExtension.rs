@@ -15,19 +15,37 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate?language=objc)
+/// The running states of the Watch app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKApplicationState(pub NSInteger);
 impl WKApplicationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/active?language=objc)
+    /// The Watch app is running in the foreground and currently receiving events.
     #[doc(alias = "WKApplicationStateActive")]
     pub const Active: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive?language=objc)
+    /// The Watch app is running in the foreground, but is not yet responding to actions from controls or gestures.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically, apps transition quickly through the [`WKApplicationStateInactive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive) state when becoming active or going to the background. A newly launched watchOS app starts in the [`WKApplicationStateInactive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive) state and then quickly transitions to the [`WKApplicationStateActive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/active) state.
+    ///
+    /// An active app also transition to this state when the user dismisses the app or stops interacting with it. The app remains in the [`WKApplicationStateInactive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive) state as long as it is the frontmost app (see `Understand Frontmost App State`). Then the system transitions the app to the [`WKApplicationStateBackground`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/background) state before suspending it.
+    ///
+    /// In some situations, the app may run for extended periods in the inactive state. For example, this occurs when the app is running in the dock, or when it is the frontmost app.
+    ///
+    /// When the user scrolls to the app in the dock, the system initially displays the app’s most recent snapshot. Then the app transitions to the foreground, but remains in the [`WKApplicationStateInactive`](https://developer.apple.com/documentation/watchkit/wkapplicationstate/inactive) state. The system displays a running preview of the app in the dock, but the app doesn’t respond to actions or gestures.
+    ///
+    ///
     #[doc(alias = "WKApplicationStateInactive")]
     pub const Inactive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate/background?language=objc)
+    /// The Watch app is running in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The system can wake suspended apps in the background. It can also launch apps that are not running in the background to perform background tasks.
+    ///
+    ///
     #[doc(alias = "WKApplicationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -40,19 +58,19 @@ unsafe impl RefEncode for WKApplicationState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult?language=objc)
+/// The result of an attempt to download the content associated with a remote notification.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKBackgroundFetchResult(pub NSUInteger);
 impl WKBackgroundFetchResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/newdata?language=objc)
+    /// The download attempt succeeded.
     #[doc(alias = "WKBackgroundFetchResultNewData")]
     pub const NewData: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/nodata?language=objc)
+    /// The notification has no associated content.
     #[doc(alias = "WKBackgroundFetchResultNoData")]
     pub const NoData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult/failed?language=objc)
+    /// The download attempt failed.
     #[doc(alias = "WKBackgroundFetchResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -66,7 +84,23 @@ unsafe impl RefEncode for WKBackgroundFetchResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension?language=objc)
+    /// The centralized point of control and coordination for extension-based apps running in watchOS.
+    ///
+    /// ## Overview
+    ///
+    /// In Xcode 13 and earlier the system divides a watchOS app into two sections:
+    ///
+    /// - WatchKit app: An app bundle that contains your app icon. For storyboard-based apps, it also includes your storyboard and any assets used by the storyboard.
+    ///
+    /// - WatchKit extension: An extension that contains your watchOS app’s code.
+    ///
+    /// In Xcode 14 and later, you can produce watchOS apps with a single watchOS app target for code, assets, extensions, and localizations. These single-target watchOS apps can run on watchOS 7 and later
+    ///
+    /// Apps with separate WatchKit app and extensions have a single extension object. While the system creates and manages this object, you can access it to perform app-level tasks such as opening URLs and getting the root interface controller of your app.
+    ///
+    /// As relevant events occur within your WatchKit app, the extension object notifies its delegate of those events. Your delegate object can implement the methods it needs to provide an appropriate response to life cycle events, handle notifications, or handle Handoff–related behaviors. For more information about the methods of the delegate, see [`WKExtensionDelegate`](https://developer.apple.com/documentation/watchkit/wkextensiondelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -175,32 +209,70 @@ impl WKExtension {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidfinishlaunchingnotification?language=objc)
+    /// A message indicating that the launch process finished and the extension is ready to run.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating an app that uses the SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) protocol to manage your life cycle, use the [`onChange(of:perform:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)) modifier and the [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) environment value to monitor life cycle changes when possible. For more information, see [Building a watchOS app](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app).
+    ///
+    ///
     pub static WKApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidbecomeactivenotification?language=objc)
+    /// A message indicating that the watchOS app is visible and processing events.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating an app that uses the SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) protocol to manage your life cycle, use the [`onChange(of:perform:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)) modifier and the [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) environment value to monitor life cycle changes when possible. For more information, see [Building a watchOS app](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app).
+    ///
+    ///
     pub static WKApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationwillresignactivenotification?language=objc)
+    /// A message indicating that the system is about to deactivate the watchOS app.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating an app that uses the SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) protocol to manage your life cycle, use the [`onChange(of:perform:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)) modifier and the [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) environment value to monitor life cycle changes when possible. For more information, see [Building a watchOS app](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app).
+    ///
+    ///
     pub static WKApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationwillenterforegroundnotification?language=objc)
+    /// A message indicating that the watchOS app is about to transition from the background to the foreground.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating an app that uses the SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) protocol to manage your life cycle, use the [`onChange(of:perform:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)) modifier and the [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) environment value to monitor life cycle changes when possible. For more information, see [Building a watchOS app](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app).
+    ///
+    ///
     pub static WKApplicationWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidenterbackgroundnotification?language=objc)
+    /// A message indicating that the watchOS app transitioned from the foreground to the background.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating an app that uses the SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) protocol to manage your life cycle, use the [`onChange(of:perform:)`](https://developer.apple.com/documentation/swiftui/view/onchange(of:perform:)) modifier and the [`scenePhase`](https://developer.apple.com/documentation/swiftui/environmentvalues/scenephase) environment value to monitor life cycle changes when possible. For more information, see [Building a watchOS app](https://developer.apple.com/documentation/watchos-apps/building_a_watchos_app).
+    ///
+    ///
     pub static WKApplicationDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextensiondelegate?language=objc)
+    /// A collection of methods that manages the app-level behavior of a WatchKit extension.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the delegate’s methods to respond to your app’s life-cycle events, such as the activation and deactivation of your app. You can also implement delegate methods to respond to background tasks, Siri intents, workout sessions, or Handoff activity from another devices.
+    ///
+    /// WatchKit creates your delegate object automatically by instantiating the class assigned to the [`WKExtensionDelegateClassName`](https://developer.apple.com/documentation/bundleresources/information-property-list/wkextensiondelegateclassname) key in your WatchKit extension’s `Info.plist` file. By default, this class is named ExtensionDelegate. The system then assigns the delegate object to the [`delegate`](https://developer.apple.com/documentation/watchkit/wkextension/delegate) property of the shared [`WKExtension`](https://developer.apple.com/documentation/watchkit/wkextension) object.
+    ///
+    ///
     pub unsafe trait WKExtensionDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(applicationDidFinishLaunching))]

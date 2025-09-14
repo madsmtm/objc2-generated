@@ -8,19 +8,17 @@ use crate::*;
 
 extern "C" {
     /// The pasteboard type constant used when adding or accessing a WebArchive on the pasteboard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchivepboardtype?language=objc)
+    /// The pasteboard type constant used when adding or accessing a WebArchive on the pasteboard.
     #[deprecated]
     pub static WebArchivePboardType: Option<&'static NSString>;
 }
 
 extern_class!(
+    /// A WebArchive object represents a webpage that can be archived—for example, archived on disk or on the pasteboard. A WebArchive object contains the main resource, as well as the subresources and subframes of the main resource. The main resource can be an entire webpage, a portion of a webpage, or some other kind of data such as an image. Use this class to archive webpages, or place a portion of a webpage on the pasteboard, or to represent rich web content in any application.
     /// WebArchive represents a main resource as well as all the subresources and subframes associated with the main resource.
     /// The main resource can be an entire web page, a portion of a web page, or some other kind of data such as an image.
     /// This class can be used for saving standalone web pages, representing portions of a web page on the pasteboard, or any other
     /// application where one class is needed to represent rich web content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webarchive?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

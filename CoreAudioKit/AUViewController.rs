@@ -14,7 +14,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/auviewcontrollerbase?language=objc)
+/// A type definition that indicates the the platform’s Audio Unit view controller base class.
 #[cfg(feature = "objc2-app-kit")]
 #[cfg(target_os = "macos")]
 pub type AUViewControllerBase = NSViewController;
@@ -109,6 +109,7 @@ impl AUViewController {
 }
 
 extern_class!(
+    /// A configuration object that describes how to present the audio unit’s user interface.
     /// Properties of the configuration that a host uses to embed the view of an audio unit.
     ///
     /// Hosts may support embedding the view of an audio unit in different configurations. These
@@ -117,8 +118,6 @@ extern_class!(
     /// configurations and the audio unit should report the ones which it supports.
     ///
     /// See the documentation for supportedViewConfigurations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/auaudiounitviewconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitViewConfiguration;

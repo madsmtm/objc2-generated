@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipickerviewaccessibilitydelegate?language=objc)
+    /// A set of methods you can implement to provide accessibility information for individual components of a picker view.
     #[cfg(feature = "UIPickerView")]
     pub unsafe trait UIPickerViewAccessibilityDelegate:
         UIPickerViewDelegate + MainThreadOnly
@@ -76,7 +76,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewaccessibilitydelegate?language=objc)
+    /// A set of methods you can implement to provide accessibility information for a scroll view.
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UIScrollViewAccessibilityDelegate:
         UIScrollViewDelegate + MainThreadOnly

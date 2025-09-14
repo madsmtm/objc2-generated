@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiser?language=objc)
+    /// The `MCNearbyServiceAdvertiser` class publishes an advertisement for a specific service that your app provides through the Multipeer Connectivity framework and notifies its delegate about invitations from nearby peers.
+    ///
+    /// ## Overview
+    ///
+    /// Before you can advertise a service, you must create an `MCPeerID` object that identifies your app and the user to nearby devices.
+    ///
+    /// The `serviceType` parameter is a short text string used to describe the app’s networking protocol.  It should be in the same format as a Bonjour service type: 1–15 characters long and valid characters include ASCII lowercase letters, numbers, and the hyphen, containing at least one letter and no adjacent hyphens.  A short name that distinguishes itself from unrelated services is recommended; for example, a text chat app made by ABC company could use the service type `"abc-txtchat"`. For more information about service types, read [Domain Naming Conventions](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NetServices/Articles/domainnames.html#//apple_ref/doc/uid/TP40002460).
+    ///
+    /// The `discoveryInfo` parameter is a dictionary of string key/value pairs that will be advertised for browsers to see.  The content of `discoveryInfo` will be advertised within Bonjour TXT records, so you should keep the dictionary small for better discovery performance.
+    ///
+    /// For more information about TXT records, read [Bonjour Operations](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NetServices/Articles/NetServicesArchitecture.html#//apple_ref/doc/uid/20001074).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCNearbyServiceAdvertiser;
@@ -83,7 +95,13 @@ impl MCNearbyServiceAdvertiser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiserdelegate?language=objc)
+    /// The `MCNearbyServiceAdvertiserDelegate` protocol describes the methods that the delegate object for an `MCNearbyServiceAdvertiser` instance can implement for handling events from the `MCNearbyServiceAdvertiser` class.
+    ///
+    /// ## Overview
+    ///
+    /// No assumption should be made about which queue the delegate methods are called on. It is the receiver’s responsibility to ensure that any `UIKit` updates are called on the main thread.
+    ///
+    ///
     pub unsafe trait MCNearbyServiceAdvertiserDelegate: NSObjectProtocol {
         #[cfg(all(feature = "MCPeerID", feature = "MCSession", feature = "block2"))]
         #[unsafe(method(advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:))]

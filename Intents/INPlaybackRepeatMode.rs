@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode?language=objc)
+/// The possible repeat modes at the time the user plays the media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlaybackRepeatMode(pub NSInteger);
 impl INPlaybackRepeatMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/unknown?language=objc)
+    /// Unknown repeat mode.
     #[doc(alias = "INPlaybackRepeatModeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/none?language=objc)
+    /// A mode that doesn’t repeat media items.
     #[doc(alias = "INPlaybackRepeatModeNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/all?language=objc)
+    /// A mode that repeats all media items within a media container.
     #[doc(alias = "INPlaybackRepeatModeAll")]
     pub const All: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackrepeatmode/one?language=objc)
+    /// A mode that repeats the current media item within a media container.
     #[doc(alias = "INPlaybackRepeatModeOne")]
     pub const One: Self = Self(3);
 }

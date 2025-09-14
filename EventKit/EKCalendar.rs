@@ -13,9 +13,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The EKCalendar class represents a calendar for events.
+    /// A class that represents a calendar in EventKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendar?language=objc)
+    /// ## Overview
+    ///
+    /// Use the properties in this class to get attributes about a calendar, such as its title and type. Use the [`calendarForEntityType:eventStore:`](https://developer.apple.com/documentation/eventkit/ekcalendar/init(for:eventstore:)) method to create a calendar object.
+    ///
+    ///
+    /// The EKCalendar class represents a calendar for events.
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

@@ -9,47 +9,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The actions Apple Pencil can perform after a person performs a double tap or squeeze.
 /// Preferred actions available to the user in Settings.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPencilPreferredAction(pub NSInteger);
 impl UIPencilPreferredAction {
-    /// No action, or the user has disabled pencil interactions in Accessibility settings
+    /// An action that does nothing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/ignore?language=objc)
+    /// ## Discussion
+    ///
+    /// The system returns this action if any of the following conditions are true:
+    ///
+    /// - The Apple Pencil doesn’t have a configured preferred action.
+    ///
+    /// - The iPad’s accessibility settings disable Apple Pencil interactions.
+    ///
+    ///
+    /// No action, or the user has disabled pencil interactions in Accessibility settings
     #[doc(alias = "UIPencilPreferredActionIgnore")]
     pub const Ignore: Self = Self(0);
+    /// An action that switches between the current tool and the eraser.
     /// Switch between the current tool and eraser
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/switcheraser?language=objc)
     #[doc(alias = "UIPencilPreferredActionSwitchEraser")]
     pub const SwitchEraser: Self = Self(1);
+    /// An action that switches between the current tool and the last used tool.
     /// Switch between the current tool and the previously used tool
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/switchprevious?language=objc)
     #[doc(alias = "UIPencilPreferredActionSwitchPrevious")]
     pub const SwitchPrevious: Self = Self(2);
+    /// An action that toggles the display of the color palette.
     /// Show and hide the color palette
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showcolorpalette?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowColorPalette")]
     pub const ShowColorPalette: Self = Self(3);
+    /// An action that toggles the display of the selected tool’s ink attributes.
     /// Show the ink attributes palette
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showinkattributes?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowInkAttributes")]
     pub const ShowInkAttributes: Self = Self(4);
+    /// An action that toggles shows a contextual palette of markup tools, or undo and redo options if tools aren’t available.
     /// Show a contextual palette of markup tools, or undo/redo options if tools are not available
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/showcontextualpalette?language=objc)
     #[doc(alias = "UIPencilPreferredActionShowContextualPalette")]
     pub const ShowContextualPalette: Self = Self(5);
+    /// An action that runs a system shortcut.
     /// The user has selected a system shortcut to run
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction/runsystemshortcut?language=objc)
     #[doc(alias = "UIPencilPreferredActionRunSystemShortcut")]
     pub const RunSystemShortcut: Self = Self(6);
 }
@@ -62,34 +64,25 @@ unsafe impl RefEncode for UIPencilPreferredAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that describe the phases of an interaction on Apple Pencil.
 /// The phase of an interaction gesture performed on the pencil.
 ///
 /// If the gesture is discrete, the phase will be ``UIPencilInteractionPhaseEnded``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPencilInteractionPhase(pub NSUInteger);
 impl UIPencilInteractionPhase {
     /// A continuous gesture on the pencil began
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/began?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseBegan")]
     pub const Began: Self = Self(0);
     /// A continuous gesture on the pencil changed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/changed?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseChanged")]
     pub const Changed: Self = Self(1);
     /// A continuous gesture on the pencil ended, or a discrete gesture on the pencil recognized
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/ended?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseEnded")]
     pub const Ended: Self = Self(2);
     /// A continuous gesture on the pencil was cancelled
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase/cancelled?language=objc)
     #[doc(alias = "UIPencilInteractionPhaseCancelled")]
     pub const Cancelled: Self = Self(3);
 }
@@ -103,7 +96,15 @@ unsafe impl RefEncode for UIPencilInteractionPhase {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction?language=objc)
+    /// An interaction that tells your app when a person double-taps or squeezes Apple Pencil.
+    ///
+    /// ## Overview
+    ///
+    /// People can interact with certain models of Apple Pencil with a double tap or squeeze. To detect the double tap or squeeze in your app, create a [`UIPencilInteraction`](https://developer.apple.com/documentation/uikit/uipencilinteraction) object with a corresponding [`delegate`](https://developer.apple.com/documentation/uikit/uipencilinteraction/delegate) object. Then, add the interaction to your app’s view. When a person double-taps or squeezes Apple Pencil, the interaction calls the delegate’s corresponding [`pencilInteraction:didReceiveTap:`](https://developer.apple.com/documentation/uikit/uipencilinteractiondelegate/pencilinteraction(_:didreceivetap:)) or [`pencilInteraction:didReceiveSqueeze:`](https://developer.apple.com/documentation/uikit/uipencilinteractiondelegate/pencilinteraction(_:didreceivesqueeze:)) method.
+    ///
+    /// For more information, read [Handling double taps from Apple Pencil](https://developer.apple.com/documentation/applepencil/handling-double-taps-from-apple-pencil) and [Handling squeezes from Apple Pencil](https://developer.apple.com/documentation/applepencil/handling-squeezes-from-apple-pencil).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -191,9 +192,29 @@ impl UIPencilInteraction {
 }
 
 extern_class!(
-    /// An object that describes the hover pose of the pencil while performing a gesture on the pencil
+    /// An object that describes the hover pose of Apple Pencil during an interaction like double tap or squeeze.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilhoverpose?language=objc)
+    /// ## Overview
+    ///
+    /// Use the hover pose of Apple Pencil to support more complex interactions in response to a double tap or squeeze. Information about the hover pose — such as azimuth, altitude, and hover distance — is available when a person holds a supported model of Apple Pencil close to the screen during a double tap or squeeze.
+    ///
+    /// The following code example shows how to use the [`location`](https://developer.apple.com/documentation/uikit/uipencilhoverpose/location) of a hover pose to present a contextual palette near the tip of Apple Pencil.
+    ///
+    /// ```swift
+    /// func pencilInteraction(_ interaction: UIPencilInteraction,
+    ///                        didReceiveSqueeze squeeze: UIPencilInteraction.Squeeze) {
+    ///     let preferredAction = UIPencilInteraction.preferredSqueezeAction
+    ///     
+    ///     if preferredAction == .showContextualPalette, squeeze.phase == .ended {
+    ///         if let anchorPoint = squeeze.hoverPose?.location {
+    ///             presentContextualPalette(atLocation: anchorPoint)
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
+    /// An object that describes the hover pose of the pencil while performing a gesture on the pencil
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -256,9 +277,8 @@ impl UIPencilHoverPose {
 }
 
 extern_class!(
+    /// An interaction that represents a double tap on Apple Pencil.
     /// An object that describes a tap performed on the pencil
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/tap?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -292,9 +312,8 @@ impl UIPencilInteractionTap {
 }
 
 extern_class!(
+    /// An interaction that represents a squeeze on Apple Pencil.
     /// An object that describes a squeeze performed on the pencil
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/squeeze?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -333,7 +352,7 @@ impl UIPencilInteractionSqueeze {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiondelegate?language=objc)
+    /// The interface an object implements to handle double taps or squeezes a person makes on Apple Pencil.
     pub unsafe trait UIPencilInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         /// Called when the user taps on the side of the pencil if the interaction's view is in a visible view hierarchy.
         ///

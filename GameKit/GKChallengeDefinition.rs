@@ -11,7 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengedefinition?language=objc)
+    /// An object that represents the static metadata you define for the challenge.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKChallengeDefinition;

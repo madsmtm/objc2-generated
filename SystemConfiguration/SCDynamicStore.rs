@@ -12,10 +12,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The handle to an open dynamic store session with the system configuration daemon.
 /// This is the handle to an open a dynamic store session
 /// with the system configuration daemon.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstore?language=objc)
 #[doc(alias = "SCDynamicStoreRef")]
 #[repr(C)]
 pub struct SCDynamicStore {
@@ -31,6 +30,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCDynamicStore"> for SCDynamicStore {}
 );
 
+/// Structure containing user-specified data and callbacks for a dynamic store session.
 /// Structure containing user-specified data and callbacks for an
 /// SCDynamicStore session.
 /// Field: version The version number of the structure type being passed
@@ -46,8 +46,6 @@ cf_objc2_type!(
 /// The value may be NULL.
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -78,6 +76,7 @@ unsafe impl RefEncode for SCDynamicStoreContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Callback used when notification of changes made to the dynamic store is delivered.
 /// Type of callback function used when notification of
 /// changes to the dynamic store is delivered.
 ///
@@ -97,15 +96,18 @@ unsafe impl RefEncode for SCDynamicStoreContext {
 ///
 ///
 /// Parameter `info`: A C pointer to a user-specified block of data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecallback?language=objc)
 pub type SCDynamicStoreCallBack =
     Option<unsafe extern "C-unwind" fn(NonNull<SCDynamicStore>, NonNull<CFArray>, *mut c_void)>;
 
 unsafe impl ConcreteType for SCDynamicStore {
-    /// Returns the type identifier of all SCDynamicStore instances.
+    /// Returns the type identifier of all `SCDynamicStore` instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoregettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of all `SCDynamicStore` instances.
+    ///
+    ///
+    /// Returns the type identifier of all SCDynamicStore instances.
     #[doc(alias = "SCDynamicStoreGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -117,6 +119,23 @@ unsafe impl ConcreteType for SCDynamicStore {
 }
 
 impl SCDynamicStore {
+    /// Creates a new session used to interact with the dynamic store maintained by the System Configuration server.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for the local dynamic store object. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - name: The name of the calling process or plug-in of the caller.
+    ///
+    /// - callout: The function to be called when a watched value in the dynamic store is changed. Pass `NULL` if no callouts are desired.
+    ///
+    /// - context: The context associated with the callout. See [`SCDynamicStoreContext`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecontext) for more information about this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the new dynamic store session. You must release the returned value.
+    ///
+    ///
     /// Creates a new session used to interact with the dynamic
     /// store maintained by the System Configuration server.
     ///
@@ -143,8 +162,6 @@ impl SCDynamicStore {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreate")]
     #[inline]
     pub unsafe fn new(
@@ -165,6 +182,28 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new session used to interact with the dynamic store maintained by the System Configuration server.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for the local dynamic store object. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - name: The name of the calling process or plug-in of the caller.
+    ///
+    /// - storeOptions: A dictionary of options for the dynamic store session (such as whether all keys added or set into the dynamic store should be per-session keys). Pass `NULL` if no options are desired.
+    ///
+    /// Currently, the available options are:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/kSCDynamicStoreUseSessionKeys", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "CFBooleanRef" }] }]]], alignments: None, metadata: None })
+    /// - callout: The function to be called when a watched value in the dynamic store is changed. Pass `NULL` if no callouts are desired.
+    ///
+    /// - context: The context associated with the callout. See [`SCDynamicStoreContext`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecontext) for more information about this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the new dynamic store session. You must release the returned value.
+    ///
+    ///
     /// Creates a new session used to interact with the dynamic
     /// store maintained by the System Configuration server.
     ///
@@ -230,8 +269,6 @@ impl SCDynamicStore {
     /// - `store_options` generic must be of the correct type.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreatewithoptions(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
     #[inline]
     pub unsafe fn with_options(
@@ -258,11 +295,32 @@ impl SCDynamicStore {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscdynamicstoreusesessionkeys?language=objc)
+    /// All keys added or set into the dynamic store should be per-session keys.
     pub static kSCDynamicStoreUseSessionKeys: &'static CFString;
 }
 
 impl SCDynamicStore {
+    /// Creates a run loop source object that can be added to the application’s run loop.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for the run loop source. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - store: The dynamic store session.
+    ///
+    /// - order: The order in which the sources that are ready to be processed are handled, on platforms that support it and for source versions that support it. A source with a lower order number is processed before a source with a higher order number. It is inadvisable to depend on the order number for any architectural or design aspect of code. In the absence of any reason to do otherwise, pass `0` for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new run loop source object. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that all dynamic store notifications are delivered using the run loop source this function returns.
+    ///
+    ///
     /// Creates a CFRunLoopSource object that can be added to the
     /// application's run loop.  All dynamic store notifications are
     /// delivered using this run loop source.
@@ -286,8 +344,6 @@ impl SCDynamicStore {
     ///
     /// Returns: A reference to the new CFRunLoopSource.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecreaterunloopsource(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCreateRunLoopSource")]
     #[inline]
     pub fn new_run_loop_source(
@@ -306,6 +362,19 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Initiates notifications for the notification keys, using the specified dispatch queue for the callback.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - queue: The dispatch queue on which to run the callback function. Pass `NULL` to disable notifications and release the queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if notifications were successfully initiated; otherwise, `FALSE`.
+    ///
+    ///
     /// Initiates notifications for the Notification
     /// Keys in store to the callback contained in store.
     ///
@@ -319,8 +388,6 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -335,6 +402,19 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Returns the keys that represent the current dynamic store entries that match the specified pattern.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - pattern: A regex(3) regular expression pattern used to match the dynamic store keys.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of matching keys, or `NULL` if an error occurred. You must release the returned value.
+    ///
+    ///
     /// Returns an array of CFString keys representing the
     /// current dynamic store entries that match a specified pattern.
     ///
@@ -346,8 +426,6 @@ impl SCDynamicStore {
     /// Returns: Returns the list of matching keys; NULL if an error was
     /// encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopykeylist(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyKeyList")]
     #[inline]
     pub fn key_list(
@@ -364,6 +442,21 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Adds the specified key-value pair to the dynamic store, if no such key already exists.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key of the value to add to the dynamic store.
+    ///
+    /// - value: The value to add to the dynamic store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the key was added; `FALSE` if the key was already present in the dynamic store or if an error occurred.
+    ///
+    ///
     /// Adds the key-value pair to the dynamic store if no
     /// such key already exists.
     ///
@@ -379,8 +472,6 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreAddValue")]
     #[inline]
     pub unsafe fn add_value(
@@ -399,6 +490,27 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Temporarily adds the specified key-value pair to the dynamic store, if no such key already exists.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key of the value to add to the dynamic store.
+    ///
+    /// - value: The value to add to the dynamic store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the key was added; `FALSE` if the key was already present in the dynamic store or if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unless the key is updated by another session, the key-value pair added by this function is removed automatically when the session is closed.
+    ///
+    ///
     /// Temporarily adds the key-value pair to the dynamic store
     /// if no such key already exists.  Unless the key is updated by another
     /// session, the key-value pair will be removed automatically when the
@@ -416,8 +528,6 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreaddtemporaryvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreAddTemporaryValue")]
     #[inline]
     pub unsafe fn add_temporary_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -432,6 +542,19 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Returns the value associated with the specified key.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key associated with the desired value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value associated with the specified key, or `NULL` if no value was located or if an error occurred. You must release the returned value.
+    ///
+    ///
     /// Gets the value of the specified key from the dynamic store.
     ///
     /// Parameter `store`: The dynamic store session.
@@ -441,8 +564,6 @@ impl SCDynamicStore {
     /// Returns: Returns the value from the dynamic store that is associated with the given
     /// key; NULL if no value was located or an error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyvalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyValue")]
     #[inline]
     pub fn value(
@@ -459,6 +580,21 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the key-value pairs that match the specified keys and key patterns.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - keys: The keys associated with the desired values or `NULL` if no specific keys are requested.
+    ///
+    /// - patterns: An array of regex(3) pattern strings used to match the keys, or `NULL` if no key patterns are requested.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary of key-value pairs that match the specified keys and key patterns, or `NULL` if an error occurred. You must release the returned value.
+    ///
+    ///
     /// Gets the values of multiple keys in the dynamic store.
     ///
     /// Parameter `store`: The dynamic store session.
@@ -478,8 +614,6 @@ impl SCDynamicStore {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `patterns` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopymultiple(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyMultiple")]
     #[inline]
     pub unsafe fn multiple(
@@ -498,6 +632,21 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Adds or replaces a value in the dynamic store for the specified key.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key associated with the value.
+    ///
+    /// - value: The value to add to or replace in the dynamic store.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the key was updated; otherwise, `FALSE`.
+    ///
+    ///
     /// Adds or replaces a value in the dynamic store for
     /// the specified key.
     ///
@@ -512,8 +661,6 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetValue")]
     #[inline]
     pub unsafe fn set_value(
@@ -534,6 +681,23 @@ impl SCDynamicStore {
 
     /// Updates multiple values in the dynamic store.
     ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - keysToSet: A dictionary of key-value pairs to add to the dynamic store.
+    ///
+    /// - keysToRemove: An array of keys to remove from the dynamic store.
+    ///
+    /// - keysToNotify: An array of keys to flag as changed (without changing their values).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the dynamic store updates were successful; otherwise, `FALSE`.
+    ///
+    ///
+    /// Updates multiple values in the dynamic store.
+    ///
     /// Parameter `store`: The dynamic store session.
     ///
     /// Parameter `keysToSet`: A dictionary of key-value pairs you want to set into the dynamic store.
@@ -550,8 +714,6 @@ impl SCDynamicStore {
     /// - `keys_to_set` generic must be of the correct type.
     /// - `keys_to_remove` generic must be of the correct type.
     /// - `keys_to_notify` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetmultiple(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetMultiple")]
     #[inline]
     pub unsafe fn set_multiple(
@@ -574,6 +736,19 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Removes the value of the specified key from the dynamic store.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key of the value to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the key was removed; `FALSE` if no value was located or an error occurred.
+    ///
+    ///
     /// Removes the value of the specified key from the
     /// dynamic store.
     ///
@@ -583,8 +758,6 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the key was removed; FALSE if no value was
     /// located or an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoreremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreRemoveValue")]
     #[inline]
     pub fn remove_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
@@ -596,6 +769,19 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Causes a notification to be delivered for the specified key in the dynamic store.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    /// - key: The key that should be flagged as changed. All dynamic store sessions that are monitoring this key will receive a notification. Note that the key’s value is not updated.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notification was processed; `FALSE` if an error occurred.
+    ///
+    ///
     /// Triggers a notification to be delivered for the
     /// specified key in the dynamic store.
     ///
@@ -606,8 +792,6 @@ impl SCDynamicStore {
     /// key's value is not updated.
     ///
     /// Returns: Returns TRUE if the notification was processed; FALSE if an error was encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorenotifyvalue(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreNotifyValue")]
     #[inline]
     pub fn notify_value(store: Option<&SCDynamicStore>, key: &CFString) -> bool {
@@ -619,6 +803,21 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Specifies a set of keys and key patterns that should be monitored for changes.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session being watched.
+    ///
+    /// - keys: An array of keys to be monitored or `NULL` if no specific keys are to be monitored.
+    ///
+    /// - patterns: An array of regex(3) pattern strings used to match keys to be monitored or `NULL` if no key patterns are to be monitored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the set of notification keys and patterns was successfully updated; otherwise, `FALSE`.
+    ///
+    ///
     /// Specifies a set of specific keys and key patterns
     /// that should be monitored for changes.
     ///
@@ -637,8 +836,6 @@ impl SCDynamicStore {
     ///
     /// - `keys` generic must be of the correct type.
     /// - `patterns` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
     #[inline]
     pub unsafe fn set_notification_keys(
@@ -657,6 +854,23 @@ impl SCDynamicStore {
         ret != 0
     }
 
+    /// Returns the keys that have changed since the last call to this function.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The keys that have changed, or `NULL` if an error occurred. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If possible, your application should use the notification functions instead of polling for the list of changed keys returned by this function.
+    ///
+    ///
     /// Returns an array of CFString keys representing the
     /// dynamic store entries that have changed since this
     /// function was last called.  If possible, your application should
@@ -668,8 +882,6 @@ impl SCDynamicStore {
     /// Returns: Returns the list of changed keys;
     /// NULL if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopynotifiedkeys(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
     #[inline]
     pub fn notified_keys(&self) -> Option<CFRetained<CFArray>> {

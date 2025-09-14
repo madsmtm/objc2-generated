@@ -8,6 +8,37 @@ use crate::*;
 extern "C-unwind" {
     /// Creates a clock that advances at the same rate as audio output.
     ///
+    /// Parameters:
+    /// - allocator: Allocator for the new clock; pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) or `nil` to use the default allocator.
+    ///
+    /// - clockOut: Upon return, a pointer to the newly created clock.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This clock doesn’t drift from audio output, but may drift from [`CMClockGetHostTimeClock`](https://developer.apple.com/documentation/coremedia/cmclockgethosttimeclock()). When audio output is completely stopped, the clock continues to advance, tracking `CMClockGetHostTimeClock` until audio output starts up again.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In Objective-C, you’re responsible for calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release the returned `clockOut`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can use this clock as the [`sourceClock`](https://developer.apple.com/documentation/avfoundation/avplayer/sourceclock) of an [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) instance when synchronizing video-only playback with audio played through other APIs or objects.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For Mac apps built with Mac Catalyst, use [`CMAudioDeviceClockCreate`](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclockcreate(allocator:deviceuid:clockout:)) or [`CMAudioDeviceClockCreateFromAudioDeviceID`](https://developer.apple.com/documentation/coremedia/cmaudiodeviceclockcreatefromaudiodeviceid(allocator:deviceid:clockout:)) to target a specific, nondefault audio device.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Creates a clock that advances at the same rate as audio output.
+    ///
     /// This clock will not drift from audio output, but may drift from CMClockGetHostTimeClock().
     /// When audio output is completely stopped, the clock continues to advance, tracking CMClockGetHostTimeClock()
     /// until audio output starts up again.
@@ -23,8 +54,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `clock_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmaudioclockcreate(allocator:clockout:)?language=objc)
     #[cfg(feature = "CMSync")]
     pub fn CMAudioClockCreate(
         allocator: Option<&CFAllocator>,

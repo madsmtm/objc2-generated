@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentpayerunsupportedreason?language=objc)
+/// Constants indicating the reason for being unable to resolve the provider of the funds.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INRequestPaymentPayerUnsupportedReason(pub NSInteger);
 impl INRequestPaymentPayerUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentpayerunsupportedreason/credentialsunverified?language=objc)
+    /// The payer’s credentials are unverifiable.
     #[doc(alias = "INRequestPaymentPayerUnsupportedReasonCredentialsUnverified")]
     pub const CredentialsUnverified: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentpayerunsupportedreason/noaccount?language=objc)
+    /// The payer does not have an account in your app.
     #[doc(alias = "INRequestPaymentPayerUnsupportedReasonNoAccount")]
     pub const NoAccount: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentpayerunsupportedreason/novalidhandle?language=objc)
+    /// The unique handle that you use to identify the payer is invalid or missing.
     #[doc(alias = "INRequestPaymentPayerUnsupportedReasonNoValidHandle")]
     pub const NoValidHandle: Self = Self(3);
 }
@@ -32,7 +32,15 @@ unsafe impl RefEncode for INRequestPaymentPayerUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentpayerresolutionresult?language=objc)
+    /// A resolution result for the person making the payment.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRequestPaymentPayerResolutionResult`](https://developer.apple.com/documentation/intents/inrequestpaymentpayerresolutionresult) object is what you return when resolving parameters containing an [`INPerson`](https://developer.apple.com/documentation/intents/inperson) object. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution options, see [`INPersonResolutionResult`](https://developer.apple.com/documentation/intents/inpersonresolutionresult) and [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INPersonResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

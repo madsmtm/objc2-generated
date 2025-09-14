@@ -9,9 +9,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A type that represents the radius the system uses to round a corner.
     /// Represents a radius used to round a corner.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerradius-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICornerRadius;

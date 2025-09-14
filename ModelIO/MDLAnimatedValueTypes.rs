@@ -7,16 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalueinterpolation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLAnimatedValueInterpolation(pub NSUInteger);
 impl MDLAnimatedValueInterpolation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalueinterpolation/constant?language=objc)
     #[doc(alias = "MDLAnimatedValueInterpolationConstant")]
     pub const Constant: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalueinterpolation/linear?language=objc)
     #[doc(alias = "MDLAnimatedValueInterpolationLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -30,7 +27,6 @@ unsafe impl RefEncode for MDLAnimatedValueInterpolation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedValue;
@@ -116,8 +112,6 @@ impl MDLAnimatedValue {
 
 extern_class!(
     /// AUTO-GENERATED FROM CodeGenArray.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedscalararray?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedScalarArray;
@@ -262,7 +256,6 @@ impl MDLAnimatedScalarArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector3array?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedVector3Array;
@@ -309,7 +302,6 @@ impl MDLAnimatedVector3Array {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedquaternionarray?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedQuaternionArray;
@@ -357,8 +349,6 @@ impl MDLAnimatedQuaternionArray {
 
 extern_class!(
     /// AUTO-GENERATED FROM CodeGen.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedscalar?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedScalar;
@@ -458,7 +448,6 @@ impl MDLAnimatedScalar {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector2?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedVector2;
@@ -494,7 +483,6 @@ impl MDLAnimatedVector2 {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector3?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedVector3;
@@ -530,7 +518,6 @@ impl MDLAnimatedVector3 {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedvector4?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedVector4;
@@ -566,7 +553,6 @@ impl MDLAnimatedVector4 {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedquaternion?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedQuaternion;
@@ -602,7 +588,6 @@ impl MDLAnimatedQuaternion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimatedmatrix4x4?language=objc)
     #[unsafe(super(MDLAnimatedValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimatedMatrix4x4;

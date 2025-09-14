@@ -7,33 +7,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/coreaudiotypes_version?language=objc)
+/// A value that represents the Core Audio Types version.
 pub const COREAUDIOTYPES_VERSION: c_uint = 20211130;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_noerror?language=objc)
 pub const kAudio_NoError: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_unimplementederror?language=objc)
+/// An error that indicates the app called an unimplemented system function.
 pub const kAudio_UnimplementedError: OSStatus = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filenotfounderror?language=objc)
+/// An error that indicates the file wasn’t found.
 pub const kAudio_FileNotFoundError: OSStatus = -43;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_filepermissionerror?language=objc)
 pub const kAudio_FilePermissionError: OSStatus = -54;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_toomanyfilesopenerror?language=objc)
 pub const kAudio_TooManyFilesOpenError: OSStatus = -42;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_badfilepatherror?language=objc)
 pub const kAudio_BadFilePathError: OSStatus = 0x21707468;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_paramerror?language=objc)
+/// An error in the parameter list of the function.
 pub const kAudio_ParamError: OSStatus = -50;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_memfullerror?language=objc)
+/// An error that indicates that the heap zone is full.
 pub const kAudio_MemFullError: OSStatus = -108;
 
+/// A structure that represents a continuous range of values.
 /// This structure holds a pair of numbers that represent a continuous range of
 /// values.
 ///
 /// The minimum value.
 ///
 /// The maximum value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiovaluerange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioValueRange {
@@ -52,6 +47,7 @@ unsafe impl RefEncode for AudioValueRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that stores buffers to use in translation operations.
 /// This stucture holds the buffers necessary for translation operations.
 ///
 /// The buffer containing the data to be translated.
@@ -61,8 +57,6 @@ unsafe impl RefEncode for AudioValueRange {
 /// The buffer to hold the result of the translation.
 ///
 /// The number of bytes in the buffer pointed at by mOutputData.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiovaluetranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioValueTranslation {
@@ -90,6 +84,25 @@ unsafe impl RefEncode for AudioValueTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that holds a buffer of audio data.
+///
+/// ## Overview
+///
+/// An audio buffer holds a single buffer of audio data in its [`mData`](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer/mdata) field. The buffer can represent two types of audio:
+///
+/// - A single, monophonic, noninterleaved channel of audio
+///
+/// - Interleaved audio with the number of channels set by the [`mNumberChannels`](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer/mnumberchannels) field
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The [`mDataByteSize`](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdescription/mdatabytesize) and [`mNumberChannels`](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer/mnumberchannels) parameters needs to match the memory layout of [`mData`](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer/mdata), so update the size and number of channels when you update the data field.
+///
+///
+///
+/// </div>
+///
 /// A structure to hold a buffer of audio data.
 ///
 /// The number of interleaved channels in the buffer.
@@ -97,8 +110,6 @@ unsafe impl RefEncode for AudioValueTranslation {
 /// The number of bytes in the buffer pointed at by mData.
 ///
 /// A pointer to the buffer of audio data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBuffer {
@@ -120,13 +131,12 @@ unsafe impl RefEncode for AudioBuffer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that stores a variable-length array of audio buffers.
 /// A variable length array of AudioBuffer structures.
 ///
 /// The number of AudioBuffers in the mBuffers array.
 ///
 /// A variable length array of AudioBuffers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBufferList {
@@ -147,16 +157,49 @@ unsafe impl RefEncode for AudioBufferList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type definition for audio format identifiers.
 /// A four char code indicating the general kind of data in the stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatid?language=objc)
 pub type AudioFormatID = u32;
 
+/// A type definition for audio format flags.
 /// Flags that are specific to each format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatflags?language=objc)
 pub type AudioFormatFlags = u32;
 
+/// A format specification for an audio stream.
+///
+/// ## Overview
+///
+/// You can configure an audio stream basic description (ASBD) to specify a linear PCM format or a constant bit rate (CBR) format that has channels of equal size. For variable bit rate (VBR) audio, and for CBR audio where the channels have unequal sizes, also use an [`AudioStreamPacketDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdescription) structure to additionally describe each packet.
+///
+/// A field value of `0` indicates that the value is either unknown or not applicable to the format.
+///
+/// Always initialize the fields of a new audio stream basic description structure to `0`, as the example below shows:
+///
+/// ```objc
+/// AudioStreamBasicDescription myAudioDataFormat = {0};
+/// ```
+///
+/// To determine the duration that one packet represents, use the [`mSampleRate`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/msamplerate) field with the [`mFramesPerPacket`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/mframesperpacket) field, as follows:
+///
+/// ```objc
+/// duration = (1 / mSampleRate) * mFramesPerPacket
+/// ```
+///
+/// In Core Audio, the following definitions apply:
+///
+/// - An _audio stream_ is a continuous series of data that represents a sound, such as a song.
+///
+/// - A _channel_ is a discrete track of monophonic audio. A monophonic stream has one channel; a stereo stream has two channels.
+///
+/// - A _sample_ is single numerical value for a single audio channel in an audio stream.
+///
+/// - A _frame_ is a collection of time-coincident samples. For instance, a linear PCM stereo sound file has two samples per frame, one for the left channel and one for the right channel.
+///
+/// - A _packet_ is a collection of one or more contiguous frames. A packet defines the smallest meaningful set of frames for a given audio data format, and is the smallest data unit for which time can be measured. In linear PCM audio, a packet holds a single frame. In compressed formats, it typically holds more frames. In some formats, the number of frames per packet varies.
+///
+/// - The _sample rate_ for a stream is the number of frames per second of uncompressed audio, or, for compressed formats, the equivalent in decompressed audio.
+///
+///
 /// This structure encapsulates all the information for describing the basic
 /// format properties of a stream of audio data.
 ///
@@ -194,8 +237,6 @@ pub type AudioFormatFlags = u32;
 /// The number of bits of sample data for each channel in a frame of data.
 ///
 /// Pads the structure out to force an even 8 byte alignment.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamBasicDescription {
@@ -233,147 +274,308 @@ unsafe impl RefEncode for AudioStreamBasicDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value that indicates that an audio stream can use any sample rate.
 /// The format can use any sample rate. Note that this constant can only appear
 /// in listings of supported formats. It will never appear in a current format.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiostreamanyrate?language=objc)
 pub static kAudioStreamAnyRate: f64 = 0.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatlinearpcm?language=objc)
+/// A key that specifies the linear PCM codec, and uses the standard flags.
+///
+/// ## Discussion
+///
+/// The Linear PCM codec is a noncompressed audio data format with one frame per packet.
+///
+///
 pub const kAudioFormatLinearPCM: AudioFormatID = 0x6c70636d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatac3?language=objc)
+/// A key that specifies the AC-3 codec, and uses no flags.
 pub const kAudioFormatAC3: AudioFormatID = 0x61632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformat60958ac3?language=objc)
+/// A key that specifies the AC-3 codec, which provides data packaged for transport over an IEC 60958-compliant digital audio interface, and uses standard flags.
 pub const kAudioFormat60958AC3: AudioFormatID = 0x63616333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatappleima4?language=objc)
+/// A key that specifies Apple’s implementation of the IMA 4:1 ADPCM codec, and uses no flags.
 pub const kAudioFormatAppleIMA4: AudioFormatID = 0x696d6134;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac?language=objc)
+/// A key that specifies the MPEG-4 AAC Low Complexity codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC: AudioFormatID = 0x61616320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4celp?language=objc)
+/// A key that specifies the MPEG-4 CELP codec, and uses flags to indicate the specific kind of data.
 pub const kAudioFormatMPEG4CELP: AudioFormatID = 0x63656c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4hvxc?language=objc)
+/// A key that specifies the MPEG-4 HVXC codec, and uses no flags.
 pub const kAudioFormatMPEG4HVXC: AudioFormatID = 0x68767863;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4twinvq?language=objc)
+/// A key that specifies the MPEG-4 TwinVQ codec, and uses no flags.
 pub const kAudioFormatMPEG4TwinVQ: AudioFormatID = 0x74777671;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace3?language=objc)
+/// A key that specifies the MACE 3:1 codec, and uses no flags.
 pub const kAudioFormatMACE3: AudioFormatID = 0x4d414333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmace6?language=objc)
+/// A key that specifies the MACE C:1 codec, and uses no flags.
 pub const kAudioFormatMACE6: AudioFormatID = 0x4d414336;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatulaw?language=objc)
+/// A key that specifies the μ-Law 2:1 codec, and uses no flags.
 pub const kAudioFormatULaw: AudioFormatID = 0x756c6177;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatalaw?language=objc)
+/// A key that specifies the A-law 2:1 codec, and uses no flags.
 pub const kAudioFormatALaw: AudioFormatID = 0x616c6177;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign?language=objc)
+/// A key that specifies the QDesign music codec, and uses no flags.
 pub const kAudioFormatQDesign: AudioFormatID = 0x51444d43;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqdesign2?language=objc)
+/// A key that specifies the QDesign 2 music codec, and uses no flags.
 pub const kAudioFormatQDesign2: AudioFormatID = 0x51444d32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatqualcomm?language=objc)
+/// A key that specifies the Qualcomm PureVoice codec, and uses no flags.
 pub const kAudioFormatQUALCOMM: AudioFormatID = 0x51636c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer1?language=objc)
+/// A key that specifies the MPEG-1/2, Layer I audio codec, and uses no flags.
 pub const kAudioFormatMPEGLayer1: AudioFormatID = 0x2e6d7031;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer2?language=objc)
+/// A key that specifies the MPEG-1/2, Layer II audio codec, and uses no flags.
 pub const kAudioFormatMPEGLayer2: AudioFormatID = 0x2e6d7032;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeglayer3?language=objc)
+/// A key that specifies the MPEG-1/2, Layer III audio codec, and uses no flags.
 pub const kAudioFormatMPEGLayer3: AudioFormatID = 0x2e6d7033;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformattimecode?language=objc)
+/// A key that specifies the A stream of audio timestamp structures, and uses audio timestamp flags.
+///
+/// ## Discussion
+///
+/// Uses the [`IOAudioTimeStamp`](https://developer.apple.com/documentation/iokit/ioaudiotimestamp) flags. For more information, see [`mFlags`](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp/mflags).
+///
+///
 pub const kAudioFormatTimeCode: AudioFormatID = 0x74696d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmidistream?language=objc)
+/// A key that specifies the MIDI stream codec, and uses no flags.
+///
+/// ## Discussion
+///
+/// This codec contains a stream of [`MIDIPacketList`](https://developer.apple.com/documentation/coremidi/midipacketlist) structures where the time stamps are sample offsets in the stream. The [`mSampleRate`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/msamplerate) field describes how time passes in this stream. An audio unit that receives or generates this stream can use this sample rate, the number of frames it’s rendering, and the sample offsets within the [`MIDIPacketList`](https://developer.apple.com/documentation/coremidi/midipacketlist) to define the time for any MIDI event within this list.
+///
+///
 pub const kAudioFormatMIDIStream: AudioFormatID = 0x6d696469;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatparametervaluestream?language=objc)
+/// A key that specifies the A side-chain of float 32 data that an audio unit provides for sending high-density parameter value control information, and uses no flags.
+///
+/// ## Discussion
+///
+/// An audio unit typically runs a parameter value stream at either:
+///
+/// - The sample rate of the audio unit’s audio data.
+///
+/// - An integer quotient such as a half or a third of the sample rate of the audio.
+///
+/// The [`mSampleRate`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/msamplerate) field in the [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) structure describes this relationship.
+///
+///
 pub const kAudioFormatParameterValueStream: AudioFormatID = 0x61707673;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapplelossless?language=objc)
+/// A key that specifies the Apple Lossless codec, and uses flags to indicate the bit depth of the source material.
 pub const kAudioFormatAppleLossless: AudioFormatID = 0x616c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he?language=objc)
+/// A key that specifies the MPEG-4 High-Efficiency AAC codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_HE: AudioFormatID = 0x61616368;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_ld?language=objc)
+/// A key that specifies the MPEG-4 Low Delay AAC codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_LD: AudioFormatID = 0x6161636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld?language=objc)
+/// A key that specifies the MPEG-4 Enhanced Low Delay AAC codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_ELD: AudioFormatID = 0x61616365;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld_sbr?language=objc)
+/// A key that specifies the MPEG-4 Enhanced Low Delay AAC codec with a spectral band replication (SBR) extension layer, and uses no flags.
 pub const kAudioFormatMPEG4AAC_ELD_SBR: AudioFormatID = 0x61616366;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_eld_v2?language=objc)
+/// A key that specifies the MPEG-4 Enhanced Low Delay AAC version 2 codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_ELD_V2: AudioFormatID = 0x61616367;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_he_v2?language=objc)
+/// A key that specifies the MPEG-4 High-Efficiency AAC version 2 codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_HE_V2: AudioFormatID = 0x61616370;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpeg4aac_spatial?language=objc)
+/// A key that specifies the MPEG-4 Spatial Audio Coding codec, and uses no flags.
 pub const kAudioFormatMPEG4AAC_Spatial: AudioFormatID = 0x61616373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmpegd_usac?language=objc)
+/// A key that specifies the MPEG-D Unified Speech and Audio Coding codec, and uses no flags.
 pub const kAudioFormatMPEGD_USAC: AudioFormatID = 0x75736163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr?language=objc)
+/// A key that specifies the Adaptive Multi-Rate (AMR) narrow band speech codec, and uses no flags.
 pub const kAudioFormatAMR: AudioFormatID = 0x73616d72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatamr_wb?language=objc)
+/// A key that specifies the AMR Wideband speech codec, and uses no flags.
 pub const kAudioFormatAMR_WB: AudioFormatID = 0x73617762;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataudible?language=objc)
+/// A key that specifies the codec for Audible audio books, and uses no flags.
 pub const kAudioFormatAudible: AudioFormatID = 0x41554442;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatilbc?language=objc)
+/// A key that specifies the internet Low Bitrate Codec (iLBC) narrow band speech codec, and uses no flags.
 pub const kAudioFormatiLBC: AudioFormatID = 0x696c6263;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatdviintelima?language=objc)
+/// A key that specifies the codec defined by DVI/Intel IMA ADPCM - ACM code 17, and uses no flags.
 pub const kAudioFormatDVIIntelIMA: AudioFormatID = 0x6D730011;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatmicrosoftgsm?language=objc)
+/// A key that specifies the Microsoft GSM 6.10 - ACM code 49 codec, and uses no flags.
 pub const kAudioFormatMicrosoftGSM: AudioFormatID = 0x6D730031;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformataes3?language=objc)
+/// A key that specifies the codec defined by the AES3-2003 standard, and uses no flags.
+///
+/// ## Discussion
+///
+/// The MXF and MPEG-2 containers and SDTI transport streams with SMPTE specs 302M-2002 and 331M-2000 adopt this codec.
+///
+///
 pub const kAudioFormatAES3: AudioFormatID = 0x61657333;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatenhancedac3?language=objc)
+/// A key that specifies the Enhanced AC-3 codec, and uses no flags.
 pub const kAudioFormatEnhancedAC3: AudioFormatID = 0x65632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflac?language=objc)
+/// A key that specifies the Free Lossless Audio Codec (FLAC), and uses flags to indicate the bit depth of the source material.
 pub const kAudioFormatFLAC: AudioFormatID = 0x666c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatopus?language=objc)
+/// A key that specifies the Opus codec, and uses no flags.
 pub const kAudioFormatOpus: AudioFormatID = 0x6f707573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatapac?language=objc)
 pub const kAudioFormatAPAC: AudioFormatID = 0x61706163;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisfloat?language=objc)
+/// A flag that indicates whether the format is floating point or integer.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate the format is floating point, and clear to indicate it’s integer.
+///
+///
 pub const kAudioFormatFlagIsFloat: AudioFormatFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisbigendian?language=objc)
+/// A flag that indicates whether the format is big or little endian.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate the format is big endian, and clear to indicate it’s little endian.
+///
+///
 pub const kAudioFormatFlagIsBigEndian: AudioFormatFlags = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagissignedinteger?language=objc)
+/// A flag that indicates whether the format is signed or unsigned integer.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate the format is signed integer, and clear to indicate it’s unsigned integer. This flag is only valid if [`kAudioFormatFlagIsFloat`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisfloat) is clear.
+///
+///
 pub const kAudioFormatFlagIsSignedInteger: AudioFormatFlags = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagispacked?language=objc)
+/// A flag that indicates whether placement of the sample bits occupy the entire available bits of the channel.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate placement of the sample bits occupy the entire available bits of the channel. Clear this flag to indicate placement of the sample bits either with the high or low bits of the channel.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Even if this flag is clear, it’s still implied as set if the description’s fields have this relationship: `((mBitsPerSample / 8) * mChannelsPerFrame) == mBytesPerFrame`.
+///
+///
+///
+/// </div>
+///
 pub const kAudioFormatFlagIsPacked: AudioFormatFlags = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisalignedhigh?language=objc)
+/// A flag that indicates whether placement of the sample bits is with the high or low bits of the channel.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate placement of the sample bits is with the high bits of the channel. Clear this flag to indicate placement of the sample bits is with the low bits of the channel.
+///
+/// This flag is only valid if [`kAudioFormatFlagIsPacked`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagispacked) is clear.
+///
+///
 pub const kAudioFormatFlagIsAlignedHigh: AudioFormatFlags = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnoninterleaved?language=objc)
+/// A flag that indicates whether the samples for each channel or frame are continguously located, and whether the layout of the channels or frames is end-to-end.
+///
+/// ## Discussion
+///
+/// This flag affects the use of the [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) and [`AudioBufferList`](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist) structures.
+///
+/// Set this flag to indicate the samples for each channel are continguously located and the layout of the channels is end-to-end. Clear this flag to indicate the samples for each frame are continguously located and the layout of the frames is end-to-end.
+///
+///
 pub const kAudioFormatFlagIsNonInterleaved: AudioFormatFlags = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnonmixable?language=objc)
+/// A flag that indicates the format is nonmixable.
+///
+/// ## Discussion
+///
+/// Only use this flag when interacting with the stream format information of the hardware abstraction layer (HAL). It isn’t a valid flag for any other use.
+///
+///
 pub const kAudioFormatFlagIsNonMixable: AudioFormatFlags = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsareallclear?language=objc)
+/// A flag that indicates whether all the flags are clear.
+///
+/// ## Discussion
+///
+/// Set this flag to indicate all the flags are clear. You must use this constant instead of `0`, because a `0` indicates that there are no format flags.
+///
+///
 pub const kAudioFormatFlagsAreAllClear: AudioFormatFlags = 0x80000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisfloat?language=objc)
+/// A flag that indicates whether the format is floating point or integer.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsFloat`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisfloat).
+///
+///
 pub const kLinearPCMFormatFlagIsFloat: AudioFormatFlags = kAudioFormatFlagIsFloat;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisbigendian?language=objc)
+/// A flag that indicates whether the format is big or little endian.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsBigEndian`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisbigendian).
+///
+///
 pub const kLinearPCMFormatFlagIsBigEndian: AudioFormatFlags = kAudioFormatFlagIsBigEndian;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagissignedinteger?language=objc)
+/// A flag that indicates whether the format is signed or unsigned integer.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsSignedInteger`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagissignedinteger).
+///
+///
 pub const kLinearPCMFormatFlagIsSignedInteger: AudioFormatFlags = kAudioFormatFlagIsSignedInteger;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagispacked?language=objc)
+/// A flag that indicates whether placement of the sample bits occupy the entire available bits of the channel.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsPacked`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagispacked).
+///
+///
 pub const kLinearPCMFormatFlagIsPacked: AudioFormatFlags = kAudioFormatFlagIsPacked;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisalignedhigh?language=objc)
+/// A flag that indicates whether placement of the sample bits is with the high or low bits of the channel.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsAlignedHigh`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisalignedhigh).
+///
+///
 pub const kLinearPCMFormatFlagIsAlignedHigh: AudioFormatFlags = kAudioFormatFlagIsAlignedHigh;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnoninterleaved?language=objc)
+/// A flag that indicates whether the samples for each channel or frame are continguously located, and whether the layout of the channels or frames is end-to-end.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsNonInterleaved`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnoninterleaved).
+///
+///
 pub const kLinearPCMFormatFlagIsNonInterleaved: AudioFormatFlags = kAudioFormatFlagIsNonInterleaved;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagisnonmixable?language=objc)
+/// A flag that indicates the format is nonmixable.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagIsNonMixable`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagisnonmixable).
+///
+///
 pub const kLinearPCMFormatFlagIsNonMixable: AudioFormatFlags = kAudioFormatFlagIsNonMixable;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionshift?language=objc)
+/// A flag that indicates the bit position of the PCM flag’s 6-bit bitfield.
+///
+/// ## Discussion
+///
+/// The linear PCM flags contain a 6-bit bitfield that indicates to interpret an integer format as fixed point. The value indicates the number of bits used to represent the fractional portion of each sample value. This constant indicates the bit position (counting from the right) of the bitfield in [`mFormatFlags`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/mformatflags).
+///
+///
 pub const kLinearPCMFormatFlagsSampleFractionShift: AudioFormatFlags = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionmask?language=objc)
+/// A flag that indicates the sample fraction mask.
+///
+/// ## Discussion
+///
+/// The number of fractional bits is equal to `(` [`mFormatFlags`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription/mformatflags) `&` [`kLinearPCMFormatFlagsSampleFractionMask`](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionmask) `) >>` [`kLinearPCMFormatFlagsSampleFractionShift`](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagssamplefractionshift).
+///
+///
 pub const kLinearPCMFormatFlagsSampleFractionMask: AudioFormatFlags =
     0x3F << kLinearPCMFormatFlagsSampleFractionShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/klinearpcmformatflagsareallclear?language=objc)
+/// A flag that indicates whether all the flags are clear.
+///
+/// ## Discussion
+///
+/// This flag is a synonym for [`kAudioFormatFlagsAreAllClear`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsareallclear).
+///
+///
 pub const kLinearPCMFormatFlagsAreAllClear: AudioFormatFlags = kAudioFormatFlagsAreAllClear;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_16bitsourcedata?language=objc)
+/// A flag that indicates Apple Lossless data sourced from 16-bit native endian signed integer data.
 pub const kAppleLosslessFormatFlag_16BitSourceData: AudioFormatFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_20bitsourcedata?language=objc)
+/// A flag that indicates Apple Lossless data sourced from 20-bit native endian signed integer data aligned high in 24 bits.
 pub const kAppleLosslessFormatFlag_20BitSourceData: AudioFormatFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_24bitsourcedata?language=objc)
+/// A flag that indicates Apple Lossless data sourced from 24-bit native endian signed integer data.
 pub const kAppleLosslessFormatFlag_24BitSourceData: AudioFormatFlags = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kapplelosslessformatflag_32bitsourcedata?language=objc)
+/// A flag that indicates Apple Lossless data sourced from 32-bit native endian signed integer data.
 pub const kAppleLosslessFormatFlag_32BitSourceData: AudioFormatFlags = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativeendian?language=objc)
+/// A flag that specifies whether the format is big endian, depending on the endianness of the processor at build time.
 pub const kAudioFormatFlagsNativeEndian: AudioFormatFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativefloatpacked?language=objc)
+/// The flags for the canonical format of fully packed, native endian floating-point data.
 pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
     kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
 
+/// A value that describes a packet in a buffer of audio data.
+///
+/// ## Overview
+///
+/// For data formats where the packet size isn’t constant, such as variable bit rate data and data where the channels have unequal sizes, use this structure to supplement the information in the [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) structure.
+///
+///
 /// This structure describes the packet layout of a buffer of data where the size of
 /// each packet may not be the same or where there is extraneous data between
 /// packets.
@@ -385,8 +587,6 @@ pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
 /// constant number of frames per packet, this field is set to 0.
 ///
 /// The number of bytes in the packet.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDescription {
@@ -408,6 +608,46 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// A structure to provide a description of the dependencies of one audio packet on other audio packets.
+///
+/// ```text
+///                 1 if the packet is independently decodable, 0 otherwise.
+/// ```
+///
+/// ```text
+///                 The count of packets that must be decoded after this packet in order to refresh the decoder,
+///                 if the packet is independently decodable.  This value should be ignored if
+///                 ``mIsIndependentlyDecodable`` is 0.
+/// ```
+///
+/// ```text
+///                 Currently unused.
+/// ```
+///
+/// ```text
+///                 Reserved for future use.
+/// ```
+///
+/// For independently decodable packets, the [`mPreRollCount`](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdependencydescription/mprerollcount) indicates how many additional packets need to be decoded after this packet in order for the decoder to start returning optimal output, if this is the first packet decoded since the decoder was initialized.
+///
+/// ```text
+/// For example, if this packet is packet #123 of some given packet stream, and ``mIsIndependentlyDecodable``
+/// is 0, or ``mIsIndependentlyDecodable`` is 1 and ``mPreRollCount`` is non-zero, and the client desires optimal
+/// output starting with the output corresponding with packet #123 (because for example the client
+/// is an audio player whose user seeks to a starting playback position corresponding with packet #123),
+/// the client would scan back, starting at packet #122, searching for an independently decodable
+/// packet with a preroll not intersecting packet #123.  If for packet #122 ``mIsIndependentlyDecodable``
+/// is 0, or ``mIsIndependentlyDecodable`` is 1 but ``mPreRollCount`` is 2 or more, the client would still not
+/// get optimal output for packet #123 if starting here, so the client continues to scan back.
+/// If for packet #121 ``mIsIndependentlyDecodable`` is 1 and ``mPreRollCount`` is 2 or less, the client would
+/// start decoding from this point, but discard the output equivalent of the two extra input packets
+/// (desired first output packet - actual first decoded packet, or 122 - 120 == 2).
+/// ```
+///
+///
 /// A structure to provide a description of the dependencies of one audio packet on other audio packets.
 ///
 ///
@@ -437,8 +677,6 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
 /// If for packet #121 ``mIsIndependentlyDecodable`` is 1 and ``mPreRollCount`` is 2 or less, the client would
 /// start decoding from this point, but discard the output equivalent of the two extra input packets
 /// (desired first output packet - actual first decoded packet, or 122 - 120 == 2).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdependencydescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDependencyDescription {
@@ -466,6 +704,7 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define SMPTE time types.
 /// Constants that describe the type of SMPTE time.
 ///
 /// 24 Frame
@@ -491,47 +730,105 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
 /// 50 Frame
 ///
 /// 23.98 Frame
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeType(pub u32);
 impl SMPTETimeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type24?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 24 video frames per second—standard for 16mm and 35mm film.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType24")]
     pub const Type24: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type25?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 25 video frames per second—standard for PAL and SECAM video.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType25")]
     pub const Type25: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type30drop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 30 video frames per second, with video-frame numbers adjusted to ensure that the timecode matches elapsed clock time.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType30Drop")]
     pub const Type30Drop: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type30?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 30 video frames per second.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType30")]
     pub const Type30: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2997?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 29.97 video frames per second—standard for NTSC video.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType2997")]
     pub const Type2997: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2997drop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 29.97 video frames per second, with video-frame numbers adjusted to ensure that the timecode matches elapsed clock time.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType2997Drop")]
     pub const Type2997Drop: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type60?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 60 video frames per second.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType60")]
     pub const Type60: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type5994?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 59.94 video frames per second.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType5994")]
     pub const Type5994: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type60drop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 60 video frames per second, with video-frame numbers adjusted to ensure that the timecode matches elapsed clock time.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType60Drop")]
     pub const Type60Drop: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type5994drop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 59.94 video frames per second, with video-frame numbers adjusted to ensure that the timecode matches elapsed clock time.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType5994Drop")]
     pub const Type5994Drop: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type50?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 50 video frames per second.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType50")]
     pub const Type50: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype/type2398?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// 23.98 video frames per second.
+    ///
+    ///
     #[doc(alias = "kSMPTETimeType2398")]
     pub const Type2398: Self = Self(11);
 }
@@ -546,26 +843,34 @@ unsafe impl RefEncode for SMPTETimeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that defines SMPTE time flags.
 /// Flags that describe the SMPTE time state.
 ///
 /// The full time is valid.
 ///
 /// Time is running.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl SMPTETimeFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/ksmptetimeunknown?language=objc)
         #[doc(alias = "kSMPTETimeUnknown")]
         const Unknown = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/valid?language=objc)
+///
+/// ## Discussion
+///
+/// The full time is valid.
+///
+///
         #[doc(alias = "kSMPTETimeValid")]
         const Valid = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags/running?language=objc)
+///
+/// ## Discussion
+///
+/// Time is running.
+///
+///
         #[doc(alias = "kSMPTETimeRunning")]
         const Running = 1<<1;
     }
@@ -581,6 +886,19 @@ unsafe impl RefEncode for SMPTETimeFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that defines an SMPTE time value.
+///
+/// ## Overview
+///
+/// SMPTE (Society of Motion Picture and Television Engineers, pronounced “SIMPtee”) times are used to correlate a point in an audio stream with an external event. For example, a SMPTE time can be used to correlate a sound in an audio file with a video frame in a movie file.
+///
+/// Note that the frames referred to by this structure are video frames, where a video frame is a single complete image. (Compare with the definition of audio frames in the discussion for [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription).)
+///
+/// A complete SMPTE time description takes 80 bits, including 32 user bits that contain vendor-specific information. The actual time-code portion of the SMPTE time description is normally sent in several messages, each message containing a portion of the time code. (The user bits are sent in a separate message.) Typically, the SMPTE time description is divided up into 8 1-byte messages, with the first nibble of each message specifying which portion of the time code is contained in the message and the second nibble containing the time information. Four such messages are normally sent with each video frame.
+///
+/// Video data contains somewhere from 24 to 60 frames per second (as specified by the SMPTE time type—see `SMPTE Timecode Types`) and each video frame has an associated SMPTE time. SMPTE time is based on a 24-hour clock. Each frame’s SMPTE time consists of an hour, minute, and second value, plus the number of the frame within the second. Because audio data is sampled at a much higher rate (MP3 data is sampled at over 100,000 bits per second, for example), it is frequently desirable to correlate the audio data with a time within the persistence period of a single video frame. For this reason, the time period during which a single video frame is displayed is subdivided into subframes (typically 80 or 100 subframes per frame, as specified by the `mSubFrameDivisor` field). The `mSubFrames` field specifies the number of subframes into the video frame represented by this time structure.
+///
+///
 /// A structure for holding a SMPTE time.
 ///
 /// The number of subframes in the full message.
@@ -600,8 +918,6 @@ unsafe impl RefEncode for SMPTETimeFlags {
 /// The number of seconds in the full message.
 ///
 /// The number of frames in the full message.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SMPTETime {
@@ -639,6 +955,7 @@ unsafe impl RefEncode for SMPTETime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that represents flags for a timestamp.
 /// The flags that indicate which fields in an AudioTimeStamp structure are valid.
 ///
 /// The sample frame time is valid.
@@ -652,33 +969,31 @@ unsafe impl RefEncode for SMPTETime {
 /// The SMPTE time is valid.
 ///
 /// The sample frame time and the host time are valid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioTimeStampFlags(pub u32);
 bitflags::bitflags! {
     impl AudioTimeStampFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/kaudiotimestampnothingvalid?language=objc)
+/// A flag that indicates no fields are valid.
         #[doc(alias = "kAudioTimeStampNothingValid")]
         const NothingValid = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/sampletimevalid?language=objc)
+/// A flag that indicates that the sample frame time is valid.
         #[doc(alias = "kAudioTimeStampSampleTimeValid")]
         const SampleTimeValid = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/hosttimevalid?language=objc)
+/// A flag that indicates that the host time is valid.
         #[doc(alias = "kAudioTimeStampHostTimeValid")]
         const HostTimeValid = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/ratescalarvalid?language=objc)
+/// A flag that indicates that the rate scalar is valid.
         #[doc(alias = "kAudioTimeStampRateScalarValid")]
         const RateScalarValid = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/wordclocktimevalid?language=objc)
+/// A flag that indicates that the word clock time is valid.
         #[doc(alias = "kAudioTimeStampWordClockTimeValid")]
         const WordClockTimeValid = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/smptetimevalid?language=objc)
+/// A flag that indicates that the SMPTE time is valid.
         #[doc(alias = "kAudioTimeStampSMPTETimeValid")]
         const SMPTETimeValid = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags/samplehosttimevalid?language=objc)
+/// A flag that indicates that the sample frame time and the host time are valid.
         #[doc(alias = "kAudioTimeStampSampleHostTimeValid")]
         const SampleHostTimeValid = AudioTimeStampFlags::SampleTimeValid.0|AudioTimeStampFlags::HostTimeValid.0;
     }
@@ -694,6 +1009,7 @@ unsafe impl RefEncode for AudioTimeStampFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that represents a timestamp value.
 /// A structure that holds different representations of the same point in time.
 ///
 /// The absolute sample frame time.
@@ -710,8 +1026,6 @@ unsafe impl RefEncode for AudioTimeStampFlags {
 /// A set of flags indicating which representations of the time are valid.
 ///
 /// Pads the structure out to force an even 8 byte alignment.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioTimeStamp {
@@ -745,6 +1059,7 @@ unsafe impl RefEncode for AudioTimeStamp {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that describes an audio codec.
 /// This structure is used to describe codecs installed on the system.
 ///
 /// The four char code codec type.
@@ -752,8 +1067,6 @@ unsafe impl RefEncode for AudioTimeStamp {
 /// The four char code codec subtype.
 ///
 /// The four char code codec manufacturer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioclassdescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioClassDescription {
@@ -775,350 +1088,302 @@ unsafe impl RefEncode for AudioClassDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A tag identifying how the channel is to be used.
+/// Identifies how an audio data channel is to be used.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellabel?language=objc)
+/// ## Discussion
+///
+/// This data type is used for the `mChannelLabel` field of the [`AudioChannelDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiochanneldescription) structure. See [Audio Channel Labels](https://developer.apple.com/documentation/coreaudiotypes/audio-channel-labels) for possible values.
+///
+///
+/// A tag identifying how the channel is to be used.
 pub type AudioChannelLabel = u32;
 
-/// A tag identifying a particular pre-defined channel layout.
+/// Identifies a previously-defined channel layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayouttag?language=objc)
+/// ## Discussion
+///
+/// This data type is used for the `mChannelLayoutTag` field of the [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout) structure. See [Audio Channel Layout Tags](https://developer.apple.com/documentation/coreaudiotypes/audio-channel-layout-tags) for possible values.
+///
+///
+/// A tag identifying a particular pre-defined channel layout.
 pub type AudioChannelLayoutTag = u32;
 
+/// Unknown role or unspecified other use for channel.
 /// unknown or unspecified other use
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_unknown?language=objc)
 pub const kAudioChannelLabel_Unknown: AudioChannelLabel = 0xFFFFFFFF;
+/// The channel is present, but has no intended role or destination.
 /// channel is present, but has no intended use or destination
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_unused?language=objc)
 pub const kAudioChannelLabel_Unused: AudioChannelLabel = 0;
+/// The channel is described solely by the `mCoordinates` field of the `AudioChannelDescription` structure.
 /// channel is described by the mCoordinates fields.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_usecoordinates?language=objc)
 pub const kAudioChannelLabel_UseCoordinates: AudioChannelLabel = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_left?language=objc)
+/// Left channel.
 pub const kAudioChannelLabel_Left: AudioChannelLabel = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_right?language=objc)
+/// Right channel.
 pub const kAudioChannelLabel_Right: AudioChannelLabel = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_center?language=objc)
+/// Center channel.
 pub const kAudioChannelLabel_Center: AudioChannelLabel = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lfescreen?language=objc)
+/// Low Frequency Effects Screen; a subwoofer located in front of the theater.
 pub const kAudioChannelLabel_LFEScreen: AudioChannelLabel = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftsurround?language=objc)
+/// Left surround channel; or for WAVE (.wav) files, back left.
 pub const kAudioChannelLabel_LeftSurround: AudioChannelLabel = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightsurround?language=objc)
+/// Right surround channel; or for WAVE (.wav) files, back right.
 pub const kAudioChannelLabel_RightSurround: AudioChannelLabel = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftcenter?language=objc)
+/// Left center channel.
 pub const kAudioChannelLabel_LeftCenter: AudioChannelLabel = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightcenter?language=objc)
+/// Right center channel.
 pub const kAudioChannelLabel_RightCenter: AudioChannelLabel = 8;
+/// Center surround channel; or for WAVE (.wav) files, back center or rear surround.
 /// WAVE: "Back Center" or plain "Rear Surround"
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centersurround?language=objc)
 pub const kAudioChannelLabel_CenterSurround: AudioChannelLabel = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftsurrounddirect?language=objc)
+/// Left surround direct channel; or for WAVE (.wav) files, side left.
 pub const kAudioChannelLabel_LeftSurroundDirect: AudioChannelLabel = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightsurrounddirect?language=objc)
+/// Right surround direct channel; or for WAVE (.wav) files, side right.
 pub const kAudioChannelLabel_RightSurroundDirect: AudioChannelLabel = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_topcentersurround?language=objc)
+/// Top center surround-sound channel.
 pub const kAudioChannelLabel_TopCenterSurround: AudioChannelLabel = 12;
+/// Vertical height left channel; or for WAVE (.wav) files, top front left.
 /// WAVE: "Top Front Left"
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_verticalheightleft?language=objc)
 pub const kAudioChannelLabel_VerticalHeightLeft: AudioChannelLabel = 13;
+/// Vertical height center channel; or for WAVE (.wav) files, top front center.
 /// WAVE: "Top Front Center"
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_verticalheightcenter?language=objc)
 pub const kAudioChannelLabel_VerticalHeightCenter: AudioChannelLabel = 14;
+/// Vertical height right channel; or for WAVE (.wav) files, top front right.
 /// WAVE: "Top Front Right"
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_verticalheightright?language=objc)
 pub const kAudioChannelLabel_VerticalHeightRight: AudioChannelLabel = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_topbackleft?language=objc)
+/// Top back left channel.
 pub const kAudioChannelLabel_TopBackLeft: AudioChannelLabel = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_topbackcenter?language=objc)
+/// Top back center channel.
 pub const kAudioChannelLabel_TopBackCenter: AudioChannelLabel = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_topbackright?language=objc)
+/// Top back right channel.
 pub const kAudioChannelLabel_TopBackRight: AudioChannelLabel = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rearsurroundleft?language=objc)
+/// Rear surround left channel.
 pub const kAudioChannelLabel_RearSurroundLeft: AudioChannelLabel = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rearsurroundright?language=objc)
+/// Rear surround right channel.
 pub const kAudioChannelLabel_RearSurroundRight: AudioChannelLabel = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftwide?language=objc)
+/// Left wide channel.
 pub const kAudioChannelLabel_LeftWide: AudioChannelLabel = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightwide?language=objc)
+/// Right wide channel.
 pub const kAudioChannelLabel_RightWide: AudioChannelLabel = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lfe2?language=objc)
+/// Low Frequency Effects 2.
 pub const kAudioChannelLabel_LFE2: AudioChannelLabel = 37;
+/// The left channel of matrix encoded 4 channel audio.
 /// matrix encoded 4 channels
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lefttotal?language=objc)
 pub const kAudioChannelLabel_LeftTotal: AudioChannelLabel = 38;
+/// The right channel of matrix encoded 4 channel audio.
 /// matrix encoded 4 channels
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_righttotal?language=objc)
 pub const kAudioChannelLabel_RightTotal: AudioChannelLabel = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hearingimpaired?language=objc)
+/// Channel carrying audio for people who are deaf or hard of hearing.
 pub const kAudioChannelLabel_HearingImpaired: AudioChannelLabel = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_narration?language=objc)
+/// Narration channel.
 pub const kAudioChannelLabel_Narration: AudioChannelLabel = 41;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_mono?language=objc)
+/// Monaural channel.
 pub const kAudioChannelLabel_Mono: AudioChannelLabel = 42;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_dialogcentricmix?language=objc)
 pub const kAudioChannelLabel_DialogCentricMix: AudioChannelLabel = 43;
+/// Back center, non diffuse channel.
 /// back center, non diffuse
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centersurrounddirect?language=objc)
 pub const kAudioChannelLabel_CenterSurroundDirect: AudioChannelLabel = 44;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_haptic?language=objc)
+/// A channel for haptic (touch) data.
 pub const kAudioChannelLabel_Haptic: AudioChannelLabel = 45;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lefttopfront?language=objc)
 pub const kAudioChannelLabel_LeftTopFront: AudioChannelLabel =
     kAudioChannelLabel_VerticalHeightLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centertopfront?language=objc)
 pub const kAudioChannelLabel_CenterTopFront: AudioChannelLabel =
     kAudioChannelLabel_VerticalHeightCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_righttopfront?language=objc)
 pub const kAudioChannelLabel_RightTopFront: AudioChannelLabel =
     kAudioChannelLabel_VerticalHeightRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lefttopmiddle?language=objc)
 pub const kAudioChannelLabel_LeftTopMiddle: AudioChannelLabel = 49;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centertopmiddle?language=objc)
 pub const kAudioChannelLabel_CenterTopMiddle: AudioChannelLabel =
     kAudioChannelLabel_TopCenterSurround;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_righttopmiddle?language=objc)
 pub const kAudioChannelLabel_RightTopMiddle: AudioChannelLabel = 51;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lefttoprear?language=objc)
 pub const kAudioChannelLabel_LeftTopRear: AudioChannelLabel = 52;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centertoprear?language=objc)
 pub const kAudioChannelLabel_CenterTopRear: AudioChannelLabel = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_righttoprear?language=objc)
 pub const kAudioChannelLabel_RightTopRear: AudioChannelLabel = 54;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftsidesurround?language=objc)
 pub const kAudioChannelLabel_LeftSideSurround: AudioChannelLabel = 55;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightsidesurround?language=objc)
 pub const kAudioChannelLabel_RightSideSurround: AudioChannelLabel = 56;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftbottom?language=objc)
 pub const kAudioChannelLabel_LeftBottom: AudioChannelLabel = 57;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightbottom?language=objc)
 pub const kAudioChannelLabel_RightBottom: AudioChannelLabel = 58;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_centerbottom?language=objc)
 pub const kAudioChannelLabel_CenterBottom: AudioChannelLabel = 59;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lefttopsurround?language=objc)
 pub const kAudioChannelLabel_LeftTopSurround: AudioChannelLabel = 60;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_righttopsurround?language=objc)
 pub const kAudioChannelLabel_RightTopSurround: AudioChannelLabel = 61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_lfe3?language=objc)
 pub const kAudioChannelLabel_LFE3: AudioChannelLabel = 62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftbacksurround?language=objc)
 pub const kAudioChannelLabel_LeftBackSurround: AudioChannelLabel = 63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightbacksurround?language=objc)
 pub const kAudioChannelLabel_RightBackSurround: AudioChannelLabel = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_leftedgeofscreen?language=objc)
 pub const kAudioChannelLabel_LeftEdgeOfScreen: AudioChannelLabel = 65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_rightedgeofscreen?language=objc)
 pub const kAudioChannelLabel_RightEdgeOfScreen: AudioChannelLabel = 66;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ambisonic_w?language=objc)
+/// First order Ambisonic channel W.
 pub const kAudioChannelLabel_Ambisonic_W: AudioChannelLabel = 200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ambisonic_x?language=objc)
+/// First order Ambisonic channel X.
 pub const kAudioChannelLabel_Ambisonic_X: AudioChannelLabel = 201;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ambisonic_y?language=objc)
+/// First order Ambisonic channel Y.
 pub const kAudioChannelLabel_Ambisonic_Y: AudioChannelLabel = 202;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ambisonic_z?language=objc)
+/// First order Ambisonic channel Z.
 pub const kAudioChannelLabel_Ambisonic_Z: AudioChannelLabel = 203;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ms_mid?language=objc)
+/// Mid channel of a Mid/Side recording.
 pub const kAudioChannelLabel_MS_Mid: AudioChannelLabel = 204;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_ms_side?language=objc)
+/// Side channel of a Mid/Side recording.
 pub const kAudioChannelLabel_MS_Side: AudioChannelLabel = 205;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_xy_x?language=objc)
+/// X channel of an X-Y recording.
 pub const kAudioChannelLabel_XY_X: AudioChannelLabel = 206;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_xy_y?language=objc)
+/// Y channel of an X-Y recording.
 pub const kAudioChannelLabel_XY_Y: AudioChannelLabel = 207;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_binauralleft?language=objc)
 pub const kAudioChannelLabel_BinauralLeft: AudioChannelLabel = 208;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_binauralright?language=objc)
 pub const kAudioChannelLabel_BinauralRight: AudioChannelLabel = 209;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_headphonesleft?language=objc)
+/// Left channel of stereo headphones.
 pub const kAudioChannelLabel_HeadphonesLeft: AudioChannelLabel = 301;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_headphonesright?language=objc)
+/// Right channel of stereo headphones.
 pub const kAudioChannelLabel_HeadphonesRight: AudioChannelLabel = 302;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_clicktrack?language=objc)
+/// Click track channel.
 pub const kAudioChannelLabel_ClickTrack: AudioChannelLabel = 304;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_foreignlanguage?language=objc)
+/// Foreign language channel.
 pub const kAudioChannelLabel_ForeignLanguage: AudioChannelLabel = 305;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete?language=objc)
+/// Generic discrete channel.
 pub const kAudioChannelLabel_Discrete: AudioChannelLabel = 400;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_0?language=objc)
+/// Discrete channel 0.
 pub const kAudioChannelLabel_Discrete_0: AudioChannelLabel = (1 << 16) | 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_1?language=objc)
+/// Discrete channel 1.
 pub const kAudioChannelLabel_Discrete_1: AudioChannelLabel = (1 << 16) | 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_2?language=objc)
+/// Discrete channel 2.
 pub const kAudioChannelLabel_Discrete_2: AudioChannelLabel = (1 << 16) | 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_3?language=objc)
+/// Discrete channel 3.
 pub const kAudioChannelLabel_Discrete_3: AudioChannelLabel = (1 << 16) | 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_4?language=objc)
+/// Discrete channel 4.
 pub const kAudioChannelLabel_Discrete_4: AudioChannelLabel = (1 << 16) | 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_5?language=objc)
+/// Discrete channel 5.
 pub const kAudioChannelLabel_Discrete_5: AudioChannelLabel = (1 << 16) | 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_6?language=objc)
+/// Discrete channel 6.
 pub const kAudioChannelLabel_Discrete_6: AudioChannelLabel = (1 << 16) | 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_7?language=objc)
+/// Discrete channel 7.
 pub const kAudioChannelLabel_Discrete_7: AudioChannelLabel = (1 << 16) | 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_8?language=objc)
+/// Discrete channel 8.
 pub const kAudioChannelLabel_Discrete_8: AudioChannelLabel = (1 << 16) | 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_9?language=objc)
+/// Discrete channel 9.
 pub const kAudioChannelLabel_Discrete_9: AudioChannelLabel = (1 << 16) | 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_10?language=objc)
+/// Discrete channel 10.
 pub const kAudioChannelLabel_Discrete_10: AudioChannelLabel = (1 << 16) | 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_11?language=objc)
+/// Discrete channel 11.
 pub const kAudioChannelLabel_Discrete_11: AudioChannelLabel = (1 << 16) | 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_12?language=objc)
+/// Discrete channel 12.
 pub const kAudioChannelLabel_Discrete_12: AudioChannelLabel = (1 << 16) | 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_13?language=objc)
+/// Discrete channel 13.
 pub const kAudioChannelLabel_Discrete_13: AudioChannelLabel = (1 << 16) | 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_14?language=objc)
+/// Discrete channel 14.
 pub const kAudioChannelLabel_Discrete_14: AudioChannelLabel = (1 << 16) | 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_15?language=objc)
+/// Discrete channel 15.
 pub const kAudioChannelLabel_Discrete_15: AudioChannelLabel = (1 << 16) | 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_discrete_65535?language=objc)
+/// Discrete channel 65536.
 pub const kAudioChannelLabel_Discrete_65535: AudioChannelLabel = (1 << 16) | 65535;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn?language=objc)
 pub const kAudioChannelLabel_HOA_ACN: AudioChannelLabel = 500;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_0?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_0: AudioChannelLabel = (2 << 16) | 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_1?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_1: AudioChannelLabel = (2 << 16) | 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_2?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_2: AudioChannelLabel = (2 << 16) | 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_3?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_3: AudioChannelLabel = (2 << 16) | 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_4?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_4: AudioChannelLabel = (2 << 16) | 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_5?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_5: AudioChannelLabel = (2 << 16) | 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_6?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_6: AudioChannelLabel = (2 << 16) | 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_7?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_7: AudioChannelLabel = (2 << 16) | 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_8?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_8: AudioChannelLabel = (2 << 16) | 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_9?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_9: AudioChannelLabel = (2 << 16) | 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_10?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_10: AudioChannelLabel = (2 << 16) | 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_11?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_11: AudioChannelLabel = (2 << 16) | 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_12?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_12: AudioChannelLabel = (2 << 16) | 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_13?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_13: AudioChannelLabel = (2 << 16) | 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_14?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_14: AudioChannelLabel = (2 << 16) | 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_15?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_15: AudioChannelLabel = (2 << 16) | 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_acn_65024?language=objc)
 pub const kAudioChannelLabel_HOA_ACN_65024: AudioChannelLabel = (2 << 16) | 65024;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_sn3d?language=objc)
 pub const kAudioChannelLabel_HOA_SN3D: AudioChannelLabel = kAudioChannelLabel_HOA_ACN_0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_hoa_n3d?language=objc)
 pub const kAudioChannelLabel_HOA_N3D: AudioChannelLabel = 3 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_object?language=objc)
 pub const kAudioChannelLabel_Object: AudioChannelLabel = 4 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_beginreserved?language=objc)
 pub const kAudioChannelLabel_BeginReserved: AudioChannelLabel = 0xF0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellabel_endreserved?language=objc)
 pub const kAudioChannelLabel_EndReserved: AudioChannelLabel = 0xFFFFFFFE;
 
+/// The supported channel bitmaps to use when defining channel layouts.
 /// These constants are for use in the mChannelBitmap field of an
 /// AudioChannelLayout structure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelBitmap(pub u32);
 bitflags::bitflags! {
     impl AudioChannelBitmap: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_left?language=objc)
+/// The left channel.
         #[doc(alias = "kAudioChannelBit_Left")]
         const Bit_Left = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_right?language=objc)
+/// The right channel.
         #[doc(alias = "kAudioChannelBit_Right")]
         const Bit_Right = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_center?language=objc)
+/// The center channel.
         #[doc(alias = "kAudioChannelBit_Center")]
         const Bit_Center = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lfescreen?language=objc)
+/// The Low Frequency Effects (LFE) screen channel.
         #[doc(alias = "kAudioChannelBit_LFEScreen")]
         const Bit_LFEScreen = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftsurround?language=objc)
+/// The left surround channel.
         #[doc(alias = "kAudioChannelBit_LeftSurround")]
         const Bit_LeftSurround = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightsurround?language=objc)
+/// The rIght surround channel.
         #[doc(alias = "kAudioChannelBit_RightSurround")]
         const Bit_RightSurround = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftcenter?language=objc)
+/// The left center channel.
         #[doc(alias = "kAudioChannelBit_LeftCenter")]
         const Bit_LeftCenter = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightcenter?language=objc)
+/// The right center channel.
         #[doc(alias = "kAudioChannelBit_RightCenter")]
         const Bit_RightCenter = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centersurround?language=objc)
+/// The center surround channel.
         #[doc(alias = "kAudioChannelBit_CenterSurround")]
         const Bit_CenterSurround = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_leftsurrounddirect?language=objc)
+/// The left surround direct channel.
         #[doc(alias = "kAudioChannelBit_LeftSurroundDirect")]
         const Bit_LeftSurroundDirect = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_rightsurrounddirect?language=objc)
+/// The right surround direct channel.
         #[doc(alias = "kAudioChannelBit_RightSurroundDirect")]
         const Bit_RightSurroundDirect = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topcentersurround?language=objc)
+/// The top center surround channel.
         #[doc(alias = "kAudioChannelBit_TopCenterSurround")]
         const Bit_TopCenterSurround = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightleft?language=objc)
+/// The vertical height left channel.
         #[doc(alias = "kAudioChannelBit_VerticalHeightLeft")]
         const Bit_VerticalHeightLeft = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightcenter?language=objc)
+/// The vertical height center channel.
         #[doc(alias = "kAudioChannelBit_VerticalHeightCenter")]
         const Bit_VerticalHeightCenter = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_verticalheightright?language=objc)
+/// The vertical height right channel.
         #[doc(alias = "kAudioChannelBit_VerticalHeightRight")]
         const Bit_VerticalHeightRight = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackleft?language=objc)
+/// The top-back left channel.
         #[doc(alias = "kAudioChannelBit_TopBackLeft")]
         const Bit_TopBackLeft = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackcenter?language=objc)
+/// The top-back center channel.
         #[doc(alias = "kAudioChannelBit_TopBackCenter")]
         const Bit_TopBackCenter = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_topbackright?language=objc)
+/// The top-back right channel.
         #[doc(alias = "kAudioChannelBit_TopBackRight")]
         const Bit_TopBackRight = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttopfront?language=objc)
+/// The left-top front channel.
         #[doc(alias = "kAudioChannelBit_LeftTopFront")]
         const Bit_LeftTopFront = AudioChannelBitmap::Bit_VerticalHeightLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertopfront?language=objc)
+/// The top-front center channel.
         #[doc(alias = "kAudioChannelBit_CenterTopFront")]
         const Bit_CenterTopFront = AudioChannelBitmap::Bit_VerticalHeightCenter.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttopfront?language=objc)
+/// The top-front front channel.
         #[doc(alias = "kAudioChannelBit_RightTopFront")]
         const Bit_RightTopFront = AudioChannelBitmap::Bit_VerticalHeightRight.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttopmiddle?language=objc)
+/// The left-top middle channel.
         #[doc(alias = "kAudioChannelBit_LeftTopMiddle")]
         const Bit_LeftTopMiddle = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertopmiddle?language=objc)
+/// The top-middle center channel.
         #[doc(alias = "kAudioChannelBit_CenterTopMiddle")]
         const Bit_CenterTopMiddle = AudioChannelBitmap::Bit_TopCenterSurround.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttopmiddle?language=objc)
+/// The top-middle right channel.
         #[doc(alias = "kAudioChannelBit_RightTopMiddle")]
         const Bit_RightTopMiddle = 1<<23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_lefttoprear?language=objc)
+/// The left-top rear channel.
         #[doc(alias = "kAudioChannelBit_LeftTopRear")]
         const Bit_LeftTopRear = 1<<24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_centertoprear?language=objc)
+/// The top-right center channel.
         #[doc(alias = "kAudioChannelBit_CenterTopRear")]
         const Bit_CenterTopRear = 1<<25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap/bit_righttoprear?language=objc)
+/// The top-rear right channel.
         #[doc(alias = "kAudioChannelBit_RightTopRear")]
         const Bit_RightTopRear = 1<<26;
     }
@@ -1134,6 +1399,7 @@ unsafe impl RefEncode for AudioChannelBitmap {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define the audio channel flags of an audio channel description.
 /// These constants are used in the mChannelFlags field of an
 /// AudioChannelDescription structure.
 ///
@@ -1147,24 +1413,34 @@ unsafe impl RefEncode for AudioChannelBitmap {
 ///
 /// Set to indicate the units are in meters, clear to indicate the units are
 /// relative to the unit cube or unit sphere.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelFlags(pub u32);
 bitflags::bitflags! {
     impl AudioChannelFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/kaudiochannelflags_alloff?language=objc)
+/// All flags are clear.
         #[doc(alias = "kAudioChannelFlags_AllOff")]
         const AllOff = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/rectangularcoordinates?language=objc)
+/// A flag that indicates the channel uses the speaker position’s cartesian coordinates.
+///
+/// ## Discussion
+///
+/// This flag is mutually exclusive with [`kAudioChannelFlags_SphericalCoordinates`](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/sphericalcoordinates).
+///
+///
         #[doc(alias = "kAudioChannelFlags_RectangularCoordinates")]
         const RectangularCoordinates = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/sphericalcoordinates?language=objc)
+/// A flag that indicates the channel uses the speaker position’s spherical coordinates.
+///
+/// ## Discussion
+///
+/// This flag is mutually exclusive with [`kAudioChannelFlags_RectangularCoordinates`](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/rectangularcoordinates).
+///
+///
         #[doc(alias = "kAudioChannelFlags_SphericalCoordinates")]
         const SphericalCoordinates = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags/meters?language=objc)
+/// A flag that indicates that unit values are in meters.
         #[doc(alias = "kAudioChannelFlags_Meters")]
         const Meters = 1<<2;
     }
@@ -1180,6 +1456,7 @@ unsafe impl RefEncode for AudioChannelFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Indexes the fields of the `mCoordinates` array in an [`AudioChannelDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiochanneldescription) structure.
 /// Constants for indexing the mCoordinates array in an AudioChannelDescription
 /// structure.
 ///
@@ -1197,29 +1474,27 @@ unsafe impl RefEncode for AudioChannelFlags {
 /// This is measured in degrees.
 ///
 /// For spherical coordinates, the units are described by flags.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelCoordinateIndex(pub u32);
 impl AudioChannelCoordinateIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_leftright?language=objc)
+    /// For rectangular coordinates, negative is left and positive is right. The units are specified by the `mChannelFlags` field of the `AudioChannelDescription` structure.
     #[doc(alias = "kAudioChannelCoordinates_LeftRight")]
     pub const Coordinates_LeftRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_backfront?language=objc)
+    /// For rectangular coordinates, negative is back and positive is front. The units are specified by the `mChannelFlags` field.
     #[doc(alias = "kAudioChannelCoordinates_BackFront")]
     pub const Coordinates_BackFront: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_downup?language=objc)
+    /// For rectangular coordinates, negative is below ground level, `0` is ground level, and positive is above ground level. The units are specified by the `mChannelFlags` field.
     #[doc(alias = "kAudioChannelCoordinates_DownUp")]
     pub const Coordinates_DownUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_azimuth?language=objc)
+    /// For spherical coordinates, `0` is front center, positive is right, negative is left, and measurements are in degrees.
     #[doc(alias = "kAudioChannelCoordinates_Azimuth")]
     pub const Coordinates_Azimuth: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_elevation?language=objc)
+    /// For spherical coordinates, `+90` is zenith, `0` is horizontal, `-90` is nadir, and measurements are in degrees.
     #[doc(alias = "kAudioChannelCoordinates_Elevation")]
     pub const Coordinates_Elevation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex/coordinates_distance?language=objc)
+    /// For spherical coordinates, distance is radially from the center. The units are specified by the `mChannelFlags` field of the `AudioChannelDescription` structure.
     #[doc(alias = "kAudioChannelCoordinates_Distance")]
     pub const Coordinates_Distance: Self = Self(2);
 }
@@ -1234,873 +1509,2680 @@ unsafe impl RefEncode for AudioChannelCoordinateIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An array of audio channel description structures that defines the layout mapping.
 /// use the array of AudioChannelDescriptions to define the mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_usechanneldescriptions?language=objc)
 pub const kAudioChannelLayoutTag_UseChannelDescriptions: AudioChannelLayoutTag = (0 << 16) | 0;
+/// A bitmap that defines the layout mapping.
 /// use the bitmap to define the mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_usechannelbitmap?language=objc)
 pub const kAudioChannelLayoutTag_UseChannelBitmap: AudioChannelLayoutTag = (1 << 16) | 0;
+/// A standard monophonic stream.
+///
+/// ## Discussion
+///
+/// You must use a monophonic signal.
+///
+///
 /// a standard mono stream
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mono?language=objc)
 pub const kAudioChannelLayoutTag_Mono: AudioChannelLayoutTag = (100 << 16) | 1;
+/// A standard stereophonic stream.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// a standard stereo stream (L R) - implied playback
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_stereo?language=objc)
 pub const kAudioChannelLayoutTag_Stereo: AudioChannelLayoutTag = (101 << 16) | 2;
+/// A standard stereo stream; headphone playback implied.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// a standard stereo stream (L R) - implied headphone playback
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_stereoheadphones?language=objc)
 pub const kAudioChannelLayoutTag_StereoHeadphones: AudioChannelLayoutTag = (102 << 16) | 2;
+/// A matrix-encoded stereo stream.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left matrix total
+///
+/// - Right matrix total
+///
+///
 /// a matrix encoded stereo stream (Lt, Rt)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_matrixstereo?language=objc)
 pub const kAudioChannelLayoutTag_MatrixStereo: AudioChannelLayoutTag = (103 << 16) | 2;
+/// A middle and side channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Sides
+///
+///
 /// mid/side recording
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_midside?language=objc)
 pub const kAudioChannelLayoutTag_MidSide: AudioChannelLayoutTag = (104 << 16) | 2;
+/// A coincident, angled microphone pair.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - X (left)
+///
+/// - Y (right)
+///
+///
 /// coincident mic pair (often 2 figure 8's)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_xy?language=objc)
 pub const kAudioChannelLayoutTag_XY: AudioChannelLayoutTag = (105 << 16) | 2;
+/// A binaural stereo audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// binaural stereo (left, right)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_binaural?language=objc)
 pub const kAudioChannelLayoutTag_Binaural: AudioChannelLayoutTag = (106 << 16) | 2;
+/// An ambisonic B-format audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - W
+///
+/// - X
+///
+/// - Y
+///
+/// - Z
+///
+///
 /// W, X, Y, Z
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ambisonic_b_format?language=objc)
 pub const kAudioChannelLayoutTag_Ambisonic_B_Format: AudioChannelLayoutTag = (107 << 16) | 4;
+/// A quadraphonic audio layout.
+///
+/// ## Discussion
+///
+/// Quadraphonic recordings use a 90° loudspeaker separation layout. Your channels must be laid out in the following order:
+///
+/// - Left front
+///
+/// - Right front
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R Ls Rs  -- 90 degree speaker separation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_quadraphonic?language=objc)
 pub const kAudioChannelLayoutTag_Quadraphonic: AudioChannelLayoutTag = (108 << 16) | 4;
+/// A pentalgonal audio layout.
+///
+/// ## Discussion
+///
+/// A pentagonal recording uses 72° loudspeaker separation layout. Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+///
 /// L R Ls Rs C  -- 72 degree speaker separation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_pentagonal?language=objc)
 pub const kAudioChannelLayoutTag_Pentagonal: AudioChannelLayoutTag = (109 << 16) | 5;
+/// A hexagonal audio layout.
+///
+/// ## Discussion
+///
+/// A hexagonal recording uses a 60° loudspeaker separation layout. Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Rear surround
+///
+///
 /// L R Ls Rs C Cs  -- 60 degree speaker separation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_hexagonal?language=objc)
 pub const kAudioChannelLayoutTag_Hexagonal: AudioChannelLayoutTag = (110 << 16) | 6;
-/// L R Ls Rs C Cs Lw Rw  -- 45 degree speaker separation
+/// An octagonal audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_octagonal?language=objc)
+/// ## Discussion
+///
+/// An octagonal recording uses a 45° loudspeaker separation layout. Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Center surround
+///
+/// - Left wide
+///
+/// - Right wide
+///
+///
+/// L R Ls Rs C Cs Lw Rw  -- 45 degree speaker separation
 pub const kAudioChannelLayoutTag_Octagonal: AudioChannelLayoutTag = (111 << 16) | 8;
+/// A cubic audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left rear
+///
+/// - Right rear
+///
+/// - Left top
+///
+/// - Right top
+///
+/// - Left rear top
+///
+/// - Right rear top
+///
+///
 /// left, right, rear left, rear right
 /// top left, top right, top rear left, top rear right
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cube?language=objc)
 pub const kAudioChannelLayoutTag_Cube: AudioChannelLayoutTag = (112 << 16) | 8;
+/// An MPEG 1-channel audio layout.
+///
+/// ## Discussion
+///
+/// You must use a monophonic signal.
+///
+///
 /// C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_1_0?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_1_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+/// An MPEG 2-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_2_0?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_2_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
+/// An MPEG 3-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+///
 /// L R C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_3_0_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_3_0_A: AudioChannelLayoutTag = (113 << 16) | 3;
+/// An MPEG 3-channel, configuration B, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// C L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_3_0_b?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_3_0_B: AudioChannelLayoutTag = (114 << 16) | 3;
+/// An MPEG 4-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Center surround
+///
+///
 /// L R C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_4_0_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_4_0_A: AudioChannelLayoutTag = (115 << 16) | 4;
+/// An MPEG 4-channel, configuration B, audio layout
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+///
 /// C L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_4_0_b?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_4_0_B: AudioChannelLayoutTag = (116 << 16) | 4;
+/// An MPEG 5-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_0_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_0_A: AudioChannelLayoutTag = (117 << 16) | 5;
+/// An MPEG 5-channel, configuration B, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+///
 /// L R Ls Rs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_0_b?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_0_B: AudioChannelLayoutTag = (118 << 16) | 5;
+/// An MPEG 5-channel, configuration C, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L C R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_0_c?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_0_C: AudioChannelLayoutTag = (119 << 16) | 5;
+/// An MPEG 5-channel, configuration D, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// C L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_0_d?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_0_D: AudioChannelLayoutTag = (120 << 16) | 5;
+/// An MPEG 5.1-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R C LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_1_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_1_A: AudioChannelLayoutTag = (121 << 16) | 6;
+/// An MPEG 5.1-channel, configuration B, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+///
 /// L R Ls Rs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_1_b?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_1_B: AudioChannelLayoutTag = (122 << 16) | 6;
+/// An MPEG 5.1-channel, configuration C, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// L C R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_1_c?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_1_C: AudioChannelLayoutTag = (123 << 16) | 6;
+/// An MPEG 5.1-channel, configuration D, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_1_d?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_5_1_D: AudioChannelLayoutTag = (124 << 16) | 6;
+/// An MPEG 6.1-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center surround
+///
+///
 /// L R C LFE Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_6_1_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_6_1_A: AudioChannelLayoutTag = (125 << 16) | 7;
+/// An MPEG 7.1-channel, configuration A, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left center
+///
+/// - Right center
+///
+///
 /// L R C LFE Ls Rs Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_7_1_a?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_7_1_A: AudioChannelLayoutTag = (126 << 16) | 8;
+/// An MPEG 7.1-channel, configuration B, audio layout.
+///
+/// ## Discussion
+///
+/// See ISO/IEC 13818-7 MPEG2-AAC, Table 3.1 for more information. Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// C Lc Rc L R Ls Rs LFE    (doc: IS-13818-7 MPEG2-AAC Table 3.1)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_7_1_b?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_7_1_B: AudioChannelLayoutTag = (127 << 16) | 8;
+/// An MPEG 7.1-channel, configuration C, audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// L R C LFE Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_7_1_c?language=objc)
 pub const kAudioChannelLayoutTag_MPEG_7_1_C: AudioChannelLayoutTag = (128 << 16) | 8;
-/// L R Ls Rs C LFE Lc Rc
+/// An Emagic 7.1-channel default audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_emagic_default_7_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left center
+///
+/// - Right center
+///
+///
+/// L R Ls Rs C LFE Lc Rc
 pub const kAudioChannelLayoutTag_Emagic_Default_7_1: AudioChannelLayoutTag = (129 << 16) | 8;
+/// An SMPTE DTV audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_ITU_3_2_1`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_2_1) plus a matrix encoded stereo mix. Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left matrix total
+///
+/// - Right matrix total
+///
+///
 /// L R C LFE Ls Rs Lt Rt
 /// (kAudioChannelLayoutTag_ITU_5_1 plus a matrix encoded stereo mix)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_smpte_dtv?language=objc)
 pub const kAudioChannelLayoutTag_SMPTE_DTV: AudioChannelLayoutTag = (130 << 16) | 8;
+/// An ITU 1-channel audio layout.
+///
+/// ## Discussion
+///
+/// You must use a monophonic signal.
+///
+///
 /// C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_1_0?language=objc)
 pub const kAudioChannelLayoutTag_ITU_1_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+/// An ITU 2-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_2_0?language=objc)
 pub const kAudioChannelLayoutTag_ITU_2_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
+/// An ITU 2.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+///
 /// L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_2_1?language=objc)
 pub const kAudioChannelLayoutTag_ITU_2_1: AudioChannelLayoutTag = (131 << 16) | 3;
+/// An ITU 2.2-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_2_2?language=objc)
 pub const kAudioChannelLayoutTag_ITU_2_2: AudioChannelLayoutTag = (132 << 16) | 4;
+/// An ITU 3-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+///
 /// L R C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_0?language=objc)
 pub const kAudioChannelLayoutTag_ITU_3_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_3_0_A;
+/// An ITU 3.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Center surround
+///
+///
 /// L R C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_1?language=objc)
 pub const kAudioChannelLayoutTag_ITU_3_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_4_0_A;
+/// An ITU 3.2-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_2?language=objc)
 pub const kAudioChannelLayoutTag_ITU_3_2: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_0_A;
-/// L R C LFE Ls Rs
+/// An ITU 3.2.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_2_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
+/// L R C LFE Ls Rs
 pub const kAudioChannelLayoutTag_ITU_3_2_1: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_A;
-/// L R C LFE Ls Rs Rls Rrs
+/// An ITU 3.4.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_itu_3_4_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
+/// L R C LFE Ls Rs Rls Rrs
 pub const kAudioChannelLayoutTag_ITU_3_4_1: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_C;
+/// A DVD monaural audio layout.
+///
+/// ## Discussion
+///
+/// You must use a monophonic signal
+///
+///
 /// C (mono)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_0?language=objc)
 pub const kAudioChannelLayoutTag_DVD_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_Mono;
+/// A DVD stereo audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_1?language=objc)
 pub const kAudioChannelLayoutTag_DVD_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_Stereo;
+/// A DVD 3-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+///
 /// L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_2?language=objc)
 pub const kAudioChannelLayoutTag_DVD_2: AudioChannelLayoutTag = kAudioChannelLayoutTag_ITU_2_1;
+/// A DVD 4-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_3?language=objc)
 pub const kAudioChannelLayoutTag_DVD_3: AudioChannelLayoutTag = kAudioChannelLayoutTag_ITU_2_2;
+/// A DVD 2.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Low-frequency effects
+///
+///
 /// L R LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_4?language=objc)
 pub const kAudioChannelLayoutTag_DVD_4: AudioChannelLayoutTag = (133 << 16) | 3;
+/// A DVD 3.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+///
 /// L R LFE Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_5?language=objc)
 pub const kAudioChannelLayoutTag_DVD_5: AudioChannelLayoutTag = (134 << 16) | 4;
+/// A DVD 4.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_6?language=objc)
 pub const kAudioChannelLayoutTag_DVD_6: AudioChannelLayoutTag = (135 << 16) | 5;
+/// A DVD 3-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+///
 /// L R C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_7?language=objc)
 pub const kAudioChannelLayoutTag_DVD_7: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_3_0_A;
-/// L R C Cs
+/// A DVD 4-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_8?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Center surround
+///
+///
+/// L R C Cs
 pub const kAudioChannelLayoutTag_DVD_8: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_4_0_A;
-/// L R C Ls Rs
+/// A DVD 5-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_9?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
+/// L R C Ls Rs
 pub const kAudioChannelLayoutTag_DVD_9: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_0_A;
-/// L R C LFE
+/// A DVD 3.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_10?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+///
+/// L R C LFE
 pub const kAudioChannelLayoutTag_DVD_10: AudioChannelLayoutTag = (136 << 16) | 4;
-/// L R C LFE Cs
+/// A DVD 4.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_11?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+///
+/// L R C LFE Cs
 pub const kAudioChannelLayoutTag_DVD_11: AudioChannelLayoutTag = (137 << 16) | 5;
-/// L R C LFE Ls Rs
+/// A DVD 5.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_12?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
+/// L R C LFE Ls Rs
 pub const kAudioChannelLayoutTag_DVD_12: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_1_A;
+/// A DVD 4-channel audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_DVD_8`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_8). Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Center surround
+///
+///
 /// L R C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_13?language=objc)
 pub const kAudioChannelLayoutTag_DVD_13: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_8;
+/// A DVD 5-channel audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_DVD_9`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_9). Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_14?language=objc)
 pub const kAudioChannelLayoutTag_DVD_14: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_9;
+/// A DVD 3.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_DVD_10`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_10). Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+///
 /// L R C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_15?language=objc)
 pub const kAudioChannelLayoutTag_DVD_15: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_10;
+/// A DVD 4.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_DVD_11`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_11). Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+///
 /// L R C LFE Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_16?language=objc)
 pub const kAudioChannelLayoutTag_DVD_16: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_11;
+/// A DVD 5.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// This tag is equivalent to [`kAudioChannelLayoutTag_DVD_12`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_12). Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// L R C LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_17?language=objc)
 pub const kAudioChannelLayoutTag_DVD_17: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_12;
+/// A DVD 4.1-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_18?language=objc)
 pub const kAudioChannelLayoutTag_DVD_18: AudioChannelLayoutTag = (138 << 16) | 5;
+/// A DVD 5-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+///
 /// L R Ls Rs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_19?language=objc)
 pub const kAudioChannelLayoutTag_DVD_19: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_0_B;
-/// L R Ls Rs C LFE
+/// A DVD 5.1-channel audio layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dvd_20?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Low-fequency effects.
+///
+///
+/// L R Ls Rs C LFE
 pub const kAudioChannelLayoutTag_DVD_20: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_1_B;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_4?language=objc)
+/// A quadraphonic symmetrical layout, recommended for use by audio units.
 pub const kAudioChannelLayoutTag_AudioUnit_4: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Quadraphonic;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_5?language=objc)
+/// A pentagonal symmetrical layout, recommended for use by audio units.
 pub const kAudioChannelLayoutTag_AudioUnit_5: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Pentagonal;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_6?language=objc)
+/// A hexagonal symmetrical layout, recommended for use by audio units.
 pub const kAudioChannelLayoutTag_AudioUnit_6: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Hexagonal;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_8?language=objc)
+/// An octagonal symmetrical layout, recommended for use by audio units.
 pub const kAudioChannelLayoutTag_AudioUnit_8: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Octagonal;
-/// L R Ls Rs C
+/// A 5-channel surround-based layout, recommended for use by audio units.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_5_0?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+///
+/// L R Ls Rs C
 pub const kAudioChannelLayoutTag_AudioUnit_5_0: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_B;
+/// A 6-channel surround-based layout, recommended for use by audio units.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Center surround
+///
+///
 /// L R Ls Rs C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_6_0?language=objc)
 pub const kAudioChannelLayoutTag_AudioUnit_6_0: AudioChannelLayoutTag = (139 << 16) | 6;
+/// A 7-channel surround-based layout, recommended for use by audio units.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// L R Ls Rs C Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_0?language=objc)
 pub const kAudioChannelLayoutTag_AudioUnit_7_0: AudioChannelLayoutTag = (140 << 16) | 7;
+/// An alternate 7-channel surround-based layout, for use by audio units.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center
+///
+/// - Left center
+///
+/// - Right center
+///
+///
 /// L R Ls Rs C Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_0_front?language=objc)
 pub const kAudioChannelLayoutTag_AudioUnit_7_0_Front: AudioChannelLayoutTag = (148 << 16) | 7;
-/// L R C LFE Ls Rs
+/// A 5.1-channel surround-based layout, recommended for use by audio units.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_5_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
+/// L R C LFE Ls Rs
 pub const kAudioChannelLayoutTag_AudioUnit_5_1: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_A;
-/// L R C LFE Ls Rs Cs
+/// A 6.1-channel surround-based layout, recommended for use by audio units.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_6_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center surround
+///
+///
+/// L R C LFE Ls Rs Cs
 pub const kAudioChannelLayoutTag_AudioUnit_6_1: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_6_1_A;
-/// L R C LFE Ls Rs Rls Rrs
+/// A 7.1-channel surround-based layout, recommended for use by audio units.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_1?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
+/// L R C LFE Ls Rs Rls Rrs
 pub const kAudioChannelLayoutTag_AudioUnit_7_1: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_C;
-/// L R C LFE Ls Rs Lc Rc
+/// A 7.1-channel surround-based layout, recommended for use by audio units.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_audiounit_7_1_front?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left center
+///
+/// - Right center
+///
+///
+/// L R C LFE Ls Rs Lc Rc
 pub const kAudioChannelLayoutTag_AudioUnit_7_1_Front: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_A;
+/// An AAC 3-channel audio layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+///
 /// C L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_3_0?language=objc)
 pub const kAudioChannelLayoutTag_AAC_3_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_3_0_B;
-/// L R Ls Rs
+/// An AAC quadraphonic surround-based layout.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_quadraphonic?language=objc)
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
+/// L R Ls Rs
 pub const kAudioChannelLayoutTag_AAC_Quadraphonic: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Quadraphonic;
+/// An AAC 4-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+///
 /// C L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_4_0?language=objc)
 pub const kAudioChannelLayoutTag_AAC_4_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_4_0_B;
+/// An AAC 5-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// C L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_5_0?language=objc)
 pub const kAudioChannelLayoutTag_AAC_5_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_0_D;
+/// An AAC 5.1-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Ls Rs Lfe
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_5_1?language=objc)
 pub const kAudioChannelLayoutTag_AAC_5_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_1_D;
+/// An AAC 6-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center surround
+///
+///
 /// C L R Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_6_0?language=objc)
 pub const kAudioChannelLayoutTag_AAC_6_0: AudioChannelLayoutTag = (141 << 16) | 6;
+/// An AAC 6.1-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Ls Rs Cs Lfe
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_6_1?language=objc)
 pub const kAudioChannelLayoutTag_AAC_6_1: AudioChannelLayoutTag = (142 << 16) | 7;
+/// An AAC 7-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// C L R Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_7_0?language=objc)
 pub const kAudioChannelLayoutTag_AAC_7_0: AudioChannelLayoutTag = (143 << 16) | 7;
+/// An AAC 7.1-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// C Lc Rc L R Ls Rs Lfe
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_7_1?language=objc)
 pub const kAudioChannelLayoutTag_AAC_7_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_7_1_B;
+/// An AAC 7.1-channel, configuration B, surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Ls Rs Rls Rrs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_7_1_b?language=objc)
 pub const kAudioChannelLayoutTag_AAC_7_1_B: AudioChannelLayoutTag = (183 << 16) | 8;
+/// An AAC 7.1-channel, configuration C, surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Rear surround
+///
+/// - Low-frequency effects
+///
+/// - Vertical height left
+///
+/// - Vertical height right
+///
+///
 /// C L R Ls Rs LFE Vhl Vhr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_7_1_c?language=objc)
 pub const kAudioChannelLayoutTag_AAC_7_1_C: AudioChannelLayoutTag = (184 << 16) | 8;
+/// An AAC 8-channel surround-based layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+/// - Center surround
+///
+///
 /// C L R Ls Rs Rls Rrs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_aac_octagonal?language=objc)
 pub const kAudioChannelLayoutTag_AAC_Octagonal: AudioChannelLayoutTag = (144 << 16) | 8;
+/// A TMH 10.2 multiple-channel surround-based layout .
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Vertical height center
+///
+/// - Left surround direct
+///
+/// - Right surround direct
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Vertical height left
+///
+/// - Vertical height right
+///
+/// - Left wide
+///
+/// - Right wide
+///
+/// - Center surround direct
+///
+/// - Center surround
+///
+/// - Low-frequency effects 1
+///
+/// - Low-frequency effects 2
+///
+///
 /// L R C Vhc Lsd Rsd Ls Rs Vhl Vhr Lw Rw Csd Cs LFE1 LFE2
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_tmh_10_2_std?language=objc)
 pub const kAudioChannelLayoutTag_TMH_10_2_std: AudioChannelLayoutTag = (145 << 16) | 16;
+/// An extended TMH 10.2 multiple-channel surround-based layout, recommended for use by audio units.
+///
+/// ## Discussion
+///
+/// This tag is equivalant to [`kAudioChannelLayoutTag_TMH_10_2_std`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_tmh_10_2_std) plus additional channels. Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center
+///
+/// - Vertical height center
+///
+/// - Left surround direct
+///
+/// - Right surround direct
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Vertical height left
+///
+/// - Vertical height right
+///
+/// - Left wide
+///
+/// - Right wide
+///
+/// - Center surround direct
+///
+/// - Center surround
+///
+/// - Low-frequency effects 1
+///
+/// - Low-frequency effects 2
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - HI
+///
+/// - VI
+///
+/// - Haptic
+///
+///
 /// TMH_10_2_std plus: Lc Rc HI VI Haptic
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_tmh_10_2_full?language=objc)
 pub const kAudioChannelLayoutTag_TMH_10_2_full: AudioChannelLayoutTag = (146 << 16) | 21;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Center
+///
+/// - Low-frequency effects
+///
+///
 /// C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_1_0_1?language=objc)
 pub const kAudioChannelLayoutTag_AC3_1_0_1: AudioChannelLayoutTag = (149 << 16) | 2;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+///
 /// L C R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_3_0?language=objc)
 pub const kAudioChannelLayoutTag_AC3_3_0: AudioChannelLayoutTag = (150 << 16) | 3;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Center surround
+///
+///
 /// L C R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_3_1?language=objc)
 pub const kAudioChannelLayoutTag_AC3_3_1: AudioChannelLayoutTag = (151 << 16) | 4;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Low-frequency effects
+///
+///
 /// L C R LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_3_0_1?language=objc)
 pub const kAudioChannelLayoutTag_AC3_3_0_1: AudioChannelLayoutTag = (152 << 16) | 4;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+/// - Low-frequency effects
+///
+///
 /// L R Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_2_1_1?language=objc)
 pub const kAudioChannelLayoutTag_AC3_2_1_1: AudioChannelLayoutTag = (153 << 16) | 4;
+/// An AC-3 layout.
+///
+/// ## Discussion
+///
+/// Your channels must be laid out in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Center surround
+///
+/// - Low-frequency effects
+///
+///
 /// L C R Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ac3_3_1_1?language=objc)
 pub const kAudioChannelLayoutTag_AC3_3_1_1: AudioChannelLayoutTag = (154 << 16) | 5;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Center surround
+///
+///
 /// L C R Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac_6_0_a?language=objc)
 pub const kAudioChannelLayoutTag_EAC_6_0_A: AudioChannelLayoutTag = (155 << 16) | 6;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// L C R Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac_7_0_a?language=objc)
 pub const kAudioChannelLayoutTag_EAC_7_0_A: AudioChannelLayoutTag = (156 << 16) | 7;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+///
 /// L C R Ls Rs LFE Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_6_1_a?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_6_1_A: AudioChannelLayoutTag = (157 << 16) | 7;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Top surround
+///
+///
 /// L C R Ls Rs LFE Ts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_6_1_b?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_6_1_B: AudioChannelLayoutTag = (158 << 16) | 7;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Vertical height center
+///
+///
 /// L C R Ls Rs LFE Vhc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_6_1_c?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_6_1_C: AudioChannelLayoutTag = (159 << 16) | 7;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// L C R Ls Rs LFE Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_a?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_A: AudioChannelLayoutTag = (160 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Left center
+///
+/// - Right center
+///
+///
 /// L C R Ls Rs LFE Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_b?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_B: AudioChannelLayoutTag = (161 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Left surround direct
+///
+/// - Right surround direct
+///
+///
 /// L C R Ls Rs LFE Lsd Rsd
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_c?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_C: AudioChannelLayoutTag = (162 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Left wide
+///
+/// - Right wide
+///
+///
 /// L C R Ls Rs LFE Lw Rw
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_d?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_D: AudioChannelLayoutTag = (163 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Vertical height left
+///
+/// - Vertical height right
+///
+///
 /// L C R Ls Rs LFE Vhl Vhr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_e?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_E: AudioChannelLayoutTag = (164 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+/// - Top surround
+///
+///
 /// L C R Ls Rs LFE Cs Ts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_f?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_F: AudioChannelLayoutTag = (165 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+/// - Vertical height center
+///
+///
 /// L C R Ls Rs LFE Cs Vhc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_g?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_G: AudioChannelLayoutTag = (166 << 16) | 8;
+/// A Blu-ray Disc audio layout for Enhanced AC-3, also known as Dolby Digital Plus.
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left
+///
+/// - Center
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Top surround
+///
+/// - Vertical height center
+///
+///
 /// L C R Ls Rs LFE Ts Vhc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_eac3_7_1_h?language=objc)
 pub const kAudioChannelLayoutTag_EAC3_7_1_H: AudioChannelLayoutTag = (167 << 16) | 8;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Low-frequency effects
+///
+///
 /// C L R LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_3_1?language=objc)
 pub const kAudioChannelLayoutTag_DTS_3_1: AudioChannelLayoutTag = (168 << 16) | 4;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Center surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_4_1?language=objc)
 pub const kAudioChannelLayoutTag_DTS_4_1: AudioChannelLayoutTag = (169 << 16) | 5;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// Lc Rc L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_0_a?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_0_A: AudioChannelLayoutTag = (170 << 16) | 6;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+/// - Top surround
+///
+///
 /// C L R Rls Rrs Ts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_0_b?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_0_B: AudioChannelLayoutTag = (171 << 16) | 6;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Center surround
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// C Cs L R Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_0_c?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_0_C: AudioChannelLayoutTag = (172 << 16) | 6;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// Lc Rc L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_1_a?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_1_A: AudioChannelLayoutTag = (173 << 16) | 7;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+/// - Top surround
+///
+/// - Low-frequency effects
+///
+///
 /// C L R Rls Rrs Ts LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_1_b?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_1_B: AudioChannelLayoutTag = (174 << 16) | 7;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Center surround
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+/// - Low-frequency effects
+///
+///
 /// C Cs L R Rls Rrs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_1_c?language=objc)
 pub const kAudioChannelLayoutTag_DTS_6_1_C: AudioChannelLayoutTag = (175 << 16) | 7;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+///
 /// Lc C Rc L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_7_0?language=objc)
 pub const kAudioChannelLayoutTag_DTS_7_0: AudioChannelLayoutTag = (176 << 16) | 7;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// Lc C Rc L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_7_1?language=objc)
 pub const kAudioChannelLayoutTag_DTS_7_1: AudioChannelLayoutTag = (177 << 16) | 8;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - Right rear surround
+///
+///
 /// Lc Rc L R Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_8_0_a?language=objc)
 pub const kAudioChannelLayoutTag_DTS_8_0_A: AudioChannelLayoutTag = (178 << 16) | 8;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Center surround
+///
+/// - Right surround
+///
+///
 /// Lc C Rc L R Ls Cs Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_8_0_b?language=objc)
 pub const kAudioChannelLayoutTag_DTS_8_0_B: AudioChannelLayoutTag = (179 << 16) | 8;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Left rear surround
+///
+/// - right rear surround
+///
+/// - Low-frequency effects
+///
+///
 /// Lc Rc L R Ls Rs Rls Rrs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_8_1_a?language=objc)
 pub const kAudioChannelLayoutTag_DTS_8_1_A: AudioChannelLayoutTag = (180 << 16) | 9;
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
+///
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Left center
+///
+/// - Center
+///
+/// - Right center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Center surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+///
 /// Lc C Rc L R Ls Cs Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_8_1_b?language=objc)
 pub const kAudioChannelLayoutTag_DTS_8_1_B: AudioChannelLayoutTag = (181 << 16) | 9;
-/// C L R Ls Rs LFE Cs
+/// A Blu-ray Disc audio layout, defined by DTS (Digital Theater Systems Ltd.).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_dts_6_1_d?language=objc)
+/// ## Discussion
+///
+/// Your channel layout must be in the following order:
+///
+/// - Center
+///
+/// - Left
+///
+/// - Right
+///
+/// - Left surround
+///
+/// - Right surround
+///
+/// - Low-frequency effects
+///
+/// - Center surround
+///
+///
+/// C L R Ls Rs LFE Cs
 pub const kAudioChannelLayoutTag_DTS_6_1_D: AudioChannelLayoutTag = (182 << 16) | 7;
 /// 3 channels, L R LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_2_1?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_2_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_DVD_4;
 /// 3 channels, L R C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_3_0?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_3_0: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_3_0_A;
 /// 4 channels, L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_4_0_a?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_4_0_A: AudioChannelLayoutTag = kAudioChannelLayoutTag_ITU_2_2;
 /// 4 channels, L R Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_4_0_b?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_4_0_B: AudioChannelLayoutTag = (185 << 16) | 4;
 /// 5 channels, L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_5_0_a?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_5_0_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_A;
 /// 5 channels, L R C Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_5_0_b?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_5_0_B: AudioChannelLayoutTag = (186 << 16) | 5;
 /// 6 channels, L R C LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_5_1_a?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_5_1_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_A;
 /// 6 channels, L R C LFE Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_5_1_b?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_5_1_B: AudioChannelLayoutTag = (187 << 16) | 6;
 /// 7 channels, L R C LFE Cs Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_6_1?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_6_1: AudioChannelLayoutTag = (188 << 16) | 7;
 /// 8 channels, L R C LFE Rls Rrs Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_wave_7_1?language=objc)
 pub const kAudioChannelLayoutTag_WAVE_7_1: AudioChannelLayoutTag = (189 << 16) | 8;
+/// A Higher-order Ambisonics, Schmidt semi-normalization audio layout.
+///
+/// ## Discussion
+///
+/// This tag needs to be `OR`ed with the number of HOA components, not the HOA order.
+///
+///
 /// Higher Order Ambisonics, Ambisonics Channel Number, SN3D normalization
 /// needs to be ORed with the actual number of channels (not the HOA order)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_hoa_acn_sn3d?language=objc)
 pub const kAudioChannelLayoutTag_HOA_ACN_SN3D: AudioChannelLayoutTag = (190 << 16) | 0;
+/// A Higher-order Ambisonics, full 3D normalization audio layout.
+///
+/// ## Discussion
+///
+/// This tag needs to be `ORed` with the number of HOA components, not the HOA order.
+///
+///
 /// Higher Order Ambisonics, Ambisonics Channel Number, N3D normalization
 /// needs to be ORed with the actual number of channels (not the HOA order)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_hoa_acn_n3d?language=objc)
 pub const kAudioChannelLayoutTag_HOA_ACN_N3D: AudioChannelLayoutTag = (191 << 16) | 0;
 /// L R C LFE Ls Rs Ltm Rtm
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_atmos_5_1_2?language=objc)
 pub const kAudioChannelLayoutTag_Atmos_5_1_2: AudioChannelLayoutTag = (194 << 16) | 8;
 /// L R C LFE Ls Rs Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_atmos_5_1_4?language=objc)
 pub const kAudioChannelLayoutTag_Atmos_5_1_4: AudioChannelLayoutTag = (195 << 16) | 10;
 /// L R C LFE Ls Rs Rls Rrs Ltm Rtm
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_atmos_7_1_2?language=objc)
 pub const kAudioChannelLayoutTag_Atmos_7_1_2: AudioChannelLayoutTag = (196 << 16) | 10;
 /// L R C LFE Ls Rs Rls Rrs Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_atmos_7_1_4?language=objc)
 pub const kAudioChannelLayoutTag_Atmos_7_1_4: AudioChannelLayoutTag = (192 << 16) | 12;
 /// L R C LFE Ls Rs Rls Rrs Lw Rw Vhl Vhr Ltm Rtm Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_atmos_9_1_6?language=objc)
 pub const kAudioChannelLayoutTag_Atmos_9_1_6: AudioChannelLayoutTag = (193 << 16) | 16;
 /// C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_mono?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Mono: AudioChannelLayoutTag = kAudioChannelLayoutTag_Mono;
 /// L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_stereo?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Stereo: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Stereo;
 /// L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_quadraphonic?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Quadraphonic: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Quadraphonic;
 /// L R C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_4_0_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_4_0_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_4_0_A;
 /// C L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_4_0_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_4_0_B: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_4_0_B;
 /// L R Cs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_4_0_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_4_0_C: AudioChannelLayoutTag = (197 << 16) | 4;
 /// L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_0_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_0_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_A;
 /// L R Ls Rs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_0_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_0_B: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_B;
 /// L C R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_0_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_0_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_C;
 /// C L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_0_d?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_0_D: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_0_D;
 /// L R C LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_1_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_1_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_A;
 /// L R Ls Rs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_1_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_1_B: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_B;
 /// L C R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_1_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_1_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_C;
 /// C L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_5_1_d?language=objc)
 pub const kAudioChannelLayoutTag_Logic_5_1_D: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_5_1_D;
 /// C L R Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_0_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_0_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_AAC_6_0;
 /// L R Ls Rs Cs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_0_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_0_B: AudioChannelLayoutTag = (198 << 16) | 6;
 /// L R Ls Rs C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_0_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_0_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_AudioUnit_6_0;
 /// C L R Ls Rs Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_1_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_1_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_AAC_6_1;
 /// L R Ls Rs Cs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_1_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_1_B: AudioChannelLayoutTag = (199 << 16) | 7;
 /// L R C LFE Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_1_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_1_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_6_1_A;
 /// L C R Ls Cs Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_6_1_d?language=objc)
 pub const kAudioChannelLayoutTag_Logic_6_1_D: AudioChannelLayoutTag = (200 << 16) | 7;
 /// L R C LFE Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_AudioUnit_7_1;
 /// L R Ls Rs Rls Rrs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_B: AudioChannelLayoutTag = (201 << 16) | 8;
 /// L R C LFE Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_C;
 /// L R C LFE Ls Rs Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_sdds_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_SDDS_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_A;
 /// C Lc Rc L R Ls Rs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_sdds_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_SDDS_B: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_MPEG_7_1_B;
 /// L R Ls Rs C LFE Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_7_1_sdds_c?language=objc)
 pub const kAudioChannelLayoutTag_Logic_7_1_SDDS_C: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Emagic_Default_7_1;
 /// L R C LFE Ls Rs Ltm Rtm
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_5_1_2?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_5_1_2: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Atmos_5_1_2;
 /// L R C LFE Ls Rs Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_5_1_4?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_5_1_4: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Atmos_5_1_4;
 /// L R C LFE Ls Rs Rls Rrs Ltm Rtm
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_7_1_2?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_7_1_2: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Atmos_7_1_2;
 /// L R C LFE Ls Rs Rls Rrs Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_7_1_4_a?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_A: AudioChannelLayoutTag =
     kAudioChannelLayoutTag_Atmos_7_1_4;
 /// L R Rls Rrs Ls Rs C LFE Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_7_1_4_b?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_7_1_4_B: AudioChannelLayoutTag = (202 << 16) | 12;
 /// L R Rls Rrs Ls Rs C LFE Vhl Vhr Ltm Rtm Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_logic_atmos_7_1_6?language=objc)
 pub const kAudioChannelLayoutTag_Logic_Atmos_7_1_6: AudioChannelLayoutTag = (203 << 16) | 14;
-/// needs to be ORed with the actual number of channels
+/// A tag used to map input channels to output channels without changing the channel order.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_discreteinorder?language=objc)
+/// ## Discussion
+///
+/// This tag needs to be `OR`ed with the actual number of channels.
+///
+///
+/// needs to be ORed with the actual number of channels
 pub const kAudioChannelLayoutTag_DiscreteInOrder: AudioChannelLayoutTag = (147 << 16) | 0;
 /// C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_1?language=objc)
 pub const kAudioChannelLayoutTag_CICP_1: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_1_0;
 /// L R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_2?language=objc)
 pub const kAudioChannelLayoutTag_CICP_2: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_2_0;
 /// L R C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_3?language=objc)
 pub const kAudioChannelLayoutTag_CICP_3: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_3_0_A;
 /// L R C Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_4?language=objc)
 pub const kAudioChannelLayoutTag_CICP_4: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_4_0_A;
 /// L R C Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_5?language=objc)
 pub const kAudioChannelLayoutTag_CICP_5: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_0_A;
 /// L R C LFE Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_6?language=objc)
 pub const kAudioChannelLayoutTag_CICP_6: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_5_1_A;
 /// L R C LFE Ls Rs Lc Rc
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_7?language=objc)
 pub const kAudioChannelLayoutTag_CICP_7: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_7_1_B;
 /// L R Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_9?language=objc)
 pub const kAudioChannelLayoutTag_CICP_9: AudioChannelLayoutTag = kAudioChannelLayoutTag_ITU_2_1;
 /// L R Ls Rs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_10?language=objc)
 pub const kAudioChannelLayoutTag_CICP_10: AudioChannelLayoutTag = kAudioChannelLayoutTag_ITU_2_2;
 /// L R C LFE Ls Rs Cs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_11?language=objc)
 pub const kAudioChannelLayoutTag_CICP_11: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_6_1_A;
 /// L R C LFE Ls Rs Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_12?language=objc)
 pub const kAudioChannelLayoutTag_CICP_12: AudioChannelLayoutTag = kAudioChannelLayoutTag_MPEG_7_1_C;
 /// Lc Rc C LFE2 Rls Rrs L R Cs LFE3 Lss Rss Vhl Vhr Vhc Ts Ltr Rtr Ltm Rtm Ctr Cb Lb Rb
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_13?language=objc)
 pub const kAudioChannelLayoutTag_CICP_13: AudioChannelLayoutTag = (204 << 16) | 24;
 /// L R C LFE Ls Rs Vhl Vhr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_14?language=objc)
 pub const kAudioChannelLayoutTag_CICP_14: AudioChannelLayoutTag = (205 << 16) | 8;
 /// L R C LFE2 Rls Rrs LFE3 Lss Rss Vhl Vhr Ctr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_15?language=objc)
 pub const kAudioChannelLayoutTag_CICP_15: AudioChannelLayoutTag = (206 << 16) | 12;
 /// L R C LFE Ls Rs Vhl Vhr Lts Rts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_16?language=objc)
 pub const kAudioChannelLayoutTag_CICP_16: AudioChannelLayoutTag = (207 << 16) | 10;
 /// L R C LFE Ls Rs Vhl Vhr Vhc Lts Rts Ts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_17?language=objc)
 pub const kAudioChannelLayoutTag_CICP_17: AudioChannelLayoutTag = (208 << 16) | 12;
 /// L R C LFE Ls Rs Lbs Rbs Vhl Vhr Vhc Lts Rts Ts
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_18?language=objc)
 pub const kAudioChannelLayoutTag_CICP_18: AudioChannelLayoutTag = (209 << 16) | 14;
 /// L R C LFE Rls Rrs Lss Rss Vhl Vhr Ltr Rtr
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_19?language=objc)
 pub const kAudioChannelLayoutTag_CICP_19: AudioChannelLayoutTag = (210 << 16) | 12;
 /// L R C LFE Rls Rrs Lss Rss Vhl Vhr Ltr Rtr Leos Reos
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_cicp_20?language=objc)
 pub const kAudioChannelLayoutTag_CICP_20: AudioChannelLayoutTag = (211 << 16) | 14;
 /// 3 channels, L C R
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_3_0?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_3_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_AC3_3_0;
 /// 4 channels, L R Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_4_0?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_4_0: AudioChannelLayoutTag = kAudioChannelLayoutTag_WAVE_4_0_B;
 /// 5 channels, L C R Rls Rrs
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_5_0?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_5_0: AudioChannelLayoutTag = (212 << 16) | 5;
 /// 6 channels, L C R Rls Rrs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_5_1?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_5_1: AudioChannelLayoutTag = (213 << 16) | 6;
 /// 7 channels, L C R Ls Rs Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_6_1?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_6_1: AudioChannelLayoutTag = (214 << 16) | 7;
 /// 8 channels, L C R Ls Rs Rls Rrs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_ogg_7_1?language=objc)
 pub const kAudioChannelLayoutTag_Ogg_7_1: AudioChannelLayoutTag = (215 << 16) | 8;
 /// 5 channels, L R Rls Rrs C
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_0_e?language=objc)
+/// 5 channels, L R Rls Rrs C
 pub const kAudioChannelLayoutTag_MPEG_5_0_E: AudioChannelLayoutTag = (216 << 16) | 5;
 /// 6 channels, L R Rls Rrs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_5_1_e?language=objc)
+/// 6 channels, L R Rls Rrs C LFE
 pub const kAudioChannelLayoutTag_MPEG_5_1_E: AudioChannelLayoutTag = (217 << 16) | 6;
 /// 7 channels, L R Ls Rs C Cs LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_6_1_b?language=objc)
+/// 7 channels, L R Ls Rs C Cs LFE
 pub const kAudioChannelLayoutTag_MPEG_6_1_B: AudioChannelLayoutTag = (218 << 16) | 7;
 /// 8 channels, L R Rls Rrs Ls Rs C LFE
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_mpeg_7_1_d?language=objc)
+/// 8 channels, L R Rls Rrs Ls Rs C LFE
 pub const kAudioChannelLayoutTag_MPEG_7_1_D: AudioChannelLayoutTag = (219 << 16) | 8;
+/// The beginning value for a reserved range of layout tags.
+///
+/// ## Discussion
+///
+/// The values in the range between `kAudioChannelLayoutTag_BeginReserved` and [`kAudioChannelLayoutTag_EndReserved`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_endreserved) are for future Apple use. Do not create layout tags that fall in the range created by these values.
+///
+///
 /// Channel layout tag values in this range are reserved for internal use
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_beginreserved?language=objc)
 pub const kAudioChannelLayoutTag_BeginReserved: AudioChannelLayoutTag = 0xF0000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_endreserved?language=objc)
-pub const kAudioChannelLayoutTag_EndReserved: AudioChannelLayoutTag = 0xFFFEFFFF;
-/// needs to be ORed with the actual number of channels
+/// The ending value for a reserved range of layout tags.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_unknown?language=objc)
+/// ## Discussion
+///
+/// The values in the range between [`kAudioChannelLayoutTag_BeginReserved`](https://developer.apple.com/documentation/coreaudiotypes/kaudiochannellayouttag_beginreserved) and `kAudioChannelLayoutTag_EndReserved` are for future Apple use. Do not create layout tags that fall in the range created by these values.
+///
+///
+pub const kAudioChannelLayoutTag_EndReserved: AudioChannelLayoutTag = 0xFFFEFFFF;
+/// The channel layout is unknown.
+///
+/// ## Discussion
+///
+/// This tag needs to be `OR`ed with the actual number of channels.
+///
+///
+/// needs to be ORed with the actual number of channels
 pub const kAudioChannelLayoutTag_Unknown: AudioChannelLayoutTag = 0xFFFF0000;
 
+/// A structure that describes a channel of audio data.
 /// This structure describes a single channel.
 ///
 /// The AudioChannelLabel that describes the channel.
@@ -2108,8 +4190,6 @@ pub const kAudioChannelLayoutTag_Unknown: AudioChannelLayoutTag = 0xFFFF0000;
 /// Flags that control the interpretation of mCoordinates.
 ///
 /// An ordered triple that specifies a precise speaker location.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochanneldescription?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioChannelDescription {
@@ -2135,6 +4215,7 @@ unsafe impl RefEncode for AudioChannelDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that specifies a channel layout in a file or in hardware.
 /// This structure is used to specify channel layouts in files and hardware.
 ///
 /// The AudioChannelLayoutTag that indicates the layout.
@@ -2146,8 +4227,6 @@ unsafe impl RefEncode for AudioChannelDescription {
 ///
 /// A variable length array of AudioChannelDescriptions that describe the
 /// layout.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioChannelLayout {
@@ -2179,13 +4258,25 @@ impl AudioChannelLayout {
     // TODO: pub fn AudioChannelLayoutTag_GetNumberOfChannels(in_layout_tag: AudioChannelLayoutTag,) -> u32;
 }
 
+///
+/// ## Overview
+///
+/// This struct is used as output from the kAudioFormatProperty_FormatList property
+///
+/// ```text
+///             an AudioStreamBasicDescription
+/// ```
+///
+/// ```text
+///             an AudioChannelLayoutTag
+/// ```
+///
+///
 /// this struct is used as output from the kAudioFormatProperty_FormatList property
 ///
 /// an AudioStreamBasicDescription
 ///
 /// an AudioChannelLayoutTag
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatlistitem?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFormatListItem {
@@ -2209,6 +4300,7 @@ unsafe impl RefEncode for AudioFormatListItem {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define the type of MPEG-4 audio data.
 /// @
 /// deprecated    in version 10.5
 ///
@@ -2217,38 +4309,42 @@ unsafe impl RefEncode for AudioFormatListItem {
 ///
 /// These constants are used in the flags field of an AudioStreamBasicDescription
 /// that describes an MPEG-4 audio stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MPEG4ObjectID(pub c_long);
 impl MPEG4ObjectID {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_main?language=objc)
+    /// A constant that specifies advanced audio coding, which is the basic MPEG-4 technology.
     #[doc(alias = "kMPEG4Object_AAC_Main")]
     pub const AAC_Main: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_lc?language=objc)
+    /// A constant that specifies lossless coding, which provides compression with no loss of quality.
     #[doc(alias = "kMPEG4Object_AAC_LC")]
     pub const AAC_LC: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_ssr?language=objc)
+    /// A constant that specifies scalable sampling rate, which provides different sampling frequencies for different targets.
     #[doc(alias = "kMPEG4Object_AAC_SSR")]
     pub const AAC_SSR: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_ltp?language=objc)
+    /// A constant that specifies long-term prediction, which reduces redundancy in a coded signal.
     #[doc(alias = "kMPEG4Object_AAC_LTP")]
     pub const AAC_LTP: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_sbr?language=objc)
+    /// A constant that specifies spectral band replication, which reconstructs high-frequency content from lower frequencies and side information.
     #[doc(alias = "kMPEG4Object_AAC_SBR")]
     pub const AAC_SBR: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/aac_scalable?language=objc)
+    /// A constant that specifies scalable lossless coding.
     #[doc(alias = "kMPEG4Object_AAC_Scalable")]
     pub const AAC_Scalable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/twinvq?language=objc)
+    /// A constant that specifies transform-domain weighted interleaved vector quantization.
+    ///
+    /// ## Discussion
+    ///
+    /// This audio codec optimizes audio coding at ultra-low bit rates of around 8 kbit/s.
+    ///
+    ///
     #[doc(alias = "kMPEG4Object_TwinVQ")]
     pub const TwinVQ: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/celp?language=objc)
+    /// A constant that specifies code-excited linear prediction, which is a narrow-band/wide-band speech codec.
     #[doc(alias = "kMPEG4Object_CELP")]
     pub const CELP: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/mpeg4objectid/hvxc?language=objc)
+    /// A constant that specifies harmonic vector excitation coding, which is a very-low bit-rate parametric speech codec.
     #[doc(alias = "kMPEG4Object_HVXC")]
     pub const HVXC: Self = Self(9);
 }

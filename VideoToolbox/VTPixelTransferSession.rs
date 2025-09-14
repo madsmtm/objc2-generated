@@ -12,6 +12,13 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// A reference to a VideoToolbox pixel transfer session.
+///
+/// ## Overview
+///
+/// A pixel transfer session supports the copying and/or conversion of images from source `CVPixelBuffers` to destination `CVPixelBuffers`. The session is a reference-counted Core Foundation (CF) object.
+///
+///
 /// A reference to a Video Toolbox Pixel Transfer Session.
 ///
 /// A pixel transfer session supports the copying and/or conversion of
@@ -22,8 +29,6 @@ use crate::*;
 /// then to transfer pixels, call VTPixelTransferSessionTransferImage.
 /// When you are done with the session, you should call VTPixelTransferSessionInvalidate
 /// to tear it down and CFRelease to release your object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersession?language=objc)
 #[doc(alias = "VTPixelTransferSessionRef")]
 #[repr(C)]
 pub struct VTPixelTransferSession {
@@ -40,6 +45,19 @@ cf_objc2_type!(
 );
 
 impl VTPixelTransferSession {
+    /// Creates a session for transferring images between Core Video image buffers that hold pixels in main memory.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session.  Pass `NULL` to use the default allocator.
+    ///
+    /// - pixelTransferSessionOut: Points to a variable to receive the new pixel transfer session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function creates a session for transferring images between [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) objects.
+    ///
+    ///
     /// Creates a session for transferring images between CVPixelBuffers.
     ///
     /// The function creates a session for transferring images between CVPixelBuffers.
@@ -51,8 +69,6 @@ impl VTPixelTransferSession {
     /// # Safety
     ///
     /// `pixel_transfer_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessioncreate(allocator:pixeltransfersessionout:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -70,13 +86,30 @@ impl VTPixelTransferSession {
 
     /// Tears down a pixel transfer session.
     ///
+    /// Parameters:
+    /// - session: The pixel transfer session to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you finish with a pixel transfer session you created, call this function to tear it down, and then call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release your object reference.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A pixel transfer session is automatically invalidated when its retain count reaches zero, but because sessions may be retained by multiple parties, it’s hard to predict when the invalidation will happen.  Calling this function ensures a deterministic, orderly teardown.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Tears down a pixel transfer session.
+    ///
     /// When you are done with a pixel transfer session you created, call VTPixelTransferSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     /// When a pixel transfer session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTPixelTransferSessionInvalidate ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -88,9 +121,14 @@ impl VTPixelTransferSession {
 }
 
 unsafe impl ConcreteType for VTPixelTransferSession {
-    /// Returns the CFTypeID for pixel transfer sessions.
+    /// Retrieves the Core Foundation type identifier for the pixel transfer session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessiongettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The `CFTypeID` of the transfer session object.
+    ///
+    ///
+    /// Returns the CFTypeID for pixel transfer sessions.
     #[doc(alias = "VTPixelTransferSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -102,6 +140,27 @@ unsafe impl ConcreteType for VTPixelTransferSession {
 }
 
 impl VTPixelTransferSession {
+    /// Copies and/or converts an image from one pixel buffer to another.
+    ///
+    /// Parameters:
+    /// - session: The pixel transfer session.
+    ///
+    /// - sourceBuffer: The source buffer.
+    ///
+    /// - destinationBuffer: The destination buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `noErr` if successful or an error code, such as `kVTPixelTransferNotSupportedErr`, if the operation failed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the full width and height of `sourceBuffer` are scaled to the full width and height of `destinationBuffer`.   By default, all existing attachments on `destinationBuffer` are removed and new attachments are set that describe the transferred image.  Unrecognized attachments on `sourceBuffer` are propagated to destinationBuffer. Some properties modify this behavior; see `VTPixelTransferProperties.h` for more details.
+    ///
+    ///
     /// Copies and/or converts an image from one pixel buffer to another.
     ///
     /// By default, the full width and height of sourceBuffer are scaled to the full
@@ -118,8 +177,6 @@ impl VTPixelTransferSession {
     /// Parameter `destinationBuffer`: The destination buffer.
     ///
     /// Returns: If the transfer was successful, noErr; otherwise an error code, such as kVTPixelTransferNotSupportedErr.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtpixeltransfersessiontransferimage(_:from:to:)?language=objc)
     #[doc(alias = "VTPixelTransferSessionTransferImage")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]

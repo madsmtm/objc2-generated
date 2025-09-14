@@ -8,27 +8,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchanneleventtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothL2CAPChannelEventType(pub c_uint);
 impl IOBluetoothL2CAPChannelEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypedata?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeData")]
     pub const Data: Self = Self(0x0001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypeopencomplete?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeOpenComplete")]
     pub const OpenComplete: Self = Self(0x0002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypeclosed?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeClosed")]
     pub const Closed: Self = Self(0x0003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypereconfigured?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeReconfigured")]
     pub const Reconfigured: Self = Self(0x0004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypewritecomplete?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeWriteComplete")]
     pub const WriteComplete: Self = Self(0x0005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothl2capchanneleventtypequeuespaceavailable?language=objc)
     #[doc(alias = "kIOBluetoothL2CAPChannelEventTypeQueueSpaceAvailable")]
     pub const QueueSpaceAvailable: Self = Self(0x0006);
 }
@@ -41,7 +34,6 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchanneldatablock?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOBluetoothL2CAPChannelDataBlock {
@@ -83,7 +75,6 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent_u {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelevent?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct IOBluetoothL2CAPChannelEvent {
@@ -107,13 +98,11 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelincomingdatalistener?language=objc)
 #[cfg(feature = "IOBluetoothUserLib")]
 pub type IOBluetoothL2CAPChannelIncomingDataListener = Option<
     unsafe extern "C-unwind" fn(*mut IOBluetoothL2CAPChannelRef, *mut c_void, u16, *mut c_void),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelincomingeventlistener?language=objc)
 #[cfg(feature = "IOBluetoothUserLib")]
 pub type IOBluetoothL2CAPChannelIncomingEventListener = Option<
     unsafe extern "C-unwind" fn(
@@ -124,6 +113,15 @@ pub type IOBluetoothL2CAPChannelIncomingEventListener = Option<
 >;
 
 extern_class!(
+    /// An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
+    ///
+    /// ## Overview
+    ///
+    /// A client won’t create IOBluetoothL2CAPChannel objects directly. Instead, the IOBluetoothDevice’s L2CAP channel open API is responsible for opening a new L2CAP channel and returning an IOBluetoothL2CAPChannel instance representing that newly opened channel. Additionally, the IOBluetooth notification system will send notifications when new L2CAP channels are open (if requested).
+    ///
+    /// After a new L2CAP channel is opened, the L2CAP configuration process will not be completed until an incoming data listener is registered with the IOBluetoothL2CAPChannel object. The reason for this is to due to the limited buffering done of incoming L2CAP data. This way, we avoid the situation where incoming data is received before the client is ready for it. Once a client is done with an IOBluetoothL2CAPChannel that it opened, it should call -closeChannel. Additionally, if the client does not intend to use the connection to the remote device any further, it should call -closeConnection on the IOBluetoothDevice object.
+    ///
+    ///
     /// An instance of IOBluetoothL2CAPChannel represents a single open L2CAP channel.
     ///
     /// A client won't create IOBluetoothL2CAPChannel objects directly.  Instead, the IOBluetoothDevice's
@@ -138,8 +136,6 @@ extern_class!(
     /// IOBluetoothL2CAPChannel that it opened, it should call -closeChannel.  Additionally, if the client
     /// does not intend to use the connection to the remote device any further, it should call -closeConnection
     /// on the IOBluetoothDevice object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannel?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOBluetoothObject")]
@@ -586,7 +582,6 @@ impl IOBluetoothL2CAPChannel {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchanneldelegate?language=objc)
     pub unsafe trait IOBluetoothL2CAPChannelDelegate {
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
@@ -664,13 +659,11 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelpublishednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothL2CAPChannelPublishedNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelterminatednotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static IOBluetoothL2CAPChannelTerminatedNotification: Option<&'static NSString>;
 }

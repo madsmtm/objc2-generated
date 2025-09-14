@@ -25,14 +25,29 @@ unsafe impl RefEncode for sec_protocol_metadata {
         Encoding::Pointer(&Encoding::Struct("sec_protocol_metadata", &[]));
 }
 
+/// A `sec_protocol_metadata` instance conatins read-only properties of a connected and configured security protocol. Clients use this object to read information about a protocol instance. Properties include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
 /// A `sec_protocol_metadata` instance conatins read-only properties of a connected and configured
 /// security protocol. Clients use this object to read information about a protocol instance. Properties
 /// include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_t?language=objc)
 pub type sec_protocol_metadata_t = *mut sec_protocol_metadata;
 
 impl sec_protocol_metadata {
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A NULL-terminated string carrying the negotiated protocol.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the application protocol negotiated, e.g., via the TLS ALPN extension.
+    ///
+    ///
     /// Get the application protocol negotiated, e.g., via the TLS ALPN extension.
     ///
     ///
@@ -44,8 +59,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_protocol(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol")]
     #[deprecated]
     #[inline]
@@ -58,6 +71,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_negotiated_protocol(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A NULL-terminated string carrying the negotiated protocol.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Copy the application protocol negotiated, e.g., via the TLS ALPN extension. The caller is expected to `free` the output string when no longer needed.
+    ///
+    ///
     /// Copy the application protocol negotiated, e.g., via the TLS ALPN extension.
     /// The caller is expected to `free` the output string when no longer needed.
     ///
@@ -70,8 +99,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_copy_negotiated_protocol(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_copy_negotiated_protocol")]
     #[inline]
     pub unsafe fn copy_negotiated_protocol(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -83,6 +110,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_copy_negotiated_protocol(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `tls_protocol_version_t` value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the negotiated TLS version.
+    ///
+    ///
     /// Get the negotiated TLS version.
     ///
     ///
@@ -94,8 +137,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_tls_protocol_version(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -110,6 +151,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A SSLProtocol enum of the TLS version.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the negotiated TLS version.
+    ///
+    ///
     /// Get the negotiated TLS version.
     ///
     ///
@@ -121,8 +178,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_protocol_version(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_protocol_version")]
     #[cfg(feature = "SecProtocolTypes")]
     #[deprecated]
@@ -136,6 +191,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_negotiated_protocol_version(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `tls_ciphersuite_t`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the negotiated TLS ciphersuite.
+    ///
+    ///
     /// Get the negotiated TLS ciphersuite.
     ///
     ///
@@ -147,8 +218,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_tls_ciphersuite(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_tls_ciphersuite")]
     #[cfg(feature = "SecProtocolTypes")]
     #[inline]
@@ -163,6 +232,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A SSLCipherSuite.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the negotiated TLS ciphersuite.
+    ///
+    ///
     /// Get the negotiated TLS ciphersuite.
     ///
     ///
@@ -174,8 +259,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_negotiated_ciphersuite(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_negotiated_ciphersuite")]
     #[cfg(feature = "CipherSuite")]
     #[deprecated]
@@ -189,6 +272,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_negotiated_ciphersuite(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A bool indicating if early data was accepted.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Determine if early data was accepted by the peer.
+    ///
+    ///
     /// Determine if early data was accepted by the peer.
     ///
     ///
@@ -200,8 +299,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_early_data_accepted(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_early_data_accepted")]
     #[inline]
     pub unsafe fn early_data_accepted(metadata: sec_protocol_metadata_t) -> bool {
@@ -213,6 +310,24 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_early_data_accepted(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    /// - handler: A block to invoke one or more times with sec_certificate_t objects
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns true if the peer certificates were accessible, false otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the certificate chain of the protocol instance peer.
+    ///
+    ///
     /// Get the certificate chain of the protocol instance peer.
     ///
     ///
@@ -227,8 +342,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_access_peer_certificate_chain(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_access_peer_certificate_chain")]
     #[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
     #[inline]
@@ -245,6 +358,24 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_access_peer_certificate_chain(metadata, handler) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    /// - handler: A block to invoke one or more times with OCSP data
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns true if the supported signature list was accessible, false otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Get the signature algorithms supported by the peer. Clients may call this in response to a challenge block.
+    ///
+    ///
     /// Get the signature algorithms supported by the peer. Clients may call this
     /// in response to a challenge block.
     ///
@@ -260,8 +391,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_access_supported_signature_algorithms(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_access_supported_signature_algorithms")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -278,6 +407,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_access_supported_signature_algorithms(metadata, handler) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns A NULL-terminated string carrying the server name, or NULL if none was provided.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Obtain the server name offered by a client or server during connection establishmet. This is the value commonly carried in the TLS SNI extesion.
+    ///
+    ///
     /// Obtain the server name offered by a client or server during
     /// connection establishmet. This is the value commonly carried
     /// in the TLS SNI extesion.
@@ -292,8 +437,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_get_server_name(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_get_server_name")]
     #[deprecated]
     #[inline]
@@ -306,6 +449,22 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_get_server_name(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadata: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns A NULL-terminated string carrying the server name, or NULL if none was provided.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Obtain a copy of the server name offered by a client or server during connection establishmet. This is the value commonly carried in the TLS SNI extesion. The caller is expected to `free` the output string when it is no longer needed.
+    ///
+    ///
     /// Obtain a copy of the server name offered by a client or server during
     /// connection establishmet. This is the value commonly carried
     /// in the TLS SNI extesion. The caller is expected to `free` the output
@@ -321,8 +480,6 @@ impl sec_protocol_metadata {
     /// # Safety
     ///
     /// `metadata` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_copy_server_name(_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_copy_server_name")]
     #[inline]
     pub unsafe fn copy_server_name(metadata: sec_protocol_metadata_t) -> *const c_char {
@@ -334,6 +491,24 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_copy_server_name(metadata) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadataA: A `sec_protocol_metadata_t` instance.
+    ///
+    /// - metadataB: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns true if both metadata values refer to the same peer, and false otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compare peer information for two `sec_protocol_metadata` instances. This comparison does not include protocol configuration options, e.g., ciphersuites.
+    ///
+    ///
     /// Compare peer information for two `sec_protocol_metadata` instances.
     /// This comparison does not include protocol configuration options, e.g., ciphersuites.
     ///
@@ -350,8 +525,6 @@ impl sec_protocol_metadata {
     ///
     /// - `metadata_a` must be a valid pointer.
     /// - `metadata_b` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_peers_are_equal(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_peers_are_equal")]
     #[inline]
     pub unsafe fn peers_are_equal(
@@ -367,6 +540,30 @@ impl sec_protocol_metadata {
         unsafe { sec_protocol_metadata_peers_are_equal(metadata_a, metadata_b) }
     }
 
+    ///
+    /// Parameters:
+    /// - metadataA: A `sec_protocol_metadata_t` instance.
+    ///
+    /// - metadataB: A `sec_protocol_metadata_t` instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns true if both metadata values have the same challenge parameters.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compare challenge-relevant information for two `sec_protocol_metadata` instances.
+    ///
+    /// ```text
+    ///  This comparison includes all information relevant to a challenge request, including:
+    ///  distinguished names, signature algorithms, and supported certificate types.
+    ///  See Section 7.4.4 of RFC5246 for more details.
+    /// ```
+    ///
+    ///
     /// Compare challenge-relevant information for two `sec_protocol_metadata` instances.
     ///
     /// This comparison includes all information relevant to a challenge request, including:
@@ -386,8 +583,6 @@ impl sec_protocol_metadata {
     ///
     /// - `metadata_a` must be a valid pointer.
     /// - `metadata_b` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata_challenge_parameters_are_equal(_:_:)?language=objc)
     #[doc(alias = "sec_protocol_metadata_challenge_parameters_are_equal")]
     #[inline]
     pub unsafe fn challenge_parameters_are_equal(

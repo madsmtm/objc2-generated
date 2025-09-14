@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
+    /// The protocol that provides resource identification.
     /// MPS resource identification
     ///
     /// Most of the time, there is only one image and one or fewer states needed as
@@ -86,8 +87,6 @@ extern_protocol!(
     /// Do take note of the NSSecureCoding requirement in the MPSHandle protocol, however.
     /// This is needed if you attempt to use NSSecureCoding to serialize the MPSNNGraph.
     /// Normal MPSImages and MPSStates don't do that part.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpshandle?language=objc)
     pub unsafe trait MPSHandle: NSSecureCoding + NSObjectProtocol {
         /// A label to be attached to associated MTLResources for this node
         ///
@@ -99,7 +98,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainablenode?language=objc)
+    /// A protocol that defines methods that determine whether and when neural network training parameters are updated.
     pub unsafe trait MPSNNTrainableNode: NSObjectProtocol {
         #[cfg(feature = "MPSNeuralNetworkTypes")]
         /// Configure whether and when neural network training parameters are updated
@@ -118,6 +117,7 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A placeholder node denoting the position of a neural network image in a graph.
     /// A placeholder node denoting the position of a MPSImage in a graph
     ///
     /// MPS neural network graphs are made up of filter nodes connected by
@@ -127,8 +127,6 @@ extern_class!(
     /// Most image nodes will be created by MPS and made available through
     /// MPSNNFilterNode.resultImage. Image nodes that are not created by MPS
     /// (i.e. "the graph inputs") must be created by you.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNImageNode;
@@ -286,6 +284,7 @@ impl MPSNNImageNode {
 }
 
 extern_class!(
+    /// A placeholder node denoting the position in the graph of a state object.
     /// A placeholder node denoting the position in the graph of a MPSState object
     ///
     /// Some filters need additional information about an image in order to function. For example
@@ -293,8 +292,6 @@ extern_class!(
     /// original pooling filter in order to select the right data for gradient computation.  In other cases,
     /// state may be moved into a MPSState object in order to keep the filter itself immutable.
     /// The MPSState object typically encapsulates one or more MTLResource objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnstatenode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNStateNode;
@@ -371,6 +368,7 @@ impl MPSNNStateNode {
 }
 
 extern_class!(
+    /// A representation of the state created to record the properties of a gradient kernel at the time it was encoded.
     /// During training, each MPSNNFilterNode has a corresponding
     /// MPSNNGradientFilterNode for the gradient computation for
     /// trainable parameter update. The two communicate through a
@@ -382,8 +380,6 @@ extern_class!(
     /// the necessary extra information like MPSNNGradientState
     /// nodes and inference filter source image nodes to the object as
     /// needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientstatenode?language=objc)
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGradientStateNode;
@@ -416,7 +412,7 @@ impl MPSNNGradientStateNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstatenode?language=objc)
+    /// A representation of a gradient convolution state.
     #[unsafe(super(MPSNNGradientStateNode, MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionGradientStateNode;
@@ -449,7 +445,6 @@ impl MPSCNNConvolutionGradientStateNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradientstatenode?language=objc)
     #[unsafe(super(
         MPSCNNConvolutionGradientStateNode,
         MPSNNGradientStateNode,
@@ -487,7 +482,7 @@ impl MPSCNNConvolutionTransposeGradientStateNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinarygradientstatenode?language=objc)
+    /// A representation of the state created to record the properties of a binary gradient kernel.
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNBinaryGradientStateNode;
@@ -520,7 +515,6 @@ impl MPSNNBinaryGradientStateNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiarygradientstatenode?language=objc)
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNMultiaryGradientStateNode;
@@ -553,7 +547,7 @@ impl MPSNNMultiaryGradientStateNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnarithmeticgradientstatenode?language=objc)
+    /// A representation of the clamp mask used by gradient arithmetic operators.
     #[unsafe(super(MPSNNBinaryGradientStateNode, MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNArithmeticGradientStateNode;
@@ -610,8 +604,6 @@ impl MPSNNArithmeticGradientStateNode {
 /// Parameter `inferenceSource`: The  source image argument to the inference node to which the gradient result corresponds
 ///
 /// Parameter `gradientSource`: The source gradient argument to the new gradient node.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgradientnodeblock?language=objc)
 #[cfg(feature = "block2")]
 pub type MPSGradientNodeBlock = *mut block2::DynBlock<
     dyn Fn(
@@ -623,13 +615,12 @@ pub type MPSGradientNodeBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// A placeholder node denoting a neural network filter stage.
     /// A placeholder node denoting a neural network filter stage
     ///
     /// There are as many MPSNNFilterNode subclasses as there are
     /// MPS neural network filter objects. Make one of those.
     /// This class defines an polymorphic interface for them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNFilterNode;
@@ -843,6 +834,7 @@ impl MPSNNFilterNode {
 }
 
 extern_class!(
+    /// A representation of a gradient filter.
     /// For each MPSNNFilterNode, there is a corresponding MPSNNGradientFilterNode
     /// used for training that back propagates image gradients to refine the
     /// various parameters in each node. Generally, it takes as input a gradient
@@ -855,8 +847,6 @@ extern_class!(
     /// If you have a simple method to traverse your inference graph backwards, then
     /// -[MPSNNFilterNode gradientFilterWithSource:] is a simple way to construct
     /// these.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientfilternode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGradientFilterNode;
@@ -917,9 +907,8 @@ impl MPSNNGradientFilterNode {
 }
 
 extern_class!(
+    /// A representation of a convolution kernel.
     /// A MPSNNFilterNode representing a MPSCNNConvolution kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionNode;
@@ -1034,9 +1023,8 @@ impl MPSCNNConvolutionNode {
 }
 
 extern_class!(
+    /// A representation of a fully connected convolution layer, also known as an inner product layer.
     /// A MPSNNFilterNode representing a MPSCNNFullyConnected kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectednode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNFullyConnectedNode;
@@ -1108,9 +1096,8 @@ impl MPSCNNFullyConnectedNode {
 }
 
 extern_class!(
+    /// A representation of a convolution kernel with binary weights and an input image using binary approximations.
     /// A MPSNNFilterNode representing a MPSCNNBinaryConvolution kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionnode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBinaryConvolutionNode;
@@ -1342,9 +1329,8 @@ impl MPSCNNBinaryConvolutionNode {
 }
 
 extern_class!(
+    /// A representation of a fully connected convolution layer with binary weights and optionally binarized input image.
     /// A MPSNNFilterNode representing a MPSCNNBinaryFullyConnected kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryfullyconnectednode?language=objc)
     #[unsafe(super(
         MPSCNNBinaryConvolutionNode,
         MPSCNNConvolutionNode,
@@ -1574,9 +1560,8 @@ impl MPSCNNBinaryFullyConnectedNode {
 }
 
 extern_class!(
+    /// A representation of a transposed convolution.
     /// A MPSNNFilterNode representing a MPSCNNConvolutionTranspose kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposenode?language=objc)
     #[unsafe(super(MPSCNNConvolutionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionTransposeNode;
@@ -1711,7 +1696,7 @@ impl MPSCNNConvolutionTransposeNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientnode?language=objc)
+    /// A representation of a gradient convolution kernel.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNConvolutionGradientNode;
@@ -1799,7 +1784,6 @@ impl MPSCNNConvolutionGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnfullyconnectedgradientnode?language=objc)
     #[unsafe(super(
         MPSCNNConvolutionGradientNode,
         MPSNNGradientFilterNode,
@@ -1892,7 +1876,6 @@ impl MPSCNNFullyConnectedGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiontransposegradientnode?language=objc)
     #[unsafe(super(
         MPSCNNConvolutionGradientNode,
         MPSNNGradientFilterNode,
@@ -2041,6 +2024,7 @@ impl MPSCNNConvolutionTransposeGradientNode {
 }
 
 extern_class!(
+    /// The virtual base class for MPS CNN neuron nodes.
     /// virtual base class for MPSCNNNeuron nodes
     ///
     /// This is a virtual base class only. Please create a
@@ -2057,8 +2041,6 @@ extern_class!(
     /// if the neuron pass has a custom padding method or more than one
     /// node reads from the convolution result. The graph -debugDescription
     /// should reveal what happened.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronNode;
@@ -2110,6 +2092,7 @@ impl MPSCNNNeuronNode {
 }
 
 extern_class!(
+    /// A representation of an absolute neuron filter.
     /// A node representing a MPSCNNNeuronAbsolute kernel
     ///
     /// For each pixel, applies the following function:
@@ -2117,8 +2100,6 @@ extern_class!(
     /// ```text
     ///       f(x) = fabs(x)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolutenode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronAbsoluteNode;
@@ -2177,6 +2158,7 @@ impl MPSCNNNeuronAbsoluteNode {
 }
 
 extern_class!(
+    /// A representation of a parametric ELU neuron filter.
     /// A node representing a MPSCNNNeuronELU kernel
     ///
     /// For each pixel, applies the following function:
@@ -2185,8 +2167,6 @@ extern_class!(
     ///       f(x) = a * exp(x) - 1, x <  0
     ///              x             , x >= 0
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronELUNode;
@@ -2257,6 +2237,7 @@ impl MPSCNNNeuronELUNode {
 }
 
 extern_class!(
+    /// A representation a ReLUN neuron filter.
     /// A node representing a MPSCNNNeuronReLUN kernel
     ///
     /// For each pixel, applies the following function:
@@ -2264,8 +2245,6 @@ extern_class!(
     /// ```text
     ///       f(x) = min((x >= 0 ? x : a * x), b)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronReLUNNode;
@@ -2341,6 +2320,7 @@ impl MPSCNNNeuronReLUNNode {
 }
 
 extern_class!(
+    /// A representation of a linear neuron filter.
     /// A node representing a MPSCNNNeuronLinear kernel
     ///
     /// For each pixel, applies the following function:
@@ -2348,8 +2328,6 @@ extern_class!(
     /// ```text
     ///       f(x) = a * x + b
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinearnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronLinearNode;
@@ -2434,6 +2412,7 @@ impl MPSCNNNeuronLinearNode {
 }
 
 extern_class!(
+    /// A representation a ReLU neuron filter.
     /// A node representing a MPSCNNNeuronReLU kernel
     ///
     /// For each pixel, applies the following function:
@@ -2442,8 +2421,6 @@ extern_class!(
     ///       f(x) = x            if x >= 0
     ///            = a * x        if x < 0
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronReLUNode;
@@ -2517,6 +2494,7 @@ impl MPSCNNNeuronReLUNode {
 }
 
 extern_class!(
+    /// A representation of a sigmoid neuron filter.
     /// A node representing a MPSCNNNeuronSigmoid kernel
     ///
     /// For each pixel, applies the following function:
@@ -2524,8 +2502,6 @@ extern_class!(
     /// ```text
     ///       f(x) = 1 / (1 + e^-x)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoidnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSigmoidNode;
@@ -2584,6 +2560,7 @@ impl MPSCNNNeuronSigmoidNode {
 }
 
 extern_class!(
+    /// A representation of a hard sigmoid neuron filter.
     /// A node representing a MPSCNNNeuronHardSigmoid kernel
     ///
     /// For each pixel, applies the following function:
@@ -2591,8 +2568,6 @@ extern_class!(
     /// ```text
     ///       f(x) = clamp((a * x) + b, 0, 1)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoidnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronHardSigmoidNode;
@@ -2677,6 +2652,7 @@ impl MPSCNNNeuronHardSigmoidNode {
 }
 
 extern_class!(
+    /// A representation of a parametric softplus neuron filter.
     /// A node representing a MPSCNNNeuronSoftPlus kernel
     ///
     /// For each pixel, applies the following function:
@@ -2684,8 +2660,6 @@ extern_class!(
     /// ```text
     ///       f(x) = a * log(1 + e^(b * x))
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplusnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSoftPlusNode;
@@ -2770,6 +2744,7 @@ impl MPSCNNNeuronSoftPlusNode {
 }
 
 extern_class!(
+    /// A representation of a softsign neuron filter.
     /// A node representing a MPSCNNNeuronSoftSign kernel
     ///
     /// For each pixel, applies the following function:
@@ -2777,8 +2752,6 @@ extern_class!(
     /// ```text
     ///       f(x) = x / (1 + abs(x))
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsignnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronSoftSignNode;
@@ -2837,6 +2810,7 @@ impl MPSCNNNeuronSoftSignNode {
 }
 
 extern_class!(
+    /// A representation of a hyperbolic tangent neuron filter.
     /// A node representing a MPSCNNNeuronTanH kernel
     ///
     /// For each pixel, applies the following function:
@@ -2844,8 +2818,6 @@ extern_class!(
     /// ```text
     ///       f(x) = a * tanh(b * x)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanhnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronTanHNode;
@@ -2937,6 +2909,7 @@ impl MPSCNNNeuronTanHNode {
 }
 
 extern_class!(
+    /// A representation a PReLU neuron filter.
     /// A ReLU node with parameter a provided independently for each feature channel
     ///
     /// For each pixel, applies the following function:
@@ -2947,8 +2920,6 @@ extern_class!(
     ///   @param      sourceNode              The MPSNNImageNode representing the source MPSImage for the filter
     ///   @param      aData                   An array of single precision floating-point alpha values to use
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronPReLUNode;
@@ -3031,6 +3002,7 @@ impl MPSCNNNeuronPReLUNode {
 }
 
 extern_class!(
+    /// A representation of a power neuron filter.
     /// A node representing a MPSCNNNeuronPower kernel
     ///
     /// For each pixel, applies the following function:
@@ -3038,8 +3010,6 @@ extern_class!(
     /// ```text
     ///       f(x) = (a * x + b) ^ c
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpowernode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronPowerNode;
@@ -3131,6 +3101,7 @@ impl MPSCNNNeuronPowerNode {
 }
 
 extern_class!(
+    /// A representation of an exponential neuron filter.
     /// A node representing a MPSCNNNeuronExponential kernel
     ///
     /// For each pixel, applies the following function:
@@ -3138,8 +3109,6 @@ extern_class!(
     /// ```text
     ///       f(x) = c ^ (a * x + b)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponentialnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronExponentialNode;
@@ -3231,6 +3200,7 @@ impl MPSCNNNeuronExponentialNode {
 }
 
 extern_class!(
+    /// A representation of a logarithm neuron filter.
     /// A node representing a MPSCNNNeuronLogarithm kernel
     ///
     /// For each pixel, applies the following function:
@@ -3238,8 +3208,6 @@ extern_class!(
     /// ```text
     ///       f(x) = log_c(a * x + b)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithmnode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronLogarithmNode;
@@ -3334,8 +3302,6 @@ extern_class!(
     /// A node representing a MPSCNNNeuronGeLU kernel
     ///
     /// For each pixel, applies the following function:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongelunode?language=objc)
     #[unsafe(super(MPSCNNNeuronNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronGeLUNode;
@@ -3396,12 +3362,11 @@ impl MPSCNNNeuronGeLUNode {
 }
 
 extern_class!(
+    /// A representation of a gradient exponential neuron filter.
     /// A node representing a MPSCNNNeuronGradient
     ///
     /// We use one generic neuron gradient node
     /// instead of having dozens of subclasses.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNeuronGradientNode;
@@ -3469,8 +3434,6 @@ extern_class!(
     /// This is an abstract base class that does not correspond with any
     /// particular MPSCNNKernel. Please make one of the MPSNNReduction
     /// subclasses instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnunaryreductionnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNUnaryReductionNode;
@@ -3534,7 +3497,6 @@ impl MPSNNUnaryReductionNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionrowminnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionRowMinNode;
@@ -3593,7 +3555,6 @@ impl MPSNNReductionRowMinNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductioncolumnminnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionColumnMinNode;
@@ -3652,7 +3613,6 @@ impl MPSNNReductionColumnMinNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelsminnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsMinNode;
@@ -3711,7 +3671,6 @@ impl MPSNNReductionFeatureChannelsMinNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelsargumentminnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsArgumentMinNode;
@@ -3770,7 +3729,6 @@ impl MPSNNReductionFeatureChannelsArgumentMinNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionrowmaxnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionRowMaxNode;
@@ -3829,7 +3787,6 @@ impl MPSNNReductionRowMaxNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductioncolumnmaxnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionColumnMaxNode;
@@ -3888,7 +3845,6 @@ impl MPSNNReductionColumnMaxNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelsmaxnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsMaxNode;
@@ -3947,7 +3903,6 @@ impl MPSNNReductionFeatureChannelsMaxNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelsargumentmaxnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsArgumentMaxNode;
@@ -4006,7 +3961,6 @@ impl MPSNNReductionFeatureChannelsArgumentMaxNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionrowmeannode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionRowMeanNode;
@@ -4065,7 +4019,6 @@ impl MPSNNReductionRowMeanNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductioncolumnmeannode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionColumnMeanNode;
@@ -4124,7 +4077,6 @@ impl MPSNNReductionColumnMeanNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelsmeannode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsMeanNode;
@@ -4183,7 +4135,6 @@ impl MPSNNReductionFeatureChannelsMeanNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionspatialmeannode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionSpatialMeanNode;
@@ -4242,7 +4193,6 @@ impl MPSNNReductionSpatialMeanNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionrowsumnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionRowSumNode;
@@ -4301,7 +4251,6 @@ impl MPSNNReductionRowSumNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductioncolumnsumnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionColumnSumNode;
@@ -4360,7 +4309,6 @@ impl MPSNNReductionColumnSumNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionfeaturechannelssumnode?language=objc)
     #[unsafe(super(MPSNNUnaryReductionNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionFeatureChannelsSumNode;
@@ -4429,13 +4377,12 @@ impl MPSNNReductionFeatureChannelsSumNode {
 }
 
 extern_class!(
+    /// A representation of a MPS CNN pooling kernel.
     /// A node for a MPSCNNPooling kernel
     ///
     /// This is an abstract base class that does not correspond with any
     /// particular MPSCNNKernel. Please make one of the MPSCNNPooling
     /// subclasses instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingNode;
@@ -4572,11 +4519,10 @@ impl MPSCNNPoolingNode {
 }
 
 extern_class!(
+    /// A representation of an average pooling filter.
     /// A node representing a MPSCNNPoolingAverage kernel
     ///
     /// The default edge mode is MPSImageEdgeModeClamp
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaveragenode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingAverageNode;
@@ -4702,11 +4648,10 @@ impl MPSCNNPoolingAverageNode {
 }
 
 extern_class!(
+    /// A representation of a L2-norm pooling filter.
     /// A node representing a MPSCNNPoolingL2Norm kernel
     ///
     /// The default edge mode is MPSImageEdgeModeClamp
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2normnode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingL2NormNode;
@@ -4832,11 +4777,10 @@ impl MPSCNNPoolingL2NormNode {
 }
 
 extern_class!(
+    /// A representation of a max pooling filter.
     /// A node representing a MPSCNNPoolingMax kernel
     ///
     /// The default edge mode is MPSImageEdgeModeClamp
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxnode?language=objc)
     #[unsafe(super(MPSCNNPoolingNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingMaxNode;
@@ -4962,11 +4906,10 @@ impl MPSCNNPoolingMaxNode {
 }
 
 extern_class!(
+    /// A representation of a dilated max pooling filter.
     /// A node for a MPSCNNDilatedPooling kernel
     ///
     /// This class corresponds to the MPSCNNDilatedPooling class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNDilatedPoolingMaxNode;
@@ -5107,7 +5050,7 @@ impl MPSCNNDilatedPoolingMaxNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolinggradientnode?language=objc)
+    /// A representation of a gradient pooling kernel.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNPoolingGradientNode;
@@ -5219,7 +5162,7 @@ impl MPSCNNPoolingGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingmaxgradientnode?language=objc)
+    /// A representation of a gradient max pooling filter.
     #[unsafe(super(
         MPSCNNPoolingGradientNode,
         MPSNNGradientFilterNode,
@@ -5325,7 +5268,7 @@ impl MPSCNNPoolingMaxGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingaveragegradientnode?language=objc)
+    /// A representation of a gradient average pooling filter.
     #[unsafe(super(
         MPSCNNPoolingGradientNode,
         MPSNNGradientFilterNode,
@@ -5431,7 +5374,7 @@ impl MPSCNNPoolingAverageGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnpoolingl2normgradientnode?language=objc)
+    /// A representation of a gradient L2-norm pooling filter.
     #[unsafe(super(
         MPSCNNPoolingGradientNode,
         MPSNNGradientFilterNode,
@@ -5537,7 +5480,7 @@ impl MPSCNNPoolingL2NormGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndilatedpoolingmaxgradientnode?language=objc)
+    /// A representation of a gradient dilated max pooling filter.
     #[unsafe(super(
         MPSCNNPoolingGradientNode,
         MPSNNGradientFilterNode,
@@ -5714,9 +5657,8 @@ impl MPSCNNDilatedPoolingMaxGradientNode {
 }
 
 extern_class!(
+    /// Virtual base class for CNN normalization nodes.
     /// virtual base class for CNN normalization nodes
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnnormalizationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNNormalizationNode;
@@ -5790,6 +5732,7 @@ impl MPSCNNNormalizationNode {
 }
 
 extern_class!(
+    /// A representation of a spatial normalization kernel.
     /// Node representing MPSCNNSpatialNormalization
     ///
     /// For each feature channel, the function computes the sum of squares of X inside each rectangle, N2(i,j).
@@ -5805,8 +5748,6 @@ extern_class!(
     ///              delta = 1.0f
     ///              kernelHeight = kernelWidth = kernelSize
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSpatialNormalizationNode;
@@ -5888,7 +5829,7 @@ impl MPSCNNSpatialNormalizationNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalizationgradientnode?language=objc)
+    /// A representation of a gradient spatial normalization kernel.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSpatialNormalizationGradientNode;
@@ -5988,6 +5929,7 @@ impl MPSCNNSpatialNormalizationGradientNode {
 }
 
 extern_class!(
+    /// A representation of a local-contrast normalization kernel.
     /// Node representing MPSCNNLocalContrastNormalization
     ///
     /// The result is computed for each element of X as follows:
@@ -6007,8 +5949,6 @@ extern_class!(
     ///              p0 = 1
     ///              kernelHeight = kernelWidth = kernelSize
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLocalContrastNormalizationNode;
@@ -6117,7 +6057,7 @@ impl MPSCNNLocalContrastNormalizationNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlocalcontrastnormalizationgradientnode?language=objc)
+    /// A representation of a gradient local-contrast normalization kernel.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLocalContrastNormalizationGradientNode;
@@ -6245,6 +6185,7 @@ impl MPSCNNLocalContrastNormalizationGradientNode {
 }
 
 extern_class!(
+    /// A representation of a normalization kernel across feature channels.
     /// Node representing MPSCNNCrossChannelNormalization
     ///
     /// The normalized output is given by:
@@ -6264,8 +6205,6 @@ extern_class!(
     ///              delta = 1.0f
     ///              kernelHeight = kernelWidth = kernelSize
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationnode?language=objc)
     #[unsafe(super(MPSCNNNormalizationNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNCrossChannelNormalizationNode;
@@ -6341,7 +6280,7 @@ impl MPSCNNCrossChannelNormalizationNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnncrosschannelnormalizationgradientnode?language=objc)
+    /// A representation of a gradient normalization kernel applied across feature channels.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNCrossChannelNormalizationGradientNode;
@@ -6397,7 +6336,7 @@ impl MPSCNNCrossChannelNormalizationGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationnode?language=objc)
+    /// A representation of an instance normalization kernel.
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNInstanceNormalizationNode;
@@ -6463,7 +6402,7 @@ impl MPSCNNInstanceNormalizationNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnninstancenormalizationgradientnode?language=objc)
+    /// A representation of a gradient instance normalization kernel.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNInstanceNormalizationGradientNode;
@@ -6517,7 +6456,6 @@ impl MPSCNNInstanceNormalizationGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNGroupNormalizationNode;
@@ -6583,7 +6521,6 @@ impl MPSCNNGroupNormalizationNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnngroupnormalizationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNGroupNormalizationGradientNode;
@@ -6637,6 +6574,7 @@ impl MPSCNNGroupNormalizationGradientNode {
 }
 
 extern_class!(
+    /// A representation of a batch normalization kernel.
     /// A node representing batch normalization for inference or training
     ///
     /// Batch normalization operates differently for inference and training.
@@ -6659,8 +6597,6 @@ extern_class!(
     /// MPSCNNBatchNormalizationStatisticsGradient as necessary. This should
     /// allow you to construct an identical sequence of nodes for inference
     /// and training and expect the right thing to happen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBatchNormalizationNode;
@@ -6740,14 +6676,13 @@ impl MPSCNNBatchNormalizationNode {
 }
 
 extern_class!(
+    /// A representation of a gradient batch normalization kernel.
     /// A node representing batch normalization gradient for training
     ///
     /// This filter encapsulates the MPSCNNBatchNormalizationStatisticsGradient
     /// and MPSCNNBatchNormalizationGradient low level filters as a single
     /// node. They will be called in sequence: statistics gradient until the
     /// batch is complete, then batch normalization gradient on the result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNBatchNormalizationGradientNode;
@@ -6801,7 +6736,7 @@ impl MPSCNNBatchNormalizationGradientNode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetransformprovider?language=objc)
+    /// A general interface for objects that provide image resampling.
     pub unsafe trait MPSImageTransformProvider: NSSecureCoding + NSObjectProtocol {
         #[cfg(all(feature = "MPSCore", feature = "MPSCoreTypes", feature = "MPSImage"))]
         #[unsafe(method(transformForSourceImage:handle:))]
@@ -6815,11 +6750,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// Abstract node representing an image resampling filter.
     /// Abstract Node representing a image resampling operation
     ///
     /// Please make a MPSNNBilinearScale or MPSNNLanczosScale object instead
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnscalenode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNScaleNode;
@@ -6908,14 +6842,13 @@ impl MPSNNScaleNode {
 }
 
 extern_class!(
+    /// A representation of a bilinear resampling filter.
     /// A MPSNNScale object that uses bilinear interpolation for resampling
     ///
     /// Caution: bilinear downscaling by more than a factor of
     /// two in any dimension causes loss of information if a
     /// low pass filter is not run over the image first. Details
     /// may be omitted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbilinearscalenode?language=objc)
     #[unsafe(super(MPSNNScaleNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNBilinearScaleNode;
@@ -7009,6 +6942,7 @@ impl MPSNNBilinearScaleNode {
 }
 
 extern_class!(
+    /// A representation of a Lanczos resampling filter.
     /// A MPSNNScale object that uses the Lanczos resampling filter
     ///
     /// This method does not require a low pass filter for downsampling
@@ -7016,8 +6950,6 @@ extern_class!(
     /// could prove distracting to a neural network unused to seeing it.
     /// You should use the resampling method that was used to train the
     /// network.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlanczosscalenode?language=objc)
     #[unsafe(super(MPSNNScaleNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLanczosScaleNode;
@@ -7111,9 +7043,8 @@ impl MPSNNLanczosScaleNode {
 }
 
 extern_class!(
+    /// Virtual base class for basic arithmetic nodes.
     /// virtual base class for basic arithmetic nodes
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinaryarithmeticnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNBinaryArithmeticNode;
@@ -7315,9 +7246,8 @@ impl MPSNNBinaryArithmeticNode {
 }
 
 extern_class!(
+    /// A representation of an addition operator.
     /// returns elementwise sum of left + right
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNAdditionNode;
@@ -7397,9 +7327,8 @@ impl MPSNNAdditionNode {
 }
 
 extern_class!(
+    /// A representation of an subtraction operator.
     /// returns elementwise difference of left - right
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNSubtractionNode;
@@ -7479,9 +7408,8 @@ impl MPSNNSubtractionNode {
 }
 
 extern_class!(
+    /// A representation of a multiplication operator.
     /// returns elementwise product of left * right
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNMultiplicationNode;
@@ -7561,9 +7489,8 @@ impl MPSNNMultiplicationNode {
 }
 
 extern_class!(
+    /// A representation of a division operator.
     /// returns elementwise quotient of left / right
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnndivisionnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNDivisionNode;
@@ -7644,8 +7571,6 @@ impl MPSNNDivisionNode {
 
 extern_class!(
     /// returns elementwise comparison of left and right
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisonnode?language=objc)
     #[unsafe(super(MPSNNBinaryArithmeticNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNComparisonNode;
@@ -7738,7 +7663,7 @@ impl MPSNNComparisonNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnarithmeticgradientnode?language=objc)
+    /// A representation of the base class for gradient arithmetic operators.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNArithmeticGradientNode;
@@ -7911,11 +7836,10 @@ impl MPSNNArithmeticGradientNode {
 }
 
 extern_class!(
+    /// A representation of a gradient addition operator.
     /// returns gradient for either primary or secondary source image from the inference pass.
     /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
     /// for the primary or secondary source image from the inference pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnadditiongradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -8019,11 +7943,10 @@ impl MPSNNAdditionGradientNode {
 }
 
 extern_class!(
+    /// A representation of a gradient subtraction operator.
     /// returns gradient for either primary or secondary source image from the inference pass.
     /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
     /// for the primary or secondary source image from the inference pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnsubtractiongradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -8127,11 +8050,10 @@ impl MPSNNSubtractionGradientNode {
 }
 
 extern_class!(
+    /// A representation of a gradient multiplication operator.
     /// returns gradient for either primary or secondary source image from the inference pass.
     /// Use the isSecondarySourceFilter property to indicate whether this filter is computing the gradient
     /// for the primary or secondary source image from the inference pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiplicationgradientnode?language=objc)
     #[unsafe(super(
         MPSNNArithmeticGradientNode,
         MPSNNGradientFilterNode,
@@ -8235,7 +8157,7 @@ impl MPSNNMultiplicationGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutnode?language=objc)
+    /// A representation of a dropout filter.
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNDropoutNode;
@@ -8325,7 +8247,7 @@ impl MPSCNNDropoutNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnndropoutgradientnode?language=objc)
+    /// A representation of a gradient dropout filter.
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNDropoutGradientNode;
@@ -8401,6 +8323,7 @@ impl MPSCNNDropoutGradientNode {
 }
 
 extern_class!(
+    /// A placeholder node denoting the per-element weight buffer used by loss and gradient loss kernels.
     /// The labels and weights for each MPSImage are passed in
     /// separately to the graph in a MPSNNLabels object. If
     /// the batch interface is used then there will be a
@@ -8408,8 +8331,6 @@ extern_class!(
     /// that holds the images.  The MPSNNLabelsNode is a place
     /// holder in the graph for these nodes. The MPSNNLabels node
     /// is taken as an input to the Loss node
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlabelsnode?language=objc)
     #[unsafe(super(MPSNNStateNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLabelsNode;
@@ -8442,6 +8363,7 @@ impl MPSNNLabelsNode {
 }
 
 extern_class!(
+    /// A representation of a loss kernel.
     /// This node calculates loss information during training
     /// typically immediately after the inference portion
     /// of network evaluation is performed. The result image
@@ -8450,8 +8372,6 @@ extern_class!(
     /// their way back up the graph. In addition, the node will
     /// update the loss image in the MPSNNLabels with the
     /// desired estimate of correctness.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLossNode;
@@ -8517,6 +8437,7 @@ impl MPSCNNLossNode {
 }
 
 extern_class!(
+    /// A representation of a YOLO loss kernel.
     /// This node calculates loss information during training
     /// typically immediately after the inference portion
     /// of network evaluation is performed. The result image
@@ -8525,8 +8446,6 @@ extern_class!(
     /// their way back up the graph. In addition, the node will
     /// update the loss image in the MPSNNLabels with the
     /// desired estimate of correctness.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNYOLOLossNode;
@@ -8592,9 +8511,8 @@ impl MPSCNNYOLOLossNode {
 }
 
 extern_class!(
+    /// A representation of the results from one or more kernels.
     /// Node representing a the concatenation (in the feature channel dimension) of the results from one or more kernels
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNConcatenationNode;
@@ -8712,14 +8630,13 @@ impl MPSNNConcatenationNode {
 }
 
 extern_class!(
+    /// A representation of the results from one or more gradient kernels.
     /// A MPSNNSlice filter that operates as the conjugate computation for concatentation operators during training
     ///
     /// As concatenation is formally just a copy and not a computation, there isn't a lot of arithmetic for
     /// the slice operator to do, but we still need to extract out the relevant portion
     /// of the gradient of the input signal that went into the corresponding concatenation
     /// destination image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconcatenationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNConcatenationGradientNode;
@@ -8788,8 +8705,6 @@ impl MPSNNConcatenationGradientNode {
 
 extern_class!(
     /// A node for a MPSNNReshape kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapenode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReshapeNode;
@@ -8863,7 +8778,6 @@ impl MPSNNReshapeNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreshapegradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReshapeGradientNode;
@@ -8927,7 +8841,6 @@ impl MPSNNReshapeGradientNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnreductionspatialmeangradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNReductionSpatialMeanGradientNode;
@@ -9003,8 +8916,6 @@ extern_class!(
     /// feature-channel dimesion.
     /// In other cases use to
     /// MPSNNPaddingto get best performance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNPadNode;
@@ -9097,7 +9008,6 @@ impl MPSNNPadNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNPadGradientNode;
@@ -9161,9 +9071,8 @@ impl MPSNNPadGradientNode {
 }
 
 extern_class!(
+    /// A representation of a softmax filter.
     /// Node representing a MPSCNNSoftMax kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSoftMaxNode;
@@ -9217,9 +9126,8 @@ impl MPSCNNSoftMaxNode {
 }
 
 extern_class!(
+    /// A representation of a gradient softmax filter.
     /// Node representing a MPSCNNSoftMaxGradient kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnsoftmaxgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNSoftMaxGradientNode;
@@ -9269,9 +9177,8 @@ impl MPSCNNSoftMaxGradientNode {
 }
 
 extern_class!(
+    /// A representation of a logarithmic softmax filter kernel.
     /// Node representing a MPSCNNLogSoftMax kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLogSoftMaxNode;
@@ -9325,9 +9232,8 @@ impl MPSCNNLogSoftMaxNode {
 }
 
 extern_class!(
+    /// A representation of a gradient logarithmic softmax filter kernel.
     /// Node representing a MPSCNNLogSoftMaxGradient kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlogsoftmaxgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLogSoftMaxGradientNode;
@@ -9377,9 +9283,8 @@ impl MPSCNNLogSoftMaxGradientNode {
 }
 
 extern_class!(
+    /// A representation of a nearest spatial upsampling filter.
     /// Node representing a MPSCNNUpsamplingNearest kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingNearestNode;
@@ -9455,9 +9360,8 @@ impl MPSCNNUpsamplingNearestNode {
 }
 
 extern_class!(
+    /// A representation of a bilinear spatial upsampling filter.
     /// Node representing a MPSCNNUpsamplingBilinear kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinearnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingBilinearNode;
@@ -9578,9 +9482,8 @@ impl MPSCNNUpsamplingBilinearNode {
 }
 
 extern_class!(
+    /// A representation of a gradient nearest spatial upsampling filter.
     /// Node representing a MPSCNNUpsamplingNearest kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingNearestGradientNode;
@@ -9672,9 +9575,8 @@ impl MPSCNNUpsamplingNearestGradientNode {
 }
 
 extern_class!(
+    /// A representation of a gradient bilinear spatial upsampling filter.
     /// Node representing a MPSCNNUpsamplingBilinear kernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNUpsamplingBilinearGradientNode;
@@ -9769,8 +9671,6 @@ extern_protocol!(
     /// MPSNNGramMatrixCallback Defines a callback protocol for
     /// MPSNNGramMatrixCalculationNodeto set the 'alpha'
     /// scaling value dynamically just before encoding the underlying MPSNNGramMatrixCalculation kernel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcallback?language=objc)
     pub unsafe trait MPSNNGramMatrixCallback:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
@@ -9795,8 +9695,6 @@ extern_protocol!(
 extern_class!(
     /// Node representing a
     /// MPSNNGramMatrixCalculationkernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGramMatrixCalculationNode;
@@ -9902,8 +9800,6 @@ impl MPSNNGramMatrixCalculationNode {
 extern_class!(
     /// Node representing a
     /// MPSNNGramMatrixCalculationGradientkernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNGramMatrixCalculationGradientNode;
@@ -9980,8 +9876,6 @@ extern_protocol!(
     /// MPSNNLossCallback Defines a callback protocol for
     /// MPSNNForwardLossNodeand
     /// MPSNNLossGradientNodeto set the scalar weight value just before encoding the underlying kernels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlosscallback?language=objc)
     pub unsafe trait MPSNNLossCallback:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {
@@ -10006,8 +9900,6 @@ extern_protocol!(
 extern_class!(
     /// Node representing a
     /// MPSNNForwardLosskernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardlossnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNForwardLossNode;
@@ -10190,8 +10082,6 @@ impl MPSNNForwardLossNode {
 extern_class!(
     /// Node representing a
     /// MPSNNLossGradientkernel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode?language=objc)
     #[unsafe(super(MPSNNGradientFilterNode, MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNLossGradientNode;
@@ -10379,8 +10269,6 @@ extern_class!(
     /// trainingGraphWithSourceGradient:of this node to automatically
     /// generate the nodes needed for gradient computations or add the desired nodes manually.
     /// This is generally used with MPSNNLossGradientNode and MPSNNForwardLossNode
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnninitialgradientnode?language=objc)
     #[unsafe(super(MPSNNFilterNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNInitialGradientNode;

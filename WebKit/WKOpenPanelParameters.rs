@@ -6,9 +6,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// WKOpenPanelParameters contains parameters that a file upload control has specified.
+    /// The configuration details of a file upload control in your web content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkopenpanelparameters?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`WKOpenPanelParameters`](https://developer.apple.com/documentation/webkit/wkopenpanelparameters) to determine the configuration of a file upload control. You don’t create this object directly. Instead, a web view creates one and passes it to the [`webView:runOpenPanelWithParameters:initiatedByFrame:completionHandler:`](https://developer.apple.com/documentation/webkit/wkuidelegate/webview(_:runopenpanelwith:initiatedbyframe:completionhandler:)) method of its UI delegate object when it displays a file upload control.
+    ///
+    ///
+    /// WKOpenPanelParameters contains parameters that a file upload control has specified.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

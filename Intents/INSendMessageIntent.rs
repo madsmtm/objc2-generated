@@ -8,7 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintent?language=objc)
+    /// A request to send a message to the designated recipients.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent) object when the user asks to send a message to one or more users. This intent object contains the message to send and the recipients of the message, which can include groups of users. Use the information in this object to construct and send the message.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSendMessageIntentHandling`](https://developer.apple.com/documentation/intents/insendmessageintenthandling) protocol. Your handler confirms the request and creates an [`INSendMessageIntentResponse`](https://developer.apple.com/documentation/intents/insendmessageintentresponse) object with the results.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To allow a user wearing AirPods to automatically hear messages, you must implement both [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) and [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent). Add [`UNAuthorizationOptionAnnouncement`](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/announcement) to the options when calling [`requestAuthorizationWithOptions:completionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/requestauthorization(options:completionhandler:)). Finally, add [`UNNotificationCategoryOptionAllowAnnouncement`](https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions/allowannouncement) to the category option and [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) to the category intent identifier.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Additional Intent Attributes
+    ///
+    /// Additional attributes of this intent object include the following:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    /// Apps can optionally ask the user to unlock the device before handling this intent. To require unlocking of the device, include the name of this class in the `IntentsRestrictedWhileLocked` key of your Intents extension’s `Info.plist` file.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -117,11 +140,18 @@ impl INSendMessageIntent {
 }
 
 extern_protocol!(
+    /// An interface to handle sending messages to one or more designated users.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSendMessageIntentHandling`](https://developer.apple.com/documentation/intents/insendmessageintenthandling) protocol to resolve, confirm, and handle requests to send text or audio messages to the designated users. Adopt this protocol in an object of your Intents extension that is capable of sending the messages.
+    ///
+    /// Siri delivers an [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent) object to your handler when the user asks to send a message using your app. The provided intent object contains the recipients and content of the message. Use the methods of this protocol to resolve the parameters and to validate that sending the message is possible.
+    ///
+    ///
     /// Protocol to declare support for handling an INSendMessageIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintenthandling?language=objc)
     pub unsafe trait INSendMessageIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

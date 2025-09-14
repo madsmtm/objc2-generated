@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum?language=objc)
+/// Constants that specify the page order.
+///
+/// ## Overview
+///
+/// These constants are used by [`pageOrder`](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.property) and [`pageOrder`](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.property).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPageOrder(pub NSInteger);
 impl NSPrintingPageOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/descendingpageorder?language=objc)
+    /// Descending (front to back) page order.
     #[doc(alias = "NSDescendingPageOrder")]
     pub const DescendingPageOrder: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/specialpageorder?language=objc)
+    /// The spooler does not rearrange pages—they are printed in the order received by the spooler.
     #[doc(alias = "NSSpecialPageOrder")]
     pub const SpecialPageOrder: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/ascendingpageorder?language=objc)
+    /// Ascending (back to front) page order.
     #[doc(alias = "NSAscendingPageOrder")]
     pub const AscendingPageOrder: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/pageorder-swift.enum/unknownpageorder?language=objc)
+    /// No page order specified.
     #[doc(alias = "NSUnknownPageOrder")]
     pub const UnknownPageOrder: Self = Self(2);
 }
@@ -35,16 +41,16 @@ unsafe impl RefEncode for NSPrintingPageOrder {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/renderingquality?language=objc)
+/// Constants that specify the print quality in use.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintRenderingQuality(pub NSInteger);
 impl NSPrintRenderingQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/renderingquality/best?language=objc)
+    /// Renders the printing at the best possible quality, regardless of speed.
     #[doc(alias = "NSPrintRenderingQualityBest")]
     pub const Best: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation/renderingquality/responsive?language=objc)
+    /// Sacrifices the least possible amount of rendering quality for speed to maintain a responsive user interface. This option should be used only after establishing that best quality rendering does indeed make the user interface unresponsive.
     #[doc(alias = "NSPrintRenderingQualityResponsive")]
     pub const Responsive: Self = Self(1);
 }
@@ -58,12 +64,34 @@ unsafe impl RefEncode for NSPrintRenderingQuality {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperationexistsexception?language=objc)
+    /// The name of an exception raised when there is already a print operation in process.
+    ///
+    /// ## Discussion
+    ///
+    /// The methods that raise this exception are the `EPSOperation...` and `printOperation...`.
+    ///
+    ///
     pub static NSPrintOperationExistsException: &'static NSExceptionName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintoperation?language=objc)
+    /// An object that controls operations that generate Encapsulated PostScript (EPS) code, Portable Document Format (PDF) code, or print jobs.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation) object works in conjunction with two other objects: an [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) object, which specifies how the code should be generated, and an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object, which generates the actual code.
+    ///
+    /// It is important to note that the majority of methods in [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation) copy the instance of [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) passed into them. Future changes to that print info are not reflected in the print info retained by the current [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation) object. All changes should be made to the print info before passing to the methods of this class. The only method in [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation) which does not copy the [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) instance is [`printInfo`](https://developer.apple.com/documentation/appkit/nsprintoperation/printinfo).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You should not subclass [`NSPrintOperation`](https://developer.apple.com/documentation/appkit/nsprintoperation). Methods that return a print operation object return an instance of a concrete subclass whose implementation is private.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

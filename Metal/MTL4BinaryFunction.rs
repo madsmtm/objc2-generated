@@ -8,9 +8,14 @@ use crate::*;
 extern_protocol!(
     /// Represents a binary function.
     ///
+    /// ## Overview
+    ///
     /// A binary function is a shader that you precompile from Metal IR to GPU machine code.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunction?language=objc)
+    ///
+    /// Represents a binary function.
+    ///
+    /// A binary function is a shader that you precompile from Metal IR to GPU machine code.
     pub unsafe trait MTL4BinaryFunction: NSObjectProtocol + Send + Sync {
         /// Obtains the optional name of this binary function.
         #[unsafe(method(name))]

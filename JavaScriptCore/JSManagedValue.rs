@@ -8,6 +8,37 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A JavaScript value with conditional retain behavior to provide automatic memory management.
+    ///
+    /// ## Overview
+    ///
+    /// The primary use case for a managed value is to store a JavaScript value in an Objective-C or Swift object that exports to JavaScript.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t store a nonmanaged [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object in a native object that exports to JavaScript. Because a [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object references its enclosing [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) object, this action creates a retain cycle, preventing deallocation of the context.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A managed value’s _conditional retain_ behavior ensures retention of its underlying JavaScript value as long as either of the following conditions is true:
+    ///
+    /// - The JavaScript value is reachable through the JavaScript object graph (that is, not subject to JavaScript garbage collection).
+    ///
+    /// - The [`JSManagedValue`](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue) object is reachable through the Objective-C or Swift object graph, as you report to the JavaScriptCore virtual machine using the [`addManagedReference:withOwner:`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine/addmanagedreference(_:withowner:)) method.
+    ///
+    /// However, if neither of these conditions is true, the managed value sets its [`value`](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue/value) property to `nil`, releasing the underlying [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  On its own, a [`JSManagedValue`](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue) object behaves similarly to an ARC weak reference to its underlying [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object—that is, if you don’t use the [`addManagedReference:withOwner:`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine/addmanagedreference(_:withowner:)) method to add conditional retain behavior, the managed value’s [`value`](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue/value) property automatically becomes `nil` when the JavaScript garbage collector destroys the underlying JavaScript value.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// JSManagedValue represents a "conditionally retained" JSValue.
     /// "Conditionally retained" means that as long as the JSManagedValue's
     /// JSValue is reachable through the JavaScript object graph,
@@ -19,8 +50,6 @@ extern_class!(
     /// The primary use for a JSManagedValue is to store a JSValue in an Objective-C
     /// or Swift object that is exported to JavaScript. It is incorrect to store a JSValue
     /// in an object that is exported to JavaScript, since doing so creates a retain cycle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

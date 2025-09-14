@@ -9,9 +9,37 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// The MPSImageHistogram computes the histogram of an image.
+    /// A filter that computes the histogram of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram?language=objc)
+    /// ## Overview
+    ///
+    /// Typically, you use an [`MPSImageHistogram`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram) filter to calculate an image’s histogram that is passed to a subsequent filter such as [`MPSImageHistogramEqualization`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization) or [`MPSImageHistogramSpecification`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification).
+    ///
+    /// The following listing shows how you can create a histogram filter to calculate the histogram of the [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture), `sourceTexture`. The filter is passed an instance of [`MPSImageHistogramInfo`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistograminfo) that specifies information to compute the histogram for the channels of an image. After encoding, `histogramInfoBuffer` contains the histogram information and can be used for further operations such as equalization or specification.
+    ///
+    /// Listing 1. Creating a histogram filter
+    ///
+    /// ```swift
+    /// var histogramInfo = MPSImageHistogramInfo(
+    ///     numberOfHistogramEntries: 256,
+    ///     histogramForAlpha: false,
+    ///     minPixelValue: vector_float4(0,0,0,0),
+    ///     maxPixelValue: vector_float4(1,1,1,1))
+    ///      
+    /// let calculation = MPSImageHistogram(device: device,
+    ///                                     histogramInfo: &histogramInfo)
+    /// let bufferLength = calculation.histogramSize(forSourceFormat: sourceTexture.pixelFormat)
+    /// let histogramInfoBuffer = device.makeBuffer(length: bufferLength,
+    ///                                             options: [.storageModePrivate])
+    ///      
+    /// calculation.encode(to: commandBuffer,
+    ///                    sourceTexture: sourceTexture,
+    ///                    histogram: histogramInfoBuffer,
+    ///                    histogramOffset: 0)
+    /// ```
+    ///
+    ///
+    /// The MPSImageHistogram computes the histogram of an image.
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -211,13 +239,12 @@ impl MPSImageHistogram {
 }
 
 extern_class!(
+    /// A filter that computes the normalized histogram of an image.
     /// The MPSImageNormalizedHistogram computes the normalized histogram of an image.
     /// The minimum and maximum pixel values for a given region of an image are first computed.
     /// The max(computed minimum pixel value, MPSImageHistogramInfo.minPixelValue) and the
     /// min(computed maximum pixel value, MPSImageHistogramInfo.maxPixelValue) are used to
     /// compute the normalized histogram.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagenormalizedhistogram?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -422,6 +449,27 @@ impl MPSImageNormalizedHistogram {
 }
 
 extern_class!(
+    /// A filter that equalizes the histogram of an image.
+    ///
+    /// ## Overview
+    ///
+    /// The process is divided into three steps:
+    ///
+    /// 1. Call the [`initWithDevice:histogramInfo:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/init(device:histograminfo:)) method to create a [`MPSImageHistogramEqualization`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization) object.
+    ///
+    /// 2. Call the [`encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization/encodetransform(to:sourcetexture:histogram:histogramoffset:)) method. This creates a privately held image transform (i.e. a cumulative distribution function of the histogram) which will be used to equalize the distribution of the histogram of the source image. This process runs on a command buffer when it is committed to a command queue. It must complete before the next step can be run. It may be performed on the same command buffer. The `histogram` argument specifies the histogram buffer which contains the histogram values for the source texture. The `sourceTexture` argument is used by the method to determine the number of channels and therefore which histogram data in the histogram buffer to use. The histogram for the source texture must have been computed either on the CPU or using the [`MPSImageHistogram`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram) kernel.
+    ///
+    /// 3. Call the [`encodeToCommandBuffer:sourceTexture:destinationTexture:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/encode(commandbuffer:sourcetexture:destinationtexture:)) method to read data from the source texture, apply the equalization transform to it, and write to the destination texture. This step is also done on the GPU on a command queue.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can reuse the same equalization transform on other images to perform the same transform on those images. (Since their distribution is probably different, they will probably not be equalized by it.) This filter usually will not be able to work in place.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The MPSImageHistogramEqualization performs equalizes the histogram of an image.
     /// The process is divided into three steps.
     ///
@@ -446,8 +494,6 @@ extern_class!(
     /// same transform on those images. (Since their distribution is probably different,
     /// they will probably not be equalized by it.) This filter usually will not be able
     /// to work in place.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramequalization?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -612,11 +658,32 @@ impl MPSImageHistogramEqualization {
 }
 
 extern_class!(
+    /// A filter that performs a histogram specification operation on an image.
+    ///
+    /// ## Overview
+    ///
+    /// [`MPSImageHistogramSpecification`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification) is a generalized version of histogram equalization operation. The histogram specification filter converts the image so that its histogram matches the desired histogram.
+    ///
+    /// The process is divided into three steps:
+    ///
+    /// 1. Call the [`initWithDevice:histogramInfo:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification/init(device:histograminfo:)) method to create a [`MPSImageHistogramSpecification`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification) object.
+    ///
+    /// 2. Call the [`encodeTransformToCommandBuffer:sourceTexture:sourceHistogram:sourceHistogramOffset:desiredHistogram:desiredHistogramOffset:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification/encodetransform(to:sourcetexture:sourcehistogram:sourcehistogramoffset:desiredhistogram:desiredhistogramoffset:)) method. This creates a privately held image transform which will convert the distribution of the source histogram to the desired histogram. This process runs on a command buffer when it is committed to a command queue. It must complete before the next step can be run. It may be performed on the same command buffer. The `sourceTexture` argument is used by the method to determine the number of channels and therefore which histogram data in the source histogram buffer to use. The source histogram and desired histogram must have been computed either on the CPU or using the [`MPSImageHistogram`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogram) kernel.
+    ///
+    /// 3. Call the [`encodeToCommandBuffer:sourceTexture:destinationTexture:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/encode(commandbuffer:sourcetexture:destinationtexture:)) method to read data from the source texture, apply the equalization transform to it, and write to the destination texture. This step is also done on the GPU on a command queue.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can reuse the same specification transform on other images to perform the same transform on those images. (Since their distribution is probably different, they will probably not arrive at the same distribution as the desired histogram.) This filter usually will not be able to work in place.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The MPSImageHistogramSpecification performs a histogram specification operation on an image.
     /// It is a generalized version of histogram equalization operation.  The histogram specificaiton filter
     /// converts the image so that its histogram matches the desired histogram.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagehistogramspecification?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

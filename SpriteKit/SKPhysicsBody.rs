@@ -12,11 +12,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that adds physics simulation to a node.
+    ///
+    /// ## Overview
+    ///
+    /// Assign a [`SKPhysicsBody`](https://developer.apple.com/documentation/spritekit/skphysicsbody) object to the [`physicsBody`](https://developer.apple.com/documentation/spritekit/sknode/physicsbody) property of the [`SKNode`](https://developer.apple.com/documentation/spritekit/sknode) object to add physics simulation to the node. When a scene processes a new frame, it performs physics calculations on physics bodies attached to nodes in the scene. These calculations include gravity, friction, and collisions with other bodies. You can also apply your own forces and impulses to a body. After the scene completes these calculations, it updates the positions and orientations of the node objects.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A physics body must be associated with a node before you apply forces or impulses to it.
+    ///
+    ///
+    ///
+    /// </div>
+    /// SpriteKit supports two kinds of physics bodies, _volume-based bodies_ and _edge-based bodies_. When you create a physics body, its kind, size, and shape are determined by the constructor method you call. An edge-based body does not have mass or volume and is unaffected by forces or impulses in the system. Edge-based bodies are used to represent volumeless boundaries or hollow spaces in your physics simulation. In contrast, volume-based bodies are used to represent objects with mass and volume. The [`dynamic`](https://developer.apple.com/documentation/spritekit/skphysicsbody/isdynamic) property controls whether a volume-based body is affected by gravity, friction, collisions with other objects, and forces or impulses you directly apply to it.
+    ///
+    /// The [`SKPhysicsBody`](https://developer.apple.com/documentation/spritekit/skphysicsbody) class defines the physical characteristics for the body when it is simulated by the scene. For volume-based bodies, the most important property is the [`mass`](https://developer.apple.com/documentation/spritekit/skphysicsbody/mass) property. A volume-based body is assumed to have a uniform density. You can either set the [`mass`](https://developer.apple.com/documentation/spritekit/skphysicsbody/mass) property directly, or you can set the body’s [`density`](https://developer.apple.com/documentation/spritekit/skphysicsbody/density) property and let the physics body calculate its own mass. All values in Sprite Kit are specified using the International System of Units (SI units). The actual forces and mass values are not important so long as your game uses consistent values.
+    ///
+    /// When you design a game that uses physics, you define the different categories of physics objects that appear in the scene. You define up to 32 different categories of physics bodies, and a body can be assigned to as many of these categories as you want. In addition to declaring its own categories, a physics body also declares which categories of bodies it interacts with. See [`SKPhysicsBody`](https://developer.apple.com/documentation/spritekit/skphysicsbody). You use a similar mechanism to declare which physics field nodes ([`SKFieldNode`](https://developer.apple.com/documentation/spritekit/skfieldnode)) can affect the physics body.
+    ///
+    /// For a volume-based body, you can dynamically control how the body is affected by forces or collisions. See [`SKPhysicsBody`](https://developer.apple.com/documentation/spritekit/skphysicsbody).
+    ///
+    ///
     /// A SpriteKit physics body. These are the physical representations of your nodes. These specify the area and mass and any collision masking needed.
     ///
     /// All bodies have zero, one or more shapes that define its area. A body with no shapes is ethereal and does not collide with other bodies.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsbody?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsBody;

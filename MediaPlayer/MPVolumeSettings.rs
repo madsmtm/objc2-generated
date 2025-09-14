@@ -6,18 +6,30 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalertshow()?language=objc)
+    /// Displays an alert panel for controlling the system volume.
+    ///
+    /// ## Discussion
+    ///
+    /// The alert panel displayed by this function floats above the contents of the current window. It contains a slider for adjusting the system volume setting and a Done button so that the user can dismiss the panel. You can also dismiss the panel programmatically using the [`MPVolumeSettingsAlertHide`](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalerthide()) function.
+    ///
+    ///
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertShow();
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalerthide()?language=objc)
+    /// Hides the alert panel that controls the system volume.
     #[deprecated = "Use MPVolumeView to present volume controls."]
     pub fn MPVolumeSettingsAlertHide();
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpvolumesettingsalertisvisible()?language=objc)
+/// Returns a Boolean value indicating whether the volume alert panel is currently visible.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the volume alert is visible; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 #[deprecated = "Use MPVolumeView to present volume controls."]
 #[inline]
 pub unsafe extern "C-unwind" fn MPVolumeSettingsAlertIsVisible() -> bool {

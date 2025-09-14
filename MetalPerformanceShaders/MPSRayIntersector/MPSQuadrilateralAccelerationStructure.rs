@@ -13,8 +13,6 @@ extern_class!(
     ///
     ///
     /// See MPSPolygonAccelerationStructure for more information
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsquadrilateralaccelerationstructure?language=objc)
     #[unsafe(super(
         MPSPolygonAccelerationStructure,
         MPSAccelerationStructure,

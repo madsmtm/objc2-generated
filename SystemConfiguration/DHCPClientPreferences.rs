@@ -5,6 +5,21 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Updates the DHCP client preferences to include the specified list of options for the specified application ID.
+///
+/// Parameters:
+/// - applicationID: The application’s preference ID (for example, “com.apple.SystemPreferences”).
+///
+/// - options: An array of 8-bit values containing the DHCP option codes for the specified application ID (see RFC 2132 for more information on these codes). Pass `NULL` to clear the list of options for this application ID.
+///
+/// - count: The number of elements in `options`.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the operation succeeded; otherwise, `FALSE`.
+///
+///
 /// Updates the DHCP client preferences to include the
 /// given list of options for the given application ID.
 ///
@@ -23,8 +38,6 @@ use crate::*;
 /// # Safety
 ///
 /// `options` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpclientpreferencessetapplicationoptions?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
     application_id: &CFString,
@@ -43,6 +56,19 @@ pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
 }
 
 extern "C-unwind" {
+    /// Returns the list of options for the specified application ID.
+    ///
+    /// Parameters:
+    /// - applicationID: The application’s preference ID (for example, “com.apple.SystemPreferences”).
+    ///
+    /// - count: The number of elements in the list of options.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The list of options for the specified application ID, or `NULL` if no options are defined or if an error occurred. Use free(3) to release a non-`NULL` return value.
+    ///
+    ///
     /// Copies the requested DHCP options for the
     /// given application ID.
     ///
@@ -59,8 +85,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `count` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/dhcpclientpreferencescopyapplicationoptions?language=objc)
     pub fn DHCPClientPreferencesCopyApplicationOptions(
         application_id: &CFString,
         count: NonNull<CFIndex>,

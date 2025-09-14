@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspropertymapping?language=objc)
+    /// A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPropertyMapping;

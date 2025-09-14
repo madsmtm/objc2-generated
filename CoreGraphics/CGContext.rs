@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext?language=objc)
+/// A Quartz 2D drawing environment.
+///
+/// ## Overview
+///
+/// A `CGContext` instance represents a Quartz 2D drawing destination. A graphics context contains drawing parameters and all device-specific information needed to render the paint on a page to the destination, whether the destination is a window in an application, a bitmap image, a PDF document, or a printer.
+///
+///
 #[doc(alias = "CGContextRef")]
 #[repr(C)]
 pub struct CGContext {
@@ -26,25 +32,31 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGContext"> for CGContext {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode?language=objc)
+/// Options for rendering a path.
+///
+/// ## Overview
+///
+/// You can pass a path drawing mode constant to the function [`CGContextDrawPath`](https://developer.apple.com/documentation/coregraphics/cgcontext/drawpath(using:)) to specify how Core Graphics should paint a graphics context’s current path.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathDrawingMode(pub i32);
 impl CGPathDrawingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fill?language=objc)
+    /// Render the area contained within the path using the non-zero winding number rule.
     #[doc(alias = "kCGPathFill")]
     pub const Fill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofill?language=objc)
+    /// Render the area within the path using the even-odd rule.
     #[doc(alias = "kCGPathEOFill")]
     pub const EOFill: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/stroke?language=objc)
+    /// Render a line along the path.
     #[doc(alias = "kCGPathStroke")]
     pub const Stroke: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fillstroke?language=objc)
+    /// First fill and then stroke the path, using the nonzero winding number rule.
     #[doc(alias = "kCGPathFillStroke")]
     pub const FillStroke: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofillstroke?language=objc)
+    /// First fill and then stroke the path, using the even-odd rule.
     #[doc(alias = "kCGPathEOFillStroke")]
     pub const EOFillStroke: Self = Self(4);
 }
@@ -59,34 +71,40 @@ unsafe impl RefEncode for CGPathDrawingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode?language=objc)
+/// Modes for rendering text.
+///
+/// ## Overview
+///
+/// You provide a text drawing mode constant to the function [`CGContextSetTextDrawingMode`](https://developer.apple.com/documentation/coregraphics/cgcontext/settextdrawingmode(_:)) to set the current text drawing mode for a graphics context. Text drawing modes determine how Core Graphics renders individual glyphs onscreen. For example, you can set a text drawing mode to draw text filled in or outlined (stroked) or both. You can also create special effects with the text clipping drawing modes, such as clipping an image to a glyph shape.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextDrawingMode(pub i32);
 impl CGTextDrawingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fill?language=objc)
+    /// Perform a fill operation on the text.
     #[doc(alias = "kCGTextFill")]
     pub const Fill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/stroke?language=objc)
+    /// Perform a stroke operation on the text.
     #[doc(alias = "kCGTextStroke")]
     pub const Stroke: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillstroke?language=objc)
+    /// Perform fill, then stroke operations on the text.
     #[doc(alias = "kCGTextFillStroke")]
     pub const FillStroke: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/invisible?language=objc)
+    /// Do not draw the text, but do update the text position.
     #[doc(alias = "kCGTextInvisible")]
     pub const Invisible: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillclip?language=objc)
+    /// Perform a fill operation, then intersect the text with the current clipping path.
     #[doc(alias = "kCGTextFillClip")]
     pub const FillClip: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/strokeclip?language=objc)
+    /// Perform a stroke operation, then intersect the text with the current clipping path.
     #[doc(alias = "kCGTextStrokeClip")]
     pub const StrokeClip: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fillstrokeclip?language=objc)
+    /// Perform fill then stroke operations, then intersect the text with the current clipping path.
     #[doc(alias = "kCGTextFillStrokeClip")]
     pub const FillStrokeClip: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/clip?language=objc)
+    /// Specifies to intersect the text with the current clipping path. This mode does not paint the text.
     #[doc(alias = "kCGTextClip")]
     pub const Clip: Self = Self(7);
 }
@@ -101,18 +119,24 @@ unsafe impl RefEncode for CGTextDrawingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextencoding?language=objc)
+/// Text encodings for fonts.
+///
+/// ## Overview
+///
+/// For more information on setting the font in a graphics context, see [`CGContextSelectFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/selectfont(name:size:textencoding:)).
+///
+///
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextEncoding(pub i32);
 impl CGTextEncoding {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextencoding/encodingfontspecific?language=objc)
+    /// The built-in encoding of the font.
     #[doc(alias = "kCGEncodingFontSpecific")]
     #[deprecated = "No longer supported"]
     pub const EncodingFontSpecific: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextencoding/encodingmacroman?language=objc)
+    /// The MacRoman encoding. MacRoman is an ASCII variant originally created for use in the Mac OS, in which characters 127 and lower are ASCII, and characters 128 and higher are non-English characters and symbols.
     #[doc(alias = "kCGEncodingMacRoman")]
     #[deprecated = "No longer supported"]
     pub const EncodingMacRoman: Self = Self(1);
@@ -128,25 +152,31 @@ unsafe impl RefEncode for CGTextEncoding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality?language=objc)
+/// Levels of interpolation quality for rendering an image.
+///
+/// ## Overview
+///
+/// You use the function [`CGContextSetInterpolationQuality`](https://developer.apple.com/documentation/coregraphics/cgcontextsetinterpolationquality) to set the interpolation quality in a graphics context.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGInterpolationQuality(pub i32);
 impl CGInterpolationQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/default?language=objc)
+    /// The default level of quality.
     #[doc(alias = "kCGInterpolationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/none?language=objc)
+    /// No interpolation.
     #[doc(alias = "kCGInterpolationNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/low?language=objc)
+    /// A low level of interpolation quality. This setting may speed up image rendering.
     #[doc(alias = "kCGInterpolationLow")]
     pub const Low: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/medium?language=objc)
+    /// A medium level of interpolation quality. This setting is slower than the low setting but faster than the high setting.
     #[doc(alias = "kCGInterpolationMedium")]
     pub const Medium: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality/high?language=objc)
+    /// A high level of interpolation quality. This setting may slow down image rendering.
     #[doc(alias = "kCGInterpolationHigh")]
     pub const High: Self = Self(3);
 }
@@ -161,94 +191,142 @@ unsafe impl RefEncode for CGInterpolationQuality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode?language=objc)
+/// Compositing operations for images.
+///
+/// ## Overview
+///
+/// These blend mode constants represent the Porter-Duff blend modes. The symbols in the equations for these blend modes are:
+///
+/// - R is the premultiplied result
+///
+/// - S is the source color, and includes alpha
+///
+/// - D is the destination color, and includes alpha
+///
+/// - Ra, Sa, and Da are the alpha components of R, S, and D
+///
+/// You can find more information on blend modes, including examples of images produced using them, and many mathematical descriptions of the modes, in _PDF Reference, Fourth Edition_, Version 1.5, Adobe Systems, Inc. If you are a former QuickDraw developer, it may be helpful for you to think of blend modes as an alternative to transfer modes
+///
+/// For examples of using blend modes see “Setting Blend Modes” and “Using Blend Modes With Images” in [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBlendMode(pub i32);
 impl CGBlendMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/normal?language=objc)
+    /// Paints the source image samples over the background image samples.
     #[doc(alias = "kCGBlendModeNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/multiply?language=objc)
+    /// Multiplies the source image samples with the background image samples. This results in colors that are at least as dark as either of the two contributing sample colors.
     #[doc(alias = "kCGBlendModeMultiply")]
     pub const Multiply: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/screen?language=objc)
+    /// Multiplies the inverse of the source image samples with the inverse of the background image samples, resulting in colors that are at least as light as either of the two contributing sample colors.
     #[doc(alias = "kCGBlendModeScreen")]
     pub const Screen: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/overlay?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Either multiplies or screens the source image samples with the background image samples, depending on the background color. The result is to overlay the existing image samples while preserving the highlights and shadows of the background. The background color mixes with the source image to reflect the lightness or darkness of the background.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeOverlay")]
     pub const Overlay: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/darken?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Creates the composite image samples by choosing the darker samples (either from the source image or the background). The result is that the background image samples are replaced by any source image samples that are darker. Otherwise, the background image samples are left unchanged.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeDarken")]
     pub const Darken: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/lighten?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Creates the composite image samples by choosing the lighter samples (either from the source image or the background). The result is that the background image samples are replaced by any source image samples that are lighter. Otherwise, the background image samples are left unchanged.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeLighten")]
     pub const Lighten: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/colordodge?language=objc)
+    /// Brightens the background image samples to reflect the source image samples. Source image sample values that specify black do not produce a change.
     #[doc(alias = "kCGBlendModeColorDodge")]
     pub const ColorDodge: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/colorburn?language=objc)
+    /// Darkens the background image samples to reflect the source image samples. Source image sample values that specify white do not produce a change.
     #[doc(alias = "kCGBlendModeColorBurn")]
     pub const ColorBurn: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/softlight?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Either darkens or lightens colors, depending on the source image sample color. If the source image sample color is lighter than 50% gray, the background is lightened, similar to dodging. If the source image sample color is darker than 50% gray, the background is darkened, similar to burning. If the source image sample color is equal to 50% gray, the background is not changed. Image samples that are equal to pure black or pure white produce darker or lighter areas, but do not result in pure black or white. The overall effect is similar to what you’d achieve by shining a diffuse spotlight on the source image. Use this to add highlights to a scene.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeSoftLight")]
     pub const SoftLight: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/hardlight?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Either multiplies or screens colors, depending on the source image sample color. If the source image sample color is lighter than 50% gray, the background is lightened, similar to screening. If the source image sample color is darker than 50% gray, the background is darkened, similar to multiplying. If the source image sample color is equal to 50% gray, the source image is not changed. Image samples that are equal to pure black or pure white result in pure black or white. The overall effect is similar to what you’d achieve by shining a harsh spotlight on the source image. Use this to add highlights to a scene.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeHardLight")]
     pub const HardLight: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/difference?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Subtracts either the source image sample color from the background image sample color, or the reverse, depending on which sample has the greater brightness value. Source image sample values that are black produce no change; white inverts the background color values.
+    ///
+    ///
     #[doc(alias = "kCGBlendModeDifference")]
     pub const Difference: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/exclusion?language=objc)
+    /// Produces an effect similar to that produced by [`kCGBlendModeDifference`](https://developer.apple.com/documentation/coregraphics/cgblendmode/difference), but with lower contrast. Source image sample values that are black don’t produce a change; white inverts the background color values.
     #[doc(alias = "kCGBlendModeExclusion")]
     pub const Exclusion: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/hue?language=objc)
+    /// Uses the luminance and saturation values of the background with the hue of the source image.
     #[doc(alias = "kCGBlendModeHue")]
     pub const Hue: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/saturation?language=objc)
+    /// Uses the luminance and hue values of the background with the saturation of the source image. Areas of the background that have no saturation (that is, pure gray areas) don’t produce a change.
     #[doc(alias = "kCGBlendModeSaturation")]
     pub const Saturation: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/color?language=objc)
+    /// Uses the luminance values of the background with the hue and saturation values of the source image. This mode preserves the gray levels in the image. You can use this mode to color monochrome images or to tint color images.
     #[doc(alias = "kCGBlendModeColor")]
     pub const Color: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/luminosity?language=objc)
+    /// Uses the hue and saturation of the background with the luminance of the source image. This mode creates an effect that is inverse to the effect created by [`kCGBlendModeColor`](https://developer.apple.com/documentation/coregraphics/cgblendmode/color).
     #[doc(alias = "kCGBlendModeLuminosity")]
     pub const Luminosity: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/clear?language=objc)
+    /// `R = 0`
     #[doc(alias = "kCGBlendModeClear")]
     pub const Clear: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/copy?language=objc)
+    /// `R = S`
     #[doc(alias = "kCGBlendModeCopy")]
     pub const Copy: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourcein?language=objc)
+    /// `R = S*Da`
     #[doc(alias = "kCGBlendModeSourceIn")]
     pub const SourceIn: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourceout?language=objc)
+    /// `R = S*(1 - Da)`
     #[doc(alias = "kCGBlendModeSourceOut")]
     pub const SourceOut: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/sourceatop?language=objc)
+    /// `R = S*Da + D*(1 - Sa)`
     #[doc(alias = "kCGBlendModeSourceAtop")]
     pub const SourceAtop: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationover?language=objc)
+    /// `R = S*(1 - Da) + D`
     #[doc(alias = "kCGBlendModeDestinationOver")]
     pub const DestinationOver: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationin?language=objc)
+    /// `R = D*Sa`
     #[doc(alias = "kCGBlendModeDestinationIn")]
     pub const DestinationIn: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationout?language=objc)
+    /// `R = D*(1 - Sa)`
     #[doc(alias = "kCGBlendModeDestinationOut")]
     pub const DestinationOut: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/destinationatop?language=objc)
+    /// `R = S*(1 - Da) + D*Sa`
     #[doc(alias = "kCGBlendModeDestinationAtop")]
     pub const DestinationAtop: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/xor?language=objc)
+    /// `R = S*(1 - Da) + D*(1 - Sa)`. This XOR mode is only nominally related to the classical bitmap XOR operation, which is not supported by Core Graphics
     #[doc(alias = "kCGBlendModeXOR")]
     pub const XOR: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/plusdarker?language=objc)
+    /// `R = MAX(0, 1 - ((1 - D) + (1 - S)))`
     #[doc(alias = "kCGBlendModePlusDarker")]
     pub const PlusDarker: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode/pluslighter?language=objc)
+    /// `R = MIN(1, S + D)`
     #[doc(alias = "kCGBlendModePlusLighter")]
     pub const PlusLighter: Self = Self(27);
 }
@@ -264,7 +342,13 @@ unsafe impl RefEncode for CGBlendMode {
 }
 
 unsafe impl ConcreteType for CGContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/typeid?language=objc)
+    /// Returns the type identifier for a graphics context.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the type [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext).
+    ///
+    ///
     #[doc(alias = "CGContextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -276,9 +360,68 @@ unsafe impl ConcreteType for CGContext {
 }
 
 impl CGContext {
-    /// Graphics state functions. *
+    /// Pushes a copy of the current graphics state onto the graphics state stack for the context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/savegstate()?language=objc)
+    /// Parameters:
+    /// - c: The graphics context whose current graphics state you want to save.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each graphics context maintains a stack of graphics states. Note that not all aspects of the current drawing environment are elements of the graphics state. For example, the current path is not considered part of the graphics state and is therefore not saved when you call this function. The graphics state parameters that _are_ saved are:
+    ///
+    /// - CTM (current transformation matrix)
+    ///
+    /// - clip region
+    ///
+    /// - image interpolation quality
+    ///
+    /// - line width
+    ///
+    /// - line join
+    ///
+    /// - miter limit
+    ///
+    /// - line cap
+    ///
+    /// - line dash
+    ///
+    /// - flatness
+    ///
+    /// - should anti-alias
+    ///
+    /// - rendering intent
+    ///
+    /// - fill color space
+    ///
+    /// - stroke color space
+    ///
+    /// - fill color
+    ///
+    /// - stroke color
+    ///
+    /// - alpha value
+    ///
+    /// - font
+    ///
+    /// - font size
+    ///
+    /// - character spacing
+    ///
+    /// - text drawing mode
+    ///
+    /// - shadow parameters
+    ///
+    /// - the pattern phase
+    ///
+    /// - the font smoothing parameter
+    ///
+    /// - blend mode
+    ///
+    /// To restore your drawing environment to a previously saved state, you can use [`CGContextRestoreGState`](https://developer.apple.com/documentation/coregraphics/cgcontext/restoregstate()).
+    ///
+    ///
+    /// Graphics state functions. *
     #[doc(alias = "CGContextSaveGState")]
     #[inline]
     pub fn save_g_state(c: Option<&CGContext>) {
@@ -288,7 +431,17 @@ impl CGContext {
         unsafe { CGContextSaveGState(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/restoregstate()?language=objc)
+    /// Sets the current graphics state to the state most recently saved.
+    ///
+    /// Parameters:
+    /// - c: The graphics context whose state you want to modify.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics removes the graphics state at the top of the stack so that the most recently saved state becomes the current graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextRestoreGState")]
     #[inline]
     pub fn restore_g_state(c: Option<&CGContext>) {
@@ -298,9 +451,16 @@ impl CGContext {
         unsafe { CGContextRestoreGState(c) }
     }
 
-    /// Coordinate space transformations. *
+    /// Changes the scale of the user coordinate system in a context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/scaleby(x:y:)?language=objc)
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - sx: The factor by which to scale the x-axis of the coordinate space of the specified context.
+    ///
+    /// - sy: The factor by which to scale the y-axis of the coordinate space of the specified context.
+    ///
+    /// Coordinate space transformations. *
     #[doc(alias = "CGContextScaleCTM")]
     #[inline]
     pub fn scale_ctm(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat) {
@@ -310,7 +470,15 @@ impl CGContext {
         unsafe { CGContextScaleCTM(c, sx, sy) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/translateby(x:y:)?language=objc)
+    /// Changes the origin of the user coordinate system in a context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - tx: The amount to displace the x-axis of the coordinate space, in units of the user space, of the specified context.
+    ///
+    /// - ty: The amount to displace the y-axis of the coordinate space, in units of the user space, of the specified context.
+    ///
     #[doc(alias = "CGContextTranslateCTM")]
     #[inline]
     pub fn translate_ctm(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat) {
@@ -320,7 +488,19 @@ impl CGContext {
         unsafe { CGContextTranslateCTM(c, tx, ty) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/rotate(by:)?language=objc)
+    /// Rotates the user coordinate system in a context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - angle: The angle, in radians, by which to rotate the coordinate space of the specified context. Positive values rotate counterclockwise and negative values rotate clockwise.)
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The direction that the context is rotated may appear to be altered by the state of the current transformation matrix prior to executing this function. For example, on iOS, a [`UIView`](https://developer.apple.com/documentation/uikit/uiview) applies a transformation to the graphics context that inverts the Y-axis (by multiplying it by `-1`). Rotating the user coordinate system on coordinate system that was previously flipped results in a rotation in the opposite direction (that is, positive values appear to rotate the coordinate system in the clockwise direction).
+    ///
+    ///
     #[doc(alias = "CGContextRotateCTM")]
     #[inline]
     pub fn rotate_ctm(c: Option<&CGContext>, angle: CGFloat) {
@@ -330,7 +510,19 @@ impl CGContext {
         unsafe { CGContextRotateCTM(c, angle) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/concatenate(_:)?language=objc)
+    /// Transforms the user coordinate system in a context using a specified matrix.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - transform: The transformation matrix to apply to the specified context’s current transformation matrix.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, it concatenates (that is, it combines) two matrices, by multiplying them together. The order in which matrices are concatenated is important, as the operations are not commutative. The resulting CTM in the context is:   `CTMnew = transform * CTMcontext.`
+    ///
+    ///
     #[doc(alias = "CGContextConcatCTM")]
     #[inline]
     pub fn concat_ctm(c: Option<&CGContext>, transform: CGAffineTransform) {
@@ -340,7 +532,17 @@ impl CGContext {
         unsafe { CGContextConcatCTM(c, transform) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/ctm?language=objc)
+    /// Returns the current transformation matrix.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The transformation matrix for the current graphics state of the specified context.
+    ///
+    ///
     #[doc(alias = "CGContextGetCTM")]
     #[inline]
     pub fn ctm(c: Option<&CGContext>) -> CGAffineTransform {
@@ -350,9 +552,20 @@ impl CGContext {
         unsafe { CGContextGetCTM(c) }
     }
 
-    /// Drawing attribute functions. *
+    /// Sets the line width for a graphics context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinewidth(_:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - width: The new line width to use, in user space units. The value must be greater than `0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default line width is `1` unit. When stroked, the line straddles the path, with half of the total width on either side.
+    ///
+    ///
+    /// Drawing attribute functions. *
     #[doc(alias = "CGContextSetLineWidth")]
     #[inline]
     pub fn set_line_width(c: Option<&CGContext>, width: CGFloat) {
@@ -362,7 +575,13 @@ impl CGContext {
         unsafe { CGContextSetLineWidth(c, width) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinecap(_:)?language=objc)
+    /// Sets the style for the endpoints of lines drawn in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - cap: A line cap style constant—[`kCGLineCapButt`](https://developer.apple.com/documentation/coregraphics/cglinecap/butt) (the default), [`kCGLineCapRound`](https://developer.apple.com/documentation/coregraphics/cglinecap/round), or [`kCGLineCapSquare`](https://developer.apple.com/documentation/coregraphics/cglinecap/square). See [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+    ///
     #[doc(alias = "CGContextSetLineCap")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -373,7 +592,13 @@ impl CGContext {
         unsafe { CGContextSetLineCap(c, cap) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinejoin(_:)?language=objc)
+    /// Sets the style for the joins of connected lines in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - join: A line join value—[`kCGLineJoinMiter`](https://developer.apple.com/documentation/coregraphics/cglinejoin/miter) (the default), [`kCGLineJoinRound`](https://developer.apple.com/documentation/coregraphics/cglinejoin/round), or [`kCGLineJoinBevel`](https://developer.apple.com/documentation/coregraphics/cglinejoin/bevel). See [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+    ///
     #[doc(alias = "CGContextSetLineJoin")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -384,7 +609,19 @@ impl CGContext {
         unsafe { CGContextSetLineJoin(c, join) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setmiterlimit(_:)?language=objc)
+    /// Sets the miter limit for the joins of connected lines in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - limit: The miter limit to use.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the current line join style is set to [`kCGLineJoinMiter`](https://developer.apple.com/documentation/coregraphics/cglinejoin/miter), the miter limit determines whether the lines should be joined with a bevel instead of a miter. The length of the miter is divided by the line width. If the result is greater than the miter limit, the style is converted to a bevel.
+    ///
+    ///
     #[doc(alias = "CGContextSetMiterLimit")]
     #[inline]
     pub fn set_miter_limit(c: Option<&CGContext>, limit: CGFloat) {
@@ -394,7 +631,19 @@ impl CGContext {
         unsafe { CGContextSetMiterLimit(c, limit) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetlinedash?language=objc)
+    /// Sets the pattern for dashed lines in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - phase: A value that specifies how far into the dash pattern the line starts, in units of the user space. For example, passing a value of `3` means the line is drawn with the dash pattern starting at three units from its beginning. Passing a value of `0` draws a line starting with the beginning of a dash pattern.
+    ///
+    /// - lengths: An array of values that specify the lengths of the painted segments and unpainted segments, respectively, of the dash pattern—or `NULL` for no dash pattern.
+    ///
+    /// For example, passing an array with the values `[2,3]` sets a dash pattern that alternates between a 2-user-space-unit-long painted segment and a 3-user-space-unit-long unpainted segment. Passing the values `[1,3,4,2]` sets the pattern to a 1-unit painted segment, a 3-unit unpainted segment, a 4-unit painted segment, and a 2-unit unpainted segment.
+    ///
+    /// - count: If the `lengths` parameter specifies an array, pass the number of elements in the array. Otherwise, pass `0`.
+    ///
     ///
     /// # Safety
     ///
@@ -418,7 +667,21 @@ impl CGContext {
         unsafe { CGContextSetLineDash(c, phase, lengths, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setflatness(_:)?language=objc)
+    /// Sets the accuracy of curved paths in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - flatness: The largest permissible distance, measured in device pixels, between a point on the true curve and a point on the approximated curve.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function controls how accurately curved paths are rendered. Setting the flatness value to less than `1.0` renders highly accurate curves, but lengthens rendering times.
+    ///
+    /// In most cases, you should not change the flatness value. Customizing the flatness value for the capabilities of a particular output device impairs the ability of your application to render to other devices.
+    ///
+    ///
     #[doc(alias = "CGContextSetFlatness")]
     #[inline]
     pub fn set_flatness(c: Option<&CGContext>, flatness: CGFloat) {
@@ -428,7 +691,19 @@ impl CGContext {
         unsafe { CGContextSetFlatness(c, flatness) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setalpha(_:)?language=objc)
+    /// Sets the opacity level for objects drawn in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current graphics state’s alpha value parameter.
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the alpha value parameter for the specified graphics context. To clear the contents of the drawing canvas, use [`CGContextClearRect`](https://developer.apple.com/documentation/coregraphics/cgcontext/clear(_:)).
+    ///
+    ///
     #[doc(alias = "CGContextSetAlpha")]
     #[inline]
     pub fn set_alpha(c: Option<&CGContext>, alpha: CGFloat) {
@@ -438,7 +713,13 @@ impl CGContext {
         unsafe { CGContextSetAlpha(c, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setblendmode(_:)?language=objc)
+    /// Sets how sample values are composited by a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - mode: A blend mode. See [`CGBlendMode`](https://developer.apple.com/documentation/coregraphics/cgblendmode) for a list of the constants you can supply.
+    ///
     #[doc(alias = "CGContextSetBlendMode")]
     #[inline]
     pub fn set_blend_mode(c: Option<&CGContext>, mode: CGBlendMode) {
@@ -448,9 +729,20 @@ impl CGContext {
         unsafe { CGContextSetBlendMode(c, mode) }
     }
 
-    /// Path construction functions. *
+    /// Creates a new empty path in a graphics context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpath()?language=objc)
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A graphics context can have only a single path in use at any time. If the specified context already contains a current path when you call this function, the old path and any data associated with it is discarded.
+    ///
+    /// The current path is not part of the graphics state. Consequently, saving and restoring the graphics state has no effect on the current path.
+    ///
+    ///
+    /// Path construction functions. *
     #[doc(alias = "CGContextBeginPath")]
     #[inline]
     pub fn begin_path(c: Option<&CGContext>) {
@@ -460,7 +752,21 @@ impl CGContext {
         unsafe { CGContextBeginPath(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextmovetopoint?language=objc)
+    /// Begins a new subpath at the point you specify.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - x: The x-value, in user space coordinates, for the point.
+    ///
+    /// - y: The y-value, in user space coordinates, for the point.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This point you specify becomes the start point of a new subpath. The current point is set to this start point.
+    ///
+    ///
     #[doc(alias = "CGContextMoveToPoint")]
     #[inline]
     pub fn move_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -470,7 +776,21 @@ impl CGContext {
         unsafe { CGContextMoveToPoint(c, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddlinetopoint?language=objc)
+    /// Appends a straight line segment from the current point to the provided point .
+    ///
+    /// Parameters:
+    /// - c: A graphics context whose current path is not empty.
+    ///
+    /// - x: The x-value, in user space coordinates, for the end of the line segment.
+    ///
+    /// - y: The y-value, in user space coordinates, for the end of the line segment.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After adding the line segment, the current point is set to the endpoint of the line segment.
+    ///
+    ///
     #[doc(alias = "CGContextAddLineToPoint")]
     #[inline]
     pub fn add_line_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -480,7 +800,29 @@ impl CGContext {
         unsafe { CGContextAddLineToPoint(c, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddcurvetopoint?language=objc)
+    /// Appends a cubic Bézier curve from the current point, using the provided control points and end point .
+    ///
+    /// Parameters:
+    /// - c: A graphics context whose current path is not empty.
+    ///
+    /// - cp1x: The x-value, in user space coordinates, for the first control point of the curve.
+    ///
+    /// - cp1y: The y-value, in user space coordinates, for the first control point of the curve.
+    ///
+    /// - cp2x: The x-value, in user space coordinates, for the second control point of the curve.
+    ///
+    /// - cp2y: The y-value, in user space coordinates, for the second control point of the curve.
+    ///
+    /// - x: The x-value, in user space coordinates, at which to end the curve.
+    ///
+    /// - y: The y-value, in user space coordinates, at which to end the curve.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function appends a cubic curve to the current path. On return, the current point is set to the end point of that segment.
+    ///
+    ///
     #[doc(alias = "CGContextAddCurveToPoint")]
     #[inline]
     pub fn add_curve_to_point(
@@ -506,7 +848,25 @@ impl CGContext {
         unsafe { CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddquadcurvetopoint?language=objc)
+    /// Appends a quadratic Bézier curve from the current point, using a control point and an end point you specify.
+    ///
+    /// Parameters:
+    /// - c: A graphics context whose current path is not empty.
+    ///
+    /// - cpx: The x-coordinate of the user space for the control point of the curve.
+    ///
+    /// - cpy: The y-coordinate of the user space for the control point of the curve.
+    ///
+    /// - x: The x-coordinate of the user space at which to end the curve.
+    ///
+    /// - y: The y-coordinate of the user space at which to end the curve.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function appends a quadratic curve to the current subpath. After adding the segment, the current point is set to the end point of the curve.
+    ///
+    ///
     #[doc(alias = "CGContextAddQuadCurveToPoint")]
     #[inline]
     pub fn add_quad_curve_to_point(
@@ -528,7 +888,21 @@ impl CGContext {
         unsafe { CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()?language=objc)
+    /// Closes and terminates the current path’s subpath.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Appends a line from the current point to the starting point of the current subpath and ends the subpath.
+    ///
+    /// After closing the subpath, your application can begin a new subpath without first calling [`CGContextMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgcontextmovetopoint). In this case, a new subpath is implicitly created with a starting and current point equal to the previous subpath’s starting point.
+    ///
+    /// If the current path is empty or the current subpath is already closed, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CGContextClosePath")]
     #[inline]
     pub fn close_path(c: Option<&CGContext>) {
@@ -538,9 +912,20 @@ impl CGContext {
         unsafe { CGContextClosePath(c) }
     }
 
-    /// Path construction convenience functions. *
+    /// Adds a rectangular path to the current path.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addrect(_:)?language=objc)
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle, specified in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds a rectangle to a path, starting by moving to the bottom left corner and then adding lines counter-clockwise to create a rectangle, closing the subpath.
+    ///
+    ///
+    /// Path construction convenience functions. *
     #[doc(alias = "CGContextAddRect")]
     #[inline]
     pub fn add_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -550,7 +935,21 @@ impl CGContext {
         unsafe { CGContextAddRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddrects?language=objc)
+    /// Adds a set of rectangular paths to the current path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rects: An array of rectangles, specified in user space coordinates.
+    ///
+    /// - count: The number of rectangles in the `rects` array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds an array of rectangles to a path, as if it called [`addRect(_:)`](https://developer.apple.com/documentation/coregraphics/cgcontext/addrect(_:)) for each rectangle.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -564,7 +963,21 @@ impl CGContext {
         unsafe { CGContextAddRects(c, rects, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddlines?language=objc)
+    /// Adds a sequence of connected straight-line segments to the current path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context .
+    ///
+    /// - points: An array of values that specify the start and end points of the line segments to draw. Each point in the array specifies a position in user space. The first point in the array specifies the initial starting point.
+    ///
+    /// - count: The number of elements in the `points` array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that moves to the first point in the sequence and then adds a line to each of the other points, sequentially.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -578,7 +991,21 @@ impl CGContext {
         unsafe { CGContextAddLines(c, points, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addellipse(in:)?language=objc)
+    /// Adds an ellipse that fits inside the specified rectangle.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle that defines the area for the ellipse to fit in.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The ellipse is approximated by a sequence of Bézier curves. Its center is the midpoint of the rectangle defined by the `rect` parameter. If the rectangle is square, then the ellipse is circular with a radius equal to one-half the width (or height) of the rectangle. If the `rect` parameter specifies a rectangular shape, then the major and minor axes of the ellipse are defined by the width and height of the rectangle.
+    ///
+    /// The ellipse forms a complete subpath of the path—that is, the ellipse drawing starts with a move-to operation and ends with a close-subpath operation, with all moves oriented in the clockwise direction.
+    ///
+    ///
     #[doc(alias = "CGContextAddEllipseInRect")]
     #[inline]
     pub fn add_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -588,7 +1015,33 @@ impl CGContext {
         unsafe { CGContextAddEllipseInRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddarc?language=objc)
+    /// Adds an arc of a circle to the current path, possibly preceded by a straight line segment
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - x: The x-value, in user space coordinates, for the center of the arc.
+    ///
+    /// - y: The y-value, in user space coordinates, for the center of the arc.
+    ///
+    /// - radius: The radius of the arc, in user space coordinates.
+    ///
+    /// - startAngle: The angle to the starting point of the arc, measured in radians from the positive x-axis.
+    ///
+    /// - endAngle: The angle to the end point of the arc, measured in radians from the positive x-axis.
+    ///
+    /// - clockwise: Specify `1` to create a clockwise arc or `0` to create a counterclockwise arc.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method calculates starting and ending points using the radius and angles you specify, uses a sequence of cubic Bézier curves to approximate a segment of a circle between those points, and then appends those curves to the current path.
+    ///
+    /// The clockwise parameter determines the direction in which the arc is created; the actual direction of the final path is dependent on the current transformation matrix of the graphics context. In a flipped coordinate system (the default for UIView drawing methods in iOS), specifying a clockwise arc results in a counterclockwise arc after the transformation is applied.
+    ///
+    /// If the current path already contains a subpath, this method adds a line connecting the current point to the starting point of the arc. If the current path is empty, his method creates a new subpath whose starting point is the starting point of the arc. The ending point of the arc becomes the new current point of the path.
+    ///
+    ///
     #[doc(alias = "CGContextAddArc")]
     #[inline]
     pub fn add_arc(
@@ -614,7 +1067,31 @@ impl CGContext {
         unsafe { CGContextAddArc(c, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextaddarctopoint?language=objc)
+    /// Adds an arc of a circle to the current path, using a radius and tangent points.
+    ///
+    /// Parameters:
+    /// - c: A graphics context whose current path is not empty.
+    ///
+    /// - x1: The x-value, in user space coordinates, for the end point of the first tangent line. The first tangent line is drawn from the current point to (x1,y1).
+    ///
+    /// - y1: The y-value, in user space coordinates, for the end point of the first tangent line. The first tangent line is drawn from the current point to (x1,y1).
+    ///
+    /// - x2: The x-value, in user space coordinates, for the end point of the second tangent line. The second tangent line is drawn from (x1,y1) to (x2,y2).
+    ///
+    /// - y2: The y-value, in user space coordinates, for the end point of the second tangent line. The second tangent line is drawn from (x1,y1) to (x2,y2).
+    ///
+    /// - radius: The radius of the arc, in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method calculates two tangent lines—the first from the current point to the point `(x1, y1)`, and the second from the point `(x1, y1)` to the point `(x2, y2)`—then calculates the start and end points for a circular arc of the specified radius such that the arc is tangent to both lines. Finally, this method approximates that arc with a sequence of cubic Bézier curves and appends those curves to the current path.
+    ///
+    /// If the starting point of the arc (that is, the point where a circle of the specified radius must meet the first tangent line in order to also be tangent to the second line) is not the current point, this method appends a straight line segment from the current point to the starting point of the arc.
+    ///
+    /// The ending point of the arc (that is, the point where a circle of the specified radius must meet the second tangent line in order to also be tangent to the first line) becomes the new current point of the path.
+    ///
+    ///
     #[doc(alias = "CGContextAddArcToPoint")]
     #[inline]
     pub fn add_arc_to_point(
@@ -638,7 +1115,21 @@ impl CGContext {
         unsafe { CGContextAddArcToPoint(c, x1, y1, x2, y2, radius) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/addpath(_:)?language=objc)
+    /// Adds a previously created path object to the current path in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - path: A previously created path object. See [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the source path is non-empty, then its path elements are appended in order onto the current path. The current transformation matrix (CTM) is applied to the points before adding them to the path.
+    ///
+    /// After the call completes, the start point and current point of the path are those of the last subpath in `path`.
+    ///
+    ///
     #[doc(alias = "CGContextAddPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -649,7 +1140,17 @@ impl CGContext {
         unsafe { CGContextAddPath(c, path) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/replacepathwithstrokedpath()?language=objc)
+    /// Replaces the path in the graphics context with the stroked version of the path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A stroked path is created using the parameters of the current graphics context. The new path is created so that filling it draws the same pixels as stroking the original path.You can use this path in the same way you use the path of any context. For example, you can clip to the stroked version of a path by calling this function followed by a call to the function [`CGContextClip`](https://developer.apple.com/documentation/coregraphics/cgcontextclip).
+    ///
+    ///
     #[doc(alias = "CGContextReplacePathWithStrokedPath")]
     #[inline]
     pub fn replace_path_with_stroked_path(c: Option<&CGContext>) {
@@ -659,9 +1160,18 @@ impl CGContext {
         unsafe { CGContextReplacePathWithStrokedPath(c) }
     }
 
-    /// Path information functions. *
+    /// Indicates whether the current path contains any subpaths.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/ispathempty?language=objc)
+    /// Parameters:
+    /// - c: The graphics context containing the path to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `1` if the context’s path contains no subpaths, otherwise returns `0`.
+    ///
+    ///
+    /// Path information functions. *
     #[doc(alias = "CGContextIsPathEmpty")]
     #[inline]
     pub fn is_path_empty(c: Option<&CGContext>) -> bool {
@@ -671,7 +1181,17 @@ impl CGContext {
         unsafe { CGContextIsPathEmpty(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/currentpointofpath?language=objc)
+    /// Returns the current point in a non-empty path.
+    ///
+    /// Parameters:
+    /// - c: The graphics context containing the path to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The location, in user space, of the current point in the context’s path. If there is no path, the function returns [`CGPointZero`](https://developer.apple.com/documentation/coregraphics/cgpointzero).
+    ///
+    ///
     #[doc(alias = "CGContextGetPathCurrentPoint")]
     #[inline]
     pub fn path_current_point(c: Option<&CGContext>) -> CGPoint {
@@ -681,7 +1201,23 @@ impl CGContext {
         unsafe { CGContextGetPathCurrentPoint(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/boundingboxofpath?language=objc)
+    /// Returns the smallest rectangle that contains the current path.
+    ///
+    /// Parameters:
+    /// - c: The graphics context, containing a path, to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The dimensions and location, in user space, of the bounding box of the path. If there is no path, the function returns [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The bounding box is the smallest rectangle completely enclosing all points in a path, including control points for Bézier cubic and quadratic curves.
+    ///
+    ///
     #[doc(alias = "CGContextGetPathBoundingBox")]
     #[inline]
     pub fn path_bounding_box(c: Option<&CGContext>) -> CGRect {
@@ -691,7 +1227,17 @@ impl CGContext {
         unsafe { CGContextGetPathBoundingBox(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/path?language=objc)
+    /// Returns a path object built from the current path information in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context whose current path is not empty.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A path object containing the current path data.
+    ///
+    ///
     #[doc(alias = "CGContextCopyPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
@@ -703,7 +1249,27 @@ impl CGContext {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/pathcontains(_:mode:)?language=objc)
+    /// Checks to see whether the specified point is contained in the current path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - point: The point to check, specified in user space units.
+    ///
+    /// - mode: A path drawing mode. See [`CGPathDrawingMode`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if `point` is inside the current path of the graphics context; `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A point is contained within the path of a graphics context if the point is inside the painted region when the path is stroked or filled with opaque colors using the specified path drawing mode. A point can be inside a path only if the path is explicitly closed by calling the function [`CGContextClosePath`](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()) for paths drawn directly to the current context, or [`CGPathCloseSubpath`](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()) for paths first created as [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath) objects and then drawn to the current context.
+    ///
+    ///
     #[doc(alias = "CGContextPathContainsPoint")]
     #[inline]
     pub fn path_contains_point(
@@ -721,9 +1287,20 @@ impl CGContext {
         unsafe { CGContextPathContainsPoint(c, point, mode) }
     }
 
-    /// Path drawing functions. *
+    /// Draws the current path using the provided drawing mode.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawpath(using:)?language=objc)
+    /// Parameters:
+    /// - c: A graphics context that contains a path to paint.
+    ///
+    /// - mode: A path drawing mode constant—[`kCGPathFill`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fill), [`kCGPathEOFill`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofill), [`kCGPathStroke`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/stroke), [`kCGPathFillStroke`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/fillstroke), or [`kCGPathEOFillStroke`](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode/eofillstroke). For a discussion of these constants, see [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
+    /// Path drawing functions. *
     #[doc(alias = "CGContextDrawPath")]
     #[inline]
     pub fn draw_path(c: Option<&CGContext>, mode: CGPathDrawingMode) {
@@ -733,9 +1310,18 @@ impl CGContext {
         unsafe { CGContextDrawPath(c, mode) }
     }
 
-    /// Path drawing convenience functions. *
+    /// Paints the area within the current path, using the nonzero winding number rule.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextfillpath?language=objc)
+    /// Parameters:
+    /// - c: A graphics context that contains a path to fill.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each subpath is treated as if it were closed by calling [`closePath()`](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()). The nonzero winding number rule is described in [Filling a Path](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_paths/dq_paths.html#//apple_ref/doc/uid/TP30001066-CH211-TPXREF106) in [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066). The current path is cleared as a side effect of calling this function.
+    ///
+    ///
+    /// Path drawing convenience functions. *
     #[doc(alias = "CGContextFillPath")]
     #[inline]
     pub fn fill_path(c: Option<&CGContext>) {
@@ -745,7 +1331,17 @@ impl CGContext {
         unsafe { CGContextFillPath(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontexteofillpath?language=objc)
+    /// Paints the area within the current path, using the even-odd fill rule.
+    ///
+    /// Parameters:
+    /// - c: A graphics context that contains a path to fill.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each subpath is treated as if it were closed by calling [`closePath()`](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()). The even-odd rule is described in [Filling a Path](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_paths/dq_paths.html#//apple_ref/doc/uid/TP30001066-CH211-TPXREF106) in [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066). The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextEOFillPath")]
     #[inline]
     pub fn eo_fill_path(c: Option<&CGContext>) {
@@ -755,7 +1351,17 @@ impl CGContext {
         unsafe { CGContextEOFillPath(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/strokepath()?language=objc)
+    /// Paints a line along the current path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The line width and stroke color of the context’s graphics state are used to paint the path. The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextStrokePath")]
     #[inline]
     pub fn stroke_path(c: Option<&CGContext>) {
@@ -765,7 +1371,19 @@ impl CGContext {
         unsafe { CGContextStrokePath(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/fill(_:)-7a0rk?language=objc)
+    /// Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle, in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextFillRect")]
     #[inline]
     pub fn fill_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -775,7 +1393,21 @@ impl CGContext {
         unsafe { CGContextFillRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextfillrects?language=objc)
+    /// Paints the areas contained within the provided rectangles, using the fill color in the current graphics state.
+    ///
+    /// Parameters:
+    /// - c: A graphics context .
+    ///
+    /// - rects: An array of rectangles, in user space coordinates.
+    ///
+    /// - count: The number rectangles in the  `rects` array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -789,7 +1421,19 @@ impl CGContext {
         unsafe { CGContextFillRects(c, rects, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/stroke(_:)?language=objc)
+    /// Paints a rectangular path.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle, specified in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The line width and stroke color of the context’s graphics state are used to paint the path. The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextStrokeRect")]
     #[inline]
     pub fn stroke_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -799,7 +1443,23 @@ impl CGContext {
         unsafe { CGContextStrokeRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/stroke(_:width:)?language=objc)
+    /// Paints a rectangular path, using the specified line width.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle, in user space coordinates.
+    ///
+    /// - width: A value, in user space units, that is greater than zero. This value does not affect the line width values in the current graphics state.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Aside from the line width value, Core Graphics uses the current attributes of the graphics state (such as stroke color) to paint the line. The line straddles the path, with half of the total width on either side.
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextStrokeRectWithWidth")]
     #[inline]
     pub fn stroke_rect_with_width(c: Option<&CGContext>, rect: CGRect, width: CGFloat) {
@@ -809,7 +1469,19 @@ impl CGContext {
         unsafe { CGContextStrokeRectWithWidth(c, rect, width) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clear(_:)?language=objc)
+    /// Paints a transparent rectangle.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to paint the rectangle.
+    ///
+    /// - rect: The rectangle, in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the provided context is a window or bitmap context, Core Graphics clears the rectangle. For other context types, Core Graphics fills the rectangle in a device-dependent manner. However, you should not use this function in contexts other than window or bitmap contexts.
+    ///
+    ///
     #[doc(alias = "CGContextClearRect")]
     #[inline]
     pub fn clear_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -819,7 +1491,19 @@ impl CGContext {
         unsafe { CGContextClearRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/fillellipse(in:)?language=objc)
+    /// Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle that defines the area for the ellipse to fit in.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextFillEllipseInRect")]
     #[inline]
     pub fn fill_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -829,7 +1513,19 @@ impl CGContext {
         unsafe { CGContextFillEllipseInRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/strokeellipse(in:)?language=objc)
+    /// Strokes an ellipse that fits inside the specified rectangle.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: A rectangle that defines the area for the ellipse to fit in.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     #[doc(alias = "CGContextStrokeEllipseInRect")]
     #[inline]
     pub fn stroke_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -839,7 +1535,21 @@ impl CGContext {
         unsafe { CGContextStrokeEllipseInRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextstrokelinesegments?language=objc)
+    /// Strokes a sequence of line segments.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - points: An array of points, organized as pairs—the starting point of a line segment followed by the ending point of a line segment. For example, the first point in the array specifies the starting position of the first line, the second point specifies the ending position of the first line, the third point specifies the starting position of the second line, and so forth.
+    ///
+    /// - count: The number of points in the `points` array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new path, adds the individual line segments to the path, and then strokes the path. The current path is cleared as a side effect of calling this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -861,9 +1571,24 @@ impl CGContext {
         unsafe { CGContextStrokeLineSegments(c, points, count) }
     }
 
-    /// Clipping functions. *
+    /// Modifies the current clipping path, using the nonzero winding number rule.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextclip?language=objc)
+    /// Parameters:
+    /// - c: A graphics context that contains a path. If the context does not have a current path, the function does nothing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function uses the nonzero winding number rule to calculate the intersection of the current path with the current clipping path. The path resulting from the intersection is used as the new current clipping path for subsequent painting operations.
+    ///
+    /// If the current path includes any open subpaths, the paths are treated as if they were closed by calling [`closePath()`](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()).
+    ///
+    /// Unlike the current path, the current clipping path is part of the graphics state. Therefore, to re-enlarge the paintable area by restoring the clipping path to a prior state, you must save the graphics state before you clip and restore the graphics state after you’ve completed any clipped drawing.
+    ///
+    /// After determining the new clipping path, the function resets the context’s current path to an empty path.
+    ///
+    ///
+    /// Clipping functions. *
     #[doc(alias = "CGContextClip")]
     #[inline]
     pub fn clip(c: Option<&CGContext>) {
@@ -873,7 +1598,23 @@ impl CGContext {
         unsafe { CGContextClip(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontexteoclip?language=objc)
+    /// Modifies the current clipping path, using the even-odd rule.
+    ///
+    /// Parameters:
+    /// - c: A graphics context containing a path. If the context does not have a current path, the function does nothing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function uses the even-odd rule to calculate the intersection of the current path with the current clipping path. The path resulting from the intersection is used as the new current clipping path for subsequent painting operations.
+    ///
+    /// If the current path includes any open subpaths, the paths are treated as if they were closed by calling [`closePath()`](https://developer.apple.com/documentation/coregraphics/cgcontext/closepath()).
+    ///
+    /// Unlike the current path, the current clipping path is part of the graphics state. Therefore, to re-enlarge the paintable area by restoring the clipping path to a prior state, you must save the graphics state before you clip and restore the graphics state after you’ve completed any clipped drawing.
+    ///
+    /// After determining the new clipping path, the function resets the context’s current path to an empty path.
+    ///
+    ///
     #[doc(alias = "CGContextEOClip")]
     #[inline]
     pub fn eo_clip(c: Option<&CGContext>) {
@@ -883,7 +1624,6 @@ impl CGContext {
         unsafe { CGContextEOClip(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/resetclip()?language=objc)
     #[doc(alias = "CGContextResetClip")]
     #[inline]
     pub fn reset_clip(&self) {
@@ -893,7 +1633,23 @@ impl CGContext {
         unsafe { CGContextResetClip(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clip(to:mask:)?language=objc)
+    /// Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: The rectangle to map the `mask` parameter to.
+    ///
+    /// - mask: An image or an image mask. If `mask` is an image, then it must be in the DeviceGray color space, may not have an alpha component, and may not be masked by an image mask or masking color.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the `mask` parameter is an image mask, then Core Graphics clips in a manner identical to the behavior seen with the [`CGContextDrawImage`](https://developer.apple.com/documentation/coregraphics/cgcontextdrawimage) function —the mask indicates an area to be left unchanged when drawing. The source samples of the image mask determine which points of the clipping area are changed, acting as an “inverse alpha” value. If the value of a source sample in the image mask is `S`, then the corresponding point in the current clipping area is multiplied by an alpha value of (`1–S`). For example, if `S` is `1` then the point in the clipping area becomes transparent. If `S` is `0`, the point in the clipping area is unchanged.
+    ///
+    /// If the `mask` parameter is an image, then `mask` acts like an alpha mask and is blended with the current clipping area. The source samples of mask determine which points of the clipping area are changed. If the value of the source sample in mask is `S`, then the corresponding point in the current clipping area is multiplied by an alpha of `S`. For example, if `S` is `0`, then the point in the clipping area becomes transparent. If `S` is `1`, the point in the clipping area is unchanged.
+    ///
+    ///
     #[doc(alias = "CGContextClipToMask")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -904,7 +1660,23 @@ impl CGContext {
         unsafe { CGContextClipToMask(c, rect, mask) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/boundingboxofclippath?language=objc)
+    /// Returns the bounding box of a clipping path.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bounding box of the clipping path, specified in user space.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The bounding box is the smallest rectangle completely enclosing all points in the clipping path, including control points for any Bezier curves in the path.
+    ///
+    ///
     #[doc(alias = "CGContextGetClipBoundingBox")]
     #[inline]
     pub fn clip_bounding_box(c: Option<&CGContext>) -> CGRect {
@@ -914,9 +1686,22 @@ impl CGContext {
         unsafe { CGContextGetClipBoundingBox(c) }
     }
 
-    /// Clipping convenience functions. *
+    /// Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/clip(to:)-7cbwq?language=objc)
+    /// Parameters:
+    /// - c: The graphics context for which to set the clipping path.
+    ///
+    /// - rect: The location and dimensions of the rectangle, in user space, to be used in determining the new clipping path.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the specified graphics context’s clipping region to the area which intersects both the current clipping path and the specified rectangle.
+    ///
+    /// After determining the new clipping path, the function resets the context’s current path to an empty path.
+    ///
+    ///
+    /// Clipping convenience functions. *
     #[doc(alias = "CGContextClipToRect")]
     #[inline]
     pub fn clip_to_rect(c: Option<&CGContext>, rect: CGRect) {
@@ -926,7 +1711,23 @@ impl CGContext {
         unsafe { CGContextClipToRect(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextcliptorects?language=objc)
+    /// Sets the clipping path to the intersection of the current clipping path with the region defined by an array of rectangles.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the clipping path.
+    ///
+    /// - rects: An array of rectangles. The locations and dimensions of the rectangles are specified in the user space coordinate system.
+    ///
+    /// - count: The total number of array entries in the `rects` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the clipping path to the intersection of the current clipping path and the region within the specified rectangles.
+    ///
+    /// After determining the new clipping path, the function resets the context’s current path to an empty path.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -940,9 +1741,14 @@ impl CGContext {
         unsafe { CGContextClipToRects(c, rects, count) }
     }
 
-    /// Primitive color functions. *
+    /// Sets the current fill color in a graphics context, using a CGColor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-8lhn8?language=objc)
+    /// Parameters:
+    /// - c: The graphics context for which to set the fill color.
+    ///
+    /// - color: The new fill color.
+    ///
+    /// Primitive color functions. *
     #[doc(alias = "CGContextSetFillColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -953,7 +1759,13 @@ impl CGContext {
         unsafe { CGContextSetFillColorWithColor(c, color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-1sskg?language=objc)
+    /// Sets the current stroke color in a context, using a CGColor.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - color: The new stroke color.
+    ///
     #[doc(alias = "CGContextSetStrokeColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -964,9 +1776,20 @@ impl CGContext {
         unsafe { CGContextSetStrokeColorWithColor(c, color) }
     }
 
-    /// Color space functions. *
+    /// Sets the fill color space in a graphics context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolorspace(_:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context for which to set the fill color space.
+    ///
+    /// - space: The new fill color space. The color space is retained; upon return, you may safely release it.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As a side effect of this function, Core Graphics assigns an appropriate initial value to the fill color, based on the specified color space. To change this value, call [`CGContextSetFillColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-756dy). Note that the preferred API to use is now [`CGContextSetFillColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-8lhn8).
+    ///
+    ///
+    /// Color space functions. *
     #[doc(alias = "CGContextSetFillColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -977,7 +1800,19 @@ impl CGContext {
         unsafe { CGContextSetFillColorSpace(c, space) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolorspace(_:)?language=objc)
+    /// Sets the stroke color space in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for the new stroke color space.
+    ///
+    /// - space: The new stroke color space. The color space is retained; upon return, you may safely release it.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As a side effect when you call this function, Core Graphics assigns an appropriate initial value to the stroke color, based on the color space you specify. To change this value, call [`CGContextSetStrokeColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-4pd8p). Note that the preferred API is now [`CGContextSetStrokeColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-1sskg).
+    ///
+    ///
     #[doc(alias = "CGContextSetStrokeColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -988,13 +1823,24 @@ impl CGContext {
         unsafe { CGContextSetStrokeColorSpace(c, space) }
     }
 
+    /// Sets the current fill color.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current fill color.
+    ///
+    /// - components: An array of intensity values describing the color to set. The number of array elements must equal the number of components in the current fill color space, plus an additional component for the alpha value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current fill color space must not be a pattern color space. For information on setting the fill color when using a pattern color space, see [`CGContextSetFillPattern`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillpattern(_:colorcomponents:)). Note that the preferred API to use is now [`CGContextSetFillColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-8lhn8).
+    ///
+    ///
     /// Color functions. *
     ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-756dy?language=objc)
     #[doc(alias = "CGContextSetFillColor")]
     #[inline]
     pub unsafe fn set_fill_color(c: Option<&CGContext>, components: *const CGFloat) {
@@ -1004,7 +1850,19 @@ impl CGContext {
         unsafe { CGContextSetFillColor(c, components) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-4pd8p?language=objc)
+    /// Sets the current stroke color.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current stroke color.
+    ///
+    /// - components: An array of intensity values describing the color to set. The number of array elements must equal the number of components in the current stroke color space, plus an additional component for the alpha value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current stroke color space must not be a pattern color space. For information on setting the stroke color when using a pattern color space, see [`CGContextSetStrokePattern`](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokepattern(_:colorcomponents:)). Note that the preferred API is now [`CGContextSetStrokeColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-1sskg).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1018,13 +1876,28 @@ impl CGContext {
         unsafe { CGContextSetStrokeColor(c, components) }
     }
 
+    /// Sets the fill pattern in the specified graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - pattern: A fill pattern. The object is retained; upon return, you may safely release it.
+    ///
+    /// - components: If the pattern is an uncolored (or a masking) pattern, pass an array of intensity values that specify the color to use when the pattern is painted. The number of array elements must equal the number of components in the base space of the fill pattern color space, plus an additional component for the alpha value.
+    ///
+    /// If the pattern is a colored pattern, pass an alpha value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current fill color space must be a pattern color space. Otherwise, the result of calling this function is undefined. If you want to set a fill color, not a pattern, use [`CGContextSetFillColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(_:)-8lhn8).
+    ///
+    ///
     /// Pattern functions. *
     ///
     /// # Safety
     ///
     /// `components` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillpattern(_:colorcomponents:)?language=objc)
     #[doc(alias = "CGContextSetFillPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -1043,7 +1916,23 @@ impl CGContext {
         unsafe { CGContextSetFillPattern(c, pattern, components) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokepattern(_:colorcomponents:)?language=objc)
+    /// Sets the stroke pattern in the specified graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - pattern: A pattern for stroking. In Objective-C, the object is retained; upon return, you may safely release it.
+    ///
+    /// - components: If the specified pattern is an uncolored (or masking) pattern, pass an array of intensity values that specify the color to use when the pattern is painted. The number of array elements must equal the number of components in the base space of the stroke pattern color space, plus an additional component for the alpha value.
+    ///
+    /// If the specified pattern is a color pattern, pass an alpha value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The current stroke color space must be a pattern color space. Otherwise, the result of calling this function is undefined. If you want to set a stroke color, not a stroke pattern, use [`CGContextSetStrokeColorWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(_:)-1sskg).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1066,7 +1955,19 @@ impl CGContext {
         unsafe { CGContextSetStrokePattern(c, pattern, components) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setpatternphase(_:)?language=objc)
+    /// Sets the pattern phase of a context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - phase: A pattern phase, specified in user space.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The pattern phase is a translation that Core Graphics applies prior to drawing a pattern in the context. The pattern phase is part of the graphics state of a context, and the default pattern phase is `(0,0)`. Setting the pattern phase has the effect of temporarily changing the pattern matrix of any pattern you draw. For example, setting the context’s pattern phase to `(2,3)` has the effect of moving the start of pattern cell tiling to the point `(2,3)` in default user space.
+    ///
+    ///
     #[doc(alias = "CGContextSetPatternPhase")]
     #[inline]
     pub fn set_pattern_phase(c: Option<&CGContext>, phase: CGSize) {
@@ -1076,9 +1977,26 @@ impl CGContext {
         unsafe { CGContextSetPatternPhase(c, phase) }
     }
 
-    /// Color convenience functions. *
+    /// Sets the current fill color to a value in the DeviceGray color space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(gray:alpha:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context for which to set the current fill color.
+    ///
+    /// - gray: A value that specifies the desired gray level. The DeviceGray color space permits the specification of a value ranging from `0.0` (absolute black) to `1.0` (absolute white). Values outside this range are clamped to `0.0` or `1.0`.
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current fill color space to DeviceGray.
+    ///
+    /// - Core Graphics sets the current fill color to the value you specify in the `gray` and `alpha` parameters.
+    ///
+    ///
+    /// Color convenience functions. *
     #[doc(alias = "CGContextSetGrayFillColor")]
     #[inline]
     pub fn set_gray_fill_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
@@ -1088,7 +2006,25 @@ impl CGContext {
         unsafe { CGContextSetGrayFillColor(c, gray, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(gray:alpha:)?language=objc)
+    /// Sets the current stroke color to a value in the DeviceGray color space.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current stroke color.
+    ///
+    /// - gray: A value that specifies the desired gray level. The DeviceGray color space permits the specification of a value ranging from `0.0` (absolute black) to `1.0` (absolute white). Values outside this range are clamped to `0.0` or `1.0`.
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current stroke color space to DeviceGray. The DeviceGray color space is a single-dimension space in which color values are specified solely by the intensity of a gray value (from absolute black to absolute white).
+    ///
+    /// - Core Graphics sets the current stroke color to the value you specify in the `gray` and `alpha` parameters.
+    ///
+    ///
     #[doc(alias = "CGContextSetGrayStrokeColor")]
     #[inline]
     pub fn set_gray_stroke_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
@@ -1098,7 +2034,29 @@ impl CGContext {
         unsafe { CGContextSetGrayStrokeColor(c, gray, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(red:green:blue:alpha:)?language=objc)
+    /// Sets the current fill color to a value in the DeviceRGB color space.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current fill color.
+    ///
+    /// - red: The red intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - green: The green intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - blue: The blue intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current fill color space to DeviceRGB.
+    ///
+    /// - Core Graphics sets the current fill color to the value specified by the `red`, `green`, `blue`, and `alpha` parameters.
+    ///
+    ///
     #[doc(alias = "CGContextSetRGBFillColor")]
     #[inline]
     pub fn set_rgb_fill_color(
@@ -1120,7 +2078,29 @@ impl CGContext {
         unsafe { CGContextSetRGBFillColor(c, red, green, blue, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(red:green:blue:alpha:)?language=objc)
+    /// Sets the current stroke color to a value in the DeviceRGB color space.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current stroke color.
+    ///
+    /// - red: The red intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - green: The green intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - blue: The blue intensity value for the color to set. The DeviceRGB color space permits the specification of a value ranging from `0.0` (zero intensity) to `1.0` (full intensity).
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current stroke color space to DeviceRGB.
+    ///
+    /// - Core Graphics sets the current stroke color to the value specified by the `red`, `green`, `blue`, and `alpha` parameters.
+    ///
+    ///
     #[doc(alias = "CGContextSetRGBStrokeColor")]
     #[inline]
     pub fn set_rgb_stroke_color(
@@ -1142,7 +2122,33 @@ impl CGContext {
         unsafe { CGContextSetRGBStrokeColor(c, red, green, blue, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfillcolor(cyan:magenta:yellow:black:alpha:)?language=objc)
+    /// Sets the current fill color to a value in the DeviceCMYK color space.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current fill color.
+    ///
+    /// - cyan: The cyan intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from 0.0 (does not absorb the secondary color) to 1.0 (fully absorbs the secondary color).
+    ///
+    /// - magenta: The magenta intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from 0.0 (does not absorb the secondary color) to 1.0 (fully absorbs the secondary color).
+    ///
+    /// - yellow: The yellow intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from 0.0 (does not absorb the secondary color) to 1.0 (fully absorbs the secondary color).
+    ///
+    /// - black: The black intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from 0.0 (does not absorb the secondary color) to 1.0 (fully absorbs the secondary color).
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics provides convenience functions for each of the device color spaces that allow you to set the fill or stroke color space and the fill or stroke color with one function call.
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current fill color space to DeviceCMYK.
+    ///
+    /// - Core Graphics sets the current fill color to the value specified by the `cyan`, `magenta`, `yellow`, `black`, and `alpha` parameters.
+    ///
+    ///
     #[doc(alias = "CGContextSetCMYKFillColor")]
     #[inline]
     pub fn set_cmyk_fill_color(
@@ -1166,7 +2172,31 @@ impl CGContext {
         unsafe { CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setstrokecolor(cyan:magenta:yellow:black:alpha:)?language=objc)
+    /// Sets the current stroke color to a value in the DeviceCMYK color space.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the current stroke color.
+    ///
+    /// - cyan: The cyan intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from `0.0` (does not absorb the secondary color) to `1.0` (fully absorbs the secondary color).
+    ///
+    /// - magenta: The magenta intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from `0.0` (does not absorb the secondary color) to `1.0` (fully absorbs the secondary color).
+    ///
+    /// - yellow: The yellow intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from `0.0` (does not absorb the secondary color) to `1.0` (fully absorbs the secondary color).
+    ///
+    /// - black: The black intensity value for the color to set. The DeviceCMYK color space permits the specification of a value ranging from `0.0` (does not absorb the secondary color) to `1.0` (fully absorbs the secondary color).
+    ///
+    /// - alpha: A value that specifies the opacity level. Values can range from `0.0` (transparent) to `1.0` (opaque). Values outside this range are clipped to `0.0` or `1.0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, two things happen:
+    ///
+    /// - Core Graphics sets the current stroke color space to DeviceCMYK.
+    ///
+    /// - Core Graphics sets the current stroke color to the value specified by the `cyan`, `magenta`, `yellow`, `black`, and `alpha` parameters.
+    ///
+    ///
     #[doc(alias = "CGContextSetCMYKStrokeColor")]
     #[inline]
     pub fn set_cmyk_stroke_color(
@@ -1190,9 +2220,20 @@ impl CGContext {
         unsafe { CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha) }
     }
 
-    /// Rendering intent. *
+    /// Sets the rendering intent in the current graphics state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setrenderingintent(_:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - intent: A rendering intent constant—[`kCGRenderingIntentDefault`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/defaultintent), [`kCGRenderingIntentAbsoluteColorimetric`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/absolutecolorimetric), [`kCGRenderingIntentRelativeColorimetric`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/relativecolorimetric), [`kCGRenderingIntentPerceptual`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/perceptual), or [`kCGRenderingIntentSaturation`](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent/saturation). For a discussion of these constants, see [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The rendering intent specifies how to handle colors that are not located within the gamut of the destination color space of a graphics context. If you do not explicitly set the rendering intent, Core Graphics uses perceptual rendering intent when drawing sampled images and relative colorimetric rendering intent for all other drawing.
+    ///
+    ///
+    /// Rendering intent. *
     #[doc(alias = "CGContextSetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -1203,7 +2244,6 @@ impl CGContext {
         unsafe { CGContextSetRenderingIntent(c, intent) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setedrtargetheadroom(_:)?language=objc)
     #[doc(alias = "CGContextSetEDRTargetHeadroom")]
     #[inline]
     pub fn set_edr_target_headroom(&self, headroom: c_float) -> bool {
@@ -1213,7 +2253,6 @@ impl CGContext {
         unsafe { CGContextSetEDRTargetHeadroom(self, headroom) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgetedrtargetheadroom(_:)?language=objc)
     #[doc(alias = "CGContextGetEDRTargetHeadroom")]
     #[inline]
     pub fn edr_target_headroom(&self) -> c_float {
@@ -1223,9 +2262,22 @@ impl CGContext {
         unsafe { CGContextGetEDRTargetHeadroom(self) }
     }
 
-    /// Image functions. *
+    /// Draws an image into a graphics context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawimage?language=objc)
+    /// Parameters:
+    /// - c: The graphics context in which to draw the image.
+    ///
+    /// - rect: The location and dimensions in user space of the bounding box in which to draw the image.
+    ///
+    /// - image: The image to draw.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The image is scaled—disproportionately, if necessary—to fit the bounds specified by the `rect` parameter.
+    ///
+    ///
+    /// Image functions. *
     #[doc(alias = "CGContextDrawImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -1236,7 +2288,21 @@ impl CGContext {
         unsafe { CGContextDrawImage(c, rect, image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawtiledimage?language=objc)
+    /// Repeatedly draws an image, scaled to the provided rectangle, to fill the current clip region.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to draw the image.
+    ///
+    /// - rect: A rectangle that specifies the origin and size of the destination tile. The image is scaled—disproportionately, if necessary—to fit the bounds specified by the `rect` parameter.
+    ///
+    /// - image: The image to draw.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics draws the scaled image starting at the origin of the rectangle in user space, then moves to a new point (horizontally by the width of the tile and/or vertically by the height of the tile), draws the scaled image, moves again, draws again, and so on, until the current clip region is tiled with copies of the image. Unlike patterns, the image is tiled in user space, so transformations applied to the CTM affect the final result.
+    ///
+    ///
     #[doc(alias = "CGContextDrawTiledImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
@@ -1251,8 +2317,6 @@ impl CGContext {
         unsafe { CGContextDrawTiledImage(c, rect, image) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawimageapplyingtonemapping?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -1279,7 +2343,6 @@ impl CGContext {
         unsafe { CGContextDrawImageApplyingToneMapping(self, r, image, method, options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgetcontenttonemappinginfo?language=objc)
     #[doc(alias = "CGContextGetContentToneMappingInfo")]
     #[cfg(feature = "CGToneMapping")]
     #[inline]
@@ -1290,8 +2353,6 @@ impl CGContext {
         unsafe { CGContextGetContentToneMappingInfo(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetcontenttonemappinginfo?language=objc)
-    ///
     /// # Safety
     ///
     /// `info` struct field 2 must be a valid pointer or null.
@@ -1305,7 +2366,23 @@ impl CGContext {
         unsafe { CGContextSetContentToneMappingInfo(self, info) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/interpolationquality?language=objc)
+    /// Returns the current level of interpolation quality for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current level of interpolation quality.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Interpolation quality is a graphics state parameter that provides a hint for the level of quality to use for image interpolation (for example, when scaling the image). Not all contexts support all interpolation quality levels.
+    ///
+    ///
     #[doc(alias = "CGContextGetInterpolationQuality")]
     #[inline]
     pub fn interpolation_quality(c: Option<&CGContext>) -> CGInterpolationQuality {
@@ -1315,7 +2392,19 @@ impl CGContext {
         unsafe { CGContextGetInterpolationQuality(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsetinterpolationquality?language=objc)
+    /// Sets the level of interpolation quality for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - quality: A constant that specifies the required level of interpolation quality. For possible values, see [`CGInterpolationQuality`](https://developer.apple.com/documentation/coregraphics/cginterpolationquality).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Interpolation quality is merely a hint to the context—not all contexts support all interpolation quality levels.
+    ///
+    ///
     #[doc(alias = "CGContextSetInterpolationQuality")]
     #[inline]
     pub fn set_interpolation_quality(c: Option<&CGContext>, quality: CGInterpolationQuality) {
@@ -1328,7 +2417,17 @@ impl CGContext {
         unsafe { CGContextSetInterpolationQuality(c, quality) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshadow(offset:blur:color:)?language=objc)
+    /// Enables shadowing with color a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - offset: Specifies a translation in base-space.
+    ///
+    /// - blur: A non-negative number specifying the amount of blur.
+    ///
+    /// - color: Specifies the color of the shadow, which may contain a non-opaque alpha value. If `NULL`, then shadowing is disabled.
+    ///
     #[doc(alias = "CGContextSetShadowWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
@@ -1349,7 +2448,27 @@ impl CGContext {
         unsafe { CGContextSetShadowWithColor(c, offset, blur, color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshadow(offset:blur:)?language=objc)
+    /// Enables shadowing in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - offset: Specifies a translation of the context’s coordinate system, to establish an offset for the shadow (`{0,0}` specifies a light source immediately above the screen).
+    ///
+    /// - blur: A non-negative number specifying the amount of blur.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Shadow parameters are part of the graphics state in a context. After shadowing is set, all objects drawn are shadowed using a black color with 1/3 alpha (in effect, RGBA = `{0, 0, 0, 1.0/3.0}`) in the DeviceRGB color space.
+    ///
+    /// To turn off shadowing:
+    ///
+    /// - Use the standard save/restore mechanism for the graphics state.
+    ///
+    /// - Use [`CGContextSetShadowWithColor`](https://developer.apple.com/documentation/coregraphics/cgcontext/setshadow(offset:blur:color:)) to set the shadow color to a fully transparent color (or pass `NULL` as the color).
+    ///
+    ///
     #[doc(alias = "CGContextSetShadow")]
     #[inline]
     pub fn set_shadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat) {
@@ -1359,7 +2478,25 @@ impl CGContext {
         unsafe { CGContextSetShadow(c, offset, blur) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawlineargradient(_:start:end:options:)?language=objc)
+    /// Paints a gradient fill that varies along the line defined by the provided starting and ending points.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - gradient: A gradient object.
+    ///
+    /// - startPoint: The coordinate that defines the starting point of the gradient.
+    ///
+    /// - endPoint: The coordinate that defines the ending point of the gradient.
+    ///
+    /// - options: Option flags ([`kCGGradientDrawsBeforeStartLocation`](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsbeforestartlocation) or [`kCGGradientDrawsAfterEndLocation`](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsafterendlocation)) that control whether the fill is extended beyond the starting or ending point.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The color at location 0 in the CGGradient object is mapped to the starting point. The color at location 1 in the CGGradient object is mapped to the ending point. Colors are linearly interpolated between these two points based on the location values of the gradient. The option flags control whether the gradient is drawn before the start point or after the end point.
+    ///
+    ///
     #[doc(alias = "CGContextDrawLinearGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1382,7 +2519,29 @@ impl CGContext {
         unsafe { CGContextDrawLinearGradient(c, gradient, start_point, end_point, options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawradialgradient(_:startcenter:startradius:endcenter:endradius:options:)?language=objc)
+    /// Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - gradient: A CGGradient object.
+    ///
+    /// - startCenter: The coordinate that defines the center of the starting circle.
+    ///
+    /// - startRadius: The radius of the starting circle.
+    ///
+    /// - endCenter: The coordinate that defines the center of the ending circle.
+    ///
+    /// - endRadius: The radius of the ending circle.
+    ///
+    /// - options: Option flags ([`kCGGradientDrawsBeforeStartLocation`](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsbeforestartlocation) or [`kCGGradientDrawsAfterEndLocation`](https://developer.apple.com/documentation/coregraphics/cggradientdrawingoptions/drawsafterendlocation)) that control whether the gradient is drawn before the starting circle or after the ending circle.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The color at location 0 in the CGGradient object is mapped to the circle defined by `startCenter` and `startRadius`. The color at location 1 in the CGGradient object is mapped to the circle defined by `endCenter` and `endRadius`. Colors are linearly interpolated between the starting and ending circles based on the location values of the gradient. The option flags control whether the gradient is drawn before the start point or after the end point.
+    ///
+    ///
     #[doc(alias = "CGContextDrawRadialGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1419,7 +2578,6 @@ impl CGContext {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawconicgradient(_:_:_:_:)?language=objc)
     #[doc(alias = "CGContextDrawConicGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
@@ -1440,7 +2598,19 @@ impl CGContext {
         unsafe { CGContextDrawConicGradient(self, gradient, center, angle) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawshading(_:)?language=objc)
+    /// Fills the clipping path of a context with the specified shading.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to draw the shading.
+    ///
+    /// - shading: A shading object. The shading object is retained; upon return, you may safely release it.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The preferred way to draw gradients is to use a CGGradient object. See [`CGGradientRef`](https://developer.apple.com/documentation/coregraphics/cggradient).
+    ///
+    ///
     #[doc(alias = "CGContextDrawShading")]
     #[cfg(feature = "CGShading")]
     #[inline]
@@ -1451,9 +2621,20 @@ impl CGContext {
         unsafe { CGContextDrawShading(c, shading) }
     }
 
-    /// Text functions. *
+    /// Sets the current character spacing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setcharacterspacing(_:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context for which to set the character spacing.
+    ///
+    /// - spacing: A value that represents the amount of additional space to place between glyphs, in text space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics adds the additional space to the advance between the origin of one character and the origin of the next character. For information about the text coordinate system, see [`CGContextSetTextMatrix`](https://developer.apple.com/documentation/coregraphics/cgcontextsettextmatrix).
+    ///
+    ///
+    /// Text functions. *
     #[doc(alias = "CGContextSetCharacterSpacing")]
     #[inline]
     pub fn set_character_spacing(c: Option<&CGContext>, spacing: CGFloat) {
@@ -1463,7 +2644,15 @@ impl CGContext {
         unsafe { CGContextSetCharacterSpacing(c, spacing) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsettextposition?language=objc)
+    /// Sets the location at which text is drawn.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - x: A value for the x-coordinate at which to draw the text, in user space coordinates.
+    ///
+    /// - y: A value for the y-coordinate at which to draw the text, in user space coordinates.
+    ///
     #[doc(alias = "CGContextSetTextPosition")]
     #[inline]
     pub fn set_text_position(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
@@ -1473,7 +2662,6 @@ impl CGContext {
         unsafe { CGContextSetTextPosition(c, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextgettextposition?language=objc)
     #[doc(alias = "CGContextGetTextPosition")]
     #[inline]
     pub fn text_position(c: Option<&CGContext>) -> CGPoint {
@@ -1483,7 +2671,21 @@ impl CGContext {
         unsafe { CGContextGetTextPosition(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextsettextmatrix?language=objc)
+    /// Sets the current text matrix.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - t: The text matrix to set.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The text matrix specifies the transform from text space to user space. To produce the final text rendering matrix that is used to actually draw the text on the page, Core Graphics concatenates the text matrix with the current transformation matrix and other parameters from the graphics state.
+    ///
+    /// Note that the text matrix is _not_ a part of the graphics state—saving or restoring the graphics state has no effect on the text matrix. The text matrix is an attribute of the graphics context, not of the current font.
+    ///
+    ///
     #[doc(alias = "CGContextSetTextMatrix")]
     #[inline]
     pub fn set_text_matrix(c: Option<&CGContext>, t: CGAffineTransform) {
@@ -1493,7 +2695,17 @@ impl CGContext {
         unsafe { CGContextSetTextMatrix(c, t) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/textmatrix?language=objc)
+    /// Returns the current text matrix.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to obtain the text matrix.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current text matrix.
+    ///
+    ///
     #[doc(alias = "CGContextGetTextMatrix")]
     #[inline]
     pub fn text_matrix(c: Option<&CGContext>) -> CGAffineTransform {
@@ -1503,7 +2715,13 @@ impl CGContext {
         unsafe { CGContextGetTextMatrix(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/settextdrawingmode(_:)?language=objc)
+    /// Sets the current text drawing mode.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - mode: A text drawing mode (such as [`kCGTextFill`](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/fill) or [`kCGTextStroke`](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode/stroke)) that specifies how Core Graphics renders individual glyphs in a graphics context. See [`CGTextDrawingMode`](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode) for a complete list.
+    ///
     #[doc(alias = "CGContextSetTextDrawingMode")]
     #[inline]
     pub fn set_text_drawing_mode(c: Option<&CGContext>, mode: CGTextDrawingMode) {
@@ -1513,7 +2731,13 @@ impl CGContext {
         unsafe { CGContextSetTextDrawingMode(c, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)?language=objc)
+    /// Sets the platform font in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the font.
+    ///
+    /// - font: A font.
+    ///
     #[doc(alias = "CGContextSetFont")]
     #[cfg(feature = "CGFont")]
     #[inline]
@@ -1524,7 +2748,13 @@ impl CGContext {
         unsafe { CGContextSetFont(c, font) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setfontsize(_:)?language=objc)
+    /// Sets the current font size.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - size: A font size, expressed in text space units.
+    ///
     #[doc(alias = "CGContextSetFontSize")]
     #[inline]
     pub fn set_font_size(c: Option<&CGContext>, size: CGFloat) {
@@ -1534,7 +2764,17 @@ impl CGContext {
         unsafe { CGContextSetFontSize(c, size) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextshowglyphsatpositions?language=objc)
+    /// Draws glyphs at the provided position.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to display the glyphs.
+    ///
+    /// - glyphs: An array of glyphs.
+    ///
+    /// - Lpositions: The positions for the glyphs. Each item in this array matches with the glyph at the corresponding index in the `glyphs` array. The position of each glyph is specified in text space, and, as a consequence, is transformed through the text matrix to user space.
+    ///
+    /// - count: The number of items in the `glyphs` array.
+    ///
     ///
     /// # Safety
     ///
@@ -1560,9 +2800,20 @@ impl CGContext {
         unsafe { CGContextShowGlyphsAtPositions(c, glyphs, lpositions, count) }
     }
 
-    /// PDF functions. *
+    /// Draws the content of a PDF page into the current graphics context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/drawpdfpage(_:)?language=objc)
+    /// Parameters:
+    /// - c: The graphics context in which to draw the PDF page.
+    ///
+    /// - page: A Core Graphics PDF page.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function works in conjunction with the [`CGPDFPageRef`](https://developer.apple.com/documentation/coregraphics/cgpdfpage) type to draw individual PDF pages into a context.
+    ///
+    ///
+    /// PDF functions. *
     #[doc(alias = "CGContextDrawPDFPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -1573,13 +2824,24 @@ impl CGContext {
         unsafe { CGContextDrawPDFPage(c, page) }
     }
 
+    /// Starts a new page in a page-based graphics context.
+    ///
+    /// Parameters:
+    /// - c: A page-based graphics context such as a PDF context. If you specify a context that does not support multiple pages, this function does nothing.
+    ///
+    /// - mediaBox: A rectangle defining the bounds of the new page, expressed in units of the default user space, or `NULL`. These bounds supersede any supplied for the media box when you created the context. If you pass `NULL`, Core Graphics uses the rectangle you supplied for the media box when the graphics context was created.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When using a graphics context that supports multiple pages, you should call this function together with [`CGContextEndPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/endpage()) to delineate the page boundaries in the output. In other words, each page should be bracketed by calls to `CGContextBeginPage` and `CGContextEndPage`. Core Graphics ignores all drawing operations performed outside a page boundary in a page-based context.
+    ///
+    ///
     /// Output page functions. *
     ///
     /// # Safety
     ///
     /// `media_box` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpage(mediabox:)?language=objc)
     #[doc(alias = "CGContextBeginPage")]
     #[inline]
     pub unsafe fn begin_page(c: Option<&CGContext>, media_box: *const CGRect) {
@@ -1589,7 +2851,17 @@ impl CGContext {
         unsafe { CGContextBeginPage(c, media_box) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endpage()?language=objc)
+    /// Ends the current page in a page-based graphics context.
+    ///
+    /// Parameters:
+    /// - c: A page-based graphics context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When using a graphics context that supports multiple pages, you should call this function to terminate drawing in the current page.
+    ///
+    ///
     #[doc(alias = "CGContextEndPage")]
     #[inline]
     pub fn end_page(c: Option<&CGContext>) {
@@ -1599,7 +2871,17 @@ impl CGContext {
         unsafe { CGContextEndPage(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/flush()?language=objc)
+    /// Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
+    ///
+    /// Parameters:
+    /// - c: The window context to flush. If you pass a PDF context or a bitmap context, this function does nothing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, Core Graphics immediately flushes the current drawing to the destination device (for example, a screen). Because the system software flushes a context automatically at the appropriate times, calling this function could have an adverse effect on performance. Under normal conditions, you do not need to call this function.
+    ///
+    ///
     #[doc(alias = "CGContextFlush")]
     #[inline]
     pub fn flush(c: Option<&CGContext>) {
@@ -1609,7 +2891,17 @@ impl CGContext {
         unsafe { CGContextFlush(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/synchronize()?language=objc)
+    /// Marks a window context for update.
+    ///
+    /// Parameters:
+    /// - c: The window context to synchronize. If you pass a PDF context or a bitmap context, this function does nothing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you call this function, all drawing operations since the last update are flushed at the next regular opportunity. Under normal conditions, you do not need to call this function.
+    ///
+    ///
     #[doc(alias = "CGContextSynchronize")]
     #[inline]
     pub fn synchronize(c: Option<&CGContext>) {
@@ -1619,7 +2911,6 @@ impl CGContext {
         unsafe { CGContextSynchronize(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/synchronizeattributes()?language=objc)
     #[doc(alias = "CGContextSynchronizeAttributes")]
     #[inline]
     pub fn synchronize_attributes(&self) {
@@ -1629,7 +2920,19 @@ impl CGContext {
         unsafe { CGContextSynchronizeAttributes(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldantialias(_:)?language=objc)
+    /// Sets antialiasing on or off for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - shouldAntialias: A Boolean value that specifies whether antialiasing should be turned on. Antialiasing is turned on by default when a window or bitmap context is created. It is turned off for other types of contexts.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Antialiasing is a graphics state parameter.
+    ///
+    ///
     #[doc(alias = "CGContextSetShouldAntialias")]
     #[inline]
     pub fn set_should_antialias(c: Option<&CGContext>, should_antialias: bool) {
@@ -1639,7 +2942,21 @@ impl CGContext {
         unsafe { CGContextSetShouldAntialias(c, should_antialias) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsantialiasing(_:)?language=objc)
+    /// Sets whether or not to allow antialiasing for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - allowsAntialiasing: A Boolean value that specifies whether or not to allow antialiasing. Pass `true` to allow antialiasing; `false` otherwise. This parameter is not part of the graphics state.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics performs antialiasing for a graphics context if both the `allowsAntialiasing` parameter and the graphics state parameter `shouldAntialias` are `true`.
+    ///
+    /// This parameter is not part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetAllowsAntialiasing")]
     #[inline]
     pub fn set_allows_antialiasing(c: Option<&CGContext>, allows_antialiasing: bool) {
@@ -1649,7 +2966,21 @@ impl CGContext {
         unsafe { CGContextSetAllowsAntialiasing(c, allows_antialiasing) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsmoothfonts(_:)?language=objc)
+    /// Enables or disables font smoothing in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context to modify.
+    ///
+    /// - shouldSmoothFonts: A Boolean value that specifies whether to enable font smoothing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// There are cases, such as rendering to a bitmap, when font smoothing is not appropriate and should be disabled. Note that some contexts (such as PostScript contexts) do not support font smoothing.
+    ///
+    /// This parameter is part of the graphics state. Because of this, you use this when you want to temporarily override this setting in a drawing method.
+    ///
+    ///
     #[doc(alias = "CGContextSetShouldSmoothFonts")]
     #[inline]
     pub fn set_should_smooth_fonts(c: Option<&CGContext>, should_smooth_fonts: bool) {
@@ -1659,7 +2990,21 @@ impl CGContext {
         unsafe { CGContextSetShouldSmoothFonts(c, should_smooth_fonts) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsmoothing(_:)?language=objc)
+    /// Sets whether or not to allow font smoothing for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - allowsFontSmoothing: A Boolean value that specifies whether font smoothing is allowed in the specified context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Font are smoothed if they are antialiased when drawn and if font smoothing is both allowed and enabled. For information on how to enable font smoothing, see the [`CGContextSetShouldSmoothFonts`](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsmoothfonts(_:)) function. It is not usually necessary to make changes to both parameters at the same time; either can be used to disable font smoothing.
+    ///
+    /// This parameter is not part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetAllowsFontSmoothing")]
     #[inline]
     pub fn set_allows_font_smoothing(c: Option<&CGContext>, allows_font_smoothing: bool) {
@@ -1669,7 +3014,21 @@ impl CGContext {
         unsafe { CGContextSetAllowsFontSmoothing(c, allows_font_smoothing) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelpositionfonts(_:)?language=objc)
+    /// Enables or disables subpixel positioning in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - shouldSubpixelPositionFonts: A Boolean value that specifies whether to enable subpixel positioning.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When enabled, the graphics context may position glyphs on nonintegral pixel boundaries. When disabled, the position of glyphs are always forced to integral pixel boundaries.
+    ///
+    /// This parameter is part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetShouldSubpixelPositionFonts")]
     #[inline]
     pub fn set_should_subpixel_position_fonts(
@@ -1685,7 +3044,21 @@ impl CGContext {
         unsafe { CGContextSetShouldSubpixelPositionFonts(c, should_subpixel_position_fonts) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsubpixelpositioning(_:)?language=objc)
+    /// Sets whether or not to allow subpixel positioning for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - allowsFontSubpixelPositioning: A Boolean value that specifies whether subpixel positioning of glyphs is allowed in the specified context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sub-pixel positioning is used by the graphics context if it is allowed, enabled, and if the font itself is antialiased when drawn. For information on how to enable subpixel positioning, see the [`CGContextSetShouldSubpixelPositionFonts`](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelpositionfonts(_:)) function.
+    ///
+    /// This parameter is not part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetAllowsFontSubpixelPositioning")]
     #[inline]
     pub fn set_allows_font_subpixel_positioning(
@@ -1701,7 +3074,21 @@ impl CGContext {
         unsafe { CGContextSetAllowsFontSubpixelPositioning(c, allows_font_subpixel_positioning) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelquantizefonts(_:)?language=objc)
+    /// Enables or disables subpixel quantization in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - shouldSubpixelQuantizeFonts: A Boolean value that specifies whether to enable subpixel quantization.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When enabled, the graphics context may quantize the subpixel positions of glyphs.
+    ///
+    /// This parameter is part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetShouldSubpixelQuantizeFonts")]
     #[inline]
     pub fn set_should_subpixel_quantize_fonts(
@@ -1717,7 +3104,21 @@ impl CGContext {
         unsafe { CGContextSetShouldSubpixelQuantizeFonts(c, should_subpixel_quantize_fonts) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/setallowsfontsubpixelquantization(_:)?language=objc)
+    /// Sets whether or not to allow subpixel quantization for a graphics context.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - allowsFontSubpixelQuantization: A Boolean value that specifies whether subpixel quantization of glyphs is allowed in the specified context.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sub-pixel quantization is used by the graphics context if it is allowed, enabled, and if glyphs would be drawn at subpixel positions. For information on how to enable subpixel quantization, see the [`CGContextSetShouldSubpixelQuantizeFonts`](https://developer.apple.com/documentation/coregraphics/cgcontext/setshouldsubpixelquantizefonts(_:)) function.
+    ///
+    /// This parameter is not part of the graphics state.
+    ///
+    ///
     #[doc(alias = "CGContextSetAllowsFontSubpixelQuantization")]
     #[inline]
     pub fn set_allows_font_subpixel_quantization(
@@ -1733,14 +3134,43 @@ impl CGContext {
         unsafe { CGContextSetAllowsFontSubpixelQuantization(c, allows_font_subpixel_quantization) }
     }
 
+    /// Begins a transparency layer.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - auxiliaryInfo: A dictionary that specifies any additional information, or `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Until a corresponding call to [`CGContextEndTransparencyLayer`](https://developer.apple.com/documentation/coregraphics/cgcontext/endtransparencylayer()), all subsequent drawing operations in the specified context are composited into a fully transparent backdrop (which is treated as a separate destination buffer from the context).
+    ///
+    /// After a call to `CGContextEndTransparencyLayer`, the result is composited into the context using the global alpha and shadow state of the context. This operation respects the clipping region of the context.
+    ///
+    /// After a call to this function, all of the parameters in the graphics state remain unchanged with the exception of the following:
+    ///
+    /// - The global alpha is set to `1`.
+    ///
+    /// - The shadow is turned off.
+    ///
+    /// Ending the transparency layer restores these parameters to their previous values. Core Graphics maintains a transparency layer stack for each context, and transparency layers may be nested.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  For best performance, make sure that you set the smallest possible clipping area for the objects in the transparency layer prior to calling `CGContextBeginTransparencyLayer`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Transparency layer support. *
     ///
     /// # Safety
     ///
     /// - `auxiliary_info` generic must be of the correct type.
     /// - `auxiliary_info` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/begintransparencylayer(auxiliaryinfo:)?language=objc)
     #[doc(alias = "CGContextBeginTransparencyLayer")]
     #[inline]
     pub unsafe fn begin_transparency_layer(
@@ -1756,7 +3186,21 @@ impl CGContext {
         unsafe { CGContextBeginTransparencyLayer(c, auxiliary_info) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/begintransparencylayer(in:auxiliaryinfo:)?language=objc)
+    /// Begins a transparency layer whose contents are bounded by the specified rectangle.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: The rectangle, specified in user space, that bounds the transparency layer.
+    ///
+    /// - auxInfo: A dictionary that specifies any additional information, or `nil`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is identical to [`CGContextBeginTransparencyLayer`](https://developer.apple.com/documentation/coregraphics/cgcontext/begintransparencylayer(auxiliaryinfo:)) except that the content of the transparency layer is within the bounds of the provided rectangle.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1779,7 +3223,11 @@ impl CGContext {
         unsafe { CGContextBeginTransparencyLayerWithRect(c, rect, aux_info) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/endtransparencylayer()?language=objc)
+    /// Ends a transparency layer.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
     #[doc(alias = "CGContextEndTransparencyLayer")]
     #[inline]
     pub fn end_transparency_layer(c: Option<&CGContext>) {
@@ -1789,9 +3237,18 @@ impl CGContext {
         unsafe { CGContextEndTransparencyLayer(c) }
     }
 
-    /// User space to device space tranformations. *
+    /// Returns an affine transform that maps user space coordinates to device space coordinates.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/userspacetodevicespacetransform?language=objc)
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The affine transforms that maps the user space of the graphics context to the device space.
+    ///
+    ///
+    /// User space to device space tranformations. *
     #[doc(alias = "CGContextGetUserSpaceToDeviceSpaceTransform")]
     #[inline]
     pub fn user_space_to_device_space_transform(c: Option<&CGContext>) -> CGAffineTransform {
@@ -1803,7 +3260,19 @@ impl CGContext {
         unsafe { CGContextGetUserSpaceToDeviceSpaceTransform(c) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-53m7u?language=objc)
+    /// Returns a point that is transformed from user space coordinates to device space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - point: The point, in user space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The coordinates of the point in device space coordinates.
+    ///
+    ///
     #[doc(alias = "CGContextConvertPointToDeviceSpace")]
     #[inline]
     pub fn convert_point_to_device_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
@@ -1814,7 +3283,19 @@ impl CGContext {
         unsafe { CGContextConvertPointToDeviceSpace(c, point) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-3mtg3?language=objc)
+    /// Returns a point that is transformed from device space coordinates to user space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - point: The point, in device space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The coordinates of the point in user space coordinates.
+    ///
+    ///
     #[doc(alias = "CGContextConvertPointToUserSpace")]
     #[inline]
     pub fn convert_point_to_user_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
@@ -1824,7 +3305,19 @@ impl CGContext {
         unsafe { CGContextConvertPointToUserSpace(c, point) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-224h2?language=objc)
+    /// Returns a size that is transformed from user space coordinates to device space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - size: The size, in user space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The size in device space coordinates.
+    ///
+    ///
     #[doc(alias = "CGContextConvertSizeToDeviceSpace")]
     #[inline]
     pub fn convert_size_to_device_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
@@ -1834,7 +3327,19 @@ impl CGContext {
         unsafe { CGContextConvertSizeToDeviceSpace(c, size) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-693ur?language=objc)
+    /// Returns a size that is transformed from device space coordinates to user space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - size: The size, in device space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The size in user space coordinates.
+    ///
+    ///
     #[doc(alias = "CGContextConvertSizeToUserSpace")]
     #[inline]
     pub fn convert_size_to_user_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
@@ -1844,7 +3349,25 @@ impl CGContext {
         unsafe { CGContextConvertSizeToUserSpace(c, size) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttodevicespace(_:)-91x5g?language=objc)
+    /// Returns a rectangle that is transformed from user space coordinate to device space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: The rectangle, in user space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rectangle in device space coordinates.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general affine transforms do not preserve rectangles. As a result, this function returns the smallest rectangle that contains the transformed corner points of the rectangle.
+    ///
+    ///
     #[doc(alias = "CGContextConvertRectToDeviceSpace")]
     #[inline]
     pub fn convert_rect_to_device_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
@@ -1854,7 +3377,25 @@ impl CGContext {
         unsafe { CGContextConvertRectToDeviceSpace(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/converttouserspace(_:)-1hk5r?language=objc)
+    /// Returns a rectangle that is transformed from device space coordinate to user space coordinates.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - rect: The rectangle, in device space coordinates, to transform.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rectangle in user space coordinates.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general, affine transforms do not preserve rectangles. As a result, this function returns the smallest rectangle that contains the transformed corner points of the rectangle.
+    ///
+    ///
     #[doc(alias = "CGContextConvertRectToUserSpace")]
     #[inline]
     pub fn convert_rect_to_user_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
@@ -1864,7 +3405,17 @@ impl CGContext {
         unsafe { CGContextConvertRectToUserSpace(c, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/selectfont(name:size:textencoding:)?language=objc)
+    /// Sets the font and font size in a graphics context.
+    ///
+    /// Parameters:
+    /// - c: The graphics context for which to set the font and font size.
+    ///
+    /// - name: A null-terminated string that contains the PostScript name of the font to set.
+    ///
+    /// - size: A value that specifies the font size to set, in text space units.
+    ///
+    /// - textEncoding: A value that specifies the encoding used for the font. For a description of the available values, see [`CGTextEncoding`](https://developer.apple.com/documentation/coregraphics/cgtextencoding).
+    ///
     ///
     /// # Safety
     ///
@@ -1889,7 +3440,21 @@ impl CGContext {
         unsafe { CGContextSelectFont(c, name, size, text_encoding) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showtext(string:length:)?language=objc)
+    /// Displays a character array at the current text position, a point specified by the current text matrix.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - string: An array of characters to draw.
+    ///
+    /// - length: The length of the array specified in the `bytes` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics uses font data provided by the system to map each byte of the array through the encoding vector of the current font to obtain the glyph to display. Note that the font must have been set using [`CGContextSelectFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/selectfont(name:size:textencoding:)). Don’t use `CGContextShowText` in conjunction with [`CGContextSetFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1904,7 +3469,25 @@ impl CGContext {
         unsafe { CGContextShowText(c, string, length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showtextatpoint(x:y:string:length:)?language=objc)
+    /// Displays a character string at a position you specify.
+    ///
+    /// Parameters:
+    /// - c: A graphics context.
+    ///
+    /// - x: A value for the x-coordinate (in user space) at which to display the text.
+    ///
+    /// - y: A value for the y-coordinate (in user space) at which to display the text.
+    ///
+    /// - string: An array of characters to draw.
+    ///
+    /// - length: The length of the array specified in the `string` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics uses font data provided by the system to map each byte of the array through the encoding vector of the current font to obtain the glyph to display. Note that the font must have been set using [`CGContextSelectFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/selectfont(name:size:textencoding:)). Don’t use `CGContextShowTextAtPoint` in conjunction with [`CGContextSetFont`](https://developer.apple.com/documentation/coregraphics/cgcontext/setfont(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1931,7 +3514,21 @@ impl CGContext {
         unsafe { CGContextShowTextAtPoint(c, x, y, string, length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphs(g:count:)?language=objc)
+    /// Displays an array of glyphs at the current text position.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to display the glyphs.
+    ///
+    /// - g: An array of glyphs to display.
+    ///
+    /// - count: The total number of glyphs passed in the `g` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function displays an array of glyphs at the current text position, a point specified by the current text matrix.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1947,7 +3544,25 @@ impl CGContext {
         unsafe { CGContextShowGlyphs(c, g, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphsatpoint(x:y:glyphs:count:)?language=objc)
+    /// Displays an array of glyphs at a position you specify.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to display the glyphs.
+    ///
+    /// - x: A value for the x-coordinate of the user space at which to display the glyphs.
+    ///
+    /// - y: A value for the y-coordinate of the user space at which to display the glyphs.
+    ///
+    /// - glyphs: An array of glyphs to display.
+    ///
+    /// - count: The total number of glyphs passed in the `glyphs` parameter.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function displays an array of glyphs at the specified position in the user space.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1975,7 +3590,23 @@ impl CGContext {
         unsafe { CGContextShowGlyphsAtPoint(c, x, y, glyphs, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/showglyphswithadvances(glyphs:advances:count:)?language=objc)
+    /// Draws an array of glyphs with varying offsets.
+    ///
+    /// Parameters:
+    /// - c: The graphics context in which to display the glyphs.
+    ///
+    /// - glyphs: An array of glyphs.
+    ///
+    /// - advances: An array of offset values associated with each glyph in the array. Each value specifies the offset from the previous glyph’s origin to the origin of the corresponding glyph. Offsets are specified in user space.
+    ///
+    /// - count: The number of glyphs in the specified array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function draws an array of glyphs at the current point specified by the text matrix.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -2002,7 +3633,6 @@ impl CGContext {
         unsafe { CGContextShowGlyphsWithAdvances(c, glyphs, advances, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontextdrawpdfdocument?language=objc)
     #[doc(alias = "CGContextDrawPDFDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[deprecated = "No longer supported"]

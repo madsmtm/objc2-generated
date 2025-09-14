@@ -7,24 +7,50 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid?language=objc)
+///
+/// ## Discussion
+///
+/// A guaranteed invalid window ID.
+///
+///
 pub const kCGNullWindowID: CGWindowID = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowid?language=objc)
+/// The data type used to store window identifiers.
 pub type CGWindowID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype?language=objc)
+/// The data type used to specify the sharing mode used by a window.
+///
+/// ## Overview
+///
+/// This type is used in conjunction with the constants described in [Window Sharing Constants](https://developer.apple.com/documentation/coregraphics/window-sharing-constants).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowSharingType(pub u32);
 impl CGWindowSharingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/none?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window is not shared.
+    ///
+    ///
     #[doc(alias = "kCGWindowSharingNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/readonly?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window is shared and its contents can be read by all processes but modified only by the process that created it.
+    ///
+    ///
     #[doc(alias = "kCGWindowSharingReadOnly")]
     pub const ReadOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/readwrite?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window is shared and its contents can be read and modified by any process.
+    ///
+    ///
     #[doc(alias = "kCGWindowSharingReadWrite")]
     pub const ReadWrite: Self = Self(2);
 }
@@ -39,19 +65,48 @@ unsafe impl RefEncode for CGWindowSharingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype?language=objc)
+/// The data type used to specify the backing option for a given window.
+///
+/// ## Overview
+///
+/// This type is used in conjunction with the constants described in [Backing Store Types](https://developer.apple.com/documentation/coregraphics/backing-store-types).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowBackingType(pub u32);
 impl CGWindowBackingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstoreretained?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window uses a buffer, but draws directly to the screen where possible and to the buffer for obscured portions.
+    ///
+    /// You should typically not use this mode. It combines the limitations of [`kCGBackingStoreNonretained`](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorenonretained) with the memory use of [`kCGBackingStoreBuffered`](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorebuffered). The original NeXTSTEP implementation was an interesting compromise that worked well with fast memory mapped framebuffers on the CPU bus—something that hasn’t been in general use since around 1994. These tend to have performance problems.
+    ///
+    /// In macOS 10.5 and later, requests for retained windows will result in the window system creating a buffered window, as that better matches actual use
+    ///
+    ///
     #[doc(alias = "kCGBackingStoreRetained")]
     pub const BackingStoreRetained: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorenonretained?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window draws directly to the screen without using any buffer.
+    ///
+    /// You should typically not use this mode. It exists primarily for use in the original Classic Blue Box. It does not support Quartz drawing, alpha blending, or opacity. Moreover, it does not support hardware acceleration, and interferes with system-wide display acceleration. If you use this mode, your application must manage visibility region clipping itself, and manage repainting on visibility changes.
+    ///
+    ///
     #[doc(alias = "kCGBackingStoreNonretained")]
     pub const BackingStoreNonretained: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype/backingstorebuffered?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The window draws into a display buffer and then flushes that buffer to the screen.
+    ///
+    /// You should typically use this mode. It supports hardware acceleration, Quartz drawing, and takes advantage of the GPU when possible. It also supports alpha channel drawing, opacity controls, using the compositor.
+    ///
+    ///
     #[doc(alias = "kCGBackingStoreBuffered")]
     pub const BackingStoreBuffered: Self = Self(2);
 }
@@ -67,94 +122,195 @@ unsafe impl RefEncode for CGWindowBackingType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindownumber?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCGWindowIDCFNumberType`](https://developer.apple.com/documentation/coregraphics/kcgwindowidcfnumbertype)) that contains the window ID. The window ID is unique within the current user session.
+    ///
+    ///
     pub static kCGWindowNumber: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowstoretype?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberIntType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype)) that contains one of the constants defined in [Backing Store Types](https://developer.apple.com/documentation/coregraphics/backing-store-types).
+    ///
+    ///
     pub static kCGWindowStoreType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowlayer?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberIntType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype)) that contains the window layer number.
+    ///
+    ///
     pub static kCGWindowLayer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbounds?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) type that must be decoded to a [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) type using the [`CGRectMakeWithDictionaryRepresentation`](https://developer.apple.com/documentation/coregraphics/cgrectmakewithdictionaryrepresentation(_:_:)) function. The coordinates of the rectangle are specified in screen space, where the origin is in the upper-left corner of the main display.
+    ///
+    ///
     pub static kCGWindowBounds: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowsharingstate?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberIntType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype)) that contains one of the constants defined in [Window Sharing Constants](https://developer.apple.com/documentation/coregraphics/window-sharing-constants).
+    ///
+    ///
     pub static kCGWindowSharingState: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowalpha?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberFloatType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/floattype)) that contains the window’s alpha fade level. This number is in the range 0.0 to 1.0, where 0.0 is fully transparent and 1.0 is fully opaque.
+    ///
+    ///
     pub static kCGWindowAlpha: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownerpid?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberIntType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype)) that contains the process ID of the application that owns the window.
+    ///
+    ///
     pub static kCGWindowOwnerPID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowmemoryusage?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type (encoded as [`kCFNumberLongLongType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/longlongtype)) that contains an estimate of the amount of memory (measured in bytes) used by the window and its supporting data structures.
+    ///
+    ///
     pub static kCGWindowMemoryUsage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowworkspace?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that identifies the workspace to which the window belongs. The value for this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) type whose value is encoded using the [`kCFNumberIntType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype) type.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kCGWindowWorkspace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowownername?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that identifies the name of the application that owns the window. The value for this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) type.
+    ///
+    ///
     pub static kCGWindowOwnerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowname?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that identifies the name of the window, as configured in Quartz. The value for this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) type. (Note that few applications set the Quartz window name.)
+    ///
+    ///
     pub static kCGWindowName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowisonscreen?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that identifies whether the window is currently onscreen. The value for this key is a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) type.
+    ///
+    ///
     pub static kCGWindowIsOnscreen: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgwindowbackinglocationvideomemory?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that identifies whether the window’s backing store is located in video memory. The value for this key is a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) type.
+    ///
+    ///
     pub static kCGWindowBackingLocationVideoMemory: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption?language=objc)
+/// The data type used to specify the options for gathering a list of windows.
+///
+/// ## Overview
+///
+/// This type is used in conjunction with the constants described in [Window List Option Constants](https://developer.apple.com/documentation/coregraphics/window-list-option-constants).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowListOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowListOption: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optionall?language=objc)
+///
+/// ## Discussion
+///
+/// List all windows, including both onscreen and offscreen windows. When retrieving a list with this option, the `relativeToWindow` parameter should be set to [`kCGNullWindowID`](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid).
+///
+///
         #[doc(alias = "kCGWindowListOptionAll")]
         const OptionAll = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenonly?language=objc)
+///
+/// ## Discussion
+///
+/// List all windows that are currently onscreen. Windows are returned in order from front to back. When retrieving a list with this option, the `relativeToWindow` parameter should be set to [`kCGNullWindowID`](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid).
+///
+///
         #[doc(alias = "kCGWindowListOptionOnScreenOnly")]
         const OptionOnScreenOnly = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenabovewindow?language=objc)
+///
+/// ## Discussion
+///
+/// List all windows that are currently onscreen and in front of the window specified in the `relativeToWindow` parameter. Windows are returned in order from front to back.
+///
+///
         #[doc(alias = "kCGWindowListOptionOnScreenAboveWindow")]
         const OptionOnScreenAboveWindow = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenbelowwindow?language=objc)
+///
+/// ## Discussion
+///
+/// List all windows that are currently onscreen and in behind the window specified in the `relativeToWindow` parameter. Windows are returned in order from front to back.
+///
+///
         #[doc(alias = "kCGWindowListOptionOnScreenBelowWindow")]
         const OptionOnScreenBelowWindow = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optionincludingwindow?language=objc)
+///
+/// ## Discussion
+///
+/// Include the specified window (from the `relativeToWindow` parameter) in the returned list. You must combine this option with the [`kCGWindowListOptionOnScreenAboveWindow`](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenabovewindow) or [`kCGWindowListOptionOnScreenBelowWindow`](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/optiononscreenbelowwindow) option to retrieve meaningful results.
+///
+///
         #[doc(alias = "kCGWindowListOptionIncludingWindow")]
         const OptionIncludingWindow = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption/excludedesktopelements?language=objc)
+///
+/// ## Discussion
+///
+/// Exclude any windows from the list that are elements of the desktop, including the background picture and desktop icons. You may combine this option with the other options.
+///
+///
         #[doc(alias = "kCGWindowListExcludeDesktopElements")]
         const ExcludeDesktopElements = 1<<4;
     }
@@ -170,7 +326,27 @@ unsafe impl RefEncode for CGWindowListOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcopywindowinfo(_:_:)?language=objc)
+/// Generates and returns information about the selected windows in the current user session.
+///
+/// Parameters:
+/// - option: The options describing which window dictionaries to return. Typical options let you return dictionaries for all windows or for windows above or below the window specified in the `relativeToWindow` parameter. For more information, see [Window List Option Constants](https://developer.apple.com/documentation/coregraphics/window-list-option-constants).
+///
+/// - relativeToWindow: The ID of the window to use as a reference point when determining which other window dictionaries to return. For options that do not require a reference window, this parameter can be [`kCGNullWindowID`](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid).
+///
+///
+/// ## Return Value
+///
+/// An array of [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) types, each of which contains information about one of the windows in the current user session. If there are no windows matching the desired criteria, the function returns an empty array. If you call this function from outside of a GUI security session or when no window server is running, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// You can use this function to get detailed information about the configuration of one or more windows in the current user session. For example, you can use this function to get the bounds of the window, its window ID, and information about how it is managed by the window server. For the list of keys and values that may be present in the dictionary, see [Required Window List Keys](https://developer.apple.com/documentation/coregraphics/required-window-list-keys) and [Optional Window List Keys](https://developer.apple.com/documentation/coregraphics/optional-window-list-keys).
+///
+/// Generating the dictionaries for system windows is a relatively expensive operation. As always, you should profile your code and adjust your usage of this function appropriately for your needs.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGWindowListCopyWindowInfo(
     option: CGWindowListOption,
@@ -186,7 +362,19 @@ pub extern "C-unwind" fn CGWindowListCopyWindowInfo(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreate?language=objc)
+/// Returns the list of window IDs associated with the specified windows in the current user session.
+///
+/// Parameters:
+/// - option: The options describing which window IDs to return. Typical options let you obtain IDs for all windows or for windows above or below the window specified in the `relativeToWindow` parameter. For more information, see [Window List Option Constants](https://developer.apple.com/documentation/coregraphics/window-list-option-constants).
+///
+/// - relativeToWindow: The ID of the window to use as a reference point when determining which other windows to return. For options that do not require a reference window, this parameter can be [`kCGNullWindowID`](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid).
+///
+///
+/// ## Return Value
+///
+/// An array of [`CGWindowID`](https://developer.apple.com/documentation/coregraphics/cgwindowid) values corresponding to the desired windows. If there are no windows matching the desired criteria, the function returns an empty array. If you call this function from outside of a GUI security session or when no window server is running, this function returns `NULL`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGWindowListCreate(
     option: CGWindowListOption,
@@ -202,7 +390,23 @@ pub extern "C-unwind" fn CGWindowListCreate(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreatedescriptionfromarray(_:)?language=objc)
+/// Generates and returns information about windows with the specified window IDs.
+///
+/// Parameters:
+/// - windowArray: An array of [`CGWindowID`](https://developer.apple.com/documentation/coregraphics/cgwindowid) types, each of which corresponds to a window whose information you want to retrieve.
+///
+///
+/// ## Return Value
+///
+/// An array of [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) types, each of which contains information about one of the windows in the current user session. If there are no windows matching the desired criteria, the function returns an empty array. If you call this function from outside of a GUI security session or when no window server is running, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function ignores any window IDs in the `windowArray` parameter that refer to windows that no longer exist. (This can occur if the user closes a window between the time you retrieve its ID and the time you call this function.) You should therefore not assume that the returned array of dictionaries contains the same number of entries as this parameter. To make it easier to associate window IDs with the correct information, however, each dictionary does contain a [`kCGWindowNumber`](https://developer.apple.com/documentation/coregraphics/kcgwindownumber) key whose value is the corresponding window ID. For the list of keys and values that may be present in the dictionary, see [Required Window List Keys](https://developer.apple.com/documentation/coregraphics/required-window-list-keys) and [Optional Window List Keys](https://developer.apple.com/documentation/coregraphics/optional-window-list-keys).
+///
+///
 ///
 /// # Safety
 ///
@@ -220,29 +424,55 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption?language=objc)
+/// The data type to use to specify the type of image to be generated for a window.
+///
+/// ## Overview
+///
+/// This type is used in conjunction with the constants described in [Window Image Types](https://developer.apple.com/documentation/coregraphics/window-image-types).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowImageOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowImageOption: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/kcgwindowimagedefault?language=objc)
+///
+/// ## Discussion
+///
+/// When the requested capture rectangle is [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull), using this option captures the entire window plus the area required to display any framing effects, such as the window’s shadow. This is the default behavior.
+///
+///
         #[doc(alias = "kCGWindowImageDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/boundsignoreframing?language=objc)
+///
+/// ## Discussion
+///
+/// When the requested capture rectangle is [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull), using this option captures the window area only and does not capture the area occupied by any window framing effects.
+///
+///
         #[doc(alias = "kCGWindowImageBoundsIgnoreFraming")]
         const BoundsIgnoreFraming = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/shouldbeopaque?language=objc)
+///
+/// ## Discussion
+///
+/// When capturing the window, partially transparent areas are backed by a solid white color so that the resulting image is fully opaque. You can combine this option with other options.
+///
+///
         #[doc(alias = "kCGWindowImageShouldBeOpaque")]
         const ShouldBeOpaque = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/onlyshadows?language=objc)
+///
+/// ## Discussion
+///
+/// When capturing the window, only the shadow effects are captured.
+///
+///
         #[doc(alias = "kCGWindowImageOnlyShadows")]
         const OnlyShadows = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/bestresolution?language=objc)
+/// When capturing the window, return the best image resolution. The returned image size may be different than the screen size.
         #[doc(alias = "kCGWindowImageBestResolution")]
         const BestResolution = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption/nominalresolution?language=objc)
+/// When capturing the window, return the nominal image resolution. The returned image size is the same as the screen size.
         #[doc(alias = "kCGWindowImageNominalResolution")]
         const NominalResolution = 1<<4;
     }
@@ -258,7 +488,29 @@ unsafe impl RefEncode for CGWindowImageOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistcreateimage(_:_:_:_:)?language=objc)
+/// Returns a composite image based on a dynamically generated list of windows.
+///
+/// Parameters:
+/// - screenBounds: The rectangle that you want to capture. The coordinates of the rectangle must be specified in screen coordinates, where the screen origin is in the upper-left corner of the main display and y-axis values increase downward. Specify [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull) to indicate the minimum rectangle that encloses the specified windows. Specify [`CGRectInfinite`](https://developer.apple.com/documentation/coregraphics/cgrectinfinite) to capture the entire desktop area.
+///
+/// - listOption: The options describing which windows to include in the image. Typical options let you choose all windows or windows above or below the window specified in the `windowID` parameter. For more information, see [Window List Option Constants](https://developer.apple.com/documentation/coregraphics/window-list-option-constants).
+///
+/// - windowID: The ID of the window to use as a reference point when determining which other windows to include in the image. For options that do not require a reference window, this parameter can be [`kCGNullWindowID`](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid).
+///
+/// - imageOption: The options that determine which parts of the window to capture. If you specified `CGRectNull` for the `screenBounds` parameter, these options affect the resulting bounding box used for the image. For example, if you include a window’s screen effects in the image, the bounding box may need to be slightly larger to accommodate those effects. For a list of possible options, see [Window Image Types](https://developer.apple.com/documentation/coregraphics/window-image-types).
+///
+///
+/// ## Return Value
+///
+/// A composite image formed from the contents of the specified set of windows. If the windows are unreadable or no windows meet the specified criteria, this function returns an image that is either 0 by 0 pixels in size or is of the specified size but is filled with the transparent black color. If you call this function from outside of a GUI security session or when no window server is running, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// Any windows that are onscreen but whose sharing setting is set to [`kCGWindowSharingNone`](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/none) are skipped and not included in the resulting image. If this results in no windows being available in the selected range, this function returns `NULL`.
+///
+///
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -281,7 +533,29 @@ pub extern "C-unwind" fn CGWindowListCreateImage(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimage/init(windowlistfromarrayscreenbounds:windowarray:imageoption:)?language=objc)
+/// Returns a composite image of the specified windows.
+///
+/// Parameters:
+/// - screenBounds: The rectangle that you want to capture. The coordinates of the rectangle must be specified in screen coordinates, where the screen origin is in the upper-left corner of the main display and y-axis values increase downward. Specify [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull) to indicate the minimum rectangle that encloses the specified windows. Specify [`CGRectInfinite`](https://developer.apple.com/documentation/coregraphics/cgrectinfinite) to capture the entire desktop area.
+///
+/// - windowArray: An array of [`CGWindowID`](https://developer.apple.com/documentation/coregraphics/cgwindowid) types, each of which corresponds to a window whose information you want to retrieve. The order of the window IDs also affects the compositing order of the windows; see the discussion for more information about this behavior.
+///
+/// - imageOption: The options that determine which parts of the window to capture. If you specified [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull) for the `screenBounds` parameter, these options help determine the resulting bounding box used for the image. For example, if you include a window’s screen effects in the image, the bounding box may need to be slightly larger to accommodate those effects. For a list of possible options, see [Window Image Types](https://developer.apple.com/documentation/coregraphics/window-image-types).
+///
+///
+/// ## Return Value
+///
+/// A composite image formed from the contents of the specified set of windows. Invalid window IDs are ignored. If the windows are unreadable (because their sharing setting is set to [`kCGWindowSharingNone`](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype/none), for example) or if no windows meet the specified criteria, this function returns an image that is either 0 by 0 pixels in size or is of the specified size but is filled with the transparent black color. If you call this function from outside of a GUI security session or when no window server is running, this function returns `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function ignores any window IDs in the `windowArray` parameter that refer to windows that no longer exist. (This can occur if the user closes a window between the time you retrieve its ID and the time you call this function.) If this results in no windows being available in the selected range, this function returns `NULL`.
+///
+/// This function ignores the onscreen ordering of the windows and instead composites them using the order specified in the `windowArray` parameter. In other words, windows at the beginning of the array are composited in front of windows at the end of the array.
+///
+///
 ///
 /// # Safety
 ///
@@ -306,7 +580,6 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateImageFromArray(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpreflightscreencaptureaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGPreflightScreenCaptureAccess() -> bool {
     extern "C-unwind" {
@@ -315,7 +588,6 @@ pub extern "C-unwind" fn CGPreflightScreenCaptureAccess() -> bool {
     unsafe { CGPreflightScreenCaptureAccess() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrequestscreencaptureaccess()?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGRequestScreenCaptureAccess() -> bool {
     extern "C-unwind" {

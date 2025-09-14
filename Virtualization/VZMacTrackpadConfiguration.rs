@@ -7,6 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The class that represents the configuration for a Mac trackpad.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The framework recognizes this device in virtual machines running macOS 13 and later. To support both macOS 13.0 and earlier guests, set [`pointingDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/pointingdevices) to an array that contains both a [`VZMacTrackpadConfiguration`](https://developer.apple.com/documentation/virtualization/vzmactrackpadconfiguration) and a [`VZUSBScreenCoordinatePointingDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzusbscreencoordinatepointingdeviceconfiguration) object.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`VZVirtualMachineView`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineview) uses this device to send pointer events and multi-touch trackpad gestures to the virtual machine. In macOS 13 and later, guests use the multi-touch trackpad device, while earlier versions of macOS uses the USB pointing device.
+    ///
+    ///
     /// Configuration for a Mac trackpad.
     ///
     /// This device can be used by VZVirtualMachineView to send pointer events and multi-touch trackpad gestures to the virtual machine.
@@ -14,8 +29,6 @@ extern_class!(
     /// guests, VZVirtualMachineConfiguration.pointingDevices can be set to an array containing both a VZMacTrackpadConfiguration and
     /// a VZUSBScreenCoordinatePointingDeviceConfiguration object. macOS 13.0 and later guests will use the multi-touch trackpad device,
     /// while earlier versions of macOS will use the USB pointing device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmactrackpadconfiguration?language=objc)
     #[unsafe(super(VZPointingDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPointingDeviceConfiguration")]

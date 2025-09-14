@@ -7,77 +7,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberrordomain?language=objc)
+    /// The domain for Core Bluetooth errors.
+    ///
+    /// ## Discussion
+    ///
+    /// This value identifies Core Bluetooth errors when used as the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) instance.
+    ///
+    ///
     pub static CBErrorDomain: &'static NSString;
 }
 
+/// The codes for errors that Core Bluetooth returns during Bluetooth transactions.
 /// The possible errors returned during LE transactions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBError(pub NSInteger);
 impl CBError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CBErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/invalidparameters?language=objc)
+    /// The specified parameters are invalid.
     #[doc(alias = "CBErrorInvalidParameters")]
     pub const InvalidParameters: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/invalidhandle?language=objc)
+    /// The specified attribute handle is invalid.
     #[doc(alias = "CBErrorInvalidHandle")]
     pub const InvalidHandle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/notconnected?language=objc)
+    /// The device isn’t currently connected.
     #[doc(alias = "CBErrorNotConnected")]
     pub const NotConnected: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/outofspace?language=objc)
+    /// The device has run out of space to complete the intended operation.
     #[doc(alias = "CBErrorOutOfSpace")]
     pub const OutOfSpace: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/operationcancelled?language=objc)
+    /// The error represents a canceled operation.
     #[doc(alias = "CBErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/connectiontimeout?language=objc)
+    /// The connection timed out.
     #[doc(alias = "CBErrorConnectionTimeout")]
     pub const ConnectionTimeout: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/peripheraldisconnected?language=objc)
+    /// The peripheral disconnected.
     #[doc(alias = "CBErrorPeripheralDisconnected")]
     pub const PeripheralDisconnected: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/uuidnotallowed?language=objc)
+    /// The specified UUID isn’t permitted.
     #[doc(alias = "CBErrorUUIDNotAllowed")]
     pub const UUIDNotAllowed: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/alreadyadvertising?language=objc)
+    /// The peripheral is already advertising.
     #[doc(alias = "CBErrorAlreadyAdvertising")]
     pub const AlreadyAdvertising: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/connectionfailed?language=objc)
+    /// The connection failed.
     #[doc(alias = "CBErrorConnectionFailed")]
     pub const ConnectionFailed: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/connectionlimitreached?language=objc)
+    /// The device already has the maximum number of connections.
     #[doc(alias = "CBErrorConnectionLimitReached")]
     pub const ConnectionLimitReached: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/unkowndevice?language=objc)
+    /// A misspelled version of the unknown device error code.
     #[doc(alias = "CBErrorUnkownDevice")]
     #[deprecated = "Use CBErrorUnknownDevice instead"]
     pub const UnkownDevice: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-c.enum/cberrorunknowndevice?language=objc)
+    /// The device is unknown.
     #[doc(alias = "CBErrorUnknownDevice")]
     pub const UnknownDevice: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/operationnotsupported?language=objc)
+    /// The operation isn’t supported.
     #[doc(alias = "CBErrorOperationNotSupported")]
     pub const OperationNotSupported: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/peerremovedpairinginformation?language=objc)
     #[doc(alias = "CBErrorPeerRemovedPairingInformation")]
     pub const PeerRemovedPairingInformation: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/encryptiontimedout?language=objc)
     #[doc(alias = "CBErrorEncryptionTimedOut")]
     pub const EncryptionTimedOut: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/toomanylepaireddevices?language=objc)
     #[doc(alias = "CBErrorTooManyLEPairedDevices")]
     pub const TooManyLEPairedDevices: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/legattexceededbackgroundnotificationlimit?language=objc)
     #[doc(alias = "CBErrorLeGattExceededBackgroundNotificationLimit")]
     pub const LeGattExceededBackgroundNotificationLimit: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code/legattnearbackgroundnotificationlimit?language=objc)
     #[doc(alias = "CBErrorLeGattNearBackgroundNotificationLimit")]
     pub const LeGattNearBackgroundNotificationLimit: Self = Self(18);
 }
@@ -91,68 +91,92 @@ unsafe impl RefEncode for CBError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterrordomain?language=objc)
+    /// The domain for Core Bluetooth ATT errors.
+    ///
+    /// ## Discussion
+    ///
+    /// This value identifies Core Bluetooth Attribute Protocol (ATT) errors when used as the [`domain`](https://developer.apple.com/documentation/foundation/nserror/domain) of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) instance.
+    ///
+    ///
     pub static CBATTErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code?language=objc)
+/// The possible errors returned by a GATT server (a remote peripheral) during Bluetooth low energy ATT transactions.
+///
+/// ## Overview
+///
+/// These error constants derive from the Bluetooth ATT error codes, defined in the Bluetooth 4.0 specification. For more information, see the Bluetooth 4.0 specification, Volume 3, Part F, Section 3.4.1.1.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBATTError(pub NSInteger);
 impl CBATTError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/success?language=objc)
+    /// The ATT command or request successfully completed.
     #[doc(alias = "CBATTErrorSuccess")]
     pub const Success: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/invalidhandle?language=objc)
+    /// The attribute handle is invalid on this peripheral.
     #[doc(alias = "CBATTErrorInvalidHandle")]
     pub const InvalidHandle: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/readnotpermitted?language=objc)
+    /// The permissions prohibit reading the attribute’s value.
     #[doc(alias = "CBATTErrorReadNotPermitted")]
     pub const ReadNotPermitted: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/writenotpermitted?language=objc)
+    /// The permissions prohibit writing the attribute’s value.
     #[doc(alias = "CBATTErrorWriteNotPermitted")]
     pub const WriteNotPermitted: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/invalidpdu?language=objc)
+    /// The attribute Protocol Data Unit (PDU) is invalid.
     #[doc(alias = "CBATTErrorInvalidPdu")]
     pub const InvalidPdu: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/insufficientauthentication?language=objc)
+    /// Reading or writing the attribute’s value failed for lack of authentication.
+    ///
+    /// ## Discussion
+    ///
+    /// This error indicates you must authenticate before reading or writing the attribute’s value.
+    ///
+    ///
     #[doc(alias = "CBATTErrorInsufficientAuthentication")]
     pub const InsufficientAuthentication: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/requestnotsupported?language=objc)
+    /// The attribute server doesn’t support the request received from the client.
     #[doc(alias = "CBATTErrorRequestNotSupported")]
     pub const RequestNotSupported: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/invalidoffset?language=objc)
+    /// The specified offset value was past the end of the attribute’s value.
     #[doc(alias = "CBATTErrorInvalidOffset")]
     pub const InvalidOffset: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/insufficientauthorization?language=objc)
+    /// Reading or writing the attribute’s value failed for lack of authorization.
+    ///
+    /// ## Discussion
+    ///
+    /// This error indicates you must obtain authorization before reading or writing the attribute’s value.
+    ///
+    ///
     #[doc(alias = "CBATTErrorInsufficientAuthorization")]
     pub const InsufficientAuthorization: Self = Self(0x08);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/preparequeuefull?language=objc)
+    /// The prepare queue is full, as a result of there being too many write requests in the queue.
     #[doc(alias = "CBATTErrorPrepareQueueFull")]
     pub const PrepareQueueFull: Self = Self(0x09);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/attributenotfound?language=objc)
+    /// The attribute wasn’t found within the specified attribute handle range.
     #[doc(alias = "CBATTErrorAttributeNotFound")]
     pub const AttributeNotFound: Self = Self(0x0A);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/attributenotlong?language=objc)
+    /// The ATT read blob request can’t read or write the attribute.
     #[doc(alias = "CBATTErrorAttributeNotLong")]
     pub const AttributeNotLong: Self = Self(0x0B);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/insufficientencryptionkeysize?language=objc)
+    /// The encryption key size used for encrypting this link is insufficient.
     #[doc(alias = "CBATTErrorInsufficientEncryptionKeySize")]
     pub const InsufficientEncryptionKeySize: Self = Self(0x0C);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/invalidattributevaluelength?language=objc)
+    /// The length of the attribute’s value is invalid for the intended operation.
     #[doc(alias = "CBATTErrorInvalidAttributeValueLength")]
     pub const InvalidAttributeValueLength: Self = Self(0x0D);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/unlikelyerror?language=objc)
+    /// The ATT request encountered an unlikely error and wasn’t completed.
     #[doc(alias = "CBATTErrorUnlikelyError")]
     pub const UnlikelyError: Self = Self(0x0E);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/insufficientencryption?language=objc)
+    /// Reading or writing the attribute’s value failed for lack of encryption.
     #[doc(alias = "CBATTErrorInsufficientEncryption")]
     pub const InsufficientEncryption: Self = Self(0x0F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/unsupportedgrouptype?language=objc)
+    /// The attribute type isn’t a supported grouping attribute as defined by a higher-layer specification.
     #[doc(alias = "CBATTErrorUnsupportedGroupType")]
     pub const UnsupportedGroupType: Self = Self(0x10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code/insufficientresources?language=objc)
+    /// Resources are insufficient to complete the ATT request.
     #[doc(alias = "CBATTErrorInsufficientResources")]
     pub const InsufficientResources: Self = Self(0x11);
 }

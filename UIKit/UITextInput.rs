@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinput?language=objc)
+    /// A set of methods a responder uses to implement simple text entry.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol in a subclass of [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) to support text entry. When instances of this subclass are the first responder, the system keyboard displays. Only a small subset of the available keyboards and languages are available to classes that adopt this protocol.
+    ///
+    ///
     #[cfg(feature = "UITextInputTraits")]
     pub unsafe trait UIKeyInput: UITextInputTraits + MainThreadOnly {
         #[unsafe(method(hasText))]
@@ -27,16 +33,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection?language=objc)
+/// The direction of text storage.
+///
+/// ## Overview
+///
+/// Constants of this type are used as arguments to the [`baseWritingDirectionForPosition:inDirection:`](https://developer.apple.com/documentation/uikit/uitextinput/basewritingdirection(for:in:)) and [`textStylingAtPosition:inDirection:`](https://developer.apple.com/documentation/uikit/uitextinput/textstyling(at:in:)) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextStorageDirection(pub NSInteger);
 impl UITextStorageDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection/forward?language=objc)
+    /// Storage of the text in a forward direction.
     #[doc(alias = "UITextStorageDirectionForward")]
     pub const Forward: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection/backward?language=objc)
+    /// Storage of the text in a backward direction.
     #[doc(alias = "UITextStorageDirectionBackward")]
     pub const Backward: Self = Self(1);
 }
@@ -49,22 +61,28 @@ unsafe impl RefEncode for UITextStorageDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection?language=objc)
+/// The direction of text layout.
+///
+/// ## Overview
+///
+/// Constants of this type are used as arguments in the [`positionFromPosition:inDirection:offset:`](https://developer.apple.com/documentation/uikit/uitextinput/position(from:in:offset:)), [`positionWithinRange:farthestInDirection:`](https://developer.apple.com/documentation/uikit/uitextinput/position(within:farthestin:)), and [`characterRangeByExtendingPosition:inDirection:`](https://developer.apple.com/documentation/uikit/uitextinput/characterrange(byextending:in:)) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UITextLayoutDirection(pub NSInteger);
 impl UITextLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/right?language=objc)
+    /// Layout of the text to the right.
     #[doc(alias = "UITextLayoutDirectionRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/left?language=objc)
+    /// Layout of the text to the left.
     #[doc(alias = "UITextLayoutDirectionLeft")]
     pub const Left: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/up?language=objc)
+    /// Layout of the text in an upward direction.
     #[doc(alias = "UITextLayoutDirectionUp")]
     pub const Up: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextlayoutdirection/down?language=objc)
+    /// Layout of the text in a downward direction.
     #[doc(alias = "UITextLayoutDirectionDown")]
     pub const Down: Self = Self(5);
 }
@@ -77,32 +95,74 @@ unsafe impl RefEncode for UITextLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdirection?language=objc)
+/// The direction of the text.
+///
+/// ## Overview
+///
+/// This parameter is used in methods declared by the [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol. This general direction type subsumes constants of the [`UITextStorageDirection`](https://developer.apple.com/documentation/uikit/uitextstoragedirection) and [`UITextLayoutDirection`](https://developer.apple.com/documentation/uikit/uitextlayoutdirection) types.
+///
+///
 // NS_TYPED_ENUM
 pub type UITextDirection = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity?language=objc)
+/// The granularity of a unit of text.
+///
+/// ## Overview
+///
+/// Constants of this type are used as parameters in all methods of the `UITextInputTokenizer` protocol.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextGranularity(pub NSInteger);
 impl UITextGranularity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/character?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a character.
+    ///
+    ///
     #[doc(alias = "UITextGranularityCharacter")]
     pub const Character: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/word?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a word.
+    ///
+    ///
     #[doc(alias = "UITextGranularityWord")]
     pub const Word: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/sentence?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a sentence.
+    ///
+    ///
     #[doc(alias = "UITextGranularitySentence")]
     pub const Sentence: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/paragraph?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a paragraph.
+    ///
+    ///
     #[doc(alias = "UITextGranularityParagraph")]
     pub const Paragraph: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/line?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a line.
+    ///
+    ///
     #[doc(alias = "UITextGranularityLine")]
     pub const Line: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity/document?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The unit of text is a document.
+    ///
+    ///
     #[doc(alias = "UITextGranularityDocument")]
     pub const Document: Self = Self(5);
 }
@@ -116,7 +176,13 @@ unsafe impl RefEncode for UITextGranularity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidictationphrase?language=objc)
+    /// An object that represents the textual interpretation of a spoken phrase that the user dictates.
+    ///
+    /// ## Overview
+    ///
+    /// When the user chooses dictation input on a supported device, the system automatically inserts recognized phrases into the current text view. You can use an object of the [`UIDictationPhrase`](https://developer.apple.com/documentation/uikit/uidictationphrase) class to obtain a string representing a phrase a user has dictated. In the case of ambiguous dictation results, a dictation phrase object provides an array containing alternative strings. Methods in the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol allow your app to respond to the completion of dictation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -153,7 +219,30 @@ impl UIDictationPhrase {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputassistantitem?language=objc)
+    /// An object that manages custom bar button items that you add to the shortcuts bar above the keyboard on iPad.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UITextInputAssistantItem`](https://developer.apple.com/documentation/uikit/uitextinputassistantitem) object to add app-specific actions to the shortcuts bar on iPad. The center of the shortcuts bar displays typing suggestions for the user. You can install custom bar button items that lead or trail the typing suggestions.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can add custom items to the shortcuts bar on iPad only. On iPhone, the text input system ignores the contents of the [`UITextInputAssistantItem`](https://developer.apple.com/documentation/uikit/uitextinputassistantitem) object.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You don’t create instances of this class directly. Instead, you get an input assistant from the [`inputAssistantItem`](https://developer.apple.com/documentation/uikit/uiresponder/inputassistantitem) property of the responder object whose keyboard you want to modify. When the keyboard is onscreen, UIKit automatically searches the responder chain for a text-input assistant object. Typically, you assign the text-input assistant to the object that becomes the first responder. However, you can also assign it to a parent responder object to share a set of shortcuts among multiple children.
+    ///
+    /// Organize the bar button items you create for the shortcuts bar into groups. A [`UIBarButtonItemGroup`](https://developer.apple.com/documentation/uikit/uibarbuttonitemgroup) object manages each group of items, and each group may contain a single item or several items. UIKit displays as many items as possible based on the available space. When there’s not enough space for all of the items, UIKit collapses each group of items down to a single representative item.
+    ///
+    /// The following code configures the items of the shortcuts bar. After creating the bar button items, this code creates a group and assigns that group to the [`leadingBarButtonGroups`](https://developer.apple.com/documentation/uikit/uitextinputassistantitem/leadingbarbuttongroups) property. The resulting items appear before the typing suggestions.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Get a UITextView object of the current view controller.", "let item = textView.inputAssistantItem", "", "// Set up the buttons.", "let itemOne = UIBarButtonItem(", "    title: \"One\",", "    style: .plain,", "    target: self,", "    action: Selector(\"handleItemOne:\"))", "let itemTwo = UIBarButtonItem(", "    title: \"Two\",", "    style: .plain,", "    target: self,", "    action: Selector(\"handleItemTwo:\"))", "let itemThree = UIBarButtonItem(", "    title: \"Three\",", "    style: .plain,", "    target: self,", "    action: Selector(\"handleItemThree:\"))", " ", "// Use a nil action to display the individual items.", "let itemChoose = UIBarButtonItem(", "    title: \"Choose\",", "    style: .plain,", "    target: nil,", "    action: nil)", " ", "// Create the item group.", "let group = UIBarButtonItemGroup(", "    barButtonItems: [itemOne, itemTwo, itemThree],", "    representativeItem: itemChoose)", " ", "// Display the items before the typing suggestions.", "item.leadingBarButtonGroups = [group]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Get a UITextView object of the current view controller.", "UITextInputAssistantItem* item = [self.textView inputAssistantItem];", "", "// Set up the buttons.", "UIBarButtonItem* itemOne = [[UIBarButtonItem alloc] initWithTitle:@\"One\"", "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemOne:)];", "UIBarButtonItem* itemTwo = [[UIBarButtonItem alloc] initWithTitle:@\"Two\"", "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemTwo:)];", "UIBarButtonItem* itemThree = [[UIBarButtonItem alloc] initWithTitle:@\"Three\"", "         style:UIBarButtonItemStylePlain target:self action:@selector(handleItemThree:)];", " ", "// Use a nil action to display the individual items.", "UIBarButtonItem* itemChoose = [[UIBarButtonItem alloc] initWithTitle:@\"Choose\"", "         style:UIBarButtonItemStylePlain target:nil action:nil];", " ", "// Create the item group.", "UIBarButtonItemGroup* group = [[UIBarButtonItemGroup alloc]", "       initWithBarButtonItems:@[itemOne, itemTwo, itemThree] representativeItem:itemChoose];", " ", "// Display the items before the typing suggestions.", "item.leadingBarButtonGroups = @[group];"], metadata: None }] }] })
+    /// To hide shortcuts altogether, set the [`leadingBarButtonGroups`](https://developer.apple.com/documentation/uikit/uitextinputassistantitem/leadingbarbuttongroups) and [`trailingBarButtonGroups`](https://developer.apple.com/documentation/uikit/uitextinputassistantitem/trailingbarbuttongroups) properties to empty arrays. Doing so hides only the shortcuts and doesn’t hide the typing suggestions. For information on managing the typing suggestions, see [`autocorrectionType`](https://developer.apple.com/documentation/uikit/uitextinputtraits/autocorrectiontype).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -241,7 +330,7 @@ impl UITextInputAssistantItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextplaceholder?language=objc)
+    /// A placeholder object that reserves visual space in a text input view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -273,16 +362,16 @@ impl UITextPlaceholder {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle?language=objc)
+/// A constant that determines if the system highlights alternative phrases during text input.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlternativeStyle(pub NSInteger);
 impl UITextAlternativeStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle/none?language=objc)
+    /// A constant that indicates that the text input shouldn’t highlight alternatives because the input text is expected to be correct.
     #[doc(alias = "UITextAlternativeStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle/lowconfidence?language=objc)
+    /// A constant that indicates that the text input should highlight alternatives because the input text may be incorrect.
     #[doc(alias = "UITextAlternativeStyleLowConfidence")]
     pub const LowConfidence: Self = Self(1);
 }
@@ -296,7 +385,41 @@ unsafe impl RefEncode for UITextAlternativeStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinput?language=objc)
+    /// A set of methods for interacting with the text input system and enabling features in documents.
+    ///
+    /// ## Overview
+    ///
+    /// Objects that adopt the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol maintain information about text input and provide that information to the text input system on demand. A [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) object interacts with the text input system by:
+    ///
+    /// - Reporting text positions and text ranges
+    ///
+    /// - Responding to queries layout and writing direction
+    ///
+    /// - Performing hit-testing — returning text positions and ranges for a specific point
+    ///
+    /// - Providing the system with rectangles for highlighting ranges of text and drawing the _caret_, a glyph that represents the insertion point during text entry
+    ///
+    /// In addition, a [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) object maintains ranges for selected text and marked text. Marked text, a part of multistage text input, represents provisionally inserted text that the user has yet to confirm. The range of marked text always contains a range of selected text, which might be a range of characters or the caret. Multistage text input is a requirement when the language is ideographic and the keyboard is phonetic.
+    ///
+    /// ### Integrate with the text input system
+    ///
+    /// The [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol works with other classes and protocols to integrate text-processing apps with the text input system:
+    ///
+    /// - [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) and [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) classes: All [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput)-conforming document classes must create custom subclasses of these classes. A [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) object represents a position in a text container. A [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) object, which encapsulates beginning and ending [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) objects, represents a range of characters in the text container.
+    ///
+    /// - [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol and [`UITextInputStringTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer) class: The [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol defines an interface for tokenizing input text. The [`UITextInputStringTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer) class is a default implementation of this protocol.
+    ///
+    /// - [`UITextInputDelegate`](https://developer.apple.com/documentation/uikit/uitextinputdelegate) protocol: The text input system automatically assigns its own text input delegate (which conforms to this protocol) to the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput)-conforming document object. This text input delegate allows document objects to inform the input system of changes in text and selection.
+    ///
+    /// - [`UIKeyInput`](https://developer.apple.com/documentation/uikit/uikeyinput) protocol: Implement this protocol to allow text entry and deletion at an insertion point.
+    ///
+    /// ### Customize keyboard behavior
+    ///
+    /// The [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol also inherits the [`UITextInputTraits`](https://developer.apple.com/documentation/uikit/uitextinputtraits) protocol, which provides customization of the keyboard and its behaviors.
+    ///
+    /// When the user chooses dictation input on a supported device, the system automatically inserts recognized phrases into the current text view. Methods in the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol allow your app to respond to the completion of dictation. You can use an object of the [`UIDictationPhrase`](https://developer.apple.com/documentation/uikit/uidictationphrase) class to obtain a string that represents a phrase the user dictates. In the case of ambiguous dictation results, a dictation phrase object provides an array that contains alternative strings.
+    ///
+    ///
     #[cfg(feature = "UITextInputTraits")]
     pub unsafe trait UITextInput: UIKeyInput + MainThreadOnly {
         #[unsafe(method(textInRange:))]
@@ -743,25 +866,57 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextbackgroundcolorkey?language=objc)
+    /// The background color of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object.
+    ///
+    ///
     #[deprecated]
     pub static UITextInputTextBackgroundColorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextcolorkey?language=objc)
+    /// The color of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object.
+    ///
+    ///
     #[deprecated]
     pub static UITextInputTextColorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtextfontkey?language=objc)
+    /// The font of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`UIFont`](https://developer.apple.com/documentation/uikit/uifont) object.
+    ///
+    ///
     #[deprecated]
     pub static UITextInputTextFontKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextposition?language=objc)
+    /// A position in a text container—that is, an index into the backing string in a text-display view.
+    ///
+    /// ## Overview
+    ///
+    /// Classes that adopt the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol must create custom [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) objects for representing specific locations within the text managed by the class. The text input system uses both these objects and [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) objects for communicating text-layout information. There are two reasons for using objects for text positions rather than primitive types such as [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger):
+    ///
+    /// - Some documents contain nested elements (for example, HTML tags and embedded objects) and you need to track both absolute position and position in the visible text.
+    ///
+    /// - The WebKit framework requires that text indexes and offsets be represented by objects.
+    ///
+    /// The simplest of [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) objects—for example, one used in plain text—might have a single integer property that represents an offset into a string. If you adopt the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol, you must create a custom [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) subclass as well as a custom [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) subclass.
+    ///
+    /// This class declares no methods of its own.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -790,7 +945,19 @@ impl UITextPosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextrange?language=objc)
+    /// A range of characters in a text container with a starting index and an ending index in string backing a text-entry object.
+    ///
+    /// ## Overview
+    ///
+    /// Classes that adopt the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol must create custom [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) objects for representing ranges within the text managed by the class. The starting and ending indexes of the range are represented by [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) objects. The text system uses both [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) and [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) objects for communicating text-layout information. There are two reasons for using objects for text ranges rather than primitive types such as [`NSRange`](https://developer.apple.com/documentation/foundation/nsrange-c.struct):
+    ///
+    /// - Some documents contain nested elements (for example, HTML tags and embedded objects) and you need to track both absolute position and position in the visible text.
+    ///
+    /// - The WebKit framework requires that text indexes and offsets be represented by objects.
+    ///
+    /// If you adopt the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol, you must create a custom [`UITextRange`](https://developer.apple.com/documentation/uikit/uitextrange) subclass as well as a custom [`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition) subclass.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -831,7 +998,17 @@ impl UITextRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionrect?language=objc)
+    /// An encapsulation of information about a selected range of text in a document.
+    ///
+    /// ## Overview
+    ///
+    /// This class is an abstract class and must be subclassed to be used. The system text input views provide their own concrete implementations of this class.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// If you are implementing a custom text input view, you can subclass and use your custom class to return selection-related information. When subclassing, you should override and reimplement all properties. In your custom implementations, do not call `super`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -890,7 +1067,13 @@ impl UITextSelectionRect {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputdelegate?language=objc)
+    /// An intermediary between a document and the text input system.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UITextInputDelegate`](https://developer.apple.com/documentation/uikit/uitextinputdelegate) conveys notifications of pending or transpired changes in text and selection in the document. UIKit provides a private text input delegate, which it assigns at runtime to the [`inputDelegate`](https://developer.apple.com/documentation/uikit/uitextinput/inputdelegate) property of the object whose class adopts the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol.
+    ///
+    ///
     pub unsafe trait UITextInputDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInputTraits")]
         #[unsafe(method(selectionWillChange:))]
@@ -925,7 +1108,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputtokenizer?language=objc)
+    /// A tokenizer, which is an object that allows the text input system to evaluate text units of different granularities.
+    ///
+    /// ## Overview
+    ///
+    /// Granularities of text units are always evaluated with reference to a storage or reference direction.
+    ///
+    /// Text-processing objects that conform to the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol must hold a reference to a tokenizer (through the [`tokenizer`](https://developer.apple.com/documentation/uikit/uitextinput/tokenizer) property). The [`UITextInputStringTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer) class provides a default base implementation of the [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol. Tokenizers of this class are suitable for most western-language keyboards. Apps with different requirements may adopt the [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol and create their own tokenizers.
+    ///
+    ///
     pub unsafe trait UITextInputTokenizer: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(rangeEnclosingPosition:withGranularity:inDirection:))]
         #[unsafe(method_family = none)]
@@ -966,7 +1157,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer?language=objc)
+    /// A base implementation of the text-input tokenizer protocol.
+    ///
+    /// ## Overview
+    ///
+    /// If you want to take advantage of this base implementation of the [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) protocol, you should subclass this class and handle application-specific directions and granularities affected by layout. When you instantiate a class you must supply the document class that’s adopting the [`UITextInput`](https://developer.apple.com/documentation/uikit/uitextinput) protocol for your application.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// When you subclass [`UITextInputStringTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputstringtokenizer), override all [`UITextInputTokenizer`](https://developer.apple.com/documentation/uikit/uitextinputtokenizer) methods, calling the superclass implementation (`super`) when method parameters aren’t affected by layout. For example, the subclass needs a custom implementation of all methods for line granularity. For the left direction, it needs to decide whether left corresponds at a given position to forward or backward, and then call `super` passing in the storage direction ([`UITextStorageDirection`](https://developer.apple.com/documentation/uikit/uitextstoragedirection)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1010,7 +1211,13 @@ impl UITextInputStringTokenizer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputmode?language=objc)
+    /// The current text input mode.
+    ///
+    /// ## Overview
+    ///
+    /// You can use this object to determine the primary language currently being used for text input.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1060,6 +1267,12 @@ impl UITextInputMode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputmode/currentinputmodedidchangenotification?language=objc)
+    /// A notification that posts when the current input mode changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The posting object is a [`UITextInputMode`](https://developer.apple.com/documentation/uikit/uitextinputmode) instance.
+    ///
+    ///
     pub static UITextInputCurrentInputModeDidChangeNotification: &'static NSNotificationName;
 }

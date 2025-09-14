@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementrequest?language=objc)
+    /// An object that represents a request to disburse funds from a merchant to an individual.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to create a disbursement (payment) request from a merchant to a user account — for example, a withdrawal from an online account.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKDisbursementRequest;

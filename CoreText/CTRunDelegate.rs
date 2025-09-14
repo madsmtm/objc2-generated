@@ -12,7 +12,15 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegate?language=objc)
+/// A run delegate.
+///
+/// ## Overview
+///
+/// A run delegate is assigned to a run (attribute range) to control typographic traits such glyph ascent, glyph descent, and glyph width.
+///
+/// The callbacks defined for `CTRunDelegate` objects are provided by the owner of a run delegate and are used to modify glyph metrics during layout. The values returned by the delegate are applied to each glyph in the run or runs corresponding to the attribute with that delegate.
+///
+///
 #[doc(alias = "CTRunDelegateRef")]
 #[repr(C)]
 pub struct CTRunDelegate {
@@ -29,9 +37,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTRunDelegate {
-    /// Returns the CFType of CTRunDelegate objects.
+    /// Returns the type of CTRunDelegate objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategettypeid()?language=objc)
+    /// ## Discussion
+    ///
+    /// The return type is a Core Foundation type (CTType).
+    ///
+    ///
+    /// Returns the CFType of CTRunDelegate objects.
     #[doc(alias = "CTRunDelegateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,14 +55,40 @@ unsafe impl ConcreteType for CTRunDelegate {
     }
 }
 
+/// Defines a pointer to a function that is invoked when a CTRunDelegate object is deallocated.
+///
+/// Parameters:
+/// - refCon: The reference-constant value supplied to the [`CTRunDelegateCreate`](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)) function when the run delegate was created.
+///
+///
+/// ## Discussion
+///
+/// You would declare the deallocation function like this if you were to name it `MyDeallocationCallback`:
+///
+///
 /// The callback invoked when a CTRunDelegate is deallocated.
 ///
 ///
 /// Parameter `refCon`: The value supplied to CTRunDelegateCreate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatedeallocatecallback?language=objc)
 pub type CTRunDelegateDeallocateCallback = Option<unsafe extern "C-unwind" fn(NonNull<c_void>)>;
 
+/// Defines a pointer to a function that determines typographic ascent of glyphs in the run.
+///
+/// Parameters:
+/// - refCon: The reference-constant value supplied to the [`CTRunDelegateCreate`](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)) function when the run delegate was created.
+///
+///
+/// ## Return Value
+///
+/// The typographic ascent of glyphs in the run associated with the run delegate.
+///
+///
+///
+/// ## Discussion
+///
+/// You would declare the get-ascent function like this if you were to name it `MyGetAscentCallback`:
+///
+///
 /// The callback used to determine typographic ascent.
 ///
 ///
@@ -58,11 +97,26 @@ pub type CTRunDelegateDeallocateCallback = Option<unsafe extern "C-unwind" fn(No
 ///
 /// Returns: A CGFloat value indicating the typographic ascent of glyphs to
 /// which a run delegate pertains.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetascentcallback?language=objc)
 pub type CTRunDelegateGetAscentCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
+/// Defines a pointer to a function that determines typographic descent of glyphs in the run.
+///
+/// Parameters:
+/// - refCon: The reference-constant value supplied to the [`CTRunDelegateCreate`](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)) function when the run delegate was created.
+///
+///
+/// ## Return Value
+///
+/// The typographic descent of glyphs in the run associated with the run delegate.
+///
+///
+///
+/// ## Discussion
+///
+/// You would declare the get-descent function like this if you were to name it `MyGetDescentCallback`:
+///
+///
 /// The callback used to determine typographic descent.
 ///
 ///
@@ -71,11 +125,26 @@ pub type CTRunDelegateGetAscentCallback =
 ///
 /// Returns: A CGFloat value indicating the typographic descent of glyphs to
 /// which a run delegate pertains.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetdescentcallback?language=objc)
 pub type CTRunDelegateGetDescentCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
+/// Defines a pointer to a function that determines the typographic width of glyphs in the run.
+///
+/// Parameters:
+/// - refCon: The reference-constant value supplied to the [`CTRunDelegateCreate`](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)) function when the run delegate was created.
+///
+///
+/// ## Return Value
+///
+/// The typographic width of glyphs in the run associated with the run delegate.  A value of 0.0 indicates that the glyphs should not be drawn.
+///
+///
+///
+/// ## Discussion
+///
+/// You would declare the get-width function like this if you were to name it `MyGetWidthCallback`:
+///
+///
 /// The callback used to determine width.
 ///
 ///
@@ -85,11 +154,18 @@ pub type CTRunDelegateGetDescentCallback =
 /// Returns: A CGFloat value indicating the width of glyphs to which a run
 /// delegate pertains. A value of 0.0 indicates that the glyphs
 /// should not be drawn.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetwidthcallback?language=objc)
 pub type CTRunDelegateGetWidthCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> CGFloat>;
 
+/// A structure holding pointers to callbacks implemented by the run delegate.
+///
+/// ## Overview
+///
+/// You pass in a pointer to this structure when you create a CTRunDelegate object with the [`CTRunDelegateCreate`](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)) function. The callbacks defined in this structure are provided by the owner of a run delegate and are used to modify glyph metrics during layout. The values returned by the delegate are applied to each glyph in the run or runs corresponding to the attribute containing that delegate.
+///
+/// See [`CTRunDelegateRef`](https://developer.apple.com/documentation/coretext/ctrundelegate) for a discussion of the function-pointer types associated with these callbacks.
+///
+///
 /// Structure containing the callbacks of a CTRunDelegate.
 ///
 ///
@@ -122,8 +198,6 @@ pub type CTRunDelegateGetWidthCallback =
 /// The callback used to indicate the width of the
 /// CTRunDelegate. This callback may be NULL, which is equivalent
 /// to a getWidth callback that always returns 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -154,12 +228,31 @@ unsafe impl RefEncode for CTRunDelegateCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegateversion1?language=objc)
+/// Version 1 of the run delegate.
 pub const kCTRunDelegateVersion1: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrundelegatecurrentversion?language=objc)
+/// The current version of the run delegate.
 pub const kCTRunDelegateCurrentVersion: c_uint = kCTRunDelegateVersion1;
 
 impl CTRunDelegate {
+    /// Creates an immutable instance of a run delegate.
+    ///
+    /// Parameters:
+    /// - callbacks: A structure holding pointers to the callbacks for this run delegate.
+    ///
+    /// - refCon: A constant value associated with the run delegate to identify it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If  successful, a reference to an immutable CTRunDelegate object. Otherwise, returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run-delegate object can be used for reserving space in a line or for eliding the glyphs for a range of text altogether.
+    ///
+    ///
     /// Creates an immutable instance of a run delegate.
     ///
     ///
@@ -179,8 +272,6 @@ impl CTRunDelegate {
     ///
     /// - `callbacks` must be a valid pointer.
     /// - `ref_con` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegatecreate(_:_:)?language=objc)
     #[doc(alias = "CTRunDelegateCreate")]
     #[inline]
     pub unsafe fn new(
@@ -197,6 +288,23 @@ impl CTRunDelegate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a run delegate’s “refCon” value.
+    ///
+    /// Parameters:
+    /// - runDelegate: The run delegate object being queried.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A constant value associated with the run delegate as an identifier.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run delegate object was created with the returned “refCon” value.
+    ///
+    ///
     /// Returns a run delegate's refCon value.
     ///
     ///
@@ -208,8 +316,6 @@ impl CTRunDelegate {
     ///
     ///
     /// Returns: The refCon value of the supplied run delegate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrundelegategetrefcon(_:)?language=objc)
     #[doc(alias = "CTRunDelegateGetRefCon")]
     #[inline]
     pub unsafe fn ref_con(&self) -> NonNull<c_void> {
@@ -223,7 +329,6 @@ impl CTRunDelegate {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctadaptiveimageproviding?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait CTAdaptiveImageProviding {
         #[cfg(feature = "objc2-core-graphics")]

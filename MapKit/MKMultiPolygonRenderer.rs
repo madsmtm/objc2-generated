@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmultipolygonrenderer?language=objc)
+    /// The visual representation of multiple polygon overlays.
+    ///
+    /// ## Overview
+    ///
+    /// Use this renderer to provide the style for multiple polygons created using [`MKMultiPolygon`](https://developer.apple.com/documentation/mapkit/mkmultipolygon).
+    ///
+    ///
     #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

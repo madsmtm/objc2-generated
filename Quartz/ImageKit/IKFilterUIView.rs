@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilteruiview?language=objc)
+    /// Input parameters for filtering core image filters.
+    ///
+    /// ## Overview
+    ///
+    /// The `IKFilterUIView` class provides a view that contains input parameter controls for a Core Image filter ([`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class)). You need to use this class when providing a user interface for a custom filter. The class creates a view that has an object controller for the given filter. It also retains the filter.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKFilterUIView;

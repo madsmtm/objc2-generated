@@ -13,9 +13,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Nearby interaction session.
+    /// An object that identifies a unique connection between two peer devices.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisession?language=objc)
+    /// ## Overview
+    ///
+    /// This class represents the central mechanism to interact with nearby objects, for example, a peer Apple device or third-party accessory. After creating an [`NISession`](https://developer.apple.com/documentation/nearbyinteraction/nisession) for a nearby object, the app interacts with the object by receiving [`NISessionDelegate`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate) callbacks.
+    ///
+    /// One session represents an interaction between the user and a single nearby object. To interact with multiple nearby objects, create a separate session for each.
+    ///
+    /// For more information, see [Initiating and maintaining a session](https://developer.apple.com/documentation/nearbyinteraction/initiating-and-maintaining-a-session).
+    ///
+    ///
+    /// Nearby interaction session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NISession;
@@ -143,23 +152,40 @@ impl NISession {
     );
 }
 
-/// Reasons to remove a nearby object.
+/// The reason a session removed a nearby object.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason?language=objc)
+/// ## Overview
+///
+/// Each case is a possible value of the `reason` argument to the delegate’s [`session:didRemoveNearbyObjects:withReason:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didremove:reason:)) callback.
+///
+///
+/// Reasons to remove a nearby object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NINearbyObjectRemovalReason(pub NSInteger);
 impl NINearbyObjectRemovalReason {
-    /// The system has not received new activity from this object for over the allowed period.
+    /// NI timed out the session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason/timeout?language=objc)
+    /// ## Discussion
+    ///
+    /// The framework times out a session if the peer user closes the app, or if too much time passes in a suspended state (see [`sessionWasSuspended:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/sessionwassuspended(_:))). NI may also time out a session to save device resources.
+    ///
+    /// An app must watch for timed-out peers. If the app wishes to continue interaction with a timed-out peer device, the app must begin a new session.
+    ///
+    ///
+    /// The system has not received new activity from this object for over the allowed period.
     #[doc(alias = "NINearbyObjectRemovalReasonTimeout")]
     pub const Timeout: Self = Self(0);
+    /// The peer ended the session.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework provides this removal reason when the peer app calls [`invalidate`](https://developer.apple.com/documentation/nearbyinteraction/nisession/invalidate()).
+    ///
+    ///
     /// The peer device has signaled that it will no longer participate in the session.
     /// This removal reason is delivered on a best effort basis and is not guaranteed to be received.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason/peerended?language=objc)
     #[doc(alias = "NINearbyObjectRemovalReasonPeerEnded")]
     pub const PeerEnded: Self = Self(1);
 }
@@ -173,26 +199,42 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
 }
 
 /// Expose algorithm state to make it possible for apps to coach users.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj?language=objc)
+/// Expose algorithm state to make it possible for apps to coach users.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIAlgorithmConvergenceStatus(pub NSInteger);
 impl NIAlgorithmConvergenceStatus {
-    /// Algorithm convergence status is unknown.
+    /// An indication that the framework is unsure of the Camera Assistance status.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusunknown?language=objc)
+    /// ## Discussion
+    ///
+    /// Look to a subsequent call to [`session(_:didUpdateAlgorithmConvergence:for:)`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatealgorithmconvergence:for:)) and check for a more definitive algorithm-convergence status.
+    ///
+    ///
+    /// Algorithm convergence status is unknown.
     #[doc(alias = "NIAlgorithmConvergenceStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// Algorithm is not converged.
+    /// A status that indicates the framework’s Camera Assistance feature requires action from the user.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusnotconverged?language=objc)
+    /// ## Discussion
+    ///
+    /// In this state, the framework needs more information about the user’s physical environment before setting [`horizontalAngle`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-9ibky) and/or [`verticalDirectionEstimate`](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.property).
+    ///
+    /// Look to the reasons array of the `convergence` object provided by  [`session(_:didUpdateAlgorithmConvergence:for:)`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatealgorithmconvergence:for:)) for more information on the cause. Each reason indicates a specific action the user can do to provide ARKit with the necessary camera data to support Nearby Interaction’s Camera Assistance.
+    ///
+    ///
+    /// Algorithm is not converged.
     #[doc(alias = "NIAlgorithmConvergenceStatusNotConverged")]
     pub const NotConverged: Self = Self(1);
-    /// Algorithm is converged.
+    /// A status that indicates the framework’s Camera Assistance feature is operational.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj/nialgorithmconvergencestatusconverged?language=objc)
+    /// ## Discussion
+    ///
+    /// In this state, the app doesn’t need to coach the user and receives all the benefits of Camera Assistance as described in [`isCameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled).
+    ///
+    ///
+    /// Algorithm is converged.
     #[doc(alias = "NIAlgorithmConvergenceStatusConverged")]
     pub const Converged: Self = Self(2);
 }
@@ -206,7 +248,15 @@ unsafe impl RefEncode for NIAlgorithmConvergenceStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergence?language=objc)
+    /// An object that provides the state and reason for user coaching recommendations.
+    ///
+    /// ## Overview
+    ///
+    /// This class conveys the current state of the framework’s Camera Assistance feature when you turn on [`cameraAssistanceEnabled`](https://developer.apple.com/documentation/nearbyinteraction/ninearbypeerconfiguration/iscameraassistanceenabled). When the status indicates that user action is required to achieve the highest-quality results, instances of this class identify specific actions the user can do to help. To improve the status, the app needs to coach the user such as by presenting instructional text. The information you provide tells the user, for example, where and at what speed to pan the device around the environment.
+    ///
+    /// To listen for the convergence status, implement [`session:didUpdateAlgorithmConvergence:forObject:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatealgorithmconvergence:for:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIAlgorithmConvergence;
@@ -255,9 +305,14 @@ impl NIAlgorithmConvergence {
 }
 
 extern_protocol!(
-    /// Delegate for nearby interaction session updates.
+    /// An object that monitors and reacts to session updates.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Assign a delegate that Nearby Interaction can use to notify your app of important events that occur during the session life cycle.
+    ///
+    ///
+    /// Delegate for nearby interaction session updates.
     pub unsafe trait NISessionDelegate: NSObjectProtocol {
         #[cfg(feature = "NINearbyObject")]
         /// This is called when new updates about nearby objects are available.

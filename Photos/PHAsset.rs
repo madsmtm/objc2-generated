@@ -11,7 +11,17 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset?language=objc)
+    /// A representation of an image, video, or Live Photo in the Photos library.
+    ///
+    /// ## Overview
+    ///
+    /// You fetch assets to begin working with them. Use the class methods listed in Fetching Assets to retrieve one or more [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) instances representing the assets you want to display or edit.
+    ///
+    /// Assets contain only metadata. The underlying image or video data for any given asset might not be stored on the local device. However, depending on how you plan to use this data, you may not need to download all of it. If you need to populate a collection view with thumbnail images, the Photos framework can manage downloading, generating, and caching thumbnails for each asset. For details, see [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager).
+    ///
+    /// Asset objects are immutable. To edit an asset’s metadata (such as marking it as a favorite photo), create a [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) object within a photo library change block. For more details on using change requests and change blocks to update the photo library, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]

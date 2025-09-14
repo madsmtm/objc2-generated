@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailableconfigurationstate-c.class?language=objc)
+    /// An object that encapsulates state for a content-unavailable view.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, you don’t create a configuration state yourself. To obtain a configuration state, override [`updateContentUnavailableConfigurationUsingState:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/updatecontentunavailableconfigurationusingstate:) in your view controller subclass and use the state parameter. Outside of this method, you can get a view controller’s configuration state from the [`contentUnavailableConfigurationState`](https://developer.apple.com/documentation/uikit/uiviewcontroller/contentunavailableconfigurationstate-9bvga) property.
+    ///
+    /// You can create your own custom states to add to a content unavailable configuration state by defining a custom state key with [`UIConfigurationStateCustomKey`](https://developer.apple.com/documentation/uikit/uiconfigurationstatecustomkey).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

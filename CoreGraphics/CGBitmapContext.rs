@@ -8,33 +8,32 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapcontextreleasedatacallback?language=objc)
+/// A callback function used to release data associate with the bitmap context.
+///
+/// ## Discussion
+///
+/// The `releaseInfo` parameter contains the contextual data that you passed to the `CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:releaseCallback:releaseInfo:)` function. The `data` parameter contains a pointer to the bitmap data for you to release.
+///
+///
 pub type CGBitmapContextReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorModel(pub u32);
 bitflags::bitflags! {
     impl CGColorModel: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/kcgcolormodelnocolorant?language=objc)
         #[doc(alias = "kCGColorModelNoColorant")]
         const NoColorant = 0<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/gray?language=objc)
         #[doc(alias = "kCGColorModelGray")]
         const Gray = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/rgb?language=objc)
         #[doc(alias = "kCGColorModelRGB")]
         const RGB = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/cmyk?language=objc)
         #[doc(alias = "kCGColorModelCMYK")]
         const CMYK = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/lab?language=objc)
         #[doc(alias = "kCGColorModelLab")]
         const Lab = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel/devicen?language=objc)
         #[doc(alias = "kCGColorModelDeviceN")]
         const DeviceN = 1<<4;
     }
@@ -50,31 +49,23 @@ unsafe impl RefEncode for CGColorModel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGComponent(pub u32);
 impl CGComponent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/unknown?language=objc)
     #[doc(alias = "kCGComponentUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/integer8bit?language=objc)
     #[doc(alias = "kCGComponentInteger8Bit")]
     pub const Integer8Bit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/integer10bit?language=objc)
     #[doc(alias = "kCGComponentInteger10Bit")]
     pub const Integer10Bit: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/integer16bit?language=objc)
     #[doc(alias = "kCGComponentInteger16Bit")]
     pub const Integer16Bit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/integer32bit?language=objc)
     #[doc(alias = "kCGComponentInteger32Bit")]
     pub const Integer32Bit: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/float16bit?language=objc)
     #[doc(alias = "kCGComponentFloat16Bit")]
     pub const Float16Bit: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent/float32bit?language=objc)
     #[doc(alias = "kCGComponentFloat32Bit")]
     pub const Float32Bit: Self = Self(4);
 }
@@ -89,7 +80,6 @@ unsafe impl RefEncode for CGComponent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontentinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGContentInfo {
@@ -119,46 +109,33 @@ unsafe impl RefEncode for CGContentInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBitmapLayout(pub u32);
 impl CGBitmapLayout {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/alphaonly?language=objc)
     #[doc(alias = "kCGBitmapLayoutAlphaOnly")]
     pub const AlphaOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/gray?language=objc)
     #[doc(alias = "kCGBitmapLayoutGray")]
     pub const Gray: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/grayalpha?language=objc)
     #[doc(alias = "kCGBitmapLayoutGrayAlpha")]
     pub const GrayAlpha: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/rgba?language=objc)
     #[doc(alias = "kCGBitmapLayoutRGBA")]
     pub const RGBA: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/argb?language=objc)
     #[doc(alias = "kCGBitmapLayoutARGB")]
     pub const ARGB: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/rgbx?language=objc)
     #[doc(alias = "kCGBitmapLayoutRGBX")]
     pub const RGBX: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/xrgb?language=objc)
     #[doc(alias = "kCGBitmapLayoutXRGB")]
     pub const XRGB: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/bgra?language=objc)
     #[doc(alias = "kCGBitmapLayoutBGRA")]
     pub const BGRA: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/bgrx?language=objc)
     #[doc(alias = "kCGBitmapLayoutBGRX")]
     pub const BGRX: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/abgr?language=objc)
     #[doc(alias = "kCGBitmapLayoutABGR")]
     pub const ABGR: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/xbgr?language=objc)
     #[doc(alias = "kCGBitmapLayoutXBGR")]
     pub const XBGR: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout/cmyk?language=objc)
     #[doc(alias = "kCGBitmapLayoutCMYK")]
     pub const CMYK: Self = Self(11);
 }
@@ -173,7 +150,6 @@ unsafe impl RefEncode for CGBitmapLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapparameters-1cm7j?language=objc)
 #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -216,8 +192,6 @@ unsafe impl RefEncode for CGBitmapParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapcontextcreateadaptive?language=objc)
-///
 /// # Safety
 ///
 /// - `auxiliary_info` generic must be of the correct type.
@@ -310,11 +284,26 @@ pub unsafe extern "C-unwind" fn CGBitmapContextCreateAdaptive(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgadaptivemaximumbitdepth?language=objc)
     pub static kCGAdaptiveMaximumBitDepth: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/data?language=objc)
+/// Returns a pointer to the image data associated with a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// A pointer to the specified bitmap context’s image data, or `NULL` if the context is not a bitmap context.
+///
+///
+///
+/// ## Discussion
+///
+/// If you provided the memory for the bitmap data, you can use this method to get that data pointer. If you passed `NULL` for the data pointer when creating your bitmap context, it is safe to get the data pointer in iOS 4.0 and later and macOS 10.6 and later only. In earlier versions of the operating system, passing `NULL` for the data parameter is not supported and may lead to crashes when attempting to access this data using this function.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetData(context: Option<&CGContext>) -> *mut c_void {
@@ -324,7 +313,17 @@ pub extern "C-unwind" fn CGBitmapContextGetData(context: Option<&CGContext>) -> 
     unsafe { CGBitmapContextGetData(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/width?language=objc)
+/// Returns the width in pixels of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The width in pixels of the specified context, or `0` if the context is not a bitmap context.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetWidth(context: Option<&CGContext>) -> usize {
@@ -334,7 +333,17 @@ pub extern "C-unwind" fn CGBitmapContextGetWidth(context: Option<&CGContext>) ->
     unsafe { CGBitmapContextGetWidth(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/height?language=objc)
+/// Returns the height in pixels of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The height in pixels of the specified context, or `0` if the context is not a bitmap context.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetHeight(context: Option<&CGContext>) -> usize {
@@ -344,7 +353,17 @@ pub extern "C-unwind" fn CGBitmapContextGetHeight(context: Option<&CGContext>) -
     unsafe { CGBitmapContextGetHeight(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/bitspercomponent?language=objc)
+/// Returns the bits per component of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The  number of bits per component in the specified context, or `0` if the context is not a bitmap context.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetBitsPerComponent(context: Option<&CGContext>) -> usize {
@@ -354,7 +373,17 @@ pub extern "C-unwind" fn CGBitmapContextGetBitsPerComponent(context: Option<&CGC
     unsafe { CGBitmapContextGetBitsPerComponent(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/bitsperpixel?language=objc)
+/// Returns the bits per pixel of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The  number of bits per pixel in the specified context, or `0` if the context is not a bitmap context.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetBitsPerPixel(context: Option<&CGContext>) -> usize {
@@ -364,7 +393,17 @@ pub extern "C-unwind" fn CGBitmapContextGetBitsPerPixel(context: Option<&CGConte
     unsafe { CGBitmapContextGetBitsPerPixel(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/bytesperrow?language=objc)
+/// Returns the bytes per row of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes per row of the specified context, or `0` if the context is not a bitmap context.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetBytesPerRow(context: Option<&CGContext>) -> usize {
@@ -374,7 +413,17 @@ pub extern "C-unwind" fn CGBitmapContextGetBytesPerRow(context: Option<&CGContex
     unsafe { CGBitmapContextGetBytesPerRow(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/colorspace?language=objc)
+/// Returns the color space of a bitmap context.
+///
+/// Parameters:
+/// - context: The bitmap context to examine.
+///
+///
+/// ## Return Value
+///
+/// The color space of the specified context, or `NULL` if the context is not a bitmap context. You are responsible for retaining and releasing this object as necessary.
+///
+///
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetColorSpace(
@@ -389,7 +438,23 @@ pub extern "C-unwind" fn CGBitmapContextGetColorSpace(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/alphainfo?language=objc)
+/// Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
+///
+/// Parameters:
+/// - context: A bitmap context.
+///
+///
+/// ## Return Value
+///
+/// A bitmap information constant. If the specified context is not a bitmap context, [`kCGImageAlphaNone`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/none) is returned.
+///
+///
+///
+/// ## Discussion
+///
+/// Every bitmap context contains an attribute that specifies whether the bitmap contains an alpha component, and how it is generated. The alpha component determines the opacity of a pixel when it is drawn.
+///
+///
 #[cfg(all(feature = "CGContext", feature = "CGImage"))]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetAlphaInfo(
@@ -401,7 +466,23 @@ pub extern "C-unwind" fn CGBitmapContextGetAlphaInfo(
     unsafe { CGBitmapContextGetAlphaInfo(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/bitmapinfo?language=objc)
+/// Obtains the bitmap information associated with a bitmap graphics context.
+///
+/// Parameters:
+/// - context: A bitmap graphics context.
+///
+///
+/// ## Return Value
+///
+/// The bitmap info of the bitmap graphics context or `0` if `context` is not a bitmap graphics context. See [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage) for a description of the [`CGBitmapInfo`](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo) constants that can be returned.
+///
+///
+///
+/// ## Discussion
+///
+/// The data returned by the function specifies whether the bitmap contains an alpha channel and how the alpha channel is generated, along with whether the components are floating-point or integer.
+///
+///
 #[cfg(all(feature = "CGContext", feature = "CGImage"))]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextGetBitmapInfo(context: Option<&CGContext>) -> CGBitmapInfo {
@@ -411,7 +492,23 @@ pub extern "C-unwind" fn CGBitmapContextGetBitmapInfo(context: Option<&CGContext
     unsafe { CGBitmapContextGetBitmapInfo(context) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontext/makeimage()?language=objc)
+/// Creates and returns a CGImage from the pixel data in a bitmap graphics context.
+///
+/// Parameters:
+/// - context: A bitmap graphics context.
+///
+///
+/// ## Return Value
+///
+/// A CGImage object that contains a snapshot of the bitmap graphics context or `NULL` if the image is not created.
+///
+///
+///
+/// ## Discussion
+///
+/// The CGImage object returned by this function is created by a copy operation. Subsequent changes to the bitmap graphics context do not affect the contents of the returned image. In some cases the copy operation actually follows copy-on-write semantics, so that the actual physical copy of the bits occur only if the underlying data in the bitmap graphics context is modified. As a consequence, you may want to use the resulting image and release it before you perform additional drawing into the bitmap graphics context. In this way, you can avoid the actual physical copy of the data.
+///
+///
 #[cfg(all(feature = "CGContext", feature = "CGImage"))]
 #[inline]
 pub extern "C-unwind" fn CGBitmapContextCreateImage(

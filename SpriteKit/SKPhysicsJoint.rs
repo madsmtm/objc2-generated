@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjoint?language=objc)
+    /// The abstract superclass for objects that connect physics bodies.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsJoint`](https://developer.apple.com/documentation/spritekit/skphysicsjoint) object connects two physics bodies so that they are simulated together by the physics world. You never instantiate objects of this class directly; instead, you instantiate one of the subclasses that defines the kind of joint you want to make.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJoint;
@@ -78,7 +84,13 @@ impl SKPhysicsJoint {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointpin?language=objc)
+    /// A joint that pins together two physics bodies, allowing independent rotation.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsJointPin`](https://developer.apple.com/documentation/spritekit/skphysicsjointpin) object allows two physics bodies to independently rotate around the anchor point as if pinned together. You can configure how far the two objects may rotate and the resistance to rotation.
+    ///
+    ///
     #[unsafe(super(SKPhysicsJoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJointPin;
@@ -176,7 +188,13 @@ impl SKPhysicsJointPin {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointspring?language=objc)
+    /// A joint that simulates a spring connecting two physics bodies.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsJointSpring`](https://developer.apple.com/documentation/spritekit/skphysicsjointspring) object simulates connecting two physics bodies together with a spring. The farther the two objects move from each other, the more force is applied to bring the two bodies back together.
+    ///
+    ///
     #[unsafe(super(SKPhysicsJoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJointSpring;
@@ -244,7 +262,13 @@ impl SKPhysicsJointSpring {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointfixed?language=objc)
+    /// A joint that fuses two physics bodies together at a reference point.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsJointFixed`](https://developer.apple.com/documentation/spritekit/skphysicsjointfixed) object fuses two physics bodies together at a reference point. Fixed joints are useful for creating complex shapes that can be broken apart later.
+    ///
+    ///
     #[unsafe(super(SKPhysicsJoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJointFixed;
@@ -289,7 +313,13 @@ impl SKPhysicsJointFixed {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointsliding?language=objc)
+    /// A joint that allows two physics bodies to slide along an axis.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsJointSliding`](https://developer.apple.com/documentation/spritekit/skphysicsjointsliding) object allows the anchor points of the two physics bodies to slide along a chosen axis. The joint can be configured to limit the distance that the two objects are allowed to slide along the axis.
+    ///
+    ///
     #[unsafe(super(SKPhysicsJoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJointSliding;
@@ -366,7 +396,7 @@ impl SKPhysicsJointSliding {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicsjointlimit?language=objc)
+    /// A joint that imposes a maximum distance between two physics bodies, as if they were connected by a rope.
     #[unsafe(super(SKPhysicsJoint, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsJointLimit;

@@ -11,7 +11,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swcollaborationviewdelegate?language=objc)
+    /// A delegate object that the system notifies about changes to the collaboration popover state.
     pub unsafe trait SWCollaborationViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -46,7 +46,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swcollaborationview?language=objc)
+    /// A view that contains the collaboration content and options.
+    ///
+    /// ## Overview
+    ///
+    /// The system presents an `SWCollaborationView` that displays participants and sharing options to a collaborator. For CloudKit and iCloud Drive adopters, the collaboration view includes a manage button. The button brings up the manage user interface, where collaborators can add and remove participants or change the share settings.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

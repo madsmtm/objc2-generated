@@ -7,26 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus?language=objc)
+/// Constants that indicate the type of authorization the customer has for accessing the Music library.
 // NS_ENUM
 #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/notdetermined?language=objc)
+    /// The authorization type cannot be determined.
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/denied?language=objc)
+    /// The user does not authorize any access to their music library.
     #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/restricted?language=objc)
+    /// Access to the music library is restricted in a way that the user cannot change, so your app should not prompt for authorization. An example of this situation is if the device is in an education mode.
     #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Restricted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus/authorized?language=objc)
+    /// The user authorizes playback of Apple Music tracks and the addition of tracks to their music library.
     #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
     #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
     pub const Authorized: Self = Self(3);
@@ -40,7 +40,7 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability?language=objc)
+/// Constants that specify the current capabilities of the customer’s Music library on the device.
 // NS_OPTIONS
 #[deprecated = "Use MusicSubscription from MusicKit"]
 #[repr(transparent)]
@@ -48,19 +48,19 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/skcloudservicecapabilitynone?language=objc)
+/// The device does not allow playback of Apple Music content or the addition of tracks to the music library.
         #[doc(alias = "SKCloudServiceCapabilityNone")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogplayback?language=objc)
+/// The device allows playback of Apple Music catalog tracks.
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const MusicCatalogPlayback = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/musiccatalogsubscriptioneligible?language=objc)
+/// The device allows subscription to the Apple Music catalog.
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
 #[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
         const MusicCatalogSubscriptionEligible = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability/addtocloudmusiclibrary?language=objc)
+/// The device allows tracks to be added to the user’s music library.
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
 #[deprecated = "Use MusicSubscription from MusicKit"]
         const AddToCloudMusicLibrary = 1<<8;
@@ -76,7 +76,13 @@ unsafe impl RefEncode for SKCloudServiceCapability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecontroller?language=objc)
+    /// An object that determines the current capabilities of a person’s Music library.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`SKCloudServiceController`](https://developer.apple.com/documentation/storekit/skcloudservicecontroller) object to determine the current capabilities of a customer’s Music library, like whether the device allows playback of Apple Music catalog tracks and the addition of tracks to the library.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use MusicKit"]
@@ -165,19 +171,19 @@ impl SKCloudServiceController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapabilitiesdidchangenotification?language=objc)
+    /// A notification name for indicating a change in the capabilities associated with the Music library on the device.
     #[deprecated = "Use MusicSubscription.subscriptionUpdates from MusicKit"]
     pub static SKCloudServiceCapabilitiesDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontcountrycodedidchangenotification?language=objc)
+    /// A notification name for indicating a change in the storefront country or region code associated with the device.
     #[deprecated = "Use Storefront.updates"]
     pub static SKStorefrontCountryCodeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontidentifierdidchangenotification?language=objc)
+    /// A notification name for indicating a change in the storefront identifier associated with the device.
     #[deprecated = "Use Storefront.updates"]
     pub static SKStorefrontIdentifierDidChangeNotification: &'static NSNotificationName;
 }

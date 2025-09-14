@@ -10,6 +10,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Returns a scaled rectangle that maintains the specified aspect ratio within a bounding rectangle.
+    ///
+    /// Parameters:
+    /// - aspectRatio: The width and height ratio (aspect ratio) you want to maintain.
+    ///
+    /// - boundingRect: The bounding rectangle you want to fit into.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a scaled `CGRect` that maintains the aspect ratio specified by `aspectRatio` that fits within `boundingRect`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function when attempting to fit the presentation size of a player item object’s content within the bounds of another [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer). Use the returned [`CGRect`](https://developer.apple.com/documentation/corefoundation/cgrect) as the player layer’s [`frame`](https://developer.apple.com/documentation/quartzcore/calayer/frame) property value. For example:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let aspectRatio = CGSize(width: 1920, height: 1080)", "playerLayer.frame = AVMakeRect(aspectRatio: aspectRatio, insideRect: superLayer.bounds)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["CGSize aspectRatio = CGSizeMake(1920, 1080);", "self.playerLayer.frame = AVMakeRectWithAspectRatioInsideRect(aspectRatio, self.superLayer.bounds);"], metadata: None }] }] })
+    ///
     /// Returns a scaled CGRect that maintains the aspect ratio specified by a CGSize within a bounding CGRect.
     ///
     /// This is useful when attempting to fit the presentationSize property of an AVPlayerItem within the bounds of another CALayer.
@@ -21,8 +41,6 @@ extern "C-unwind" {
     /// height ratio, or aspect, you wish to maintain.
     ///
     /// Parameter `boundingRect`: The bounding CGRect you wish to fit into.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmakerect(aspectratio:insiderect:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AVMakeRectWithAspectRatioInsideRect(
         aspect_ratio: CGSize,

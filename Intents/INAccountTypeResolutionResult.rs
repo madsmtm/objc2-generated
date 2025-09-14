@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaccounttyperesolutionresult?language=objc)
+    /// A resolution result for account types.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INAccountTypeResolutionResult`](https://developer.apple.com/documentation/intents/inaccounttyperesolutionresult) object is what you return when resolving parameters containing an [`INAccountType`](https://developer.apple.com/documentation/intents/inaccounttype) value. Use the creation method that best reflects your ability to resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

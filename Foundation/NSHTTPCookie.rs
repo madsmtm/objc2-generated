@@ -5,161 +5,236 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey?language=objc)
+/// Constants that define the supported keys in a cookie attributes dictionary.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookiePropertyKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy?language=objc)
+/// Values that indicate whether to restrict the cookie to requests sent back to the same site that created it.
+///
+/// ## Discussion
+///
+/// [RFC 6265](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00) defines “same site” as the registerable domain of a URI.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookieStringPolicy = NSString;
 
 extern "C" {
+    /// An `NSString` object containing the name of the cookie (required).
     /// Key for cookie name
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/name?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieName: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie value
+    /// An `NSString` object containing the value of the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/value?language=objc)
+    /// ## Discussion
+    ///
+    /// This cookie attribute is required.
+    ///
+    ///
+    /// Key for cookie value
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie origin URL
+    /// An NSURL or `NSString` object containing the URL that set this cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/originurl?language=objc)
+    /// ## Discussion
+    ///
+    /// If you do not provide a value for `NSHTTPCookieOriginURL`, you must provide a value for `NSHTTPCookieDomain`.
+    ///
+    ///
+    /// Key for cookie origin URL
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie version
+    /// An `NSString` object that specifies the version of the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/version?language=objc)
+    /// ## Discussion
+    ///
+    /// Must be either `"0"` or `"1"`. The default is `"0"`. This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie version
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie domain
+    /// An `NSString` object containing the domain for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/domain?language=objc)
+    /// ## Discussion
+    ///
+    /// If this cookie attribute is missing, the domain is inferred from the value for `NSHTTPCookieOriginURL`. If you do not specify a value for `NSHTTPCookieOriginURL`, you _must_ specify a value for `NSHTTPCookieDomain`.
+    ///
+    ///
+    /// Key for cookie domain
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie path
+    /// An `NSString` object containing the path for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/path?language=objc)
+    /// ## Discussion
+    ///
+    /// This cookie attribute is required.
+    ///
+    ///
+    /// Key for cookie path
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie secure flag
+    /// An `NSString` object indicating that the cookie should be transmitted only over secure channels.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/secure?language=objc)
+    /// ## Discussion
+    ///
+    /// Providing any value for this key indicates that the cookie should remain secure.
+    ///
+    ///
+    /// Key for cookie secure flag
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie expiration date
+    /// An `NSDate` object or `NSString` object specifying the expiration date for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/expires?language=objc)
+    /// ## Discussion
+    ///
+    /// This cookie attribute is only used for Version 0 cookies. This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie expiration date
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie comment text
+    /// An `NSString` object containing the comment for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/comment?language=objc)
+    /// ## Discussion
+    ///
+    /// Only valid for Version 1 cookies and later. This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie comment text
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie comment URL
+    /// An `NSURL` object or `NSString` object containing the comment URL for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/commenturl?language=objc)
+    /// ## Discussion
+    ///
+    /// Only valid for Version 1 cookies or later. This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie comment URL
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie discard (session-only) flag
+    /// An `NSString` object stating whether the cookie should be discarded at the end of the session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/discard?language=objc)
+    /// ## Discussion
+    ///
+    /// String value must be either `"TRUE"` or `"FALSE"`. This cookie attribute is optional. The default is `"FALSE"`, unless this cookie is version 1 or greater and a value for `NSHTTPCookieMaximumAge` is not specified, in which case it is assumed to be `"TRUE"`.
+    ///
+    ///
+    /// Key for cookie discard (session-only) flag
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie maximum age (an alternate way of specifying the expiration)
+    /// An `NSString` object containing an integer value stating how long in seconds the cookie should be kept, at most.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/maximumage?language=objc)
+    /// ## Discussion
+    ///
+    /// Only valid for Version 1 cookies and later. Default is `"0"`. This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie maximum age (an alternate way of specifying the expiration)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// Key for cookie ports
+    /// An `NSString` object containing comma-separated integer values specifying the ports for the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/port?language=objc)
+    /// ## Discussion
+    ///
+    /// Only valid for Version 1 cookies or later. The default value is an empty string (`""`). This cookie attribute is optional.
+    ///
+    ///
+    /// Key for cookie ports
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
     /// An NSString object indicating that the cookie is set via JavaScript.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/setbyjavascript?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSetByJavaScript: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
+    /// A string indicating the same-site policy for the cookie.
     /// Key for cookie same site
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/samesitepolicy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey;
 }
 
 extern "C" {
-    /// String constant "lax" to be used as a value for the property key NSHTTPCookieSameSite
+    /// A policy that allows certain cross-site requests to include the cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy/samesitelax?language=objc)
+    /// ## Discussion
+    ///
+    /// When a cookie has this policy, a request includes the cookie if the request is “top-level,”, meaning one that changes the URL in the address bar.
+    ///
+    ///
+    /// String constant "lax" to be used as a value for the property key NSHTTPCookieSameSite
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy;
 }
 
 extern "C" {
+    /// A policy that prohibits a cross-site request from including the cookie.
     /// String constant "strict" to be used as a value for the property key NSHTTPCookieSameSite
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy/samesitestrict?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy;
 }
 
 extern_class!(
+    /// A representation of an HTTP cookie.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSHTTPCookie`](https://developer.apple.com/documentation/foundation/httpcookie) object is immutable, initialized from a dictionary that contains the attributes of the cookie. This class supports two different cookie versions:
+    ///
+    /// - Version 0: The original cookie format defined by Netscape. Most cookies are in this format.
+    ///
+    /// - Version 1: The cookie format defined in [RFC 6265](https://tools.ietf.org/html/rfc6265), HTTP State Management Mechanism.
+    ///
+    ///
     /// NSHTTPCookie represents an http cookie.
     ///
     /// A NSHTTPCookie instance represents a single http cookie. It is
     /// an immutable object initialized from a dictionary that contains
     /// the various cookie attributes. It has accessors to get the various
     /// attributes of a cookie.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookie;

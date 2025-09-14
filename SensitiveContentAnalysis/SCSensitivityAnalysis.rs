@@ -6,9 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Sensitive Analysis Results object is returned after sensitivity analysis is performed on media
+    /// An object that indicates whether sensitive content is present and includes intervention guidance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalysis?language=objc)
+    /// ## Overview
+    ///
+    /// The framework provides an instance of this class to convey the results of content sensitivity checks, for example:
+    ///
+    /// - The [`SCSensitivityAnalyzer`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer) completion handler [`analyzeCGImage:completionHandler:`](https://developer.apple.com/documentation/sensitivecontentanalysis/scsensitivityanalyzer/analyzeimage(_:completionhandler:))
+    ///
+    /// - The [`SCVideoStreamAnalyzer`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer) callback [`SCVideoStreamAnalysisChangeHandler`](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalysischangehandler)
+    ///
+    ///
+    /// Sensitive Analysis Results object is returned after sensitivity analysis is performed on media
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCSensitivityAnalysis;

@@ -6,12 +6,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icrunloopmode?language=objc)
     #[deprecated = "ICRunLoopMode has been deprecated and may break in future releases."]
     pub static ICRunLoopMode: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// An error returned by the ImageCaptureCore framework.
     /// Type representing EXIF Orientation tag value
     ///
     /// The meaning of this value is defined by the EXIF specification. Here is what the letter F would look like if it were tagged correctly and displayed by a program that ignores the orientation tag (thus showing the stored image):
@@ -29,39 +29,59 @@ extern "C" {
     /// 8888888888    88                    88    8888888888
     /// 88  88        88  88            88  88        88  88
     /// 88            8888888888    8888888888            88
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icerrordomain?language=objc)
     pub static ICErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype?language=objc)
+/// The file’s orientation type.
+///
+/// ## Overview
+///
+/// The meaning of this value is defined by the `EXIF` specification. Here is what the letter _F_ would look like if it were tagged correctly and displayed by a program that ignores the orientation tag (thus showing the stored image):
+///
+/// ```swift
+///                1             2             3             4
+///
+///             8888888       8888888            88       88
+///             88                 88            88       88
+///             8888             8888          8888       8888
+///             88                 88            88       88
+///             88                 88       8888888       8888888
+///
+///                5             6             7             8
+///
+///             8888888888    88                    88    8888888888
+///             88  88        88  88            88  88        88  88
+///             88            8888888888    8888888888            88
+/// ```
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICEXIFOrientationType(pub NSUInteger);
 impl ICEXIFOrientationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation1?language=objc)
+    /// Normal
     #[doc(alias = "ICEXIFOrientation1")]
     pub const Orientation1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation2?language=objc)
+    /// Flipped horizontally
     #[doc(alias = "ICEXIFOrientation2")]
     pub const Orientation2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation3?language=objc)
+    /// Rotated 180°
     #[doc(alias = "ICEXIFOrientation3")]
     pub const Orientation3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation4?language=objc)
+    /// Flipped vertically
     #[doc(alias = "ICEXIFOrientation4")]
     pub const Orientation4: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation5?language=objc)
+    /// Rotated 90° CCW and flipped vertically
     #[doc(alias = "ICEXIFOrientation5")]
     pub const Orientation5: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation6?language=objc)
+    /// Rotated 90° CCW
     #[doc(alias = "ICEXIFOrientation6")]
     pub const Orientation6: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation7?language=objc)
+    /// Rotated 90° CW and flipped vertically
     #[doc(alias = "ICEXIFOrientation7")]
     pub const Orientation7: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icexiforientationtype/orientation8?language=objc)
+    /// Rotated 90° CW
     #[doc(alias = "ICEXIFOrientation8")]
     pub const Orientation8: Self = Self(8);
 }
@@ -74,40 +94,29 @@ unsafe impl RefEncode for ICEXIFOrientationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnCodeOffset(pub NSInteger);
 impl ICReturnCodeOffset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/thumbnailoffset?language=objc)
     #[doc(alias = "ICReturnCodeThumbnailOffset")]
     pub const ThumbnailOffset: Self = Self(-21000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/metadataoffset?language=objc)
     #[doc(alias = "ICReturnCodeMetadataOffset")]
     pub const MetadataOffset: Self = Self(-21050);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/downloadoffset?language=objc)
     #[doc(alias = "ICReturnCodeDownloadOffset")]
     pub const DownloadOffset: Self = Self(-21100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/deleteoffset?language=objc)
     #[doc(alias = "ICReturnCodeDeleteOffset")]
     pub const DeleteOffset: Self = Self(-21150);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/exfatoffset?language=objc)
     #[doc(alias = "ICReturnCodeExFATOffset")]
     pub const ExFATOffset: Self = Self(-21200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/ptpoffset?language=objc)
     #[doc(alias = "ICReturnCodePTPOffset")]
     pub const PTPOffset: Self = Self(-21250);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/systemoffset?language=objc)
     #[doc(alias = "ICReturnCodeSystemOffset")]
     pub const SystemOffset: Self = Self(-21300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/deviceoffset?language=objc)
     #[doc(alias = "ICReturnCodeDeviceOffset")]
     pub const DeviceOffset: Self = Self(-21350);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/deviceconnection?language=objc)
     #[doc(alias = "ICReturnCodeDeviceConnection")]
     pub const DeviceConnection: Self = Self(-21400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncodeoffset/objectoffset?language=objc)
     #[doc(alias = "ICReturnCodeObjectOffset")]
     pub const ObjectOffset: Self = Self(-21450);
 }
@@ -120,22 +129,21 @@ unsafe impl RefEncode for ICReturnCodeOffset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnThumbnailErrorCode(pub NSInteger);
 impl ICReturnThumbnailErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code/notavailable?language=objc)
+    /// Item does not have thumbnail available.
     #[doc(alias = "ICReturnThumbnailNotAvailable")]
     pub const NotAvailable: Self = Self(-21000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code/alreadyfetching?language=objc)
+    /// Item thumbnail request is being serviced.
     #[doc(alias = "ICReturnThumbnailAlreadyFetching")]
     pub const AlreadyFetching: Self = Self(-20999);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code/canceled?language=objc)
+    /// Item thumbnail request has been canceled.
     #[doc(alias = "ICReturnThumbnailCanceled")]
     pub const Canceled: Self = Self(-20098);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code/invalid?language=objc)
+    /// Item thumbnail request completed with invalid result.
     #[doc(alias = "ICReturnThumbnailInvalid")]
     pub const Invalid: Self = Self(-20097);
 }
@@ -148,22 +156,21 @@ unsafe impl RefEncode for ICReturnThumbnailErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnMetadataErrorCode(pub NSInteger);
 impl ICReturnMetadataErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code/notavailable?language=objc)
+    /// Item does not have metadata available.
     #[doc(alias = "ICReturnMetadataNotAvailable")]
     pub const NotAvailable: Self = Self(-20150);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code/alreadyfetching?language=objc)
+    /// Item metadata request is being serviced.
     #[doc(alias = "ICReturnMetadataAlreadyFetching")]
     pub const AlreadyFetching: Self = Self(-20149);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code/canceled?language=objc)
+    /// Item metadata request has been canceled.
     #[doc(alias = "ICReturnMetadataCanceled")]
     pub const Canceled: Self = Self(-20148);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code/invalid?language=objc)
+    /// Item metadata request completed with invalid result.
     #[doc(alias = "ICReturnMetadataInvalid")]
     pub const Invalid: Self = Self(-20147);
 }
@@ -176,34 +183,32 @@ unsafe impl RefEncode for ICReturnMetadataErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnConnectionErrorCode(pub NSInteger);
 impl ICReturnConnectionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/driverexited?language=objc)
+    /// Device driver exited without request.
     #[doc(alias = "ICReturnConnectionDriverExited")]
     pub const DriverExited: Self = Self(-21350);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/closedsessionsuddenly?language=objc)
+    /// Device closed session without request.
     #[doc(alias = "ICReturnConnectionClosedSessionSuddenly")]
     pub const ClosedSessionSuddenly: Self = Self(-21349);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/ejectedsuddenly?language=objc)
+    /// Device ejected without request.
     #[doc(alias = "ICReturnConnectionEjectedSuddenly")]
     pub const EjectedSuddenly: Self = Self(-21348);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/sessionalreadyopen?language=objc)
+    /// Device reports session is already open.
     #[doc(alias = "ICReturnConnectionSessionAlreadyOpen")]
     pub const SessionAlreadyOpen: Self = Self(-21347);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/ejectfailed?language=objc)
+    /// Device reports eject has failed.
     #[doc(alias = "ICReturnConnectionEjectFailed")]
     pub const EjectFailed: Self = Self(-21346);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/failedtoopen?language=objc)
+    /// Failed to open a connection to the device.
     #[doc(alias = "ICReturnConnectionFailedToOpen")]
     pub const FailedToOpen: Self = Self(-21345);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/failedtoopendevice?language=objc)
+    /// Failed to open the device.
     #[doc(alias = "ICReturnConnectionFailedToOpenDevice")]
     pub const FailedToOpenDevice: Self = Self(-21344);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code/notauthorizedtoopendevice?language=objc)
     #[doc(alias = "ICReturnConnectionNotAuthorizedToOpenDevice")]
     pub const NotAuthorizedToOpenDevice: Self = Self(-21343);
 }
@@ -216,16 +221,14 @@ unsafe impl RefEncode for ICReturnConnectionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnptpdeviceerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnPTPDeviceErrorCode(pub NSInteger);
 impl ICReturnPTPDeviceErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnptpdeviceerror/code/failedtosendcommand?language=objc)
+    /// Sending a PTP command failed.
     #[doc(alias = "ICReturnPTPFailedToSendCommand")]
     pub const FailedToSendCommand: Self = Self(-21250);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnptpdeviceerror/code/notauthorizedtosendcommand?language=objc)
     #[doc(alias = "ICReturnPTPNotAuthorizedToSendCommand")]
     pub const NotAuthorizedToSendCommand: Self = Self(-21249);
 }
@@ -238,16 +241,15 @@ unsafe impl RefEncode for ICReturnPTPDeviceErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturndownloaderror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnDownloadErrorCode(pub NSInteger);
 impl ICReturnDownloadErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturndownloaderror/code/pathinvalid?language=objc)
+    /// The destination path is invalid.
     #[doc(alias = "ICReturnDownloadPathInvalid")]
     pub const PathInvalid: Self = Self(-21100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturndownloaderror/code/filewritable?language=objc)
+    /// The destination file is not writable.
     #[doc(alias = "ICReturnDownloadFileWritable")]
     pub const FileWritable: Self = Self(-21099);
 }
@@ -260,76 +262,53 @@ unsafe impl RefEncode for ICReturnDownloadErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICLegacyReturnCode(pub NSInteger);
 impl ICLegacyReturnCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/communicationerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeCommunicationErr")]
     pub const CommunicationErr: Self = Self(-9900);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/devicenotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceNotFoundErr")]
     pub const DeviceNotFoundErr: Self = Self(-9901);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/devicenotopenerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceNotOpenErr")]
     pub const DeviceNotOpenErr: Self = Self(-9902);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/filecorruptederr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeFileCorruptedErr")]
     pub const FileCorruptedErr: Self = Self(-9903);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/iopendingerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeIOPendingErr")]
     pub const IOPendingErr: Self = Self(-9904);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/invalidobjecterr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeInvalidObjectErr")]
     pub const InvalidObjectErr: Self = Self(-9905);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/invalidpropertyerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeInvalidPropertyErr")]
     pub const InvalidPropertyErr: Self = Self(-9906);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/indexoutofrangeerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeIndexOutOfRangeErr")]
     pub const IndexOutOfRangeErr: Self = Self(-9907);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/propertytypenotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodePropertyTypeNotFoundErr")]
     pub const PropertyTypeNotFoundErr: Self = Self(-9908);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/cannotyielddevice?language=objc)
     #[doc(alias = "ICLegacyReturnCodeCannotYieldDevice")]
     pub const CannotYieldDevice: Self = Self(-9909);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/datatypenotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDataTypeNotFoundErr")]
     pub const DataTypeNotFoundErr: Self = Self(-9910);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/devicememoryallocationerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceMemoryAllocationErr")]
     pub const DeviceMemoryAllocationErr: Self = Self(-9911);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/deviceinternalerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceInternalErr")]
     pub const DeviceInternalErr: Self = Self(-9912);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/deviceinvalidparamerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceInvalidParamErr")]
     pub const DeviceInvalidParamErr: Self = Self(-9913);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/devicealreadyopenerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceAlreadyOpenErr")]
     pub const DeviceAlreadyOpenErr: Self = Self(-9914);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/devicelocationidnotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceLocationIDNotFoundErr")]
     pub const DeviceLocationIDNotFoundErr: Self = Self(-9915);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/deviceguidnotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceGUIDNotFoundErr")]
     pub const DeviceGUIDNotFoundErr: Self = Self(-9916);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/deviceioservicepathnotfounderr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceIOServicePathNotFoundErr")]
     pub const DeviceIOServicePathNotFoundErr: Self = Self(-9917);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/deviceunsupportederr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeDeviceUnsupportedErr")]
     pub const DeviceUnsupportedErr: Self = Self(-9918);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/frameworkinternalerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeFrameworkInternalErr")]
     pub const FrameworkInternalErr: Self = Self(-9919);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/extensioninternalerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeExtensionInternalErr")]
     pub const ExtensionInternalErr: Self = Self(-9920);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code/invalidsessionerr?language=objc)
     #[doc(alias = "ICLegacyReturnCodeInvalidSessionErr")]
     pub const InvalidSessionErr: Self = Self(-9921);
 }
@@ -342,130 +321,94 @@ unsafe impl RefEncode for ICLegacyReturnCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICReturnCode(pub NSInteger);
 impl ICReturnCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/success?language=objc)
     #[doc(alias = "ICReturnSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/invalidparam?language=objc)
     #[doc(alias = "ICReturnInvalidParam")]
     pub const InvalidParam: Self = Self(-9922);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/communicationtimedout?language=objc)
     #[doc(alias = "ICReturnCommunicationTimedOut")]
     pub const CommunicationTimedOut: Self = Self(-9923);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scanoperationcanceled?language=objc)
     #[doc(alias = "ICReturnScanOperationCanceled")]
     pub const ScanOperationCanceled: Self = Self(-9924);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scannerinusebylocaluser?language=objc)
     #[doc(alias = "ICReturnScannerInUseByLocalUser")]
     pub const ScannerInUseByLocalUser: Self = Self(-9925);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scannerinusebyremoteuser?language=objc)
     #[doc(alias = "ICReturnScannerInUseByRemoteUser")]
     pub const ScannerInUseByRemoteUser: Self = Self(-9926);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicefailedtoopensession?language=objc)
     #[doc(alias = "ICReturnDeviceFailedToOpenSession")]
     pub const DeviceFailedToOpenSession: Self = Self(-9927);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicefailedtoclosesession?language=objc)
     #[doc(alias = "ICReturnDeviceFailedToCloseSession")]
     pub const DeviceFailedToCloseSession: Self = Self(-9928);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scannerfailedtoselectfunctionalunit?language=objc)
     #[doc(alias = "ICReturnScannerFailedToSelectFunctionalUnit")]
     pub const ScannerFailedToSelectFunctionalUnit: Self = Self(-9929);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scannerfailedtocompleteoverviewscan?language=objc)
     #[doc(alias = "ICReturnScannerFailedToCompleteOverviewScan")]
     pub const ScannerFailedToCompleteOverviewScan: Self = Self(-9930);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/scannerfailedtocompletescan?language=objc)
     #[doc(alias = "ICReturnScannerFailedToCompleteScan")]
     pub const ScannerFailedToCompleteScan: Self = Self(-9931);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/receivedunsolicitedscannerstatusinfo?language=objc)
     #[doc(alias = "ICReturnReceivedUnsolicitedScannerStatusInfo")]
     pub const ReceivedUnsolicitedScannerStatusInfo: Self = Self(-9932);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/receivedunsolicitedscannererrorinfo?language=objc)
     #[doc(alias = "ICReturnReceivedUnsolicitedScannerErrorInfo")]
     pub const ReceivedUnsolicitedScannerErrorInfo: Self = Self(-9933);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/downloadfailed?language=objc)
     #[doc(alias = "ICReturnDownloadFailed")]
     pub const DownloadFailed: Self = Self(-9934);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/uploadfailed?language=objc)
     #[doc(alias = "ICReturnUploadFailed")]
     pub const UploadFailed: Self = Self(-9935);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/failedtocompletepassthroughcommand?language=objc)
     #[doc(alias = "ICReturnFailedToCompletePassThroughCommand")]
     pub const FailedToCompletePassThroughCommand: Self = Self(-9936);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/downloadcanceled?language=objc)
     #[doc(alias = "ICReturnDownloadCanceled")]
     pub const DownloadCanceled: Self = Self(-9937);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/failedtoenabetethering?language=objc)
     #[doc(alias = "ICReturnFailedToEnabeTethering")]
     pub const FailedToEnabeTethering: Self = Self(-9938);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/failedtodisabetethering?language=objc)
     #[doc(alias = "ICReturnFailedToDisabeTethering")]
     pub const FailedToDisabeTethering: Self = Self(-9939);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/failedtocompletesendmessagerequest?language=objc)
     #[doc(alias = "ICReturnFailedToCompleteSendMessageRequest")]
     pub const FailedToCompleteSendMessageRequest: Self = Self(-9940);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/deletefilesfailed?language=objc)
     #[doc(alias = "ICReturnDeleteFilesFailed")]
     pub const DeleteFilesFailed: Self = Self(-9941);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/deletefilescanceled?language=objc)
     #[doc(alias = "ICReturnDeleteFilesCanceled")]
     pub const DeleteFilesCanceled: Self = Self(-9942);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/deviceispasscodelocked?language=objc)
     #[doc(alias = "ICReturnDeviceIsPasscodeLocked")]
     pub const DeviceIsPasscodeLocked: Self = Self(-9943);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicefailedtotakepicture?language=objc)
     #[doc(alias = "ICReturnDeviceFailedToTakePicture")]
     pub const DeviceFailedToTakePicture: Self = Self(-9944);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwarenotinstalled?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareNotInstalled")]
     pub const DeviceSoftwareNotInstalled: Self = Self(-9945);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwareisbeinginstalled?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareIsBeingInstalled")]
     pub const DeviceSoftwareIsBeingInstalled: Self = Self(-9946);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwareinstallationcompleted?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareInstallationCompleted")]
     pub const DeviceSoftwareInstallationCompleted: Self = Self(-9947);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwareinstallationcanceled?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareInstallationCanceled")]
     pub const DeviceSoftwareInstallationCanceled: Self = Self(-9948);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwareinstallationfailed?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareInstallationFailed")]
     pub const DeviceSoftwareInstallationFailed: Self = Self(-9949);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicesoftwarenotavailable?language=objc)
     #[doc(alias = "ICReturnDeviceSoftwareNotAvailable")]
     pub const DeviceSoftwareNotAvailable: Self = Self(-9950);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicecouldnotpair?language=objc)
     #[doc(alias = "ICReturnDeviceCouldNotPair")]
     pub const DeviceCouldNotPair: Self = Self(-9951);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicecouldnotunpair?language=objc)
     #[doc(alias = "ICReturnDeviceCouldNotUnpair")]
     pub const DeviceCouldNotUnpair: Self = Self(-9952);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/deviceneedscredentials?language=objc)
     #[doc(alias = "ICReturnDeviceNeedsCredentials")]
     pub const DeviceNeedsCredentials: Self = Self(-9953);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/deviceisbusyenumerating?language=objc)
     #[doc(alias = "ICReturnDeviceIsBusyEnumerating")]
     pub const DeviceIsBusyEnumerating: Self = Self(-9954);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicecommandgeneralfailure?language=objc)
     #[doc(alias = "ICReturnDeviceCommandGeneralFailure")]
     pub const DeviceCommandGeneralFailure: Self = Self(-9955);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicefailedtocompletetransfer?language=objc)
+    /// Failed to complete a data transaction.
     #[doc(alias = "ICReturnDeviceFailedToCompleteTransfer")]
     pub const DeviceFailedToCompleteTransfer: Self = Self(-9956);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/devicefailedtosenddata?language=objc)
+    /// Failed to send data.
     #[doc(alias = "ICReturnDeviceFailedToSendData")]
     pub const DeviceFailedToSendData: Self = Self(-9957);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/sessionnotopened?language=objc)
+    /// Session is not open.
     #[doc(alias = "ICReturnSessionNotOpened")]
     pub const SessionNotOpened: Self = Self(-9958);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/exfatvolumeinvalid?language=objc)
+    /// EXFAT volume is invalid, and cannot be enumerated.
     #[doc(alias = "ICReturnExFATVolumeInvalid")]
     pub const ExFATVolumeInvalid: Self = Self(21200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code/multierrordictionary?language=objc)
+    /// Multierror
     #[doc(alias = "ICReturnMultiErrorDictionary")]
     pub const MultiErrorDictionary: Self = Self(-30000);
 }
@@ -478,25 +421,23 @@ unsafe impl RefEncode for ICReturnCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICReturnObjectErrorCode(pub NSInteger);
 impl ICReturnObjectErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code/codeobjectdoesnotexist?language=objc)
+    /// The object does not exist.
     #[doc(alias = "ICReturnCodeObjectDoesNotExist")]
     pub const CodeObjectDoesNotExist: Self = Self(-21450);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code/codeobjectdataoffsetinvalid?language=objc)
+    /// The object data offset is invalid.
     #[doc(alias = "ICReturnCodeObjectDataOffsetInvalid")]
     pub const CodeObjectDataOffsetInvalid: Self = Self(-21449);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code/codeobjectcouldnotberead?language=objc)
+    /// The object could not be read.
     #[doc(alias = "ICReturnCodeObjectCouldNotBeRead")]
     pub const CodeObjectCouldNotBeRead: Self = Self(-21448);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code/codeobjectdataempty?language=objc)
+    /// The object data is empty.
     #[doc(alias = "ICReturnCodeObjectDataEmpty")]
     pub const CodeObjectDataEmpty: Self = Self(-21447);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code/codeobjectdatarequesttoolarge?language=objc)
     #[doc(alias = "ICReturnCodeObjectDataRequestTooLarge")]
     pub const CodeObjectDataRequestTooLarge: Self = Self(-21446);
 }

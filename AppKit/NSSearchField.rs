@@ -7,11 +7,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentsautosavename-swift.typealias?language=objc)
+/// The string that stores the name under which a search field automatically archives a list of recent search strings.
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfielddelegate?language=objc)
+    /// A protocol that a search field delegate can use to determine when a search started or ended.
     #[cfg(all(feature = "NSControl", feature = "NSTextField"))]
     pub unsafe trait NSSearchFieldDelegate: NSTextFieldDelegate + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -29,7 +29,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield?language=objc)
+    /// A text field optimized for performing text-based searches.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSSearchField`](https://developer.apple.com/documentation/appkit/nssearchfield) provides a customized text field for entering search data. The class also provides a search button, a cancel button, and a pop-up icon menu for listing recent search strings and custom search categories.
+    ///
+    /// An [`NSSearchField`](https://developer.apple.com/documentation/appkit/nssearchfield) object wraps an [`NSSearchFieldCell`](https://developer.apple.com/documentation/appkit/nssearchfieldcell) object. The cell provides access to most search field attributes and a comprehensive programmatic interface for manipulating the search field. You can use an [`NSSearchField`](https://developer.apple.com/documentation/appkit/nssearchfield) object to manipulate some aspects of the search field.
+    ///
+    /// For additional information about search fields and how to implement them, see the [`NSSearchFieldCell`](https://developer.apple.com/documentation/appkit/nssearchfieldcell) class.
+    ///
+    ///
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

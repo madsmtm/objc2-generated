@@ -7,37 +7,79 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetRideStatusIntentResponseCode(pub NSInteger);
 impl INGetRideStatusIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/unspecified?language=objc)
+    /// There is no specified response code.
     #[doc(alias = "INGetRideStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INGetRideStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/inprogress?language=objc)
+    /// You are in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Avoid using this response code when possible unless you are actively retrieving the ride status information but are unable to return that information in a timely manner.
+    ///
+    ///
     #[doc(alias = "INGetRideStatusIntentResponseCodeInProgress")]
     #[deprecated = "INGetRideStatusIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you are successfully able to provide the ride status information.
+    ///
+    ///
     #[doc(alias = "INGetRideStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failure?language=objc)
+    /// You were unable to retrieve information about the current ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from retrieving the information.
+    ///
+    ///
     #[doc(alias = "INGetRideStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to get information about the current ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t process the request for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
+    /// The user must launch your app and verify their credentials to continue.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you require authentication to retrieve information and the user is not currently authenticated. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(
         alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
+    /// Your service is temporarily unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you are unable to reach your service to get the ride details. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(
         alias = "INGetRideStatusIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
@@ -53,7 +95,15 @@ unsafe impl RefEncode for INGetRideStatusIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponse?language=objc)
+    /// Your app’s response to a get ride status intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetRideStatusIntentResponse`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponse) object contains your app’s response to a request for the status of the user’s current ride. SiriKit can ask for the status of a ride at any time, but often this occurs in response to a direct request from the user. Use your response object to provide current details about the user’s ride, including the estimated pickup time, the pickup location, the drop-off location, the vehicle type, the driver, and so on.
+    ///
+    /// You create an [`INGetRideStatusIntentResponse`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponse) object in the [`confirmGetRideStatus:completion:`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling/confirm(intent:completion:)) and [`handleGetRideStatus:completion:`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

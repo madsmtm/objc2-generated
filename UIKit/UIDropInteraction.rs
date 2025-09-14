@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropinteraction?language=objc)
+    /// An interaction to enable dropping of items onto a view, employing a delegate to instantiate objects and respond to calls from the drop session.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -56,22 +56,48 @@ impl UIDropInteraction {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation?language=objc)
+/// Operation types that determine how a drag and drop activity resolves when the user drops a drag item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDropOperation(pub NSUInteger);
 impl UIDropOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/cancel?language=objc)
+    /// A drop operation type specifying that no data should be transferred, thereby canceling the drag.
+    ///
+    /// ## Discussion
+    ///
+    /// If the user attempts a drop activity, the drag operation is canceled and the [`dropInteraction:performDrop:`](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate/dropinteraction(_:performdrop:)) delegate method isn’t called.
+    ///
+    ///
     #[doc(alias = "UIDropOperationCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/forbidden?language=objc)
+    /// A drop operation type specifying that, although a move or copy operation is typically legitimate in this scenario, the drop activity isn’t allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this operation to signal that the drop activity isn’t allowed at this specific time and place. The drag operation is canceled.
+    ///
+    ///
     #[doc(alias = "UIDropOperationForbidden")]
     pub const Forbidden: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/copy?language=objc)
+    /// A drop operation type specifying that the data represented by the drag items should be copied to the destination view.
+    ///
+    /// ## Discussion
+    ///
+    /// This operation is used most often. When the user performs a drop activity, the [`dropInteraction:performDrop:`](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate/dropinteraction(_:performdrop:)) delegate method is called. Your implementation of this delegate method should copy the data from the drag items to the destination view.
+    ///
+    ///
     #[doc(alias = "UIDropOperationCopy")]
     pub const Copy: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation/move?language=objc)
+    /// A drop operation type specifying that the data represented by the drag items should be moved, not copied.
+    ///
+    /// ## Discussion
+    ///
+    /// You may use this operation only if the drop session’s [`allowsMoveOperation`](https://developer.apple.com/documentation/uikit/uidragdropsession/allowsmoveoperation) property is [`true`](https://developer.apple.com/documentation/swift/true); otherwise, it’s treated as a [`UIDropOperationCancel`](https://developer.apple.com/documentation/uikit/uidropoperation/cancel) operation. A move operation is allowed only within same app. Data shared with another app must be copied.
+    ///
+    /// The system gives no special meaning to this operation. The [`UIDragInteractionDelegate`](https://developer.apple.com/documentation/uikit/uidraginteractiondelegate) object and the [`UIDropInteractionDelegate`](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate) object must cooperate to produce the correct move results. For instance, the drop interaction delegate might insert the data in a new location while the drag interaction delegate removes the data from the old location.
+    ///
+    ///
     #[doc(alias = "UIDropOperationMove")]
     pub const Move: Self = Self(3);
 }
@@ -85,7 +111,13 @@ unsafe impl RefEncode for UIDropOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropproposal?language=objc)
+    /// A configuration for the behavior of a drop interaction, required if a view accepts drop activities.
+    ///
+    /// ## Overview
+    ///
+    /// If a view’s drop interaction delegate accepts dropped drag items, it must return a drop proposal in its implementation of the [`dropInteraction:sessionDidUpdate:`](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate/dropinteraction(_:sessiondidupdate:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -146,7 +178,7 @@ impl UIDropProposal {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropinteractiondelegate?language=objc)
+    /// The interface for configuring and controlling a drop interaction.
     pub unsafe trait UIDropInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragSession")]
         #[optional]

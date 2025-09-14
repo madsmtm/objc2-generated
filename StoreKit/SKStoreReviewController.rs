@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Controller class to request a review from the current user
+    /// An object that controls the process of requesting App Store ratings and reviews from customers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorereviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`requestReviewInScene:`](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/requestreview(in:)) method to indicate when it makes sense within the logic of your app to ask the customer for ratings and reviews.
+    ///
+    ///
+    /// Controller class to request a review from the current user
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AppStore.requestReview(in:)"]

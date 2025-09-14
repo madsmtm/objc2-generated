@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer?language=objc)
+/// An abstraction for data-writing tasks that eliminates the need to manage a raw memory buffer.
+///
+/// ## Overview
+///
+/// Most apps should use [`CGImageDestinationRef`](https://developer.apple.com/documentation/imageio/cgimagedestination) objects instead.
+///
+///
 #[doc(alias = "CGDataConsumerRef")]
 #[repr(C)]
 pub struct CGDataConsumer {
@@ -26,14 +32,54 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDataConsumer"> for CGDataConsumer {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerputbytescallback?language=objc)
+/// Copies data from a Core Graphics-supplied buffer into a data consumer.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the pointer supplied to [`CGDataConsumerCreate`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)).
+///
+/// - buffer: The buffer from which you copy the specified number of bytes.
+///
+/// - count: The number of bytes to copy.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes copied. If no more data can be written to the consumer, you should return `0`.
+///
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics is ready to send data to the consumer, your function is called. It should copy the specified number of bytes from `buffer` into some resource under your control—for example, a file.
+///
+/// For information on how to associate your callback function with a data consumer, see [`CGDataConsumerCreate`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)) and [`CGDataConsumerCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks).
+///
+///
 pub type CGDataConsumerPutBytesCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumerreleaseinfocallback?language=objc)
+/// Releases any private data or resources associated with the data consumer.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGDataConsumerCreate`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)).
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics frees a data consumer that has an associated release function, the release function is called.
+///
+/// For information on how to associate your callback function with a data consumer, see [`CGDataConsumerCreate`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)) and [`CGDataConsumerCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks).
+///
+///
 pub type CGDataConsumerReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks?language=objc)
+/// A structure that contains pointers to callback functions that manage the copying of data for a data consumer.
+///
+/// ## Overview
+///
+/// The functions specified by the `CGDataConsumerCallbacks` structure are responsible for copying data that Core Graphics sends to your consumer and for handling the consumer’s basic memory management. You supply this structure to the function [`CGDataConsumerCreate`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)) to create a data consumer.
+///
+///
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -59,7 +105,13 @@ unsafe impl RefEncode for CGDataConsumerCallbacks {
 }
 
 unsafe impl ConcreteType for CGDataConsumer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for Core Graphics data consumers.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the opaque type [`CGDataConsumerRef`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer).
+    ///
+    ///
     #[doc(alias = "CGDataConsumerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -71,7 +123,19 @@ unsafe impl ConcreteType for CGDataConsumer {
 }
 
 impl CGDataConsumer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(info:cbks:)?language=objc)
+    /// Creates a data consumer that uses callback functions to write data.
+    ///
+    /// Parameters:
+    /// - info: A pointer to data of any type or `NULL`. When the callback is called, Core Graphics passes this pointer as the `info` parameter.
+    ///
+    /// - cbks: A pointer to a structure that specifies the callback functions you implement to copy data sent to the consumer and to handle the consumer’s basic memory management. For a complete description, see [`CGDataConsumerCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data consumer object. In Objective-C, you’re responsible for releasing this object using [`CGDataConsumerRelease`](https://developer.apple.com/documentation/coregraphics/cgdataconsumerrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -93,7 +157,17 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(url:)?language=objc)
+    /// Creates a data consumer that writes data to a location specified by a URL.
+    ///
+    /// Parameters:
+    /// - url: A CFURL object that specifies the data destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data consumer object. In Objective-C, you’re responsible for releasing this object using [`CGDataConsumerRelease`](https://developer.apple.com/documentation/coregraphics/cgdataconsumerrelease).
+    ///
+    ///
     #[doc(alias = "CGDataConsumerCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
@@ -104,7 +178,23 @@ impl CGDataConsumer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumer/init(data:)?language=objc)
+    /// Creates a data consumer that writes to a CFData object.
+    ///
+    /// Parameters:
+    /// - data: The CFData object to write to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data consumer object. In Objective-C, you’re responsible for releasing this object using [`CGDataConsumerRelease`](https://developer.apple.com/documentation/coregraphics/cgdataconsumerrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function when you need to represent Core Graphics data as a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) type. For example, you might create a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that you then copy to the pasteboard.
+    ///
+    ///
     #[doc(alias = "CGDataConsumerCreateWithCFData")]
     #[inline]
     pub fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {

@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintent?language=objc)
+    /// A request for the list of bills matching the specified criteria.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INSearchForBillsIntent`](https://developer.apple.com/documentation/intents/insearchforbillsintent) object when the user asks to see pending or already paid bills. The intent object contains the values to match when searching for bills. Users can search for bills based on the due date, the payee, the type, and whether they’re pending or already paid. When performing the search, use only the provided parameters to filter the search results and ignore any parameters that have a missing or unknown value.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSearchForBillsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling) protocol. Your handler should confirm the request and create an [`INSearchForBillsIntentResponse`](https://developer.apple.com/documentation/intents/insearchforbillsintentresponse) object with the results of the search. For successful searches, Siri offers a way for the user to view the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -109,11 +124,18 @@ impl INSearchForBillsIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for searching for bills associated with the user.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSearchForBillsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling) protocol to resolve, confirm, and handle requests to search for bills related to the user. Adopt this protocol in an object of your Intents extension that’s capable of searching the user’s bills and returning those bills that match the specified criteria. Users can search for bills based on the payee, the bill type, the due date, and whether the user has paid them or not.
+    ///
+    /// Siri delivers an [`INSearchForBillsIntent`](https://developer.apple.com/documentation/intents/insearchforbillsintent) object to your handler when the user asks to search for bills using your app. The provided intent object contains the parameters to use during the search. Use the methods of this protocol to resolve the parameters and perform the search.
+    ///
+    ///
     /// Protocol to declare support for handling an INSearchForBillsIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling?language=objc)
     #[deprecated = "INSearchForBillsIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSearchForBillsIntentHandling: NSObjectProtocol {
         #[cfg(all(

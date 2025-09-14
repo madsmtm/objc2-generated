@@ -10,7 +10,13 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustomlayer?language=objc)
+    /// An interface that defines the behavior of a custom layer in your neural network model.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`MLCustomLayer`](https://developer.apple.com/documentation/coreml/mlcustomlayer) protocol to define the behavior of your own neural network layers in Core ML models. You can deploy novel or proprietary models on your own release schedule. Custom layers also provide a mechanism for pre- or post-processing during model evaluation.
+    ///
+    ///
     pub unsafe trait MLCustomLayer {
         /// # Safety
         ///

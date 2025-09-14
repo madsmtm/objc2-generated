@@ -8,9 +8,8 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A structure that specifies information to find the keypoints in an image.
 /// Specifies information to find the keypoints in an image.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagekeypointrangeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSImageKeypointRangeInfo {
@@ -30,11 +29,16 @@ unsafe impl RefEncode for MPSImageKeypointRangeInfo {
 }
 
 extern_class!(
+    /// A kernel that is used to find a list of keypoints.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel is used to find a list of keypoints whose values are greater than the [`minimumThresholdValue`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagekeypointrangeinfo/minimumthresholdvalue) in [`MPSImageKeypointRangeInfo`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagekeypointrangeinfo). The keypoints are generated for a specified region in the image. The pixel format of the source image must be [`MTLPixelFormatR8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/r8unorm).
+    ///
+    ///
     /// The MPSImageFindKeypoints kernel is used to find a list of keypoints whose values are >= minimumPixelThresholdValue
     /// in MPSImageKeypointRangeInfo. The keypoints are generated for a specified region in the image.
     /// The pixel format of the source image must be MTLPixelFormatR8Unorm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefindkeypoints?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The constraint on the keys for a dictionary feature.
     /// MLDictionaryConstraint
     ///
     /// Constraint describing expected NSDictionary properties
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryconstraint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLDictionaryConstraint;

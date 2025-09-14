@@ -7,7 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocation?language=objc)
+    /// An Objective-C message rendered as an object.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) objects are used to store and forward messages between objects and between applications, primarily by [`Timer`](https://developer.apple.com/documentation/foundation/timer) objects and the distributed objects system. An [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object is dispatched.
+    ///
+    /// An [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object can be repeatedly dispatched to different targets; its arguments can be modified between dispatch for varying results; even its selector can be changed to another with the same method signature (argument and return types). This flexibility makes [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) useful for repeating messages with many arguments and variations; rather than retyping a slightly different expression for each message, you modify the [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) object as needed each time before dispatching it to a new target.
+    ///
+    /// [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) does not support invocations of methods with either variable numbers of arguments or `union` arguments. You should use the [`invocationWithMethodSignature:`](https://developer.apple.com/documentation/foundation/nsinvocation/invocationwithmethodsignature:) class method to create [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) objects; you should not create these objects using [`alloc`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571958-alloc) and [`init()`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()).
+    ///
+    /// This class does not retain the arguments for the contained invocation by default. If those objects might disappear between the time you create your instance of [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) and the time you use it, you should explicitly retain the objects yourself or invoke the [`retainArguments`](https://developer.apple.com/documentation/foundation/nsinvocation/retainarguments) method to have the invocation object retain them itself.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) does not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSInvocation;

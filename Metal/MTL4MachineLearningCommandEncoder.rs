@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// Encodes dispatch commands that run machine-learning model inference on Apple silicon.
     /// Encodes commands for dispatching machine learning networks on Apple silicon.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4machinelearningcommandencoder?language=objc)
     #[cfg(feature = "MTL4CommandEncoder")]
     pub unsafe trait MTL4MachineLearningCommandEncoder: MTL4CommandEncoder {
         #[cfg(all(feature = "MTL4MachineLearningPipeline", feature = "MTLAllocation"))]

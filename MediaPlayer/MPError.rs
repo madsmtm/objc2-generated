@@ -7,38 +7,44 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperrordomain?language=objc)
+    /// The Media Player framework error domain.
     pub static MPErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code?language=objc)
+/// An enumeration that represents error codes for framework operations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPErrorCode(pub NSInteger);
 impl MPErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/unknown?language=objc)
+    /// An error that indicates the requested operation can’t complete due to an unknown error.
     #[doc(alias = "MPErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/permissiondenied?language=objc)
+    /// An error that indicates the operation can’t complete because the user doesn’t have permission to execute the operation.
     #[doc(alias = "MPErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/cloudservicecapabilitymissing?language=objc)
+    /// An error that indicates the operation can’t complete because iCloud services aren’t enabled.
     #[doc(alias = "MPErrorCloudServiceCapabilityMissing")]
     pub const CloudServiceCapabilityMissing: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/networkconnectionfailed?language=objc)
+    /// An error that indicates the operation failed because the device can’t connect to the network.
     #[doc(alias = "MPErrorNetworkConnectionFailed")]
     pub const NetworkConnectionFailed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/notfound?language=objc)
+    /// An error that indicates the operation failed because the system can’t find the requested identifier in the current storefront.
     #[doc(alias = "MPErrorNotFound")]
     pub const NotFound: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/notsupported?language=objc)
+    /// An error that indicates the requested operation failed because the system doesn’t support it.
+    ///
+    /// ## Discussion
+    ///
+    /// An example of this is trying to add a media item to a smart playlist.
+    ///
+    ///
     #[doc(alias = "MPErrorNotSupported")]
     pub const NotSupported: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/cancelled?language=objc)
+    /// An error that indicates the system canceled the requested operation before it completed.
     #[doc(alias = "MPErrorCancelled")]
     pub const Cancelled: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mperror/code/requesttimedout?language=objc)
+    /// An error that indicates the requested operation timed out.
     #[doc(alias = "MPErrorRequestTimedOut")]
     pub const RequestTimedOut: Self = Self(7);
 }

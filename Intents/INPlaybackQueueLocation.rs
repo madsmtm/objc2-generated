@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation?language=objc)
+/// Constants that describe the playback queue location for a media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPlaybackQueueLocation(pub NSInteger);
 impl INPlaybackQueueLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/unknown?language=objc)
+    /// A response that indicates the system doesn’t know where to place the media item.
     #[doc(alias = "INPlaybackQueueLocationUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/now?language=objc)
+    /// A response that tells the system to play the item immediately, interrupting any currently playing media.
     #[doc(alias = "INPlaybackQueueLocationNow")]
     pub const Now: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/next?language=objc)
+    /// A response that tells the system to play the media item after the currently playing media item finishes.
     #[doc(alias = "INPlaybackQueueLocationNext")]
     pub const Next: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocation/later?language=objc)
+    /// A response that tells the system to add the media item to the end of the playback queue.
     #[doc(alias = "INPlaybackQueueLocationLater")]
     pub const Later: Self = Self(3);
 }

@@ -5,26 +5,49 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationenvironmentusername?language=objc)
+/// The type for an authorization item containing a user name.
 pub const kAuthorizationEnvironmentUsername: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"username\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationenvironmentpassword?language=objc)
+/// The type for an authorization item containing a password.
 pub const kAuthorizationEnvironmentPassword: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"password\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationenvironmentshared?language=objc)
+/// The type for an authorization item containing a shared right.
+///
+/// ## Discussion
+///
+/// Adding a kAuthorizationEnvironmentShared entry in the environment causes the username and password to be added to the shared credential pool of the calling application’s session. This means that further calls by other applications in this session automatically have this credential available to them.
+///
+///
 pub const kAuthorizationEnvironmentShared: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"shared\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationrightexecute?language=objc)
+/// The type for an authorization item requesting the right to execute with privileges.
+///
+/// ## Discussion
+///
+/// In addition to this right, you should obtain whatever rights the tool needs to perform its operation on your behalf. The [`AuthorizationItem`](https://developer.apple.com/documentation/security/authorizationitem) should contain the full path of the tool you wish to execute in the `value` and `valueLength` fields.  In the future we will limit the right to only execute the requested path, and we will display this information to the user.
+///
+///
 pub const kAuthorizationRightExecute: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"system.privilege.admin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationenvironmentprompt?language=objc)
+/// The type for an authorization item containing the name of the item that should be passed into the environment when specifying invocation-specific additional text.
+///
+/// ## Discussion
+///
+/// The value should be a localized UTF-8 string.
+///
+///
 pub const kAuthorizationEnvironmentPrompt: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"prompt\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationenvironmenticon?language=objc)
+/// The type for an authorization item containing the name of the item that should be passed into the environment when specifying an alternate icon.
+///
+/// ## Discussion
+///
+/// The value should be a full path to an image compatible with the NSImage class.
+///
+///
 pub const kAuthorizationEnvironmentIcon: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"icon\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationpamresult?language=objc)
+/// The type for an authorization item containing a return code from a Pluggable Authentication Module (PAM).
 pub const kAuthorizationPamResult: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"pam_result\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationflags?language=objc)
 pub const kAuthorizationFlags: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"flags\0") };

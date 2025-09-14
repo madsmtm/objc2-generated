@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A device that manages port-based connections between the guest system and the host computer.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioSocketDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice) object to configure services and other communication end points in your virtual machine. Host computers make services available using ports, which identify the type of service and the protocol to use when transmitting data. Use this object to specify the ports available to your guest operating system, and to register handlers to manage the communication on those ports.
+    ///
+    /// Don’t create a [`VZVirtioSocketDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice) object directly. Instead, when you request a socket device in your configuration, the virtual machine creates it and stores it in the [`socketDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/socketdevices) property. For each port you want to make available in your virtual machine, call the [`setSocketListener:forPort:`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice/setsocketlistener(_:forport:)) method and provide an object to manage the port connections.
+    ///
+    ///
     /// Virtio Socket Device
     ///
     /// This is a paravirtualized socket device which facilitates data transfer between the guest and the host without using Ethernet or IP protocols.
@@ -18,8 +27,6 @@ extern_class!(
     /// See: VZVirtioSocketDeviceConnection
     ///
     /// See: VZVirtioSocketDeviceListener
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice?language=objc)
     #[unsafe(super(VZSocketDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSocketDevice")]

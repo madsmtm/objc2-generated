@@ -10,10 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// An abstract Core Foundation-type object representing an X.509 certificate.
+///
+/// ## Overview
+///
+/// A [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) object for a certificate that is stored in a keychain can be safely cast to a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) for manipulation as a keychain item. On the other hand, if the [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) is not stored in a keychain, casting the object to a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) and passing it to Keychain Services functions returns errors.
+///
+///
 /// CFType representing a X.509 certificate.
 /// See SecCertificate.h for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccertificate?language=objc)
 #[doc(alias = "SecCertificateRef")]
 #[repr(C)]
 pub struct SecCertificate {
@@ -33,11 +38,16 @@ unsafe impl Send for SecCertificate {}
 
 unsafe impl Sync for SecCertificate {}
 
+/// An abstract Core Foundation-type object representing an identity.
+///
+/// ## Overview
+///
+/// A [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) object contains a [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) object and an associated [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) object.
+///
+///
 /// CFType representing an identity, which contains
 /// a SecKeyRef and an associated SecCertificateRef. See
 /// SecIdentity.h for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secidentity?language=objc)
 #[doc(alias = "SecIdentityRef")]
 #[repr(C)]
 pub struct SecIdentity {
@@ -53,10 +63,15 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecIdentity"> for SecIdentity {}
 );
 
+/// An object that represents a cryptographic key.
+///
+/// ## Overview
+///
+/// A [`SecKeyRef`](https://developer.apple.com/documentation/security/seckey) instance that represents a key that is stored in a keychain can be safely cast to a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) for manipulation as a keychain item. On the other hand, if the key is not stored in a keychain, casting the object to a [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) and passing it to Keychain Services functions returns errors.
+///
+///
 /// CFType representing a cryptographic key. See
 /// SecKey.h for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckey?language=objc)
 #[doc(alias = "SecKeyRef")]
 #[repr(C)]
 pub struct SecKey {
@@ -72,10 +87,9 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecKey"> for SecKey {}
 );
 
+/// An object that represents a trust policy.
 /// CFType representing a X.509 certificate trust policy.
 /// See SecPolicy.h for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpolicy?language=objc)
 #[doc(alias = "SecPolicyRef")]
 #[repr(C)]
 pub struct SecPolicy {
@@ -91,10 +105,9 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecPolicy"> for SecPolicy {}
 );
 
+/// An opaque type that contains information about how a keychain item may be used.
 /// CFType representing access control for an item.
 /// SecAccessControl.h for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrol?language=objc)
 #[doc(alias = "SecAccessControlRef")]
 #[repr(C)]
 pub struct SecAccessControl {
@@ -110,9 +123,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecAccessControl"> for SecAccessControl {}
 );
 
+/// An opaque type that represents a keychain.
 /// Contains information about a keychain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychain?language=objc)
 #[doc(alias = "SecKeychainRef")]
 #[repr(C)]
 pub struct SecKeychain {
@@ -128,9 +140,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecKeychain"> for SecKeychain {}
 );
 
-/// Contains information about a keychain item.
+/// An opaque type that represents a keychain item.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainitem?language=objc)
+/// ## Overview
+///
+/// A [`SecKeychainItemRef`](https://developer.apple.com/documentation/security/seckeychainitem) object for a certificate that is stored in a keychain can be safely cast to a [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) for use with [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services).
+///
+///
+/// Contains information about a keychain item.
 #[doc(alias = "SecKeychainItemRef")]
 #[repr(C)]
 pub struct SecKeychainItem {
@@ -146,9 +163,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecKeychainItem"> for SecKeychainItem {}
 );
 
+/// An opaque type that contains information about a keychain search.
 /// Contains information about a keychain search.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsearch?language=objc)
 #[doc(alias = "SecKeychainSearchRef")]
 #[repr(C)]
 pub struct SecKeychainSearch {
@@ -164,17 +180,15 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecKeychainSearch"> for SecKeychainSearch {}
 );
 
+/// The keychain attribute type.
 /// Represents a keychain attribute type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattrtype?language=objc)
 pub type SecKeychainAttrType = OSType;
 
+/// A structure that holds a single keychain attribute.
 /// Contains keychain attributes.
 /// Field: tag A 4-byte attribute tag.
 /// Field: length The length of the buffer pointed to by data.
 /// Field: data A pointer to the attribute data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattribute?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecKeychainAttribute {
@@ -200,16 +214,14 @@ unsafe impl RefEncode for SecKeychainAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A pointer to a keychain attribute structure.
 /// Represents a pointer to a keychain attribute structure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributeptr?language=objc)
 pub type SecKeychainAttributePtr = *mut SecKeychainAttribute;
 
+/// A list of keychain attributes.
 /// Represents a list of keychain attributes.
 /// Field: count An unsigned 32-bit integer that represents the number of keychain attributes in the array.
 /// Field: attr A pointer to the first keychain attribute in the array.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributelist?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecKeychainAttributeList {
@@ -230,14 +242,24 @@ unsafe impl RefEncode for SecKeychainAttributeList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Represents the status of a keychain.
+/// A value that defines the current status of a keychain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainstatus?language=objc)
+/// ## Discussion
+///
+/// Use the values defined in [SecKeychainStatus Values](https://developer.apple.com/documentation/security/seckeychainstatus-values).
+///
+///
+/// Represents the status of a keychain.
 pub type SecKeychainStatus = u32;
 
-/// Contains information about a trusted application.
+/// An opaque type that contains information about a trusted app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplication?language=objc)
+/// ## Overview
+///
+/// Use the [`SecTrustedApplicationCreateFromPath`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) method to create a new trusted app instance.
+///
+///
+/// Contains information about a trusted application.
 #[doc(alias = "SecTrustedApplicationRef")]
 #[repr(C)]
 pub struct SecTrustedApplication {
@@ -253,9 +275,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecTrustedApplication"> for SecTrustedApplication {}
 );
 
+/// An opaque type that identifies a keychain item’s access information.
 /// Contains information about an access.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccess?language=objc)
 #[doc(alias = "SecAccessRef")]
 #[repr(C)]
 pub struct SecAccess {
@@ -271,9 +292,8 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecAccess"> for SecAccess {}
 );
 
+/// An opaque type that represents information about an ACL entry.
 /// Contains information about an access control list (ACL) entry.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secacl?language=objc)
 #[doc(alias = "SecACLRef")]
 #[repr(C)]
 pub struct SecACL {
@@ -290,8 +310,7 @@ cf_objc2_type!(
 );
 
 /// Contains information about a password.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpassword?language=objc)
+/// Contains information about a password.
 #[doc(alias = "SecPasswordRef")]
 #[repr(C)]
 pub struct SecPassword {
@@ -307,14 +326,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecPassword"> for SecPassword {}
 );
 
+/// A structure that represents an attribute.
+///
+/// ## Overview
+///
+/// Each tag and format item form a pair. Use [`SecKeychainAttributeInfoForItemID`](https://developer.apple.com/documentation/security/seckeychainattributeinfoforitemid(_:_:_:)) to obtain the structure for a given keychain item, and [`SecKeychainFreeAttributeInfo`](https://developer.apple.com/documentation/security/seckeychainfreeattributeinfo(_:)) to release that structure’s memory when you are done with it. Use an instance of this structure in a call to the [`SecKeychainItemCopyAttributesAndData`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) function to specify the attributes of a keychain item to retrieve.
+///
+///
 /// Represents an attribute.
 /// Field: count The number of tag-format pairs in the respective arrays.
 /// Field: tag A pointer to the first attribute tag in the array.
 /// Field: format A pointer to the first CSSM_DB_ATTRIBUTE_FORMAT in the array.
 ///
 /// Each tag and format item form a pair.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecKeychainAttributeInfo {
@@ -340,6 +364,19 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Returns a string explaining the meaning of a security result code.
+///
+/// Parameters:
+/// - status: A result code of type `OSStatus` returned by a security function. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes) for a list of codes.
+///
+/// - reserved: Reserved for future use. Pass `nil` for this parameter.
+///
+///
+/// ## Return Value
+///
+/// A human-readable string describing the result, or `nil` if no string is available for the specified result code. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+///
+///
 /// Returns a string describing the specified error result code.
 ///
 /// Parameter `status`: An error result code of type OSStatus or CSSM_RETURN, as returned by a Security or CSSM function.
@@ -350,8 +387,6 @@ unsafe impl RefEncode for SecKeychainAttributeInfo {
 /// # Safety
 ///
 /// `reserved` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccopyerrormessagestring(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
     status: OSStatus,
@@ -367,923 +402,1066 @@ pub unsafe extern "C-unwind" fn SecCopyErrorMessageString(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsuccess?language=objc)
+/// No error.
 pub const errSecSuccess: OSStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunimplemented?language=objc)
+/// A function or operation is not implemented.
 pub const errSecUnimplemented: OSStatus = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdiskfull?language=objc)
+/// The disk is full.
 pub const errSecDiskFull: OSStatus = -34;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdskfull?language=objc)
+/// The disk is full.
 #[deprecated]
 pub const errSecDskFull: OSStatus = -34;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecio?language=objc)
+/// I/O error.
 pub const errSecIO: OSStatus = -36;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecopwr?language=objc)
+/// The file is already open with write permission.
 pub const errSecOpWr: OSStatus = -49;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecparam?language=objc)
+/// One or more parameters passed to the function are not valid.
 pub const errSecParam: OSStatus = -50;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecwrperm?language=objc)
+/// Write permissions error.
 pub const errSecWrPerm: OSStatus = -61;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecallocate?language=objc)
+/// Failed to allocate memory.
 pub const errSecAllocate: OSStatus = -108;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecusercanceled?language=objc)
+/// User canceled the operation.
 pub const errSecUserCanceled: OSStatus = -128;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecbadreq?language=objc)
+/// Bad parameter or invalid state for operation.
 pub const errSecBadReq: OSStatus = -909;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinternalcomponent?language=objc)
+/// An internal component experienced an error.
 pub const errSecInternalComponent: OSStatus = -2070;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccorefoundationunknown?language=objc)
+/// An unknown Core Foundation error occurred.
 pub const errSecCoreFoundationUnknown: OSStatus = -4960;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingentitlement?language=objc)
+/// A required entitlement is missing.
+///
+/// ## Overview
+///
+/// The [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) method returns this error when you specify an access group to which your app doesn’t belong:
+///
+/// ```swift
+/// let attributes = [kSecClass: kSecClassGenericPassword,
+///                   kSecAttrService: service,
+///                   kSecAttrAccount: username,
+///                   kSecAttrAccessGroup: "group",
+///                   kSecValueData: password] as [String: Any]
+/// let addStatus = SecItemAdd(attributes as CFDictionary, nil)
+/// ```
+///
+/// To avoid the error, either use your app’s default access group by omitting the [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) key in the add attributes, or make sure that the value associated with the key matches one of your app’s access groups. These access groups come from your app’s [`Keychain Access Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/keychain-access-groups), its app identifier, and its [`App Groups Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.application-groups), in that order, as described in [Sharing access to keychain items among a collection of apps](https://developer.apple.com/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps).
+///
+/// You can check the access group string by setting a breakpoint on the [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)) call and using the debugger to print the query dictionary. Look for the `agrp` item:
+///
+/// ```sh
+/// (lldb) p attributes
+/// ([String : Any]) $R0 = 5 key/value pairs {
+/// ...
+///   [3] = {
+///     key = "agrp"
+///     value = "SKMME9E2Y8.com.example.AppOne"
+///   }
+/// ...
+/// }
+/// ```
+///
+/// If after setting the access group key correctly you still receive the `errSecMissingEntitlement` error, check to make sure the entitlements in your built app match your expectations. Build your app for a hardware target—not the Simulator app—and use Xcode to locate the app bundle on disk:
+///
+///
+/// ![Screenshot of Xcode showing how to find the full path to a built app bundle.](https://docs-assets.developer.apple.com/published/3e2ed90d0f429cda500e6d525afe04af/media-3370373%402x.png)
+///
+///
+/// Then get a list of the app’s entitlements. Run the codesign command-line utility shown in the following example, substituting the Xcode-provided path to your app, like the one highlighted in the preceding illustration.
+///
+/// ```sh
+/// $ codesign -d --entitlements :- [path]
+///
+///
+/// <plist version="1.0">
+/// <dict>
+///    <key>com.apple.developer.team-identifier</key>
+///    <string>SKMME9E2Y8</string>
+///    <key>application-identifier</key>
+///    <string>SKMME9E2Y8.com.example.AppOne</string>
+///    <key>keychain-access-groups</key>
+///    <array>
+///        <string>SKMME9E2Y8.com.example.SharedItems</string>
+///    </array>
+///    <key>com.apple.security.application-groups</key>
+///    <array>
+///        <string>group.com.example.AppSuite</string>
+///    </array>
+/// </dict>
+/// </plist>
+/// ```
+///
+/// Inspect the codesign output to determine the groups to which your app actually belongs. The following collectively define your app’s access groups:
+///
+/// - Any of the strings in the array associated with the `keychain-access-groups` key.
+///
+/// - The string corresponding to the `application-identifier` key (or the `com.apple.application-identifier` key in macOS).
+///
+/// - Any of the strings in the array associated with the `com.apple.security.application-groups` key.
+///
+///
 pub const errSecMissingEntitlement: OSStatus = -34018;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrestrictedapi?language=objc)
 pub const errSecRestrictedAPI: OSStatus = -34020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnotavailable?language=objc)
+/// No trust results are available.
 pub const errSecNotAvailable: OSStatus = -25291;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecreadonly?language=objc)
+/// Read-only error.
 pub const errSecReadOnly: OSStatus = -25292;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecauthfailed?language=objc)
+/// Authorization and/or authentication failed.
 pub const errSecAuthFailed: OSStatus = -25293;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnosuchkeychain?language=objc)
+/// The keychain does not exist.
 pub const errSecNoSuchKeychain: OSStatus = -25294;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeychain?language=objc)
+/// The keychain is not valid.
 pub const errSecInvalidKeychain: OSStatus = -25295;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecduplicatekeychain?language=objc)
+/// A keychain with the same name already exists.
 pub const errSecDuplicateKeychain: OSStatus = -25296;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecduplicatecallback?language=objc)
+/// More than one callback of the same name exists.
 pub const errSecDuplicateCallback: OSStatus = -25297;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcallback?language=objc)
+/// The callback is not valid.
 pub const errSecInvalidCallback: OSStatus = -25298;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecduplicateitem?language=objc)
+/// The item already exists.
+///
+/// ## Discussion
+///
+/// The system considers an item to be a duplicate for a given keychain when that keychain already has an item of the same class with the same set of composite primary keys. Each class of keychain item has a different set of primary keys, although a few attributes are used in common across all classes. In particular, where applicable, [`kSecAttrSynchronizable`](https://developer.apple.com/documentation/security/ksecattrsynchronizable) and [`kSecAttrAccessGroup`](https://developer.apple.com/documentation/security/ksecattraccessgroup) are part of the set of primary keys. The additional per-class primary keys are listed below:
+///
+/// For generic passwords, the primary keys include [`kSecAttrAccount`](https://developer.apple.com/documentation/security/ksecattraccount) and [`kSecAttrService`](https://developer.apple.com/documentation/security/ksecattrservice).
+///
+/// For internet passwords, the primary keys include [`kSecAttrAccount`](https://developer.apple.com/documentation/security/ksecattraccount), [`kSecAttrSecurityDomain`](https://developer.apple.com/documentation/security/ksecattrsecuritydomain), [`kSecAttrServer`](https://developer.apple.com/documentation/security/ksecattrserver), [`kSecAttrProtocol`](https://developer.apple.com/documentation/security/ksecattrprotocol), [`kSecAttrAuthenticationType`](https://developer.apple.com/documentation/security/ksecattrauthenticationtype), [`kSecAttrPort`](https://developer.apple.com/documentation/security/ksecattrport), and [`kSecAttrPath`](https://developer.apple.com/documentation/security/ksecattrpath).
+///
+/// For certificates, the primary keys include [`kSecAttrCertificateType`](https://developer.apple.com/documentation/security/ksecattrcertificatetype), [`kSecAttrIssuer`](https://developer.apple.com/documentation/security/ksecattrissuer), and [`kSecAttrSerialNumber`](https://developer.apple.com/documentation/security/ksecattrserialnumber).
+///
+/// For key items, the primary keys include [`kSecAttrKeyClass`](https://developer.apple.com/documentation/security/ksecattrkeyclass), [`kSecAttrKeyType`](https://developer.apple.com/documentation/security/ksecattrkeytype), [`kSecAttrApplicationLabel`](https://developer.apple.com/documentation/security/ksecattrapplicationlabel), [`kSecAttrApplicationTag`](https://developer.apple.com/documentation/security/ksecattrapplicationtag), [`kSecAttrKeySizeInBits`](https://developer.apple.com/documentation/security/ksecattrkeysizeinbits), and [`kSecAttrEffectiveKeySize`](https://developer.apple.com/documentation/security/ksecattreffectivekeysize).
+///
+/// For identity items, which are a certificate and a private key bundled together, the primary keys are the same as for a certificate. Because a private key may be certified more than once, the uniqueness of the certificate determines that of the identity.
+///
+///
 pub const errSecDuplicateItem: OSStatus = -25299;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecitemnotfound?language=objc)
+/// The item cannot be found.
 pub const errSecItemNotFound: OSStatus = -25300;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecbuffertoosmall?language=objc)
+/// The buffer is too small.
 pub const errSecBufferTooSmall: OSStatus = -25301;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdatatoolarge?language=objc)
+/// The data is too large for the particular data type.
 pub const errSecDataTooLarge: OSStatus = -25302;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnosuchattr?language=objc)
+/// The attribute does not exist.
 pub const errSecNoSuchAttr: OSStatus = -25303;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliditemref?language=objc)
+/// The item reference is invalid.
 pub const errSecInvalidItemRef: OSStatus = -25304;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsearchref?language=objc)
+/// The search reference is invalid.
 pub const errSecInvalidSearchRef: OSStatus = -25305;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnosuchclass?language=objc)
+/// The keychain item class does not exist.
 pub const errSecNoSuchClass: OSStatus = -25306;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnodefaultkeychain?language=objc)
+/// A default keychain does not exist.
 pub const errSecNoDefaultKeychain: OSStatus = -25307;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinteractionnotallowed?language=objc)
+/// Interaction with the Security Server is not allowed.
 pub const errSecInteractionNotAllowed: OSStatus = -25308;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecreadonlyattr?language=objc)
+/// The attribute is read-only.
 pub const errSecReadOnlyAttr: OSStatus = -25309;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecwrongsecversion?language=objc)
+/// The version is incorrect.
 pub const errSecWrongSecVersion: OSStatus = -25310;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseckeysizenotallowed?language=objc)
+/// The key size is not allowed.
 pub const errSecKeySizeNotAllowed: OSStatus = -25311;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnostoragemodule?language=objc)
+/// There is no storage module available.
 pub const errSecNoStorageModule: OSStatus = -25312;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnocertificatemodule?language=objc)
+/// There is no certificate module available.
 pub const errSecNoCertificateModule: OSStatus = -25313;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnopolicymodule?language=objc)
+/// There is no policy module available.
 pub const errSecNoPolicyModule: OSStatus = -25314;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinteractionrequired?language=objc)
+/// User interaction is required.
 pub const errSecInteractionRequired: OSStatus = -25315;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdatanotavailable?language=objc)
+/// The data is not available.
 pub const errSecDataNotAvailable: OSStatus = -25316;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdatanotmodifiable?language=objc)
+/// The data is not modifiable.
 pub const errSecDataNotModifiable: OSStatus = -25317;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccreatechainfailed?language=objc)
+/// The attempt to create a certificate chain failed.
 pub const errSecCreateChainFailed: OSStatus = -25318;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidprefsdomain?language=objc)
+/// The preference domain specified is invalid.
+///
+/// ## Discussion
+///
+/// This error is available in macOS 10.3 and later.
+///
+///
 pub const errSecInvalidPrefsDomain: OSStatus = -25319;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecindarkwake?language=objc)
+/// The user interface cannot be displayed because the system is in a dark wake state.
 pub const errSecInDarkWake: OSStatus = -25320;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecaclnotsimple?language=objc)
+/// The access control list is not in standard simple form.
 pub const errSecACLNotSimple: OSStatus = -25240;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpolicynotfound?language=objc)
+/// The specified policy cannot be found.
 pub const errSecPolicyNotFound: OSStatus = -25241;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtrustsetting?language=objc)
+/// The trust setting is invalid.
 pub const errSecInvalidTrustSetting: OSStatus = -25242;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnoaccessforitem?language=objc)
+/// The specified item has no access control.
 pub const errSecNoAccessForItem: OSStatus = -25243;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidowneredit?language=objc)
+/// An invalid attempt to change the owner of an item.
 pub const errSecInvalidOwnerEdit: OSStatus = -25244;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectrustnotavailable?language=objc)
+/// No trust results are available.
 pub const errSecTrustNotAvailable: OSStatus = -25245;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedformat?language=objc)
+/// The specified import or export format is not supported.
 pub const errSecUnsupportedFormat: OSStatus = -25256;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknownformat?language=objc)
+/// The item you are trying to import has an unknown format.
 pub const errSecUnknownFormat: OSStatus = -25257;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseckeyissensitive?language=objc)
+/// The key must be wrapped to be exported.
 pub const errSecKeyIsSensitive: OSStatus = -25258;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmultipleprivkeys?language=objc)
+/// An attempt was made to import multiple private keys.
 pub const errSecMultiplePrivKeys: OSStatus = -25259;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpassphraserequired?language=objc)
+/// A password is required for import or export.
 pub const errSecPassphraseRequired: OSStatus = -25260;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidpasswordref?language=objc)
+/// The password reference is invalid.
 pub const errSecInvalidPasswordRef: OSStatus = -25261;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtrustsettings?language=objc)
+/// The trust settings record is corrupted.
 pub const errSecInvalidTrustSettings: OSStatus = -25262;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnotrustsettings?language=objc)
+/// No trust settings were found.
 pub const errSecNoTrustSettings: OSStatus = -25263;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpkcs12verifyfailure?language=objc)
+/// MAC verification failed during PKCS12 Import.
 pub const errSecPkcs12VerifyFailure: OSStatus = -25264;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnotsigner?language=objc)
+/// The certificate is not signed by its proposed parent.
 pub const errSecNotSigner: OSStatus = -26267;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdecode?language=objc)
+/// Unable to decode the provided data.
 pub const errSecDecode: OSStatus = -26275;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecservicenotavailable?language=objc)
+/// Self-check failed.
 pub const errSecServiceNotAvailable: OSStatus = -67585;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinsufficientclientid?language=objc)
+/// The client ID is incorrect.
 pub const errSecInsufficientClientID: OSStatus = -67586;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdevicereset?language=objc)
+/// A device reset has occurred.
 pub const errSecDeviceReset: OSStatus = -67587;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdevicefailed?language=objc)
+/// A device failure has occurred.
 pub const errSecDeviceFailed: OSStatus = -67588;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecappleaddappaclsubject?language=objc)
+/// Adding an application ACL subject failed.
 pub const errSecAppleAddAppACLSubject: OSStatus = -67589;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecapplepublickeyincomplete?language=objc)
+/// The public key is incomplete.
 pub const errSecApplePublicKeyIncomplete: OSStatus = -67590;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecapplesignaturemismatch?language=objc)
+/// A signature mismatch has occurred.
 pub const errSecAppleSignatureMismatch: OSStatus = -67591;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecappleinvalidkeystartdate?language=objc)
+/// The specified key has an invalid start date.
 pub const errSecAppleInvalidKeyStartDate: OSStatus = -67592;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecappleinvalidkeyenddate?language=objc)
+/// The specified key has an invalid end date.
 pub const errSecAppleInvalidKeyEndDate: OSStatus = -67593;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecconversionerror?language=objc)
+/// A conversion error has occurred.
 pub const errSecConversionError: OSStatus = -67594;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecapplesslv2rollback?language=objc)
+/// A SSLv2 rollback error has occurred.
 pub const errSecAppleSSLv2Rollback: OSStatus = -67595;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecquotaexceeded?language=objc)
+/// The quota was exceeded.
 pub const errSecQuotaExceeded: OSStatus = -67596;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecfiletoobig?language=objc)
+/// The file is too big.
 pub const errSecFileTooBig: OSStatus = -67597;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliddatabaseblob?language=objc)
+/// The specified database has an invalid blob.
 pub const errSecInvalidDatabaseBlob: OSStatus = -67598;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyblob?language=objc)
+/// The specified database has an invalid key blob.
 pub const errSecInvalidKeyBlob: OSStatus = -67599;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecincompatibledatabaseblob?language=objc)
+/// The specified database has an incompatible blob.
 pub const errSecIncompatibleDatabaseBlob: OSStatus = -67600;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecincompatiblekeyblob?language=objc)
+/// The specified database has an incompatible key blob.
 pub const errSecIncompatibleKeyBlob: OSStatus = -67601;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsechostnamemismatch?language=objc)
+/// A host name mismatch has occurred.
 pub const errSecHostNameMismatch: OSStatus = -67602;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknowncriticalextensionflag?language=objc)
+/// There is an unknown critical extension flag.
 pub const errSecUnknownCriticalExtensionFlag: OSStatus = -67603;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnobasicconstraints?language=objc)
+/// No basic constraints were found.
 pub const errSecNoBasicConstraints: OSStatus = -67604;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnobasicconstraintsca?language=objc)
+/// No basic CA constraints were found.
 pub const errSecNoBasicConstraintsCA: OSStatus = -67605;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidauthoritykeyid?language=objc)
+/// The authority key ID is not valid.
 pub const errSecInvalidAuthorityKeyID: OSStatus = -67606;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsubjectkeyid?language=objc)
+/// The subject key ID is not valid.
 pub const errSecInvalidSubjectKeyID: OSStatus = -67607;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyusageforpolicy?language=objc)
+/// The key usage is not valid for the specified policy.
 pub const errSecInvalidKeyUsageForPolicy: OSStatus = -67608;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidextendedkeyusage?language=objc)
+/// The extended key usage is not valid.
 pub const errSecInvalidExtendedKeyUsage: OSStatus = -67609;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalididlinkage?language=objc)
+/// The ID linkage is not valid.
 pub const errSecInvalidIDLinkage: OSStatus = -67610;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpathlengthconstraintexceeded?language=objc)
+/// The path length constraint was exceeded.
 pub const errSecPathLengthConstraintExceeded: OSStatus = -67611;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidroot?language=objc)
+/// The root or anchor certificate is not valid.
 pub const errSecInvalidRoot: OSStatus = -67612;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlexpired?language=objc)
+/// The certificate revocation list has expired.
 pub const errSecCRLExpired: OSStatus = -67613;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlnotvalidyet?language=objc)
+/// The certificate revocation list is not yet valid.
 pub const errSecCRLNotValidYet: OSStatus = -67614;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlnotfound?language=objc)
+/// The certificate revocation list was not found.
 pub const errSecCRLNotFound: OSStatus = -67615;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlserverdown?language=objc)
+/// The certificate revocation list server is down.
 pub const errSecCRLServerDown: OSStatus = -67616;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlbaduri?language=objc)
+/// The certificate revocation list has a bad uniform resource identifier.
 pub const errSecCRLBadURI: OSStatus = -67617;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknowncertextension?language=objc)
+/// An unknown certificate extension was detected.
 pub const errSecUnknownCertExtension: OSStatus = -67618;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknowncrlextension?language=objc)
+/// An unknown certificate revocation list extension was detected.
 pub const errSecUnknownCRLExtension: OSStatus = -67619;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlnottrusted?language=objc)
+/// The certificate revocation list is not trusted.
 pub const errSecCRLNotTrusted: OSStatus = -67620;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlpolicyfailed?language=objc)
+/// The certificate revocation list policy failed.
 pub const errSecCRLPolicyFailed: OSStatus = -67621;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecidpfailure?language=objc)
+/// The issuing distribution point is not valid.
 pub const errSecIDPFailure: OSStatus = -67622;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimeemailaddressesnotfound?language=objc)
+/// An email address mismatch was detected.
 pub const errSecSMIMEEmailAddressesNotFound: OSStatus = -67623;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimebadextendedkeyusage?language=objc)
+/// The appropriate extended key usage for SMIME is not found.
 pub const errSecSMIMEBadExtendedKeyUsage: OSStatus = -67624;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimebadkeyusage?language=objc)
+/// The key usage is not compatible with SMIME.
 pub const errSecSMIMEBadKeyUsage: OSStatus = -67625;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimekeyusagenotcritical?language=objc)
+/// The key usage extension is not marked as critical.
 pub const errSecSMIMEKeyUsageNotCritical: OSStatus = -67626;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimenoemailaddress?language=objc)
+/// No email address is found in the certificate.
 pub const errSecSMIMENoEmailAddress: OSStatus = -67627;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsmimesubjaltnamenotcritical?language=objc)
+/// The subject alternative name extension is not marked as critical.
 pub const errSecSMIMESubjAltNameNotCritical: OSStatus = -67628;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsslbadextendedkeyusage?language=objc)
+/// The appropriate extended key usage for SSL is not found.
 pub const errSecSSLBadExtendedKeyUsage: OSStatus = -67629;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspbadresponse?language=objc)
+/// The online certificate status protocol (OCSP) response is incorrect or cannot be parsed.
 pub const errSecOCSPBadResponse: OSStatus = -67630;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspbadrequest?language=objc)
+/// The online certificate status protocol (OCSP) request is incorrect or cannot be parsed.
 pub const errSecOCSPBadRequest: OSStatus = -67631;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspunavailable?language=objc)
+/// The online certificate status protocol (OCSP) service is unavailable.
 pub const errSecOCSPUnavailable: OSStatus = -67632;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspstatusunrecognized?language=objc)
+/// The online certificate status protocol (OCSP) server does not recognize this certificate.
 pub const errSecOCSPStatusUnrecognized: OSStatus = -67633;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecendofdata?language=objc)
+/// An end-of-data was detected.
 pub const errSecEndOfData: OSStatus = -67634;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecincompletecertrevocationcheck?language=objc)
+/// An incomplete certificate revocation check occurred.
 pub const errSecIncompleteCertRevocationCheck: OSStatus = -67635;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnetworkfailure?language=objc)
+/// A network failure occurred.
 pub const errSecNetworkFailure: OSStatus = -67636;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspnottrustedtoanchor?language=objc)
+/// The online certificate status protocol (OCSP) response is not trusted to a root or anchor certificate.
 pub const errSecOCSPNotTrustedToAnchor: OSStatus = -67637;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrecordmodified?language=objc)
+/// The record is modified.
 pub const errSecRecordModified: OSStatus = -67638;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspsignatureerror?language=objc)
+/// The online certificate status protocol (OCSP) response has an invalid signature.
 pub const errSecOCSPSignatureError: OSStatus = -67639;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspnosigner?language=objc)
+/// The online certificate status protocol (OCSP) response has no signer.
 pub const errSecOCSPNoSigner: OSStatus = -67640;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocsprespondermalformedreq?language=objc)
+/// The online certificate status protocol (OCSP) responder detected a malformed request.
 pub const errSecOCSPResponderMalformedReq: OSStatus = -67641;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspresponderinternalerror?language=objc)
+/// The online certificate status protocol (OCSP) responder detected an internal error.
 pub const errSecOCSPResponderInternalError: OSStatus = -67642;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocsprespondertrylater?language=objc)
+/// The online certificate status protocol (OCSP) responder is busy, try again later.
 pub const errSecOCSPResponderTryLater: OSStatus = -67643;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocsprespondersignaturerequired?language=objc)
+/// The online certificate status protocol (OCSP) responder requires a signature.
 pub const errSecOCSPResponderSignatureRequired: OSStatus = -67644;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspresponderunauthorized?language=objc)
+/// The online certificate status protocol (OCSP) responder rejects the request as unauthorized.
 pub const errSecOCSPResponderUnauthorized: OSStatus = -67645;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecocspresponsenoncemismatch?language=objc)
+/// The online certificate status protocol (OCSP) response nonce does not match the request.
 pub const errSecOCSPResponseNonceMismatch: OSStatus = -67646;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccodesigningbadcertchainlength?language=objc)
+/// Code signing encountered an incorrect certificate chain length.
 pub const errSecCodeSigningBadCertChainLength: OSStatus = -67647;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccodesigningnobasicconstraints?language=objc)
+/// Code signing found no basic constraints.
 pub const errSecCodeSigningNoBasicConstraints: OSStatus = -67648;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccodesigningbadpathlengthconstraint?language=objc)
+/// Code signing encountered an incorrect path length constraint.
 pub const errSecCodeSigningBadPathLengthConstraint: OSStatus = -67649;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccodesigningnoextendedkeyusage?language=objc)
+/// Code signing found no extended key usage.
 pub const errSecCodeSigningNoExtendedKeyUsage: OSStatus = -67650;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccodesigningdevelopment?language=objc)
+/// Code signing indicated use of a development-only certificate.
 pub const errSecCodeSigningDevelopment: OSStatus = -67651;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecresourcesignbadcertchainlength?language=objc)
+/// Resource signing detects an incorrect certificate chain length.
 pub const errSecResourceSignBadCertChainLength: OSStatus = -67652;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecresourcesignbadextkeyusage?language=objc)
+/// Resource signing detects an error in the extended key usage.
 pub const errSecResourceSignBadExtKeyUsage: OSStatus = -67653;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectrustsettingdeny?language=objc)
+/// The trust setting for this policy is set to Deny.
 pub const errSecTrustSettingDeny: OSStatus = -67654;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsubjectname?language=objc)
+/// An invalid certificate subject name was detected.
 pub const errSecInvalidSubjectName: OSStatus = -67655;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknownqualifiedcertstatement?language=objc)
+/// An unknown qualified certificate statement was detected.
 pub const errSecUnknownQualifiedCertStatement: OSStatus = -67656;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemerequestqueued?language=objc)
+/// The MobileMe request will be sent during the next connection.
 pub const errSecMobileMeRequestQueued: OSStatus = -67657;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemerequestredirected?language=objc)
+/// The MobileMe request was redirected.
 pub const errSecMobileMeRequestRedirected: OSStatus = -67658;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemeservererror?language=objc)
+/// A MobileMe server error occurred.
 pub const errSecMobileMeServerError: OSStatus = -67659;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemeservernotavailable?language=objc)
+/// The MobileMe server is not available.
 pub const errSecMobileMeServerNotAvailable: OSStatus = -67660;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemeserveralreadyexists?language=objc)
+/// The MobileMe server reported that the item already exists.
 pub const errSecMobileMeServerAlreadyExists: OSStatus = -67661;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemeserverserviceerr?language=objc)
+/// A MobileMe service error occurred.
 pub const errSecMobileMeServerServiceErr: OSStatus = -67662;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemerequestalreadypending?language=objc)
+/// A MobileMe request is already pending.
 pub const errSecMobileMeRequestAlreadyPending: OSStatus = -67663;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemenorequestpending?language=objc)
+/// MobileMe has no request pending.
 pub const errSecMobileMeNoRequestPending: OSStatus = -67664;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemecsrverifyfailure?language=objc)
+/// A MobileMe certificate signing request verification failure occurred.
 pub const errSecMobileMeCSRVerifyFailure: OSStatus = -67665;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmobilemefailedconsistencycheck?language=objc)
+/// MobileMe found a failed consistency check.
 pub const errSecMobileMeFailedConsistencyCheck: OSStatus = -67666;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnotinitialized?language=objc)
+/// A function was called without initializing the common security services manager.
 pub const errSecNotInitialized: OSStatus = -67667;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidhandleusage?language=objc)
+/// The common security services manager handle does not match with the service type.
 pub const errSecInvalidHandleUsage: OSStatus = -67668;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpvcreferentnotfound?language=objc)
+/// A reference to the calling module was not found in the list of authorized callers.
 pub const errSecPVCReferentNotFound: OSStatus = -67669;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecfunctionintegrityfail?language=objc)
+/// A function address is not within the verified module.
 pub const errSecFunctionIntegrityFail: OSStatus = -67670;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinternalerror?language=objc)
+/// An internal error occurred.
 pub const errSecInternalError: OSStatus = -67671;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmemoryerror?language=objc)
+/// A memory error occurred.
 pub const errSecMemoryError: OSStatus = -67672;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliddata?language=objc)
+/// Invalid data was detected.
 pub const errSecInvalidData: OSStatus = -67673;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmdserror?language=objc)
+/// A module directory service error occurred.
 pub const errSecMDSError: OSStatus = -67674;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidpointer?language=objc)
+/// An invalid pointer was detected.
 pub const errSecInvalidPointer: OSStatus = -67675;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecselfcheckfailed?language=objc)
+/// Self-check failed.
 pub const errSecSelfCheckFailed: OSStatus = -67676;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecfunctionfailed?language=objc)
+/// A function has failed.
 pub const errSecFunctionFailed: OSStatus = -67677;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmodulemanifestverifyfailed?language=objc)
+/// A module manifest verification failure occurred.
 pub const errSecModuleManifestVerifyFailed: OSStatus = -67678;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidguid?language=objc)
+/// An invalid GUID was detected.
 pub const errSecInvalidGUID: OSStatus = -67679;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidhandle?language=objc)
+/// An invalid handle was encountered.
 pub const errSecInvalidHandle: OSStatus = -67680;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliddblist?language=objc)
+/// An invalid DB list was detected.
 pub const errSecInvalidDBList: OSStatus = -67681;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidpassthroughid?language=objc)
+/// An invalid passthrough ID was detected.
 pub const errSecInvalidPassthroughID: OSStatus = -67682;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidnetworkaddress?language=objc)
+/// An invalid network address was detected.
 pub const errSecInvalidNetworkAddress: OSStatus = -67683;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccrlalreadysigned?language=objc)
+/// The certificate revocation list is already signed.
 pub const errSecCRLAlreadySigned: OSStatus = -67684;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidnumberoffields?language=objc)
+/// An invalid number of fields were detected.
 pub const errSecInvalidNumberOfFields: OSStatus = -67685;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecverificationfailure?language=objc)
+/// A verification failure occurred.
 pub const errSecVerificationFailure: OSStatus = -67686;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunknowntag?language=objc)
+/// An unknown tag was detected.
 pub const errSecUnknownTag: OSStatus = -67687;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsignature?language=objc)
+/// An invalid signature was detected.
 pub const errSecInvalidSignature: OSStatus = -67688;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidname?language=objc)
+/// An invalid name was detected.
 pub const errSecInvalidName: OSStatus = -67689;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcertificateref?language=objc)
+/// An invalid certificate reference was detected.
 pub const errSecInvalidCertificateRef: OSStatus = -67690;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcertificategroup?language=objc)
+/// An invalid certificate group was detected.
 pub const errSecInvalidCertificateGroup: OSStatus = -67691;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectagnotfound?language=objc)
+/// The specified tag is not found.
 pub const errSecTagNotFound: OSStatus = -67692;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidquery?language=objc)
+/// The specified query is not valid.
 pub const errSecInvalidQuery: OSStatus = -67693;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidvalue?language=objc)
+/// An invalid value was detected.
 pub const errSecInvalidValue: OSStatus = -67694;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccallbackfailed?language=objc)
+/// A callback failed.
 pub const errSecCallbackFailed: OSStatus = -67695;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecacldeletefailed?language=objc)
+/// An ACL delete operation failed.
 pub const errSecACLDeleteFailed: OSStatus = -67696;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecaclreplacefailed?language=objc)
+/// An ACL replace operation failed.
 pub const errSecACLReplaceFailed: OSStatus = -67697;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecacladdfailed?language=objc)
+/// An ACL add operation failed.
 pub const errSecACLAddFailed: OSStatus = -67698;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecaclchangefailed?language=objc)
+/// An ACL change operation failed.
 pub const errSecACLChangeFailed: OSStatus = -67699;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidaccesscredentials?language=objc)
+/// Invalid access credentials were detected.
 pub const errSecInvalidAccessCredentials: OSStatus = -67700;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidrecord?language=objc)
+/// An invalid record was detected.
 pub const errSecInvalidRecord: OSStatus = -67701;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidacl?language=objc)
+/// An invalid access control list was detected.
 pub const errSecInvalidACL: OSStatus = -67702;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsamplevalue?language=objc)
+/// An invalid sample value was detected.
 pub const errSecInvalidSampleValue: OSStatus = -67703;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecincompatibleversion?language=objc)
+/// The version is incompatible.
 pub const errSecIncompatibleVersion: OSStatus = -67704;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecprivilegenotgranted?language=objc)
+/// The privilege is not granted.
 pub const errSecPrivilegeNotGranted: OSStatus = -67705;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidscope?language=objc)
+/// An invalid scope was detected.
 pub const errSecInvalidScope: OSStatus = -67706;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpvcalreadyconfigured?language=objc)
+/// The PVC is already configured.
 pub const errSecPVCAlreadyConfigured: OSStatus = -67707;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidpvc?language=objc)
+/// An invalid pointer validation checking policy was detected.
 pub const errSecInvalidPVC: OSStatus = -67708;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecemmloadfailed?language=objc)
+/// The elective module manager load failed.
 pub const errSecEMMLoadFailed: OSStatus = -67709;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecemmunloadfailed?language=objc)
+/// The elective module manager unload has failed.
 pub const errSecEMMUnloadFailed: OSStatus = -67710;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecaddinloadfailed?language=objc)
+/// The add-in load operation failed.
 pub const errSecAddinLoadFailed: OSStatus = -67711;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyref?language=objc)
+/// An invalid key was encountered.
 pub const errSecInvalidKeyRef: OSStatus = -67712;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyhierarchy?language=objc)
+/// An invalid key hierarchy was detected.
 pub const errSecInvalidKeyHierarchy: OSStatus = -67713;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecaddinunloadfailed?language=objc)
+/// The add-in unload operation failed.
 pub const errSecAddinUnloadFailed: OSStatus = -67714;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseclibraryreferencenotfound?language=objc)
+/// A library reference was not found.
 pub const errSecLibraryReferenceNotFound: OSStatus = -67715;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidaddinfunctiontable?language=objc)
+/// An invalid add-in function table was detected.
 pub const errSecInvalidAddinFunctionTable: OSStatus = -67716;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidservicemask?language=objc)
+/// An invalid service mask was detected.
 pub const errSecInvalidServiceMask: OSStatus = -67717;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmodulenotloaded?language=objc)
+/// A module was not loaded.
 pub const errSecModuleNotLoaded: OSStatus = -67718;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidsubserviceid?language=objc)
+/// An invalid sub-service ID was detected.
 pub const errSecInvalidSubServiceID: OSStatus = -67719;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecattributenotincontext?language=objc)
+/// An attribute was not in the context.
 pub const errSecAttributeNotInContext: OSStatus = -67720;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmodulemanagerinitializefailed?language=objc)
+/// A module failed to initialize.
 pub const errSecModuleManagerInitializeFailed: OSStatus = -67721;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmodulemanagernotfound?language=objc)
+/// A module was not found.
 pub const errSecModuleManagerNotFound: OSStatus = -67722;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseceventnotificationcallbacknotfound?language=objc)
+/// An event notification callback was not found.
 pub const errSecEventNotificationCallbackNotFound: OSStatus = -67723;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinputlengtherror?language=objc)
+/// An input length error occurred.
 pub const errSecInputLengthError: OSStatus = -67724;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecoutputlengtherror?language=objc)
+/// An output length error was detected.
 pub const errSecOutputLengthError: OSStatus = -67725;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecprivilegenotsupported?language=objc)
+/// The privilege is not supported.
 pub const errSecPrivilegeNotSupported: OSStatus = -67726;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdeviceerror?language=objc)
+/// A device error was encountered.
 pub const errSecDeviceError: OSStatus = -67727;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecattachhandlebusy?language=objc)
+/// The CSP handle was busy.
 pub const errSecAttachHandleBusy: OSStatus = -67728;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnotloggedin?language=objc)
+/// You are not logged in.
 pub const errSecNotLoggedIn: OSStatus = -67729;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecalgorithmmismatch?language=objc)
+/// An algorithm mismatch occurred.
 pub const errSecAlgorithmMismatch: OSStatus = -67730;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseckeyusageincorrect?language=objc)
+/// The key usage is incorrect.
 pub const errSecKeyUsageIncorrect: OSStatus = -67731;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseckeyblobtypeincorrect?language=objc)
+/// The key blob type is incorrect.
 pub const errSecKeyBlobTypeIncorrect: OSStatus = -67732;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseckeyheaderinconsistent?language=objc)
+/// The key header is inconsistent.
 pub const errSecKeyHeaderInconsistent: OSStatus = -67733;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedkeyformat?language=objc)
+/// The key header format is not supported.
 pub const errSecUnsupportedKeyFormat: OSStatus = -67734;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedkeysize?language=objc)
+/// The key size is not supported.
 pub const errSecUnsupportedKeySize: OSStatus = -67735;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyusagemask?language=objc)
+/// The key usage mask is not valid.
 pub const errSecInvalidKeyUsageMask: OSStatus = -67736;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedkeyusagemask?language=objc)
+/// The key usage mask is not supported.
 pub const errSecUnsupportedKeyUsageMask: OSStatus = -67737;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyattributemask?language=objc)
+/// The key attribute mask is not valid.
 pub const errSecInvalidKeyAttributeMask: OSStatus = -67738;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedkeyattributemask?language=objc)
+/// The key attribute mask is not supported.
 pub const errSecUnsupportedKeyAttributeMask: OSStatus = -67739;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeylabel?language=objc)
+/// The key label is not valid.
 pub const errSecInvalidKeyLabel: OSStatus = -67740;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedkeylabel?language=objc)
+/// The key label is not supported.
 pub const errSecUnsupportedKeyLabel: OSStatus = -67741;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidkeyformat?language=objc)
+/// The key format is not valid.
 pub const errSecInvalidKeyFormat: OSStatus = -67742;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedvectorofbuffers?language=objc)
+/// The vector of buffers is not supported.
 pub const errSecUnsupportedVectorOfBuffers: OSStatus = -67743;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidinputvector?language=objc)
+/// The input vector is not valid.
 pub const errSecInvalidInputVector: OSStatus = -67744;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidoutputvector?language=objc)
+/// The output vector is not valid.
 pub const errSecInvalidOutputVector: OSStatus = -67745;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcontext?language=objc)
+/// An invalid context was detected.
 pub const errSecInvalidContext: OSStatus = -67746;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidalgorithm?language=objc)
+/// An invalid algorithm was detected.
 pub const errSecInvalidAlgorithm: OSStatus = -67747;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributekey?language=objc)
+/// A key attribute is not valid.
 pub const errSecInvalidAttributeKey: OSStatus = -67748;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributekey?language=objc)
+/// A key attribute is missing.
 pub const errSecMissingAttributeKey: OSStatus = -67749;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeinitvector?language=objc)
+/// An init vector attribute is not valid.
 pub const errSecInvalidAttributeInitVector: OSStatus = -67750;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeinitvector?language=objc)
+/// An init vector attribute is missing.
 pub const errSecMissingAttributeInitVector: OSStatus = -67751;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributesalt?language=objc)
+/// A salt attribute is not valid.
 pub const errSecInvalidAttributeSalt: OSStatus = -67752;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributesalt?language=objc)
+/// A salt attribute is missing.
 pub const errSecMissingAttributeSalt: OSStatus = -67753;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributepadding?language=objc)
+/// A padding attribute is not valid.
 pub const errSecInvalidAttributePadding: OSStatus = -67754;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributepadding?language=objc)
+/// A padding attribute is missing.
 pub const errSecMissingAttributePadding: OSStatus = -67755;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributerandom?language=objc)
+/// A random number attribute is not valid.
 pub const errSecInvalidAttributeRandom: OSStatus = -67756;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributerandom?language=objc)
+/// A random number attribute is missing.
 pub const errSecMissingAttributeRandom: OSStatus = -67757;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeseed?language=objc)
+/// A seed attribute is not valid.
 pub const errSecInvalidAttributeSeed: OSStatus = -67758;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeseed?language=objc)
+/// A seed attribute is missing.
 pub const errSecMissingAttributeSeed: OSStatus = -67759;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributepassphrase?language=objc)
+/// A passphrase attribute is not valid.
 pub const errSecInvalidAttributePassphrase: OSStatus = -67760;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributepassphrase?language=objc)
+/// A passphrase attribute is missing.
 pub const errSecMissingAttributePassphrase: OSStatus = -67761;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributekeylength?language=objc)
+/// A key length attribute is not valid.
 pub const errSecInvalidAttributeKeyLength: OSStatus = -67762;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributekeylength?language=objc)
+/// A key length attribute is missing.
 pub const errSecMissingAttributeKeyLength: OSStatus = -67763;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeblocksize?language=objc)
+/// A block size attribute is not valid.
 pub const errSecInvalidAttributeBlockSize: OSStatus = -67764;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeblocksize?language=objc)
+/// A block size attribute is missing.
 pub const errSecMissingAttributeBlockSize: OSStatus = -67765;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeoutputsize?language=objc)
+/// An output size attribute is not valid.
 pub const errSecInvalidAttributeOutputSize: OSStatus = -67766;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeoutputsize?language=objc)
+/// An output size attribute is missing.
 pub const errSecMissingAttributeOutputSize: OSStatus = -67767;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributerounds?language=objc)
+/// The number of rounds attribute is not valid.
 pub const errSecInvalidAttributeRounds: OSStatus = -67768;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributerounds?language=objc)
+/// The number of rounds attribute is missing.
 pub const errSecMissingAttributeRounds: OSStatus = -67769;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidalgorithmparms?language=objc)
+/// An algorithm parameters attribute is not valid.
 pub const errSecInvalidAlgorithmParms: OSStatus = -67770;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingalgorithmparms?language=objc)
+/// An algorithm parameters attribute is missing.
 pub const errSecMissingAlgorithmParms: OSStatus = -67771;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributelabel?language=objc)
+/// A label attribute is not valid.
 pub const errSecInvalidAttributeLabel: OSStatus = -67772;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributelabel?language=objc)
+/// A label attribute is missing.
 pub const errSecMissingAttributeLabel: OSStatus = -67773;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributekeytype?language=objc)
+/// A key type attribute is not valid.
 pub const errSecInvalidAttributeKeyType: OSStatus = -67774;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributekeytype?language=objc)
+/// A key type attribute is missing.
 pub const errSecMissingAttributeKeyType: OSStatus = -67775;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributemode?language=objc)
+/// A mode attribute is not valid.
 pub const errSecInvalidAttributeMode: OSStatus = -67776;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributemode?language=objc)
+/// A mode attribute is missing.
 pub const errSecMissingAttributeMode: OSStatus = -67777;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeeffectivebits?language=objc)
+/// An effective bits attribute is not valid.
 pub const errSecInvalidAttributeEffectiveBits: OSStatus = -67778;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeeffectivebits?language=objc)
+/// An effective bits attribute is missing.
 pub const errSecMissingAttributeEffectiveBits: OSStatus = -67779;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributestartdate?language=objc)
+/// A start date attribute is not valid.
 pub const errSecInvalidAttributeStartDate: OSStatus = -67780;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributestartdate?language=objc)
+/// A start date attribute is missing.
 pub const errSecMissingAttributeStartDate: OSStatus = -67781;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeenddate?language=objc)
+/// An end date attribute is not valid.
 pub const errSecInvalidAttributeEndDate: OSStatus = -67782;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeenddate?language=objc)
+/// An end date attribute is missing.
 pub const errSecMissingAttributeEndDate: OSStatus = -67783;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeversion?language=objc)
+/// A version attribute is not valid.
 pub const errSecInvalidAttributeVersion: OSStatus = -67784;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeversion?language=objc)
+/// A version attribute is missing.
 pub const errSecMissingAttributeVersion: OSStatus = -67785;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeprime?language=objc)
+/// A prime attribute is not valid.
 pub const errSecInvalidAttributePrime: OSStatus = -67786;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeprime?language=objc)
+/// A prime attribute is missing.
 pub const errSecMissingAttributePrime: OSStatus = -67787;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributebase?language=objc)
+/// A base attribute is not valid.
 pub const errSecInvalidAttributeBase: OSStatus = -67788;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributebase?language=objc)
+/// A base attribute is missing.
 pub const errSecMissingAttributeBase: OSStatus = -67789;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributesubprime?language=objc)
+/// A subprime attribute is not valid.
 pub const errSecInvalidAttributeSubprime: OSStatus = -67790;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributesubprime?language=objc)
+/// A subprime attribute is missing.
 pub const errSecMissingAttributeSubprime: OSStatus = -67791;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeiterationcount?language=objc)
+/// An iteration count attribute is not valid.
 pub const errSecInvalidAttributeIterationCount: OSStatus = -67792;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeiterationcount?language=objc)
+/// An iteration count attribute is missing.
 pub const errSecMissingAttributeIterationCount: OSStatus = -67793;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributedldbhandle?language=objc)
+/// A database handle attribute is not valid.
 pub const errSecInvalidAttributeDLDBHandle: OSStatus = -67794;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributedldbhandle?language=objc)
+/// A database handle attribute is missing.
 pub const errSecMissingAttributeDLDBHandle: OSStatus = -67795;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeaccesscredentials?language=objc)
+/// An access credentials attribute is not valid.
 pub const errSecInvalidAttributeAccessCredentials: OSStatus = -67796;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeaccesscredentials?language=objc)
+/// An access credentials attribute is missing.
 pub const errSecMissingAttributeAccessCredentials: OSStatus = -67797;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributepublickeyformat?language=objc)
+/// A public key format attribute is not valid.
 pub const errSecInvalidAttributePublicKeyFormat: OSStatus = -67798;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributepublickeyformat?language=objc)
+/// A public key format attribute is missing.
 pub const errSecMissingAttributePublicKeyFormat: OSStatus = -67799;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributeprivatekeyformat?language=objc)
+/// A private key format attribute is not valid.
 pub const errSecInvalidAttributePrivateKeyFormat: OSStatus = -67800;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributeprivatekeyformat?language=objc)
+/// A private key format attribute is missing.
 pub const errSecMissingAttributePrivateKeyFormat: OSStatus = -67801;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributesymmetrickeyformat?language=objc)
+/// A symmetric key format attribute is not valid.
 pub const errSecInvalidAttributeSymmetricKeyFormat: OSStatus = -67802;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributesymmetrickeyformat?language=objc)
+/// A symmetric key format attribute is missing.
 pub const errSecMissingAttributeSymmetricKeyFormat: OSStatus = -67803;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidattributewrappedkeyformat?language=objc)
+/// A wrapped key format attribute is not valid.
 pub const errSecInvalidAttributeWrappedKeyFormat: OSStatus = -67804;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingattributewrappedkeyformat?language=objc)
+/// A wrapped key format attribute is missing.
 pub const errSecMissingAttributeWrappedKeyFormat: OSStatus = -67805;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecstagedoperationinprogress?language=objc)
+/// A staged operation is in progress.
 pub const errSecStagedOperationInProgress: OSStatus = -67806;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecstagedoperationnotstarted?language=objc)
+/// A staged operation was not started.
 pub const errSecStagedOperationNotStarted: OSStatus = -67807;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecverifyfailed?language=objc)
+/// A cryptographic verification failure occurred.
 pub const errSecVerifyFailed: OSStatus = -67808;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecquerysizeunknown?language=objc)
+/// The query size is unknown.
 pub const errSecQuerySizeUnknown: OSStatus = -67809;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecblocksizemismatch?language=objc)
+/// A block size mismatch occurred.
 pub const errSecBlockSizeMismatch: OSStatus = -67810;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecpublickeyinconsistent?language=objc)
+/// The public key is inconsistent.
 pub const errSecPublicKeyInconsistent: OSStatus = -67811;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdeviceverifyfailed?language=objc)
+/// A device verification failure has occurred.
 pub const errSecDeviceVerifyFailed: OSStatus = -67812;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidloginname?language=objc)
+/// An invalid login name was detected.
 pub const errSecInvalidLoginName: OSStatus = -67813;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecalreadyloggedin?language=objc)
+/// The user is already logged in.
 pub const errSecAlreadyLoggedIn: OSStatus = -67814;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliddigestalgorithm?language=objc)
+/// An invalid digest algorithm was detected.
 pub const errSecInvalidDigestAlgorithm: OSStatus = -67815;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrlgroup?language=objc)
+/// An invalid certificate revocation list group was detected.
 pub const errSecInvalidCRLGroup: OSStatus = -67816;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatecannotoperate?language=objc)
+/// The certificate cannot operate.
 pub const errSecCertificateCannotOperate: OSStatus = -67817;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificateexpired?language=objc)
+/// An expired certificate was detected.
 pub const errSecCertificateExpired: OSStatus = -67818;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatenotvalidyet?language=objc)
+/// The certificate is not yet valid.
 pub const errSecCertificateNotValidYet: OSStatus = -67819;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificaterevoked?language=objc)
+/// The certificate was revoked.
 pub const errSecCertificateRevoked: OSStatus = -67820;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatesuspended?language=objc)
+/// The certificate was suspended.
 pub const errSecCertificateSuspended: OSStatus = -67821;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinsufficientcredentials?language=objc)
+/// Insufficient credentials were detected.
 pub const errSecInsufficientCredentials: OSStatus = -67822;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidaction?language=objc)
+/// The action is invalid.
 pub const errSecInvalidAction: OSStatus = -67823;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidauthority?language=objc)
+/// The authority is not valid.
 pub const errSecInvalidAuthority: OSStatus = -67824;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecverifyactionfailed?language=objc)
+/// A verify action failed.
 pub const errSecVerifyActionFailed: OSStatus = -67825;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcertauthority?language=objc)
+/// The certificate authority is not valid.
 pub const errSecInvalidCertAuthority: OSStatus = -67826;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrlauthority?language=objc)
 pub const errSecInvalidCRLAuthority: OSStatus = -67827;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaldcrlauthority?language=objc)
+/// The certificate revocation list authority is not valid.
 #[deprecated]
 pub const errSecInvaldCRLAuthority: OSStatus = -67827;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrlencoding?language=objc)
+/// The certificate revocation list encoding is not valid.
 pub const errSecInvalidCRLEncoding: OSStatus = -67828;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrltype?language=objc)
+/// The certificate revocation list type is not valid.
 pub const errSecInvalidCRLType: OSStatus = -67829;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrl?language=objc)
+/// The certificate revocation list is not valid.
 pub const errSecInvalidCRL: OSStatus = -67830;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidformtype?language=objc)
+/// The form type is not valid.
 pub const errSecInvalidFormType: OSStatus = -67831;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidid?language=objc)
+/// The ID is not valid.
 pub const errSecInvalidID: OSStatus = -67832;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalididentifier?language=objc)
+/// The identifier is not valid.
 pub const errSecInvalidIdentifier: OSStatus = -67833;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidindex?language=objc)
+/// The index is not valid.
 pub const errSecInvalidIndex: OSStatus = -67834;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidpolicyidentifiers?language=objc)
+/// The policy identifiers are not valid.
 pub const errSecInvalidPolicyIdentifiers: OSStatus = -67835;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtimestring?language=objc)
+/// The time specified is not valid.
 pub const errSecInvalidTimeString: OSStatus = -67836;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidreason?language=objc)
+/// The trust policy reason is not valid.
 pub const errSecInvalidReason: OSStatus = -67837;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidrequestinputs?language=objc)
+/// The request inputs are not valid.
 pub const errSecInvalidRequestInputs: OSStatus = -67838;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidresponsevector?language=objc)
+/// The response vector is not valid.
 pub const errSecInvalidResponseVector: OSStatus = -67839;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidstoponpolicy?language=objc)
+/// The stop-on policy is not valid.
 pub const errSecInvalidStopOnPolicy: OSStatus = -67840;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtuple?language=objc)
+/// The tuple is not valid.
 pub const errSecInvalidTuple: OSStatus = -67841;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmultiplevaluesunsupported?language=objc)
+/// Multiple values are not supported.
 pub const errSecMultipleValuesUnsupported: OSStatus = -67842;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnottrusted?language=objc)
+/// The trust policy is not trusted.
 pub const errSecNotTrusted: OSStatus = -67843;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnodefaultauthority?language=objc)
+/// No default authority was detected.
 pub const errSecNoDefaultAuthority: OSStatus = -67844;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrejectedform?language=objc)
+/// The trust policy has a rejected form.
 pub const errSecRejectedForm: OSStatus = -67845;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrequestlost?language=objc)
+/// The request is lost.
 pub const errSecRequestLost: OSStatus = -67846;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrequestrejected?language=objc)
+/// The request is rejected.
 pub const errSecRequestRejected: OSStatus = -67847;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedaddresstype?language=objc)
+/// The address type is not supported.
 pub const errSecUnsupportedAddressType: OSStatus = -67848;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedservice?language=objc)
+/// The service is not supported.
 pub const errSecUnsupportedService: OSStatus = -67849;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtuplegroup?language=objc)
+/// The tuple group is not valid.
 pub const errSecInvalidTupleGroup: OSStatus = -67850;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidbaseacls?language=objc)
+/// The base access control lists are not valid.
 pub const errSecInvalidBaseACLs: OSStatus = -67851;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtuplecredentials?language=objc)
+/// The tuple credentials are not valid.
 pub const errSecInvalidTupleCredentials: OSStatus = -67852;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidtuplecredendtials?language=objc)
+/// The tuple credentials are not valid.
 #[deprecated]
 pub const errSecInvalidTupleCredendtials: OSStatus = -67852;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidencoding?language=objc)
+/// The encoding is not valid.
 pub const errSecInvalidEncoding: OSStatus = -67853;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidvalidityperiod?language=objc)
+/// The validity period is not valid.
 pub const errSecInvalidValidityPeriod: OSStatus = -67854;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidrequestor?language=objc)
+/// The requestor is not valid.
 pub const errSecInvalidRequestor: OSStatus = -67855;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecrequestdescriptor?language=objc)
+/// The request descriptor is not valid.
 pub const errSecRequestDescriptor: OSStatus = -67856;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidbundleinfo?language=objc)
+/// The bundle information is not valid.
 pub const errSecInvalidBundleInfo: OSStatus = -67857;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidcrlindex?language=objc)
+/// The certificate revocation list index is not valid.
 pub const errSecInvalidCRLIndex: OSStatus = -67858;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecnofieldvalues?language=objc)
+/// No field values were detected.
 pub const errSecNoFieldValues: OSStatus = -67859;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedfieldformat?language=objc)
+/// The field format is not supported.
 pub const errSecUnsupportedFieldFormat: OSStatus = -67860;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedindexinfo?language=objc)
+/// The index information is not supported.
 pub const errSecUnsupportedIndexInfo: OSStatus = -67861;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedlocality?language=objc)
+/// The locality is not supported.
 pub const errSecUnsupportedLocality: OSStatus = -67862;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportednumattributes?language=objc)
+/// The number of attributes is not supported.
 pub const errSecUnsupportedNumAttributes: OSStatus = -67863;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportednumindexes?language=objc)
+/// The number of indexes is not supported.
 pub const errSecUnsupportedNumIndexes: OSStatus = -67864;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportednumrecordtypes?language=objc)
+/// The number of record types is not supported.
 pub const errSecUnsupportedNumRecordTypes: OSStatus = -67865;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecfieldspecifiedmultiple?language=objc)
+/// Too many fields were specified.
 pub const errSecFieldSpecifiedMultiple: OSStatus = -67866;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecincompatiblefieldformat?language=objc)
+/// The field format is incompatible.
 pub const errSecIncompatibleFieldFormat: OSStatus = -67867;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidparsingmodule?language=objc)
+/// The parsing module is not valid.
 pub const errSecInvalidParsingModule: OSStatus = -67868;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdatabaselocked?language=objc)
+/// The database is locked.
 pub const errSecDatabaseLocked: OSStatus = -67869;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecdatastoreisopen?language=objc)
+/// The data store is open.
 pub const errSecDatastoreIsOpen: OSStatus = -67870;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingvalue?language=objc)
+/// A missing value was detected.
 pub const errSecMissingValue: OSStatus = -67871;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedquerylimits?language=objc)
+/// The query limits are not supported.
 pub const errSecUnsupportedQueryLimits: OSStatus = -67872;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportednumselectionpreds?language=objc)
+/// The number of selection predicates is not supported.
 pub const errSecUnsupportedNumSelectionPreds: OSStatus = -67873;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecunsupportedoperator?language=objc)
+/// The operator is not supported.
 pub const errSecUnsupportedOperator: OSStatus = -67874;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvaliddblocation?language=objc)
+/// The database location is not valid.
 pub const errSecInvalidDBLocation: OSStatus = -67875;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidaccessrequest?language=objc)
+/// The access request is invalid.
 pub const errSecInvalidAccessRequest: OSStatus = -67876;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidindexinfo?language=objc)
+/// The index information is not valid.
 pub const errSecInvalidIndexInfo: OSStatus = -67877;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidnewowner?language=objc)
+/// The new owner is not valid.
 pub const errSecInvalidNewOwner: OSStatus = -67878;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecinvalidmodifymode?language=objc)
+/// The modify mode is not valid.
 pub const errSecInvalidModifyMode: OSStatus = -67879;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingrequiredextension?language=objc)
+/// A required certificate extension is missing.
 pub const errSecMissingRequiredExtension: OSStatus = -67880;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecextendedkeyusagenotcritical?language=objc)
+/// The extended key usage extension was not marked critical.
 pub const errSecExtendedKeyUsageNotCritical: OSStatus = -67881;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampmissing?language=objc)
+/// A timestamp is expected but is not found.
 pub const errSecTimestampMissing: OSStatus = -67882;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampinvalid?language=objc)
+/// The timestamp is not valid.
 pub const errSecTimestampInvalid: OSStatus = -67883;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampnottrusted?language=objc)
+/// The timestamp is not trusted.
 pub const errSecTimestampNotTrusted: OSStatus = -67884;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampservicenotavailable?language=objc)
 pub const errSecTimestampServiceNotAvailable: OSStatus = -67885;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampbadalg?language=objc)
+/// Found an unrecognized or unsupported algorithm identifier (AI) in timestamp.
 pub const errSecTimestampBadAlg: OSStatus = -67886;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampbadrequest?language=objc)
+/// The timestamp transaction is not permitted or supported.
 pub const errSecTimestampBadRequest: OSStatus = -67887;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampbaddataformat?language=objc)
+/// The timestamp data submitted has the wrong format.
 pub const errSecTimestampBadDataFormat: OSStatus = -67888;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestamptimenotavailable?language=objc)
+/// The time source for the timestamp authority is not available.
 pub const errSecTimestampTimeNotAvailable: OSStatus = -67889;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampunacceptedpolicy?language=objc)
+/// The requested policy is not supported by the timestamp authority.
 pub const errSecTimestampUnacceptedPolicy: OSStatus = -67890;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampunacceptedextension?language=objc)
+/// The requested extension is not supported by the timestamp authority.
 pub const errSecTimestampUnacceptedExtension: OSStatus = -67891;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampaddinfonotavailable?language=objc)
+/// The additional information requested is not available.
 pub const errSecTimestampAddInfoNotAvailable: OSStatus = -67892;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampsystemfailure?language=objc)
+/// The timestamp request cannot be handled due to a system failure.
 pub const errSecTimestampSystemFailure: OSStatus = -67893;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecsigningtimemissing?language=objc)
+/// A signing time is missing.
 pub const errSecSigningTimeMissing: OSStatus = -67894;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestamprejection?language=objc)
+/// A timestamp transaction is rejected.
 pub const errSecTimestampRejection: OSStatus = -67895;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestampwaiting?language=objc)
+/// A timestamp transaction is waiting.
 pub const errSecTimestampWaiting: OSStatus = -67896;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestamprevocationwarning?language=objc)
+/// A timestamp authority revocation warning is issued.
 pub const errSecTimestampRevocationWarning: OSStatus = -67897;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsectimestamprevocationnotification?language=objc)
+/// A timestamp authority revocation notification is issued.
 pub const errSecTimestampRevocationNotification: OSStatus = -67898;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatepolicynotallowed?language=objc)
+/// The requested policy isn’t allowed for this certificate.
 pub const errSecCertificatePolicyNotAllowed: OSStatus = -67899;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatenamenotallowed?language=objc)
+/// The requested name isn’t allowed for this certificate.
 pub const errSecCertificateNameNotAllowed: OSStatus = -67900;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificatevalidityperiodtoolong?language=objc)
+/// The validity period in the certificate exceeds the maximum allowed period.
 pub const errSecCertificateValidityPeriodTooLong: OSStatus = -67901;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificateisca?language=objc)
 pub const errSecCertificateIsCA: OSStatus = -67902;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errseccertificateduplicateextension?language=objc)
 pub const errSecCertificateDuplicateExtension: OSStatus = -67903;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsecmissingqualifiedcertstatement?language=objc)
 pub const errSecMissingQualifiedCertStatement: OSStatus = -67904;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslprotocol?language=objc)
+/// SSL protocol error.
 pub const errSSLProtocol: OSStatus = -9800;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslnegotiation?language=objc)
+/// The cipher suite negotiation failed.
 pub const errSSLNegotiation: OSStatus = -9801;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslfatalalert?language=objc)
+/// A fatal alert was encountered.
 pub const errSSLFatalAlert: OSStatus = -9802;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslwouldblock?language=objc)
+/// Function is blocked; waiting for I/O. This is not fatal.
 pub const errSSLWouldBlock: OSStatus = -9803;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslsessionnotfound?language=objc)
+/// An attempt to restore an unknown session failed.
 pub const errSSLSessionNotFound: OSStatus = -9804;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslclosedgraceful?language=objc)
+/// The connection closed gracefully.
 pub const errSSLClosedGraceful: OSStatus = -9805;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslclosedabort?language=objc)
+/// The connection closed due to an error.
 pub const errSSLClosedAbort: OSStatus = -9806;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslxcertchaininvalid?language=objc)
+/// Invalid certificate chain.
 pub const errSSLXCertChainInvalid: OSStatus = -9807;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbadcert?language=objc)
+/// Bad certificate format.
 pub const errSSLBadCert: OSStatus = -9808;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslcrypto?language=objc)
+/// An underlying cryptographic error was encountered.
 pub const errSSLCrypto: OSStatus = -9809;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslinternal?language=objc)
+/// Internal error.
 pub const errSSLInternal: OSStatus = -9810;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslmoduleattach?language=objc)
+/// Module attach failure.
 pub const errSSLModuleAttach: OSStatus = -9811;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunknownrootcert?language=objc)
+/// Certificate chain is valid, but root is nottrusted.
 pub const errSSLUnknownRootCert: OSStatus = -9812;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslnorootcert?language=objc)
+/// No root certificate for the certificate chain.
 pub const errSSLNoRootCert: OSStatus = -9813;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslcertexpired?language=objc)
+/// The certificate chain had an expired certificate.
 pub const errSSLCertExpired: OSStatus = -9814;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslcertnotyetvalid?language=objc)
+/// The certificate chain had a certificatethat is not yet valid.
 pub const errSSLCertNotYetValid: OSStatus = -9815;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslclosednonotify?language=objc)
+/// The server closed the session with no notification.
 pub const errSSLClosedNoNotify: OSStatus = -9816;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbufferoverflow?language=objc)
+/// An insufficient buffer was provided.
 pub const errSSLBufferOverflow: OSStatus = -9817;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbadciphersuite?language=objc)
+/// A bad SSL cipher suite was encountered.
 pub const errSSLBadCipherSuite: OSStatus = -9818;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerunexpectedmsg?language=objc)
+/// An unexpected message was received.
 pub const errSSLPeerUnexpectedMsg: OSStatus = -9819;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerbadrecordmac?language=objc)
+/// A record with a bad message authentication code (MAC) was encountered.
 pub const errSSLPeerBadRecordMac: OSStatus = -9820;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerdecryptionfail?language=objc)
+/// Decryption failed.
 pub const errSSLPeerDecryptionFail: OSStatus = -9821;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerrecordoverflow?language=objc)
+/// A record overflow occurred.
 pub const errSSLPeerRecordOverflow: OSStatus = -9822;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerdecompressfail?language=objc)
+/// Decompression failed.
 pub const errSSLPeerDecompressFail: OSStatus = -9823;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerhandshakefail?language=objc)
+/// The handshake failed.
 pub const errSSLPeerHandshakeFail: OSStatus = -9824;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerbadcert?language=objc)
+/// A bad certificate was encountered.
 pub const errSSLPeerBadCert: OSStatus = -9825;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerunsupportedcert?language=objc)
+/// An unsupported certificate format was encountered.
 pub const errSSLPeerUnsupportedCert: OSStatus = -9826;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeercertrevoked?language=objc)
+/// The certificate was revoked.
 pub const errSSLPeerCertRevoked: OSStatus = -9827;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeercertexpired?language=objc)
+/// The certificate expired.
 pub const errSSLPeerCertExpired: OSStatus = -9828;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeercertunknown?language=objc)
+/// The certificate is unknown.
 pub const errSSLPeerCertUnknown: OSStatus = -9829;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslillegalparam?language=objc)
+/// An illegal parameter was encountered.
 pub const errSSLIllegalParam: OSStatus = -9830;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerunknownca?language=objc)
+/// An unknown certificate authority was encountered.
 pub const errSSLPeerUnknownCA: OSStatus = -9831;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeeraccessdenied?language=objc)
+/// Access was denied.
 pub const errSSLPeerAccessDenied: OSStatus = -9832;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerdecodeerror?language=objc)
+/// A decoding error occurred.
 pub const errSSLPeerDecodeError: OSStatus = -9833;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerdecrypterror?language=objc)
+/// A decryption error occurred.
 pub const errSSLPeerDecryptError: OSStatus = -9834;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerexportrestriction?language=objc)
+/// An export restriction occurred.
 pub const errSSLPeerExportRestriction: OSStatus = -9835;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerprotocolversion?language=objc)
+/// A bad protocol version was encountered.
 pub const errSSLPeerProtocolVersion: OSStatus = -9836;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerinsufficientsecurity?language=objc)
+/// There is insufficient security for this operation.
 pub const errSSLPeerInsufficientSecurity: OSStatus = -9837;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerinternalerror?language=objc)
+/// An internal error occurred.
 pub const errSSLPeerInternalError: OSStatus = -9838;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerusercancelled?language=objc)
+/// The user canceled the operation.
 pub const errSSLPeerUserCancelled: OSStatus = -9839;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeernorenegotiation?language=objc)
+/// No renegotiation is allowed.
 pub const errSSLPeerNoRenegotiation: OSStatus = -9840;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslpeerauthcompleted?language=objc)
+/// A non-fatal result indicating the peer certificate is valid, or was ignored if verification is disabled.
+///
+/// ## Discussion
+///
+/// The peer’s certificate chain is valid, or was ignored if certificate verification was disabled via [`SSLSetEnableCertVerify`](https://developer.apple.com/documentation/security/sslsetenablecertverify). In response, you may decide to continue with the handshake (by calling [`SSLHandshake`](https://developer.apple.com/documentation/security/sslhandshake(_:)) again) or just close the connection.
+///
+///
 pub const errSSLPeerAuthCompleted: OSStatus = -9841;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslclientcertrequested?language=objc)
+/// The server has requested a client certificate.
 pub const errSSLClientCertRequested: OSStatus = -9842;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslhostnamemismatch?language=objc)
+/// The host name you connected with does not match any of the host names allowed by the certificate.
+///
+/// ## Discussion
+///
+/// This is commonly caused by an incorrect value for the [`kCFStreamSSLPeerName`](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslpeername) property within the dictionary associated with the stream’s [`kCFStreamPropertySSLSettings`](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslsettings) key.
+///
+///
 pub const errSSLHostNameMismatch: OSStatus = -9843;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslconnectionrefused?language=objc)
+/// The peer dropped the connection before responding.
 pub const errSSLConnectionRefused: OSStatus = -9844;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errssldecryptionfail?language=objc)
+/// Decryption failed.
+///
+/// ## Discussion
+///
+/// Among other causes, this may be caused by invalid data coming from the remote host, a damaged crypto key, or insufficient permission to use a key that is stored in the keychain.
+///
+///
 pub const errSSLDecryptionFail: OSStatus = -9845;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbadrecordmac?language=objc)
+/// A record with a bad message authentication code (MAC) was encountered.
 pub const errSSLBadRecordMac: OSStatus = -9846;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslrecordoverflow?language=objc)
+/// A record overflow occurred.
 pub const errSSLRecordOverflow: OSStatus = -9847;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbadconfiguration?language=objc)
+/// A configuration error occurred.
 pub const errSSLBadConfiguration: OSStatus = -9848;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunexpectedrecord?language=objc)
 pub const errSSLUnexpectedRecord: OSStatus = -9849;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslweakpeerephemeraldhkey?language=objc)
+/// Indicates a weak ephemeral dh key.
 pub const errSSLWeakPeerEphemeralDHKey: OSStatus = -9850;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslclienthelloreceived?language=objc)
+/// A non-fatal result for providing a server name indication.
 pub const errSSLClientHelloReceived: OSStatus = -9851;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errssltransportreset?language=objc)
+/// Transport (socket) shutdown, for example, TCP RST or FIN.
 pub const errSSLTransportReset: OSStatus = -9852;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslnetworktimeout?language=objc)
+/// Network timeout triggered.
 pub const errSSLNetworkTimeout: OSStatus = -9853;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslconfigurationfailed?language=objc)
+/// TLS configuration failed.
 pub const errSSLConfigurationFailed: OSStatus = -9854;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunsupportedextension?language=objc)
+/// Unsupported TLS extension.
 pub const errSSLUnsupportedExtension: OSStatus = -9855;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunexpectedmessage?language=objc)
+/// Peer rejected unexpected message.
 pub const errSSLUnexpectedMessage: OSStatus = -9856;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errssldecompressfail?language=objc)
+/// Decompression failed.
 pub const errSSLDecompressFail: OSStatus = -9857;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslhandshakefail?language=objc)
+/// Handshake failed.
 pub const errSSLHandshakeFail: OSStatus = -9858;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errssldecodeerror?language=objc)
+/// Decode failed.
 pub const errSSLDecodeError: OSStatus = -9859;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslinappropriatefallback?language=objc)
+/// Inappropriate fallback.
 pub const errSSLInappropriateFallback: OSStatus = -9860;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslmissingextension?language=objc)
+/// Missing extension.
 pub const errSSLMissingExtension: OSStatus = -9861;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslbadcertificatestatusresponse?language=objc)
+/// Bad OCSP response.
 pub const errSSLBadCertificateStatusResponse: OSStatus = -9862;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslcertificaterequired?language=objc)
+/// Certificate required.
 pub const errSSLCertificateRequired: OSStatus = -9863;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunknownpskidentity?language=objc)
+/// Unknown PSK identity.
 pub const errSSLUnknownPSKIdentity: OSStatus = -9864;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslunrecognizedname?language=objc)
+/// Unknown or unrecognized name.
 pub const errSSLUnrecognizedName: OSStatus = -9865;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatsviolation?language=objc)
+/// An App Transport Security violation occurred.
+///
+/// ## Overview
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSViolation: OSStatus = -9880;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatsminimumversionviolation?language=objc)
+/// The minimum protocol version isn’t App Transport Security compliant.
+///
+/// ## Overview
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSMinimumVersionViolation: OSStatus = -9881;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatsciphersuiteviolation?language=objc)
+/// The selected ciphersuite isn’t App Transport Security compliant.
+///
+/// ## Overview
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSCiphersuiteViolation: OSStatus = -9882;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatsminimumkeysizeviolation?language=objc)
+/// The peer key size isn’t App Transport Security compliant.
+///
+/// ## Discussion
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSMinimumKeySizeViolation: OSStatus = -9883;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatsleafcertificatehashalgorithmviolation?language=objc)
+/// The peer leaf certificate hash algorithm isn’t App Transport Security compliant.
+///
+/// ## Overview
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSLeafCertificateHashAlgorithmViolation: OSStatus = -9884;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatscertificatehashalgorithmviolation?language=objc)
+/// The peer certificate hash algorithm isn’t App Transport Security compliant.
+///
+/// ## Discussion
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSCertificateHashAlgorithmViolation: OSStatus = -9885;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslatscertificatetrustviolation?language=objc)
+/// The peer certificate wasn’t issued by a trusted peer.
+///
+/// ## Overview
+///
+/// For more information about App Transport Security (ATS) compliance, see [Preventing Insecure Network Connections](https://developer.apple.com/documentation/security/preventing-insecure-network-connections).
+///
+///
 pub const errSSLATSCertificateTrustViolation: OSStatus = -9886;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/errsslearlydatarejected?language=objc)
 pub const errSSLEarlyDataRejected: OSStatus = -9890;

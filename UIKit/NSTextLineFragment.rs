@@ -12,7 +12,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlinefragment?language=objc)
+    /// A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLineFragment;

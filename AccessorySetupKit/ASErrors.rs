@@ -8,77 +8,63 @@ use crate::*;
 
 extern "C" {
     /// NSError domain for AccessorySetupKit errors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserrordomain?language=objc)
+    /// NSError domain for AccessorySetupKit errors.
     pub static ASErrorDomain: &'static NSErrorDomain;
 }
 
+/// Codes that describe errors encountered during accessory discovery.
 /// Error codes used with ASErrorDomain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASErrorCode(pub NSInteger);
 impl ASErrorCode {
     /// A code that represents a successful action.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/success?language=objc)
+    /// A code that represents a successful action.
     #[doc(alias = "ASErrorCodeSuccess")]
     pub const Success: Self = Self(0);
     /// An underlying failure with an unknown cause.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/unknown?language=objc)
+    /// An underlying failure with an unknown cause.
     #[doc(alias = "ASErrorCodeUnknown")]
     pub const Unknown: Self = Self(1);
     /// Session activation failed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/activationfailed?language=objc)
+    /// Session activation failed.
     #[doc(alias = "ASErrorCodeActivationFailed")]
     pub const ActivationFailed: Self = Self(100);
     /// The session was unable to establish a connection.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/connectionfailed?language=objc)
+    /// The session was unable to establish a connection.
     #[doc(alias = "ASErrorCodeConnectionFailed")]
     pub const ConnectionFailed: Self = Self(150);
     /// Accessory discovery timed out.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/discoverytimeout?language=objc)
+    /// Accessory discovery timed out.
     #[doc(alias = "ASErrorCodeDiscoveryTimeout")]
     pub const DiscoveryTimeout: Self = Self(200);
+    /// The framework couldn’t find the app extension.
     /// The framework couldn't find the app extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/extensionnotfound?language=objc)
     #[doc(alias = "ASErrorCodeExtensionNotFound")]
     pub const ExtensionNotFound: Self = Self(300);
     /// The session invalidated prior to completing the operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/invalidated?language=objc)
+    /// The session invalidated prior to completing the operation.
     #[doc(alias = "ASErrorCodeInvalidated")]
     pub const Invalidated: Self = Self(400);
     /// The session received an invalid request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/invalidrequest?language=objc)
+    /// The session received an invalid request.
     #[doc(alias = "ASErrorCodeInvalidRequest")]
     pub const InvalidRequest: Self = Self(450);
     /// The picker received a show request when it was already active.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/pickeralreadyactive?language=objc)
+    /// The picker received a show request when it was already active.
     #[doc(alias = "ASErrorCodePickerAlreadyActive")]
     pub const PickerAlreadyActive: Self = Self(500);
+    /// The picker can’t be used because the app is in the background.
     /// The picker can't be used because the app is in the background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/pickerrestricted?language=objc)
     #[doc(alias = "ASErrorCodePickerRestricted")]
     pub const PickerRestricted: Self = Self(550);
     /// The person using the app canceled the operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/usercancelled?language=objc)
+    /// The person using the app canceled the operation.
     #[doc(alias = "ASErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(700);
     /// The person using the app restricted access.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code/userrestricted?language=objc)
+    /// The person using the app restricted access.
     #[doc(alias = "ASErrorCodeUserRestricted")]
     pub const UserRestricted: Self = Self(750);
 }

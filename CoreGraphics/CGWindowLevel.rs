@@ -5,112 +5,204 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdesktopwindowlevel?language=objc)
 pub const kCGDesktopWindowLevel: CGWindowLevel = kCGMinimumWindowLevel + 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdesktopiconwindowlevel?language=objc)
 pub const kCGDesktopIconWindowLevel: CGWindowLevel = kCGDesktopWindowLevel + 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbackstopmenulevel?language=objc)
 pub const kCGBackstopMenuLevel: CGWindowLevel = -20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnormalwindowlevel?language=objc)
 pub const kCGNormalWindowLevel: CGWindowLevel = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfloatingwindowlevel?language=objc)
 pub const kCGFloatingWindowLevel: CGWindowLevel = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgtornoffmenuwindowlevel?language=objc)
 pub const kCGTornOffMenuWindowLevel: CGWindowLevel = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmodalpanelwindowlevel?language=objc)
 pub const kCGModalPanelWindowLevel: CGWindowLevel = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgutilitywindowlevel?language=objc)
 pub const kCGUtilityWindowLevel: CGWindowLevel = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdockwindowlevel?language=objc)
 pub const kCGDockWindowLevel: CGWindowLevel = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmainmenuwindowlevel?language=objc)
 pub const kCGMainMenuWindowLevel: CGWindowLevel = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgstatuswindowlevel?language=objc)
 pub const kCGStatusWindowLevel: CGWindowLevel = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpopupmenuwindowlevel?language=objc)
 pub const kCGPopUpMenuWindowLevel: CGWindowLevel = 101;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgoverlaywindowlevel?language=objc)
 pub const kCGOverlayWindowLevel: CGWindowLevel = 102;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcghelpwindowlevel?language=objc)
 pub const kCGHelpWindowLevel: CGWindowLevel = 200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdraggingwindowlevel?language=objc)
 pub const kCGDraggingWindowLevel: CGWindowLevel = 500;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgscreensaverwindowlevel?language=objc)
 pub const kCGScreenSaverWindowLevel: CGWindowLevel = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgassistivetechhighwindowlevel?language=objc)
 pub const kCGAssistiveTechHighWindowLevel: CGWindowLevel = 1500;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcursorwindowlevel?language=objc)
 pub const kCGCursorWindowLevel: CGWindowLevel = kCGMaximumWindowLevel - 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey?language=objc)
+/// Keys that represent the standard window levels in macOS. Quartz includes these keys to support application frameworks like Cocoa. Applications do not need to use them directly.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowLevelKey(pub i32);
 impl CGWindowLevelKey {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/basewindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The base key used to define window levels. Do not use.
+    ///
+    ///
     #[doc(alias = "kCGBaseWindowLevelKey")]
     pub const BaseWindowLevelKey: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/minimumwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The lowest available window level.
+    ///
+    ///
     #[doc(alias = "kCGMinimumWindowLevelKey")]
     pub const MinimumWindowLevelKey: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/desktopwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for the desktop.
+    ///
+    ///
     #[doc(alias = "kCGDesktopWindowLevelKey")]
     pub const DesktopWindowLevelKey: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/backstopmenu?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level of the backstop menu.
+    ///
+    ///
     #[doc(alias = "kCGBackstopMenuLevelKey")]
     pub const BackstopMenuLevelKey: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/normalwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for normal windows.
+    ///
+    ///
     #[doc(alias = "kCGNormalWindowLevelKey")]
     pub const NormalWindowLevelKey: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/floatingwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for floating windows.
+    ///
+    ///
     #[doc(alias = "kCGFloatingWindowLevelKey")]
     pub const FloatingWindowLevelKey: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/tornoffmenuwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for torn-off menus.
+    ///
+    ///
     #[doc(alias = "kCGTornOffMenuWindowLevelKey")]
     pub const TornOffMenuWindowLevelKey: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/dockwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for the dock.
+    ///
+    ///
     #[doc(alias = "kCGDockWindowLevelKey")]
     pub const DockWindowLevelKey: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/mainmenuwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for the menus displayed in the menu bar.
+    ///
+    ///
     #[doc(alias = "kCGMainMenuWindowLevelKey")]
     pub const MainMenuWindowLevelKey: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/statuswindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for status windows.
+    ///
+    ///
     #[doc(alias = "kCGStatusWindowLevelKey")]
     pub const StatusWindowLevelKey: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/modalpanelwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for modal panels.
+    ///
+    ///
     #[doc(alias = "kCGModalPanelWindowLevelKey")]
     pub const ModalPanelWindowLevelKey: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/popupmenuwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for pop-up menus.
+    ///
+    ///
     #[doc(alias = "kCGPopUpMenuWindowLevelKey")]
     pub const PopUpMenuWindowLevelKey: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/draggingwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for a window being dragged.
+    ///
+    ///
     #[doc(alias = "kCGDraggingWindowLevelKey")]
     pub const DraggingWindowLevelKey: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/screensaverwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for screen savers.
+    ///
+    ///
     #[doc(alias = "kCGScreenSaverWindowLevelKey")]
     pub const ScreenSaverWindowLevelKey: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/maximumwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The highest allowed window level.
+    ///
+    ///
     #[doc(alias = "kCGMaximumWindowLevelKey")]
     pub const MaximumWindowLevelKey: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/overlaywindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for overlay windows.
+    ///
+    ///
     #[doc(alias = "kCGOverlayWindowLevelKey")]
     pub const OverlayWindowLevelKey: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/helpwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for help windows.
+    ///
+    ///
     #[doc(alias = "kCGHelpWindowLevelKey")]
     pub const HelpWindowLevelKey: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/utilitywindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for utility windows.
+    ///
+    ///
     #[doc(alias = "kCGUtilityWindowLevelKey")]
     pub const UtilityWindowLevelKey: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/desktopiconwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for desktop icons.
+    ///
+    ///
     #[doc(alias = "kCGDesktopIconWindowLevelKey")]
     pub const DesktopIconWindowLevelKey: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/cursorwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for the cursor.
+    ///
+    ///
     #[doc(alias = "kCGCursorWindowLevelKey")]
     pub const CursorWindowLevelKey: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/assistivetechhighwindow?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The level for assistive technology.
+    ///
+    ///
     #[doc(alias = "kCGAssistiveTechHighWindowLevelKey")]
     pub const AssistiveTechHighWindowLevelKey: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey/numberofwindowlevelkeys?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The total number of window levels.
+    ///
+    ///
     #[doc(alias = "kCGNumberOfWindowLevelKeys")]
     pub const NumberOfWindowLevelKeys: Self = Self(21);
 }
@@ -125,10 +217,34 @@ unsafe impl RefEncode for CGWindowLevelKey {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevel?language=objc)
+/// A level assigned to a window by an application framework.
+///
+/// ## Discussion
+///
+/// In macOS, application frameworks support the concept of multiple window levels (or layers). Window levels are assigned and managed by each individual framework.
+///
+/// Note that in an Aqua-compliant application, each document window exists in its own layer. As a result, windows created by different applications can be interleaved.
+///
+///
 pub type CGWindowLevel = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelforkey(_:)?language=objc)
+/// Returns the window level that corresponds to one of the standard window types.
+///
+/// Parameters:
+/// - key: A window level key constant that represents one of the standard window types. See [`CGWindowLevelKey`](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey).
+///
+///
+/// ## Return Value
+///
+/// The window level that corresponds to the specified key.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is not recommended for use in applications. (This function is provided for application frameworks that create and manage windows, like Cocoa.)
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGWindowLevelForKey(key: CGWindowLevelKey) -> CGWindowLevel {
     extern "C-unwind" {

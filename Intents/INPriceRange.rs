@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpricerange?language=objc)
+    /// Price information, as a range of possible values.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPriceRange`](https://developer.apple.com/documentation/intents/inpricerange) object encapsulates pricing information for a response that involves a charge for services. Price range objects can specify an exact price, a minimum price, a maximum price, or a specific price range.
+    ///
+    /// You create price range objects when providing a response that includes pricing information. Use the price range objects to offer a quote on the cost of the services you are providing, to specify price tiers for services, or to specify more specific pricing information. The information you provide is displayed to the user in appropriate places.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPriceRange;

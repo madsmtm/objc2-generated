@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontpickerviewcontrollerdelegate?language=objc)
+    /// A set of optional methods for receiving messages about the user’s interaction with the font picker.
     pub unsafe trait UIFontPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -27,7 +27,27 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller?language=objc)
+    /// A view controller that manages the interface for selecting a font that the system provides or the user installs.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIFontPickerViewController`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller) to provide the user access to all the fonts on their device. Directly querying [`UIFont`](https://developer.apple.com/documentation/uikit/uifont) provides only system fonts, but the user may have additional fonts on their device. When the user selects one of these nonsystem fonts in the font picker, the system grants your app access to the font.
+    ///
+    /// The font picker has several customization options collected into a [`UIFontPickerViewControllerConfiguration`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller/configuration-swift.class) object. For example, you can set [`includeFaces`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller/configuration-swift.class/includefaces) to [`true`](https://developer.apple.com/documentation/swift/true) so that the user can select not only the font but a bold or italic face within that font family. Customize the configuration object first, then pass it as an argument in the font picker’s [`initWithConfiguration:`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller/init(configuration:)) method.
+    ///
+    /// ```swift
+    ///     func showFontPicker(_ sender: Any) {
+    ///         let fontConfig = UIFontPickerViewController.Configuration()
+    ///         fontConfig.includeFaces = true
+    ///         let fontPicker = UIFontPickerViewController(configuration: fontConfig)
+    ///         fontPicker.delegate = self
+    ///         self.present(fontPicker, animated: true, completion: nil)
+    ///     }
+    /// ```
+    ///
+    /// When your [`UIFontPickerViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontrollerdelegate) receives [`fontPickerViewControllerDidPickFont:`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontrollerdelegate/fontpickerviewcontrollerdidpickfont(_:)), retrieve information about the user’s selected font from the font picker’s [`selectedFontDescriptor`](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller/selectedfontdescriptor).
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

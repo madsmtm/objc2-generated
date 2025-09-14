@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene?language=objc)
+    /// A scene that manages one or more windows for your app.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) object manages one instance of your app’s UI, including one or more windows that you display from that scene. The scene object manages the display of your windows on the user’s device, and the life cycle of that scene as the user interacts with it. When the state of the scene changes, the scene object notifies its delegate object, which adopts the [`UIWindowSceneDelegate`](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate) protocol. The scene also posts appropriate notifications to registered observers. Use the delegate object or notification observers to respond to any changes.
+    ///
+    /// Don’t create window scene objects directly. Instead, specify that you want a [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) object at configuration time by including the class name for the scene in the scene configuration details of your app’s `Info.plist` file. You can also specify the class name when creating a [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object in your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method. When the user interacts with your app, the system creates an appropriate scene object based on the configuration data you provided. To create a scene programmatically, call the [`requestSceneSessionActivation:userActivity:options:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/requestscenesessionactivation(_:useractivity:options:errorhandler:)) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication).
+    ///
+    ///
     #[unsafe(super(UIScene, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -174,7 +182,17 @@ extern_conformance!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate?language=objc)
+    /// Additional methods that you use to manage app-specific tasks occurring in a scene.
+    ///
+    /// ## Overview
+    ///
+    /// Use your [`UIWindowSceneDelegate`](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate) object to manage the life cycle of one instance of your app’s user interface. The window scene delegate conforms to the [`UISceneDelegate`](https://developer.apple.com/documentation/uikit/uiscenedelegate) protocol, and you use it to receive notifications when its scene connects to the app, enters the foreground, and so on. You also use it to respond to changes in the underlying environment of the scene. For example, if the user resizes a scene, use your delegate to make any needed changes to your content to accommodate the new size.
+    ///
+    /// Don’t create [`UIWindowSceneDelegate`](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate) objects directly. Instead, specify the name of your delegate class as part of the configuration data for your scene. You can specify this information in your app’s `Info.plist` file, or in the [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method. For more information about how to configure scenes, see [Specifying the scenes your app supports](https://developer.apple.com/documentation/uikit/specifying-the-scenes-your-app-supports).
+    ///
+    /// For an example on using `UIWindowSceneDelegate` in your app, see [Supporting multiple windows on iPad](https://developer.apple.com/documentation/uikit/supporting-multiple-windows-on-ipad).
+    ///
+    ///
     #[cfg(feature = "UIScene")]
     pub unsafe trait UIWindowSceneDelegate: UISceneDelegate + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
@@ -263,49 +281,65 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowapplication?language=objc)
+    /// A scene that displays interactive windows on the device’s built-in display or an externally connected display.
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleApplication: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowexternaldisplaynoninteractive?language=objc)
+    /// A scene that displays noninteractive windows on an externally connected display.
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleExternalDisplayNonInteractive: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowexternaldisplay?language=objc)
+    /// A scene that displays noninteractive windows on an externally connected display.
     #[cfg(feature = "UISceneDefinitions")]
     #[deprecated]
     pub static UIWindowSceneSessionRoleExternalDisplay: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowapplicationvolumetric?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleVolumetricApplication: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowassistiveaccessapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleAssistiveAccessApplication: &'static UISceneSessionRole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/dismissalanimation?language=objc)
+/// Constants that indicate the types of animations available for dismissing a scene’s windows.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIWindowSceneDismissalAnimation(pub NSInteger);
 impl UIWindowSceneDismissalAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/dismissalanimation/standard?language=objc)
+    /// The standard dismissal animations.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type of animation when you want the system to perform a standard dismissal animation. For example, you might use this animation to close a scene displaying a web page.
+    ///
+    ///
     #[doc(alias = "UIWindowSceneDismissalAnimationStandard")]
     pub const Standard: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/dismissalanimation/commit?language=objc)
+    /// Animations to use when saving changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type of animation when the scene contains changes that you want to save. For example, a mail app might use this animation when sending an email message displayed in a scene.
+    ///
+    ///
     #[doc(alias = "UIWindowSceneDismissalAnimationCommit")]
     pub const Commit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/dismissalanimation/decline?language=objc)
+    /// Animations to use when declining changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type of animation when the scene contains changes that you don’t want to save. For example, a mail app might use this animation when discarding a draft email message or saving it for later.
+    ///
+    ///
     #[doc(alias = "UIWindowSceneDismissalAnimationDecline")]
     pub const Decline: Self = Self(3);
 }
@@ -319,7 +353,13 @@ unsafe impl RefEncode for UIWindowSceneDismissalAnimation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedestructionrequestoptions?language=objc)
+    /// An object that contains information to use when removing a window scene from your app.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIWindowSceneDestructionRequestOptions`](https://developer.apple.com/documentation/uikit/uiwindowscenedestructionrequestoptions) object before you close one of your app’s scenes using the [`requestSceneSessionDestruction:options:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/requestscenesessiondestruction(_:options:errorhandler:)) method of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication). Use this object to specify the dismissal animations to apply to the scene’s UI, if that UI is onscreen.
+    ///
+    ///
     #[unsafe(super(UISceneDestructionRequestOptions, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,29 +6,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options?language=objc)
+/// A structure that contains options for filtering results in a search.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAddressFilterOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MKAddressFilterOption: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/country?language=objc)
+/// Countries and regions.
         #[doc(alias = "MKAddressFilterOptionCountry")]
         const Country = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/administrativearea?language=objc)
+/// The primary administrative divisions of countries or regions.
         #[doc(alias = "MKAddressFilterOptionAdministrativeArea")]
         const AdministrativeArea = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/subadministrativearea?language=objc)
+/// The secondary administrative divisions of countries or regions.
         #[doc(alias = "MKAddressFilterOptionSubAdministrativeArea")]
         const SubAdministrativeArea = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/locality?language=objc)
+/// Local administrative divisions, postal cities, and populated places.
         #[doc(alias = "MKAddressFilterOptionLocality")]
         const Locality = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/sublocality?language=objc)
+/// Local administrative subdivisions, postal city subdistricts, and neighborhoods.
         #[doc(alias = "MKAddressFilterOptionSubLocality")]
         const SubLocality = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options/postalcode?language=objc)
+/// An address code for mail sorting and delivery.
         #[doc(alias = "MKAddressFilterOptionPostalCode")]
         const PostalCode = 1<<5;
     }
@@ -43,7 +43,13 @@ unsafe impl RefEncode for MKAddressFilterOption {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressfilter?language=objc)
+    /// An object that filters which address options to include or exclude in search results.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to filter search results by criteria, such as country, region, and municipality. See [`MKAddressFilterOption`](https://developer.apple.com/documentation/mapkit/mkaddressfilter/options) for more information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKAddressFilter;

@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey?language=objc)
+/// Keys that identify components of a dragging image.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSDraggingImageComponentKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey/icon?language=objc)
+    /// A key for a corresponding value that is a dragging item’s image.
     pub static NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey/label?language=objc)
+    /// A key for a corresponding value that represents a textual label for a dragging item, for example, a file name.
     pub static NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent?language=objc)
+    /// A single object in a dragging item.
+    ///
+    /// ## Overview
+    ///
+    /// An array of [`NSDraggingImageComponent`](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent) instances are composited together to create the dragging image for an [`NSDraggingItem`](https://developer.apple.com/documentation/appkit/nsdraggingitem). [`NSDraggingImageComponent`](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent) instances can simply be considered as named images with a location used by an [`NSDraggingItem`](https://developer.apple.com/documentation/appkit/nsdraggingitem) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingImageComponent;
@@ -96,7 +102,15 @@ impl NSDraggingImageComponent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem?language=objc)
+    /// A single dragged item within a dragging session.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSDraggingItem`](https://developer.apple.com/documentation/appkit/nsdraggingitem) objects have extremely limited lifetimes. Don’t retain these items because changing outside of the prescribed lifetimes has no impact on the drag.
+    ///
+    /// When you call the [`NSDraggingSession`](https://developer.apple.com/documentation/appkit/nsdraggingsession) method [`beginDraggingSessionWithItems:event:source:`](https://developer.apple.com/documentation/appkit/nsview/begindraggingsession(with:event:source:)), the system immediately consumes the dragging items that pass to the method, and doesn’t retain them. Any further changes to the dragging item associated with the returned [`NSDraggingSession`](https://developer.apple.com/documentation/appkit/nsdraggingsession) must occur with the enumeration method [`enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:`](https://developer.apple.com/documentation/appkit/nsdraggingsession/enumeratedraggingitems(options:for:classes:searchoptions:using:)). When enumerating, the system creates `NSDraggingItem` instances right before giving them to the enumeration block. After returning from the block, the dragging item is no longer valid.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDraggingItem;

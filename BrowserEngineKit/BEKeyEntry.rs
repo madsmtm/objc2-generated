@@ -7,16 +7,16 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate?language=objc)
+/// An enumeration that represents the possible states of a key-press in a keyboard event.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BEKeyPressState(pub NSInteger);
 impl BEKeyPressState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate/down?language=objc)
+    /// The key is down.
     #[doc(alias = "BEKeyPressStateDown")]
     pub const Down: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate/up?language=objc)
+    /// The key is up.
     #[doc(alias = "BEKeyPressStateUp")]
     pub const Up: Self = Self(2);
 }
@@ -30,7 +30,7 @@ unsafe impl RefEncode for BEKeyPressState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry?language=objc)
+    /// A class that represents a keyboard event in the text system.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEKeyEntry;

@@ -22,11 +22,27 @@ unsafe impl RefEncode for CGPDFContentStream {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFContentStream", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref?language=objc)
+/// An opaque type that provides access to the data that describes the appearance of a PDF page.
 pub type CGPDFContentStreamRef = *mut CGPDFContentStream;
 
 impl CGPDFContentStream {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamcreatewithpage(_:)?language=objc)
+    /// Creates a content stream object from a PDF page object.
+    ///
+    /// Parameters:
+    /// - page: A PDF page object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new [`CGPDFContentStreamRef`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref) object. In Objective-C, you’re responsible for releasing this object by calling the [`CGPDFContentStreamRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamrelease(_:)) function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CGPDFContentStreamRef`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref) object can contain more than one PDF content stream. To retrieve an array of the PDF content streams in the object, call the function [`CGPDFContentStreamGetStreams`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetstreams(_:)). To obtain the resources associated with a [`CGPDFContentStreamRef`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamref) object, call the function [`CGPDFContentStreamGetResource`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetresource(_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
@@ -37,7 +53,27 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithPage(page) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamcreatewithstream(_:_:_:)?language=objc)
+    /// Creates a PDF content stream object from an existing PDF content stream object.
+    ///
+    /// Parameters:
+    /// - stream: The PDF stream you want to create a content stream from.
+    ///
+    /// - streamResources: A PDF dictionary that contains the resources associated with the stream you want to retrieve.
+    ///
+    /// - parent: The content stream of the page on which `stream` appears. Supply the `parent` parameter when you create a content stream that’s used within a page.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A PDF content stream object created from the `stream` parameter. In Objective-C, you’re responsible for releasing this object by calling the [`CGPDFContentStreamRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamrelease(_:)) function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to get access to the contents of a form, pattern, Type3 font, or any PDF stream.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -62,7 +98,17 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamCreateWithStream(stream, stream_resources, parent) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamretain(_:)?language=objc)
+    /// Increments the retain count of a PDF content stream object.
+    ///
+    /// Parameters:
+    /// - cs: A PDF content stream object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The same PDF content stream you passed in as the `cs` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -76,7 +122,11 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRetain(cs) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamrelease(_:)?language=objc)
+    /// Decrements the retain count of a PDF content stream object.
+    ///
+    /// Parameters:
+    /// - cs: A PDF content stream.
+    ///
     ///
     /// # Safety
     ///
@@ -90,7 +140,17 @@ impl CGPDFContentStream {
         unsafe { CGPDFContentStreamRelease(cs) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetstreams(_:)?language=objc)
+    /// Gets the array of PDF content streams contained in a PDF content stream object.
+    ///
+    /// Parameters:
+    /// - cs: A PDF content stream object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The array of PDF content streams that make up the content stream object represented by the `cs` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -105,7 +165,27 @@ impl CGPDFContentStream {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstreamgetresource(_:_:_:)?language=objc)
+    /// Gets the specified resource from a PDF content stream object.
+    ///
+    /// Parameters:
+    /// - cs: A PDF content stream object.
+    ///
+    /// - category: A string that specifies the category of the resource you want to obtain.
+    ///
+    /// - name: A string that specifies the name of the resource you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The resource dictionary.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function to obtain resources used by the content stream, such as forms, patterns, color spaces, and fonts.
+    ///
+    ///
     ///
     /// # Safety
     ///

@@ -10,9 +10,14 @@ use crate::*;
 extern_protocol!(
     /// A protocol containing functionality supplied by FSKit to file system implementations.
     ///
-    /// Both ``FSFileSystem`` and ``FSUnaryFileSystem`` conform to this protocol.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsfilesystembase?language=objc)
+    /// Both [`FSFileSystem`](https://developer.apple.com/documentation/fskit/fsfilesystem) and [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem) conform to this protocol.
+    ///
+    ///
+    /// A protocol containing functionality supplied by FSKit to file system implementations.
+    ///
+    /// Both ``FSFileSystem`` and ``FSUnaryFileSystem`` conform to this protocol.
     pub unsafe trait FSFileSystemBase: NSObjectProtocol {
         #[cfg(feature = "FSContainer")]
         /// The status of the file system container, indicating its readiness and activity.

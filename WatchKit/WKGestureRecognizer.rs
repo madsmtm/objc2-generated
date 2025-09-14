@@ -8,31 +8,24 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate?language=objc)
+/// Constants describing the possible states of a gesture recognizer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKGestureRecognizerState(pub NSInteger);
 impl WKGestureRecognizerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/possible?language=objc)
     #[doc(alias = "WKGestureRecognizerStatePossible")]
     pub const Possible: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/began?language=objc)
     #[doc(alias = "WKGestureRecognizerStateBegan")]
     pub const Began: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/changed?language=objc)
     #[doc(alias = "WKGestureRecognizerStateChanged")]
     pub const Changed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/ended?language=objc)
     #[doc(alias = "WKGestureRecognizerStateEnded")]
     pub const Ended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/cancelled?language=objc)
     #[doc(alias = "WKGestureRecognizerStateCancelled")]
     pub const Cancelled: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/failed?language=objc)
     #[doc(alias = "WKGestureRecognizerStateFailed")]
     pub const Failed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/recognized?language=objc)
     #[doc(alias = "WKGestureRecognizerStateRecognized")]
     pub const Recognized: Self = Self(6);
 }
@@ -45,23 +38,23 @@ unsafe impl RefEncode for WKGestureRecognizerState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection?language=objc)
+/// Constants indicating the direction of a swipe.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKSwipeGestureRecognizerDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl WKSwipeGestureRecognizerDirection: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection/right?language=objc)
+/// The touch moves from left to right. This direction is the default.
         #[doc(alias = "WKSwipeGestureRecognizerDirectionRight")]
         const Right = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection/left?language=objc)
+/// The touch moves from right to left.
         #[doc(alias = "WKSwipeGestureRecognizerDirectionLeft")]
         const Left = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection/up?language=objc)
+/// The touch moves upward.
         #[doc(alias = "WKSwipeGestureRecognizerDirectionUp")]
         const Up = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection/down?language=objc)
+/// The touch moves downward.
         #[doc(alias = "WKSwipeGestureRecognizerDirectionDown")]
         const Down = 1<<3;
     }
@@ -76,7 +69,61 @@ unsafe impl RefEncode for WKSwipeGestureRecognizerDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer?language=objc)
+    /// The base class for all other gesture recognizer classes.
+    ///
+    /// ## Overview
+    ///
+    /// Gesture recognizers simplify the event-handling process by tracking touch events for you and calling your custom code when those events match a specific pattern. Gesture recognizers report the results of their tracking to an action method that you define.
+    ///
+    /// You do not subclass [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer) or create instances of it directly. Instead, you add concrete gesture recognizer objects to your Watch app’s storyboard file and connect that gesture recognizer to your custom action method. At runtime, you use the methods of this class to get and set the state of your gesture recognizer. The concrete gesture recognizer classes are as follows:
+    ///
+    /// - [`WKLongPressGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wklongpressgesturerecognizer)
+    ///
+    /// - [`WKPanGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkpangesturerecognizer)
+    ///
+    /// - [`WKSwipeGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizer)
+    ///
+    /// - [`WKTapGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wktapgesturerecognizer)
+    ///
+    /// ### Executing Code in Response to a Gesture
+    ///
+    /// A gesture recognizer has an associated action method that it calls during the recognition process to report on its progress. You define the action method in your interface controller and connect it to the gesture recognizer in Interface Builder. Action methods must conform to one of the following signatures:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func handleGesture()", "@IBAction func handleGesture(gestureRecognizer : WKGestureRecognizer)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)handleGesture", "- (IBAction)handleGesture:(WKGestureRecognizer*)gestureRecognizer"], metadata: None }] }] })
+    /// The gesture recognizer calls your action method whenever the value in the [`state`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer/state) property changes in a significant way. All gesture recognizers start out in the [`WKGestureRecognizerStatePossible`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/possible) state and move to other states as appropriate based on the type of gesture. Gesture recognizers do not call your action method for every state change. For information about when the action method is called, see the constant descriptions of the [`WKGestureRecognizerState`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate) type.
+    ///
+    /// watchOS supports two broad categories of gesture recognizers: continuous gesture recognizers and discrete gesture recognizer.
+    ///
+    /// #### Continuous Gesture Recognizers
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/eadbf2c2039e5658266f0bc849dbbbdc/media-2557562%402x.png)
+    ///
+    ///
+    /// Continuous gesture recognizers—for example, pan or long touch recognizers—track the user’s gesture and call the action method multiple times during a single gesture. They typically call the action method once when the gesture begins, one or more times as the gesture progresses, and once when the gesture either ends or is canceled. In your action method, use the gesture recognizer’s [`state`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer/state) property to perform appropriate tasks based on the current state. For example:
+    ///
+    /// - [`WKGestureRecognizerStateBegan`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/began). Alter the user interface’s appearance to indicate that a gesture has begun.
+    ///
+    /// - [`WKGestureRecognizerStateChanged`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/changed). Update the user interface based on the current touch location.
+    ///
+    /// - [`WKGestureRecognizerStateEnded`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/ended). Return to the normal user interface appearance, indicating that the gesture has ended. Keep any updates.
+    ///
+    /// - [`WKGestureRecognizerStateCancelled`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/cancelled). Return to the normal user interface appearance, indicating that the gesture has ended. Discard any updates.
+    ///
+    /// #### Discrete Gesture Recognizers
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/cb3692b76f000fb3b3a265280f7fdb70/media-2557566%402x.png)
+    ///
+    ///
+    /// Discrete gesture recognizers—for example, tap or swipe recognizers—only trigger a single event as soon as the gesture is recognized. For example, discrete recognizers call their action method when they enter the [`WKGestureRecognizerStateRecognized`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/recognized) state. If they enter the [`WKGestureRecognizerStateFailed`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/failed) state, they fail silently.
+    ///
+    /// ### Interface Builder Attributes
+    ///
+    /// Xcode lets you configure information about your gesture recognizer in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "State" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the gesture recognizer is enabled. You can also configure this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKGestureRecognizer/isEnabled", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Behavior" }] }], [Paragraph { inline_content: [Text { text: "Checkboxes indicating additional gesture recognizer behaviors. Use these options to specify how the gesture recognizer responds to touch events." }] }]], [[Paragraph { inline_content: [Text { text: "Must Fail First" }] }], [Paragraph { inline_content: [Text { text: "Gesture recognizers that must fail before the current one can succeed. Drag from this option to the gesture recognizers in your storyboard file." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKGestureRecognizer;
@@ -127,7 +174,32 @@ impl WKGestureRecognizer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktapgesturerecognizer?language=objc)
+    /// A gesture recognizer that interprets a touch event occurring and ending in approximately the same area on the screen.
+    ///
+    /// ## Overview
+    ///
+    /// The tap gesture recognizer can report when a single tap happens or when multiple taps happen.
+    ///
+    /// You do not create instances of this class programmatically. Instead, add a tap gesture recognizer to your Watch appʼs storyboard file, dropping it onto a specific interface object. The gesture recognizer tracks touches that occur within the bounds of that interface object and reports to an action method you define on the parent interface controller. For information on defining your action method and connecting it to your gesture recognizer, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### State Changes for a Tap Gesture
+    ///
+    /// A tap gesture recognizer tracks discrete events, and therefore has a limited number of state changes. Each tap in a tap gesture comprises the user touching the screen and then lifting the finger off the screen in about the same location and within a preset amount of time. Gesture recognition occurs when the user performs the specified number of taps. The state transition sequences for a tap gesture are as follows:
+    ///
+    ///
+    /// ![Possible state is Recognized or Failed](https://docs-assets.developer.apple.com/published/cb3692b76f000fb3b3a265280f7fdb70/media-3591359%402x.png)
+    ///
+    ///
+    /// The gesture recognizer calls its action method when it enters the [`WKGestureRecognizerStateRecognized`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/recognized) state. You can determine the location of the tap by calling its [`locationInObject`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer/locationinobject()) method. For more information on implementing discrete gesture recognizers, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### Interface Builder Attributes
+    ///
+    /// Xcode lets you configure information about your gesture recognizer in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meanings.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Taps" }] }], [Paragraph { inline_content: [Text { text: "The number of taps necessary to complete the gesture. You can set this value using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKTapGestureRecognizer/numberOfTapsRequired", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// The [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer) parent class also defines attributes that you can configure for your gesture recognizer. For information about those attributes, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    ///
     #[unsafe(super(WKGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKTapGestureRecognizer;
@@ -164,7 +236,36 @@ impl WKTapGestureRecognizer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wklongpressgesturerecognizer?language=objc)
+    /// A gesture recognizer that interprets a touch event that occurs in the same relative area for an extended period of time.
+    ///
+    /// ## Overview
+    ///
+    /// A long-press gesture is essentially a tap where the user’s finger remains on the screen for a minimum amount of time, which is configurable. You can configure the amount of time required for the long-press to be recognized and the maximum distance those touches are allowed to move before being disallowed.
+    ///
+    /// You do not create instances of this class programmatically. Instead, add a long-press gesture recognizer to your Watch app’s storyboard file, dropping it onto a specific interface object. Touches occurring within the bounds of that interface object are tracked by the gesture recognizer and reported to an action method you define on the parent interface controller. For information on defining your action method and connecting it to your gesture recognizer, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### State Changes for a Long-Press Gesture
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/eadbf2c2039e5658266f0bc849dbbbdc/media-2557620%402x.png)
+    ///
+    ///
+    /// A long-press gesture recognizer tracks touch events continuously, and therefore has many potential state changes. A long-press gesture transitions to the Began state when the touch event is first detected. After that, the gesture recognizer may transition to the Changed state, the Ended, state, the Failed state, or the Cancelled state. The two most common state transition sequences are as follows:
+    ///
+    /// - Possible → Began → [Changed…] → Ended
+    ///
+    /// - Possible → Began → [Changed…] → Failed
+    ///
+    /// The Changed state is optional and may occur multiple times before the Ended, Failed, or Cancelled state is reached. The gesture recognizer calls its action method at each state transition. For more information on implementing continuous gesture recognizers, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### Interface Builder Attributes
+    ///
+    /// Xcode lets you configure information about your gesture recognizer in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Min Duration" }] }], [Paragraph { inline_content: [Text { text: "The minimum time (in seconds) that the user’s finger must touch the screen before the gesture can be recognized. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer/minimumPressDuration", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Taps" }] }], [Paragraph { inline_content: [Text { text: "The number of long-press taps that must occur for the gesture to be recognized. Each tap must touch the screen for the minimum duration. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer/numberOfTapsRequired", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Movement" }] }], [Paragraph { inline_content: [Text { text: "The amount of movement (in points) allowed for each touch event. Recognition of the gesture fails if any of the touch events moves by the specified amount or more. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKLongPressGestureRecognizer/allowableMovement", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// The [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer) parent class also defines attributes that you can configure for your gesture recognizer. For information about those attributes, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    ///
     #[unsafe(super(WKGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKLongPressGestureRecognizer;
@@ -223,7 +324,32 @@ impl WKLongPressGestureRecognizer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizer?language=objc)
+    /// A gesture recognizer that interprets swiping gestures in one or more directions.
+    ///
+    /// ## Overview
+    ///
+    /// A swipe is a discrete gesture; the associated action message is sent only once per gesture.
+    ///
+    /// You do not create instances of this class programmatically. Instead, add a swipe gesture recognizer to your Watch app’s storyboard file, dropping it onto a specific interface object. Touches occurring within the bounds of that interface object are tracked by the gesture recognizer and reported to an action method you define on the parent interface controller. For information on defining your action method and connecting it to your gesture recognizer, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### State Changes for a Swipe Gesture
+    ///
+    /// A swipe gesture recognizer tracks discrete events, and therefore has a limited number of state changes. The swipe gesture is recognized when a single touch has moved mostly in an allowable direction far enough to be considered a swipe. Swipes can be slow or fast. A slow swipe requires high directional precision but a small distance; a fast swipe requires low directional precision but a large distance.
+    ///
+    ///
+    /// ![Possible state is Recognized or Failed](https://docs-assets.developer.apple.com/published/cb3692b76f000fb3b3a265280f7fdb70/media-3591360%402x.png)
+    ///
+    ///
+    /// The gesture recognizer calls its action method when it enters the [`WKGestureRecognizerStateRecognized`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate/recognized) state. You may determine the location where a swipe began by calling its [`locationInObject`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer/locationinobject()) method. For more information on implementing discrete gesture recognizers, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### Interface Builder Attributes
+    ///
+    /// Xcode lets you configure information about your gesture recognizer in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Swipe" }] }], [Paragraph { inline_content: [Text { text: "The direction of the swipe. The swipe must occur in this direction for the gesture to be recognized. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKSwipeGestureRecognizer/direction", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// The [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer) parent class also defines attributes that you can configure for your gesture recognizer. For information about those attributes, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    ///
     #[unsafe(super(WKGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKSwipeGestureRecognizer;
@@ -260,7 +386,33 @@ impl WKSwipeGestureRecognizer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpangesturerecognizer?language=objc)
+    /// A gesture recognizer that interprets a touch event that moves around the screen.
+    ///
+    /// ## Overview
+    ///
+    /// In watchOS, a pan gesture must track exactly one touch event, but that touch event may move freely. Pan gestures are often used to drag content around a given area.
+    ///
+    /// You do not create instances of this class programmatically. Instead, add a pan gesture recognizer to your Watch app’s storyboard file, dropping it onto a specific interface object. Touches occurring within the bounds of that interface object are tracked by the gesture recognizer and reported to an action method you define on the parent interface controller. For information on defining your action method and connecting it to your gesture recognizer, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### State Changes for a Pan Gesture
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/eadbf2c2039e5658266f0bc849dbbbdc/media-2557623%402x.png)
+    ///
+    ///
+    /// A pan gesture recognizer tracks touch events continuously, and therefore has many potential state changes. A pan gesture does not transition to the Began state until after the touch event starts moving. After that, it may transition to the Changed state, to the Ended, state, to the Failed state, or to the Cancelled state. The two most common state transition sequences are as follows:
+    ///
+    /// - Possible —> Began —> [Changed…] —> Ended
+    ///
+    /// - Possible —> Began —> [Changed…] —> Failed
+    ///
+    /// The Changed state is optional and may occur multiple times before the Ended, Failed, or Cancelled state is reached. The gesture recognizer calls its action method at each state transition. For more information on implementing continuous gesture recognizers, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    /// ### Interface Builder Attributes
+    ///
+    /// Xcode lets you configure information about your gesture recognizer in your storyboard file. A pan gesture recognizer defines no attributes of its own, but you can configure attributes of the [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer) parent class. For information about those attributes, see [`WKGestureRecognizer`](https://developer.apple.com/documentation/watchkit/wkgesturerecognizer).
+    ///
+    ///
     #[unsafe(super(WKGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKPanGestureRecognizer;

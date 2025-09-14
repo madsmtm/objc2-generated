@@ -10,9 +10,22 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// SFAuthorization APIs are used for implementing access control in applications and daemons. It has NSCoder support for proxied objects SFAuthorization is a wrapper for using the Authorization API.
+    /// A class that allows you to restrict a user’s access to particular features in your Mac app or daemon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityfoundation/sfauthorization?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// The authorization services API is not supported within an app sandbox because it allows privilege escalation.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`SFAuthorization`](https://developer.apple.com/documentation/securityfoundation/sfauthorization) class is an interface for some of the functions in the Authorization Services API. You can use the [`authorizationRef`](https://developer.apple.com/documentation/securityfoundation/sfauthorization/authorizationref()) method to obtain an authorization reference, used in other calls to Authorization Services functions. The Authorization Services API is documented in [Authorization Services](https://developer.apple.com/documentation/security/authorization-services).
+    ///
+    ///
+    /// SFAuthorization APIs are used for implementing access control in applications and daemons. It has NSCoder support for proxied objects SFAuthorization is a wrapper for using the Authorization API.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAuthorization;

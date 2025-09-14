@@ -8,26 +8,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Defines the types a time duration constraint uses.
 /// Enumerates possible types for `SNTimeDurationConstraint`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SNTimeDurationConstraintType(pub NSInteger);
 impl SNTimeDurationConstraintType {
+    /// A constraint type that uses an array of time durations to define what a request’s underlying sound classifier accepts.
     /// An 'enumerated' constraint type.
     ///
     /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular set of discrete permissible values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype/sntimedurationconstrainttypeenumerated?language=objc)
     #[doc(alias = "SNTimeDurationConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(1);
+    /// A constraint type that uses a time duration range to define what a request’s underlying sound classifier accepts.
     /// A 'range' constraint type.
     ///
     /// In order for a duration to satisfy a constraint of this type, it must be a member of a particular continuous range of permissible values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstrainttype/sntimedurationconstrainttyperange?language=objc)
     #[doc(alias = "SNTimeDurationConstraintTypeRange")]
     pub const Range: Self = Self(2);
 }
@@ -41,11 +38,16 @@ unsafe impl RefEncode for SNTimeDurationConstraintType {
 }
 
 extern_class!(
+    /// Defines the time duration windows the request’s underlying sound classifier accepts with a range, or an array, of durations.
+    ///
+    /// ## Overview
+    ///
+    /// Inspect the constraint’s [`type`](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint-c.class/type) property first to determine whether to check [`durationRange`](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint-c.class/durationrange) or [`enumeratedDurations`](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint-c.class/enumerateddurations) next.
+    ///
+    ///
     /// Constrains CMTime durations to a subset of legal values.
     ///
     /// `SNTimeDurationConstraint` is a union type, which, based on the value of its `type` property, may assume one of several forms. Instance properties may be used to extract information from an object, but certain properties are only valid to exercise under certain circumstances. Before accessing a particular property, refer to its documentation to understand what `type` value is required in order for that property to be valid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNTimeDurationConstraint;

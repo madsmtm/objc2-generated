@@ -7,22 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate whether to allow or cancel navigation to a webpage from an action.
 /// The policy to pass back to the decision handler from the
 /// webView:decidePolicyForNavigationAction:decisionHandler: method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationActionPolicy(pub NSInteger);
 impl WKNavigationActionPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/cancel?language=objc)
+    /// Cancel the navigation.
     #[doc(alias = "WKNavigationActionPolicyCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/allow?language=objc)
+    /// Allow the navigation to continue.
     #[doc(alias = "WKNavigationActionPolicyAllow")]
     pub const Allow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy/download?language=objc)
+    /// Allow the download to proceed.
     #[doc(alias = "WKNavigationActionPolicyDownload")]
     pub const Download: Self = Self(2);
 }
@@ -35,21 +34,20 @@ unsafe impl RefEncode for WKNavigationActionPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate whether to allow or cancel navigation to a webpage from a response.
 /// The policy to pass back to the decision handler from the webView:decidePolicyForNavigationResponse:decisionHandler: method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationResponsePolicy(pub NSInteger);
 impl WKNavigationResponsePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/cancel?language=objc)
+    /// Cancel the navigation.
     #[doc(alias = "WKNavigationResponsePolicyCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/allow?language=objc)
+    /// Allow the navigation to continue.
     #[doc(alias = "WKNavigationResponsePolicyAllow")]
     pub const Allow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy/download?language=objc)
+    /// Allow the download to proceed.
     #[doc(alias = "WKNavigationResponsePolicyDownload")]
     pub const Download: Self = Self(2);
 }
@@ -63,11 +61,16 @@ unsafe impl RefEncode for WKNavigationResponsePolicy {
 }
 
 extern_protocol!(
+    /// Methods for accepting or rejecting navigation changes, and for tracking the progress of navigation requests.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the methods of the [`WKNavigationDelegate`](https://developer.apple.com/documentation/webkit/wknavigationdelegate) protocol in the object you use to coordinate changes in your web view’s main frame. As the user attempts to navigate web content, the web view coordinates with its navigation delegate to manage any transitions. For example, you might use these methods to restrict navigation from specific links within your content. You might also use them to track the progress of requests, and to respond to errors and authentication challenges.
+    ///
+    ///
     /// A class conforming to the WKNavigationDelegate protocol can provide
     /// methods for tracking progress for main frame navigations and for deciding
     /// policy for main frame and subframe navigations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationdelegate?language=objc)
     pub unsafe trait WKNavigationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "WKNavigationAction",

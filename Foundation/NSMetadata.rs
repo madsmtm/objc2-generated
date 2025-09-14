@@ -7,7 +7,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc)
+    /// A query that you perform against Spotlight metadata.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) class encapsulates the functionality provided by the [MDQuery](https://developer.apple.com/documentation/coreservices/file_metadata/mdquery) opaque type for querying the Spotlight metadata.
+    ///
+    /// [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) objects provide metadata query results in several ways:
+    ///
+    /// - As individual attribute values for requested attributes.
+    ///
+    /// - As value lists that contain the distinct values for given attributes in the query results.
+    ///
+    /// - As a result array proxy, containing all the query results. This is suitable for use with Cocoa bindings.
+    ///
+    /// - As a hierarchical collection of results, grouping together items with the same values for specified grouping attributes. This is also suitable for use with Cocoa bindings.
+    ///
+    /// Queries have two phases: the initial gathering phase that collects all currently matching results and a second live-update phase.
+    ///
+    /// By default, the receiver has no limitation on its search scope. Use the [`searchScopes`](https://developer.apple.com/documentation/foundation/nsmetadataquery/searchscopes) property to customize.
+    ///
+    /// By default, notification of updated results occurs at 1.0 seconds. Use the [`notificationBatchingInterval`](https://developer.apple.com/documentation/foundation/nsmetadataquery/notificationbatchinginterval) property to customize.
+    ///
+    /// You must set a predicate with the [`predicate`](https://developer.apple.com/documentation/foundation/nsmetadataquery/predicate) property before starting a query.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQuery;
@@ -264,7 +288,7 @@ impl DefaultRetained for NSMetadataQuery {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydelegate?language=objc)
+    /// An interface that enables the delegate of a metadata query to provide substitute results or attributes.
     pub unsafe trait NSMetadataQueryDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(metadataQuery:replacementObjectForResultObject:))]
@@ -292,103 +316,114 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidstartgathering?language=objc)
+    /// Posted when the receiver begins with the initial result-gathering phase of the query.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerygatheringprogress?language=objc)
+    /// Posted as the receiver is collecting results during the initial result-gathering phase of the query.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidfinishgathering?language=objc)
+    /// Posted when the receiver has finished with the initial result-gathering phase of the query.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidupdate?language=objc)
+    /// Posted when the receiver’s results have changed during the live-update phase of the query.
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateaddeditemskey?language=objc)
+    /// The key for retrieving an array of items added to the query result. By default, this array contains [`NSMetadataItem`](https://developer.apple.com/documentation/foundation/nsmetadataitem) objects, representing the query’s results; however, the query’s delegate can substitute these objects with instances of a different class.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateAddedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdatechangeditemskey?language=objc)
+    /// The key for retrieving an array of items that have changed in the query result. By default, this array contains [`NSMetadataItem`](https://developer.apple.com/documentation/foundation/nsmetadataitem) objects, representing the query’s results; however, the query’s delegate can substitute these objects with instances of a different class.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateChangedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryupdateremoveditemskey?language=objc)
+    /// The key for retrieving an array of items removed from the query result. By default, this array contains [`NSMetadataItem`](https://developer.apple.com/documentation/foundation/nsmetadataitem) objects, representing the query’s results; however, the query’s delegate can substitute these objects with instances of a different class.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUpdateRemovedItemsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultcontentrelevanceattribute?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key used to retrieve an `NSNumber` object with a floating point value between 0.0 and 1.0 inclusive. The relevance value indicates the relevance of the content of a result object. The relevance is computed based on the value of the result itself, not on its relevance to the other results returned by the query. If the value is not computed, it is treated as an attribute on the item that does not exist.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryResultContentRelevanceAttribute: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryuserhomescope?language=objc)
+    /// Search the user’s home directory.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUserHomeScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerylocalcomputerscope?language=objc)
+    /// Search all local mounted volumes, including the user home directory. The user’s home directory is searched even if it is a remote volume.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerynetworkscope?language=objc)
+    /// Search all user-mounted remote volumes.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexedlocalcomputerscope?language=objc)
+    /// Search all indexed local mounted volumes including the current user’s home directory (even if the home directory is remote).
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedLocalComputerScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryindexednetworkscope?language=objc)
+    /// Search all indexed user-mounted remote volumes.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryIndexedNetworkScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdocumentsscope?language=objc)
+    /// Search all files in the `Documents` directories of the app’s iCloud container directories.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDocumentsScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryubiquitousdatascope?language=objc)
+    /// Search all files not in the `Documents` directories of the app’s iCloud container directories.
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryUbiquitousDataScope: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryaccessibleubiquitousexternaldocumentsscope?language=objc)
+    /// Search for documents outside the app’s container. This search can locate iCloud documents that the user previously opened using a document picker view controller. This lets your app access the documents again without requiring direct user interaction. The result’s [`NSMetadataItemURLKey`](https://developer.apple.com/documentation/foundation/nsmetadataitemurlkey) attributes return security-scoped NSURLs. For more information on working with security-scoped URLs, see [Security-Scoped URLs](https://developer.apple.com/documentation/foundation/nsurl#security-scoped-urls) in [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl).
     #[cfg(feature = "NSString")]
     pub static NSMetadataQueryAccessibleUbiquitousExternalDocumentsScope: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataitem?language=objc)
+    /// The metadata associated with a file.
+    ///
+    /// ## Overview
+    ///
+    /// Metadata items provide a simple interface to retrieve the available attribute names and values.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataItem;
@@ -446,7 +481,13 @@ impl DefaultRetained for NSMetadataItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryattributevaluetuple?language=objc)
+    /// The `NSMetadataQueryAttributeValueTuple` class represents attribute-value tuples, which are objects that contain the attribute name and value of a metadata attribute.
+    ///
+    /// ## Overview
+    ///
+    /// Attribute-value tuples are returned by `NSMetadataQuery` objects as the results in the value lists. Each attribute/value tuple contains the attribute name, the value, and the number of instances of that value that exist for the attribute name.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryAttributeValueTuple;
@@ -494,7 +535,7 @@ impl DefaultRetained for NSMetadataQueryAttributeValueTuple {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataqueryresultgroup?language=objc)
+    /// The `NSMetadataQueryResultGroup` class represents a collection of grouped attribute results returned by an [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) object.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMetadataQueryResultGroup;

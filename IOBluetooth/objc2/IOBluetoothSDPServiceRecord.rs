@@ -10,11 +10,16 @@ use crate::*;
 extern_class!(
     /// An instance of this class represents a single SDP service record.
     ///
+    /// ## Overview
+    ///
+    /// As a service record, an instance of this class has an NSDictionary of service attributes. It also has a link to the IOBluetoothDevice that the service belongs to. The service dictionary is keyed off of the attribute ID of each attribute represented as an NSNumber.
+    ///
+    ///
+    /// An instance of this class represents a single SDP service record.
+    ///
     /// As a service record, an instance of this class has an NSDictionary of service attributes.
     /// It also has a link to the IOBluetoothDevice that the service belongs to.  The service
     /// dictionary is keyed off of the attribute ID of each attribute represented as an NSNumber.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpservicerecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothSDPServiceRecord;

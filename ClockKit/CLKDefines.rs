@@ -6,46 +6,188 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily?language=objc)
+/// Constants indicating the template groups.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationFamily(pub NSInteger);
 impl CLKComplicationFamily {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularsmall?language=objc)
+    /// A small square area that ClockKit displays on the Modular watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the modular small complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a modular small complication.](https://docs-assets.developer.apple.com/published/0b54100013c479ef256ea461fa85d992/media-2933722%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyModularSmall")]
     pub const ModularSmall: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/modularlarge?language=objc)
+    /// A large rectangular area that ClockKit displays on the Modular watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the modular large complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a modular large complication.](https://docs-assets.developer.apple.com/published/e5b426fe727613ab0191b7ee6796dda6/media-2933731%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyModularLarge")]
     pub const ModularLarge: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmall?language=objc)
+    /// A small square or rectangular area that ClockKit Displays on the Utility, Mickey, Chronograph, and Simple watch faces.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the utilitarian small complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a utilitarian small complication.](https://docs-assets.developer.apple.com/published/17c5ece38ff3c299a1698b4947d8d546/media-2933733%402x.png)
+    ///
+    ///
+    /// The utilitarian small family can display the [`CLKComplicationTemplateUtilitarianSmallFlat`](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallflat), [`CLKComplicationTemplateUtilitarianSmallSquare`](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallsquare), [`CLKComplicationTemplateUtilitarianSmallRingText`](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallringtext), and [`CLKComplicationTemplateUtilitarianSmallRingImage`](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallringimage) templates.
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyUtilitarianSmall")]
     pub const UtilitarianSmall: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitariansmallflat?language=objc)
+    /// A small rectangular area that ClockKit Displays on the Photos, Motion, and Timelapse watch faces.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the utilitarian small flat complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a utilitarian small flat complication.](https://docs-assets.developer.apple.com/published/da25b4557d5576df46ec343218a7ff64/media-2880717%402x.png)
+    ///
+    ///
+    /// The utilitarian small flat family can display only the [`CLKComplicationTemplateUtilitarianSmallFlat`](https://developer.apple.com/documentation/clockkit/clkcomplicationtemplateutilitariansmallflat) template.
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyUtilitarianSmallFlat")]
     pub const UtilitarianSmallFlat: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/utilitarianlarge?language=objc)
+    /// A large rectangular area that spans the width of the screen in the Utility and Mickey watch faces.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the utilitarian large complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a utilitarian large complication.](https://docs-assets.developer.apple.com/published/369664f2ee4947a6578a6bc000aa23d2/media-2933732%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyUtilitarianLarge")]
     pub const UtilitarianLarge: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/circularsmall?language=objc)
+    /// A small circular area that ClockKit displays on the Color watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the circular small complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a circular small complication.](https://docs-assets.developer.apple.com/published/6a8c5a0207433667fb12d14e0a5ffa6b/media-2933721%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyCircularSmall")]
     pub const CircularSmall: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge?language=objc)
+    /// A large square area that ClockKit displays on the X-Large watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the extra-large complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of an extra-large complication.](https://docs-assets.developer.apple.com/published/dcfa544e71e27deb279753671bde2a5f/media-2880712%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyExtraLarge")]
     pub const ExtraLarge: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccorner?language=objc)
+    /// A curved area that fills the corners in the Infograph watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the graphic corner complication.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/41114aa92463de270eee698d8eae3e6c/media-3030698~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/41114aa92463de270eee698d8eae3e6c/media-3030698%402x.png 2x" />
+    ///     <img alt="Diagram showing the size and position of a graphic corner complication." src="https://docs-assets.developer.apple.com/published/41114aa92463de270eee698d8eae3e6c/media-3030698~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyGraphicCorner")]
     pub const GraphicCorner: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicbezel?language=objc)
+    /// A circular area with optional curved text that ClockKit displays along the bezel of the Infograph watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the graphic bezel complication.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e01a9b62a7001d16e0ce206b2c37bbb0/media-3030699~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e01a9b62a7001d16e0ce206b2c37bbb0/media-3030699%402x.png 2x" />
+    ///     <img alt="Diagram showing the size and position of a graphic bezel complication." src="https://docs-assets.developer.apple.com/published/e01a9b62a7001d16e0ce206b2c37bbb0/media-3030699~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyGraphicBezel")]
     pub const GraphicBezel: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphiccircular?language=objc)
+    /// A circular area that ClockKit displays on the Infograph and Infograph Modular watch faces.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the graphic circular complication.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/999065e318a4a1fcd929770041abe658/media-3030697~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/999065e318a4a1fcd929770041abe658/media-3030697%402x.png 2x" />
+    ///     <img alt="Diagram showing the size and position of a graphic circular complication." src="https://docs-assets.developer.apple.com/published/999065e318a4a1fcd929770041abe658/media-3030697~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyGraphicCircular")]
     pub const GraphicCircular: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicrectangular?language=objc)
+    /// A large rectangular area that ClockKit displays in the center of the Infograph Modular watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the graphic rectangular complication.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/bfe23e881aa4b12a6577bf6f7137a235/media-3030700~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bfe23e881aa4b12a6577bf6f7137a235/media-3030700%402x.png 2x" />
+    ///     <img alt="Diagram showing the size and position of a graphic rectangular complication." src="https://docs-assets.developer.apple.com/published/bfe23e881aa4b12a6577bf6f7137a235/media-3030700~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyGraphicRectangular")]
     pub const GraphicRectangular: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge?language=objc)
+    /// A large square area that ClockKit displays on the X-Large watch face.
+    ///
+    /// ## Discussion
+    ///
+    /// The following figure shows the size and location of the graphic rectangular complication.
+    ///
+    ///
+    /// ![Diagram showing the size and position of a graphic extra large complication.](https://docs-assets.developer.apple.com/published/c6ff466a49d7b5db89d3b67b4e08c45a/media-3667212%402x.png)
+    ///
+    ///
+    /// The [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family is for 40 mm and 44 mm Apple Watches only. When available, the system prefers the [`CLKComplicationFamilyGraphicExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/graphicextralarge) family over the [`CLKComplicationFamilyExtraLarge`](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily/extralarge).
+    ///
+    ///
     #[doc(alias = "CLKComplicationFamilyGraphicExtraLarge")]
     pub const GraphicExtraLarge: Self = Self(12);
 }
@@ -58,7 +200,7 @@ unsafe impl RefEncode for CLKComplicationFamily {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections?language=objc)
+/// Constants indicating the supported time travel directions, if any.
 // NS_OPTIONS
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
@@ -66,15 +208,15 @@ unsafe impl RefEncode for CLKComplicationFamily {
 pub struct CLKComplicationTimeTravelDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl CLKComplicationTimeTravelDirections: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/clkcomplicationtimetraveldirectionnone?language=objc)
+/// No past or future data support. Use this option when it doesn’t make sense to provide future or past data for your complication.
         #[doc(alias = "CLKComplicationTimeTravelDirectionNone")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/forward?language=objc)
+/// Future data support. Use this option when it makes sense to provide future data for your complication.
         #[doc(alias = "CLKComplicationTimeTravelDirectionForward")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Forward = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimetraveldirections/backward?language=objc)
+/// Past data support. Use this option when it makes sense to provide past data for your complication.
         #[doc(alias = "CLKComplicationTimeTravelDirectionBackward")]
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         const Backward = 1<<1;
@@ -89,18 +231,24 @@ unsafe impl RefEncode for CLKComplicationTimeTravelDirections {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationprivacybehavior?language=objc)
+/// Constants indicating the complication behavior when the Apple Watch is locked.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationPrivacyBehavior(pub NSUInteger);
 impl CLKComplicationPrivacyBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationprivacybehavior/showonlockscreen?language=objc)
+    /// Show the complication data when the Apple Watch is locked.
     #[doc(alias = "CLKComplicationPrivacyBehaviorShowOnLockScreen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const ShowOnLockScreen: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationprivacybehavior/hideonlockscreen?language=objc)
+    /// Don’t show the complication data when the Apple Watch is locked.
+    ///
+    /// ## Discussion
+    ///
+    /// For circular, modular small, and utilitarian small complications, ClockKit displays the complication icon provided by your WatchKit extension. For modular large, and utilitarian large templates, ClockKit displays your app name.
+    ///
+    ///
     #[doc(alias = "CLKComplicationPrivacyBehaviorHideOnLockScreen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const HideOnLockScreen: Self = Self(1);
@@ -114,22 +262,22 @@ unsafe impl RefEncode for CLKComplicationPrivacyBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior?language=objc)
+/// Constants indicating the animation behavior during Time Travel.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationTimelineAnimationBehavior(pub NSUInteger);
 impl CLKComplicationTimelineAnimationBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/never?language=objc)
+    /// No animations. This is the default behavior.
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorNever")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Never: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/grouped?language=objc)
+    /// Animations between groups. During Time Travel, ClockKit creates animations when transitioning between entries with different group identifiers. For entries with identical group identifiers, the new entry is displayed without animations.
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorGrouped")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Grouped: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationtimelineanimationbehavior/always?language=objc)
+    /// Always animate transitions. During Time Travel, ClockKit creates animations between all entries, regardless of the values of their group identifiers.
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorAlways")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Always: Self = Self(2);
@@ -143,26 +291,38 @@ unsafe impl RefEncode for CLKComplicationTimelineAnimationBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment?language=objc)
+/// Constants indicating the alignment of text in columns.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationColumnAlignment(pub NSInteger);
 impl CLKComplicationColumnAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/leading?language=objc)
+    /// Leading alignment for the designated column.
     #[doc(alias = "CLKComplicationColumnAlignmentLeading")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Leading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/trailing?language=objc)
+    /// Trailing alignment for the designated column.
     #[doc(alias = "CLKComplicationColumnAlignmentTrailing")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Trailing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/left?language=objc)
+    /// Left alignment for the designated column.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`CLKComplicationColumnAlignmentLeading`](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/leading) instead.
+    ///
+    ///
     #[doc(alias = "CLKComplicationColumnAlignmentLeft")]
     #[deprecated]
     pub const Left: Self = Self(CLKComplicationColumnAlignment::Leading.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/right?language=objc)
+    /// Right alignment for the designated column.
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`CLKComplicationColumnAlignmentTrailing`](https://developer.apple.com/documentation/clockkit/clkcomplicationcolumnalignment/trailing) instead.
+    ///
+    ///
     #[doc(alias = "CLKComplicationColumnAlignmentRight")]
     #[deprecated]
     pub const Right: Self = Self(CLKComplicationColumnAlignment::Trailing.0);
@@ -176,18 +336,30 @@ unsafe impl RefEncode for CLKComplicationColumnAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationringstyle?language=objc)
+/// Constants indicating the appearance of a progress ring.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationRingStyle(pub NSInteger);
 impl CLKComplicationRingStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationringstyle/closed?language=objc)
+    /// A ring in which the values increase clockwise, starting at 12 o’clock, to create a closed circle.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style when you want to convey a value that’s a percentage of a whole. For example, use it to represent the completed percentage of some task.
+    ///
+    ///
     #[doc(alias = "CLKComplicationRingStyleClosed")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Closed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationringstyle/open?language=objc)
+    /// A ring in which the values increase clockwise, starting in the lower-left corner, leaving an opening at the bottom of the circle.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style when you want to convey a value that’s in between two other values that don’t represent an absolute minimum or maximum. For example, you might use this style for a temperature gauge or speedometer.
+    ///
+    ///
     #[doc(alias = "CLKComplicationRingStyleOpen")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Open: Self = Self(1);
@@ -201,18 +373,30 @@ unsafe impl RefEncode for CLKComplicationRingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle?language=objc)
+/// Visual styles available for gauges.
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKGaugeProviderStyle(pub NSInteger);
 impl CLKGaugeProviderStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle/ring?language=objc)
+    /// A gauge that indicates a value with a sliding ring.
+    ///
+    /// ## Discussion
+    ///
+    /// The system draws the entire gauge and positions a ring along the gauge to indicate the fill value.
+    ///
+    ///
     #[doc(alias = "CLKGaugeProviderStyleRing")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Ring: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle/fill?language=objc)
+    /// A gauge that fills in as the value increases.
+    ///
+    /// ## Discussion
+    ///
+    /// The system draws a gauge with the color bar filled in up to the selected value. The rest of the gauge is shown as empty.
+    ///
+    ///
     #[doc(alias = "CLKGaugeProviderStyleFill")]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub const Fill: Self = Self(1);
@@ -227,29 +411,67 @@ unsafe impl RefEncode for CLKGaugeProviderStyle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clksimplegaugeproviderfillfractionempty?language=objc)
+    /// A fill value indicating an empty gauge.
+    ///
+    /// ## Discussion
+    ///
+    /// For [`CLKGaugeProviderStyleRing`](https://developer.apple.com/documentation/clockkit/clkgaugeproviderstyle/ring) style gauges, the [`CLKSimpleGaugeProviderFillFractionEmpty`](https://developer.apple.com/documentation/clockkit/clksimplegaugeproviderfillfractionempty) value hides the ring, while setting a `0.0` fill value still shows the ring.
+    ///
+    ///
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKSimpleGaugeProviderFillFractionEmpty: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedtimelineentrydatekey?language=objc)
+    /// A key that indicates the date when the system launched the complication.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object. When the user taps your complication, ClockKit includes this key in the dictionary that it passes to the extension delegate’s [`handleUserActivity:`](https://developer.apple.com/documentation/watchkit/wkextensiondelegate/handleuseractivity(_:)) method.
+    ///
+    ///
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKLaunchedTimelineEntryDateKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clklaunchedcomplicationidentifierkey?language=objc)
+    /// A key that indicates the identifier of a complication the system launched.
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKLaunchedComplicationIdentifierKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier?language=objc)
+    /// An identifier representing a default complication.
+    ///
+    /// ## Discussion
+    ///
+    /// The system assigns a [`CLKDefaultComplicationIdentifier`](https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier) value to the complication’s `identifier` property, whenever a specific identifier is unavailable. For example, ClockKit uses default type identifiers to represent the type on complications designed for watchOS 6 or earlier. It also uses the default type for complications from a shared watch face, when the sender chose to not include complication data in the shared watch face.
+    ///
+    /// If your app supports multiple complications per family, you must check for [`CLKDefaultComplicationIdentifier`](https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier) values in your data source’s [`getCurrentTimelineEntryForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)) and [`getTimelineEntriesForComplication:afterDate:limit:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/gettimelineentries(for:after:limit:withhandler:)) methods. If you receive a [`CLKDefaultComplicationIdentifier`](https://developer.apple.com/documentation/clockkit/clkdefaultcomplicationidentifier), return generic entries for the specified family.
+    ///
+    /// ```swift
+    /// switch complication.identifier {
+    ///     
+    /// case CLKDefaultComplicationIdentifier:
+    ///     templateOrNil = myGetConditionTemplate(for: complication, date: date)
+    ///     
+    /// case ComplicationTypeTemperatureIdentifier, CLKDefaultComplicationTypeIdentifier:
+    ///     templateOrNil = myGetTemperatureTemplate(for: complication, date: date)
+    ///     
+    /// case ComplicationTypePrecipitationPercentageIdentifier:
+    ///     templateOrNil = myGetPrecipitationPercentageTemplate(for: complication, date: date)
+    ///     
+    /// default:
+    ///     print("*** Unrecognized Complication Type ***")
+    ///     return nil
+    /// }
+    /// ```
+    ///
+    ///
     pub static CLKDefaultComplicationIdentifier: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkallcomplicationfamilies?language=objc)
+/// Returns an array containing all possible values of the complication family enumeration.
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn CLKAllComplicationFamilies() -> Option<Retained<NSArray<NSNumber>>>

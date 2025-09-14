@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingtemplateobserver?language=objc)
+    /// The methods for responding to the user interacting with the Now Playing template.
+    ///
+    /// ## Overview
+    ///
+    /// You use a Now Playing template observer to respond when the user interacts with the Album-Artist and Up Next buttons. The protocol defines methods that CarPlay calls when a user taps these buttons. Use your implementation to provide the appropriate behavior when these events occur. For example, when the user taps the Album-Artist button, you can present a new template that displays the content of the current album, playlist, or podcast.
+    ///
+    /// To register an observer, create an object that implements the `CPNowPlayingTemplateObserver` protocol and then call the Now Playing template’s [`addObserver:`](https://developer.apple.com/documentation/carplay/cpnowplayingtemplate/add(_:)) method, passing your object as the only parameter.
+    ///
+    ///
     pub unsafe trait CPNowPlayingTemplateObserver: NSObjectProtocol {
         #[cfg(feature = "CPTemplate")]
         /// The user has selected the Up Next button on the now playing template. Your application
@@ -35,7 +43,27 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingtemplate?language=objc)
+    /// A shared system template that displays Now Playing information.
+    ///
+    /// ## Overview
+    ///
+    /// The Now Playing template displays information from [`MPNowPlayingInfoCenter`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter) and [`MPNowPlayingSession`](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession). Instead of instantiating your own Now Playing template, CarPlay provides a shared instance that you configure. The template displays a series of playback control buttons, as well as information about the current album and artist, and what’s coming up next.
+    ///
+    /// When enabling your Now Playing template’s Album-Artist and Up Next buttons, you must create an object that implements the [`CPNowPlayingTemplateObserver`](https://developer.apple.com/documentation/carplay/cpnowplayingtemplateobserver) protocol and register it as an observer by calling the template’s [`addObserver:`](https://developer.apple.com/documentation/carplay/cpnowplayingtemplate/add(_:)) method.
+    ///
+    /// To display the Now Playing template, call your interface controller’s [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) method to push it onto your navigation hierarchy. You can’t display the Now Playing template modally.
+    ///
+    /// When CarPlay presents Now Playing information for your app, it uses the shared instance of this template.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `CPNowPlayingTemplate` is only available in apps with the audio entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

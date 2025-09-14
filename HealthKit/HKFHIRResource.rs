@@ -6,74 +6,85 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype?language=objc)
+/// The FHIR resource types supported in HealthKit.
 // NS_TYPED_ENUM
 pub type HKFHIRResourceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/allergyintolerance?language=objc)
+    /// A type that identifies FHIR resources for allergies and intolerances.
     pub static HKFHIRResourceTypeAllergyIntolerance: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/condition?language=objc)
+    /// A type that identifies FHIR resources for a condition, problem, diagnosis, or other event.
     pub static HKFHIRResourceTypeCondition: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/coverage?language=objc)
+    /// A type that identifies FHIR resources containing information about the user’s insurance coverage.
     pub static HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/diagnosticreport?language=objc)
+    /// A type that identifies FHIR resources for findings and interpretation of diagnostic tests.
     pub static HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/documentreference?language=objc)
+    /// A type that identifies FHIR resources for document references.
     pub static HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/immunization?language=objc)
+    /// A type that identifies FHIR resources for the administration of vaccines.
     pub static HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationdispense?language=objc)
+    /// A type that identifies FHIR resources for the delivery of medication (usually in response to a prescription).
     pub static HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationorder?language=objc)
+    /// A type that identifies FHIR resources for prescriptions or other orders for medication.
+    ///
+    /// ## Discussion
+    ///
+    /// FHIR renamed the resource type for medication requests and orders. FHIR DSTU2 uses the [`HKFHIRResourceTypeMedicationOrder`](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationorder) resource type, while FHIR R4 uses the [`HKFHIRResourceTypeMedicationRequest`](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationrequest) resource type.
+    ///
+    ///
     pub static HKFHIRResourceTypeMedicationOrder: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationrequest?language=objc)
+    /// A type that identifies FHIR resources for prescriptions or other orders or requests for medication.
+    ///
+    /// ## Discussion
+    ///
+    /// FHIR renamed the resource type for medication requests and orders. FHIR DSTU2 uses the [`HKFHIRResourceTypeMedicationOrder`](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationorder) resource type, while FHIR R4 uses the [`HKFHIRResourceTypeMedicationRequest`](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationrequest) resource type.
+    ///
+    ///
     pub static HKFHIRResourceTypeMedicationRequest: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationstatement?language=objc)
+    /// A type that identifies FHIR resources for statements about medication taken by the patient.
     pub static HKFHIRResourceTypeMedicationStatement: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/observation?language=objc)
+    /// A type that identifies FHIR resources for medical observations, including lab results and vital signs.
     pub static HKFHIRResourceTypeObservation: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/procedure?language=objc)
+    /// A type that identifies FHIR resources for procedures performed on the patient.
     pub static HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType;
 }
 
 extern_class!(
+    /// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
     /// The HKFHIRResource class encapsulates a FHIR (Fast Healthcare Interoperability Resources) resource.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFHIRResource;

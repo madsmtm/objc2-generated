@@ -7,18 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch/senddatamode?language=objc)
+/// The mechanism used to transmit data to other players.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchSendDataMode(pub NSInteger);
 impl GKMatchSendDataMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch/senddatamode/reliable?language=objc)
+    /// Sends data continuously until the recipients successfully receive it or the connection times out.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this mode when you need guaranteed delivery in the order it’s sent, and the speed isn’t critical.
+    ///
+    ///
     #[doc(alias = "GKMatchSendDataReliable")]
     pub const Reliable: Self = Self(0);
-    /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
+    /// Sends data once even if an error occurs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch/senddatamode/unreliable?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this mode for small packets of data that must arrive quickly to be useful to the recipient. Unreliable data may arrive in a different order than when you sent it.
+    ///
+    ///
+    /// a.s.a.p. but requires fragmentation and reassembly for large messages, may stall if network congestion occurs
     #[doc(alias = "GKMatchSendDataUnreliable")]
     pub const Unreliable: Self = Self(1);
 }
@@ -31,23 +42,21 @@ unsafe impl RefEncode for GKMatchSendDataMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate?language=objc)
+/// The possible states of a connection to a match.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/unknown?language=objc)
+    /// An undetermined state in which the player can’t receive data.
     #[doc(alias = "GKPlayerStateUnknown")]
     pub const StateUnknown: Self = Self(0);
+    /// A state in which a player connects to the match and can receive data.
     /// initial player state
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/connected?language=objc)
     #[doc(alias = "GKPlayerStateConnected")]
     pub const StateConnected: Self = Self(1);
+    /// A state in which a player disconnects from the match and can’t receive data.
     /// connected to the match
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate/disconnected?language=objc)
     #[doc(alias = "GKPlayerStateDisconnected")]
     pub const StateDisconnected: Self = Self(2);
 }
@@ -61,9 +70,24 @@ unsafe impl RefEncode for GKPlayerConnectionState {
 }
 
 extern_class!(
-    /// GKMatch represents an active networking sessions between players. It handles network communications and can report player connection status. All matches are created by a GKMatchmaker.
+    /// A peer-to-peer network between a group of players that sign into Game Center.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatch?language=objc)
+    /// ## Overview
+    ///
+    /// Matches provide a mechanism for a player to send both game and voice data to other players.
+    ///
+    /// You never create a `GKMatch` object directly. Instead, GameKit passes a match object to a [`GKMatchmakerViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate) method or a [`GKMatchmaker`](https://developer.apple.com/documentation/gamekit/gkmatchmaker) handler when you set up a multiplayer game. For details, see [Finding multiple players for a game](https://developer.apple.com/documentation/gamekit/finding-multiple-players-for-a-game).
+    ///
+    /// If you use the [`GKMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller) class to find players, implement the [`matchmakerViewController:didFindMatch:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontrollerdelegate/matchmakerviewcontroller(_:didfind:)) delegate method to set the match delegate. If you use the [`GKMatchmaker`](https://developer.apple.com/documentation/gamekit/gkmatchmaker) class, set the match delegate in the handler you pass to the [`findMatchForRequest:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/findmatch(for:withcompletionhandler:)) method.
+    ///
+    /// You can begin exchanging data when two or more players join the match. Implement the [`match:player:didChangeConnectionState:`](https://developer.apple.com/documentation/gamekit/gkmatchdelegate/match(_:player:didchange:)-8ohgr) delegate method to track when players connect or disconnect from the match. Then use either the [`sendDataToAllPlayers:withDataMode:error:`](https://developer.apple.com/documentation/gamekit/gkmatch/senddata(toallplayers:with:)) or the [`sendData:toPlayers:dataMode:error:`](https://developer.apple.com/documentation/gamekit/gkmatch/send(_:to:datamode:)) method to send data. To process the data on the recipient side, implement the [`match:didReceiveData:fromRemotePlayer:`](https://developer.apple.com/documentation/gamekit/gkmatchdelegate/match(_:didreceive:fromremoteplayer:)) delegate method.
+    ///
+    /// To implement voice chat, use the [`voiceChatWithName:`](https://developer.apple.com/documentation/gamekit/gkmatch/voicechat(withname:)) method to create one or more voice channels represented by the returned [`GKVoiceChat`](https://developer.apple.com/documentation/gamekit/gkvoicechat) object.
+    ///
+    /// When you’re finished with a match, call the [`disconnect`](https://developer.apple.com/documentation/gamekit/gkmatch/disconnect()) method and set the match’s delegate to `nil`. Otherwise, GameKit may send [`match:player:didChangeConnectionState:`](https://developer.apple.com/documentation/gamekit/gkmatchdelegate/match(_:player:didchange:)-8ohgr) to the delegate until all players disconnect from the match.
+    ///
+    ///
+    /// GKMatch represents an active networking sessions between players. It handles network communications and can report player connection status. All matches are created by a GKMatchmaker.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatch;
@@ -177,7 +201,7 @@ impl GKMatch {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchdelegate?language=objc)
+    /// An object that receives connection status and data transmitted in a multiplayer game.
     pub unsafe trait GKMatchDelegate: NSObjectProtocol {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// The match received data sent from the player.

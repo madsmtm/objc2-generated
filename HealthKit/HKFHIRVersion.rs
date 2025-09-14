@@ -7,14 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The FHIR version.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`HKFHIRVersion`](https://developer.apple.com/documentation/healthkit/hkfhirversion) instance to represent the version of the Fast Healthcare Interoperability Resources (FHIR) standard used to create a [`HKFHIRResource`](https://developer.apple.com/documentation/healthkit/hkfhirresource) sample.
+    ///
+    ///
     /// Represents a FHIR version.
     ///
     /// FHIR uses semantic versions ("1.0.2", "4.0.1") to communicate which FHIR version a server supports or a
     /// given resource is represented in. A FHIR version is associated with one FHIR release.
     ///
     /// See: http://hl7.org/fhir/versions.html#versions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirversion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKFHIRVersion;

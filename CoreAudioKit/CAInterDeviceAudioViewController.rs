@@ -10,12 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A view controller object that displays iOS devices that support inter-device audio.
     /// A view controller object that manages a view displaying iOS devices that are connected to the Mac and support inter-device audio. The user can select one of those peripherals and connect it to their mac. This class is only available in 64-bit runtimes.
     ///
     ///
     /// To use this class, create an instance of the CAInterDeviceAudioController, get the view and add it as a subview of a NSWindow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/cainterdeviceaudioviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

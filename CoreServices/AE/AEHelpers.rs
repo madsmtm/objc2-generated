@@ -8,51 +8,51 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderrorcode?language=objc)
+/// Represents syntax errors found by an Apple Event build routine.
 pub type AEBuildErrorCode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoerr?language=objc)
+/// No error.
 pub const aeBuildSyntaxNoErr: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadtoken?language=objc)
+/// An illegal character was specified.
 pub const aeBuildSyntaxBadToken: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadeof?language=objc)
+/// An unexpected end of format string was encountered.
 pub const aeBuildSyntaxBadEOF: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoeof?language=objc)
+/// There were unexpected characters beyond the end of the format string.
 pub const aeBuildSyntaxNoEOF: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadnegative?language=objc)
+/// A minus sign “-” was not followed by digits.
 pub const aeBuildSyntaxBadNegative: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxmissingquote?language=objc)
+/// A string was not terminated by a closing quotation mark.
 pub const aeBuildSyntaxMissingQuote: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadhex?language=objc)
+/// A hex string contained characters other than hexadecimal digits.
 pub const aeBuildSyntaxBadHex: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxoddhex?language=objc)
+/// A hex string contained an odd number of digits.
 pub const aeBuildSyntaxOddHex: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosehex?language=objc)
+/// A hex string was missing a “$” or “»” character.
 pub const aeBuildSyntaxNoCloseHex: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxuncoercedhex?language=objc)
+/// A hex string must be coerced to a type.
 pub const aeBuildSyntaxUncoercedHex: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosestring?language=objc)
+/// A string was missing a closing quote.
 pub const aeBuildSyntaxNoCloseString: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbaddesc?language=objc)
+/// An illegal descriptor was specified.
 pub const aeBuildSyntaxBadDesc: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbaddata?language=objc)
+/// Bad data was found inside a variable argument list.
 pub const aeBuildSyntaxBadData: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnocloseparen?language=objc)
+/// A data value was missing a closing parenthesis.
 pub const aeBuildSyntaxNoCloseParen: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosebracket?language=objc)
+/// A comma or closing bracket “]” was expected.
 pub const aeBuildSyntaxNoCloseBracket: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosebrace?language=objc)
+/// A comma or closing brace “}” was expected.
 pub const aeBuildSyntaxNoCloseBrace: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnokey?language=objc)
+/// A keyword was missing from a descriptor.
 pub const aeBuildSyntaxNoKey: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnocolon?language=objc)
+/// In a descriptor, one of the keywords was not followed by a colon.
 pub const aeBuildSyntaxNoColon: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxcoercedlist?language=objc)
+/// Cannot coerce a list.
 pub const aeBuildSyntaxCoercedList: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxuncoerceddoubleat?language=objc)
+/// You must coerce a “@@” substitution.
 pub const aeBuildSyntaxUncoercedDoubleAt: c_uint = 19;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderror?language=objc)
+/// Defines a structure for storing additional error codeinformation for “AEBuild” routines.
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AEBuildError {
@@ -74,7 +74,30 @@ unsafe impl RefEncode for AEBuildError {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445158-aeprintdesctohandle?language=objc)
+    /// Provides a pretty printer facility for displaying the contents of Apple event descriptors.
+    ///
+    /// Parameters:
+    /// - desc: A pointer to a descriptor containing the information to be printed. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    /// - result: A pointer to a location for a new `Handle` data type. On return, contains a new handle allocated by the Memory Manager.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The data handle returned in the `result` parameter contains a text string formatted using the “AEBuild” syntax. This string is useful for looking at the contents of Apple events sent by other applications and for debugging your own descriptors.
+    ///
+    /// `AEPrintDescToHandle` prints the contents of `AEDesc`, `AERecord`, and `AEDescList` descriptors in a format that is suitable for input to [`AEBuildDesc`](https://developer.apple.com/documentation/coreservices/1573758-aebuilddesc). `AEPrintDescToHandle` also attempts display coerced Apple event records as the coerced record type instead of as the original type. Any data structures that cannot be identified are displayed as hexadecimal data.
+    ///
+    /// `AEPrintDescToHandle` prints the contents of Apple events in a slightly different format. For these events, the event class and event ID appear at the beginning of the output string, followed by the contents of the event enclosed in curly braces. In addition, each attribute is printed with its four-character identifier and preceded by an ampersand character. You cannot use the output string to recreate the Apple event from [`AEBuildAppleEvent`](https://developer.apple.com/documentation/coreservices/1573757-aebuildappleevent).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -96,16 +119,60 @@ unsafe impl RefEncode for OpaqueAEStreamRef {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAEStreamRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aestreamref?language=objc)
+/// An opaque data structure for storing stream-based descriptor data.
+///
+/// ## Discussion
+///
+/// You create `AEStreamRef` objects and manipulate their contents using the stream routines found in the section [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager).
+///
+///
 pub type AEStreamRef = *mut OpaqueAEStreamRef;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447732-aestreamopen?language=objc)
+    /// Opens a new `AEStreamRef` for use in building a descriptor.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A new [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) or `NULL` if the stream data structures cannot be allocated.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new stream for use in describing the contents of a descriptor, descriptor list, or Apple event record (`AEDesc`, `AEDescList`, or `AERecord`).
+    ///
+    /// You can use the returned `AEStreamRef` with other “AEStream” routines to build the contents of a descriptor. When you are done building the descriptor, use [`AEStreamClose`](https://developer.apple.com/documentation/coreservices/1449821-aestreamclose) to close the stream.
+    ///
+    ///
     pub fn AEStreamOpen() -> AEStreamRef;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449821-aestreamclose?language=objc)
+    /// Closes and deallocates an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref)containing the stream data.
+    ///
+    /// - desc: A pointer to a descriptor for receiving a the stream data, or `NULL` if you want to discard the data. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to dispose of an `AEStreamRef` you created using [`AEStreamCreateEvent`](https://developer.apple.com/documentation/coreservices/1446562-aestreamcreateevent), [`AEStreamOpen`](https://developer.apple.com/documentation/coreservices/1447732-aestreamopen), or [`AEStreamOpenEvent`](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent). To retrieve the resulting descriptor from the stream prior to disposal, pass in a pointer to an `AEDesc` structure in the `desc` parameter. If this parameter exists, `AEStreamClose` fills in the descriptor with the stream data. If the stream contains invalid information, possibly due to improperly balanced calls to “AEStream” functions, the returned descriptor type is set to `typeNull`.
+    ///
+    /// Regardless of any errors returned by this function, it is always safe to call [`AEDisposeDesc`](https://developer.apple.com/documentation/coreservices/1444208-aedisposedesc) on the returned descriptor.
+    ///
+    /// Specifying `NULL` for the `desc` parameter causes `AEStreamClose` to discard the stream data and dispose of the `AEStreamRef`. When you call `AEStreamClose` in this way, you do not need to worry about balancing nested calls to “AEStream” functions. This technique is particularly useful during error-handling situations where you need to dispose of a stream but do not know its exact state.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -116,7 +183,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc?language=objc)
+    /// Marks the beginning of a descriptor in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - newType: A type code for the new `AEDesc` being added to the stream. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this routine to mark the beginning of a descriptor definition in an `AEDesc`. After calling this routine, you should call [`AEStreamWriteData`](https://developer.apple.com/documentation/coreservices/1442610-aestreamwritedata) one or more times to write the descriptor data to the stream. When you are done writing data, you must call [`AEStreamCloseDesc`](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc) to complete the descriptor definition.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -126,7 +212,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442610-aestreamwritedata?language=objc)
+    /// Appends data to the current descriptor in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - data: A pointer to the block of memory containing the descriptor data. This routine copies the memory block immediately, so you do not need to retain it for the benefit of this routine.
+    ///
+    /// - length: The number of bytes pointed to by the `data` parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can call this routine any number of times to build up the data contents of the descriptor incrementally. You must precede calls to this routine by a call to either [`AEStreamOpenDesc`](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc) or [`AEStreamOpenKeyDesc`](https://developer.apple.com/documentation/coreservices/1442897-aestreamopenkeydesc). When you are done adding data to the descriptor, call [`AEStreamCloseDesc`](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc) to complete the descriptor definition.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -136,7 +243,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc?language=objc)
+    /// Marks the end of a descriptor in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref)containing the stream data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to balance a preceding call to [`AEStreamOpenDesc`](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc) or [`AEStreamOpenKeyDesc`](https://developer.apple.com/documentation/coreservices/1442897-aestreamopenkeydesc). This function completes the definition of the `AEDesc`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -145,7 +269,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450387-aestreamwritedesc?language=objc)
+    /// Appends the data for a complete descriptor to an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - newType: A type code for the new `AEDesc` being added to the stream. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - data: A pointer to the block of memory containing the descriptor data. This routine copies the memory block immediately, so you do not need to retain it for the benefit of this routine.
+    ///
+    /// - length: The number of bytes pointed to by the `data` parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this routine to write the data for a descriptor to the stream. When using this routine, you must supply all of the descriptor data at once.
+    ///
+    /// Do not use [`AEStreamOpenDesc`](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc) and [`AEStreamCloseDesc`](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc) with this routine to open and close the descriptor.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -161,7 +310,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448487-aestreamwriteaedesc?language=objc)
+    /// Copies an existing descriptor into an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - desc: A pointer to the descriptor you want to copy into the stream. See [`AEDesc`](https://developer.apple.com/documentation/coreservices/aedesc).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this routine to incorporate an existing descriptor into the stream. For example, you could use this routine if you had a complex descriptor you wanted to add to multiple streams, but which would be costly to create each time.
+    ///
+    /// Do not use [`AEStreamOpenDesc`](https://developer.apple.com/documentation/coreservices/1446544-aestreamopendesc) and [`AEStreamCloseDesc`](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc) with this routine to open and close the descriptor.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -172,7 +342,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448594-aestreamopenlist?language=objc)
+    /// Marks the beginning of a descriptor list in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine marks the beginning of a sequence of zero or more descriptor definitions that you use to build an `AEDescList` structure. After calling this routine, you can write any number of `AEDesc`, `AEDescList`, or `AERecord` structures to the stream as elements of the list. When you are done, you must call [`AEStreamCloseList`](https://developer.apple.com/documentation/coreservices/1448185-aestreamcloselist) to complete the `AEDescList` definition.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -181,7 +368,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448185-aestreamcloselist?language=objc)
+    /// Marks the end of a list of descriptors in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref)containing the stream data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to balance a preceding call to [`AEStreamOpenList`](https://developer.apple.com/documentation/coreservices/1448594-aestreamopenlist). This function completes the definition of the `AEDescList`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -190,7 +394,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord?language=objc)
+    /// Marks the beginning of an Apple event record in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - newType: A type code for the new record you are adding to the stream. This value can be `typeAERecord` or any other appropriate value. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine marks the beginning of a sequence of zero or more keyword/descriptor definitions that you use to build an `AERecord` structure. You must balance each call to this method with a corresponding call to [`AEStreamCloseRecord`](https://developer.apple.com/documentation/coreservices/1449522-aestreamcloserecord).
+    ///
+    /// For information on adding keyword/descriptor data to the record, see the [`AEStreamOpenKeyDesc`](https://developer.apple.com/documentation/coreservices/1442897-aestreamopenkeydesc), [`AEStreamWriteKey`](https://developer.apple.com/documentation/coreservices/1448750-aestreamwritekey), and [`AEStreamWriteKeyDesc`](https://developer.apple.com/documentation/coreservices/1442568-aestreamwritekeydesc) routines.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -200,7 +425,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447704-aestreamsetrecordtype?language=objc)
+    /// Sets the type of the most recently created record in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - newType: The new type code for the `AERecord` being added to the stream. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this routine to change the type of a record after it has been opened. You must call this routine between calls to [`AEStreamOpenRecord`](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord) and [`AEStreamCloseRecord`](https://developer.apple.com/documentation/coreservices/1449522-aestreamcloserecord). The type you specify in the `newType` parameter replaces the previous type specified by [`AEStreamOpenRecord`](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -210,7 +454,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449522-aestreamcloserecord?language=objc)
+    /// Marks the end of a record in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref)containing the stream data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to balance a preceding call to [`AEStreamOpenRecord`](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord). This function completes the definition of the Apple event record.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -219,7 +480,34 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442568-aestreamwritekeydesc?language=objc)
+    /// Writes a complete keyword/descriptor pair to an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - key: The `AEKeyword` associated with the new descriptor being added to the stream. See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+    ///
+    /// - newType: A type code for the new `AEDesc` being added to the stream. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - data: A pointer to the block of memory containing the descriptor data. This routine copies the memory block immediately, so you do not need to retain it for the benefit of this routine.
+    ///
+    /// - length: The number of bytes pointed to by the `data` parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this routine to add a descriptor to the currently open `AERecord` inside a stream. You cannot use this routine to write parameters to any other types of descriptors, even if they are nested inside of an `AERecord`. This routine can only be called in between calls to [`AEStreamOpenRecord`](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord) and [`AEStreamCloseRecord`](https://developer.apple.com/documentation/coreservices/1449522-aestreamcloserecord).
+    ///
+    /// This method is analogous to the Apple Event Manager routine [`AEPutParamPtr`](https://developer.apple.com/documentation/coreservices/1449263-aeputparamptr), except it is for use with streams.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -236,7 +524,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442897-aestreamopenkeydesc?language=objc)
+    /// Marks the beginning of a key descriptor in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - key: The `AEKeyword` associated with the new descriptor being added to the stream. See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+    ///
+    /// - newType: A type code for the new `AEDesc` being added to the stream. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this routine to mark the beginning of a keyword/descriptor definition in an Apple event record. After calling this routine, you should call [`AEStreamWriteData`](https://developer.apple.com/documentation/coreservices/1442610-aestreamwritedata) one or more times to write the record data to the stream. When you are done writing data, you must call [`AEStreamCloseDesc`](https://developer.apple.com/documentation/coreservices/1449272-aestreamclosedesc) to complete the record definition.
+    ///
+    /// This routine must be called only as part of an Apple event record definition. You cannot use this routine to write keyword/descriptor definitions to other descriptor types, such as an `AEDesc` or `AEDescList`, even if those types are nested inside an Apple event record. In situations where you need to create nested records, this routine opens a new keyword/descriptor definition in the Apple event record associated with the most recent call to [`AEStreamOpenRecord`](https://developer.apple.com/documentation/coreservices/1447141-aestreamopenrecord).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -246,7 +557,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448750-aestreamwritekey?language=objc)
+    /// Marks the beginning of a keyword/descriptor pair for a descriptor in an `AEStreamRef`.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - key: The `AEKeyword` associated with the new descriptor being added to the stream. See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must follow this call with a sequence of “AEStream” calls to specify exactly one descriptor that goes with the keyword. The descriptor you create can be of type `AEDesc`, `AEDescList`, or `AERecord`.
+    ///
+    /// If you are creating nested descriptors, this routine begins a new keyword/descriptor pair for the descriptor most recently opened by a call to [`AEStreamWriteKey`](https://developer.apple.com/documentation/coreservices/1448750-aestreamwritekey) or [`AEStreamOpenEvent`](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent). You cannot use this routine to write parameters to any other types of descriptors, even if they are nested inside of an `AERecord`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -256,7 +588,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446562-aestreamcreateevent?language=objc)
+    /// Creates a new Apple event and opens a stream for writing data to it.
+    ///
+    /// Parameters:
+    /// - clazz: The event class of the Apple event. See [`AEEventClass`](https://developer.apple.com/documentation/coreservices/aeeventclass).
+    ///
+    /// - id: The event ID of the Apple event. See [`AEEventID`](https://developer.apple.com/documentation/coreservices/aeeventid).
+    ///
+    /// - targetType: The address type for the addressing information in the next two parameters. Usually contains one of the following values: `typeApplSignature`. `typeKernelProcessID`, or `typeProcessSerialNumber`. See [`DescType`](https://developer.apple.com/documentation/coreservices/desctype).
+    ///
+    /// - targetData: A pointer to the address information. The data in this pointer must match the data associated with the specified `targetType`.
+    ///
+    /// - targetLength: The number of bytes pointed to by the `targetData` parameter.
+    ///
+    /// - returnID: The return ID for the created Apple event. If you pass a value of `kAutoGenerateReturnID`, the Apple Event Manager assigns the created Apple event a return ID that is unique to the current session. If you pass any other value, the Apple Event Manager assigns that value for the ID. The return ID constant is described in [`ID Constants for the AECreateAppleEvent Function`](https://developer.apple.com/documentation/coreservices/1542799-id_constants_for_the_aecreateapp). See [`AEReturnID`](https://developer.apple.com/documentation/coreservices/aereturnid).
+    ///
+    /// - transactionID: The transaction ID for this Apple event. A transaction is a sequence of Apple events that are sent back and forth between the client and server applications, beginning with the client’s initial request for a service. All Apple events that are part of a transaction must have the same transaction ID. You can specify the `kAnyTransactionID` constant if the Apple event is not one of a series of interdependent Apple events. This transaction ID constant is described in [`ID Constants for the AECreateAppleEvent Function`](https://developer.apple.com/documentation/coreservices/1542799-id_constants_for_the_aecreateapp). See [`AETransactionID`](https://developer.apple.com/documentation/coreservices/aetransactionid).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) associated with the new event.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine effectively combines a call to [`AECreateAppleEvent`](https://developer.apple.com/documentation/coreservices/1448525-aecreateappleevent) followed by a call to [`AEStreamOpenEvent`](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent) to create a new Apple event in the stream. You can use the returned `AEStreamRef` to add parameters to the new Apple event.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -274,7 +635,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent?language=objc)
+    /// Opens a stream for an existing Apple event.
+    ///
+    /// Parameters:
+    /// - event: An existing Apple event. See [`AppleEvent`](https://developer.apple.com/documentation/coreservices/appleevent).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) for the Apple event or `NULL` if the stream data structures could not be allocated.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to open a stream and add parameters to an existing Apple event. This function copies any parameters already in the Apple event to the stream prior to returning the `AEStreamRef`. When you are done adding parameters, use [`AEStreamClose`](https://developer.apple.com/documentation/coreservices/1449821-aestreamclose) to save them to the Apple event and close the stream.
+    ///
+    /// If there is not enough available storage to complete the operation, `AEStreamOpenEvent` returns `NULL` and leaves the Apple event unchanged.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -284,7 +664,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444481-aestreamoptionalparam?language=objc)
+    /// Designates a parameter in an Apple event as optional.
+    ///
+    /// Parameters:
+    /// - ref: An [`AEStreamRef`](https://developer.apple.com/documentation/coreservices/aestreamref) containing the stream data.
+    ///
+    /// - key: The `AEKeyword` associated with any keyword/descriptor pair in an Apple event. See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calls to this routine must be preceded by a call to either [`AEStreamCreateEvent`](https://developer.apple.com/documentation/coreservices/1446562-aestreamcreateevent) or [`AEStreamOpenEvent`](https://developer.apple.com/documentation/coreservices/1445366-aestreamopenevent).
+    ///
+    /// The descriptor associated with the specified `key` does not need to exist before you call this routine.
+    ///
+    ///
     ///
     /// # Safety
     ///

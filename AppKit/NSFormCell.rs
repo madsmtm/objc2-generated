@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsformcell?language=objc)
+    /// The `NSFormCell` class is used to implement text entry fields in a form. The left part of an `NSFormCell` object contains a title. The right part contains an editable text entry field.
+    ///
+    /// ## Overview
+    ///
+    /// An `NSFormCell` object implements the user interface of an [`NSForm`](https://developer.apple.com/documentation/appkit/nsform) object.
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]

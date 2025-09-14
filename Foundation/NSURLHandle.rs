@@ -7,98 +7,134 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatuscodekey?language=objc)
+    /// Key for the status code, returned as an integer wrapped in an `NSNumber` object.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyStatusCodeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertystatusreasonkey?language=objc)
+    /// Key for the remainder of the HTTP status line following the status code, returned as an `NSString` object.
+    ///
+    /// ## Discussion
+    ///
+    /// This string usually contains an explanation of the error in English. Because this string is taken straight from the server response, it’s not localized.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyStatusReasonKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyserverhttpversionkey?language=objc)
+    /// Key for retrieving the HTTP version as an `NSString` object containing the initial server status line up to the first space.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyServerHTTPVersionKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyredirectionheaderskey?language=objc)
+    /// Key for retrieving the redirection headers as an `NSDictionary` object with each header value keyed to the header name.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyRedirectionHeadersKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyerrorpagedatakey?language=objc)
+    /// Key for retrieving an error page as an `NSData` object.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyErrorPageDataKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttppropertyhttpproxy?language=objc)
+    /// Key for retrieving the `NSDictionary` object containing proxy information to use in place of proxy identified in `SystemConfiguration.framework`.
+    ///
+    /// ## Discussion
+    ///
+    /// To avoid any proxy use, pass an empty dictionary.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSHTTPPropertyHTTPProxy: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserloginkey?language=objc)
+    /// Key for the user login, returned as an `NSString` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value for this key is “anonymous”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyUserLoginKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyuserpasswordkey?language=objc)
+    /// Key for the user password, returned as an `NSString` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value for this key is “`NSURLHandle@apple.com`”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyUserPasswordKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyactivetransfermodekey?language=objc)
+    /// Key for retrieving whether in active transfer mode, returned as a boolean wrapped in an `NSNumber` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value for this key is [`false`](https://developer.apple.com/documentation/swift/false) (passive mode).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyActiveTransferModeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyfileoffsetkey?language=objc)
+    /// Key for retrieving the file offset, returned as an `NSNumber` object. The default value for this key is zero.
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyFileOffsetKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsftppropertyftpproxy?language=objc)
+    /// `NSDictionary` containing proxy information to use in place of proxy identified in `SystemConfiguration.framework`.
+    ///
+    /// ## Discussion
+    ///
+    /// To avoid any proxy use, pass an empty dictionary.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSFTPPropertyFTPProxy: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum?language=objc)
+/// These following constants are defined by `NSURLHandle` and are returned by [`status`](https://developer.apple.com/documentation/foundation/nsurlhandle/status-c.method).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLHandleStatus(pub NSUInteger);
 impl NSURLHandleStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/notloaded?language=objc)
+    /// The resource data has not been loaded.
     #[doc(alias = "NSURLHandleNotLoaded")]
     pub const NotLoaded: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadsucceeded?language=objc)
+    /// The resource data was successfully loaded.
     #[doc(alias = "NSURLHandleLoadSucceeded")]
     pub const LoadSucceeded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadinprogress?language=objc)
+    /// The resource data is in the process of loading.
     #[doc(alias = "NSURLHandleLoadInProgress")]
     pub const LoadInProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum/loadfailed?language=objc)
+    /// The resource data failed to load.
     #[doc(alias = "NSURLHandleLoadFailed")]
     pub const LoadFailed: Self = Self(3);
 }
@@ -112,7 +148,13 @@ unsafe impl RefEncode for NSURLHandleStatus {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandleclient?language=objc)
+    /// The interface implemented by URL handle clients.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSURLHandleClient`](https://developer.apple.com/documentation/foundation/nsurlhandleclient) is deprecated in macOS 10.4 and later. Applications that are intended for deployment in macOS 10.3 or later should use [`NSURLConnection`](https://developer.apple.com/documentation/foundation/nsurlconnection) or [`NSURLDownload`](https://developer.apple.com/documentation/foundation/nsurldownload) instead; see [URL Loading System](https://developer.apple.com/documentation/foundation/url-loading-system).
+    ///
+    ///
     #[deprecated]
     pub unsafe trait NSURLHandleClient {
         #[cfg(feature = "NSData")]
@@ -170,7 +212,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc)
+    /// An object that accesses and manages resource data indicated by a URL.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`NSURLHandle`](https://developer.apple.com/documentation/foundation/nsurlhandle) is deprecated in macOS 10.4 and later. Use [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A single [`NSURLHandle`](https://developer.apple.com/documentation/foundation/nsurlhandle) can service multiple equivalent [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects, but only if these URLs map to the same resource.
+    ///
+    /// ### Overview
+    ///
+    /// Cocoa provides private concrete subclasses to handle HTTP and file URL schemes. If you want to implement support for additional URL schemes, you would do so by creating a subclass of `NSURLHandle`. You can use `NSURL` and `NSURLHandle` to download from FTP sites without subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLHandle;

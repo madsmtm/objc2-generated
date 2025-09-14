@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// Web view resource load delegates implement this protocol to be notified on the progress of loading individual resources. Note that there can be hundreds of resources, such as images and other media, per page. So, if you just want to get page loading status see the WebFrameLoadDelegate protocol.
+    ///
+    /// ## Overview
+    ///
+    /// There’s a separate client request and server response made for each resource on a page. By implementing the [`webView:identifierForInitialRequest:fromDataSource:`](https://developer.apple.com/documentation/webkit/webresourceloaddelegate/webview(_:identifierforinitialrequest:from:)) method, resource load delegates provide a tracking object used to identify individual resources in subsequent calls to delegate methods. Delegates are then notified when resource loading starts, when data is incrementally received, when any load errors occur, and when the load is complete. Delegates may also change a request before it is sent. In some cases, depending on the page content and server redirects, methods defined in this protocol may be invoked multiple times (see individual method descriptions for more details). All the methods in this protocol are optional.
+    ///
+    ///
     /// Implementors of this protocol will receive messages indicating
     /// that a resource is about to be loaded, data has been received for a resource,
     /// an error has been received for a resource, and completion of a resource load.
@@ -15,8 +22,6 @@ extern_protocol!(
     /// parameter.  This identifier can be used to track messages associated with a single
     /// resource.  For example, a single resource may generate multiple
     /// resource:willSendRequest:redirectResponse:fromDataSource: messages as it's URL is redirected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webresourceloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebResourceLoadDelegate: NSObjectProtocol {
         #[cfg(all(

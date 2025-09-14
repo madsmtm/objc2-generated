@@ -7,29 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags?language=objc)
+/// Constants that indicate which modifier keys are pressed.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyModifierFlags(pub NSInteger);
 bitflags::bitflags! {
     impl UIKeyModifierFlags: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/alphashift?language=objc)
+/// A modifier flag that indicates the user pressed the Caps Lock key.
         #[doc(alias = "UIKeyModifierAlphaShift")]
         const AlphaShift = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/shift?language=objc)
+/// A modifier flag that indicates the user pressed the Shift key.
         #[doc(alias = "UIKeyModifierShift")]
         const Shift = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/control?language=objc)
+/// A modifier flag that indicates the user pressed the Control key.
         #[doc(alias = "UIKeyModifierControl")]
         const Control = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/alternate?language=objc)
+/// A modifier flag that indicates the user pressed the Option key.
         #[doc(alias = "UIKeyModifierAlternate")]
         const Alternate = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/command?language=objc)
+/// A modifier flag that indicates the user pressed the Command key.
         #[doc(alias = "UIKeyModifierCommand")]
         const Command = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeymodifierflags/numericpad?language=objc)
+/// A modifier flag that indicates the user pressed a key located on the numeric keypad.
         #[doc(alias = "UIKeyModifierNumericPad")]
         const NumericPad = 1<<21;
     }
@@ -44,11 +44,42 @@ unsafe impl RefEncode for UIKeyModifierFlags {
 }
 
 extern_class!(
+    /// An object representing an alternative action for a command.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UICommandAlternate`](https://developer.apple.com/documentation/uikit/uicommandalternate) object and add it to a [`UICommand`](https://developer.apple.com/documentation/uikit/uicommand) or [`UIKeyCommand`](https://developer.apple.com/documentation/uikit/uikeycommand) object when you want to provide users an alternative action for the command. The command alternate is available to the user when they press the keyboard modifier keys, like Control or Option, specified in the [`modifierFlags`](https://developer.apple.com/documentation/uikit/uicommandalternate/modifierflags) property.
+    ///
+    /// For instance, an app may have a Reload menu, created with a key command, that has the keyboard shortcut Command+R. When the user selects Reload, or presses Command+R on their keyboard, the app reloads the data displayed in the current window. The app, however, can display more than one window, so it includes a Reload All alternative for Reload that reloads data in all windows, not just the current one.
+    ///
+    /// The Reload All command alternate specifies [`UIKeyModifierAlternate`](https://developer.apple.com/documentation/uikit/uikeymodifierflags/alternate) in its [`modifierFlags`](https://developer.apple.com/documentation/uikit/uicommandalternate/modifierflags) property, which makes Reload All available to the user when they press the Option key. To select Reload All, the user can press and hold the Option key while displaying the menu that contains Reload. This replaces the Reload menu with Reload All. The user can also select Reload All by pressing Option+Command+R.
+    ///
+    /// ```swift
+    /// // Create an alternate for the reload command. The alternative command appears
+    /// // in the menu system when the user holds down the keys specified in `modifierFlags`.
+    /// let reloadAlternate = UICommandAlternate(title: "Reload All",
+    ///                                          action: #selector(reloadAllData(_:)),
+    ///                                          modifierFlags: [.alternate])
+    ///
+    /// // Create a selector-based action with a keyboard shortcut to use as a menu element.
+    /// let reloadCommand = UIKeyCommand(title: "Reload",
+    ///                                 action: #selector(reloadData(_:)),
+    ///                                 input: "r",
+    ///                                 modifierFlags: [.command],
+    ///                                 alternates: [reloadAlternate])
+    ///
+    /// // Use the .displayInline option to avoid displaying the menu as a submenu,
+    /// // and to separate it from the other menu elements using a line separator.
+    /// let reloadMenuItem = UIMenu(title: "", options: .displayInline, children: [reloadCommand])
+    ///
+    /// // Insert the menu into the File menu before the Close menu.
+    /// builder.insertSibling(reloadMenuItem, beforeMenu: .close)
+    /// ```
+    ///
+    ///
     /// Represents an alternate action to take for a command.
     ///
     /// Two alternates are equal iff their modifierFlags are equal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommandalternate?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -136,9 +167,26 @@ impl UICommandAlternate {
 }
 
 extern_class!(
-    /// Represents an action to take.
+    /// A menu element that performs its action in a selector.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommand?language=objc)
+    /// ## Overview
+    ///
+    /// Create a [`UICommand`](https://developer.apple.com/documentation/uikit/uicommand) object when you want a menu element that performs its action in a selector available in the responder chain.
+    ///
+    /// ```swift
+    /// // Create a selector-based action to use as a menu element.
+    /// let refreshCommand = UICommand(title: "Refresh", action: #selector(refreshData(_:)))
+    ///
+    /// // Use the .displayInline option to avoid displaying the menu as a submenu,
+    /// // and to separate it from the other menu elements using a line separator.
+    /// let refreshMenuItem = UIMenu(title: "", options: .displayInline, children: [refreshCommand])
+    ///
+    /// // Insert the menu into the File menu before the Close menu.
+    /// builder.insertSibling(refreshMenuItem, beforeMenu: .close)
+    /// ```
+    ///
+    ///
+    /// Represents an action to take.
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -332,6 +380,26 @@ impl UICommand {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicommandtagshare?language=objc)
+    /// A value that identifies a command as a Share menu.
+    ///
+    /// ## Discussion
+    ///
+    /// To create a Share menu, add [`UICommandTagShare`](https://developer.apple.com/documentation/uikit/uicommandtagshare) to the `propertyList` of a [`UICommand`](https://developer.apple.com/documentation/uikit/uicommand) or [`UIKeyCommand`](https://developer.apple.com/documentation/uikit/uikeycommand) object.
+    ///
+    /// ```swift
+    /// // Ensure that the builder is modifying the menu bar system.
+    /// guard builder.system == UIMenuSystem.main else { return }
+    ///
+    /// let shareCommand = UICommand(title: "Share",
+    ///                              action: #selector(share(_:)),
+    ///                              propertyList: UICommandTagShare)
+    ///
+    /// let shareMenu = UIMenu(title: "", options: .displayInline, children: [shareCommand])
+    ///
+    /// // Insert the menu into the File menu before the Close menu.
+    /// builder.insertSibling(shareMenu, beforeMenu: .close)
+    /// ```
+    ///
+    ///
     pub static UICommandTagShare: &'static NSString;
 }

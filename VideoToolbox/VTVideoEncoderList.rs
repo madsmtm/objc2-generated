@@ -10,6 +10,19 @@ use crate::*;
 extern "C-unwind" {
     /// Builds a list of available video encoders.
     ///
+    /// Parameters:
+    /// - options: Not currently supported. Pass `NULL` for this parameter.
+    ///
+    /// - listOfVideoEncodersOut: Pointer to a `CFArray` of available video encoders.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller must release the returned list using [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
+    /// Builds a list of available video encoders.
+    ///
     /// The caller must CFRelease the returned list.
     ///
     /// # Safety
@@ -17,8 +30,6 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `list_of_video_encoders_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyvideoencoderlist(_:_:)?language=objc)
     pub fn VTCopyVideoEncoderList(
         options: Option<&CFDictionary>,
         list_of_video_encoders_out: NonNull<*const CFArray>,
@@ -26,76 +37,114 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlistoption_includestandarddefinitiondvencoders?language=objc)
     pub static kVTVideoEncoderListOption_IncludeStandardDefinitionDVEncoders: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_codectype?language=objc)
+    /// The encoder’s codec type key.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd for a four-character code such as `avc1` or `h263`.
+    ///
+    ///
     pub static kVTVideoEncoderList_CodecType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_encoderid?language=objc)
+    /// A key that identifies the encoder ID.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a unique identifier doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh, in reverse-DNS-style, for this encoder.
+    ///
+    ///
     pub static kVTVideoEncoderList_EncoderID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_codecname?language=objc)
+    /// The encoder’s codec name key.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh object suitable for display to the user (for example, “H.264”).
+    ///
+    ///
     pub static kVTVideoEncoderList_CodecName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_encodername?language=objc)
+    /// A key for the encoder’s name.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh object suitable for display to the user (such as, Apple H.264).
+    ///
+    ///
     pub static kVTVideoEncoderList_EncoderName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_displayname?language=objc)
+    /// The encoder’s display name key.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh with the encoder’s display name.
+    ///
+    /// This value will be the same as the value of [`kVTVideoEncoderList_CodecName`](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_codecname) if there is only one encoder for that format; otherwise, it will be the same as the value of [`kVTVideoEncoderList_EncoderName`](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_encodername).
+    ///
+    ///
     pub static kVTVideoEncoderList_DisplayName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_gpuregistryid?language=objc)
     pub static kVTVideoEncoderList_GPURegistryID: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_supportedselectionproperties?language=objc)
     pub static kVTVideoEncoderList_SupportedSelectionProperties: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_performancerating?language=objc)
     pub static kVTVideoEncoderList_PerformanceRating: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_qualityrating?language=objc)
     pub static kVTVideoEncoderList_QualityRating: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_instancelimit?language=objc)
     pub static kVTVideoEncoderList_InstanceLimit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_ishardwareaccelerated?language=objc)
     pub static kVTVideoEncoderList_IsHardwareAccelerated: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_supportsframereordering?language=objc)
     pub static kVTVideoEncoderList_SupportsFrameReordering: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderlist_supportsmultipass?language=objc)
     pub static kVTVideoEncoderList_SupportsMultiPass: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Builds a list of supported properties and encoder ID for an encoder.
+    ///
+    /// Parameters:
+    /// - width:
+    ///
+    /// - height:
+    ///
+    /// - codecType:
+    ///
+    /// - encoderSpecification:
+    ///
+    /// - encoderIDOut:
+    ///
+    /// - supportedPropertiesOut:
+    ///
     /// Builds a list of supported properties and encoder ID for an encoder
     ///
     /// The caller must CFRelease the returned supported properties and encoder ID.
@@ -106,8 +155,6 @@ extern "C-unwind" {
     /// - `encoder_specification` generic must be of the correct type.
     /// - `encoder_id_out` must be a valid pointer or null.
     /// - `supported_properties_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopysupportedpropertydictionaryforencoder(width:height:codectype:encoderspecification:encoderidout:supportedpropertiesout:)?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopySupportedPropertyDictionaryForEncoder(
         width: i32,

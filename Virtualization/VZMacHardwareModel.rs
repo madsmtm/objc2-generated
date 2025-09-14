@@ -7,6 +7,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A specification for the hardware elements and configurations present in a particular Mac hardware model.
+    ///
+    /// ## Overview
+    ///
+    /// The Mac hardware model abstracts a set of virtualized hardware elements and configurations.
+    ///
+    /// A version of macOS may only run on certain hardware models. Additionally, the host may also only provide certain hardware models based on the version of macOS and the underlying hardware.
+    ///
+    /// The [`supported`](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/issupported) property allows you to discover if the current host supports a particular hardware model.
+    ///
+    /// Choosing the hardware model starts from a restore image with [`VZMacOSRestoreImage`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage). A restore image describes its supported configuration requirements through its [`mostFeaturefulSupportedConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration) property.
+    ///
+    /// A configuration requirements object has a corresponding hardware model that you can use to configure a VM that meets the requirements. After obtaining the hardware model, use the platform configuration’s [`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel) to configure the Mac platform object and use [`initCreatingStorageAtURL:hardwareModel:options:error:`](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/init(creatingstorageat:hardwaremodel:options:)) to create its auxiliary storage.
+    ///
+    /// After creating the VM, use [`VZMacOSInstaller`](https://developer.apple.com/documentation/virtualization/vzmacosinstaller) to install macOS on it.
+    ///
+    /// If you serialize the VM on disk, preserve the hardware model used for installation for subsequent boots. The [`dataRepresentation`](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/datarepresentation) property provides a unique binary representation that you serialize to the file system. You can recreate the hardware model from the serialized binary representation with [`initWithDataRepresentation:`](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/init(datarepresentation:)).
+    ///
+    ///
     /// Describes a specific virtual Mac hardware model.
     ///
     /// The Mac hardware model abstracts a set of virtualized hardware elements and configurations.
@@ -30,8 +49,6 @@ extern_class!(
     /// See also: VZMacOSInstaller
     ///
     /// See also: VZMacOSRestoreImage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacHardwareModel;

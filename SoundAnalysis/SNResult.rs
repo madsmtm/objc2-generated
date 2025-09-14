@@ -8,16 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// The base protocol to which analysis results conform
+    /// A protocol that represents sound analysis results.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresult?language=objc)
+    /// ## Overview
+    ///
+    /// Don’t create types that adopt `SNResult`. Only Sound Analysis framework types adopt the protocol.
+    ///
+    ///
+    /// The base protocol to which analysis results conform
     pub unsafe trait SNResult: NSObjectProtocol {}
 );
 
 extern_protocol!(
+    /// The interface your app implements to receive the results of an analysis request.
     /// The interface through which clients receive the results of an analysis request
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snresultsobserving?language=objc)
     pub unsafe trait SNResultsObserving: NSObjectProtocol {
         #[cfg(feature = "SNRequest")]
         /// Provides a new analysis result to the client with the specified time range

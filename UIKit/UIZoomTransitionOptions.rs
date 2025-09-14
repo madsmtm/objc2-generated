@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition/zoomoptions?language=objc)
+    /// Options for a zoom transition.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionOptions;
@@ -129,7 +129,7 @@ impl DefaultRetained for UIZoomTransitionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition/zoomoptions/interactioncontext?language=objc)
+    /// Data you can use to determine whether an interactive dismissal can begin.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionInteractionContext;
@@ -181,7 +181,7 @@ impl DefaultRetained for UIZoomTransitionInteractionContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition/zoomoptions/alignmentrectcontext?language=objc)
+    /// An object that contains a zoom transition’s starting and ending views.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionAlignmentRectContext;

@@ -5,29 +5,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics?language=objc)
+/// Constants to specify metrics to use for appearance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarMetrics(pub NSInteger);
 impl UIBarMetrics {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/default?language=objc)
+    /// Specifies default metrics for the device.
     #[doc(alias = "UIBarMetricsDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/compact?language=objc)
+    /// Specifies metrics when using the phone idiom.
     #[doc(alias = "UIBarMetricsCompact")]
     pub const Compact: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/defaultprompt?language=objc)
+    /// Specifies default metrics for the device for bars with the prompt property, such as [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) and [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar).
     #[doc(alias = "UIBarMetricsDefaultPrompt")]
     pub const DefaultPrompt: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/compactprompt?language=objc)
+    /// Specifies metrics for bars with the prompt property when using the phone idiom, such as [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) and [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar).
     #[doc(alias = "UIBarMetricsCompactPrompt")]
     pub const CompactPrompt: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/landscapephone?language=objc)
+    /// Specifies metrics for landscape orientation using the phone idiom.
     #[doc(alias = "UIBarMetricsLandscapePhone")]
     #[deprecated]
     pub const LandscapePhone: Self = Self(UIBarMetrics::Compact.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics/landscapephoneprompt?language=objc)
+    /// Specifies metrics for landscape orientation using the phone idiom for bars with the prompt property, such as [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) and [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar).
     #[doc(alias = "UIBarMetricsLandscapePhonePrompt")]
     #[deprecated]
     pub const LandscapePhonePrompt: Self = Self(UIBarMetrics::CompactPrompt.0);
@@ -41,22 +41,42 @@ unsafe impl RefEncode for UIBarMetrics {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition?language=objc)
+/// Constants to identify the position of a bar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarPosition(pub NSInteger);
 impl UIBarPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/any?language=objc)
+    /// Specifies that the position is unspecified.
     #[doc(alias = "UIBarPositionAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/bottom?language=objc)
+    /// Specifies that the bar is at the bottom of its containing view.
+    ///
+    /// ## Discussion
+    ///
+    /// The system uses this as a hint to draw directional decoration accordingly. For example, any shadow would be drawn above the bar.
+    ///
+    ///
     #[doc(alias = "UIBarPositionBottom")]
     pub const Bottom: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/top?language=objc)
+    /// Specifies that the bar is at the top of its containing view.
+    ///
+    /// ## Discussion
+    ///
+    /// The system uses this as a hint to draw directional decoration accordingly. For example, any shadow would be drawn below the bar.
+    ///
+    /// Instances of [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar) do not appear with this position on iPhone, but they can on iPad.
+    ///
+    ///
     #[doc(alias = "UIBarPositionTop")]
     pub const Top: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition/topattached?language=objc)
+    /// Specifies that the bar is at the top of the screen, as well as its containing view.
+    ///
+    /// ## Discussion
+    ///
+    /// Bars with this position draw their background extended upwards, allowing their background content to show through the status bar.
+    ///
+    ///
     #[doc(alias = "UIBarPositionTopAttached")]
     pub const TopAttached: Self = Self(3);
 }
@@ -70,7 +90,15 @@ unsafe impl RefEncode for UIBarPosition {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarpositioning?language=objc)
+    /// A set of methods for defining the positioning of bars in iOS apps.
+    ///
+    /// ## Overview
+    ///
+    /// Bars can be positioned at the bottom of their enclosing view, at the top of their enclosing view, or at both the top of their enclosing view and also the top of the screen. In this last case, the bar will abut the status bar displayed by the system. Bars in this position need to have their background extend above their own frame to the top of the screen. This allows the background to show through the status bar.
+    ///
+    /// The classes that implement bars have paired methods to set a background for a given position and set of metrics. These are named similar to the following: [`backgroundImageForBarPosition:barMetrics:`](https://developer.apple.com/documentation/uikit/uisearchbar/backgroundimage(for:barmetrics:)) and [`setBackgroundImage:forBarPosition:barMetrics:`](https://developer.apple.com/documentation/uikit/uisearchbar/setbackgroundimage(_:for:barmetrics:)). Use these methods to set an appropriate background image for the different possible bar positions and metrics.
+    ///
+    ///
     pub unsafe trait UIBarPositioning: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(barPosition))]
         #[unsafe(method_family = none)]
@@ -79,7 +107,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarpositioningdelegate?language=objc)
+    /// A set of methods that support the positioning of a bar that conforms to the [`UIBarPositioning`](https://developer.apple.com/documentation/uikit/uibarpositioning) protocol.
+    ///
+    /// ## Overview
+    ///
+    /// Navigation bars, toolbars, and search bars all have delegates that support the [`UIBarPositioning`](https://developer.apple.com/documentation/uikit/uibarpositioning) protocol. The delegate can use the method of this protocol to specify the bar’s position when that bar is moved to a window. The [`UINavigationBarDelegate`](https://developer.apple.com/documentation/uikit/uinavigationbardelegate), [`UISearchBarDelegate`](https://developer.apple.com/documentation/uikit/uisearchbardelegate), and [`UIToolbarDelegate`](https://developer.apple.com/documentation/uikit/uitoolbardelegate) protocols extend this protocol to allow for the positioning of those bars on the screen.
+    ///
+    ///
     pub unsafe trait UIBarPositioningDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(positionForBar:))]

@@ -8,14 +8,29 @@ use crate::*;
 extern_class!(
     /// An abstract base class for implementing a full-featured file system.
     ///
+    /// ## Overview
+    ///
+    /// `FSFileSystem` is a full-featured file system, which works with one or more [`FSResource`](https://developer.apple.com/documentation/fskit/fsresource) instances and presents one or more [`FSVolume`](https://developer.apple.com/documentation/fskit/fsvolume) references to callers.
+    ///
+    /// Implement your app extension by providing a subclass of `FSFileSystem` as a delegate object. Your delegate also needs to implement the `FSFileSystemOperations` protocol so that it can probe, load, and unload resources.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// The current version of FSKit supports only [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem), not `FSFileSystem`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// An abstract base class for implementing a full-featured file system.
+    ///
     /// `FSFileSystem` is a full-featured file system, which works with one or more ``FSResource`` instances and presents one or more ``FSVolume`` references to callers.
     ///
     /// Implement your app extension by providing a subclass of `FSFileSystem` as a delegate object.
     /// Your delegate also needs to implement the `FSFileSystemOperations` protocol so that it can probe, load, and unload resources.
     ///
     /// > Note: The current version of FSKit supports only ``FSUnaryFileSystem``, not `FSFileSystem`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsfilesystem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSFileSystem;

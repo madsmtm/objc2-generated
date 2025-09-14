@@ -9,16 +9,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype?language=objc)
+/// The supported Siri actions of the assistant cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellActionType(pub NSInteger);
 impl CPAssistantCellActionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype/playmedia?language=objc)
+    /// Provides an action that uses Siri to prompt the user for media playback.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This action is only available in audio apps that include an Intents Extension capable of handling [`INPlayMediaIntent`](https://developer.apple.com/documentation/intents/inplaymediaintent). For more information, see [Creating an Intents App Extension](https://developer.apple.com/documentation/sirikit/creating-an-intents-app-extension).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system provides the user’s response to your app’s Intents Extension. Your app must respond by searching for the requested media and, if it’s available, start its playback and display a [`CPNowPlayingTemplate`](https://developer.apple.com/documentation/carplay/cpnowplayingtemplate).
+    ///
+    ///
     #[doc(alias = "CPAssistantCellActionTypePlayMedia")]
     pub const PlayMedia: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype/startcall?language=objc)
+    /// Provides an action that uses Siri to prompt the user for a person, group, or business to call.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This action is only available in communication apps that include an Intents Extension capable of handling doc://com.apple.documentation/documentation/sirikit/instartcallintent. For more information, see [Creating an Intents App Extension](https://developer.apple.com/documentation/sirikit/creating-an-intents-app-extension).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system provides the user’s response to your app’s Intents Extension. Your app must respond by identifying the requested person, group, or business and start a voice call with them.
+    ///
+    ///
     #[doc(alias = "CPAssistantCellActionTypeStartCall")]
     pub const StartCall: Self = Self(1);
 }
@@ -31,19 +59,19 @@ unsafe impl RefEncode for CPAssistantCellActionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility?language=objc)
+/// Constants to specify the visibility of the assistant cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellVisibility(pub NSInteger);
 impl CPAssistantCellVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/off?language=objc)
+    /// The assistant cell isn’t visible.
     #[doc(alias = "CPAssistantCellVisibilityOff")]
     pub const Off: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/whilelimiteduiactive?language=objc)
+    /// The assistant cell is visible only while Limited UI mode is active.
     #[doc(alias = "CPAssistantCellVisibilityWhileLimitedUIActive")]
     pub const WhileLimitedUIActive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility/always?language=objc)
+    /// The assistant cell is always visible.
     #[doc(alias = "CPAssistantCellVisibilityAlways")]
     pub const Always: Self = Self(2);
 }
@@ -56,16 +84,16 @@ unsafe impl RefEncode for CPAssistantCellVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition?language=objc)
+/// Constants to specify the position of the assistant cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellPosition(pub NSInteger);
 impl CPAssistantCellPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition/top?language=objc)
+    /// Positions the assistant cell at the top of all visible cells.
     #[doc(alias = "CPAssistantCellPositionTop")]
     pub const Top: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition/bottom?language=objc)
+    /// Positions the assistant cell at the bottom of all visible cells.
     #[doc(alias = "CPAssistantCellPositionBottom")]
     pub const Bottom: Self = Self(1);
 }
@@ -79,12 +107,19 @@ unsafe impl RefEncode for CPAssistantCellPosition {
 }
 
 extern_class!(
+    /// An object that provides the configuration attributes for the assistant cell.
+    ///
+    /// ## Overview
+    ///
+    /// An audio or communication CarPlay app can choose to display an _assistant cell_ in a list template that allows the user to interact with the app using Siri. You create an instance of this configuration object that describes the position, visibility, and supported Siri intent, and provide that to your app’s list template using the [`initWithTitle:sections:assistantCellConfiguration:`](https://developer.apple.com/documentation/carplay/cplisttemplate/init(title:sections:assistantcellconfiguration:)) initializer or the [`assistantCellConfiguration`](https://developer.apple.com/documentation/carplay/cplisttemplate/assistantcellconfiguration) property.
+    ///
+    /// Your app must include an Intents Extension that handles the intent corresponding to the action you specify in the [`assistantAction`](https://developer.apple.com/documentation/carplay/cpassistantcellconfiguration/assistantaction) property; audio apps must support [`INPlayMediaIntent`](https://developer.apple.com/documentation/intents/inplaymediaintent) and communication apps must support doc://com.apple.documentation/documentation/sirikit/instartcallintent. For more information, see [Creating an Intents App Extension](https://developer.apple.com/documentation/sirikit/creating-an-intents-app-extension).
+    ///
+    ///
     /// `CPAssistantCellConfiguration`encapsulates the configuration options for your assistant cell.
     ///
     ///
     /// Note: The Assistant Cell is only supported by CarPlay Audio and Communication apps.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPAssistantCellConfiguration;
@@ -153,7 +188,53 @@ impl CPAssistantCellConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplisttemplate?language=objc)
+    /// A template that displays and manages a list of items.
+    ///
+    /// ## Overview
+    ///
+    /// Use the list template to display a list of items, grouped into one or more sections. When the user selects an item, CarPlay invokes Siri or a custom handler that you provide, depending on the type of list item. If your list displays hierarchical data, use the handler to add templates to the navigation hierarchy.
+    ///
+    /// To create a list template, call the [`initWithTitle:sections:`](https://developer.apple.com/documentation/carplay/cplisttemplate/init(title:sections:)) method and provide an array of [`CPListSection`](https://developer.apple.com/documentation/carplay/cplistsection) objects. At runtime, use [`maximumSectionCount`](https://developer.apple.com/documentation/carplay/cplisttemplate/maximumsectioncount) to determine the maximum number of sections your list can display. Use [`maximumItemCount`](https://developer.apple.com/documentation/carplay/cplisttemplate/maximumitemcount) to determine the maximum number of items across all sections that your list can display.
+    ///
+    /// Each section contains an array of list items — objects that conform to either the [`CPListTemplateItem`](https://developer.apple.com/documentation/carplay/cplisttemplateitem) or the [`CPSelectableListItem`](https://developer.apple.com/documentation/carplay/cpselectablelistitem) protocol. CarPlay provides three concrete implementations of these protocols:
+    ///
+    /// - [`CPListItem`](https://developer.apple.com/documentation/carplay/cplistitem): A generic, selectable list item.
+    ///
+    /// - [`CPListImageRowItem`](https://developer.apple.com/documentation/carplay/cplistimagerowitem): A list item that displays a series of images.
+    ///
+    /// - [`CPMessageListItem`](https://developer.apple.com/documentation/carplay/cpmessagelistitem): A list item that represents a conversation or contact.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The depth of a hierarchical list in CarPlay depends on your app’s entitlements. Food-ordering apps must not exceed two levels. The framework restricts all other categories of apps to five levels. Also, some vehicles limit the number of items that the list displays. See [`CPSessionConfiguration`](https://developer.apple.com/documentation/carplay/cpsessionconfiguration) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To display the list, call your interface controller’s [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) method, passing in the list template to add it to your navigation hierarchy. Alternatively, add the template as a tab in your [`CPTabBarTemplate`](https://developer.apple.com/documentation/carplay/cptabbartemplate).
+    ///
+    /// ### Integrating Siri Into Your Template App
+    ///
+    /// For audio and communication apps, CarPlay provides an _assistant cell_ to let users interact with your app using Siri_._
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ddb3b9bcc13948f8ba4c7ceeb86fdef5/media-3786976~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ddb3b9bcc13948f8ba4c7ceeb86fdef5/media-3786976%402x.png 2x" />
+    ///     <img alt="Screenshot that shows the assistant cell at the top of a list template." src="https://docs-assets.developer.apple.com/published/ddb3b9bcc13948f8ba4c7ceeb86fdef5/media-3786976~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// To enable the assistant cell, your app must support specific Siri intents:
+    ///
+    /// - To play audio, audio apps must support [`INPlayMediaIntent`](https://developer.apple.com/documentation/intents/inplaymediaintent).
+    ///
+    /// - To make phone calls, communication apps must support doc://com.apple.documentation/documentation/sirikit/instartcallintent.
+    ///
+    /// To enable the assistant cell in your list template, use [`initWithTitle:sections:assistantCellConfiguration:`](https://developer.apple.com/documentation/carplay/cplisttemplate/init(title:sections:assistantcellconfiguration:)) and provide the required configuration. For more information, see [`CPAssistantCellConfiguration`](https://developer.apple.com/documentation/carplay/cpassistantcellconfiguration). CarPlay automatically updates your app’s interface if you change the template’s [`assistantCellConfiguration`](https://developer.apple.com/documentation/carplay/cplisttemplate/assistantcellconfiguration) property.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -436,7 +517,7 @@ impl CPListTemplate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplisttemplatedelegate?language=objc)
+    /// The interface an object implements to serve as the delegate for a list template.
     #[deprecated]
     pub unsafe trait CPListTemplateDelegate: NSObjectProtocol {
         #[cfg(all(feature = "CPListItem", feature = "CPTemplate", feature = "block2"))]

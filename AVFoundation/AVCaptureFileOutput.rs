@@ -10,6 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract superclass for capture outputs that can record captured data to a file.
     /// AVCaptureFileOutput is an abstract subclass of AVCaptureOutput that provides an interface for writing captured media to files.
     ///
     ///
@@ -18,8 +19,6 @@ extern_class!(
     /// On macOS, clients can also set a delegate on the file output itself that can be used to control recording along exact media sample boundaries using the captureOutput:didOutputSampleBuffer:fromConnection: method.
     ///
     /// The concrete subclasses of AVCaptureFileOutput are AVCaptureMovieFileOutput, which records media to a QuickTime movie file, and AVCaptureAudioFileOutput, which writes audio media to a variety of audio file formats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefileoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -220,9 +219,16 @@ impl AVCaptureFileOutput {
 }
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVCaptureFileOutput to respond to events that occur in the process of recording a single file.
+    /// Methods for responding to events that occur while recording captured media to a file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefileoutputrecordingdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Defines an interface for delegates of [`AVCaptureFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturefileoutput) to respond to events that occur in the process of recording a single file.
+    ///
+    /// The delegate of an `AVCaptureFileOutput` object must adopt the `AVCaptureFileOutputRecordingDelegate` protocol.
+    ///
+    ///
+    /// Defines an interface for delegates of AVCaptureFileOutput to respond to events that occur in the process of recording a single file.
     pub unsafe trait AVCaptureFileOutputRecordingDelegate: NSObjectProtocol {
         #[cfg(all(feature = "AVCaptureOutputBase", feature = "AVCaptureSession"))]
         /// Informs the delegate when the output has started writing to a file.
@@ -387,9 +393,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVCaptureFileOutput to monitor and control recordings along exact sample boundaries.
+    /// Methods for monitoring or controlling the output of a media file capture.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefileoutputdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// The `AVCaptureFileOutputDelegate` protocol defines an interface for delegates of an [`AVCaptureFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturefileoutput) object to monitor and control recordings along exact sample boundaries.
+    ///
+    ///
+    /// Defines an interface for delegates of AVCaptureFileOutput to monitor and control recordings along exact sample boundaries.
     pub unsafe trait AVCaptureFileOutputDelegate: NSObjectProtocol {
         #[cfg(feature = "AVCaptureOutputBase")]
         /// Allows a client to opt in to frame accurate record-start in captureOutput:didOutputSampleBuffer:fromConnection:
@@ -443,12 +454,17 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A capture output that records video and audio to a QuickTime movie file.
+    ///
+    /// ## Overview
+    ///
+    /// A movie file output provides a complete file recording interface for writing media data to QuickTime movie files. It includes the ability to configure QuickTime-specific options, including writing metadata collections to each file, specify media encoding options for each track, and specify the interval at which it writes movie fragments.
+    ///
+    ///
     /// AVCaptureMovieFileOutput is a concrete subclass of AVCaptureFileOutput that writes captured media to QuickTime movie files.
     ///
     ///
     /// AVCaptureMovieFileOutput implements the complete file recording interface declared by AVCaptureFileOutput for writing media data to QuickTime movie files. In addition, instances of AVCaptureMovieFileOutput allow clients to configure options specific to the QuickTime file format, including allowing them to write metadata collections to each file, specify media encoding options for each track (macOS), and specify an interval at which movie fragments should be written.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput?language=objc)
     #[unsafe(super(AVCaptureFileOutput, AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -696,12 +712,17 @@ impl AVCaptureMovieFileOutput {
 }
 
 extern_class!(
+    /// A capture output that records audio and saves the recorded audio to a file.
+    ///
+    /// ## Overview
+    ///
+    /// `AVCaptureAudioFileOutput` implements the complete file recording interface declared by [`AVCaptureFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturefileoutput) for writing media data to audio files. In addition, you can configure options specific to the audio file formats, including writing metadata collections to each file and specifying audio encoding options. `AVCaptureAudioFileOutput` does not, however, support [`startRecordingToOutputFileURL:recordingDelegate:`](https://developer.apple.com/documentation/avfoundation/avcapturefileoutput/startrecording(to:recordingdelegate:))—use [`startRecordingToOutputFileURL:outputFileType:recordingDelegate:`](https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput/startrecording(to:outputfiletype:recordingdelegate:)) instead.
+    ///
+    ///
     /// AVCaptureAudioFileOutput is a concrete subclass of AVCaptureFileOutput that writes captured audio to any audio file type supported by CoreAudio.
     ///
     ///
     /// AVCaptureAudioFileOutput implements the complete file recording interface declared by AVCaptureFileOutput for writing media data to audio files. In addition, instances of AVCaptureAudioFileOutput allow clients to configure options specific to the audio file formats, including allowing them to write metadata collections to each file and specify audio encoding options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiofileoutput?language=objc)
     #[unsafe(super(AVCaptureFileOutput, AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]

@@ -11,26 +11,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAAnimationCalculationMode = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAAnimationRotationMode = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype?language=objc)
 // NS_TYPED_ENUM
 pub type CATransitionType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype?language=objc)
 // NS_TYPED_ENUM
 pub type CATransitionSubtype = NSString;
 
 extern_class!(
-    /// The base animation class. *
+    /// The abstract superclass for animations in Core Animation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimation?language=objc)
+    /// ## Overview
+    ///
+    /// `CAAnimation` provides the basic support for the [`CAMediaTiming`](https://developer.apple.com/documentation/quartzcore/camediatiming) and [`CAAction`](https://developer.apple.com/documentation/quartzcore/caaction) protocols. You do not create instance of [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation): to animate Core Animation layers or SceneKit objects, create instances of the concrete subclasses [`CABasicAnimation`](https://developer.apple.com/documentation/quartzcore/cabasicanimation), [`CAKeyframeAnimation`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation), [`CAAnimationGroup`](https://developer.apple.com/documentation/quartzcore/caanimationgroup), or [`CATransition`](https://developer.apple.com/documentation/quartzcore/catransition).
+    ///
+    /// ### Animating Core Animation Layers
+    ///
+    /// You can animate the contents of your iOS or macOS app’s user interface by attaching animations to [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) objects. For more information, see [Core Animation Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514).
+    ///
+    /// ### Animating Scene Kit Content
+    ///
+    /// In Scene Kit, animation objects represent not only property-based animations, but also animations of geometry data created with external 3D authoring tools and loaded from a scene file. You use the properties of the [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) object representing a geometry animation to control its timing, monitor its progress, and attach actions for Scene Kit to trigger during the animation. You can attach animations to Scene Kit objects that adopt the [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol, including nodes, geometries, and materials.
+    ///
+    /// In a Scene Kit app, [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) objects support additional methods and properties, listed under Controlling SceneKit Animation Timing, Fading between SceneKit Animations, and Attaching SceneKit Animation Events.
+    ///
+    ///
+    /// The base animation class. *
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimation;
@@ -143,7 +154,34 @@ impl DefaultRetained for CAAnimation {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationdelegate?language=objc)
+    /// Methods your app can implement to respond when animations start and stop.
+    ///
+    /// ## Overview
+    ///
+    /// You can use an animation delegate to execute additional logic when an animation starts or ends. For example, you may want to remove a layer from its parent once a fade out animation has completed.
+    ///
+    /// The following example shows code taken from a class that implements [`CAAnimationDelegate`](https://developer.apple.com/documentation/quartzcore/caanimationdelegate) and has had a layer, named `sublayer`, added to its layer. The `fadeOut` function animates the opacity of `sublayer` and, once the animation has completed, [`animationDidStop:finished:`](https://developer.apple.com/documentation/quartzcore/caanimationdelegate/animationdidstop(_:finished:)) removes it from its superlayer.
+    ///
+    /// ```swift
+    /// func fadeOut() {
+    ///     let fadeOutAnimation = CABasicAnimation()
+    ///     fadeOutAnimation.keyPath = "opacity"
+    ///     fadeOutAnimation.fromValue = 1
+    ///     fadeOutAnimation.toValue = 0
+    ///     fadeOutAnimation.duration = 0.25
+    ///     
+    ///     fadeOutAnimation.delegate = self
+    ///     
+    ///     sublayer.add(fadeOutAnimation,
+    ///                       forKey: "fade")
+    /// }
+    ///     
+    /// func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    ///     sublayer.removeFromSuperlayer()
+    /// }
+    /// ```
+    ///
+    ///
     pub unsafe trait CAAnimationDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(animationDidStart:))]
@@ -158,9 +196,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Subclass for property-based animations. *
+    /// An abstract subclass for creating animations that manipulate the value of layer properties.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/capropertyanimation?language=objc)
+    /// ## Overview
+    ///
+    /// The property to animate is specified using a key path that is relative to the layer using the animation.
+    ///
+    /// You do not create instances of [`CAPropertyAnimation`](https://developer.apple.com/documentation/quartzcore/capropertyanimation): to animate the properties of a Core Animation layer, create instance of the concrete subclasses [`CABasicAnimation`](https://developer.apple.com/documentation/quartzcore/cabasicanimation) or [`CAKeyframeAnimation`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation).
+    ///
+    ///
+    /// Subclass for property-based animations. *
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAPropertyAnimation;
@@ -274,9 +319,66 @@ impl DefaultRetained for CAPropertyAnimation {
 }
 
 extern_class!(
-    /// Subclass for basic (single-keyframe) animations. *
+    /// An object that provides basic, single-keyframe animation capabilities for a layer property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cabasicanimation?language=objc)
+    /// ## Overview
+    ///
+    /// You create an instance of  [`CABasicAnimation`](https://developer.apple.com/documentation/quartzcore/cabasicanimation) using the inherited [`animationWithKeyPath:`](https://developer.apple.com/documentation/quartzcore/capropertyanimation/init(keypath:)) method, specifying the key path of the property to be animated in the render tree.
+    ///
+    /// For example, you can animate a layer’s scalar (i.e. containing a single value) properties such as its [`opacity`](https://developer.apple.com/documentation/quartzcore/calayer/opacity). The following code fades in a layer by animating its opacity from `0` to `1`.
+    ///
+    /// ```swift
+    /// let animation = CABasicAnimation(keyPath: "opacity")
+    /// animation.fromValue = 0
+    /// animation.toValue = 1
+    /// ```
+    ///
+    /// Non-scalar properties, such as [`backgroundColor`](https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor), can also be animated. Core Animation will interpolate between the [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) color and the [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) color. The animation created in the following code fades a layer’s background color from red to blue.
+    ///
+    /// ```swift
+    /// let animation = CABasicAnimation(keyPath: "backgroundColor")
+    /// animation.fromValue = NSColor.red.cgColor
+    /// animation.toValue = NSColor.blue.cgColor
+    /// ```
+    ///
+    /// If you want to animate the individual components of a non-scalar property with different values, you pass the values to [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) and [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) as arrays. The following animation moves a layer from `(0, 0)` to `(100, 100)`.
+    ///
+    /// ```swift
+    /// let animation = CABasicAnimation(keyPath: "position")
+    /// animation.fromValue = [0, 0]
+    /// animation.toValue = [100, 100]
+    /// ```
+    ///
+    /// The `keyPath` can access the individual components of a property. For example, the following animation stretches a layer by animating its [`transform`](https://developer.apple.com/documentation/quartzcore/calayer/transform) object’s `x` from `1` to `2`.
+    ///
+    /// ```swift
+    /// let animation = CABasicAnimation(keyPath: "transform.scale.x")
+    /// animation.fromValue = 1
+    /// animation.toValue = 2
+    /// ```
+    ///
+    /// ### Setting Interpolation Values
+    ///
+    /// The [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue), [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) properties define the values being interpolated between. All are optional, and no more than two should be non-`nil`. The object type should match the type of the property being animated.
+    ///
+    /// The interpolation values are used as follows:
+    ///
+    /// - Both [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) are non-`nil`. Interpolates between [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue).
+    ///
+    /// - [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue) are non-`nil`. Interpolates between [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and ([`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) + [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue)).
+    ///
+    /// - [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) are non-`nil`. Interpolates between ([`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) - [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue)) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue).
+    ///
+    /// - [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) is non-`nil`. Interpolates between [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and the current presentation value of the property.
+    ///
+    /// - [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) is non-`nil`. Interpolates between the current value of `keyPath` in the target layer’s presentation layer and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue).
+    ///
+    /// - [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue) is non-`nil`. Interpolates between the current value of `keyPath` in the target layer’s presentation layer and that value plus [`byValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/byvalue).
+    ///
+    /// - All properties are `nil`. Interpolates between the previous value of `keyPath` in the target layer’s presentation layer and the current value of  `keyPath` in the target layer’s presentation layer.
+    ///
+    ///
+    /// Subclass for basic (single-keyframe) animations. *
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CABasicAnimation;
@@ -394,9 +496,28 @@ impl DefaultRetained for CABasicAnimation {
 }
 
 extern_class!(
-    /// General keyframe animation class. *
+    /// An object that provides keyframe animation capabilities for a layer object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation?language=objc)
+    /// ## Overview
+    ///
+    /// You create a [`CAKeyframeAnimation`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation) object using the inherited [`animationWithKeyPath:`](https://developer.apple.com/documentation/quartzcore/capropertyanimation/init(keypath:)) method, specifying the key path of the property that you want to animate on the layer. You can then specify the keyframe values to use to control the timing and animation behavior.
+    ///
+    /// For most types of animations, you specify the keyframe values using the [`values`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/values) and [`keyTimes`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes) properties. During the animation, Core Animation generates intermediate values by interpolating between the values you provide. When animating a value that is a coordinate point, such as the layer’s position, you can specify a [`path`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/path) for that point to follow instead of individual values. The pacing of the animation is controlled by the timing information you provide.
+    ///
+    /// The following code shows how to create a keyframe animation that animates a layer’s background color from red to green to blue over a two second duration.
+    ///
+    /// ```swift
+    /// let colorKeyframeAnimation = CAKeyframeAnimation(keyPath: "backgroundColor")
+    ///
+    /// colorKeyframeAnimation.values = [UIColor.red.cgColor,
+    ///                                  UIColor.green.cgColor,
+    ///                                  UIColor.blue.cgColor]
+    /// colorKeyframeAnimation.keyTimes = [0, 0.5, 1]
+    /// colorKeyframeAnimation.duration = 2
+    /// ```
+    ///
+    ///
+    /// General keyframe animation class. *
     #[unsafe(super(CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAKeyframeAnimation;
@@ -580,44 +701,177 @@ impl DefaultRetained for CAKeyframeAnimation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/linear?language=objc)
+    /// Simple linear calculation between keyframe values.
+    ///
+    /// ## Discussion
+    ///
+    /// The following code shows how to create a keyframe animation object using linear interpolation.
+    ///
+    /// Listing 1. Creating linearly interpolated keyframes
+    ///
+    /// ```swift
+    /// let keyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
+    /// keyframeAnimation.calculationMode = kCAAnimationLinear
+    /// keyframeAnimation.keyTimes = [0, 0.25, 0.5, 0.75, 1]
+    /// keyframeAnimation.values = [310, 60, 120, 60, 310]
+    /// ```
+    ///
+    /// A layer animated with the keyframe animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Tracing the path of an animation using linearly interpolated keyframes](https://docs-assets.developer.apple.com/published/0c5d43aa12ef1a5f2a1deb521dc2f0c1/media-2776788%402x.png)
+    ///
+    ///
+    ///
     pub static kCAAnimationLinear: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/discrete?language=objc)
+    /// Each keyframe value is used in turn, no interpolated values are calculated.
+    ///
+    /// ## Discussion
+    ///
+    /// Keyframe animations based on discrete calculation interpolation require one less element in the [`values`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/values) array than the [`keyTimes`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes) array. Each `value / keyTime` pair represents the value from the specified time until the next keyframe.
+    ///
+    /// For example, given the [`CAKeyframeAnimation`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation) created in the following code, the penultimate keyTime, `0.75`, has a related value of `60`. The value of `position.y` will remain at `60` until the animation completes.
+    ///
+    /// ```swift
+    /// let keyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
+    /// keyframeAnimation.calculationMode = kCAAnimationDiscrete
+    ///   
+    /// // keyframe 0: (0, 310), keyframe 1: (0.25, 60), keyframe 2: (0.5, 120), keyframe 3: (0.75, 60)
+    /// keyframeAnimation.keyTimes = [0, 0.25, 0.5, 0.75, 1]
+    /// keyframeAnimation.values = [310, 60, 120, 60]
+    /// ```
+    ///
+    /// A layer animated with the keyframe animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Tracing the path of an animation using discrete keyframes](https://docs-assets.developer.apple.com/published/f6830fc8c7adaba08416790741e03cd7/media-2776786%402x.png)
+    ///
+    ///
+    ///
     pub static kCAAnimationDiscrete: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/paced?language=objc)
+    /// Linear keyframe values are interpolated to produce an even pace throughout the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// `kCAAnimationPaced` gives a linearly interpolated animation, but [`keyTimes`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes) and [`timingFunction`](https://developer.apple.com/documentation/quartzcore/caanimation/timingfunction) are ignored and keyframe times are automatically generated to give the animation a constant velocity.
+    ///
+    /// The following code shows how to create a keyframe animation object using paced interpolation.
+    ///
+    /// Listing 1. Creating paced key values
+    ///
+    /// ```objc
+    /// let keyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
+    /// keyframeAnimation.calculationMode = kCAAnimationPaced
+    /// keyframeAnimation.values = [310, 60, 120, 60, 310]
+    /// ```
+    ///
+    /// A layer animated with the keyframe animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Tracing the path of an animation using paced key values](https://docs-assets.developer.apple.com/published/59fe9ad7c28a77c4f7d2456ef55d3394/media-2776792%402x.png)
+    ///
+    ///
+    ///
     pub static kCAAnimationPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/cubic?language=objc)
+    /// Smooth spline calculation between keyframe values.
+    ///
+    /// ## Discussion
+    ///
+    /// Intermediate frames are computed using a Catmull-Rom spline that passes through the keyframes. You can adjust the shape of the spline by specifying an optional set of tension, continuity, and bias values, which modify the spline using the standard Kochanek-Bartels form.
+    ///
+    /// The following code shows how to create a keyframe animation object using cubic interpolation.
+    ///
+    /// ```swift
+    /// let keyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
+    /// keyframeAnimation.calculationMode = kCAAnimationCubic
+    /// keyframeAnimation.keyTimes = [0, 0.25, 0.5, 0.75, 1]
+    /// keyframeAnimation.values = [310, 60, 120, 60, 310]
+    /// ```
+    ///
+    /// A layer animated with the keyframe animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Tracing the path of an animation using cubic spline interpolated keyframes](https://docs-assets.developer.apple.com/published/cef95992066b7134e9bc67ba36c6bb69/media-2776790%402x.png)
+    ///
+    ///
+    ///
     pub static kCAAnimationCubic: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/cubicpaced?language=objc)
+    /// Cubic keyframe values are interpolated to produce an even pace throughout the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// `kCAAnimationCubicPaced` gives a linearly interpolated animation, but [`keyTimes`](https://developer.apple.com/documentation/quartzcore/cakeyframeanimation/keytimes) and [`timingFunction`](https://developer.apple.com/documentation/quartzcore/caanimation/timingfunction) are ignored and keyframe times are automatically generated to give the animation a constant velocity.
+    ///
+    /// The following code shows how to create a keyframe animation object using paced cubic interpolation.
+    ///
+    /// ```objc
+    /// let keyframeAnimation = CAKeyframeAnimation(keyPath: "position.y")
+    /// keyframeAnimation.calculationMode = kCAAnimationCubicPaced
+    /// keyframeAnimation.values = [310, 60, 120, 60, 310]
+    /// ```
+    ///
+    /// A layer animated with the keyframe animation created by the code above and with linearly interpolated horizontal movement would describe a path similar to the following figure.
+    ///
+    ///
+    /// ![Tracing the path of an animation using cubic paced key values](https://docs-assets.developer.apple.com/published/eb23aecda8eb2e1e569d68b1ca5c2938/media-2776794%402x.png)
+    ///
+    ///
+    ///
     pub static kCAAnimationCubicPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode/rotateauto?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The objects travel on a tangent to the path.
+    ///
+    ///
     pub static kCAAnimationRotateAuto: &'static CAAnimationRotationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode/rotateautoreverse?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The objects travel at a 180 degree tangent to the path.
+    ///
+    ///
     pub static kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode;
 }
 
 extern_class!(
-    /// Subclass for mass-spring animations.
+    /// An animation that applies a spring-like force to a layer’s properties.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caspringanimation?language=objc)
+    /// ## Overview
+    ///
+    /// You would typically use a spring animation to animate a layer’s position so that it appears to be pulled towards a target by a spring. The further the layer is from the target, the greater the acceleration towards it is.
+    ///
+    /// [`CASpringAnimation`](https://developer.apple.com/documentation/quartzcore/caspringanimation) allows control over physically based attributes such as the spring’s damping and stiffness.
+    ///
+    /// You can use a spring animation to animation properties of a layer other than its position. The following code shows how to create a spring animation that bounces a layer into view by animating its scale from `0` to `1`. Because the spring animation can overshoot its [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue), the animated layer may exceed its frame.
+    ///
+    /// ```swift
+    /// let springAnimation = CASpringAnimation(keyPath: "transform.scale")
+    ///
+    /// springAnimation.fromValue = 0
+    /// springAnimation.toValue = 1
+    /// ```
+    ///
+    ///
+    /// Subclass for mass-spring animations.
     #[unsafe(super(CABasicAnimation, CAPropertyAnimation, CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CASpringAnimation;
@@ -773,9 +1027,49 @@ impl DefaultRetained for CASpringAnimation {
 }
 
 extern_class!(
-    /// Transition animation subclass. *
+    /// An object that provides an animated transition between a layer’s states.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransition?language=objc)
+    /// ## Overview
+    ///
+    /// You can transition between a layer’s states by creating and adding a [`CATransition`](https://developer.apple.com/documentation/quartzcore/catransition) object to it. The default transition is a cross fade, but you can specify different effects from a set of predefined transitions.
+    ///
+    /// The following code shows how you can transition between the two states of a [`CATextLayer`](https://developer.apple.com/documentation/quartzcore/catextlayer) named `transitioningLayer`. When the layer is first created, its [`backgroundColor`](https://developer.apple.com/documentation/quartzcore/calayer/backgroundcolor) is set to red and its [`string`](https://developer.apple.com/documentation/quartzcore/catextlayer/string) property is set to `Red`. When the `runTransition()` function is called, a new [`CATransition`](https://developer.apple.com/documentation/quartzcore/catransition) object is created and added to `transitioningLayer`, and the state of the layer is changed so that its background color is blue and its rendered text reads `Blue`.
+    ///
+    /// The end result is that the push transition animates the red state from left to right with the blue state entering the scene from the left.
+    ///
+    /// ```swift
+    /// let transitioningLayer = CATextLayer()
+    ///      
+    /// override func viewDidLoad() {
+    ///     super.viewDidLoad()
+    ///     transitioningLayer.frame = CGRect(x: 10, y: 10,
+    ///                                       width: 320, height: 160)
+    ///     
+    ///     view.layer.addSublayer(transitioningLayer)
+    ///     
+    ///     // Initial "red" state
+    ///     transitioningLayer.backgroundColor = UIColor.red.cgColor
+    ///     transitioningLayer.string = "Red"
+    /// }
+    ///       
+    ///    
+    /// func runTransition() {
+    ///     let transition = CATransition()
+    ///     transition.duration = 2
+    ///     
+    ///     transition.type = kCATransitionPush
+    ///     
+    ///     transitioningLayer.add(transition,
+    ///                            forKey: "transition")
+    ///     
+    ///     // Transition to "blue" state
+    ///     transitioningLayer.backgroundColor = UIColor.blue.cgColor
+    ///     transitioningLayer.string = "Blue"
+    /// }
+    /// ```
+    ///
+    ///
+    /// Transition animation subclass. *
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CATransition;
@@ -898,49 +1192,101 @@ impl DefaultRetained for CATransition {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/fade?language=objc)
+    /// The layer’s content fades as it becomes visible or hidden.
     pub static kCATransitionFade: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/movein?language=objc)
+    /// The layer’s content slides into place over any existing content.
+    ///
+    /// ## Discussion
+    ///
+    /// The [Common Transition Subtypes](https://developer.apple.com/documentation/quartzcore/common-transition-subtypes) are used with this transition.
+    ///
+    ///
     pub static kCATransitionMoveIn: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/push?language=objc)
+    /// The layer’s content pushes any existing content as it slides into place.
+    ///
+    /// ## Discussion
+    ///
+    /// The [Common Transition Subtypes](https://developer.apple.com/documentation/quartzcore/common-transition-subtypes) are used with this transition.
+    ///
+    ///
     pub static kCATransitionPush: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/reveal?language=objc)
+    /// The layer’s content is revealed gradually in the direction specified by the transition subtype.
+    ///
+    /// ## Discussion
+    ///
+    /// The [Common Transition Subtypes](https://developer.apple.com/documentation/quartzcore/common-transition-subtypes) are used with this transition.
+    ///
+    ///
     pub static kCATransitionReveal: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromright?language=objc)
+    /// The transition begins at the right side of the layer.
     pub static kCATransitionFromRight: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromleft?language=objc)
+    /// The transition begins at the left side of the layer.
     pub static kCATransitionFromLeft: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromtop?language=objc)
+    /// The transition begins at the top of the layer.
     pub static kCATransitionFromTop: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/frombottom?language=objc)
+    /// The transition begins at the bottom of the layer.
     pub static kCATransitionFromBottom: &'static CATransitionSubtype;
 }
 
 extern_class!(
-    /// Animation subclass for grouped animations. *
+    /// An object that allows multiple animations to be grouped and run concurrently.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationgroup?language=objc)
+    /// ## Overview
+    ///
+    /// The grouped animations run in the time space specified by the [`CAAnimationGroup`](https://developer.apple.com/documentation/quartzcore/caanimationgroup) instance.
+    ///
+    /// The duration of the grouped animations are not scaled to the duration of their [`CAAnimationGroup`](https://developer.apple.com/documentation/quartzcore/caanimationgroup). Instead, the animations are clipped to the duration of the animation group. For example, a 10 second animation grouped within an animation group with a duration of 5 seconds displays only the first 5 seconds of the animation.
+    ///
+    /// The following code shows how you can create a grouped animation containing  opacity and scale animations to fade out a layer while expanding it. The animation starts with an opacity of `1` and a scale of `1` on all axes. As the animation’s scale increases to `(3, 3, 3)`, the opacity drops to `0` and the animated layer vanishes.
+    ///
+    /// ```swift
+    /// let fadeOut = CABasicAnimation(keyPath: "opacity")
+    /// fadeOut.fromValue = 1
+    /// fadeOut.toValue = 0
+    /// fadeOut.duration = 1
+    ///      
+    /// let expandScale = CABasicAnimation()
+    /// expandScale.keyPath = "transform"
+    /// expandScale.valueFunction = CAValueFunction(name: kCAValueFunctionScale)
+    /// expandScale.fromValue = [1, 1, 1]
+    /// expandScale.toValue = [3, 3, 3]
+    ///      
+    /// let fadeAndScale = CAAnimationGroup()
+    /// fadeAndScale.animations = [fadeOut, expandScale]
+    /// fadeAndScale.duration = 1
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`delegate`](https://developer.apple.com/documentation/quartzcore/caanimation/delegate) and [`removedOnCompletion`](https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion) properties of animations in the [`animations`](https://developer.apple.com/documentation/quartzcore/caanimationgroup/animations) array are currently ignored. The [`CAAnimationGroup`](https://developer.apple.com/documentation/quartzcore/caanimationgroup) delegate does receive these messages.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Animation subclass for grouped animations. *
     #[unsafe(super(CAAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAAnimationGroup;

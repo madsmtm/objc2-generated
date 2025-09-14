@@ -8,7 +8,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skphysicscontact?language=objc)
+    /// A description of the contact between two physics bodies.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKPhysicsContact`](https://developer.apple.com/documentation/spritekit/skphysicscontact) object is created automatically by SpriteKit to describe a contact between two physical bodies in a physics world.To receive contact messages, read the [`physicsWorld`](https://developer.apple.com/documentation/spritekit/skscene/physicsworld) property of an [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) object you are interested in, and assign its [`contactDelegate`](https://developer.apple.com/documentation/spritekit/skphysicsworld/contactdelegate) property to point to an object that implements the [`SKPhysicsContactDelegate`](https://developer.apple.com/documentation/spritekit/skphysicscontactdelegate) protocol. Then, for each physics body in your scene, set the [`categoryBitMask`](https://developer.apple.com/documentation/spritekit/skphysicsbody/categorybitmask) and [`contactTestBitMask`](https://developer.apple.com/documentation/spritekit/skphysicsbody/contacttestbitmask) properties to define which interactions should generate contact messages.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKPhysicsContact;

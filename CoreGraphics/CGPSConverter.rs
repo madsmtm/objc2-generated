@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter?language=objc)
+/// An opaque data type used to convert PostScript data to PDF data.
+///
+/// ## Overview
+///
+/// The PostScript data is supplied by a data provider and written into a data consumer. When you create a PostScript converter object, you can supply callback functions to invoke at various stages of the conversion process.
+///
+///
 #[doc(alias = "CGPSConverterRef")]
 #[repr(C)]
 pub struct CGPSConverter {
@@ -26,31 +32,77 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPSConverter"> for CGPSConverter {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterbegindocumentcallback?language=objc)
+/// Performs custom tasks at the beginning of a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
 pub type CGPSConverterBeginDocumentCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterenddocumentcallback?language=objc)
+/// Performs custom tasks at the end of a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
+/// - success: A Boolean value that indicates whether the PostScript conversion completed successfully ([`true`](https://developer.apple.com/documentation/swift/true) if it did).
+///
 pub type CGPSConverterEndDocumentCallback = Option<unsafe extern "C-unwind" fn(*mut c_void, bool)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterbeginpagecallback?language=objc)
+/// Performs custom tasks at the beginning of each page in a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
+/// - pageNumber: The current page number. Page numbers start at `1`.
+///
+/// - pageInfo: A dictionary that contains contextual information about the page. This parameter is reserved for future API expansion, and is currently unused.
+///
 pub type CGPSConverterBeginPageCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionary>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterendpagecallback?language=objc)
+/// Performs custom tasks at the end of each page of a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
+/// - pageNumber: The current page number. Page numbers start at `1`.
+///
+/// - pageInfo: A dictionary that contains contextual information about the page. This parameter is reserved for future API expansion, and is currently unused.
+///
 pub type CGPSConverterEndPageCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, usize, NonNull<CFDictionary>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterprogresscallback?language=objc)
+/// Reports progress periodically during a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
 pub type CGPSConverterProgressCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconvertermessagecallback?language=objc)
+/// Passes messages generated during a PostScript conversion process.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
+/// - message: A string containing the message from the PostScript conversion process.
+///
+///
+/// ## Discussion
+///
+/// There are several kinds of message that might be sent during a conversion process. The most likely are font substitution messages, and any messages that the PostScript code itself generates. Any PostScript messages written to `stdout` are routed through this callback—typically these are debugging or status messages and, although uncommon, can be useful in debugging. In addition, there may be error messages if the document is malformed.
+///
+///
 pub type CGPSConverterMessageCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CFString>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverterreleaseinfocallback?language=objc)
+/// Performs custom tasks when a PostScript converter is released.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPSConverterCreate`](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)).
+///
 pub type CGPSConverterReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconvertercallbacks?language=objc)
+/// A structure for holding the callbacks provided when you create a PostScript converter object.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -88,7 +140,21 @@ unsafe impl RefEncode for CGPSConverterCallbacks {
 }
 
 impl CGPSConverter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/init(info:callbacks:options:)?language=objc)
+    /// Creates a new PostScript converter.
+    ///
+    /// Parameters:
+    /// - info: A pointer to the data that will be passed to the callbacks.
+    ///
+    /// - callbacks: A pointer to a PostScript converter callbacks structure that specifies the callbacks to be used during a conversion process.
+    ///
+    /// - options: This parameter should be `NULL`; it is reserved for future expansion of the API.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new PostScript converter, or `NULL` if a converter could not be created. You are responsible for releasing this object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -114,7 +180,39 @@ impl CGPSConverter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/convert(_:consumer:options:)?language=objc)
+    /// Uses a PostScript converter to convert PostScript data to PDF data.
+    ///
+    /// Parameters:
+    /// - converter: A PostScript converter.
+    ///
+    /// - provider: A Quartz data provider that supplies PostScript data.
+    ///
+    /// - consumer: A Quartz data provider that will receive the resulting PDF data.
+    ///
+    /// - options: This parameter should be `NULL`; it is reserved for future expansion of the API.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the PostScript conversion completed successfully (`true` if it did).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The conversion is thread safe, however it is not possible to have more than one conversion job in process within a given address space or process. If a given thread is running a conversion and another thread starts a new conversion, the second conversion will block until the first conversion is complete.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Although `CGPSConverterConvert` is thread safe (it uses locks to prevent more than one conversion at a time in the same process), it is not thread safe with respect to the Resource Manager. If your application uses the Resource Manager on a separate thread, you should either use locks to prevent `CGPSConverterConvert` from executing during your usage of the Resource Manager or you should perform your conversions using the Post Script converter in a separate process.
+    ///
+    /// In general, you can avoid this issue by using nib files instead of Resource Manager resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     ///
     /// # Safety
     ///
@@ -140,7 +238,17 @@ impl CGPSConverter {
         unsafe { CGPSConverterConvert(self, provider, consumer, options) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/abort()?language=objc)
+    /// Tells a PostScript converter to abort a conversion at the next available opportunity.
+    ///
+    /// Parameters:
+    /// - converter: A PostScript converter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the converter is currently converting data (`true` if it is).
+    ///
+    ///
     #[doc(alias = "CGPSConverterAbort")]
     #[inline]
     pub fn abort(&self) -> bool {
@@ -150,7 +258,17 @@ impl CGPSConverter {
         unsafe { CGPSConverterAbort(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/isconverting?language=objc)
+    /// Checks whether the converter is currently converting data.
+    ///
+    /// Parameters:
+    /// - converter: A PostScript converter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the conversion is in progress.
+    ///
+    ///
     #[doc(alias = "CGPSConverterIsConverting")]
     #[inline]
     pub fn is_converting(&self) -> bool {
@@ -162,7 +280,13 @@ impl CGPSConverter {
 }
 
 unsafe impl ConcreteType for CGPSConverter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpsconverter/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for PostScript converters.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the opaque type [`CGPSConverterRef`](https://developer.apple.com/documentation/coregraphics/cgpsconverter).
+    ///
+    ///
     #[doc(alias = "CGPSConverterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {

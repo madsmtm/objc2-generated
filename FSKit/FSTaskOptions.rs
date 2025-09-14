@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class that passes command options to a task, optionally providing security-scoped URLs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fstaskoptions?language=objc)
+    /// A class that passes command options to a task, optionally providing security-scoped URLs.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSTaskOptions;

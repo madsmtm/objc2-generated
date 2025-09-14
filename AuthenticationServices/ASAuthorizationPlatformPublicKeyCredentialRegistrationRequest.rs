@@ -7,17 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest/requeststyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle(pub NSInteger);
 impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
     /// Perform a request using the standard presentation style. This is the default style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest/requeststyle-swift.enum/standard?language=objc)
+    /// Perform a request using the standard presentation style. This is the default style.
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleStandard")]
     pub const Standard: Self = Self(0);
+    /// Perform a conditional request. This style of request is meant to opportunistically add passkeys to existing password-based accounts, at the discretion of the user’s credential manager. It should be performed shortly after a user has signed in with a password. If the user is using a password and passkey manager, and certain internal conditions of that credential manager are met (e.g. the user signed in recently with a matching password-based account and does not yet have a passkey for this account), then this request may proceed automatically, without further user interaction. If any of the internal conditions are not met, this request will return an error without showing any UI to the user, and may be retried the next time they sign in.
     /// Perform a conditional request. This style of request is meant to opportunistically add passkeys to existing
     /// password-based accounts, at the discretion of the user's credential manager. It should be performed
     /// shortly after a user has signed in with a password. If the user is using a password and passkey manager,
@@ -26,8 +25,6 @@ impl ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyle {
     /// may proceed automatically, without further user interaction. If any of the internal conditions are not met,
     /// this request will return an error without showing any UI to the user, and may be retried the next time they
     /// sign in.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest/requeststyle-swift.enum/conditional?language=objc)
     #[doc(alias = "ASAuthorizationPlatformPublicKeyCredentialRegistrationRequestStyleConditional")]
     pub const Conditional: Self = Self(1);
 }
@@ -41,7 +38,13 @@ unsafe impl RefEncode for ASAuthorizationPlatformPublicKeyCredentialRegistration
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialregistrationrequest?language=objc)
+    /// The object for registering a new platform public key credential.
+    ///
+    /// ## Overview
+    ///
+    /// Create an instance of this class when registering for a new credential using platform authorization.
+    ///
+    ///
     #[unsafe(super(ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ASAuthorizationRequest")]

@@ -4,18 +4,43 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// This enumerated type is used to represent the activity mode for the user's move ring.
+/// Constants that specify the value measured by the Move ring on the user’s device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemode?language=objc)
+/// ## Overview
+///
+/// For younger users, HealthKit’s activity summary can track move time instead of active energy burned:
+///
+/// - HealthKit encourages users under 13 years old to track move time.
+///
+/// - Users 13 to 18 years old can choose to track move time or active energy burned.
+///
+/// - All users over 18 years old track active energy burned.
+///
+///
+/// This enumerated type is used to represent the activity mode for the user's move ring.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKActivityMoveMode(pub NSInteger);
 impl HKActivityMoveMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemode/activeenergy?language=objc)
+    /// A value that indicates the Move ring measures active energy burned.
     #[doc(alias = "HKActivityMoveModeActiveEnergy")]
     pub const ActiveEnergy: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitymovemode/applemovetime?language=objc)
+    /// A value that indicates the Activity app’s Move ring measures Apple Move Time.
+    ///
+    /// ## Discussion
+    ///
+    /// Move time measures every full minute where the watch detects the user actively moving. Apple Watch uses the accelerometer and gyroscopes to detect activities that involve full-body movements, like walking, running, or playing in the playground.
+    ///
+    /// For younger users, the Activity app’s Move ring (and HealthKit’s related activity summary) can track move time instead of active energy burned:
+    ///
+    /// - HealthKit automatically tracks move time for any users under 13 years old.
+    ///
+    /// - Users 13 to 18 years old can choose whether to track move time or active calorie burn.
+    ///
+    /// - All users over 18 years old track active calorie burn.
+    ///
+    ///
     #[doc(alias = "HKActivityMoveModeAppleMoveTime")]
     pub const AppleMoveTime: Self = Self(2);
 }
@@ -28,24 +53,35 @@ unsafe impl RefEncode for HKActivityMoveMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// This enumerated type is used to represent the biological sex of an individual.
+/// Constants indicating the user’s sex.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex?language=objc)
+/// ## Overview
+///
+/// A person’s sex is a combination of bodily characteristics including: chromosomes, hormones, internal and external reproductive organs, and secondary sex characteristics.
+///
+///
+/// This enumerated type is used to represent the biological sex of an individual.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBiologicalSex(pub NSInteger);
 impl HKBiologicalSex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/notset?language=objc)
+    /// A constant indicating that either the user’s biological sex characteristic type is not set, or the user has not granted your app permission to read that characteristic type.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on permissions, see `HealthKit`.
+    ///
+    ///
     #[doc(alias = "HKBiologicalSexNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/female?language=objc)
+    /// A constant indicating that the user is female.
     #[doc(alias = "HKBiologicalSexFemale")]
     pub const Female: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/male?language=objc)
+    /// A constant indicating that the user is male.
     #[doc(alias = "HKBiologicalSexMale")]
     pub const Male: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex/other?language=objc)
+    /// A constant indicating that the user is otherwise not categorized as either male or female.
     #[doc(alias = "HKBiologicalSexOther")]
     pub const Other: Self = Self(3);
 }
@@ -58,39 +94,44 @@ unsafe impl RefEncode for HKBiologicalSex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants indicating the user’s blood type.
 /// This enumerated type is used to represent the blood type of an individual.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBloodType(pub NSInteger);
 impl HKBloodType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/notset?language=objc)
+    /// Either the user’s blood type is not set, or the user has not granted your app permission to read the blood type.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on permissions, see `HealthKit`.
+    ///
+    ///
     #[doc(alias = "HKBloodTypeNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/apositive?language=objc)
+    /// The user has an A+ blood type.
     #[doc(alias = "HKBloodTypeAPositive")]
     pub const APositive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/anegative?language=objc)
+    /// The user has an A– blood type.
     #[doc(alias = "HKBloodTypeANegative")]
     pub const ANegative: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/bpositive?language=objc)
+    /// The user has an B+ blood type.
     #[doc(alias = "HKBloodTypeBPositive")]
     pub const BPositive: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/bnegative?language=objc)
+    /// The user has an B– blood type.
     #[doc(alias = "HKBloodTypeBNegative")]
     pub const BNegative: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/abpositive?language=objc)
+    /// The user has an AB+ blood type.
     #[doc(alias = "HKBloodTypeABPositive")]
     pub const ABPositive: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/abnegative?language=objc)
+    /// The user has an AB– blood type.
     #[doc(alias = "HKBloodTypeABNegative")]
     pub const ABNegative: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/opositive?language=objc)
+    /// The user has an O+ blood type.
     #[doc(alias = "HKBloodTypeOPositive")]
     pub const OPositive: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype/onegative?language=objc)
+    /// The user has an O– blood type.
     #[doc(alias = "HKBloodTypeONegative")]
     pub const ONegative: Self = Self(8);
 }
@@ -103,36 +144,41 @@ unsafe impl RefEncode for HKBloodType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Categories representing the user’s skin type based on the Fitzpatrick scale.
+///
+/// ## Overview
+///
+/// The Fitzpatrick scale is a numerical classification for skin color based on the skins response to sun exposure in terms of the degree of burning and tanning.
+///
+///
 /// This enumerated type is used to represent the skin type of an individual based on the Fitzpatrick scale.
 ///
 /// The Fitzpatrick scale is a numerical classification for skin color based on the skin's response to sun
 /// exposure in terms of the degree of burning and tanning.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKFitzpatrickSkinType(pub NSInteger);
 impl HKFitzpatrickSkinType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/notset?language=objc)
+    /// Either the user’s skin type is not set, or the user has not granted your app permission to read the skin type.
     #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/i?language=objc)
+    /// Pale white skin that always burns easily in the sun and never tans.
     #[doc(alias = "HKFitzpatrickSkinTypeI")]
     pub const I: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/ii?language=objc)
+    /// White skin that burns easily and tans minimally.
     #[doc(alias = "HKFitzpatrickSkinTypeII")]
     pub const II: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/iii?language=objc)
+    /// White to light brown skin that burns moderately and tans uniformly.
     #[doc(alias = "HKFitzpatrickSkinTypeIII")]
     pub const III: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/iv?language=objc)
+    /// Beige-olive, lightly tanned skin that burns minimally and tans moderately.
     #[doc(alias = "HKFitzpatrickSkinTypeIV")]
     pub const IV: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/v?language=objc)
+    /// Brown skin that rarely burns and tans profusely.
     #[doc(alias = "HKFitzpatrickSkinTypeV")]
     pub const V: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype/vi?language=objc)
+    /// Dark brown to black skin that never burns and tans profusely.
     #[doc(alias = "HKFitzpatrickSkinTypeVI")]
     pub const VI: Self = Self(6);
 }
@@ -145,21 +191,20 @@ unsafe impl RefEncode for HKFitzpatrickSkinType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants indicating the user’s wheelchair use.
 /// This enumerated type is used to represent whether the user uses a wheelchair.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWheelchairUse(pub NSInteger);
 impl HKWheelchairUse {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/notset?language=objc)
+    /// Either the wheelchair use is not set or the user has not granted your app permission to read that information.
     #[doc(alias = "HKWheelchairUseNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/no?language=objc)
+    /// The user does not use a wheelchair.
     #[doc(alias = "HKWheelchairUseNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/yes?language=objc)
+    /// The user uses a wheelchair.
     #[doc(alias = "HKWheelchairUseYes")]
     pub const Yes: Self = Self(2);
 }

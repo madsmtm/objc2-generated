@@ -7,7 +7,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/ladomainstatebiometry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainStateBiometry;
@@ -51,7 +50,6 @@ impl LADomainStateBiometry {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/ladomainstatecompanion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainStateCompanion;
@@ -120,7 +118,6 @@ impl LADomainStateCompanion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/ladomainstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LADomainState;

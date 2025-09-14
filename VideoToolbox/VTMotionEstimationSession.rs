@@ -13,19 +13,17 @@ use objc2_core_video::*;
 use crate::*;
 
 /// Flags to control processing of a frame you pass to the motion-estimation session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationframeflags?language=objc)
+/// Flags to control processing of a frame you pass to the motion-estimation session.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTMotionEstimationFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTMotionEstimationFrameFlags: u32 {
+/// A hint to the motion-estimation session that you are going to reuse the `currentBuffer` as `referenceBuffer` in the next call to [`VTMotionEstimationSessionEstimateMotionVectors`](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessionestimatemotionvectors). Using this flag allows the motion-estimation processor to deliver better performance.
 /// A hint to the motion-estimation session that you are going to reuse the `currentBuffer` as `referenceBuffer` in
 /// the next call to ``VTMotionEstimationSessionEstimateMotionVectors``. Using this flag allows the motion-estimation
 /// processor to deliver better performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationframeflags/kvtmotionestimationframeflags_currentbufferwillbenextreferencebuffer?language=objc)
         #[doc(alias = "kVTMotionEstimationFrameFlags_CurrentBufferWillBeNextReferenceBuffer")]
         const CurrentBufferWillBeNextReferenceBuffer = 1<<0;
     }
@@ -42,15 +40,13 @@ unsafe impl RefEncode for VTMotionEstimationFrameFlags {
 }
 
 /// Directives that provide information back to you with the results of motion-estimation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationinfoflags?language=objc)
+/// Directives that provide information back to you with the results of motion-estimation.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTMotionEstimationInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTMotionEstimationInfoFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationinfoflags/kvtmotionestimationinfoflags_reserved0?language=objc)
         #[doc(alias = "kVTMotionEstimationInfoFlags_Reserved0")]
         const Reserved0 = 1<<0;
     }
@@ -68,14 +64,19 @@ unsafe impl RefEncode for VTMotionEstimationInfoFlags {
 
 /// A reference to a Video Toolbox motion-estimation session.
 ///
+/// ## Discussion
+///
+/// A motion-estimation session supports two `CVPixelBuffer`s of the same size and type, and returns motion vectors in the form of a `CVPixelBuffer`. The session is a reference-counted CF object. To create a motion-estimation session, call [`VTMotionEstimationSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncreate); then you can optionally configure the session using `VTSessionSetProperty`. To create motion-estimations, call `VTMotionEstimationSessionCreateMotionEstimation`. When you are done with the session, you should call [`VTMotionEstimationSessionInvalidate`](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioninvalidate) to tear it down and `CFRelease` to release the session object reference.
+///
+///
+/// A reference to a Video Toolbox motion-estimation session.
+///
 /// A motion-estimation session supports two `CVPixelBuffer`s of the same size and type, and returns motion vectors in
 /// the form of a ``CVPixelBuffer``. The session is a reference-counted CF object. To create a motion-estimation session,
 /// call ``VTMotionEstimationSessionCreate``; then you can optionally configure the session using `VTSessionSetProperty`.
 /// To create motion-estimations, call ``VTMotionEstimationSessionCreateMotionEstimation``. When you are done with the
 /// session, you should call ``VTMotionEstimationSessionInvalidate`` to tear it down and ``CFRelease`` to release the
 /// session object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessionref?language=objc)
 #[doc(alias = "VTMotionEstimationSessionRef")]
 #[repr(C)]
 pub struct VTMotionEstimationSession {
@@ -93,8 +94,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for VTMotionEstimationSession {
     /// Get the CoreFoundation type identifier for motion-estimation session type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessiongettypeid?language=objc)
+    /// Get the CoreFoundation type identifier for motion-estimation session type.
     #[doc(alias = "VTMotionEstimationSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -106,6 +106,31 @@ unsafe impl ConcreteType for VTMotionEstimationSession {
 }
 
 impl VTMotionEstimationSession {
+    /// Creates a session you use to generate a pixel buffer of motion vectors from two pixel buffers.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session. Pass NULL to use the default allocator.
+    ///
+    /// - motionVectorProcessorSelectionOptions: Available creation options are:
+    ///
+    /// - [`kVTMotionEstimationSessionCreationOption_MotionVectorSize`](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_motionvectorsize): Size of the search block.
+    ///
+    /// - [`kVTMotionEstimationSessionCreationOption_UseMultiPassSearch`](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_usemultipasssearch): Use multiple passes to detect true motion.
+    ///
+    /// - [`kVTMotionEstimationSessionCreationOption_Label`](https://developer.apple.com/documentation/videotoolbox/kvtmotionestimationsessioncreationoption_label): Label used for logging and resource tracking.
+    ///
+    /// - width: The width of frames in pixels.
+    ///
+    /// - height: The height of frames in pixels.
+    ///
+    /// - motionEstimationSessionOut: Points to a variable to receive the new motion-estimation session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function creates a session for computing motion vectors between two pixel buffers.
+    ///
+    ///
     /// Creates a session you use to generate a pixel buffer of motion vectors from two pixel buffers.
     ///
     /// The function creates a session for computing motion vectors between two pixel buffers.
@@ -125,8 +150,6 @@ impl VTMotionEstimationSession {
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_estimation_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncreate?language=objc)
     #[doc(alias = "VTMotionEstimationSessionCreate")]
     #[inline]
     pub unsafe fn create(
@@ -158,6 +181,17 @@ impl VTMotionEstimationSession {
 
     /// Copies the attributes for source pixel buffers expected by motion-estimation session.
     ///
+    /// Parameters:
+    /// - attributesOut: Points to a variable to receive the attributes dictionary.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function provides a `CFDictionary` of attributes that you must release. Use this function to query [`VTMotionEstimationSession`](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsession) for the native source attributes. If you provide an input `CVPixelBuffer` that is not compatible with the attributes that this function returns, [`VTMotionEstimationSession`](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsession) automatically converts the input pixel buffer into a compatible pixel buffer for processing.
+    ///
+    ///
+    /// Copies the attributes for source pixel buffers expected by motion-estimation session.
+    ///
     /// This function provides a `CFDictionary` of attributes that you must release. Use this function to query
     /// ``VTMotionEstimationSession`` for the native source attributes. If you provide an input ``CVPixelBuffer`` that is
     /// not compatible with the attributes that this function returns, ``VTMotionEstimationSession`` automatically
@@ -170,8 +204,6 @@ impl VTMotionEstimationSession {
     /// # Safety
     ///
     /// `attributes_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncopysourcepixelbufferattributes?language=objc)
     #[doc(alias = "VTMotionEstimationSessionCopySourcePixelBufferAttributes")]
     #[inline]
     pub unsafe fn copy_source_pixel_buffer_attributes(
@@ -189,12 +221,17 @@ impl VTMotionEstimationSession {
 
     /// Tears down a motion-estimation session.
     ///
+    /// ## Discussion
+    ///
+    /// When you are done with a motion-estimation session you created, call this function to tear it down and then `CFRelease` to release the session object reference. When a motion-estimation session’s retain count reaches zero, the system automatically invalidates it, but because multiple parties may retain sessions, it can be hard to predict when this happens. Calling this function ensures a deterministic, orderly teardown.
+    ///
+    ///
+    /// Tears down a motion-estimation session.
+    ///
     /// When you are done with a motion-estimation session you created, call this function to tear
     /// it down and then `CFRelease` to release the session object reference. When a motion-estimation session's retain count
     /// reaches zero, the system automatically invalidates it, but because multiple parties may retain sessions, it can be
     /// hard to predict when this happens. Calling this function ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioninvalidate?language=objc)
     #[doc(alias = "VTMotionEstimationSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -205,6 +242,23 @@ impl VTMotionEstimationSession {
     }
 }
 
+/// A block invoked by motion-estimation session when frame processing is complete.
+///
+/// Parameters:
+/// - status: `noErr` if processing request was successful; an error code if motion-estimation was not successful.
+///
+/// - infoFlags: A bit field that contains information about the processing operation.
+///
+/// - additionalInfo: Additional processing information about the operation that cannot fit in `infoFlags`. Currently, the system expects this to be NULL.
+///
+/// - motionVectorPixelBuffer: A `CVPixelBuffer` that contains the motion vector information, if processing request was successful; otherwise, NULL.
+///
+///
+/// ## Discussion
+///
+/// When the client requests a motion-estimation, the client passes in a callback block that the system invokes for the result of that request. If the `VTMotionEstimationSessionCreateMotionEstimation` call returns an error, the system does not invoke this block.
+///
+///
 /// A block invoked by motion-estimation session when frame processing is complete.
 ///
 /// When the client requests a motion-estimation, the client passes in a callback block that the system invokes for the
@@ -218,14 +272,39 @@ impl VTMotionEstimationSession {
 /// Currently, the system expects this to be NULL.
 /// - motionVectorPixelBuffer: A `CVPixelBuffer` that contains the motion vector information, if processing request
 /// was successful; otherwise, NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
 pub type VTMotionEstimationOutputHandler = *mut block2::DynBlock<
     dyn Fn(OSStatus, VTMotionEstimationInfoFlags, *const CFDictionary, *mut CVPixelBuffer),
 >;
 
 impl VTMotionEstimationSession {
+    /// Creates a new pixel buffer that contains motion vectors between the input pixel buffers.
+    ///
+    /// Parameters:
+    /// - session: The motion-estimation session.
+    ///
+    /// - referenceImage: The reference image.
+    ///
+    /// - currentImage: The current image.
+    ///
+    /// - motionEstimationFrameFlags: A bit field with per-frame options. See `kVTMotionEstimationFrameFlags_CurrentBufferWillBeNextReferenceBuffer`.
+    ///
+    /// - additionalFrameOptions: A way to pass additional information that doesn’t fit in `motionEstimationFrameFlags`; currently the system expects it to be `NULL`.
+    ///
+    /// - outputHandler: The block invoked by the syetem when the processing request is completed. If the `VTMotionEstimationSessionCreateMotionEstimation` call returns an error, the system does not invoke the block.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If the call was successful, returns `noErr`; otherwise, returns an error code, such as `kVTMotionEstimationNotSupportedErr`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The motion-estimation session compares the reference frame to the current frame, and generates motion vectors in the form of a `CVPixelBuffer`.
+    ///
+    ///
     /// Creates a new pixel buffer that contains motion vectors between the input pixel buffers.
     ///
     /// The motion-estimation session compares the reference frame to the current frame, and generates motion vectors in
@@ -248,8 +327,6 @@ impl VTMotionEstimationSession {
     /// - `additional_frame_options` generic must be of the correct type.
     /// - `additional_frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessionestimatemotionvectors?language=objc)
     #[doc(alias = "VTMotionEstimationSessionEstimateMotionVectors")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -285,9 +362,14 @@ impl VTMotionEstimationSession {
 
     /// Directs the motion-estimation session to emit all pending frames and waits for completion.
     ///
+    /// ## Discussion
+    ///
     /// Directs the motion-estimation session to emit all pending frames, then waits for all outstanding requests to complete, then returns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessioncompleteframes?language=objc)
+    ///
+    /// Directs the motion-estimation session to emit all pending frames and waits for completion.
+    ///
+    /// Directs the motion-estimation session to emit all pending frames, then waits for all outstanding requests to complete, then returns.
     #[doc(alias = "VTMotionEstimationSessionCompleteFrames")]
     #[inline]
     pub unsafe fn complete_frames(&self) -> OSStatus {

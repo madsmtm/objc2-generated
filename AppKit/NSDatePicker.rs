@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker?language=objc)
+    /// A display of a calendar date with controls for editing the date value.
+    ///
+    /// ## Overview
+    ///
+    /// `NSDatePicker` uses an [`NSDatePickerCell`](https://developer.apple.com/documentation/appkit/nsdatepickercell) to implement much of the control’s functionality. `NSDatePicker` provides cover methods for most of `NSDatePickerCell` methods, which invoke the corresponding cell method.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

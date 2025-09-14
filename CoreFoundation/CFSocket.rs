@@ -9,7 +9,24 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocket?language=objc)
+///
+/// ## Overview
+///
+/// A CFSocket is a communications channel implemented with a BSD socket.
+///
+/// For most uses of this API, you will need to include three headers:
+///
+/// ```objc
+/// #import <CoreFoundation/CoreFoundation.h> #include <sys/socket.h> #include <netinet/in.h>
+/// ```
+///
+/// CFSocket can be created from scratch with [`CFSocketCreate`](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)) and [`CFSocketCreateWithSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithsocketsignature(_:_:_:_:_:)). CFSocket objects can also be created to wrap an existing BSD socket by calling [`CFSocketCreateWithNative`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)). Finally, you can create a CFSocket and connect simultaneously to a remote host by calling [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)).
+///
+/// To listen for messages, you need to create a run loop source with [`CFSocketCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfsocketcreaterunloopsource(_:_:_:)) and add it to a run loop with [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)). You can select the types of socket activities, such as connection attempts or data arrivals, that cause the source to fire and invoke your CFSocket’s callback function. To send data, you store the data in a CFData and call [`CFSocketSendData`](https://developer.apple.com/documentation/corefoundation/cfsocketsenddata(_:_:_:_:)).
+///
+/// Unlike Mach and message ports, sockets support communication over a network.
+///
+///
 #[doc(alias = "CFSocketRef")]
 #[repr(C)]
 pub struct CFSocket {
@@ -25,19 +42,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFSocket"> for CFSocket {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror?language=objc)
+/// Error codes for many CFSocket functions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFSocketError(pub CFIndex);
 impl CFSocketError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/success?language=objc)
+    /// The socket operation succeeded.
     #[doc(alias = "kCFSocketSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/error?language=objc)
+    /// The socket operation failed.
     #[doc(alias = "kCFSocketError")]
     pub const Error: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror/timeout?language=objc)
+    /// The socket operation timed out.
     #[doc(alias = "kCFSocketTimeout")]
     pub const Timeout: Self = Self(-2);
 }
@@ -52,7 +69,7 @@ unsafe impl RefEncode for CFSocketError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsignature?language=objc)
+/// A structure that fully specifies the communication protocol and connection address of a CFSocket object.
 #[cfg(feature = "CFData")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -81,29 +98,46 @@ unsafe impl RefEncode for CFSocketSignature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype?language=objc)
+/// Types of socket activity that can cause the callback function of a CFSocket object to be called.
+///
+/// ## Overview
+///
+/// The callback types for which a callback is made is determined when the CFSocket object is created, such as with [`CFSocketCreate`](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)), or later with [`CFSocketEnableCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsocketenablecallbacks(_:_:)) and [`CFSocketDisableCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsocketdisablecallbacks(_:_:)).
+///
+/// The `kCFSocketReadCallBack`, `kCFSocketAcceptCallBack`, and `kCFSocketDataCallBack` callbacks are mutually exclusive.
+///
+/// ### Version-Notes
+///
+/// `kCFSocketWriteCallBack` is available in macOS 10.2 and later.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFSocketCallBackType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFSocketCallBackType: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/kcfsocketnocallback?language=objc)
+/// No callback should be made for any activity.
         #[doc(alias = "kCFSocketNoCallBack")]
         const NoCallBack = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/readcallback?language=objc)
+/// The callback is called when data is available to be read or a new connection is waiting to be accepted. The data is not automatically read; the callback must read the data itself.
         #[doc(alias = "kCFSocketReadCallBack")]
         const ReadCallBack = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/acceptcallback?language=objc)
+/// New connections will be automatically accepted and the callback is called with the data argument being a pointer to a [`CFSocketNativeHandle`](https://developer.apple.com/documentation/corefoundation/cfsocketnativehandle) of the child socket. This callback is usable only with listening sockets.
         #[doc(alias = "kCFSocketAcceptCallBack")]
         const AcceptCallBack = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/datacallback?language=objc)
+/// Incoming data will be read in chunks in the background and the callback is called with the data argument being a CFData object containing the read data.
         #[doc(alias = "kCFSocketDataCallBack")]
         const DataCallBack = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/connectcallback?language=objc)
+///
+/// ## Discussion
+///
+/// If a connection attempt is made in the background by calling [`CFSocketConnectToAddress`](https://developer.apple.com/documentation/corefoundation/cfsocketconnecttoaddress(_:_:_:)) or [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)) with a negative timeout value, this callback type is made when the connect finishes. In this case the data argument is either `NULL` or a pointer to an `SInt32` error code, if the connect failed. This callback will never be sent more than once for a given socket.
+///
+///
         #[doc(alias = "kCFSocketConnectCallBack")]
         const ConnectCallBack = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype/writecallback?language=objc)
+/// The callback is called when the socket is writable. This callback type may be useful when large amounts of data are being sent rapidly over the socket and you want a notification when there is space in the kernel buffers for more data.
         #[doc(alias = "kCFSocketWriteCallBack")]
         const WriteCallBack = 8;
     }
@@ -119,20 +153,65 @@ unsafe impl RefEncode for CFSocketCallBackType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketautomaticallyreenablereadcallback?language=objc)
+///
+/// ## Discussion
+///
+/// When enabled using [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), the read callback is called every time the sockets has data to be read. When disabled, the read callback is called only once the next time data are available. The read callback is automatically reenabled by default.
+///
+///
 pub const kCFSocketAutomaticallyReenableReadCallBack: CFOptionFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketautomaticallyreenableacceptcallback?language=objc)
+///
+/// ## Discussion
+///
+/// When enabled using [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), the accept callback is called every time someone connects to your socket. When disabled, the accept callback is called only once the next time a new socket connection is accepted. The accept callback is automatically reenabled by default.
+///
+///
 pub const kCFSocketAutomaticallyReenableAcceptCallBack: CFOptionFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketautomaticallyreenabledatacallback?language=objc)
+///
+/// ## Discussion
+///
+/// When enabled using [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), the data callback is called every time the socket has read some data. When disabled, the data callback is called only once the next time data are read. The data callback is automatically reenabled by default.
+///
+///
 pub const kCFSocketAutomaticallyReenableDataCallBack: CFOptionFlags = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketautomaticallyreenablewritecallback?language=objc)
+///
+/// ## Discussion
+///
+/// When enabled using [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), the write callback is called every time more data can be written to the socket. When disabled, the write callback is called only the next time data can be written. The write callback is not automatically reenabled by default.
+///
+///
 pub const kCFSocketAutomaticallyReenableWriteCallBack: CFOptionFlags = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketleaveerrors?language=objc)
+///
+/// ## Discussion
+///
+/// Normally, the CFNetwork stack calls getsockopt(2) macOS Developer Tools Manual Page to read the error code from the socket prior to calling your write callback. This also has the effect of clearing any pending errors on the socket.
+///
+/// If this flag is set, this call is skipped so that you can check for specific socket errors in your write callback.
+///
+///
 pub const kCFSocketLeaveErrors: CFOptionFlags = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketcloseoninvalidate?language=objc)
+/// When enabled using [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), the native socket associated with a CFSocket object is closed when the CFSocket object is invalidated. When disabled, the native socket remains open. This option is enabled by default.
 pub const kCFSocketCloseOnInvalidate: CFOptionFlags = 128;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallback?language=objc)
+/// Callback invoked when certain types of activity takes place on a CFSocket object.
+///
+/// Parameters:
+/// - s: The CFSocket object that experienced some activity.
+///
+/// - callbackType: The type of activity detected.
+///
+/// - address: A CFData object holding the contents of a `struct sockaddr` appropriate for the protocol family of `s` (`struct sockaddr_in` or `struct sockaddr_in6`, for example), identifying the remote address to which `s` is connected. This value is `NULL` except for `kCFSocketAcceptCallBack` and `kCFSocketDataCallBack` callbacks.
+///
+/// - data: Data appropriate for the callback type. For a `kCFSocketConnectCallBack` that failed in the background, it is a pointer to an `SInt32` error code; for a `kCFSocketAcceptCallBack`, it is a pointer to a [`CFSocketNativeHandle`](https://developer.apple.com/documentation/corefoundation/cfsocketnativehandle); or for a `kCFSocketDataCallBack`, it is a CFData object containing the incoming data. In all other cases, it is `NULL`.
+///
+/// - info: The `info` member of the [`CFSocketContext`](https://developer.apple.com/documentation/corefoundation/cfsocketcontext) structure that was used when creating the CFSocket object.
+///
+///
+/// ## Discussion
+///
+/// You specify this callback when you create the CFSocket object with [`CFSocketCreate`](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)), [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)), [`CFSocketCreateWithNative`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)), or [`CFSocketCreateWithSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithsocketsignature(_:_:_:_:_:)).
+///
+///
 #[cfg(feature = "CFData")]
 pub type CFSocketCallBack = Option<
     unsafe extern "C-unwind" fn(
@@ -144,7 +223,7 @@ pub type CFSocketCallBack = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a CFSocket object’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -175,11 +254,17 @@ unsafe impl RefEncode for CFSocketContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketnativehandle?language=objc)
+/// Type for the platform-specific native socket handle.
 pub type CFSocketNativeHandle = c_int;
 
 unsafe impl ConcreteType for CFSocket {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgettypeid()?language=objc)
+    /// Returns the type identifier for the CFSocket opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFSocket opaque type.
+    ///
+    ///
     #[doc(alias = "CFSocketGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -191,7 +276,29 @@ unsafe impl ConcreteType for CFSocket {
 }
 
 impl CFSocket {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)?language=objc)
+    /// Creates a CFSocket object of a specified protocol and type.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - protocolFamily: The protocol family for the socket. If negative or 0 is passed, the socket defaults to `PF_INET`.
+    ///
+    /// - socketType: The socket type to create. If `protocolFamily` is `PF_INET` and `socketType` is negative or 0, the socket type defaults to `SOCK_STREAM`.
+    ///
+    /// - protocol: The protocol for the socket. If `protocolFamily` is `PF_INET` and `protocol` is negative or 0, the socket protocol defaults to `IPPROTO_TCP` if `socketType` is `SOCK_STREAM` or `IPPROTO_UDP` if `socketType` is `SOCK_DGRAM`.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of the types of socket activity that should cause `callout` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for the possible activity values.
+    ///
+    /// - callout: The function to call when one of the activities indicated by `callBackTypes` occurs.
+    ///
+    /// - context: A structure holding contextual information for the CFSocket object. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFSocket object, or `NULL` if an error occurred. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -235,7 +342,25 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)?language=objc)
+    /// Creates a CFSocket object for a pre-existing native socket.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - sock: The native socket for which to create a CFSocket object.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of the types of socket activity that should cause `callout` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for the possible activity values.
+    ///
+    /// - callout: The function to call when one of the activities indicated by `callBackTypes` occurs.
+    ///
+    /// - context: A structure holding contextual information for the CFSocket object. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFSocket object, or `NULL` if an error occurred. If a CFSocket object already exists for `sock`, the function returns the pre-existing object instead of creating a new object; the `context`, `callout`, and `callBackTypes` parameters are ignored in this case. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -266,7 +391,25 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithsocketsignature(_:_:_:_:_:)?language=objc)
+    /// Creates a CFSocket object using information from a CFSocketSignature structure.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - signature: A [`CFSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketsignature) identifying the communication protocol and address with which to create the CFSocket object.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of the types of socket activity that should cause `callout` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for the possible activity values.
+    ///
+    /// - callout: The function to call when one of the activities indicated by `callBackTypes` occurs.
+    ///
+    /// - context: A structure holding contextual information for the CFSocket object. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFSocket object, or `NULL` if an error occurred. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -305,7 +448,27 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)?language=objc)
+    /// Creates a CFSocket object and opens a connection to a remote socket.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - signature: A [`CFSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketsignature) identifying the communication protocol and address to which the CFSocket object should connect.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of the types of socket activity that should cause `callout` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for the possible activity values.
+    ///
+    /// - callout: The function to call when one of the activities indicated by `callBackTypes` occurs.
+    ///
+    /// - context: A structure holding contextual information for the CFSocket object. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL`.
+    ///
+    /// - timeout: The time to wait for a connection to succeed. If a negative value is used, this function does not wait for the connection and instead lets the connection attempt happen in the background. If `callBackTypes` includes `kCFSocketConnectCallBack`, you will receive a callback when the background connection succeeds or fails.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFSocket object, or `NULL` if an error occurred. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -347,7 +510,27 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetaddress(_:_:)?language=objc)
+    /// Binds a local address to a CFSocket object and configures it for listening.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to modify.
+    ///
+    /// - address: A CFData object containing a `struct sockaddr` appropriate for the protocol family of `s` (`struct sockaddr_in` or `struct sockaddr_in6`, for example). This data object is used only for the duration of the function call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function binds the socket by calling bind, and if the socket supports it, configures the socket for listening by calling listen with a backlog of 256.
+    ///
+    /// Once `s` is bound to `address`, depending on the socket’s protocol, other processes and computers can connect to `s`.
+    ///
+    ///
     #[doc(alias = "CFSocketSetAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -358,7 +541,21 @@ impl CFSocket {
         unsafe { CFSocketSetAddress(self, address) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketconnecttoaddress(_:_:_:)?language=objc)
+    /// Opens a connection to a remote socket.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object with which to connect to `address`.
+    ///
+    /// - address: A CFData object containing a `struct sockaddr` appropriate for the protocol family of `s` (`struct sockaddr_in` or `struct sockaddr_in6`, for example), indicating the remote address to which to connect. This data object is used only for the duration of the function call.
+    ///
+    /// - timeout: The time to wait for a connection to succeed. If a negative value is used, this function does not wait for the connection and instead lets the connection attempt happen in the background. If `s` requested a `kCFSocketConnectCallBack`, you will receive a callback when the background connection succeeds or fails.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure of the connection attempt.
+    ///
+    ///
     #[doc(alias = "CFSocketConnectToAddress")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -377,7 +574,23 @@ impl CFSocket {
         unsafe { CFSocketConnectToAddress(self, address, timeout) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketinvalidate(_:)?language=objc)
+    /// Invalidates a CFSocket object, stopping it from sending or receiving any more messages.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should always invalidate a socket object when you are through using it. Invalidating a CFSocket object prevents the object from sending or receiving any more messages, but does not release the socket object itself.
+    ///
+    /// If a run loop source was created for `s`, the run loop source is invalidated.
+    ///
+    /// If a release callback was specified in [`CFSocketContext`](https://developer.apple.com/documentation/corefoundation/cfsocketcontext) object, this function calls it to release the object in the  `info` field (which was provided when `s` was created).
+    ///
+    /// By default, this call closes the underlying socket. If you have explicitly cleared the `kCFSocketCloseOnInvalidate` flag by calling [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)), you must close the socket yourself _after_ calling this function.
+    ///
+    ///
     #[doc(alias = "CFSocketInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -387,7 +600,17 @@ impl CFSocket {
         unsafe { CFSocketInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFSocket object is valid and able to send or receive messages.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `s` can be used for communication, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFSocketIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -398,7 +621,17 @@ impl CFSocket {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyaddress(_:)?language=objc)
+    /// Returns the local address of a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The local address, stored as a `struct sockaddr` appropriate for the protocol family (`struct sockaddr_in` or `struct sockaddr_in6`, for example) in a CFData object, of `s`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFSocketCopyAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -410,7 +643,17 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopypeeraddress(_:)?language=objc)
+    /// Returns the remote address to which a CFSocket object is connected.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The remote address, stored as a `struct sockaddr` appropriate for the protocol family (`struct sockaddr_in` or `struct sockaddr_in6`, for example) in a CFData object, to which `s` is connected. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFSocketCopyPeerAddress")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -422,7 +665,19 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to examine.
+    ///
+    /// - context: A pointer to the structure into which the context information for `s` is to be copied. The information being returned is usually the same information you passed to [`CFSocketCreate`](https://developer.apple.com/documentation/corefoundation/cfsocketcreate(_:_:_:_:_:_:_:)), [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)), [`CFSocketCreateWithNative`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)), or [`CFSocketCreateWithSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithsocketsignature(_:_:_:_:_:)) when creating the CFSocket object. However, if [`CFSocketCreateWithNative`](https://developer.apple.com/documentation/corefoundation/cfsocketcreatewithnative(_:_:_:_:_:)) returned a cached CFSocket object instead of creating a new object, `context` is filled with information from the original CFSocket object instead of the information you passed to the function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context version number for CFSocket is currently 0. Before calling this function, you need to initialize the `version` member of `context` to 0.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -436,7 +691,17 @@ impl CFSocket {
         unsafe { CFSocketGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetnative(_:)?language=objc)
+    /// Returns the native socket associated with a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The native socket associated with `s`. If `s` has been invalidated, returns `-1`, `INVALID_SOCKET`.
+    ///
+    ///
     #[doc(alias = "CFSocketGetNative")]
     #[inline]
     pub fn native(&self) -> CFSocketNativeHandle {
@@ -446,7 +711,27 @@ impl CFSocket {
         unsafe { CFSocketGetNative(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcreaterunloopsource(_:_:_:)?language=objc)
+    /// Creates a CFRunLoopSource object for a CFSocket object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - s: The CFSocket object for which to create a run loop source.
+    ///
+    /// - order: A priority index indicating the order in which run loop sources are processed. When multiple run loop sources are firing in a single pass through the run loop, the sources are processed in increasing order of this parameter. If the run loop is set to process only one source per loop, only the highest priority source, the one with the lowest `order` value, is processed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopSource object for `s`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop source is not automatically added to a run loop. To add the source to a run loop, use [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CFSocketCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -466,7 +751,23 @@ impl CFSocket {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetsocketflags(_:)?language=objc)
+    /// Returns flags that control certain behaviors of a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A bitwise-OR combination of flags controlling the behavior of `s`. See [CFSocket Flags](https://developer.apple.com/documentation/corefoundation/1560944-cfsocket-flags) for the list of available flags.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)) for details on what the flags of a CFSocket mean.
+    ///
+    ///
     #[doc(alias = "CFSocketGetSocketFlags")]
     #[inline]
     pub fn socket_flags(&self) -> CFOptionFlags {
@@ -476,7 +777,45 @@ impl CFSocket {
         unsafe { CFSocketGetSocketFlags(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)?language=objc)
+    /// Sets flags that control certain behaviors of a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to modify.
+    ///
+    /// - flags: A bitwise-OR combination of flags controlling the behavior of `s`. See [CFSocket Flags](https://developer.apple.com/documentation/corefoundation/1560944-cfsocket-flags) for the list of available flags.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `flags` argument controls whether callbacks of a given type are automatically reenabled after they are triggered, and whether the underlying native socket is closed when `s` is invalidated.
+    ///
+    /// To set and clear flags, you must set and mask bits in the flag set, respectively. First, call [`CFSocketGetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketgetsocketflags(_:)), then modify the value returned. For example:
+    ///
+    /// ```objc
+    ///     CFOptionFlags sockopt = CFSocketGetSocketFlags (mysock );
+    ///  
+    ///     /* Set the read callback to be automatically reenabled. */
+    ///     sockopt |= kCFSocketAutomaticallyReenableReadCallBack;
+    ///  
+    ///     /* Clear the close-on-invalidate flag. */
+    ///     sockopt &= ~kCFSocketCloseOnInvalidate;
+    ///  
+    ///     CFSocketSetSocketFlags(s, sockopt);
+    /// ```
+    ///
+    /// By default `kCFSocketReadCallBack`, `kCFSocketAcceptCallBack`, and `kCFSocketDataCallBack` callbacks are automatically reenabled after they are triggered, whereas `kCFSocketWriteCallBack` callbacks are not; `kCFSocketConnectCallBack` callbacks can only occur once, so they cannot be reenabled.
+    ///
+    /// If a callback is automatically reenabled, it is called every time the condition becomes true. For example, a read callback is called as long as there is data on the socket waiting to be read. If a callback is not automatically reenabled, then it gets called exactly once, and is not called again until you manually reenable that callback by calling [`CFSocketEnableCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsocketenablecallbacks(_:_:)).
+    ///
+    /// Be careful about automatically reenabling read and write callbacks. If you do, the callbacks will be called repeatedly as long as the socket remains readable or writable, respectively.
+    ///
+    /// Be sure to set these flags only for callback types that your CFSocket object actually possesses; the result of setting them for other callback types is undefined.
+    ///
+    /// By default the underlying native socket is closed when `s` is invalidated. To disable that, clear (zero) the `kCFSocketCloseOnInvalidate` flag. This can be useful when you want to destroy a CFSocket object but continue to use the underlying native socket. The CFSocket object must still be invalidated when you no longer need it.
+    ///
+    /// Do not close the underlying native socket without invalidating the CFSocket object first.
+    ///
+    ///
     #[doc(alias = "CFSocketSetSocketFlags")]
     #[inline]
     pub fn set_socket_flags(&self, flags: CFOptionFlags) {
@@ -486,7 +825,19 @@ impl CFSocket {
         unsafe { CFSocketSetSocketFlags(self, flags) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketdisablecallbacks(_:_:)?language=objc)
+    /// Disables the callback function of a CFSocket object for certain types of socket activity.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to modify.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of CFSocket activity types that should not cause the callback function of `s` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for a list of callback types.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you no longer want certain types of callbacks that you requested when creating `s`, you can use this function to temporarily disable the callback. Use [`CFSocketEnableCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsocketenablecallbacks(_:_:)) to reenable a callback type.
+    ///
+    ///
     #[doc(alias = "CFSocketDisableCallBacks")]
     #[inline]
     pub fn disable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -496,7 +847,23 @@ impl CFSocket {
         unsafe { CFSocketDisableCallBacks(self, call_back_types) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketenablecallbacks(_:_:)?language=objc)
+    /// Enables the callback function of a CFSocket object for certain types of socket activity.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to modify.
+    ///
+    /// - callBackTypes: A bitwise-OR combination of CFSocket activity types that should cause the callback function of `s` to be called. See [`CFSocketCallBackType`](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype) for a list of callback types.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a callback type is not automatically reenabled, you can use this function to enable the callback (once).
+    ///
+    /// This call does not affect whether the callback type will be automatically reenabled in the future; use [`CFSocketSetSocketFlags`](https://developer.apple.com/documentation/corefoundation/cfsocketsetsocketflags(_:_:)) if you want to set a callback type to be reenabled automatically.
+    ///
+    /// Be sure to enable only callback types that your CFSocket object actually possesses and has requested when creating the CFSocket object; the result of enabling other callback types is undefined.
+    ///
+    ///
     #[doc(alias = "CFSocketEnableCallBacks")]
     #[inline]
     pub fn enable_call_backs(&self, call_back_types: CFOptionFlags) {
@@ -506,7 +873,35 @@ impl CFSocket {
         unsafe { CFSocketEnableCallBacks(self, call_back_types) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsenddata(_:_:_:_:)?language=objc)
+    /// Sends data over a CFSocket object.
+    ///
+    /// Parameters:
+    /// - s: The CFSocket object to use.
+    ///
+    /// - address: The address, stored as a `struct sockaddr` appropriate for the protocol family (`struct sockaddr_in` or `struct sockaddr_in6`, for example) in a CFData object, to which to send the contents of `data`. If `NULL`, the data are sent to the address to which `s` is already connected. This data object is used only for the duration of the function call.
+    ///
+    /// - data: The data to send.
+    ///
+    /// - timeout: The time to wait for the data to be sent.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function sets the send timeout of the underlying socket (the `SO_SNDTIMEO` option at the `SOL_SOCKET` level), then calls send (or sendto if you provided an address) with the provided data.
+    ///
+    /// This function makes no attempt to queue data for delivery beyond the queueing provided by the socket buffer itself. This means:
+    ///
+    /// - If this function returns [`kCFSocketSuccess`](https://developer.apple.com/documentation/corefoundation/cfsocketerror/success), then by the time it returns, the data has been queued in the socket buffer for delivery.
+    ///
+    /// - If the socket buffer is full and the timeout is nonzero, the function may return an error. If this happens, the app should wait for the socket buffer to have enough space available for writing before calling this function again.
+    ///
+    ///
     #[doc(alias = "CFSocketSendData")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
@@ -527,7 +922,29 @@ impl CFSocket {
         unsafe { CFSocketSendData(self, address, data, timeout) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketregistervalue(_:_:_:_:)?language=objc)
+    /// Registers a property-list value with a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - nameServerSignature: The socket signature for the name server. If `NULL`, this function contacts the default server, which is assumed to be a local process using TCP/IP to listen on the port number returned from [`CFSocketGetDefaultNameRegistryPortNumber`](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()). If `nameServerSignature` is incomplete, the missing values are replaced with the default server’s values, if appropriate.
+    ///
+    /// - timeout: The time to wait for the server to accept a connection and to reply to the registration request.
+    ///
+    /// - name: The name with which to register `value`.
+    ///
+    /// - value: The property-list value to register.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To remove a registered value from the name server, use [`CFSocketUnregister`](https://developer.apple.com/documentation/corefoundation/cfsocketunregister(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -555,7 +972,25 @@ impl CFSocket {
         unsafe { CFSocketRegisterValue(name_server_signature, timeout, name, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyregisteredvalue(_:_:_:_:_:)?language=objc)
+    /// Returns a value registered with a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - nameServerSignature: The socket signature for the name server. If `NULL`, this function contacts the default server, which is assumed to be a local process using TCP/IP to listen on the port number returned from [`CFSocketGetDefaultNameRegistryPortNumber`](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()). If `nameServerSignature` is incomplete, the missing values are replaced with the default server’s values, if appropriate.
+    ///
+    /// - timeout: The time to wait for the server to accept a connection and to reply to the registration request.
+    ///
+    /// - name: The name of the registered value to return.
+    ///
+    /// - value: A pointer to the property list object into which the retrieved value should be copied.
+    ///
+    /// - nameServerAddress: A pointer to a CFData object into which the name server’s address is copied. Pass `NULL` if you do not want the server’s address.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -593,7 +1028,31 @@ impl CFSocket {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketregistersocketsignature(_:_:_:_:)?language=objc)
+    /// Registers a socket signature with a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - nameServerSignature: The socket signature for the name server. If `NULL`, this function contacts the default server, which is assumed to be a local process using TCP/IP to listen on the port number returned from [`CFSocketGetDefaultNameRegistryPortNumber`](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()). If `nameServerSignature` is incomplete, the missing values are replaced with the default server’s values, if appropriate.
+    ///
+    /// - timeout: The time to wait for the server to accept a connection and to reply to the registration request.
+    ///
+    /// - name: The name with which to register `signature`.
+    ///
+    /// - signature: The socket signature to register.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once a socket signature is registered, other processes can retrieve it with [`CFSocketCopyRegisteredSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcopyregisteredsocketsignature(_:_:_:_:_:)) and then open a connection to your socket using [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)).
+    ///
+    /// To remove a registered socket signature from the name server, use [`CFSocketUnregister`](https://developer.apple.com/documentation/corefoundation/cfsocketunregister(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -620,7 +1079,31 @@ impl CFSocket {
         unsafe { CFSocketRegisterSocketSignature(name_server_signature, timeout, name, signature) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcopyregisteredsocketsignature(_:_:_:_:_:)?language=objc)
+    /// Returns a socket signature registered with a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - nameServerSignature: The socket signature for the name server. If `NULL`, this function contacts the default server, which is assumed to be a local process using TCP/IP to listen on the port number returned from [`CFSocketGetDefaultNameRegistryPortNumber`](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()). If `nameServerSignature` is incomplete, the missing values are replaced with the default server’s values, if appropriate.
+    ///
+    /// - timeout: The time to wait for the server to accept a connection and to reply to the registration request.
+    ///
+    /// - name: The name of the registered socket signature to retrieve.
+    ///
+    /// - signature: A pointer to a [`CFSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketsignature) structure into which the retrieved socket signature is copied.
+    ///
+    /// - nameServerAddress: A pointer to a CFData object into which the name server’s address is copied. Pass `NULL` if you do not want the server’s address.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once you have the socket signature, you can open a connection to that socket with [`CFSocketCreateConnectedToSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketcreateconnectedtosocketsignature(_:_:_:_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -658,7 +1141,27 @@ impl CFSocket {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketunregister(_:_:_:)?language=objc)
+    /// Unregisters a value or socket signature with a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - nameServerSignature: The socket signature for the name server. If `NULL`, this function contacts the default server, which is assumed to be a local process using TCP/IP to listen on the port number returned from [`CFSocketGetDefaultNameRegistryPortNumber`](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()). If `nameServerSignature` is incomplete, the missing values are replaced with the default server’s values, if appropriate.
+    ///
+    /// - timeout: The time to wait for the server to accept a connection and to reply to the registration request.
+    ///
+    /// - name: The name of the property-list value or socket signature to unregister.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error code indicating success or failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The value being unregistered was previously registered with [`CFSocketRegisterValue`](https://developer.apple.com/documentation/corefoundation/cfsocketregistervalue(_:_:_:_:)) or [`CFSocketRegisterSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketregistersocketsignature(_:_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -682,7 +1185,17 @@ impl CFSocket {
         unsafe { CFSocketUnregister(name_server_signature, timeout, name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketsetdefaultnameregistryportnumber(_:)?language=objc)
+    /// Sets the default port number with which to connect to a CFSocket name server.
+    ///
+    /// Parameters:
+    /// - port: The port number to use to connect to the CFSocket name server.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you do not provide a name server signature or leave out the socket address in the signature when calling one of the name registry functions, such as [`CFSocketRegisterSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketregistersocketsignature(_:_:_:_:)), `port` will be used for the connection.
+    ///
+    ///
     #[doc(alias = "CFSocketSetDefaultNameRegistryPortNumber")]
     #[inline]
     pub fn set_default_name_registry_port_number(port: u16) {
@@ -692,7 +1205,19 @@ impl CFSocket {
         unsafe { CFSocketSetDefaultNameRegistryPortNumber(port) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketgetdefaultnameregistryportnumber()?language=objc)
+    /// Returns the default port number with which to connect to a CFSocket name server.
+    ///
+    /// ## Return Value
+    ///
+    /// The default port number with which to connect to a CFSocket name server.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you do not provide a name server signature or leave out the socket address in the signature when calling one of the name registry functions, such as [`CFSocketRegisterSocketSignature`](https://developer.apple.com/documentation/corefoundation/cfsocketregistersocketsignature(_:_:_:_:)), the returned port number is used for the connection.
+    ///
+    ///
     #[doc(alias = "CFSocketGetDefaultNameRegistryPortNumber")]
     #[inline]
     pub fn default_name_registry_port_number() -> u16 {
@@ -704,37 +1229,37 @@ impl CFSocket {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketcommandkey?language=objc)
+    /// Not used.
     pub static kCFSocketCommandKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketnamekey?language=objc)
+    /// Not used.
     pub static kCFSocketNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketvaluekey?language=objc)
+    /// Not used.
     pub static kCFSocketValueKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketresultkey?language=objc)
+    /// Not used.
     pub static kCFSocketResultKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketerrorkey?language=objc)
+    /// Not used.
     pub static kCFSocketErrorKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketregistercommand?language=objc)
+    /// Not used.
     pub static kCFSocketRegisterCommand: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfsocketretrievecommand?language=objc)
+    /// Not used.
     pub static kCFSocketRetrieveCommand: Option<&'static CFString>;
 }
 

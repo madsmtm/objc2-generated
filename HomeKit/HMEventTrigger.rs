@@ -8,33 +8,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Specifies the key path for a characteristic in a predicate.
     /// Specifies the key path for a characteristic in a NSPredicate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristickeypath?language=objc)
     pub static HMCharacteristicKeyPath: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies the key path for a characteristic value in a predicate.
     /// Specifies the key path for a characteristic value in a NSPredicate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluekeypath?language=objc)
     pub static HMCharacteristicValueKeyPath: &'static NSString;
 }
 
 extern "C" {
+    /// Specifies the key path for a presence event in a predicate.
     /// Specifies the key path for a presence event in a NSPredicate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmpresencekeypath?language=objc)
     pub static HMPresenceKeyPath: &'static NSString;
 }
 
 extern_class!(
+    /// A trigger to activate an action set based on a set of events and optional conditions.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`HMEventTrigger`](https://developer.apple.com/documentation/homekit/hmeventtrigger) object to trigger the execution of a scene when a combination of characteristic or location events and conditions occur. To create an event trigger, first create one or more event objects that fire an event when the specified trigger values are met. For example, you might create an [`HMCharacteristicEvent`](https://developer.apple.com/documentation/homekit/hmcharacteristicevent) that fires when the front door is open. Then, you can use [`HMEventTrigger`](https://developer.apple.com/documentation/homekit/hmeventtrigger) convenience methods to create optional predicates that specify conditions that must be met before a scene is executed. For example, you might create a condition that ensures the scene is executed only after sunset.
+    ///
+    ///
     /// Triggers based on events.
     ///
     ///
     /// This class represents a trigger that is based on events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmeventtrigger?language=objc)
     #[unsafe(super(HMTrigger, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMTrigger")]

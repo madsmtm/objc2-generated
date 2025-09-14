@@ -8,12 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that finds rectangular regions that contain people in an image.
     /// A request that will detect human Torsos in an image.
     ///
     ///
     /// This request will generate VNHumanObservation objects with defined boundingBox and confidence score.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -93,12 +92,10 @@ impl VNDetectHumanRectanglesRequest {
     );
 }
 
+/// A constant for specifying revision 1 of the human rectangles detection request.
 /// This request revsion can detect human upper body only
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision1?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision1: NSUInteger = 1;
 
+/// A constant for specifying revision 2 of the human rectangles detection request.
 /// This request revsion can detect human full body in addition to upper body only in the previous revision. The choice is controlled by [VNDetectHumanRectanglesRequest -upperBodyOnly] property, which is by default set to YES
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanrectanglesrequestrevision2?language=objc)
 pub static VNDetectHumanRectanglesRequestRevision2: NSUInteger = 2;

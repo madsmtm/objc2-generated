@@ -9,62 +9,56 @@ use objc2_foundation::*;
 
 use crate::*;
 
+///
+/// ## Overview
+///
 /// Standard rendering styles for Audio Mix type effects
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle?language=objc)
+///
+/// Standard rendering styles for Audio Mix type effects
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNSpatialAudioRenderingStyle(pub NSInteger);
 impl CNSpatialAudioRenderingStyle {
     /// Isolates the ambience and place it in a spatial stem. Isolates all voices and place them in a mono stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/cinematic?language=objc)
+    /// Isolates the ambience and place it in a spatial stem. Isolates all voices and place them in a mono stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematic")]
     pub const Cinematic: Self = Self(0);
     /// Isolates the ambience and place it in a spatial stem. Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/studio?language=objc)
+    /// Isolates the ambience and place it in a spatial stem. Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudio")]
     pub const Studio: Self = Self(1);
     /// Isolates the ambience and place it in a spatial stem. Isolates only voices from the camera field of view and place them in a mono stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/inframe?language=objc)
+    /// Isolates the ambience and place it in a spatial stem. Isolates only voices from the camera field of view and place them in a mono stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrame")]
     pub const InFrame: Self = Self(2);
     /// Isolates the ambience when foreground is cinematic Audio Mix and place it in a spatial stem. There is no voice stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/cinematicbackgroundstem?language=objc)
+    /// Isolates the ambience when foreground is cinematic Audio Mix and place it in a spatial stem. There is no voice stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematicBackgroundStem")]
     pub const CinematicBackgroundStem: Self = Self(3);
     /// Isolates all voices and places them in a mono stem. There is no ambience stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/cinematicforegroundstem?language=objc)
+    /// Isolates all voices and places them in a mono stem. There is no ambience stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleCinematicForegroundStem")]
     pub const CinematicForegroundStem: Self = Self(4);
     /// Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem. There is no ambience stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/studioforegroundstem?language=objc)
+    /// Isolates all voices, add a studio/proximity effect in the voice track and place them in a mono stem. There is no ambience stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudioForegroundStem")]
     pub const StudioForegroundStem: Self = Self(5);
     /// Isolates only voices from the camera field of view and place them in a mono stem. There is no ambience stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/inframeforegroundstem?language=objc)
+    /// Isolates only voices from the camera field of view and place them in a mono stem. There is no ambience stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrameForegroundStem")]
     pub const InFrameForegroundStem: Self = Self(6);
     /// This produces a spatial stem of the original recording that is unprocessed. This is the default rendering style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/standard?language=objc)
+    /// This produces a spatial stem of the original recording that is unprocessed. This is the default rendering style.
     #[doc(alias = "CNSpatialAudioRenderingStyleStandard")]
     pub const Standard: Self = Self(7);
     /// Isolates the ambience when foreground is studio Audio Mix and place it in a spatial stem. There is no voice stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/studiobackgroundstem?language=objc)
+    /// Isolates the ambience when foreground is studio Audio Mix and place it in a spatial stem. There is no voice stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleStudioBackgroundStem")]
     pub const StudioBackgroundStem: Self = Self(8);
     /// Isolates the ambience and foreground that is out of frame and place it in a spatial stem. There is no voice stem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle/inframebackgroundstem?language=objc)
+    /// Isolates the ambience and foreground that is out of frame and place it in a spatial stem. There is no voice stem.
     #[doc(alias = "CNSpatialAudioRenderingStyleInFrameBackgroundStem")]
     pub const InFrameBackgroundStem: Self = Self(9);
 }
@@ -77,22 +71,24 @@ unsafe impl RefEncode for CNSpatialAudioRenderingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
 /// Enum used to generate settings dictionary for export using AssetReader and AssetWriter with Spatial Audio effects burned in
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiocontenttype?language=objc)
+///
+/// Enum used to generate settings dictionary for export using AssetReader and AssetWriter with Spatial Audio effects burned in
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNSpatialAudioContentType(pub NSInteger);
 impl CNSpatialAudioContentType {
     /// Export settings to generate an asset with stereo audio and effect burned in
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiocontenttype/stereo?language=objc)
+    /// Export settings to generate an asset with stereo audio and effect burned in
     #[doc(alias = "CNSpatialAudioContentTypeStereo")]
     pub const Stereo: Self = Self(0);
     /// Export settings to generate an asset with spatial audio and effect burned in
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiocontenttype/spatial?language=objc)
+    /// Export settings to generate an asset with spatial audio and effect burned in
     #[doc(alias = "CNSpatialAudioContentTypeSpatial")]
     pub const Spatial: Self = Self(1);
 }
@@ -106,6 +102,14 @@ unsafe impl RefEncode for CNSpatialAudioContentType {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// A helper class to inspect recordings made when Spatial Audio setting is turned on. An instance of this class contains the default audio track with Spatial Audio, metadata read from the file that can be applied during to enhance the playback experience. This class also provides tunable parameters to change the intensity & mode of the playback experience.
+    ///
+    /// The goal of this class is to assist users operate on assets in which audio has been captured in multiple formats like Spatial Audio and Stereo to allow more audio customization. Users can audition playback of this asset with an immersive audio rendering effect applied by fetching an AVAudioMix containing the necessary metadata serialized in the file as well as any user supplied changes. Once the results of the audition are satisfactory, clients can create a copy of the asset with the audio effect burned in.
+    ///
+    ///
     /// A helper class to inspect recordings made when Spatial Audio setting is turned on. An instance of this class contains the default audio track with Spatial Audio, metadata read from the file that can be applied
     /// during to enhance the playback experience. This class also provides tunable parameters to change the intensity
     /// &
@@ -115,8 +119,6 @@ extern_class!(
     /// The goal of this class is to assist users operate on assets in which audio has been captured in multiple formats like Spatial Audio and Stereo to allow more audio customization.
     /// Users can audition playback of this asset with an immersive audio rendering effect applied by fetching an AVAudioMix containing the necessary metadata serialized in the file as well as any user supplied changes.
     /// Once the results of the audition are satisfactory, clients can create a copy of the asset with the audio effect burned in.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetspatialaudioinfo-57yc5?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNAssetSpatialAudioInfo;

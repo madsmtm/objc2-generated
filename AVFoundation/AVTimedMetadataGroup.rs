@@ -10,9 +10,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of metadata items associated with a timeline segment.
     /// AVMetadataGroup is the common superclass for AVTimedMetadataGroup and AVDateRangeMetadataGroup; each represents a collection of metadata items associated with a segment of a timeline. AVTimedMetadataGroup is typically used with content that defines an independent timeline, while AVDateRangeMetadataGroup is typically used with content that's associated with a specific range of dates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatagroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetadataGroup;
@@ -58,9 +57,14 @@ impl AVMetadataGroup {
 }
 
 extern_class!(
-    /// AVTimedMetadataGroup is used to represent a collection of metadata items that are valid for use during a specific range of time. For example, AVTimedMetadataGroups are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
+    /// A collection of metadata items that are valid for use during a specific time range.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup?language=objc)
+    /// ## Overview
+    ///
+    /// For example, `AVTimedMetadataGroups` are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
+    ///
+    ///
+    /// AVTimedMetadataGroup is used to represent a collection of metadata items that are valid for use during a specific range of time. For example, AVTimedMetadataGroups are used to represent chapters, optionally containing metadata items for chapter titles and chapter images.
     #[unsafe(super(AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVTimedMetadataGroup;
@@ -161,9 +165,8 @@ impl AVTimedMetadataGroup {
 }
 
 extern_class!(
+    /// A mutable collection of metadata items that are valid for use during a specific time range.
     /// AVMutableTimedMetadataGroup is used to represent a mutable collection of metadata items that are valid for use during a specific range of time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabletimedmetadatagroup?language=objc)
     #[unsafe(super(AVTimedMetadataGroup, AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableTimedMetadataGroup;
@@ -265,9 +268,8 @@ impl AVMutableTimedMetadataGroup {
 }
 
 extern_class!(
+    /// A collection of metadata items that are valid for use within a specific date range.
     /// AVDateRangeMetadataGroup is used to represent a collection of metadata items that are valid for use within a specific range of dates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup?language=objc)
     #[unsafe(super(AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDateRangeMetadataGroup;
@@ -343,9 +345,8 @@ impl AVDateRangeMetadataGroup {
 }
 
 extern_class!(
+    /// A mutable collection of metadata items that are valid for use within a specific range of dates.
     /// AVMutableDateRangeMetadataGroup is used to represent a mutable collection of metadata items that are valid for use within a specific range of dates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutabledaterangemetadatagroup?language=objc)
     #[unsafe(super(AVDateRangeMetadataGroup, AVMetadataGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableDateRangeMetadataGroup;

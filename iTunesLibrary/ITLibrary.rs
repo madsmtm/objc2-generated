@@ -7,17 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// These constants describe the features that an iTunes library supports.
 /// These constants describe the features supported by a given iTunes library.
 ///
 /// No features are supported
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibexportfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibExportFeature(pub NSUInteger);
 impl ITLibExportFeature {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibexportfeature/none?language=objc)
+    /// The iTunes library doesn’t support any export features.
     #[doc(alias = "ITLibExportFeatureNone")]
     pub const None: Self = Self(0);
 }
@@ -30,24 +29,22 @@ unsafe impl RefEncode for ITLibExportFeature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants describe initialization options for an iTunes library.
 /// These constants describe the options that can be passed supported by a given iTunes library.
 ///
 /// Load the library immediately on ITLibrary instance creation.
 ///
 /// Don't load the library until the first request for data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibInitOptions(pub NSUInteger);
 impl ITLibInitOptions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions/none?language=objc)
+    /// No initialization options apply.
     #[doc(alias = "ITLibInitOptionNone")]
     pub const None: Self = Self(0);
+    /// iTunes library data loads upon request, rather than during initialization.
     /// ITLibrary will be initialized but no iTunes library data will be loaded. Data will be lazy-loaded upon request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions/lazyloaddata?language=objc)
     #[doc(alias = "ITLibInitOptionLazyLoadData")]
     pub const LazyLoadData: Self = Self(1);
 }
@@ -62,18 +59,44 @@ unsafe impl RefEncode for ITLibInitOptions {
 
 extern "C" {
     /// This notification is sent to NSDistributedNotificationCenter when a change has occurred in the library.
+    ///
+    /// ## Overview
+    ///
+    /// The client should call [`reloadData()`](https://developer.apple.com/documentation/ituneslibrary/itlibrary/reloaddata()) if it wants a new view of the library contents.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This is not a fine-grained notification.  This API does not support per-object change notifications.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// This notification is sent to NSDistributedNotificationCenter when a change has occurred in the library.
     /// The client should call [ITLibrary -reloadData] if it wants a new view of the library contents.
     ///
     /// Note: This is not a fine-grained notification.  This API does not support per-object change notifications.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibrarydidchangenotification?language=objc)
     pub static ITLibraryDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// A class representing an iTunes library whose metadata is being queried.
+    /// This class serves as the entry point to the iTunesLibrary framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibrary?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`ITLibrary`](https://developer.apple.com/documentation/ituneslibrary/itlibrary) properties and methods to retrieve media items (tracks) and playlists from the user’s iTunes library. [`ITLibrary`](https://developer.apple.com/documentation/ituneslibrary/itlibrary) also provides methods for extracting artwork from a media file that may or may not be in the iTunes library. Sandboxed and nonsandboxed apps can also use iTunes’ ability to extract artwork.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// A person needs to grant your app permission before it can access their iTunes library. Add the [`NSAppleMusicUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsapplemusicusagedescription) key to your app’s `Info.plist` file, and include a description of how you intend to use their library. If this key isn’t present, the system terminates your app when it tries to access the library.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A class representing an iTunes library whose metadata is being queried.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ITLibrary;

@@ -19,6 +19,13 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// A categorization of a pixel that defines a type of content you use to occlude your app’s virtual content.
+///
+/// ## Overview
+///
+/// ARKit applies the categories defined in this class based on its interpretation of the camera feed’s pixel data. Only people are identified in a camera feed, and therefore the available pixel classifications are either [`ARSegmentationClassPerson`](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/person) or [`ARSegmentationClassNone`](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/none).
+///
+///
 /// Segmentation classes which defines a pixel's semantic label.
 ///
 /// When running a configuration with 'ARFrameSemanticPersonSegmentation' every pixel in the
@@ -27,17 +34,15 @@ use crate::*;
 /// See: -[ARConfiguration setFrameSemantics:]
 ///
 /// See: -[ARFrame segmentationBuffer]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARSegmentationClass(pub u8);
 impl ARSegmentationClass {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/none?language=objc)
+    /// A classification of a pixel in the segmentation buffer as unidentified.
     #[doc(alias = "ARSegmentationClassNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass/person?language=objc)
+    /// A classification of a pixel in the segmentation buffer as part of a person.
     #[doc(alias = "ARSegmentationClassPerson")]
     pub const Person: Self = Self(255);
 }
@@ -53,8 +58,7 @@ unsafe impl RefEncode for ARSegmentationClass {
 }
 
 /// A value describing the world mapping status for the area visible in a given frame.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum?language=objc)
+/// A value describing the world mapping status for the area visible in a given frame.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -62,27 +66,67 @@ unsafe impl RefEncode for ARSegmentationClass {
 pub struct ARWorldMappingStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARWorldMappingStatus {
-    /// World mapping is not available.
+    /// No world map is available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/notavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// When the [`worldMappingStatus`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.property) of the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusNotAvailable`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/notavailable), the session has no internal map of the real-world space around the device, nor the scene visible to the camera. Calling [`getCurrentWorldMapWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)) at this time results in an error.
+    ///
+    /// This status occurs shortly after starting a new session. To save or share a world map, wait for the user to explore their surroundings and the session’s status to change to [`ARWorldMappingStatusMapped`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped) or [`ARWorldMappingStatusExtending`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending).
+    ///
+    ///
+    /// World mapping is not available.
     #[doc(alias = "ARWorldMappingStatusNotAvailable")]
     pub const NotAvailable: Self = Self(0);
+    /// World tracking has not yet sufficiently mapped the area around the current device position.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`worldMappingStatus`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.property) of the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusLimited`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/limited), the session has not yet fully mapped the real-world space around the device, nor the scene visible to the camera.
+    ///
+    /// Although it is possible at this time to save a world map by calling [`getCurrentWorldMapWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)), the resulting [`ARWorldMap`](https://developer.apple.com/documentation/arkit/arworldmap) is unlikely to be useful for relocalization in the real-world space near the device’s current position.
+    ///
+    /// To produce a higher quality world map, wait for the user to explore more of their surroundings and the session’s status to change to [`ARWorldMappingStatusMapped`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped) or [`ARWorldMappingStatusExtending`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending).
+    ///
+    ///
     /// World mapping is available but has limited features.
     /// For the device's current position, the session’s world map is not recommended for relocalization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/limited?language=objc)
     #[doc(alias = "ARWorldMappingStatusLimited")]
     pub const Limited: Self = Self(1);
+    /// World tracking has mapped recently visited areas, but is still mapping around the current device position.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`worldMappingStatus`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.property) of the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusExtending`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending), the session has produced a high-fidelity internal map of the real-world spaces the device has recently passed thorugh, but is still collecting data to map the area around the device’s current position and the scene visible to the camera.
+    ///
+    /// This status provides moderate to high reliability for relocalizing to a saved world map, provided that:
+    ///
+    /// 1. You call [`getCurrentWorldMapWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)) to save the world map while the status of the [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusExtending`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending).
+    ///
+    /// 2. When you run a new session (later or on another device) from that [`ARWorldMap`](https://developer.apple.com/documentation/arkit/arworldmap), the device running the new session passes through positions and orientations that were visited by the device that saved the session.
+    ///
+    /// Saving or sharing a world map at this time is likely to produce adequate results, but a higher quality world map may be possible if you wait until the user explores more of their surroundings and the status changes to [`ARWorldMappingStatusMapped`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped).
+    ///
+    ///
     /// World mapping is actively extending the map with the user's motion.
     /// The world map will be relocalizable for previously visited areas but is still being updated for the current space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/extending?language=objc)
     #[doc(alias = "ARWorldMappingStatusExtending")]
     pub const Extending: Self = Self(2);
+    /// World tracking has adequately mapped the visible area.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`worldMappingStatus`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.property) of the session’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusMapped`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped), the session has produced a high-fidelity internal map of the real-world space around the device’s current position and the scene visible to the camera.
+    ///
+    /// This status provides the highest reliability for relocalizing to a saved world map, provided that:
+    ///
+    /// 1. You call [`getCurrentWorldMapWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getcurrentworldmap(completionhandler:)) to save the world map while the status of the [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe) is [`ARWorldMappingStatusMapped`](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped).
+    ///
+    /// 2. When you run a new session (later or on another device) from that [`ARWorldMap`](https://developer.apple.com/documentation/arkit/arworldmap), the device running the new session is at a real-world position and orientation similar to that when the world map was saved.
+    ///
+    ///
     /// World mapping has adequately mapped the visible area.
     /// The map can be used to relocalize for the device's current position.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum/mapped?language=objc)
     #[doc(alias = "ARWorldMappingStatusMapped")]
     pub const Mapped: Self = Self(3);
 }
@@ -99,11 +143,24 @@ unsafe impl RefEncode for ARWorldMappingStatus {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A video image captured as part of a session with position-tracking information.
+    ///
+    /// ## Overview
+    ///
+    /// A running session continuously captures video frames from the device’s camera while ARKit analyzes the captures to determine the user’s position in the world. ARKit can provide this information to you in the form of an [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) in two ways:
+    ///
+    /// - Occasionally, by accessing an [`ARSession`](https://developer.apple.com/documentation/arkit/arsession) object’s [`currentFrame`](https://developer.apple.com/documentation/arkit/arsession/currentframe)
+    ///
+    /// - Constantly, as a stream of frames through the [`session:didUpdateFrame:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-9v2kw) callback
+    ///
+    /// To automatically receive all frames as ARKit captures them, make one of your objects the [`delegate`](https://developer.apple.com/documentation/arkit/arsession/delegate) of your app’s [`ARSession`](https://developer.apple.com/documentation/arkit/arsession).
+    ///
+    /// Each frame can contain additional data, for example, EXIF ([`exifData`](https://developer.apple.com/documentation/arkit/arframe/exifdata)), or data based on any particular [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) that you enable.
+    ///
+    ///
     /// An object encapsulating the state of everything being tracked for a given moment in time.
     ///
     /// The model provides a snapshot of all data needed to render a given frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that ends after the specified time duration.
+    ///
+    /// ## Overview
+    ///
+    /// Use a duration event to specify that a different event should end after a period of time.
+    ///
+    ///
     /// This class is used to represent a duration of time.
     ///
     ///
     /// Note: Characteristics turned on by the trigger will be turned off after the duration
     /// Supported characteristics are [HMCharacteristicTypePowerState, HMCharacteristicTypeActive]
     /// The duration event immediately ends if the characteristics are changed or updated during this period
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmdurationevent?language=objc)
     #[unsafe(super(HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
@@ -99,9 +104,8 @@ impl HMDurationEvent {
 }
 
 extern_class!(
+    /// A mutable event that fires after the specified time duration.
     /// This class is used to represent a duration of time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutabledurationevent?language=objc)
     #[unsafe(super(HMDurationEvent, HMTimeEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]

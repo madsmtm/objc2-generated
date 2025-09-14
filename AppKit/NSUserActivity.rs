@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivityrestoring?language=objc)
+    /// A protocol that marks classes to restore the state of your app to continue a user activity.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t conform your classes to [`NSUserActivityRestoring`](https://developer.apple.com/documentation/appkit/nsuseractivityrestoring), as it’s a marker protocol adopted by [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) and [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) for user activity state restoration.
+    ///
+    ///
     pub unsafe trait NSUserActivityRestoring: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]
@@ -65,6 +71,14 @@ extern_conformance!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuseractivitydocumenturlkey?language=objc)
+    /// The key that identifies the document associated with a user activity.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this key in the [`userInfo`](https://developer.apple.com/documentation/foundation/nsuseractivity/userinfo) dictionary of an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object. Its value is the URL of the document associated with the user activity.
+    ///
+    /// When the `NSUbiquitousDocumentUserActivityType` key is present in a [`CFBundleDocumentTypes`](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundledocumenttypes) entry, AppKit automatically creates an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object for documents in iCloud, using the given activity type.
+    ///
+    ///
     pub static NSUserActivityDocumentURLKey: &'static NSString;
 }

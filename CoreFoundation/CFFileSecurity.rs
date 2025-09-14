@@ -8,7 +8,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurity?language=objc)
+/// Encapsulates a file system object’s security information in a Core Foundation object.
 ///
 /// This is toll-free bridged with `NSFileSecurity`.
 #[doc(alias = "CFFileSecurityRef")]
@@ -27,7 +27,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFFileSecurity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygettypeid()?language=objc)
+    /// Returns the type identifier for the `CFFileSecurityRef` opaque type.
     #[doc(alias = "CFFileSecurityGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,7 +39,17 @@ unsafe impl ConcreteType for CFFileSecurity {
 }
 
 impl CFFileSecurity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycreate(_:)?language=objc)
+    /// Creates a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a new `CFFileSecurityRef` object, or `NULL` if an error occurred. Ownership follows the Create Rule.
+    ///
+    ///
     #[doc(alias = "CFFileSecurityCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<CFFileSecurity>> {
@@ -52,7 +62,19 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycreatecopy(_:_:)?language=objc)
+    /// Creates a copy of a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - fileSec: The `CFFileSecurityRef` object to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a new `CFFileSecurityRef` object, or `NULL` if an error occurred. Ownership follows the Create Rule.
+    ///
+    ///
     #[doc(alias = "CFFileSecurityCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -69,7 +91,19 @@ impl CFFileSecurity {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycopyowneruuid(_:_:)?language=objc)
+    /// Copies the owner UUID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object.
+    ///
+    /// - ownerUUID: The address of a `CFUUIDRef` where the results are stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if an owner UUID was successfully copied, or `false` if there is no owner UUID property associated with this `CFFileSecurityRef` object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -88,7 +122,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetowneruuid(_:_:)?language=objc)
+    /// Sets the owner UUID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object to modify.
+    ///
+    /// - ownerUUID: The owner UUID to set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the owner UUID property was successfully set, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFFileSecuritySetOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -103,7 +149,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritycopygroupuuid(_:_:)?language=objc)
+    /// Copies the group UUID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object.
+    ///
+    /// - groupUUID: The address of a `CFUUIDRef` where the results are stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if a group UUID was successfully copied, or `false` if there is no group UUID property associated with this `CFFileSecurityRef` object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -122,7 +180,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetgroupuuid(_:_:)?language=objc)
+    /// Sets the group UUID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object to modify.
+    ///
+    /// - groupUUID: The group UUID to set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the group UUID was successfully set, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFFileSecuritySetGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -137,7 +207,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetowner(_:_:)?language=objc)
+    /// Gets the owner ID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object.
+    ///
+    /// - owner: The address of an integer of type `uid_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the owner ID was stored in the address pointed to by `owner`, or `false` if there is no owner ID property associated with this `CFFileSecurityRef` object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -156,7 +238,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetowner(_:_:)?language=objc)
+    /// Sets the owner ID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object to modify.
+    ///
+    /// - owner: An integer of type `uid_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the owner ID property was successfully set, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFFileSecuritySetOwner")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -168,7 +262,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetgroup(_:_:)?language=objc)
+    /// Gets the group ID associated with a `CFFileSecurityRef` object
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object.
+    ///
+    /// - group: The address of an integer of type `gid_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the group ID was stored in the address pointed to by `group`, or `false` if there is no address property associated with this `CFFileSecurityRef` object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -187,7 +293,19 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetgroup(_:_:)?language=objc)
+    /// Sets the group ID associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object to modify.
+    ///
+    /// - group: An integer of type `gid_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the group ID was successfully set, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFFileSecuritySetGroup")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -199,7 +317,25 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritygetmode(_:_:)?language=objc)
+    /// Gets the file mode associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object.
+    ///
+    /// - mode: The address of an integer of type `mode_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the file mode was stored in the address pointed to by `mode`, or `false` if there is no file mode property associated with this `CFFileSecurityRef` object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on numerical file modes, see the chmod(2) manual page and the definitions in `/usr/include/sys/stat.h`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -216,7 +352,25 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecuritysetmode(_:_:)?language=objc)
+    /// Sets the file mode associated with a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The `CFFileSecurityRef` object to modify.
+    ///
+    /// - mode: An integer of type `mode_t`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the file mode property was successfully set, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on numerical file modes, see the chmod(2) manual page and the definitions in `/usr/include/sys/stat.h`.
+    ///
+    ///
     #[doc(alias = "CFFileSecuritySetMode")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -229,29 +383,28 @@ impl CFFileSecurity {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFFileSecurityClearOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFFileSecurityClearOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/owner?language=objc)
+/// Clear the (POSIX) owner ID.
         #[doc(alias = "kCFFileSecurityClearOwner")]
         const Owner = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/group?language=objc)
+/// Clear the (POSIX) group ID.
         #[doc(alias = "kCFFileSecurityClearGroup")]
         const Group = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/mode?language=objc)
+/// Clear the file’s mode (POSIX permissions).
         #[doc(alias = "kCFFileSecurityClearMode")]
         const Mode = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/owneruuid?language=objc)
+/// Clear the owner UUID (for the access control list).
         #[doc(alias = "kCFFileSecurityClearOwnerUUID")]
         const OwnerUUID = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/groupuuid?language=objc)
+/// Clear the group UUID (for the access control list).
         #[doc(alias = "kCFFileSecurityClearGroupUUID")]
         const GroupUUID = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearoptions/accesscontrollist?language=objc)
+/// Clear the access control list.
         #[doc(alias = "kCFFileSecurityClearAccessControlList")]
         const AccessControlList = 1<<5;
     }
@@ -268,7 +421,25 @@ unsafe impl RefEncode for CFFileSecurityClearOptions {
 }
 
 impl CFFileSecurity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cffilesecurityclearproperties(_:_:)?language=objc)
+    /// Clears properties from a `CFFileSecurityRef` object.
+    ///
+    /// Parameters:
+    /// - fileSec: The file security properties to clear.
+    ///
+    /// - clearPropertyMask: The file security properties to clear.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `true` if the file security properties were successfully cleared, or `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// One common use for `CFFileSecurityRef` objects is to clone the permissions from one file to another. In this use, you may want to copy only a subset of the permissions. This function lets you delete the specific permissions that you do not want to change prior to applying the set of permissions to a different file.
+    ///
+    ///
     #[doc(alias = "CFFileSecurityClearProperties")]
     #[inline]
     pub fn clear_properties(&self, clear_property_mask: CFFileSecurityClearOptions) -> bool {

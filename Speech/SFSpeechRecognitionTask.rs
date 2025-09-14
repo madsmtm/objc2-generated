@@ -8,36 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The state of the task associated with the recognition request.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate?language=objc)
+/// The state of the task associated with the recognition request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFSpeechRecognitionTaskState(pub NSInteger);
 impl SFSpeechRecognitionTaskState {
     /// Speech recognition (potentially including audio recording) has not yet started.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/starting?language=objc)
+    /// Speech recognition (potentially including audio recording) has not yet started.
     #[doc(alias = "SFSpeechRecognitionTaskStateStarting")]
     pub const Starting: Self = Self(0);
     /// Speech recognition (potentially including audio recording) is in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/running?language=objc)
+    /// Speech recognition (potentially including audio recording) is in progress.
     #[doc(alias = "SFSpeechRecognitionTaskStateRunning")]
     pub const Running: Self = Self(1);
     /// Audio recording has stopped, but delivery of recognition results may continue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/finishing?language=objc)
+    /// Audio recording has stopped, but delivery of recognition results may continue.
     #[doc(alias = "SFSpeechRecognitionTaskStateFinishing")]
     pub const Finishing: Self = Self(2);
     /// Delivery of recognition results has finished, but audio recording may be ongoing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/canceling?language=objc)
+    /// Delivery of recognition results has finished, but audio recording may be ongoing.
     #[doc(alias = "SFSpeechRecognitionTaskStateCanceling")]
     pub const Canceling: Self = Self(3);
     /// Delivery of recognition requests has finished and audio recording has stopped.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskstate/completed?language=objc)
+    /// Delivery of recognition requests has finished and audio recording has stopped.
     #[doc(alias = "SFSpeechRecognitionTaskStateCompleted")]
     pub const Completed: Self = Self(4);
 }
@@ -53,11 +47,18 @@ unsafe impl RefEncode for SFSpeechRecognitionTaskState {
 extern_class!(
     /// A task object for monitoring the speech recognition progress.
     ///
+    /// ## Overview
+    ///
+    /// Use an `SFSpeechRecognitionTask` object to determine the state of a speech recognition task, to cancel an ongoing task, or to signal the end of the task.
+    ///
+    /// You don’t create speech recognition task objects directly. Instead, you receive one of these objects after calling [`recognitionTaskWithRequest:resultHandler:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:resulthandler:)) or [`recognitionTaskWithRequest:delegate:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:delegate:)) on your [`SFSpeechRecognizer`](https://developer.apple.com/documentation/speech/sfspeechrecognizer) object.
+    ///
+    ///
+    /// A task object for monitoring the speech recognition progress.
+    ///
     /// Use an `SFSpeechRecognitionTask` object to determine the state of a speech recognition task, to cancel an ongoing task, or to signal the end of the task.
     ///
     /// You don't create speech recognition task objects directly. Instead, you receive one of these objects after calling ``SFSpeechRecognizer/recognitionTask(with:resultHandler:)`` or ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` on your ``SFSpeechRecognizer`` object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionTask;
@@ -144,6 +145,23 @@ impl SFSpeechRecognitionTask {
 extern_protocol!(
     /// A protocol with methods for managing multi-utterance speech recognition requests.
     ///
+    /// ## Overview
+    ///
+    /// The methods of this protocol give you fine-grained control over the speech recognition process. Specifically, you use this protocol when you want to know the following:
+    ///
+    /// - When the first utterances of speech occur in the audio.
+    ///
+    /// - When the speech recognizer stops accepting audio.
+    ///
+    /// - When the speech recognition process finishes or is canceled.
+    ///
+    /// - When the speech recognizer generates a potential transcription.
+    ///
+    /// Adopt the methods of this protocol in an object and pass that object in to the `delegate` parameter of [`recognitionTaskWithRequest:delegate:`](https://developer.apple.com/documentation/speech/sfspeechrecognizer/recognitiontask(with:delegate:)) when starting your speech recognition task.
+    ///
+    ///
+    /// A protocol with methods for managing multi-utterance speech recognition requests.
+    ///
     /// The methods of this protocol give you fine-grained control over the speech recognition process. Specifically, you use this protocol when you want to know the following:
     ///
     /// - When the first utterances of speech occur in the audio.
@@ -152,8 +170,6 @@ extern_protocol!(
     /// - When the speech recognizer generates a potential transcription.
     ///
     /// Adopt the methods of this protocol in an object and pass that object in to the `delegate` parameter of ``SFSpeechRecognizer/recognitionTask(with:delegate:)`` when starting your speech recognition task.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate?language=objc)
     pub unsafe trait SFSpeechRecognitionTaskDelegate: NSObjectProtocol {
         /// Tells the delegate when the task first detects speech in the source audio.
         ///

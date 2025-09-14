@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that finds faces within an image.
+    ///
+    /// ## Overview
+    ///
+    /// This request returns faces as rectangular bounding boxes with origin and size.
+    ///
+    ///
     /// A request that will detect faces in an image.
     ///
     ///
     /// This request will generate VNFaceObservation objects with a defined boundingBox.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -82,16 +87,14 @@ impl VNDetectFaceRectanglesRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the face rectangles detection request.
 #[deprecated]
 pub static VNDetectFaceRectanglesRequestRevision1: NSUInteger = 1;
 
+/// A constant for specifying revision 2 of the face rectangles detection request.
 /// This request revision can calculate face roll and yaw properties. See [VNFaceObservation -roll] and [VNFaceObservation -yaw]  respectively.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision2?language=objc)
 pub static VNDetectFaceRectanglesRequestRevision2: NSUInteger = 2;
 
+/// A constant for specifying revision 3 of the face rectangles detection request.
 /// This request revision can calculate face pitch, in addition to roll and yaw, see [VNFaceObservation -pitch] property. In addition, all three properties - roll, yaw, and pitch are now reported in contiguous manner.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectfacerectanglesrequestrevision3?language=objc)
 pub static VNDetectFaceRectanglesRequestRevision3: NSUInteger = 3;

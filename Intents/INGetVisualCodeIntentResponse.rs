@@ -7,42 +7,92 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetVisualCodeIntentResponseCode(pub NSInteger);
 impl INGetVisualCodeIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/unspecified?language=objc)
+    /// The response didnt specify a code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeUnspecified")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to fulfill the intent. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeReady")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/continueinapp?language=objc)
+    /// You must launch the app to display the visual code.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you want Siri to launch your app to display the visual code.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeContinueInApp")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of generating the code but aren’t yet finished.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the request for a code but don’t yet have the image to display for that code. You might use this code when getting the image requires communicating with your server and you haven’t yet received a confirmation from that server.
+    ///
+    /// When handling an intent, you might want to first configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeInProgress")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/success?language=objc)
+    /// You successfully generated the visual code.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after retrieving the image for the visual code successfully.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeSuccess")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failure?language=objc)
+    /// You were unable to generate the visual code.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from generating the image.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailure")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to request the visual code.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t generate the visual code until the user provides additional information in your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponsecode/failureappconfigurationrequired?language=objc)
+    /// Your app wasn’t configured to display visual codes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you require additional configuration of your app before displaying visual codes. For example, you might use this code when the user must establish an account in your app to handle payments, or when the user has an account for making payments but the balance is currently 0.
+    ///
+    ///
     #[doc(alias = "INGetVisualCodeIntentResponseCodeFailureAppConfigurationRequired")]
     #[deprecated = "INGetVisualCodeIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureAppConfigurationRequired: Self = Self(7);
@@ -57,7 +107,15 @@ unsafe impl RefEncode for INGetVisualCodeIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponse?language=objc)
+    /// Your app’s response to a request for a visual code.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INGetVisualCodeIntentResponse`](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponse) object to provide the visual code to display. When handling the intent, provide an image with the requested visual code. Siri communicates the details back to the user at appropriate times.
+    ///
+    /// You create an [`INGetVisualCodeIntentResponse`](https://developer.apple.com/documentation/intents/ingetvisualcodeintentresponse) object in the [`confirmGetVisualCode:completion:`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling/confirm(intent:completion:)) and [`handleGetVisualCode:completion:`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INGetVisualCodeIntentHandling`](https://developer.apple.com/documentation/intents/ingetvisualcodeintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

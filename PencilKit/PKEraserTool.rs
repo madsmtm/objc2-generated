@@ -8,19 +8,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype?language=objc)
+/// Constants that indicate the behavior of the eraser.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKEraserType(pub NSInteger);
 impl PKEraserType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypevector?language=objc)
+    /// An eraser that removes an entire drawn line.
+    ///
+    /// ## Discussion
+    ///
+    /// When a vector eraser touches any portion of a drawn line, it removes the entire line.
+    ///
+    ///
     #[doc(alias = "PKEraserTypeVector")]
     pub const Vector: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypebitmap?language=objc)
+    /// An eraser that removes only those portions of the drawing it touches.
     #[doc(alias = "PKEraserTypeBitmap")]
     pub const Bitmap: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertype/pkerasertypefixedwidthbitmap?language=objc)
     #[doc(alias = "PKEraserTypeFixedWidthBitmap")]
     pub const FixedWidthBitmap: Self = Self(2);
 }
@@ -34,9 +39,16 @@ unsafe impl RefEncode for PKEraserType {
 }
 
 extern_class!(
-    /// An eraser tool for erasing parts of a drawing.
+    /// A tool for erasing previously drawn content in a canvas view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertoolreference?language=objc)
+    /// ## Overview
+    ///
+    /// A [`PKEraserTool`](https://developer.apple.com/documentation/pencilkit/pkerasertool-swift.struct) object supports the deletion of content from a [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview) object. The eraser tool’s type determines whether the canvas removes entire items or just the portion of an item that it touches.
+    ///
+    /// Create an eraser tool programmatically or display a [`PKToolPicker`](https://developer.apple.com/documentation/pencilkit/pktoolpicker) object and let the user select the eraser. Assign the resulting object to the [`tool`](https://developer.apple.com/documentation/pencilkit/pkcanvasview/tool-6str6) property of your [`PKCanvasView`](https://developer.apple.com/documentation/pencilkit/pkcanvasview) object. The canvas uses any subsequent touch sequences to erase content on the canvas.
+    ///
+    ///
+    /// An eraser tool for erasing parts of a drawing.
     #[unsafe(super(PKTool, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKTool")]

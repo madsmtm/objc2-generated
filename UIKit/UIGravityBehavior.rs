@@ -10,7 +10,35 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigravitybehavior?language=objc)
+    /// An object that applies a gravity-like force to all of its associated dynamic items.
+    ///
+    /// ## Overview
+    ///
+    /// The magnitude and direction of the gravity force are configurable and are applied equally to all associated items. Use this behavior to modify the position of views and other dynamic items in your app’s interface.
+    ///
+    /// You specify the magnitude and direction of the gravity force as a two-dimensional vector in the reference view’s coordinate system. A value of `1.0` imparts the standard UIKit gravity, which corresponds to an acceleration of 1000 points / second² in the direction of the given axis. The default vector in the [`gravityDirection`](https://developer.apple.com/documentation/uikit/uigravitybehavior/gravitydirection) property is (`0.0`, `1.0`), which causes items to accelerate downward along the positive y axis. If you prefer to set the vector [`angle`](https://developer.apple.com/documentation/uikit/uigravitybehavior/angle) and [`magnitude`](https://developer.apple.com/documentation/uikit/uigravitybehavior/magnitude) separately, you can do so using the corresponding properties.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you want a gravitational force that takes the mass of each object into account, use a [`UIFieldBehavior`](https://developer.apple.com/documentation/uikit/uifieldbehavior) object instead. Field behaviors support both linear and radial gravitation fields and take the mass of an object into account, resulting in different amounts of force applied to each object.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If you want to influence a gravity behavior at each step of a dynamic animation, assign an appropriate block to the inherited [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) property. Use your block to make any needed changes to the dynamic items associated with the gravity behavior.
+    ///
+    /// ### Applying a Gravity Behavior to an Item
+    ///
+    /// To apply a gravity behavior to one or more dynamic items, do the following:
+    ///
+    /// 1. Initialize the behavior using the [`initWithItems:`](https://developer.apple.com/documentation/uikit/uigravitybehavior/init(items:)) method, passing in the items you want associated with the behavior. Use the [`addItem:`](https://developer.apple.com/documentation/uikit/uigravitybehavior/additem(_:)) method to add items after initialization. For more information about dynamic items, see [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem).
+    ///
+    /// 2. Enable the gravity behavior by adding it to your [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) object using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method. (Do not add more than one gravity behavior to an animator.)
+    ///
+    /// The gravity behavior derives its coordinate system from the reference view of its associated dynamic animator object. For more information about the dynamic animator and the reference coordinate system, see [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

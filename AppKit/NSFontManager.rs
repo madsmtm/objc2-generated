@@ -9,47 +9,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask?language=objc)
+/// Constants for isolating specific traits of a font.
+///
+/// ## Overview
+///
+/// [`NSFontManager`](https://developer.apple.com/documentation/appkit/nsfontmanager) categorizes fonts according to a small set of traits. You can convert fonts by adding and removing individual traits, and you can get a font with a specific combination of traits.
+///
+/// These pairs of traits are mutually exclusive:
+///
+/// - [`NSCondensedFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/condensedfontmask) and  [`NSExpandedFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/expandedfontmask)
+///
+/// - [`NSBoldFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/boldfontmask) and  [`NSUnboldFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unboldfontmask)
+///
+/// - [`NSItalicFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/italicfontmask) and  [`NSUnitalicFontMask`](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unitalicfontmask)
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontTraitMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontTraitMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/italicfontmask?language=objc)
+/// A mask that specifies an italic font.
         #[doc(alias = "NSItalicFontMask")]
         const ItalicFontMask = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/boldfontmask?language=objc)
+/// A mask that specifies a bold font.
         #[doc(alias = "NSBoldFontMask")]
         const BoldFontMask = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unboldfontmask?language=objc)
+/// A mask that specifies a font that is not bold.
         #[doc(alias = "NSUnboldFontMask")]
         const UnboldFontMask = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/nonstandardcharactersetfontmask?language=objc)
+/// A mask that specifies a font containing a non-standard character set.
         #[doc(alias = "NSNonStandardCharacterSetFontMask")]
         const NonStandardCharacterSetFontMask = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/narrowfontmask?language=objc)
+/// A mask that specifies a narrow font.
         #[doc(alias = "NSNarrowFontMask")]
         const NarrowFontMask = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/expandedfontmask?language=objc)
+/// A mask that specifies an expanded font.
         #[doc(alias = "NSExpandedFontMask")]
         const ExpandedFontMask = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/condensedfontmask?language=objc)
+/// A mask that specifies a condensed font.
         #[doc(alias = "NSCondensedFontMask")]
         const CondensedFontMask = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/smallcapsfontmask?language=objc)
+/// A mask that specifies a small-caps font.
         #[doc(alias = "NSSmallCapsFontMask")]
         const SmallCapsFontMask = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/posterfontmask?language=objc)
+/// A mask that specifies a poster-style font.
         #[doc(alias = "NSPosterFontMask")]
         const PosterFontMask = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/compressedfontmask?language=objc)
+/// A mask that specifies a compressed font.
         #[doc(alias = "NSCompressedFontMask")]
         const CompressedFontMask = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/fixedpitchfontmask?language=objc)
+/// A mask that specifies a fixed pitch font.
         #[doc(alias = "NSFixedPitchFontMask")]
         const FixedPitchFontMask = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask/unitalicfontmask?language=objc)
+/// A mask that specifies a font that is not italic.
         #[doc(alias = "NSUnitalicFontMask")]
         const UnitalicFontMask = 0x01000000;
     }
@@ -63,14 +77,14 @@ unsafe impl RefEncode for NSFontTraitMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionoptions?language=objc)
+/// Constants that support font collection management.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontCollectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionoptions/applicationonlymask?language=objc)
+/// Makes the collection available only to the application.
         #[doc(alias = "NSFontCollectionApplicationOnlyMask")]
         const ApplicationOnlyMask = 1<<0;
     }
@@ -84,34 +98,34 @@ unsafe impl RefEncode for NSFontCollectionOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction?language=objc)
+/// Actions that modify a font.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontAction(pub NSUInteger);
 impl NSFontAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/nofontchangeaction?language=objc)
+    /// No action; the font is returned unchanged.
     #[doc(alias = "NSNoFontChangeAction")]
     pub const NoFontChangeAction: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/viapanelfontaction?language=objc)
+    /// Converts the font according to the `NSFontPanel` method `panelConvertFont:`.
     #[doc(alias = "NSViaPanelFontAction")]
     pub const ViaPanelFontAction: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/addtraitfontaction?language=objc)
+    /// Converts the font to have an additional trait using [`convertFont:toHaveTrait:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convert(_:tohavetrait:)).
     #[doc(alias = "NSAddTraitFontAction")]
     pub const AddTraitFontAction: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/sizeupfontaction?language=objc)
+    /// Converts the font to a larger size using [`convertFont:toSize:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convert(_:tosize:)).
     #[doc(alias = "NSSizeUpFontAction")]
     pub const SizeUpFontAction: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/sizedownfontaction?language=objc)
+    /// Converts the font to a smaller size using [`convertFont:toSize:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convert(_:tosize:)).
     #[doc(alias = "NSSizeDownFontAction")]
     pub const SizeDownFontAction: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/heavierfontaction?language=objc)
+    /// Converts the font to a heavier weight using [`convertWeight:ofFont:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convertweight(_:of:)).
     #[doc(alias = "NSHeavierFontAction")]
     pub const HeavierFontAction: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/lighterfontaction?language=objc)
+    /// Converts the font to a lighter weight using [`convertWeight:ofFont:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convertweight(_:of:)).
     #[doc(alias = "NSLighterFontAction")]
     pub const LighterFontAction: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction/removetraitfontaction?language=objc)
+    /// Converts the font to remove a trait using [`convertFont:toNotHaveTrait:`](https://developer.apple.com/documentation/appkit/nsfontmanager/convert(_:tonothavetrait:)).
     #[doc(alias = "NSRemoveTraitFontAction")]
     pub const RemoveTraitFontAction: Self = Self(7);
 }
@@ -125,7 +139,24 @@ unsafe impl RefEncode for NSFontAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontmanager?language=objc)
+    /// The center of activity for the font-conversion system.
+    ///
+    /// ## Overview
+    ///
+    /// The font manager records the currently selected font, updates the Font panel and Font menu to reflect the selected font, initiates font changes, and converts fonts in response to requests from text-bearing objects. In a more prosaic role, [`NSFontManager`](https://developer.apple.com/documentation/appkit/nsfontmanager) can be queried for the fonts available to the application and for the particular attributes of a font, such as whether it’s condensed or extended.
+    ///
+    /// You typically set up a font manager and the Font menu using Interface Builder. However, you can also do so programmatically by getting the shared font manager instance and having it create the standard Font menu at runtime:
+    ///
+    /// ```objc
+    /// NSFontManager *fontManager = [NSFontManager sharedFontManager];
+    /// NSMenu *fontMenu = [fontManager fontMenu:YES];
+    /// ```
+    ///
+    /// You can then add the Font menu to your app’s main menu. After the Font menu is installed, your app automatically gains the functionality of both the Font menu and the Font panel.
+    ///
+    /// Font collections are managed by [`NSFontManager`](https://developer.apple.com/documentation/appkit/nsfontmanager).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

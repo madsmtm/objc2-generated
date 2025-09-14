@@ -30,31 +30,41 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerrordomain?language=objc)
+    /// The error domain identifying system extension errors.
     pub static OSSystemExtensionErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
+    /// A message that tells the user why the app is trying to install a driver extension bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is required for all DriverKit extensions and must be in the extension’s `Info.plist` file. Failure to include this key results in an error at activation time. For system extensions that are not DriverKit extensions, use [`NSSystemExtensionUsageDescriptionKey`](https://developer.apple.com/documentation/systemextensions/nssystemextensionusagedescriptionkey) instead.
+    ///
+    ///
     /// A property of a Driver Extension bundle containing a message that tells
     /// the user why the app is requesting to install it.
     ///
     ///
     /// The 'OSBundleUsageDescription' key is required in your Driver
     /// Extension if your app uses APIs that install them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osbundleusagedescriptionkey?language=objc)
     pub static OSBundleUsageDescriptionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A message that tells the user why the app is trying to install a system extension bundle.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is required for all system extensions except DriverKit extensions, and must be in the extension’s `Info.plist` file. Failure to include this key results in an error at activation time. For DriverKit extensions, use [`OSBundleUsageDescriptionKey`](https://developer.apple.com/documentation/systemextensions/osbundleusagedescriptionkey) instead.
+    ///
+    ///
     /// A property of a System Extension bundle containing a message that tells
     /// the user why the app is requesting to install it.
     ///
     ///
     /// The 'NSSystemExtensionUsageDescription' key is required in your
     /// System Extension if your app uses APIs that install them.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/nssystemextensionusagedescriptionkey?language=objc)
     pub static NSSystemExtensionUsageDescriptionKey: &'static NSString;
 }
 
@@ -66,54 +76,70 @@ extern "C" {
     /// The 'OSRelatedKernelExtension' key is optional. If one is present
     /// and the related kernel extension has the same Team ID and is approved by the
     /// system policy, this System Extension is also approved.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/osrelatedkernelextensionkey?language=objc)
     pub static OSRelatedKernelExtensionKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code?language=objc)
+/// Error codes for system extensions.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct OSSystemExtensionErrorCode(pub NSInteger);
 impl OSSystemExtensionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unknown?language=objc)
+    /// An error code that indicates an unknown error occurred.
     #[doc(alias = "OSSystemExtensionErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/missingentitlement?language=objc)
+    /// An error code that indicates the system extension lacks a required entitlement.
+    ///
+    /// ## Discussion
+    ///
+    /// The app must have the [`System Extension Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.system-extension.install) to activate or deactivate system extensions.
+    ///
+    ///
     #[doc(alias = "OSSystemExtensionErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unsupportedparentbundlelocation?language=objc)
+    /// An error code that indicates the extension’s parent app isn’t in a valid location for activation.
+    ///
+    /// ## Discussion
+    ///
+    /// The expected location of a driver extension is in the `Contents/Library/SystemExtensions` directory of a macOS app. The app itself must be in one of the system’s `Applications` directories.
+    ///
+    ///
     #[doc(alias = "OSSystemExtensionErrorUnsupportedParentBundleLocation")]
     pub const UnsupportedParentBundleLocation: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/extensionnotfound?language=objc)
+    /// An error code that indicates the manager can’t find the system extension.
     #[doc(alias = "OSSystemExtensionErrorExtensionNotFound")]
     pub const ExtensionNotFound: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/extensionmissingidentifier?language=objc)
+    /// An error code that indicates the extension identifier is missing.
+    ///
+    /// ## Discussion
+    ///
+    /// Make sure that the value in the `Info.plist` file of your DriverKit extension matches the identifier string you passed to the [`activationRequestForExtension:queue:`](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/activationrequest(forextensionwithidentifier:queue:)) method.
+    ///
+    ///
     #[doc(alias = "OSSystemExtensionErrorExtensionMissingIdentifier")]
     pub const ExtensionMissingIdentifier: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/duplicateextensionidentifer?language=objc)
+    /// An error code that indicates the extension identifier duplicates an existing identifier.
     #[doc(alias = "OSSystemExtensionErrorDuplicateExtensionIdentifer")]
     pub const DuplicateExtensionIdentifer: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/unknownextensioncategory?language=objc)
+    /// An error code that indicates the extension manager can’t recognize the extension’s category identifier.
     #[doc(alias = "OSSystemExtensionErrorUnknownExtensionCategory")]
     pub const UnknownExtensionCategory: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/codesignatureinvalid?language=objc)
+    /// An error code that indicates the extension’s signature is invalid.
     #[doc(alias = "OSSystemExtensionErrorCodeSignatureInvalid")]
     pub const CodeSignatureInvalid: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/validationfailed?language=objc)
+    /// An error code that indicates the manager can’t validate the extension.
     #[doc(alias = "OSSystemExtensionErrorValidationFailed")]
     pub const ValidationFailed: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/forbiddenbysystempolicy?language=objc)
+    /// An error code that indicates the system policy prohibits activating the system extension.
     #[doc(alias = "OSSystemExtensionErrorForbiddenBySystemPolicy")]
     pub const ForbiddenBySystemPolicy: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/requestcanceled?language=objc)
+    /// An error code that indicates the system extension manager request was canceled.
     #[doc(alias = "OSSystemExtensionErrorRequestCanceled")]
     pub const RequestCanceled: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/requestsuperseded?language=objc)
+    /// An error code that indicates the system extension request failed because the system already has a pending request for the same identifier.
     #[doc(alias = "OSSystemExtensionErrorRequestSuperseded")]
     pub const RequestSuperseded: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code/authorizationrequired?language=objc)
+    /// An error code that indicates the system was unable to obtain the proper authorization.
     #[doc(alias = "OSSystemExtensionErrorAuthorizationRequired")]
     pub const AuthorizationRequired: Self = Self(13);
 }
@@ -126,22 +152,20 @@ unsafe impl RefEncode for OSSystemExtensionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction?language=objc)
+/// Actions for describing how the extension manager should resolve a version conflict.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSSystemExtensionReplacementAction(pub NSInteger);
 impl OSSystemExtensionReplacementAction {
+    /// An action that tells the manager to cancel replacement of a system extension.
     /// Returned by the delegate when it determines that replacing an existing
     /// System Extension should not proceed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction/cancel?language=objc)
     #[doc(alias = "OSSystemExtensionReplacementActionCancel")]
     pub const Cancel: Self = Self(0);
+    /// An action that tells the manager to replace an existing system extension.
     /// Returned by the delegate when it determines that replacing an existing
     /// System Extension is desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction/replace?language=objc)
     #[doc(alias = "OSSystemExtensionReplacementActionReplace")]
     pub const Replace: Self = Self(1);
 }
@@ -154,22 +178,19 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The result of a completed request, possibly including additional information about the extension’s state.
 /// Describes additional result feedback after completion of a system extension request
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSSystemExtensionRequestResult(pub NSInteger);
 impl OSSystemExtensionRequestResult {
+    /// The request completed successfully.
     /// The request was successfully completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result/completed?language=objc)
     #[doc(alias = "OSSystemExtensionRequestCompleted")]
     pub const Completed: Self = Self(0);
+    /// The request requires a restart to complete successfully.
     /// The request will be successfully completed after a reboot.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result/willcompleteafterreboot?language=objc)
     #[doc(alias = "OSSystemExtensionRequestWillCompleteAfterReboot")]
     pub const WillCompleteAfterReboot: Self = Self(1);
 }
@@ -183,7 +204,7 @@ unsafe impl RefEncode for OSSystemExtensionRequestResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest?language=objc)
+    /// A request to activate or deactivate a system extension.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionRequest;
@@ -329,7 +350,7 @@ impl OSSystemExtensionRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties?language=objc)
+    /// Properties that identify a specific version of a system extension.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionProperties;
@@ -393,7 +414,7 @@ impl OSSystemExtensionProperties {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestdelegate?language=objc)
+    /// A type that receives updates about the progress of a request.
     pub unsafe trait OSSystemExtensionRequestDelegate: NSObjectProtocol {
         /// Called when the target extension bundle identifier is already activated.
         ///
@@ -496,7 +517,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionmanager?language=objc)
+    /// A type that facilitates activation and deactivation of system extensions.
+    ///
+    /// ## Overview
+    ///
+    /// Create an instance of [`OSSystemExtensionRequest`](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest) with the class methods on that type, and submit it to the shared instance of the extension manager with [`submitRequest:`](https://developer.apple.com/documentation/systemextensions/ossystemextensionmanager/submitrequest(_:)). Set the [`delegate`](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/delegate) on the request to receive the result of the activation or deactivation. The delegate also receives notifications if the user needs to authorize the extension or if a version conflict occurs.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionManager;
@@ -540,7 +567,6 @@ impl OSSystemExtensionManager {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionInfo;
@@ -587,7 +613,6 @@ impl OSSystemExtensionInfo {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspaceobserver?language=objc)
     pub unsafe trait OSSystemExtensionsWorkspaceObserver: NSObjectProtocol {
         /// This delegate method will be called when a system extension has been validated and allowed by the user to run.
         #[optional]
@@ -619,9 +644,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Note: Using the workspace API requires the system extension entitlement
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionsworkspace?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Using the workspace API requires the system extension entitlement
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Note: Using the workspace API requires the system extension entitlement
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSSystemExtensionsWorkspace;

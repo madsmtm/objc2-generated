@@ -7,7 +7,54 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalue?language=objc)
+    /// A simple container for a single C or Objective-C data item.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object can hold any of the scalar types such as `int`, `float`, and `char`, as well as pointers, structures, and object `id` references. Use this class to work with such data types in collections (such as [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) and [`NSSet`](https://developer.apple.com/documentation/foundation/nsset)), [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25), and other APIs that require Objective-C objects. [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) objects are always immutable.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The abstract [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) class is the public interface of a class cluster consisting mostly of private, concrete classes that create and return a value object appropriate for a given situation. It is possible to subclass [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue), but doing so requires providing storage facilities for the value (which is not inherited by subclasses) and implementing two primitive methods.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Any subclass of [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) _must_ override the primitive instance methods [`getValue:`](https://developer.apple.com/documentation/foundation/nsvalue/getvalue(_:)) and [`objCType`](https://developer.apple.com/documentation/foundation/nsvalue/objctype). These methods must operate on the storage that you provide for the value.
+    ///
+    /// You might want to implement an initializer for your subclass that is suited to the storage you provide. The [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) class does not have a designated initializer, so your initializer need only invoke the [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method of `super`. The [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) class adopts the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) and [`NSSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding) protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols.
+    ///
+    /// You may also wish to implement the [`hash`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/hash) method to make your subclass work well in collections.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// If you need only to use [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) objects for wrap a custom data types or structures defined by your app, you need not create an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) subclass. Instead, create a category that uses existing [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) methods to store and retrieve data of your custom type. For example, the code below defines a custom Polyhedron structure and creates [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) convenience methods to store and retrieve it:
+    ///
+    /// ```objc
+    /// typedef struct {
+    ///     int numFaces;
+    ///     float radius;
+    /// } Polyhedron;
+    ///  
+    /// @interface NSValue (Polyhedron)
+    /// + (instancetype)valuewithPolyhedron:(Polyhedron)value;
+    /// @property (readonly) Polyhedron polyhedronValue;
+    /// @end
+    ///  
+    /// @implementation NSValue (Polyhedron)
+    /// + (instancetype)valuewithPolyhedron:(Polyhedron)value
+    /// {
+    ///     return [self valueWithBytes:&value objCType:@encode(Polyhedron)];
+    /// }
+    /// - (Polyhedron) polyhedronValue
+    /// {
+    ///     Polyhedron value;
+    ///     [self getValue:&value];
+    ///     return value;
+    /// }
+    /// @end
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
 
     pub struct NSValue;
@@ -136,7 +183,33 @@ impl NSValue {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumber?language=objc)
+    /// An object wrapper for primitive scalar numeric values.
+    ///
+    /// ## Overview
+    ///
+    /// `NSNumber` is a subclass of `NSValue` that offers a value as any C scalar (numeric) type. It defines a set of methods specifically for setting and accessing the value as a signed or unsigned `char`, `short int`, `int`, `long int`, `long long int`, `float`, or `double` or as a `BOOL`. (Note that number objects do not necessarily preserve the type they are created with.) It also defines a [`compare:`](https://developer.apple.com/documentation/foundation/nsnumber/compare(_:)) method to determine the ordering of two `NSNumber` objects.
+    ///
+    /// `NSNumber` is “toll-free bridged” with its Core Foundation counterparts: [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) for integer and floating point values, and [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) for Boolean values. See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// ### Value Conversions
+    ///
+    /// `NSNumber` provides readonly properties that return the object’s stored value converted to a particular Boolean, integer, unsigned integer, or floating point C scalar type. Because numeric types have different storage capabilities, attempting to initialize with a value of one type and access the value of another type may produce an erroneous result—for example, initializing with a `double` value exceeding `FLT_MAX` and accessing its [`floatValue`](https://developer.apple.com/documentation/foundation/nsnumber/floatvalue), or initializing with an negative integer value and accessing its [`unsignedIntegerValue`](https://developer.apple.com/documentation/foundation/nsnumber/uintvalue). In some cases, attempting to initialize with a value of a type and access the value of another type may result in loss of precision—for example, initializing with a `double` value with many significant digits and accessing its [`floatValue`](https://developer.apple.com/documentation/foundation/nsnumber/floatvalue), or initializing with a large integer value and accessing its [`charValue`](https://developer.apple.com/documentation/foundation/nsnumber/int8value).
+    ///
+    /// An `NSNumber` object initialized with a value of a particular type accessing the converted value of a different _kind_ of type, such as `unsigned int` and `float`, will convert its stored value to that converted type in the following ways:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [CodeVoice { code: "Value" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/boolValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/intValue-95zzp", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/uintValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/floatValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/false", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/false", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0.0" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1.0" }] }]]], alignments: None, metadata: None })
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [CodeVoice { code: "Value" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/boolValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/intValue-95zzp", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/uintValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/floatValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/false", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0.0" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1.0" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "-1" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "-1" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "invalid, erroneous result" }] }] }], [Paragraph { inline_content: [CodeVoice { code: "-1.0" }] }]]], alignments: None, metadata: None })
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [CodeVoice { code: "Value" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/boolValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/intValue-95zzp", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/uintValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/floatValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/false", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0.0" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1.0" }] }]]], alignments: None, metadata: None })
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [CodeVoice { code: "Value" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/boolValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/intValue-95zzp", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/uintValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSNumber/floatValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "0.0" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/false", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "0.0" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "1.0" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "1.0" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "-1.0" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/true", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "-1" }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "invalid, erroneous result" }] }] }], [Paragraph { inline_content: [CodeVoice { code: "-1.0" }] }]]], alignments: None, metadata: None })
+    /// ### Subclassing Notes
+    ///
+    /// As with any class cluster, subclasses of `NSNumber` must override the primitive methods of its superclass, `NSValue`. In addition, there are two requirements around the data type your subclass represents:
+    ///
+    /// 1. Your implementation of [`objCType`](https://developer.apple.com/documentation/foundation/nsvalue/objctype) must return one of “`c`”, “`C`”, “`s`”, “`S`”, “`i`”, “`I`”, “`l`”, “`L`”, “`q`”, “`Q`”, “`f`”, and “`d`”. This is required for the other methods of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) to behave correctly.
+    ///
+    /// 2. Your subclass must override the accessor method that corresponds to the declared type—for example, if your implementation of [`objCType`](https://developer.apple.com/documentation/foundation/nsvalue/objctype) returns  “`i`”, you must override [`intValue`](https://developer.apple.com/documentation/foundation/nsnumber/int32value).
+    ///
+    ///
     #[unsafe(super(NSValue, NSObject))]
 
     pub struct NSNumber;

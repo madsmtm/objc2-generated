@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloader?language=objc)
+    /// An object that mediates resource requests from a URL asset.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create resource loader objects yourself. Instead, you retrieve a resource loader from the [`resourceLoader`](https://developer.apple.com/documentation/avfoundation/avurlasset/resourceloader) property of an [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) object and use it to assign your custom delegate object.
+    ///
+    /// The delegate you associate with this object must adopt the [`AVAssetResourceLoaderDelegate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate) protocol. For more information, see [`AVAssetResourceLoaderDelegate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceLoader;
@@ -72,9 +80,14 @@ impl AVAssetResourceLoader {
 }
 
 extern_protocol!(
-    /// The AVAssetResourceLoaderDelegate protocol defines methods that allow your code to handle resource loading requests coming from an AVURLAsset.
+    /// Methods you can implement to handle resource-loading requests coming from a URL asset.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// A class should adopt this protocol when associated with the asset’s resource loader—that is, an instance of the [`AVAssetResourceLoader`](https://developer.apple.com/documentation/avfoundation/avassetresourceloader) class. The resource loader works with your delegate to process the request.
+    ///
+    ///
+    /// The AVAssetResourceLoaderDelegate protocol defines methods that allow your code to handle resource loading requests coming from an AVURLAsset.
     pub unsafe trait AVAssetResourceLoaderDelegate: NSObjectProtocol {
         /// Invoked when assistance is required of the application to load a resource.
         ///
@@ -168,12 +181,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that contains information about the originator of a resource-loading request.
     /// AVAssetResourceLoadingRequestor represents the originator of loading request
     ///
     ///
     /// Information about the originator of a loading request, in order to decide whether or how to fulfill the request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequestor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceLoadingRequestor;
@@ -201,7 +213,13 @@ impl AVAssetResourceLoadingRequestor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest?language=objc)
+    /// An object that encapsulates information about a resource request from a resource loader object.
+    ///
+    /// ## Overview
+    ///
+    /// When an [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) object needs help loading a resource, it asks its [`AVAssetResourceLoader`](https://developer.apple.com/documentation/avfoundation/avassetresourceloader) object to assist. The resource loader encapsulates the request information by creating an instance of this object, which it then hands to its delegate object for processing. The delegate uses the information in this object to perform the request and report on the success or failure of the operation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceLoadingRequest;
@@ -300,12 +318,19 @@ impl AVAssetResourceLoadingRequest {
 }
 
 extern_class!(
+    /// An object that encapsulates information about a resource request from a resource loader to renew a previously issued request.
+    ///
+    /// ## Overview
+    ///
+    /// When an [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) needs to renew a resource, because the [`renewalDate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingcontentinformationrequest/renewaldate) has been set on a previous loading request, it asks its [`AVAssetResourceLoader`](https://developer.apple.com/documentation/avfoundation/avassetresourceloader) object to assist. The resource loader encapsulates the request information by creating an instance of this object, which it then hands to its delegate for processing. The delegate uses the information in this object to perform the request and report on the success or failure of the operation.
+    ///
+    /// The `AVAssetResourceRenewalRequest` class is a subclass of [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest).
+    ///
+    ///
     /// AVAssetResourceRenewalRequest encapsulates information about a resource request issued by a resource loader for the purpose of renewing a request previously issued.
     ///
     ///
     /// When an AVURLAsset needs to renew a resource (because contentInformationRequest.renewalDate has been set on a previous loading request), it asks its AVAssetResourceLoader object to assist. The resource loader encapsulates the request information by creating an instance of this object, which it then hands to its delegate for processing. The delegate uses the information in this object to perform the request and report on the success or failure of the operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourcerenewalrequest?language=objc)
     #[unsafe(super(AVAssetResourceLoadingRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceRenewalRequest;
@@ -333,7 +358,15 @@ impl AVAssetResourceRenewalRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingcontentinformationrequest?language=objc)
+    /// A query for retrieving essential information about a resource that an asset resource-loading request references.
+    ///
+    /// ## Overview
+    ///
+    /// When a resource loading delegate, which must implement the [`AVAssetResourceLoaderDelegate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate) protocol, receives an instance of [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) when the [`resourceLoader:shouldWaitForLoadingOfRequestedResource:`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate/resourceloader(_:shouldwaitforloadingofrequestedresource:)) is invoked and accepts responsibility for loading the resource, it must check whether the [`contentInformationRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/contentinformationrequest) property of the [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) is not `nil`. Whenever the value is not `nil`, the request includes a query for the information that `AVAssetResourceLoadingContentInformationRequest` encapsulates. In response to such queries, the resource loading delegate should set the values of the content information request’s properties appropriately before invoking the [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) method [`finishLoading`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/finishloading()).
+    ///
+    /// When [`finishLoading`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/finishloading()) is invoked, the values of the properties of its [`contentInformationRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/contentinformationrequest) property will, in part, determine how the requested resource is processed. For example, if the requested resource’s URL is the URL of an [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) and [`contentType`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingcontentinformationrequest/contenttype) is set by the resource loading delegate to a value that the underlying media system doesn’t recognize as a supported media file type, operations on the `AVURLAsset`, such as playback, are likely to fail.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceLoadingContentInformationRequest;
@@ -430,7 +463,17 @@ impl AVAssetResourceLoadingContentInformationRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingdatarequest?language=objc)
+    /// An object for requesting data from a resource that an asset resource-loading request references.
+    ///
+    /// ## Overview
+    ///
+    /// The [`AVAssetResourceLoaderDelegate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate) uses the `AVAssetResourceLoadingDataRequest` class to do the actual data reading, and its methods will be invoked, as necessary, to acquire data for the [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) instance.
+    ///
+    /// When the resource loading delegate, which implements the [`AVAssetResourceLoaderDelegate`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate) protocol, receives an instance of [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) as the second parameter of the delegate’s [`resourceLoader:shouldWaitForLoadingOfRequestedResource:`](https://developer.apple.com/documentation/avfoundation/avassetresourceloaderdelegate/resourceloader(_:shouldwaitforloadingofrequestedresource:)) method, it has the option of accepting responsibility for loading the referenced resource. If it accepts that responsibility, by returning [`true`](https://developer.apple.com/documentation/swift/true), it must check whether the [`dataRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/datarequest) property of the [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) instance is not `nil`. If it is not `nil`, the resource loading delegate is informed of the range of bytes within the resource that are required by the underlying media system. In response, the data is provided by one or more invocations of [`respondWithData:`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingdatarequest/respond(with:)) as required to provide the requested data. The data can be provided in increments determined by the resource loading delegate according to convenience or efficiency.
+    ///
+    /// When the [`AVAssetResourceLoadingRequest`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest) method [`finishLoading`](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequest/finishloading()) is invoked, the data request is considered fully satisfied. If the entire range of bytes requested has not yet been provided, the underlying media system assumes that the resource’s length is limited to the provided content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetResourceLoadingDataRequest;
@@ -578,9 +621,8 @@ impl AVAssetResourceLoadingRequest {
 }
 
 extern "C" {
+    /// Specifies whether the content key request requires a persistable key to be returned from the key vendor.
     /// Specifies whether the content key request should require a persistable key to be returned from the key vendor. Value should be a NSNumber created with +[NSNumber numberWithBool:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetresourceloadingrequeststreamingcontentkeyrequestrequirespersistentkey?language=objc)
     #[deprecated = "Use -[AVPersistableContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:] instead"]
     pub static AVAssetResourceLoadingRequestStreamingContentKeyRequestRequiresPersistentKey:
         &'static NSString;

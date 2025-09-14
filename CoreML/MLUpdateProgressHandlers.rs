@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of closures an update task uses to notify your app of its progress.
     /// Allows applications to register for progress and completion handlers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogresshandlers?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLUpdateProgressHandlers;

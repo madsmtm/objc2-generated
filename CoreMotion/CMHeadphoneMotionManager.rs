@@ -7,13 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/devicemotionhandler?language=objc)
+/// The type of block callback for handling headphone-motion data.
+///
+/// ## Discussion
+///
+/// The system calls `CMDeviceMotionHandler` blocks when there is device-motion data to process. You pass the block into [`startDeviceMotionUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/startdevicemotionupdates(to:withhandler:)) as the second argument. Blocks of this type return no value, but take two arguments:
+///
+/// - `motion`: A [`CMHeadphoneMotionManager`](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager) object, which encapsulates other objects and a structure representing attitude, rotation rate, gravity, and user acceleration.
+///
+/// - `error`: An error object representing an error when providing gyroscope data. If an error occurs, you should stop gyroscope updates and inform the user of the problem. If there is no error, this argument is `nil`. Core Motion errors are of the [`CMErrorDomain`](https://developer.apple.com/documentation/coremotion/cmerrordomain) domain and the [`CMError`](https://developer.apple.com/documentation/coremotion/cmerror) type.
+///
+///
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
 pub type CMHeadphoneDeviceMotionHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager?language=objc)
+    /// An object that starts and manages headphone motion services.
+    ///
+    /// ## Overview
+    ///
+    /// This class delivers headphone motion updates to your app. Use an instance of the manager to determine if the device supports motion, and to start and stop updates. Adopt the [`CMHeadphoneMotionManagerDelegate`](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanagerdelegate) protocol to receive and respond to motion updates. Before using this class, check [`deviceMotionAvailable`](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/isdevicemotionavailable) to make sure the feature is available.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In iOS and macOS, include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file. If this key is absent, the system crashes your app when you start device-motion updates.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Identify the coordinate axes
+    ///
+    /// To interpret attitude data, you need to know the orientation of the device’s coordinate axes. The following illustration shows the positive x-axis, positive y-axis, and positive z-axis for motion-capable Apple headphones.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/372eb44e9f893ffc21b6b8850be8ed0c/media-4302074~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/4f7825123ffe36ae9788ba56f7f92bd7/media-4302074%402x.png 2x" />
+    ///     <img alt="An illustration showing AirPods Max and AirPods Pro with labels representing the positive x-axis, positive y-axis, and positive z-axis on each device." src="https://docs-assets.developer.apple.com/published/4f7825123ffe36ae9788ba56f7f92bd7/media-4302074%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMHeadphoneMotionManager;

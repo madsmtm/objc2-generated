@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum?language=objc)
+/// Constants that describe the results summary the find panel UI includes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFindSessionSearchResultDisplayStyle(pub NSInteger);
 impl UIFindSessionSearchResultDisplayStyle {
+    /// The find panel includes the total number of results the session reports and the index of the target result.
     /// Displays the total number of reported results, and which result index is currently highlighted (i.e., "1 of 5").
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/currentandtotal?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleCurrentAndTotal")]
     pub const CurrentAndTotal: Self = Self(0);
+    /// The find panel includes the total number of results the session reports.
     /// Displays only the total number of reported results (i.e., "5 results").
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/total?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleTotal")]
     pub const Total: Self = Self(1);
+    /// The find panel doesn’t include the number of results the session reports.
     /// Do not display number of reported results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession/searchresultdisplaystyle-swift.enum/none?language=objc)
     #[doc(alias = "UIFindSessionSearchResultDisplayStyleNone")]
     pub const None: Self = Self(2);
 }
@@ -38,25 +35,22 @@ unsafe impl RefEncode for UIFindSessionSearchResultDisplayStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum?language=objc)
+/// Constants that describe the method to use when searching text for words that match a string.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSearchMatchMethod(pub NSInteger);
 impl UITextSearchMatchMethod {
+    /// The word contains the search string.
     /// Word contains search string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/contains?language=objc)
     #[doc(alias = "UITextSearchMatchMethodContains")]
     pub const Contains: Self = Self(0);
+    /// The word contains the search string as a prefix.
     /// Word contains the search string as a prefix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/startswith?language=objc)
     #[doc(alias = "UITextSearchMatchMethodStartsWith")]
     pub const StartsWith: Self = Self(1);
+    /// The word matches the search string exactly.
     /// Word is an exact match for the search string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions/wordmatchmethod-swift.enum/fullword?language=objc)
     #[doc(alias = "UITextSearchMatchMethodFullWord")]
     pub const FullWord: Self = Self(2);
 }
@@ -70,7 +64,7 @@ unsafe impl RefEncode for UITextSearchMatchMethod {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchoptions?language=objc)
+    /// An object containing the configurable options for a text search.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,6 +103,17 @@ impl UITextSearchOptions {
 }
 
 extern_class!(
+    /// An abstract base class that manages the state, presentation, and behavior for a search that the find interaction initiates.
+    ///
+    /// ## Overview
+    ///
+    /// You return a session object from the delegate of a [`UIFindInteraction`](https://developer.apple.com/documentation/uikit/uifindinteraction) to manage the state, presentation, and behavior for a given search. The session object responds to navigation and replacement requests through its [`highlightNextResultInDirection:`](https://developer.apple.com/documentation/uikit/uifindsession/highlightnextresult(in:)) and [`performSingleReplacementWithSearchQuery:replacementString:options:`](https://developer.apple.com/documentation/uikit/uifindsession/performsinglereplacement(query:replacementstring:options:)) methods. It also provides presentation information to the system find panel through [`resultCount`](https://developer.apple.com/documentation/uikit/uifindsession/resultcount) and [`highlightedResultIndex`](https://developer.apple.com/documentation/uikit/uifindsession/highlightedresultindex).
+    ///
+    /// UIKit can manage the state when you implement the [`UITextSearching`](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq) protocol on a class that encapsulates the searchable content. To do this, create an instance of [`UITextSearchingFindSession`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession) and provide it a [`searchableObject`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession/searchableobject) using an instance of your class.
+    ///
+    /// If you want to manage the state yourself or already have a class that implements find and replace for your app, you can subclass [`UIFindSession`](https://developer.apple.com/documentation/uikit/uifindsession) to bridge your custom implementation to the system UI.
+    ///
+    ///
     /// An abstract base class for managing a find session.
     ///
     /// A UIFindSession instance is returned by UIFindInteractionDelegate when a find session is initiated
@@ -117,8 +122,6 @@ extern_class!(
     /// is very custom in the way it handles the presentation of found results. Other clients are encouraged to
     /// instead use UISearchableObjectFindSession and the UITextSearching protocol, which manages the
     /// state of a find session automatically using behavior consistent with the rest of the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsession?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -258,6 +261,15 @@ impl UIFindSession {
 }
 
 extern_class!(
+    /// A find session object that wraps a searchable object implementing the text-searching protocol.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the [`UITextSearching`](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq) protocol on the class that encapsulates the searchable content for your view to use an instance of [`UITextSearchingFindSession`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession) as the session object. Alternatively, you can subclass [`UIFindSession`](https://developer.apple.com/documentation/uikit/uifindsession) to manage the details of the session using a custom class.
+    ///
+    /// The find session’s reference to [`searchableObject`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession/searchableobject) is weakly held to avoid a retain cycle if the view you install the interaction on is the searchable object itself. Ensure that your app maintains a strong reference to the searchable object.
+    ///
+    ///
     /// A
     /// `UIFindSession`implementation for clients who adopt the
     /// `UITextSearching`protocol.
@@ -270,8 +282,6 @@ extern_class!(
     /// for clients who already implement the
     /// `UITextInput`protocol, since many of the concepts defined there are
     /// compatible with this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession?language=objc)
     #[unsafe(super(UIFindSession, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

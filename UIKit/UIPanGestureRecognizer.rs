@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype?language=objc)
+/// Constants that define the type of the scroll.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollType(pub NSUInteger);
 impl UIScrollType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype/discrete?language=objc)
+    /// A discrete scroll type that originates from a device like a mouse with a scroll wheel.
     #[doc(alias = "UIScrollTypeDiscrete")]
     pub const Discrete: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype/continuous?language=objc)
+    /// A continuous scroll type that originates from a device like a trackpad.
     #[doc(alias = "UIScrollTypeContinuous")]
     pub const Continuous: Self = Self(1);
 }
@@ -31,20 +31,20 @@ unsafe impl RefEncode for UIScrollType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask?language=objc)
+/// A bit mask identifying the scroll type of a pan gesture.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollTypeMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIScrollTypeMask: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/discrete?language=objc)
+/// A discrete scroll type from a device, like a mouse.
         #[doc(alias = "UIScrollTypeMaskDiscrete")]
         const Discrete = 1<<UIScrollType::Discrete.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/continuous?language=objc)
+/// A continuous scroll type from a device, like a trackpad.
         #[doc(alias = "UIScrollTypeMaskContinuous")]
         const Continuous = 1<<UIScrollType::Continuous.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask/all?language=objc)
+/// A scroll type that’s either discrete or continuous.
         #[doc(alias = "UIScrollTypeMaskAll")]
         const All = UIScrollTypeMask::Discrete.0|UIScrollTypeMask::Continuous.0;
     }
@@ -59,7 +59,17 @@ unsafe impl RefEncode for UIScrollTypeMask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipangesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that interprets panning gestures.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIPanGestureRecognizer`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    /// Clients of this class can, in their action methods, query the [`UIPanGestureRecognizer`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer) object for the current translation of the gesture ([`translationInView:`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer/translation(in:))) and the velocity of the translation ([`velocityInView:`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer/velocity(in:))). They can specify a view’s coordinate system to use for the translation and velocity values. Clients can also reset the translation to a desired value.
+    ///
+    /// A panning gesture is continuous. The user must press one or more fingers on a view while panning it. The gesture begins ([`UIGestureRecognizerStateBegan`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/began)) when the user moves the minimum number of fingers allowed ([`minimumNumberOfTouches`](https://developer.apple.com/documentation/uikit/uipangesturerecognizer/minimumnumberoftouches)) enough distance for recognition as a pan. It changes ([`UIGestureRecognizerStateChanged`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/changed)) when the user moves a finger while pressing with the minimum number of fingers. It ends ([`UIGestureRecognizerStateEnded`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/ended)) when the user lifts all fingers.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

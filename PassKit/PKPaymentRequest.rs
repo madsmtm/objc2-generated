@@ -7,26 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability?language=objc)
+/// Capabilities for processing payment.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKMerchantCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl PKMerchantCapability: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/threedsecure?language=objc)
+/// Support for the 3-D Secure protocol.
         #[doc(alias = "PKMerchantCapability3DS")]
         const Capability3DS = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/emv?language=objc)
+/// Support for the EMV protocol.
+///
+/// ## Discussion
+///
+/// Include this value only if you support China Union Pay transactions.
+///
+///
         #[doc(alias = "PKMerchantCapabilityEMV")]
         const CapabilityEMV = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/credit?language=objc)
+/// Support for credit cards.
         #[doc(alias = "PKMerchantCapabilityCredit")]
         const CapabilityCredit = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/debit?language=objc)
+/// Support for debit cards.
         #[doc(alias = "PKMerchantCapabilityDebit")]
         const CapabilityDebit = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability/instantfundsout?language=objc)
+/// The value that indicates the merchant supports disbursing funds using Instant Funds Out.
+///
+/// ## Discussion
+///
+/// This capability indicates the merchant supports disbursing funds using Instant Funds Out (IFO), which means the recipient receives funds in minutes rather than days. Passing `PKMerchantCapabilityInstantFundsOut` into the [`init(merchantIdentifier:currency:region:supportedNetworks:merchantCapabilities:summaryItems:)`](https://developer.apple.com/documentation/passkit/pkdisbursementrequest/init(merchantidentifier:currency:region:supportednetworks:merchantcapabilities:summaryitems:)) indicates that the merchant is going to use IFO to facilitate the disbursement once the individual authenticates it.
+///
+///
         #[doc(alias = "PKMerchantCapabilityInstantFundsOut")]
         const CapabilityInstantFundsOut = 1<<7;
     }
@@ -40,16 +52,15 @@ unsafe impl RefEncode for PKMerchantCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcategorycode?language=objc)
+/// The optional four-digit type, in ISO 18245 format, that represents the type of goods or service the merchant provides for the transaction.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PKMerchantCategoryCode = i16;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcategorycodenone?language=objc)
     pub static PKMerchantCategoryCodeNone: PKMerchantCategoryCode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield?language=objc)
+/// Billing or shipping address fields.
 // NS_OPTIONS
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
 #[repr(transparent)]
@@ -57,26 +68,32 @@ extern "C" {
 pub struct PKAddressField(pub NSUInteger);
 bitflags::bitflags! {
     impl PKAddressField: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/pkaddressfieldnone?language=objc)
+/// No fields.
         #[doc(alias = "PKAddressFieldNone")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/postaladdress?language=objc)
+/// The buyer’s full street address, including name, street, city, state or province, postal code, and country or region.
         #[doc(alias = "PKAddressFieldPostalAddress")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const PostalAddress = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/phone?language=objc)
+/// The buyer’s telephone number.
         #[doc(alias = "PKAddressFieldPhone")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const Phone = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/email?language=objc)
+/// The buyer’s email address.
         #[doc(alias = "PKAddressFieldEmail")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const Email = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/name?language=objc)
+/// The buyer’s first and last name.
+///
+/// ## Discussion
+///
+/// This constant lets you request the name used for shipping or billing. The name is also included as part of the postal address field. The system only handles the name as a separate field when the postal address is not requested.
+///
+///
         #[doc(alias = "PKAddressFieldName")]
         const Name = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddressfield/all?language=objc)
+/// All fields.
         #[doc(alias = "PKAddressFieldAll")]
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
         const All = PKAddressField::PostalAddress.0|PKAddressField::Phone.0|PKAddressField::Email.0|PKAddressField::Name.0;
@@ -91,22 +108,22 @@ unsafe impl RefEncode for PKAddressField {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype?language=objc)
+/// A complete list of valid shipping types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShippingType(pub NSUInteger);
 impl PKShippingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/shipping?language=objc)
+    /// Shipping the purchase to the provided address using a third-party shipping company. This is the default shipping type.
     #[doc(alias = "PKShippingTypeShipping")]
     pub const Shipping: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/delivery?language=objc)
+    /// Delivering the purchase by the seller (for example, pizza, flower, or furniture delivery).
     #[doc(alias = "PKShippingTypeDelivery")]
     pub const Delivery: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/storepickup?language=objc)
+    /// Store pickup of the purchase from the seller’s store.
     #[doc(alias = "PKShippingTypeStorePickup")]
     pub const StorePickup: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype/servicepickup?language=objc)
+    /// Picking up an item from the provided address by the service (for example, transportation or shipping services that provide home pickup).
     #[doc(alias = "PKShippingTypeServicePickup")]
     pub const ServicePickup: Self = Self(3);
 }
@@ -119,19 +136,19 @@ unsafe impl RefEncode for PKShippingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode?language=objc)
+/// Constants that indicate whether the shipping mode prevents the user from editing fields of the shipping address.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKShippingContactEditingMode(pub NSUInteger);
 impl PKShippingContactEditingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/available?language=objc)
+    /// The value that indicates Apple Pay Later is available.
     #[doc(alias = "PKShippingContactEditingModeAvailable")]
     pub const Available: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/storepickup?language=objc)
+    /// The shipping contact on the payment sheet represents a pickup address and isn’t editable by the user.
     #[doc(alias = "PKShippingContactEditingModeStorePickup")]
     pub const StorePickup: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingcontacteditingmode/enabled?language=objc)
+    /// All fields of the shipping contact on the payment sheet are editable by the user.
     #[doc(alias = "PKShippingContactEditingModeEnabled")]
     #[deprecated]
     pub const Enabled: Self = Self(PKShippingContactEditingMode::Available.0);
@@ -145,23 +162,21 @@ unsafe impl RefEncode for PKShippingContactEditingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability?language=objc)
+/// Values you use to enable or disable Apple Pay Later for a specific transaction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKApplePayLaterAvailability(pub NSInteger);
 impl PKApplePayLaterAvailability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/available?language=objc)
+    /// Apple Pay Later is available.
     #[doc(alias = "PKApplePayLaterAvailable")]
     pub const Available: Self = Self(0);
+    /// Apple Pay Later is unavailable because one or more ineligible or prohibited items are in the shopping cart, such as gift cards.
     /// Default state where Apple Pay Later is available
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/unavailableitemineligible?language=objc)
     #[doc(alias = "PKApplePayLaterUnavailableItemIneligible")]
     pub const UnavailableItemIneligible: Self = Self(1);
+    /// Apple Pay Later is unavailable because there’s a recurring payment or subscription in the shopping cart.
     /// One or more ineligible items are in the basket, such as items with long fulfillment or prohibited MCCs
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability/unavailablerecurringtransaction?language=objc)
     #[doc(alias = "PKApplePayLaterUnavailableRecurringTransaction")]
     pub const UnavailableRecurringTransaction: Self = Self(2);
 }
@@ -175,7 +190,46 @@ unsafe impl RefEncode for PKApplePayLaterAvailability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequest?language=objc)
+    /// An object that represents a request for payment, including details about payment-processing capabilities, the payment amount, and shipping information.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to represent a merchant request for payment for goods or services. Your app creates a payment request as soon as a person taps the Apple Pay button to make a purchase. Tapping the Apple Pay button in your app initiates the payment request process. If your customers need to enter a discount code, choose a shipping method, or any other task, your app needs to ask for that information _before_ they tap the Apple Pay button.
+    ///
+    /// A payment request object contains information that describes the purchase, including information about the merchant, available payment networks, the payment summary, billing and shipping details, coupon codes, custom data, error messages, and more.
+    ///
+    /// A typical payment request is for a one-time payment. To support different types of payment requests, include one of the following options in the payment request object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Payment type request" }] }], [Paragraph { inline_content: [Text { text: "Property to set" }] }]], [[Paragraph { inline_content: [Text { text: "Recurring payments" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/recurringPaymentRequest", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Automatic reload payments" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/automaticReloadPaymentRequest", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Deferred payments" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/deferredPaymentRequest", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Indicating eligibility for Apple Pay Later" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/applePayLaterAvailability-3dxrt", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Multiple payment tokens to support for multimerchant payments" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.passkit/documentation/PassKit/PKPaymentRequest/multiTokenContexts", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can set only one optional payment request type on a payment request object.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Request a recurring payment
+    ///
+    /// Use the [`recurringPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/recurringpaymentrequest) property to set up a recurring payment request using the [`PKRecurringPaymentRequest`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentrequest) and [`PKRecurringPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem) classes. Recurring payments, such as subscriptions, can feature different payment intervals (for example, annually or monthly) and billing cycles, such as regular or trial.
+    ///
+    /// ### Request an automatic reload payment
+    ///
+    /// Use the [`automaticReloadPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/automaticreloadpaymentrequest) property to set up an automatic reload payment request using the [`PKAutomaticReloadPaymentRequest`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentrequest) and [`PKAutomaticReloadPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkautomaticreloadpaymentsummaryitem) classes. You can set up automatic reload payments, such as store card top-ups, that feature a balance threshold and a reload amount. The card automatically reloads with the reload amount when the account drops below the balance threshold.
+    ///
+    /// ### Request a deferred payment
+    ///
+    /// Use the [`deferredPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/deferredpaymentrequest) property to set up a deferred payment request using the [`PKDeferredPaymentRequest`](https://developer.apple.com/documentation/passkit/pkdeferredpaymentrequest) class. Deferred payments include purchases, such as hotel bookings or pre-orders, where the card renders payment at a later date upon the receipt of goods or delivery of services.
+    ///
+    /// ### Set the Apple Pay Later mode
+    ///
+    /// Use the [`applePayLaterAvailability`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/applepaylateravailability-3dxrt) property to indicate whether this payment request is eligible for Apple Pay Later. You can indicate that Apple Pay Later is unavailable for certain kinds of transactions, including subscriptions, items that require recurring payments or prohibited items, such as gift cards.
+    ///
+    /// ### Request multitoken or multimerchant payments
+    ///
+    /// Use the [`multiTokenContexts`](https://developer.apple.com/documentation/passkit/pkpaymentrequestupdate/multitokencontexts) property to request payment data for multimerchant payments with the [`PKPaymentTokenContext`](https://developer.apple.com/documentation/passkit/pkpaymenttokencontext) class. You can set up multitoken transactions to process and display payment requests with multiple merchants on one payment sheet, for example, a booking site where someone pays for a hotel, flight, and car rental from different merchants.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequest;

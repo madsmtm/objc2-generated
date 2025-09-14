@@ -8,11 +8,16 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A resolution for a matte texture.
+///
+/// ## Overview
+///
+/// You generate a matte texture every frame, specifying whether its resolution is the full size or half of the camera image.
+///
+///
 /// The resolution at which the matte is to be generated.
 ///
 /// The matte generated per frame can be full resolution of the captured camera image or half resolution. The caller chooses one of the options from ARMatteResolution during initialization.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -20,10 +25,10 @@ use crate::*;
 pub struct ARMatteResolution(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARMatteResolution {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution/full?language=objc)
+    /// An option that specifies the full camera image resolution.
     #[doc(alias = "ARMatteResolutionFull")]
     pub const Full: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution/half?language=objc)
+    /// An option that specifies half of the camera image resolution.
     #[doc(alias = "ARMatteResolutionHalf")]
     pub const Half: Self = Self(1);
 }
@@ -40,11 +45,26 @@ unsafe impl RefEncode for ARMatteResolution {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that creates matte textures you use to occlude your app’s virtual content with people, that ARKit recognizes in the camera feed.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class when you want full control over occluding your app’s virtual content, based on people ARKit recognizes in the camera feed.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Apps using one of the standard renderers  (`ARView` or [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview)) don’t need this class to effect people occlusion. See [`frameSemantics`](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.property) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To assist your custom renderer with people occlusion, matte generator processes alpha and depth information in a frame’s [`segmentationBuffer`](https://developer.apple.com/documentation/arkit/arframe/segmentationbuffer) and [`estimatedDepthData`](https://developer.apple.com/documentation/arkit/arframe/estimateddepthdata) to provide you with matte and depth textures. You use these textures to layer people on top of your app’s virtual content.
+    ///
+    ///
     /// An object designed to generate either full resolution or half resolution matte given the ARFrame.
     ///
     /// The caller initializes the object once and calls the alpha matte generation API for every ARFrame with the captured image and segmentation stencil.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

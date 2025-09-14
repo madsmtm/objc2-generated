@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkreflectionmapeffect?language=objc)
+    /// A lighting and shading system that supports reflection mapping for use in shader-based OpenGL rendering.
+    ///
+    /// ## Overview
+    ///
+    /// In addition to any of the properties provided by the [`GLKBaseEffect`](https://developer.apple.com/documentation/glkit/glkbaseeffect) class, your application must also configure the properties on the reflection map. The default value of the [`textureOrder`](https://developer.apple.com/documentation/glkit/glkbaseeffect/textureorder) property provided by the base effect is modified to include the reflection map as a final texturing stage; your application can modify the value of that property to change the order in which texturing occurs.
+    ///
+    /// The reflection map effect is calculated in accordance to section 2.11.4 of the OpenGL 2.1 specification `GL_REFLECTION_MAP` glTexGen() mode. It requires a cube map texture to define the enclosing envelope from which to reflection map the scene.
+    ///
+    ///
     #[unsafe(super(GLKBaseEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKBaseEffect")]

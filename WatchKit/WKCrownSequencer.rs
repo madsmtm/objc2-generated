@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkcrownsequencer?language=objc)
+    /// An object that reports the current state of the digital crown, including its rotational speed when it is in motion.
+    ///
+    /// ## Overview
+    ///
+    /// Do not create instances of this class yourself. Instead, retrieve a crown sequencer object from the current interface controller’s [`crownSequencer`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/crownsequencer) property. Before the sequencer can receive data, you must call its [`focus`](https://developer.apple.com/documentation/watchkit/wkcrownsequencer/focus()) method. Only one object in your interface can have focus at any given time, so if your interface also contains picker objects or has scrollable scenes, you must coordinate changes in focus accordingly. For example, calling the sequencer’s [`focus`](https://developer.apple.com/documentation/watchkit/wkcrownsequencer/focus()) method causes any picker objects or interface controllers to resign focus. When the user taps on a picker object, the currently active sequencer resigns focus, and the selected picker object gains the focus. Because the crown sequencer is not tied to a specific interface object, you can use it as general input for your app.
+    ///
+    /// Although the crown sequencer object has properties that contain the current state of the crown, it is more common to use a [`delegate`](https://developer.apple.com/documentation/watchkit/wkcrownsequencer/delegate) object to receive notifications as the user rotates the crown. For more information on receiving data using a delegate, see [`WKCrownDelegate`](https://developer.apple.com/documentation/watchkit/wkcrowndelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKCrownSequencer;
@@ -71,7 +79,7 @@ impl WKCrownSequencer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkcrowndelegate?language=objc)
+    /// A collection of methods you can implement to track the user’s interaction with the digital crown, receiving notifications when the user rotates the crown or when rotation stops.
     pub unsafe trait WKCrownDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(crownDidRotate:rotationalDelta:))]

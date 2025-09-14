@@ -11,17 +11,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfextensionmessagekey?language=objc)
+    /// A string the system uses as a key in a user info dictionary to identify a message.
     pub static SFExtensionMessageKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfextensionprofilekey?language=objc)
+    /// A string the system uses as a key in a user info dictionary to identify a profile identifier.
     pub static SFExtensionProfileKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariapplication?language=objc)
+    /// A proxy for the Safari app.
+    ///
+    /// ## Overview
+    ///
+    /// The `SFSafariApplication` class is used by a Safari app extension to access the active Safari window, open a new window, and update the toolbar items on a window. An application that acts as a host container for a Safari app extension can use this class to send messages to the app extension. There is no object instance for this class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSafariApplication;

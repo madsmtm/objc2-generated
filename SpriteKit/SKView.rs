@@ -13,7 +13,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skview?language=objc)
+    /// A view subclass that renders a SpriteKit scene.
+    ///
+    /// ## Overview
+    ///
+    /// You present a scene by calling the view’s [`presentScene:`](https://developer.apple.com/documentation/spritekit/skview/presentscene(_:)) method. When a scene is presented by the view, it alternates between running its simulation (which animates the content) and rendering the content for display. You can pause the scene by setting the view’s [`paused`](https://developer.apple.com/documentation/spritekit/skview/ispaused) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -385,7 +391,37 @@ impl SKView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skviewdelegate?language=objc)
+    /// Methods to take custom control over the view’s render rate.
+    ///
+    /// ## Overview
+    ///
+    /// By setting a SpriteKit view’s `delegate` with an object that implements [`SKViewDelegate`](https://developer.apple.com/documentation/spritekit/skviewdelegate), you can precisely control the frame rate of a game or app. You may choose to do this to maintain a consistent frame rate for computationally intensive code or for special effects such as simulating cine film.
+    ///
+    /// The following Swift code shows an example of a class that implements the SpriteKit view delegate protocol to reduce the frame rate to a specified value. With each call of [`view:shouldRenderAtTime:`](https://developer.apple.com/documentation/spritekit/skviewdelegate/view(_:shouldrenderattime:)), it checks the time since the last render and if that value exceeds the required frame duration (`1 / fps`), the method returns [`true`](https://developer.apple.com/documentation/swift/true) and the frame is rendered.
+    ///
+    /// ```swift
+    /// class ViewDelegate: NSObject, SKViewDelegate {
+    ///     var lastRenderTime: TimeInterval = 0
+    ///     
+    ///     let fps: TimeInterval = 3
+    ///     
+    ///     public func view(_ view: SKView, shouldRenderAtTime time: TimeInterval) -> Bool {
+    ///
+    ///         if time - lastRenderTime >= 1 / fps {
+    ///             lastRenderTime = time
+    ///             return true
+    ///         }
+    ///         else {
+    ///             return false
+    ///         }
+    ///         
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The return value of [`view:shouldRenderAtTime:`](https://developer.apple.com/documentation/spritekit/skviewdelegate/view(_:shouldrenderattime:)) doesn’t change the speed of physics simulations and actions in a SpriteKit scene. However, if you return [`false`](https://developer.apple.com/documentation/swift/false), SpriteKit will skip updates and [`SKSceneDelegate`](https://developer.apple.com/documentation/spritekit/skscenedelegate) methods are not called.
+    ///
+    ///
     pub unsafe trait SKViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

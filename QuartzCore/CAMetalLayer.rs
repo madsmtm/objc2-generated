@@ -14,7 +14,13 @@ use objc2_metal::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametaldrawable?language=objc)
+    /// A Metal drawable associated with a Core Animation layer.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) instance owns any instance that implements this protocol. Don’t implement this protocol yourself. See the [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) reference for information on how to request drawable objects.
+    ///
+    ///
     #[cfg(feature = "objc2-metal")]
     pub unsafe trait CAMetalDrawable: MTLDrawable {
         #[unsafe(method(texture))]
@@ -29,7 +35,77 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cametallayer?language=objc)
+    /// A Core Animation layer that Metal can render into, typically displayed onscreen.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) when you want to use Metal to render a layer’s contents; for example, to render into a view. Consider using [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) instead, because this class automatically wraps a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) object and provides a higher-level abstraction.
+    ///
+    /// If you’re using UIKit, to create a view that uses a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer), create a subclass of [UIView](https://developer.apple.com/library/archive/releasenotes/iPhone/RN-iPhoneSDK/index.html#//apple_ref/doc/uid/TP40007428-CH1-SW18) and override its [`layerClass`](https://developer.apple.com/documentation/uikit/uiview/layerclass) class method to return a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer):
+    ///
+    /// ```objc
+    /// + (Class) layerClass
+    /// {
+    ///     return [CAMetalLayer class];
+    /// }
+    /// ```
+    ///
+    /// If you’re using AppKit, configure an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object to use a backing layer and assign a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) object to the view:
+    ///
+    /// ```objc
+    /// myView.wantsLayer = YES;
+    /// myView.layer = [CAMetalLayer layer];
+    /// ```
+    ///
+    /// Adjust the layer’s properties to configure its underlying pixel format and other display behaviors.
+    ///
+    /// ### Rendering the Layer’s Contents
+    ///
+    /// A [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) creates a pool of Metal drawable objects ([`CAMetalDrawable`](https://developer.apple.com/documentation/quartzcore/cametaldrawable)). At any given time, one of these drawable objects contains the contents of the layer. To change the layer’s contents, ask the layer for a drawable object, render into it, and then update the layer’s contents to point to the new drawable.
+    ///
+    /// Call the layer’s [`nextDrawable`](https://developer.apple.com/documentation/quartzcore/cametallayer/nextdrawable()) method to obtain a drawable object. Get the drawable object’s texture and create a render pass that renders to that texture, as shown in the code below:
+    ///
+    /// ```objc
+    /// CAMetalLayer *metalLayer = (CAMetalLayer*)self.layer;
+    /// id<CAMetalDrawable> *drawable = [metalLayer nextDrawable];
+    ///
+    /// MTLRenderPassDescriptor *renderPassDescriptor
+    ///                                = [MTLRenderPassDescriptor renderPassDescriptor];
+    ///
+    /// renderPassDescriptor.colorAttachments[0].texture = drawable.texture;
+    /// renderPassDescriptor.colorAttachments[0].loadAction = MTLLoadActionClear;
+    /// renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(0.0,0.0,0.0,1.0);
+    /// ...
+    /// ```
+    ///
+    /// To change the layer’s contents to the new drawable, call the [`presentDrawable:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/present(_:)) method (or one of its variants) on the command buffer containing the encoded render pass, passing in the drawable object to present.
+    ///
+    /// ```objc
+    /// [commandBuffer presentDrawable:drawable];
+    /// ```
+    ///
+    /// ### Keeping References to Drawables
+    ///
+    /// The layer reuses a drawable only if it isn’t onscreen and there are no strong references to it. Further, if a drawable isn’t available when you call [`nextDrawable`](https://developer.apple.com/documentation/quartzcore/cametallayer/nextdrawable()), the system waits for one to become available. To avoid stalls in your app, request a new drawable only when you need it, and release any references to it as quickly as possible after you’re done with it.
+    ///
+    /// For example, before retrieving a new drawable, you might perform other work on the CPU or submit commands to the GPU that don’t require the drawable. Then, obtain the drawable and encode a command buffer to render into it, as described above. After you commit this command buffer, release all strong references to the drawable. If you don’t release drawables correctly, the layer runs out of drawables, and future calls to [`nextDrawable`](https://developer.apple.com/documentation/quartzcore/cametallayer/nextdrawable()) return `nil`.
+    ///
+    /// ### Releasing the Drawable
+    ///
+    /// Don’t release the drawable explicitly; instead, embed your render loop within an autorelease pool block:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func draw(in view: MTKView) {", "    autoreleasepool {", "        render(view: view)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)drawInMTKView:(MTKView *)view {", "    @autoreleasepool {", "        [self render:view];", "    }", "}"], metadata: None }] }] })
+    /// This block releases drawables promptly and avoids possible deadlock situations with multiple drawables. Release drawables as soon as possible after committing your onscreen render pass.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  As of iOS 10 and tvOS 10, you can safely retain a drawable to query its properties, such as [`drawableID`](https://developer.apple.com/documentation/metal/mtldrawable/drawableid) and [`presentedTime`](https://developer.apple.com/documentation/metal/mtldrawable/presentedtime), after the system has presented it. If you don’t need to query these properties, release the drawable when you no longer need it.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]

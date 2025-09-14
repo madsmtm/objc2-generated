@@ -11,9 +11,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothobjectidnull?language=objc)
 pub const kIOBluetoothObjectIDNULL: IOBluetoothObjectID = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobjectref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothObjectRef {
     inner: [u8; 0],
@@ -29,7 +27,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothObjectRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceref?language=objc)
+/// An object that represents a Bluetooth I/O device.
 #[repr(C)]
 pub struct IOBluetoothDeviceRef {
     inner: [u8; 0],
@@ -45,7 +43,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothDeviceRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothL2CAPChannelRef {
     inner: [u8; 0],
@@ -61,7 +58,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothL2CAPChannelRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothrfcommchannelref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothRFCOMMChannelRef {
     inner: [u8; 0],
@@ -77,7 +73,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothRFCOMMChannelRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpservicerecordref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothSDPServiceRecordRef {
     inner: [u8; 0],
@@ -93,7 +88,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPServiceRecordRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpuuidref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothSDPUUIDRef {
     inner: [u8; 0],
@@ -109,7 +103,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPUUIDRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsdpdataelementref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothSDPDataElementRef {
     inner: [u8; 0],
@@ -125,7 +118,6 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothSDPDataElementRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationref?language=objc)
 #[repr(C)]
 pub struct IOBluetoothUserNotificationRef {
     inner: [u8; 0],
@@ -141,24 +133,18 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueIOBluetoothObjectRef"> for IOBluetoothUserNotificationRef {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobjectid?language=objc)
 pub type IOBluetoothObjectID = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchoptions?language=objc)
 pub type IOBluetoothDeviceSearchOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchoptionsbits?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothDeviceSearchOptionsBits(pub c_uint);
 impl IOBluetoothDeviceSearchOptionsBits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsnone?language=objc)
     #[doc(alias = "kSearchOptionsNone")]
     pub const SearchOptionsNone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsalwaysstartinquiry?language=objc)
     #[doc(alias = "kSearchOptionsAlwaysStartInquiry")]
     pub const SearchOptionsAlwaysStartInquiry: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ksearchoptionsdiscardcachedresults?language=objc)
     #[doc(alias = "kSearchOptionsDiscardCachedResults")]
     pub const SearchOptionsDiscardCachedResults: Self = Self(1 << 1);
 }
@@ -175,11 +161,16 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchOptionsBits {
 
 /// Structure used to search for particular devices.
 ///
+/// ## Overview
+///
+/// You can search for general device classes and service classes, or you can search for a specific device address or name. If you pass NULL as the attribute structure, you will get ALL devices in the vicinity found during a search. Note that passing a zeroed out block of attributes is NOT equivalent to passing in NULL!
+///
+///
+/// Structure used to search for particular devices.
+///
 /// Make sure you specify all fields! If you do not set deviceClassMajor for example, and the value is
 /// 0, that is mapped to kBluetoothDeviceClassMajorMiscellaneous, which is probably not what you want. To
 /// search for all device types, you must pass kBluetoothDeviceClassMajorAny and its relatives.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchdeviceattributes?language=objc)
 #[cfg(feature = "Bluetooth")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -210,12 +201,17 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchDeviceAttributes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Structure used to search for particular devices.
+///
+/// ## Overview
+///
+/// You can search for general device classes and service classes, or you can search for a specific device address or name. If you pass NULL as the attribute structure, you will get ALL devices in the vicinity found during a search. Note that passing a zeroed out block of attributes is NOT equivalent to passing in NULL!
+///
+///
 /// You can search for general device classes and service classes, or you can search for a
 /// specific device address or name. If you pass NULL as the attribute structure,
 /// you will get ALL devices in the vicinity found during a search. Note that passing a zeroed
 /// out block of attributes is NOT equivalent to passing in NULL!
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchattributes?language=objc)
 #[cfg(feature = "Bluetooth")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -244,20 +240,22 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchAttributes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchtypes?language=objc)
 pub type IOBluetoothDeviceSearchTypes = u32;
 
 /// Bits to determine what Bluetooth devices to search for
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchtypesbits?language=objc)
+/// ## Overview
+///
+/// You can search for general device classes and service classes, or you can search for a specific device address or name. If you pass NULL as the attribute structure, you will get ALL devices in the vicinity found during a search. Note that passing a zeroed out block of attributes is NOT equivalent to passing in NULL!
+///
+///
+/// Bits to determine what Bluetooth devices to search for
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct IOBluetoothDeviceSearchTypesBits(pub c_uint);
 impl IOBluetoothDeviceSearchTypesBits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothdevicesearchclassic?language=objc)
     #[doc(alias = "kIOBluetoothDeviceSearchClassic")]
     pub const Classic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothdevicesearchle?language=objc)
     #[doc(alias = "kIOBluetoothDeviceSearchLE")]
     pub const LE: Self = Self(2);
 }
@@ -273,6 +271,11 @@ unsafe impl RefEncode for IOBluetoothDeviceSearchTypesBits {
 }
 
 extern "C-unwind" {
+    /// Hints that the macOS Bluetooth software should ignore a HID device that connects up.
+    ///
+    /// Parameters:
+    /// - device: A Bluetooth Device to ignore.
+    ///
     /// Hints that the Mac OS X Bluetooth software should ignore a HID device that connects up.
     ///
     /// Parameter `device`: A Bluetooth Device to ignore.
@@ -280,12 +283,15 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothignorehiddevice(_:)?language=objc)
     pub fn IOBluetoothIgnoreHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
 extern "C-unwind" {
+    /// The counterpart to the above IOBluetoothIgnoreHIDDevice() API.
+    ///
+    /// Parameters:
+    /// - device: A Bluetooth Device to “un”ignore.
+    ///
     /// The counterpart to the above IOBluetoothIgnoreHIDDevice() API.
     ///
     /// Parameter `device`: A Bluetooth Device to "un"ignore.
@@ -293,23 +299,17 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothremoveignoredhiddevice(_:)?language=objc)
     pub fn IOBluetoothRemoveIgnoredHIDDevice(device: Option<&IOBluetoothDeviceRef>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationchanneldirection?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothUserNotificationChannelDirection(pub c_uint);
 impl IOBluetoothUserNotificationChannelDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionany?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionincoming?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionIncoming")]
     pub const Incoming: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kiobluetoothusernotificationchanneldirectionoutgoing?language=objc)
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionOutgoing")]
     pub const Outgoing: Self = Self(2);
 }
@@ -326,6 +326,27 @@ unsafe impl RefEncode for IOBluetoothUserNotificationChannelDirection {
 
 /// Callback function definition for user notifications.
 ///
+/// Parameters:
+/// - userRefCon: (Void *) This user defined parameter was provided during the original call to register the notification.
+///
+/// - inRef: (IOBluetoothUserNotificationRef) The notification responsible for sending the notification.
+///
+/// - status: (IOBluetoothObjectRef) The object that originated the notification.
+///
+///
+/// ## Return Value
+///
+/// None.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback will be invoked when the notification for which it was registered is sent.
+///
+///
+/// Callback function definition for user notifications.
+///
 /// This callback will be invoked when the notification for which it was registered is sent.
 ///
 /// Parameter `userRefCon`: (void *) This user defined parameter was provided during the original call to register
@@ -334,8 +355,6 @@ unsafe impl RefEncode for IOBluetoothUserNotificationChannelDirection {
 /// Parameter `inRef`: (IOBluetoothUserNotificationRef) The notification responsible for sending the notification.
 ///
 /// Parameter `objectRef`: (IOBluetoothObjectRef) The object that originated the notification.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationcallback?language=objc)
 pub type IOBluetoothUserNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
         *mut c_void,
@@ -347,13 +366,22 @@ pub type IOBluetoothUserNotificationCallback = Option<
 impl IOBluetoothUserNotificationRef {
     /// Unregisters the target notification.
     ///
+    /// Parameters:
+    /// - notificationRef: The target IOBluetoothUserNotificationRef to be unregistered
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function will unregister the notification. Once the notification has been unregistered, it will no longer call the callback. Additionally, once this function has been called the target IOBluetoothUserNotificationRef is no longer valid.
+    ///
+    ///
+    /// Unregisters the target notification.
+    ///
     /// This function will unregister the notification.  Once the notification has been unregistered,
     /// it will no longer call the callback.  Additionally, once this function has been called the
     /// target IOBluetoothUserNotificationRef is no longer valid.
     ///
     /// Parameter `notificationRef`: The target IOBluetoothUserNotificationRef to be unregistered
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationunregister(_:)?language=objc)
     #[doc(alias = "IOBluetoothUserNotificationUnregister")]
     #[inline]
     pub unsafe fn unregister(&self) {
@@ -367,6 +395,27 @@ impl IOBluetoothUserNotificationRef {
 }
 
 impl IOBluetoothL2CAPChannelRef {
+    /// Allows a client to register for a channel close notification.
+    ///
+    /// Parameters:
+    /// - channel: The target L2CAP channel
+    ///
+    /// - callback: Callback to be called when the L2CAP channel is closed.
+    ///
+    /// - inRefCon: Client-supplied refCon to be passed to the callback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns an IOBluetoothUserNotificationRef representing the outstanding L2CAP channel close notification. To unregister the notification, call IOBluetoothUserNotificationUnregister() with the returned IOBluetoothUserNotificationRef. If an error is encountered creating the notification, NULL is returned. The returned IOBluetoothUserNotificationRef will be valid for as long as the notification is registered. It is not necessary to retain the result. Once the notification is unregistered, it will no longer be valid.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The given callback will be called when the L2CAP channel is closed.
+    ///
+    ///
     /// Allows a client to register for a channel close notification.
     ///
     /// The given callback will be called when the L2CAP channel is closed.
@@ -388,8 +437,6 @@ impl IOBluetoothL2CAPChannelRef {
     ///
     /// - `callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelregisterforchannelclosenotification(_:_:_:)?language=objc)
     #[doc(alias = "IOBluetoothL2CAPChannelRegisterForChannelCloseNotification")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -415,6 +462,39 @@ impl IOBluetoothL2CAPChannelRef {
 extern "C-unwind" {
     /// Creates a persistent audio driver that will route audio data to/from the specified device.
     ///
+    /// Parameters:
+    /// - device: A paired Bluetooth audio device
+    ///
+    /// - configDict: Configuration dictionary containing a description of the audio controls to be attached to the driver. Passing NULL will result in default controls
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if the audio driver was successfully created, error if hardware does not support SCO or device is not paired.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The Bluetooth device must be paired before it can be added. The Bluetooth hardware must also support SCO connections for devices to be added.
+    ///
+    /// When a client attempts to use the audio driver, it will automatically open the baseband connection and the SCO connection if necessary. Once they are open, it will route audio data to/from the audio system. The audio driver will continue to exist (even through reboots) until IOBluetoothRemoveAudioDevice is called.
+    ///
+    /// Currently, the only recognized entry in the configDict is “IOAudioControls”. That entry will be an NSArray of NSDictionary objects where each dictionary represents a single audio control. Following is a description of the mandatory and optional entries in each control dictionary.
+    ///
+    /// Mandatory entries:
+    ///
+    /// kIOAudioControlTypeKey = Four-char-code representing the control type (see IOAudioTypes.h) Possible values: kIOAudioControlTypeLevel kIOAudioControlTypeToggle kIOAudioControlTypeSelector kIOAudioControlSubTypeKey = Four-char-code representing the control subtype. The value is dependent on the control type. Following are common subtypes for each control type: kIOAudioControlTypeLevel: kIOAudioLevelControlSubTypeVolume kIOAudioControlTypeToggle: kIOAudioToggleControlSubTypeMute kIOAudioControlTypeSelector: kIOAudioSelectorControlSubTypeOutput kIOAudioSelectorControlSubTypeInput kIOAudioControlUsageKey = Four-char-code representing the usage of the control (i.e. what part of the I/O chain the control affects - input, output, pass-thru, …) (see IOAudioTypes.h) Possible values: kIOAudioControlUsageOutput kIOAudioControlUsageInput kIOAudioControlUsagePassThru kIOAudioControlChannelIDKey = channel ID for the channel(s) the control acts on (see IOAudioControl.h and IOAudioTypes.h for more info) kIOAudioControlChannelNameKey = name for the channel (see IOAudioControl.h and IOAudioDefines.h for more info) kIOAudioControlValueKey = Initial value of the control - as an NSNumber
+    ///
+    /// Optional entries: kIOAudioControlIDKey = Optional developer-defined ID field used to uniquely identify each control.
+    ///
+    /// Level control-specific entries (see IOAudioDefines.h) kIOAudioLevelControlMinValueKey = Min value for the range for the level control kIOAudioLevelControlMaxValueKey = Max value for the range for the level control kIOAudioLevelControlMinDBKey = Min value in db for the range for the level control. Value is a fixed-point 16.16 number represented as an integer in an NSNumber. kIOAudioLevelControlMaxDBKey = Max value in db for the range for the level control. Value is a fixed-point 16.16 number represented as an integer in an NSNumber.
+    ///
+    /// For a more detailed description of these attributes and how IOAudioControls work, see the headerdoc for IOAudioControl, IOAudioLevelControl, IOAudioToggleControl and IOAudioSelectorControl in the Kernel.framework.
+    ///
+    ///
+    /// Creates a persistent audio driver that will route audio data to/from the specified device.
+    ///
     /// In 10.9 this is not needed and does nothing.
     ///
     /// Parameter `device`: A paired Bluetooth audio device
@@ -429,8 +509,6 @@ extern "C-unwind" {
     /// - `config_dict` generic must be of the correct type.
     /// - `config_dict` generic must be of the correct type.
     /// - `config_dict` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothaddscoaudiodevice?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub fn IOBluetoothAddSCOAudioDevice(
@@ -440,6 +518,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a persistent audio driver for a device that had already been added using IOBluetoothAddAudioDevice().
+    ///
+    /// Parameters:
+    /// - device: Bluetooth audio device to remove
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess if the audio driver was successfully removed.
+    ///
+    ///
     /// Removes a persistent audio driver for a device that had already been added using IOBluetoothAddAudioDevice(). In 10.9 this is not needed and does nothing.
     ///
     /// Parameter `device`: Bluetooth audio device to remove
@@ -449,8 +538,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `device` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothremovescoaudiodevice?language=objc)
     #[deprecated]
     pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
 }

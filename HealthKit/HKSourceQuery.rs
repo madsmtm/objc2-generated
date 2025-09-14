@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksourcequery?language=objc)
+    /// A query that returns a list of sources, such as apps and devices, that have saved matching queries to the HealthKit store.
+    ///
+    /// ## Overview
+    ///
+    /// Source queries return a list of sources that have saved samples matching the specified sample types. Sources can be apps or devices (like Apple Watch or Bluetooth heart-rate monitors).
+    ///
+    /// Source queries are immutable: Their properties are set when they are first created, and they can’t change.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

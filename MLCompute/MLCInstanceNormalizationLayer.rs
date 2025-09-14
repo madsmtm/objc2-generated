@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that normalizes all features of one channel.
     /// An instance normalization layer.  For more information refer to https://pytorch.org/docs/stable/nn.html#instancenorm2d
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

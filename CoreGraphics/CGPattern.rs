@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern?language=objc)
+/// A 2D pattern to be used for drawing graphics paths.
+///
+/// ## Overview
+///
+/// Core Graphics tiles the pattern cell for you, based on parameters you specify when you call [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)).
+///
+/// To create a dashed line, see [`CGContextSetLineDash`](https://developer.apple.com/documentation/coregraphics/cgcontextsetlinedash).
+///
+///
 #[doc(alias = "CGPatternRef")]
 #[repr(C)]
 pub struct CGPattern {
@@ -26,19 +34,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPattern"> for CGPattern {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling?language=objc)
+/// Different methods for rendering a tiled pattern.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPatternTiling(pub i32);
 impl CGPatternTiling {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/nodistortion?language=objc)
+    /// The pattern cell is not distorted when painted.The spacing between pattern cells may vary by as much as 1 devicepixel.
     #[doc(alias = "kCGPatternTilingNoDistortion")]
     pub const NoDistortion: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/constantspacingminimaldistortion?language=objc)
+    /// Pattern cells are spaced consistently. Thepattern cell may be distorted by as much as 1 device pixel whenthe pattern is painted.
     #[doc(alias = "kCGPatternTilingConstantSpacingMinimalDistortion")]
     pub const ConstantSpacingMinimalDistortion: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/constantspacing?language=objc)
+    /// Pattern cells are spaced consistently, as with [`kCGPatternTilingConstantSpacingMinimalDistortion`](https://developer.apple.com/documentation/coregraphics/cgpatterntiling/constantspacingminimaldistortion).The pattern cell may be distorted additionally to permit a moreefficient implementation.
     #[doc(alias = "kCGPatternTilingConstantSpacing")]
     pub const ConstantSpacing: Self = Self(2);
 }
@@ -53,15 +61,49 @@ unsafe impl RefEncode for CGPatternTiling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterndrawpatterncallback?language=objc)
+/// Draws a pattern cell.
+///
+/// Parameters:
+/// - info: A generic pointer to private data associated with the pattern. This is the same pointer you supplied to [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)).
+///
+/// - context: The graphics context for drawing the pattern cell.
+///
+///
+/// ## Discussion
+///
+/// When a pattern is used to stroke or fill a graphics path,Quartz calls your custom drawing function at the appropriatetime to draw the pattern cell. The cell should be drawn exactly thesame way each time the drawing function is called.
+///
+/// In a drawing function associated with an uncolored pattern,you should not attempt to set a stroke or fill color or color space—ifyou do so, the result is undefined.
+///
+/// To learn how to associate your drawing function with a Quartzpattern, see [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)) and [`CGPatternCallbacks`](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks).
+///
+///
 #[cfg(feature = "CGContext")]
 pub type CGPatternDrawPatternCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CGContext)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatternreleaseinfocallback?language=objc)
+/// Release private data or resources associated with the pattern.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)).
+///
+///
+/// ## Discussion
+///
+/// Quartz calls your release function when it frees your pattern object.
+///
+/// To learn how to associate your release function with a Quartz pattern, see [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)) and [`CGPatternCallbacks`](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks).
+///
+///
 pub type CGPatternReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks?language=objc)
+/// A structure that holds a version and two callback functions for drawing a custom pattern.
+///
+/// ## Overview
+///
+/// You supply a [`CGPatternCallbacks`](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks) structure to the function [`CGPatternCreate`](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)) to create a data provider for direct access. The functions specified by the [`CGPatternCallbacks`](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks) structure are responsible for drawing the pattern and for handling the pattern’s memory management.
+///
+///
 #[cfg(feature = "CGContext")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -90,7 +132,13 @@ unsafe impl RefEncode for CGPatternCallbacks {
 }
 
 unsafe impl ConcreteType for CGPattern {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern/typeid?language=objc)
+    /// Returns the type identifier for Core Graphics patterns.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the opaque type [`CGPatternRef`](https://developer.apple.com/documentation/coregraphics/cgpattern).
+    ///
+    ///
     #[doc(alias = "CGPatternGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -102,7 +150,41 @@ unsafe impl ConcreteType for CGPattern {
 }
 
 impl CGPattern {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpattern/init(info:bounds:matrix:xstep:ystep:tiling:iscolored:callbacks:)?language=objc)
+    /// Creates a pattern object.
+    ///
+    /// Parameters:
+    /// - info: A pointer to private storage used by your pattern drawing function, or `NULL`. For more information, see the discussion below.
+    ///
+    /// - bounds: The bounding box of the pattern cell, specified in pattern space. (Pattern space is an abstract space that maps to the default user space by the transformation matrix you specify with the `matrix` parameter.)The drawing done in your pattern drawing function is clipped to this rectangle.
+    ///
+    /// - matrix: A matrix that represents a transform from pattern space to the default user space of the context in which the pattern is used. If no transform is needed, pass the identity matrix.
+    ///
+    /// - xStep: The horizontal displacement between cells, specified in pattern space. For no additional horizontal space between cells (so that each pattern cells abuts the previous pattern cell in the horizontal direction), pass the width of the pattern cell.
+    ///
+    /// - yStep: The vertical displacement between cells, specified in pattern space. For no additional vertical space between cells(so that each pattern cells abuts the previous pattern cell in the vertical direction), pass the height of the pattern cell.
+    ///
+    /// - tiling: A [`CGPatternTiling`](https://developer.apple.com/documentation/coregraphics/cgpatterntiling) constant that specifies the desired tiling method.
+    ///
+    /// - isColored: If you want to draw your pattern using its own intrinsic color, pass [`true`](https://developer.apple.com/documentation/swift/true). If you want to draw an uncolored (or masking) pattern that uses the fill or stroke color in the graphics state, pass [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// - callbacks: A pointer to a pattern  callback function table—your pattern drawing function is an entry in this table. See [`CGPatternCallbacks`](https://developer.apple.com/documentation/coregraphics/cgpatterncallbacks) for more information about callback function tables for patterns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new Core Graphics pattern. In Objective-C, you’re responsible for releasing this object using [`CGPatternRelease`](https://developer.apple.com/documentation/coregraphics/cgpatternrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Core Graphics calls your drawing function at the appropriate timeto draw the pattern cell. A pattern cell must be invariant—thatis, the pattern cell should be drawn exactly the same way each timethe drawing function is called.
+    ///
+    /// The appearance of a pattern cell is unaffected by changesin the graphics state of the context in which the pattern is used.
+    ///
+    /// See [`CGPatternDrawPatternCallback`](https://developer.apple.com/documentation/coregraphics/cgpatterndrawpatterncallback) formore information about pattern drawing functions.
+    ///
+    ///
     ///
     /// # Safety
     ///

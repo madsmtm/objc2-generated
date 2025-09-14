@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype?language=objc)
+/// The following constants specify values used by the methods [`setValue:type:forDimension:`](https://developer.apple.com/documentation/appkit/nstextblock/setvalue(_:type:for:)) and [`valueTypeForDimension:`](https://developer.apple.com/documentation/appkit/nstextblock/valuetype(for:)) to specify text block value types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockValueType(pub NSUInteger);
 impl NSTextBlockValueType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype/absolutevaluetype?language=objc)
+    /// Absolute value in points.
     #[doc(alias = "NSTextBlockAbsoluteValueType")]
     pub const AbsoluteValueType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype/percentagevaluetype?language=objc)
+    /// Percentage value (out of 100).
     #[doc(alias = "NSTextBlockPercentageValueType")]
     pub const PercentageValueType: Self = Self(1);
 }
@@ -31,28 +31,28 @@ unsafe impl RefEncode for NSTextBlockValueType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension?language=objc)
+/// The following constants specify values used by the methods [`setValue:type:forDimension:`](https://developer.apple.com/documentation/appkit/nstextblock/setvalue(_:type:for:)), [`valueForDimension:`](https://developer.apple.com/documentation/appkit/nstextblock/value(for:)), and [`valueTypeForDimension:`](https://developer.apple.com/documentation/appkit/nstextblock/valuetype(for:)) to specify text block dimensions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockDimension(pub NSUInteger);
 impl NSTextBlockDimension {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/width?language=objc)
+    /// Width of the text block.
     #[doc(alias = "NSTextBlockWidth")]
     pub const Width: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/minimumwidth?language=objc)
+    /// Minimum width of the text block.
     #[doc(alias = "NSTextBlockMinimumWidth")]
     pub const MinimumWidth: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/maximumwidth?language=objc)
+    /// Maximum width of the text block.
     #[doc(alias = "NSTextBlockMaximumWidth")]
     pub const MaximumWidth: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/height?language=objc)
+    /// Height of the text block.
     #[doc(alias = "NSTextBlockHeight")]
     pub const Height: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/minimumheight?language=objc)
+    /// Minimum height of the text block.
     #[doc(alias = "NSTextBlockMinimumHeight")]
     pub const MinimumHeight: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension/maximumheight?language=objc)
+    /// Maximum height of the text block.
     #[doc(alias = "NSTextBlockMaximumHeight")]
     pub const MaximumHeight: Self = Self(6);
 }
@@ -65,19 +65,25 @@ unsafe impl RefEncode for NSTextBlockDimension {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer?language=objc)
+/// The following constants specify values used by the properties and methods [`contentWidthValueType`](https://developer.apple.com/documentation/appkit/nstextblock/contentwidthvaluetype), [`setWidth:type:forLayer:edge:`](https://developer.apple.com/documentation/appkit/nstextblock/setwidth(_:type:for:edge:)), [`setWidth:type:forLayer:`](https://developer.apple.com/documentation/appkit/nstextblock/setwidth(_:type:for:)), [`widthForLayer:edge:`](https://developer.apple.com/documentation/appkit/nstextblock/width(for:edge:)), and [`widthValueTypeForLayer:edge:`](https://developer.apple.com/documentation/appkit/nstextblock/widthvaluetype(for:edge:)) to specify text block layer values.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockLayer(pub NSInteger);
 impl NSTextBlockLayer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/padding?language=objc)
+    /// Padding of the text block: space surrounding the content area extending to the border.
     #[doc(alias = "NSTextBlockPadding")]
     pub const Padding: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/border?language=objc)
+    /// The border of the text block.
+    ///
+    /// ## Discussion
+    ///
+    /// There’s space between padding and margin, typically with color, to present a visible boundary.
+    ///
+    ///
     #[doc(alias = "NSTextBlockBorder")]
     pub const Border: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer/margin?language=objc)
+    /// Margin of the text block: space surrounding the border.
     #[doc(alias = "NSTextBlockMargin")]
     pub const Margin: Self = Self(1);
 }
@@ -90,22 +96,22 @@ unsafe impl RefEncode for NSTextBlockLayer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum?language=objc)
+/// The following constants specify values used by the property [`verticalAlignment`](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.property) to specify vertical alignment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
 impl NSTextBlockVerticalAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/topalignment?language=objc)
+    /// Aligns adjacent blocks at their top.
     #[doc(alias = "NSTextBlockTopAlignment")]
     pub const TopAlignment: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/middlealignment?language=objc)
+    /// Aligns adjacent blocks at their middle.
     #[doc(alias = "NSTextBlockMiddleAlignment")]
     pub const MiddleAlignment: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/bottomalignment?language=objc)
+    /// Aligns adjacent blocks at their bottom.
     #[doc(alias = "NSTextBlockBottomAlignment")]
     pub const BottomAlignment: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum/baselinealignment?language=objc)
+    /// Aligns adjacent blocks at the baseline of the first line of text in the block.
     #[doc(alias = "NSTextBlockBaselineAlignment")]
     pub const BaselineAlignment: Self = Self(3);
 }
@@ -118,16 +124,16 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum?language=objc)
+/// These constants, specifying the type of text table layout algorithm, are used with [`layoutAlgorithm`](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
 impl NSTextTableLayoutAlgorithm {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum/automaticlayoutalgorithm?language=objc)
+    /// Specifies automatic layout algorithm
     #[doc(alias = "NSTextTableAutomaticLayoutAlgorithm")]
     pub const AutomaticLayoutAlgorithm: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum/fixedlayoutalgorithm?language=objc)
+    /// Specifies fixed layout algorithm
     #[doc(alias = "NSTextTableFixedLayoutAlgorithm")]
     pub const FixedLayoutAlgorithm: Self = Self(1);
 }
@@ -141,7 +147,13 @@ unsafe impl RefEncode for NSTextTableLayoutAlgorithm {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock?language=objc)
+    /// A block of text laid out in a subregion of the text container.
+    ///
+    /// ## Overview
+    ///
+    /// A text block appears as an attribute of a paragraph, and as part of the paragraph style. The most important subclass of [`NSTextBlock`](https://developer.apple.com/documentation/appkit/nstextblock) is [`NSTextTableBlock`](https://developer.apple.com/documentation/appkit/nstexttableblock), which represents a block of text that appears as a cell in a table. The table itself is a [`NSTextTable`](https://developer.apple.com/documentation/appkit/nstexttable) object. All [`NSTextBlock`](https://developer.apple.com/documentation/appkit/nstextblock) objects reference this table, which controls their sizing and positioning.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextBlock;
@@ -336,7 +348,7 @@ impl DefaultRetained for NSTextBlock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttableblock?language=objc)
+    /// A text block that appears as a cell in a text table.
     #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTableBlock;
@@ -423,7 +435,13 @@ impl DefaultRetained for NSTextTableBlock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable?language=objc)
+    /// An object that represents a text table as a whole.
+    ///
+    /// ## Overview
+    ///
+    /// A text table is responsible for laying out and drawing the text table blocks it contains, and it maintains the basic parameters of the table.
+    ///
+    ///
     #[unsafe(super(NSTextBlock, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextTable;

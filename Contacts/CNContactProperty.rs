@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a property of a contact.
+    ///
+    /// ## Overview
+    ///
+    /// A contact (that is, an instance of [`CNContact`](https://developer.apple.com/documentation/contacts/cncontact)) has properties, such as [`givenName`](https://developer.apple.com/documentation/contacts/cncontact/givenname), [`phoneNumbers`](https://developer.apple.com/documentation/contacts/cncontact/phonenumbers), and [`jobTitle`](https://developer.apple.com/documentation/contacts/cncontact/jobtitle). Each property is represented by an instance of [`CNContactProperty`](https://developer.apple.com/documentation/contacts/cncontactproperty), which provides a tuple that can contain three or five values, depending on whether the property is a member of an array of labeled values. For example, the [`phoneNumbers`](https://developer.apple.com/documentation/contacts/cncontact/phonenumbers) property is a member of an array of labeled values, so the `CNContactProperty` tuple contains the contact, key, value, identifier, and label. For the [`givenName`](https://developer.apple.com/documentation/contacts/cnmutablecontact/givenname) property, which is not contained in a labeled array, `CNContactProperty` returns a tuple that contains the contact, key, and value. The `CNContactProperty` class is used by [`CNContactPicker`](https://developer.apple.com/documentation/contactsui/cncontactpicker) to return the user’s selected property.
+    ///
+    ///
     /// Contains related information for a specific contact property.
     ///
     ///
     /// CNContactProperty is used by the CNContactPicker to return the user's selected property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactproperty?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactProperty;

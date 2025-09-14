@@ -7,30 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A workout session’s state.
 /// This enumerated type is used to represent the state of a workout session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutSessionState(pub NSInteger);
 impl HKWorkoutSessionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/notstarted?language=objc)
+    /// The workout session has not started.
     #[doc(alias = "HKWorkoutSessionStateNotStarted")]
     pub const NotStarted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/running?language=objc)
+    /// The workout session is running.
     #[doc(alias = "HKWorkoutSessionStateRunning")]
     pub const Running: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/ended?language=objc)
+    /// The workout session has ended.
+    ///
+    /// ## Discussion
+    ///
+    /// The watch can no longer run in the background. Its sensors return to normal, and it no longer generates workout data. You can’t restart or reuse the workout session.
+    ///
+    ///
     #[doc(alias = "HKWorkoutSessionStateEnded")]
     pub const Ended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/paused?language=objc)
+    /// The workout session has paused.
     #[doc(alias = "HKWorkoutSessionStatePaused")]
     pub const Paused: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/prepared?language=objc)
+    /// The session is ready but not yet running.
+    ///
+    /// ## Discussion
+    ///
+    /// The app can continue to run in the background, even after the user lowers their wrist, but it doesn’t yet generate workout data.
+    ///
+    ///
     #[doc(alias = "HKWorkoutSessionStatePrepared")]
     pub const Prepared: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessionstate/stopped?language=objc)
+    /// The session has stopped.
+    ///
+    /// ## Discussion
+    ///
+    /// As soon as the session stops, the watch’s sensors return to normal, and it no longer generates workout data; however, the app can continue to run in the background, even after the user lowers their wrist.
+    ///
+    /// You can’t restart or reuse the workout session.
+    ///
+    ///
     #[doc(alias = "HKWorkoutSessionStateStopped")]
     pub const Stopped: Self = Self(6);
 }
@@ -43,18 +62,17 @@ unsafe impl RefEncode for HKWorkoutSessionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type of session.
 /// This enumerated type is used to represent the type of a workout session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSessionType(pub NSInteger);
 impl HKWorkoutSessionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype/primary?language=objc)
+    /// A primary session running on watchOS.
     #[doc(alias = "HKWorkoutSessionTypePrimary")]
     pub const Primary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiontype/mirrored?language=objc)
+    /// A mirrored session, running on the companion iOS device.
     #[doc(alias = "HKWorkoutSessionTypeMirrored")]
     pub const Mirrored: Self = Self(1);
 }
@@ -68,9 +86,24 @@ unsafe impl RefEncode for HKWorkoutSessionType {
 }
 
 extern_class!(
-    /// An HKWorkoutSession is an object describing the properties of a workout activity session.
+    /// A session that tracks a person’s workout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsession?language=objc)
+    /// ## Overview
+    ///
+    /// The session fine-tunes Apple Watch’s sensors for the specified activity. All workout sessions generate high-frequency heart rate samples; however, an outdoor cycling activity generates accurate location data, while an indoor cycling activity doesn’t.
+    ///
+    /// Collecting heart rate data on iPhone or iPad requires pairing with an external heart rate sensor because these devices don’t have one. iPhone and iPad can collect various workout metrics, but the system may generate different samples than those specifically requested by an app.
+    ///
+    /// You can modify the default types of data collected during a workout. After someone saves a workout, you can access and display summary statistics or chart metrics over time.
+    ///
+    /// iPhone typically locks during workouts. For privacy reasons, health data usually isn’t accessible while the device is locked. However, the system can prompt someone to provide your app access to workout data even when their device is locked. You can then display Live Activities on the Lock Screen, providing health metrics without requiring the person to unlock their phone.
+    ///
+    /// Siri support extends to the Lock Screen, allowing people to start, pause, resume, or cancel workouts hands-free. You can integrate Siri intents into your apps to enable this functionality.
+    ///
+    /// Apple Watch runs one workout session at a time. If a second workout starts while your workout is running, your [`HKWorkoutSessionDelegate`](https://developer.apple.com/documentation/healthkit/hkworkoutsessiondelegate) object receives an [`HKErrorAnotherWorkoutSessionStarted`](https://developer.apple.com/documentation/healthkit/hkerror/code/erroranotherworkoutsessionstarted) error, and your session ends.
+    ///
+    ///
+    /// An HKWorkoutSession is an object describing the properties of a workout activity session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutSession;
@@ -398,11 +431,16 @@ impl HKWorkoutSession {
 }
 
 extern_protocol!(
+    /// The session delegate protocol that defines an interface for receiving notifications about errors and changes in the workout session’s state.
+    ///
+    /// ## Overview
+    ///
+    /// All the methods are required. HealthKit calls these methods on an anonymous serial background queue.
+    ///
+    ///
     /// This protocol should be implemented to be notified when a workout session's state changes.
     ///
     /// The methods on this protocol are called on an anonymous serial background queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsessiondelegate?language=objc)
     pub unsafe trait HKWorkoutSessionDelegate: NSObjectProtocol {
         /// This method is called when a workout session transitions to a new state.
         ///

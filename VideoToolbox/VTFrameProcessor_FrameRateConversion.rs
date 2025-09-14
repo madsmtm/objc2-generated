@@ -8,9 +8,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that specify whether to prioritize quality or performance.
 /// Configuration value you set to prioritize quality or performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,10 +17,10 @@ use crate::*;
 pub struct VTFrameRateConversionConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfigurationQualityPrioritization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum/normal?language=objc)
+    /// A normal quality prioritization level.
     #[doc(alias = "VTFrameRateConversionConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum/quality?language=objc)
+    /// A quality prioritization level.
     #[doc(alias = "VTFrameRateConversionConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -36,12 +35,11 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationQualityPrioritizatio
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The specific algorithm or configuration revision that is to be used to perform the request.
 /// Available algorithm revisions.
 ///
 /// A new enum case with higher revision number is added when the processing algorithm is updated.
 /// The ``VTFrameRateConversionConfiguration/defaultRevision`` property provides the default algorithm revision.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -49,7 +47,7 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationQualityPrioritizatio
 pub struct VTFrameRateConversionConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionConfigurationRevision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/revision-swift.enum/revision1?language=objc)
+    /// An algorithm or implementation that represents the first revision.
     #[doc(alias = "VTFrameRateConversionConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -64,6 +62,13 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value describing the processing request in a parameters submission object.
+///
+/// ## Overview
+///
+/// Set to VTFrameRateConversionParametersSubmissionModeSequential to indicate that the current submission follows the presentation time order without jumping or skipping when compared to the previous submission. Using the submission mode sequential will yield better performance. Set to VTFrameRateConversionParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence. If the submission mode random is set, the internal cache will be cleared during the processWithParameters call.
+///
+///
 /// Indicates the order of input frames.
 ///
 /// When submitting ``VTFrameRateConversionParameters`` to the processor, you need to provide one of these values based on
@@ -79,8 +84,6 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
 ///
 /// Use ``VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged`` to indicate that the frames are
 /// in sequential order however, the reference frames are unchanged.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -88,21 +91,36 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
 pub struct VTFrameRateConversionParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTFrameRateConversionParametersSubmissionMode {
-    /// You are submitting frames in non-sequential order.
+    /// A submission follow presentation time order with a jump or skip in a frame sequence.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/random?language=objc)
+    /// ## Discussion
+    ///
+    /// If this value is set, the internal cache will be cleared during the processWithParameters call.
+    ///
+    ///
+    /// You are submitting frames in non-sequential order.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
-    /// You are submitting frames sequentially following presentation time order.
+    /// A submission follow presentation time order without a jump or skip when compared to a previous submission.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/sequential?language=objc)
+    /// ## Discussion
+    ///
+    /// This submission mode will yield a better performance.
+    ///
+    ///
+    /// You are submitting frames sequentially following presentation time order.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
     /// You are submitting frames sequentially.
     ///
+    /// ## Discussion
+    ///
     /// This processing request uses the same source and next reference frames as the previous submission.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum/sequentialreferencesunchanged?language=objc)
+    ///
+    /// You are submitting frames sequentially.
+    ///
+    /// This processing request uses the same source and next reference frames as the previous submission.
     #[doc(alias = "VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged")]
     pub const SequentialReferencesUnchanged: Self = Self(3);
 }
@@ -119,11 +137,10 @@ unsafe impl RefEncode for VTFrameRateConversionParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that enables the frame rate conversion on a frame processing session.
     /// Configuration that you use to set up the frame rate conversion processor.
     ///
     /// This configuration enables the frame-rate conversion on a `VTFrameProcessor` session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -308,6 +325,15 @@ impl VTFrameRateConversionConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object that contains the required input and output parameters to run a frame rate conversion processor on a frame.
+    ///
+    /// ## Overview
+    ///
+    /// This object is used in the processWithParameters call of a VTFrameProcessor class. The output parameter is a destinationFrame where the output frame is returned as a VTFrameProcessorMutableFrame back to the caller function once the processing completes.
+    ///
+    /// The parameters within VTFrameRateConversionParameters are frame level parameters.
+    ///
+    ///
     /// An object that contains both input and output parameters, which the frame-rate conversion processor needs to process a frame.
     ///
     /// Use this object as a parameter to the ``VTFrameProcessor/processWithParameters`` method. The output parameter for
@@ -315,8 +341,6 @@ extern_class!(
     /// back to you once the `processWithParameters` completes.
     ///
     /// `VTFrameRateConversionParameters` are frame-level parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

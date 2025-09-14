@@ -9,7 +9,7 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode?language=objc)
+/// A mode that describes how the fog component is calculated for the fragment.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -19,13 +19,13 @@ pub struct GLKFogMode(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKFogMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/exp?language=objc)
+    /// The fog component is calculated as `exp(-density * distance)` and clamped to the range `[0.0, 1.0]`.
     #[doc(alias = "GLKFogModeExp")]
     pub const Exp: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/exp2?language=objc)
+    /// The fog component is calculated as `exp(-(density * distance)^2)` and clamped to the range `[0.0, 1.0]`.
     #[doc(alias = "GLKFogModeExp2")]
     pub const Exp2: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkfogmode/linear?language=objc)
+    /// The fog component is calculated as `(end - distance) / (end - start)` and clamped to the range `[0.0, 1.0]`.
     #[doc(alias = "GLKFogModeLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -43,7 +43,15 @@ unsafe impl RefEncode for GLKFogMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertyfog?language=objc)
+    /// Fog drawing information for use in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// These properties are specifically designed to mimic the fog calculations provided by OpenGL ES 1.1.
+    ///
+    /// When fog is enabled, the fog component is calculated and clamped to a range from `0.0` to `1.0`. Then, the fog value is used as a blending factor between the computed fragment color and the fog color.
+    ///
+    ///
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]

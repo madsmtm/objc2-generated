@@ -7,339 +7,359 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerrordomain?language=objc)
+    /// A string that identifies the HomeKit error domain.
     pub static HMErrorDomain: &'static NSString;
 }
 
+/// Possible error values that can be returned from HomeKit APIs.
 /// This enumeration describes the possible error constants that can be
 /// returned from the the HomeKit APIs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HMErrorCode(pub NSInteger);
 impl HMErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/unexpectederror?language=objc)
+    /// An unexpected error.
     #[doc(alias = "HMErrorCodeUnexpectedError")]
     pub const UnexpectedError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/alreadyexists?language=objc)
+    /// An error indicating the container already contains the object you are trying to add.
     #[doc(alias = "HMErrorCodeAlreadyExists")]
     pub const AlreadyExists: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notfound?language=objc)
+    /// An error indicating the object was not found in the container.
     #[doc(alias = "HMErrorCodeNotFound")]
     pub const NotFound: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidparameter?language=objc)
+    /// An error indicating the object is invalid for the given operation.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the home object issues an error when attempting to add a room that exists in another home.
+    ///
+    ///
     #[doc(alias = "HMErrorCodeInvalidParameter")]
     pub const InvalidParameter: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorynotreachable?language=objc)
+    /// An error indicating the accessory is not reachable over the network.
     #[doc(alias = "HMErrorCodeAccessoryNotReachable")]
     pub const AccessoryNotReachable: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/readonlycharacteristic?language=objc)
+    /// An attempt to modify a read-only value.
     #[doc(alias = "HMErrorCodeReadOnlyCharacteristic")]
     pub const ReadOnlyCharacteristic: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/writeonlycharacteristic?language=objc)
+    /// An attempt to read from a write-only characteristic.
     #[doc(alias = "HMErrorCodeWriteOnlyCharacteristic")]
     pub const WriteOnlyCharacteristic: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notificationnotsupported?language=objc)
+    /// An attempt to register for notifications from an accessory that does not support notifications.
     #[doc(alias = "HMErrorCodeNotificationNotSupported")]
     pub const NotificationNotSupported: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/operationtimedout?language=objc)
+    /// An error indicating the operation timed out.
     #[doc(alias = "HMErrorCodeOperationTimedOut")]
     pub const OperationTimedOut: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorypoweredoff?language=objc)
+    /// An error indicating the accessory is off.
     #[doc(alias = "HMErrorCodeAccessoryPoweredOff")]
     pub const AccessoryPoweredOff: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessdenied?language=objc)
+    /// An error indicating the current user doesn’t have privileges to perform the operation.
     #[doc(alias = "HMErrorCodeAccessDenied")]
     pub const AccessDenied: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/objectassociatedtoanotherhome?language=objc)
+    /// An attempt to associate an object with a home when it’s already associated with another home.
     #[doc(alias = "HMErrorCodeObjectAssociatedToAnotherHome")]
     pub const ObjectAssociatedToAnotherHome: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/objectnotassociatedtoanyhome?language=objc)
+    /// An attempt to perform an operation on an object that is not associated to any home.
     #[doc(alias = "HMErrorCodeObjectNotAssociatedToAnyHome")]
     pub const ObjectNotAssociatedToAnyHome: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/objectalreadyassociatedtohome?language=objc)
+    /// An attempt to associate an object with a home when it’s already associated with that home.
     #[doc(alias = "HMErrorCodeObjectAlreadyAssociatedToHome")]
     pub const ObjectAlreadyAssociatedToHome: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryisbusy?language=objc)
+    /// An error indicating the accessory is busy.
     #[doc(alias = "HMErrorCodeAccessoryIsBusy")]
     pub const AccessoryIsBusy: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/operationinprogress?language=objc)
+    /// An error indicating the operation is already in progress.
     #[doc(alias = "HMErrorCodeOperationInProgress")]
     pub const OperationInProgress: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryoutofresources?language=objc)
+    /// An error indicating the accessory is out of resources.
     #[doc(alias = "HMErrorCodeAccessoryOutOfResources")]
     pub const AccessoryOutOfResources: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/insufficientprivileges?language=objc)
+    /// An error indicating insufficient privileges for the operation.
     #[doc(alias = "HMErrorCodeInsufficientPrivileges")]
     pub const InsufficientPrivileges: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorypairingfailed?language=objc)
+    /// An attempt to pair with the accessory has failed.
     #[doc(alias = "HMErrorCodeAccessoryPairingFailed")]
     pub const AccessoryPairingFailed: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invaliddataformatspecified?language=objc)
+    /// An error indicating an invalid data format was specified.
     #[doc(alias = "HMErrorCodeInvalidDataFormatSpecified")]
     pub const InvalidDataFormatSpecified: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/nilparameter?language=objc)
+    /// An error indicating that `nil` was passed for an operation that does not accept `nil`.
     #[doc(alias = "HMErrorCodeNilParameter")]
     pub const NilParameter: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/unconfiguredparameter?language=objc)
+    /// An error indicating an unconfigured parameter.
     #[doc(alias = "HMErrorCodeUnconfiguredParameter")]
     pub const UnconfiguredParameter: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidclass?language=objc)
+    /// An attempt to use an abstract base class in an operation instead of a concrete subclass.
     #[doc(alias = "HMErrorCodeInvalidClass")]
     pub const InvalidClass: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/operationcancelled?language=objc)
+    /// An error indicating the user canceled the operation.
     #[doc(alias = "HMErrorCodeOperationCancelled")]
     pub const OperationCancelled: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/roomforhomecannotbeinzone?language=objc)
+    /// An attempt to add the room that represents the entire home to a zone.
     #[doc(alias = "HMErrorCodeRoomForHomeCannotBeInZone")]
     pub const RoomForHomeCannotBeInZone: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/noactionsinactionset?language=objc)
+    /// An attempt to execute an action set with no actions.
     #[doc(alias = "HMErrorCodeNoActionsInActionSet")]
     pub const NoActionsInActionSet: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/noregisteredactionsets?language=objc)
+    /// An attempt to activate a trigger with no action sets.
     #[doc(alias = "HMErrorCodeNoRegisteredActionSets")]
     pub const NoRegisteredActionSets: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/missingparameter?language=objc)
+    /// An error indicating a missing parameter.
     #[doc(alias = "HMErrorCodeMissingParameter")]
     pub const MissingParameter: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/firedateinpast?language=objc)
+    /// An attempt to activate a timer trigger with a date in the past.
     #[doc(alias = "HMErrorCodeFireDateInPast")]
     pub const FireDateInPast: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/roomforhomecannotbeupdated?language=objc)
+    /// An attempt to change the room that represents the entire home.
     #[doc(alias = "HMErrorCodeRoomForHomeCannotBeUpdated")]
     pub const RoomForHomeCannotBeUpdated: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/actioninanotheractionset?language=objc)
+    /// An attempt to add an action that exists in one action set to another action set.
     #[doc(alias = "HMErrorCodeActionInAnotherActionSet")]
     pub const ActionInAnotherActionSet: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/objectwithsimilarnameexistsinhome?language=objc)
+    /// An attempt to give the name of one object to another object in the home.
     #[doc(alias = "HMErrorCodeObjectWithSimilarNameExistsInHome")]
     pub const ObjectWithSimilarNameExistsInHome: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/homewithsimilarnameexists?language=objc)
+    /// An attempt to assign a home the same name as an existing home.
     #[doc(alias = "HMErrorCodeHomeWithSimilarNameExists")]
     pub const HomeWithSimilarNameExists: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/renamewithsimilarname?language=objc)
+    /// An attempt to rename an object with its current name.
     #[doc(alias = "HMErrorCodeRenameWithSimilarName")]
     pub const RenameWithSimilarName: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/cannotremovenonbridgeaccessory?language=objc)
+    /// An attempt to remove a bridged accessory.
+    ///
+    /// ## Discussion
+    ///
+    /// You can only remove standalone or bridge accessories.
+    ///
+    ///
     #[doc(alias = "HMErrorCodeCannotRemoveNonBridgeAccessory")]
     pub const CannotRemoveNonBridgeAccessory: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/namecontainsprohibitedcharacters?language=objc)
+    /// An attempt to name an object with prohibited characters.
+    ///
+    /// ## Discussion
+    ///
+    /// Only letters, symbols, numbers, spaces, and apostrophes are permitted in names.
+    ///
+    ///
     #[doc(alias = "HMErrorCodeNameContainsProhibitedCharacters")]
     pub const NameContainsProhibitedCharacters: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/namedoesnotstartwithvalidcharacters?language=objc)
+    /// An attempt to start the name of an object with invalid characters.
+    ///
+    /// ## Discussion
+    ///
+    /// Names must start with a letter, symbol, or number.
+    ///
+    ///
     #[doc(alias = "HMErrorCodeNameDoesNotStartWithValidCharacters")]
     pub const NameDoesNotStartWithValidCharacters: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/useridnotemailaddress?language=objc)
+    /// An error indicating the user’s ID is not a valid email address.
     #[doc(alias = "HMErrorCodeUserIDNotEmailAddress")]
     pub const UserIDNotEmailAddress: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/userdeclinedaddinguser?language=objc)
+    /// An error indicating the user canceled the add user operation.
     #[doc(alias = "HMErrorCodeUserDeclinedAddingUser")]
     pub const UserDeclinedAddingUser: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/userdeclinedremovinguser?language=objc)
+    /// An error indicating the user canceled the remove user operation.
     #[doc(alias = "HMErrorCodeUserDeclinedRemovingUser")]
     pub const UserDeclinedRemovingUser: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/userdeclinedinvite?language=objc)
+    /// An error indicating the user declined the invitation.
     #[doc(alias = "HMErrorCodeUserDeclinedInvite")]
     pub const UserDeclinedInvite: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/usermanagementfailed?language=objc)
+    /// A user management error not covered by the other errors.
     #[doc(alias = "HMErrorCodeUserManagementFailed")]
     pub const UserManagementFailed: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/recurrencetoosmall?language=objc)
+    /// An error indicating the recurrence interval is too short.
     #[doc(alias = "HMErrorCodeRecurrenceTooSmall")]
     pub const RecurrenceTooSmall: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidvaluetype?language=objc)
+    /// An attempt to use an invalid value type.
     #[doc(alias = "HMErrorCodeInvalidValueType")]
     pub const InvalidValueType: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/valuelowerthanminimum?language=objc)
+    /// An attempt to use a numeric value lower than the specified minimum value.
     #[doc(alias = "HMErrorCodeValueLowerThanMinimum")]
     pub const ValueLowerThanMinimum: Self = Self(44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/valuehigherthanmaximum?language=objc)
+    /// An attempt to use a numeric value higher than the specified maximum value.
     #[doc(alias = "HMErrorCodeValueHigherThanMaximum")]
     pub const ValueHigherThanMaximum: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/stringlongerthanmaximum?language=objc)
+    /// An attempt to use a string longer than the maximum allowed.
     #[doc(alias = "HMErrorCodeStringLongerThanMaximum")]
     pub const StringLongerThanMaximum: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/homeaccessnotauthorized?language=objc)
+    /// An error indicating access to the home was not authorized.
     #[doc(alias = "HMErrorCodeHomeAccessNotAuthorized")]
     pub const HomeAccessNotAuthorized: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/operationnotsupported?language=objc)
+    /// An attempt to use an unsupported operation.
     #[doc(alias = "HMErrorCodeOperationNotSupported")]
     pub const OperationNotSupported: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/maximumobjectlimitreached?language=objc)
+    /// An error indicating the maximum object count has been reached.
     #[doc(alias = "HMErrorCodeMaximumObjectLimitReached")]
     pub const MaximumObjectLimitReached: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorysentinvalidresponse?language=objc)
+    /// An error indicating the accessory sent an invalid response.
     #[doc(alias = "HMErrorCodeAccessorySentInvalidResponse")]
     pub const AccessorySentInvalidResponse: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/stringshorterthanminimum?language=objc)
+    /// An attempt to use a string shorter than the required minimum.
     #[doc(alias = "HMErrorCodeStringShorterThanMinimum")]
     pub const StringShorterThanMinimum: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/genericerror?language=objc)
+    /// An error that does not have a more specific error code.
     #[doc(alias = "HMErrorCodeGenericError")]
     pub const GenericError: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/securityfailure?language=objc)
+    /// A security failure.
     #[doc(alias = "HMErrorCodeSecurityFailure")]
     pub const SecurityFailure: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/communicationfailure?language=objc)
+    /// A communication failure.
     #[doc(alias = "HMErrorCodeCommunicationFailure")]
     pub const CommunicationFailure: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/messageauthenticationfailed?language=objc)
+    /// A message authentication failure.
     #[doc(alias = "HMErrorCodeMessageAuthenticationFailed")]
     pub const MessageAuthenticationFailed: Self = Self(55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidmessagesize?language=objc)
+    /// An error indicating an invalid message size.
     #[doc(alias = "HMErrorCodeInvalidMessageSize")]
     pub const InvalidMessageSize: Self = Self(56);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorydiscoveryfailed?language=objc)
+    /// An error indicating accessory discovery failed.
     #[doc(alias = "HMErrorCodeAccessoryDiscoveryFailed")]
     pub const AccessoryDiscoveryFailed: Self = Self(57);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/clientrequesterror?language=objc)
+    /// An error with the client request.
     #[doc(alias = "HMErrorCodeClientRequestError")]
     pub const ClientRequestError: Self = Self(58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryresponseerror?language=objc)
+    /// An error with the accessory’s response.
     #[doc(alias = "HMErrorCodeAccessoryResponseError")]
     pub const AccessoryResponseError: Self = Self(59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/namedoesnotendwithvalidcharacters?language=objc)
+    /// An error indicating the provided name has invalid characters at the end.
     #[doc(alias = "HMErrorCodeNameDoesNotEndWithValidCharacters")]
     pub const NameDoesNotEndWithValidCharacters: Self = Self(60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryisblocked?language=objc)
+    /// An error indicating a blocked accessory.
     #[doc(alias = "HMErrorCodeAccessoryIsBlocked")]
     pub const AccessoryIsBlocked: Self = Self(61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidassociatedservicetype?language=objc)
+    /// An error indicating an invalid service type.
     #[doc(alias = "HMErrorCodeInvalidAssociatedServiceType")]
     pub const InvalidAssociatedServiceType: Self = Self(62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/actionsetexecutionfailed?language=objc)
+    /// An attempt to execute the action set failed.
     #[doc(alias = "HMErrorCodeActionSetExecutionFailed")]
     pub const ActionSetExecutionFailed: Self = Self(63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/actionsetexecutionpartialsuccess?language=objc)
+    /// An attempt to execute the action set was only partially successful.
     #[doc(alias = "HMErrorCodeActionSetExecutionPartialSuccess")]
     pub const ActionSetExecutionPartialSuccess: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/actionsetexecutioninprogress?language=objc)
+    /// An error indicating the execution of the action set is in progress.
     #[doc(alias = "HMErrorCodeActionSetExecutionInProgress")]
     pub const ActionSetExecutionInProgress: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryoutofcompliance?language=objc)
+    /// An error indicating the accessory is out of compliance.
     #[doc(alias = "HMErrorCodeAccessoryOutOfCompliance")]
     pub const AccessoryOutOfCompliance: Self = Self(66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/dataresetfailure?language=objc)
+    /// An attempt to reset the data failed.
     #[doc(alias = "HMErrorCodeDataResetFailure")]
     pub const DataResetFailure: Self = Self(67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notificationalreadyenabled?language=objc)
+    /// An error indicating the notification is already enabled.
     #[doc(alias = "HMErrorCodeNotificationAlreadyEnabled")]
     pub const NotificationAlreadyEnabled: Self = Self(68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/recurrencemustbeonspecifiedboundaries?language=objc)
+    /// An error indicating the recurrence rule is not on the specified boundaries.
     #[doc(alias = "HMErrorCodeRecurrenceMustBeOnSpecifiedBoundaries")]
     pub const RecurrenceMustBeOnSpecifiedBoundaries: Self = Self(69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/datemustbeonspecifiedboundaries?language=objc)
+    /// An error indicating the date is not on the specified boundaries.
     #[doc(alias = "HMErrorCodeDateMustBeOnSpecifiedBoundaries")]
     pub const DateMustBeOnSpecifiedBoundaries: Self = Self(70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/cannotactivatetriggertoofarinfuture?language=objc)
+    /// An error indicating the trigger cannot be activated because it is set too far in the future.
     #[doc(alias = "HMErrorCodeCannotActivateTriggerTooFarInFuture")]
     pub const CannotActivateTriggerTooFarInFuture: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/recurrencetoolarge?language=objc)
+    /// An attempt to use a recurrence period that is too large.
     #[doc(alias = "HMErrorCodeRecurrenceTooLarge")]
     pub const RecurrenceTooLarge: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/readwritepartialsuccess?language=objc)
+    /// An error indicating a partially successful read/write operation.
     #[doc(alias = "HMErrorCodeReadWritePartialSuccess")]
     pub const ReadWritePartialSuccess: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/readwritefailure?language=objc)
+    /// An error indicating a failed read/write operation.
     #[doc(alias = "HMErrorCodeReadWriteFailure")]
     pub const ReadWriteFailure: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notsignedintoicloud?language=objc)
+    /// An error indicating the user is not signed into iCloud.
     #[doc(alias = "HMErrorCodeNotSignedIntoiCloud")]
     pub const NotSignedIntoiCloud: Self = Self(75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/keychainsyncnotenabled?language=objc)
+    /// An error indicating Keychain syncing is not enabled for the user.
     #[doc(alias = "HMErrorCodeKeychainSyncNotEnabled")]
     pub const KeychainSyncNotEnabled: Self = Self(76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/clouddatasyncinprogress?language=objc)
+    /// An error indicating a data synchronization operation is in progress.
     #[doc(alias = "HMErrorCodeCloudDataSyncInProgress")]
     pub const CloudDataSyncInProgress: Self = Self(77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/networkunavailable?language=objc)
+    /// An error indicating the network is unavailable.
     #[doc(alias = "HMErrorCodeNetworkUnavailable")]
     pub const NetworkUnavailable: Self = Self(78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/addaccessoryfailed?language=objc)
+    /// A failed attempt to add an accessory.
     #[doc(alias = "HMErrorCodeAddAccessoryFailed")]
     pub const AddAccessoryFailed: Self = Self(79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/missingentitlement?language=objc)
+    /// An error indicating a required entitlement is not available.
     #[doc(alias = "HMErrorCodeMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/cannotunblocknonbridgeaccessory?language=objc)
+    /// An error indicating a non-bridge accessory cannot be unblocked.
     #[doc(alias = "HMErrorCodeCannotUnblockNonBridgeAccessory")]
     pub const CannotUnblockNonBridgeAccessory: Self = Self(81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/devicelocked?language=objc)
+    /// An error indicating the device is locked.
     #[doc(alias = "HMErrorCodeDeviceLocked")]
     pub const DeviceLocked: Self = Self(82);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/cannotremovebuiltinactionset?language=objc)
+    /// An error indicating the built-in action set cannot be removed.
     #[doc(alias = "HMErrorCodeCannotRemoveBuiltinActionSet")]
     pub const CannotRemoveBuiltinActionSet: Self = Self(83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/locationforhomedisabled?language=objc)
+    /// An error indicating the home’s location is disabled.
     #[doc(alias = "HMErrorCodeLocationForHomeDisabled")]
     pub const LocationForHomeDisabled: Self = Self(84);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notauthorizedforlocationservices?language=objc)
+    /// An error indicating location services are not authorized.
     #[doc(alias = "HMErrorCodeNotAuthorizedForLocationServices")]
     pub const NotAuthorizedForLocationServices: Self = Self(85);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/refertousermanual?language=objc)
+    /// An error described in the device’s user manual.
     #[doc(alias = "HMErrorCodeReferToUserManual")]
     pub const ReferToUserManual: Self = Self(86);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/invalidormissingauthorizationdata?language=objc)
+    /// An error indicating the authorization data is invalid or missing.
     #[doc(alias = "HMErrorCodeInvalidOrMissingAuthorizationData")]
     pub const InvalidOrMissingAuthorizationData: Self = Self(87);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/bridgedaccessorynotreachable?language=objc)
+    /// An error indicating the bridged accessory cannot be reached.
     #[doc(alias = "HMErrorCodeBridgedAccessoryNotReachable")]
     pub const BridgedAccessoryNotReachable: Self = Self(88);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/notauthorizedformicrophoneaccess?language=objc)
+    /// An error indicating microphone access is not authorized.
     #[doc(alias = "HMErrorCodeNotAuthorizedForMicrophoneAccess")]
     pub const NotAuthorizedForMicrophoneAccess: Self = Self(89);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/incompatiblenetwork?language=objc)
+    /// An error indicating an incompatible network.
     #[doc(alias = "HMErrorCodeIncompatibleNetwork")]
     pub const IncompatibleNetwork: Self = Self(90);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/nohomehub?language=objc)
+    /// An error indicating no home hub found.
     #[doc(alias = "HMErrorCodeNoHomeHub")]
     pub const NoHomeHub: Self = Self(91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/nocompatiblehomehub?language=objc)
+    /// An error indicating no compatible home hub found.
     #[doc(alias = "HMErrorCodeNoCompatibleHomeHub")]
     pub const NoCompatibleHomeHub: Self = Self(92);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/incompatibleaccessory?language=objc)
+    /// The accessory is incompatible.
     #[doc(alias = "HMErrorCodeIncompatibleAccessory")]
     pub const IncompatibleAccessory: Self = Self(93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerrorcode/hmerrorcodeincompatiblehomehub?language=objc)
+    /// An error indicating an incompatible home hub.
     #[doc(alias = "HMErrorCodeIncompatibleHomeHub")]
     #[deprecated]
     pub const IncompatibleHomeHub: Self = Self(HMErrorCode::NoCompatibleHomeHub.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/objectwithsimilarnameexists?language=objc)
+    /// An object with a similar name already exists.
     #[doc(alias = "HMErrorCodeObjectWithSimilarNameExists")]
     pub const ObjectWithSimilarNameExists: Self = Self(95);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/ownershipfailure?language=objc)
+    /// The ownership code did not match.
     #[doc(alias = "HMErrorCodeOwnershipFailure")]
     pub const OwnershipFailure: Self = Self(96);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/maximumaccessoriesoftypeinhome?language=objc)
+    /// The home already has the maximum number of accessories of the given type.
     #[doc(alias = "HMErrorCodeMaximumAccessoriesOfTypeInHome")]
     pub const MaximumAccessoriesOfTypeInHome: Self = Self(97);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/wificredentialgenerationfailed?language=objc)
+    /// WiFi credential generation failed.
     #[doc(alias = "HMErrorCodeWiFiCredentialGenerationFailed")]
     pub const WiFiCredentialGenerationFailed: Self = Self(98);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/enterprisenetworknotsupported?language=objc)
+    /// An enterprise network doesn’t support this accessory.
     #[doc(alias = "HMErrorCodeEnterpriseNetworkNotSupported")]
     pub const EnterpriseNetworkNotSupported: Self = Self(99);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/timedoutwaitingforaccessory?language=objc)
+    /// An accessory did not respond timely.
     #[doc(alias = "HMErrorCodeTimedOutWaitingForAccessory")]
     pub const TimedOutWaitingForAccessory: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessorycommunicationfailure?language=objc)
+    /// The accessory failed to communicate.
     #[doc(alias = "HMErrorCodeAccessoryCommunicationFailure")]
     pub const AccessoryCommunicationFailure: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/failedtojoinnetwork?language=objc)
+    /// The accessory failed to join the network.
     #[doc(alias = "HMErrorCodeFailedToJoinNetwork")]
     pub const FailedToJoinNetwork: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/accessoryissuspended?language=objc)
+    /// The accessory is suspended.
     #[doc(alias = "HMErrorCodeAccessoryIsSuspended")]
     pub const AccessoryIsSuspended: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/partialcommunicationfailure?language=objc)
     #[doc(alias = "HMErrorCodePartialCommunicationFailure")]
     pub const PartialCommunicationFailure: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/homeupgraderequired?language=objc)
     #[doc(alias = "HMErrorCodeHomeUpgradeRequired")]
     pub const HomeUpgradeRequired: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code/quotaexceeded?language=objc)
     #[doc(alias = "HMErrorCodeQuotaExceeded")]
     pub const QuotaExceeded: Self = Self(106);
 }

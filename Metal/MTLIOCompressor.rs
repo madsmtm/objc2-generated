@@ -6,16 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionstatus?language=objc)
+/// Represents the final state of a compression context.
+///
+/// ## Overview
+///
+/// The [`MTLIOFlushAndDestroyCompressionContext`](https://developer.apple.com/documentation/metal/mtlioflushanddestroycompressioncontext(_:)) returns an [`MTLIOCompressionStatus`](https://developer.apple.com/documentation/metal/mtliocompressionstatus) instance to reflect the final state of a compression context.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCompressionStatus(pub NSInteger);
 impl MTLIOCompressionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionstatus/complete?language=objc)
+    /// Indicates the compression API successfully flushed and destroyed a compression context.
     #[doc(alias = "MTLIOCompressionStatusComplete")]
     pub const Complete: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionstatus/error?language=objc)
+    /// Indicates the compression API had an error while flushing and destroying a compression context.
     #[doc(alias = "MTLIOCompressionStatusError")]
     pub const Error: Self = Self(1);
 }
@@ -28,10 +34,10 @@ unsafe impl RefEncode for MTLIOCompressionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontext?language=objc)
+/// A pointer that represents the state of a file compression session in progress.
 pub type MTLIOCompressionContext = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontextdefaultchunksize()?language=objc)
+/// Returns a compression chunk size you can use as a default for creating a compression context.
 #[inline]
 pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
     extern "C-unwind" {
@@ -41,7 +47,15 @@ pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocreatecompressioncontext?language=objc)
+    /// Creates a compression context that you use to compress data into a single file.
+    ///
+    /// Parameters:
+    /// - path: A location in the file system where the function creates the new, compressed file.
+    ///
+    /// - type: A compression codec the function uses to compress data resource file’s compression format.
+    ///
+    /// - chunkSize: The number of uncompressed bytes the compression codec compresses at a time.
+    ///
     ///
     /// # Safety
     ///
@@ -56,7 +70,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontextappenddata(_:_:_:)?language=objc)
+    /// Adds data to a compression context.
+    ///
+    /// Parameters:
+    /// - context: An [`MTLIOCompressionContext`](https://developer.apple.com/documentation/metal/mtliocompressioncontext) instance that you create with the [`MTLIOCreateCompressionContext(_:_:_:)`](https://developer.apple.com/documentation/metal/mtliocreatecompressioncontext(_:_:_:)) function.
+    ///
+    /// - data: A pointer to memory that contains the data the function adds to the compression context.
+    ///
+    /// - size: The number of bytes the function adds to the compression context from the data pointer.
+    ///
     ///
     /// # Safety
     ///
@@ -71,7 +93,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioflushanddestroycompressioncontext(_:)?language=objc)
+    /// Finishes compressing and saves the file that a compression context represents.
+    ///
+    /// Parameters:
+    /// - context: A compression context that you create with the [`MTLIOCreateCompressionContext(_:_:_:)`](https://developer.apple.com/documentation/metal/mtliocreatecompressioncontext(_:_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An [`MTLIOCompressionStatus`](https://developer.apple.com/documentation/metal/mtliocompressionstatus) instance.
+    ///
+    ///
     ///
     /// # Safety
     ///

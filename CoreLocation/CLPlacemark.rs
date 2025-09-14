@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clplacemark?language=objc)
+    /// A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
+    ///
+    /// ## Overview
+    ///
+    /// A `CLPlacemark` object stores placemark data for a given latitude and longitude. Placemark data includes information such as the country or region, state, city, and street address associated with the specified coordinate. It can also include points of interest and geographically related data.
+    ///
+    /// When you reverse geocode a geographic coordinate using a [`CLGeocoder`](https://developer.apple.com/documentation/corelocation/clgeocoder) object, you receive a [`CLPlacemark`](https://developer.apple.com/documentation/corelocation/clplacemark) object containing the descriptive information for that location. You can also create [`CLPlacemark`](https://developer.apple.com/documentation/corelocation/clplacemark) object and fill it with address information yourself, which you might do when you want to determine the geographic coordinate associated with the location.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use either GeoToolbox.PlaceDescriptor or MapKit"]

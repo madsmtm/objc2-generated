@@ -13,31 +13,31 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutautomaticdimension?language=objc)
+    /// A constant that specifies a default value for a particular dimension.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionViewLayoutAutomaticDimension: CGFloat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionheader?language=objc)
+    /// A supplementary view that identifies the header for a given section.
     pub static UICollectionElementKindSectionHeader: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionfooter?language=objc)
+    /// A supplementary view that identifies the footer for a given section.
     pub static UICollectionElementKindSectionFooter: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection?language=objc)
+/// Constants that indicate the direction of scrolling for the layout.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewScrollDirection(pub NSInteger);
 impl UICollectionViewScrollDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection/vertical?language=objc)
+    /// The layout scrolls content vertically.
     #[doc(alias = "UICollectionViewScrollDirectionVertical")]
     pub const Vertical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection/horizontal?language=objc)
+    /// The layout scrolls content horizontally.
     #[doc(alias = "UICollectionViewScrollDirectionHorizontal")]
     pub const Horizontal: Self = Self(1);
 }
@@ -50,19 +50,19 @@ unsafe impl RefEncode for UICollectionViewScrollDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory?language=objc)
+/// Constants specifying the type of view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionElementCategory(pub NSUInteger);
 impl UICollectionElementCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/cell?language=objc)
+    /// The view is a cell.
     #[doc(alias = "UICollectionElementCategoryCell")]
     pub const Cell: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/supplementaryview?language=objc)
+    /// The view is a supplementary view.
     #[doc(alias = "UICollectionElementCategorySupplementaryView")]
     pub const SupplementaryView: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory/decorationview?language=objc)
+    /// The view is a decoration view.
     #[doc(alias = "UICollectionElementCategoryDecorationView")]
     pub const DecorationView: Self = Self(2);
 }
@@ -76,7 +76,19 @@ unsafe impl RefEncode for UICollectionElementCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes?language=objc)
+    /// A layout object that manages the layout-related attributes for a given item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Layout objects create instances of this class when asked to do so by the collection view. In turn, the collection view uses the layout information to position cells and supplementary views inside its bounds.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// In most cases, you use this class as-is. If you want to supplement the base layout attributes with custom layout attributes, you can subclass and define whatever properties you want to store the additional layout data. Because layout attribute objects may be copied by the collection view, make sure your subclass conforms to the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) protocol by implementing any methods appropriate for copying your custom attributes to new instances of your subclass. In addition to defining your subclass, your [`UICollectionReusableView`](https://developer.apple.com/documentation/uikit/uicollectionreusableview) objects need to implement the [`applyLayoutAttributes:`](https://developer.apple.com/documentation/uikit/uicollectionreusableview/apply(_:)) method so that they can apply any custom attributes at layout time.
+    ///
+    /// If you subclass and implement any custom layout attributes, you must also override the inherited `isEqual:` method to compare the values of your properties. In iOS 7 and later, the collection view doesn’t apply layout attributes if those attributes have not changed. It determines whether the attributes have changed by comparing the old and new attribute objects using the `isEqual:` method. Because the default implementation of this method checks only the existing properties of this class, you must implement your own version of the method to compare any additional properties. If your custom properties are all equal, call `super` and return the resulting value at the end of your implementation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -255,7 +267,19 @@ impl UICollectionViewLayoutAttributes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinvalidationcontext?language=objc)
+    /// A context object that declares which parts of your layout need to be updated when the layout is invalidated.
+    ///
+    /// ## Overview
+    ///
+    /// Layout objects that are designed to support invalidation contexts can use the information in a [`UICollectionViewLayoutInvalidationContext`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinvalidationcontext) object to optimize their behavior during the invalidation cycle. You can create an invalidation context object as a precursor to invalidating a layout object. After configuring the invalidation context object, pass it to the layout object’s [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/invalidatelayout(with:)) method, which is responsible for using the context object to update the layout efficiently. The collection view also creates invalidation contexts in response to specific changes. For example, it creates an invalidation context when you change the layout or data source object, when you insert or delete items, and when you call the [`reloadData`](https://developer.apple.com/documentation/uikit/uicollectionview/reloaddata()) method.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// If you create your own custom layout objects, you can subclass `UICollectionViewLayoutInvalidationContext` and add properties to specify which aspects of your layout data can be invalidated separately. You must then design your layout object to check for these properties and update the layout appropriately.
+    ///
+    /// For more information about how to support custom invalidation contexts in your layout objects, see [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -367,7 +391,71 @@ impl UICollectionViewLayoutInvalidationContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayout?language=objc)
+    /// An abstract base class for generating layout information for a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// A layout object determines the placement of cells, supplementary views, and decoration views inside the collection view’s bounds and reports that information to the collection view. The collection view then applies the provided layout information to the corresponding views so that they can be presented onscreen.
+    ///
+    /// You must subclass [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout) in order to use it. Before you consider subclassing, however, consider whether you can adapt [`UICollectionViewCompositionalLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout) to your layout needs.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The layout object defines the position, size, and visual state of items in the collection view, based on the design of the layout. The views for the layout are created by the collection view’s data source.
+    ///
+    /// You lay out three types of visual elements in a collection view:
+    ///
+    /// - _Cells_ are the main elements positioned by the layout. Each cell represents a single data item in the collection. You can make cells interactive so that a user can perform actions like selecting, dragging, and reordering the cells. A collection view can have a single group of cells, or you can divide those cells into multiple sections. The layout object arranges the cells in the collection view’s content area.
+    ///
+    /// - _Supplementary views_ present data but can’t be selected by the user. You use supplementary views to implement things like header and footer views for a given section or for the entire collection view. Supplementary views are optional and their use and placement is defined by the layout object.
+    ///
+    /// - _Decoration views_ are visual adornments, like badges, that can’t be selected and aren’t inherently tied to the data of the collection view. Decoration views are another type of supplementary view. Like supplementary views, they’re optional and their use and placement is defined by the layout object.
+    ///
+    /// The collection view asks its layout object to provide layout information for these elements at many different times. Every cell and view that appears on screen is positioned using information from the layout object. Similarly, every time items are inserted into or deleted from the collection view, an additional layout pass occurs for the items being added or removed. However, the collection view always limits layout to the objects that are visible onscreen.
+    ///
+    /// #### Methods to override
+    ///
+    /// Every layout object should implement the following methods:
+    ///
+    /// - [`collectionViewContentSize`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/collectionviewcontentsize)
+    ///
+    /// - [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/layoutattributesforelements(in:))
+    ///
+    /// - [`layoutAttributesForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/layoutattributesforitem(at:))
+    ///
+    /// - [`layoutAttributesForSupplementaryViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/layoutattributesforsupplementaryview(ofkind:at:)) (if your layout supports supplementary views)
+    ///
+    /// - [`layoutAttributesForDecorationViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/layoutattributesfordecorationview(ofkind:at:)) (if your layout supports decoration views)
+    ///
+    /// - [`shouldInvalidateLayoutForBoundsChange:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/shouldinvalidatelayout(forboundschange:))
+    ///
+    /// These methods provide the fundamental layout information that the collection view needs to place contents on the screen. If your layout doesn’t support supplementary or decoration views, don’t implement the corresponding methods.
+    ///
+    /// When the data in the collection view changes and items are to be inserted or deleted, the collection view asks its layout object to update the layout information. Specifically, any item that’s moved, added, or deleted must have its layout information updated to reflect its new location. For moved items, the collection view uses the standard methods to retrieve the item’s updated layout attributes. For items being inserted or deleted, the collection view calls some different methods, which you should override to provide the appropriate layout information:
+    ///
+    /// - [`initialLayoutAttributesForAppearingItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/initiallayoutattributesforappearingitem(at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/initiallayoutattributesforappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/initiallayoutattributesforappearingdecorationelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/finallayoutattributesfordisappearingitem(at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/finallayoutattributesfordisappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/finallayoutattributesfordisappearingdecorationelement(ofkind:at:))
+    ///
+    /// In addition to these methods, you can also override the [`prepareForCollectionViewUpdates:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/prepare(forcollectionviewupdates:)) to handle any layout-related preparation. You can also override the [`finalizeCollectionViewUpdates`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/finalizecollectionviewupdates()) method and use it to add animations to the overall animation block or to implement any final layout-related tasks.
+    ///
+    /// #### Optimizing layout performance using invalidation contexts
+    ///
+    /// When designing your custom layouts, you can improve performance by invalidating only those parts of your layout that actually changed. When you change items, calling the [`invalidateLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/invalidatelayout()) method forces the collection view to recompute all of its layout information and reapply it. A better solution is to recompute only the layout information that changed, which is exactly what invalidation contexts allow you to do. An invalidation context lets you specify which parts of the layout changed. The layout object can then use that information to minimize the amount of data it recomputes.
+    ///
+    /// To define a custom invalidation context for your layout, subclass the [`UICollectionViewLayoutInvalidationContext`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinvalidationcontext) class. In your subclass, define custom properties that represent the parts of your layout data that can be recomputed independently. When you need to invalidate your layout at runtime, create an instance of your invalidation context subclass, configure the custom properties based on what layout information changed, and pass that object to your layout’s [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/invalidatelayout(with:)) method. Your custom implementation of that method can use the information in the invalidation context to recompute only the portions of your layout that changed.
+    ///
+    /// If you define a custom invalidation context class for your layout object, you should also override the [`invalidationContextClass`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/invalidationcontextclass) method and return your custom class. The collection view always creates an instance of the class you specify when it needs an invalidation context. Returning your custom subclass from this method ensures that your layout object always has the invalidation context it expects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

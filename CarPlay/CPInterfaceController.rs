@@ -10,12 +10,22 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/carplayerrordomain?language=objc)
+    /// The domain that CarPlay uses for any errors it provides.
     pub static CarPlayErrorDomain: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinterfacecontroller?language=objc)
+    /// A controller that manages the templates for constructing a scene’s user interface.
+    ///
+    /// ## Overview
+    ///
+    /// An interface controller manages one or more templates in the navigation hierarchy. You don’t create the interface controller. Instead, CarPlay creates one for you and passes it to the delegate of [`CPTemplateApplicationScene`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscene) when the scene connects.
+    ///
+    /// After receiving the controller, store a reference to it in your app. Then set the root template by calling the [`setRootTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/setroottemplate(_:animated:completion:)) method. To display another template in the navigation hierarchy, call [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)), and use [`popTemplateAnimated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/poptemplate(animated:completion:)) to remove the top-most template.
+    ///
+    /// You also use the interface controller to display a single template modally. Call [`presentTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/presenttemplate(_:animated:completion:)) to display the modal template, and call [`dismissTemplateAnimated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/dismisstemplate(animated:completion:)) to dismiss it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -290,10 +300,9 @@ impl CPInterfaceController {
 }
 
 extern_protocol!(
+    /// The interface that an object implements to serve as a delegate to an interface controller.
     /// CPInterfaceControllerDelegate allows your app to observe template visibility lifecycles for
     /// the templates presented by your app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinterfacecontrollerdelegate?language=objc)
     pub unsafe trait CPInterfaceControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -324,13 +333,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// The interface for handling CarPlay life-cycle events.
+    ///
+    /// ## Overview
+    ///
+    /// You must implement [`CPApplicationDelegate`](https://developer.apple.com/documentation/carplay/cpapplicationdelegate) on the same object that serves as the delegate to your app.
+    ///
+    ///
     /// A set of methods that are called by the
     /// `UIApplication`singleton in response to CarPlay lifecycle events.
     ///
     ///
     /// This must be implemented by the same object that serves as your application's delegate object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpapplicationdelegate?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     #[deprecated]
     pub unsafe trait CPApplicationDelegate: UIApplicationDelegate {

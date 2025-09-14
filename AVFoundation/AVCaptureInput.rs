@@ -14,12 +14,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract superclass for objects that provide input data to a capture session.
+    ///
+    /// ## Overview
+    ///
+    /// You create concrete instances of this class, such as [`AVCaptureDeviceInput`](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput), to add inputs to a capture session. An input provides one or more streams of media data. For example, input devices can provide both audio and video data. The framework represents each media stream that an input provides as an [`AVCaptureInputPort`](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port) object.
+    ///
+    /// A capture makes connections between capture inputs and capture outputs using a [`AVCaptureConnection`](https://developer.apple.com/documentation/avfoundation/avcaptureconnection) object. The connection defines the mapping between a set of port objects and an [`AVCaptureOutput`](https://developer.apple.com/documentation/avfoundation/avcaptureoutput).
+    ///
+    ///
     /// AVCaptureInput is an abstract class that provides an interface for connecting capture input sources to an AVCaptureSession.
     ///
     ///
     /// Concrete instances of AVCaptureInput representing input sources such as cameras can be added to instances of AVCaptureSession using the -[AVCaptureSession addInput:] method. An AVCaptureInput vends one or more streams of media data. For example, input devices can provide both audio and video data. Each media stream provided by an input is represented by an AVCaptureInputPort object. Within a capture session, connections are made between AVCaptureInput instances and AVCaptureOutput instances via AVCaptureConnection objects that define the mapping between a set of AVCaptureInputPort objects and a single AVCaptureOutput.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureInput;
@@ -50,23 +57,33 @@ impl AVCaptureInput {
 }
 
 extern "C" {
+    /// A notification the system posts when the capture input port’s format description changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/notification/object) property contains the [`AVCaptureInputPort`](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port) object whose format changed.
+    ///
+    ///
     /// This notification is posted when the value of an AVCaptureInputPort instance's formatDescription property changes.
     ///
     ///
     /// The notification object is the AVCaptureInputPort instance whose format description changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescriptiondidchangenotification?language=objc)
     pub static AVCaptureInputPortFormatDescriptionDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
+    /// An object that represents a stream of data that a capture input provides.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of [`AVCaptureInput`](https://developer.apple.com/documentation/avfoundation/avcaptureinput) have one or more input ports, one for each data stream they can produce. For example, an [`AVCaptureDeviceInput`](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput) object presenting one video data stream has one port.
+    ///
+    ///
     /// An AVCaptureInputPort describes a single stream of media data provided by an AVCaptureInput and provides an interface for connecting that stream to AVCaptureOutput instances via AVCaptureConnection.
     ///
     ///
     /// Instances of AVCaptureInputPort cannot be created directly. An AVCaptureInput exposes its input ports via its ports property. Input ports provide information about the format of their media data via the mediaType and formatDescription properties, and allow clients to control the flow of data via the enabled property. Input ports are used by an AVCaptureConnection to define the mapping between inputs and outputs in an AVCaptureSession.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureInputPort;
@@ -158,6 +175,7 @@ impl AVCaptureInputPort {
     );
 }
 
+/// Constants that indicate the modes of multichannel audio.
 /// Constants indicating the modes of multichannel audio.
 ///
 ///
@@ -166,20 +184,24 @@ impl AVCaptureInputPort {
 /// Indicates that the audio should be recorded using stereo.
 ///
 /// Indicates that the audio should be recorded using first-order ambisonics. When recording a QuickTime movie file, a stereo audio track will be recorded alongside the FOA track for backward playback compatibility.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMultichannelAudioMode(pub NSInteger);
 impl AVCaptureMultichannelAudioMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/none?language=objc)
+    /// A mode that indicates there’s no multichannel audio.
     #[doc(alias = "AVCaptureMultichannelAudioModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/stereo?language=objc)
+    /// A mode that indicates the recording uses stereo audio.
     #[doc(alias = "AVCaptureMultichannelAudioModeStereo")]
     pub const Stereo: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode/firstorderambisonics?language=objc)
+    /// An audio mode that indicates the recording uses first-order ambisonics.
+    ///
+    /// ## Discussion
+    ///
+    /// When recording a QuickTime movie file, the system records a stereo audio track with the first-order ambisonics track for backward playback compatibility.
+    ///
+    ///
     #[doc(alias = "AVCaptureMultichannelAudioModeFirstOrderAmbisonics")]
     pub const FirstOrderAmbisonics: Self = Self(2);
 }
@@ -193,12 +215,17 @@ unsafe impl RefEncode for AVCaptureMultichannelAudioMode {
 }
 
 extern_class!(
+    /// An object that provides media input from a capture device to a capture session.
+    ///
+    /// ## Overview
+    ///
+    /// This class is a concrete subclass of [`AVCaptureInput`](https://developer.apple.com/documentation/avfoundation/avcaptureinput) that you use to connect a capture device to a capture session.
+    ///
+    ///
     /// AVCaptureDeviceInput is a concrete subclass of AVCaptureInput that provides an interface for capturing media from an AVCaptureDevice.
     ///
     ///
     /// Instances of AVCaptureDeviceInput are input sources for AVCaptureSession that provide media data from devices connected to the system, represented by instances of AVCaptureDevice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput?language=objc)
     #[unsafe(super(AVCaptureInput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceInput;
@@ -549,12 +576,27 @@ impl AVCaptureDeviceInput {
 }
 
 extern_class!(
+    /// A capture input for recording from a screen in macOS.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Starting in macOS 12.3, use the [`ScreenCaptureKit`](https://developer.apple.com/documentation/screencapturekit) framework for screen recording instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This class is a concrete capture input subclass that provides an interface to capture media from a screen or a portion of a screen.
+    ///
+    /// Use instances of this class as input sources for [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) objects that provide media data from one of the screens connected to the system, represented by [`CGDirectDisplayID`](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid).
+    ///
+    ///
     /// AVCaptureScreenInput is a concrete subclass of AVCaptureInput that provides an interface for capturing media from a screen or portion thereof.
     ///
     ///
     /// Instances of AVCaptureScreenInput are input sources for AVCaptureSession that provide media data from one of the screens connected to the system, represented by CGDirectDisplayIDs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturescreeninput?language=objc)
     #[unsafe(super(AVCaptureInput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureScreenInput;
@@ -690,12 +732,17 @@ impl AVCaptureScreenInput {
 }
 
 extern_class!(
+    /// A capture input for providing timed metadata to a capture session.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides input to an [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession). An instance of [`AVCaptureMetadataInput`](https://developer.apple.com/documentation/avfoundation/avcapturemetadatainput) can present one and only one [`AVCaptureInputPort`](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port) connected to an [`AVCaptureMovieFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput). Provide metadata through the input port by conforming to a [`CMFormatDescriptionRef`](https://developer.apple.com/documentation/coremedia/cmformatdescription) and supplying [`AVMetadataItem`](https://developer.apple.com/documentation/avfoundation/avmetadataitem) objects in an [`AVTimedMetadataGroup`](https://developer.apple.com/documentation/avfoundation/avtimedmetadatagroup).
+    ///
+    ///
     /// AVCaptureMetadataInput is a concrete subclass of AVCaptureInput that provides a way for clients to supply AVMetadataItems to an AVCaptureSession.
     ///
     ///
     /// Instances of AVCaptureMetadataInput are input sources for AVCaptureSession that provide AVMetadataItems to an AVCaptureSession. AVCaptureMetadataInputs present one and only one AVCaptureInputPort, which currently may only be connected to an AVCaptureMovieFileOutput. The metadata supplied over the input port is provided by the client, and must conform to a client-supplied CMFormatDescription. The AVMetadataItems are supplied in an AVTimedMetadataGroup.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadatainput?language=objc)
     #[unsafe(super(AVCaptureInput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureMetadataInput;

@@ -7,36 +7,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that represent possible data transfer sizes.
 /// Valid values for expectedSendSize and expectedReceiveSize
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKOperationGroupTransferSize(pub NSInteger);
 impl CKOperationGroupTransferSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/unknown?language=objc)
+    /// An unknown transfer size.
     #[doc(alias = "CKOperationGroupTransferSizeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/kilobytes?language=objc)
+    /// A transfer size that represents 1 or more kilobytes.
     #[doc(alias = "CKOperationGroupTransferSizeKilobytes")]
     pub const Kilobytes: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/megabytes?language=objc)
+    /// A transfer size that represents 1 or more megabytes.
     #[doc(alias = "CKOperationGroupTransferSizeMegabytes")]
     pub const Megabytes: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/tensofmegabytes?language=objc)
+    /// A transfer size that represents tens of megabytes.
     #[doc(alias = "CKOperationGroupTransferSizeTensOfMegabytes")]
     pub const TensOfMegabytes: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/hundredsofmegabytes?language=objc)
+    /// A transfer size that represents hundreds of megabytes.
     #[doc(alias = "CKOperationGroupTransferSizeHundredsOfMegabytes")]
     pub const HundredsOfMegabytes: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/gigabytes?language=objc)
+    /// A transfer size that represents 1 or more gigabytes.
     #[doc(alias = "CKOperationGroupTransferSizeGigabytes")]
     pub const Gigabytes: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/tensofgigabytes?language=objc)
+    /// A transfer size that represents tens of gigabytes.
     #[doc(alias = "CKOperationGroupTransferSizeTensOfGigabytes")]
     pub const TensOfGigabytes: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize/hundredsofgigabytes?language=objc)
+    /// A transfer size that represents hundreds of gigabytes.
     #[doc(alias = "CKOperationGroupTransferSizeHundredsOfGigabytes")]
     pub const HundredsOfGigabytes: Self = Self(7);
 }
@@ -50,6 +49,23 @@ unsafe impl RefEncode for CKOperationGroupTransferSize {
 }
 
 extern_class!(
+    /// An explicit association between two or more operations.
+    ///
+    /// ## Overview
+    ///
+    /// In certain situations, you might want to perform several CloudKit operations together. Grouping operations in CloudKit doesn’t ensure atomicity.
+    ///
+    /// For example, when building a Calendar app, you group the following actions:
+    ///
+    /// - Fetch records from CloudKit, which consists of numerous queries that fetch both new records and records with changes.
+    ///
+    /// - Perform incremental fetches of records in response to a push notification.
+    ///
+    /// - Update several records when the user saves a calendar event.
+    ///
+    /// Associate operation groups with operations by setting their [`group`](https://developer.apple.com/documentation/cloudkit/ckoperation/group) property. Create a new operation group for each distinct user interaction.
+    ///
+    ///
     /// A mechanism for your app to group several operations at the granularity of a user action.
     ///
     ///
@@ -63,8 +79,6 @@ extern_class!(
     /// `CKOperation`s by setting the
     /// `CKOperation.group`property.  Create a new
     /// `CKOperationGroup`instance for each distinct user action.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationGroup;

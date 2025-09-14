@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkinstantfundsoutfeesummaryitem?language=objc)
+    /// A summary item that represents a fee for an instant funds out transfer.
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

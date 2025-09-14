@@ -8,7 +8,52 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession?language=objc)
+    /// An object that communicates to the system how you intend to use audio in your app.
+    ///
+    /// ## Overview
+    ///
+    /// An audio session acts as an intermediary between your app and the operating system — and, in turn, the underlying audio hardware. You use an audio session to communicate to the operating system the general nature of your app’s audio without detailing the specific behavior or required interactions with the audio hardware. You delegate the management of those details to the audio session, which ensures that the operating system can best manage the user’s audio experience.
+    ///
+    /// All iOS, tvOS, and watchOS apps have a default audio session that comes preconfigured with the following behavior:
+    ///
+    /// - It supports audio playback, but disallows audio recording.
+    ///
+    /// - When the app plays audio, it silences any other background audio.
+    ///
+    /// - In iOS, setting the Ring/Silent switch to silent mode silences any audio the app is playing.
+    ///
+    /// - In iOS, locking a device silences the app’s audio.
+    ///
+    /// Although the default audio session provides useful behavior, it generally doesn’t provide the audio behavior a media app needs. To change the default behavior, you configure your app’s audio session category.
+    ///
+    /// There are six possible categories you can use, but [`AVAudioSessionCategoryPlayback`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback) is the one that playback apps most commonly use. This category indicates that audio playback is a central feature of your app. When you specify this category, your app’s audio continues with the Ring/Silent switch set to silent mode (iOS only). Using this category, you can also play background audio if you’re using the Audio, AirPlay, and Picture in Picture background mode. For more information, see `Enabling Background Audio`.
+    ///
+    /// You use an [`AVAudioSession`](https://developer.apple.com/documentation/avfaudio/avaudiosession) object to configure your app’s audio session. This class is a singleton object used to set the audio session’s category, mode, and other configurations. You can interact with the audio session throughout your app’s life cycle, but it’s often useful to perform this configuration at app launch, as shown in the following example.
+    ///
+    /// ```swift
+    /// func configureAudioSession() {
+    ///     // Retrieve the shared audio session.
+    ///     let audioSession = AVAudioSession.sharedInstance()
+    ///     do {
+    ///         // Set the audio session category and mode.
+    ///         try audioSession.setCategory(.playback, mode: .moviePlayback)
+    ///     } catch {
+    ///         print("Failed to set the audio session configuration")
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The audio session uses this configuration when you activate the session using the [`setActive:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setactive:error:) or [`setActive:withOptions:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setactive(_:options:)) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can activate the audio session at any time after setting its category, but it’s generally preferable to defer this call until your app begins audio playback. Deferring the call ensures that you won’t prematurely interrupt any other background audio that may be in progress.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioSession;

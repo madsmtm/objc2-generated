@@ -7,28 +7,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateNoteIntentResponseCode(pub NSInteger);
 impl INCreateNoteIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/unspecified?language=objc)
+    /// The response code was not specified.
+    ///
+    /// ## Discussion
+    ///
+    /// Do not return this response code when handling the intent; doing so causes the system to display an error.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you have verified that you are able to create the note. Do not return this response code when handling the intent; doing so causes the system to display an error.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/inprogress?language=objc)
+    /// Note creation is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you initiated the note creation process but did not receive a timely response. You might use this code when a server handles note creation and you have not yet received a confirmation from that server.
+    ///
+    /// When handling an intent, you might want to first configure a timer to fire if your server does not return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/success?language=objc)
+    /// You successfully created the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after creating the note successfully. Your response should contain the details of the note that you created.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/failure?language=objc)
+    /// You were unable to create the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from creating the note.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must create the note from within your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot create the note from your Intents extension but the user can create it in your app. Do not use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INCreateNoteIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +80,15 @@ unsafe impl RefEncode for INCreateNoteIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/increatenoteintentresponse?language=objc)
+    /// Your app’s response to a request to create a note.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INCreateNoteIntentResponse`](https://developer.apple.com/documentation/intents/increatenoteintentresponse) object to return information about the note that your app created. Siri communicates the information from your app’s response to the user at appropriate times.
+    ///
+    /// You create an [`INCreateNoteIntentResponse`](https://developer.apple.com/documentation/intents/increatenoteintentresponse) object in the [`confirmCreateNote:completion:`](https://developer.apple.com/documentation/intents/increatenoteintenthandling/confirm(intent:completion:)) and [`handleCreateNote:completion:`](https://developer.apple.com/documentation/intents/increatenoteintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INCreateNoteIntentHandling`](https://developer.apple.com/documentation/intents/increatenoteintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

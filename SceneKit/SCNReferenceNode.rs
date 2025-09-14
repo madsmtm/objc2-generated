@@ -7,21 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for when to load the reference node’s content, used by the [`loadingPolicy`](https://developer.apple.com/documentation/scenekit/scnreferencenode/loadingpolicy) property.
 /// Controls whenever to load the reference node.
 ///
 /// When the load policy is set to SCNReferenceLoadingPolicyImmediately, the reference is loaded immediately when the SCNReferenceNode is unarchived.
 /// When the load policy is set to SCNReferenceLoadingPolicyOnDemand the reference is never loaded until "load" is explicitly invoked.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferenceloadingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNReferenceLoadingPolicy(pub NSInteger);
 impl SCNReferenceLoadingPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferenceloadingpolicy/immediate?language=objc)
+    /// Load the node’s external content immediately when the reference node is unarchived.
     #[doc(alias = "SCNReferenceLoadingPolicyImmediate")]
     pub const Immediate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferenceloadingpolicy/ondemand?language=objc)
+    /// Load the node’s external comment only when the [`load`](https://developer.apple.com/documentation/scenekit/scnreferencenode/load()) method is called.
     #[doc(alias = "SCNReferenceLoadingPolicyOnDemand")]
     pub const OnDemand: Self = Self(1);
 }
@@ -35,9 +34,14 @@ unsafe impl RefEncode for SCNReferenceLoadingPolicy {
 }
 
 extern_class!(
-    /// Node that references an external file.
+    /// A scene graph node that serves as a placeholder for content to be loaded from a separate scene file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnreferencenode?language=objc)
+    /// ## Overview
+    ///
+    /// When you tell a reference node to load its content, SceneKit loads the referenced scene file and makes children of the scene file’s root node become children of the reference node.
+    ///
+    ///
+    /// Node that references an external file.
     #[unsafe(super(SCNNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SCNNode")]

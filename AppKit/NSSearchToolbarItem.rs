@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// `NSSearchToolbarItem` provides the standard UI behavior for integrating a search field into the toolbar.
+    /// A toolbar item that contains a search field optimized for performing text-based searches.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchtoolbaritem?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSSearchToolbarItem`](https://developer.apple.com/documentation/appkit/nssearchtoolbaritem) automatically resizes to accommodate typing when the focus switches to the toolbar item. When the toolbar is low on space, the system may collapse the search item into a button representation, which then expands to a full search field when the user clicks on it.
+    ///
+    ///
+    /// `NSSearchToolbarItem` provides the standard UI behavior for integrating a search field into the toolbar.
     #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csindexextensionrequesthandler?language=objc)
+    /// An interface that implements an index-maintenance app extension.
+    ///
+    /// ## Overview
+    ///
+    /// The `CSIndexExtensionRequestHandler` class provides the main entry point for an index-maintenance app extension. If any issues arise with your app’s indexes and your app isn’t running, the system loads your app extension and looks for an implementation of this class. It instantiates the class it finds and uses it to perform any index-related maintenance.
+    ///
+    /// Define a custom subclass of `CSIndexExtensionRequestHandler` in your app extension and implement methods of the [`CSSearchableIndexDelegate`](https://developer.apple.com/documentation/corespotlight/cssearchableindexdelegate) protocol in it. Use those methods to perform any required updates to your app’s index files. For example, use the [`searchableIndex:reindexAllSearchableItemsWithAcknowledgementHandler:`](https://developer.apple.com/documentation/corespotlight/cssearchableindexdelegate/searchableindex(_:reindexallsearchableitemswithacknowledgementhandler:)) method to reindex all items in your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSIndexExtensionRequestHandler;

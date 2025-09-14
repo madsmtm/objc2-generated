@@ -4,7 +4,6 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcopyhomedirectoryurl()?language=objc)
 #[cfg(feature = "CFURL")]
 #[inline]
 pub extern "C-unwind" fn CFCopyHomeDirectoryURL() -> Option<CFRetained<CFURL>> {

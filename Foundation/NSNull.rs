@@ -8,7 +8,13 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnull?language=objc)
+    /// A singleton object used to represent null values in collection objects that don’t allow `nil` values.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSNull`](https://developer.apple.com/documentation/foundation/nsnull) is “toll-free bridged” with its Core Foundation counterpart, [`CFNullRef`](https://developer.apple.com/documentation/corefoundation/cfnull). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNull;

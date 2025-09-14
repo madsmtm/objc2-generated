@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface that defines the properties of the public key.
     /// The base protocol for all PublicKeyCredential credential types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredential?language=objc)
     #[cfg(feature = "ASAuthorizationCredential")]
     pub unsafe trait ASPublicKeyCredential: ASAuthorizationCredential {
         /// A byte sequence containing the serialized clientDataJSON blob returned by the authenticator.

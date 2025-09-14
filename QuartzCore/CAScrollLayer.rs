@@ -9,12 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode?language=objc)
 // NS_TYPED_ENUM
 pub type CAScrollLayerScrollMode = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayer?language=objc)
+    /// A layer that displays scrollable content larger than its own bounds.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CAScrollLayer`](https://developer.apple.com/documentation/quartzcore/cascrolllayer) class is a subclass of [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) that simplifies displaying a portion of a layer. The extent of the scrollable area of the [`CAScrollLayer`](https://developer.apple.com/documentation/quartzcore/cascrolllayer) is defined by the layout of its sublayers. The visible portion of the layer content is set by specifying the origin as a point or a rectangular area of the contents to be displayed. [`CAScrollLayer`](https://developer.apple.com/documentation/quartzcore/cascrolllayer) does not provide keyboard or mouse event-handling, nor does it provide visible scrollers.
+    ///
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -129,21 +134,21 @@ impl CALayer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/none?language=objc)
+    /// The receiver is unable to scroll.
     pub static kCAScrollNone: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/vertically?language=objc)
+    /// The receiver is able to scroll vertically.
     pub static kCAScrollVertically: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/horizontally?language=objc)
+    /// The receiver is able to scroll horizontally.
     pub static kCAScrollHorizontally: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/both?language=objc)
+    /// The receiver is able to scroll both horizontally and vertically.
     pub static kCAScrollBoth: &'static CAScrollLayerScrollMode;
 }

@@ -12,9 +12,8 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// Launch information provided to the TV application controller.
     /// This class is used to provide launch info to TVApplicationController.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvapplicationcontrollercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -118,7 +117,7 @@ impl TVApplicationControllerContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvapplicationcontrollerdelegate?language=objc)
+    /// A protocol used to observe and manage the different states of an application controller.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub unsafe trait TVApplicationControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-javascript-core")]
@@ -188,11 +187,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that bridges the UI, navigation stack, storage, and event handling from JavaScript.
+    ///
+    /// ## Overview
+    ///
+    /// The `TVApplicationController` class establishes the JavaScript environment and provides a centralized point of control and coordination between the JavaScript environment and tvOS.
+    ///
+    ///
     /// The TVApplicationController class establishes the JavaScript environment
     /// to provide a centralized point of control and co-ordination. The class
     /// bridges the UI, navigation stack, storage and event handling from JavaScript.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvapplicationcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

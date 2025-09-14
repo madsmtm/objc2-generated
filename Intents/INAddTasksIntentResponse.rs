@@ -7,28 +7,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAddTasksIntentResponseCode(pub NSInteger);
 impl INAddTasksIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to add the tasks to the specified task list. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/inprogress?language=objc)
+    /// The addition of tasks into the task list is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you began adding tasks to the task list but didn’t confirm that the process was complete. You might use this code when a server handles the creation and you’ve not yet received a confirmation from that server.
+    ///
+    /// When handling the intent, you might want to first configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/success?language=objc)
+    /// You successfully created the task.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after adding the tasks to the task list successfully. Your response should contain the details of the task list and tasks that you changed.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/failure?language=objc)
+    /// You were unable to add the tasks to the task list.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from adding the tasks to the task list.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must add the tasks from within your app.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t add the tasks from your Intents extension but the user can do so from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INAddTasksIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +80,15 @@ unsafe impl RefEncode for INAddTasksIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtasksintentresponse?language=objc)
+    /// Your response to a request to add tasks to a task list.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INAddTasksIntentResponse`](https://developer.apple.com/documentation/intents/inaddtasksintentresponse) object to return information about the task list that you created. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INAddTasksIntentResponse`](https://developer.apple.com/documentation/intents/inaddtasksintentresponse) object in the [`confirmAddTasks:completion:`](https://developer.apple.com/documentation/intents/inaddtasksintenthandling/confirm(intent:completion:)) and [`handleAddTasks:completion:`](https://developer.apple.com/documentation/intents/inaddtasksintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INAddTasksIntentHandling`](https://developer.apple.com/documentation/intents/inaddtasksintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

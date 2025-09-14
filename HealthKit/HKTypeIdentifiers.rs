@@ -5,1082 +5,2629 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier?language=objc)
+/// The identifiers that create quantity type objects.
+///
+/// ## Overview
+///
+/// To create an [`HKQuantityType`](https://developer.apple.com/documentation/healthkit/hkquantitytype) instance, pass an [`HKQuantityTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier) value to the [`quantityTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/quantitytype(foridentifier:)) method.
+///
+///
 // NS_TYPED_ENUM
 pub type HKQuantityTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingwristtemperature?language=objc)
+    /// A quantity sample type that records the wrist temperature during sleep.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Watch Series 8 and Apple Watch Ultra can sample a person’s wrist temperature while they sleep. A supported watch measures temperature from both sensors every five seconds overnight during sleep. The watch then aggregates this data to a single [`HKQuantityTypeIdentifierAppleSleepingWristTemperature`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingwristtemperature) sample. It corrects this sample for environmental bias and calculates a single value that represents the wrist temperature over the entire night.
+    ///
+    /// Body temperature naturally fluctuates from night to night, and external factors, like the sleep environment, can also affect the measurements. Other factors that can affect a person’s relative temperature include exercise, jet lag, menstrual cycles, or illness.
+    ///
+    /// Cycle tracking uses a person’s sleeping wrist temperature data to provide a retrospective estimate of when they likely ovulated. It also combines this data with heart rate and logged cycle data to provide improved predictions about their cycle.
+    ///
+    /// To enable sleeping wrist temperature measurements, ensure Sleep Focus is on and that someone is wearing Apple Watch while sleeping.
+    ///
+    /// Apple Watch records the absolute wrist temperature value; however, Health displays this data as a relative value, based on a person’s baseline. Health needs to calculate this baseline, so it won’t display the wrist temperature until it has gathered about five nights of data. However, Apple Watch records [`HKQuantityTypeIdentifierAppleSleepingWristTemperature`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingwristtemperature) samples starting with the first night, and you can read them immediately from the HealthKit store.
+    ///
+    /// Sleeping wrist temperature samples use temperature units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new sleeping wrist temperature samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKQuantityTypeIdentifierAppleSleepingWristTemperature:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodyfatpercentage?language=objc)
+    /// A quantity sample type that measures the user’s body fat percentage.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use percent units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBodyFatPercentage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodymass?language=objc)
+    /// A quantity sample type that measures the user’s weight.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBodyMass: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodymassindex?language=objc)
+    /// A quantity sample type that measures the user’s body mass index.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBodyMassIndex: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/electrodermalactivity?language=objc)
+    /// A quantity sample type that measures electrodermal activity.
+    ///
+    /// ## Discussion
+    ///
+    /// Electrodermal activity measures the conductance of the user’s skin. This conductance increases as the activity of the sweat glands increases. These samples use conductance units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierElectrodermalActivity: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/height?language=objc)
+    /// A quantity sample type that measures the user’s height.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierHeight: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/leanbodymass?language=objc)
+    /// A quantity sample type that measures the user’s lean body mass.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierLeanBodyMass: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/waistcircumference?language=objc)
+    /// A quantity sample type that measures the user’s waist circumference.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWaistCircumference: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/activeenergyburned?language=objc)
+    /// A quantity sample type that measures the amount of active energy the user has burned.
+    ///
+    /// ## Discussion
+    ///
+    /// Active energy is the energy that the user has burned due to physical activity and exercise. These samples should not include the resting energy burned during the sample’s duration. Use the health store’s [`splitTotalEnergy:startDate:endDate:resultsHandler:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/splittotalenergy(_:start:end:resultshandler:)) method to split a workout’s total energy burned into the active and resting portions, and then save each portion in its own sample. The system automatically records active energy samples on Apple Watch.
+    ///
+    /// Active energy samples use energy units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierActiveEnergyBurned: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/appleexercisetime?language=objc)
+    /// A quantity sample type that measures the amount of time the user spent exercising.
+    ///
+    /// ## Discussion
+    ///
+    /// This quantity type measures every full minute of movement that equals or exceeds the intensity of a brisk walk.
+    ///
+    /// Apple watch automatically records exercise time. By default, the watch uses the accelerometer to estimate the intensity of the user’s movement. However, during workout sessions, the watch uses additional sensors, like the heart rate sensor and GPS, to generate estimates.
+    ///
+    /// [`HKWorkoutSession`](https://developer.apple.com/documentation/healthkit/hkworkoutsession) sessions also contribute to the exercise time.  For more information, see [Fill the Activity rings](https://developer.apple.com/documentation/healthkit/hkworkout#fill-the-activity-rings).
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierAppleExerciseTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applemovetime?language=objc)
+    /// A quantity sample type that measures the amount of time the user has spent performing activities that involve full-body movements during the specified day.
+    ///
+    /// ## Discussion
+    ///
+    /// [`HKQuantityTypeIdentifierAppleMoveTime`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applemovetime) measures every full minute where the watch detects the user actively moving. Apple Watch uses the accelerometer and gyroscopes to detect activities that involve full-body movements, like walking, running, or playing in the playground.
+    ///
+    /// For younger users, HealthKit’s activity summary can track move time instead of active energy burned:
+    ///
+    /// - HealthKit automatically tracks move time for any users under 13 years old.
+    ///
+    /// - Users 13 to 18 years old can choose whether to track move time or active calorie burn.
+    ///
+    /// - All users over 18 years old track active calorie burn.
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierAppleMoveTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applestandtime?language=objc)
+    /// A quantity sample type that measures the amount of time the user has spent standing.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierAppleStandTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/basalenergyburned?language=objc)
+    /// A quantity sample type that measures the resting energy burned by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// Resting energy is the energy that the user’s body burns to maintain its normal, resting state. The body uses this energy to perform basic functions like breathing, circulating blood, and managing the growth and maintenance of cells. These samples use energy units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBasalEnergyBurned: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/crosscountryskiingspeed?language=objc)
+    /// A quantity sample type that measures how fast you are traveling while cross country skiing.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor cross country skiing workouts, the system automatically records distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierCrossCountrySkiingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingcadence?language=objc)
+    /// A quantity sample type that represents the rate at which the user is pedaling.
+    ///
+    /// ## Discussion
+    ///
+    /// Cycling cadence represents the number of times the pedals turn over in the minute. The value is measured in revolutions per minute, or RPMs. These samples use counts per minute units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Cycling cadence can be automatically collected by peripherals connected to an Apple Watch during cycling workouts. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierCyclingCadence: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingfunctionalthresholdpower?language=objc)
+    /// A quantity sample type that measures the estimated maximum average power sustained while riding a bike for 60 minutes.
+    ///
+    /// ## Discussion
+    ///
+    /// Cycling Functional Threshold Power (FTP) is an estimate of the maximum average power you can sustain for 60 minutes while riding a bike. These samples use power units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During cycling workouts, the system automatically records estimated FTP samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierCyclingFunctionalThresholdPower:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingpower?language=objc)
+    /// A quantity sample type that measures the estimated power being used while riding a bike.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use power units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Cycling power can be automatically collected by peripherals connected to an Apple Watch during cycling workouts. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierCyclingPower: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/cyclingspeed?language=objc)
+    /// A quantity sample type that measures how fast you are traveling while riding a bike.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Cycling speed can be automatically collected by peripherals connected to an Apple Watch during cycling workouts. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierCyclingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancecrosscountryskiing?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by cross country skiing.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor cross country skiing workouts, the system automatically collects distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceCrossCountrySkiing:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancecycling?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by cycling.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor cycling workouts, the system automatically records distance samples on Apple Watch. During indoor cycling workouts, the system automatically records distance samples on Apple Watch when connected to a peripheral that provides cycling speed. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceCycling: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancedownhillsnowsports?language=objc)
+    /// A quantity sample type that measures the distance the user has traveled while skiing or snowboarding.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During downhill skiing workouts, the system automatically records distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceDownhillSnowSports:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancepaddlesports?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by paddling sports.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor paddling sports workouts, the system automatically collects distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistancePaddleSports: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancerowing?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by rowing.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor rowing workouts, the system automatically collects distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceRowing: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distanceskatingsports?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by skating.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor skating workouts, the system automatically collects distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceSkatingSports: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distanceswimming?language=objc)
+    /// A quantity sample type that measures the distance the user has moved while swimming.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceSwimming: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancewalkingrunning?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by walking or running.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The system automatically records distance samples on iPhone and Apple Watch. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceWalkingRunning: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/distancewheelchair?language=objc)
+    /// A quantity sample type that measures the distance the user has moved using a wheelchair.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The system automatically records samples on Apple Watch when in wheelchair mode. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDistanceWheelchair: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/estimatedworkouteffortscore?language=objc)
     pub static HKQuantityTypeIdentifierEstimatedWorkoutEffortScore:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/flightsclimbed?language=objc)
+    /// A quantity sample type that measures the number flights of stairs that the user has climbed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Flights climbed can be automatically collected by an iPhone, Apple Watch, or Apple Watch connected to a GymKit machine.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierFlightsClimbed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/nikefuel?language=objc)
+    /// A quantity sample type that measures the number of NikeFuel points the user has earned.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierNikeFuel: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/paddlesportsspeed?language=objc)
+    /// A quantity sample type that measures the distance the user has moved by paddling sports.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor paddling sports workouts, the system automatically records distance samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierPaddleSportsSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/physicaleffort?language=objc)
+    /// A quantity sample type that measures the estimated amount of energy being used to perform a task excluding other factors such as temperature, altitude, or heart rate.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use power in Metabolic Equivalent of Task (METs) units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Physical effort is estimated and recorded automatically by Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierPhysicalEffort: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/pushcount?language=objc)
+    /// A quantity sample type that measures the number of pushes that the user has performed while using a wheelchair.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The system automatically records samples on Apple Watch when in wheelchair mode.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierPushCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/rowingspeed?language=objc)
+    /// A quantity sample type that measures how fast the rower is moving.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor rowing workouts, the system automatically records rowing speed samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRowingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningpower?language=objc)
+    /// A quantity sample type that measures the rate of work required for the runner to maintain their speed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use power units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor running workouts, the system automatically records running power samples on Apple Watch SE and Series 6 and later. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRunningPower: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningspeed?language=objc)
+    /// A quantity sample type that measures the runner’s speed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor running workouts, the system automatically records running speed samples on Apple Watch. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRunningSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stepcount?language=objc)
+    /// A quantity sample type that measures the number of steps the user has taken.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The system automatically records samples on iPhone and Apple Watch. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierStepCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/swimmingstrokecount?language=objc)
+    /// A quantity sample type that measures the number of strokes performed while swimming.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierSwimmingStrokeCount: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/underwaterdepth?language=objc)
+    /// A quantity sample that records a person’s depth underwater.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Watch Ultra automatically records these samples during dive sessions.
+    ///
+    /// Underwater depth samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierUnderwaterDepth: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/workouteffortscore?language=objc)
     pub static HKQuantityTypeIdentifierWorkoutEffortScore: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/environmentalaudioexposure?language=objc)
+    /// A quantity sample type that measures audio exposure to sounds in the environment.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use sound pressure units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)). You create these units using the [`decibelAWeightedSoundPressureLevelUnit`](https://developer.apple.com/documentation/healthkit/hkunit/decibelaweightedsoundpressurelevel()) method. They measure discrete values of the equivalent continuous sound pressure level, described in [`HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discreteequivalentcontinuouslevel). Samples can be automatically collected by an Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierEnvironmentalAudioExposure:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/environmentalsoundreduction?language=objc)
+    /// A quantity sample type that measures the difference in sound intensity when wearing headphones that lower environmental sound levels.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use sound pressure units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)). They measure discrete values of the equivalent continuous sound pressure level, described in [`HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discreteequivalentcontinuouslevel). Environmental sound reduction values are automatically collected when wearing supported headphones.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierEnvironmentalSoundReduction:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/headphoneaudioexposure?language=objc)
+    /// A quantity sample type that measures audio exposure from headphones.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use sound pressure units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)). You create these units using the [`decibelAWeightedSoundPressureLevelUnit`](https://developer.apple.com/documentation/healthkit/hkunit/decibelaweightedsoundpressurelevel()) method. They measure discrete values of the equivalent continuous sound pressure level, described in [`HKQuantityAggregationStyleDiscreteEquivalentContinuousLevel`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle/discreteequivalentcontinuouslevel). Samples can be automatically detected by an iPhone or Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierHeadphoneAudioExposure: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/atrialfibrillationburden?language=objc)
+    /// A quantity type that measures an estimate of the percentage of time a person’s heart shows signs of atrial fibrillation (AFib) while wearing Apple Watch.
+    ///
+    /// ## Discussion
+    ///
+    /// On watchOS 9 and iOS 16 and later, once a person enables AFib History, Apple Watch begins collecting heart-rhythm data more frequently. iPhone then calculates the AFib burden once a week, as long as Apple Watch has gathered enough heart-rhythm data during that week.
+    ///
+    /// If iPhone is unlocked and isn’t under heavy load, it starts analyzing heart rhythm samples around 8:00 am Monday morning. As soon as it finishes this analysis, iPhone sends the user a notification telling them the results.
+    ///
+    /// These samples use percentage units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The sample’s value represents an estimate of the percentage of time a person’s heart shows signs of AFib while wearing Apple Watch.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new AFib burden samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKQuantityTypeIdentifierAtrialFibrillationBurden: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartrate?language=objc)
+    /// A quantity sample type that measures the user’s heart rate.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    /// Heart rate samples may include motion context information, which is stored as metadata using the [`HKMetadataKeyHeartRateMotionContext`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext) key. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a [`HKHeartRateMotionContext`](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext) value.
+    ///
+    /// The motion context gives additional information about the user’s activity level when the heart rate sample was taken. Apple Watch uses the following guidelines when setting the motion context:
+    ///
+    /// 1. If the user has been still for at least 5 minutes prior to the sample, the context is set to the [`HKHeartRateMotionContextSedentary`](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/sedentary) value.
+    ///
+    /// 2. If the user is in motion, the context is set to the [`HKHeartRateMotionContextActive`](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/active) value.
+    ///
+    /// You can add motion context to the metadata of any heart rate samples that you create. This means other apps may also save heart rate samples with (or without) the [`HKMetadataKeyHeartRateMotionContext`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext) metadata key.
+    ///
+    /// Note that not all heart rate samples have a motion context. For example, if Apple Watch cannot determine the motion context, it creates samples without a [`HKMetadataKeyHeartRateMotionContext`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartratemotioncontext) metadata key. In addition, heart rate samples recorded by an Apple Watch (1st generation) or by a device running watchOS 3 or earlier do not have the motion context metadata key. Treat these samples as if they used the [`HKHeartRateMotionContextNotSet`](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/notset) motion context.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierHeartRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartraterecoveryoneminute?language=objc)
+    /// A quantity sample that records the reduction in heart rate from the peak exercise rate to the rate one minute after exercising ended.
+    ///
+    /// ## Discussion
+    ///
+    /// Heart rate recovery samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). These samples always record a positive value.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierHeartRateRecoveryOneMinute:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartratevariabilitysdnn?language=objc)
+    /// A quantity sample type that measures the standard deviation of heartbeat intervals.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// HealthKit calculates the Heart rate variability (HRV) by measuring the variation between individual heartbeats. While there are multiple ways of computing HRV, HealthKit uses SDNN heart rate variability, which uses the standard deviation of the inter-beat (RR) intervals between normal heartbeats (typically measured in milliseconds). The system automatically records samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierHeartRateVariabilitySDNN: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/peripheralperfusionindex?language=objc)
+    /// A quantity sample type that measures the user’s peripheral perfusion index.
+    ///
+    /// ## Discussion
+    ///
+    /// The peripheral perfusion index measures the pulse strength at the monitoring site. These samples use percent units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierPeripheralPerfusionIndex: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/restingheartrate?language=objc)
+    /// A quantity sample type that measures the user’s resting heart rate.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// Resting heart rate is commonly correlated with overall cardiovascular health. It is an estimation of  the user’s lowest heart rate during periods of rest, and is intended to be used as a medically relevant metric. A resting heart rate sample is different than a sedentary heart rate sample (that is, a sample using the [`HKQuantityTypeIdentifierHeartRate`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/heartrate) identifier with a [`HKHeartRateMotionContextSedentary`](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext/sedentary) motion context). For example, if the user finishes a high-intensity workout, and then sits down to rest, the next heart rate sample may be marked as a sedentary sample, but it is still much higher than the user’s actual resting heart rate. To produce more accurate results, the system estimates the resting heart rate by analyzing sedentary heart rate samples throughout the day.
+    ///
+    /// Because the resting heart rate estimates become more accurate as the day progresses, the system may delete earlier samples and replace them with better estimates. Apple Watch replaces only the samples written by the watch for the current or previous day.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRestingHeartRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max?language=objc)
+    /// A quantity sample that measures the maximal oxygen consumption during exercise.
+    ///
+    /// ## Discussion
+    ///
+    /// VO2max—the maximum amount of oxygen your body can consume during exercise— is a strong predictor of overall health. Clinical tests measure VO2max by having the patient exercise on a treadmill or bike, with an intensity that increases every few minutes until exhaustion.
+    ///
+    /// On Apple Watch Series 3 or later, the system automatically saves [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) samples to HealthKit. The watch estimates the user’s VO2max based on data gathered while the user is walking or running outdoors. For more information, see [Understand Estimated Test Results](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max#understand-estimated-test-results).
+    ///
+    /// You can also create and save your own [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) samples—for example, when creating an app that records the results of tests performed in a clinic. When creating [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) samples, use the [`HKMetadataKeyVO2MaxTestType`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxtesttype) metadata key to specify the type of test used to generate the sample.
+    ///
+    /// [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) samples use volume/mass/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)), measured in ml/kg /min. They measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// ### Understand Estimated Test Results
+    ///
+    /// Apple Watch Series 3 and later estimates the user’s VO2max by measuring the user’s heart rate response to exercise. The system can generate VO2max samples after an outdoor walk, outdoor run, or hiking workout. During the outdoor activity, the user must cover relatively flat ground (a grade of less than 5% incline or decline) with adequate GPS, heart rate signal quality, and sufficient exertion. The user must maintain a heart rate approximately greater than or equal to 130% of their resting heart rate. The system can estimate VO2max ranges from 14-60 ml/kg/min
+    ///
+    /// The user must wear their Apple Watch for at least one day before the system can generate the first [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) sample. Additionally, the system doesn’t generate a [`HKQuantityTypeIdentifierVO2Max`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/vo2max) sample on the user’s first workout.
+    ///
+    /// Apple Watch estimates _VO2max_ based on sub-maximal predictions rather than _peakVO2_. Users don’t need to achieve peak heart rate to receive an estimate; however, the system does need to estimate their peak heart rate. Users who take medications that may reduce their peak heart rate can toggle a medication switch in the Health app to enable more accurate VO2max estimates.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierVO2Max: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingheartrateaverage?language=objc)
+    /// A quantity sample type that measures the user’s heart rate while walking.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// A user’s average heart rate while walking is correlated to their fitness level, because it corresponds to their heart’s efficiency while physically active. Apple Watch estimates the walking heart rate by averaging heart rate samples taken while the user is walking, as well as heart rate samples taken during walking workout sessions.
+    ///
+    /// Because walking heart rate estimates become more accurate as the day progresses, the system may delete earlier samples and replace them with better estimates. Apple Watch replaces only the samples written by the watch for the current or previous day.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Walking heart rate samples are automatically created by HealthKit. You cannot save your own walking heart rate samples; however, you can query these samples.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKQuantityTypeIdentifierWalkingHeartRateAverage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applewalkingsteadiness?language=objc)
+    /// A quantity sample type that measures the steadiness of the user’s gait.
+    ///
+    /// ## Discussion
+    ///
+    /// Samples that match the Walking Steadiness identifier use percentage units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code creates a percentage unit.
+    ///
+    /// ```swift
+    /// let percentage = HKUnit.percent()
+    /// ```
+    ///
+    /// The value can be between `0.0` and `1.0`.
+    ///
+    /// The system automatically records Walking Steadiness samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. To ensure accuracy, the user must set their [`HKQuantityTypeIdentifierHeight`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/height) value in the Health app. The system creates a Walking Steadiness sample every 7 days—though the interval can be longer if it doesn’t have enough mobility data to calculate accurate results. iPhone doesn’t record Walking Steadiness samples if the user’s wheelchair status is on.
+    ///
+    /// Walking Steadiness samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new Walking Steadiness samples to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Mobility > Walking Steadiness > Add Data.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierAppleWalkingSteadiness: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runninggroundcontacttime?language=objc)
+    /// A quantity sample type that measures the amount of time the runner’s foot is in contact with the ground while running.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor running workouts, the system automatically records ground contact time on Apple Watch SE and Series 6 and later. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRunningGroundContactTime: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningstridelength?language=objc)
+    /// A quantity sample type that measures the distance covered by a single step while running.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor running workouts, the system automatically records running stride samples on Apple Watch SE and Series 6 and later. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRunningStrideLength: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/runningverticaloscillation?language=objc)
+    /// A quantity sample type measuring pelvis vertical range of motion during a single running stride.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). During outdoor running workouts, the system automatically records vertical oscillation on Apple Watch SE and Series 6 and later. Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRunningVerticalOscillation:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance?language=objc)
+    /// A quantity sample type that stores the distance a user can walk during a six-minute walk test.
+    ///
+    /// ## Discussion
+    ///
+    /// The standard six-minute walk test measures the maximum number of meters a user can walk on an unobstructed, flat course.
+    ///
+    /// On Apple Watch Series 3 or later, the system automatically records a weekly [`HKQuantityTypeIdentifierSixMinuteWalkTestDistance`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance) sample. You can also create and save your own [`HKQuantityTypeIdentifierSixMinuteWalkTestDistance`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance) samples—for example, when creating an app that records the results of tests performed in a clinic.
+    ///
+    /// [`HKQuantityTypeIdentifierSixMinuteWalkTestDistance`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/sixminutewalktestdistance) samples use length units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code creates a unit in meters.
+    ///
+    /// ```swift
+    /// let meters = HKUnit.meter()
+    /// ```
+    ///
+    /// ### Understand Estimated Test Results
+    ///
+    /// Each week, the system calculates the approximate result a user might receive from a six-minute walk test administered at a clinic. The system estimates the result using passively observed motion and workout data. The maximum estimated distance is 500m.
+    ///
+    /// To record an estimate, the user must wear the watch at least 8 hours a day, 3 days a week. Additionally, the user must meet the 8-hour threshold at least 10 times over the previous 4 weeks.
+    ///
+    /// Apple Watch produces the best results when the user’s expected six-minute walk distance is less than 500m, and the user wears a calibrated Apple Watch while performing a representative range of physical activities each day. For more information about calibrating Apple Watch, see [Calibrating your Apple Watch for improved Workout and Activity accuracy](https://support.apple.com/en-us/HT204516).
+    ///
+    /// If the watch isn’t calibrated, users can improve the accuracy of their results by carrying their iPhone on their hip or in their front pants pocket. The system uses the [`HKQuantityTypeIdentifierWalkingSpeed`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingspeed) samples automatically recorded by the phone to help calibrate the six-minute walk algorithm. The system may also use GPS from both iPhone and Apple Watch to improve the calibration.
+    ///
+    /// Samples indicate whether the device was sufficiently calibrated to support an accurate estimate using the [`HKMetadataKeyAppleDeviceCalibrated`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappledevicecalibrated) metadata key.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierSixMinuteWalkTestDistance: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stairascentspeed?language=objc)
+    /// A quantity sample type measuring the user’s speed while climbing a flight of stairs.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a measurement of how fast the user walks up stairs. The system automatically records stair ascent samples on Apple Watch Series 5 or later. The user must climb a 10-foot (3-meter) flight of steps while wearing the watch. The system records 20 samples on a typical day; however, some days may go over 100 samples, for example if the user goes on a long hike. The watch doesn’t record stair ascent speed samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use distance/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code shows two ways to create a meters/second unit. The first uses explicit constructors, while the second initializes the unit from a string.
+    ///
+    /// ```swift
+    /// let mps = HKUnit.meter().unitDivided(by: HKUnit.second())
+    /// let mpsFromString = HKUnit(from: "m/s")
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the average ascent speed between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierStairAscentSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/stairdescentspeed?language=objc)
+    /// A quantity sample type measuring the user’s speed while descending a flight of stairs.
+    ///
+    /// ## Discussion
+    ///
+    /// This is a measurement of how fast the user walks down stairs. The system automatically records stair descent samples on Apple Watch Series 5 or later. The user must walk down a 10-foot (3-meter) flight of steps while wearing the watch. The system records 20 samples on a typical day; however, some days may go over 100 samples, for example if the user goes on a long hike. The watch doesn’t record stair descent speed samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use distance/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code shows two ways to create a meters/second unit. The first uses explicit constructors, while the second initializes the unit from a string.
+    ///
+    /// ```swift
+    /// let mps = HKUnit.meter().unitDivided(by: HKUnit.second())
+    /// let mpsFromString = HKUnit(from: "m/s")
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the average descent speed between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierStairDescentSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingasymmetrypercentage?language=objc)
+    /// A quantity sample type that measures the percentage of steps in which one foot moves at a different speed than the other when walking on flat ground.
+    ///
+    /// ## Discussion
+    ///
+    /// Walking asymmetry is the percent of time that a user’s steps with one foot are faster or slower than the other foot. The system automatically records walking asymmetry samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. The system records the phone’s location using the [`HKMetadataKeyDevicePlacementSide`](https://developer.apple.com/documentation/healthkit/hkmetadatakeydeviceplacementside) metadata key. The system records 10 to 30 walking asymmetry samples on a typical day. iPhone doesn’t record walking asymmetry samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use percentage units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code creates a percentage unit.
+    ///
+    /// ```swift
+    /// let percentage = HKUnit.percent()
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the percent of asymmetrical steps between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWalkingAsymmetryPercentage:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingdoublesupportpercentage?language=objc)
+    /// A quantity sample type that measures the percentage of time when both of the user’s feet touch the ground while walking steadily over flat ground.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples measure the percentage of time during a walk that both of the user’s feet are on the ground. A lower value indicates that the user spends more time with the weight on just one foot instead of two. During a typical walk, this measure falls between 20% and 40%. Double support time varies depending on how fast the user walks and the terrain.
+    ///
+    /// The system automatically records double support samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. The system records 10 to 30 walking double support samples on a typical day. iPhone doesn’t record double support samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use percentage units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code creates a percentage unit.
+    ///
+    /// ```swift
+    /// let percentage = HKUnit.percent()
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the percent of time the user had weight on both feet between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWalkingDoubleSupportPercentage:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingspeed?language=objc)
+    /// A quantity sample type that measures the user’s average speed when walking steadily over flat ground.
+    ///
+    /// ## Discussion
+    ///
+    /// Walking speed represents how quickly the user walks on flat ground. The system automatically records walking speed samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. To ensure accuracy, the user’s [`HKQuantityTypeIdentifierHeight`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/height) value must be up to date. The system records 10 to 30 walking speed samples on a typical day. iPhone doesn’t record walking speed samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use distance per time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).  For example, the following code shows two ways to create a meters per second unit. The first uses explicit constructors, while the second initializes the unit from a string.
+    ///
+    /// ```swift
+    /// let mps = HKUnit.meter().unitDivided(by: HKUnit.second())
+    /// let mpsFromString = HKUnit(from: "m/s")
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the average walking speed between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWalkingSpeed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/walkingsteplength?language=objc)
+    /// A quantity sample type that measures the average length of the user’s step when walking steadily over flat ground.
+    ///
+    /// ## Discussion
+    ///
+    /// Step length is the distance between the user’s front foot and back foot when they walk. The system automatically records walking step length samples on iPhone 8 or later. The user must carry their phone near their waist—such as in a pocket—and walk steadily on flat ground. To ensure accuracy, the user’s [`HKQuantityTypeIdentifierHeight`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/height) value must be up to date. The system records 10 to 30 step length samples on a typical day. iPhone doesn’t record walking step length samples if the user’s wheelchair status is on.
+    ///
+    /// These samples use distance units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). For example, the following code creates a unit in meters.
+    ///
+    /// ```swift
+    /// let meters = HKUnit.meter()
+    /// ```
+    ///
+    /// The sample’s [`quantity`](https://developer.apple.com/documentation/healthkit/hkquantitysample/quantity) property represents the average step length between the sample’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWalkingStepLength: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarybiotin?language=objc)
+    /// A quantity sample type that measures the amount of biotin (vitamin B7) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryBiotin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycaffeine?language=objc)
+    /// A quantity sample type that measures the amount of caffeine consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryCaffeine: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycalcium?language=objc)
+    /// A quantity sample type that measures the amount of calcium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryCalcium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycarbohydrates?language=objc)
+    /// A quantity sample type that measures the amount of carbohydrates consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryCarbohydrates: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarychloride?language=objc)
+    /// A quantity sample type that measures the amount of chloride consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryChloride: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycholesterol?language=objc)
+    /// A quantity sample type that measures the amount of cholesterol consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryCholesterol: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarychromium?language=objc)
+    /// A quantity sample type that measures the amount of chromium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryChromium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarycopper?language=objc)
+    /// A quantity sample type that measures the amount of copper consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryCopper: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryenergyconsumed?language=objc)
+    /// A quantity sample type that measures the amount of energy consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use energy units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryEnergyConsumed: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatmonounsaturated?language=objc)
+    /// A quantity sample type that measures the amount of monounsaturated fat consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFatMonounsaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatpolyunsaturated?language=objc)
+    /// A quantity sample type that measures the amount of polyunsaturated fat consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFatPolyunsaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfatsaturated?language=objc)
+    /// A quantity sample type that measures the amount of saturated fat consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFatSaturated: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfattotal?language=objc)
+    /// A quantity sample type that measures the total amount of fat consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples include polyunsaturated, monounsaturated, and saturated fats. These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFatTotal: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfiber?language=objc)
+    /// A quantity sample type that measures the amount of fiber consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFiber: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryfolate?language=objc)
+    /// A quantity sample type that measures the amount of folate (folic acid) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryFolate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryiodine?language=objc)
+    /// A quantity sample type that measures the amount of iodine consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryIodine: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryiron?language=objc)
+    /// A quantity sample type that measures the amount of iron consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryIron: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymagnesium?language=objc)
+    /// A quantity sample type that measures the amount of magnesium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryMagnesium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymanganese?language=objc)
+    /// A quantity sample type that measures the amount of manganese consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryManganese: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarymolybdenum?language=objc)
+    /// A quantity sample type that measures the amount of molybdenum consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryMolybdenum: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryniacin?language=objc)
+    /// A quantity sample type that measures the amount of niacin (vitamin B3) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryNiacin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarypantothenicacid?language=objc)
+    /// A quantity sample type that measures the amount of pantothenic acid (vitamin B5) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryPantothenicAcid: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryphosphorus?language=objc)
+    /// A quantity sample type that measures the amount of phosphorus consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryPhosphorus: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarypotassium?language=objc)
+    /// A quantity sample type that measures the amount of potassium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryPotassium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryprotein?language=objc)
+    /// A quantity sample type that measures the amount of protein consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryProtein: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryriboflavin?language=objc)
+    /// A quantity sample type that measures the amount of riboflavin (vitamin B2) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryRiboflavin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryselenium?language=objc)
+    /// A quantity sample type that measures the amount of selenium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietarySelenium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarysodium?language=objc)
+    /// A quantity sample type that measures the amount of sodium consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietarySodium: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarysugar?language=objc)
+    /// A quantity sample type that measures the amount of sugar consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietarySugar: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarythiamin?language=objc)
+    /// A quantity sample type that measures the amount of thiamin (vitamin B1) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryThiamin: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamina?language=objc)
+    /// A quantity sample type that measures the amount of vitamin A consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminA: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminb12?language=objc)
+    /// A quantity sample type that measures the amount of cyanocobalamin (vitamin B12) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminB12: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminb6?language=objc)
+    /// A quantity sample type that measures the amount of pyridoxine (vitamin B6) consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminB6: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitaminc?language=objc)
+    /// A quantity sample type that measures the amount of vitamin C consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminC: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamind?language=objc)
+    /// A quantity sample type that measures the amount of vitamin D consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminD: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamine?language=objc)
+    /// A quantity sample type that measures the amount of vitamin E consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminE: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryvitamink?language=objc)
+    /// A quantity sample type that measures the amount of vitamin K consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryVitaminK: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietarywater?language=objc)
+    /// A quantity sample type that measures the amount of water consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use volume units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryWater: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryzinc?language=objc)
+    /// A quantity sample type that measures the amount of zinc consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierDietaryZinc: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodalcoholcontent?language=objc)
+    /// A quantity sample type that measures the user’s blood alcohol content.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use percent units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBloodAlcoholContent: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodpressurediastolic?language=objc)
+    /// A quantity sample type that measures the user’s diastolic blood pressure.
+    ///
+    /// ## Discussion
+    ///
+    /// When recording blood pressure, combine systolic and diastolic samples into a single correlation object (described in [`HKCorrelationTypeIdentifierBloodPressure`](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier/bloodpressure)). These samples use pressure units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBloodPressureDiastolic: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodpressuresystolic?language=objc)
+    /// A quantity sample type that measures the user’s systolic blood pressure.
+    ///
+    /// ## Discussion
+    ///
+    /// Systolic blood pressure measures the maximum blood pressure during each heart beat. When recording blood pressure, combine systolic and diastolic samples into a single correlation object (described in [`HKCorrelationTypeIdentifierBloodPressure`](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier/bloodpressure)). These samples use pressure units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBloodPressureSystolic: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/insulindelivery?language=objc)
+    /// A quantity sample that measures the amount of insulin delivered.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use international units (IU) (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierInsulinDelivery: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberofalcoholicbeverages?language=objc)
+    /// A quantity sample type that measures the number of standard alcoholic drinks that the user has consumed.
+    ///
+    /// ## Discussion
+    ///
+    /// Samples matching the [`HKQuantityTypeIdentifierNumberOfAlcoholicBeverages`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberofalcoholicbeverages) identifier measure the number of standard alcoholic drinks consumed by the user. A standard drink is one beer, glass of wine, or mixed drink made with spirits. The samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) to measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// The following code listing saves a single standard drink to the HealthKit store.
+    ///
+    /// ```swift
+    /// // Create the alcoholic beverage sample type.
+    /// let alcoholConsumptionType = HKQuantityType(.numberOfAlcoholicBeverages)
+    ///
+    /// // Create a quantity for the number of standard beverages consumed.
+    /// let beverageCount = HKQuantity(unit:HKUnit.count(), doubleValue:1.0)
+    ///
+    /// // Get the current date.
+    /// let date = Date()
+    ///
+    /// // Create the alcoholic beverage consumption sample.
+    /// let beverageSample = HKQuantitySample(type: alcoholConsumptionType,
+    ///                                       quantity: beverageCount,
+    ///                                       start: date,
+    ///                                       end: date)
+    ///
+    /// // Save the sample to the HealthKit store.
+    /// store.save(beverageSample) { (success, error) in
+    ///     
+    ///     if success {
+    ///         // The system successfully saved the sample.
+    ///         
+    ///     } else {
+    ///         if let error = error {
+    ///             // Handle the error here.
+    ///         }
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     pub static HKQuantityTypeIdentifierNumberOfAlcoholicBeverages:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberoftimesfallen?language=objc)
+    /// A quantity sample type that measures the number of times the user fell.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// ### Detect and Respond to Falls
+    ///
+    /// There are two approaches to detecting falls in your app. You can either query for [`HKQuantityTypeIdentifierNumberOfTimesFallen`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/numberoftimesfallen) samples in HealthKit, or you can use Core Motion’s [`CMFallDetectionManager`](https://developer.apple.com/documentation/coremotion/cmfalldetectionmanager).
+    ///
+    /// The Core Motion fall detection manager is particularly useful for apps that need to respond to falls in a timely manner so that the app can provide help to the person who fell.
+    ///
+    /// The fall detection manager:
+    ///
+    /// - Notifies the app in real time
+    ///
+    /// - Notifies the app of all fall events
+    ///
+    /// - Provides background runtime so that your app can respond to the fall
+    ///
+    /// ### Detect and Monitor Falls Over Time
+    ///
+    /// The HealthKit sample is particularly useful for apps that monitor falls over longer time periods, because there can be a delay between the fall event and HealthKit updating its samples.
+    ///
+    /// HealthKit provides:
+    ///
+    /// - Samples that are available on all devices that can access the person’s HealthKit data—not just the device that detected the fall
+    ///
+    /// - Samples for falls where the person who fell confirmed the fall, or the system escalated the fall to emergency services. If the person who fell dismisses the fall alert, HealthKit doesn’t record the fall.
+    ///
+    /// Both Core Motion and HealthKit need to authorize access to fall detection before they receive any notifications; however, Core Motion requires an additional entitlement from Apple. To apply for the entitlement, see [Fall Detection Entitlement Request](https://developer.apple.com/contact/request/fall-detection-api).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierNumberOfTimesFallen: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/timeindaylight?language=objc)
+    /// A quantity sample type that measures amount of time the user spent in daylight.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierTimeInDaylight: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/uvexposure?language=objc)
+    /// A quantity sample type that measures the user’s exposure to UV radiation.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The sample’s value represents the UV index that the user was exposed to during the sample’s duration.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierUVExposure: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/watertemperature?language=objc)
+    /// A quantity sample that records the water temperature.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Watch Ultra automatically records these samples during dive sessions and swimming workouts.
+    ///
+    /// Water temperature samples use temperature units (see [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (see [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). Sample data may be condensed and/or coalesced by HealthKit. For more information, see [Accessing condensed workout samples](https://developer.apple.com/documentation/healthkit/accessing-condensed-workout-samples).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierWaterTemperature: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/basalbodytemperature?language=objc)
+    /// A quantity sample type that records the user’s basal body temperature.
+    ///
+    /// ## Discussion
+    ///
+    /// Basal body temperature measures the body’s temperature when at rest (for example, taking the temperature immediately after waking). These samples use temperature units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBasalBodyTemperature: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applesleepingbreathingdisturbances?language=objc)
     pub static HKQuantityTypeIdentifierAppleSleepingBreathingDisturbances:
         &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/forcedexpiratoryvolume1?language=objc)
+    /// A quantity sample type that measures the amount of air that can be forcibly exhaled from the lungs during the first second of a forced exhalation.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use volume units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierForcedExpiratoryVolume1: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/forcedvitalcapacity?language=objc)
+    /// A quantity sample type that measures the amount of air that can be forcibly exhaled from the lungs after taking the deepest breath possible.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use volume units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierForcedVitalCapacity: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/inhalerusage?language=objc)
+    /// A quantity sample type that measures the number of puffs the user takes from their inhaler.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure cumulative values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierInhalerUsage: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/oxygensaturation?language=objc)
+    /// A quantity sample type that measures the user’s oxygen saturation.
+    ///
+    /// ## Discussion
+    ///
+    /// Oxygen saturation samples measure the percentage of oxygen in the bloodstream. These samples use percent units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierOxygenSaturation: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/peakexpiratoryflowrate?language=objc)
+    /// A quantity sample type that measures the user’s maximum flow rate generated during a forceful exhalation.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use volume/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierPeakExpiratoryFlowRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/respiratoryrate?language=objc)
+    /// A quantity sample type that measures the user’s respiratory rate.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use count/time units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)). The system automatically records samples on Apple Watch.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierRespiratoryRate: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bloodglucose?language=objc)
+    /// A quantity sample type that measures the user’s blood glucose level.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use mass/volume units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    /// Please pay attention to the following issues while creating blood glucose samples:
+    ///
+    /// - Blood glucose samples may be measured in mg/dL (milligrams per deciliter) or mmol/L (millimoles per liter), depending on the region.
+    ///
+    /// - The Health app lets users select their preferred units. The Health app uses these units for both the display and manual entry of blood glucose samples.
+    ///
+    /// - You can access the preferred units using the [`preferredUnitsForQuantityTypes:completion:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/preferredunits(for:completion:)) method. If your app connects to a glucose meter that uses units other than the preferred units, alert the user. You can also recommend that users change their preferred units to match the glucose meter.
+    ///
+    /// - Don’t save samples to HealthKit when the blood glucose meter is processing control solution.
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBloodGlucose: &'static HKQuantityTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/bodytemperature?language=objc)
+    /// A quantity sample type that measures the user’s body temperature.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use temperature units (described in [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit)) and measure discrete values (described in [`HKQuantityAggregationStyle`](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle)).
+    ///
+    ///
     pub static HKQuantityTypeIdentifierBodyTemperature: &'static HKQuantityTypeIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier?language=objc)
+/// Identifiers for creating category types.
+///
+/// ## Overview
+///
+/// To create an [`HKCategoryType`](https://developer.apple.com/documentation/healthkit/hkcategorytype) instance, pass an [`HKCategoryTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier) value to the [`categoryTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/categorytype(foridentifier:)) method.
+///
+/// For the complete list of quantity type identifiers, see Activity.
+///
+///
 // NS_TYPED_ENUM
 pub type HKCategoryTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/applestandhour?language=objc)
+    /// A category sample type that counts the number of hours in the day during which the user has stood and moved for at least one minute per hour.
+    ///
+    /// ## Discussion
+    ///
+    /// This quantity type counts the number of hours during which the user stood and moved for at least one minute per hour.
+    ///
+    /// If [`wheelchairUseWithError:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/wheelchairuse()) returns [`HKWheelchairUseYes`](https://developer.apple.com/documentation/healthkit/hkwheelchairuse/yes), Apple Watch calculates the number of hours during which the user rolled for at least one minute instead. Also, the Activity rings display Roll hours instead of Stand hours.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Roll hours are recorded using the [`appleStandHours`](https://developer.apple.com/documentation/healthkit/hkactivitysummary/applestandhours) quantity type. Check the [`wheelchairUseWithError:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/wheelchairuse()) method’s return value to determine whether the data should be interpreted as Roll or Stand hours.
+    ///
+    ///
+    ///
+    /// </div>
+    /// These samples use values from the [`HKCategoryValueAppleStandHour`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour) enumeration.  They represent the data tracked by the Stand ring on Apple Watch.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierAppleStandHour: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/environmentalaudioexposureevent?language=objc)
+    /// A category sample type that records exposure to potentially damaging sounds from the environment.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Watch saves a [`HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/environmentalaudioexposureevent) sample when it generates a _noise notification_, sent when the average sound level reaches or exceeds a specified threshold for three minutes. Apple Watch doesn’t record or save any sounds. Users can enable or disable these notifications, or set the threshold from Settings > Noise.
+    ///
+    /// Environmental audio exposure event samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new environmental audio exposure events to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Hearing > Noise Notifications > Add Data.
+    ///
+    /// Samples of this type use values from the [`HKCategoryValueEnvironmentalAudioExposureEvent`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueenvironmentalaudioexposureevent) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierEnvironmentalAudioExposureEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/headphoneaudioexposureevent?language=objc)
+    /// A category sample type that records exposure to potentially damaging sounds from headphones.
+    ///
+    /// ## Discussion
+    ///
+    /// iPhone and Apple Watch save a [`HKCategoryTypeIdentifierHeadphoneAudioExposureEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/headphoneaudioexposureevent) sample when the device generates a notification about loud headphone audio. Both devices generate these notifications when the user listens to audio long enough and at a volume that could affect their hearing. In some regions, users can enable or disable loud headphone notifications from Settings > Sounds & Haptics > Headphone Safety.
+    ///
+    /// Samples of this type use values from the [`HKCategoryValueHeadphoneAudioExposureEvent`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueheadphoneaudioexposureevent) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHeadphoneAudioExposureEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/highheartrateevent?language=objc)
+    /// A category sample type for high heart rate events.
+    ///
+    /// ## Discussion
+    ///
+    /// The system creates [`HKCategoryTypeIdentifierHighHeartRateEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/highheartrateevent) samples whenever Apple Watch produces a high heart rate notification. For more information, see [Heart rate notifications on your Apple Watch](https://support.apple.com/en-us/HT208931).
+    ///
+    /// The high heart rate samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new high heart rate events to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Heart > High Heart Rate Notifications > Add Data.
+    ///
+    /// These samples have a value of [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) and include [`HKMetadataKeyHeartRateEventThreshold`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartrateeventthreshold) metadata.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHighHeartRateEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularheartrhythmevent?language=objc)
+    /// A category sample type for irregular heart rhythm events.
+    ///
+    /// ## Discussion
+    ///
+    /// The system creates [`HKCategoryTypeIdentifierIrregularHeartRhythmEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularheartrhythmevent) samples whenever Apple Watch produces an irregular rhythm notification. For more information, see [Heart rate notifications on your Apple Watch](https://support.apple.com/en-us/HT208931).
+    ///
+    /// The irregular rhythm samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new irregular rhythm events to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Heart > Irregular Rhythm Notifications > Add Data.
+    ///
+    /// These samples have a value of [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable).
+    ///
+    ///
     pub static HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowcardiofitnessevent?language=objc)
+    /// An event that indicates the user’s VO2 max values consistently fall below a particular aerobic fitness threshold.
+    ///
+    /// ## Discussion
+    ///
+    /// In iOS 14.3 and later, users with a paired Apple Watch running watchOS 7.2 or later can enable a Health app experience that classifies their cardio fitness levels as either “Low”, “Below Average”, “Above Average”, or “High”, based on individual parameters and characteristics.
+    ///
+    /// Apple Watch can notify the user when their cardio fitness level falls into the Low category. If the user enables these notifications, they receive a notification when their VO2 max levels consistently fall below the low threshold for a period of time. The system sends low-cardio fitness notifications approximately once every four months.
+    ///
+    /// The system also creates a [`HKCategoryTypeIdentifierLowCardioFitnessEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowcardiofitnessevent) sample to record the event. The sample contains  values from the [`HKCategoryValueLowCardioFitnessEvent`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluelowcardiofitnessevent) enumeration.
+    ///
+    /// Samples of this type have two associated metadata keys:
+    ///
+    /// - [`HKMetadataKeyVO2MaxValue`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyvo2maxvalue): This key stores the value of the VO2 max sample that triggered the event.
+    ///
+    /// - [`HKMetadataKeyLowCardioFitnessEventThreshold`](https://developer.apple.com/documentation/healthkit/hkmetadatakeylowcardiofitnesseventthreshold): This key stores the threshold value used to calculate the Low cardio classification. This value varies based on certain parameters and physical characteristics, such as the user’s age.
+    ///
+    /// Low-cardio fitness event samples are read-only. Use this identifier to request permission to read these samples; however, you can’t request authorization to share them, and you can’t save new low-cardio fitness event samples to the HealthKit store.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLowCardioFitnessEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowheartrateevent?language=objc)
+    /// A category sample type for low heart rate events.
+    ///
+    /// ## Discussion
+    ///
+    /// The system creates [`HKCategoryTypeIdentifierLowHeartRateEvent`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowheartrateevent) samples whenever Apple Watch produces a low heart rate notification. For more information, see [Heart rate notifications on your Apple Watch](https://support.apple.com/en-us/HT208931).
+    ///
+    /// The low heart rate samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new low heart rate events to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Heart > Low Heart Rate Notifications > Add Data.
+    ///
+    /// These samples have a value of [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) and include [`HKMetadataKeyHeartRateEventThreshold`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyheartrateeventthreshold) metadata.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLowHeartRateEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/mindfulsession?language=objc)
+    /// A category sample type for recording a mindful session.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierMindfulSession: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/applewalkingsteadinessevent?language=objc)
+    /// A category sample type that records an incident where the user showed a reduced score for their gait’s steadiness.
+    ///
+    /// ## Discussion
+    ///
+    /// Samples of this type use values from the [`HKCategoryValueAppleWalkingSteadinessEvent`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplewalkingsteadinessevent) enumeration.
+    ///
+    /// Walking Steadiness events are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new Walking Steadiness events to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Mobility > Walking Steadiness Notifications > Add Data.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierAppleWalkingSteadinessEvent:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/handwashingevent?language=objc)
+    /// A category sample type for handwashing events.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type to read or share handwashing events. When creating a handwashing event sample, set the value to [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable), and set the duration by specifying different start and end dates. The Health app uses the sample’s duration to determine if the handwashing event completed.
+    ///
+    /// Apple Watch automatically detects and records handwashing events on Apple Watch Series 4 and later.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHandwashingEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/toothbrushingevent?language=objc)
+    /// A category sample type for toothbrushing events.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples have a value of [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable).
+    ///
+    ///
     pub static HKCategoryTypeIdentifierToothbrushingEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/bleedingafterpregnancy?language=objc)
+    /// A category type that records bleeding after pregnancy as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueVaginalBleeding`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierBleedingAfterPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/bleedingduringpregnancy?language=objc)
+    /// A category type that records bleeding during pregnancy as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueVaginalBleeding`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluevaginalbleeding) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierBleedingDuringPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/cervicalmucusquality?language=objc)
+    /// A category sample type that records the quality of the user’s cervical mucus.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueCervicalMucusQuality`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecervicalmucusquality) enum.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierCervicalMucusQuality: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/contraceptive?language=objc)
+    /// A category sample type that records the use of contraceptives.
+    ///
+    /// ## Discussion
+    ///
+    /// Samples of this type use values from the [`HKCategoryValueContraceptive`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluecontraceptive) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierContraceptive: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles?language=objc)
+    /// A category sample that indicates an infrequent menstrual cycle.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit generates Cycle Deviation notifications based on the cycle data a person enters. HealthKit processes this data on their iOS device. If it detects a potential deviation, it sends a notification asking them to verify their logged cycle history. If the person confirms that their cycle history is accurate, HealthKit saves a corresponding sample of the detected Cycle Deviation to the HealthKit store.
+    ///
+    /// Cycle Deviation notifications include:
+    ///
+    /// - Persistent spotting: Persistent spotting, also known as irregular intermenstrual bleeding, is defined as spotting that occurs in at least two of your cycles in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierPersistentIntermenstrualBleeding`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding) samples.
+    ///
+    /// - Prolonged periods: Prolonged periods are defined as menstrual bleeding that lasts for ten or more days, and this has happened at least two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierProlongedMenstrualPeriods`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods) samples.
+    ///
+    /// - Irregular cycles: An irregular cycle is defined as at least a seventeen-day difference between a person’s shortest and longest cycles over the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierIrregularMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles) samples.
+    ///
+    /// - Infrequent periods: An infrequent period is defined as having a period one or two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierInfrequentMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles) samples.
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new infrequent menstrual cycle samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKCategoryTypeIdentifierInfrequentMenstrualCycles: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/intermenstrualbleeding?language=objc)
+    /// A category sample type that records spotting outside the normal menstruation period.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierIntermenstrualBleeding: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles?language=objc)
+    /// A category sample that indicates an irregular menstrual cycle.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit generates Cycle Deviation notifications based on the cycle data a person enters. HealthKit processes this data on their iOS device. If it detects a potential deviation, it sends a notification asking them to verify their logged cycle history. If the person confirms that their cycle history is accurate, HealthKit saves a corresponding sample of the detected Cycle Deviation to the HealthKit store.
+    ///
+    /// Cycle Deviation notifications include:
+    ///
+    /// - Persistent spotting: Persistent spotting, also known as irregular intermenstrual bleeding, is defined as spotting that occurs in at least two of your cycles in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierPersistentIntermenstrualBleeding`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding) samples.
+    ///
+    /// - Prolonged periods: Prolonged periods are defined as menstrual bleeding that lasts for ten or more days, and this has happened at least two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierProlongedMenstrualPeriods`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods) samples.
+    ///
+    /// - Irregular cycles: An irregular cycle is defined as at least a seventeen-day difference between a person’s shortest and longest cycles over the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierIrregularMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles) samples.
+    ///
+    /// - Infrequent periods: An infrequent period is defined as having a period one or two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierInfrequentMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles) samples.
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new infrequent menstrual cycle samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKCategoryTypeIdentifierIrregularMenstrualCycles: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lactation?language=objc)
+    /// A category type that records lactation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with samples of this type.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLactation: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/menstrualflow?language=objc)
+    /// A category sample type that records menstrual cycles.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueMenstrualFlow`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluemenstrualflow) enum. Additionally, these samples must include [`HKMetadataKeyMenstrualCycleStart`](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart)  metadata.
+    ///
+    /// When recording data about the user’s menstrual cycle, you can either use a single sample for the entire period, or multiple samples to record changes over the cycle. When using single samples, pass the start of the menstrual period to the `startDate` parameter. Pass the end of the period to the `endDate` parameter, and set the [`HKMetadataKeyMenstrualCycleStart`](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart) value to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// When using multiple samples to record a single period, the `startDate` and `endDate` parameters should mark the beginning and ending of each individual sample. Set the [`HKMetadataKeyMenstrualCycleStart`](https://developer.apple.com/documentation/healthkit/hkmetadatakeymenstrualcyclestart) value for the first sample in the period to [`true`](https://developer.apple.com/documentation/swift/true). Use [`false`](https://developer.apple.com/documentation/swift/false) for any additional samples. Different samples can use different `menstrualFlow` values to record the changes in flow over time.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierMenstrualFlow: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/ovulationtestresult?language=objc)
+    /// A category sample type that records the result of an ovulation home test.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueOvulationTestResult`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueovulationtestresult) enum.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierOvulationTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding?language=objc)
+    /// A category sample that indicates persistent intermenstrual bleeding.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit generates Cycle Deviation notifications based on the cycle data a person enters. HealthKit processes this data on their iOS device. If it detects a potential deviation, it sends a notification asking them to verify their logged cycle history. If the person confirms that their cycle history is accurate, HealthKit saves a corresponding sample of the detected Cycle Deviation to the HealthKit store.
+    ///
+    /// Cycle Deviation notifications include:
+    ///
+    /// - Persistent spotting: Persistent spotting, also known as irregular intermenstrual bleeding, is defined as spotting that occurs in at least two of your cycles in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierPersistentIntermenstrualBleeding`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding) samples.
+    ///
+    /// - Prolonged periods: Prolonged periods are defined as menstrual bleeding that lasts for ten or more days, and this has happened at least two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierProlongedMenstrualPeriods`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods) samples.
+    ///
+    /// - Irregular cycles: An irregular cycle is defined as at least a seventeen-day difference between a person’s shortest and longest cycles over the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierIrregularMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles) samples.
+    ///
+    /// - Infrequent periods: An infrequent period is defined as having a period one or two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierInfrequentMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles) samples.
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new infrequent menstrual cycle samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKCategoryTypeIdentifierPersistentIntermenstrualBleeding:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/pregnancy?language=objc)
+    /// A category type that records pregnancy.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with samples of this type.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierPregnancy: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/pregnancytestresult?language=objc)
+    /// A category type that represents the results from a home pregnancy test.
+    ///
+    /// ## Discussion
+    ///
+    /// Home pregnancy tests check for the presence of the human chorionic gonadotropin (hCG) hormone in a urine sample to determine if a person is pregnant.
+    ///
+    /// Samples of this type use values from the [`HKCategoryValuePregnancyTestResult`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepregnancytestresult) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierPregnancyTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/progesteronetestresult?language=objc)
+    /// A category type that represents the results from a home progesterone test.
+    ///
+    /// ## Discussion
+    ///
+    /// Home progesterone tests check for the presence of a progesterone hormone metabolite, known as pregnanediol-3-glucuronide (PDG), in a urine sample to confirm whether ovulation has occurred.
+    ///
+    /// Samples of this type use values from the [`HKCategoryValueProgesteroneTestResult`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueprogesteronetestresult) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierProgesteroneTestResult: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods?language=objc)
+    /// A category sample that indicates a prolonged menstrual cycle.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit generates Cycle Deviation notifications based on the cycle data a person enters. HealthKit processes this data on their iOS device. If it detects a potential deviation, it sends a notification asking them to verify their logged cycle history. If the person confirms that their cycle history is accurate, HealthKit saves a corresponding sample of the detected Cycle Deviation to the HealthKit store.
+    ///
+    /// Cycle Deviation notifications include:
+    ///
+    /// - Persistent spotting: Persistent spotting, also known as irregular intermenstrual bleeding, is defined as spotting that occurs in at least two of your cycles in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierPersistentIntermenstrualBleeding`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/persistentintermenstrualbleeding) samples.
+    ///
+    /// - Prolonged periods: Prolonged periods are defined as menstrual bleeding that lasts for ten or more days, and this has happened at least two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierProlongedMenstrualPeriods`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/prolongedmenstrualperiods) samples.
+    ///
+    /// - Irregular cycles: An irregular cycle is defined as at least a seventeen-day difference between a person’s shortest and longest cycles over the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierIrregularMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/irregularmenstrualcycles) samples.
+    ///
+    /// - Infrequent periods: An infrequent period is defined as having a period one or two times in the last six months. HealthKit records verified instances using [`HKCategoryTypeIdentifierInfrequentMenstrualCycles`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/infrequentmenstrualcycles) samples.
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  These samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new infrequent menstrual cycle samples to the HealthKit store.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static HKCategoryTypeIdentifierProlongedMenstrualPeriods: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sexualactivity?language=objc)
+    /// A category sample type that records sexual activity.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a [`HKCategoryValueNotApplicable`](https://developer.apple.com/documentation/healthkit/hkcategoryvalue/notapplicable) value with these samples. These samples can include [`HKMetadataKeySexualActivityProtectionUsed`](https://developer.apple.com/documentation/healthkit/hkmetadatakeysexualactivityprotectionused) metadata.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSexualActivity: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sleepapneaevent?language=objc)
     pub static HKCategoryTypeIdentifierSleepApneaEvent: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sleepanalysis?language=objc)
+    /// A category sample type for sleep analysis information.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueSleepAnalysis`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis) enum.
+    ///
+    /// For best results when analyzing sleep samples, it’s recommended that you use [`HKMetadataKeyTimeZone`](https://developer.apple.com/documentation/healthkit/hkmetadatakeytimezone) to store time zone metadata with your sleep sample data.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSleepAnalysis: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/abdominalcramps?language=objc)
+    /// A category type that records abdominal cramps as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierAbdominalCramps: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/acne?language=objc)
+    /// A category type that records acne as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierAcne: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/appetitechanges?language=objc)
+    /// A category type that records changes in appetite as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValueAppetiteChanges`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierAppetiteChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/bladderincontinence?language=objc)
+    /// A category type that records bladder incontinence as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierBladderIncontinence: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/bloating?language=objc)
+    /// A category type that records bloating as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierBloating: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/breastpain?language=objc)
+    /// A category type that records breast pain as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierBreastPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/chesttightnessorpain?language=objc)
+    /// A category type that records chest tightness or pain as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierChestTightnessOrPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/chills?language=objc)
+    /// A category type that records chills as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierChills: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/constipation?language=objc)
+    /// A category type that records constipation as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierConstipation: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/coughing?language=objc)
+    /// A category type that records coughing as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierCoughing: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/diarrhea?language=objc)
+    /// A category type that records diarrhea as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierDiarrhea: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/dizziness?language=objc)
+    /// A category type that records dizziness as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierDizziness: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/dryskin?language=objc)
+    /// A category type that records dry skin as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierDrySkin: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/fainting?language=objc)
+    /// A category type that records fainting as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierFainting: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/fatigue?language=objc)
+    /// A category type that records fatigue as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierFatigue: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/fever?language=objc)
+    /// A category type that records fever as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierFever: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/generalizedbodyache?language=objc)
+    /// A category type that records body ache as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierGeneralizedBodyAche: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/hairloss?language=objc)
+    /// A category type that records hair loss as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHairLoss: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/headache?language=objc)
+    /// A category type that records headache as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHeadache: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/heartburn?language=objc)
+    /// A category type that records heartburn as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHeartburn: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/hotflashes?language=objc)
+    /// A category type that records hot flashes as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierHotFlashes: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lossofsmell?language=objc)
+    /// A category type that records loss of smell as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLossOfSmell: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lossoftaste?language=objc)
+    /// A category type that records loss of taste as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLossOfTaste: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/lowerbackpain?language=objc)
+    /// A category type that records lower back pain as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierLowerBackPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/memorylapse?language=objc)
+    /// A category type that records memory lapse as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierMemoryLapse: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/moodchanges?language=objc)
+    /// A category type that records mood changes as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValuePresence`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierMoodChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/nausea?language=objc)
+    /// A category type that records nausea as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierNausea: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/nightsweats?language=objc)
+    /// A category type that records night sweats as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierNightSweats: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/pelvicpain?language=objc)
+    /// A category type that records pelvic pain as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierPelvicPain: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/rapidpoundingorflutteringheartbeat?language=objc)
+    /// A category type that records a rapid, pounding, or fluttering heartbeat as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierRapidPoundingOrFlutteringHeartbeat:
         &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/runnynose?language=objc)
+    /// A category type that records runny nose as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierRunnyNose: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/shortnessofbreath?language=objc)
+    /// A category type that records shortness of breath as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierShortnessOfBreath: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sinuscongestion?language=objc)
+    /// A category type that records sinus congestion as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSinusCongestion: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/skippedheartbeat?language=objc)
+    /// A category type that records skipped heartbeat as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSkippedHeartbeat: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sleepchanges?language=objc)
+    /// A category type that records sleep changes as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the [`HKCategoryValuePresence`](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSleepChanges: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/sorethroat?language=objc)
+    /// A category type that records sore throat as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierSoreThroat: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/vaginaldryness?language=objc)
+    /// A category type that records vaginal dryness as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierVaginalDryness: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/vomiting?language=objc)
+    /// A category type that records vomiting as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierVomiting: &'static HKCategoryTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/wheezing?language=objc)
+    /// A category type that records wheezing as a symptom.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from the  [`HKCategoryValueSeverity`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity) enumeration.
+    ///
+    ///
     pub static HKCategoryTypeIdentifierWheezing: &'static HKCategoryTypeIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier?language=objc)
+/// The identifiers that create characteristic type objects.
+///
+/// ## Overview
+///
+/// To create an [`HKCharacteristicType`](https://developer.apple.com/documentation/healthkit/hkcharacteristictype) instance, pass an [`HKCharacteristicTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier) value to the [`characteristicTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/characteristictype(foridentifier:)) method.
+///
+///
 // NS_TYPED_ENUM
 pub type HKCharacteristicTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/activitymovemode?language=objc)
+    /// A characteristic identifier for the user’s activity mode.
     pub static HKCharacteristicTypeIdentifierActivityMoveMode:
         &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/biologicalsex?language=objc)
+    /// A characteristic type identifier for the user’s sex.
+    ///
+    /// ## Discussion
+    ///
+    /// This type uses values from the [`HKBiologicalSex`](https://developer.apple.com/documentation/healthkit/hkbiologicalsex) enum.
+    ///
+    ///
     pub static HKCharacteristicTypeIdentifierBiologicalSex: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/bloodtype?language=objc)
+    /// A characteristic type identifier for the user’s blood type.
+    ///
+    /// ## Discussion
+    ///
+    /// This type uses values from the [`HKBloodType`](https://developer.apple.com/documentation/healthkit/hkbloodtype) enum.
+    ///
+    ///
     pub static HKCharacteristicTypeIdentifierBloodType: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/dateofbirth?language=objc)
+    /// A characteristic type identifier for the user’s date of birth.
     pub static HKCharacteristicTypeIdentifierDateOfBirth: &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/fitzpatrickskintype?language=objc)
+    /// A characteristic type identifier for the user’s skin type.
+    ///
+    /// ## Discussion
+    ///
+    /// This type uses values from the [`HKFitzpatrickSkinType`](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype) enum.
+    ///
+    ///
     pub static HKCharacteristicTypeIdentifierFitzpatrickSkinType:
         &'static HKCharacteristicTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictypeidentifier/wheelchairuse?language=objc)
+    /// A characteristic identifier for the user’s use of a wheelchair.
     pub static HKCharacteristicTypeIdentifierWheelchairUse: &'static HKCharacteristicTypeIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier?language=objc)
+/// The identifiers that create correlation type objects.
+///
+/// ## Overview
+///
+/// To create an [`HKCorrelationType`](https://developer.apple.com/documentation/healthkit/hkcorrelationtype) instance, pass an [`HKCorrelationTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier) value to the [`correlationTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/correlationtype(foridentifier:)) method.
+///
+///
 // NS_TYPED_ENUM
 pub type HKCorrelationTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier/bloodpressure?language=objc)
+    /// A correlation sample that combines a systolic sample and a diastolic sample into a single blood pressure reading.
     pub static HKCorrelationTypeIdentifierBloodPressure: &'static HKCorrelationTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtypeidentifier/food?language=objc)
+    /// Food correlation types combine any number of nutritional samples into a single food object.
+    ///
+    /// ## Discussion
+    ///
+    /// When creating food samples, specify the type of food using the [`HKMetadataKeyFoodType`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype) metadata key.
+    ///
+    ///
     pub static HKCorrelationTypeIdentifierFood: &'static HKCorrelationTypeIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttypeidentifier?language=objc)
+/// The identifiers for documents.
+///
+/// ## Overview
+///
+/// To create an [`HKDocumentType`](https://developer.apple.com/documentation/healthkit/hkdocumenttype) instance, pass an [`HKDocumentTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkdocumenttypeidentifier) value to the [`documentTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/documenttype(foridentifier:)) method.
+///
+/// For the complete list of quantity type identifiers, see Document Types.
+///
+///
 // NS_TYPED_ENUM
 pub type HKDocumentTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttypeidentifier/cda?language=objc)
+    /// The CDA Document type identifier, used when requesting permission to read or share CDA documents.
     pub static HKDocumentTypeIdentifierCDA: &'static HKDocumentTypeIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type HKScoredAssessmentTypeIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifier/gad7?language=objc)
     pub static HKScoredAssessmentTypeIdentifierGAD7: &'static HKScoredAssessmentTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttypeidentifier/phq9?language=objc)
     pub static HKScoredAssessmentTypeIdentifierPHQ9: &'static HKScoredAssessmentTypeIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttypeidentifier?language=objc)
+    /// The workout type identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this type identifier when requesting permission to read or share workout data.
+    ///
+    ///
     pub static HKWorkoutTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutroutetypeidentifier?language=objc)
+    /// A series sample containing location data that defines the route the user took during a workout.
     pub static HKWorkoutRouteTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierheartbeatseries?language=objc)
+    /// A series sample containing heartbeat data.
     pub static HKDataTypeIdentifierHeartbeatSeries: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkvisionprescriptiontypeidentifier?language=objc)
+    /// A type identifier for vision prescription samples.
     pub static HKVisionPrescriptionTypeIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifierstateofmind?language=objc)
     pub static HKDataTypeIdentifierStateOfMind: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtypeidentifiermedicationdoseevent?language=objc)
     pub static HKMedicationDoseEventTypeIdentifierMedicationDoseEvent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdatatypeidentifieruserannotatedmedicationconcept?language=objc)
     pub static HKDataTypeIdentifierUserAnnotatedMedicationConcept: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier/audioexposureevent?language=objc)
+    /// A category sample type for audio exposure events.
+    ///
+    /// ## Discussion
+    ///
+    /// These samples use values from [`HKCategoryValueAudioExposureEvent`](https://developer.apple.com/documentation/healthkit/hkcategoryvalueaudioexposureevent).
+    ///
+    ///
     #[deprecated]
     pub static HKCategoryTypeIdentifierAudioExposureEvent: &'static HKCategoryTypeIdentifier;
 }

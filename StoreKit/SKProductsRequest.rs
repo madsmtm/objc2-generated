@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsrequestdelegate?language=objc)
+    /// A set of methods the delegate implements so it receives the product information your app requests.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SKProductsRequestDelegate`](https://developer.apple.com/documentation/storekit/skproductsrequestdelegate) protocol declares methods that are implemented by the delegate of an [`SKProductsRequest`](https://developer.apple.com/documentation/storekit/skproductsrequest) object. The delegate receives the product information that the product request referred to. Your app uses this information when presenting products to users in its in-app store.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Responses received by the `SKProductsRequestDelegate` may not be returned on a specific thread. If you make assumptions about which queue will handle delegate responses, you may encounter unintended performance and compatibility issues in the future.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(feature = "SKRequest")]
     #[deprecated = "Get products using Product.products(for:)"]
     pub unsafe trait SKProductsRequestDelegate: SKRequestDelegate {
@@ -24,7 +38,23 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsrequest?language=objc)
+    /// An object that can retrieve localized information from the App Store about a specified list of products.
+    ///
+    /// ## Overview
+    ///
+    /// Your app uses an [`SKProductsRequest`](https://developer.apple.com/documentation/storekit/skproductsrequest) object to present localized prices and other information to the user without having to maintain that list of product information itself.
+    ///
+    /// To use an [`SKProductsRequest`](https://developer.apple.com/documentation/storekit/skproductsrequest) object, you initialize it with a list of product identifier strings, attach a delegate, and then call the request’s [`start`](https://developer.apple.com/documentation/storekit/skrequest/start()) method. When the request completes, your delegate receives an [`SKProductsResponse`](https://developer.apple.com/documentation/storekit/skproductsresponse) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Be sure to keep a strong reference to the request object; otherwise, the system might deallocate the request before it can complete.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
@@ -83,7 +113,7 @@ impl SKProductsRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsresponse?language=objc)
+    /// An App Store response to a request for information about a list of products.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Get products using Product.products(for:)"]

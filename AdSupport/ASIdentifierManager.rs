@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// The object that contains the advertising identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adsupport/asidentifiermanager?language=objc)
+    /// The object that contains the advertising identifier.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASIdentifierManager;

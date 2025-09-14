@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class representing an argument in the Program.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramargument?language=objc)
+    /// A class representing an argument in the Program.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramArgument;

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfinfo?language=objc)
+    /// An object that stores information associated with the creation of a PDF file, such as its URL, tag names, page orientation, and paper size.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, a PDF panel—that is, a panel created by an [`NSPDFPanel`](https://developer.apple.com/documentation/appkit/nspdfpanel) object—displays the information supplied by an [`NSPDFInfo`](https://developer.apple.com/documentation/appkit/nspdfinfo) object when the user wants to export content as a PDF file. A PDF panel can also update a PDF info object with information it receives from the user.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPDFInfo;

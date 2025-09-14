@@ -7,233 +7,603 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kionetworkcontrollerclass?language=objc)
+/// The name of the IONetworkController class.
 pub const kIONetworkControllerClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkController\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiovendor?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOVendor property is a property of IONetworkController objects. It has an OSString value that describes the vendor of the network controller.
+///
+///
 pub const kIOVendor: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOVendor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomodel?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOModel property is a property of IONetworkController objects. It has an OSString value that describes the model of the network controller.
+///
+///
 pub const kIOModel: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOModel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiorevision?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIORevision property is a property of IONetworkController objects. It has an OSString value that describes the revision level of the network controller.
+///
+///
 pub const kIORevision: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IORevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiofeatures?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOFeatures property is a property of IONetworkController objects. It has an OSNumber value that describes generic features defined by IONetworkController that are supported by the network controller.
+///
+///
 pub const kIOFeatures: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFeatures\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediumdictionary?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOMediumDictionary property is a property of IONetworkController objects. It has an OSDictionary value that is a container for the collection of IONetworkMedium objects that represent the media types supported by the network controller. Each entry in the dictionary is a key/value pair consisting of the medium name, and a dictionary value that contains the properties for that medium entry.
+///
+///
 pub const kIOMediumDictionary: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediumDictionary\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiodefaultmedium?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIODefaultMedium property is a property of IONetworkController objects. It has an OSString value that describes the name of the default medium. This definition may change or disappear in the future.
+///
+///
 pub const kIODefaultMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODefaultMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioselectedmedium?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOSelectedMedium property is a property of IONetworkController objects. It has an OSSymbol value that describes the name of the current selected medium. This name can be used as a key into the medium dictionary to gather additional information about the selected medium.
+///
+///
 pub const kIOSelectedMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSelectedMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioactivemedium?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOActiveMedium property is a property of IONetworkController objects. It has an OSSymbol value that describes the name of the active medium. This is the name of the medium where an active link has been established. This name can be used as a key into the medium dictionary to gather additional information about the active medium.
+///
+///
 pub const kIOActiveMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOActiveMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiolinkspeed?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOLinkSpeed property is a property of IONetworkController objects. It has an OSNumber value that describes the speed of the link established over the active medium in bits per second.
+///
+///
 pub const kIOLinkSpeed: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkSpeed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiolinkstatus?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOLinkStatus property is a property of IONetworkController objects. It has an OSNumber value that describes the current network link status. See IONetworkMedium for the definition of the link status bits.
+///
+///
 pub const kIOLinkStatus: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkStatus\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiolinkdata?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOLinkData property is a property of IONetworkController objects. It has an OSData value that contains additional information describing the active link that was established. Its interpretation is not defined.
+///
+///
 pub const kIOLinkData: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkData\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiopacketfilters?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOPacketFilters property is a property of IONetworkController objects. It has an OSDictionary value that describes the entire set of packet filters supported by the controller. Each entry in the dictionary is a key/value pair consisting of the filter group name, and an OSNumber describing the set of supported filters for that group.
+///
+///
 pub const kIOPacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomacaddress?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOMACAddress property is a property of IONetworkController objects. It has an OSData value that describes the hardware MAC (media access controller) address, or station address, of the network controller.
+///
+///
 pub const kIOMACAddress: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMACAddress\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomaxpacketsize?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOMaxPacketSize property is a property of IONetworkController objects. It has an OSNumber value that describes the maximum packet size supported by the controller.
+///
+///
 pub const kIOMaxPacketSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaxPacketSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiominpacketsize?language=objc)
+/// A property of IONetworkController objects.
+///
+/// ## Discussion
+///
+/// The kIOMinPacketSize property is a property of IONetworkController objects. It has an OSNumber value that describes the minimum packet size supported by the controller.
+///
+///
 pub const kIOMinPacketSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinPacketSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kionetworkfiltergroup?language=objc)
+/// The name assigned to the standard network filter group.
 pub const kIONetworkFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetcontrollerclass?language=objc)
+/// kIOEthernetControllerClass is the name of the IOEthernetController class.
 pub const kIOEthernetControllerClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetController\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetaddresssize?language=objc)
+/// The number of bytes in an Ethernet hardware address.
 pub const kIOEthernetAddressSize: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetmaxpacketsize?language=objc)
+/// The maximum size of an Ethernet packet, including the FCS bytes.
 pub const kIOEthernetMaxPacketSize: c_uint = 1518;
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetminpacketsize?language=objc)
+/// The minimum size of an Ethernet packet, including the FCS bytes.
 pub const kIOEthernetMinPacketSize: c_uint = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetcrcsize?language=objc)
+/// The size in bytes of the 32-bit CRC value appended to the end of each Ethernet frame.
 pub const kIOEthernetCRCSize: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetwakeonlanfiltergroup?language=objc)
+/// kIOEthernetWakeOnLANFilterGroup describes the name assigned to the Ethernet Wake-On-LAN filter group. This group represents wake filters that are supported by the controller.
 pub const kIOEthernetWakeOnLANFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetWakeOnLANFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetdisabledwakeonlanfiltergroup?language=objc)
+/// kIOEthernetDisabledWakeOnLANFilterGroup describes the name assigned to the disabled Ethernet Wake-On-LAN filter group. This group represents wake filters that are currently disabled. Membership in this group is dynamic.
 pub const kIOEthernetDisabledWakeOnLANFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetDisabledWakeOnLANFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabasicaccesstypes?language=objc)
+///
+/// ## Discussion
+///
+/// The default access types supported by an IONetworkData object. Allow read() and serialize().
+///
+///
 pub const kIONetworkDataBasicAccessTypes: c_uint =
     kIONetworkDataAccessTypeRead | kIONetworkDataAccessTypeSerialize;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabytes?language=objc)
+/// A property of IONetworkData objects.
+///
+/// ## Discussion
+///
+/// The kIONetworkDataBytes property is an OSData that describes the data buffer of an IONetworkData object. This property is present only if kIONetworkDataAccessTypeSerialize access is supported.
+///
+///
 pub const kIONetworkDataBytes: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypes?language=objc)
+/// A property of IONetworkData objects.
+///
+/// ## Discussion
+///
+/// The kIONetworkDataAccessTypes property is an OSNumber that describes the supported access types of an IONetworkData object.
+///
+///
 pub const kIONetworkDataAccessTypes: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Access Types\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatasize?language=objc)
+/// A property of IONetworkData objects.
+///
+/// ## Discussion
+///
+/// The kIONetworkDataSize property is an OSNumber that describes the size of the data buffer of an IONetworkData object.
+///
+///
 pub const kIONetworkDataSize: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Size\0") };
 pub const kIONetworkStackUserCommandKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStackUserCommand\0") };
 pub const kIONetworkStackUserCommand: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStackUserCommand\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetinterfaceclass?language=objc)
+/// The name of the IOEthernetInterface class.
 pub const kIOEthernetInterfaceClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioactivepacketfilters?language=objc)
+/// A property of IOEthernetInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOActivePacketFilters property has an OSDictionary value that describes the current set of packet filters that have been successfully activated. Each entry in the dictionary is a key/value pair consisting of the filter group name, and an OSNumber describing the set of active filters for that group. Entries in this dictionary will mirror those in kIORequiredPacketFilters if the controller has reported success for all filter change requests from the IOEthernetInterface object.
+///
+///
 pub const kIOActivePacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOActivePacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorequiredpacketfilters?language=objc)
+/// A property of IOEthernetInterface objects.
+///
+/// ## Discussion
+///
+/// The kIORequiredPacketFilters property has an OSDictionary value that describes the current set of required packet filters. Each entry in the dictionary is a key/value pair consisting of the filter group name, and an OSNumber describing the set of required filters for that group.
+///
+///
 pub const kIORequiredPacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORequiredPacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomulticastaddresslist?language=objc)
+/// A property of IOEthernetInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOMulticastAddressList property is an OSData object that describes the list of multicast addresses that are being used by the controller to match against the destination address of an incoming frame.
+///
+///
 pub const kIOMulticastAddressList: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMulticastAddressList\0") };
 pub const kIOMulticastFilterData: &CStr = kIOMulticastAddressList;
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kionetworkinterfaceclass?language=objc)
+/// The name of the IONetworkInterface class.
 pub const kIONetworkInterfaceClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kionetworkdata?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIONetworkData property has an OSDictionary value and is a container for the set of IONetworkData objects managed by the interface. Each entry in the dictionary is a key/value pair consisting of the network data name, and an OSDictionary describing the contents of the network data.
+///
+///
 pub const kIONetworkData: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkData\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfacetype?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceType property has an OSNumber value that specifies the type of network interface that this interface represents. The type constants are defined in bsd/net/if_types.h.
+///
+///
 pub const kIOInterfaceType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomaxtransferunit?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOMaxTransferUnit property has an OSNumber value that specifies the maximum transfer unit for the interface in bytes.
+///
+///
 pub const kIOMaxTransferUnit: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaxTransferUnit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediaaddresslength?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOMediaAddressLength property has an OSNumber value that specifies the size of the media address in bytes.
+///
+///
 pub const kIOMediaAddressLength: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediaAddressLength\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediaheaderlength?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOMediaHeaderLength property has an OSNumber value that specifies the size of the media header in bytes.
+///
+///
 pub const kIOMediaHeaderLength: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediaHeaderLength\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfaceflags?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceFlags property has an OSNumber value that specifies the current value of the interface flags. The flag constants are defined in bsd/net/if.h.
+///
+///
 pub const kIOInterfaceFlags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfaceextraflags?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceExtraFlags property has an OSNumber value that specifies the current value of the interface eflags. The eflag constants are defined in bsd/net/if.h.
+///
+///
 pub const kIOInterfaceExtraFlags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceExtraFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfaceunit?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceUnit property has an OSNumber value that describes the unit number assigned to the interface object.
+///
+///
 pub const kIOInterfaceUnit: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceUnit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfacestate?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceState property has an OSNumber value that describes the current state of the interface object. This property is not exported to BSD via the ifnet structure.
+///
+///
 pub const kIOInterfaceState: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiointerfacenameprefix?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceNamePrefix property has an OSString value that describes the string prefix for the BSD name assigned to the interface.
+///
+///
 pub const kIOInterfaceNamePrefix: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceNamePrefix\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioprimaryinterface?language=objc)
+/// A property of IONetworkInterface objects.
+///
+/// ## Discussion
+///
+/// The kIOInterfaceNamePrefix property has an OSBoolean value that describes whether the interface is the primary or the built-in network interface.
+///
+///
 pub const kIOPrimaryInterface: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPrimaryInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiobuiltin?language=objc)
+/// kIOBuiltin is a property of IONetworkInterface objects. It has an OSBoolean value.
+///
+/// ## Discussion
+///
+/// The kIOBuiltin property describes whether the interface is built-in.
+///
+///
 pub const kIOBuiltin: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBuiltin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiolocation?language=objc)
+/// kIOLocation is a property of IONetworkInterface objects. It has an OSString value.
+///
+/// ## Discussion
+///
+/// The kIOLocation property describes the physical location of built-in interfaces.
+///
+///
 pub const kIOLocation: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLocation\0") };
 pub const kIONetworkNoBSDAttachKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkNoBSDAttach\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kionetworkstatskey?language=objc)
+///
+/// ## Discussion
+///
+/// Defines the name of an IONetworkData that contains an IONetworkStats.
+///
+///
 pub const kIONetworkStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiooutputqueuestatskey?language=objc)
+///
+/// ## Discussion
+///
+/// Defines the name of an IONetworkData that contains an IOOutputQueueStats.
+///
+///
 pub const kIOOutputQueueStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOOutputQueueStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kioethernetstatskey?language=objc)
+///
+/// ## Discussion
+///
+/// Defines the name of an IONetworkData that contains an IOEthernetStats.
+///
+///
 pub const kIOEthernetStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediumtype?language=objc)
+/// A property of IONetworkMedium objects.
+///
+/// ## Discussion
+///
+/// The kIOMediumType property is an OSNumber object that describes the type of medium that this object represents.
+///
+///
 pub const kIOMediumType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediumflags?language=objc)
+/// A property of IONetworkMedium objects.
+///
+/// ## Discussion
+///
+/// The kIOMediumFlags property is an OSNumber object that describes a set of attributes assigned to the medium.
+///
+///
 pub const kIOMediumFlags: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Flags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediumspeed?language=objc)
+/// A property of IONetworkMedium objects.
+///
+/// ## Discussion
+///
+/// The kIOMediumSpeed property is an OSNumber object that describes the maximum link speed supported by the medium in bits per second.
+///
+///
 pub const kIOMediumSpeed: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Speed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiomediumindex?language=objc)
+/// A property of IONetworkMedium objects.
+///
+/// ## Discussion
+///
+/// The kIOMediumIndex property is an OSNumber object that describes an index assigned by the owner of the medium object. Its interpretation is driver specific.
+///
+///
 pub const kIOMediumIndex: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Index\0") };
 pub const kIONetworkUserClientTypeID: c_uint = 0xff000001;
 pub const kIONUCType: c_uint = 0xff000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterunicast?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of unicast packets.
+///
+///
 pub const kIOPacketFilterUnicast: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterbroadcast?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of broadcast packets.
+///
+///
 pub const kIOPacketFilterBroadcast: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfiltermulticast?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of multicast packets addressed to a set of multicast addresses.
+///
+///
 pub const kIOPacketFilterMulticast: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfiltermulticastall?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of all multicast packets.
+///
+///
 pub const kIOPacketFilterMulticastAll: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterpromiscuous?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of all packets.
+///
+///
 pub const kIOPacketFilterPromiscuous: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterpromiscuousall?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of all packets, including bad packets.
+///
+///
 pub const kIOPacketFilterPromiscuousAll: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturenobsdwait?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit in the value returned by getFeatures() to disable the automatic wait for "IOBSD" resource by the IONetworkController::start() method.
+///
+///
 pub const kIONetworkFeatureNoBSDWait: c_uint = 0x001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturehardwarevlan?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit in the value returned by getFeatures() to indicate the controller supports hardware stripping and stuffing of 802.1q vlan tags. If the controller supports this feature it must enable it when initializing so that all received packets delivered to higher layers have the tag stripped. The controller should use setVlanTag() to provide the tag information out of band.
+///
+///
 pub const kIONetworkFeatureHardwareVlan: c_uint = 0x002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturesoftwarevlan?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit in the value returned by getFeatures() to indicate that the controller can support software based vlan by transmitting and receiving packets 4 bytes longer that normal.
+///
+///
 pub const kIONetworkFeatureSoftwareVlan: c_uint = 0x004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturemultipages?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit if the driver is capable of handling packets coming down from the network stack that reside in virtually, but not in physically contiguous span of the external mbuf clusters. In this case, the data area of a packet in the external mbuf cluster might cross one or more physical pages that are disjoint, depending on the interface MTU and the packet size. Such a use of larger than system page size clusters by the network stack is done for better system efficiency. Drivers that utilize the IOMbufNaturalMemoryCursor with the getPhysicalSegmentsWithCoalesce interfaces and enumerate the list of vectors should set this flag for possible gain in performance during bulk data transfer.
+///
+///
 pub const kIONetworkFeatureMultiPages: c_uint = 0x008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetsoipv4?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit to advertise support for TCP/IPv4 segmentation offload.
+///
+///
 pub const kIONetworkFeatureTSOIPv4: c_uint = 0x010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetsoipv6?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit to advertise support for TCP/IPv6 segmentation offload.
+///
+///
 pub const kIONetworkFeatureTSOIPv6: c_uint = 0x020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetransmitcompletionstatus?language=objc)
+///
+/// ## Discussion
+///
+/// Set this bit to advertise the capability to report per-packet transmit completion status. See `IONetworkInterface::reportTransmitCompletionStatus`.
+///
+///
 pub const kIONetworkFeatureTransmitCompletionStatus: c_uint = 0x040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturehwtimestamp?language=objc)
 pub const kIONetworkFeatureHWTimeStamp: c_uint = 0x080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeatureswtimestamp?language=objc)
 pub const kIONetworkFeatureSWTimeStamp: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturelro?language=objc)
 pub const kIONetworkFeatureLRO: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1519759-wake_on_lan_filters/kioethernetwakeonmagicpacket?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of a Magic Packet.
+///
+///
 pub const kIOEthernetWakeOnMagicPacket: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1519759-wake_on_lan_filters/kioethernetwakeonpacketaddressmatch?language=objc)
+///
+/// ## Discussion
+///
+/// Reception of a packet which passes through any of the address filtering mechanisms based on its destination Ethernet address. This may include unicast, broadcast, or multicast addresses depending on the current state and setting of the corresponding packet filters.
+///
+///
 pub const kIOEthernetWakeOnPacketAddressMatch: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstyperead?language=objc)
+///
+/// ## Discussion
+///
+/// Read access.
+///
+///
 pub const kIONetworkDataAccessTypeRead: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypewrite?language=objc)
+///
+/// ## Discussion
+///
+/// Write access.
+///
+///
 pub const kIONetworkDataAccessTypeWrite: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypereset?language=objc)
+///
+/// ## Discussion
+///
+/// Reset access.
+///
+///
 pub const kIONetworkDataAccessTypeReset: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypeserialize?language=objc)
+///
+/// ## Discussion
+///
+/// Serialization access.
+///
+///
 pub const kIONetworkDataAccessTypeSerialize: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypemask?language=objc)
 pub const kIONetworkDataAccessTypeMask: c_uint = 0xff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypeinternal?language=objc)
+///
+/// ## Discussion
+///
+/// An internal data buffer allocated by the init() method.
+///
+///
 pub const kIONetworkDataBufferTypeInternal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypeexternal?language=objc)
+///
+/// ## Discussion
+///
+/// An external (persistent) data buffer.
+///
+///
 pub const kIONetworkDataBufferTypeExternal: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypenone?language=objc)
+///
+/// ## Discussion
+///
+/// No data buffer. The only useful action perfomed by an IONetworkData object with this buffer type is to call the access notification handler.
+///
+///
 pub const kIONetworkDataBufferTypeNone: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfacewithunit?language=objc)
 pub const kIONetworkStackRegisterInterfaceWithUnit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfacewithlowestunit?language=objc)
 pub const kIONetworkStackRegisterInterfaceWithLowestUnit: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfaceall?language=objc)
 pub const kIONetworkStackRegisterInterfaceAll: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfaceregisteredstate?language=objc)
+///
+/// ## Discussion
+///
+/// The interface object has registered with the data link layer.
+///
+///
 pub const kIONetworkInterfaceRegisteredState: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfaceopenedstate?language=objc)
+///
+/// ## Discussion
+///
+/// One or more clients have an open on the interface object.
+///
+///
 pub const kIONetworkInterfaceOpenedState: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfacedisabledstate?language=objc)
+///
+/// ## Discussion
+///
+/// The interface is temporarily unable to service its clients. This will occur when the network controller that is servicing the interface has entered a low power state that renders it unusable.
+///
+///
 pub const kIONetworkInterfaceDisabledState: c_uint = 0x4;
 
+///
+/// ## Overview
+///
+/// Generic network statistics structure.
+///
+///
 /// Generic network statistics structure.
 /// Field: inputPackets count input packets.
 /// Field: inputErrors count input errors.
 /// Field: outputPackets count output packets.
 /// Field: outputErrors count output errors.
 /// Field: collisions count collisions on CDMA networks.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionetworkstats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IONetworkStats {
@@ -263,6 +633,12 @@ unsafe impl RefEncode for IONetworkStats {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Statistics recorded by IOOutputQueue objects.
+///
+///
 /// Statistics recorded by IOOutputQueue objects.
 /// Field: capacity queue capacity.
 /// Field: size current size of the queue.
@@ -271,8 +647,6 @@ unsafe impl RefEncode for IONetworkStats {
 /// Field: outputCount number of output packets.
 /// Field: retryCount number of retries.
 /// Field: stallCount number of queue stalls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iooutputqueuestats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOOutputQueueStats {
@@ -308,6 +682,12 @@ unsafe impl RefEncode for IOOutputQueueStats {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Ethernet MIB statistics structure.
+///
+///
 /// Ethernet MIB statistics structure.
 /// Field: alignmentErrors            dot3StatsAlignmentErrors.
 /// Field: fcsErrors                  dot3StatsFCSErrors.
@@ -323,8 +703,6 @@ unsafe impl RefEncode for IOOutputQueueStats {
 /// Field: internalMacReceiveErrors   dot3StatsInternalMacReceiveErrors.
 /// Field: etherChipSet               dot3StatsEtherChipSet.
 /// Field: missedFrames               dot3StatsMissedFrames (not in RFC1650).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3statsentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3StatsEntry {
@@ -372,10 +750,14 @@ unsafe impl RefEncode for IODot3StatsEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Collision statistics structure.
+///
+///
 /// Collision statistics structure.
 /// Field: collFrequencies            dot3StatsCollFrequencies.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3collentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3CollEntry {
@@ -392,6 +774,12 @@ unsafe impl RefEncode for IODot3CollEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Extra receiver statistics not defined by RFC1650.
+///
+///
 /// Extra receiver statistics not defined by RFC1650.
 /// Field: overruns            receiver overruns.
 /// Field: watchdogTimeouts    watchdog timer expirations.
@@ -402,8 +790,6 @@ unsafe impl RefEncode for IODot3CollEntry {
 /// Field: interrupts          receiver interrupts.
 /// Field: resets              receiver resets.
 /// Field: resourceErrors      receiver resource shortages.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3rxextraentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3RxExtraEntry {
@@ -443,6 +829,12 @@ unsafe impl RefEncode for IODot3RxExtraEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Extra transmitter statistics not defined by RFC1650.
+///
+///
 /// Extra transmitter statistics not defined by RFC1650.
 /// Field: underruns           transmit underruns.
 /// Field: jabbers             jabber events.
@@ -451,8 +843,6 @@ unsafe impl RefEncode for IODot3RxExtraEntry {
 /// Field: interrupts          transmitter interrupts.
 /// Field: resets              transmitter resets.
 /// Field: resourceErrors      transmitter resource shortages.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3txextraentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3TxExtraEntry {
@@ -488,13 +878,17 @@ unsafe impl RefEncode for IODot3TxExtraEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// Aggregate Ethernet statistics structure.
+///
+///
 /// Aggregate Ethernet statistics structure.
 /// Field: dot3StatsEntry      IODot3StatsEntry statistics group.
 /// Field: dot3CollEntry       IODot3CollEntry statistics group.
 /// Field: dot3RxExtraEntry    IODot3RxExtraEntry statistics group.
 /// Field: dot3TxExtraEntry    IODot3TxExtraEntry statistics group.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioethernetstats?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOEthernetStats {
@@ -522,144 +916,91 @@ unsafe impl RefEncode for IOEthernetStats {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Discussion
+///
+/// A 32-bit value divided into fields which describes a single medium type.
+///
+///
 /// A 32-bit value divided into fields which describes
 /// a single medium type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iomediumtype?language=objc)
 pub type IOMediumType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet?language=objc)
 pub const kIOMediumEthernet: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetauto?language=objc)
 pub const kIOMediumEthernetAuto: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetmanual?language=objc)
 pub const kIOMediumEthernetManual: c_uint = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetnone?language=objc)
 pub const kIOMediumEthernetNone: c_uint = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10baset?language=objc)
 pub const kIOMediumEthernet10BaseT: c_uint = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10base2?language=objc)
 pub const kIOMediumEthernet10Base2: c_uint = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10base5?language=objc)
 pub const kIOMediumEthernet10Base5: c_uint = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basetx?language=objc)
 pub const kIOMediumEthernet100BaseTX: c_uint = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basefx?language=objc)
 pub const kIOMediumEthernet100BaseFX: c_uint = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100baset4?language=objc)
 pub const kIOMediumEthernet100BaseT4: c_uint = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basevg?language=objc)
 pub const kIOMediumEthernet100BaseVG: c_uint = 41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100baset2?language=objc)
 pub const kIOMediumEthernet100BaseT2: c_uint = 42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basesx?language=objc)
 pub const kIOMediumEthernet1000BaseSX: c_uint = 43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10basestp?language=objc)
 pub const kIOMediumEthernet10BaseSTP: c_uint = 44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10basefl?language=objc)
 pub const kIOMediumEthernet10BaseFL: c_uint = 45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000baselx?language=objc)
 pub const kIOMediumEthernet1000BaseLX: c_uint = 46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basecx?language=objc)
 pub const kIOMediumEthernet1000BaseCX: c_uint = 47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basetx?language=objc)
 pub const kIOMediumEthernet1000BaseTX: c_uint = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000baset?language=objc)
 pub const kIOMediumEthernet1000BaseT: c_uint = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernethomepna1?language=objc)
 pub const kIOMediumEthernetHomePNA1: c_uint = 49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbasesr?language=objc)
 pub const kIOMediumEthernet10GBaseSR: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbaselr?language=objc)
 pub const kIOMediumEthernet10GBaseLR: c_uint = 51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbasecx4?language=objc)
 pub const kIOMediumEthernet10GBaseCX4: c_uint = 52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbaset?language=objc)
 pub const kIOMediumEthernet10GBaseT: c_uint = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet2500baset?language=objc)
 pub const kIOMediumEthernet2500BaseT: c_uint = 54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet5000baset?language=objc)
 pub const kIOMediumEthernet5000BaseT: c_uint = 55;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211?language=objc)
 pub const kIOMediumIEEE80211: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211auto?language=objc)
 pub const kIOMediumIEEE80211Auto: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211manual?language=objc)
 pub const kIOMediumIEEE80211Manual: c_uint = 129;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211none?language=objc)
 pub const kIOMediumIEEE80211None: c_uint = 130;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211fh1?language=objc)
 pub const kIOMediumIEEE80211FH1: c_uint = 131;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211fh2?language=objc)
 pub const kIOMediumIEEE80211FH2: c_uint = 132;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds2?language=objc)
 pub const kIOMediumIEEE80211DS2: c_uint = 133;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds5?language=objc)
 pub const kIOMediumIEEE80211DS5: c_uint = 134;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds11?language=objc)
 pub const kIOMediumIEEE80211DS11: c_uint = 135;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds1?language=objc)
 pub const kIOMediumIEEE80211DS1: c_uint = 136;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211optionadhoc?language=objc)
 pub const kIOMediumIEEE80211OptionAdhoc: c_uint = 256;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionfullduplex?language=objc)
 pub const kIOMediumOptionFullDuplex: c_uint = 1048576;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionhalfduplex?language=objc)
 pub const kIOMediumOptionHalfDuplex: c_uint = 2097152;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflowcontrol?language=objc)
 pub const kIOMediumOptionFlowControl: c_uint = 4194304;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptioneee?language=objc)
 pub const kIOMediumOptionEEE: c_uint = 8388608;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag0?language=objc)
 pub const kIOMediumOptionFlag0: c_uint = 16777216;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag1?language=objc)
 pub const kIOMediumOptionFlag1: c_uint = 33554432;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag2?language=objc)
 pub const kIOMediumOptionFlag2: c_uint = 67108864;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionloopback?language=objc)
 pub const kIOMediumOptionLoopback: c_uint = 134217728;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinkvalid?language=objc)
 pub const kIONetworkLinkValid: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinkactive?language=objc)
 pub const kIONetworkLinkActive: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinknonetworkchange?language=objc)
 pub const kIONetworkLinkNoNetworkChange: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucresetnetworkdataindex?language=objc)
 pub const kIONUCResetNetworkDataIndex: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucwritenetworkdataindex?language=objc)
 pub const kIONUCWriteNetworkDataIndex: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucreadnetworkdataindex?language=objc)
 pub const kIONUCReadNetworkDataIndex: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucgetnetworkdatacapacityindex?language=objc)
 pub const kIONUCGetNetworkDataCapacityIndex: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucgetnetworkdatahandleindex?language=objc)
 pub const kIONUCGetNetworkDataHandleIndex: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionuclastindex?language=objc)
 pub const kIONUCLastIndex: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iondhandle?language=objc)
 pub type IONDHandle = u32;
 
 extern "C-unwind" {
+    /// Open a connection to an IONetworkInterface object. An IONetworkUserClient object is created to manage the connection.
     /// Open a connection to an IONetworkInterface object.
     /// An IONetworkUserClient object is created to manage the connection.
     ///
     /// # Safety
     ///
     /// `con` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572709-ionetworkopen?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
 }
 
 /// Close the connection to an IONetworkInterface object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572704-ionetworkclose?language=objc)
+/// Close the connection to an IONetworkInterface object.
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IONetworkClose(con: io_connect_t) -> IOReturn {
@@ -670,6 +1011,24 @@ pub extern "C-unwind" fn IONetworkClose(con: io_connect_t) -> IOReturn {
 }
 
 extern "C-unwind" {
+    /// Write to the buffer of a network data object.
+    ///
+    /// Parameters:
+    /// - conObj: The connection object.
+    ///
+    /// - dataHandle: The handle of a network data object.
+    ///
+    /// - srcBuf: The data to write is taken from this buffer.
+    ///
+    /// - inSize: The size of the source buffer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    ///
     /// Write to the buffer of a network data object.
     ///
     /// Parameter `conObj`: The connection object.
@@ -685,8 +1044,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `src_buf` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572707-ionetworkwritedata?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkWriteData(
         con_obj: io_connect_t,
@@ -697,6 +1054,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Read the buffer of a network data object.
+    ///
+    /// Parameters:
+    /// - conObj: The connection object.
+    ///
+    /// - dataHandle: The handle of a network data object.
+    ///
+    /// - destBuf: The buffer where the data read shall be written to.
+    ///
+    /// - inOutSizeP: Pointer to an integer that the caller must initialize to contain the size of the buffer. This function will overwrite it with the actual number of bytes written to the buffer.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    ///
     /// Read the buffer of a network data object.
     ///
     /// Parameter `conObj`: The connection object.
@@ -715,8 +1090,6 @@ extern "C-unwind" {
     ///
     /// - `dest_buf` must be a valid pointer.
     /// - `in_out_size_p` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572706-ionetworkreaddata?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkReadData(
         con_obj: io_connect_t,
@@ -728,13 +1101,25 @@ extern "C-unwind" {
 
 /// Fill the buffer of a network data object with zeroes.
 ///
+/// Parameters:
+/// - conObject: The connection object.
+///
+/// - dataHandle: The handle of a network data object.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// kIOReturnSuccess on success, or an error code otherwise.
+///
+///
+/// Fill the buffer of a network data object with zeroes.
+///
 /// Parameter `conObject`: The connection object.
 ///
 /// Parameter `dataHandle`: The handle of a network data object.
 ///
 /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572710-ionetworkresetdata?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IONetworkResetData(
@@ -750,6 +1135,22 @@ pub extern "C-unwind" fn IONetworkResetData(
 extern "C-unwind" {
     /// Get the capacity (in bytes) of a network data object.
     ///
+    /// Parameters:
+    /// - conObject: The connection object.
+    ///
+    /// - dataHandle: The handle of a network data object.
+    ///
+    /// - capacityP: Upon success, the capacity is written to this address.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    ///
+    /// Get the capacity (in bytes) of a network data object.
+    ///
     /// Parameter `conObject`: The connection object.
     ///
     /// Parameter `dataHandle`: The handle of a network data object.
@@ -761,8 +1162,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `capacity_p` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572712-ionetworkgetdatacapacity?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkGetDataCapacity(
         con_object: io_connect_t,
@@ -772,6 +1171,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Get the handle of a network data object with the given name.
+    ///
+    /// Parameters:
+    /// - conObject: The connection object.
+    ///
+    /// - dataName: The name of the network data object.
+    ///
+    /// - dataHandleP: Upon success, the handle is written to this address.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, or an error code otherwise.
+    ///
+    ///
     /// Get the handle of a network data object with the given name.
     ///
     /// Parameter `conObject`: The connection object.
@@ -786,8 +1201,6 @@ extern "C-unwind" {
     ///
     /// - `data_name` must be a valid pointer.
     /// - `data_handle_p` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572708-ionetworkgetdatahandle?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkGetDataHandle(
         con_object: io_connect_t,
@@ -797,6 +1210,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set the packet filters for a given filter group.
+    ///
+    /// Parameters:
+    /// - connect: The connection object returned from IONetworkOpen().
+    ///
+    /// - filterGroup: The name of the packet filter group.
+    ///
+    /// - filtersMask: A mask of filters to set.
+    ///
+    /// - options: No options are currently defined.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An IOReturn error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A network controller may support a number of packets filters that can accept or reject a type of packet seen on the network. A filter group identifies a set of related filters, such as all filters that will allow a packet to pass upstream based on the destination address encoded within the packet. This function allows an user-space program to set the filtering performed by a given filter group.
+    ///
+    ///
     /// Set the packet filters for a given filter group.
     ///
     /// A network controller may support a number of packets filters
@@ -819,8 +1256,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `filter_group` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572703-ionetworksetpacketfiltersmask?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkSetPacketFiltersMask(
         connect: io_connect_t,
@@ -830,10 +1265,39 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1572705-ionetworkpacketfilteroptions/kionetworksupportedpacketfilters?language=objc)
+///
+/// ## Discussion
+///
+/// Indicate the filters that are supported by the hardware.
+///
+///
 pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 
 extern "C-unwind" {
+    /// Get the packet filters for a given filter group.
+    ///
+    /// Parameters:
+    /// - connect: The connection object returned from IONetworkOpen().
+    ///
+    /// - filterGroup: The name of the packet filter group.
+    ///
+    /// - filtersMask: Pointer to the return value containing a mask of packet filters.
+    ///
+    /// - options: kIONetworkSupportedPacketFilters may be set to fetch the filters that are supported by the hardware.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An IOReturn error code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A network controller may support a number of packets filters that can accept or reject a type of packet seen on the network. A filter group identifies a set of related filters, such as all filters that will allow a packet to pass upstream based on the destination address encoded within the packet. This function allows an user-space program to get the filtering performed by a given filter group.
+    ///
+    ///
     /// Get the packet filters for a given filter group.
     ///
     /// A network controller may support a number of packets filters
@@ -859,8 +1323,6 @@ extern "C-unwind" {
     ///
     /// - `filter_group` must be a valid pointer.
     /// - `filters_mask` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1572711-ionetworkgetpacketfiltersmask?language=objc)
     #[cfg(feature = "libc")]
     pub fn IONetworkGetPacketFiltersMask(
         connect: io_connect_t,

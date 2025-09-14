@@ -17,7 +17,25 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcontenteditinginput?language=objc)
+    /// A container that provides information about and access to the image, video, or Live Photo content of an asset to be edited.
+    ///
+    /// ## Overview
+    ///
+    /// To edit an asset’s photo or video content:
+    ///
+    /// 1. Fetch a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object that represents the photo or video to be edited.
+    ///
+    /// 2. Call the asset’s [`requestContentEditingInputWithOptions:completionHandler:`](https://developer.apple.com/documentation/photos/phasset/requestcontenteditinginput(with:completionhandler:)) method to retrieve a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object.
+    ///
+    /// 3. Apply your edits to the asset. To allow a user to continue working with the edit later (for example, to adjust the parameters of a photo filter), create a [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object describing the changes.
+    ///
+    /// 4. Initialize a [`PHContentEditingOutput`](https://developer.apple.com/documentation/photos/phcontenteditingoutput) object. For photo- or video-only assets, use the editing output’s properties to provide edited asset data. For Live Photo assets, create a [`PHLivePhotoEditingContext`](https://developer.apple.com/documentation/photos/phlivephotoeditingcontext) object to edit the Live Photo content.
+    ///
+    /// 5. Use a photo library change block to commit the edit. In the block, create a [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest) object and set its [`contentEditingOutput`](https://developer.apple.com/documentation/photos/phassetchangerequest/contenteditingoutput) property to the editing output that you created. For more details, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    /// You can also edit assets from photo editing extensions. In this case, instead of working with a [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object, you implement methods in the [`PHContentEditingController`](https://developer.apple.com/documentation/photosui/phcontenteditingcontroller) protocol. Photos provides a [`PHContentEditingInput`](https://developer.apple.com/documentation/photos/phcontenteditinginput) object when your extension begins editing. When editing is complete, Photos requests a [`PHContentEditingOutput`](https://developer.apple.com/documentation/photos/phcontenteditingoutput) object that contains the edited asset content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHContentEditingInput;

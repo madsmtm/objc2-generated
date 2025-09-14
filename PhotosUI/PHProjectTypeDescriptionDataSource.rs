@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptiondatasource?language=objc)
+    /// A protocol that you use to provide the project with type description data.
+    ///
+    /// ## Overview
+    ///
+    /// An object adheres to this protocol to provide a type description for your app’s Photos project extension. You must implement this protocol to provide subtypes, a description, and footer text. You can optionally respond to the system discarding the data source by implementing [`extensionWillDiscardDataSource`](https://developer.apple.com/documentation/photosui/phprojecttypedescriptiondatasource/extensionwilldiscarddatasource()).
+    ///
+    ///
     pub unsafe trait PHProjectTypeDescriptionDataSource: NSObjectProtocol {
         #[cfg(all(feature = "PHProjectTypeDescription", feature = "PhotosUITypes"))]
         /// Called to get the root level project type descriptions and for any PHProjectTypeDescriptions that promised
@@ -63,7 +69,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescriptioninvalidator?language=objc)
+    /// A protocol that you use to tell the project when and how to invalidate type and footer text.
+    ///
+    /// ## Overview
+    ///
+    /// An object adheres to this protocol to implement custom behavior when you invalidate project information, such as type description and footer text.
+    ///
+    ///
     pub unsafe trait PHProjectTypeDescriptionInvalidator: NSObjectProtocol {
         #[cfg(feature = "PhotosUITypes")]
         /// Invalidate the properties of the PHProjectTypeDescription with projectType.

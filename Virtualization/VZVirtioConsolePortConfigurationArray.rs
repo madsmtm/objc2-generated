@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a collection of Virtio console port configurations.
+    ///
+    /// ## Overview
+    ///
+    /// This array stores a collection of port configurations for a [`VZVirtioConsoleDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration). The index in the array corresponds to the port index that the VM uses. You can set a [`maximumPortCount`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportarray/maximumportcount) value, but the value must be larger than the highest indexed port. If there’s no `maximumPortCount` value set, the framework uses the value the highest indexed port.
+    ///
+    ///
     /// Virtio Console Port Configuration Array
     ///
     /// This array stores a collection of port configurations for a VZVirtioConsoleConfiguration. The index in the array corresponds to the port index used in the virtual machine.
@@ -17,8 +24,6 @@ extern_class!(
     /// See: VZVirtioConsoleConfiguration
     ///
     /// See: VZVirtioConsolePortConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportconfigurationarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePortConfigurationArray;

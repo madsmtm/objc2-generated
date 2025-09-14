@@ -10,34 +10,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model?language=objc)
+/// Constants that describe the abstract model on which color space objects are based.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorSpaceModel(pub NSInteger);
 impl NSColorSpaceModel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/unknown?language=objc)
+    /// An unknown color-space model.
     #[doc(alias = "NSColorSpaceModelUnknown")]
     pub const Unknown: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/gray?language=objc)
+    /// The grayscale color-space model.
     #[doc(alias = "NSColorSpaceModelGray")]
     pub const Gray: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/rgb?language=objc)
+    /// The RGB (red-green-blue) color-space model.
     #[doc(alias = "NSColorSpaceModelRGB")]
     pub const RGB: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/cmyk?language=objc)
+    /// The CMYK (cyan-magenta-yellow-black) color-space model.
     #[doc(alias = "NSColorSpaceModelCMYK")]
     pub const CMYK: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/lab?language=objc)
+    /// The L*a*b* device-independent color-space model, which represents colors relative to a reference white point.
     #[doc(alias = "NSColorSpaceModelLAB")]
     pub const LAB: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/devicen?language=objc)
+    /// The DeviceN color-space model from Adobe Systems, Inc.
+    ///
+    /// ## Discussion
+    ///
+    /// This model is used in PostScript and PDF color specification.
+    ///
+    ///
     #[doc(alias = "NSColorSpaceModelDeviceN")]
     pub const DeviceN: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/indexed?language=objc)
+    /// An indexed color space, which identifies discrete colors in a color list by index number.
+    ///
+    /// ## Discussion
+    ///
+    /// An indexed color value (a color specification in indexed color space) consists of an index value that refers to a color in a color list.
+    ///
+    ///
     #[doc(alias = "NSColorSpaceModelIndexed")]
     pub const Indexed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace/model/patterned?language=objc)
+    /// A pattern color space, which is a repeated image that creates a tiled pattern.
     #[doc(alias = "NSColorSpaceModelPatterned")]
     pub const Patterned: Self = Self(6);
 }
@@ -51,7 +63,15 @@ unsafe impl RefEncode for NSColorSpaceModel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspace?language=objc)
+    /// An object that represents a custom color space.
+    ///
+    /// ## Overview
+    ///
+    /// You can make custom color spaces from ColorSync profiles or from ICC profiles. [`NSColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace) also has factory methods that return objects representing the system color spaces.
+    ///
+    /// You can use the [`colorWithColorSpace:components:count:`](https://developer.apple.com/documentation/appkit/nscolor/init(colorspace:components:count:)) method of the [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) class to create color objects using custom [`NSColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace) objects. You can also send the [`colorUsingColorSpace:`](https://developer.apple.com/documentation/appkit/nscolor/usingcolorspace(_:)) message to an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object to convert it between two color spaces, either of which may be a custom color space.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorSpace;
@@ -203,38 +223,56 @@ impl DefaultRetained for NSColorSpace {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknowncolorspacemodel?language=objc)
+/// An unknown color-space model.
 #[deprecated]
 pub static NSUnknownColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Unknown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraycolorspacemodel?language=objc)
+/// The grayscale color-space model.
+///
+/// ## Discussion
+///
+/// Can refer to both device-dependent and generic color space variants.
+///
+///
 #[deprecated]
 pub static NSGrayColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::Gray.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrgbcolorspacemodel?language=objc)
+/// The RGB (red green blue) color-space model.
+///
+/// ## Discussion
+///
+/// Can refer to both device-dependent and generic color space variants.
+///
+///
 #[deprecated]
 pub static NSRGBColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::RGB.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscmykcolorspacemodel?language=objc)
+/// The CYMK (cyan, yellow, magenta, black) color-space model.
+///
+/// ## Discussion
+///
+/// Can refer to both device-dependent and generic color space variants.
+///
+///
 #[deprecated]
 pub static NSCMYKColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::CMYK.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslabcolorspacemodel?language=objc)
+/// The L*a*b* device-independent color-space model, which represents colors relative to a reference white point.
 #[deprecated]
 pub static NSLABColorSpaceModel: NSColorSpaceModel = NSColorSpaceModel(NSColorSpaceModel::LAB.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicencolorspacemodel?language=objc)
+/// DeviceN is a color-space model from Adobe Systems, Inc. used in PostScript and PDF color specification.
 #[deprecated]
 pub static NSDeviceNColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::DeviceN.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsindexedcolorspacemodel?language=objc)
+/// An indexed color space, which identifies specified discrete colors in a color list by index number. An indexed color value (a color specification in indexed color space) consists of an index value that refers to a color in a color list.
 #[deprecated]
 pub static NSIndexedColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Indexed.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspatterncolorspacemodel?language=objc)
+/// Identifies a pattern color space, which is simply an image that is repeated over and over again in a tiled pattern.
 #[deprecated]
 pub static NSPatternColorSpaceModel: NSColorSpaceModel =
     NSColorSpaceModel(NSColorSpaceModel::Patterned.0);

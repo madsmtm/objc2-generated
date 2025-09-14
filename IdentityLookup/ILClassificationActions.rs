@@ -4,32 +4,55 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The actions the system can take in response to the reported communication.
 /// Describes various classification actions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ILClassificationAction(pub NSInteger);
 impl ILClassificationAction {
-    /// Indicate that no action is requested.
+    /// No action is required.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/none?language=objc)
+    /// ## Discussion
+    ///
+    /// The extension just dismisses the [`ILClassificationUIExtensionViewController`](https://developer.apple.comhttps://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller).
+    ///
+    ///
+    /// Indicate that no action is requested.
     #[doc(alias = "ILClassificationActionNone")]
     pub const None: Self = Self(0);
-    /// Report communication(s) as not junk.
+    /// The system should report that the communication is not junk.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportnotjunk?language=objc)
+    /// ## Discussion
+    ///
+    /// The extension creates an SMS message based on the response, and displays the message to the user. The user can then send or cancel the report. Finally, the extension dismisses the [`ILClassificationUIExtensionViewController`](https://developer.apple.comhttps://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller).
+    ///
+    ///
+    /// Report communication(s) as not junk.
     #[doc(alias = "ILClassificationActionReportNotJunk")]
     pub const ReportNotJunk: Self = Self(1);
-    /// Report communication(s) as junk.
+    /// The system should report the communication as junk.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportjunk?language=objc)
+    /// ## Discussion
+    ///
+    /// The extension creates an SMS message based on the response, and displays the message to the user. The user can then send or cancel the report. Finally, the extension dismisses the [`ILClassificationUIExtensionViewController`](https://developer.apple.comhttps://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller).
+    ///
+    ///
+    /// Report communication(s) as junk.
     #[doc(alias = "ILClassificationActionReportJunk")]
     pub const ReportJunk: Self = Self(2);
-    /// Report communication(s) as junk and block the sender.
+    /// The system should report the communication as junk and add the number to the system’s block list.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/reportjunkandblocksender?language=objc)
+    /// ## Discussion
+    ///
+    /// The extension creates an SMS message based on the response, and displays the message to the user. The user can then send or cancel the report.
+    ///
+    /// Next, the extension displays an alert to notify the user that the number will be blocked. To unblock the number, users must go to the Call Blocking & Identification settings in the Settings app.
+    ///
+    /// Finally, the extension dismisses the [`ILClassificationUIExtensionViewController`](https://developer.apple.comhttps://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller).
+    ///
+    ///
+    /// Report communication(s) as junk and block the sender.
     #[doc(alias = "ILClassificationActionReportJunkAndBlockSender")]
     pub const ReportJunkAndBlockSender: Self = Self(3);
 }

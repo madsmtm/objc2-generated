@@ -11,14 +11,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that implements a delay effect.
+    ///
+    /// ## Overview
+    ///
+    /// A delay unit delays the input signal by the specified time interval and then blends it with the input signal. You can also control the amount of high-frequency roll-off to simulate the effect of a tape delay.
+    ///
+    ///
     /// an AVAudioUnitEffect that implements a delay effect
     ///
     /// A delay unit delays the input signal by the specified time interval
     /// and then blends it with the input signal. The amount of high frequency
     /// roll-off can also be controlled in order to simulate the effect of
     /// a tape delay.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitdelay?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

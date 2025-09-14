@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource?language=objc)
+    /// A protocol that provides ClockKit with information about your complication.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that support a complication must define a class that supports the [`CLKComplicationDataSource`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource) protocol and register it with the system. Your data source is responsible for providing timeline entries and data for all of the complication families that you support. You do this by implementing the protocol methods, returning the timeline entries displayed by your complication and information about the features that your complication supports.
+    ///
+    /// You don’t instantiate your data source class explicitly. After defining your class, specify the class name in the General tab of the project settings for your WatchKit extension. When the system needs data, ClockKit instantiates your data source and initializes it by calling its `init` method. Once initialized, ClockKit calls the corresponding protocol methods to gather any needed data. You can also specify your class name in your app’s `Info.plist` file using the `CLKComplicationsPrincipalClass` key.
+    ///
+    /// When the user installs your complication on the clock face, ClockKit creates an appropriate [`CLKComplication`](https://developer.apple.com/documentation/clockkit/clkcomplication) object for the selected complication family. ClockKit then passes the complication to your data source so that you know how to format your timeline entries. Use the General tab of your WatchKit extension’s project settings to specify the families you support.
+    ///
+    /// Your complication data source class must implement the [`CLKComplicationDataSource`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource) protocol’s [`getCurrentTimelineEntryForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)) method.
+    ///
+    /// You may implement other methods as needed to support the data in your complication. For example, to batch load future timeline entries, implement [`getTimelineEndDateForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/gettimelineenddate(for:withhandler:)) and pass a future date to the handler. For more information, see [Creating complications for your watchOS app](https://developer.apple.com/documentation/clockkit/creating-complications-for-your-watchos-app).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For watchOS 6 and earlier, you must implement both [`getCurrentTimelineEntryForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getcurrenttimelineentry(for:withhandler:)) and [`getSupportedTimeTravelDirectionsForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getsupportedtimetraveldirections(for:withhandler:)). Use [`getSupportedTimeTravelDirectionsForComplication:withHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getsupportedtimetraveldirections(for:withhandler:)) to specify whether your app can batch load future timeline entries.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ClockKit calls your data source methods on your watchOS app’s main thread.
+    ///
+    ///
     pub unsafe trait CLKComplicationDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "CLKComplication", feature = "block2"))]
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

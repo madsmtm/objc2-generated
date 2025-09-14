@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionwebbrowsersessionhandling?language=objc)
+    /// An interface that a session handler implements to handle login requests from an app.
     pub unsafe trait ASWebAuthenticationSessionWebBrowserSessionHandling {
         #[cfg(feature = "ASWebAuthenticationSessionRequest")]
         /// # Safety

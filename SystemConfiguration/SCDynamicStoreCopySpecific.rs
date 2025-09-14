@@ -7,6 +7,19 @@ use crate::*;
 
 #[cfg(feature = "SCDynamicStore")]
 impl SCDynamicStore {
+    /// Returns the current computer name.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. Pass `NULL` to use a temporary session.
+    ///
+    /// - nameEncoding: A pointer to memory that, on output, is filled with the encoding associated with the computer or host name, if it is non-`NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current computer name, or `NULL` if the name has not been set or if an error occurred. You must release the return value.
+    ///
+    ///
     /// Gets the current computer name.
     ///
     /// Parameter `store`: An SCDynamicStoreRef representing the dynamic store
@@ -24,8 +37,6 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// `name_encoding` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopycomputername(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -43,6 +54,27 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns information about the user currently logged into the system.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. Pass `NULL` to use a temporary session.
+    ///
+    /// - uid: A pointer to memory that, on output, is filled with the user ID of the currently logged-in user. If `NULL`, this value is not returned.
+    ///
+    /// - gid: A pointer to memory that, on output, is filled with the group ID of the currently logged-in user. If `NULL`, this value is not returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the name, user ID, and group ID of the user currently logged into the system, or `NULL` if no user is logged in or if an error occurred. You must release the returned values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Note that this function only provides information about the primary console. It does not provide any details about console sessions that have fast user switched out or about other consoles.
+    ///
+    ///
     /// Gets the name, user ID, and group ID of the currently
     /// logged-in user.
     ///
@@ -71,8 +103,6 @@ impl SCDynamicStore {
     ///
     /// - `uid` must be a valid pointer or null.
     /// - `gid` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyconsoleuser(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     #[cfg(all(feature = "SCDynamicStore", feature = "libc"))]
     #[inline]
@@ -92,6 +122,17 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the current local host name.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. Pass `NULL` to use a temporary session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the current local host name, or `NULL` if the name has not been set or if an error occurred. You must release the return value.
+    ///
+    ///
     /// Gets the current local host name.
     ///
     /// Parameter `store`: An SCDynamicStoreRef representing the dynamic store
@@ -101,8 +142,6 @@ impl SCDynamicStore {
     /// Returns: Returns the current local host name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopylocalhostname(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyLocalHostName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -116,6 +155,17 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the current location identifier.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. Pass `NULL` to use a temporary session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the current location identifier, or `NULL` if no location identifier has been defined or if an error occurred. You must release the returned value.
+    ///
+    ///
     /// Gets the current location identifier.
     ///
     /// Parameter `store`: An SCDynamicStoreRef representing the dynamic store
@@ -126,8 +176,6 @@ impl SCDynamicStore {
     /// NULL if no location identifier has been defined or if an error
     /// was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopylocation(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyLocation")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
@@ -141,6 +189,24 @@ impl SCDynamicStore {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the key-value pairs that represent the current internet proxy settings.
+    ///
+    /// Parameters:
+    /// - store: The dynamic store session that should be used for communication with the server. Pass `NULL` to use a temporary session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary of key-value pairs that represent the current internet proxy settings, or `NULL` if no proxy settings have been defined or if an error occurred. You must release the returned value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned proxy settings dictionary can include the following key-value pairs:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Type" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesExceptionsList" }] }], [Paragraph { inline_content: [Text { text: "A " }, CodeVoice { code: "CFArray" }, Text { text: " of " }, CodeVoice { code: "CFString" }, Text { text: " objects" }] }], [Paragraph { inline_content: [Text { text: "Host name patterns that should bypass the proxy" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPEnable" }] }], [Paragraph { inline_content: [Text { text: "A " }, CodeVoice { code: "CFNumber" }, Text { text: " with the value " }, CodeVoice { code: "0" }, Text { text: " or " }, CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Text { text: "Enables or disables the use of an HTTP proxy" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPProxy" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFString" }] }], [Paragraph { inline_content: [Text { text: "The proxy host" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPPort" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFNumber" }] }], [Paragraph { inline_content: [Text { text: "The proxy port number" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPSEnable" }] }], [Paragraph { inline_content: [Text { text: "A " }, CodeVoice { code: "CFNumber" }, Text { text: " with the value " }, CodeVoice { code: "0" }, Text { text: " or " }, CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Text { text: "Enables or disables the use of an HTTPS proxy" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPSProxy" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFString" }] }], [Paragraph { inline_content: [Text { text: "The proxy host" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesHTTPSPort" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFNumber" }] }], [Paragraph { inline_content: [Text { text: "The proxy port number" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesFTPEnable" }] }], [Paragraph { inline_content: [Text { text: "A " }, CodeVoice { code: "CFNumber" }, Text { text: " with the value " }, CodeVoice { code: "0" }, Text { text: " or " }, CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Text { text: "Enables or disables the use of an FTP proxy" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesFTPProxy" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFString" }] }], [Paragraph { inline_content: [Text { text: "The proxy host" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesFTPPort" }] }], [Paragraph { inline_content: [CodeVoice { code: "CFNumber" }] }], [Paragraph { inline_content: [Text { text: "The proxy port number" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kSCPropNetProxiesFTPPassive" }] }], [Paragraph { inline_content: [Text { text: "A " }, CodeVoice { code: "CFNumber" }, Text { text: " with the value " }, CodeVoice { code: "0" }, Text { text: " or " }, CodeVoice { code: "1" }] }], [Paragraph { inline_content: [Text { text: "Enables or disables passive mode operation for use behind connection filtering firewalls" }] }]]], alignments: None, metadata: None })
+    ///
     /// Gets the current internet proxy settings.
     /// The returned proxy settings dictionary includes:
     ///
@@ -354,8 +420,6 @@ impl SCDynamicStore {
     /// NULL if no proxy settings have been defined or if an error
     /// was encountered.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorecopyproxies(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreCopyProxies")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]

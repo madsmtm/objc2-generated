@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstepper?language=objc)
+    /// An interface with up and down arrow buttons for incrementing or decrementing a value.
+    ///
+    /// ## Overview
+    ///
+    /// A stepper consists of two small arrows that can increment and decrement a value that appears beside it, such as a date or time. The illustration below shows a stepper to the right of a text field, which would show the stepper’s value.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/01e47ff4595b41b2c127100c1748260e/media-2555815%402x.png)
+    ///
+    ///
+    /// The `NSStepper` class uses the [`NSStepperCell`](https://developer.apple.com/documentation/appkit/nssteppercell) class to implement its user interface.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

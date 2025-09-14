@@ -10,9 +10,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class allows your application to produce a higher fidelity, PDF screenshot to the user. Set the delegate so that when a screenshot is taken, screenshots can show the full document content from the application.
+    /// An object that coordinates the creation of PDF screenshots of an app’s content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservice?language=objc)
+    /// ## Overview
+    ///
+    /// When people take a screenshot of your app’s content, you work with a [`UIScreenshotService`](https://developer.apple.com/documentation/uikit/uiscreenshotservice) object to provide a PDF version of that screenshot. You don’t create a [`UIScreenshotService`](https://developer.apple.com/documentation/uikit/uiscreenshotservice) object directly. Instead, you retrieve the object from the [`screenshotService`](https://developer.apple.com/documentation/uikit/uiwindowscene/screenshotservice) property of your window scene and assign a delegate to it. Then when people take a screenshot, UIKit asks your delegate for the PDF data.
+    ///
+    /// For information about how to provide the PDF data, see [`UIScreenshotServiceDelegate`](https://developer.apple.com/documentation/uikit/uiscreenshotservicedelegate).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Beginning in iOS 17 and iPadOS 17, people have the option to share or save the generated full page screenshot as a PDF or an image.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// This class allows your application to produce a higher fidelity, PDF screenshot to the user. Set the delegate so that when a screenshot is taken, screenshots can show the full document content from the application.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -79,7 +94,13 @@ impl UIWindowScene {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenshotservicedelegate?language=objc)
+    /// Methods you use to generate PDF data that accompanies a user-requested screenshot.
+    ///
+    /// ## Overview
+    ///
+    /// When the user captures a screenshot of your app’s windows, UIKit calls the methods of this protocol to retrieve PDF data for those windows, and then it provides that data to the user. Adopt this protocol in a custom object of your app, and assign that object to the [`UIScreenshotService`](https://developer.apple.com/documentation/uikit/uiscreenshotservice) object associated with one of your window scenes. Use your custom delegate object to generate PDF content for the windows in the associated window-scene object.
+    ///
+    ///
     pub unsafe trait UIScreenshotServiceDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// The delegate method to send the PDF data to screenshots

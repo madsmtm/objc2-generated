@@ -9,11 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents the properties of a specific point along a stroke’s path.
     /// A point value stores all the attributes of a PKStroke at a specific point.
     /// `PKStrokePoint` stores its properties compressed, the value read for a property may not
     /// exactly equal the value set for a property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokepointreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStrokePoint;

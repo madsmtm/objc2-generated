@@ -13,54 +13,52 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A 4 x 4 matrix for transforming coordinates from model space to scene (or world) space.
     /// Rendering arguments
     ///
     /// These keys are used for the 'semantic' argument of -[SCNProgram setSemantic:forSymbol:options:]
     /// Transforms are SCNMatrix4 wrapped in NSValues.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmodeltransform?language=objc)
     pub static SCNModelTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnviewtransform?language=objc)
+    /// A 4 x 4 matrix for transforming coordinates from scene (or world) space to view (or eye) space.
     pub static SCNViewTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprojectiontransform?language=objc)
+    /// A 4 x 4 matrix for transforming coordinates from view (or eye) space to clip space.
     pub static SCNProjectionTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnormaltransform?language=objc)
+    /// A 4 x 4 matrix for transforming surface normal vectors from model space to view (or eye) space.
     pub static SCNNormalTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmodelviewtransform?language=objc)
+    /// A 4 x 4 matrix containing the concatenation of the Model and View transformations.
     pub static SCNModelViewTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmodelviewprojectiontransform?language=objc)
+    /// A 4 x 4 matrix containing the concatenation of the Model, View, and Projection transformations.
     pub static SCNModelViewProjectionTransform: &'static NSString;
 }
 
+/// Values that inform SceneKit’s rendering for movement-related effects, used by the [`movabilityHint`](https://developer.apple.com/documentation/scenekit/scnnode/movabilityhint) property.
 /// The available modes of movability.
 ///
 /// Movable nodes are not captured when computing light probes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNMovabilityHint(pub NSInteger);
 impl SCNMovabilityHint {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint/fixed?language=objc)
+    /// The node is not expected to move over time.
     #[doc(alias = "SCNMovabilityHintFixed")]
     pub const Fixed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint/movable?language=objc)
+    /// The node is expected to move over time.
     #[doc(alias = "SCNMovabilityHintMovable")]
     pub const Movable: Self = Self(1);
 }
@@ -73,21 +71,26 @@ unsafe impl RefEncode for SCNMovabilityHint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for the focusable states of a SceneKit node.
 /// Control the focus (UIFocus) behavior.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNNodeFocusBehavior(pub NSInteger);
 impl SCNNodeFocusBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/none?language=objc)
+    /// Node is not focusable.
+    ///
+    /// ## Discussion
+    ///
+    /// This behavior is the default for a node.
+    ///
+    ///
     #[doc(alias = "SCNNodeFocusBehaviorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/occluding?language=objc)
+    /// Node is not focusable and prevents nodes that it visually obscures from becoming focusable.
     #[doc(alias = "SCNNodeFocusBehaviorOccluding")]
     pub const Occluding: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior/focusable?language=objc)
+    /// Node is focusable and prevents nodes that it visually obscures from becoming focusable.
     #[doc(alias = "SCNNodeFocusBehaviorFocusable")]
     pub const Focusable: Self = Self(2);
 }
@@ -101,12 +104,33 @@ unsafe impl RefEncode for SCNNodeFocusBehavior {
 }
 
 extern_class!(
+    /// A structural element of a scene graph, representing a position and transform in a 3D coordinate space, to which you can attach geometry, lights, cameras, or other displayable content.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object by itself has no visible content when the scene containing it is rendered—it represents only a coordinate space transform (position, orientation, and scale) relative to its parent node. To construct a scene, you use a hierarchy of nodes to create its structure, then add lights, cameras, and geometry to nodes to create visible content.
+    ///
+    /// ### Nodes Determine the Structure of a Scene
+    ///
+    /// The hierarchy of nodes, or **scene graph**, in a scene defines both the organization of its contents and your ability to present and manipulate those contents using SceneKit. You may create a node hierarchy programmatically using SceneKit, load one from a file created using 3D authoring tools, or combine the two approaches. SceneKit provides many utilities for organizing and searching the scene graph—for details, see the methods in Managing the Node Hierarchy and Searching the Node Hierarchy.
+    ///
+    /// The [`rootNode`](https://developer.apple.com/documentation/scenekit/scnscene/rootnode) object in a scene defines the coordinate system of the world rendered by SceneKit. Each child node you add to this root node creates its own coordinate system, which is in turn inherited by its own children. You determine the transformation between coordinate systems using the node’s [`position`](https://developer.apple.com/documentation/scenekit/scnnode/position), [`rotation`](https://developer.apple.com/documentation/scenekit/scnnode/rotation), and [`scale`](https://developer.apple.com/documentation/scenekit/scnnode/scale) properties properties (or directly using its [`transform`](https://developer.apple.com/documentation/scenekit/scnnode/transform) property).
+    ///
+    /// You use a hierarchy of nodes and transformations to model the contents of your scene in a way that suits the needs of your app. For example, if your app presents an animated view of a solar system, you can construct a node hierarchy that models celestial bodies relative to one another: Each planet can be a node, with its orbit and its current position in that orbit defined in the coordinate system of the sun. A planet node defines its own coordinate space, useful both for specifying the planet’s rotation and the orbits of its moons (each of which is a child node of its planet). With this scene hierarchy, you can easily add realistic animation to the scene—animating both the revolution of a moon around its planet and the planet around the sun will combine the animations so that the moon follows the planet.
+    ///
+    /// ### A Node’s Attachments Define Visual Content and Behavior
+    ///
+    /// The node hierarchy determines the spatial and logical structure of a scene, but not its visible contents. You add 2D and 3D objects to a scene by attaching [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects to nodes. (Geometries, in turn, have attached [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) objects that determine their appearance.) To shade the geometries in a scene with light and shadow effects, add nodes with attached [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) objects. To control the viewpoint from which the scene appears when rendered, add nodes with attached [`SCNCamera`](https://developer.apple.com/documentation/scenekit/scncamera) objects.
+    ///
+    /// To add physics-based behaviors and special effects to SceneKit content, use other types of node attachments. For example, an [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) object defines a node’s characteristics for physics simulation, and an [`SCNPhysicsField`](https://developer.apple.com/documentation/scenekit/scnphysicsfield) object applies forces to physics bodies in an area around the node. An [`SCNParticleSystem`](https://developer.apple.com/documentation/scenekit/scnparticlesystem) object attached to a node renders particle effects such as fire, rain, or falling leaves in the space defined by a node.
+    ///
+    /// To improve performance, SceneKit can share attachments between multiple nodes. For example, in a racing game that includes many identical cars, the scene graph would contain many nodes—one to position and animate each car—but all car nodes would reference the same geometry object.
+    ///
+    ///
     /// SCNNode is the model class for node-tree objects.
     ///
     /// It encapsulates the position, rotations, and other transforms of a node, which define a coordinate system.
     /// The coordinate systems of all the sub-nodes are relative to the one of their parent node.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNNode;
@@ -899,9 +923,16 @@ impl SCNNode {
 }
 
 extern_protocol!(
-    /// The SCNNodeRendererDelegate protocol declares the methods that an instance of SCNNode invokes to let a delegate customize its rendering.
+    /// Methods you can implement to use your own custom Metal or OpenGL drawing code to render content for a node.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnoderendererdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// Typically, you use a node renderer delegate to perform custom rendering that is anchored at a location in the scene. For example, you can attach a node with a renderer delegate to part of a scene in order to add a special effect rendered using your own Metal or OpenGL drawing code, such as a fluid simulation. To provide a renderer delegate for an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object, use its [`rendererDelegate`](https://developer.apple.com/documentation/scenekit/scnnode/rendererdelegate) property.
+    ///
+    /// SceneKit performs no rendering of its own for a node with a render delegate, so this protocol is not appropriate for customizing SceneKit’s rendering of geometry and materials. Instead, use methods in the [`SCNShadable`](https://developer.apple.com/documentation/scenekit/scnshadable) protocol to extend SceneKit’s rendering using shader programs written in the Metal shading language or the OpenGL Shading Language (GLSL).
+    ///
+    ///
+    /// The SCNNodeRendererDelegate protocol declares the methods that an instance of SCNNode invokes to let a delegate customize its rendering.
     pub unsafe trait SCNNodeRendererDelegate: NSObjectProtocol {
         #[cfg(feature = "SCNRenderer")]
         /// Invoked when a node is rendered.

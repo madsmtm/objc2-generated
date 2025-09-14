@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialassertionrequest?language=objc)
+    /// An interface for requesting a public key-based credential assertion.
     pub unsafe trait ASAuthorizationPublicKeyCredentialAssertionRequest:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {

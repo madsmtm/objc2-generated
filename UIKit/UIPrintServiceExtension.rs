@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterdestination?language=objc)
+    /// A description of a single printer.
+    ///
+    /// ## Overview
+    ///
+    /// You can use `UIPrinterDestination` to describe a printer so that it populates in a [`UIPrinterPickerController`](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller) when the printer’s capabilities match the print-job attributes. `UIPrinterDestination` requires a URL to locate the printer. You can include an optional display name that populates in the user interface and a TXT record to detail the printer’s additional features.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -82,7 +88,15 @@ impl UIPrinterDestination {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintserviceextension?language=objc)
+    /// An extension that locates and sets up a printer without a configuration profile.
+    ///
+    /// ## Overview
+    ///
+    /// Support cloud printing by creating an extension instead of requiring users to install a managed configuration profile to set up an AirPrint printer. Create an extension by subclassing `UIPrintServiceExtension`. By creating your own extension, you can expose a cloud printer destination to a [`UIPrinterPickerController`](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller). The extension matches printer destinations that fulfill the specified print-job attributes.
+    ///
+    /// Create an instance of `UIPrinterDestination` to describe a printer to the system. The extension can then search for the printer, or set of printers, using [`printerDestinationsForPrintInfo:`](https://developer.apple.com/documentation/uikit/uiprintserviceextension/printerdestinations(for:)). This method matches the requirements of a [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) object and returns an array of [`UIPrinterDestination`](https://developer.apple.com/documentation/uikit/uiprinterdestination).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

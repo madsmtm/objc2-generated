@@ -4,17 +4,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefeedbacktypeoptions?language=objc)
+/// Constants indicating the type of feedback needed.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRideFeedbackTypeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INRideFeedbackTypeOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefeedbacktypeoptions/rate?language=objc)
+/// A constant indicating that the user must rate the driver.
         #[doc(alias = "INRideFeedbackTypeOptionRate")]
         const Rate = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridefeedbacktypeoptions/tip?language=objc)
+/// A constant indicating that the user must specify a tip amount.
         #[doc(alias = "INRideFeedbackTypeOptionTip")]
         const Tip = 1<<1;
     }

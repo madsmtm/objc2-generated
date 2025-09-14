@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar?language=objc)
+    /// A specific electric vehicle that Maps uses during route planning and navigation.
+    ///
+    /// ## Overview
+    ///
+    /// An `INCar` object provides information about a specific electric vehicle that belongs to the user.
+    ///
+    /// When planning a route, Maps may use an [`INListCarsIntent`](https://developer.apple.com/documentation/intents/inlistcarsintent) intent to ask your app to provide a list of the user’s electric vehicles. In your handler, determine which of the user’s vehicles respond to [`INGetCarPowerLevelStatusIntent`](https://developer.apple.com/documentation/intents/ingetcarpowerlevelstatusintent), and create an instance of `INCar` for each. You then assign these instances to the [`cars`](https://developer.apple.com/documentation/intents/inlistcarsintentresponse/cars) property of your response object. When navigation begins using one of these vehicles, Maps regularly requests updates of the power level status using `INGetCarPowerLevelStatusIntent`.
+    ///
+    /// For more information on handling `INListCarsIntent`, see [`INListCarsIntentHandling`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INCar;

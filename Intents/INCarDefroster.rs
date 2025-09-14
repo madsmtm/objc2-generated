@@ -4,26 +4,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster?language=objc)
+/// Constants indicating the defroster type.
 // NS_ENUM
 #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarDefroster(pub NSInteger);
 impl INCarDefroster {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/unknown?language=objc)
+    /// An unknown defroster.
     #[doc(alias = "INCarDefrosterUnknown")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/front?language=objc)
+    /// The front window defroster.
     #[doc(alias = "INCarDefrosterFront")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Front: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/rear?language=objc)
+    /// The rear window defroster.
     #[doc(alias = "INCarDefrosterRear")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const Rear: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefroster/all?language=objc)
+    /// All car window defrosters.
     #[doc(alias = "INCarDefrosterAll")]
     #[deprecated = "INCarDefroster is deprecated. There is no replacement."]
     pub const All: Self = Self(3);

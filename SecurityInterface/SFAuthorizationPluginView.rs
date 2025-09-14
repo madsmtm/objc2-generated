@@ -10,23 +10,22 @@ use objc2_security::*;
 
 use crate::*;
 
+/// These constants define the button types used by authorization plug-ins.
 /// Defines the button types that are used by AuthorizationPlugins.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFButtonType(pub c_uint);
 impl SFButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypecancel?language=objc)
+    /// Indicates the Cancel button was pressed.
     #[doc(alias = "SFButtonTypeCancel")]
     pub const Cancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypeok?language=objc)
+    /// Indicates the OK button was pressed.
     #[doc(alias = "SFButtonTypeOK")]
     pub const OK: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypeback?language=objc)
+    /// Indicates the Back button was pressed.
     #[doc(alias = "SFButtonTypeBack")]
     pub const Back: Self = Self(SFButtonType::Cancel.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontypelogin?language=objc)
+    /// Indicates the Login button was pressed.
     #[doc(alias = "SFButtonTypeLogin")]
     pub const Login: Self = Self(SFButtonType::OK.0);
 }
@@ -39,17 +38,16 @@ unsafe impl RefEncode for SFButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// These constants define the view type requested by the authorization plug-in.
 /// Defines the view types requested by AuthorizationPlugins.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFViewType(pub c_uint);
 impl SFViewType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtypeidentityandcredentials?language=objc)
+    /// Indicates a view that contains controls for identity and credentials was requested by the authorization plug-in.
     #[doc(alias = "SFViewTypeIdentityAndCredentials")]
     pub const IdentityAndCredentials: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtypecredentials?language=objc)
+    /// Indicates a view that contains controls for credentials was requested by the authorization plug-in.
     #[doc(alias = "SFViewTypeCredentials")]
     pub const Credentials: Self = Self(1);
 }
@@ -63,11 +61,24 @@ unsafe impl RefEncode for SFViewType {
 }
 
 extern_class!(
+    /// Allows authorization plug-in developers to create a custom view their plug-in can display.
+    ///
+    /// ## Overview
+    ///
+    /// If you’re developing an authorization plug-in, you can subclass the [`SFAuthorizationPluginView`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview) class to create views that provide a custom user interface for your plug-in. By subclassing the [`SFAuthorizationPluginView`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview) class, you avoid changing or duplicating the Apple-provided authentication or login window dialogs to display your custom view.
+    ///
+    /// To instantiate your [`SFAuthorizationPluginView`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview) subclass, you need the callbacks structure containing entry points to the Security Server that you receive in your plug-in’s [`AuthorizationPluginCreate`](https://developer.apple.comhttps://developer.apple.com/documentation/security/1543160-authorizationplugincreate) function and the authorization engine handle you receive in your plug-in’s [`MechanismCreate`](https://developer.apple.comhttps://developer.apple.com/documentation/security/authorizationplugininterface/1543181-mechanismcreate) function.
+    ///
+    /// Your custom subclass of [`SFAuthorizationPluginView`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview) must override the following methods:
+    ///
+    /// - [`buttonPressed:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview/buttonpressed(_:))
+    ///
+    /// - [`viewForType:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview/view(for:))
+    ///
+    ///
     /// SFAuthorizationPluginView is a class that you can use to insert an NSView into AuthorizationPlugin interfaces.
     ///
     /// SFAuthorizationPluginView provides AuthorizationPlugin writers with an easy way to provide a user interface for their AuthorizationPlugin without having to duplicate the standard authentication dialog or the login window dialog.  This class was designed to be subclassed by the AuthorizationPlugin writer.  The following methods were designed to be overridden: buttonPressed:, didActivate, willActivateWithUser:, didDeactivate, firstKeyView, firstResponder, lastKeyView, setEnabled:, and viewForType:.  In order to display the user interface, the AuthorizationPlugin should create an instance of your subclass and then call displayView.  That will cause the appropriate dialog to be displayed and when credentials are needed, the overridden methods will be called in order to display the NSView provided by the subclass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginview?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAuthorizationPluginView;
@@ -232,16 +243,16 @@ impl SFAuthorizationPluginView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginviewusernamekey?language=objc)
+    /// An `NSString` object with the user’s (long) name.
     pub static SFAuthorizationPluginViewUserNameKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationpluginviewusershortnamekey?language=objc)
+    /// An `NSString` object with the user’s short name.
     pub static SFAuthorizationPluginViewUserShortNameKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfdisplayviewexception?language=objc)
+    /// Raised when an error occurs in displaying the authorization dialog.
     pub static SFDisplayViewException: Option<&'static NSString>;
 }

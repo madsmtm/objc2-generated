@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skreachconstraints?language=objc)
+    /// A specification of the degree of freedom when solving inverse kinematics.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKReachConstraints`](https://developer.apple.com/documentation/spritekit/skreachconstraints) object is used to describe the range of motion for an [`SKNode`](https://developer.apple.com/documentation/spritekit/sknode) object whenever an inverse kinematic (IK) action is executed. To use reach constraints, create an [`SKReachConstraints`](https://developer.apple.com/documentation/spritekit/skreachconstraints) object and assign it to a node’s [`reachConstraints`](https://developer.apple.com/documentation/spritekit/sknode/reachconstraints) property. For more information on using reach actions to perform IK animations, see the [`SKAction`](https://developer.apple.com/documentation/spritekit/skaction) class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKReachConstraints;

@@ -7,16 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertionoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation(pub NSInteger);
 impl ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertionoperation/asauthorizationpublickeycredentiallargeblobassertionoperationread?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationRead")]
     pub const Read: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertionoperation/asauthorizationpublickeycredentiallargeblobassertionoperationwrite?language=objc)
     #[doc(alias = "ASAuthorizationPublicKeyCredentialLargeBlobAssertionOperationWrite")]
     pub const Write: Self = Self(1);
 }
@@ -30,7 +27,6 @@ unsafe impl RefEncode for ASAuthorizationPublicKeyCredentialLargeBlobAssertionOp
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentiallargeblobassertioninput-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput;

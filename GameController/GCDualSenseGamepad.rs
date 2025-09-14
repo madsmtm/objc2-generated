@@ -6,14 +6,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A controller profile that supported the DualSense controller.
+    ///
+    /// ## Overview
+    ///
+    /// The DualSense controller profile is similar to a DualShock profile ([`GCDualShockGamepad`](https://developer.apple.com/documentation/gamecontroller/gcdualshockgamepad)), but has adaptive triggers that allow you to specify a dynamic resistance force when the user pulls the trigger. For example, you can emulate the feeling of pulling back a bow string, firing a weapon, or pulling a lever.
+    ///
+    /// This profile also supports motion — that is, the controller’s [`motion`](https://developer.apple.com/documentation/gamecontroller/gccontroller/motion) property is non-nil. If you hold the controller in front of you, the direction of the axes are:
+    ///
+    /// - The positive x-axis points to your right.
+    ///
+    /// - The positive y-axis points up out of the USB-C port.
+    ///
+    /// - The positive z-axis starts at the touchpad and points to you.
+    ///
+    ///
     /// The GCDualSenseGamepad profile represents any supported DualSense controller.
     ///
     ///
     /// See: GCExtendedGamepad
     ///
     /// See: GCMotion
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsensegamepad?language=objc)
     #[unsafe(super(GCExtendedGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCExtendedGamepad", feature = "GCPhysicalInputProfile"))]

@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentprovider?language=objc)
+    /// The main interface for your Top Shelf app extension, which you use to provide content for the top shelf area of the tvOS Home Screen.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol in the principal class of your Top Shelf app extension. Use its methods to create the items that you want to display in the top shelf interface. For each item, specify additional resources such as the image or video to display.
+    ///
+    /// Fill the top shelf area with the user’s active content or with content you want to highlight or promote. For each distinct piece of content, create a [`TVTopShelfCarouselItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem) or [`TVTopShelfSectionedItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem) and fill the object with details about that content. For example, provide an identifier for the item and URLs for the pictures or videos you want to display for that item. After creating your items, add them to an appropriate content object and return them from your [`loadTopShelfContentWithCompletionHandler:`](https://developer.apple.com/documentation/tvservices/tvtopshelfcontentprovider/loadtopshelfcontent(completionhandler:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfContentProvider;

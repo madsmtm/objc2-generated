@@ -8,9 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents pool of SmartCard reader slots.
+    /// An interface to all available smart card reader slots.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager?language=objc)
+    /// ## Overview
+    ///
+    /// Get a list of all known smart card reader slots in the system using the [`slotNames`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames) property, and access individual slots by name using the [`getSlotWithName:reply:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/getslot(withname:reply:)) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`com.apple.security.smartcard`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.smartcard) entitlement is required in order to use `TKSmartCardSlotManager`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Represents pool of SmartCard reader slots.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardSlotManager;
@@ -101,37 +114,64 @@ impl TKSmartCardSlotManager {
     );
 }
 
+/// All smart card slot states.
 /// Enumerates all possible slot states.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardSlotState(pub NSInteger);
 impl TKSmartCardSlotState {
-    /// Slot is no longer known to the system.  This is terminal state for TKSmartCardSlot instance, once reached, the slot instance can never be revived.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/missing?language=objc)
+    /// ## Discussion
+    ///
+    /// The Smart Card reader slot is no longer known to the system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This is the terminal state of a `TKSmartCardSlotThis` instance; once it has reached this state, the Smart Card reader slot cannot be reinitialized.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Slot is no longer known to the system.  This is terminal state for TKSmartCardSlot instance, once reached, the slot instance can never be revived.
     #[doc(alias = "TKSmartCardSlotStateMissing")]
     pub const Missing: Self = Self(0);
-    /// The slot is empty, no card is inserted.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/empty?language=objc)
+    /// ## Discussion
+    ///
+    /// The Smart Card reader slot is empty; no card is inserted.
+    ///
+    ///
+    /// The slot is empty, no card is inserted.
     #[doc(alias = "TKSmartCardSlotStateEmpty")]
     pub const Empty: Self = Self(1);
-    /// The card was inserted into the slot and an initial probe is in progress.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/probing?language=objc)
+    /// ## Discussion
+    ///
+    /// A Smart Card was inserted into the slot and an initial probe is in underway.
+    ///
+    ///
+    /// The card was inserted into the slot and an initial probe is in progress.
     #[doc(alias = "TKSmartCardSlotStateProbing")]
     pub const Probing: Self = Self(2);
-    /// The card inserted in the slot does not answer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/mutecard?language=objc)
+    /// ## Discussion
+    ///
+    /// A Smart Card is inserted, but is mute, or does not provide responses to commands.
+    ///
+    ///
+    /// The card inserted in the slot does not answer.
     #[doc(alias = "TKSmartCardSlotStateMuteCard")]
     pub const MuteCard: Self = Self(3);
-    /// Card properly answered to reset.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum/validcard?language=objc)
+    /// ## Discussion
+    ///
+    /// A Smart Card is inserted and properly answered to a reset command.
+    ///
+    ///
+    /// Card properly answered to reset.
     #[doc(alias = "TKSmartCardSlotStateValidCard")]
     pub const ValidCard: Self = Self(4);
 }
@@ -144,27 +184,38 @@ unsafe impl RefEncode for TKSmartCardSlotState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible PIN character sets.
 /// Enumerates all possible PIN character sets.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINCharset(pub NSInteger);
 impl TKSmartCardPINCharset {
+    ///
+    /// ## Discussion
+    ///
     /// PIN is only composed of digits.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/numeric?language=objc)
+    ///
+    /// PIN is only composed of digits.
     #[doc(alias = "TKSmartCardPINCharsetNumeric")]
     pub const Numeric: Self = Self(0);
+    ///
+    /// ## Discussion
+    ///
     /// PIN can be composed of digits and letters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/alphanumeric?language=objc)
+    ///
+    /// PIN can be composed of digits and letters.
     #[doc(alias = "TKSmartCardPINCharsetAlphanumeric")]
     pub const Alphanumeric: Self = Self(1);
+    ///
+    /// ## Discussion
+    ///
     /// PIN can be composed of digits and uppercase letters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum/upperalphanumeric?language=objc)
+    ///
+    /// PIN can be composed of digits and uppercase letters.
     #[doc(alias = "TKSmartCardPINCharsetUpperAlphanumeric")]
     pub const UpperAlphanumeric: Self = Self(2);
 }
@@ -177,27 +228,38 @@ unsafe impl RefEncode for TKSmartCardPINCharset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible PIN encoding types.
 /// Enumerates all possible PIN encoding types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINEncoding(pub NSInteger);
 impl TKSmartCardPINEncoding {
-    /// Characters are encoded in Binary format (1234 => 01h 02h 03h 04h).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/binary?language=objc)
+    /// ## Discussion
+    ///
+    /// Characters are encoded in Binary format (for example, `1234` is encoded as `01h 02h 03h 04h`).
+    ///
+    ///
+    /// Characters are encoded in Binary format (1234 => 01h 02h 03h 04h).
     #[doc(alias = "TKSmartCardPINEncodingBinary")]
     pub const Binary: Self = Self(0);
-    /// Characters are encoded in ASCII format (1234 => 31h 32h 33h 34h).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/ascii?language=objc)
+    /// ## Discussion
+    ///
+    /// Characters are encoded in ASCII format (for example, `1234` is encoded as `31h 32h 33h 34h`).
+    ///
+    ///
+    /// Characters are encoded in ASCII format (1234 => 31h 32h 33h 34h).
     #[doc(alias = "TKSmartCardPINEncodingASCII")]
     pub const ASCII: Self = Self(1);
-    /// Characters (only digits) are encoded in BCD format (1234 => 12h 34h).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum/bcd?language=objc)
+    /// ## Discussion
+    ///
+    /// Characters (only digits) are encoded in BCD format (for example, `1234` is encoded as `12h 34h`).
+    ///
+    ///
+    /// Characters (only digits) are encoded in BCD format (1234 => 12h 34h).
     #[doc(alias = "TKSmartCardPINEncodingBCD")]
     pub const BCD: Self = Self(2);
 }
@@ -210,22 +272,29 @@ unsafe impl RefEncode for TKSmartCardPINEncoding {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible PIN justification types
 /// Enumerates all posible PIN justification types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINJustification(pub NSInteger);
 impl TKSmartCardPINJustification {
+    ///
+    /// ## Discussion
+    ///
     /// Justify to the left.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification/left?language=objc)
+    ///
+    /// Justify to the left.
     #[doc(alias = "TKSmartCardPINJustificationLeft")]
     pub const Left: Self = Self(0);
+    ///
+    /// ## Discussion
+    ///
     /// Justify to the right.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification/right?language=objc)
+    ///
+    /// Justify to the right.
     #[doc(alias = "TKSmartCardPINJustificationRight")]
     pub const Right: Self = Self(1);
 }
@@ -239,8 +308,6 @@ unsafe impl RefEncode for TKSmartCardPINJustification {
 }
 
 /// Bitmask specifying condition(s) under which PIN entry should be considered complete.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -248,18 +315,12 @@ pub struct TKSmartCardPINCompletion(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINCompletion: NSUInteger {
 /// Completion by reaching the maximum PIN length.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/maxlength?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionMaxLength")]
         const MaxLength = 1<<0;
 /// Completion by pressing the validation key.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/key?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionKey")]
         const Key = 1<<1;
 /// Completion by timeout expiration.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion/timeout?language=objc)
         #[doc(alias = "TKSmartCardPINCompletionTimeout")]
         const Timeout = 1<<2;
     }
@@ -274,8 +335,6 @@ unsafe impl RefEncode for TKSmartCardPINCompletion {
 }
 
 /// Bitmask specifying whether PIN confirmation should be requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -283,18 +342,12 @@ pub struct TKSmartCardPINConfirmation(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINConfirmation: NSUInteger {
 /// No confirmation requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinconfirmation/tksmartcardpinconfirmationnone?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationNone")]
         const None = 0;
 /// Confirmation (entry) of the new PIN requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation/new?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationNew")]
         const New = 1<<0;
 /// Confirmation (entry) of the current PIN requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation/current?language=objc)
         #[doc(alias = "TKSmartCardPINConfirmationCurrent")]
         const Current = 1<<1;
     }
@@ -309,9 +362,14 @@ unsafe impl RefEncode for TKSmartCardPINConfirmation {
 }
 
 extern_class!(
-    /// Specifies PIN formatting properties.
+    /// The formatting properties for a PIN, such as character encoding and length constraints.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat?language=objc)
+    /// ## Overview
+    ///
+    /// You typically interact with `TKSmartCardPINFormat` objects when calling the [`userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinchange(_:apdu:currentpinbyteoffset:newpinbyteoffset:)) and [`userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinverification(_:apdu:pinbyteoffset:)) methods on an instance of [`TKSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard).
+    ///
+    ///
+    /// Specifies PIN formatting properties.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardPINFormat;
@@ -451,9 +509,8 @@ impl TKSmartCardPINFormat {
 }
 
 extern_protocol!(
+    /// The interface implemented by a Smart Card user interaction delegate to handle user interaction events.
     /// Delegate for user interactions involving the SmartCard reader.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractiondelegate?language=objc)
     pub unsafe trait TKSmartCardUserInteractionDelegate {
         /// A valid character has been entered.
         #[optional]
@@ -515,11 +572,18 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The base class for encapsulating user interaction with a Smart Card reader.
+    ///
+    /// ## Overview
+    ///
+    /// There are two types of user interactions: those for secure PIN change and those for secure PIN validation. These interactions are instances of the [`TKSmartCardUserInteractionForSecurePINChange`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange), or [`TKSmartCardUserInteractionForSecurePINVerification`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinverification) subclasses of [`TKSmartCardUserInteractionForPINOperation`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation), respectively. [`TKSmartCardUserInteractionForPINOperation`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation) is a subclass of `TKSmartCardUserInteraction`.
+    ///
+    /// You interact with instances of one of the subclasses of [`TKSmartCardUserInteractionForPINOperation`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation)when calling the [`userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinchange(_:apdu:currentpinbyteoffset:newpinbyteoffset:)) and [`userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinverification(_:apdu:pinbyteoffset:)) methods on an [`TKSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard) object.
+    ///
+    ///
     /// Represents handle to a user interaction involving the SmartCard reader.
     ///
     /// It is a proxy object obtained as a result of invoking the userInteractionFor*** family of methods in TKSmartCardSlot and TKSmartCard.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardUserInteraction;
@@ -601,11 +665,20 @@ impl TKSmartCardUserInteraction {
 }
 
 extern_class!(
+    /// A representation of user interaction for secure PIN operations on a Smart Card reader.
+    ///
+    /// ## Overview
+    ///
+    /// There are two types of user interactions: those for secure PIN change and those for secure PIN validation. These interactions are instances of the [`TKSmartCardUserInteractionForSecurePINChange`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange), or [`TKSmartCardUserInteractionForSecurePINVerification`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinverification) subclasses of [`TKSmartCardUserInteractionForPINOperation`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation), respectively.
+    ///
+    /// You interact with instances of one of the subclasses of [`TKSmartCardUserInteractionForPINOperation`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation) when calling the [`userInteractionForSecurePINChangeWithPINFormat:APDU:currentPINByteOffset:newPINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinchange(_:apdu:currentpinbyteoffset:newpinbyteoffset:)) and [`userInteractionForSecurePINVerificationWithPINFormat:APDU:PINByteOffset:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/userinteractionforsecurepinverification(_:apdu:pinbyteoffset:)) methods on an [`TKSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard) object.
+    ///
+    /// The result of a user interaction is available once the interaction has completed.
+    ///
+    ///
     /// User interaction for the secure PIN operations on the SmartCard reader.
     ///
     /// Note: Result is available after the interaction has been successfully completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation?language=objc)
     #[unsafe(super(TKSmartCardUserInteraction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardUserInteractionForPINOperation;
@@ -695,11 +768,16 @@ impl TKSmartCardUserInteractionForPINOperation {
 }
 
 extern_class!(
+    /// A representation of the user interaction for secure PIN change verification on a Smart Card reader.
+    ///
+    /// ## Overview
+    ///
+    /// The result of a user interaction is available once the interaction has completed.
+    ///
+    ///
     /// User interaction for the secure PIN verification on the SmartCard reader.
     ///
     /// Note: Result is available after the interaction has been successfully completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinverification?language=objc)
     #[unsafe(super(
         TKSmartCardUserInteractionForPINOperation,
         TKSmartCardUserInteraction,
@@ -731,11 +809,16 @@ impl TKSmartCardUserInteractionForSecurePINVerification {
 }
 
 extern_class!(
+    /// A representation of the user interaction for secure PIN change operations on a Smart Card reader.
+    ///
+    /// ## Overview
+    ///
+    /// The result of a user interaction is available once the interaction has completed.
+    ///
+    ///
     /// User interaction for the secure PIN change on the SmartCard reader.
     ///
     /// Note: Result is available after the interaction has been successfully completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange?language=objc)
     #[unsafe(super(
         TKSmartCardUserInteractionForPINOperation,
         TKSmartCardUserInteraction,
@@ -779,9 +862,14 @@ impl TKSmartCardUserInteractionForSecurePINChange {
 }
 
 extern_class!(
-    /// Represents single slot which can contain SmartCard.
+    /// A single smart card reader slot in the system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`TKSmartCardSlotManager`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager) class to manage all the smart card reader slots available to the system. You can retrieve the names of available smart card reader slots for a system using the [`slotNames`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames) property of a manager object, and access instances of [`TKSmartCardSlot`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot) using the  [`getSlotWithName:reply:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/getslot(withname:reply:)) method.
+    ///
+    ///
+    /// Represents single slot which can contain SmartCard.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardSlot;
@@ -844,9 +932,18 @@ impl TKSmartCardSlot {
 }
 
 extern_class!(
-    /// Represents SmartCard inserted in the slot. Once the card is physically removed from the slot, the session object is invalid and will always fail the operation invoked on it.  In order to communicate with the card, an exclusive session must be established.
+    /// A representation of a smart card.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard?language=objc)
+    /// ## Overview
+    ///
+    /// This class provides an interface for managing sessions with a smart card, transmitting requests, and facilitating user interaction.
+    ///
+    /// You can create a [`TKSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard) object when a smart card is inserted into a slot, by calling the [`makeSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/makesmartcard()) method on the corresponding [`TKSmartCardSlot`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot) object. To start communicating with the smart card, call the [`beginSessionWithReply:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/beginsession(reply:)) method on the [`TKSmartCard`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard) object. Once an exclusive session has been established, you transmit data using the [`transmitRequest:reply:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/transmit(_:reply:)) method. After you’ve finished communicating with a smart card, you call the [`endSession`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/endsession()) method.
+    ///
+    /// If the smart card is physically removed from its slot, the session object becomes invalid, and any further calls to [`transmitRequest:reply:`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/transmit(_:reply:)) will return an error. You can use Key-Value Observing on the [`valid`](https://developer.apple.com/documentation/cryptotokenkit/tksmartcard/isvalid) property to be notified when a smart card is invalidated, due to being removed from the slot or another reason.
+    ///
+    ///
+    /// Represents SmartCard inserted in the slot. Once the card is physically removed from the slot, the session object is invalid and will always fail the operation invoked on it.  In order to communicate with the card, an exclusive session must be established.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCard;

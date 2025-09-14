@@ -11,25 +11,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason?language=objc)
+/// The reason that a call ended.
+///
+/// ## Overview
+///
+/// Pass these values to the [`reportCallWithUUID:endedAtDate:reason:`](https://developer.apple.com/documentation/callkit/cxprovider/reportcall(with:endedat:reason:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CXCallEndedReason(pub NSInteger);
 impl CXCallEndedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/failed?language=objc)
+    /// An error occurred while attempting to service the call.
     #[doc(alias = "CXCallEndedReasonFailed")]
     pub const Failed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/remoteended?language=objc)
+    /// The remote party explicitly ended the call.
     #[doc(alias = "CXCallEndedReasonRemoteEnded")]
     pub const RemoteEnded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/unanswered?language=objc)
+    /// The call never started connecting and was never explicitly ended, such as when an outgoing or incoming call times out.
     #[doc(alias = "CXCallEndedReasonUnanswered")]
     pub const Unanswered: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/answeredelsewhere?language=objc)
+    /// Another device answered the call.
     #[doc(alias = "CXCallEndedReasonAnsweredElsewhere")]
     pub const AnsweredElsewhere: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxcallendedreason/declinedelsewhere?language=objc)
+    /// Another device declined the call.
     #[doc(alias = "CXCallEndedReasonDeclinedElsewhere")]
     pub const DeclinedElsewhere: Self = Self(5);
 }
@@ -43,7 +49,13 @@ unsafe impl RefEncode for CXCallEndedReason {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxproviderdelegate?language=objc)
+    /// A collection of methods that a telephony provider object calls.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CXProviderDelegate`](https://developer.apple.com/documentation/callkit/cxproviderdelegate) protocol defines a set of methods that are called by an object that represents a telephony provider it begins or resets, requests a transaction, performs an action, or an audio session changes its activation state.
+    ///
+    ///
     pub unsafe trait CXProviderDelegate: NSObjectProtocol {
         /// Called when the provider has been reset. Delegates must respond to this callback by cleaning up all internal call state (disconnecting communication channels, releasing network resources, etc.). This callback can be treated as a request to end all calls without the need to respond to any actions
         #[unsafe(method(providerDidReset:))]
@@ -205,7 +217,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxprovider?language=objc)
+    /// An object that represents a telephony provider.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) object is responsible for reporting out-of-band notifications that occur to the system. A VoIP app should create only one instance of [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) and store it for use globally. A [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) object is initialized with a [`CXProviderConfiguration`](https://developer.apple.com/documentation/callkit/cxproviderconfiguration) object to specify the behavior and capabilities of calls. Each provider can specify an object conforming to the [`CXProviderDelegate`](https://developer.apple.com/documentation/callkit/cxproviderdelegate) protocol to respond to events, such as the call starting, the call being put on hold, or the provider’s audio session being activated.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) is not intended for subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CXProvider;

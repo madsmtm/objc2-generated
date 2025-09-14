@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that defines a Virtio sound device stream configuration.
+    ///
+    /// ## Overview
+    ///
+    /// A `VZVirtioSoundDeviceStreamConfiguration` object represents a PCM stream of audio data. Don’t instantiate this class directly. Instead, instantiate one of its subclasses such as [`VZVirtioSoundDeviceInputStreamConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration) or [`VZVirtioSoundDeviceOutputStreamConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration).
+    ///
+    ///
     /// Virtio Sound Device Stream Configuration.
     ///
     /// A PCM stream of audio data.
@@ -17,8 +24,6 @@ extern_class!(
     /// See: VZVirtioSoundDeviceInputStreamConfiguration
     ///
     /// See: VZVirtioSoundDeviceOutputStreamConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddevicestreamconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioSoundDeviceStreamConfiguration;

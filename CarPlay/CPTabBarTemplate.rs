@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptabbartemplate?language=objc)
+    /// A container template that displays and manages other templates, presenting them as tabs.
+    ///
+    /// ## Overview
+    ///
+    /// `CPTabBarTemplate` is a container template that displays a collection of other templates, where each template occupies a single tab in the tab bar. At runtime, use [`maximumTabCount`](https://developer.apple.com/documentation/carplay/cptabbartemplate/maximumtabcount) to determine the maximum number of tabs that your tab bar can display.
+    ///
+    /// When creating an instance of `CPTabBarTemplate`, provide an array of templates for the tab bar to display. CarPlay treats the array’s templates as root templates, each with its own navigation hierarchy. When a tab bar template is the [`rootTemplate`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/roottemplate) of your app’s interface controller and you use the controller to add and remove templates, CarPlay applies those changes to the selected tab’s navigation hierarchy.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can’t add a tab bar template to an existing navigation hierarchy, or present one modally. Instead, use [`setRootTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/setroottemplate(_:animated:completion:)) to set the tab bar as your app’s root template.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use a transactional approach when making changes to the tab bar. Retrieve the current set of templates using the [`templates`](https://developer.apple.com/documentation/carplay/cptabbartemplate/templates) property. Add, remove, reorder, or make appearance changes to one or more of the array’s templates. For example, use the [`tabTitle`](https://developer.apple.com/documentation/carplay/cptemplate/tabtitle) property to update a template’s tab title, or set [`showsTabBadge`](https://developer.apple.com/documentation/carplay/cptemplate/showstabbadge) to `true` to add an indicator to a template’s tab. Then call the [`updateTemplates:`](https://developer.apple.com/documentation/carplay/cptabbartemplate/updatetemplates(_:)) method and pass it the updated array. CarPlay commits those changes and updates the tab bar.
+    ///
+    /// When the user selects a tab, the template calls the [`tabBarTemplate:didSelectTemplate:`](https://developer.apple.com/documentation/carplay/cptabbartemplatedelegate/tabbartemplate(_:didselect:)) method on its delegate, which is an object you provide that conforms to the [`CPTabBarTemplateDelegate`](https://developer.apple.com/documentation/carplay/cptabbartemplatedelegate) protocol.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -119,7 +139,13 @@ impl CPTabBarTemplate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptabbartemplatedelegate?language=objc)
+    /// The methods an object implements to act as the delegate for a tab bar template.
+    ///
+    /// ## Overview
+    ///
+    /// You use the `CPTabBarTemplateDelegate` protocol to respond to a tab bar template’s events. The protocol defines methods that the template calls in response to these events, and your implementation provides the appropriate behavior when the events occur. For example, reloading a tab’s contents when the user selects it to make sure it’s displaying the latest data.
+    ///
+    ///
     pub unsafe trait CPTabBarTemplateDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "CPTemplate")]
         /// The user has selected one of the tabs in the tab bar template, bringing the selected template to the foreground.

@@ -11,16 +11,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The signature for a block that manages animation timing, used by the [`timingFunction`](https://developer.apple.com/documentation/scenekit/scnaction/timingfunction) property.
+///
+/// ## Discussion
+///
+/// The block takes a single parameter:
+///
+/// - time: A fraction of the action’s The input value for the timing function, as determined by the [`timingMode`](https://developer.apple.com/documentation/scenekit/scnaction/timingmode) property and the action’s current progress.
+///
+/// Your block must return a floating-point value between `0.0` and `1.0`, where `0.0` represents the starting state of the action’s animation and `1.0` represents the end state.
+///
+///
 /// A custom timing function for SCNActions. Input time will be between 0.0 and 1.0
 /// over the duration of the action. Return values must be 0.0-1.0 and increasing
 /// and the function must return 1.0 when the input time reaches 1.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNActionTimingFunction = *mut block2::DynBlock<dyn Fn(c_float) -> c_float>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactionable?language=objc)
+    /// Methods for running actions on nodes.
+    ///
+    /// ## Overview
+    ///
+    /// [`SCNAction`](https://developer.apple.com/documentation/scenekit/scnaction) objects represent reusable, animated actions that can be performed on nodes, such as moving or rotating them. You use an [`SCNAction`](https://developer.apple.com/documentation/scenekit/scnaction) class method to create an action and then use methods in the [`SCNActionable`](https://developer.apple.com/documentation/scenekit/scnactionable) protocol to run the action on a node. This protocol also defines methods for checking whether a node has any currently running actions and, if so, canceling them.
+    ///
+    ///
     pub unsafe trait SCNActionable: NSObjectProtocol {
         /// Adds an action to the list of actions executed by the node.
         #[unsafe(method(runAction:))]
@@ -85,7 +100,39 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnaction?language=objc)
+    /// A simple, reusable animation that changes attributes of any node you attach it to.
+    ///
+    /// ## Overview
+    ///
+    /// You use actions most often to change the structure and content of the [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object to which they are attached, but you can also use actions to make other changes to the scene. In SceneKit, actions provide an easy way to implement animated behaviors that frequently change in response to user input.
+    ///
+    /// ### Working with Actions
+    ///
+    /// To create an action, call the class method for the action you are interested in. Then, configure the action’s properties. Finally, to execute the action, call a node object’s [`runAction:`](https://developer.apple.com/documentation/spritekit/sknode/run(_:)) method (or a similar method from the [`SCNActionable`](https://developer.apple.com/documentation/scenekit/scnactionable) protocol) and pass it the action object.
+    ///
+    /// Most actions allow you to change a node’s properties, such as its position, rotation, or scale. Many of these actions are animated by SceneKit, meaning that they change the properties of the associated node over more than one frame of animation rendered by the scene. When an action is animated, the [`duration`](https://developer.apple.com/documentation/scenekit/scnaction/duration) property states how long that action takes to complete in seconds and its [`timingMode`](https://developer.apple.com/documentation/scenekit/scnaction/timingmode) property defines the rate at which the animation executes. The action’s [`speed`](https://developer.apple.com/documentation/scenekit/scnaction/speed) property allows you to adjust the timing of the animation by increasing or decreasing its playback speed.
+    ///
+    /// Many actions can be _reversed_, allowing you to create another action object that reverses the effect of that action. For example, if an action object moves a node `20` units in the positive X direction of its parent’s local coordinate space, the reversed action moves the node `20` units in the negative X direction. To create a reversed action object, call an action object’s [`reversedAction`](https://developer.apple.com/documentation/scenekit/scnaction/reversed()) method.
+    ///
+    /// Some actions include other actions as children:
+    ///
+    /// - A _sequence action_ has multiple child actions. Each action in the sequence begins after the previous action ends.
+    ///
+    /// - A _group action_ has multiple child actions. All actions stored in the group begin executing at the same time.
+    ///
+    /// - A _repeating action_ stores a single child action. When the child action completes, it is restarted.
+    ///
+    /// You can nest groups, sequences, and repeating actions. By combining actions together, you can add sophisticated behaviors to a node.
+    ///
+    /// ### Using Actions for Scene Animation
+    ///
+    /// Actions are easily reused, can be added and removed while running, and directly affect presented nodes. For these reasons, actions work well when your scene changes frequently in response to user input—such as when building a game. Not all elements of a scene can be animated using actions. For other kinds of animation, use implicitly animated object properties (see the [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) class) or explicitly created Core Animation objects (see the [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol), or change the scene graph directly for each rendered frame (see the [`SCNSceneRendererDelegate`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate) protocol).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You never subclass [`SCNAction`](https://developer.apple.com/documentation/scenekit/scnaction) directly. Instead, create actions that call methods on arbitrary objects or execute blocks of code. See Creating Custom Actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAction;

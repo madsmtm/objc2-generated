@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselection?language=objc)
+    /// A base object that tracks one or more dates a user selects from a calendar view.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t use this object directly in your calendar view to track date selection. Use the subclass [`UICalendarSelectionSingleDate`](https://developer.apple.com/documentation/uikit/uicalendarselectionsingledate) to track a single date selection, or [`UICalendarSelectionMultiDate`](https://developer.apple.com/documentation/uikit/uicalendarselectionmultidate) to track multiple date selections.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

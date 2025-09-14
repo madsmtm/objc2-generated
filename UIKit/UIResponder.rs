@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributesconversionhandler?language=objc)
+/// A handler for updating text with current font panel settings.
 #[cfg(feature = "block2")]
 pub type UITextAttributesConversionHandler = *mut block2::DynBlock<
     dyn Fn(
@@ -15,16 +15,13 @@ pub type UITextAttributesConversionHandler = *mut block2::DynBlock<
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditinginteractionconfiguration?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEditingInteractionConfiguration(pub NSInteger);
 impl UIEditingInteractionConfiguration {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditinginteractionconfiguration/none?language=objc)
     #[doc(alias = "UIEditingInteractionConfigurationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieditinginteractionconfiguration/default?language=objc)
     #[doc(alias = "UIEditingInteractionConfigurationDefault")]
     pub const Default: Self = Self(1);
 }
@@ -38,7 +35,13 @@ unsafe impl RefEncode for UIEditingInteractionConfiguration {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponderstandardeditactions?language=objc)
+    /// A set of standard methods that apps can adopt to support editing.
+    ///
+    /// ## Overview
+    ///
+    /// Responder objects can implement the methods of this protocol to handle standard editing-related actions. For example, a [`UIEditMenuInteraction`](https://developer.apple.com/documentation/uikit/uieditmenuinteraction) object displays the actions in an edit menu using these methods. UIKit searches the responder chain for an object that implements the appropriate method, calling the method on the first object that implements it.
+    ///
+    ///
     pub unsafe trait UIResponderStandardEditActions:
         NSObjectProtocol + MainThreadOnly
     {
@@ -337,7 +340,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder?language=objc)
+    /// An abstract interface for responding to and handling events.
+    ///
+    /// ## Overview
+    ///
+    /// Responder objects — instances of [`UIResponder`](https://developer.apple.com/documentation/uikit/uiresponder) — constitute the event-handling backbone of a UIKit app. Many key objects are also responders, including the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object, [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) objects, and all [`UIView`](https://developer.apple.com/documentation/uikit/uiview) objects (which includes [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow)). As events occur, UIKit dispatches them to your app’s responder objects for handling.
+    ///
+    /// There are several kinds of events, including touch events, motion events, remote-control events, and press events. To handle a specific type of event, a responder must override the corresponding methods. For example, to handle touch events, a responder implements the [`touchesBegan:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesbegan(_:with:)), [`touchesMoved:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesmoved(_:with:)), [`touchesEnded:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchesended(_:with:)), and [`touchesCancelled:withEvent:`](https://developer.apple.com/documentation/uikit/uiresponder/touchescancelled(_:with:)) methods. In the case of touches, the responder uses the event information provided by UIKit to track changes to those touches and to update the app’s interface appropriately.
+    ///
+    /// In addition to handling events, UIKit responders also manage the forwarding of unhandled events to other parts of your app. If a given responder doesn’t handle an event, it forwards that event to the next event in the responder chain. UIKit manages the responder chain dynamically, using predefined rules to determine which object should be next to receive an event. For example, a view forwards events to its superview, and the root view of a hierarchy forwards events to its view controller.
+    ///
+    /// Responders process [`UIEvent`](https://developer.apple.com/documentation/uikit/uievent) objects but can also accept custom input through an input view. The system’s keyboard is the most obvious example of an input view. When the user taps a [`UITextField`](https://developer.apple.com/documentation/uikit/uitextfield) and [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview) object onscreen, the view becomes the first responder and displays its input view, which is the system keyboard. Similarly, you can create custom input views and display them when other responders become active. To associate a custom input view with a responder, assign that view to the [`inputView`](https://developer.apple.com/documentation/uikit/uiresponder/inputview) property of the responder.
+    ///
+    /// For information about responders and the responder chain, see [Using responders and the responder chain to handle events](https://developer.apple.com/documentation/uikit/using-responders-and-the-responder-chain-to-handle-events).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -594,107 +611,107 @@ impl UIResponder {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputuparrow?language=objc)
+    /// A string representing the Up Arrow key.
     pub static UIKeyInputUpArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputdownarrow?language=objc)
+    /// A string representing the Down Arrow key.
     pub static UIKeyInputDownArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputleftarrow?language=objc)
+    /// A string representing the Left Arrow key.
     pub static UIKeyInputLeftArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputrightarrow?language=objc)
+    /// A string representing the Right Arrow key.
     pub static UIKeyInputRightArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputescape?language=objc)
+    /// A string that represents the Escape key.
     pub static UIKeyInputEscape: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputpageup?language=objc)
+    /// A string representing the Page Up key.
     pub static UIKeyInputPageUp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputpagedown?language=objc)
+    /// A string representing the Page Down key.
     pub static UIKeyInputPageDown: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputhome?language=objc)
+    /// A string representing the Home key.
     pub static UIKeyInputHome: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputend?language=objc)
+    /// A string representing the End key.
     pub static UIKeyInputEnd: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f2?language=objc)
+    /// A string representing the F2 key.
     pub static UIKeyInputF2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f3?language=objc)
+    /// A string representing the F3 key.
     pub static UIKeyInputF3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f4?language=objc)
+    /// A string representing the F4 key.
     pub static UIKeyInputF4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f5?language=objc)
+    /// A string representing the F5 key.
     pub static UIKeyInputF5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f6?language=objc)
+    /// A string representing the F6 key.
     pub static UIKeyInputF6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f7?language=objc)
+    /// A string representing the F7 key.
     pub static UIKeyInputF7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f8?language=objc)
+    /// A string representing the F8 key.
     pub static UIKeyInputF8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f9?language=objc)
+    /// A string representing the F9 key.
     pub static UIKeyInputF9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f10?language=objc)
+    /// A string representing the F10 key.
     pub static UIKeyInputF10: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f11?language=objc)
+    /// A string representing the F11 key.
     pub static UIKeyInputF11: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f12?language=objc)
+    /// A string representing the F12 key.
     pub static UIKeyInputF12: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputdelete?language=objc)
+    /// A string that represents the Delete key.
     pub static UIKeyInputDelete: &'static NSString;
 }
 

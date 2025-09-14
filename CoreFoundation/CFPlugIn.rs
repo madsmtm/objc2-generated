@@ -10,46 +10,78 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugindynamicregistrationkey?language=objc)
+    /// Indicates whether a plug-in requires dynamic registration.
     pub static kCFPlugInDynamicRegistrationKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugindynamicregisterfunctionkey?language=objc)
+    /// Used to specify a plug-in’s registration function.
     pub static kCFPlugInDynamicRegisterFunctionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpluginunloadfunctionkey?language=objc)
+    /// Used to specify a plug-in’s unload function.
     pub static kCFPlugInUnloadFunctionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfpluginfactorieskey?language=objc)
+    /// Used to statically register factory functions.
     pub static kCFPlugInFactoriesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfplugintypeskey?language=objc)
+    /// Used to statically register the factories that can create each supported type.
     pub static kCFPlugInTypesKey: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugindynamicregisterfunction?language=objc)
+/// A callback which provides a plug-in the opportunity to dynamically register its types with a host.
+///
+/// Parameters:
+/// - plugIn: The `CFPlugIn` object that is engaged in dynamic registration. When using in C++, this parameter functions as a `this` pointer for the plug-in.
+///
+///
+/// ## Discussion
+///
+/// This callback is called as a plug-in is being loaded. This provides the plugin the means to dynamically register its types and factories with a plug-in’s host. The call is triggered by the presence of [`kCFPlugInDynamicRegistrationKey`](https://developer.apple.com/documentation/corefoundation/kcfplugindynamicregistrationkey) in the plug-in’s information property list.
+///
+///
 #[cfg(feature = "CFBundle")]
 pub type CFPlugInDynamicRegisterFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlugIn)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunloadfunction?language=objc)
+/// Callback function that is called, if present, just before a plug-in’s code is unloaded.
+///
+/// Parameters:
+/// - plugIn: The `CFPlugIn` object that is about to be unloaded from memory. When writing in C++, this parameter functions as a `this` pointer for the plug-in.
+///
 #[cfg(feature = "CFBundle")]
 pub type CFPlugInUnloadFunction = Option<unsafe extern "C-unwind" fn(*mut CFPlugIn)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfactoryfunction?language=objc)
+/// Callback function that a plug-in author must implement to create a plug-in instance.
+///
+/// Parameters:
+/// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the default allocator.
+///
+/// - typeUUID: The UUID type to instantiate.
+///
+///
+/// ## Discussion
+///
+/// The plug-in author’s implementation of this function is registered with `CFPlugIn` either statically in the plug-in’s information property list, or dynamically. This function is executed as a result of a call to [`CFPlugInInstanceCreate`](https://developer.apple.com/documentation/corefoundation/cfplugininstancecreate(_:_:_:)) by the plug-in host.
+///
+///
 #[cfg(feature = "CFUUID")]
 pub type CFPlugInFactoryFunction =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const CFUUID) -> *mut c_void>;
 
 #[cfg(feature = "CFBundle")]
 unsafe impl ConcreteType for CFPlugIn {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugingettypeid()?language=objc)
+    /// Returns the type identifier for the `CFPlugIn` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the `CFPlugIn` opaque type.
+    ///
+    ///
     #[doc(alias = "CFPlugInGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -62,7 +94,19 @@ unsafe impl ConcreteType for CFPlugIn {
 
 #[cfg(feature = "CFBundle")]
 impl CFPlugIn {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugincreate(_:_:)?language=objc)
+    /// Creates a CFPlugIn given its URL.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new plug-in. Pass `NULL` or kCFAllocatorDefault to use the default allocator.
+    ///
+    /// - plugInURL: The location of the plug-in.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new plug-in. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFPlugInCreate")]
     #[cfg(all(feature = "CFBundle", feature = "CFURL"))]
     #[inline]
@@ -80,7 +124,23 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugingetbundle(_:)?language=objc)
+    /// Returns a plug-in’s bundle.
+    ///
+    /// Parameters:
+    /// - plugIn: The plug-in whose bundle to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bundle for `plugIn`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should _always_ use this function to get a plug-in’s bundle. Never attempt to access the plug-in directly as a bundle.
+    ///
+    ///
     #[doc(alias = "CFPlugInGetBundle")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -92,7 +152,19 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginsetloadondemand(_:_:)?language=objc)
+    /// Enables or disables load on demand for plug-ins that do dynamic registration (only when a client requests an instance of a supported type).
+    ///
+    /// Parameters:
+    /// - plugIn: The plug-in to be loaded on demand.
+    ///
+    /// - flag: `true` to enable load on demand, `false` otherwise.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Plug-ins that do static registration are load on demand by default. Plug-ins that do dynamic registration are not load on demand by default.
+    ///
+    ///
     #[doc(alias = "CFPlugInSetLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -103,7 +175,23 @@ impl CFPlugIn {
         unsafe { CFPlugInSetLoadOnDemand(self, flag as _) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginisloadondemand(_:)?language=objc)
+    /// Determines whether or not a plug-in is loaded on demand.
+    ///
+    /// Parameters:
+    /// - plugIn: The plug-in to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the plug-in is loaded only when a client requests an instance of a supported type, otherwise  `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Plug-ins that do static registration are load on demand by default. Plug-ins that do dynamic registration are not load on demand by default.
+    ///
+    ///
     #[doc(alias = "CFPlugInIsLoadOnDemand")]
     #[cfg(feature = "CFBundle")]
     #[inline]
@@ -115,7 +203,17 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfindfactoriesforplugintype(_:)?language=objc)
+    /// Searches all registered plug-ins for factory functions capable of creating an instance of the given type.
+    ///
+    /// Parameters:
+    /// - typeUUID: A UUID type.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of UUIDs for factory functions capable of creating an instance of the given type.
+    ///
+    ///
     #[doc(alias = "CFPlugInFindFactoriesForPlugInType")]
     #[cfg(all(feature = "CFArray", feature = "CFUUID"))]
     #[inline]
@@ -131,7 +229,19 @@ impl CFPlugIn {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginfindfactoriesforplugintypeinplugin(_:_:)?language=objc)
+    /// Searches the given plug-in for factory functions capable of creating an instance of the given type.
+    ///
+    /// Parameters:
+    /// - typeUUID: A UUID type.
+    ///
+    /// - plugIn: The plug-in to search.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of UUIDs for factory functions capable of creating an instance of the given type.
+    ///
+    ///
     #[doc(alias = "CFPlugInFindFactoriesForPlugInTypeInPlugIn")]
     #[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
@@ -151,7 +261,27 @@ impl CFPlugIn {
 }
 
 impl CFPlugInInstance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancecreate(_:_:_:)?language=objc)
+    /// Creates a `CFPlugIn` instance of a given type using a given factory.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the default allocator.
+    ///
+    /// - factoryUUID: The UUID representing the factory function to use to create a plug-in of the given type.
+    ///
+    /// - typeUUID: The UUID type.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the IUnknown interface for the new plug-in.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The plug-in host uses this function to create an instance of the given type. Unless the plug-in is using dynamic registration, this function causes the plug-in’s code to be loaded into memory.
+    ///
+    ///
     #[doc(alias = "CFPlugInInstanceCreate")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -173,7 +303,25 @@ impl CFPlugInInstance {
 
 #[cfg(feature = "CFBundle")]
 impl CFPlugIn {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterfactoryfunction(_:_:)?language=objc)
+    /// Registers a factory function and its UUID with a `CFPlugIn` object.
+    ///
+    /// Parameters:
+    /// - factoryUUID: The `CFUUID` object representing the factory function to register.
+    ///
+    /// - func: The factory function pointer to register.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the factory function was successfully registered, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used by a plug-in or host when performing dynamic registration.
+    ///
+    ///
     #[doc(alias = "CFPlugInRegisterFactoryFunction")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -191,7 +339,27 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterfactoryfunctionbyname(_:_:_:)?language=objc)
+    /// Registers a factory function with a `CFPlugIn` object using the function’s name instead of its UUID.
+    ///
+    /// Parameters:
+    /// - factoryUUID: The `CFUUID` object representing the factory function to register.
+    ///
+    /// - plugIn: The plug-in containing `functionName`.
+    ///
+    /// - functionName: The name of the factory function to register.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the factory function was successfully registered, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used by a plug-in or host when performing dynamic registration.
+    ///
+    ///
     #[doc(alias = "CFPlugInRegisterFactoryFunctionByName")]
     #[cfg(all(feature = "CFBundle", feature = "CFUUID"))]
     #[inline]
@@ -212,7 +380,23 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunregisterfactory(_:)?language=objc)
+    /// Removes the given function from a plug-in’s list of registered factory functions.
+    ///
+    /// Parameters:
+    /// - factoryUUID: The `CFUUID` object representing the factory to unregister.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the factory function was successfully unregistered, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Used by a plug-in or host when performing dynamic registration.
+    ///
+    ///
     #[doc(alias = "CFPlugInUnregisterFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -224,7 +408,25 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginregisterplugintype(_:_:)?language=objc)
+    /// Registers a type and its corresponding factory function with a `CFPlugIn` object.
+    ///
+    /// Parameters:
+    /// - factoryUUID: The `CFUUID` object representing the factory function that can create the type being registered.
+    ///
+    /// - typeUUID: The UUID type to register.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the factory function was successfully registered, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used by a plug-in or host when performing dynamic registration.
+    ///
+    ///
     #[doc(alias = "CFPlugInRegisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -242,7 +444,25 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginunregisterplugintype(_:_:)?language=objc)
+    /// Removes the given type from a plug-in’s list of registered types.
+    ///
+    /// Parameters:
+    /// - factoryUUID: The `CFUUID` object representing the factory function for the type to unregister.
+    ///
+    /// - typeUUID: The UUID type to unregister.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the factory function was successfully unregistered, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Used by a plug-in or host when performing dynamic registration.
+    ///
+    ///
     #[doc(alias = "CFPlugInUnregisterPlugInType")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -260,7 +480,11 @@ impl CFPlugIn {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginaddinstanceforfactory(_:)?language=objc)
+    /// Registers a new instance of a type with `CFPlugIn`.
+    ///
+    /// Parameters:
+    /// - factoryID: The `CFUUID` object representing the plug-in factory.
+    ///
     #[doc(alias = "CFPlugInAddInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -271,7 +495,17 @@ impl CFPlugIn {
         unsafe { CFPlugInAddInstanceForFactory(factory_id) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfpluginremoveinstanceforfactory(_:)?language=objc)
+    /// Unregisters an instance of a type with `CFPlugIn`.
+    ///
+    /// Parameters:
+    /// - factoryID: The `CFUUID` object representing the plug-in factory.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the instance counts of every factory in a plug-in are zero, the plug-in can be unloaded.
+    ///
+    ///
     #[doc(alias = "CFPlugInRemoveInstanceForFactory")]
     #[cfg(feature = "CFUUID")]
     #[inline]
@@ -283,7 +517,12 @@ impl CFPlugIn {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstance?language=objc)
+///
+/// ## Overview
+///
+/// CFPlugInInstance is deprecated. Use the functions defined by [`CFPlugInRef`](https://developer.apple.com/documentation/corefoundation/cfplugin) instead.
+///
+///
 #[doc(alias = "CFPlugInInstanceRef")]
 #[repr(C)]
 pub struct CFPlugInInstance {
@@ -299,7 +538,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFPlugInInstance"> for CFPlugInInstance {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunction?language=objc)
+/// Not recommended.
 pub type CFPlugInInstanceGetInterfaceFunction = Option<
     unsafe extern "C-unwind" fn(
         *mut CFPlugInInstance,
@@ -308,12 +547,12 @@ pub type CFPlugInInstanceGetInterfaceFunction = Option<
     ) -> Boolean,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancedeallocateinstancedatafunction?language=objc)
+/// Not recommended.
 pub type CFPlugInInstanceDeallocateInstanceDataFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
 impl CFPlugInInstance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinterfacefunctiontable(_:_:_:)?language=objc)
+    /// Not recommended.
     ///
     /// # Safety
     ///
@@ -337,7 +576,7 @@ impl CFPlugInInstance {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetfactoryname(_:)?language=objc)
+    /// Not recommended.
     #[doc(alias = "CFPlugInInstanceGetFactoryName")]
     #[inline]
     pub fn factory_name(&self) -> Option<CFRetained<CFString>> {
@@ -350,7 +589,7 @@ impl CFPlugInInstance {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegetinstancedata(_:)?language=objc)
+    /// Not recommended.
     #[doc(alias = "CFPlugInInstanceGetInstanceData")]
     #[inline]
     pub fn instance_data(&self) -> *mut c_void {
@@ -362,7 +601,7 @@ impl CFPlugInInstance {
 }
 
 unsafe impl ConcreteType for CFPlugInInstance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancegettypeid()?language=objc)
+    /// Not recommended.
     #[doc(alias = "CFPlugInInstanceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -374,7 +613,7 @@ unsafe impl ConcreteType for CFPlugInInstance {
 }
 
 impl CFPlugInInstance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfplugininstancecreatewithinstancedatasize(_:_:_:_:_:)?language=objc)
+    /// Not recommended.
     ///
     /// # Safety
     ///

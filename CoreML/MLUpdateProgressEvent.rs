@@ -4,26 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// A type of event during a model update task.
 /// Events on which update task is capable of invoking progress handler.
 ///
 ///
 /// Note: MLUpdateProgressEventMiniBatchEnd may induce performance problems
 /// during pipeline execution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLUpdateProgressEvent(pub NSInteger);
 bitflags::bitflags! {
     impl MLUpdateProgressEvent: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/trainingbegin?language=objc)
+/// An event that represents the start of training.
         #[doc(alias = "MLUpdateProgressEventTrainingBegin")]
         const TrainingBegin = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/epochend?language=objc)
+/// An event that represents the end of training epoch.
         #[doc(alias = "MLUpdateProgressEventEpochEnd")]
         const EpochEnd = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlupdateprogressevent/minibatchend?language=objc)
+/// An event that represents the end of a mini-batch within a training epoch.
         #[doc(alias = "MLUpdateProgressEventMiniBatchEnd")]
         const MiniBatchEnd = 1<<2;
     }

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract base class for describing Top Shelf items and Top Shelf item collections.
+    /// An abstract base class for describing top shelf items and item collections.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfobject?language=objc)
+    /// ## Overview
+    ///
+    /// This class provides shared information for objects you use in your app extension. Do not create instances of this class directly.
+    ///
+    ///
+    /// An abstract base class for describing Top Shelf items and Top Shelf item collections.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfObject;

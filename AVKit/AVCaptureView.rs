@@ -12,6 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the capture view’s supported controls styles.
 /// The inline controls pane for media recording is associated with the view.
 ///
 /// The floating controls pane for media recordings is associated with the view.
@@ -19,23 +20,27 @@ use crate::*;
 /// The inline controls pane for selection capture devices is associated with the view.
 ///
 /// The default controls pane is associated with the view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureViewControlsStyle(pub NSInteger);
 impl AVCaptureViewControlsStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/inline?language=objc)
+    /// The view’s inline controls style.
     #[doc(alias = "AVCaptureViewControlsStyleInline")]
     pub const Inline: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/floating?language=objc)
+    /// The view’s floating controls style, which matches the user interface of QuickTime Player.
     #[doc(alias = "AVCaptureViewControlsStyleFloating")]
     pub const Floating: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/inlinedeviceselection?language=objc)
+    /// The view’s inline device selection style.
     #[doc(alias = "AVCaptureViewControlsStyleInlineDeviceSelection")]
     pub const InlineDeviceSelection: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/default?language=objc)
+    /// The view’s default controls style.
+    ///
+    /// ## Discussion
+    ///
+    /// The default controls style is [`AVCaptureViewControlsStyleInline`](https://developer.apple.com/documentation/avkit/avcaptureviewcontrolsstyle/inline).
+    ///
+    ///
     #[doc(alias = "AVCaptureViewControlsStyleDefault")]
     pub const Default: Self = Self(AVCaptureViewControlsStyle::Inline.0);
 }
@@ -49,9 +54,8 @@ unsafe impl RefEncode for AVCaptureViewControlsStyle {
 }
 
 extern_class!(
+    /// A view that displays standard user interface controls for capturing media data.
     /// AVCaptureView is a subclass of NSView that can be used to display standard user interface controls for capturing media data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -237,9 +241,8 @@ impl AVCaptureView {
 }
 
 extern_protocol!(
+    /// The protocol that defines the methods you can implement to respond to capture view events.
     /// Defines an interface for delegates of AVCaptureView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avcaptureviewdelegate?language=objc)
     pub unsafe trait AVCaptureViewDelegate: NSObjectProtocol {
         #[cfg(all(feature = "objc2-app-kit", feature = "objc2-av-foundation"))]
         #[cfg(target_os = "macos")]

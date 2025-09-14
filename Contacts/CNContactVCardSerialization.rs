@@ -7,12 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you use to convert to and from a vCard representation of the user’s contacts.
     /// Contact vCard support.
     ///
     ///
     /// This converts between a contact and its vCard representation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactvcardserialization?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactVCardSerialization;

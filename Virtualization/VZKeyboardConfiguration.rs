@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a configuring a keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// `VZKeyboardConfiguration` defines the abstract interface that defines a virtual keyboard that you connect to a guest operating system. Don’t instantiate `VZKeyboardConfiguration` directly, use one of its subclasses such as [`VZUSBKeyboardConfiguration`](https://developer.apple.com/documentation/virtualization/vzusbkeyboardconfiguration) instead.
+    ///
+    ///
     /// Base class for a keyboard configuration.
     ///
     /// VZKeyboardConfiguration should not be instantiated directly.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZUSBKeyboardConfiguration
     ///
     /// See: VZMacKeyboardConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzkeyboardconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZKeyboardConfiguration;

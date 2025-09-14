@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction?language=objc)
+/// A general facility for defining and using callback functions.
+///
+/// ## Overview
+///
+/// These functions can take an arbitrary number of floating-point input values and pass back an arbitrary number of floating-point output values.
+///
+/// Core Graphics uses function objects to implement shadings. [`CGShadingRef`](https://developer.apple.com/documentation/coregraphics/cgshading) describes the parameters and semantics required for the callbacks used by function objects.
+///
+///
 #[doc(alias = "CGFunctionRef")]
 #[repr(C)]
 pub struct CGFunction {
@@ -26,14 +34,39 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGFunction"> for CGFunction {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionevaluatecallback?language=objc)
+/// Performs custom operations on the supplied input data to produce output data.
+///
+/// Parameters:
+/// - info: The `info` parameter passed to [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)).
+///
+/// - inData: An array of floats. The size of the array is that specified by the `domainDimension` parameter passed to the [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)) function.
+///
+/// - outData: An array of floats. The size of the array is that specified by the `rangeDimension` parameter passed to the [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)) function.
+///
+///
+/// ## Discussion
+///
+/// The callback you write is responsible for implementing thecalculation of output values from the supplied input values. Forexample, if you want to implement a simple “squaring” functionof one input argument to one output argument, your evaluation functionmight be:
+///
+/// ```objc
+/// void evaluateSquare(void *info, const float *inData, float *outData)
+/// {
+///     outData[0] = inData[0] * inData[0];
+/// }
+/// ```
+///
+///
 pub type CGFunctionEvaluateCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGFloat>, NonNull<CGFloat>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctionreleaseinfocallback?language=objc)
+/// Performs custom clean-up tasks when Core Graphics deallocates a `CGFunctionRef` object.
+///
+/// Parameters:
+/// - info: The `info` parameter passed to [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)).
+///
 pub type CGFunctionReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunctioncallbacks?language=objc)
+/// A structure that contains callbacks needed by a `CGFunctionRef` object.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -61,7 +94,13 @@ unsafe impl RefEncode for CGFunctionCallbacks {
 }
 
 unsafe impl ConcreteType for CGFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction/typeid?language=objc)
+    /// Returns the type identifier for Core Graphics function objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the opaque type [`CGFunctionRef`](https://developer.apple.com/documentation/coregraphics/cgfunction).
+    ///
+    ///
     #[doc(alias = "CGFunctionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -73,7 +112,27 @@ unsafe impl ConcreteType for CGFunction {
 }
 
 impl CGFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)?language=objc)
+    /// Creates a Core Graphics function.
+    ///
+    /// Parameters:
+    /// - info: A pointer to user-defined storage for data that you want to pass to your callbacks. You need to make sure that the data persists for as long as it’s needed, which can be beyond the scope in which the Core Graphics function is used.
+    ///
+    /// - domainDimension: The number of inputs.
+    ///
+    /// - domain: An array of (`2*domainDimension`) floats used to specify the valid intervals of input values. For each k from `0` to `(domainDimension - 1)`, `domain[2*k]` must be less than or equal to `domain[2*k+1]`, and the `k`th input value will be clipped to lie in the interval `domain[2*k] ≤ input[k] ≤ domain[2*k+1]`. If this parameter is `NULL`, then the input values are not clipped.
+    ///
+    /// - rangeDimension: The number of outputs.
+    ///
+    /// - range: An array of `(2*rangeDimension)` floats that specifies the valid intervals of output values. For each `k` from `0` to `(rangeDimension - 1)`, `range[2*k]` must be less than or equal to `range[2*k+1]`, and the `k`th output value will be clipped to lie in the interval `range[2*k] ≤ output[k] ≤ range[2*k+1]`. 	If this parameter is `NULL`, then the output values are not clipped.
+    ///
+    /// - callbacks: A pointer to a callback function table. This table should contain pointers to the callbacks you provide to implement the semantics of this Core Graphics function.	 Core Graphics makes a copy of your table, so, for example, you could safely pass in a pointer to a structure on the stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new Core Graphics function. In Objective-C, you’re responsible for releasing this object using [`CGFunctionRelease`](https://developer.apple.com/documentation/coregraphics/cgfunctionrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///

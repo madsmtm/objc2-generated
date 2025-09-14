@@ -7,113 +7,195 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The name of a specific counter that can appear in a GPU device’s counter sets.
+///
+/// ## Overview
+///
+/// This type defines the constants that let a GPU device declare which counters it supports within a counter set. For more information, see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports).
+///
+///
 /// Common counters that, when present, are expected to have similar meanings across
 /// different implementations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounter = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/timestamp?language=objc)
+    /// The common name for the counter that tracks the current time.
     pub static MTLCommonCounterTimestamp: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationinputpatches?language=objc)
+    /// The common name for the counter that tracks the number of tessellation patches a render pass sends to the tessellation stage.
     pub static MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexinvocations?language=objc)
+    /// The common name for the counter that tracks the number of times a render pass calls any vertex shader.
     pub static MTLCommonCounterVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexinvocations?language=objc)
+    /// The common name for the counter that tracks the number of vertices a render pass sends to a post-tessellation vertex shader.
     pub static MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperinvocations?language=objc)
+    /// The common name for the counter that tracks the number of primitives a render pass sends to the clip stage.
     pub static MTLCommonCounterClipperInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperprimitivesout?language=objc)
+    /// The common name for the counter that tracks the number of primitives the clip stage produces during a render pass.
     pub static MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentinvocations?language=objc)
+    /// The common name for the counter that tracks the number of times a render pass calls fragment shaders.
     pub static MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentspassed?language=objc)
+    /// The common name for the counter that tracks the number of fragments a render pass sends to the visibility and blend stages.
+    ///
+    /// ## Discussion
+    ///
+    /// The render pass sends fragments that pass the scissor, depth, and stencil tests to the visibility and blend stages.
+    ///
+    ///
     pub static MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/computekernelinvocations?language=objc)
+    /// The common name for the counter that tracks the number of times a pass invokes any compute kernel.
     pub static MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/totalcycles?language=objc)
+    /// The common name for the counter that tracks the total number of cycles the GPU uses to run a pass.
     pub static MTLCommonCounterTotalCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexcycles?language=objc)
+    /// The common name for the counter that tracks the number of cycles the GPU uses to run vertex shaders during a pass.
     pub static MTLCommonCounterVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationcycles?language=objc)
+    /// The common name for the counter that tracks the number of cycles the GPU uses to run the tessellation stage during a pass.
     pub static MTLCommonCounterTessellationCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexcycles?language=objc)
+    /// The common name for the counter that tracks the number of cycles the GPU uses to run post-tessellation vertex shaders during a pass.
     pub static MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentcycles?language=objc)
+    /// The common name for the counter that tracks the number of cycles the GPU uses to run fragment shaders during a pass.
     pub static MTLCommonCounterFragmentCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/rendertargetwritecycles?language=objc)
+    /// The common name for the counter that tracks the number of cycles the GPU uses to write data to render targets during a render pass.
     pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
 }
 
+/// The name of a specific counter set that a GPU device can support.
+///
+/// ## Overview
+///
+/// This type defines the constants that let a GPU device declare which counter sets it supports.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Some GPUs may only support some of the counters within a counter set.
+///
+///
+///
+/// </div>
+/// For more information, see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports).
+///
+///
 /// Common counter set names.
 ///
 /// Each of these common counter sets has a defined structure type.  Implementations
 /// may omit some of the counters from these sets.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset?language=objc)
 // NS_TYPED_ENUM
 pub type MTLCommonCounterSet = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/timestamp?language=objc)
+    /// The common name for the counter set that contains the timestamp counter.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`MTLCommonCounterSetTimestamp`](https://developer.apple.com/documentation/metal/mtlcommoncounterset/timestamp) counter set contains the [`MTLCommonCounterTimestamp`](https://developer.apple.com/documentation/metal/mtlcommoncounter/timestamp) counter. Use this name to check whether a GPU device supports the corresponding counter set (see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports)).
+    ///
+    ///
     pub static MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/stageutilization?language=objc)
+    /// The common name for the counter set that contains hardware utilization measurements from various render stages.
+    ///
+    /// ## Discussion
+    ///
+    /// The stage utilization counter set contains the following counters:
+    ///
+    /// - [`MTLCommonCounterTotalCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/totalcycles)
+    ///
+    /// - [`MTLCommonCounterVertexCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexcycles)
+    ///
+    /// - [`MTLCommonCounterFragmentCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentcycles)
+    ///
+    /// - [`MTLCommonCounterTessellationCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationcycles)
+    ///
+    /// - [`MTLCommonCounterPostTessellationVertexCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexcycles)
+    ///
+    /// - [`MTLCommonCounterRenderTargetWriteCycles`](https://developer.apple.com/documentation/metal/mtlcommoncounter/rendertargetwritecycles)
+    ///
+    /// Use this name to check whether a GPU device supports the corresponding counter set (see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports)).
+    ///
+    ///
     pub static MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/statistic?language=objc)
+    /// The common name for the counter set that contains GPU workload statistics.
+    ///
+    /// ## Discussion
+    ///
+    /// The statistics counter set contains the following counters:
+    ///
+    /// - [`MTLCommonCounterComputeKernelInvocations`](https://developer.apple.com/documentation/metal/mtlcommoncounter/computekernelinvocations)
+    ///
+    /// - [`MTLCommonCounterVertexInvocations`](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexinvocations)
+    ///
+    /// - [`MTLCommonCounterFragmentInvocations`](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentinvocations)
+    ///
+    /// - [`MTLCommonCounterFragmentsPassed`](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentspassed)
+    ///
+    /// - [`MTLCommonCounterTessellationInputPatches`](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationinputpatches)
+    ///
+    /// - [`MTLCommonCounterPostTessellationVertexInvocations`](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexinvocations)
+    ///
+    /// - [`MTLCommonCounterClipperInvocations`](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperinvocations)
+    ///
+    /// - [`MTLCommonCounterClipperPrimitivesOut`](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperprimitivesout)
+    ///
+    /// Use this name to check whether a GPU device supports the corresponding counter set (see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports)).
+    ///
+    ///
     pub static MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresulttimestamp?language=objc)
+/// The data structure for storing the data you resolve from a timestamp counter set.
+///
+/// ## Overview
+///
+/// For steps that explain how to resolve data from a counter set, such as [`timestamp`](https://developer.apple.com/documentation/metal/mtlcounterresulttimestamp/timestamp), see [Converting a GPU’s counter data into a readable format](https://developer.apple.com/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultTimestamp {
@@ -128,7 +210,13 @@ unsafe impl RefEncode for MTLCounterResultTimestamp {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstageutilization?language=objc)
+/// The data structure for storing the data you resolve from a stage-utilization counter set.
+///
+/// ## Overview
+///
+/// For steps that explain how to resolve data from a counter set, such as [`MTLCommonCounterSetStageUtilization`](https://developer.apple.com/documentation/metal/mtlcommoncounterset/stageutilization), see [Converting a GPU’s counter data into a readable format](https://developer.apple.com/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultStageUtilization {
@@ -158,7 +246,13 @@ unsafe impl RefEncode for MTLCounterResultStageUtilization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstatistic?language=objc)
+/// The data structure for storing the data you resolve from a statistic counter set.
+///
+/// ## Overview
+///
+/// For steps that explain how to resolve data from a counter set, such as [`MTLCommonCounterSetStatistic`](https://developer.apple.com/documentation/metal/mtlcommoncounterset/statistic), see [Converting a GPU’s counter data into a readable format](https://developer.apple.com/documentation/metal/converting-a-gpus-counter-data-into-a-readable-format).
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultStatistic {
@@ -193,9 +287,14 @@ unsafe impl RefEncode for MTLCounterResultStatistic {
 }
 
 extern_protocol!(
-    /// A descriptor for a single counter.
+    /// An individual counter a GPU device lists within one of its counter sets.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounter?language=objc)
+    /// ## Overview
+    ///
+    /// You can determine which counters a GPU supports within a counter set (see [`MTLCounterSet`](https://developer.apple.com/documentation/metal/mtlcounterset)) by checking the elements of its [`counters`](https://developer.apple.com/documentation/metal/mtlcounterset/counters) property. A counter’s [`name`](https://developer.apple.com/documentation/metal/mtlcounter/name) property typically matches one of the common counter set names that [`MTLCommonCounter`](https://developer.apple.com/documentation/metal/mtlcommoncounter) defines. For more information, see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports).
+    ///
+    ///
+    /// A descriptor for a single counter.
     pub unsafe trait MTLCounter: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -204,10 +303,25 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A collection of individual counters a GPU device supports for a counter set.
+    ///
+    /// ## Overview
+    ///
+    /// You can determine which counter sets a GPU supports by checking an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`counterSets`](https://developer.apple.com/documentation/metal/mtldevice/countersets) property. A counter set’s [`name`](https://developer.apple.com/documentation/metal/mtlcounterset/name) property typically matches one of the common counter set names that [`MTLCommonCounterSet`](https://developer.apple.com/documentation/metal/mtlcommoncounterset) defines. Check whether a GPU device supports a specific counter by comparing elements of the [`counters`](https://developer.apple.com/documentation/metal/mtlcounterset/counters) property with a counter’s common name that [`MTLCommonCounter`](https://developer.apple.com/documentation/metal/mtlcommoncounter) defines.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Some GPUs may only support some of the counters within a counter set.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information, see [Confirming which counters and counter sets a GPU supports](https://developer.apple.com/documentation/metal/confirming-which-counters-and-counter-sets-a-gpu-supports).
+    ///
+    ///
     /// A collection of MTLCounters that the device can capture in
     /// a single pass.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterset?language=objc)
     pub unsafe trait MTLCounterSet: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
@@ -225,9 +339,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Object to represent the counter state.
+    /// A group of properties that configures the counter sample buffers you create with it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// To create a new counter sample buffer, create and configure an [`MTLCounterSampleBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor) instance, and then call an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`newCounterSampleBufferWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makecountersamplebuffer(descriptor:)) method. See [Creating a counter sample buffer to store a GPU’s counter data during a pass](https://developer.apple.com/documentation/metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass).
+    ///
+    /// Each new sample counter buffer inherits the values of the descriptor’s properties when you create it. You can modify a descriptor and reuse it to create other counter sample buffers, which has no effect on existing counter sample buffers.
+    ///
+    ///
+    /// Object to represent the counter state.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCounterSampleBufferDescriptor;
@@ -316,10 +437,17 @@ impl DefaultRetained for MTLCounterSampleBufferDescriptor {
 }
 
 extern_protocol!(
+    /// A specialized memory buffer that stores a GPU’s counter set data.
+    ///
+    /// ## Overview
+    ///
+    /// Create a counter sample buffer by calling an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`newCounterSampleBufferWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makecountersamplebuffer(descriptor:)) method. See [Creating a counter sample buffer to store a GPU’s counter data during a pass](https://developer.apple.com/documentation/metal/creating-a-counter-sample-buffer-to-store-a-gpus-counter-data-during-a-pass).
+    ///
+    /// You can store a GPU device’s counter set data only with an [`MTLCounterSampleBuffer`](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer) instance that you create from the same device. See [Sampling GPU data into counter sample buffers](https://developer.apple.com/documentation/metal/sampling-gpu-data-into-counter-sample-buffers) for information about storing counter sample data in a counter sample buffer.
+    ///
+    ///
     /// The Counter Sample Buffer contains opaque counter samples as well
     /// as state needed to request a sample from the API.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffer?language=objc)
     pub unsafe trait MTLCounterSampleBuffer: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// to use the sample buffer with this device.
@@ -357,12 +485,12 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// The domain for Metal counter sample buffer errors.
     /// NSErrors raised when creating a counter sample buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountererrordomain?language=objc)
     pub static MTLCounterErrorDomain: &'static NSErrorDomain;
 }
 
+/// The underlying error code type that indicates why a GPU driver can’t create a counter sample buffer.
 /// There wasn't enough memory available to allocate the counter sample buffer.
 ///
 ///
@@ -370,20 +498,30 @@ extern "C" {
 ///
 ///
 /// There was some other error in allocating the counter sample buffer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSampleBufferError(pub NSInteger);
 impl MTLCounterSampleBufferError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/outofmemory?language=objc)
+    /// An error code that indicates the GPU device doesn’t have sufficient memory to create a counter sample buffer.
     #[doc(alias = "MTLCounterSampleBufferErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/invalid?language=objc)
+    /// An error code that indicates when a counter-sample buffer descriptor has at least one invalid property.
+    ///
+    /// ## Discussion
+    ///
+    /// This error applies to the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) protocol’s [`newCounterSampleBufferWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makecountersamplebuffer(descriptor:)) method and its [`MTLCounterSampleBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlcountersamplebufferdescriptor) parameter.
+    ///
+    ///
     #[doc(alias = "MTLCounterSampleBufferErrorInvalid")]
     pub const Invalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code/internal?language=objc)
+    /// An error code that indicates the Metal framework has an internal problem.
+    ///
+    /// ## Discussion
+    ///
+    /// The local description contains the underlying error code. You can report the scenario that generated this error code with [Feedback Assistant](https://feedbackassistant.apple.com).
+    ///
+    ///
     #[doc(alias = "MTLCounterSampleBufferErrorInternal")]
     pub const Internal: Self = Self(2);
 }

@@ -10,6 +10,41 @@ use crate::*;
 extern_class!(
     /// A class describing the plan for executing a model.
     ///
+    /// ## Overview
+    ///
+    /// The application can use the plan to estimate the necessary cost and resources of the model before running the predictions.
+    ///
+    /// ```text
+    /// // Load the compute plan of an ML Program model.
+    /// [MLComputePlan loadContentsOfURL:modelURL configuration:configuration completionHandler:^(MLComputePlan * _Nullable computePlan, NSError * _Nullable error) {
+    ///    if (!computePlan) {
+    ///        // Handle error.
+    ///        return;
+    ///    }
+    ///    MLModelStructureProgram *program = computePlan.modelStructure.program;
+    ///    if (!program) {
+    ///        [NSException raise:NSInternalInconsistencyException format:@"Unexpected model type."];
+    ///    }
+    ///
+    ///    MLModelStructureFunction *mainFunction = program.functions["main"];
+    ///    if (!mainFunction) {
+    ///        [NSException raise:NSInternalInconsistencyException format:@"Missing main function."];
+    ///    }
+    ///
+    ///    NSArray<MLModelStructureProgramOperation *> *operations = mainFunction.block.operations;
+    ///    for (MLModelStructureProgramOperation *operation in operations) {
+    ///        // Get the compute device usage for the operation.
+    ///        MLComputeDeviceUsage *computeDeviceUsage = [computePlan computeDeviceUsageForMLProgramOperation:operation];
+    ///        // Get the estimated cost of executing the operation.
+    ///        MLComputePlanCost *estimatedCost = [computePlan estimatedCostOfMLProgramOperation:operation];
+    ///
+    ///    }
+    /// }];
+    /// ```
+    ///
+    ///
+    /// A class describing the plan for executing a model.
+    ///
     /// The application can use the plan to estimate the necessary cost and
     /// resources of the model before running the predictions.
     ///
@@ -46,8 +81,6 @@ extern_class!(
     /// }
     /// }];
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplan-85vdw?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlan;

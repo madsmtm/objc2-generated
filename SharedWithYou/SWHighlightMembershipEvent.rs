@@ -6,16 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipeventtrigger?language=objc)
+/// The type of membership event for the highlight.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SWHighlightMembershipEventTrigger(pub NSInteger);
 impl SWHighlightMembershipEventTrigger {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipeventtrigger/addedcollaborator?language=objc)
+    /// Signifies the system added a collaborator.
     #[doc(alias = "SWHighlightMembershipEventTriggerAddedCollaborator")]
     pub const AddedCollaborator: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipeventtrigger/removedcollaborator?language=objc)
+    /// Signifies the system removed a collaborator.
     #[doc(alias = "SWHighlightMembershipEventTriggerRemovedCollaborator")]
     pub const RemovedCollaborator: Self = Self(2);
 }
@@ -29,9 +29,8 @@ unsafe impl RefEncode for SWHighlightMembershipEventTrigger {
 }
 
 extern_class!(
+    /// An object that represents membership activity for a highlight.
     /// A model object representing a membership event that has happened on some content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightmembershipevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlightMembershipEvent;

@@ -12,7 +12,23 @@ use crate::*;
 // TODO: pub fn GLKMathRadiansToDegrees(radians: c_float,) -> c_float;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmathproject(_:_:_:_:)?language=objc)
+    /// Projects a point in object space into the window coordinate system.
+    ///
+    /// Parameters:
+    /// - object: The point in object space.
+    ///
+    /// - model: A modelview transformation matrix.
+    ///
+    /// - projection: A projection matrix.
+    ///
+    /// - viewport: A pointer to an array of four integer values. The first pair of values represent the window coordinates of the viewport’s bottom left corner. The second pair of values represent the width and height of the view port.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The projected point in window coordinates.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -27,7 +43,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmathunproject(_:_:_:_:_:)?language=objc)
+    /// Projects a point in view space into object space.
+    ///
+    /// Parameters:
+    /// - window: The point in window coordinates.
+    ///
+    /// - model: A modelview transformation matrix.
+    ///
+    /// - projection: A projection matrix.
+    ///
+    /// - viewport: A pointer to an array of four integer values. The first pair of values represent the window coordinates of the viewport’s bottom left corner. The second pair of values represent the width and height of the view port.
+    ///
+    /// - success: Upon return, contains [`true`](https://developer.apple.com/documentation/swift/true) if the function completed successfully, otherwise it contains [`false`](https://developer.apple.com/documentation/swift/false). Pass `NULL` if you do not want error information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The projected point in object space.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -43,7 +77,11 @@ extern "C-unwind" {
     ) -> GLKVector3;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkmatrix2(_:)?language=objc)
+/// Returns a string that represents the contents of a matrix.
+///
+/// Parameters:
+/// - matrix: A `2x2` matrix.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> Retained<NSString> {
@@ -55,7 +93,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix2(matrix: GLKMatrix2) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkmatrix3(_:)?language=objc)
+/// Returns a string that represents the contents of a matrix.
+///
+/// Parameters:
+/// - matrix: A `3x3` matrix.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> Retained<NSString> {
@@ -67,7 +109,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix3(matrix: GLKMatrix3) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkmatrix4(_:)?language=objc)
+/// Returns a string that represents the contents of a matrix.
+///
+/// Parameters:
+/// - matrix: A `4x4` matrix.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> Retained<NSString> {
@@ -79,7 +125,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKMatrix4(matrix: GLKMatrix4) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkvector2(_:)?language=objc)
+/// Returns a string that represents the contents of a vector.
+///
+/// Parameters:
+/// - vector: A 2-component vector.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKVector2(vector: GLKVector2) -> Retained<NSString> {
@@ -91,7 +141,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector2(vector: GLKVector2) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkvector3(_:)?language=objc)
+/// Returns a string that represents the contents of a vector.
+///
+/// Parameters:
+/// - vector: A 3-component vector.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKVector3(vector: GLKVector3) -> Retained<NSString> {
@@ -103,7 +157,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector3(vector: GLKVector3) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkvector4(_:)?language=objc)
+/// Returns a string that represents the contents of a vector.
+///
+/// Parameters:
+/// - vector: A 4-component vector.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKVector4(vector: GLKVector4) -> Retained<NSString> {
@@ -115,7 +173,11 @@ pub unsafe extern "C-unwind" fn NSStringFromGLKVector4(vector: GLKVector4) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/nsstringfromglkquaternion(_:)?language=objc)
+/// Returns a string that represents the contents of a quaternion.
+///
+/// Parameters:
+/// - quaternion: A quaternion.
+///
 #[cfg(feature = "GLKMathTypes")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromGLKQuaternion(

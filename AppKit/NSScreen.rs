@@ -15,7 +15,23 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreen?language=objc)
+    /// An object that describes the attributes of a computer’s monitor or screen.
+    ///
+    /// ## Overview
+    ///
+    /// An app may use an [`NSScreen`](https://developer.apple.com/documentation/appkit/nsscreen) object to retrieve information about a screen and use this information to decide what to display on that screen. For example, an app may use the [`deepestScreen`](https://developer.apple.com/documentation/appkit/nsscreen/deepest) method to find out which of the available screens can best represent color and then might choose to display all of its windows on that screen.
+    ///
+    /// Create the application object before you use the methods in this class, so that the application object can make the necessary connection to the window system. You can make sure the application object exists by invoking the [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) method of [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication). If you created your app with Xcode, the application object is automatically created for you during initialization.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`NSScreen`](https://developer.apple.com/documentation/appkit/nsscreen) class is only for getting information about the available displays. If you need additional information or want to change the attributes relating to a display, you must use Quartz Services. For more information, see [Quartz Display Services](https://developer.apple.com/documentation/coregraphics/quartz-display-services).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -139,7 +155,13 @@ impl NSScreen {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreen/colorspacedidchangenotification?language=objc)
+    /// Posted when the color space of the screen has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`NSScreen`](https://developer.apple.com/documentation/appkit/nsscreen) object whose [`colorSpace`](https://developer.apple.com/documentation/appkit/nsscreen/colorspace) has changed.. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName;
 }
 

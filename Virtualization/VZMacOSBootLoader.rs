@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that loads and configures a boot loader for running macOS on Apple silicon as a guest system of your VM.
+    ///
+    /// ## Overview
+    ///
+    /// You must use a [`VZMacPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration) in conjunction with the macOS boot loader. It’s invalid to use it with any other platform configuration.
+    ///
+    ///
     /// Boot loader configuration for booting macOS on Apple Silicon.
     ///
     /// You must use a VZMacPlatformConfiguration in conjunction with the macOS boot loader.
@@ -15,8 +22,6 @@ extern_class!(
     /// See: VZMacPlatformConfiguration
     ///
     /// See: VZVirtualMachineConfiguration.platform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosbootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]

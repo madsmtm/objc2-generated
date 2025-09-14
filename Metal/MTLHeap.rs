@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The options you use to choose the heap type.
 /// Describes the mode of operation for an MTLHeap.
 ///
 /// In this mode, resources are placed in the heap automatically.
@@ -16,20 +17,32 @@ use crate::*;
 /// In this mode, the app places resources in the heap.
 /// Manually placed resources allow the app to control memory usage and heap fragmentation directly.
 /// This heap type is recommended when the heap primarily contains persistent write-rarely resources.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHeapType(pub NSInteger);
 impl MTLHeapType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/automatic?language=objc)
+    /// A heap that automatically places new resource allocations.
+    ///
+    /// ## Discussion
+    ///
+    /// In an automatic heap, Metal automatically determines the locations of resources allocated by the heap, with a layout specific to the GPU. Automatic heaps may perform better than manually placing resources in the heap ([`MTLHeapTypePlacement`](https://developer.apple.com/documentation/metal/mtlheaptype/placement)).
+    ///
+    /// Use automatic heaps when the heap primarily contains temporary resources that you write to often.
+    ///
+    ///
     #[doc(alias = "MTLHeapTypeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/placement?language=objc)
+    /// The app controls placement of resources on the heap.
+    ///
+    /// ## Discussion
+    ///
+    /// Use placement heaps when you need direct control over memory use and heap fragmentation. Typically, you use placement heaps for resources you keep for long time periods and rarely change.
+    ///
+    ///
     #[doc(alias = "MTLHeapTypePlacement")]
     pub const Placement: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheaptype/sparse?language=objc)
+    /// The heap contains sparse texture tiles.
     #[doc(alias = "MTLHeapTypeSparse")]
     pub const Sparse: Self = Self(2);
 }
@@ -43,7 +56,15 @@ unsafe impl RefEncode for MTLHeapType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheapdescriptor?language=objc)
+    /// A configuration that customizes the behavior for a Metal memory heap.
+    ///
+    /// ## Overview
+    ///
+    /// Create an [`MTLHeap`](https://developer.apple.com/documentation/metal/mtlheap) by configuring an [`MTLHeapDescriptor`](https://developer.apple.com/documentation/metal/mtlheapdescriptor) instance’s properties and passing it to the [`newHeapWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makeheap(descriptor:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice).
+    ///
+    /// Each new heap inherits the descriptor’s configuration as you create it, which means you can modify and reuse a descriptor to create other heaps.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLHeapDescriptor;
@@ -207,7 +228,17 @@ impl DefaultRetained for MTLHeapDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlheap?language=objc)
+    /// A memory pool from which you can suballocate resources.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol yourself; instead, to create a heap, configure an [`MTLHeapDescriptor`](https://developer.apple.com/documentation/metal/mtlheapdescriptor) instance and call the [`newHeapWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makeheap(descriptor:)) method of an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance.
+    ///
+    /// You suballocate resources from a heap and make them _aliasable_ or _non-aliasable_. A sub-allocated resource is non-aliased by default, preventing future resources allocated from the heap from using its memory. Resources are _aliased_ when they share the same memory allocation on a heap.
+    ///
+    /// All resources sub-allocated from the same heap share the same storage mode and CPU cache mode. You can make heaps purgeable, but not the resources allocated from the heap; they can only reflect the heap’s purgeability state.
+    ///
+    ///
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLHeap: MTLAllocation {
         /// A string to help identify this heap.

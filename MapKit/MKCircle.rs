@@ -8,7 +8,13 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcircle?language=objc)
+    /// A circular overlay with a configurable radius that you center on a geographic coordinate.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines the portion of the map that the overlay covers. To draw the region, return an [`MKCircleRenderer`](https://developer.apple.com/documentation/mapkit/mkcirclerenderer) object from the [`mapView:rendererForOverlay:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:rendererfor:)) method of your map view delegate.
+    ///
+    ///
     #[unsafe(super(MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKShape")]

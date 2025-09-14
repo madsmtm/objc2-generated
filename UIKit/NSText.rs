@@ -4,19 +4,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection?language=objc)
+/// Constants that specify the writing direction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/natural?language=objc)
+    /// The writing direction of the current script that the system determines using the Unicode Bidi Algorithm rules P2 and P3.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default writing direction.
+    ///
+    ///
     #[doc(alias = "NSWritingDirectionNatural")]
     pub const Natural: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/lefttoright?language=objc)
+    /// The writing direction is left to right.
     #[doc(alias = "NSWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection/righttoleft?language=objc)
+    /// The writing direction is right to left.
     #[doc(alias = "NSWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -29,25 +35,30 @@ unsafe impl RefEncode for NSWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment?language=objc)
+/// Constants that specify text alignment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/left?language=objc)
+    /// Text is left-aligned.
     #[doc(alias = "NSTextAlignmentLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/justified?language=objc)
+    /// Text is justified.
     #[doc(alias = "NSTextAlignmentJustified")]
     pub const Justified: Self = Self(3);
+    /// Text uses the default alignment for the current localization of the app.
+    ///
+    /// ## Discussion
+    ///
+    /// The default alignment for left-to-right scripts is [`NSTextAlignmentLeft`](https://developer.apple.com/documentation/uikit/nstextalignment/left), and the default alignment for right-to-left scripts is [`NSTextAlignmentRight`](https://developer.apple.com/documentation/uikit/nstextalignment/right).
+    ///
+    ///
     /// Resolved to either ``left`` or ``right`` based on the natural alignment resolution type active in the associated component.
     ///
     /// There are two types of natural alignment resolution behavior. The natural alignment is resolved based on either the UI language or the base writing direction.
     /// The behavior is selected by the ``resolvesNaturalAlignmentWithBaseWritingDirection`` property for ``NSTextLayoutManager``.
     /// ``NSStringDrawingOptions.resolvesNaturalAlignmentWithBaseWritingDirection`` specifies the base writing direction based resolution for ``NSStringDrawing``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment/natural?language=objc)
     #[doc(alias = "NSTextAlignmentNatural")]
     pub const Natural: Self = Self(4);
 }

@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that identifies the supported network interfaces of the host computer.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZBridgedNetworkInterface`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface) object to retrieve the physical interfaces on the host computer. Use a bridged network interface to create a [`VZBridgedNetworkDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkdeviceattachment) object, which maps that interface to one of your virtual machine’s network devices. The host computer and your virtual machine share access to the physical network interface, but communicate over it using distinct network layers.
+    ///
+    /// You don’t create [`VZBridgedNetworkInterface`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface) objects directly. Instead, the system creates one object for each physical interface of the host computer and stores those objects in the [`networkInterfaces`](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface/networkinterfaces) property. Iterate over the objects in that property to retrieve the network interfaces you need.
+    ///
+    ///
     /// Define a network interface that bridges a physical interface with a virtual machine.
     ///
     /// A bridged interface is shared between the virtual machine and the host system. Both host and virtual machine send and receive packets on the same physical interface
@@ -22,8 +31,6 @@ extern_class!(
     /// See also: VZNATNetworkDeviceAttachment
     ///
     /// See also: VZNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzbridgednetworkinterface?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZBridgedNetworkInterface;

@@ -8,11 +8,33 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsopenstepunicodereservedbase?language=objc)
+/// Specifies lower bound for a Unicode character range reserved for Apple’s corporate use (the range is `0xF400–0xF8FF`).
 pub const NSOpenStepUnicodeReservedBase: c_uint = 0xF400;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscharacterset?language=objc)
+    /// An object representing a fixed set of Unicode character values for use in search operations.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this bridges to a [`CharacterSet`](https://developer.apple.com/documentation/foundation/characterset); use [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// An `NSCharacterSet` object represents a set of Unicode-compliant characters. `NSString` and `NSScanner` objects use `NSCharacterSet` objects to group characters together for searching operations, so that they can find any of a particular set of characters during a search. The cluster’s two public classes, `NSCharacterSet` and [`NSMutableCharacterSet`](https://developer.apple.com/documentation/foundation/nsmutablecharacterset), declare the programmatic interface for static and dynamic character sets, respectively.
+    ///
+    /// The objects you create using these classes are referred to as character set objects (and when no confusion will result, merely as character sets). Because of the nature of class clusters, character set objects aren’t actual instances of the `NSCharacterSet` or `NSMutableCharacterSet` classes but of one of their private subclasses. Although a character set object’s class is private, its interface is public, as declared by these abstract superclasses, `NSCharacterSet` and `NSMutableCharacterSet`. The character set classes adopt the `NSCopying` and `NSMutableCopying` protocols, making it convenient to convert a character set of one type to the other.
+    ///
+    /// The `NSCharacterSet` class declares the programmatic interface for an object that manages a set of Unicode characters (see the [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) class cluster specification for information on Unicode). `NSCharacterSet`’s principal primitive method, [`characterIsMember:`](https://developer.apple.com/documentation/foundation/nscharacterset/characterismember(_:)), provides the basis for all other instance methods in its interface. A subclass of `NSCharacterSet` needs only to implement this method, plus [`mutableCopyWithZone:`](https://developer.apple.com/documentation/foundation/nsmutablecopying/mutablecopy(with:)), for proper behavior. For optimal performance, a subclass should also override [`bitmapRepresentation`](https://developer.apple.com/documentation/foundation/nscharacterset/bitmaprepresentation), which otherwise works by invoking [`characterIsMember:`](https://developer.apple.com/documentation/foundation/nscharacterset/characterismember(_:)) for every possible Unicode value.
+    ///
+    /// `NSCharacterSet` is “toll-free bridged” with its Core Foundation counterpart, [`CFCharacterSetRef`](https://developer.apple.com/documentation/corefoundation/cfcharacterset). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`CharacterSet`](https://developer.apple.com/documentation/foundation/characterset) structure, which bridges to the [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset) class and its mutable subclass, [`NSMutableCharacterSet`](https://developer.apple.com/documentation/foundation/nsmutablecharacterset). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCharacterSet;
@@ -209,7 +231,29 @@ impl DefaultRetained for NSCharacterSet {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc)
+    /// An object representing a mutable set of Unicode character values for use in search operations.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`CharacterSet`](https://developer.apple.com/documentation/foundation/characterset); use [`NSMutableCharacterSet`](https://developer.apple.com/documentation/foundation/nsmutablecharacterset) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The `NSMutableCharacterSet` class declares the programmatic interface to objects that manage a modifiable set of Unicode characters. You can add or remove characters from a mutable character set as numeric values in `NSRange` structures or as character values in strings, combine character sets by union or intersection, and invert a character set.
+    ///
+    /// Mutable character sets are less efficient to use than immutable character sets. If you don’t need to change a character set after creating it, create an immutable copy with `copy` and use that.
+    ///
+    /// `NSMutableCharacterSet` defines no primitive methods. Subclasses must implement all methods declared by this class in addition to the primitives of [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset). They must also implement [`mutableCopyWithZone:`](https://developer.apple.com/documentation/foundation/nsmutablecopying/mutablecopy(with:)).
+    ///
+    /// `NSMutableCharacterSet` is “toll-free bridged” with its Core Foundation counterpart, [`CFMutableCharacterSetRef`](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`CharacterSet`](https://developer.apple.com/documentation/foundation/characterset) structure, which bridges to the [`NSMutableCharacterSet`](https://developer.apple.com/documentation/foundation/nsmutablecharacterset) class and its immutable superclass, [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset).  For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSCharacterSet, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableCharacterSet;

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// CLSQuantityItem represents user generated quantity information.
+    /// Activity information that signifies a quantity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsquantityitem?language=objc)
+    /// ## Overview
+    ///
+    /// Use an activity item of this type to associate a discrete value with a task. For example, you might use it to indicate how many times the user requested a hint while taking a quiz.
+    ///
+    ///
+    /// CLSQuantityItem represents user generated quantity information.
     #[unsafe(super(CLSActivityItem, CLSObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLSActivityItem", feature = "CLSObject"))]

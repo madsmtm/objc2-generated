@@ -13,19 +13,25 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype?language=objc)
+/// The accessory types that a list item can display.
+///
+/// ## Overview
+///
+/// Use these constants to set the value of a list item’s [`accessoryType`](https://developer.apple.com/documentation/carplay/cplistitem/accessorytype) property. An accessory can provide additional context for a list item’s contents, or help communicate its behavior.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemAccessoryType(pub NSInteger);
 impl CPListItemAccessoryType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/none?language=objc)
+    /// Don’t show an accessory.
     #[doc(alias = "CPListItemAccessoryTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/disclosureindicator?language=objc)
+    /// Show a chevron icon.
     #[doc(alias = "CPListItemAccessoryTypeDisclosureIndicator")]
     pub const DisclosureIndicator: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype/cloud?language=objc)
+    /// Show a cloud icon.
     #[doc(alias = "CPListItemAccessoryTypeCloud")]
     pub const Cloud: Self = Self(2);
 }
@@ -38,16 +44,22 @@ unsafe impl RefEncode for CPListItemAccessoryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation?language=objc)
+/// The locations where a list item can display the Now Playing indicator.
+///
+/// ## Overview
+///
+/// Use these constants to set the value of a list item’s [`playingIndicatorLocation`](https://developer.apple.com/documentation/carplay/cplistitem/playingindicatorlocation) property. When you set a list item’s [`playing`](https://developer.apple.com/documentation/carplay/cplistitem/isplaying) property to `true`, it uses the specified location to position the Now Playing indicator.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemPlayingIndicatorLocation(pub NSInteger);
 impl CPListItemPlayingIndicatorLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation/leading?language=objc)
+    /// Align the Now Playing indicator with the leading edge of the list item.
     #[doc(alias = "CPListItemPlayingIndicatorLocationLeading")]
     pub const Leading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation/trailing?language=objc)
+    /// Align the Now Playing indicator with the trailing edge of the list item.
     #[doc(alias = "CPListItemPlayingIndicatorLocationTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -61,11 +73,20 @@ unsafe impl RefEncode for CPListItemPlayingIndicatorLocation {
 }
 
 extern_class!(
+    /// A selectable row in a list template.
+    ///
+    /// ## Overview
+    ///
+    /// A list item manages the content of a single row in a list template. CarPlay manages the layout of a list item and may adjust its layout to allow for the display of auxiliary content, such as an accessory or a Now Playing indicator. A list item can display primary and secondary text and an image. It can also show an accessory or custom accessory image, and one of several indicators that the system provides.
+    ///
+    /// You assign a [`handler`](https://developer.apple.com/documentation/carplay/cplistitem/handler) to a list item that CarPlay executes when the user selects the item. The handler receives the item and a closure that you must call after you finish processing the selection.
+    ///
+    /// CarPlay doesn’t support custom list item types. Instead, use the [`userInfo`](https://developer.apple.com/documentation/carplay/cplistitem/userinfo) property to attach a value to the list item that provides additional context, such as specifying  a model object that corresponds to the item.
+    ///
+    ///
     /// `CPListItem`describes a single object appearing in a list template.
     /// Each
     /// `CPListItem`is displayed as a single cell in the list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

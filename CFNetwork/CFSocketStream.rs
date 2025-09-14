@@ -7,118 +7,193 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslcontext?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The `SSLContextRef` object used for read and write operations on a stream.
+    ///
+    /// Before opening a stream, you can copy the object from this property and configure it using the Secure Transport API. You can also set this property to specify a new `SSLContextRef` for a stream. The behavior depends on whether the stream has been opened and on whether an SSL context is associated with the stream, as follows:
+    ///
+    /// - If the stream has not been opened, the specified object replaces any existing context, and is used in the initial stream handshake when the connection is opened.
+    ///
+    /// - If the stream has been opened without SSL enabled, setting this property initiates an SSL handshake over the existing socket.
+    ///
+    /// - After the initial SSL handshake occurs, changing the context object is unsupported.
+    ///
+    /// If an SSL settings dictionary is set for the  `kCFStreamPropertySSLSettings` key, an `SSLContextRef` object is created internally and configured based on that dictionary.  However, if an `SSLContextRef` object is set afterwards, its configuration takes precedence over the previously configured context.
+    ///
+    ///
     pub static kCFStreamPropertySSLContext: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslpeertrust?language=objc)
+    /// SSL Peer Trust property key for copy operations, which return a `SecTrustRef` object containing the result of the SSL handshake.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see `SSLCopyPeerTrust` in `Security/SecureTransport.h`.
+    ///
+    ///
     pub static kCFStreamPropertySSLPeerTrust: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslvalidatescertificatechain?language=objc)
+    /// Security property key whose value indicates whether the certificate chain should be validated.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the value of this key is `kCFBooleanTrue` (the certificate chain should be validated).
+    ///
+    ///
     pub static kCFStreamSSLValidatesCertificateChain: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslsettings?language=objc)
+    /// SSL Settings property key for set operations.
+    ///
+    /// ## Discussion
+    ///
+    /// The key’s value is a `CFDictionary` object containing security settings. For information on the dictionary’s keys and values, see [CFStream Property SSL Settings Constants](https://developer.apple.com/documentation/corefoundation/cfstream-property-ssl-settings-constants). By default, there are no security settings.
+    ///
+    ///
     pub static kCFStreamPropertySSLSettings: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamssllevel?language=objc)
+    /// Security property key whose value specifies the stream’s security level.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, a stream’s security level is `kCFStreamSocketSecurityLevelNegotiatedSSL`. For other possible values, see [CFStream Socket Security Level Constants](https://developer.apple.com/documentation/corefoundation/cfstream-socket-security-level-constants).
+    ///
+    ///
     pub static kCFStreamSSLLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslpeername?language=objc)
+    /// Security property key whose value overrides the name used for certificate verification.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the host name that was used when the stream was created is used; if no host name was used, no peer name will be used. Set the value of this key to `kCFNull` to prevent name verification.
+    ///
+    ///
     pub static kCFStreamSSLPeerName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslcertificates?language=objc)
+    /// Security property key whose value is a CFArray of SecCertificateRefs except for the first element in the array, which is a SecIdentityRef.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see `SSLSetCertificate()` in `Security/SecureTransport.h`.
+    ///
+    ///
     pub static kCFStreamSSLCertificates: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslisserver?language=objc)
+    /// Security property key whose value indicates whether the connection is to act as a server in the SSL process.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the value of this key is `kCFBooleanFalse` (the connection is not to act as a server). If the value of this key is `kCFBooleanTrue`, the `kCFStreamSSLCertificates` key must contain a valid value.
+    ///
+    ///
     pub static kCFStreamSSLIsServer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetype?language=objc)
+    /// The type of service for the stream. Providing the service type allows the system to properly handle certain attributes of the stream, including routing and suspension behavior. Most streams do not need to set this property. See [Stream Service Types](https://developer.apple.com/documentation/corefoundation/stream-service-types) for a list of possible values.
     pub static kCFStreamNetworkServiceType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypevideo?language=objc)
+    /// Specifies that the stream is providing interactive video data.
     pub static kCFStreamNetworkServiceTypeVideo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypevoice?language=objc)
+    /// Specifies that the stream is providing interactive voice data.
     pub static kCFStreamNetworkServiceTypeVoice: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypebackground?language=objc)
+    /// Specifies that the stream is a background download.
     pub static kCFStreamNetworkServiceTypeBackground: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetyperesponsivedata?language=objc)
+    /// A responsive, time-sensitive data service.
     pub static kCFStreamNetworkServiceTypeResponsiveData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypecallsignaling?language=objc)
+    /// A call signaling service.
     pub static kCFStreamNetworkServiceTypeCallSignaling: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypeavstreaming?language=objc)
+    /// A multimedia audio and video streaming service.
     pub static kCFStreamNetworkServiceTypeAVStreaming: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetyperesponsiveav?language=objc)
+    /// A responsive, time-sensitive, multimedia audio and video service.
     pub static kCFStreamNetworkServiceTypeResponsiveAV: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamnetworkservicetypevoip?language=objc)
+    /// Specifies that the stream is providing VoIP service.
     #[deprecated = "use PushKit for VoIP control purposes"]
     pub static kCFStreamNetworkServiceTypeVoIP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertynocellular?language=objc)
+    /// A Boolean value indicating that the connection should not be established over a cellular (WWAN) connection. This value can only be set _before_ you open the stream.
     pub static kCFStreamPropertyNoCellular: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyconnectioniscellular?language=objc)
+    /// A boolean value indicating whether the stream is connected over a cellular (WWAN) interface. This is a read-only property, and is `false` until the connection has been established.
     pub static kCFStreamPropertyConnectionIsCellular: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyallowexpensivenetworkaccess?language=objc)
+    /// A Boolean value that indicates whether connections may use a network interface that the system considers expensive.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) and allows the use of expensive network interfaces. Set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) to disallow the use of expensive network interfaces. For more information about expensive network interfaces, see [`allowsExpensiveNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsexpensivenetworkaccess).
+    ///
+    ///
     pub static kCFStreamPropertyAllowExpensiveNetworkAccess: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyconnectionisexpensive?language=objc)
+    /// A Boolean value that indicates if the connection is using a network interface that the system considers expensive.
+    ///
+    /// ## Discussion
+    ///
+    /// If the connection hasn’t been established yet, the value is `NULL`.
+    ///
+    ///
     pub static kCFStreamPropertyConnectionIsExpensive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyallowconstrainednetworkaccess?language=objc)
+    /// A Boolean value that indicates whether connections may use the network when the user has specified Low Data Mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) and allows the use of constrained interfaces. Set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) to disallow the use of constrained interfaces. For more information about constrained interfaces, see [`allowsConstrainedNetworkAccess`](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/allowsconstrainednetworkaccess).
+    ///
+    ///
     pub static kCFStreamPropertyAllowConstrainedNetworkAccess: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainwinsock?language=objc)
+    /// When running CFNetwork code on Windows, this domain returns error codes associated with the underlying TCP/IP stack. You should also note that non-networking errors such as `ENOMEM` are delivered through the POSIX domain. See the header `winsock2.h` for relevant error codes.
     pub static kCFStreamErrorDomainWinSock: CFIndex;
 }
 
@@ -126,58 +201,120 @@ extern "C" {
 
 // TODO: pub fn CFSocketStreamSOCKSGetError(error: NonNull<CFStreamError>,) -> i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsockssubdomainnone?language=objc)
+/// A general SOCKS error.
 pub const kCFStreamErrorSOCKSSubDomainNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsockssubdomainversioncode?language=objc)
+/// The version of SOCKS that the server wants to use.
 pub const kCFStreamErrorSOCKSSubDomainVersionCode: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks4subdomainresponse?language=objc)
+/// The SOCKS4 status code returned by the server.
 pub const kCFStreamErrorSOCKS4SubDomainResponse: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks5subdomainuserpass?language=objc)
+/// The status code that the server returned during authentication.
 pub const kCFStreamErrorSOCKS5SubDomainUserPass: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks5subdomainmethod?language=objc)
+/// The server’s desired negotiation method.
 pub const kCFStreamErrorSOCKS5SubDomainMethod: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks5subdomainresponse?language=objc)
+/// The response code that the server returned in reply to the connection request.
 pub const kCFStreamErrorSOCKS5SubDomainResponse: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks5badresponseaddr?language=objc)
+/// The address returned is not of a known type. This error code is only valid for errors in the `kCFStreamErrorSOCKSSubDomainNone` subdomain.
 pub const kCFStreamErrorSOCKS5BadResponseAddr: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks5badstate?language=objc)
+/// The stream is not in a state that allows the requested operation. This error code is only valid for errors in the `kCFStreamErrorSOCKSSubDomainNone` subdomain..
 pub const kCFStreamErrorSOCKS5BadState: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocksunknownclientversion?language=objc)
+/// The SOCKS server rejected access because it does not support connections with the requested SOCKS version. SOCKS client version. You can query the `kCFSOCKSVersionKey` key to find out what version the server requested. This error code is only valid for errors in the `kCFStreamErrorSOCKSSubDomainNone` subdomain.
 pub const kCFStreamErrorSOCKSUnknownClientVersion: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks4requestfailed?language=objc)
+/// Request rejected by the server or request failed.
+///
+/// ## Discussion
+///
+/// This error is specific to SOCKS4. This error code is only valid for errors in the `kCFStreamErrorSOCKS4SubDomainResponse` subdomain.
+///
+///
 pub const kCFStreamErrorSOCKS4RequestFailed: c_uint = 91;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks4identdfailed?language=objc)
+/// Request rejected by the server because it couldn’t connect to the `identd` daemon on the client.
+///
+/// ## Discussion
+///
+/// This error is specific to SOCKS4. This error code is only valid for errors in the `kCFStreamErrorSOCKS4SubDomainResponse` subdomain.
+///
+///
 pub const kCFStreamErrorSOCKS4IdentdFailed: c_uint = 92;
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrorsocks4idconflict?language=objc)
+/// Request rejected by the server because the client program and the `identd` daemon reported different user IDs.
+///
+/// ## Discussion
+///
+/// This error is specific to SOCKS4. This error code is only valid for errors in the `kCFStreamErrorSOCKS4SubDomainResponse` subdomain.
+///
+///
 pub const kCFStreamErrorSOCKS4IdConflict: c_uint = 93;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/ksocks5noacceptablemethod?language=objc)
+/// The client and server couldn’t find a mutually agreeable authentication method.
+///
+/// ## Discussion
+///
+/// This error code is only valid for errors in the `kCFStreamErrorSOCKS5SubDomainMethod` subdomain.
+///
+///
 pub const kSOCKS5NoAcceptableMethod: c_uint = 0xFF;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyproxylocalbypass?language=objc)
+    /// Proxy Local Bypass property key.
+    ///
+    /// ## Discussion
+    ///
+    /// The key’s value is `CFBoolean` object whose value indicates whether local hostnames should be subject to proxy handling.
+    ///
+    ///
     pub static kCFStreamPropertyProxyLocalBypass: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysocketremotehost?language=objc)
+    /// The key’s value is a `CFHostRef` for the remote host if it is known. If not, its value is `NULL`.
     pub static kCFStreamPropertySocketRemoteHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysocketremotenetservice?language=objc)
+    /// The key’s value is a `CFNetServiceRef` for the remote network service if it is known. If not, its value is `NULL`.
     pub static kCFStreamPropertySocketRemoteNetService: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysocketextendedbackgroundidlemode?language=objc)
+    /// A Boolean value to request that the system keep a socket open and delays reclaiming it when the process moves to the background.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Set this property before opening the stream.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static kCFStreamPropertySocketExtendedBackgroundIdleMode: &'static CFString;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamcreatepairwithsockettocfhost(_:_:_:_:_:)?language=objc)
+    /// Creates readable and writable streams connected to a given `CFHost` object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the `CFReadStream` and `CFWriteStream` objects. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - host: A `CFHost` object to which the streams are connected.  If unresolved, the host will be resolved prior to connecting.
+    ///
+    /// - port: The TCP port number to which the socket streams should connect.
+    ///
+    /// - readStream: Upon return, contains a `CFReadStream` object connected to the host `host` on port `port`, or `NULL` if there is a failure during creation. If you pass `NULL`, the function will not create a readable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - writeStream: Upon return, contains a `CFWriteStream` object connected to the host `host` on port `port`, or `NULL` if there is a failure during creation. If you pass `NULL`, the function will not create a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The streams do not create a socket or connect to the specified host until you open one of the streams.
+    ///
+    /// Most properties are shared by both streams. Setting a shared property for one stream automatically sets the property for the other.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +332,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamcreatepairwithsockettonetservice(_:_:_:_:)?language=objc)
+    /// Creates a pair of streams for a CFNetService.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the `CFReadStream` and `CFWriteStream` objects. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - service: Reference to the `CFNetService` to which the streams are to be connected. If the service is not resolved, the service will be resolved before the streams are connected.
+    ///
+    /// - writeStream: Upon return, contains a `CFWriteStream` object connected to the service specified by `service`, or `NULL` if there is a failure during creation. If you pass `NULL`, the function will not create a writable stream. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The streams do not create a socket, resolve the service, or connect to the service’s host until you open one of the streams.
+    ///
+    /// Most properties are shared by both streams. Setting a shared property for one stream automatically sets the property for the other.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -212,25 +369,49 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertysslpeercertificates?language=objc)
+    /// SSL Peer Certificates property key for copy operations, which return a `CFArray` object containing `SecCertificateRef` objects.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see `SSLGetPeerCertificates` in `Security/SecureTransport.h`.
+    ///
+    ///
     #[deprecated]
     pub static kCFStreamPropertySSLPeerCertificates: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsexpiredcertificates?language=objc)
+    /// Security property key whose value indicates whether expired certificates are allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the value of this key is `kCFBooleanFalse` (expired certificates are not allowed).
+    ///
+    ///
     #[deprecated]
     pub static kCFStreamSSLAllowsExpiredCertificates: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsexpiredroots?language=objc)
+    /// Security property whose value indicates whether expired root certificates are allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the value of this key is `kCFBooleanFalse` (expired root certificates are not allowed).
+    ///
+    ///
     #[deprecated]
     pub static kCFStreamSSLAllowsExpiredRoots: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamsslallowsanyroot?language=objc)
+    /// Security property key whose value indicates whether root certificates should be allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the value of this key is `kCFBooleanFalse` (root certificates are not allowed).
+    ///
+    ///
     #[deprecated]
     pub static kCFStreamSSLAllowsAnyRoot: &'static CFString;
 }

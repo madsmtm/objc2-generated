@@ -6,9 +6,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// The MSStickerBrowserViewDataSource protocol declares the methods that the Sticker Browser View uses to access the contents of its data source object.
+    /// The protocol for dynamically providing stickers to a browser view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msstickerbrowserviewdatasource?language=objc)
+    /// ## Overview
+    ///
+    /// To load its stickers, the [`MSStickerBrowserView`](https://developer.apple.com/documentation/messages/msstickerbrowserview) class performs the following steps:
+    ///
+    /// 1. The browser calls the data source’s [`numberOfStickersInStickerBrowserView:`](https://developer.apple.com/documentation/messages/msstickerbrowserviewdatasource/numberofstickers(in:)) method to get the number of stickers.
+    ///
+    /// 2. The browser repeatedly calls the data source’s [`stickerBrowserView:stickerAtIndex:`](https://developer.apple.com/documentation/messages/msstickerbrowserviewdatasource/stickerbrowserview(_:stickerat:)) method to load the individual stickers. Initially, the browser requests only enough stickers to fill the screen. The browser requests additional stickers as the user scrolls and new stickers become visible.
+    ///
+    /// Both methods are required. If the sticker collection changes at runtime, call the [`MSStickerBrowserView`](https://developer.apple.com/documentation/messages/msstickerbrowserview) class’s [`reloadData`](https://developer.apple.com/documentation/messages/msstickerbrowserview/reloaddata()) method to reload the stickers.
+    ///
+    ///
+    /// The MSStickerBrowserViewDataSource protocol declares the methods that the Sticker Browser View uses to access the contents of its data source object.
     pub unsafe trait MSStickerBrowserViewDataSource: NSObjectProtocol {
         #[cfg(all(feature = "MSStickerBrowserView", feature = "objc2-ui-kit"))]
         /// Returns the number of Stickers that the sticker browser should show.

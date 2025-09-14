@@ -12,35 +12,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option?language=objc)
+/// Dictionary keys specifying initialization options, used when initializing a SceneKit view.
 // NS_TYPED_ENUM
 pub type SCNViewOption = NSString;
 
 extern "C" {
-    /// Pass it as the key in the options dictionary given to initWithFrame:options:. The value is a NSNumber wrapping a SCNRenderingAPI. You can also select the preferred rendering API directly from the SCNView inspector in InterfaceBuilder.
+    /// The rendering API to use for rendering the view (for example, Metal or OpenGL).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferredrenderingapi?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing one of the values listed in [`SCNRenderingAPI`](https://developer.apple.com/documentation/scenekit/scnrenderingapi). You can also set this option from the inspector in Interface Builder.
+    ///
+    /// SceneKit attempts to initialize a view using the preferred API you specify in the [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) initializer; if the current device does not support the preferred API, SceneKit automatically falls back to a supported API. After initialization, use the [`renderingAPI`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/renderingapi) property to find out whether a fallback occurred. For example, if you specify the [`SCNRenderingAPIMetal`](https://developer.apple.com/documentation/scenekit/scnrenderingapi/metal) option when initializing a view on an iOS device that does not support Metal, SceneKit defaults to the [`SCNRenderingAPIOpenGLES2`](https://developer.apple.com/documentation/scenekit/scnrenderingapi/opengles2) option instead.
+    ///
+    ///
+    /// Pass it as the key in the options dictionary given to initWithFrame:options:. The value is a NSNumber wrapping a SCNRenderingAPI. You can also select the preferred rendering API directly from the SCNView inspector in InterfaceBuilder.
     pub static SCNPreferredRenderingAPIKey: &'static SCNViewOption;
 }
 
 extern "C" {
+    /// The device to use for Metal rendering.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) object.
+    ///
+    /// Use this key to choose a specific device for rendering (for example, on a macOS system with multiple GPUs), or leave it unspecified to allow SceneKit to automatically choose a device.
+    ///
+    ///
     /// The value is directly a id
     /// <MTLDevice
     /// >.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferreddevice?language=objc)
     pub static SCNPreferredDeviceKey: &'static SCNViewOption;
 }
 
 extern "C" {
-    /// The value is a NSNumber wrapping a BOOL. Defaults to NO.
+    /// An option for whether to select low-power-usage devices for Metal rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferlowpowerdevice?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value.
+    ///
+    /// SceneKit uses this option when automatically selecting a Metal device on systems with multiple GPUs. If the value is [`true`](https://developer.apple.com/documentation/swift/true), SceneKit uses a device with low power usage requirements—for example, the integrated GPU on a MacBook Pro with both integrated and discrete graphics hardware.
+    ///
+    /// Leaving this key unspecified is equivalent to setting its value to [`false`](https://developer.apple.com/documentation/swift/false). In this case, SceneKit chooses the most capable available Metal device.
+    ///
+    ///
+    /// The value is a NSNumber wrapping a BOOL. Defaults to NO.
     pub static SCNPreferLowPowerDeviceKey: &'static SCNViewOption;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncameracontrolconfiguration?language=objc)
+    /// Properties affecting the behavior of a camera controller.
     pub unsafe trait SCNCameraControlConfiguration: NSObjectProtocol {
         #[unsafe(method(autoSwitchToFreeCamera))]
         #[unsafe(method_family = none)]
@@ -107,9 +130,16 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A SCNView is a subclass of NSView that can display a SCNScene
+    /// A view for displaying 3D SceneKit content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview?language=objc)
+    /// ## Overview
+    ///
+    /// In macOS, [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) is a subclass of [`NSView`](https://developer.apple.com/documentation/appkit/nsview). In iOS and tvOS, [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) is a subclass of [`UIView`](https://developer.apple.com/documentation/uikit/uiview). As part of either operating system’s view hierarchy, an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview) object provides a place for SceneKit content in your app’s user interface. You can create a SceneKit view by using its [`initWithFrame:options:`](https://developer.apple.com/documentation/scenekit/scnview/init(frame:options:)) method or by adding it to a nib file or storyboard.  To provide content for a SceneKit view, assign an [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object to its [`scene`](https://developer.apple.com/documentation/scenekit/scnview/scene) property.
+    ///
+    /// For additional important methods and properties for working with SceneKit views, see the [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) protocol. (You can also render SceneKit content into an arbitrary Metal command queue or OpenGL context using the [`SCNRenderer`](https://developer.apple.com/documentation/scenekit/scnrenderer) class, or into a Core Animation layer on macOS using the [`SCNLayer`](https://developer.apple.com/documentation/scenekit/scnlayer) class. The [`SCNSceneRenderer`](https://developer.apple.com/documentation/scenekit/scnscenerenderer) protocol defines functionality common to all three SceneKit rendering classes.)
+    ///
+    ///
+    /// A SCNView is a subclass of NSView that can display a SCNScene
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

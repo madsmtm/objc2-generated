@@ -10,14 +10,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class that defines the interface to read media samples from an asset reader.
+    ///
+    /// ## Overview
+    ///
+    /// You add concrete output instances, such as [`AVAssetReaderTrackOutput`](https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput) or [`AVAssetReaderVideoCompositionOutput`](https://developer.apple.com/documentation/avfoundation/avassetreadervideocompositionoutput), to an asset reader to perform specific tasks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you don’t require modifying sample data in-place, set the value of the [`alwaysCopiesSampleData`](https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata) property to [`false`](https://developer.apple.com/documentation/swift/false) to prevent the output from making unnecessary copies.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVAssetReaderOutput is an abstract class that defines an interface for reading a single collection of samples of a common media type from an AVAssetReader.
     ///
     ///
     /// Clients can read the media data of an asset by adding one or more concrete instances of AVAssetReaderOutput to an AVAssetReader using the -[AVAssetReader addOutput:] method.
     ///
     /// IMPORTANT PERFORMANCE NOTE: Make sure to set the alwaysCopiesSampleData property to NO if you do not need to modify the sample data in-place, to avoid unnecessary and inefficient copying.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderOutput;
@@ -150,12 +163,31 @@ impl AVAssetReaderOutput {
 }
 
 extern_class!(
+    /// An object that reads media data from a single track of an asset.
+    ///
+    /// ## Overview
+    ///
+    /// Read the media data of an asset track by adding a track output to an asset reader. You can read the media samples in their stored format, or you can convert them to an alternative format.
+    ///
+    /// A track output produces uncompressed output. For audio output settings, this means that [`AVFormatIDKey`](https://developer.apple.com/documentation/avfaudio/avformatidkey) must be [`kAudioFormatLinearPCM`](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatlinearpcm). For video output settings, this means that the dictionary must contain values for uncompressed video output, as defined in `Video Settings`. A track output doesn’t support the [`AVSampleRateConverterAudioQualityKey`](https://developer.apple.com/documentation/avfaudio/avsamplerateconverteraudioqualitykey) audio setting key or the following video settings keys: [`AVVideoCleanApertureKey`](https://developer.apple.com/documentation/avfoundation/avvideocleanaperturekey), [`AVVideoPixelAspectRatioKey`](https://developer.apple.com/documentation/avfoundation/avvideopixelaspectratiokey), and [`AVVideoScalingModeKey`](https://developer.apple.com/documentation/avfoundation/avvideoscalingmodekey).
+    ///
+    /// When constructing video output settings, the choice of pixel format affects the performance and quality of the decompression. For optimal performance when decompressing video, the requested pixel format should be one that the decoder supports natively to avoid unnecessary conversions. Below are some recommendations:
+    ///
+    /// - For H.264, use [`kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8biplanarvideorange) or [`kCVPixelFormatType_420YpCbCr8BiPlanarFullRange`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8biplanarfullrange) when you know the video is full range.
+    ///
+    /// - In iOS, use [`kCVPixelFormatType_420YpCbCr8BiPlanarFullRange`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_420ypcbcr8biplanarfullrange) for JPEG output.
+    ///
+    /// - In macOS, [`kCVPixelFormatType_422YpCbCr8`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr8) is the preferred pixel format for video and generally provides the best performance when decoding. If you need to work in the RGB domain, use [`kCVPixelFormatType_32BGRA`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32bgra) in iOS, and [`kCVPixelFormatType_32ARGB`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_32argb) in macOS.
+    ///
+    /// - ProRes-encoded media can contain up to 12 bits per channel. For ProRes-encoded sources that you wish to preserve more than 8 bits per channel during decompression, use one of the following pixel formats: [`kCVPixelFormatType_4444AYpCbCr16`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444aypcbcr16), [`kCVPixelFormatType_422YpCbCr16`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr16), [`kCVPixelFormatType_422YpCbCr10`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_422ypcbcr10), or [`kCVPixelFormatType_64ARGB`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64argb). [`AVAssetReader`](https://developer.apple.com/documentation/avfoundation/avassetreader) doesn’t support scaling with any of these high-bit-depth pixel formats. If you use the above pixel formats, don’t specify [`kCVPixelBufferWidthKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferwidthkey) or [`kCVPixelBufferHeightKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferheightkey) in the [`outputSettings`](https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput/outputsettings) dictionary. Only ProRes encoders support these pixel formats.
+    ///
+    /// - ProRes 4444-encoded media can contain a mathematically lossless alpha channel. To preserve the alpha channel during decompression, use a pixel format with an alpha component such as [`kCVPixelFormatType_4444AYpCbCr16`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_4444aypcbcr16) or [`kCVPixelFormatType_64ARGB`](https://developer.apple.com/documentation/corevideo/kcvpixelformattype_64argb). To test whether your source contains an alpha channel, check that the track’s format description has a [`kCMFormatDescriptionExtension_Depth`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_depth) key with a value of `32`.
+    ///
+    ///
     /// AVAssetReaderTrackOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading media data from a single AVAssetTrack of an AVAssetReader's AVAsset.
     ///
     ///
     /// Clients can read the media data of an asset track by adding an instance of AVAssetReaderTrackOutput to an AVAssetReader using the -[AVAssetReader addOutput:] method. The track's media samples can either be read in the format in which they are stored in the asset, or they can be converted to a different format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreadertrackoutput?language=objc)
     #[unsafe(super(AVAssetReaderOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderTrackOutput;
@@ -310,12 +342,17 @@ impl AVAssetReaderTrackOutput {
 }
 
 extern_class!(
+    /// An object that reads audio samples that result from mixing audio from one or more tracks.
+    ///
+    /// ## Overview
+    ///
+    /// Read audio data that you mix from one or more asset tracks by adding an audio mix output to an asset reader. You can read the samples in their stored format or you can convert them to an alternative format.
+    ///
+    ///
     /// AVAssetReaderAudioMixOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading audio samples that result from mixing the audio from one or more AVAssetTracks of an AVAssetReader's AVAsset.
     ///
     ///
     /// Clients can read the audio data mixed from one or more asset tracks by adding an instance of AVAssetReaderAudioMixOutput to an AVAssetReader using the -[AVAssetReader addOutput:] method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderaudiomixoutput?language=objc)
     #[unsafe(super(AVAssetReaderOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderAudioMixOutput;
@@ -460,12 +497,11 @@ impl AVAssetReaderAudioMixOutput {
 }
 
 extern_class!(
+    /// An object that reads composited video frames from one or more tracks of an asset.
     /// AVAssetReaderVideoCompositionOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading video frames that have been composited together from the frames in one or more AVAssetTracks of an AVAssetReader's AVAsset.
     ///
     ///
     /// Clients can read the video frames composited from one or more asset tracks by adding an instance of AVAssetReaderVideoCompositionOutput to an AVAssetReader using the -[AVAssetReader addOutput:] method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreadervideocompositionoutput?language=objc)
     #[unsafe(super(AVAssetReaderOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderVideoCompositionOutput;
@@ -605,7 +641,7 @@ impl AVAssetReaderVideoCompositionOutput {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputmetadataadaptor?language=objc)
+    /// An object that creates timed metadata group objects for an asset track.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderOutputMetadataAdaptor;
@@ -688,7 +724,7 @@ impl AVAssetReaderOutputMetadataAdaptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderoutputcaptionadaptor?language=objc)
+    /// An object that reads caption group objects from an asset track that contains timed text.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderOutputCaptionAdaptor;
@@ -796,11 +832,10 @@ impl AVAssetReaderOutputCaptionAdaptor {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods for caption validation events.
     /// A protocol to receive caption validation notifications
     ///
     /// A client can implement the protocol on its own class which processes the caption validation calls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreadercaptionvalidationhandling?language=objc)
     pub unsafe trait AVAssetReaderCaptionValidationHandling: NSObjectProtocol {
         #[cfg(feature = "AVCaption")]
         /// Called when one or more syntax elements were ignored in the process of creating the caption object.
@@ -827,6 +862,17 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that reads sample references from an asset track.
+    ///
+    /// ## Overview
+    ///
+    /// Apps can extract information about the location of samples in a track — the file URL and offset — by adding an instance of this class to an asset reader. Read the [`kCMSampleBufferAttachmentKey_SampleReferenceURL`](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferenceurl) and [`kCMSampleBufferAttachmentKey_SampleReferenceByteOffset`](https://developer.apple.com/documentation/coremedia/kcmsamplebufferattachmentkey_samplereferencebyteoffset) attachments on the extracted sample buffers to get the location of the sample data.
+    ///
+    /// You can also append sample buffers that you extract using this class to an [`AVAssetWriterInput`](https://developer.apple.com/documentation/avfoundation/avassetwriterinput) instance to create movie tracks that aren’t self-contained and reference data in the original file instead. To write tracks that aren’t self-contained, use instances of [`AVAssetWriter`](https://developer.apple.com/documentation/avfoundation/avassetwriter) that you configure to write files of type [`AVFileTypeQuickTimeMovie`](https://developer.apple.com/documentation/avfoundation/avfiletype/mov).
+    ///
+    /// Because this output doesn’t return sample data, it ignores the value of the [`alwaysCopiesSampleData`](https://developer.apple.com/documentation/avfoundation/avassetreaderoutput/alwayscopiessampledata) property.
+    ///
+    ///
     /// AVAssetReaderSampleReferenceOutput is a concrete subclass of AVAssetReaderOutput that defines an interface for reading sample references from a single AVAssetTrack of an AVAssetReader's AVAsset.
     ///
     /// Clients can extract information about the location (file URL and offset) of samples in a track by adding an instance of AVAssetReaderSampleReferenceOutput to an AVAssetReader using the -[AVAssetReader addOutput:] method. No actual sample data can be extracted using this class. The location of the sample data is described by the kCMSampleBufferAttachmentKey_SampleReferenceURL and kCMSampleBufferAttachmentKey_SampleReferenceByteOffset attachments on the extracted sample buffers. More information about sample buffers describing sample references can be found in the CMSampleBuffer documentation.
@@ -834,8 +880,6 @@ extern_class!(
     /// Sample buffers extracted using this class can also be appended to an AVAssetWriterInput to create movie tracks that are not self-contained and reference data in the original file instead.  Currently, only instances of AVAssetWriter configured to write files of type AVFileTypeQuickTimeMovie can be used to write tracks that are not self-contained.
     ///
     /// Since no sample data is ever returned by instances of AVAssetReaderSampleReferenceOutput, the value of the alwaysCopiesSampleData property is ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreadersamplereferenceoutput?language=objc)
     #[unsafe(super(AVAssetReaderOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetReaderSampleReferenceOutput;

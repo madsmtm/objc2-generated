@@ -7,13 +7,24 @@ use crate::*;
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecKeychainSearch {
+    /// Returns the unique identifier of the opaque type to which a keychain search object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecKeychainSearch`](https://developer.apple.com/documentation/security/seckeychainsearch) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecKeychainSearch`](https://developer.apple.com/documentation/security/seckeychainsearch) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecKeychainSearch instances.
     ///
     /// Returns: The CFTypeID of SecKeychainSearch instances.
     ///
     /// This API is deprecated in 10.7. The SecKeychainSearchRef type is no longer used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsearchgettypeid?language=objc)
     #[doc(alias = "SecKeychainSearchGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -26,6 +37,39 @@ unsafe impl ConcreteType for SecKeychainSearch {
 
 #[cfg(feature = "SecBase")]
 impl SecKeychainSearch {
+    /// Creates a search object matching a list of zero or more attributes.
+    ///
+    /// Parameters:
+    /// - keychainOrArray: A reference to an array of keychains to search, a single keychain, or `NULL` to search the user’s current keychain search list. Use the function [`SecKeychainCopySearchList(_:)`](https://developer.apple.com/documentation/security/seckeychaincopysearchlist(_:)) to retrieve the user’s default search list.
+    ///
+    /// - itemClass: The keychain item class. See [`SecItemClass`](https://developer.apple.com/documentation/security/secitemclass) for valid constants.
+    ///
+    /// - attrList: A pointer to a list of zero or more keychain attribute records to match. Pass `NULL` to match any keychain attribute.
+    ///
+    /// - searchRef: On return, a pointer to the current search object. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecItemCopyMatching(_:_:)`](https://developer.apple.com/documentation/security/secitemcopymatching(_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Each item stored in the keychain contains data (such as a certificate), which is indexed by the item’s attributes. You look up an item in a keychain by its attributes. If you find a match, you can then retrieve the item’s data. Use the search object created by this function as input to the [`SecKeychainSearchCopyNext`](https://developer.apple.com/documentation/security/seckeychainsearchcopynext) function to find a keychain item and the [`SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) function to retrieve the item’s data.
+    ///
+    /// To find and obtain data from a password keychain item, use the [`SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) or [`SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)) function.
+    ///
+    ///
     /// Creates a search reference matching a list of zero or more specified attributes in the specified keychain.
     ///
     /// Parameter `keychainOrArray`: An reference to an array of keychains to search, a single keychain or NULL to search the user's default keychain search list.
@@ -45,8 +89,6 @@ impl SecKeychainSearch {
     /// - `keychain_or_array` should be of the correct type.
     /// - `attr_list` must be a valid pointer or null.
     /// - `search_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes?language=objc)
     #[doc(alias = "SecKeychainSearchCreateFromAttributes")]
     #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
     #[deprecated = "SecKeychainSearch is not supported"]
@@ -77,6 +119,37 @@ impl SecKeychainSearch {
 
     /// Finds the next keychain item matching the given search criteria.
     ///
+    /// Parameters:
+    /// - searchRef: A reference to the current search criteria. The search object is created in the [`SecKeychainSearchCreateFromAttributes`](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes) function and must be released by calling the `CFRelease` function when you are done with it.
+    ///
+    /// - itemRef: On return, a pointer to a keychain item object of the next matching keychain item, if any. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. The common security services manager module is no longer used.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Each item stored in the keychain contains data (such as a certificate), which is indexed by the item’s attributes. Use the [`SecKeychainSearchCreateFromAttributes`](https://developer.apple.com/documentation/security/seckeychainsearchcreatefromattributes) function to specify attributes to search for. If the `SecKeychainSearchCopyNext` function finds a match, you can use the [`SecKeychainItemCopyAttributesAndData(_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainitemcopyattributesanddata(_:_:_:_:_:_:)) function to retrieve the item’s data.
+    ///
+    /// A [`SecKeychainItem`](https://developer.apple.com/documentation/security/seckeychainitem) object for a certificate that is stored in a keychain can be safely cast to a [`SecCertificate`](https://developer.apple.com/documentation/security/seccertificate) for use with the Certificate, Key, and Trust API.
+    ///
+    /// To find and obtain data from a password keychain item, use the [`SecKeychainFindInternetPassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainfindinternetpassword(_:_:_:_:_:_:_:_:_:_:_:_:_:_:_:)) or [`SecKeychainFindGenericPassword(_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/seckeychainfindgenericpassword(_:_:_:_:_:_:_:_:)) function.
+    ///
+    ///
+    /// Finds the next keychain item matching the given search criteria.
+    ///
     /// Parameter `searchRef`: A reference to the current search criteria.  The search reference is created in the SecKeychainSearchCreateFromAttributes function and must be released by calling the CFRelease function when you are done with it.
     ///
     /// Parameter `itemRef`: On return, a pointer to a keychain item reference of the next matching keychain item, if any.
@@ -88,8 +161,6 @@ impl SecKeychainSearch {
     /// # Safety
     ///
     /// `item_ref` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsearchcopynext?language=objc)
     #[doc(alias = "SecKeychainSearchCopyNext")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychainSearch is not supported"]

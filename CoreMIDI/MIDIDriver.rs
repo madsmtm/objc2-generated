@@ -9,20 +9,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A MIDI driver object.
 /// Points to a pointer to a MIDIDriverInterface, a CFPlugIn structure (defined in
 /// MIDIDriver.h) containing function pointers for the driver's methods.  Only the
 /// MIDIServer may call a driver's methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididriverref?language=objc)
 pub type MIDIDriverRef = *mut NonNull<MIDIDriverInterface>;
 
+/// A list of MIDI devices.
+///
+/// ## Discussion
+///
+/// This object doesn’t own the devices, so disposing it doesn’t dispose the devices it references.
+///
+///
 /// A MIDIDeviceListRef is a list of MIDIDeviceRef's.  The devices are not owned by
 /// the list (i.e., disposing the list does not dispose the devices it references).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistref?language=objc)
 #[cfg(feature = "MIDIServices")]
 pub type MIDIDeviceListRef = MIDIObjectRef;
 
+/// The interface to a MIDI driver.
 /// The COM-style interface to a MIDI driver.
 ///
 ///
@@ -33,8 +38,6 @@ pub type MIDIDeviceListRef = MIDIObjectRef;
 /// of the server is running by checking to see whether kMIDIDriverInterface2ID
 /// or kMIDIDriverInterfaceID is passed to the factory function. If the version 1 interface is
 /// requested, the driver should behave as if it is a version 1 driver.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididriverinterface?language=objc)
 #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -180,6 +183,7 @@ unsafe impl RefEncode for MIDIDriverInterface {
 }
 
 extern "C" {
+    /// A value that indicates whether the driver uses serial ports and is eligible to have serial ports assigned to it.
     /// This constant, "MIDIDriverUsesSerial", when defined to "YES" in a driver's
     /// bundle, tells MIDIServer that the driver uses serial ports and is eligible to
     /// have serial ports assigned to it.
@@ -189,13 +193,36 @@ extern "C" {
     /// been assigned to use, and only use those ports.
     ///
     /// New for CoreMIDI 1.1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmididriverpropertyusesserial?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kMIDIDriverPropertyUsesSerial: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Creates a new device object that corresponds to the available hardware.
+    ///
+    /// Parameters:
+    /// - owner: The driver that creates the device, or `NULL` for a non-driver.
+    ///
+    /// - name: The name of the new device.
+    ///
+    /// - manufacturer: The name of the device’s manufacturer.
+    ///
+    /// - model: The name of the model of the device.
+    ///
+    /// - outDevice: On successful return, points to the newly created device.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Nondrivers may call this function to create external devices.
+    ///
+    ///
     /// Drivers call this function to create new MIDIDevice objects
     /// corresponding to the hardware that is present.
     ///
@@ -219,8 +246,6 @@ extern "C-unwind" {
     ///
     /// - `owner` must be a valid pointer or null.
     /// - `out_device` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicecreate(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
     pub fn MIDIDeviceCreate(
         owner: MIDIDriverRef,
@@ -232,6 +257,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of a MIDI device.
+    ///
+    /// Parameters:
+    /// - device: The device to dispose.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers may call this function to dispose of device objects that they haven’t already added to the system using [`MIDISetupAddDevice`](https://developer.apple.com/documentation/coremidi/midisetupadddevice(_:)). To remove a device after adding it to the session, call [`MIDISetupRemoveDevice`](https://developer.apple.com/documentation/coremidi/midisetupremovedevice(_:)).
+    ///
+    /// Nondrivers can’t call this function, and instead must call [`MIDISetupAddDevice`](https://developer.apple.com/documentation/coremidi/midisetupadddevice(_:)) and [`MIDISetupRemoveDevice`](https://developer.apple.com/documentation/coremidi/midisetupremovedevice(_:)).
+    ///
+    ///
     /// Drivers may call this function to dispose MIDIDevice objects
     /// which have not yet been added to the system via MIDISetupAddDevice.
     /// Once a device has been added to the system with MIDISetupAddDevice,
@@ -245,26 +289,46 @@ extern "C-unwind" {
     /// Parameter `device`: The device to be disposed.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicedispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceDispose(device: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Retrieves the number of devices in a device list.
+    ///
+    /// Parameters:
+    /// - devList: The device list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of devices in the list, or 0 if an error occurred.
+    ///
+    ///
     /// Returns the number of devices in a device list.
     ///
     ///
     /// Parameter `devList`: The device list.
     ///
     /// Returns: The number of devices in the list, or 0 if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistgetnumberofdevices(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListGetNumberOfDevices(dev_list: MIDIDeviceListRef) -> ItemCount;
 }
 
 extern "C-unwind" {
+    /// Retrieves a MIDI device from a device list.
+    ///
+    /// Parameters:
+    /// - devList: The device list.
+    ///
+    /// - index0: The index of the device to return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a device, or `NULL` if an error occurred.
+    ///
+    ///
     /// Return one of the devices in a device list.
     ///
     ///
@@ -274,14 +338,25 @@ extern "C-unwind" {
     /// to return.
     ///
     /// Returns: A reference to a device, or NULL if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistgetdevice(_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListGetDevice(dev_list: MIDIDeviceListRef, index0: ItemCount)
         -> MIDIDeviceRef;
 }
 
 extern "C-unwind" {
+    /// Adds the specified device to the device list.
+    ///
+    /// Parameters:
+    /// - devList: The device list.
+    ///
+    /// - dev: The device to add to the list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Add a device to a device list.
     ///
     ///
@@ -290,26 +365,58 @@ extern "C-unwind" {
     /// Parameter `dev`: The device to add to the list.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistadddevice(_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListAddDevice(dev_list: MIDIDeviceListRef, dev: MIDIDeviceRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disposes of a device list, but not its devices.
+    ///
+    /// Parameters:
+    /// - devList: The device list of which you dispose.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` result code.
+    ///
+    ///
     /// Dispose a device list, but not the contained devices.
     ///
     ///
     /// Parameter `devList`: The device list to be disposed.
     ///
     /// Returns: An OSStatus result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididevicelistdispose(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIDeviceListDispose(dev_list: MIDIDeviceListRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Sets contextual data on an endpoint.
+    ///
+    /// Parameters:
+    /// - endpt: The endpoint to set the data on.
+    ///
+    /// - ref1: The first `refCon`.
+    ///
+    /// - ref2: The second `refCon`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Drivers need an efficient way to translate from a [`MIDIEndpointRef`](https://developer.apple.com/documentation/coremidi/midiendpointref) (source or destination) to their own internal data structures corresponding to that endpoint. This function provides a way for the driver to assign its own data to endpoints.
+    ///
+    /// The data you set isn’t persistent and needs to be reintialized in each call to [`Start`](https://developer.apple.com/documentation/coremidi/mididriverinterface/start).
+    ///
+    /// A typical use is for one `refCon` to refer to a device, and a second to refer to a port on the device.
+    ///
+    ///
     /// Drivers need an efficient way to translate from a MIDIEndpoint (source or
     /// destination) to their own internal data structures corresponding to
     /// that endpoint.  This function provides a way for the driver to
@@ -337,8 +444,6 @@ extern "C-unwind" {
     ///
     /// - `ref1` must be a valid pointer or null.
     /// - `ref2` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointsetrefcons(_:_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointSetRefCons(
         endpt: MIDIEndpointRef,
@@ -348,6 +453,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns contextual data assigned to an endpoint.
+    ///
+    /// Parameters:
+    /// - endpt: The endpoint with the `refCons` to return.
+    ///
+    /// - ref1: On exit, the first `refCon`.
+    ///
+    /// - ref2: On exit, the second `refCon`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An OSStatus result code.
+    ///
+    ///
     /// Obtain the refCons assigned to the endpoints
     ///
     ///
@@ -363,8 +483,6 @@ extern "C-unwind" {
     ///
     /// - `ref1` must be a valid pointer or null.
     /// - `ref2` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiendpointgetrefcons(_:_:_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIEndpointGetRefCons(
         endpt: MIDIEndpointRef,
@@ -373,6 +491,19 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Returns the server’s driver I/O thread.
+///
+/// ## Return Value
+///
+/// The [`CFRunLoopRef`](https://developer.apple.com/documentation/corefoundation/cfrunloop) of the server’s driver I/O thread.
+///
+///
+///
+/// ## Discussion
+///
+/// Drivers typically need to receive asynchronous I/O completion callbacks on a high-priority thread. So that the system can efficiently manage resources, the MIDI server provides a thread which drivers may use. This is a realtime-priority thread that drivers shouldn’t use for anything other than I/O.
+///
+///
 /// Drivers typically need to receive asynchronous I/O completion callbacks
 /// on a high-priority thread.  To save drivers from the trouble of
 /// creating their own threads for this purpose, and to make efficient
@@ -389,8 +520,6 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: The CFRunLoopRef of the server's driver I/O thread.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdriveriorunloop()?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop> {
@@ -403,6 +532,23 @@ pub unsafe extern "C-unwind" fn MIDIGetDriverIORunLoop() -> CFRetained<CFRunLoop
 }
 
 extern "C-unwind" {
+    /// Returns the list of driver-created devices in the current MIDI setup.
+    ///
+    /// Parameters:
+    /// - driver: The driver for which you return devices.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The requested device list.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Dispose this list when you’re finished working with it by calling [`MIDIDeviceListDispose`](https://developer.apple.com/documentation/coremidi/mididevicelistdispose(_:)).
+    ///
+    ///
     /// Returns the list of devices which are in the current MIDISetup
     /// and which were created/owned by the specified driver.
     ///
@@ -418,12 +564,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `driver` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midigetdriverdevicelist(_:)?language=objc)
     #[cfg(feature = "MIDIServices")]
     pub fn MIDIGetDriverDeviceList(driver: MIDIDriverRef) -> MIDIDeviceListRef;
 }
 
+/// Enables monitoring of all outgoing MIDI packets.
+///
+/// Parameters:
+/// - driver: The driver for which to enable monitoring.
+///
+/// - enabled: A Boolean value that indicates whether to enable monitoring.
+///
+///
+/// ## Return Value
+///
+/// An `OSStatus` result code.
+///
+///
+///
+/// ## Discussion
+///
+/// Some specialized drivers, like a MIDI monitor display, can intercept and inspect all outgoing MIDI messages. Enablng monitoring causes the system to call the [`Monitor`](https://developer.apple.com/documentation/coremidi/mididriverinterface/monitor) function with the outgoing MIDI packets for all destinations in the system. The [`Monitor`](https://developer.apple.com/documentation/coremidi/mididriverinterface/monitor) function can’t rely on the MIDI events arriving in order, due to the MIDI server’s schedule-ahead facilities.
+///
+///
 /// A driver may make this call to have MIDIServer pass it every outgoing MIDI
 /// packet, to all destinations in the system (not just those controlled by
 /// itself).
@@ -439,8 +602,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `driver` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/mididriverenablemonitoring(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MIDIDriverEnableMonitoring(
     driver: MIDIDriverRef,

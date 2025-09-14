@@ -7,10 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunitmolarmassbloodglucose?language=objc)
+/// The molecular mass of blood glucose, typically used to create mole units for blood glucose.
 pub const HKUnitMolarMassBloodGlucose: c_float = 180.15588000005408;
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkunit?language=objc)
+    /// A class for managing the units of measure within HealthKit.
+    ///
+    /// ## Overview
+    ///
+    /// The unit class supports most standard SI units (meters, seconds, and grams), SI units with prefixes (centimeters, milliseconds and kilograms) and equivalent non-SI units (feet, minutes, and pounds). HealthKit also supports creating complex units by mathematically combining existing units.
+    ///
+    /// You use units when working with HealthKit quantities. Quantities store both the value (as a `double` data type) and its corresponding unit. You can then request the value from the quantity in any compatible units. For more information on working with quantities, see [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Number formatters that use units (for example, [`NSEnergyFormatter`](https://developer.apple.com/documentation/foundation/energyformatter), [`NSLengthFormatter`](https://developer.apple.com/documentation/foundation/lengthformatter), and [`NSMassFormatter`](https://developer.apple.com/documentation/foundation/massformatter)) use a custom enumeration to specify their units. For example, the [`NSEnergyFormatter`](https://developer.apple.com/documentation/foundation/energyformatter) class uses the [`NSEnergyFormatterUnit`](https://developer.apple.com/documentation/foundation/energyformatter/unit) enum. The [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit) class provides several methods to translate between the formatter enumerations and the HealthKit units. For more information, see Working with formatter units.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Using Units
+    ///
+    /// Like many HealthKit classes, the `HKUnit` class is not extendable and should not be subclassed.
+    ///
+    /// The `HKUnit` class is implemented using a facade design pattern. It uses custom subclasses to represent instances of the different unit types. For example, the [`secondUnit`](https://developer.apple.com/documentation/healthkit/hkunit/second()) convenience method actually returns an instance of the private `HKTimeUnit` subclass.
+    ///
+    /// Additionally, the unit class uses a single unit instance to represent all copies of the same unit in your app, wherever possible. For example, two calls to the [`secondUnit`](https://developer.apple.com/documentation/healthkit/hkunit/second()) method return the same unit object. This helps reduce the amount of memory used by unit instances.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKUnit;
@@ -100,52 +124,52 @@ impl HKUnit {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix?language=objc)
+/// Prefixes that can be added to SI units to change the order of magnitude.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKMetricPrefix(pub NSInteger);
 impl HKMetricPrefix {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/none?language=objc)
+    /// A prefix that does not modify the base unit.
     #[doc(alias = "HKMetricPrefixNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/femto?language=objc)
+    /// A prefix that multiplies the base unit by 1e-15.
     #[doc(alias = "HKMetricPrefixFemto")]
     pub const Femto: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/pico?language=objc)
+    /// A prefix that multiplies the base unit by 1e-12.
     #[doc(alias = "HKMetricPrefixPico")]
     pub const Pico: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/nano?language=objc)
+    /// A prefix that multiplies the base unit by 1e-9.
     #[doc(alias = "HKMetricPrefixNano")]
     pub const Nano: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/micro?language=objc)
+    /// A prefix that multiplies the base unit by 1e-6.
     #[doc(alias = "HKMetricPrefixMicro")]
     pub const Micro: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/milli?language=objc)
+    /// A prefix that multiplies the base unit by 0.001.
     #[doc(alias = "HKMetricPrefixMilli")]
     pub const Milli: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/centi?language=objc)
+    /// A prefix that multiplies the base unit by 0.01.
     #[doc(alias = "HKMetricPrefixCenti")]
     pub const Centi: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/deci?language=objc)
+    /// A prefix that multiplies the base unit by 0.1.
     #[doc(alias = "HKMetricPrefixDeci")]
     pub const Deci: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/deca?language=objc)
+    /// A prefix that multiplies the base unit by 10.
     #[doc(alias = "HKMetricPrefixDeca")]
     pub const Deca: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/hecto?language=objc)
+    /// A prefix that multiplies the base unit by 100.
     #[doc(alias = "HKMetricPrefixHecto")]
     pub const Hecto: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/kilo?language=objc)
+    /// A prefix that multiplies the base unit by 1000.
     #[doc(alias = "HKMetricPrefixKilo")]
     pub const Kilo: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/mega?language=objc)
+    /// A prefix that multiplies the base unit by 1e6.
     #[doc(alias = "HKMetricPrefixMega")]
     pub const Mega: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/giga?language=objc)
+    /// A prefix that multiplies the base unit by 1e9.
     #[doc(alias = "HKMetricPrefixGiga")]
     pub const Giga: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmetricprefix/tera?language=objc)
+    /// A prefix that multiplies the base unit by 1e12.
     #[doc(alias = "HKMetricPrefixTera")]
     pub const Tera: Self = Self(12);
 }

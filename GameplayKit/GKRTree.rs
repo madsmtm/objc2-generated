@@ -6,24 +6,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Options that control how a tree balances its internal structure when adding elements, used with the [`addElement:boundingRectMin:boundingRectMax:splitStrategy:`](https://developer.apple.com/documentation/gameplaykit/gkrtree/addelement(_:boundingrectmin:boundingrectmax:splitstrategy:)) method.
 /// Used to adjust the way in which RTree nodes are split when they grow too large.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKRTreeSplitStrategy(pub NSInteger);
 impl GKRTreeSplitStrategy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/halve?language=objc)
+    /// An option to split groups of elements in half based on the order they were added to the tree in.
     #[doc(alias = "GKRTreeSplitStrategyHalve")]
     pub const Halve: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/linear?language=objc)
+    /// An option to split groups of elements by finding a line that divides space so that half of the elements are on either side.
     #[doc(alias = "GKRTreeSplitStrategyLinear")]
     pub const Linear: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/quadratic?language=objc)
+    /// An option to split groups of elements by finding the subgroups that occupy the least area.
     #[doc(alias = "GKRTreeSplitStrategyQuadratic")]
     pub const Quadratic: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtreesplitstrategy/reduceoverlap?language=objc)
+    /// An option to split groups of elements by finding the subgroups whose areas overlap the least.
     #[doc(alias = "GKRTreeSplitStrategyReduceOverlap")]
     pub const ReduceOverlap: Self = Self(3);
 }
@@ -37,11 +36,38 @@ unsafe impl RefEncode for GKRTreeSplitStrategy {
 }
 
 extern_class!(
+    /// A data structure that adaptively organizes objects based on their locations in a two-dimensional space.
+    ///
+    /// ## Overview
+    ///
+    /// An R-tree manages its structure to optimize for spatial searches—unlike a basic data structure such as an array or dictionary, an R-tree can find all elements occupying a specific position or region very quickly. Additionally, R-trees adapt their internal structure as you add and remove elements, increasing the amount of time required to perform those operations, but decreasing the time required to search for elements later.
+    ///
+    /// An R-tree partitions the space it describes by calculating the minimum bounding regions that enclose each of the added objects. For example, in [Figure 1](/documentation/gameplaykit/gkrtree#1965706), the numbered shapes are objects added to the tree, and the rectangles marked with letters are the data structure the tree creates to organize them.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/5f99f2729a4b81147c7e9a30db31331e/media-1965706%402x.png)
+    ///
+    ///
+    /// In this example, the rectangle C is the smallest rectangle that entirely contains objects 1 and 2; the rectangle D is the smallest that contains objects 3, 4, and 5; the rectangle A is the smallest containing all the objects in rectangles C and D; and so on. The R-tree automatically creates these divisions in a way that keeps the tree balanced—that is, so that no branch of the tree contains significantly more objects or sub-branches than any other branch—so that searches for objects in the tree require a uniformly minimal amount of processing.
+    ///
+    /// R-trees can be useful for many tasks in game design. For example:
+    ///
+    /// - Deciding which game characters are close enough to each other for interaction
+    ///
+    /// - Deciding which portions of a large game world need to be processed at a given time
+    ///
+    /// - Finding out which other objects are entirely contained within the region occupied by a certain object
+    ///
+    /// The [`GKRTree`](https://developer.apple.com/documentation/gameplaykit/gkrtree) class is one of three spatial partitioning data structures that GameplayKit provides. See these other classes for other tasks:
+    ///
+    /// - The [`GKOctree`](https://developer.apple.com/documentation/gameplaykit/gkoctree) class provides the three-dimensional equivalent of a quadtree. Use an octree when you need to organize objects in 3D space.
+    ///
+    /// - The `GKQuadTree` class provides a different algorithm for two-dimensional spatial indexing. Quadtrees and R-trees have different performance tradeoffs for different tasks: quadtrees can be faster when objects are more uniformly distributed in space or when their positions change frequently, and R-trees can be faster when searching for all objects in a given region.
+    ///
+    ///
     /// An R-tree is a data structure that partitions axis aligned bounding rectangles into groups spatially.
     /// When a group goes to large, it is split according to its split strategy into two new groups.
     /// Fast queries can be made on these partition bounding rectangles.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkrtree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKRTree<ElementType: ?Sized = AnyObject>;

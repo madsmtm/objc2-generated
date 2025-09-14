@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontroller?language=objc)
+    /// An object that presents a sheet that prompts the user to authorize a payment request.
+    ///
+    /// ## Overview
+    ///
+    /// After the user authorizes the payment request for a transaction, the delegate is called with a payment token used to authorize the transaction’s payment.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

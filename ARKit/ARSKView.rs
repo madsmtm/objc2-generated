@@ -9,7 +9,15 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskviewdelegate?language=objc)
+    /// Methods you can implement to mediate the automatic synchronization of SpriteKit content with an AR session.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol to provide SpriteKit content corresponding to [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) objects tracked by the view’s AR session, or to manage the view’s automatic updating of such content.
+    ///
+    /// This protocol extends the [`ARSessionObserver`](https://developer.apple.com/documentation/arkit/arsessionobserver) protocol, so your session delegate can also implement those methods to respond to changes in session status.
+    ///
+    ///
     #[cfg(all(feature = "ARSession", feature = "objc2", feature = "objc2-sprite-kit"))]
     pub unsafe trait ARSKViewDelegate: SKViewDelegate + ARSessionObserver {}
 );

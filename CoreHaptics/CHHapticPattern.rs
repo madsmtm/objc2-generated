@@ -6,6 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define the keys you use to create a haptic pattern dictionary.
 /// Keys used to define a CHHapticPattern.
 ///
 ///
@@ -68,93 +69,162 @@ use crate::*;
 ///
 /// For events of type CHHapticEventTypeAudioCustom, indicates whether the audio file playback will be looped.
 /// Value type: boolean.  Default is false.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticPatternKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/version?language=objc)
+    /// A key that identifies rhe version number of a haptic pattern dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this version number to determine the scope of supported keys for a haptic dictionary.
+    ///
+    ///
     pub static CHHapticPatternKeyVersion: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/pattern?language=objc)
+    /// A key that identifies the beginning of a haptic pattern definition.
     pub static CHHapticPatternKeyPattern: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/event?language=objc)
+    /// A key that identifies the beginning of a haptic event definition.
+    ///
+    /// ## Discussion
+    ///
+    /// The haptic event definition includes an event type, a time, and an optional set of fixed parameters.
+    ///
+    ///
     pub static CHHapticPatternKeyEvent: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventtype?language=objc)
+    /// A key that identifies the type of event.
+    ///
+    /// ## Discussion
+    ///
+    /// The type is a [`CHHapticEventType`](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype) value.
+    ///
+    ///
     pub static CHHapticPatternKeyEventType: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/time?language=objc)
+    /// A key that identifies the relative time for an event or parameter, in seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with the key is a real number in units of seconds.
+    ///
+    ///
     pub static CHHapticPatternKeyTime: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventduration?language=objc)
+    /// A key that identifies the duration of an event.
     pub static CHHapticPatternKeyEventDuration: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformpath?language=objc)
+    /// A key that identifies the path to the local file that contains the audio waveform.
     pub static CHHapticPatternKeyEventWaveformPath: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventparameters?language=objc)
+    /// A key that identifies the beginning of an array of fixed parameter definitions.
     pub static CHHapticPatternKeyEventParameters: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformusevolumeenvelope?language=objc)
+    /// A key that identifies whether audio file playback fades in and out using an envelope.
     pub static CHHapticPatternKeyEventWaveformUseVolumeEnvelope: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformloopenabled?language=objc)
+    /// A key for a Boolean value that indicates whether to loop custom audio events.
+    ///
+    /// ## Discussion
+    ///
+    /// Set a value of [`true`](https://developer.apple.com/documentation/swift/true) to indicate that events of type [`CHHapticEventTypeAudioCustom`](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/audiocustom) should loop playback.
+    ///
+    /// The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static CHHapticPatternKeyEventWaveformLoopEnabled: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parameter?language=objc)
+    /// A key that identifies the beginning of a parameter definition.
+    ///
+    /// ## Discussion
+    ///
+    /// The haptic parameter definition includes a parameter type, a parameter value, and a time.
+    ///
+    ///
     pub static CHHapticPatternKeyParameter: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parameterid?language=objc)
+    /// A key that identifies the parameter ID.
     pub static CHHapticPatternKeyParameterID: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametervalue?language=objc)
+    /// A key that identifies the value of a parameter.
+    ///
+    /// ## Discussion
+    ///
+    /// The range of possible values varies with the parameter.
+    ///
+    ///
     pub static CHHapticPatternKeyParameterValue: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametercurve?language=objc)
+    /// A key that identifies the beginning of a parameter curve definition.
     pub static CHHapticPatternKeyParameterCurve: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametercurvecontrolpoints?language=objc)
+    /// A key that identifies the control points of a parameter curve.
     pub static CHHapticPatternKeyParameterCurveControlPoints: &'static CHHapticPatternKey;
 }
 
 extern_class!(
+    /// An object representing a haptic waveform.
+    ///
+    /// ## Overview
+    ///
+    /// A haptic pattern represents the waveform of a haptic through a hierarchical set of key-value pairs, starting at the topmost level with a [`CHHapticPatternKey`](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key). This key marks the beginning of an array of events and [`CHHapticPatternKeyParameterID`](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parameterid) definitions. Each event has an associated time that indicates when the system delivers the event to the haptic engine.
+    ///
+    ///
+    /// ![A diagram showing the contents of a pattern: its keys, values, and subdictionaries.](https://docs-assets.developer.apple.com/published/34fa249208e0ab093d6f9cc9a6c29417/media-3163328%402x.png)
+    ///
+    ///
+    /// These key-value pairs represent not only events constituting the pattern, but also individual parameters of each event, which are characteristics of the haptic, such as sharpness and intensity. More complicated patterns also contain key-value pairs for parameter curves, which you can use to modulate parameters over time.
+    ///
+    /// ### Haptic Patterns
+    ///
+    /// To add haptics to your app, you create an instance of [`CHHapticEngine`](https://developer.apple.com/documentation/corehaptics/chhapticengine), load a pattern, and use the engine to create a player to play that pattern. You create a pattern in one of three ways:
+    ///
+    /// - **Dictionaries**. Each entry in the dictionary defines a single characteristic of the haptic, like its intensity, start time, or duration. See [Playing a single-tap haptic pattern](https://developer.apple.com/documentation/corehaptics/playing-a-single-tap-haptic-pattern) to learn more about creating a dictionary inline.
+    ///
+    /// - **Arrays of events and parameters**. The [`CHHapticEvent`](https://developer.apple.com/documentation/corehaptics/chhapticevent) class represents a haptic event as an object in code. The key-value pairs in a dictionary correspond to the properties and parameters associated with a [`CHHapticEvent`](https://developer.apple.com/documentation/corehaptics/chhapticevent). Haptic event objects are just another representation of the haptics dictionary.
+    ///
+    /// - **AHAP files**. This JSON-compliant file format specifies a haptic pattern through key-value pairs, analogous to a dictionary literal, except in a text file. Add this file to your Xcode project bundle.
+    ///
+    /// You can produce the same kind of content with all forms of pattern creation.
+    ///
+    /// ### Haptic Intensity and Sharpness
+    ///
+    /// Regardless of the building block you choose to generate a custom haptic, you can control its intensity and sharpness. Intensity varies the haptic’s amplitude or strength. Sharpness lets you determine the character of the haptic experience. For example, you can use sharpness values to convey an experience that’s crisp, precise, and mechanical, or one that’s soft, rounded, and organic.
+    ///
+    ///
     /// A set of one or more haptic events and/or Dynamic parameters/parameter curves.
     ///
     /// The passed-in arrays' contents are not owned by the pattern object.  Changes made to those arrays
     /// after a CHHapticPattern object is created have no effect on that object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticPattern;

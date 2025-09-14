@@ -8,26 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The scaling modes for Fourier transform operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode?language=objc)
+/// The scaling modes for Fourier transform operations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphFFTScalingMode(pub NSUInteger);
 impl MPSGraphFFTScalingMode {
     /// Computes the FFT result with no scaling.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/none?language=objc)
+    /// Computes the FFT result with no scaling.
     #[doc(alias = "MPSGraphFFTScalingModeNone")]
     pub const None: Self = Self(0);
     /// Scales the FFT result with reciprocal of the total FFT size over all transformed dimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/size?language=objc)
+    /// Scales the FFT result with reciprocal of the total FFT size over all transformed dimensions.
     #[doc(alias = "MPSGraphFFTScalingModeSize")]
     pub const Size: Self = Self(1);
     /// Scales the FFT result with reciprocal square root of the total FFT size over all transformed dimensions, resulting in signal strength conserving transformation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftscalingmode/unitary?language=objc)
+    /// Scales the FFT result with reciprocal square root of the total FFT size over all transformed dimensions, resulting in signal strength conserving transformation.
     #[doc(alias = "MPSGraphFFTScalingModeUnitary")]
     pub const Unitary: Self = Self(2);
 }
@@ -43,11 +39,16 @@ unsafe impl RefEncode for MPSGraphFFTScalingMode {
 extern_class!(
     /// The class that defines the parameters for a fast Fourier transform (FFT) operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with [`fastFourierTransformWithTensor:axes:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/fastfouriertransform(_:axes:descriptor:name:)), [`realToHermiteanFFTWithTensor:axesTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/realtohermiteanfft(_:axestensor:descriptor:name:)), and [`HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/hermiteantorealfft(_:axestensor:descriptor:name:)) methods.
+    ///
+    ///
+    /// The class that defines the parameters for a fast Fourier transform (FFT) operation.
+    ///
     /// Use this descriptor with ``MPSGraph/fastFourierTransformWithTensor:axes:descriptor:name:``,
     /// ``MPSGraph/realToHermiteanFFTWithTensor:axesTensor:descriptor:name:``, and
     /// ``MPSGraph/HermiteanToRealFFTWithTensor:axesTensor:descriptor:name:`` methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphfftdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

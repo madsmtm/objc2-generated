@@ -10,8 +10,7 @@ use crate::*;
 
 extern_class!(
     /// Represents a symbol content transition and options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisymbolcontenttransition?language=objc)
+    /// Represents a symbol content transition and options.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISymbolContentTransition;

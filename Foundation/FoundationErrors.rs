@@ -4,171 +4,247 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilenosuchfileerror-c.enum.case?language=objc)
+/// A filesystem operation was attempted on a non-existent file.
 pub const NSFileNoSuchFileError: NSInteger = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilelockingerror-c.enum.case?language=objc)
+/// The file could not be locked.
 pub const NSFileLockingError: NSInteger = 255;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownerror-c.enum.case?language=objc)
+/// Could not read, for unknown reasons.
 pub const NSFileReadUnknownError: NSInteger = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnopermissionerror-c.enum.case?language=objc)
+/// Could not read because of a permission problem.
 pub const NSFileReadNoPermissionError: NSInteger = 257;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinvalidfilenameerror-c.enum.case?language=objc)
+/// Could not read because of an invalid file name.
 pub const NSFileReadInvalidFileNameError: NSInteger = 258;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadcorruptfileerror-c.enum.case?language=objc)
+/// Could not read because of a corrupted file, bad format, or similar reason.
 pub const NSFileReadCorruptFileError: NSInteger = 259;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadnosuchfileerror-c.enum.case?language=objc)
+/// Could not read because no such file was found.
 pub const NSFileReadNoSuchFileError: NSInteger = 260;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadinapplicablestringencodingerror-c.enum.case?language=objc)
+/// Could not read because the string encoding wasn’t applicable.
+///
+/// ## Discussion
+///
+/// Access the bad encoding from the `userInfo` dictionary using the `NSStringEncodingErrorKey` key.
+///
+///
 pub const NSFileReadInapplicableStringEncodingError: NSInteger = 261;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunsupportedschemeerror-c.enum.case?language=objc)
+/// Could not read because the specified URL scheme is unsupported.
 pub const NSFileReadUnsupportedSchemeError: NSInteger = 262;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadtoolargeerror-c.enum.case?language=objc)
+/// Could not read because the specified file was too large.
 pub const NSFileReadTooLargeError: NSInteger = 263;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilereadunknownstringencodingerror-c.enum.case?language=objc)
+/// Could not read because the string coding of the file couldn’t be determined.
 pub const NSFileReadUnknownStringEncodingError: NSInteger = 264;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunknownerror-c.enum.case?language=objc)
+/// Could not write, for unknown reasons.
 pub const NSFileWriteUnknownError: NSInteger = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritenopermissionerror-c.enum.case?language=objc)
+/// Could not write because of a permission problem.
 pub const NSFileWriteNoPermissionError: NSInteger = 513;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinvalidfilenameerror-c.enum.case?language=objc)
+/// Could not write because of an invalid file name.
 pub const NSFileWriteInvalidFileNameError: NSInteger = 514;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritefileexistserror-c.enum.case?language=objc)
+/// Could not perform an operation because the destination file already exists.
+///
+/// ## Discussion
+///
+/// This error can be produced by the [`FileManager`](https://developer.apple.com/documentation/foundation/filemanager) class’s copy, move, and link methods
+///
+///
 pub const NSFileWriteFileExistsError: NSInteger = 516;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteinapplicablestringencodingerror-c.enum.case?language=objc)
+/// Could not write because the string encoding was not applicable.
+///
+/// ## Discussion
+///
+/// Access the bad encoding from the `userInfo` dictionary using the [`NSStringEncodingErrorKey`](https://developer.apple.com/documentation/foundation/nsstringencodingerrorkey) key.
+///
+///
 pub const NSFileWriteInapplicableStringEncodingError: NSInteger = 517;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteunsupportedschemeerror-c.enum.case?language=objc)
+/// Could not write because the specified URL scheme is unsupported.
 pub const NSFileWriteUnsupportedSchemeError: NSInteger = 518;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewriteoutofspaceerror-c.enum.case?language=objc)
+/// Could not write because of a lack of disk space.
 pub const NSFileWriteOutOfSpaceError: NSInteger = 640;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewritevolumereadonlyerror-c.enum.case?language=objc)
+/// Could not write because the volume is read-only.
 pub const NSFileWriteVolumeReadOnlyError: NSInteger = 642;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountunknownerror-c.enum.case?language=objc)
+/// The volume couldn’t be unmounted, for unknown reasons.
 pub const NSFileManagerUnmountUnknownError: NSInteger = 768;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountbusyerror-c.enum.case?language=objc)
+/// The volume couldn’t be unmounted because it’s in use.
 pub const NSFileManagerUnmountBusyError: NSInteger = 769;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluevalidationerror-c.enum.case?language=objc)
+/// A key-value coding validation error.
 pub const NSKeyValueValidationError: NSInteger = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerror-c.enum.case?language=objc)
+/// A formatter couldn’t generate a string for an object, or parse a string into an object.
 pub const NSFormattingError: NSInteger = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusercancellederror-c.enum.case?language=objc)
+/// The user canceled the operation (for example, by pressing Command-period).
+///
+/// ## Discussion
+///
+/// This code is for errors that do not require a dialog displayed and might be candidates for special-casing.
+///
+///
 pub const NSUserCancelledError: NSInteger = 3072;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfeatureunsupportederror-c.enum.case?language=objc)
+/// The feature isn’t supported, because the file system lacks the feature, or required libraries are missing, or other similar reasons.
+///
+/// ## Discussion
+///
+/// For example, some volumes may not support a Trash folder, so these methods will report failure by returning [`false`](https://developer.apple.com/documentation/swift/false) or `nil` and an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) with [`NSFeatureUnsupportedError`](https://developer.apple.com/documentation/foundation/nsfeatureunsupportederror-swift.var).
+///
+///
 pub const NSFeatureUnsupportedError: NSInteger = 3328;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablenotloadableerror-c.enum.case?language=objc)
+/// The executable type isn’t loadable in the current process.
 pub const NSExecutableNotLoadableError: NSInteger = 3584;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablearchitecturemismatcherror-c.enum.case?language=objc)
+/// The executable doesn’t provide an architecture compatible with the current process.
 pub const NSExecutableArchitectureMismatchError: NSInteger = 3585;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableruntimemismatcherror-c.enum.case?language=objc)
+/// The executable has Objective-C runtime information that’s incompatible with the current process.
 pub const NSExecutableRuntimeMismatchError: NSInteger = 3586;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableloaderror-c.enum.case?language=objc)
+/// Executable cannot be loaded for an otherwise-unspecified reason.
+///
+/// ## Discussion
+///
+/// This error covers situations such as an error caused by a library the executable depends on.
+///
+///
 pub const NSExecutableLoadError: NSInteger = 3587;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutablelinkerror-c.enum.case?language=objc)
+/// The executable failed due to linking issues.
 pub const NSExecutableLinkError: NSInteger = 3588;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for file errors.
 pub const NSFileErrorMinimum: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for file errors.
 pub const NSFileErrorMaximum: NSInteger = 1023;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for validation errors.
 pub const NSValidationErrorMinimum: NSInteger = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvalidationerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for validation errors.
 pub const NSValidationErrorMaximum: NSInteger = 2047;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrorminimum-c.enum.case?language=objc)
+/// The beginning of the range of error codes reserved for errors related to executable files.
 pub const NSExecutableErrorMinimum: NSInteger = 3584;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexecutableerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for errors related to executable files.
 pub const NSExecutableErrorMaximum: NSInteger = 3839;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for formatting errors.
 pub const NSFormattingErrorMinimum: NSInteger = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsformattingerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for formatting errors.
 pub const NSFormattingErrorMaximum: NSInteger = 2559;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadcorrupterror-c.enum.case?language=objc)
+/// Parsing of the property list failed.
 pub const NSPropertyListReadCorruptError: NSInteger = 3840;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadunknownversionerror-c.enum.case?language=objc)
+/// The version number of the property list cannot be determined.
 pub const NSPropertyListReadUnknownVersionError: NSInteger = 3841;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistreadstreamerror-c.enum.case?language=objc)
+/// Reading of the property list failed.
 pub const NSPropertyListReadStreamError: NSInteger = 3842;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwritestreamerror-c.enum.case?language=objc)
+/// Writing to the property list failed.
 pub const NSPropertyListWriteStreamError: NSInteger = 3851;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistwriteinvaliderror-c.enum.case?language=objc)
+/// Writing failed because of an invalid property list object, or an invalid property list type was specified.
 pub const NSPropertyListWriteInvalidError: NSInteger = 3852;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for property list errors.
 pub const NSPropertyListErrorMinimum: NSInteger = 3840;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylisterrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for property list errors.
 pub const NSPropertyListErrorMaximum: NSInteger = 4095;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninterrupted-c.enum.case?language=objc)
+/// The XPC connection was interrupted.
 pub const NSXPCConnectionInterrupted: NSInteger = 4097;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioninvalid-c.enum.case?language=objc)
+/// The XPC connection was invalid.
 pub const NSXPCConnectionInvalid: NSInteger = 4099;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionreplyinvalid-c.enum.case?language=objc)
+/// The XPC connection reply was invalid.
 pub const NSXPCConnectionReplyInvalid: NSInteger = 4101;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectioncodesigningrequirementfailure-c.enum.case?language=objc)
+/// A code-signing requirement check failed.
+///
+/// ## Discussion
+///
+/// This error represents a failure to meet the requirement set by a call to [`NSXPCConnection`](https://developer.apple.com/documentation/foundation/nsxpcconnection)‘s [`setCodeSigningRequirement(_:)`](https://developer.apple.com/documentation/foundation/nsxpcconnection/setcodesigningrequirement(_:)) method, or NSXPCConnectionListener’s [`setConnectionCodeSigningRequirement(_:)`](https://developer.apple.com/documentation/foundation/nsxpclistener/setconnectioncodesigningrequirement(_:)) method.
+///
+///
 pub const NSXPCConnectionCodeSigningRequirementFailure: NSInteger = 4102;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-c.enum.case?language=objc)
+/// The lower bounds of XPC connection error code values.
+///
+/// ## Discussion
+///
+/// All XPC error codes have values between [`NSXPCConnectionErrorMinimum`](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var) and [`NSXPCConnectionErrorMaximum`](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var), exclusive. This constant does not correspond to any particular error.
+///
+///
 pub const NSXPCConnectionErrorMinimum: NSInteger = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-c.enum.case?language=objc)
+/// The upper bounds of XPC connection error code values.
+///
+/// ## Discussion
+///
+/// All XPC error codes have values between [`NSXPCConnectionErrorMinimum`](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrorminimum-swift.var) and [`NSXPCConnectionErrorMaximum`](https://developer.apple.com/documentation/foundation/nsxpcconnectionerrormaximum-swift.var), exclusive. This constant does not correspond to any particular error.
+///
+///
 pub const NSXPCConnectionErrorMaximum: NSInteger = 4224;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileunavailableerror-c.enum.case?language=objc)
+/// The item has not been uploaded to iCloud by another device yet.
+///
+/// ## Discussion
+///
+/// When this error occurs, you do not need to ask the system to start downloading the item. The system will download the item as soon as it can. If you want to know when the item becomes available, use an [`NSMetadataQuery`](https://developer.apple.com/documentation/foundation/nsmetadataquery) object to monitor changes to the file’s URL.
+///
+///
 pub const NSUbiquitousFileUnavailableError: NSInteger = 4353;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfilenotuploadedduetoquotaerror-c.enum.case?language=objc)
+/// The item could not be uploaded to iCloud because it would make the account go over its quota.
 pub const NSUbiquitousFileNotUploadedDueToQuotaError: NSInteger = 4354;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileubiquityservernotavailable-c.enum.case?language=objc)
+/// A failure to connect to the iCloud servers.
 pub const NSUbiquitousFileUbiquityServerNotAvailable: NSInteger = 4355;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrorminimum-c.enum.case?language=objc)
+/// The minimum error code value that represents an iCloud error.
 pub const NSUbiquitousFileErrorMinimum: NSInteger = 4352;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitousfileerrormaximum-c.enum.case?language=objc)
+/// The maximum error code value that represents an iCloud error.
 pub const NSUbiquitousFileErrorMaximum: NSInteger = 4607;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandofffailederror-c.enum.case?language=objc)
+/// The data for the user activity wasn’t available.
+///
+/// ## Discussion
+///
+/// This error can occur if the remote device became unavailable.
+///
+///
 pub const NSUserActivityHandoffFailedError: NSInteger = 4608;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityconnectionunavailableerror-c.enum.case?language=objc)
+/// The user activity couldn’t be continued because a required connection wasn’t available.
 pub const NSUserActivityConnectionUnavailableError: NSInteger = 4609;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityremoteapplicationtimedouterror-c.enum.case?language=objc)
+/// The remote application failed to send data within the specified time.
 pub const NSUserActivityRemoteApplicationTimedOutError: NSInteger = 4610;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityhandoffuserinfotoolargeerror-c.enum.case?language=objc)
+/// The user info dictionary was too large to receive.
 pub const NSUserActivityHandoffUserInfoTooLargeError: NSInteger = 4611;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for user activity errors.
 pub const NSUserActivityErrorMinimum: NSInteger = 4608;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuseractivityerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for user activity errors.
 pub const NSUserActivityErrorMaximum: NSInteger = 4863;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderreadcorrupterror-c.enum.case?language=objc)
+/// Decoding failed due to corrupt data.
 pub const NSCoderReadCorruptError: NSInteger = 4864;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodervaluenotfounderror-c.enum.case?language=objc)
+/// The requested data wasn’t found.
 pub const NSCoderValueNotFoundError: NSInteger = 4865;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoderinvalidvalueerror-c.enum.case?language=objc)
+/// Data wasn’t valid to encode.
 pub const NSCoderInvalidValueError: NSInteger = 4866;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for coder errors.
 pub const NSCoderErrorMinimum: NSInteger = 4864;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscodererrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for coder errors.
 pub const NSCoderErrorMaximum: NSInteger = 4991;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for bundle errors.
 pub const NSBundleErrorMinimum: NSInteger = 4992;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for bundle errors.
 pub const NSBundleErrorMaximum: NSInteger = 5119;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceoutofspaceerror-c.enum.case?language=objc)
 pub const NSBundleOnDemandResourceOutOfSpaceError: NSInteger = 4992;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceexceededmaximumsizeerror-c.enum.case?language=objc)
+/// The application exceeded the amount of on-demand resources content in use at one time.
 pub const NSBundleOnDemandResourceExceededMaximumSizeError: NSInteger = 4993;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleondemandresourceinvalidtagerror-c.enum.case?language=objc)
+/// The application specified a tag that the system couldn’t find in the application tag manifest.
 pub const NSBundleOnDemandResourceInvalidTagError: NSInteger = 4994;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnetworkfailureerror-c.enum.case?language=objc)
+/// Sharing failed due to a network failure.
 pub const NSCloudSharingNetworkFailureError: NSInteger = 5120;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingquotaexceedederror-c.enum.case?language=objc)
+/// The user doesn’t have enough storage space available to share the requested items.
 pub const NSCloudSharingQuotaExceededError: NSInteger = 5121;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingtoomanyparticipantserror-c.enum.case?language=objc)
+/// Additional participants couldn’t be added to the share, because the limit was reached.
 pub const NSCloudSharingTooManyParticipantsError: NSInteger = 5122;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingconflicterror-c.enum.case?language=objc)
+/// A conflict occurred during an attempt to save changes.
+///
+/// ## Discussion
+///
+/// This error occurs when a conflict is detected while trying to save changes to the [`CKShare`](https://developer.apple.com/documentation/cloudkit/ckshare) or root [`CKRecord`](https://developer.apple.com/documentation/cloudkit/ckrecord). Respond to this error by first fetching the server’s changes to the records, then either handle the conflict manually or present it, which will instruct the user to try the operation again.
+///
+///
 pub const NSCloudSharingConflictError: NSInteger = 5123;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingnopermissionerror-c.enum.case?language=objc)
+/// The current user doesn’t have permission to perform the requested actions.
 pub const NSCloudSharingNoPermissionError: NSInteger = 5124;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingothererror-c.enum.case?language=objc)
+/// An otherwise unspecified cloud-sharing error occurred.
+///
+/// ## Discussion
+///
+/// For CloudKit sharing, use the [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey), whose value is a [`CKErrorDomain`](https://developer.apple.com/documentation/cloudkit/ckerrordomain) error, to discover the specific error. Refer to the [`CloudKit`](https://developer.apple.com/documentation/cloudkit) documentation for the proper response to these errors.
+///
+///
 pub const NSCloudSharingOtherError: NSInteger = 5375;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for cloud-sharing errors.
 pub const NSCloudSharingErrorMinimum: NSInteger = 5120;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscloudsharingerrormaximum-c.enum.case?language=objc)
+/// The end of the range of error codes reserved for cloud-sharing errors.
 pub const NSCloudSharingErrorMaximum: NSInteger = 5375;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionfailederror-c.enum.case?language=objc)
+/// An error code value that indicates a failure to compress data using the provided algorithm.
 pub const NSCompressionFailedError: NSInteger = 5376;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecompressionfailederror-c.enum.case?language=objc)
+/// An error code value that indicates a failure to decompress data using the provided algorithm.
 pub const NSDecompressionFailedError: NSInteger = 5377;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrorminimum-c.enum.case?language=objc)
+/// The start of the range of error codes reserved for compression errors.
 pub const NSCompressionErrorMinimum: NSInteger = 5376;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompressionerrormaximum-c.enum.case?language=objc)
 pub const NSCompressionErrorMaximum: NSInteger = 5503;

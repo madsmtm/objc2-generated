@@ -10,13 +10,49 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that manages audio assets, controls playback, and configures environmental effects.
+    ///
+    /// ## Overview
+    ///
+    /// Before using PHASE, an app creates an instance of this object. Apps access all of the framework’s functionality through engine functions or properties, or through other PHASE classes into which you pass the engine object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can create multiple engine instances, but normally, apps create only one.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Create and Start the Engine
+    ///
+    /// To create an engine object, choose a value for the [`initWithUpdateMode:`](https://developer.apple.com/documentation/phase/phaseengine/init(updatemode:)) argument that selects the desired control over scene setup and playback timing.
+    ///
+    /// ```swift
+    /// // Apps that need precise audio synchronization and
+    /// // synchronized dynamic mix control pass in `.manual`.
+    /// engine = PHASEEngine(updateMode: .automatic)
+    /// ```
+    ///
+    /// Then, load your sound assets, sound event assets, and shapes for sound occlusion. Before your app attempts to play sounds, start the engine object.
+    ///
+    /// ```swift
+    /// do { try engine.start() }
+    /// catch { /* Handle the error. */ }
+    /// ```
+    ///
+    /// To stop audio playback and enable the engine to deallocate system resources, call the [`stop`](https://developer.apple.com/documentation/phase/phaseengine/stop()) function.
+    ///
+    /// ```swift
+    /// engine.stop()
+    /// ```
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// PHASE engine instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEEngine;

@@ -12,28 +12,28 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle?language=objc)
+/// Specifies the style of an action sheet.
 // NS_ENUM
 #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActionSheetStyle(pub NSInteger);
 impl UIActionSheetStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/automatic?language=objc)
+    /// Takes the appearance of the bottom bar if specified; otherwise, same as [`UIActionSheetStyleDefault`](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/default).
     #[doc(alias = "UIActionSheetStyleAutomatic")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const Automatic: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/default?language=objc)
+    /// The default style.
     #[doc(alias = "UIActionSheetStyleDefault")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const Default: Self = Self(UIBarStyle::Default.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/blacktranslucent?language=objc)
+    /// A black translucent style.
     #[doc(alias = "UIActionSheetStyleBlackTranslucent")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
     pub const BlackTranslucent: Self = Self(UIBarStyle::BlackTranslucent.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetstyle/blackopaque?language=objc)
+    /// A black opaque style.
     #[doc(alias = "UIActionSheetStyleBlackOpaque")]
     #[cfg(feature = "UIInterface")]
     #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
@@ -49,7 +49,31 @@ unsafe impl RefEncode for UIActionSheetStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheet?language=objc)
+    /// A view that presents a set of alternatives for how to proceed with a task.
+    ///
+    /// ## Overview
+    ///
+    /// In apps that target versions of iOS prior to iOS 8, use the [`UIActionSheet`](https://developer.apple.com/documentation/uikit/uiactionsheet) class to present the user with a set of alternatives for how to proceed with a given task. You can also use action sheets to prompt the user to confirm a potentially dangerous action. The action sheet contains an optional title and one or more buttons, each of which corresponds to an action to take.
+    ///
+    /// Use the properties and methods of this class to configure the action sheet’s message, style, and buttons before presenting it. You should also assign a delegate to your action sheet. Your delegate object is responsible for performing the action associated with any buttons when they’re tapped and should conform to the [`UIActionSheetDelegate`](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate) protocol. For more information about implementing the methods of the delegate, see [`UIActionSheetDelegate`](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate).
+    ///
+    /// You can present an action sheet from a toolbar, tab bar, button bar item, or from a view. This class takes the starting view and current platform into account when determining how to present the action sheet. For applications running on iPhone and iPod touch devices, the action sheet typically slides up from the bottom of the window that owns the view. For applications running on iPad devices, the action sheet is typically displayed in a popover that’s anchored to the starting view in an appropriate way. Taps outside of the popover automatically dismiss the action sheet, as do taps within any custom buttons. You can also dismiss it programmatically.
+    ///
+    /// When presenting an action sheet on an iPad, there are times when you shouldn’t include a cancel button. If you’re presenting just the action sheet, the system displays the action sheet inside a popover without using an animation. Because taps outside the popover dismiss the action sheet without selecting an item, this results in a default way to cancel the sheet. Including a cancel button would therefore only cause confusion. However, if you have an existing popover and are displaying an action sheet on top of other content using an animation, a cancel button is still appropriate. For more information, see [iOS Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In iOS 4 and later, action sheets aren’t dismissed automatically when an application moves to the background. This behavior differs from earlier versions of the operating system, where action sheets were automatically canceled (and their cancellation handler executed) as part of the termination sequence for the application. Now, it’s up to you to decide whether to dismiss the action sheet (and execute its cancellation handler) or leave it visible for when your application moves back to the foreground. Remember that your application can still be terminated while in the background, so some type of action may be necessary in either case.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing notes
+    ///
+    /// [`UIActionSheet`](https://developer.apple.com/documentation/uikit/uiactionsheet) isn’t designed to be subclassed, nor should you add views to its hierarchy. If you need to present a sheet with more customization than provided by the [`UIActionSheet`](https://developer.apple.com/documentation/uikit/uiactionsheet) API, you can create your own and present it modally with [`presentViewController:animated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/present(_:animated:completion:)).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -292,7 +316,21 @@ impl UIActionSheet {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate?language=objc)
+    /// The interface for the delegate of an action sheet object.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate implements the button actions and any other custom behavior. Some of the methods defined in this protocol are optional.
+    ///
+    /// If you add your own buttons or customize the behavior of an action sheet, implement a delegate conforming to this protocol to handle the corresponding delegate messages. Use the [`delegate`](https://developer.apple.com/documentation/uikit/uiactionsheet/delegate) property of the action sheet object to specify one of your application objects as the delegate.
+    ///
+    /// If you add your own buttons to an action sheet, the delegate must implement the [`actionSheet:clickedButtonAtIndex:`](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate/actionsheet(_:clickedbuttonat:)) message to respond when those buttons are clicked; otherwise, your custom buttons do nothing. The action sheet is automatically dismissed after the [`actionSheet:clickedButtonAtIndex:`](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate/actionsheet(_:clickedbuttonat:)) delegate method is invoked.
+    ///
+    /// Optionally, you can implement the [`actionSheetCancel:`](https://developer.apple.com/documentation/uikit/uiactionsheetdelegate/actionsheetcancel(_:)) method to take the appropriate action when the system cancels your action sheet. If the delegate does not implement this method, the default behavior is to simulate the user clicking the cancel button and closing the view.
+    ///
+    /// You can also optionally augment the behavior of presenting and dismissing action sheets using the methods in Customizing behavior.
+    ///
+    ///
     pub unsafe trait UIActionSheetDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]

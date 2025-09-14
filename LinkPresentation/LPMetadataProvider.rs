@@ -10,6 +10,45 @@ use crate::*;
 extern_class!(
     /// An object that retrieves metadata for a URL.
     ///
+    /// ## Overview
+    ///
+    /// Use [`LPMetadataProvider`](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider) to fetch metadata for a URL, including its title, icon, and image or video links. All properties on the resulting [`LPLinkMetadata`](https://developer.apple.com/documentation/linkpresentation/lplinkmetadata) instance are optional.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// To enable macOS clients to fetch metadata for remote URLs, add the [`com.apple.security.network.client`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.network.client) entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ## Fetch link metadata from a URL
+    ///
+    /// For each metadata request, create an instance of [`LPMetadataProvider`](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider) and call [`startFetchingMetadataForURL:completionHandler:`](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider/startfetchingmetadata(for:completionhandler:)-54z5i).
+    ///
+    /// In the completion handler, check the error. If your user doesn’t have a network connection, the fetch can fail. If the server doesn’t respond or is too slow, the fetch can time out. Alternatively, the app may cancel the request, or an unknown error may occur.
+    ///
+    /// Otherwise, use the metadata however you want, for example, to populate the title for a table view cell.
+    ///
+    /// ```swift
+    /// let metadataProvider = LPMetadataProvider()
+    /// let url = URL(string: "https://www.apple.com/ipad")!
+    ///
+    /// metadataProvider.startFetchingMetadata(for: url) { metadata, error in
+    ///     if error != nil {
+    ///         // The fetch failed; handle the error.
+    ///         return
+    ///     }
+    ///
+    ///     // Make use of fetched metadata.
+    /// }
+    /// ```
+    ///
+    /// For more information about handling errors, see [`LPError`](https://developer.apple.com/documentation/linkpresentation/lperror).
+    ///
+    ///
+    /// An object that retrieves metadata for a URL.
+    ///
     /// Use ``LPMetadataProvider`` to fetch metadata for a URL, including its title,
     /// icon, and image or video links. All properties on the resulting
     /// ``LPLinkMetadata`` instance are optional.
@@ -48,8 +87,6 @@ extern_class!(
     ///
     /// For more information about handling errors, see
     /// ``LinkPresentation/LPError``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lpmetadataprovider?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LPMetadataProvider;

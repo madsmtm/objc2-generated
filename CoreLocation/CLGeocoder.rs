@@ -10,13 +10,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocodecompletionhandler?language=objc)
+/// A block to be called when a geocoding request is complete.
+///
+/// ## Discussion
+///
+/// Upon completion of a geocoding request, a block of this form is called to give you a chance to process the results. The parameters of this block are as follows:
+///
+/// - `placemark`: Contains an array of [`CLPlacemark`](https://developer.apple.com/documentation/corelocation/clplacemark) objects. For most geocoding requests, this array should contain only one entry. However, forward-geocoding requests may return multiple placemark objects in situations where the specified address could not be resolved to a single location.
+///
+/// If the request was canceled or there was an error in obtaining the placemark information, this parameter is `nil`.
+///
+/// - `error`: Contains `nil` or an error object indicating why the placemark data was not returned. For a list of possible error codes, see [`CLError`](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code).
+///
+///
 #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
 pub type CLGeocodeCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocoder?language=objc)
+    /// An interface for converting between geographic coordinates and place names.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CLGeocoder`](https://developer.apple.com/documentation/corelocation/clgeocoder) class provides services for converting between a coordinate (specified as a latitude and longitude) and the user-friendly representation of that coordinate. A user-friendly representation of the coordinate typically consists of the street, city, state, and country or region information corresponding to the given location, but it may also contain a relevant point of interest, landmarks, or other identifying information. A geocoder object is a single-shot object that works with a network-based service to look up placemark information for its specified coordinate value.
+    ///
+    /// To use a geocoder object, you create it and call one of its forward- or reverse-geocoding methods to begin the request. _Reverse-geocoding_ requests take a latitude and longitude value and find a user-readable address. _Forward-geocoding_ requests take a user-readable address and find the corresponding latitude and longitude value. Forward-geocoding requests may also return additional information about the specified location, such as a point of interest or building at that location. For both types of request, the results are returned using a [`CLPlacemark`](https://developer.apple.com/documentation/corelocation/clplacemark) object. In the case of forward-geocoding requests, multiple placemark objects may be returned if the provided information yielded multiple possible locations.
+    ///
+    /// To make smart decisions about what types of information to return, the geocoder server uses all the information provided to it when processing the request. For example, if the user is moving quickly along a highway, it might return the name of the overall region, and not the name of a small park that the user is passing through.
+    ///
+    /// ### Tips for Using a Geocoder Object
+    ///
+    /// Apps must be conscious of how they use geocoding. Geocoding requests are rate-limited for each app, so making too many requests in a short period of time may cause some of the requests to fail. (When the maximum rate is exceeded, the geocoder returns an error object with the [`kCLErrorNetwork`](https://developer.apple.com/documentation/corelocation/clerror-swift.struct/code/network) error to the associated completion handler.) Here are some rules of thumb for using this class effectively:
+    ///
+    /// - Send at most one geocoding request for any one user action.
+    ///
+    /// - If the user performs multiple actions that involve geocoding the same location, reuse the results from the initial geocoding request instead of starting individual requests for each action.
+    ///
+    /// - When you want to update the user’s current location automatically (such as when the user is moving), issue new geocoding requests only when the user has moved a significant distance and after a reasonable amount of time has passed. For example, in a typical situation, you should not send more than one geocoding request per minute.
+    ///
+    /// - Do not start a geocoding request at a time when the user will not see the results immediately. For example, do not start a request if your application is inactive or in the background.
+    ///
+    /// The computer or device must have access to the network in order for the geocoder object to return detailed placemark information. Although, the geocoder stores enough information locally to report the localized country or region name and ISO country code for many locations. If this information isn’t available for a specific location, the geocoder may still report an error to your completion block.
+    ///
+    /// You can use geocoder objects either in conjunction with, or independent of, the classes of the [`MapKit`](https://developer.apple.com/documentation/mapkit) framework.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use MapKit"]

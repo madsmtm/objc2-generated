@@ -10,8 +10,6 @@ use crate::*;
 
 extern_class!(
     /// A type that stores the supported configurations for a layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_capabilities?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_capabilities;
@@ -33,12 +31,34 @@ impl CP_OBJECT_cp_layer_renderer_capabilities {
     );
 }
 
-/// A type that stores the supported configurations for a layer.
+/// A type that stores the texture formats and options the layer supports.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t?language=objc)
+/// ## Discussion
+///
+/// A [`cp_layer_renderer_capabilities_t`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_t) type  stores information about what options the layer currently supports. When specifying the configuration details for your layer, use the information in this type to verify your configuration is valid.
+///
+///
+/// A type that stores the supported configurations for a layer.
 pub type cp_layer_renderer_capabilities_t = CP_OBJECT_cp_layer_renderer_capabilities;
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether the layer supports variable rasterization rates.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the layer supports variable rasterization rates or `false` if you must render the entire layer at the same resolution.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Foveation support lets you reduce the amount of high-resolution drawing you do. When foveation support is available, the system provides a variable rasterization rate map that defines the content resolution in different parts of the texture. This map allows you to render content in someone’s peripheral vision at a lower resolution than content in the center of their vision.
+    ///
+    ///
     /// Returns a Boolean value that indicates whether the layer supports
     /// variable rasterization rates.
     ///
@@ -51,27 +71,22 @@ extern "C-unwind" {
     /// you do. When foveation support is available, you can render content in
     /// someone’s peripheral vision at a lower resolution than content under
     /// their direct gaze.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supports_foveation?language=objc)
     pub fn cp_layer_renderer_capabilities_supports_foveation(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> bool;
 }
 
+/// The options to provide when calling `cp_layer_renderer_capabilities_supported_color_formats` and [`cp_layer_renderer_capabilities_supported_color_formats_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_formats_count)
 /// The options to provide when calling ``cp_layer_renderer_capabilities_supported_color_formats`` and
 /// ``cp_layer_renderer_capabilities_supported_color_formats_count``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_color_formats_options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_supported_color_formats_options(pub u32);
 bitflags::bitflags! {
     impl cp_supported_color_formats_options: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_color_formats_options/cp_supported_color_formats_options_none?language=objc)
         #[doc(alias = "cp_supported_color_formats_options_none")]
         const none = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_color_formats_options/cp_supported_color_formats_options_progressive_immersion_enabled?language=objc)
         #[doc(alias = "cp_supported_color_formats_options_progressive_immersion_enabled")]
         const progressive_immersion_enabled = 1<<0;
     }
@@ -88,6 +103,25 @@ unsafe impl RefEncode for cp_supported_color_formats_options {
 extern "C-unwind" {
     /// Returns the number of color formats the specified layer supports.
     ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - options: The options to consider when creating the list of supported color formats.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of color formats the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To iterate over the color formats, use the [`cp_layer_renderer_capabilities_supported_color_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format) function.
+    ///
+    ///
+    /// Returns the number of color formats the specified layer supports.
+    ///
     /// - Parameters:
     /// - layer_capabilities: The layer capabilities to query.
     /// - options: The options to consider when creating the list of supported
@@ -96,8 +130,6 @@ extern "C-unwind" {
     ///
     /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_formats_count_with_options?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_color_formats_count_with_options(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
         options: cp_supported_color_formats_options,
@@ -105,6 +137,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the number of color formats the layer supports.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of color formats the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To iterate over the color formats, use the [`cp_layer_renderer_capabilities_supported_color_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format) function.
+    ///
+    ///
     /// Returns the number of color formats the specified layer supports.
     ///
     /// - Parameters:
@@ -114,14 +163,33 @@ extern "C-unwind" {
     ///
     /// To iterate over the color formats, use the ``cp_layer_renderer_capabilities_supported_color_format``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_formats_count?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_color_formats_count(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the color format at the specified index in the layer capabilities.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - options: The options to consider when creating the list of supported color formats.
+    ///
+    /// - index: A zero-based index into the list of color formats.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The color format at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to determine the pixel arrangements and characteristics you can apply to the layer.
+    ///
+    ///
     /// Returns the color format at the specified index in the layer capabilities.
     ///
     /// - Parameters:
@@ -133,8 +201,6 @@ extern "C-unwind" {
     ///
     /// Use this function to determine the pixel arrangements and characteristics
     /// you can apply to the layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format_with_options?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_color_format_with_options(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -146,6 +212,25 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Returns the color format at the specified index in the layer capabilities.
     ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - index: A zero-based index into the list of supported color formats. This index must be less than the value returned by the [`cp_layer_renderer_capabilities_supported_color_formats_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_formats_count) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The color format at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function tells you which pixel arrangements and characteristics the layer supports for its color textures.
+    ///
+    ///
+    /// Returns the color format at the specified index in the layer capabilities.
+    ///
     /// - Parameters:
     /// - layer_capabilities: The layer capabilities to query.
     /// - index: A zero-based index into the list of color formats.
@@ -153,8 +238,6 @@ extern "C-unwind" {
     ///
     /// Use this function to determine the pixel arrangements and characteristics
     /// you can apply to the layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_color_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -163,6 +246,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the number of depth formats the layer supports.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of depth formats the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To iterate over the depth formats, use the [`cp_layer_renderer_capabilities_supported_depth_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_format) function.
+    ///
+    ///
     /// Returns the number of depth formats the specified layer supports.
     ///
     /// - Parameters:
@@ -171,14 +271,31 @@ extern "C-unwind" {
     ///
     /// To iterate over the depth formats, use the ``cp_layer_renderer_capabilities_supported_depth_format``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_formats_count?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_depth_formats_count(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the depth format at the specified index in the layer capabilities.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - index: A zero-based index into the list of supported depth formats. This index must be less than the value the [`cp_layer_renderer_capabilities_supported_depth_formats_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_formats_count) function returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The depth format at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function tells you which pixel arrangements and characteristics the layer supports for its depth textures.
+    ///
+    ///
     /// Returns the depth format at the specified index in the layer capabilities.
     ///
     /// - Parameters:
@@ -188,8 +305,6 @@ extern "C-unwind" {
     ///
     /// Use this function to determine what depth texture formats the layer
     /// supports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_depth_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -200,20 +315,54 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Returns the number of tracking areas formats the specified layer supports.
     ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of tracking areas formats the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To iterate over the index formats, use the [`cp_layer_renderer_capabilities_supported_tracking_areas_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_tracking_areas_format) function.
+    ///
+    ///
+    /// Returns the number of tracking areas formats the specified layer supports.
+    ///
     /// - Parameters:
     /// - layer_capabilities: The layer capabilities to query.
     /// - Returns: The number of tracking areas formats the layer supports.
     ///
     /// To iterate over the index formats, use the ``cp_layer_renderer_capabilities_supported_tracking_areas_format``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_tracking_areas_formats_count?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_tracking_areas_formats_count(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the tracking areas format at the specified index in the layer capabilities.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - index: A zero-based index into the list of index formats.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pixel format at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to determine what tracking areas texture formats the layer supports.
+    ///
+    ///
     /// Returns the tracking areas format at the specified index in the layer capabilities.
     ///
     /// - Parameters:
@@ -223,8 +372,6 @@ extern "C-unwind" {
     ///
     /// Use this function to determine what tracking areas texture formats the layer
     /// supports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_tracking_areas_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_supported_tracking_areas_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -232,23 +379,25 @@ extern "C-unwind" {
     ) -> MTLPixelFormat;
 }
 
+/// The options you can pass to functions that relate to rendering capabilities and layout support.
+///
+/// ## Overview
+///
+/// You can pass the enumeration’s cases to functions, including [`cp_layer_renderer_capabilities_supported_layout`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layout) and [`cp_layer_renderer_capabilities_supported_layouts_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layouts_count).
+///
+///
 /// The options to provide when calling ``cp_layer_renderer_capabilities_supported_layout`` and
 /// ``cp_layer_renderer_capabilities_supported_layouts_count``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_layouts_options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_supported_layouts_options(pub u32);
 bitflags::bitflags! {
     impl cp_supported_layouts_options: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_layouts_options/cp_supported_layouts_options_none?language=objc)
         #[doc(alias = "cp_supported_layouts_options_none")]
         const none = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_layouts_options/cp_supported_layouts_options_foveation_enabled?language=objc)
         #[doc(alias = "cp_supported_layouts_options_foveation_enabled")]
         const foveation_enabled = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_layouts_options/cp_supported_layouts_options_progressive_immersion_enabled?language=objc)
         #[doc(alias = "cp_supported_layouts_options_progressive_immersion_enabled")]
         const progressive_immersion_enabled = 1<<1;
     }
@@ -263,6 +412,25 @@ unsafe impl RefEncode for cp_supported_layouts_options {
 }
 
 extern "C-unwind" {
+    /// Returns the number of layouts the layer supports.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - options: A bitmask of options that correspond to layout capabilities.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of supported layout options for the layer’s textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns only the number of layouts that support the specified `options`. To iterate over the available layouts, use the [`cp_layer_renderer_capabilities_supported_layout`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layout) function.
+    ///
+    ///
     /// Returns the number of layouts the specified layer supports.
     ///
     /// - Parameters:
@@ -273,8 +441,6 @@ extern "C-unwind" {
     ///
     /// To iterate over the layouts, use the ``cp_layer_renderer_capabilities_supported_layout``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layouts_count?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_layouts_count(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
         options: cp_supported_layouts_options,
@@ -282,6 +448,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the layout at the specified index in the layer capabilities.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - options: A bitmask of options that correspond to layout capabilities. Specify the same options you passed to the [`cp_layer_renderer_capabilities_supported_layouts_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layouts_count) function.
+    ///
+    /// - index: A zero-based index into the list of supported layouts. This index must be less than the value the [`cp_layer_renderer_capabilities_supported_layouts_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layouts_count) function returns.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The layout at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to determine what texture layouts are available for you to use.
+    ///
+    ///
     /// Returns the layout at the specified index in the layer capabilities.
     ///
     /// - Parameters:
@@ -294,8 +481,6 @@ extern "C-unwind" {
     /// - Returns: The layer layout at the specified index.
     ///
     /// Use this function to determine what texture layouts the layer supports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_layout?language=objc)
     #[cfg(feature = "layer_renderer_layout")]
     pub fn cp_layer_renderer_capabilities_supported_layout(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -305,6 +490,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the minimum distance in meters to the layer’s near projection plane.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The minimum allowed distance in meters from the camera origin to the near projection plane.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compositor Services uses the near and far projection planes to compute the perspective projection matrix and to clip content that’s too close to the camera, or too far from it. Use this method to retrieve the minimum distance to the near plane that the layer allows. When you configure your layer, you can specify a different near-plane distance, but that value must be greater than or equal to the minimum distance.
+    ///
+    ///
     /// Returns the minimum distance in meters to the near projection plane
     /// that the layer supports.
     ///
@@ -320,8 +522,6 @@ extern "C-unwind" {
     /// - layer_capabilities: The layer capabilities to query.
     /// - Returns: The minimum allowed distance in meters from the camera
     /// origin to the near projection plane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_minimum_near_plane_distance?language=objc)
     pub fn cp_layer_renderer_capabilities_supported_minimum_near_plane_distance(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> c_float;
@@ -330,20 +530,54 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Returns the number of stencil formats the specified layer supports.
     ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of stencil formats the layer supports.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To iterate over the stencil formats, use the [`cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format) function.
+    ///
+    ///
+    /// Returns the number of stencil formats the specified layer supports.
+    ///
     /// - Parameters:
     /// - layer_capabilities: The layer capabilities to query.
     /// - Returns: The number of stencil formats the layer supports.
     ///
     /// To iterate over the stencil formats, use the ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format``
     /// function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count?language=objc)
     pub fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_formats_count(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
     ) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns the stencil format at the specified index in the layer capabilities.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    /// - index: A zero-based index into the list of stencil formats.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The stencil format at the specified index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to determine the pixel arrangements and characteristics you can apply to the layer.
+    ///
+    ///
     /// Returns the stencil format at the specified index in the layer capabilities.
     ///
     /// - Parameters:
@@ -353,8 +587,6 @@ extern "C-unwind" {
     ///
     /// Use this function to determine the pixel arrangements and characteristics
     /// you can apply to the layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format(
         layer_capabilities: &cp_layer_renderer_capabilities_t,
@@ -363,6 +595,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns default render quality for drawing on this platform.
+    ///
+    /// Parameters:
+    /// - layer_capabilities: The layer capabilities to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The default render quality allowed for drawing.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This should be used as a base value for the platform quality for drawing.
+    ///
+    /// for usage.
+    ///
+    ///
     /// Returns default render quality for drawing on this platform.
     ///
     /// This should be used as a base value for the platform quality
@@ -375,8 +626,6 @@ extern "C-unwind" {
     /// - Parameters:
     /// - layer_capabilities: The layer capabilities to query.
     /// - Returns: The default render quality allowed for drawing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_get_default_render_quality?language=objc)
     #[cfg(feature = "cp_types")]
     pub fn cp_layer_renderer_capabilities_get_default_render_quality(
         layer_capabilities: &cp_layer_renderer_capabilities_t,

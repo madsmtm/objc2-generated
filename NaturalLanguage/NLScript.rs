@@ -4,161 +4,161 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript?language=objc)
+/// The writing scripts that the Natural Language framework supports.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLScript = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/undetermined?language=objc)
+    /// The unique identifier string for a script the Natural Language framework doesn’t recognize.
     pub static NLScriptUndetermined: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/arabic?language=objc)
+    /// The unique identifier string for the Arabic script.
     pub static NLScriptArabic: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/armenian?language=objc)
+    /// The unique identifier string for the Armenian script.
     pub static NLScriptArmenian: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/bengali?language=objc)
+    /// The unique identifier string for the Bengali script.
     pub static NLScriptBengali: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/canadianaboriginalsyllabics?language=objc)
+    /// The unique identifier string for the Canadian Aboriginal Syllabics.
     pub static NLScriptCanadianAboriginalSyllabics: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/cherokee?language=objc)
+    /// The unique identifier string for the Cherokee script.
     pub static NLScriptCherokee: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/cyrillic?language=objc)
+    /// The unique identifier string for the Cyrillic script.
     pub static NLScriptCyrillic: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/devanagari?language=objc)
+    /// The unique identifier string for the Devanagari script.
     pub static NLScriptDevanagari: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/ethiopic?language=objc)
+    /// The unique identifier string for the Ethiopic script.
     pub static NLScriptEthiopic: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/georgian?language=objc)
+    /// The unique identifier string for the Georgian script.
     pub static NLScriptGeorgian: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/greek?language=objc)
+    /// The unique identifier string for the Greek script.
     pub static NLScriptGreek: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/gujarati?language=objc)
+    /// The unique identifier string for the Gujarati script.
     pub static NLScriptGujarati: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/gurmukhi?language=objc)
+    /// The unique identifier string for the Gurmukhi script.
     pub static NLScriptGurmukhi: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/hebrew?language=objc)
+    /// The unique identifier string for the Hebrew script.
     pub static NLScriptHebrew: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/japanese?language=objc)
+    /// The unique identifier string for the Japanese script.
     pub static NLScriptJapanese: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/kannada?language=objc)
+    /// The unique identifier string for the Kannada script.
     pub static NLScriptKannada: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/khmer?language=objc)
+    /// The unique identifier string for the Khmer script.
     pub static NLScriptKhmer: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/korean?language=objc)
+    /// The unique identifier string for the Korean script.
     pub static NLScriptKorean: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/lao?language=objc)
+    /// The unique identifier string for the Lao script.
     pub static NLScriptLao: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/latin?language=objc)
+    /// The unique identifier string for the Latin script.
     pub static NLScriptLatin: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/malayalam?language=objc)
+    /// The unique identifier string for the Malayalam script.
     pub static NLScriptMalayalam: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/mongolian?language=objc)
+    /// The unique identifier string for the Mongolian script.
     pub static NLScriptMongolian: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/myanmar?language=objc)
+    /// The unique identifier string for the Myanmar script.
     pub static NLScriptMyanmar: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/oriya?language=objc)
+    /// The unique identifier string for the Oriya script.
     pub static NLScriptOriya: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/simplifiedchinese?language=objc)
+    /// The unique identifier string for the simplified Chinese script.
     pub static NLScriptSimplifiedChinese: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/sinhala?language=objc)
+    /// The unique identifier string for the Sinhala script.
     pub static NLScriptSinhala: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/tamil?language=objc)
+    /// The unique identifier string for the Tamil script.
     pub static NLScriptTamil: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/telugu?language=objc)
+    /// The unique identifier string for the Telugu script.
     pub static NLScriptTelugu: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/thai?language=objc)
+    /// The unique identifier string for the Thai script.
     pub static NLScriptThai: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/tibetan?language=objc)
+    /// The unique identifier string for the Tibetan script.
     pub static NLScriptTibetan: Option<&'static NLScript>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlscript/traditionalchinese?language=objc)
+    /// The unique identifier string for the traditional Chinese script.
     pub static NLScriptTraditionalChinese: Option<&'static NLScript>;
 }

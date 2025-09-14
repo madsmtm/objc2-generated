@@ -10,36 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Connection state of an external sync device
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus?language=objc)
+/// Connection state of an external sync device
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVExternalSyncDeviceStatus(pub NSInteger);
 impl AVExternalSyncDeviceStatus {
     /// Indicates that external sync signal is not connected, or has transitioned to a state that is not recoverable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/unavailable?language=objc)
+    /// Indicates that external sync signal is not connected, or has transitioned to a state that is not recoverable.
     #[doc(alias = "AVExternalSyncDeviceStatusUnavailable")]
     pub const Unavailable: Self = Self(0);
     /// Indicates that a device supporting external sync is connected, but calibration has not started.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/ready?language=objc)
+    /// Indicates that a device supporting external sync is connected, but calibration has not started.
     #[doc(alias = "AVExternalSyncDeviceStatusReady")]
     pub const Ready: Self = Self(1);
     /// Indicates that the external sync signal is connected and that the AVExternalSyncDevice object is calibrating to follow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/calibrating?language=objc)
+    /// Indicates that the external sync signal is connected and that the AVExternalSyncDevice object is calibrating to follow.
     #[doc(alias = "AVExternalSyncDeviceStatusCalibrating")]
     pub const Calibrating: Self = Self(2);
+    /// Indicates that the [`AVExternalSyncDevice`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice) object is running and that the clock property on [`AVExternalSyncDevice`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice) is calibrated to the external sync signal.
     /// Indicates that the ``AVExternalSyncDevice`` object is running and that the clock property on ``AVExternalSyncDevice`` is calibrated to the external sync signal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/activesync?language=objc)
     #[doc(alias = "AVExternalSyncDeviceStatusActiveSync")]
     pub const ActiveSync: Self = Self(3);
     /// Indicates that the AVExternalSyncDevice was calibrated to follow the external sync, but the sync signal has been lost. The camera will continue to match the last signal it received, but sync is not guaranteed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus/freerunsync?language=objc)
+    /// Indicates that the AVExternalSyncDevice was calibrated to follow the external sync, but the sync signal has been lost. The camera will continue to match the last signal it received, but sync is not guaranteed.
     #[doc(alias = "AVExternalSyncDeviceStatusFreeRunSync")]
     pub const FreeRunSync: Self = Self(4);
 }
@@ -55,9 +49,14 @@ unsafe impl RefEncode for AVExternalSyncDeviceStatus {
 extern_class!(
     /// An external sync device connected to a host device that can be used to drive the timing of an internal component, such as a camera sensor.
     ///
-    /// Each instance of ``AVExternalSyncDevice`` corresponds to a physical external device that can drive an internal component, like a camera readout. You cannot create instances of ``AVExternalSyncDevice``. Instead, you obtain an array of all currently available external sync devices using ``AVExternalSyncDeviceDiscoverySession``.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice?language=objc)
+    /// Each instance of [`AVExternalSyncDevice`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice) corresponds to a physical external device that can drive an internal component, like a camera readout. You cannot create instances of [`AVExternalSyncDevice`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice). Instead, you obtain an array of all currently available external sync devices using [`AVExternalSyncDeviceDiscoverySession`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice/discoverysession).
+    ///
+    ///
+    /// An external sync device connected to a host device that can be used to drive the timing of an internal component, such as a camera sensor.
+    ///
+    /// Each instance of ``AVExternalSyncDevice`` corresponds to a physical external device that can drive an internal component, like a camera readout. You cannot create instances of ``AVExternalSyncDevice``. Instead, you obtain an array of all currently available external sync devices using ``AVExternalSyncDeviceDiscoverySession``.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalSyncDevice;
@@ -134,9 +133,14 @@ impl AVExternalSyncDevice {
 extern_class!(
     /// A means of discovering and monitoring connection / disconnection of external sync devices to the host.
     ///
-    /// ``AVExternalSyncDeviceDiscoverySession`` is a singleton that lists the external sync devices connected to the host. The client is expected to key-value observe the ``AVExternalSyncDeviceDiscoverySession/devices`` property for changes to the external sync devices list.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice/discoverysession?language=objc)
+    /// [`AVExternalSyncDeviceDiscoverySession`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice/discoverysession) is a singleton that lists the external sync devices connected to the host. The client is expected to key-value observe the [`devices`](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice/discoverysession/devices) property for changes to the external sync devices list.
+    ///
+    ///
+    /// A means of discovering and monitoring connection / disconnection of external sync devices to the host.
+    ///
+    /// ``AVExternalSyncDeviceDiscoverySession`` is a singleton that lists the external sync devices connected to the host. The client is expected to key-value observe the ``AVExternalSyncDeviceDiscoverySession/devices`` property for changes to the external sync devices list.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalSyncDeviceDiscoverySession;
@@ -180,9 +184,8 @@ impl AVExternalSyncDeviceDiscoverySession {
 }
 
 extern_protocol!(
+    /// Defines an interface for delegates of [`AVCaptureDeviceInput`](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput) to respond to events that occur when connecting, calibrating, and disconnecting external sync devices.
     /// Defines an interface for delegates of ``AVCaptureDeviceInput`` to respond to events that occur when connecting, calibrating, and disconnecting external sync devices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicedelegate?language=objc)
     pub unsafe trait AVExternalSyncDeviceDelegate: NSObjectProtocol {
         /// Informs your delegate when the external sync device status has changed.
         #[optional]

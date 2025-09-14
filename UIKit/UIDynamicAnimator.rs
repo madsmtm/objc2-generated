@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate?language=objc)
+    /// To respond to the pausing or resumption of UIKit dynamic animation, configure a custom class to adopt the [`UIDynamicAnimatorDelegate`](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate) protocol. Then, in a dynamic animator (an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class), set the delegate to be an instance of your custom class.
     pub unsafe trait UIDynamicAnimatorDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(dynamicAnimatorWillResume:))]
@@ -25,7 +25,53 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidynamicanimator?language=objc)
+    /// An object that provides physics-related capabilities and animations for its dynamic items, and provides the context for those animations.
+    ///
+    /// ## Overview
+    ///
+    /// A **dynamic item** is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol in iOS 7 and later. You can implement this protocol to use a dynamic animator with custom objects for such purposes as reacting to rotation or position changes computed by an animator.
+    ///
+    /// To use dynamics, configure one or more dynamic behaviors—including providing each with a set of dynamic items—and then add those behaviors to a dynamic animator.
+    ///
+    /// You specify dynamic behaviors using any of the iOS primitive dynamic behavior classes: [`UIAttachmentBehavior`](https://developer.apple.com/documentation/uikit/uiattachmentbehavior), [`UICollisionBehavior`](https://developer.apple.com/documentation/uikit/uicollisionbehavior), [`UIDynamicItemBehavior`](https://developer.apple.com/documentation/uikit/uidynamicitembehavior), [`UIGravityBehavior`](https://developer.apple.com/documentation/uikit/uigravitybehavior), [`UIPushBehavior`](https://developer.apple.com/documentation/uikit/uipushbehavior), and [`UISnapBehavior`](https://developer.apple.com/documentation/uikit/uisnapbehavior). Each of these provides configuration options and lets you associate one or more dynamic items to the behavior. To activate a behavior, add it to an animator.
+    ///
+    /// A dynamic animator interacts with each of its dynamic items as follows:
+    ///
+    /// 1. Before adding an item to a behavior, you specify the item’s starting position, rotation, and bounds (to do so, use properties of the item’s class, such as the [`center`](https://developer.apple.com/documentation/uikit/uiview/center), [`transform`](https://developer.apple.com/documentation/uikit/uiview/transform), and [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds) properties in the case of a [`UIView`](https://developer.apple.com/documentation/uikit/uiview)-based item)
+    ///
+    /// 2. After you add the behavior to an animator, the animator takes over: it updates the item’s position and rotation as animation proceeds (see the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol)
+    ///
+    /// 3. You can programmatically update an item’s state in the midst of an animation, after which the animator takes back control of the item’s animation, relative to the state you specified (see the [`updateItemUsingCurrentState:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/updateitem(usingcurrentstate:)) method)
+    ///
+    /// You can define composite behaviors using the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method of the [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) parent behavior class. The set of behaviors you add to an animator constitute a behavior hierarchy. Each behavior instance you associate with an animator can be present only once in the hierarchy.
+    ///
+    /// To employ a dynamic animator, first identify the type of dynamic items you want to animate. This choice determines which initializer to call, and this in turn determines how the coordinate system gets set up. The three ways to initialize an animator, the dynamic items you can then use, and the resulting coordinate system, are as follows:
+    ///
+    /// - To animate views, create an animator with the [`initWithReferenceView:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/init(referenceview:)) method. The coordinate system of the reference view serves as the coordinate system for the animator’s behaviors and items. Each dynamic item you associate with this sort of animator must be a [`UIView`](https://developer.apple.com/documentation/uikit/uiview) object and must descend from the reference view.
+    ///
+    /// You can define a boundary, for items participating in a collision behavior, relative to the bounds of the reference view. See the [`setTranslatesReferenceBoundsIntoBoundaryWithInsets:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/settranslatesreferenceboundsintoboundary(with:)) method.
+    ///
+    /// - To animate collection views, create an animator with the [`initWithCollectionViewLayout:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/init(collectionviewlayout:)) method. The resulting animator employs a collection view layout (an object of the [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout) class) for its coordinate system. The dynamic items in this sort of animator must be [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) objects that are part of the layout.
+    ///
+    /// You can define a boundary, for items participating in a collision behavior, relative to the bounds of the collection view layout. See the [`setTranslatesReferenceBoundsIntoBoundaryWithInsets:`](https://developer.apple.com/documentation/uikit/uicollisionbehavior/settranslatesreferenceboundsintoboundary(with:)) method.
+    ///
+    /// A collection view animator automatically calls the [`invalidateLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/invalidatelayout()) method as needed, and automatically pauses and resumes animation, as appropriate, when you change a collection view’s layout.
+    ///
+    /// - To employ a dynamic animator with other objects that conform to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol, create an animator with the inherited [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method. The resulting animator employs an abstract coordinate system, not tied to the screen or to any view.
+    ///
+    /// There is no reference boundary to refer to when defining a collision boundary for use with this sort of animator. However, you can still, in a collision behavior, specify custom boundaries as described in [`UICollisionBehavior`](https://developer.apple.com/documentation/uikit/uicollisionbehavior).
+    ///
+    /// All types of dynamic animators share the following characteristics:
+    ///
+    /// - Each dynamic animator is independent of other dynamic animators you create
+    ///
+    /// - You can associate a given dynamic item with multiple behaviors, provided those behaviors belong to the same animator
+    ///
+    /// - An animator automatically pauses when all its items are at rest, and automatically resumes when a behavior parameter changes or a behavior or item is added or removed
+    ///
+    /// You can implement a delegate to respond to changes in animator pause/resumption status, using the [`dynamicAnimatorDidPause:`](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate/dynamicanimatordidpause(_:)) and [`dynamicAnimatorWillResume:`](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate/dynamicanimatorwillresume(_:)) methods of the [`UIDynamicAnimatorDelegate`](https://developer.apple.com/documentation/uikit/uidynamicanimatordelegate) protocol.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIDynamicAnimator;

@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenttokencontext?language=objc)
+    /// A class that defines the context for a single payment token in a payment request for multimerchant payments.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must set the [`multiTokenContexts`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/multitokencontexts) property on the [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) object to use this class to request multimerchant payments.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Use [`PKPaymentTokenContext`](https://developer.apple.com/documentation/passkit/pkpaymenttokencontext) to authorize a payment amount for each payment token in a multimerchant payment request. To enable multiple merchants for a transaction, use one [`PKPaymentTokenContext`](https://developer.apple.com/documentation/passkit/pkpaymenttokencontext) object for each merchant.
+    ///
+    /// You can optionally associate each payment token with the merchant’s top-level domain.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentTokenContext;

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasklist?language=objc)
+    /// A collection of individual tasks.
+    ///
+    /// ## Overview
+    ///
+    /// A task list stores tasks related that are in some way related to each other. For example, a user might create a “party prep” task list that contains the individual tasks to perform to get ready for a party. The title of a task list describes its purpose, and individual tasks within the list have their own descriptions and completion states. Tasks can also have triggers to indicate when the user receives reminders to complete the task.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INTaskList;

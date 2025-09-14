@@ -5,39 +5,46 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_allocationfailed?language=objc)
+/// An error that indicates an allocation fails.
 pub const kCMMetadataIdentifierError_AllocationFailed: OSStatus = -16300;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_requiredparametermissing?language=objc)
+/// An error that indicates a parameter the function requires is empty.
 pub const kCMMetadataIdentifierError_RequiredParameterMissing: OSStatus = -16301;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badkey?language=objc)
+/// An error that indicates a key isn’t valid.
 pub const kCMMetadataIdentifierError_BadKey: OSStatus = -16302;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badkeylength?language=objc)
+/// An error that indicates that a key doesn’t have the correct length.
 pub const kCMMetadataIdentifierError_BadKeyLength: OSStatus = -16303;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badkeytype?language=objc)
+/// An error that indicates a key has a bad type.
 pub const kCMMetadataIdentifierError_BadKeyType: OSStatus = -16304;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badnumberkey?language=objc)
+/// An error that indicates the number for a key isn’t valid.
 pub const kCMMetadataIdentifierError_BadNumberKey: OSStatus = -16305;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badkeyspace?language=objc)
+/// An error that indicates the keyspace isn’t valid.
 pub const kCMMetadataIdentifierError_BadKeySpace: OSStatus = -16306;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_badidentifier?language=objc)
+/// An error that indicates the identifier isn’t valid.
 pub const kCMMetadataIdentifierError_BadIdentifier: OSStatus = -16307;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifiererror_nokeyvalueavailable?language=objc)
+/// An error that indicates a request for a key value in the anonymous keyspace.
 pub const kCMMetadataIdentifierError_NoKeyValueAvailable: OSStatus = -16308;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_allocationfailed?language=objc)
+/// An error that indicates the allocation fails.
 pub const kCMMetadataDataTypeRegistryError_AllocationFailed: OSStatus = -16310;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_requiredparametermissing?language=objc)
+/// An error that indicates a parameter the function requires is empty.
 pub const kCMMetadataDataTypeRegistryError_RequiredParameterMissing: OSStatus = -16311;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_baddatatypeidentifier?language=objc)
+/// An error that indicates a bad datatype identifier.
 pub const kCMMetadataDataTypeRegistryError_BadDataTypeIdentifier: OSStatus = -16312;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_datatypealreadyregistered?language=objc)
+/// An error that indicates the datatype is in a registered state.
 pub const kCMMetadataDataTypeRegistryError_DataTypeAlreadyRegistered: OSStatus = -16313;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_requiresconformingbasetype?language=objc)
+/// An error that indicates the data type you specify requires a conforming data type that resolves to a base data type.
 pub const kCMMetadataDataTypeRegistryError_RequiresConformingBaseType: OSStatus = -16314;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatyperegistryerror_multipleconformingbasetypes?language=objc)
+/// An error that indicates that type you provide has more than one base data type.
 pub const kCMMetadataDataTypeRegistryError_MultipleConformingBaseTypes: OSStatus = -16315;
 
 extern "C" {
+    /// Metadata keyspace for QuickTime User Data keys.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyspace defines its key values to be expressed as `OSType`s (a.k.a. `FourCharCode`s). As such, keys must be four bytes in length.
+    ///
+    ///
     /// Metadata keyspace for QuickTime User Data keys.
     ///
     /// Metadata keyspace for MPEG-4 User Data keys.
@@ -51,90 +58,119 @@ extern "C" {
     /// Metadata keyspace for ShoutCast keys.
     ///
     /// Metadata keyspace for HLS DateRange tags.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimeuserdata?language=objc)
     pub static kCMMetadataKeySpace_QuickTimeUserData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_isouserdata?language=objc)
+    /// Metadata keyspace for MPEG-4 User Data keys.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyspace defines its key values to be expressed as `OSType`s (a.k.a. `FourCharCode`s). As such, keys must be four bytes in length.
+    ///
+    ///
     pub static kCMMetadataKeySpace_ISOUserData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimemetadata?language=objc)
+    /// Metadata keyspace for QuickTime Metadata keys.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyspace defines its key values to be expressed as reverse-DNS strings, which allows third parties to define their own keys in a well established way that avoids collisions.
+    ///
+    ///
     pub static kCMMetadataKeySpace_QuickTimeMetadata: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_itunes?language=objc)
+    /// Metadata keyspace for iTunes keys.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyspace defines its key values to be expressed as `OSType`s (a.k.a. `FourCharCode`s). As such, keys must be four bytes in length.
+    ///
+    ///
     pub static kCMMetadataKeySpace_iTunes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_id3?language=objc)
+    /// Metadata keyspace for ID3 keys.
+    ///
+    /// ## Discussion
+    ///
+    /// This keyspace defines its key values to be expressed as `OSType`s (a.k.a. `FourCharCode`s). As such, keys must be four bytes in length.
+    ///
+    ///
     pub static kCMMetadataKeySpace_ID3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_icy?language=objc)
+    /// Metadata keyspace for ShoutCast keys.
     pub static kCMMetadataKeySpace_Icy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_hlsdaterange?language=objc)
+    /// Metadata keyspace for HLS DateRange tags.
     pub static kCMMetadataKeySpace_HLSDateRange: &'static CFString;
 }
 
 extern "C" {
     /// Location information in ISO-6709 format.
+    /// Location information in ISO-6709 format.
     ///
     /// Direction the observer is facing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalocation_iso6709?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadirection_facing?language=objc)
+    /// Direction the observer is facing.
     pub static kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing: &'static CFString;
 }
 
 extern "C" {
+    /// An affine transform to be applied to a video track.
+    ///
+    /// ## Discussion
+    ///
+    /// This affine transform can be used in place of a track matrix for displaying a video track to better reflect the current orientation of a video camera with respect to a scene. For example, if the camera is rotated after a recording has started, the presence of this metadata will allow a player to adjust its rendering at the time the rotation occurred.
+    ///
+    ///
     /// An affine transform that can be used in place of a track matrix for
     /// displaying a video track, to better reflect the current orientation
     /// of a video camera with respect to a scene.  For example, if the camera
     /// is rotated after a recording has started, the presence of this metadata
     /// will allow a player to adjust its rendering at the time the rotation occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatapreferredaffinetransform?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform: &'static CFString;
 }
 
 extern "C" {
+    /// Video orientation as defined by TIFF/EXIF.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values and their meanings, see [`kCGImagePropertyOrientation`](https://developer.apple.com/documentation/imageio/kcgimagepropertyorientation).
+    ///
+    ///
     /// Video orientation as defined by TIFF/EXIF, which is enumerated by CGImagePropertyOrientation
     /// (see
     /// <ImageIO
     /// /CGImageProperties.h>).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatavideoorientation?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation: &'static CFString;
 }
 
 extern "C" {
+    /// A perspective transform you use to adjust a Live Photo still image to match the Live Photo movie.
     /// A perspective transform that can be used to adjust a Live Photo still image to match the Live Photo movie.
     /// Expected data type is kCMMetadataBaseDataType_PerspectiveTransformF64.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransform?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform:
         &'static CFString;
 }
 
 extern "C" {
+    /// The dimensions of the live photo still image.
     /// The dimensions of the image used to generate kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform.
     /// Expected data type is kCMMetadataBaseDataType_DimensionsF32.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatalivephotostillimagetransformreferencedimensions?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions:
         &'static CFString;
 }
@@ -142,61 +178,119 @@ extern "C" {
 extern "C" {
     /// A segment identifier, used to support movies where pause/resume has been used.
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataUUID.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasegmentidentifier?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: &'static CFString;
 }
 
 extern "C" {
     /// Scene illuminance measured in units of Lux.
     /// Expected data type is kCMMetadataDataType_QuickTimeMetadataMilliLux.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatasceneilluminance?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: &'static CFString;
 }
 
 extern "C" {
-    /// Data associated with a Spatial Audio capture that contains an analysis of a First Order Ambisonics audio stream which is used for playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadataspatialaudiomix?language=objc)
+    /// ## Discussion
+    ///
+    /// ```text
+    /// Data associated with a Spatial Audio capture that contains an analysis of a First Order Ambisonics audio stream which is used for playback.
+    /// ```
+    ///
+    ///
+    /// Data associated with a Spatial Audio capture that contains an analysis of a First Order Ambisonics audio stream which is used for playback.
     pub static kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```text
+    ///     Display mask rectangle for monoscopic video
+    ///     Expected data type is kCMMetadataBaseDataType_RasterRectangleValue.
+    /// ```
+    ///
+    ///
     /// Display mask rectangle for monoscopic video
     /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglemono?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```text
+    ///     Display mask rectangle for stereoscopic video's left eye view
+    ///     Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
+    /// ```
+    ///
+    ///
     /// Display mask rectangle for stereoscopic video's left eye view
     /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglestereoleft?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft:
         &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```text
+    ///     Display mask rectangle for stereoscopic video's right eye view
+    ///     Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
+    /// ```
+    ///
+    ///
     /// Display mask rectangle for stereoscopic video's right eye view
     /// Expected data type is kCMMetadataBaseDataType_RasterRectangleValue or kCMMetadataBaseDataType_ExtendedRasterRectangleValue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatadisplaymaskrectanglestereoright?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight:
         &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Presentation data associated with Apple Immersive Video’s video frames. Data is a JSON-encoding of ImmersiveMediaSupport framework’s PresentationDescriptor object. Expected data type is kCMMetadataBaseDataType_RawData.
+    ///
+    ///
     /// Presentation data associated with Apple Immersive Video's video frames. Data is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
     /// Expected data type is kCMMetadataBaseDataType_RawData.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadataidentifier_quicktimemetadatapresentationimmersivemedia?language=objc)
     pub static kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Creates a URL-like string identifier that represents a key or keyspace tuple.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the identifier.
+    ///
+    /// - key: Key data; may be `CFString`, `CFNumber`, or `CFData`.
+    ///
+    /// - keySpace: Keyspace; must be string of one to four printable ASCII characters.
+    ///
+    /// - identifierOut: Upon return, a pointer to the created identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, a nonzero result code. See [Metadata Identifier Error Codes](https://developer.apple.com/documentation/coremedia/metadata-identifier-errors).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Metadata entities are identified by a key whose interpretation is defined by its keyspace. When writing metadata to a QuickTime Movie, this tuple is part of the track’s format description.
+    ///
+    /// See [Metadata Identifier Keyspaces](https://developer.apple.com/documentation/coremedia/metadata-identifier-keyspaces) for the current list of supported keyspaces and the requirements for key values in each keyspace.
+    ///
+    /// As a matter of convenience, known keyspaces allow for a key to be passed in using a variety of `CFType`s. Note that what is returned by [`CMMetadataCreateKeyFromIdentifier`](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifier(allocator:identifier:keyout:)) depends upon the keyspace, and may be a different `CFType` than what is passed to this routine (see the discussion below for what `CFType`s are returned for known keyspaces). To get a key represented as `CFData`, call [`CMMetadataCreateKeyFromIdentifierAsCFData`](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifierascfdata(allocator:identifier:keyout:)).
+    ///
+    /// Some keyspaces use `OSType`s (a.k.a. `FourCharCode`s) to define their keys, and as such their keys are four bytes in length. For these keyspaces, a key may be passed as a `CFNumber`, a `CFString`, or a `CFData`. A key passed as a `CFNumber` will have its value retrieved as [`kCFNumberSInt32Type`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint32type) comprising the four bytes of the key’s numeric value in big-endian byte order. A key passed as a `CFString` must be a valid ASCII string of four characters. A key passed as a `CFData` must be comprised of the four bytes of the key’s numeric value in big-endian byte order.
+    ///
+    /// All other keyspaces allow the key to be passed as a `CFString` or `CFData`. In both cases, the key will be interpreted as an ASCII string for the purposes of identifier encoding.
+    ///
+    ///
     /// Creates a URL-like string identifier that represents a key/keyspace tuple.
     ///
     /// Metadata entities are identified by a key whose interpretation
@@ -253,8 +347,6 @@ extern "C-unwind" {
     ///
     /// - `key` should be of the correct type.
     /// - `identifier_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreateidentifierforkeyandkeyspace(allocator:key:keyspace:identifierout:)?language=objc)
     pub fn CMMetadataCreateIdentifierForKeyAndKeySpace(
         allocator: Option<&CFAllocator>,
         key: &CFType,
@@ -264,6 +356,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a copy of the key by using an identifier.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the identifier.
+    ///
+    /// - identifier: The identifier to be inspected.
+    ///
+    /// - keyOut: Upon return, a pointer to the key data that was used to create the identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, a nonzero result code. See [Metadata Identifier Error Codes](https://developer.apple.com/documentation/coremedia/metadata-identifier-errors).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned `CFType` is based on the keyspace encoded in the identifier.
+    ///
+    /// For `OSType` keyspaces, the key will be returned as a `CFNumber`, where a big endian interpretation of its [`kCFNumberSInt32Type`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint32type) value represents the four bytes of the key’s numeric value.
+    ///
+    /// For the keyspaces [`kCMMetadataKeySpace_QuickTimeMetadata`](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_quicktimemetadata) and [`kCMMetadataKeySpace_Icy`](https://developer.apple.com/documentation/coremedia/kcmmetadatakeyspace_icy), the key will be returned as a `CFString`.
+    ///
+    /// All other keyspaces will have the function return the key as a `CFData`.
+    ///
+    ///
     /// Creates a copy of the key encoded in the identifier as a CFType.
     ///
     /// The returned CFType is based on the keyspace encoded in the identifier.
@@ -280,8 +399,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `key_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifier(allocator:identifier:keyout:)?language=objc)
     pub fn CMMetadataCreateKeyFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -290,14 +407,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a copy of the key by using an identifier, and results in a core foundation data object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the identifier.
+    ///
+    /// - identifier: The identifier to be inspected.
+    ///
+    /// - keyOut: Upon return, a pointer to the key data that was used to create the identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, a nonzero result code. See [Metadata Identifier Error Codes](https://developer.apple.com/documentation/coremedia/metadata-identifier-errors).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The bytes in the `CFData` correspond to how they are serialized in the file.
+    ///
+    ///
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     /// The bytes in the CFData correpsond to how they are serialized in the file.
     ///
     /// # Safety
     ///
     /// `key_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyfromidentifierascfdata(allocator:identifier:keyout:)?language=objc)
     pub fn CMMetadataCreateKeyFromIdentifierAsCFData(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -306,13 +442,26 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a copy of the keyspace by using an identifier.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the identifier.
+    ///
+    /// - identifier: The identifier to be inspected.
+    ///
+    /// - keySpaceOut: Upon return, a pointer to the keyspace that was used to create the identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, a nonzero result code. See [Metadata Identifier Error Codes](https://developer.apple.com/documentation/coremedia/metadata-identifier-errors).
+    ///
+    ///
     /// Creates a copy of the key value that was encoded in the identifier as CFData.
     ///
     /// # Safety
     ///
     /// `key_space_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatacreatekeyspacefromidentifier(allocator:identifier:keyspaceout:)?language=objc)
     pub fn CMMetadataCreateKeySpaceFromIdentifier(
         allocator: Option<&CFAllocator>,
         identifier: &CFString,
@@ -321,6 +470,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
+    /// A sequence of bytes whose interpretation based upon an agreement between the reader and the writer.
     /// A sequence of bytes whose interpretation based upon an agreement between
     /// the reader and the writer.
     ///
@@ -378,174 +528,198 @@ extern "C" {
     ///
     /// Consists of at least six 16-bit big endian unsigned integer values for RasterRectangleValue in the same order as kCMMetadataBaseDataType_RasterRectangleValue and then two 4-bit values for the number of left and right edge adjustment points. If edge adustment points are 2 or more, points would be pairs of 16-bit big endian unsigned integers alternating between x and y with left edge points first and right edge points afterwards.
     /// Rectangle origin and dimension are normalized to raster rectangle coordinates to be pixel accurate but still retain the relative semantics when scaled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rawdata?language=objc)
     pub static kCMMetadataBaseDataType_RawData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf8?language=objc)
+    /// UTF-8 string.
     pub static kCMMetadataBaseDataType_UTF8: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf16?language=objc)
+    /// UTF-16 string.
     pub static kCMMetadataBaseDataType_UTF16: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_gif?language=objc)
+    /// GIF image.
     pub static kCMMetadataBaseDataType_GIF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_jpeg?language=objc)
+    /// JPEG image.
     pub static kCMMetadataBaseDataType_JPEG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_png?language=objc)
+    /// PNG image.
     pub static kCMMetadataBaseDataType_PNG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_bmp?language=objc)
+    /// BMP image.
     pub static kCMMetadataBaseDataType_BMP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float32?language=objc)
+    /// 32-bit big endian floating point number.
     pub static kCMMetadataBaseDataType_Float32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_float64?language=objc)
+    /// 64-bit big endian floating point number.
     pub static kCMMetadataBaseDataType_Float64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint8?language=objc)
+    /// 8-bit signed integer.
     pub static kCMMetadataBaseDataType_SInt8: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint16?language=objc)
+    /// 16-bit big endian signed integer.
     pub static kCMMetadataBaseDataType_SInt16: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint32?language=objc)
+    /// 32-bit big endian signed integer.
     pub static kCMMetadataBaseDataType_SInt32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_sint64?language=objc)
+    /// 64-bit big endian signed integer.
     pub static kCMMetadataBaseDataType_SInt64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint8?language=objc)
+    /// 8-bit unsigned integer.
     pub static kCMMetadataBaseDataType_UInt8: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint16?language=objc)
+    /// 16-bit big endian unsigned integer.
     pub static kCMMetadataBaseDataType_UInt16: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint32?language=objc)
+    /// 32-bit big endian unsigned integer.
     pub static kCMMetadataBaseDataType_UInt32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_uint64?language=objc)
+    /// 64-bit big endian unsigned integer.
     pub static kCMMetadataBaseDataType_UInt64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_pointf32?language=objc)
+    /// Consists of two 32-bit big endian floating point values, the x and y values, respectively.
     pub static kCMMetadataBaseDataType_PointF32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_dimensionsf32?language=objc)
+    /// Consists of a 32-bit big endian floating point x value followed by a 32-bit floating point y value.
     pub static kCMMetadataBaseDataType_DimensionsF32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rectf32?language=objc)
+    /// Consists of four 32-bit big endian floating point values, the origin’s x, origin’s y, width and height values, respectively. May also be interpreted as a 32-bit floating point origin followed by a 32-bit floating point dimension.
     pub static kCMMetadataBaseDataType_RectF32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_affinetransformf64?language=objc)
+    /// A type that identifies a 3x3 matrix of 64-bit big endian floating point numbers in a row-major order that specify an affine transform.
     pub static kCMMetadataBaseDataType_AffineTransformF64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polygonf32?language=objc)
+    /// Three or more pairs of 32-bit floating point numbers (x and y values) that define the vertices of a polygon.
     pub static kCMMetadataBaseDataType_PolygonF32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_polylinef32?language=objc)
+    /// Two or more pairs of 32-bit floating point numbers (x and y values) that define a multi-segmented line.
     pub static kCMMetadataBaseDataType_PolylineF32: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_json?language=objc)
+    /// UTF-8 encoded JSON data.
     pub static kCMMetadataBaseDataType_JSON: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_perspectivetransformf64?language=objc)
+    /// A 3x3 matrix of 64-bit big endian floating point numbers the system stores in row-major order that specify a perspective transform.
     pub static kCMMetadataBaseDataType_PerspectiveTransformF64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_rasterrectanglevalue?language=objc)
     pub static kCMMetadataBaseDataType_RasterRectangleValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_extendedrasterrectanglevalue?language=objc)
     pub static kCMMetadataBaseDataType_ExtendedRasterRectangleValue: &'static CFString;
 }
 
 extern "C" {
+    /// A string supplying location information in ISO-6709 format.
+    ///
+    /// ## Discussion
+    ///
+    /// Conforms to [`kCMMetadataBaseDataType_UTF8`](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf8).
+    ///
+    ///
     /// A string supplying location information in ISO-6709 format.  Conforms to
     /// kCMMetadataBaseDataType_UTF8.
     ///
     /// A string supplying degrees offset from magnetic North.  Conforms to
     /// kCMMetadataBaseDataType_UTF8.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatalocation_iso6709?language=objc)
     pub static kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatadirection?language=objc)
+    /// A string supplying degrees offset from magnetic North.
+    ///
+    /// ## Discussion
+    ///
+    /// Conforms to [`kCMMetadataBaseDataType_UTF8`](https://developer.apple.com/documentation/coremedia/kcmmetadatabasedatatype_utf8).
+    ///
+    ///
     pub static kCMMetadataDataType_QuickTimeMetadataDirection: &'static CFString;
 }
 
 extern "C" {
     /// A string supplying a universally unique identifier.  Conforms to
     /// kCMMetadataBaseDataType_UTF8.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatauuid?language=objc)
     pub static kCMMetadataDataType_QuickTimeMetadataUUID: &'static CFString;
 }
 
 extern "C" {
     /// 1/1000 of a Lux.  An unsigned value between 0 - 100,000,000.  Conforms to
     /// kCMMetadataBaseDataType_UInt32.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmmetadatadatatype_quicktimemetadatamillilux?language=objc)
     pub static kCMMetadataDataType_QuickTimeMetadataMilliLux: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Register a data type with the data type registry.
+    ///
+    /// Parameters:
+    /// - dataType: Identifier of data type being registered.
+    ///
+    /// - description: Human-readable description of data type being registered (for aiding debugging operations).
+    ///
+    /// - conformingDataTypes: Data types that this data type conforms to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, a nonzero result code. See [Metadata Registry Error Codes](https://developer.apple.com/documentation/coremedia/metadata-registry-errors).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine is called by clients to register a data type with the data type registry. The list of conforming data type identifiers must include a base data type. If the data type has already been registered, then it is not considered an error to re-register it as long as the list of conforming data type identifiers has the same entries as the original; otherwise an error will be returned.
+    ///
+    ///
     /// Register a data type with the data type registry.
     ///
     /// This routine is called by clients to register a data type with
@@ -558,8 +732,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `conforming_data_types` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistryregisterdatatype(_:description:conformingdatatypes:)?language=objc)
     pub fn CMMetadataDataTypeRegistryRegisterDataType(
         data_type: &CFString,
         description: &CFString,
@@ -567,9 +739,18 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// Tests a data type identifier to see if it has been registered.
+/// Returns a Boolean value that indicates the registration status of a data type identifier.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeisregistered(_:)?language=objc)
+/// Parameters:
+/// - dataType: Identifier of the data type to be checked.
+///
+///
+/// ## Return Value
+///
+/// [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if the data type has been registered; [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) otherwise.
+///
+///
+/// Tests a data type identifier to see if it has been registered.
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
     data_type: &CFString,
@@ -581,9 +762,18 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsRegistered(
     ret != 0
 }
 
-/// Returns the data type's description (if any was provided when it was registered).
+/// Returns the data type description if it exists.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetdatatypedescription(_:)?language=objc)
+/// Parameters:
+/// - dataType: Identifier of the data type to be queried.
+///
+///
+/// ## Return Value
+///
+/// The description of the requested data type.
+///
+///
+/// Returns the data type's description (if any was provided when it was registered).
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription(
     data_type: &CFString,
@@ -598,13 +788,22 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetDataTypeDescription
     unsafe { CFRetained::retain(ret) }
 }
 
+/// Returns the conforming data types for the data type, if any.
+///
+/// Parameters:
+/// - dataType: Identifier of the data type to be queried.
+///
+///
+/// ## Return Value
+///
+/// List of conforming data types registered for the given data type, or `NULL` if the data type has not been registered.
+///
+///
 /// Returns the data type's conforming data types (if any were
 /// provided when it was registered).
 ///
 /// Returns: List of conforming data types registered for the given data type.
 /// NULL is returned if the data type has not been registered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetconformingdatatypes(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes(
     data_type: &CFString,
@@ -619,6 +818,31 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
     unsafe { CFRetained::retain(ret) }
 }
 
+/// Returns a Boolean value that indicates whether a data type conforms to another data type.
+///
+/// Parameters:
+/// - dataType: Identifier of the data type to be tested.
+///
+/// - conformsToDataType: Identifier of the data type against which to test for conformance.
+///
+///
+/// ## Return Value
+///
+/// [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if first data type conforms to the second data type; [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// A given data type will conform to a second data type if any of the following are true:
+///
+/// 1. The data type identifiers are the same.
+///
+/// 2. The first data type identifier’s conformance list contains the second data type identifier.
+///
+/// 3. A recursive search of the conforming data types for each element in the first data type’s conformance list yields the second data type identifier.
+///
+///
 /// Checks to see if a data type conforms to another data type.
 ///
 /// A given data type will conform to a second data type if any of
@@ -634,8 +858,6 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetConformingDataTypes
 /// </ul>
 ///
 /// Returns: True if the first data type conforms to the second data type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeconformstodatatype(_:conformsto:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToDataType(
     data_type: &CFString,
@@ -655,11 +877,22 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeConformsToData
 
 /// Returns an array of base data type identifiers.
 ///
+/// ## Return Value
+///
+/// An array of the base data types to which all others must conform.
+///
+///
+///
+/// ## Discussion
+///
+/// There are a set of base data types that seed the data type registry. All valid data types will have their conformance search end with a base data type.
+///
+///
+/// Returns an array of base data type identifiers.
+///
 /// There are a set of base data types that seed the data type
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetbasedatatypes()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
 ) -> Option<CFRetained<CFArray>> {
@@ -670,13 +903,28 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
+/// Returns a Boolean value that indicates whether a data type identifier represents a base data type.
+///
+/// Parameters:
+/// - dataType: Identifier of the data type to be queried.
+///
+///
+/// ## Return Value
+///
+/// [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) if first data type conforms to the second data type; [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse) otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// This is simply a convenience method to test to see if a given data type identifier is in the array returned by [`CMMetadataDataTypeRegistryGetBaseDataTypes`](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetbasedatatypes()).
+///
+///
 /// Tests a data type identifier to see if it represents a base data type.
 ///
 /// This is simply a convenience method to test to see if a given
 /// data type identifier is in the array returned by
 /// CMMetadataDataTypeRegistryGetBaseDataTypes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrydatatypeisbasedatatype(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType(
     data_type: &CFString,
@@ -688,14 +936,29 @@ pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryDataTypeIsBaseDataType
     ret != 0
 }
 
+/// Returns the base data type identifier that a data type conforms to.
+///
+/// Parameters:
+/// - dataType: Identifier of the data type to be queried.
+///
+///
+/// ## Return Value
+///
+/// Identifier of the base data type to which the given data type conforms.
+///
+///
+///
+/// ## Discussion
+///
+/// There are a set of base data types that seed the data type registry. All valid data types will have their conformance search end with a base data type.
+///
+///
 /// Returns the base data type identifier that the given data type
 /// conforms to.
 ///
 /// There are a set of base data types that seed the data type
 /// registry.  All valid data types will have their conformance search
 /// end with a base data type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmmetadatadatatyperegistrygetbasedatatypeforconformingdatatype(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CMMetadataDataTypeRegistryGetBaseDataTypeForConformingDataType(
     data_type: &CFString,

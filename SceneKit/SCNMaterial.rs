@@ -9,50 +9,152 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct?language=objc)
+/// Constants specifying the lighting and shading algorithm to use for rendering a material.
+///
+/// ## Discussion
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/a1b3893bc30880a4d37b9f6536e168ee/media-2929794%402x.png)
+///
+///
+///
 // NS_TYPED_ENUM
 pub type SCNLightingModel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/phong?language=objc)
+    /// Shading that incorporates ambient, diffuse, and specular properties, where specular highlights are calculated using the Phong  formula.
+    ///
+    /// ## Discussion
+    ///
+    /// The Phong approximation of real-world reflectance calculates the color of a point on a surface using the following formula:
+    ///
+    /// ```objc
+    /// color = ambient * al + diffuse * max(0, dot(N, L)) + specular * pow(max(0, dot(R, E)), shininess)
+    /// ```
+    ///
+    /// Some terms refer to the material’s properties: [`ambient`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambient), [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse), [`specular`](https://developer.apple.com/documentation/scenekit/scnmaterial/specular), and [`shininess`](https://developer.apple.com/documentation/scenekit/scnmaterial/shininess). The other terms are as follows:
+    ///
+    /// - `al`: The sum of all ambient lights in the scene (a color).
+    ///
+    /// - `N`: The surface normal vector at the point being shaded, as supplied by the geometry’s vertex data, interpolated between vertices, and possibly modified by the material’s [`normal`](https://developer.apple.com/documentation/scenekit/scnmaterial/normal) property.
+    ///
+    /// - `L`: The (normalized) vector from the point being shaded to the light source.
+    ///
+    /// - `E`: The (normalized) vector from the point being shaded to the viewer.
+    ///
+    /// - `R`: The reflection of the light vector `L` across the normal vector `N`.
+    ///
+    ///
     pub static SCNLightingModelPhong: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/blinn?language=objc)
+    /// Shading that incorporates ambient, diffuse, and specular properties, where specular highlights are calculated using the Blinn-Phong  formula.
+    ///
+    /// ## Discussion
+    ///
+    /// The Blinn-Phong approximation of real-world reflectance calculates the color of a point on a surface using the following formula:
+    ///
+    /// ```objc
+    /// color = ambient * al + diffuse * max(0, dot(N, L)) + specular * pow(max(0, dot(H, N)), shininess)
+    /// ```
+    ///
+    /// Some terms refer to the material’s properties: [`ambient`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambient), [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse), [`specular`](https://developer.apple.com/documentation/scenekit/scnmaterial/specular), and [`shininess`](https://developer.apple.com/documentation/scenekit/scnmaterial/shininess). The other terms are as follows:
+    ///
+    /// - `al`: The sum of all ambient lights in the scene (a color).
+    ///
+    /// - `N`: The surface normal vector at the point being shaded, as supplied by the geometry’s vertex data, interpolated between vertices, and possibly modified by the material’s [`normal`](https://developer.apple.com/documentation/scenekit/scnmaterial/normal) property.
+    ///
+    /// - `L`: The (normalized) vector from the point being shaded to the light source.
+    ///
+    /// - `H`: A vector halfway between the light vector `L` and the (normalized) eye vector `E` (the vector from the point being shaded to the viewer), calculated using the formula `H = normalize(L + E)`.
+    ///
+    ///
     pub static SCNLightingModelBlinn: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/lambert?language=objc)
+    /// Shading that incorporates ambient and diffuse properties only.
+    ///
+    /// ## Discussion
+    ///
+    /// This shading model is based on Lambert’s Law of diffuse reflectance, calculating the color of a point on a surface with the following formula:
+    ///
+    /// ```objc
+    /// color = ambient * al + diffuse * max(0, dot(N, L))
+    /// ```
+    ///
+    /// The [`ambient`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambient) and [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse) terms refer to the material’s properties. The other terms are as follows:
+    ///
+    /// - `al`: The sum of all ambient lights in the scene (a color).
+    ///
+    /// - `N`: The surface normal vector at the point being shaded, as supplied by the geometry’s vertex data, interpolated between vertices, and possibly modified by the material’s [`normal`](https://developer.apple.com/documentation/scenekit/scnmaterial/normal) property.
+    ///
+    /// - `L`: The (normalized) vector from the point being shaded to the light source.
+    ///
+    ///
     pub static SCNLightingModelLambert: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/constant?language=objc)
+    /// Uniform shading that incorporates ambient lighting only.
+    ///
+    /// ## Discussion
+    ///
+    /// This shading model calculates the color of a point on a surface with the following formula:
+    ///
+    /// ```objc
+    /// color = ambient * al + diffuse
+    /// ```
+    ///
+    /// The [`ambient`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambient) and [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse) terms refer to the material’s properties. The `al` term is the sum of all ambient lights in the scene (a color).
+    ///
+    ///
     pub static SCNLightingModelConstant: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/physicallybased?language=objc)
+    /// Shading based on a realistic abstraction of physical lights and materials.
+    ///
+    /// ## Discussion
+    ///
+    /// Physically-based shading incorporates a refined model of the interactions between real-world lights and materials. Using modern GPU hardware and algorithms, this model can produce more realistic results than the loose abstractions of traditional shading, while also offering a set of material properties that is easier for artists to work with. Especially when combined with environmental lighting (see the [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) [`lightingEnvironment`](https://developer.apple.com/documentation/scenekit/scnscene/lightingenvironment) property) and high dynamic range cameras (see the [`SCNCamera`](https://developer.apple.com/documentation/scenekit/scncamera) [`wantsHDR`](https://developer.apple.com/documentation/scenekit/scncamera/wantshdr) property), physically-based shading can produce realistic results similar to those seen in recent animated feature films.
+    ///
+    /// Physically based shading relies primarily on three material properties:
+    ///
+    /// - The [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse) property (called albedo in some authoring tools) provides the “base” color of a material.
+    ///
+    /// - The [`roughness`](https://developer.apple.com/documentation/scenekit/scnmaterial/roughness) property (inverted and called smoothness in some authoring tools) is an approximation of the microscopic detail in a real-world surface. By approximating these “microfacets” as a single term, this property helps produce lighting calculations that resemble the energy-conserving laws of real-world physics, resulting in more realistic variation between matte and shiny surfaces.
+    ///
+    /// - The [`metalness`](https://developer.apple.com/documentation/scenekit/scnmaterial/metalness) property approximates other aspects of a physical surface, such as index of refraction, tendency to produce sharp reflections, and tendency to produce Fresnel reflections at grazing angles, which together produce an overall metallic or nonmetallic (also called dielectric) appearance.
+    ///
+    /// In addition, you can add surface detail to a physically based material with the [`normal`](https://developer.apple.com/documentation/scenekit/scnmaterial/normal) and [`ambientOcclusion`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambientocclusion) properties, and modulate the contribution of environmental lighting with the [`selfIllumination`](https://developer.apple.com/documentation/scenekit/scnmaterial/selfillumination) property.
+    ///
+    /// Physically based materials ignore the [`ambient`](https://developer.apple.com/documentation/scenekit/scnmaterial/ambient), [`specular`](https://developer.apple.com/documentation/scenekit/scnmaterial/specular), and [`reflective`](https://developer.apple.com/documentation/scenekit/scnmaterial/reflective) material properties and the [`shininess`](https://developer.apple.com/documentation/scenekit/scnmaterial/shininess), [`fresnelExponent`](https://developer.apple.com/documentation/scenekit/scnmaterial/fresnelexponent), and [`locksAmbientWithDiffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/locksambientwithdiffuse) parameters.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Physically based rendering requires a Metal renderer. When displaying a material in a view whose [`renderingAPI`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/renderingapi) value is not [`SCNRenderingAPIMetal`](https://developer.apple.com/documentation/scenekit/scnrenderingapi/metal), SceneKit falls back to rendering that material with the [`SCNLightingModelBlinn`](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/blinn) lighting model. (Metal rendering is not supported in Simulator or Xcode Playgrounds when targeting iOS or tvOS, and is not available at all in watchOS, so this fallback always occurs in those environments.)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static SCNLightingModelPhysicallyBased: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/shadowonly?language=objc)
     pub static SCNLightingModelShadowOnly: &'static SCNLightingModel;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNFillMode(pub NSUInteger);
 impl SCNFillMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode/fill?language=objc)
     #[doc(alias = "SCNFillModeFill")]
     pub const Fill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode/lines?language=objc)
     #[doc(alias = "SCNFillModeLines")]
     pub const Lines: Self = Self(1);
 }
@@ -65,16 +167,20 @@ unsafe impl RefEncode for SCNFillMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode?language=objc)
+/// The modes SceneKit uses to determine which polygons to render in a surface, used by the [`cullMode`](https://developer.apple.com/documentation/scenekit/scnmaterial/cullmode) property.
+///
+/// ## Overview
+///
+/// The vertex data and normal vectors in a geometry designate which side of each polygon is to be considered its front face, and the geometry’s orientation with respect to the camera determines which front surfaces are currently visible. Typically, back-facing surfaces are found only on the interior of a closed geometry, obscured by front-facing surfaces, so rendering these surfaces has a performance cost but no visible effect.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNCullMode(pub NSInteger);
 impl SCNCullMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode/back?language=objc)
     #[doc(alias = "SCNCullModeBack")]
     pub const Back: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode/front?language=objc)
     #[doc(alias = "SCNCullModeFront")]
     pub const Front: Self = Self(1);
 }
@@ -87,25 +193,28 @@ unsafe impl RefEncode for SCNCullMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode?language=objc)
+/// The modes SceneKit uses to calculate the opacity of pixels rendered with a material, used by the [`transparencyMode`](https://developer.apple.com/documentation/scenekit/scnmaterial/transparencymode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNTransparencyMode(pub NSInteger);
 impl SCNTransparencyMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/aone?language=objc)
+    /// SceneKit derives transparency information from the alpha channel of colors. The value `1.0` is opaque.
     #[doc(alias = "SCNTransparencyModeAOne")]
     pub const AOne: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/rgbzero?language=objc)
+    /// SceneKit derives transparency information from the luminance of colors. The value `0.0` is opaque.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this mode, SceneKit ignores the alpha value of colors in the material’s [`transparent`](https://developer.apple.com/documentation/scenekit/scnmaterial/transparent) property. SceneKit calculates the luminance of a color from its red, green, and blue channels and uses the resulting value to determine the material’s opacity.
+    ///
+    ///
     #[doc(alias = "SCNTransparencyModeRGBZero")]
     pub const RGBZero: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/singlelayer?language=objc)
     #[doc(alias = "SCNTransparencyModeSingleLayer")]
     pub const SingleLayer: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/duallayer?language=objc)
     #[doc(alias = "SCNTransparencyModeDualLayer")]
     pub const DualLayer: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode/default?language=objc)
     #[doc(alias = "SCNTransparencyModeDefault")]
     pub const Default: Self = Self(SCNTransparencyMode::AOne.0);
 }
@@ -118,33 +227,55 @@ unsafe impl RefEncode for SCNTransparencyMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Modes that describe how SceneKit blends source colors rendered using a material with destination colors already in a rendering target, used by the [`blendMode`](https://developer.apple.com/documentation/scenekit/scnmaterial/blendmode) property.
 /// Blend modes that SCNMaterial uses to compose with the framebuffer to produce blended colors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBlendMode(pub NSInteger);
 impl SCNBlendMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/alpha?language=objc)
+    /// Blend by multiplying source and destination color values by their corresponding alpha values.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode is the default value of the [`blendMode`](https://developer.apple.com/documentation/scenekit/scnmaterial/blendmode) property.
+    ///
+    ///
     #[doc(alias = "SCNBlendModeAlpha")]
     pub const Alpha: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/add?language=objc)
+    /// Blend by adding the source color to the destination color.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode results in a brightening effect that can be useful for making objects appear to glow relative to their surroundings.
+    ///
+    ///
     #[doc(alias = "SCNBlendModeAdd")]
     pub const Add: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/subtract?language=objc)
+    /// Blend by subtracting the source color from the destination color.
     #[doc(alias = "SCNBlendModeSubtract")]
     pub const Subtract: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/multiply?language=objc)
+    /// Blend by multiplying the source color with the background color.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode results in colors that are at least as dark as either of the two contributing colors.
+    ///
+    ///
     #[doc(alias = "SCNBlendModeMultiply")]
     pub const Multiply: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/screen?language=objc)
+    /// Blend by multiplying the inverse of the source color with the inverse of the destination color.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode results in colors that are at least as light as either of the two contributing colors.
+    ///
+    ///
     #[doc(alias = "SCNBlendModeScreen")]
     pub const Screen: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/replace?language=objc)
+    /// Blend by replacing the destination color with the source color, ignoring alpha.
     #[doc(alias = "SCNBlendModeReplace")]
     pub const Replace: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode/max?language=objc)
     #[doc(alias = "SCNBlendModeMax")]
     pub const Max: Self = Self(6);
 }
@@ -158,9 +289,18 @@ unsafe impl RefEncode for SCNBlendMode {
 }
 
 extern_class!(
-    /// A SCNMaterial determines how a geometry is rendered. It encapsulates the colors and textures that define the appearance of 3d geometries.
+    /// A set of shading attributes that define the appearance of a geometry’s surface when rendered.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial?language=objc)
+    /// ## Overview
+    ///
+    /// When you create a material, you define a collection of visual attributes and their options, which you can then reuse for multiple geometries in a scene.
+    ///
+    /// A material has several visual properties, each of which defines a different part of SceneKit’s lighting and shading process. Each visual property is an instance of the [`SCNMaterialProperty`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty) class that provides a solid color, texture, or other 2D content for that aspect of SceneKit’s rendering. The material’s [`lightingModelName`](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.property) property then determines the formula SceneKit uses to combine the visual properties with the lights in the scene to produce the final color for each pixel in the rendered scene. For more details on the rendering process, see [`SCNLightingModel`](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct).
+    ///
+    /// You attach one or more materials to an instance of the [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) class using its [`firstMaterial`](https://developer.apple.com/documentation/scenekit/scngeometry/firstmaterial) or [`materials`](https://developer.apple.com/documentation/scenekit/scngeometry/materials) property. Multiple geometries can reference the same material. In this case, changing the attributes of the material changes the appearance of every geometry that uses it.
+    ///
+    ///
+    /// A SCNMaterial determines how a geometry is rendered. It encapsulates the colors and textures that define the appearance of 3d geometries.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNMaterial;

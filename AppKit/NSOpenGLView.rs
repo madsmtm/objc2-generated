@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglview?language=objc)
+    /// A view that displays OpenGL content in a view.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSOpenGLView`](https://developer.apple.com/documentation/appkit/nsopenglview) object maintains an [`NSOpenGLPixelFormat`](https://developer.apple.com/documentation/appkit/nsopenglpixelformat) and [`NSOpenGLContext`](https://developer.apple.com/documentation/appkit/nsopenglcontext) object into which OpenGL calls can be rendered. The view provides methods for accessing and managing the [`NSOpenGLPixelFormat`](https://developer.apple.com/documentation/appkit/nsopenglpixelformat) and [`NSOpenGLContext`](https://developer.apple.com/documentation/appkit/nsopenglcontext) objects, as well as notifications of visible region changes.
+    ///
+    /// An `NSOpenGLView` object cannot have subviews. You can, however, divide a single `NSOpenGLView` into multiple rendering areas using the `glViewport` function.
+    ///
+    /// When creating an `NSOpenGLView` object in Interface Builder, you use the inspector window to specify the pixel format attributes you want for the view. Only those attributes listed in the Interface Builder inspector are set when the view is instantiated.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In versions of the Xcode Tools that shipped prior to OS X v10.4, the Interface Builder inspector does not list any pixel format attributes for `NSOpenGLView`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

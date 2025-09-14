@@ -12,46 +12,100 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/name-swift.typealias?language=objc)
+/// Named images, defined by the system or you, for use in your app.
+///
+/// ## Discussion
+///
+/// The appearance of system-supplied images can change between releases. If you use an image for its intended purpose (and not because of how it looks), your code should look correct from release to release.
+///
+/// The size and aspect ratio of system images can also change between releases. In some situations, you should explicitly resize images as appropriate for your use. If you use these images in conjunction with an [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell) object, however, you can use the [`imageScaling`](https://developer.apple.com/documentation/appkit/nsbuttoncell/imagescaling) property of the cell to control scaling instead. Similarly, for an [`NSSegmentedCell`](https://developer.apple.com/documentation/appkit/nssegmentedcell) object, you can use the [`setImageScaling:forSegment:`](https://developer.apple.com/documentation/appkit/nssegmentedcell/setimagescaling(_:forsegment:)): method to control scaling.
+///
+/// Constants that end in the word “Template” represent template images. These images can be processed into variants appropriate for different situations.  For example, these images can invert in a selected table view row. See [`template`](https://developer.apple.com/documentation/appkit/nsimage/istemplate) for more information.
+///
+/// Some images also contain the word “FreestandingTemplate”.  These images are template images that are appropriate for use as a borderless button—that is, it doesn’t need any extra bezel artwork behind it.
+///
+///
 pub type NSImageName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/hintkey/ctm?language=objc)
+    /// A context transform hint.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform).
+    ///
+    ///
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintCTM: &'static NSImageHintKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/hintkey/interpolation?language=objc)
+    /// An interpolation hint.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) with an [`NSImageInterpolation`](https://developer.apple.com/documentation/appkit/nsimageinterpolation) value.
+    ///
+    ///
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintInterpolation: &'static NSImageHintKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/hintkey/userinterfacelayoutdirection?language=objc)
+    /// A layout direction hint.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) with an [`NSUserInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection) value.
+    ///
+    ///
     #[cfg(feature = "NSImageRep")]
     pub static NSImageHintUserInterfaceLayoutDirection: &'static NSImageHintKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus?language=objc)
+/// Status values for incremental image loading.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageLoadStatus(pub NSUInteger);
 impl NSImageLoadStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/completed?language=objc)
+    /// Enough data is available to completely decompress the image.
     #[doc(alias = "NSImageLoadStatusCompleted")]
     pub const Completed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/cancelled?language=objc)
+    /// Image loading was canceled.
+    ///
+    /// ## Discussion
+    ///
+    /// The image contains the portions of the data that have already been successfully decompressed, if any.
+    ///
+    ///
     #[doc(alias = "NSImageLoadStatusCancelled")]
     pub const Cancelled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/invaliddata?language=objc)
+    /// An error occurred during image decompression.
+    ///
+    /// ## Discussion
+    ///
+    /// The image data is probably corrupt. The image contains the portions of the data that have already been successfully decompressed, if any.
+    ///
+    ///
     #[doc(alias = "NSImageLoadStatusInvalidData")]
     pub const InvalidData: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/unexpectedeof?language=objc)
+    /// Not enough data was available to fully decompress the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The image contains the portions of the data that have already been successfully decompressed, if any.
+    ///
+    ///
     #[doc(alias = "NSImageLoadStatusUnexpectedEOF")]
     pub const UnexpectedEOF: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/loadstatus/readerror?language=objc)
+    /// Not enough data was available for full decompression of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The image contains the portions of the data that have already been successfully decompressed, if any.
+    ///
+    ///
     #[doc(alias = "NSImageLoadStatusReadError")]
     pub const ReadError: Self = Self(4);
 }
@@ -64,22 +118,37 @@ unsafe impl RefEncode for NSImageLoadStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum?language=objc)
+/// Constants that specify the caching policy on a per-image basis.
+///
+/// ## Overview
+///
+/// Set the caching policy using the [`cacheMode`](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.property) property.
+///
+/// The following table specifies the default caching policy for the various types of image representation.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Image Rep Class" }] }], [Paragraph { inline_content: [Text { text: "Default caching policy" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSBitmapImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheBySize" }, Text { text: ". Cache if bitmap is 32-bits in 16-bit world or greater than 72 dpi." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSPICTImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheBySize" }, Text { text: ". Same reasoning as " }, CodeVoice { code: "NSBitmapImageRep" }, Text { text: " in the event the PICT contains a bitmap." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSPDFImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheAlways" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSCIImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheBySize" }, Text { text: ". Cache if the bitmap depth does not match the screen depth or the resolution is greater than 72 dpi." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSEPSImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheAlways" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "NSCustomImageRep" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSImageCacheAlways" }] }]]], alignments: None, metadata: None })
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageCacheMode(pub NSUInteger);
 impl NSImageCacheMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/default?language=objc)
+    /// Caching is unspecified.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the image rep’s default.
+    ///
+    ///
     #[doc(alias = "NSImageCacheDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/always?language=objc)
+    /// Always generate a cache when drawing.
     #[doc(alias = "NSImageCacheAlways")]
     pub const Always: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/bysize?language=objc)
+    /// Cache if the cache size is smaller than the original data.
     #[doc(alias = "NSImageCacheBySize")]
     pub const BySize: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cachemode-swift.enum/never?language=objc)
+    /// Never cache; always draw direct.
     #[doc(alias = "NSImageCacheNever")]
     pub const Never: Self = Self(3);
 }
@@ -92,7 +161,7 @@ unsafe impl RefEncode for NSImageCacheMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/resizingmode-swift.enum?language=objc)
+/// Constants that describe the resizing mode for the image.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -108,7 +177,49 @@ unsafe impl RefEncode for NSImageResizingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage?language=objc)
+    /// A high-level interface for manipulating image data.
+    ///
+    /// ## Overview
+    ///
+    /// You use instances of [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) to load existing images, create new images, and draw the resulting image data into your views. Although you use this class predominantly for image-related operations, the class itself knows little about the underlying image data. Instead, it works in conjunction with one or more image representation objects (subclasses of [`NSImageRep`](https://developer.apple.com/documentation/appkit/nsimagerep)) to manage and render the image data. For the most part, these interactions are transparent.
+    ///
+    /// The  class serves many purposes, providing support for the following tasks:
+    ///
+    /// - Loading images stored on disk or at a specified URL.
+    ///
+    /// - Drawing images into a view or graphics context.
+    ///
+    /// - Providing the contents of a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) object.
+    ///
+    /// - Creating new images based on a series of captured drawing commands.
+    ///
+    /// - Producing versions of the image in a different format.
+    ///
+    /// The `NSImage` class itself is capable of managing image data in a variety of formats. The specific list of formats is dependent on the version of the operating system but includes many standard formats such as TIFF, JPEG, GIF, PNG, and PDF among others. AppKit manages each format using a specific type of image representation object, whose job is to manage the actual image data. You can get a list of supported formats using the methods described in Determining Supported Types of Images.
+    ///
+    /// For more information about how to use image objects in your app, see [Cocoa Drawing Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290).
+    ///
+    /// ### Using Images with Core Animation Layers
+    ///
+    /// Although you can assign an `NSImage` object directly to the [`contents`](https://developer.apple.com/documentation/quartzcore/calayer/contents) property of a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) object, doing so may not always yield the best results. Instead of using your image object, you can use the [`layerContentsForContentsScale:`](https://developer.apple.com/documentation/appkit/nsimage/layercontents(forcontentsscale:)) method to obtain an object that you can use for your layer’s contents. The image created by that method serves as the contents of a layer, which also supports all of the layer’s gravity modes. By contrast, the `NSImage` class supports only the [`kCAGravityResize`](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resize), [`kCAGravityResizeAspect`](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resizeaspect), and [`kCAGravityResizeAspectFill`](https://developer.apple.com/documentation/quartzcore/calayercontentsgravity/resizeaspectfill) modes.
+    ///
+    /// Before calling the [`layerContentsForContentsScale:`](https://developer.apple.com/documentation/appkit/nsimage/layercontents(forcontentsscale:)) method, use the [`recommendedLayerContentsScale:`](https://developer.apple.com/documentation/appkit/nsimage/recommendedlayercontentsscale(_:)) method to get the recommended scale factor for the resulting image. The code listing below shows a typical example that uses the scale factor of a window’s backing store as the desired scale factor. From that scale factor, the code gets the scale factor for the specified image object and creates an object that you assign to the layer. You might use this code for images that fit the layer bounds precisely or for which you rely on the [`contentsGravity`](https://developer.apple.com/documentation/quartzcore/calayer/contentsgravity) property of the layer to position or scale the image.
+    ///
+    /// Listing 1. Assigning an image to a layer
+    ///
+    /// ```objc
+    /// static void updateLayerWithImageInWindow1(NSImage *image, CALayer *layer, NSWindow *window) {
+    ///    CGFloat desiredScaleFactor = [window backingScaleFactor];
+    ///    CGFloat actualScaleFactor = [image recommendedLayerContentsScale:desiredScaleFactor];
+    ///  
+    ///    id layerContents = [image layerContentsForContentsScale:actualScaleFactor];
+    ///  
+    ///    [layer setContents:layerContents];
+    ///    [layer setContentsScale:actualScaleFactor];
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImage;
@@ -638,7 +749,7 @@ extern_conformance!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedelegate?language=objc)
+    /// A set of optional methods that you can use to respond to drawing failures and manage incremental loads.
     pub unsafe trait NSImageDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(imageDidNotDraw:inRect:))]
@@ -892,714 +1003,1736 @@ impl NSImage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/addtemplatename?language=objc)
+    /// An add item template image.
     pub static NSImageNameAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/bluetoothtemplatename?language=objc)
+    /// A Bluetooth template image.
     pub static NSImageNameBluetoothTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/bonjourname?language=objc)
+    /// A Bonjour icon.
     pub static NSImageNameBonjour: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/bookmarkstemplatename?language=objc)
+    /// Bookmarks image suitable for a template.
     pub static NSImageNameBookmarksTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/cautionname?language=objc)
+    /// A caution image.
     pub static NSImageNameCaution: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/computername?language=objc)
+    /// A computer icon.
     pub static NSImageNameComputer: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/enterfullscreentemplatename?language=objc)
+    /// An enter full-screen mode template image.
     pub static NSImageNameEnterFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/exitfullscreentemplatename?language=objc)
+    /// An exit full-screen mode template image.
     pub static NSImageNameExitFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/foldername?language=objc)
+    /// A folder image.
     pub static NSImageNameFolder: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/folderburnablename?language=objc)
+    /// A burnable folder icon.
     pub static NSImageNameFolderBurnable: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/foldersmartname?language=objc)
+    /// A smart folder icon.
     pub static NSImageNameFolderSmart: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/followlinkfreestandingtemplatename?language=objc)
+    /// A link template image.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this image to implement a borderless button.
+    ///
+    ///
     pub static NSImageNameFollowLinkFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/hometemplatename?language=objc)
+    /// Home image suitable for a template.
     pub static NSImageNameHomeTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/ichattheatertemplatename?language=objc)
+    /// An iChat Theater template image.
     pub static NSImageNameIChatTheaterTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/locklockedtemplatename?language=objc)
+    /// A locked padlock template image.
+    ///
+    /// ## Discussion
+    ///
+    /// Use to indicate locked content.
+    ///
+    ///
     pub static NSImageNameLockLockedTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/lockunlockedtemplatename?language=objc)
+    /// An unlocked padlock template image.
+    ///
+    /// ## Discussion
+    ///
+    /// Use to indicate modifiable content that can be locked.
+    ///
+    ///
     pub static NSImageNameLockUnlockedTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/networkname?language=objc)
+    /// A network icon.
     pub static NSImageNameNetwork: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/pathtemplatename?language=objc)
+    /// A path button template image.
     pub static NSImageNamePathTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/quicklooktemplatename?language=objc)
+    /// A Quick Look template image.
     pub static NSImageNameQuickLookTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/refreshfreestandingtemplatename?language=objc)
+    /// A refresh template image.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this image to implement a borderless button.
+    ///
+    ///
     pub static NSImageNameRefreshFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/refreshtemplatename?language=objc)
+    /// A refresh template image.
     pub static NSImageNameRefreshTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/removetemplatename?language=objc)
+    /// A remove item template image.
     pub static NSImageNameRemoveTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/revealfreestandingtemplatename?language=objc)
+    /// A reveal contents template image.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this image to implement a borderless button.
+    ///
+    ///
     pub static NSImageNameRevealFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/sharetemplatename?language=objc)
+    /// A share view template image.
     pub static NSImageNameShareTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/slideshowtemplatename?language=objc)
+    /// A slideshow template image.
     pub static NSImageNameSlideshowTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/statusavailablename?language=objc)
+    /// Small green indicator, similar to iChat’s available image.
     pub static NSImageNameStatusAvailable: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/statusnonename?language=objc)
+    /// Small clear indicator.
     pub static NSImageNameStatusNone: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/statuspartiallyavailablename?language=objc)
+    /// Small yellow indicator, similar to iChat’s idle image.
     pub static NSImageNameStatusPartiallyAvailable: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/statusunavailablename?language=objc)
+    /// Small red indicator, similar to iChat’s unavailable image.
     pub static NSImageNameStatusUnavailable: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/stopprogressfreestandingtemplatename?language=objc)
+    /// A stop progress template image.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this image to implement a borderless button.
+    ///
+    ///
     pub static NSImageNameStopProgressFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/stopprogresstemplatename?language=objc)
+    /// A stop progress button template image.
     pub static NSImageNameStopProgressTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/trashemptyname?language=objc)
+    /// An image of the empty trash can.
     pub static NSImageNameTrashEmpty: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/trashfullname?language=objc)
+    /// An image of the full trash can.
     pub static NSImageNameTrashFull: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/actiontemplatename?language=objc)
+    /// An action menu template image.
     pub static NSImageNameActionTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/smartbadgetemplatename?language=objc)
+    /// A badge for a “smart” item.
     pub static NSImageNameSmartBadgeTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/iconviewtemplatename?language=objc)
+    /// An icon view mode template image.
     pub static NSImageNameIconViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/listviewtemplatename?language=objc)
+    /// A list view mode template image.
     pub static NSImageNameListViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/columnviewtemplatename?language=objc)
+    /// A column view mode template image.
     pub static NSImageNameColumnViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/flowviewtemplatename?language=objc)
+    /// A cover flow view mode template image.
     pub static NSImageNameFlowViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/invaliddatafreestandingtemplatename?language=objc)
+    /// A template image used to denote invalid data.
+    ///
+    /// ## Discussion
+    ///
+    /// Place this icon to the right of any fields containing invalid data. You can use this image to implement a borderless button.
+    ///
+    ///
     pub static NSImageNameInvalidDataFreestandingTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/goforwardtemplatename?language=objc)
+    /// A “go forward” template image.
     pub static NSImageNameGoForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/gobacktemplatename?language=objc)
+    /// A “go back” template image.
     pub static NSImageNameGoBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/gorighttemplatename?language=objc)
+    /// A “go forward” template image.
     pub static NSImageNameGoRightTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/golefttemplatename?language=objc)
+    /// A “go back” template image.
     pub static NSImageNameGoLeftTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/rightfacingtriangletemplatename?language=objc)
+    /// A generic right-facing triangle template image.
     pub static NSImageNameRightFacingTriangleTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/leftfacingtriangletemplatename?language=objc)
+    /// A generic left-facing triangle template image.
     pub static NSImageNameLeftFacingTriangleTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagenamedotmac?language=objc)
+    /// A Dot Mac icon.
     #[deprecated]
     pub static NSImageNameDotMac: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/mobilemename?language=objc)
+    /// A MobileMe icon.
+    ///
+    /// ## Discussion
+    ///
+    /// Use of this image is discouraged; instead, use [`NSImageNameNetwork`](https://developer.apple.com/documentation/appkit/nsimage/networkname).
+    ///
+    ///
     pub static NSImageNameMobileMe: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/multipledocumentsname?language=objc)
+    /// A drag image for multiple items.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this icon as the drag image when dragging multiple items. You should not use this image for any other intended purpose.
+    ///
+    ///
     pub static NSImageNameMultipleDocuments: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/useraccountsname?language=objc)
+    /// User account toolbar icon for the preferences window.
+    ///
+    /// ## Discussion
+    ///
+    /// Use in a preferences window only.
+    ///
+    ///
     pub static NSImageNameUserAccounts: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/preferencesgeneralname?language=objc)
+    /// General preferences toolbar icon for the preferences window.
+    ///
+    /// ## Discussion
+    ///
+    /// Use in a preferences window only.
+    ///
+    ///
     pub static NSImageNamePreferencesGeneral: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/advancedname?language=objc)
+    /// Advanced preferences toolbar icon for the preferences window.
+    ///
+    /// ## Discussion
+    ///
+    /// Use in a preferences window only.
+    ///
+    ///
     pub static NSImageNameAdvanced: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/infoname?language=objc)
+    /// An information toolbar icon.
     pub static NSImageNameInfo: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/fontpanelname?language=objc)
+    /// A font panel toolbar icon.
     pub static NSImageNameFontPanel: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/colorpanelname?language=objc)
+    /// A color panel toolbar icon.
     pub static NSImageNameColorPanel: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/username?language=objc)
+    /// Permissions for a single user.
     pub static NSImageNameUser: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/usergroupname?language=objc)
+    /// Permissions for a group of users.
     pub static NSImageNameUserGroup: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/everyonename?language=objc)
+    /// Permissions for all users.
     pub static NSImageNameEveryone: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/userguestname?language=objc)
+    /// Permissions for guests.
     pub static NSImageNameUserGuest: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/menuonstatetemplatename?language=objc)
+    /// A check mark template image, for use in menus.
+    ///
+    /// ## Discussion
+    ///
+    /// Drawing these outside of menus is discouraged.
+    ///
+    ///
     pub static NSImageNameMenuOnStateTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/menumixedstatetemplatename?language=objc)
+    /// A horizontal dash, for use in menus.
+    ///
+    /// ## Discussion
+    ///
+    /// Drawing these outside of menus is discouraged.
+    ///
+    ///
     pub static NSImageNameMenuMixedStateTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/applicationiconname?language=objc)
+    /// The app’s icon.
+    ///
+    /// ## Discussion
+    ///
+    /// On versions of macOS prior to v10.6, you can use the string `@"NSApplicationIcon"`.
+    ///
+    ///
     pub static NSImageNameApplicationIcon: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaradddetailtemplatename?language=objc)
+    /// A template image for showing additional detail for an item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for add detail](https://docs-assets.developer.apple.com/published/2bca730494dce5aca6b53ee019da98c6/media-2793473%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAddDetailTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraddtemplatename?language=objc)
+    /// A template image for creating a new item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for add](https://docs-assets.developer.apple.com/published/1c5ea9f283f8090f007e5d8682809f55/media-2793453%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaralarmtemplatename?language=objc)
+    /// A template image for setting or showing an alarm.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for alarm](https://docs-assets.developer.apple.com/published/d4865add1049022a4473bf45df436ab9/media-2793513%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAlarmTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudioinputmutetemplatename?language=objc)
+    /// A template image for muting audio input or denoting that audio input is muted.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio input mute](https://docs-assets.developer.apple.com/published/02a3c1b136861933ffb430d5d551670d/media-2825103%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioInputMuteTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudioinputtemplatename?language=objc)
+    /// A template image for denoting audio input.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio input](https://docs-assets.developer.apple.com/published/dc26a12ab44e3fb743ad651634e68d45/media-2793512%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioInputTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudiooutputmutetemplatename?language=objc)
+    /// A template image for muting audio output or for denoting that audio output is muted.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio output mute](https://docs-assets.developer.apple.com/published/08abaaf64889f193d9ed1a3093654780/media-2825104%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioOutputMuteTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudiooutputvolumehightemplatename?language=objc)
+    /// A template image for setting the audio output volume to a high level, or for denoting that the audio is at the peak volume.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio output volume high](https://docs-assets.developer.apple.com/published/31dcfd8a415f5aaa68b6faf8f00aa03e/media-2825107%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioOutputVolumeHighTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudiooutputvolumelowtemplatename?language=objc)
+    /// A template image for setting the audio output volume to a low level, or for denoting that it is set to a low level.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio output volume low](https://docs-assets.developer.apple.com/published/264d3317b7227c47497e299e3d6c2cf2/media-2825105%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioOutputVolumeLowTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudiooutputvolumemediumtemplatename?language=objc)
+    /// A template image for setting the audio output volume to a medium level, or for denoting that it is set to a medium level.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio output volume medium](https://docs-assets.developer.apple.com/published/b35f66cfbb6b44a7df7f0a3127c746ad/media-2825108%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioOutputVolumeMediumTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaraudiooutputvolumeofftemplatename?language=objc)
+    /// A template image for setting the audio output volume to silent, or for denoting that it is set to silent.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for audio output volume off](https://docs-assets.developer.apple.com/published/c226912c5e9cc6bcea5822c315dcf927/media-2825106%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarAudioOutputVolumeOffTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarbookmarkstemplatename?language=objc)
+    /// A template image for showing app-specific bookmarks.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for bookmarks](https://docs-assets.developer.apple.com/published/cc22f75bba7a8e89f083caa700aa3367/media-2793480%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarBookmarksTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcolorpickerfillname?language=objc)
+    /// A template image for showing a color picker so the user can select a fill color.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for color picker for fill](https://docs-assets.developer.apple.com/published/bf718bc7bc9b5ce8de541c3bca68163a/media-2793541%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarColorPickerFill: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcolorpickerfontname?language=objc)
+    /// A template image for showing a color picker so the user can select a text color.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for color picker for fonts](https://docs-assets.developer.apple.com/published/ebdbfa56af4c3d354be9b66d211d1324/media-2793477%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarColorPickerFont: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcolorpickerstrokename?language=objc)
+    /// A template image for showing a color picker so the user can select a stroke color.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for color picker for stroke](https://docs-assets.developer.apple.com/published/5923c8c3f7b8b7a279f1b769dd237044/media-2793529%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarColorPickerStroke: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcommunicationaudiotemplatename?language=objc)
+    /// A template image for initiating or denoting audio communication.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for communication audio](https://docs-assets.developer.apple.com/published/09b5e7af5ea48bec26f2e7d931e31056/media-2825109%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarCommunicationAudioTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcommunicationvideotemplatename?language=objc)
+    /// A template image for initiating or denoting video communication.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for communication video](https://docs-assets.developer.apple.com/published/97cc82af6d25b686cea6db8dd0b95929/media-2825110%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarCommunicationVideoTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarcomposetemplatename?language=objc)
+    /// A template image for opening a new document or view in edit mode.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for compose](https://docs-assets.developer.apple.com/published/6e23a58e023bbbedb9be456f3e972a9f/media-2793505%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarComposeTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbardeletetemplatename?language=objc)
+    /// A template image for deleting the current or selected item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for delete](https://docs-assets.developer.apple.com/published/782c62e68a8710473ff880ff0fcc5d7c/media-2793517%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarDeleteTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbardownloadtemplatename?language=objc)
+    /// A template image for downloading an item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for download](https://docs-assets.developer.apple.com/published/41283cab025aff48868695bdf12b8ceb/media-2793508%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarDownloadTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarenterfullscreentemplatename?language=objc)
+    /// A template image for entering full screen mode.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for enter full screen](https://docs-assets.developer.apple.com/published/0fd2e6064bac7effca68767c224c10b5/media-2825112%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarEnterFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarexitfullscreentemplatename?language=objc)
+    /// A template image for exiting full screen mode.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for exit full screen](https://docs-assets.developer.apple.com/published/ffe40bf3ba87964248aaf290eebafec8/media-2825111%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarExitFullScreenTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarfastforwardtemplatename?language=objc)
+    /// A template image for moving forward through media playback or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for fast forward](https://docs-assets.developer.apple.com/published/9186d40c5b05a477e7f1446a04363199/media-2825113%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarFastForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarfoldercopytotemplatename?language=objc)
+    /// A template image for copying an item to a destination.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for copy to folder](https://docs-assets.developer.apple.com/published/7bfa47ce00b8fea907ce37e67c7bf872/media-2825114%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarFolderCopyToTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarfoldermovetotemplatename?language=objc)
+    /// A template image for moving an item to a destination.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for move to folder](https://docs-assets.developer.apple.com/published/76b88ffde7b73fecc8c91b3cbd272d5e/media-2825115%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarFolderMoveToTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarfoldertemplatename?language=objc)
+    /// A template image for opening or representing a folder.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for folder](https://docs-assets.developer.apple.com/published/f4484abfe359dbadfbe67a107d54c830/media-2793538%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarFolderTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbargetinfotemplatename?language=objc)
+    /// A template image for showing information about an item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for get info](https://docs-assets.developer.apple.com/published/62d2cdc6e3f006b0d3eeb24f06723bb2/media-2793524%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarGetInfoTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbargobacktemplatename?language=objc)
+    /// A template image for returning to the previous screen or location.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for go back](https://docs-assets.developer.apple.com/published/3a4cfcc975a27dd67dbbff2441b8e00b/media-2793507%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarGoBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbargodowntemplatename?language=objc)
+    /// A template image for moving to the next item in a list.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for go down](https://docs-assets.developer.apple.com/published/0c2e94a97766da2cd60956b916d1fb51/media-2793520%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarGoDownTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbargoforwardtemplatename?language=objc)
+    /// A template image for moving to the next screen or location.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for go forward](https://docs-assets.developer.apple.com/published/5edfd723d11d0b761aa0b7f30011b1ef/media-2793506%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarGoForwardTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbargouptemplatename?language=objc)
+    /// A template image for moving to the previous item in a list.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for go up](https://docs-assets.developer.apple.com/published/950b247fda4d8560b5fa06b6e5f58139/media-2793540%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarGoUpTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarhistorytemplatename?language=objc)
+    /// A template image for showing history information, such as recent downloads.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for history](https://docs-assets.developer.apple.com/published/8f70d6de52e5e1b13a004240578a82d0/media-2793509%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarHistoryTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbariconviewtemplatename?language=objc)
+    /// A template image for showing items in an icon view.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for icon view](https://docs-assets.developer.apple.com/published/c673c62d39b4de85538b2b0919b7bdfa/media-2793514%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarIconViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarlistviewtemplatename?language=objc)
+    /// A template image for showing items in a list view.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for list view](https://docs-assets.developer.apple.com/published/38df2efd1e49397e401142827377af28/media-2793525%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarListViewTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarmailtemplatename?language=objc)
+    /// A template image for creating an email message.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for mail](https://docs-assets.developer.apple.com/published/37ad2199b723c70e69600d916dfce3af/media-2793534%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarMailTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarnewfoldertemplatename?language=objc)
+    /// A template image for creating a new folder.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for new folder](https://docs-assets.developer.apple.com/published/8d33fa22e046a7cde388a97bf6252e2d/media-2793478%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarNewFolderTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarnewmessagetemplatename?language=objc)
+    /// A template image for creating a new message, or for denoting the use of messaging.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for new message](https://docs-assets.developer.apple.com/published/ce45fa7279f695441544c09d06bcabd2/media-2793526%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarNewMessageTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaropeninbrowsertemplatename?language=objc)
+    /// A template image for opening an item in the user’s browser.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for open in browser](https://docs-assets.developer.apple.com/published/5e851147a08f1412f27228597bfb8033/media-2825125%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarOpenInBrowserTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarpausetemplatename?language=objc)
+    /// A template image for pausing media playback or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for pause](https://docs-assets.developer.apple.com/published/5a1e4bd75baa3ce0c6666c7dd99afb78/media-2793535%402x.png)
+    ///
+    ///
+    /// Before pausing, store the current location so playback can resume later.
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarPauseTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarplaypausetemplatename?language=objc)
+    /// A template image for toggling between playing and pausing media or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for play/pause](https://docs-assets.developer.apple.com/published/78897d125bad0d4031d0c269572655bc/media-2793504%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarPlayPauseTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarplaytemplatename?language=objc)
+    /// A template image for starting or resuming playback of media or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for play](https://docs-assets.developer.apple.com/published/0e00bdef310493c435c2675895cec9b6/media-2793536%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarPlayTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarquicklooktemplatename?language=objc)
+    /// A template image for opening an item in Quick Look.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for Quick Look](https://docs-assets.developer.apple.com/published/4e7e8e3a8e028fc1fc7abd27e4aa1985/media-2793521%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarQuickLookTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrecordstarttemplatename?language=objc)
+    /// A template image for starting recording.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for start recording](https://docs-assets.developer.apple.com/published/f066a1cc349aa4710bfec9ceb15d8bda/media-2825126%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRecordStartTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrecordstoptemplatename?language=objc)
+    /// A template image for stopping recording or stopping playback of media or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for stop recording](https://docs-assets.developer.apple.com/published/cf1fada678832b326d2fa6bfedda483f/media-2793471%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRecordStopTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrefreshtemplatename?language=objc)
+    /// A template image for refreshing displayed data.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for refresh](https://docs-assets.developer.apple.com/published/95f2e9b4245b4b9f3b86be95a2188b77/media-2793474%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRefreshTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarremovetemplatename?language=objc)
+    /// A template image for removing an item.
     pub static NSImageNameTouchBarRemoveTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrewindtemplatename?language=objc)
+    /// A template image for moving backwards through media or slides.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for rewind](https://docs-assets.developer.apple.com/published/ee1ca7c1f6002423953502318a43e82c/media-2793523%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRewindTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrotatelefttemplatename?language=objc)
+    /// A template image for rotating an item counterclockwise.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for rotate left](https://docs-assets.developer.apple.com/published/157d903e4bd40e1f58751c12a42b9085/media-2793537%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRotateLeftTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarrotaterighttemplatename?language=objc)
+    /// A template image for rotating an item clockwise.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for rotate right](https://docs-assets.developer.apple.com/published/44f73804f8960bd618e4431f7bc0f772/media-2825127%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarRotateRightTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarsearchtemplatename?language=objc)
+    /// A template image for showing a search field or for initiating a search.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for search](https://docs-assets.developer.apple.com/published/75a12d91bfdc2b7d9029f2550d537248/media-2793472%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSearchTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarsharetemplatename?language=objc)
+    /// A template image for sharing content with others directly or via social media.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for share](https://docs-assets.developer.apple.com/published/ddaadb432962b8b7e29a1589e3d7f10a/media-2793519%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarShareTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarsidebartemplatename?language=objc)
+    /// A template image for showing a sidebar in the current view.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for sidebar](https://docs-assets.developer.apple.com/published/a10b6d5d4a219b48733aa331515f5a9a/media-2793533%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSidebarTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipahead15secondstemplatename?language=objc)
+    /// A template image for skipping ahead 15 seconds during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip ahead 15 seconds](https://docs-assets.developer.apple.com/published/53bff4145a919ce87c213d9c39ca11ba/media-2825131%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipAhead15SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipahead30secondstemplatename?language=objc)
+    /// A template image for skipping ahead 30 seconds during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip ahead 30 seconds](https://docs-assets.developer.apple.com/published/b8866e9113f8d5a076d62e22a86af022/media-2825132%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipAhead30SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipaheadtemplatename?language=objc)
+    /// A template image for skipping to the next chapter or location during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip ahead](https://docs-assets.developer.apple.com/published/c0718ea246ab00273c078bba34abb1ba/media-2793539%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipAheadTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipback15secondstemplatename?language=objc)
+    /// A template image for skipping back 15 seconds during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip back 15 seconds](https://docs-assets.developer.apple.com/published/be0363b71320931575af7390465f0878/media-2825129%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipBack15SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipback30secondstemplatename?language=objc)
+    /// A template image for skipping back 30 seconds during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip back 30 seconds](https://docs-assets.developer.apple.com/published/a0007a000ef85c996d7754e1c8f39d2f/media-2825130%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipBack30SecondsTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskipbacktemplatename?language=objc)
+    /// A template image for skipping to the previous chapter or location during media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip back](https://docs-assets.developer.apple.com/published/493b79f3d4d65538b2b966955061d37e/media-2793516%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipBackTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskiptoendtemplatename?language=objc)
+    /// A template image for skipping to the end of media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip to end](https://docs-assets.developer.apple.com/published/021c4cf81759626a4b916af6458e9530/media-2793528%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipToEndTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarskiptostarttemplatename?language=objc)
+    /// A template image for skipping to the start of media playback.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for skip to start](https://docs-assets.developer.apple.com/published/5386c5a586b3694c252cfa2fa620a802/media-2825128%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSkipToStartTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarslideshowtemplatename?language=objc)
+    /// A template image for starting a slideshow.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for slideshow](https://docs-assets.developer.apple.com/published/327f90e42f59da3e22ce99db360bf676/media-2793515%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarSlideshowTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartagicontemplatename?language=objc)
+    /// A template image for applying a tag to an item.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for tag](https://docs-assets.developer.apple.com/published/1320ae038ccfba87f6a14fd89daa6717/media-2793527%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTagIconTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextboldtemplatename?language=objc)
+    /// A template image for making selected text bold.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for bold text](https://docs-assets.developer.apple.com/published/ab142503f0c73bac3678b49ccaad6dce/media-2793532%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextBoldTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextboxtemplatename?language=objc)
+    /// A template image for inserting a text box.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for text box](https://docs-assets.developer.apple.com/published/dfb816fe66ad83bd94dcc04b759c52a5/media-2793530%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextBoxTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextcenteraligntemplatename?language=objc)
+    /// A template image for centering text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for center text](https://docs-assets.developer.apple.com/published/884e523faf6d6aa040d86a282baf0b4c/media-2825136%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextCenterAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextitalictemplatename?language=objc)
+    /// A template image for italicizing the selected text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for italicize text](https://docs-assets.developer.apple.com/published/d3deb5b79303597a04aacd2c9fc3c3c2/media-2793518%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextItalicTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextjustifiedaligntemplatename?language=objc)
+    /// A template image for fully justifying text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for justify text](https://docs-assets.developer.apple.com/published/cad033ff478ea671625ee842fe5e106f/media-2825138%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextJustifiedAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextleftaligntemplatename?language=objc)
+    /// A template image for aligning text to the left.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for align text to the left](https://docs-assets.developer.apple.com/published/42fe3f9bad4d9ecc0b787c284617cbc4/media-2825133%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextLeftAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextlisttemplatename?language=objc)
+    /// A template image for inserting a list or converting text to list form.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for list](https://docs-assets.developer.apple.com/published/9f90398ccdea1503aa829c27f27b117d/media-2793531%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextListTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextrightaligntemplatename?language=objc)
+    /// A template image for aligning text to the right.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for align text to the right](https://docs-assets.developer.apple.com/published/8f41efbf0c80c9e57e8aef1c9dc47166/media-2825135%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextRightAlignTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextstrikethroughtemplatename?language=objc)
+    /// A template image for striking through text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for strikethrough text](https://docs-assets.developer.apple.com/published/14ba34a37606094f1916dcb33bb0cb95/media-2825137%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextStrikethroughTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbartextunderlinetemplatename?language=objc)
+    /// A template image for underlining text.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for underline text](https://docs-assets.developer.apple.com/published/edd5fd5a97fd4c9d083ce58e033bd318/media-2825134%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarTextUnderlineTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbaruseraddtemplatename?language=objc)
+    /// A template image for creating a new user account.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for add user](https://docs-assets.developer.apple.com/published/7833502baa6e9459fcdfd56a8c47adec/media-2793511%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarUserAddTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarusergrouptemplatename?language=objc)
+    /// A template image for showing or representing a group of users.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for user group](https://docs-assets.developer.apple.com/published/f057632dcf5900b8b3c37075ee391c78/media-2793481%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarUserGroupTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarusertemplatename?language=objc)
+    /// A template image for showing or representing user information.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for user](https://docs-assets.developer.apple.com/published/49472c872d8f6d2ae12a50484498a285/media-2793522%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarUserTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarvolumedowntemplatename?language=objc)
+    /// A template image for reducing the audio output volume.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for volume down](https://docs-assets.developer.apple.com/published/8ce9380d5ea753ef54d77e0893c8be42/media-2793510%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarVolumeDownTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarvolumeuptemplatename?language=objc)
+    /// A template image for increasing the audio output volume.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for volume up](https://docs-assets.developer.apple.com/published/31dcfd8a415f5aaa68b6faf8f00aa03e/media-2793479%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your `NSTouchBarItem` images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarVolumeUpTemplate: &'static NSImageName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/touchbarplayheadtemplatename?language=objc)
+    /// A template image for denoting the current playback position within a timeline track.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    /// ![Template image for a playhead.](https://docs-assets.developer.apple.com/published/3663827c7786fc30f7611d3f20fc8b68/media-2931423%402x.png)
+    ///
+    ///
+    /// Touch Bar template images are exclusively for use in [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) objects and not in onscreen windows.
+    ///
+    /// Use template images for your [`NSTouchBarItem`](https://developer.apple.com/documentation/appkit/nstouchbaritem) images because, in the Touch Bar, template images respond automatically to system white-point changes.
+    ///
+    ///
     pub static NSImageNameTouchBarPlayheadTemplate: &'static NSImageName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale?language=objc)
+/// Constants that specify which scale variant of a symbol image to use.
+///
+/// ## Overview
+///
+/// Specify a different scale variant for a symbol to change the emphasis of the symbol relative to its adjacent text. The default symbol scale is [`NSImageSymbolScaleMedium`](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/medium).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageSymbolScale(pub NSInteger);
 impl NSImageSymbolScale {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/small?language=objc)
+    /// The symbol uses the small scale variant.
+    ///
+    /// ## Discussion
+    ///
+    /// This scale is approximately 20% smaller than the [`NSImageSymbolScaleMedium`](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/medium) scale.
+    ///
+    ///
     #[doc(alias = "NSImageSymbolScaleSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/medium?language=objc)
+    /// The symbol uses the default medium scale variant.
     #[doc(alias = "NSImageSymbolScaleMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/large?language=objc)
+    /// The symbol uses the large scale variant.
+    ///
+    /// ## Discussion
+    ///
+    /// This scale is approximately 30% larger than the [`NSImageSymbolScaleMedium`](https://developer.apple.com/documentation/appkit/nsimage/symbolscale/medium) scale.
+    ///
+    ///
     #[doc(alias = "NSImageSymbolScaleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -1612,27 +2745,23 @@ unsafe impl RefEncode for NSImageSymbolScale {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageSymbolVariableValueMode(pub NSInteger);
 impl NSImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/automatic?language=objc)
+    /// Automatically selects an appropriate variable value mode for the symbol.
     #[doc(alias = "NSImageSymbolVariableValueModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The “color” variable value mode. Sets the opacity of each variable layer to either on or off depending on how its threshold compared to the current value.
     /// The "color" variable value mode. Sets the opacity of each variable layer to
     /// either on or off depending on how its threshold compared to the current value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/color?language=objc)
     #[doc(alias = "NSImageSymbolVariableValueModeColor")]
     pub const Color: Self = Self(1);
+    /// The “draw” variable value mode. Changes the drawn length of each variable layer to either based on how its range relates to the current value.
     /// The "draw" variable value mode. Changes the drawn length of each variable layer
     /// to either based on how its range relates to the current value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolvariablevaluemode/draw?language=objc)
     #[doc(alias = "NSImageSymbolVariableValueModeDraw")]
     pub const Draw: Self = Self(2);
 }
@@ -1649,25 +2778,21 @@ unsafe impl Send for NSImageSymbolVariableValueMode {}
 
 unsafe impl Sync for NSImageSymbolVariableValueMode {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageSymbolColorRenderingMode(pub NSInteger);
 impl NSImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/automatic?language=objc)
+    /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.
     #[doc(alias = "NSImageSymbolColorRenderingModeAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Renders the symbol’s color layers using flat colors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/flat?language=objc)
+    /// Renders the symbol’s color layers using flat colors.
     #[doc(alias = "NSImageSymbolColorRenderingModeFlat")]
     pub const Flat: Self = Self(1);
     /// Renders the symbol’s color layers using gradients.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolcolorrenderingmode/gradient?language=objc)
+    /// Renders the symbol’s color layers using gradients.
     #[doc(alias = "NSImageSymbolColorRenderingModeGradient")]
     pub const Gradient: Self = Self(2);
 }
@@ -1685,7 +2810,28 @@ unsafe impl Send for NSImageSymbolColorRenderingMode {}
 unsafe impl Sync for NSImageSymbolColorRenderingMode {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.class?language=objc)
+    /// An object that contains the specific font, style, and weight attributes to apply to a symbol image.
+    ///
+    /// ## Overview
+    ///
+    /// Symbol image configuration objects include details such as the point size, scale, text style, and weight to apply to your symbol image. The system uses these details to determine which variant of the image to use and how to scale or style the image.
+    ///
+    /// ```swift
+    /// if let image = NSImage(systemSymbolName: "multiply.circle.fill",
+    ///                        accessibilityDescription: "A multiply symbol inside a filled circle.") {
+    ///         
+    ///     var config = NSImage.SymbolConfiguration(textStyle: .body,
+    ///                                                      scale: .large)
+    ///     config = config.applying(.init(paletteColors: [.systemTeal, .systemGray]))
+    ///     imageView.image = image.withSymbolConfiguration(config)
+    /// }
+    /// ```
+    ///
+    /// [`NSImageSymbolConfiguration`](https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.class) objects are immutable after you create them. If you use the [`configurationByApplyingConfiguration:`](https://developer.apple.com/documentation/appkit/nsimage/symbolconfiguration-swift.class/applying(_:)) method on the object, the new image attributes replace any previous attributes you supplied. After creating a symbol configuration object, assign it to the [`symbolConfiguration`](https://developer.apple.com/documentation/appkit/nsimageview/symbolconfiguration) property of the [`NSImageView`](https://developer.apple.com/documentation/appkit/nsimageview) object you use to display the image. If you draw the image directly, use the [`imageWithSymbolConfiguration:`](https://developer.apple.com/documentation/appkit/nsimage/withsymbolconfiguration(_:)) method to create a new image that contains the new attributes.
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSImageSymbolConfiguration;

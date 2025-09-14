@@ -30,88 +30,91 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcerrordomain?language=objc)
+    /// The domain for errors associated with Core NFC APIs.
     pub static NFCErrorDomain: &'static NSErrorDomain;
 }
 
+/// Reader session and tag error codes.
 /// Possible errors returned by CoreNFC framework reader session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCReaderError(pub NSInteger);
 impl NFCReaderError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorunsupportedfeature?language=objc)
+    /// The reader session does not support this feature.
     #[doc(alias = "NFCReaderErrorUnsupportedFeature")]
     pub const ReaderErrorUnsupportedFeature: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorsecurityviolation?language=objc)
+    /// A security violation associated with the reader session has occurred.
     #[doc(alias = "NFCReaderErrorSecurityViolation")]
     pub const ReaderErrorSecurityViolation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorinvalidparameter?language=objc)
+    /// An input parameter is invalid.
     #[doc(alias = "NFCReaderErrorInvalidParameter")]
     pub const ReaderErrorInvalidParameter: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorinvalidparameterlength?language=objc)
+    /// The length of an input parameter is invalid.
     #[doc(alias = "NFCReaderErrorInvalidParameterLength")]
     pub const ReaderErrorInvalidParameterLength: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorparameteroutofbound?language=objc)
+    /// A parameter value is outside of the acceptable boundary.
     #[doc(alias = "NFCReaderErrorParameterOutOfBound")]
     pub const ReaderErrorParameterOutOfBound: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorradiodisabled?language=objc)
+    /// The NFC wireless radio on the device is disabled.
+    ///
+    /// ## Discussion
+    ///
+    /// This condition happens, for example, when a person enables airplane mode on their device.
+    ///
+    ///
     #[doc(alias = "NFCReaderErrorRadioDisabled")]
     pub const ReaderErrorRadioDisabled: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererrorineligible?language=objc)
     #[doc(alias = "NFCReaderErrorIneligible")]
     pub const ReaderErrorIneligible: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readererroraccessnotaccepted?language=objc)
     #[doc(alias = "NFCReaderErrorAccessNotAccepted")]
     pub const ReaderErrorAccessNotAccepted: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagconnectionlost?language=objc)
+    /// The reader lost the connection to the tag.
     #[doc(alias = "NFCReaderTransceiveErrorTagConnectionLost")]
     pub const ReaderTransceiveErrorTagConnectionLost: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorretryexceeded?language=objc)
+    /// Too many retries have occurred.
     #[doc(alias = "NFCReaderTransceiveErrorRetryExceeded")]
     pub const ReaderTransceiveErrorRetryExceeded: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagresponseerror?language=objc)
+    /// The tag has responded with an error.
     #[doc(alias = "NFCReaderTransceiveErrorTagResponseError")]
     pub const ReaderTransceiveErrorTagResponseError: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorsessioninvalidated?language=objc)
+    /// The reader session is invalid.
     #[doc(alias = "NFCReaderTransceiveErrorSessionInvalidated")]
     pub const ReaderTransceiveErrorSessionInvalidated: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrortagnotconnected?language=objc)
+    /// The tag isn’t in the connected state.
     #[doc(alias = "NFCReaderTransceiveErrorTagNotConnected")]
     pub const ReaderTransceiveErrorTagNotConnected: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readertransceiveerrorpackettoolong?language=objc)
+    /// The packet length exceeds the limit supported by the tag.
     #[doc(alias = "NFCReaderTransceiveErrorPacketTooLong")]
     pub const ReaderTransceiveErrorPacketTooLong: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorusercanceled?language=objc)
+    /// The user canceled the reader session.
     #[doc(alias = "NFCReaderSessionInvalidationErrorUserCanceled")]
     pub const ReaderSessionInvalidationErrorUserCanceled: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsessiontimeout?language=objc)
+    /// The reader session timed out.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTimeout")]
     pub const ReaderSessionInvalidationErrorSessionTimeout: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsessionterminatedunexpectedly?language=objc)
+    /// The reader session terminated unexpectedly.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSessionTerminatedUnexpectedly")]
     pub const ReaderSessionInvalidationErrorSessionTerminatedUnexpectedly: Self = Self(202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorsystemisbusy?language=objc)
+    /// The reader session failed because the system is busy.
     #[doc(alias = "NFCReaderSessionInvalidationErrorSystemIsBusy")]
     pub const ReaderSessionInvalidationErrorSystemIsBusy: Self = Self(203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/readersessioninvalidationerrorfirstndeftagread?language=objc)
+    /// The first NDEF tag read by this session is invalid.
     #[doc(alias = "NFCReaderSessionInvalidationErrorFirstNDEFTagRead")]
     pub const ReaderSessionInvalidationErrorFirstNDEFTagRead: Self = Self(204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/tagcommandconfigurationerrorinvalidparameters?language=objc)
+    /// The tag has been configured with invalid parameters.
     #[doc(alias = "NFCTagCommandConfigurationErrorInvalidParameters")]
     pub const TagCommandConfigurationErrorInvalidParameters: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagnotwritable?language=objc)
+    /// The NDEF tag isn’t writable.
     #[doc(alias = "NFCNdefReaderSessionErrorTagNotWritable")]
     pub const NdefReaderSessionErrorTagNotWritable: Self = Self(400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagupdatefailure?language=objc)
+    /// The reader session failed to update the NDEF tag.
     #[doc(alias = "NFCNdefReaderSessionErrorTagUpdateFailure")]
     pub const NdefReaderSessionErrorTagUpdateFailure: Self = Self(401);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrortagsizetoosmall?language=objc)
+    /// The NDEF tag memory size is too small to store the data.
     #[doc(alias = "NFCNdefReaderSessionErrorTagSizeTooSmall")]
     pub const NdefReaderSessionErrorTagSizeTooSmall: Self = Self(402);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code/ndefreadersessionerrorzerolengthmessage?language=objc)
+    /// The NDEF tag doesn’t contain an NDEF message.
     #[doc(alias = "NFCNdefReaderSessionErrorZeroLengthMessage")]
     pub const NdefReaderSessionErrorZeroLengthMessage: Self = Self(403);
 }
@@ -125,24 +128,33 @@ unsafe impl RefEncode for NFCReaderError {
 }
 
 extern "C" {
+    /// A user information dictionary key indicating that a tag responded with a command error.
+    ///
+    /// ## Discussion
+    ///
+    /// Check for the presence of this key in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object to determine whether a tag responded with a command error. When a command error occurs, the [`code`](https://developer.apple.com/documentation/foundation/nserror/code) property contains an error code defined in the ISO15693-3 specification.
+    ///
+    ///
     /// Key in NSError userInfo dictionary.  The corresponding value is the NSUInteger error code from tag's response.
     /// Refer to ISO15693 specification for the error code values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693tagresponseerrorkey?language=objc)
     pub static NFCISO15693TagResponseErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// Key in NSError userInfo dictionary.  Presence of this key indicates the received response packet length is invalid.
+    /// A user-information dictionary key that indicates an invalid received response packet length.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagresponseunexpectedlengtherrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// If an error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary contains this key, the received response packet length is invalid.
+    ///
+    ///
+    /// Key in NSError userInfo dictionary.  Presence of this key indicates the received response packet length is invalid.
     pub static NFCTagResponseUnexpectedLengthErrorKey: &'static NSString;
 }
 
 extern_protocol!(
+    /// A general interface for interacting with a reader session.
     /// General reader session functions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersessionprotocol?language=objc)
     #[doc(alias = "NFCReaderSession")]
     #[name = "NFCReaderSession"]
     pub unsafe trait NFCReaderSessionProtocol: NSObjectProtocol {
@@ -212,9 +224,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A collection of callbacks that provide information about the status of an NFC reader session.
     /// General reader session callbacks
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersessiondelegate?language=objc)
     pub unsafe trait NFCReaderSessionDelegate: NSObjectProtocol {
         /// Parameter `session`: The session object in the active state.
         ///
@@ -269,10 +280,15 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The abstract base class that represents a reader session for detecting NFC tags.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class. Instead, you create and use an instance of [`NFCNDEFReaderSession`](https://developer.apple.com/documentation/corenfc/nfcndefreadersession) or [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession). Only one reader session of any type can be active in the system at a time. The system puts additional sessions in a queue and processes them in FIFO order.
+    ///
+    ///
     /// This represents a NFC reader session for processing tags; this base class cannot be instantiate. Only one NFCReaderSession
     /// can be active at any time in the system.  Subsequent opened sessions will get queued up and processed by the system in FIFO order.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersession-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCReaderSession;
@@ -318,22 +334,22 @@ impl NFCReaderSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype?language=objc)
+/// Constants that identify the type of an NFC tag.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCTagType(pub NSUInteger);
 impl NFCTagType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypeiso15693?language=objc)
+    /// An NFC tag of type ISO 15693.
     #[doc(alias = "NFCTagTypeISO15693")]
     pub const ISO15693: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypefelica?language=objc)
+    /// An NFC tag of type FeliCa.
     #[doc(alias = "NFCTagTypeFeliCa")]
     pub const FeliCa: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypeiso7816compatible?language=objc)
+    /// An NFC tag of type ISO 7816.
     #[doc(alias = "NFCTagTypeISO7816Compatible")]
     pub const ISO7816Compatible: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagtype/nfctagtypemifare?language=objc)
+    /// An NFC tag of type MIFARE.
     #[doc(alias = "NFCTagTypeMiFare")]
     pub const MiFare: Self = Self(4);
 }
@@ -347,9 +363,14 @@ unsafe impl RefEncode for NFCTagType {
 }
 
 extern_protocol!(
-    /// A NFC / RFID tag object conforms to this protocol.  The NFCReaderSession returns an instance of this type when a tag is detected.
+    /// An interface for interacting with an NFC or RFID tag.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctag-c.protocol?language=objc)
+    /// ## Overview
+    ///
+    /// When an NFC reader session detects a tag, it returns an object that conforms to this protocol.
+    ///
+    ///
+    /// A NFC / RFID tag object conforms to this protocol.  The NFCReaderSession returns an instance of this type when a tag is detected.
     pub unsafe trait NFCTag: NSObjectProtocol + NSSecureCoding + NSCopying {
         /// See
         ///
@@ -402,9 +423,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A set of parameters you use to define the configuration of an NFC tag command.
     /// Define configuration parameters for tag commands.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagcommandconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCTagCommandConfiguration;
@@ -460,9 +480,8 @@ impl NFCTagCommandConfiguration {
 }
 
 extern_protocol!(
+    /// A protocol that an object implements to receive callbacks sent from an NFC tag reader session.
     /// Tag reader session delegate
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-5gxiw?language=objc)
     pub unsafe trait NFCTagReaderSessionDelegate: NSObjectProtocol {
         /// Parameter `session`: The session object that is invalidated.
         ///
@@ -517,25 +536,35 @@ extern_protocol!(
     }
 );
 
-/// This is an exclusive value that cannot be combine with other NFCPollingOption values; this will override all other combinations.
+/// Options that determine the type of tags that a reader session should detect during a polling sequence.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption?language=objc)
+/// ## Overview
+///
+/// You can combine options to have the reader session scan and detect different tag types at the same time.
+///
+///
+/// This is an exclusive value that cannot be combine with other NFCPollingOption values; this will override all other combinations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCPollingOption(pub NSInteger);
 bitflags::bitflags! {
     impl NFCPollingOption: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso14443?language=objc)
+/// The option for detecting ISO 7816-compatible and MIFARE tags.
+///
+/// ## Discussion
+///
+/// Supports NFC type A and B modulation.
+///
+///
         #[doc(alias = "NFCPollingISO14443")]
         const ISO14443 = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso15693?language=objc)
+/// The option for detecting ISO 15693 tags.
         #[doc(alias = "NFCPollingISO15693")]
         const ISO15693 = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/iso18092?language=objc)
+/// The option for detecting FeliCa tags.
         #[doc(alias = "NFCPollingISO18092")]
         const ISO18092 = 0x4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption/pace?language=objc)
         #[doc(alias = "NFCPollingPACE")]
         const PACE = 0x8;
     }
@@ -550,6 +579,29 @@ unsafe impl RefEncode for NFCPollingOption {
 }
 
 extern_class!(
+    /// A reader session for detecting ISO7816, ISO15693, FeliCa, and MIFARE tags.
+    ///
+    /// ## Overview
+    ///
+    /// Use NFCTagReaderSession to interact with one of the tag types listed in [`NFCTagType`](https://developer.apple.com/documentation/corenfc/nfctagtype). To use this reader session, you must:
+    ///
+    /// - Include the [`Near Field Communication Tag Reader Session Formats Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.formats) in your app.
+    ///
+    /// - Provide a non-empty string for the [`NFCReaderUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nfcreaderusagedescription) key in your app’s information property list file.
+    ///
+    /// To interact with ISO 7816 tags, add the list of the application identifiers supported in your app to the [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers) information property list key. If you include the application identifier `D2760000850101`—the identifier for the NDEF application on MIFARE DESFire tags (NFC Forum T4T tag platform)—and the reader session finds a tag matching this identifier, it sends the delegate an [`NFCISO7816Tag`](https://developer.apple.com/documentation/corenfc/nfciso7816tag) tag object. To get the MIFARE DESFire tag as an [`NFCMiFareTag`](https://developer.apple.com/documentation/corenfc/nfcmifaretag) object, don’t include `D2760000850101` in the application identifier list.
+    ///
+    /// Only one reader session of any type can be active in the system at a time. The system puts additional sessions in a queue and processes them in first-in, first-out (FIFO) order.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `NFCTagReaderSession` doesn’t support selection of payment-related application IDs. In the European Union (EU), you can use [`NFCPaymentTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfcpaymenttagreadersession), as described in that class’s documentation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Reader session for processing NFC tags supporting one of the
     ///
     /// ```text
@@ -567,8 +619,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession?language=objc)
     #[unsafe(super(NFCReaderSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCTagReaderSession;
@@ -669,6 +719,7 @@ impl NFCTagReaderSession {
 }
 
 extern_protocol!(
+    /// A protocol that an object implements to serve as an NDEF reader session delegate.
     /// NDEF reader session callbacks.  Presence of the -readerSession:didDetectTags: optional method will change the session behavior
     /// into a read-write session where
     ///
@@ -681,8 +732,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefreadersessiondelegate?language=objc)
     pub unsafe trait NFCNDEFReaderSessionDelegate: NSObjectProtocol {
         /// Parameter `session`: The session object that is invalidated.
         ///
@@ -754,6 +803,13 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A reader session for detecting NFC Data Exchange Format (NDEF) tags.
+    ///
+    /// ## Overview
+    ///
+    /// As with the [`NFCReaderSession`](https://developer.apple.com/documentation/corenfc/nfcreadersession-swift.class) base class, only one NFC NDEF reader session can be active in the system at a time. If you create an additional session, the system puts it in a queue and processes it in first-in, first-out (FIFO) order.
+    ///
+    ///
     /// NFC reader session for processing NFC Data Exchange Format (NDEF) tags.  This session requires the "com.apple.developer.nfc.readersession.formats"
     /// entitlement in your process.  In addition your application's Info.plist must contain a non-empty usage description string.
     ///
@@ -769,8 +825,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefreadersession?language=objc)
     #[unsafe(super(NFCReaderSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCNDEFReaderSession;
@@ -907,50 +961,42 @@ pub unsafe trait NSUserActivityCoreNFC:
 impl private_NSUserActivityCoreNFC::Sealed for NSUserActivity {}
 unsafe impl NSUserActivityCoreNFC for NSUserActivity {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCISO15693RequestFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693RequestFlag: u8 {
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/dualsubcarriers?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagDualSubCarriers")]
         const DualSubCarriers = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/highdatarate?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagHighDataRate")]
         const HighDataRate = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/protocolextension?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagProtocolExtension")]
         const ProtocolExtension = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/select?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagSelect")]
         const Select = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/address?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagAddress")]
         const Address = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/option?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagOption")]
         const Option = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/commandspecificbit8?language=objc)
         #[doc(alias = "NFCISO15693RequestFlagCommandSpecificBit8")]
         const CommandSpecificBit8 = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagdualsubcarriers?language=objc)
+/// A bit mask value that turns on the subcarrier flag.
 #[deprecated]
         const RequestFlagDualSubCarriers = NFCISO15693RequestFlag::DualSubCarriers.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflaghighdatarate?language=objc)
+/// A bit mask value that turns on the high data rate flag.
 #[deprecated]
         const RequestFlagHighDataRate = NFCISO15693RequestFlag::HighDataRate.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagprotocolextension?language=objc)
+/// A bit mask value that turns on the protocol extension flag.
 #[deprecated]
         const RequestFlagProtocolExtension = NFCISO15693RequestFlag::ProtocolExtension.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagselect?language=objc)
+/// A bit mask value that turns on the select flag.
 #[deprecated]
         const RequestFlagSelect = NFCISO15693RequestFlag::Select.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagaddress?language=objc)
+/// A bit mask value that turns on the address flag.
 #[deprecated]
         const RequestFlagAddress = NFCISO15693RequestFlag::Address.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag/requestflagoption?language=objc)
+/// A bit mask value that turns on the option flag.
 #[deprecated]
         const RequestFlagOption = NFCISO15693RequestFlag::Option.0;
     }
@@ -964,35 +1010,27 @@ unsafe impl RefEncode for NFCISO15693RequestFlag {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/requestflag?language=objc)
+/// A set of bit mask options that, when combined, define the request flags to use when sending a command.
 pub type RequestFlag = NFCISO15693RequestFlag;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCISO15693ResponseFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693ResponseFlag: u8 {
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/error?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagError")]
         const Error = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/responsebuffervalid?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagResponseBufferValid")]
         const ResponseBufferValid = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/finalresponse?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagFinalResponse")]
         const FinalResponse = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/protocolextension?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagProtocolExtension")]
         const ProtocolExtension = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/blocksecuritystatusbit5?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagBlockSecurityStatusBit5")]
         const BlockSecurityStatusBit5 = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/blocksecuritystatusbit6?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagBlockSecurityStatusBit6")]
         const BlockSecurityStatusBit6 = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag/waittimeextension?language=objc)
         #[doc(alias = "NFCISO15693ResponseFlagWaitTimeExtension")]
         const WaitTimeExtension = 1<<6;
     }
@@ -1007,9 +1045,13 @@ unsafe impl RefEncode for NFCISO15693ResponseFlag {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// Configuration options for the Manufacturer Custom command.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693customcommandconfiguration?language=objc)
+    ///
+    /// Configuration options for the Manufacturer Custom command.
     #[unsafe(super(NFCTagCommandConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCISO15693CustomCommandConfiguration;
@@ -1114,9 +1156,13 @@ impl NFCISO15693CustomCommandConfiguration {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// Configuration options for the Read Multiple Blocks command.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693readmultipleblocksconfiguration?language=objc)
+    ///
+    /// Configuration options for the Read Multiple Blocks command.
     #[unsafe(super(NFCTagCommandConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCISO15693ReadMultipleBlocksConfiguration;
@@ -1198,6 +1244,15 @@ impl NFCISO15693ReadMultipleBlocksConfiguration {
 }
 
 extern_protocol!(
+    /// An interface for interacting with an ISO 15693 tag.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NFCTagReaderSessionDelegate`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-2joku) receives an object that conforms to the [`NFCISO15693Tag`](https://developer.apple.com/documentation/corenfc/nfciso15693tag) protocol when the [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession) detects an ISO 15693-compatible tag. For the delegate to receive the tag object, your app must include the [`Near Field Communication Tag Reader Session Formats Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.formats).
+    ///
+    /// For the reader session to read and write data to the tag, it must be available to the reader session. Use the [`isAvailable`](https://developer.apple.com/documentation/corenfc/nfctag-swift.enum/isavailable) property to check the tag’s availability.
+    ///
+    ///
     /// A
     ///
     /// ```text
@@ -1212,8 +1267,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693tag?language=objc)
     pub unsafe trait NFCISO15693Tag: NFCTag + NFCNDEFTag {
         /// The 64 bit hardware UID of the tag. Data is in Big Endian byte order.
         #[unsafe(method(identifier))]
@@ -2095,6 +2148,14 @@ extern_protocol!(
 );
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// Reader session for processing ISO15693 tags.  @link [NFCReaderSessionDelegate readerSession:didDetectTags:] @link/ will return tag objects that are conformed to the NFCISO15693Tag protocol.  This session requires the “com.apple.developer.nfc.readersession.formats” entitlement in your process.
+    ///
+    /// NOTE: Only one NFCReaderSession can be active at any time in the system. Subsequent opened sessions will get queued up and processed by the system in FIFO order. The NFCISO15693 tag object returned by this session will only respond to the legacy APIs that are introduced in iOS11.
+    ///
+    ///
     /// Reader session for processing ISO15693 tags.
     ///
     /// ```text
@@ -2107,8 +2168,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693readersession?language=objc)
     #[unsafe(super(NFCReaderSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -2180,19 +2239,25 @@ impl NFCISO15693ReaderSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus?language=objc)
+/// Constants that indicate status for an NDEF tag.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCNDEFStatus(pub NSUInteger);
 impl NFCNDEFStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/notsupported?language=objc)
+    /// A status indicating that that tag isn’t an NDEF-formatted tag.
+    ///
+    /// ## Discussion
+    ///
+    /// You cannot perform read and write operations on the tag.
+    ///
+    ///
     #[doc(alias = "NFCNDEFStatusNotSupported")]
     pub const NotSupported: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/readwrite?language=objc)
+    /// A status indicating that the tag supports reading and writing NDEF message data.
     #[doc(alias = "NFCNDEFStatusReadWrite")]
     pub const ReadWrite: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefstatus/readonly?language=objc)
+    /// A status indicating that the tag supports reading NDEF message data only.
     #[doc(alias = "NFCNDEFStatusReadOnly")]
     pub const ReadOnly: Self = Self(3);
 }
@@ -2206,9 +2271,8 @@ unsafe impl RefEncode for NFCNDEFStatus {
 }
 
 extern_protocol!(
+    /// An interface for interacting with an NDEF tag.
     /// Operations on a NDEF formatted tag.  Unless it is specified all block completion handlers are dispatched on the session work queue that is associated with the tag.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndeftag?language=objc)
     pub unsafe trait NFCNDEFTag: NSObjectProtocol + NSSecureCoding + NSCopying {
         /// Returns: <i>
         /// YES
@@ -2283,29 +2347,24 @@ extern_protocol!(
 );
 
 /// Request code parameter for the polling command
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingRequestCode(pub NSInteger);
 impl NFCFeliCaPollingRequestCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/norequest?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeNoRequest")]
     pub const NoRequest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/systemcode?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeSystemCode")]
     pub const SystemCode: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/communicationperformance?language=objc)
     #[doc(alias = "NFCFeliCaPollingRequestCodeCommunicationPerformance")]
     pub const CommunicationPerformance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodenorequest?language=objc)
+    /// A code that indicates no request.
     #[deprecated]
     pub const PollingRequestCodeNoRequest: Self = Self(NFCFeliCaPollingRequestCode::NoRequest.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodesystemcode?language=objc)
+    /// A code that indicates a system code request.
     #[deprecated]
     pub const PollingRequestCodeSystemCode: Self = Self(NFCFeliCaPollingRequestCode::SystemCode.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode/pollingrequestcodecommunicationperformance?language=objc)
+    /// A code that indicates a communication performance request.
     #[deprecated]
     pub const PollingRequestCodeCommunicationPerformance: Self =
         Self(NFCFeliCaPollingRequestCode::CommunicationPerformance.0);
@@ -2319,46 +2378,39 @@ unsafe impl RefEncode for NFCFeliCaPollingRequestCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/pollingrequestcode?language=objc)
+/// Codes that specify the type of the data to request when polling.
 #[deprecated]
 pub type PollingRequestCode = NFCFeliCaPollingRequestCode;
 
 /// Time slot parameter for the polling command
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingTimeSlot(pub NSInteger);
 impl NFCFeliCaPollingTimeSlot {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max1?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax1")]
     pub const Max1: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max2?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax2")]
     pub const Max2: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max4?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax4")]
     pub const Max4: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max8?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax8")]
     pub const Max8: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/max16?language=objc)
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax16")]
     pub const Max16: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax1?language=objc)
+    /// A constant that indicates a maximum of one slot.
     #[deprecated]
     pub const PollingTimeSlotMax1: Self = Self(NFCFeliCaPollingTimeSlot::Max1.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax2?language=objc)
+    /// A constant that indicates a maximum of two slots.
     #[deprecated]
     pub const PollingTimeSlotMax2: Self = Self(NFCFeliCaPollingTimeSlot::Max2.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax4?language=objc)
+    /// A constant that indicates a maximum of four slots.
     #[deprecated]
     pub const PollingTimeSlotMax4: Self = Self(NFCFeliCaPollingTimeSlot::Max4.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax8?language=objc)
+    /// A constant that indicates a maximum of eight slots.
     #[deprecated]
     pub const PollingTimeSlotMax8: Self = Self(NFCFeliCaPollingTimeSlot::Max8.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot/pollingtimeslotmax16?language=objc)
+    /// A constant that indicates a maximum of sixteen slots.
     #[deprecated]
     pub const PollingTimeSlotMax16: Self = Self(NFCFeliCaPollingTimeSlot::Max16.0);
 }
@@ -2371,28 +2423,24 @@ unsafe impl RefEncode for NFCFeliCaPollingTimeSlot {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/pollingtimeslot?language=objc)
+/// Constants that specify the maximum number of time slots.
 #[deprecated]
 pub type PollingTimeSlot = NFCFeliCaPollingTimeSlot;
 
 /// Encryption Identifier parameter in response of Request Service V2
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCFeliCaEncryptionId(pub NSInteger);
 impl NFCFeliCaEncryptionId {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes-swift.enum.case?language=objc)
     #[doc(alias = "NFCFeliCaEncryptionIdAES")]
     pub const AES: Self = Self(0x4F);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes_des-swift.enum.case?language=objc)
     #[doc(alias = "NFCFeliCaEncryptionIdAES_DES")]
     pub const AES_DES: Self = Self(0x41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes-swift.type.property?language=objc)
+    /// An identifier that indicates the Advanced Encryption Standard (AES) encryption algorithm.
     #[deprecated]
     pub const EncryptionIdAES: Self = Self(NFCFeliCaEncryptionId::AES.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicaencryptionid/aes_des-swift.type.property?language=objc)
+    /// An identifier that indicates the Data Encryption Standard (DES) encryption algorithm.
     #[deprecated]
     pub const EncryptionIdAES_DES: Self = Self(NFCFeliCaEncryptionId::AES_DES.0);
 }
@@ -2405,11 +2453,18 @@ unsafe impl RefEncode for NFCFeliCaEncryptionId {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/encryptionid?language=objc)
+/// Encryption identifiers indicating the type of encryption algorithm used in the response of a Request Service V2 command.
 #[deprecated]
 pub type EncryptionId = NFCFeliCaEncryptionId;
 
 extern_protocol!(
+    /// An interface for interacting with a FeliCa™ tag.
+    ///
+    /// ## Overview
+    ///
+    /// FeliCa is a trademark of Sony Corporation.
+    ///
+    ///
     /// A
     ///
     /// ```text
@@ -2431,8 +2486,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicatag?language=objc)
     pub unsafe trait NFCFeliCaTag: NFCTag + NFCNDEFTag {
         /// This will match one of the entries in the "com.apple.developer.nfc.readersession.felica.systemcodes"
         /// in the Info.plist.
@@ -2655,9 +2708,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object representing an ISO 7816 application protocol data unit (APDU).
     /// ISO7816 Application Data Unit (APDU).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso7816apdu?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCISO7816APDU;
@@ -2761,6 +2813,21 @@ impl NFCISO7816APDU {
 }
 
 extern_protocol!(
+    /// An interface for interacting with an ISO 7816 tag.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NFCTagReaderSessionDelegate`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-2joku) receives an object that conforms to the [`NFCISO7816Tag`](https://developer.apple.com/documentation/corenfc/nfciso7816tag) protocol when the [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession) detects an ISO 7816-compatible tag. For the delegate to receive the tag object, your app must include:
+    ///
+    /// - The [`Near Field Communication Tag Reader Session Formats Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.formats).
+    ///
+    /// - A list of supported application identifiers in the [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers)_ _information property list key.
+    ///
+    /// When the session discovers a compatible ISO 7816 tag, the session performs a `SELECT` command for each application identifier provided in [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers). The `SELECT` command searches for the identifiers in the order in which they appear in the array. The session calls the [`tagReaderSession:didDetectTags:`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-5gxiw/tagreadersession:diddetecttags:) delegate method after the first successful `SELECT` command. The [`initialSelectedAID`](https://developer.apple.com/documentation/corenfc/nfciso7816tag/initialselectedaid) property of the found tag contains the selected identifier.
+    ///
+    /// For the reader session to read and write data to the tag, it must be available to the reader session. Use the [`isAvailable`](https://developer.apple.com/documentation/corenfc/nfctag-swift.enum/isavailable) property to check the tag’s availability.
+    ///
+    ///
     /// A
     ///
     /// ```text
@@ -2782,8 +2849,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso7816tag?language=objc)
     pub unsafe trait NFCISO7816Tag: NFCTag + NFCNDEFTag {
         /// This will match one of the entries in the "com.apple.developer.nfc.readersession.iso7816.select-identifiers"
         /// in the Info.plist.
@@ -2844,22 +2909,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily?language=objc)
+/// Identifiers for the MIFARE product families.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCMiFareFamily(pub NSUInteger);
 impl NFCMiFareFamily {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/unknown?language=objc)
+    /// An identifier that indicates a compatible ISO14443 Type A tag.
     #[doc(alias = "NFCMiFareUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/ultralight?language=objc)
+    /// An identifier that indicates the MIFARE Ultralight® product family.
     #[doc(alias = "NFCMiFareUltralight")]
     pub const Ultralight: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/plus?language=objc)
+    /// An identifier that indicates the MIFARE Plus® product family.
     #[doc(alias = "NFCMiFarePlus")]
     pub const Plus: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifarefamily/desfire?language=objc)
+    /// An identifier that indicates the MIFARE® DESFire® product family.
     #[doc(alias = "NFCMiFareDESFire")]
     pub const DESFire: Self = Self(4);
 }
@@ -2873,6 +2938,19 @@ unsafe impl RefEncode for NFCMiFareFamily {
 }
 
 extern_protocol!(
+    /// An interface for interacting with a MIFARE® tag.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NFCTagReaderSessionDelegate`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-2joku) receives an object that conforms to the [`NFCMiFareTag`](https://developer.apple.com/documentation/corenfc/nfcmifaretag) protocol when the [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession) detects a compatible tag. However, if you include the application identifier `D2760000850101`—the identifier for the NDEF application on MIFARE® DESFire® tags (NFC Forum T4T tag platform)—in the [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers) array of your `Info.plist` file, the reader session sends the delegate an [`NFCISO7816Tag`](https://developer.apple.com/documentation/corenfc/nfciso7816tag) object when it finds a tag matching the identifier. To receive the MIFARE DESFire tag as an [`NFCMiFareTag`](https://developer.apple.com/documentation/corenfc/nfcmifaretag) object, don’t include `D2760000850101` in the array.
+    ///
+    /// For the delegate to receive the tag object, your app must include the [`Near Field Communication Tag Reader Session Formats Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.formats).
+    ///
+    /// For the reader session to read and write data to the tag, it must be available to the reader session. Use the [`isAvailable`](https://developer.apple.com/documentation/corenfc/nfctag-swift.enum/isavailable) property to check the tag’s availability.
+    ///
+    /// MIFARE, MIFARE DESFire, MIFARE Ultralight, and MIFARE Plus are registered trademarks of NXP B.V.
+    ///
+    ///
     /// A
     ///
     /// ```text
@@ -2885,8 +2963,6 @@ extern_protocol!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcmifaretag?language=objc)
     pub unsafe trait NFCMiFareTag: NFCTag + NFCNDEFTag {
         #[unsafe(method(mifareFamily))]
         #[unsafe(method_family = none)]
@@ -2949,34 +3025,39 @@ extern_protocol!(
     }
 );
 
+/// The Type Name Format values that specify the content type for the payload data in an NFC NDEF message.
 /// Type Name Format value defined by NFC Data Exchange Format (NDEF) Technical Specification
 /// from NFC Forum.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCTypeNameFormat(pub u8);
 impl NFCTypeNameFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/empty?language=objc)
+    /// A type indicating that the payload contains no data.
     #[doc(alias = "NFCTypeNameFormatEmpty")]
     pub const Empty: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/nfcwellknown?language=objc)
+    /// A type indicating that the payload contains well-known NFC record type data.
     #[doc(alias = "NFCTypeNameFormatNFCWellKnown")]
     pub const NFCWellKnown: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/media?language=objc)
+    /// A type indicating that the payload contains media data as defined by RFC 2046.
     #[doc(alias = "NFCTypeNameFormatMedia")]
     pub const Media: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/absoluteuri?language=objc)
+    /// A type indicating that the payload contains a uniform resource identifier.
     #[doc(alias = "NFCTypeNameFormatAbsoluteURI")]
     pub const AbsoluteURI: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/nfcexternal?language=objc)
+    /// A type indicating that the payload contains NFC external type data.
     #[doc(alias = "NFCTypeNameFormatNFCExternal")]
     pub const NFCExternal: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/unknown?language=objc)
+    /// A type indicating that the payload data type is unknown.
     #[doc(alias = "NFCTypeNameFormatUnknown")]
     pub const Unknown: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat/unchanged?language=objc)
+    /// A type indicating that the payload is part of a series of records containing chunked data.
+    ///
+    /// ## Discussion
+    ///
+    /// The first record in a series of chunked data records indicates the type name format for the series. The remaining records have a type name format of [`NFCTypeNameFormatUnchanged`](https://developer.apple.com/documentation/corenfc/nfctypenameformat/unchanged).
+    ///
+    ///
     #[doc(alias = "NFCTypeNameFormatUnchanged")]
     pub const Unchanged: Self = Self(0x06);
 }
@@ -2990,10 +3071,15 @@ unsafe impl RefEncode for NFCTypeNameFormat {
 }
 
 extern_class!(
+    /// A payload record in an NFC NDEF message.
+    ///
+    /// ## Overview
+    ///
+    /// An NDEF message payload consists of the Type Name Format field (as defined by the NDEF specification), type, identifier, and data.
+    ///
+    ///
     /// A NDEF message payload consists of Type Name Format, Type, Payload Identifier, and Payload data.
     /// The NDEF payload cannot result into a record that is greater than 128KB in size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCNDEFPayload;
@@ -3165,9 +3251,8 @@ impl NFCNDEFPayload {
 }
 
 extern_class!(
+    /// An NFC NDEF message consisting of an array of payload records.
     /// A NDEF message consists of payload records.  The maximum size of the NDEF message is limited to 128KB.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcndefmessage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCNDEFMessage;
@@ -3233,22 +3318,18 @@ impl NFCNDEFMessage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCVASMode(pub NSInteger);
 impl NFCVASMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/urlonly?language=objc)
     #[doc(alias = "NFCVASModeURLOnly")]
     pub const URLOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/normal?language=objc)
     #[doc(alias = "NFCVASModeNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/vasmodeurlonly?language=objc)
     #[deprecated]
     pub const VASModeURLOnly: Self = Self(NFCVASMode::URLOnly.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum/vasmodenormal?language=objc)
+    /// A constant that indicates the Full VAS Protocol mode.
     #[deprecated]
     pub const VASModeNormal: Self = Self(NFCVASMode::Normal.0);
 }
@@ -3261,14 +3342,13 @@ unsafe impl RefEncode for NFCVASMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/vasmode?language=objc)
+/// Constants that indicate the VAS protocol mode.
 #[deprecated]
 pub type VASMode = NFCVASMode;
 
 extern_class!(
+    /// An object providing the configuration for a GET VAS DATA command.
     /// Configuration for one GET VAS DATA command.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCVASCommandConfiguration;
@@ -3354,59 +3434,49 @@ impl NFCVASCommandConfiguration {
 }
 
 /// Response APDU status word.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NFCVASErrorCode(pub NSInteger);
 impl NFCVASErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/success?language=objc)
     #[doc(alias = "NFCVASErrorCodeSuccess")]
     pub const Success: Self = Self(0x9000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/datanotfound?language=objc)
     #[doc(alias = "NFCVASErrorCodeDataNotFound")]
     pub const DataNotFound: Self = Self(0x6A83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/datanotactivated?language=objc)
     #[doc(alias = "NFCVASErrorCodeDataNotActivated")]
     pub const DataNotActivated: Self = Self(0x6287);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/wrongparameters?language=objc)
     #[doc(alias = "NFCVASErrorCodeWrongParameters")]
     pub const WrongParameters: Self = Self(0x6B00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/wronglcfield?language=objc)
     #[doc(alias = "NFCVASErrorCodeWrongLCField")]
     pub const WrongLCField: Self = Self(0x6700);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/userintervention?language=objc)
     #[doc(alias = "NFCVASErrorCodeUserIntervention")]
     pub const UserIntervention: Self = Self(0x6984);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/incorrectdata?language=objc)
     #[doc(alias = "NFCVASErrorCodeIncorrectData")]
     pub const IncorrectData: Self = Self(0x6A80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/unsupportedapplicationversion?language=objc)
     #[doc(alias = "NFCVASErrorCodeUnsupportedApplicationVersion")]
     pub const UnsupportedApplicationVersion: Self = Self(0x6340);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodesuccess?language=objc)
+    /// A constant indicating that the `GET VAS DATA` command was successful.
     #[deprecated]
     pub const VASErrorCodeSuccess: Self = Self(NFCVASErrorCode::Success.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodedatanotfound?language=objc)
+    /// A constant indicating that data wasn’t found.
     #[deprecated]
     pub const VASErrorCodeDataNotFound: Self = Self(NFCVASErrorCode::DataNotFound.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodedatanotactivated?language=objc)
+    /// A constant indicating that the data isn’t activated.
     #[deprecated]
     pub const VASErrorCodeDataNotActivated: Self = Self(NFCVASErrorCode::DataNotActivated.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodewrongparameters?language=objc)
+    /// A constant indicating that VAS command parameters are wrong.
     #[deprecated]
     pub const VASErrorCodeWrongParameters: Self = Self(NFCVASErrorCode::WrongParameters.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodewronglcfield?language=objc)
+    /// A constant indicating that the value in the Length Count field is wrong.
     #[deprecated]
     pub const VASErrorCodeWrongLCField: Self = Self(NFCVASErrorCode::WrongLCField.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeuserintervention?language=objc)
+    /// A constant indicating that the tag requires user intervention.
     #[deprecated]
     pub const VASErrorCodeUserIntervention: Self = Self(NFCVASErrorCode::UserIntervention.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeincorrectdata?language=objc)
+    /// A constant indicating that the data is incorrect.
     #[deprecated]
     pub const VASErrorCodeIncorrectData: Self = Self(NFCVASErrorCode::IncorrectData.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode/vaserrorcodeunsupportedapplicationversion?language=objc)
+    /// A constant indicating an unsupported application version.
     #[deprecated]
     pub const VASErrorCodeUnsupportedApplicationVersion: Self =
         Self(NFCVASErrorCode::UnsupportedApplicationVersion.0);
@@ -3420,14 +3490,13 @@ unsafe impl RefEncode for NFCVASErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/vaserrorcode?language=objc)
+/// Constants representing APDU status codes for a VAS response.
 #[deprecated]
 pub type VASErrorCode = NFCVASErrorCode;
 
 extern_class!(
+    /// An object representing the response from a single `GET VAS DATA` command.
     /// Response from one GET VAS DATA command.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCVASResponse;
@@ -3478,9 +3547,8 @@ impl NFCVASResponse {
 }
 
 extern_protocol!(
+    /// A protocol that an object implements to receive callbacks from a VAS reader session.
     /// Value Added Service (VAS) reader session callbacks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasreadersessiondelegate?language=objc)
     pub unsafe trait NFCVASReaderSessionDelegate: NSObjectProtocol {
         /// Parameter `session`: The session object in the active state.
         ///
@@ -3537,6 +3605,19 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A reader session for processing Value Added Service (VAS) tags.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Using NFCVASReaderSession requires an entitlement from Apple. Updates will include information about the entitlement and a link to the entitlement request form.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Reader session for processing Value Added Service (VAS) tags.  This session requires the "com.apple.developer.nfc.readersession.formats"
     /// entitlement in your process.  In addition your application's Info.plist must contain a non-empty usage description string.
     ///
@@ -3549,8 +3630,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasreadersession?language=objc)
     #[unsafe(super(NFCReaderSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCVASReaderSession;
@@ -3626,6 +3705,31 @@ impl NFCVASReaderSession {
 }
 
 extern_class!(
+    /// A reader session that supports the use of payment tags.
+    ///
+    /// ## Overview
+    ///
+    /// This subclass of [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession) adds support for payment tags, when someone uses your app in certain regions. To support payment tags in your app, intialize this class with a [`NFCTagReaderSessionDelegate`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-2joku). The delegate receives an object that conforms to the [`NFCISO7816Tag`](https://developer.apple.com/documentation/corenfc/nfciso7816tag) protocol when the [`NFCTagReaderSession`](https://developer.apple.com/documentation/corenfc/nfctagreadersession) detects an ISO 7816-compatible tag. For the delegate to receive the tag object, your app must include:
+    ///
+    /// - The [`Near Field Communication Tag Reader Session Formats Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.formats)
+    ///
+    /// - A list of supported application identifiers in the [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers) information property list key
+    ///
+    /// When the session discovers an ISO 7816-compatible tag, the session performs a `SELECT` command for each application identifier provided in [`ISO7816 application identifiers for NFC Tag Reader Session`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.nfc.readersession.iso7816.select-identifiers). The `SELECT` command searches for the identifiers in the order in which they appear in the array. The session calls the [`tagReaderSession:didDetectTags:`](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-5gxiw/tagreadersession:diddetecttags:) delegate method after the first successful `SELECT` command. The [`initialSelectedAID`](https://developer.apple.com/documentation/corenfc/nfciso7816tag/initialselectedaid) property of the found tag contains the selected identifier.
+    ///
+    /// The tag must be available to the reader session, so it can read and write data to the tag. Use the [`isAvailable`](https://developer.apple.com/documentation/corenfc/nfctag-swift.enum/isavailable) property to check the tag’s availability. To connect to an available tag, call the superclass’s [`connect(to:completionHandler:)`](https://developer.apple.com/documentation/corenfc/nfctagreadersession/connect(to:completionhandler:)) method.
+    ///
+    /// The system only supports one active [`NFCReaderSession`](https://developer.apple.com/documentation/corenfc/nfcreadersession-swift.class) at a time. The system queues and processes subsequently opened sessions in first-in-first-out order.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// The system supports use of `NFCPaymentTagReaderSession` only within the European Union (EU). People using your app must have an account registered in the EU, and their device must be located within the EU. These registration and device location requirements also apply to developing and testing apps that use this API. If the device isn’t currently eligible to use `NFCPaymentTagReaderSession`, the `NFCPaymentTagReaderSession.readingAvailable` property is false.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Reader session for processing NFC payment tags supporting the
     ///
     /// ```text
@@ -3647,8 +3751,6 @@ extern_class!(
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpaymenttagreadersession?language=objc)
     #[unsafe(super(NFCTagReaderSession, NFCReaderSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCPaymentTagReaderSession;

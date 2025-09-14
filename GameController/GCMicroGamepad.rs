@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The name of the micro gamepad’s primary directional pad.
+    ///
+    /// ## Discussion
+    ///
+    /// For the second-generation Siri Remote and later, this represents the entire touch surface.
+    ///
+    ///
     /// The primary directional input surface for the directional gamepad
     ///
     ///
@@ -15,22 +22,32 @@ extern "C" {
     ///
     ///
     /// Note: For the 1st generation and 2nd generation Siri Remotes, this represents touching anywhere on the entire touch surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepaddpad?language=objc)
     pub static GCInputMicroGamepadDpad: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the micro gamepad’s primary button.
+    ///
+    /// ## Discussion
+    ///
+    /// For the first-generation and second-generation Siri Remote and later, this represents the button on the entire touch surface.
+    ///
+    ///
     /// The primary button for the microgamepad
     ///
     ///
     /// Note: For the 1st generation and 2nd generation Siri Remotes, this represents pressing anywhere on the touch surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttona?language=objc)
     pub static GCInputMicroGamepadButtonA: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the micro gamepad’s secondary button.
+    ///
+    /// ## Discussion
+    ///
+    /// For the first-generation and second-generation Siri Remote and later, this represents the play and pause button.
+    ///
+    ///
     /// The secondary button for the microgamepad
     ///
     ///
@@ -38,12 +55,17 @@ extern "C" {
     ///
     ///
     /// Note: For the 1st and 2nd generation Siri Remotes, this represents pressing the play/pause button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonx?language=objc)
     pub static GCInputMicroGamepadButtonX: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the micro gamepad’s menu button.
+    ///
+    /// ## Discussion
+    ///
+    /// For the first-generation Siri Remote, this represents the menu button. For the second-generation Siri Remote, this represents the back button.
+    ///
+    ///
     /// The primary menu button for the microgamepad
     ///
     ///
@@ -55,11 +77,16 @@ extern "C" {
     ///
     /// Note: You should avoid polling this button every frame. tvOS will run a gesture recognizer on events before forwarding them to your application that can reduce the window
     /// to poll button changes. Instead, register a pressedChangedHandler or a valueChangedHandler.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputmicrogamepadbuttonmenu?language=objc)
     pub static GCInputMicroGamepadButtonMenu: &'static NSString;
 }
 
+/// Signature for the block that this profile calls when an element’s value changes.
+///
+/// Parameters:
+/// - gamepad: The profile whose element value changes.
+///
+/// - element: The element in the profile whose value changes.
+///
 /// Set this block if you want to be notified when a value on a element changed. If multiple elements have changed this block will be called
 /// for each element that changed. As elements in a collection, such as the axis in a dpad, tend to change at the same time and thus
 /// will only call this once with the collection as the element.
@@ -68,8 +95,6 @@ extern "C" {
 /// Parameter `gamepad`: this gamepad that is being used to map the raw input data into logical values on controller elements such as the dpad or the buttons.
 ///
 /// Parameter `element`: the element that has been modified.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadvaluechangedhandler?language=objc)
 #[cfg(all(
     feature = "GCControllerElement",
     feature = "GCPhysicalInputProfile",
@@ -79,7 +104,27 @@ pub type GCMicroGamepadValueChangedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad?language=objc)
+    /// A controller profile that supports the Siri Remote.
+    ///
+    /// ## Overview
+    ///
+    /// The micro gamepad controller profile supports the following input elements:
+    ///
+    /// - Two digital face buttons (A and X).
+    ///
+    /// - One analog directional pad (D-pad) that functions as a touchpad.
+    ///
+    /// Users can rotate game controllers that support the micro gamepad profile, switching them between landscape and portrait orientation. If you want to get directional values according to the orientation, set the [`allowsRotation`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad/allowsrotation) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/852bb015728eeba3bd6f23612e2132c5/media-3830807~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/484a6ffc804aba9b7e2d68ed5f16ad37/media-3830807%402x.png 2x" />
+    ///     <img alt="An illustration of a Siri Remote with callouts for the digital face buttons, the Button menu, and the analog directional pad." src="https://docs-assets.developer.apple.com/published/852bb015728eeba3bd6f23612e2132c5/media-3830807~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GCPhysicalInputProfile")]

@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phpersistentchangefetchresult?language=objc)
+    /// An object that represents a fetch result and allows you to enumerate a very large set of change records.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPersistentChangeFetchResult;

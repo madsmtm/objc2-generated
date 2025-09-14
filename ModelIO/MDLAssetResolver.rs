@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlassetresolver?language=objc)
     pub unsafe trait MDLAssetResolver: NSObjectProtocol {
         #[unsafe(method(canResolveAssetNamed:))]
         #[unsafe(method_family = none)]
@@ -24,8 +23,6 @@ extern_class!(
     /// The relative asset resolver searches for referenced files
     /// by checking the location of the asset for sibling files
     /// satisfying the requested name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlrelativeassetresolver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLRelativeAssetResolver;
@@ -86,8 +83,6 @@ extern_class!(
     ///
     /// A trailing slash is automatically appended to path if
     /// not provided.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlpathassetresolver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLPathAssetResolver;
@@ -134,7 +129,6 @@ impl MDLPathAssetResolver {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlbundleassetresolver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLBundleAssetResolver;

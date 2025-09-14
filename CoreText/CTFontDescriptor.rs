@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptor?language=objc)
+/// A font descriptor.
+///
+/// ## Overview
+///
+/// A font descriptor is a dictionary of attributes (such as name, point size, and variation) that can completely specify a font.
+///
+/// A font descriptor can be an incomplete specification, in which case the system chooses the most appropriate font to match the given attributes.
+///
+///
 ///
 /// This is toll-free bridged with `NSFontDescriptor`.
 #[doc(alias = "CTFontDescriptorRef")]
@@ -29,12 +37,17 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTFontDescriptor {
+    /// Returns the type identifier for Core Text font descriptor references.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) opaque type.
+    ///
+    ///
     /// Returns the type identifier for Core Text font descriptor
     /// references.
     ///
     /// Returns: The identifier for the opaque type CTFontDescriptorRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorgettypeid()?language=objc)
     #[doc(alias = "CTFontDescriptorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -46,79 +59,116 @@ unsafe impl ConcreteType for CTFontDescriptor {
 }
 
 extern "C" {
+    /// The font URL from the font descriptor.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a doc://com.apple.documentation/documentation/corefoundation/cfurl-rd7 object.
+    ///
+    ///
     /// kCTFontURLAttribute
     ///
     /// The font URL.
     ///
     /// This is the key for accessing the font URL from the font descriptor. The value associated with this key is a CFURLRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfonturlattribute?language=objc)
     pub static kCTFontURLAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The PostScript name from the font descriptor.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. If the value is unspecified, it defaults to `Helvetica`, and if that font is unavailable, it falls back to the global font cascade list.
+    ///
+    ///
     /// kCTFontNameAttribute
     ///
     /// The PostScript name.
     ///
     /// This is the key for retrieving the PostScript name from the font descriptor. When matching, this is treated more generically: the system first tries to find fonts with this PostScript name. If none is found, the system tries to find fonts with this family name, and, finally, if still nothing, tries to find fonts with this display name. The value associated with this key is a CFStringRef. If unspecified, defaults to "Helvetica", if unavailable falls back to global font cascade list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontnameattribute?language=objc)
     pub static kCTFontNameAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The name used to display the font.
+    ///
+    /// ## Discussion
+    ///
+    /// Most commonly this is the full name. The value associated with this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. If the value is unspecified, it defaults to `Helvetica`, and if that font is unavailable, it falls back to the global font cascade list.
+    ///
+    ///
     /// kCTFontDisplayNameAttribute
     ///
     /// The display name.
     ///
     /// This is the key for accessing the name used to display the font. Most commonly this is the full name. The value associated with this key is a CFStringRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdisplaynameattribute?language=objc)
     pub static kCTFontDisplayNameAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font family name from the font descriptor.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     /// kCTFontFamilyNameAttribute
     ///
     /// The family name.
     ///
     /// This is the key for accessing the family name from the font descriptor. The value associated with this key is a CFStringRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfamilynameattribute?language=objc)
     pub static kCTFontFamilyNameAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The style name of the font.
+    ///
+    /// ## Discussion
+    ///
+    /// This name represents the designer’s description of the font’s style. The value associated with this key is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     /// kCTFontStyleNameAttribute
     ///
     /// The style name.
     ///
     /// This is the key for accessing the style name of the font. This name represents the designer's description of the font's style. The value associated with this key is a CFStringRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontstylenameattribute?language=objc)
     pub static kCTFontStyleNameAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The dictionary of font traits for stylistic information.
+    ///
+    /// ## Discussion
+    ///
+    /// See Accessing Font Traits for the list of font traits. The value associated with this key is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object.
+    ///
+    ///
     /// kCTFontTraitsAttribute
     ///
     /// The font traits dictionary.
     ///
     /// This is the key for accessing the dictionary of font traits for stylistic information. See CTFontTraits.h for the list of font traits. The value associated with this key is a CFDictionaryRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfonttraitsattribute?language=objc)
     pub static kCTFontTraitsAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The dictionary of font variation.
+    ///
+    /// ## Discussion
+    ///
+    /// If specified in a font descriptor, fonts with the specified axes are primary match candidates; if no such fonts exist, this attribute is ignored.
+    ///
+    /// The value associated with this key is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object.
+    ///
+    ///
     /// kCTFontVariationAttribute
     ///
     /// The font variation dictionary.
     ///
     /// This key is used to obtain the font variation instance as a CFDictionaryRef. If specified in a font descriptor, fonts with the specified axes will be primary match candidates, if no such fonts exist, this attribute will be ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationattribute?language=objc)
     pub static kCTFontVariationAttribute: &'static CFString;
 }
 
@@ -131,78 +181,113 @@ extern "C" {
     ///
     ///
     /// See also: CTFontCopyVariationAxes
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontvariationaxesattribute?language=objc)
     pub static kCTFontVariationAxesAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font point size.
+    ///
+    /// ## Discussion
+    ///
+    /// Creating a font with this unspecified will default to a point size of 12.0. The value for this key is represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object.
+    ///
+    ///
     /// kCTFontSizeAttribute
     ///
     /// The font point size.
     ///
     /// This key is used to obtain or specify the font point size. Creating a font with this unspecified will default to a point size of 12.0. The value for this key is represented as a CFNumberRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsizeattribute?language=objc)
     pub static kCTFontSizeAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font transformation matrix when creating a font.
+    ///
+    /// ## Discussion
+    ///
+    /// If unspecified it defaults to the unit matrix. The value for this key is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object containing a [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) object.
+    ///
+    ///
     /// kCTFontMatrixAttribute
     ///
     /// The font transformation matrix.
     ///
     /// This key is used to specify the font transformation matrix when creating a font. The default value is CGAffineTransformIdentity. The value for this key is a CFDataRef containing a CGAffineTransform, of which only the a, b, c, and d fields are used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmatrixattribute?language=objc)
     pub static kCTFontMatrixAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The cascade list used for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The cascade list is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing [`CTFontDescriptorRef`](https://developer.apple.com/documentation/coretext/ctfontdescriptor) elements. If unspecified, the global cascade list is used.
+    ///
+    ///
     /// kCTFontCascadeListAttribute
     ///
     /// The font cascade list.
     ///
     /// This key is used to specify or obtain the cascade list used for a font reference. The cascade list is a CFArrayRef containing CTFontDescriptorRefs. If unspecified, the global cascade list is used. This list is not consulted for private-use characters on OS X 10.10, iOS 8, or earlier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcascadelistattribute?language=objc)
     pub static kCTFontCascadeListAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The Unicode character coverage set for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFCharacterSetRef`](https://developer.apple.com/documentation/corefoundation/cfcharacterset) object. If specified, this attribute can be used to restrict the font to a subset of its actual character set. If unspecified, this attribute is ignored and the actual character set is used.
+    ///
+    ///
     /// kCTFontCharacterSetAttribute
     ///
     /// The font Unicode character coverage set.
     ///
     /// The value for this key is a CFCharacterSetRef. Creating a font with this attribute will restrict the font to a subset of its actual character set.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontcharactersetattribute?language=objc)
     pub static kCTFontCharacterSetAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A list of covered languages for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) elements. If specified, this attribute restricts the search to matching fonts that support the specified languages. The language identifier string should conform to the RFC 3066bis standard. If unspecified, this attribute is ignored.
+    ///
+    ///
     /// kCTFontLanguagesAttribute
     ///
     /// The list of supported languages.
     ///
     /// The value for this key is a CFArrayRef of CFStringRef language identifiers conforming to UTS #35. It can be requested from any font. If present in a descriptor used for matching, only fonts supporting the specified languages will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontlanguagesattribute?language=objc)
     pub static kCTFontLanguagesAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The baseline adjustment for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// This is primarily used when defining font descriptors for a cascade list to keep the baseline of all fonts even. The value associated with this is a float represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object.
+    ///
+    ///
     /// kCTFontBaselineAdjustAttribute
     ///
     /// The baseline adjustment to apply to font metrics.
     ///
     /// The value for this key is a floating-point CFNumberRef. This is primarily used when defining font descriptors for a cascade list to keep the baseline of all fonts even.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontbaselineadjustattribute?language=objc)
     pub static kCTFontBaselineAdjustAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The Macintosh encodings for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing a bit field of the Macintosh encodings. This attribute is provided for legacy compatibility.
+    ///
+    ///
     /// kCTFontMacintoshEncodingsAttribute
     ///
     /// The Macintosh encodings (legacy script codes).
@@ -210,12 +295,17 @@ extern "C" {
     /// The value associated with this key is a CFNumberRef containing a bitfield of the script codes in
     /// <CoreText
     /// /SFNTTypes.h>; bit 0 corresponds to kFontRomanScript, and so on. This attribute is provided for legacy compatibility.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontmacintoshencodingsattribute?language=objc)
     pub static kCTFontMacintoshEncodingsAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font features for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing font feature dictionaries. This feature list contains the feature information from the [‘feat’ table](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6feat.html) of the font. For more information, see [`CTFontCopyFeatures`](https://developer.apple.com/documentation/coretext/ctfontcopyfeatures(_:)).
+    ///
+    ///
     /// kCTFontFeaturesAttribute
     ///
     /// The array of font features.
@@ -227,12 +317,25 @@ extern "C" {
     ///
     ///
     /// See also: CTFontCopyFeatures
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesattribute?language=objc)
     pub static kCTFontFeaturesAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font features settings for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing font feature-setting dictionaries. A feature-setting dictionary contains a tuple of a [`kCTFontFeatureTypeIdentifierKey`](https://developer.apple.com/documentation/coretext/kctfontfeaturetypeidentifierkey) key-value pair and a [`kCTFontFeatureSelectorIdentifierKey`](https://developer.apple.com/documentation/coretext/kctfontfeatureselectoridentifierkey) key-value pair. Each setting dictionary indicates which setting should be turned on.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In the case of duplicate or conflicting settings, the last setting in the list takes precedence. It is the caller’s responsibility to handle exclusive and nonexclusive settings as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// kCTFontFeatureSettingsAttribute
     ///
     /// The array of typographic feature settings.
@@ -254,12 +357,17 @@ extern "C" {
     /// (kUpperCaseType),
     /// @
     /// (kUpperCaseSmallCapsSelector) ].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfeaturesettingsattribute?language=objc)
     pub static kCTFontFeatureSettingsAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// A fixed advance to be used for a font reference.
+    ///
+    /// ## Discussion
+    ///
+    /// If present and specified, this attribute is used to specify a constant advance to override any font values. The value associated with this key is a float represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object.
+    ///
+    ///
     /// kCTFontFixedAdvanceAttribute
     ///
     /// Specifies advance width.
@@ -267,46 +375,54 @@ extern "C" {
     /// This key is used to specify a constant advance width, which affects the glyph metrics of any font instance created with this key; it overrides font values and the font transformation matrix, if any. The value associated with this key must be a CFNumberRef.
     ///
     /// Starting with macOS 10.14 and iOS 12.0, this only affects glyph advances that have non-zero width when this attribute is not present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontfixedadvanceattribute?language=objc)
     pub static kCTFontFixedAdvanceAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The orientation for the glyphs of the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an integer represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing one of the constants in [`CTFontOrientation`](https://developer.apple.com/documentation/coretext/ctfontorientation). If you want to receive vertical metrics from a font for vertical rendering, specify [`kCTFontVerticalOrientation`](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfontverticalorientation). If unspecified, the font uses its native orientation.
+    ///
+    ///
     /// kCTFontOrientationAttribute
     ///
     /// The orientation attribute.
     ///
     /// This key is used to specify a particular orientation for the glyphs of the font. The value associated with this key is a int as a CFNumberRef. If you want to receive vertical metrics from a font for vertical rendering, specify kCTFontVerticalOrientation. If unspecified, the font will use its native orientation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontorientationattribute?language=objc)
     pub static kCTFontOrientationAttribute: &'static CFString;
 }
 
-/// Specifies the intended rendering orientation of the font for obtaining glyph metrics.
+/// The intended rendering orientation of the font for obtaining glyph metrics.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation?language=objc)
+/// ## Overview
+///
+/// Use the values of this enumeration for [`kCTFontOrientationAttribute`](https://developer.apple.com/documentation/coretext/kctfontorientationattribute).
+///
+///
+/// Specifies the intended rendering orientation of the font for obtaining glyph metrics.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontOrientation(pub u32);
 impl CTFontOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/default?language=objc)
+    /// The native orientation of the font.
     #[doc(alias = "kCTFontOrientationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/horizontal?language=objc)
+    /// The horizontal orientation.
     #[doc(alias = "kCTFontOrientationHorizontal")]
     pub const Horizontal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/vertical?language=objc)
+    /// The vertical orientation.
     #[doc(alias = "kCTFontOrientationVertical")]
     pub const Vertical: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfontdefaultorientation?language=objc)
+    /// The native orientation of the font.
     #[deprecated = "Deprecated"]
     pub const kCTFontDefaultOrientation: Self = Self(CTFontOrientation::Default.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfonthorizontalorientation?language=objc)
+    /// The horizontal orientation.
     #[deprecated = "Deprecated"]
     pub const kCTFontHorizontalOrientation: Self = Self(CTFontOrientation::Horizontal.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation/kctfontverticalorientation?language=objc)
+    /// The vertical orientation.
     #[deprecated = "Deprecated"]
     pub const kCTFontVerticalOrientation: Self = Self(CTFontOrientation::Vertical.0);
 }
@@ -322,16 +438,28 @@ unsafe impl RefEncode for CTFontOrientation {
 }
 
 extern "C" {
+    /// The recognized format of the font.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an integer represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing one of the constants in [`CTFontFormat`](https://developer.apple.com/documentation/coretext/ctfontformat).
+    ///
+    ///
     /// kCTFontFormatAttribute
     ///
     /// Specifies the recognized format of the font.
     ///
     /// The attribute is used to specify or obtain the format of the font. The returned value is a CFNumber containing one of the constants defined below.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontformatattribute?language=objc)
     pub static kCTFontFormatAttribute: &'static CFString;
 }
 
+/// The recognized format of the font.
+///
+/// ## Overview
+///
+/// Use the values of this enumeration for [`kCTFontFormatAttribute`](https://developer.apple.com/documentation/coretext/kctfontformatattribute).
+///
+///
 /// The font is not a recognized format
 ///
 /// The font is an OpenType format containing PostScript data
@@ -343,29 +471,27 @@ extern "C" {
 /// The font is a recognized PostScript format
 ///
 /// The font is a bitmap only format
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontFormat(pub u32);
 impl CTFontFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/unrecognized?language=objc)
+    /// The font is not a recognized format.
     #[doc(alias = "kCTFontFormatUnrecognized")]
     pub const Unrecognized: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/opentypepostscript?language=objc)
+    /// The font is an OpenType format containing PostScript data.
     #[doc(alias = "kCTFontFormatOpenTypePostScript")]
     pub const OpenTypePostScript: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/opentypetruetype?language=objc)
+    /// The font is an OpenType format containing TrueType data.
     #[doc(alias = "kCTFontFormatOpenTypeTrueType")]
     pub const OpenTypeTrueType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/truetype?language=objc)
+    /// The font is a recognized TrueType format.
     #[doc(alias = "kCTFontFormatTrueType")]
     pub const TrueType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/postscript?language=objc)
+    /// The font is a recognized PostScript format.
     #[doc(alias = "kCTFontFormatPostScript")]
     pub const PostScript: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat/bitmap?language=objc)
+    /// The font is a bitmap-only format.
     #[doc(alias = "kCTFontFormatBitmap")]
     pub const Bitmap: Self = Self(5);
 }
@@ -381,73 +507,148 @@ unsafe impl RefEncode for CTFontFormat {
 }
 
 extern "C" {
+    /// The font descriptor’s registration scope.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an integer represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing one of the [`CTFontManagerScope`](https://developer.apple.com/documentation/coretext/ctfontmanagerscope) enumerated values. A value of `NULL` can be returned for font descriptors that are not registered.
+    ///
+    ///
     /// kCTFontRegistrationScopeAttribute
     ///
     /// Specifies the font descriptor's registration scope.
     ///
     /// The attribute is used to specify or obtain the font registration scope. The value returned is a CFNumberRef containing one of the CTFontManagerScope enumerated values. A value of NULL can be returned for font descriptors that are not registered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontregistrationscopeattribute?language=objc)
     pub static kCTFontRegistrationScopeAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font priority used by font descriptors when resolving duplicates and sorting match results.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an integer represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing one of the values enumerated in [`CTFontPriority`](https://developer.apple.com/documentation/coretext/ctfontpriority). The higher the value, the higher the priority of the font. Only registered fonts have a priority. Unregistered font descriptors return `NULL`.
+    ///
+    ///
     /// kCTFontPriorityAttribute
     ///
     /// The font descriptors priority when resolving duplicates and sorting match results.
     ///
     /// This key is used to obtain or specify the font priority. The value returned is a CFNumberRef containing an integer value as defined below. The higher the value, the higher the priority of the font. Only registered fonts will have a priority. Unregistered font descriptors will return NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityattribute?language=objc)
     pub static kCTFontPriorityAttribute: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritysystem?language=objc)
+/// Priority of system fonts.
+///
+/// ## Discussion
+///
+/// System fonts are located in `/System/Library/Fonts`.
+///
+///
 pub const kCTFontPrioritySystem: c_uint = 10000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritynetwork?language=objc)
+/// Priority of network fonts.
+///
+/// ## Discussion
+///
+/// Network fonts are located in `/Network/Library/Fonts`.
+///
+///
 pub const kCTFontPriorityNetwork: c_uint = 20000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritycomputer?language=objc)
+/// Priority of computer local fonts.
+///
+/// ## Discussion
+///
+/// Computer local fonts are located in `/Library/Fonts`.
+///
+///
 pub const kCTFontPriorityComputer: c_uint = 30000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityuser?language=objc)
+/// Priority of local fonts.
+///
+/// ## Discussion
+///
+/// Local fonts are located in user’s `Library/Fonts`.
+///
+///
 pub const kCTFontPriorityUser: c_uint = 40000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontprioritydynamic?language=objc)
+/// Priority of fonts registered dynamically, not located in a standard location.
+///
+/// ## Discussion
+///
+/// Dynamic fonts are either in [`kCTFontManagerScopeUser`](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/user) or [`kCTFontManagerScopeSession`](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/session).
+///
+///
 pub const kCTFontPriorityDynamic: c_uint = 50000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontpriorityprocess?language=objc)
+/// Priority of fonts registered for the process.
+///
+/// ## Discussion
+///
+/// Fonts registered for the process are in [`kCTFontManagerScopeProcess`](https://developer.apple.com/documentation/coretext/ctfontmanagerscope/process).
+///
+///
 pub const kCTFontPriorityProcess: c_uint = 60000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontpriority?language=objc)
+/// The priority of font descriptors when resolving duplicates and sorting match results.
+///
+/// ## Discussion
+///
+/// Use the values of this enumeration for [`kCTFontPriorityAttribute`](https://developer.apple.com/documentation/coretext/kctfontpriorityattribute).
+///
+///
 pub type CTFontPriority = u32;
 
 extern "C" {
+    /// The font enabled state.
+    ///
+    /// ## Discussion
+    ///
+    /// The returned value is an integer represented as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object representing a Boolean value. Unregistered font descriptors return `NULL`, which is equivalent to `false`.
+    ///
+    ///
     /// kCTFontEnabledAttribute
     ///
     /// The font enabled state.
     ///
     /// The value associated with this key is a CFBoolean. Unregistered font descriptors will return NULL, which is equivalent to false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontenabledattribute?language=objc)
     pub static kCTFontEnabledAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The font downloadable state.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p.  If it is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), Core Text attempts to download a font if necessary when matching a descriptor.
+    ///
+    ///
     /// kCTFontDownloadableAttribute
     ///
     /// The font downloadable state.
     ///
     /// The value associated with this key is a CFBoolean. If it is true, CoreText attempts to download a font if necessary when matching a descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdownloadableattribute?language=objc)
     pub static kCTFontDownloadableAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The download state.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a doc://com.apple.documentation/documentation/corefoundation/cfboolean-s0p.  If it is [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), corresponding Font Asset has been downloaded.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It may still be necessary to call appropriate API in order to use the font in the Font Asset.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// kCTFontDownloadedAttribute
     ///
     /// The download state.
     ///
     /// The value associated with this key is a CFBoolean. If it is true, corresponding FontAsset has been downloaded. (but still it may be necessary to call appropriate API in order to use the font in the FontAsset.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdownloadedattribute?language=objc)
     pub static kCTFontDownloadedAttribute: &'static CFString;
 }
 
@@ -457,12 +658,23 @@ extern "C" {
     /// The point size at which this font is intended to be used.
     ///
     /// The value is a CFNumber used to activate size-specific (not linearly scaled) metrics. Starting with macOS 10.14 and iOS 12.0, the CFString "auto" can be used instead to request an optical size matching the point size. Starting with macOS 10.15 and iOS 13.0, the CFString "none" can be used instead to explicitly disable automatic optical sizing enabled by the font.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontopticalsizeattribute?language=objc)
     pub static kCTFontOpticalSizeAttribute: &'static CFString;
 }
 
 impl CTFontDescriptor {
+    /// Creates a new font descriptor with the provided PostScript name and size.
+    ///
+    /// Parameters:
+    /// - name: The PostScript name to be used for the font descriptor as a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    /// - size: The point size. If `0.0`, the font size attribute ([`kCTFontSizeAttribute`](https://developer.apple.com/documentation/coretext/kctfontsizeattribute)) is omitted from the returned font descriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new font descriptor reference with the given PostScript name and point size.
+    ///
+    ///
     /// Creates a new font descriptor with the provided PostScript name and size.
     ///
     ///
@@ -476,8 +688,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatewithnameandsize(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateWithNameAndSize")]
     #[inline]
     pub fn with_name_and_size(name: &CFString, size: CGFloat) -> CFRetained<CTFontDescriptor> {
@@ -495,6 +705,23 @@ impl CTFontDescriptor {
 
     /// Creates a new font descriptor reference from a dictionary of attributes.
     ///
+    /// Parameters:
+    /// - attributes: A dictionary containing arbitrary attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new font descriptor with the attributes specified.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The provided attribute dictionary can contain arbitrary attributes that are preserved; however, unrecognized attributes are ignored on font creation and may not be preserved over the round trip from descriptor to font and back to descriptor.
+    ///
+    ///
+    /// Creates a new font descriptor reference from a dictionary of attributes.
+    ///
     ///
     /// Parameter `attributes`: A CFDictionaryRef of arbitrary attributes.
     ///
@@ -505,8 +732,6 @@ impl CTFontDescriptor {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatewithattributes(_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
@@ -521,6 +746,19 @@ impl CTFontDescriptor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a copy of the original font descriptor with new attributes.
+    ///
+    /// Parameters:
+    /// - original: The original font descriptor.
+    ///
+    /// - attributes: A dictionary containing arbitrary attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new copy of the original font descriptor with attributes augmented by those specified. If there are conflicts between attributes, the new attributes replace existing ones.
+    ///
+    ///
     /// Creates a copy of the original font descriptor with new attributes.
     ///
     ///
@@ -548,8 +786,6 @@ impl CTFontDescriptor {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithattributes(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
@@ -568,6 +804,19 @@ impl CTFontDescriptor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a copy of the font descriptor in the specified family based on the traits of the original.
+    ///
+    /// Parameters:
+    /// - original: The original font descriptor.
+    ///
+    /// - family: The name of the desired family.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new font descriptor with the original traits in the given family, or `NULL` if no matching font descriptor is found in the system.
+    ///
+    ///
     /// Returns a new font descriptor in the specified family based on the traits of the original descriptor.
     ///
     ///
@@ -578,8 +827,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithfamily(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
     #[inline]
     pub fn copy_with_family(&self, family: &CFString) -> Option<CFRetained<CTFontDescriptor>> {
@@ -593,6 +840,27 @@ impl CTFontDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a copy of the font descriptor with the specified symbolic traits as the original.
+    ///
+    /// Parameters:
+    /// - original: The original font descriptor.
+    ///
+    /// - symTraitValue: The value of the symbolic traits.
+    ///
+    /// - symTraitMask: The mask bits of the symbolic traits. This parameter represents a bitfield that indicates which traits should be changed and which should be taken from the original font descriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns a new font descriptor reference in the same family with the given symbolic traits, or `NULL` if no matching font descriptor is found in the system.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This bitfield of `symTraitValue` parameter indicates the desired value for the traits specified by the `symTraitMask` parameter. Used in conjunction, they can allow for trait removal as well as addition.
+    ///
+    ///
     /// Returns a new font descriptor based on the original descriptor having the specified symbolic traits.
     ///
     ///
@@ -606,8 +874,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: Returns a new font descriptor reference in the same family with the given symbolic traits, or NULL if none found in the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithsymbolictraits(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
@@ -631,6 +897,27 @@ impl CTFontDescriptor {
 
     /// Creates a copy of the original font descriptor with a new variation instance.
     ///
+    /// Parameters:
+    /// - original: The original font descriptor.
+    ///
+    /// - variationIdentifier: The variation axis identifier. This is the four-character code of the variation axis as a CFNumber object.
+    ///
+    /// - variationValue: The value corresponding with the variation instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the original font descriptor with a new variation instance.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience method for easily creating new variation font instances.
+    ///
+    ///
+    /// Creates a copy of the original font descriptor with a new variation instance.
+    ///
     ///
     /// Parameter `original`: The original font descriptor reference.
     ///
@@ -642,8 +929,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithvariation(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
     #[inline]
     pub fn copy_with_variation(
@@ -666,6 +951,27 @@ impl CTFontDescriptor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Copies a font descriptor with new feature settings.
+    ///
+    /// Parameters:
+    /// - original: The original font descriptor.
+    ///
+    /// - featureTypeIdentifier: The feature type identifier.
+    ///
+    /// - featureSelectorIdentifier: The feature selector identifier.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the original font descriptor modified with the given feature settings.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience method to toggle more easily the state of individual features.
+    ///
+    ///
     /// Copies a font descriptor with new feature setting.
     ///
     ///
@@ -687,8 +993,6 @@ impl CTFontDescriptor {
     /// See also: CTFontDescriptorCreateCopyWithAttributes
     ///
     /// See also: kCTFontFeatureSettingsAttribute
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatecopywithfeature(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
     #[inline]
     pub fn copy_with_feature(
@@ -715,6 +1019,25 @@ impl CTFontDescriptor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Returns an array of normalized font descriptors matching the provided descriptor.
+    ///
+    /// Parameters:
+    /// - descriptor: The font descriptor.
+    ///
+    /// - mandatoryAttributes: A set of attribute keys that must be identically matched in any returned font descriptors. May be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained array of normalized font descriptors matching the attributes present in `descriptor`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `descriptor` itself is normalized, then the array will contain only one item: the original descriptor. In the context of font descriptors, _normalized_ infers that the input values were matched up with actual existing fonts, and the descriptors for those existing fonts are the returned normalized descriptors.
+    ///
+    ///
     /// Returns an array of font normalized font descriptors matching the provided descriptor.
     ///
     ///
@@ -729,8 +1052,6 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `mandatory_attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatematchingfontdescriptors(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
     #[inline]
     pub unsafe fn matching_font_descriptors(
@@ -748,6 +1069,25 @@ impl CTFontDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the single preferred matching font descriptor based on the original descriptor and system precedence.
+    ///
+    /// Parameters:
+    /// - descriptor: The original font descriptor.
+    ///
+    /// - mandatoryAttributes: A set of attribute keys which must be identically matched in any returned font descriptors. May be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained, normalized font descriptor matching the attributes present in `descriptor`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The original descriptor may be returned in normalized form. The caller is responsible for releasing the result. In the context of font descriptors, _normalized_ infers that the input values were matched up with actual existing fonts, and the descriptors for those existing fonts are the returned normalized descriptors.
+    ///
+    ///
     /// Returns an the single preferred matching font descriptor based on the original descriptor and system precedence.
     ///
     ///
@@ -762,8 +1102,6 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `mandatory_attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcreatematchingfontdescriptor(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptor(
@@ -782,39 +1120,44 @@ impl CTFontDescriptor {
     }
 }
 
+/// Constants that track the progress of font descriptor matching.
 /// Progress state
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontDescriptorMatchingState(pub u32);
 impl CTFontDescriptorMatchingState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didbegin?language=objc)
+    /// A state that indicates matching is about to begin.
     #[doc(alias = "kCTFontDescriptorMatchingDidBegin")]
     pub const DidBegin: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfinish?language=objc)
+    /// A state that indicates matching is done.
     #[doc(alias = "kCTFontDescriptorMatchingDidFinish")]
     pub const DidFinish: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/willbeginquerying?language=objc)
+    /// A state that indicates communication with the server is about to begin.
+    ///
+    /// ## Discussion
+    ///
+    /// This state is skipped if unnecessary.
+    ///
+    ///
     #[doc(alias = "kCTFontDescriptorMatchingWillBeginQuerying")]
     pub const WillBeginQuerying: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/stalled?language=objc)
+    /// A state that indicates that matching is stalled, such as while waiting for a server response.
     #[doc(alias = "kCTFontDescriptorMatchingStalled")]
     pub const Stalled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/willbegindownloading?language=objc)
+    /// A state that indicates downloading is about to begin.
     #[doc(alias = "kCTFontDescriptorMatchingWillBeginDownloading")]
     pub const WillBeginDownloading: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/downloading?language=objc)
+    /// A state that indicates downloading is in progress.
     #[doc(alias = "kCTFontDescriptorMatchingDownloading")]
     pub const Downloading: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfinishdownloading?language=objc)
+    /// A state that indicates downloading is done.
     #[doc(alias = "kCTFontDescriptorMatchingDidFinishDownloading")]
     pub const DidFinishDownloading: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didmatch?language=objc)
+    /// A state that indicates the font descriptor match is successful.
     #[doc(alias = "kCTFontDescriptorMatchingDidMatch")]
     pub const DidMatch: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate/didfailwitherror?language=objc)
+    /// A state that indicates an error.
     #[doc(alias = "kCTFontDescriptorMatchingDidFailWithError")]
     pub const DidFailWithError: Self = Self(8);
 }
@@ -830,52 +1173,72 @@ unsafe impl RefEncode for CTFontDescriptorMatchingState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingsourcedescriptor?language=objc)
     pub static kCTFontDescriptorMatchingSourceDescriptor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingdescriptors?language=objc)
     pub static kCTFontDescriptorMatchingDescriptors: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingresult?language=objc)
     pub static kCTFontDescriptorMatchingResult: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingpercentage?language=objc)
     pub static kCTFontDescriptorMatchingPercentage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingcurrentassetsize?language=objc)
     pub static kCTFontDescriptorMatchingCurrentAssetSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingtotaldownloadedsize?language=objc)
     pub static kCTFontDescriptorMatchingTotalDownloadedSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingtotalassetsize?language=objc)
     pub static kCTFontDescriptorMatchingTotalAssetSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontdescriptormatchingerror?language=objc)
     pub static kCTFontDescriptorMatchingError: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorprogresshandler?language=objc)
+/// The progress callback type.
+///
+/// ## Discussion
+///
+/// Use this callback type with [`CTFontDescriptorMatchFontDescriptorsWithProgressHandler`](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchfontdescriptorswithprogresshandler(_:_:_:)).
+///
+///
 #[cfg(feature = "block2")]
 pub type CTFontDescriptorProgressHandler =
     *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchfontdescriptorswithprogresshandler(_:_:_:)?language=objc)
+    /// Matches font descriptors and tracks progress with a progress handler.
+    ///
+    /// Parameters:
+    /// - descriptors: An array of descriptors to process.
+    ///
+    /// - mandatoryAttributes: A set of attributes to match.
+    ///
+    /// - progressBlock: A callback block that indicates the progress of the matching process. Return [`true`](https://developer.apple.com/documentation/swift/true) to continue or [`false`](https://developer.apple.com/documentation/swift/false) to cancel the process.
+    ///
+    /// This block is called on a private serial queue.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`false`](https://developer.apple.com/documentation/swift/false) if the system couldn’t start the matching process.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns immediately, but it can take longer to finish the process. The `progressBlock` handler tracks the progress.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -908,13 +1271,22 @@ impl CTFontDescriptor {
 
     /// Returns the attributes dictionary of the font descriptor.
     ///
+    /// Parameters:
+    /// - descriptor: The font descriptor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The font descriptor attributes dictionary. This dictionary contains the minimum number of attributes to specify fully this particular font descriptor.
+    ///
+    ///
+    /// Returns the attributes dictionary of the font descriptor.
+    ///
     ///
     /// Parameter `descriptor`: The font descriptor reference.
     ///
     ///
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopyattributes(_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
     #[inline]
     pub fn attributes(&self) -> CFRetained<CFDictionary> {
@@ -931,6 +1303,25 @@ impl CTFontDescriptor {
 
     /// Returns the value associated with an arbitrary attribute.
     ///
+    /// Parameters:
+    /// - descriptor: The font descriptor.
+    ///
+    /// - attribute: The requested attribute.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained reference to an arbitrary attribute, or `NULL` if the requested attribute is not present.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Refer to Accessing Font Attributes for documentation explaining how each attribute is packaged as a CFType object.
+    ///
+    ///
+    /// Returns the value associated with an arbitrary attribute.
+    ///
     ///
     /// Parameter `descriptor`: The font descriptor.
     ///
@@ -939,8 +1330,6 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopyattribute(_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyAttribute")]
     #[inline]
     pub fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
@@ -954,6 +1343,27 @@ impl CTFontDescriptor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a localized value for the requested attribute, if available.
+    ///
+    /// Parameters:
+    /// - descriptor: The font descriptor.
+    ///
+    /// - attribute: The requested font attribute.
+    ///
+    /// - language: On output, contains a reference to the matched language. The language identifier will conform to the RFC 3066bis standard.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A retained reference to a localized attribute based on the global language list.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function passes back the matched language in `language`. If localization is not possible for the attribute, the behavior matches the value returned from [`CTFontDescriptorCopyAttribute`](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopyattribute(_:_:)). Generally, localization of attributes is applicable to name attributes of only a normalized font descriptor.
+    ///
+    ///
     /// function    CTFontDescriptorCopyLocalizedAttribute
     ///
     /// Returns a localized value for the requested attribute if available.
@@ -977,8 +1387,6 @@ impl CTFontDescriptor {
     /// # Safety
     ///
     /// `language` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorcopylocalizedattribute(_:_:_:)?language=objc)
     #[doc(alias = "CTFontDescriptorCopyLocalizedAttribute")]
     #[inline]
     pub unsafe fn localized_attribute(

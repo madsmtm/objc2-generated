@@ -9,22 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define the data-flow direction of the stream.
+///
+/// ## Overview
+///
+/// A stream can be a source or sink. A source stream produces samples, and a sink stream consumes samples.
+///
+///
 /// Constants indicating the direction of the stream.
 ///
 /// Indicates that the stream is a source; i.e., provides sample buffers for capture.
 ///
 /// Indicates that the stream is a sink; i.e., consumes sample buffers for playback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDirection(pub NSInteger);
 impl CMIOExtensionStreamDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum/source?language=objc)
+    /// A stream that provides sample buffers for capture.
     #[doc(alias = "CMIOExtensionStreamDirectionSource")]
     pub const Source: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum/sink?language=objc)
+    /// A stream that consumes sample buffers for playback.
     #[doc(alias = "CMIOExtensionStreamDirectionSink")]
     pub const Sink: Self = Self(1);
 }
@@ -37,6 +42,7 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate the clock type of a stream.
 /// Constants indicating the clock of the stream.
 ///
 /// Indicates that the stream's clock is the host time clock.
@@ -44,20 +50,24 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
 /// Indicates that the stream's clock is the clock from the linked CoreAudio device.
 ///
 /// Indicates that the stream's clock is specific to the device hosting the stream; this clock type cannot be set directly by the extension, but instead is set automatically when a  CMIOExtensionStreamCustomClockConfiguration is used when creating a CMIOExtensionStream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamClockType(pub NSInteger);
 impl CMIOExtensionStreamClockType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/hosttime?language=objc)
+    /// Indicates that the stream uses the host time clock.
     #[doc(alias = "CMIOExtensionStreamClockTypeHostTime")]
     pub const HostTime: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/linkedcoreaudiodeviceuid?language=objc)
+    /// Indicates that the stream uses the clock of the linked Core Audio device.
     #[doc(alias = "CMIOExtensionStreamClockTypeLinkedCoreAudioDeviceUID")]
     pub const LinkedCoreAudioDeviceUID: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum/custom?language=objc)
+    /// Indicates that the stream’s clock is specific to the device hosting the stream.
+    ///
+    /// ## Discussion
+    ///
+    /// The extension doesn’t set this type directly. Instead, the system sets it automatically when you specify a [`CMIOExtensionStreamCustomClockConfiguration`](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamcustomclockconfiguration) when you create a [`CMIOExtensionStream`](https://developer.apple.com/documentation/coremediaio/cmioextensionstream).
+    ///
+    ///
     #[doc(alias = "CMIOExtensionStreamClockTypeCustom")]
     pub const Custom: Self = Self(2);
 }
@@ -70,6 +80,7 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify the types of discontinuities that can occur in a media stream.
 /// Constants indicating the state of a stream discontinuity.
 ///
 /// Indicates that there is no stream discontinuity.
@@ -79,24 +90,22 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 /// Indicates that there is a stream discontinuity of type time.
 ///
 /// Indicates that there is a stream discontinuity of type dropped sample.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDiscontinuityFlags(pub u32);
 bitflags::bitflags! {
     impl CMIOExtensionStreamDiscontinuityFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdiscontinuityflags/cmioextensionstreamdiscontinuityflagnone?language=objc)
+/// A flag that indicates there’s no discontinuity in the stream.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/unknown?language=objc)
+/// A flag that indicates a stream discontinuity due to an unknown reason.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagUnknown")]
         const Unknown = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/time?language=objc)
+/// A flag that indicates a time discontinuity in the stream.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagTime")]
         const Time = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags/sampledropped?language=objc)
+/// A flag that indicates a discontinuity in the stream due to a dropped frame.
         #[doc(alias = "CMIOExtensionStreamDiscontinuityFlagSampleDropped")]
         const SampleDropped = 1<<6;
     }
@@ -111,9 +120,8 @@ unsafe impl RefEncode for CMIOExtensionStreamDiscontinuityFlags {
 }
 
 extern_class!(
+    /// An object that describes the properties of an extension stream.
     /// A CMIOExtensionStreamProperties describes a CoreMediaIO extension stream properties.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamproperties?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionStreamProperties;
@@ -314,7 +322,13 @@ impl CMIOExtensionStreamProperties {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamsource?language=objc)
+    /// A protocol for objects that act as stream sources.
+    ///
+    /// ## Overview
+    ///
+    /// Create a class that adopts this protocol to configure stream properties and manage the stream life cycle.
+    ///
+    ///
     pub unsafe trait CMIOExtensionStreamSource: NSObjectProtocol {
         #[cfg(feature = "CMIOExtensionProperties")]
         /// The supported formats for the stream.
@@ -395,9 +409,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A CMIOExtensionStream describes a stream of media data.
+    /// An object that represents a stream of media data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream?language=objc)
+    /// ## Overview
+    ///
+    /// A stream delivers media samples to or from a [`CMIOExtensionDevice`](https://developer.apple.com/documentation/coremediaio/cmioextensiondevice).
+    ///
+    ///
+    /// A CMIOExtensionStream describes a stream of media data.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionStream;

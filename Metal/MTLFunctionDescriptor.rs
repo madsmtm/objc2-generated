@@ -7,53 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions?language=objc)
+/// Options that define how Metal creates the function object.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFunctionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLFunctionOptions: NSUInteger {
+/// An option that specifies that Metal should use its default behavior when creating the function object.
 /// Default usage
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/mtlfunctionoptionnone?language=objc)
         #[doc(alias = "MTLFunctionOptionNone")]
         const None = 0;
+/// An option that tells Metal to compile the function to a binary format for dynamic linking.
 /// Compiles the found function. This enables dynamic linking of this `MTLFunction`.
 /// Only supported for `visible` functions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/compiletobinary?language=objc)
         #[doc(alias = "MTLFunctionOptionCompileToBinary")]
         const CompileToBinary = 1<<0;
 /// stores and tracks this function in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/storefunctioninmetalpipelinesscript?language=objc)
         #[doc(alias = "MTLFunctionOptionStoreFunctionInMetalPipelinesScript")]
         const StoreFunctionInMetalPipelinesScript = 1<<1;
 /// stores and tracks this function in a Metal Pipelines Script
 /// This flag is optional and only supported in the context of binary archives.
 ///
 /// This flag is required for inspecting and consuming binary archives with specialized MTLFunctions via the metal-source tool. It is not required for recompilation, nor for storing functions in binary archives. Set this flag only if you intend to use metal-source on a serialized binary archive.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/storefunctioninmetalscript?language=objc)
         #[doc(alias = "MTLFunctionOptionStoreFunctionInMetalScript")]
 #[deprecated]
         const StoreFunctionInMetalScript = 1<<1;
 /// Function creation fails (i.e nil is returned) if:
 /// - A lookup binary archive has been specified
 /// - The function has not been found in the archive
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/failonbinaryarchivemiss?language=objc)
         #[doc(alias = "MTLFunctionOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<2;
+///
+/// ## Discussion
+///
+/// Compiles the function to have its function handles return a constant MTLResourceID across all pipeline states. The function needs to be linked to the pipeline that will use this function. This function option can only be used for functions that are compiled with `MTLFunctionOptionCompileToBinary`.
+///
+///
 /// Compiles the function to have its function handles return a constant MTLResourceID across
 /// all pipeline states. The function needs to be linked to the pipeline that will use this function.
 /// This function option can only be used for functions that are compiled with `MTLFunctionOptionCompileToBinary`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionoptions/pipelineindependent?language=objc)
         #[doc(alias = "MTLFunctionOptionPipelineIndependent")]
         const PipelineIndependent = 1<<3;
     }
@@ -68,7 +64,7 @@ unsafe impl RefEncode for MTLFunctionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctiondescriptor?language=objc)
+    /// A description of a function object to create.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionDescriptor;
@@ -185,7 +181,13 @@ impl DefaultRetained for MTLFunctionDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctiondescriptor?language=objc)
+    /// A description of an intersection function that performs an intersection test.
+    ///
+    /// ## Overview
+    ///
+    /// This class doesn’t add any additional API over its parent class.
+    ///
+    ///
     #[unsafe(super(MTLFunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIntersectionFunctionDescriptor;

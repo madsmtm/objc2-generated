@@ -10,10 +10,19 @@ use objc2_javascript_core::*;
 use crate::*;
 
 extern_class!(
+    /// A `WebFrame` object encapsulates the data displayed in a `WebFrameView` object. There is one `WebFrame` object per frame displayed in a `WebView`. An entire webpage is represented by a hierarchy of `WebFrame` objects in which the root object is called the **main frame**.
+    ///
+    /// ## Overview
+    ///
+    /// Each `WebFrame` also has a `WebDataSource` object that manages the loading of frame content. You use the [`loadRequest:`](https://developer.apple.com/documentation/webkit/webframe/load(_:)-47p2s) method to initiate an asynchronous client request which will create a provisional data source. The provisional data source will transition to a committed data source once any data has been received.
+    ///
+    /// There are some special, predefined, frame names that you can use when referring to or finding a `WebFrame`. Some of the predefined frame names are: “_self”, “_current”, “_parent”, and “_top.” See [`findFrameNamed:`](https://developer.apple.com/documentation/webkit/webframe/findnamed(_:)) for a description of their meaning. Frame names may also be specified in the HTML source, or set by clients.
+    ///
+    /// However, the group name is an arbitrary identifier used to group related frames. For example, JavaScript running in a frame can access any other frame in the same group. It’s up to the application how it chooses to scope related frames.
+    ///
+    ///
     /// Every web page is represented by at least one WebFrame.  A WebFrame
     /// has a WebFrameView and a WebDataSource.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clvisit?language=objc)
+    /// Information about the user’s location during a specific period of time.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CLVisit`](https://developer.apple.com/documentation/corelocation/clvisit) object encapsulates information about places that the user has been. Visit objects are created by the system and delivered by the [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object to its delegate after you start the delivery of events. The visit includes the location where the visit occurred and information about the arrival and departure times as relevant. You do not create visit objects directly, nor should you subclass [`CLVisit`](https://developer.apple.com/documentation/corelocation/clvisit).
+    ///
+    /// Visit objects contain as much information about the visit as possible but may not always include both the arrival and departure times. For example, when the user arrives at a location, the system may send an event with only an arrival time. When the user departs a location, the event can contain both the arrival time (if your app was monitoring visits prior to the user’s arrival) and the departure time.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLVisit;

@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechrecognizer?language=objc)
+    /// The Cocoa interface to speech recognition in macOS.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) provides a “command and control” style of voice recognition system, where the command phrases must be defined prior to listening, in contrast to a dictation system where the recognized text is unconstrained. Through an [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) instance, Cocoa apps can use the speech recognition engine built into macOS to recognize spoken commands. With speech recognition, users can accomplish complex tasks with spoken commands—for example, “Move pawn B2 to B4” and “Take back move.”
+    ///
+    /// The [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) class has a property that lets you specify which spoken words should be recognized as commands ([`commands`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer/commands)) and methods that let you start and stop listening ([`startListening`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer/startlistening()) and [`stopListening`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer/stoplistening())). When the speech recognition facility recognizes one of the designated commands, [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) invokes the delegation method [`speechRecognizer:didRecognizeCommand:`](https://developer.apple.com/documentation/appkit/nsspeechrecognizerdelegate/speechrecognizer(_:didrecognizecommand:)), allowing the delegate to perform the command.
+    ///
+    /// Speech recognition is just one of the macOS speech technologies. The speech synthesis technology allows applications to “pronounce” written text in U.S. English and over 25 other languages, with a number of different voices and dialects for each language  ([`NSSpeechSynthesizer`](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer) is the Cocoa interface to this technology). Both speech technologies provide benefits for all users, and are particularly useful to those users who have difficulties seeing the screen or using the mouse and keyboard. By incorporating speech into your application, you can provide a concurrent mode of interaction for your users: In macOS, your software can accept input and provide output without requiring users to change their working context.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpeechRecognizer;
@@ -108,7 +118,7 @@ impl DefaultRetained for NSSpeechRecognizer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechrecognizerdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSSpeechRecognizer`](https://developer.apple.com/documentation/appkit/nsspeechrecognizer) objects.
     pub unsafe trait NSSpeechRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(speechRecognizer:didRecognizeCommand:))]

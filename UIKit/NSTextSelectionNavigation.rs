@@ -9,28 +9,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction?language=objc)
+/// Values that describe the direction of a selection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDirection(pub NSInteger);
 impl NSTextSelectionNavigationDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/forward?language=objc)
+    /// The value that represents a logical forward selection based on the flow of text stored in the document.
     #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
     pub const Forward: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/backward?language=objc)
+    /// The value that represents a backward selection based on the flow of text stored in the document.
     #[doc(alias = "NSTextSelectionNavigationDirectionBackward")]
     pub const Backward: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/right?language=objc)
+    /// The value that represents a selection in the right direction along the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionRight")]
     pub const Right: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/left?language=objc)
+    /// The value that represents a selection in the left direction along the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionLeft")]
     pub const Left: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/up?language=objc)
+    /// The value that represents a selection in the up direction, above the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionUp")]
     pub const Up: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction/down?language=objc)
+    /// The value that represents a selection in the down direction, below the current line.
     #[doc(alias = "NSTextSelectionNavigationDirectionDown")]
     pub const Down: Self = Self(5);
 }
@@ -43,31 +43,43 @@ unsafe impl RefEncode for NSTextSelectionNavigationDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination?language=objc)
+/// Values that affect how the framework handles navigation across different textual boundaries during a selection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDestination(pub NSInteger);
 impl NSTextSelectionNavigationDestination {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/character?language=objc)
+    /// The selection moves to the next extended grapheme cluster boundary.
+    ///
+    /// ## Discussion
+    ///
+    /// When the movement direction isn’t along the line (for example up and down for a horizontal line), it moves to the adjacent line using the anchor point instead of resolving to the logical direction. This could result in a location inside a cluster depending on the specific characteristics of a given script.  For example, certain Indic scripts combine characters in specific ways depending on usage and position to form composite characters. The framework returns a location consistent with the rules of the script and the direction of movement.
+    ///
+    ///
     #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
     pub const Character: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/word?language=objc)
+    /// The selection moves to the next word boundary ignoring punctuation, whitespace, and format characters preceding the next word.
     #[doc(alias = "NSTextSelectionNavigationDestinationWord")]
     pub const Word: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/line?language=objc)
+    /// The selection moves to the next line boundary.
+    ///
+    /// ## Discussion
+    ///
+    /// The boundary of a line can be logical, based on the line separator characters, as well as visual using soft line wrapping.
+    ///
+    ///
     #[doc(alias = "NSTextSelectionNavigationDestinationLine")]
     pub const Line: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/sentence?language=objc)
+    /// The selection moves to the next sentence boundary, ignoring punctuation, whitespace, and format characters preceding the next sentence.
     #[doc(alias = "NSTextSelectionNavigationDestinationSentence")]
     pub const Sentence: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/paragraph?language=objc)
+    /// The selection moves to the next paragraph boundary, ignoring the end of line elastic characters and paragraph separators.
     #[doc(alias = "NSTextSelectionNavigationDestinationParagraph")]
     pub const Paragraph: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/container?language=objc)
+    /// The selection moves to the next container or page boundary after boundary of the current container, ignoring the end of line elastic characters.
     #[doc(alias = "NSTextSelectionNavigationDestinationContainer")]
     pub const Container: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination/document?language=objc)
+    /// The selection moves to the document boundary.
     #[doc(alias = "NSTextSelectionNavigationDestinationDocument")]
     pub const Document: Self = Self(6);
 }
@@ -80,20 +92,26 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier?language=objc)
+/// Values that describe how the framework handles different kinds of selection modifiers.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextSelectionNavigationModifier: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/extend?language=objc)
+/// The value that indicates the framework extends the selection by not moving the initial location while in a drag selection.
         #[doc(alias = "NSTextSelectionNavigationModifierExtend")]
         const Extend = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/visual?language=objc)
+/// The value that indicates the framework extends the selection visually inside the rectangular area defined by the anchor and drag positions.
         #[doc(alias = "NSTextSelectionNavigationModifierVisual")]
         const Visual = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier/multiple?language=objc)
+/// The value that indicates the framework extends the selection visually inside the rectangular area defined by the anchor and dragged positions.
+///
+/// ## Discussion
+///
+/// This produces an [`NSTextSelection`](https://developer.apple.com/documentation/uikit/nstextselection) per line.
+///
+///
         #[doc(alias = "NSTextSelectionNavigationModifierMultiple")]
         const Multiple = 1<<2;
     }
@@ -107,16 +125,16 @@ unsafe impl RefEncode for NSTextSelectionNavigationModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection?language=objc)
+/// Values that describe the writing direction inside a text selection.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationWritingDirection(pub NSInteger);
 impl NSTextSelectionNavigationWritingDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection/lefttoright?language=objc)
+    /// The value that defines the left to right writing direction.
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection/righttoleft?language=objc)
+    /// The value that defines the right to left writing direction.
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -129,16 +147,16 @@ unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation?language=objc)
+/// Values that describe the possible layout orientations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationLayoutOrientation(pub NSInteger);
 impl NSTextSelectionNavigationLayoutOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation/horizontal?language=objc)
+    /// The value that defines horizontal layout orientation.
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation/vertical?language=objc)
+    /// The value that defines vertical layout orientation.
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -152,7 +170,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationLayoutOrientation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation?language=objc)
+    /// An interface you use to expose methods for obtaining results from actions performed on text selections.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextSelectionNavigation;
@@ -285,7 +303,7 @@ impl NSTextSelectionNavigation {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectiondatasource?language=objc)
+    /// A set of methods that objects implement to provide data for, and manage text selections.
     pub unsafe trait NSTextSelectionDataSource: NSObjectProtocol {
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(documentRange))]

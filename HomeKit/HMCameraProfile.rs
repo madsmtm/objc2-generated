@@ -6,12 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A camera profile that interacts with an accessory’s camera.
+    ///
+    /// ## Overview
+    ///
+    /// Each profile control is optional, because an individual camera vendor may not support all of the features defined by the HomeKit camera specifications.
+    ///
+    ///
     /// Represents a camera profile the accessory implements.
     ///
     ///
     /// Provides an interface to interact with a Camera in an Accessory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraprofile?language=objc)
     #[unsafe(super(HMAccessoryProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMAccessoryProfile")]

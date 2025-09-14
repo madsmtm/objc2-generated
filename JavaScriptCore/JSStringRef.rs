@@ -4,14 +4,26 @@ use core::ffi::*;
 
 use crate::*;
 
+/// A Unicode character.
 /// A UTF-16 code unit. One, or a sequence of two, can encode any Unicode
 /// character. As with all scalar types, endianness depends on the underlying
 /// architecture.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jschar?language=objc)
 pub type JSChar = c_ushort;
 
 extern "C-unwind" {
+    /// Creates a JavaScript string from a buffer of Unicode characters.
+    ///
+    /// Parameters:
+    /// - chars: The buffer of Unicode characters to copy into the new [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref).
+    ///
+    /// - numChars: The number of characters to copy from the buffer that `chars` points to.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains `chars`. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a JavaScript string from a buffer of Unicode characters.
     ///
     /// Parameter `chars`: The buffer of Unicode characters to copy into the new JSString.
@@ -23,13 +35,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `chars` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithcharacters(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithCharacters(chars: *const JSChar, num_chars: usize) -> JSStringRef;
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript string from a null-terminated UTF-8 string.
+    ///
+    /// Parameters:
+    /// - string: The null-terminated UTF-8 string to copy into the new [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains `string`. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a JavaScript string from a null-terminated UTF8 string.
     ///
     /// Parameter `string`: The null-terminated UTF8 string to copy into the new JSString.
@@ -39,13 +60,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringcreatewithutf8cstring(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringCreateWithUTF8CString(string: *const c_char) -> JSStringRef;
 }
 
 extern "C-unwind" {
+    /// Retains a JavaScript string.
+    ///
+    /// Parameters:
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that is the same as `string`.
+    ///
+    ///
     /// Retains a JavaScript string.
     ///
     /// Parameter `string`: The JSString to retain.
@@ -55,8 +85,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringRetain(string: JSStringRef) -> JSStringRef;
 }
@@ -64,18 +92,32 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Releases a JavaScript string.
     ///
+    /// Parameters:
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to release.
+    ///
+    /// Releases a JavaScript string.
+    ///
     /// Parameter `string`: The JSString to release.
     ///
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringRelease(string: JSStringRef);
 }
 
 extern "C-unwind" {
+    /// Returns the number of Unicode characters in a JavaScript string.
+    ///
+    /// Parameters:
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) with the length (in Unicode characters) you want to know.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of Unicode characters in `string`.
+    ///
+    ///
     /// Returns the number of Unicode characters in a JavaScript string.
     ///
     /// Parameter `string`: The JSString whose length (in Unicode characters) you want to know.
@@ -85,13 +127,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetlength(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetLength(string: JSStringRef) -> usize;
 }
 
 extern "C-unwind" {
+    /// Returns a pointer to the Unicode character buffer that serves as the backing store for a JavaScript string.
+    ///
+    /// Parameters:
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) with the backing store you want to access.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the Unicode character buffer that serves as the backing store of `string`, which the system deallocates when it deallocates `string`.
+    ///
+    ///
     /// Returns a pointer to the Unicode character buffer that
     /// serves as the backing store for a JavaScript string.
     ///
@@ -103,13 +154,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetcharactersptr(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetCharactersPtr(string: JSStringRef) -> *const JSChar;
 }
 
 extern "C-unwind" {
+    /// Returns the maximum number of bytes a JavaScript string uses when you convert it into a null-terminated UTF-8 string.
+    ///
+    /// Parameters:
+    /// - string: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) with the maximum converted size (in bytes) you want to know.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum number of bytes that might be necessary to convert `string` into a null-terminated UTF-8 string. The number of bytes that the conversion actually ends up requiring can be less than this, but never more.
+    ///
+    ///
     /// Returns the maximum number of bytes a JavaScript string will
     /// take up if converted into a null-terminated UTF8 string.
     ///
@@ -123,13 +183,26 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `string` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetmaximumutf8cstringsize(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
 }
 
 extern "C-unwind" {
+    /// Converts a JavaScript string into a null-terminated UTF-8 string, and copies the result into an external byte buffer.
+    ///
+    /// Parameters:
+    /// - string: The source [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref).
+    ///
+    /// - buffer: The destination byte buffer to copy a null-terminated UTF-8 representation of `string` into. On return, `buffer` contains a UTF-8 string representation of `string`. If `bufferSize` is too small, `buffer` contains only partial results. If `buffer` isn’t at least `bufferSize` bytes in size, the conversion results in undefined behavior.
+    ///
+    /// - bufferSize: The size of the external buffer in bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes the system writes into `buffer` (including the null-terminator byte).
+    ///
+    ///
     /// Converts a JavaScript string into a null-terminated UTF8 string,
     /// and copies the result into an external byte buffer.
     ///
@@ -149,8 +222,6 @@ extern "C-unwind" {
     ///
     /// - `string` must be a valid pointer.
     /// - `buffer` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringgetutf8cstring(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringGetUTF8CString(
         string: JSStringRef,
@@ -160,6 +231,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Tests whether two JavaScript strings match.
+    ///
+    /// Parameters:
+    /// - a: The first [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to test.
+    ///
+    /// - b: The second [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the two strings match; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether two JavaScript strings match.
     ///
     /// Parameter `a`: The first JSString to test.
@@ -172,13 +256,24 @@ extern "C-unwind" {
     ///
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringisequal(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqual(a: JSStringRef, b: JSStringRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Tests whether a JavaScript string matches a null-terminated UTF-8 string.
+    ///
+    /// Parameters:
+    /// - a: The [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) to test.
+    ///
+    /// - b: The null-terminated UTF-8 string to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the two strings match; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether a JavaScript string matches a null-terminated UTF8 string.
     ///
     /// Parameter `a`: The JSString to test.
@@ -191,8 +286,6 @@ extern "C-unwind" {
     ///
     /// - `a` must be a valid pointer.
     /// - `b` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringisequaltoutf8cstring(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSStringIsEqualToUTF8CString(a: JSStringRef, b: *const c_char) -> bool;
 }

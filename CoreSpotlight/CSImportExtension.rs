@@ -7,7 +7,57 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csimportextension?language=objc)
+    /// An object that provides searchable attributes for file types that the app supports.
+    ///
+    /// ## Overview
+    ///
+    /// To create a Spotlight File Importer extension, add a target to your app using the Spotlight File Importer template in Xcode. The template project contains a subclass of `CSImportExtension`. To index content on a user’s device, Core Spotlight loads your extension and invokes the [`updateAttributes:forFileAtURL:error:`](https://developer.apple.com/documentation/corespotlight/csimportextension/update(_:forfileat:)) method. Core Spotlight passes a [`CSSearchableItemAttributeSet`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset) and URL of a file to the extension, and you set properties that are relevant for the file.
+    ///
+    /// Typically, your extension loads details about the file and uses that information to set properties of the attribute set. For example, if your app contains files that are notes the user creates, it does the following:
+    ///
+    /// ```swift
+    /// class NoteImporter: CSImportExtension {
+    ///     override func update(_ attributes: CSSearchableItemAttributeSet, forFileAt contentURL: URL) throws {
+    ///         // NoteDetails is an app-defined object that encapsulates a note.
+    ///         guard let note = NoteDetails.noteDetails(for: contentURL) else {
+    ///             throw NoteError.noteNotFound
+    ///         }
+    ///         attributes.title = note.title
+    ///         attributes.contentCreationDate = note.creationDate
+    ///         attributes.userCreated = NSNumber(booleanLiteral: true)
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Core Spotlight indexes files in batches and may call [`updateAttributes:forFileAtURL:error:`](https://developer.apple.com/documentation/corespotlight/csimportextension/update(_:forfileat:)) simultaneously on multiple queues with different values of `contentURL`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To specify the file types your app supports, set the value of [`CSSupportedContentTypes`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/cssupportedcontenttypes) in your extension’s `Info.plist` file to an array of file type identifiers. For more information about file type identifiers, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers). The app in the previous example configures the extension’s `Info.plist` as follows:
+    ///
+    /// ```swift
+    /// <key>NSExtension</key>
+    /// <dict>
+    ///     <key>NSExtensionPointIdentifier</key>
+    ///     <string>com.apple.spotlight.import</string>
+    ///     <key>NSExtensionPrincipalClass</key>
+    ///     <string>FileImporter</string>
+    ///     <key>NSExtensionAttributes</key>
+    ///     <dict>
+    ///         <key>CSSupportedContentTypes</key>
+    ///         <array>
+    ///             <string>com.example.mynoteapp.note</string>
+    ///         </array>
+    ///     </dict>
+    /// </dict>
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSImportExtension;

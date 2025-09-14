@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract superclass for defining state-specific logic as part of a state machine.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GKState`](https://developer.apple.com/documentation/gameplaykit/gkstate) abstract class defines the features of state classes to be used with a state machine (a [`GKStateMachine`](https://developer.apple.com/documentation/gameplaykit/gkstatemachine) object). You build a state machine by defining a separate [`GKState`](https://developer.apple.com/documentation/gameplaykit/gkstate) subclass for each state of the machine. In each state class, you use the [`isValidNextState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/isvalidnextstate(_:)) method to define which other states are valid for a machine to transition into. State classes provide a place to put state-dependent game logic, such as actions that should happen when entering or exiting a specific state, or per-frame update code that is valid only when in a specific state.
+    ///
+    /// For more information about state machines, read [State Machines](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// Represents a single state in a state machine.
     /// By default, states allow transitions freely to and from the states in the machine.
     ///
@@ -17,8 +26,6 @@ extern_class!(
     /// See: GKStateMachine
     ///
     /// See: isValidNextState:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKState;

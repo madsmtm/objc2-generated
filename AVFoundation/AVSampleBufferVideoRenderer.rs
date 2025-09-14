@@ -12,23 +12,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/didfailtodecodenotification?language=objc)
+    /// A notification that indicates the video renderer fails to decode a sample buffer.
     pub static AVSampleBufferVideoRendererDidFailToDecodeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/didfailtodecodenotificationerrorkey?language=objc)
+    /// A key to retrieve an error object that provides the details of the failure.
     pub static AVSampleBufferVideoRendererDidFailToDecodeNotificationErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecodingdidchangenotification?language=objc)
+    /// A notification that indicates that the video renderer requires flushing to continue rendering sample buffers.
     pub static AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer?language=objc)
+    /// An object that enqueues video sample buffers for rendering.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferVideoRenderer;

@@ -7,11 +7,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that represents long short-term memory (LSTM) networks.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to create an LSTM layer with one of the following configurations:
+    ///
+    /// - Unidirectional single layer: The input weights, hidden weights, and biases are arrays of 4 tensors that describe the specified weights for the input, hidden, cell, and output gates.
+    ///
+    /// - Unidirectional stacked layers: The input weights, hidden weights and biases are arrays of [`layerCount`](https://developer.apple.com/documentation/mlcompute/mlclstmdescriptor/layercount) `* 4` tensors that describe the specified weights for the input, hidden, cell, and output gates, for `layer0...layer(layerCount - 1)`.
+    ///
+    /// - Bidirectional single layer: The input weights, hidden weights, and biases are arrays of 8 tensors, where the backward time weights and biases follow the forward time weights.
+    ///
+    ///
     /// A LSTM layer
     ///
     /// The hidden and cell state for inputs and outputs have a layout of [numberOfLayers, numberOfDirections, batchSize, hiddenSize].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclstmlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

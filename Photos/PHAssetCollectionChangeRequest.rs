@@ -8,7 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest?language=objc)
+    /// A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`PHAssetCollectionChangeRequest`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest) class to request changes for [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection) objects. To make changes to asset collections (such as user-created albums) in the Photos library, create a change request using the appropriate class method for the change you want to perform.
+    ///
+    /// - Call the [`creationRequestForAssetCollectionWithTitle:`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/creationrequestforassetcollection(withtitle:)) method to create a new asset collection.
+    ///
+    /// - Call the [`deleteAssetCollections:`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/deleteassetcollections(_:)) method to delete existing asset collections.
+    ///
+    /// - Call the [`changeRequestForAssetCollection:`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/init(for:)) or [`changeRequestForAssetCollection:assets:`](https://developer.apple.com/documentation/photos/phassetcollectionchangerequest/init(for:assets:)) method to modify a collection’s metadata or list of member assets.
+    ///
+    /// Before creating a change request, use the [`canPerformEditOperation:`](https://developer.apple.com/documentation/photos/phcollection/canperform(_:)) method to verify that the collection allows the edit operation you’re requesting. If you attempt to perform an unsupported edit operation, Photos throws an exception.
+    ///
+    /// A change request for creating or modifying an asset collection works like a mutable version of the asset collection object. Use the change request’s properties and instance methods to request changes to the asset collection itself. For example, the following code removes an asset from an album.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["PHPhotoLibrary.shared().performChanges {", "", "    let request = PHAssetCollectionChangeRequest(for: myAlbum,", "                                                 assets: albumAssetsFetchResult)", "    ", "    request!.removeAssets([asset] as NSFastEnumeration)", "", "} completionHandler: { success, error in", "    print(\"Finished removing the asset from the album. \\(success ? \"Success\" : String(describing: error))\")", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{", "        ", "    PHAssetCollectionChangeRequest *request =", "        [PHAssetCollectionChangeRequest changeRequestForAssetCollection:myAlbum", "                                                                 assets:albumAssetsFetchResult];", "        ", "    [request removeAssets:@[asset]];", "     ", "} completionHandler:^(BOOL success, NSError *error) {", "    NSLog(@\"Finished removing the asset from the album. %@\", (success ? @\"Success\" : error));", "}];"], metadata: None }] }] })
+    /// After Photos runs the change block and calls your completion handler, the asset collection’s state reflects the changes you requested in the block.
+    ///
+    /// If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]

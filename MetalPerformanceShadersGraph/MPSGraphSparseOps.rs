@@ -10,26 +10,22 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The sparse storage options in the Metal Performance Shaders Graph framework.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype?language=objc)
+/// The sparse storage options in the Metal Performance Shaders Graph framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphSparseStorageType(pub u64);
 impl MPSGraphSparseStorageType {
     /// COO Storage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/coo?language=objc)
+    /// COO Storage
     #[doc(alias = "MPSGraphSparseStorageCOO")]
     pub const COO: Self = Self(0);
     /// CSC Storage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/csc?language=objc)
+    /// CSC Storage
     #[doc(alias = "MPSGraphSparseStorageCSC")]
     pub const CSC: Self = Self(1);
     /// CSR Storage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsparsestoragetype/csr?language=objc)
+    /// CSR Storage
     #[doc(alias = "MPSGraphSparseStorageCSR")]
     pub const CSR: Self = Self(2);
 }
@@ -44,8 +40,7 @@ unsafe impl RefEncode for MPSGraphSparseStorageType {
 
 extern_class!(
     /// A class that describes the properties of a create sparse operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcreatesparseopdescriptor?language=objc)
+    /// A class that describes the properties of a create sparse operation.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

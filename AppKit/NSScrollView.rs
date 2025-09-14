@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity?language=objc)
+/// These constants determine the elasticity behavior for an axis of the scrollview.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollElasticity(pub NSInteger);
 impl NSScrollElasticity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/automatic?language=objc)
+    /// Automatically determine whether to allow elasticity on this axis.
     #[doc(alias = "NSScrollElasticityAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/none?language=objc)
+    /// Disallow scrolling beyond document bounds on this axis.
     #[doc(alias = "NSScrollElasticityNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity/allowed?language=objc)
+    /// Allow content to be scrolled past its bounds on this axis in an elastic fashion.
     #[doc(alias = "NSScrollElasticityAllowed")]
     pub const Allowed: Self = Self(2);
 }
@@ -35,7 +35,15 @@ unsafe impl RefEncode for NSScrollElasticity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview?language=objc)
+    /// A view that displays a portion of a document view and provides scroll bars that allow the user to move the document view within the scroll view.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) class is the central coordinator for AppKit’s scrolling machinery, which is composed of this class, and the [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) and [`NSScroller`](https://developer.apple.com/documentation/appkit/nsscroller) classes.
+    ///
+    /// When using an [`NSClipView`](https://developer.apple.com/documentation/appkit/nsclipview) object within a scroll view (the usual configuration), you should issue messages that control background drawing state to the scroll view directly, rather than messaging the clip view.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -545,27 +553,63 @@ impl NSScrollView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/willstartlivemagnifynotification?language=objc)
+    /// Posted at the beginning of a magnify gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the scroll view performing the magnification.
+    ///
+    /// This notification indicates that the magnification property is being changed due to user action. This may be due to the user performing a pinch gesture or a smart zoom gesture. When animating the magnification value yourself via the object’s animator, this notification is not sent.
+    ///
+    ///
     pub static NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didendlivemagnifynotification?language=objc)
+    /// Posted at the end of a magnify gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the scroll view performing the magnification.
+    ///
+    /// This notification indicates that the magnification property is being changed due to user action. This may be due to the user performing a pinch gesture or a smart zoom gesture. When animating the magnification value yourself via the object’s animator, this notification is not sent.
+    ///
+    ///
     pub static NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/willstartlivescrollnotification?language=objc)
+    /// Posted on the main thread at the beginning of user-initiated live scroll tracking (gesture scroll or scroller tracking, for example, thumb dragging).
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the scroll view performing the scroll.
+    ///
+    ///
     pub static NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didlivescrollnotification?language=objc)
+    /// Posted on the main thread after changing the clipview bounds origin due to a user-initiated event.
+    ///
+    /// ## Discussion
+    ///
+    /// Some user-initiated scrolls (for example, scrolling using legacy mice) are not bracketed by a “willStart/didEnd” notification pair.
+    ///
+    /// The notification object is the scroll view performing the scroll.
+    ///
+    ///
     pub static NSScrollViewDidLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didendlivescrollnotification?language=objc)
+    /// Posted on the main thread at the end of live scroll tracking.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the scroll view performing the scroll.
+    ///
+    ///
     pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
 }
 
@@ -638,19 +682,19 @@ impl NSScrollView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum?language=objc)
+/// These constants define the position of the find bar in relation to the scroll view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollViewFindBarPosition(pub NSInteger);
 impl NSScrollViewFindBarPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/abovehorizontalruler?language=objc)
+    /// The find bar is displayed above the horizontal ruler, if visible.
     #[doc(alias = "NSScrollViewFindBarPositionAboveHorizontalRuler")]
     pub const AboveHorizontalRuler: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/abovecontent?language=objc)
+    /// The find bar is displayed above the scroll view content.
     #[doc(alias = "NSScrollViewFindBarPositionAboveContent")]
     pub const AboveContent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum/belowcontent?language=objc)
+    /// The find bar is displayed below the scroll view content.
     #[doc(alias = "NSScrollViewFindBarPositionBelowContent")]
     pub const BelowContent: Self = Self(2);
 }

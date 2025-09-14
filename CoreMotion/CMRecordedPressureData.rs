@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrecordedpressuredata?language=objc)
+    /// A recorded measurement of pressure data.
+    ///
+    /// ## Overview
+    ///
+    /// Use SensorKit’s [`SRSensorAmbientPressure`](https://developer.apple.com/documentation/sensorkit/srsensor/ambientpressure) sensor to read ambient pressure data.
+    ///
+    ///
     #[unsafe(super(CMAmbientPressureData, CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CMAmbientPressure", feature = "CMLogItem"))]

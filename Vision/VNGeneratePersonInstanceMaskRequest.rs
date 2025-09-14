@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that produces a mask of individual people it finds in the input image.
     /// A request that generates an instance mask of individual people found in the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -79,5 +78,5 @@ impl VNGeneratePersonInstanceMaskRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersoninstancemaskrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the person instance mask request.
 pub static VNGeneratePersonInstanceMaskRequestRevision1: NSUInteger = 1;

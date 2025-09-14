@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a diagnostic report for a fatal or nonfatal CPU exception.
+    ///
+    /// ## Overview
+    ///
+    /// A CPU exception occurs when your app uses an excessive amount of CPU time over a short period.
+    ///
+    ///
     /// An MXDiagnostic subclass that encapsulates CPU exception diagnostic reports.
     ///
     /// CPU exceptions occur when your application consumes excessive CPU time in a short period of time.
     ///
     /// CPU exceptions can be both fatal and non-fatal to your application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcpuexceptiondiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]

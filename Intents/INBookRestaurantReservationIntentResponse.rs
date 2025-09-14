@@ -7,30 +7,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INBookRestaurantReservationIntentCode(pub NSInteger);
 impl INBookRestaurantReservationIntentCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully created the reservation object in your system. Use this code even if the restaurant itself has not yet confirmed the reservation. You can always update the status of the reservation later.
+    ///
+    ///
     #[doc(alias = "INBookRestaurantReservationIntentCodeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/denied?language=objc)
+    /// The restaurant declined the reservation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the restaurant declines the reservation for any reason.
+    ///
+    ///
     #[doc(alias = "INBookRestaurantReservationIntentCodeDenied")]
     pub const Denied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failure?language=objc)
+    /// You were unable to create the reservation object in your system.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from creating the reservation.
+    ///
+    ///
     #[doc(alias = "INBookRestaurantReservationIntentCodeFailure")]
     pub const Failure: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to make the reservation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request directly for a reason not covered by any other response code. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunchmustverifycredentials?language=objc)
+    /// Your app failed to create the reservation because the user’s credentials were invalid or missing.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you do not have valid credentials for the user. Maps launches your app and passes it to the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object from your response so that you can try to verify the user’s credentials there.
+    ///
+    ///
     #[doc(
         alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentcode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
+    /// Your service is temporarily unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your Intents extension is unable to contact your service and save the reservation data. Maps launches your app and passes it to the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object from your response so that you can try to complete the booking there.
+    ///
+    ///
     #[doc(
         alias = "INBookRestaurantReservationIntentCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
@@ -46,7 +82,15 @@ unsafe impl RefEncode for INBookRestaurantReservationIntentCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentresponse?language=objc)
+    /// Your app’s response to a book restaurant reservation intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INBookRestaurantReservationIntentResponse`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentresponse) object contains final reservation booking information. You create an instance of this class when confirming or handling an [`INBookRestaurantReservationIntent`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintent) object, which contains the details of the reservation that you need to book.
+    ///
+    /// You create an [`INBookRestaurantReservationIntentResponse`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintentresponse) object in the [`confirmBookRestaurantReservation:completion:`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling/confirm(bookrestaurantreservation:completion:)) and [`handleBookRestaurantReservation:completion:`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling/handle(bookrestaurantreservation:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INBookRestaurantReservationIntentHandling`](https://developer.apple.com/documentation/intents/inbookrestaurantreservationintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

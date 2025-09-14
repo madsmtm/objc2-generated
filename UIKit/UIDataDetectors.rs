@@ -4,44 +4,50 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes?language=objc)
+/// Constants that define the types of information to detect in text-based content.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDataDetectorTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDataDetectorTypes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/phonenumber?language=objc)
+/// An option to detect strings with the format of a phone number.
         #[doc(alias = "UIDataDetectorTypePhoneNumber")]
         const PhoneNumber = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/link?language=objc)
+/// An option to detect strings with the format of a URL.
         #[doc(alias = "UIDataDetectorTypeLink")]
         const Link = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/address?language=objc)
+/// An option to detect strings with the format of an address.
         #[doc(alias = "UIDataDetectorTypeAddress")]
         const Address = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/calendarevent?language=objc)
+/// An option to detect strings with the format of a calendar event.
         #[doc(alias = "UIDataDetectorTypeCalendarEvent")]
         const CalendarEvent = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/shipmenttrackingnumber?language=objc)
+/// An option to detect strings with the format of a tracking number from a package delivery company.
         #[doc(alias = "UIDataDetectorTypeShipmentTrackingNumber")]
         const ShipmentTrackingNumber = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/flightnumber?language=objc)
+/// An option to detect strings with the format of a flight number from an airline.
         #[doc(alias = "UIDataDetectorTypeFlightNumber")]
         const FlightNumber = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/lookupsuggestion?language=objc)
+/// An option to detect strings with the format of information that a person might want to look up.
+///
+/// ## Discussion
+///
+/// Examples of lookup suggestions include the name of a restaurant, the title of a new movie, the name of a celebrity, and so on.
+///
+///
         #[doc(alias = "UIDataDetectorTypeLookupSuggestion")]
         const LookupSuggestion = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/money?language=objc)
+/// An option to detect strings with the format of an amount of money.
         #[doc(alias = "UIDataDetectorTypeMoney")]
         const Money = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/physicalvalue?language=objc)
+/// An option to detect strings with the format of a physical value, such as length or temperature.
         #[doc(alias = "UIDataDetectorTypePhysicalValue")]
         const PhysicalValue = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/uidatadetectortypenone?language=objc)
+/// An option to do no data detection.
         #[doc(alias = "UIDataDetectorTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatadetectortypes/all?language=objc)
+/// An option to detect all available types of data.
         #[doc(alias = "UIDataDetectorTypeAll")]
         const All = NSUIntegerMax as _;
     }

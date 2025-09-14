@@ -7,25 +7,54 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The options that enable behavior for some blit operations.
 /// Controls the blit operation
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlitOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLBlitOption: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/mtlblitoptionnone?language=objc)
+/// A blit option that clears other blit options, which removes any optional behavior for a blit operation.
         #[doc(alias = "MTLBlitOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/depthfromdepthstencil?language=objc)
+/// A blit option that copies the depth portion of a combined depth and stencil texture to or from a buffer.
+///
+/// ## Discussion
+///
+/// You can pass this option to some methods that copy data between a buffer and a texture, including the following:
+///
+/// - [`copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:sourcebytesperrow:sourcebytesperimage:sourcesize:to:destinationslice:destinationlevel:destinationorigin:options:))
+///
+/// - [`copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:options:))
+///
+///
         #[doc(alias = "MTLBlitOptionDepthFromDepthStencil")]
         const DepthFromDepthStencil = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/stencilfromdepthstencil?language=objc)
+/// A blit option that copies the stencil portion of a combined depth and stencil texture to or from a buffer.
+///
+/// ## Discussion
+///
+/// You can pass this option to some methods that copy data between a buffer and a texture, including the following:
+///
+/// - [`copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:sourcebytesperrow:sourcebytesperimage:sourcesize:to:destinationslice:destinationlevel:destinationorigin:options:))
+///
+/// - [`copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:options:))
+///
+///
         #[doc(alias = "MTLBlitOptionStencilFromDepthStencil")]
         const StencilFromDepthStencil = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitoption/rowlinearpvrtc?language=objc)
+/// A blit option that copies PVRTC data between a texture and a buffer.
+///
+/// ## Discussion
+///
+/// The PowerVR Texture Compression (PVRTC) format arranges blocks linearly in memory in row-major order, similar to other compressed texture formats. You can pass this option to some methods that copy data between a buffer and a texture, including the following:
+///
+/// - [`copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceoffset:sourcebytesperrow:sourcebytesperimage:sourcesize:to:destinationslice:destinationlevel:destinationorigin:options:))
+///
+/// - [`copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:options:))
+///
+///
         #[doc(alias = "MTLBlitOptionRowLinearPVRTC")]
         const RowLinearPVRTC = 1<<2;
     }
@@ -40,9 +69,34 @@ unsafe impl RefEncode for MTLBlitOption {
 }
 
 extern_protocol!(
-    /// A command encoder that performs basic copies and blits between buffers and textures.
+    /// An interface you can use to encode GPU commands that copy and modify the underlying memory of various Metal resources.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblitcommandencoder?language=objc)
+    /// ## Overview
+    ///
+    /// Each GPU driver implements the [`MTLBlitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder) protocol, an interface you use to encode various commands that copy or manipulate resource data, which include the following:
+    ///
+    /// - Filling buffers with repeating bytes
+    ///
+    /// - Generating mipmaps for textures
+    ///
+    /// - Copying data between buffers
+    ///
+    /// - Copying data between textures
+    ///
+    /// - Copying data between a texture and a buffer
+    ///
+    /// - Managing the contents of indirect command buffers
+    ///
+    /// - Synchronizing buffers, textures, and other resources between the CPU and GPU
+    ///
+    /// - Improving runtime performance for resources by optimizing their memory layout for the GPU or CPU
+    ///
+    /// Apps typically use these commands to move data between a resource that uses private storage to, or from, another resource that uses CPU-accessible storage. Some apps use them to apply image-processing and texture effects, such as blurring or reflections, or to render and work with offscreen image data.
+    ///
+    /// You can create an [`MTLBlitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder) instance by calling one of an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance’s methods, such as [`blitCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeblitcommandencoder()). When you finish encoding blit commands, finalize the blit pass into the command buffer by calling the encoder’s [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) method.
+    ///
+    ///
+    /// A command encoder that performs basic copies and blits between buffers and textures.
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLBlitCommandEncoder: MTLCommandEncoder {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]

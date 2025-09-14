@@ -7,12 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable object that represents one of the user’s social profiles.
+    ///
+    /// ## Overview
+    ///
+    /// Some social profile services, such as Facebook and Twitter, are predefined in this class. You can also specify your own social profile service with the [`initWithUrlString:username:userIdentifier:service:`](https://developer.apple.com/documentation/contacts/cnsocialprofile/init(urlstring:username:useridentifier:service:)) method.
+    ///
+    /// `CNSocialProfile` objects are thread-safe, and you may access their properties from any thread of your app.
+    ///
+    ///
     /// An immutable value object representing a social profile.
     ///
     ///
     /// CNSocialProfile is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNSocialProfile;
@@ -92,66 +99,144 @@ impl CNSocialProfile {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileurlstringkey?language=objc)
+    /// The social profile URL.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileURLStringKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileusernamekey?language=objc)
+    /// The social profile user name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileUsernameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileuseridentifierkey?language=objc)
+    /// The social profile user identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileUserIdentifierKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicekey?language=objc)
+    /// The social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicefacebook?language=objc)
+    /// The Facebook social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceFacebook: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileserviceflickr?language=objc)
+    /// The Flickr social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceFlickr: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicelinkedin?language=objc)
+    /// The LinkedIn social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceLinkedIn: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicemyspace?language=objc)
+    /// The MySpace social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceMySpace: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicesinaweibo?language=objc)
+    /// The Sina Weibo social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceSinaWeibo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicetencentweibo?language=objc)
+    /// The Tencent Weibo social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceTencentWeibo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicetwitter?language=objc)
+    /// The Twitter social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceTwitter: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileserviceyelp?language=objc)
+    /// The Yelp social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceYelp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnsocialprofileservicegamecenter?language=objc)
+    /// The Game Center social profile service.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNSocialProfileServiceGameCenter: &'static NSString;
 }

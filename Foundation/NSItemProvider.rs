@@ -6,22 +6,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility?language=objc)
+/// Specifications that control which categories of processes can see an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderRepresentationVisibility(pub NSInteger);
 impl NSItemProviderRepresentationVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/all?language=objc)
+    /// A representation visibility specification conferring item visibility to all processes.
     #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
     pub const All: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/team?language=objc)
+    /// A representation visibility specification confining item visibility to processes created by the app’s development team.
     #[doc(alias = "NSItemProviderRepresentationVisibilityTeam")]
     pub const Team: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/group?language=objc)
+    /// A representation visibility specification confining item visibility to the app’s app group.
     #[doc(alias = "NSItemProviderRepresentationVisibilityGroup")]
     pub const Group: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility/ownprocess?language=objc)
+    /// A representation visibility specification confining item visibility to the app that is the source of the item.
     #[doc(alias = "NSItemProviderRepresentationVisibilityOwnProcess")]
     pub const OwnProcess: Self = Self(3);
 }
@@ -34,14 +34,14 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions?language=objc)
+/// Data-access specifications that declare how to handle items.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderFileOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions/openinplace?language=objc)
+/// A data-access specification declaring that items should open in place, rather than being copied.
         #[doc(alias = "NSItemProviderFileOptionOpenInPlace")]
         const OpenInPlace = 1;
     }
@@ -56,7 +56,13 @@ unsafe impl RefEncode for NSItemProviderFileOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderwriting?language=objc)
+    /// The protocol for implementing a class to allow an item provider to retrieve data from an instance of the class.
+    ///
+    /// ## Overview
+    ///
+    /// A source app uses an object that conforms to this protocol to initialize an item provider for a copied or dragged item.
+    ///
+    ///
     pub unsafe trait NSItemProviderWriting: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(writableTypeIdentifiersForItemProvider))]
@@ -107,7 +113,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderreading?language=objc)
+    /// The protocol for implementing a class to allow an item provider to create an instance of the class.
+    ///
+    /// ## Overview
+    ///
+    /// A destination app uses an object that conforms to this protocol to consume pasted or dropped items.
+    ///
+    ///
     pub unsafe trait NSItemProviderReading: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(readableTypeIdentifiersForItemProvider))]
@@ -124,12 +136,38 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/completionhandler?language=objc)
+/// A block that receives the item provider’s data.
+///
+/// ## Discussion
+///
+/// Use this block to receive data from a call to the [`loadItemForTypeIdentifier:options:completionHandler:`](https://developer.apple.com/documentation/foundation/nsitemprovider/loaditem(fortypeidentifier:options:completionhandler:)) method. This block takes the following parameters:
+///
+/// - item: The item to be loaded. When specifying your block, set the type of this parameter to the specific data type you want. For example, when requesting text data, you might set the type to [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) or [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring). The item provider attempts to coerce the data to the class you specify.
+///
+/// - error: A pointer to an error object for receiving information about any problems that occurred when loading the data.
+///
+///
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/loadhandler?language=objc)
+/// A block that loads the item provider’s data and coerces it to the specified type.
+///
+/// ## Discussion
+///
+/// Use this block when registering a type-specific coercion handler with the [`registerItemForTypeIdentifier:loadHandler:`](https://developer.apple.com/documentation/foundation/nsitemprovider/registeritem(fortypeidentifier:loadhandler:)) method. The parameters for this block are as follows:
+///
+/// - completionHandler: The completion handler to call with the resulting data. For information about this block, see [`NSItemProviderCompletionHandler`](https://developer.apple.com/documentation/foundation/nsitemprovider/completionhandler).
+///
+/// - expectedValueClass: The expected class of the item being loaded. Convert the item provider’s data to this type and pass the resulting object as the first parameter of the `completionHandler` block.
+///
+/// - options: A dictionary with options for how to provide the requested item. For example, the dictionary may contain the pixel dimensions of a requested image. For information about the supported keys, see [Options Dictionary Key](https://developer.apple.com/documentation/foundation/options-dictionary-key).
+///
+/// When a client calls the [`loadItemForTypeIdentifier:options:completionHandler:`](https://developer.apple.com/documentation/foundation/nsitemprovider/loaditem(fortypeidentifier:options:completionhandler:)) method and requests the appropriate type, the item provider executes your block. In your implementation, create an object of the expected type and execute the block in the `completionHandler` parameter, passing the newly created object as the first parameter of that block. If there is an error, pass `nil` for the object and provide an appropriate [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object explaining what happened.
+///
+/// This type of block is also used for generating preview images. In the case of a preview image, the `expectedValueClass` is always a [`NSData`](https://developer.apple.com/documentation/foundation/nsdata), [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) (in iOS), or [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) (in macOS) class.
+///
+///
 #[cfg(all(
     feature = "NSDictionary",
     feature = "NSError",
@@ -141,7 +179,29 @@ pub type NSItemProviderLoadHandler = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc)
+    /// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
+    ///
+    /// ## Overview
+    ///
+    /// Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions.
+    ///
+    /// The system uses an internal queue when calling the completion blocks for the `NSItemProvider` class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
+    ///
+    /// ```swift
+    /// DispatchQueue.main.async {
+    ///     // Work that impacts the user interface.
+    /// }
+    /// ```
+    ///
+    /// ### App extension support
+    ///
+    /// An app extension typically encounters item providers when examining the [`attachments`](https://developer.apple.com/documentation/foundation/nsextensionitem/attachments) property of an [`NSExtensionItem`](https://developer.apple.com/documentation/foundation/nsextensionitem) object. During that examination, the extension can use the [`hasItemConformingToTypeIdentifier:`](https://developer.apple.com/documentation/foundation/nsitemprovider/hasitemconformingtotypeidentifier(_:)) method to look for data that it recognizes. Item providers use [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers) values to identify the data they contain. After finding a type of data that your extension can use, it calls the [`loadItemForTypeIdentifier:options:completionHandler:`](https://developer.apple.com/documentation/foundation/nsitemprovider/loaditem(fortypeidentifier:options:completionhandler:)) method to load the actual data, which is delivered to the provided completion handler.
+    ///
+    /// You can create item providers to vend data to another process. An extension that modifies an original data item can create a new `NSItemProvider` object to send back to the host app. When creating data items, you specify your data object and the type of that object. You can optionally use the [`previewImageHandler`](https://developer.apple.com/documentation/foundation/nsitemprovider/previewimagehandler) property to generate a preview image for your data.
+    ///
+    /// A single item provider may use custom blocks to provide its data in many different formats. When configuring an item provider, use the [`registerItemForTypeIdentifier:loadHandler:`](https://developer.apple.com/documentation/foundation/nsitemprovider/registeritem(fortypeidentifier:loadhandler:)) method to register your blocks and the formats each one supports. When a client requests data in a particular format, the item provider executes the corresponding block, which is then responsible for coercing the data to the appropriate type and returning it to the client.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemProvider;
@@ -403,7 +463,13 @@ impl DefaultRetained for NSItemProvider {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderpreferredimagesizekey?language=objc)
+    /// A key provided to the options dictionary to indicate a preferred image size.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key only with the [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) type coercion policy. Ensure the value is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object that contains a [`CGSize`](https://developer.apple.com/documentation/corefoundation/cgsize) struct specifying the requested size, in points.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSItemProviderPreferredImageSizeKey: &'static NSString;
 }
@@ -466,39 +532,39 @@ impl NSItemProvider {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptpreprocessingresultskey?language=objc)
+    /// A key whose value is an item of type `kUTTypePropertyList`. The item contains an `NSDictionary` that contains the object returned by the JavaScript code to its completion function.
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptPreprocessingResultsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionjavascriptfinalizeargumentkey?language=objc)
+    /// A key whose value is an item of type `kUTTypePropertyList`. The item contains an `NSDictionary` that contains the arguments to be passed to a JavaScript finalize method.
     #[cfg(feature = "NSString")]
     pub static NSExtensionJavaScriptFinalizeArgumentKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errordomain?language=objc)
+    /// The error domain associated with the item provider.
     #[cfg(feature = "NSString")]
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode?language=objc)
+/// The error codes that describe problems with consuming data from an item provider.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSItemProviderErrorCode(pub NSInteger);
 impl NSItemProviderErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unknownerror?language=objc)
+    /// An error code indicating an unknown error with consuming data from an item provider.
     #[doc(alias = "NSItemProviderUnknownError")]
     pub const UnknownError: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/itemunavailableerror?language=objc)
+    /// An error code indicating that the requested data was unavailable from an item provider.
     #[doc(alias = "NSItemProviderItemUnavailableError")]
     pub const ItemUnavailableError: Self = Self(-1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unexpectedvalueclasserror?language=objc)
+    /// An error code indicating that type coercion to the requested class failed.
     #[doc(alias = "NSItemProviderUnexpectedValueClassError")]
     pub const UnexpectedValueClassError: Self = Self(-1100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode/unavailablecoercionerror?language=objc)
+    /// An error code indicating that the requested data type coercion is unavailable from an item provider.
     #[doc(alias = "NSItemProviderUnavailableCoercionError")]
     pub const UnavailableCoercionError: Self = Self(-1200);
 }

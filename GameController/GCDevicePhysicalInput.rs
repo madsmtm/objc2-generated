@@ -9,12 +9,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties and methods for objects that represent the input profile of a device.
+    ///
+    /// ## Overview
+    ///
+    /// You can safely call this protocol’s methods and access its properties from any thread, but not from multiple, concurrent threads.
+    ///
+    ///
     /// An objecting conforming to
     /// `GCDevicePhysicalInput`provides properties and
     /// methods for accessing common physical elements - buttons, thumbsticks, dpads,
     /// etc - of a device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinput?language=objc)
     #[cfg(feature = "GCDevicePhysicalInputState")]
     pub unsafe trait GCDevicePhysicalInput: GCDevicePhysicalInputState {
         #[cfg(feature = "GCDevice")]

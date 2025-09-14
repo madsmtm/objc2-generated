@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevice?language=objc)
+    /// A protocol that defines a common interface for game input devices.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides common properties for game controllers, and mouse and keyboard devices.
+    ///
+    ///
     pub unsafe trait GCDevice: NSObjectProtocol {
         #[cfg(feature = "dispatch2")]
         /// The dispatch queue that element value change handlers are submitted on. The default queue is main, and setting this to any

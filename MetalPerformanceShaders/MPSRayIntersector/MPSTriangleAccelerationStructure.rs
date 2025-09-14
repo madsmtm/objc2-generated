@@ -9,12 +9,11 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An acceleration structure built over triangles.
     /// An acceleration structure built over triangles
     ///
     ///
     /// See MPSPolygonAccelerationStructure for more information
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstriangleaccelerationstructure?language=objc)
     #[unsafe(super(
         MPSPolygonAccelerationStructure,
         MPSAccelerationStructure,

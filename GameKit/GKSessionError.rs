@@ -8,79 +8,79 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerrordomain?language=objc)
+    /// An error occurred in [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession).
     #[deprecated = "No longer supported"]
     pub static GKSessionErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code?language=objc)
+/// Error codes for the session error domain.
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKSessionError(pub c_int);
 impl GKSessionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/invalidparametererror?language=objc)
+    /// A parameter had an unexpected value.
     #[doc(alias = "GKSessionInvalidParameterError")]
     #[deprecated = "No longer supported"]
     pub const InvalidParameterError: Self = Self(30500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/peernotfounderror?language=objc)
+    /// A peer with the specified `peerID` string could not be found.
     #[doc(alias = "GKSessionPeerNotFoundError")]
     #[deprecated = "No longer supported"]
     pub const PeerNotFoundError: Self = Self(30501);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/declinederror?language=objc)
+    /// The peer your application tried to connect to refused the connection.
     #[doc(alias = "GKSessionDeclinedError")]
     #[deprecated = "No longer supported"]
     pub const DeclinedError: Self = Self(30502);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/timedouterror?language=objc)
+    /// The operation could not be completed in the specified timeout period.
     #[doc(alias = "GKSessionTimedOutError")]
     #[deprecated = "No longer supported"]
     pub const TimedOutError: Self = Self(30503);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/cancellederror?language=objc)
+    /// A peer that invited the session to connect to them canceled the connection request.
     #[doc(alias = "GKSessionCancelledError")]
     #[deprecated = "No longer supported"]
     pub const CancelledError: Self = Self(30504);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/connectionfailederror?language=objc)
+    /// The attempt to establish a connection with another peer failed.
     #[doc(alias = "GKSessionConnectionFailedError")]
     #[deprecated = "No longer supported"]
     pub const ConnectionFailedError: Self = Self(30505);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/connectionclosederror?language=objc)
+    /// The connection to another peer closed unexpectedly.
     #[doc(alias = "GKSessionConnectionClosedError")]
     #[deprecated = "No longer supported"]
     pub const ConnectionClosedError: Self = Self(30506);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/datatoobigerror?language=objc)
+    /// The data your application attempted to send was too large for the session to transmit in a single call.
     #[doc(alias = "GKSessionDataTooBigError")]
     #[deprecated = "No longer supported"]
     pub const DataTooBigError: Self = Self(30507);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/notconnectederror?language=objc)
+    /// Reserved for future use.
     #[doc(alias = "GKSessionNotConnectedError")]
     #[deprecated = "No longer supported"]
     pub const NotConnectedError: Self = Self(30508);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/cannotenableerror?language=objc)
+    /// Bluetooth is not currently available.
     #[doc(alias = "GKSessionCannotEnableError")]
     #[deprecated = "No longer supported"]
     pub const CannotEnableError: Self = Self(30509);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/inprogresserror?language=objc)
+    /// The peer your application attempted to connect to has already requested a connection to your session.
     #[doc(alias = "GKSessionInProgressError")]
     #[deprecated = "No longer supported"]
     pub const InProgressError: Self = Self(30510);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/connectivityerror?language=objc)
+    /// An error occurred in the [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object’s connection code.
     #[doc(alias = "GKSessionConnectivityError")]
     #[deprecated = "No longer supported"]
     pub const ConnectivityError: Self = Self(30201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/transporterror?language=objc)
+    /// An error occurred in the [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object’s transport code.
     #[doc(alias = "GKSessionTransportError")]
     #[deprecated = "No longer supported"]
     pub const TransportError: Self = Self(30202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/internalerror?language=objc)
+    /// A serious error occurred inside [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession).
     #[doc(alias = "GKSessionInternalError")]
     #[deprecated = "No longer supported"]
     pub const InternalError: Self = Self(30203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/unknownerror?language=objc)
+    /// Reserved for when the error does not fit in another category above.
     #[doc(alias = "GKSessionUnknownError")]
     #[deprecated = "No longer supported"]
     pub const UnknownError: Self = Self(30204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code/systemerror?language=objc)
+    /// An error occurred outside of the [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object’s control, such as memory allocation.
     #[doc(alias = "GKSessionSystemError")]
     #[deprecated = "No longer supported"]
     pub const SystemError: Self = Self(30205);

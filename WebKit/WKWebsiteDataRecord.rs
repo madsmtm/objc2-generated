@@ -7,84 +7,84 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefetchcache?language=objc)
     pub static WKWebsiteDataTypeFetchCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypediskcache?language=objc)
+    /// On-disk caches.
     pub static WKWebsiteDataTypeDiskCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypememorycache?language=objc)
+    /// In-memory caches.
     pub static WKWebsiteDataTypeMemoryCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeofflinewebapplicationcache?language=objc)
+    /// HTML offline web app caches.
     pub static WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypecookies?language=objc)
+    /// Cookies.
     pub static WKWebsiteDataTypeCookies: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesessionstorage?language=objc)
+    /// HTML session storage.
     pub static WKWebsiteDataTypeSessionStorage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypelocalstorage?language=objc)
+    /// HTML local storage.
     pub static WKWebsiteDataTypeLocalStorage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypewebsqldatabases?language=objc)
+    /// WebSQL databases.
     pub static WKWebsiteDataTypeWebSQLDatabases: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeindexeddbdatabases?language=objc)
+    /// IndexedDB databases.
     pub static WKWebsiteDataTypeIndexedDBDatabases: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeserviceworkerregistrations?language=objc)
     pub static WKWebsiteDataTypeServiceWorkerRegistrations: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypefilesystem?language=objc)
     pub static WKWebsiteDataTypeFileSystem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypesearchfieldrecentsearches?language=objc)
     pub static WKWebsiteDataTypeSearchFieldRecentSearches: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypemediakeys?language=objc)
     pub static WKWebsiteDataTypeMediaKeys: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypehashsalt?language=objc)
     pub static WKWebsiteDataTypeHashSalt: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypescreentime?language=objc)
     pub static WKWebsiteDataTypeScreenTime: &'static NSString;
 }
 
 extern_class!(
-    /// A WKWebsiteDataRecord represents website data, grouped by domain name using the public suffix list.
+    /// A record of the data that a particular website stores persistently.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatarecord?language=objc)
+    /// ## Overview
+    ///
+    /// Use [`WKWebsiteDataRecord`](https://developer.apple.com/documentation/webkit/wkwebsitedatarecord) objects to discover the types of information that a website stores. Records identify the data types a website stores, but don’t identify the actual data. You might use this information to help the user manage website data. For example, Safari provides a way for users to view and remove website data. The domain name of each record contains the website’s domain name and suffix.
+    ///
+    /// You don’t create [`WKWebsiteDataRecord`](https://developer.apple.com/documentation/webkit/wkwebsitedatarecord) objects directly. WebKit creates these records and stores them in the web view’s data store. Use the [`fetchDataRecordsOfTypes:completionHandler:`](https://developer.apple.com/documentation/webkit/wkwebsitedatastore/fetchdatarecords(oftypes:completionhandler:)) of that data store to retrieve the current record objects. You also use that object to remove unwanted records.
+    ///
+    ///
+    /// A WKWebsiteDataRecord represents website data, grouped by domain name using the public suffix list.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

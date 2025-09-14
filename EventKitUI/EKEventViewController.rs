@@ -11,19 +11,19 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction?language=objc)
+/// Describes the action taken to close the event view controller.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventViewAction(pub NSInteger);
 impl EKEventViewAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/done?language=objc)
+    /// The user tapped the Done button.
     #[doc(alias = "EKEventViewActionDone")]
     pub const Done: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/responded?language=objc)
+    /// The user responded to and saved a pending event invitation.
     #[doc(alias = "EKEventViewActionResponded")]
     pub const Responded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewaction/deleted?language=objc)
+    /// The user deleted the event.
     #[doc(alias = "EKEventViewActionDeleted")]
     pub const Deleted: Self = Self(2);
 }
@@ -37,7 +37,15 @@ unsafe impl RefEncode for EKEventViewAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewcontroller?language=objc)
+    /// A view controller for displaying existing calendar and reminder events, and for optionally editing those events.
+    ///
+    /// ## Overview
+    ///
+    /// The event view controller’s primary purpose is to present to the user a modal display containing the details of a calendar event. The view controller lets you set whether users may edit an event and, if the event is an invitation and the organizer is not the user, you can decide whether to show a preview of the event.
+    ///
+    /// The event view controller includes delegates used to receive a notification when closing the view controller. The delegate must conform to the [`EKEventViewDelegate`](https://developer.apple.com/documentation/eventkitui/ekeventviewdelegate) protocol.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -185,6 +193,13 @@ impl EKEventViewController {
 }
 
 extern_protocol!(
+    /// Delegates used to display details for calendar events.
+    ///
+    /// ## Overview
+    ///
+    /// Delegates of an [`EKEventViewController`](https://developer.apple.com/documentation/eventkitui/ekeventviewcontroller) object conform to this protocol. Notifies the event view controller’s delegate when closing the event view controller. It is your responsibility to close the event view controller and perform any additional tasks within this protocol’s method.
+    ///
+    ///
     /// View controller to view event detail.
     ///
     /// You can use this view controller to display the details of an event. You
@@ -194,8 +209,6 @@ extern_protocol!(
     /// you have pushed this view controller onto a navigation controller stack, and
     /// the underlying event gets deleted, this controller will remove itself from
     /// the stack and clear its event property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekeventviewdelegate?language=objc)
     pub unsafe trait EKEventViewDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// Called to let delegate know that an action has occurred that should cause the

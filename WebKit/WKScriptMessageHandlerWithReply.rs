@@ -8,10 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface for responding to messages from JavaScript code running in a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`WKScriptMessageHandlerWithReply`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandlerwithreply) protocol when your app needs to receive JavaScript messages from a web view and provide an appropriate response. When JavaScript code sends a message that specifically targets your message handler, WebKit calls your handler’s [`userContentController:didReceiveScriptMessage:replyHandler:`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandlerwithreply/usercontentcontroller(_:didreceive:replyhandler:)) method. Use that method to process the message and provide your response.
+    ///
+    /// To call your message handler from JavaScript, send a message to `window.webkit.messageHandlers.<messageHandlerName>.postMessage(<messageBody>)` in your code. You specify the name of your message handler when you add it to a [`WKUserContentController`](https://developer.apple.com/documentation/webkit/wkusercontentcontroller) object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you don’t need to provide a response back to JavaScript, implement your message handler using the [`WKScriptMessageHandler`](https://developer.apple.com/documentation/webkit/wkscriptmessagehandler) protocol instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A class conforming to  the WKScriptMessageHandlerWithReply protocol provides a
     /// method for receiving messages from JavaScript running in a webpage and replying to them asynchronously.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkscriptmessagehandlerwithreply?language=objc)
     pub unsafe trait WKScriptMessageHandlerWithReply:
         NSObjectProtocol + MainThreadOnly
     {

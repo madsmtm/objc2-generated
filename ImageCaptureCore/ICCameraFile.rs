@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a file on a camera.
     /// This class represents a file on an ICCameraDevice object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccamerafile?language=objc)
     #[unsafe(super(ICCameraItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ICCameraItem")]

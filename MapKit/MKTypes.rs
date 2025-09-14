@@ -6,28 +6,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype?language=objc)
+/// The type of map to display.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapType(pub NSUInteger);
 impl MKMapType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/standard?language=objc)
+    /// A street map that shows the position of all roads and some road names.
     #[doc(alias = "MKMapTypeStandard")]
     pub const Standard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/satellite?language=objc)
+    /// Satellite imagery of the area.
     #[doc(alias = "MKMapTypeSatellite")]
     pub const Satellite: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/hybrid?language=objc)
+    /// A satellite image of the area with road and road name information layered on top.
     #[doc(alias = "MKMapTypeHybrid")]
     pub const Hybrid: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/satelliteflyover?language=objc)
+    /// A satellite image of the area with flyover data where available.
     #[doc(alias = "MKMapTypeSatelliteFlyover")]
     pub const SatelliteFlyover: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/hybridflyover?language=objc)
+    /// A hybrid satellite image with flyover data where available.
     #[doc(alias = "MKMapTypeHybridFlyover")]
     pub const HybridFlyover: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype/mutedstandard?language=objc)
+    /// A street map where MapKit emphasizes your data over the underlying map details.
     #[doc(alias = "MKMapTypeMutedStandard")]
     pub const MutedStandard: Self = Self(5);
 }
@@ -41,32 +41,38 @@ unsafe impl RefEncode for MKMapType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerrordomain?language=objc)
+    /// The error domain for MapKit.
     pub static MKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code?language=objc)
+/// Error constants for the MapKit framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MKErrorCode(pub NSUInteger);
 impl MKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "MKErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/serverfailure?language=objc)
+    /// The map server was unable to return the desired information.
     #[doc(alias = "MKErrorServerFailure")]
     pub const ServerFailure: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/loadingthrottled?language=objc)
+    /// The data didn’t load because data throttling is in effect.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur if an app makes frequent requests for data over a short period of time.
+    ///
+    ///
     #[doc(alias = "MKErrorLoadingThrottled")]
     pub const LoadingThrottled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/placemarknotfound?language=objc)
+    /// The specified placemark could not be found.
     #[doc(alias = "MKErrorPlacemarkNotFound")]
     pub const PlacemarkNotFound: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/directionsnotfound?language=objc)
+    /// The framework couldn’t find the specified directions.
     #[doc(alias = "MKErrorDirectionsNotFound")]
     pub const DirectionsNotFound: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkerror/code/decodingfailed?language=objc)
+    /// GeoJSON decoding failed.
     #[doc(alias = "MKErrorDecodingFailed")]
     pub const DecodingFailed: Self = Self(6);
 }
@@ -79,19 +85,25 @@ unsafe impl RefEncode for MKErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility?language=objc)
+/// Constants that indicate the visibility of different map features.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKFeatureVisibility(pub NSInteger);
 impl MKFeatureVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/adaptive?language=objc)
+    /// A constant indicating that the feature adapts to the current map state.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework displays title text and hides subtitle text for features in the normal state. When selected, the framework hides the feature’s title and subtitle text when the feature requires a callout.
+    ///
+    ///
     #[doc(alias = "MKFeatureVisibilityAdaptive")]
     pub const Adaptive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/hidden?language=objc)
+    /// A constant indicating that the feature is hidden.
     #[doc(alias = "MKFeatureVisibilityHidden")]
     pub const Hidden: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility/visible?language=objc)
+    /// A constant indicating that the feature is visible.
     #[doc(alias = "MKFeatureVisibilityVisible")]
     pub const Visible: Self = Self(2);
 }
@@ -104,16 +116,16 @@ unsafe impl RefEncode for MKFeatureVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority?language=objc)
+/// A value that indicates the importance of the configured region.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchRegionPriority(pub NSInteger);
 impl MKLocalSearchRegionPriority {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority/default?language=objc)
+    /// A value indicating that the results can originate from outside the specified region.
     #[doc(alias = "MKLocalSearchRegionPriorityDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority/required?language=objc)
+    /// A value indicating that no results can originate from outside the specified region.
     #[doc(alias = "MKLocalSearchRegionPriorityRequired")]
     pub const Required: Self = Self(1);
 }

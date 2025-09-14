@@ -96,7 +96,7 @@ impl private_NSObjectUIAccessibilityContainer::Sealed for NSObject {}
 unsafe impl NSObjectUIAccessibilityContainer for NSObject {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatablecell?language=objc)
+    /// Methods that provide the location of a cell in a table.
     pub unsafe trait UIAccessibilityContainerDataTableCell:
         NSObjectProtocol + MainThreadOnly
     {
@@ -111,7 +111,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatable?language=objc)
+    /// Methods that convey information about the contents of a table.
     pub unsafe trait UIAccessibilityContainerDataTable:
         NSObjectProtocol + MainThreadOnly
     {

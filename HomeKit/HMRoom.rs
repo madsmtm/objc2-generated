@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class describes a room in the home.
+    /// The smallest subdivision of a home’s space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmroom?language=objc)
+    /// ## Overview
+    ///
+    /// An [`HMRoom`](https://developer.apple.com/documentation/homekit/hmroom) instance is a part of a home representing an individual room in the home. Rooms don’t have any physical characteristics like size or location. Instead, they’re names that are meaningful to the user, like “living room” or “kitchen”. Meaningful room names enable voice commands like “Siri, turn on the kitchen lights.”
+    ///
+    /// You create new rooms using the [`addRoomWithName:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addroom(withname:completionhandler:)) method of [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome). You can also group rooms into zones using instances of [`HMZone`](https://developer.apple.com/documentation/homekit/hmzone). You can assign accessories to rooms, indicating the presence of that accessory in that room.
+    ///
+    ///
+    /// This class describes a room in the home.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMRoom;

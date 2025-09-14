@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phchange?language=objc)
+    /// A description of a change that occurred in the photo library.
+    ///
+    /// ## Overview
+    ///
+    /// Photos provides [`PHChange`](https://developer.apple.com/documentation/photos/phchange) objects to notify your app of changes to the assets and collections managed by the Photos app. To receive change information, adopt the [`PHPhotoLibraryChangeObserver`](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver) protocol and register your observer with the shared [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) object.
+    ///
+    /// After Photos provides a change object, you use its methods to get a change details object. Call the [`changeDetailsForObject:`](https://developer.apple.com/documentation/photos/phchange/changedetailsforobject:) or [`changeDetails(for:)`](https://developer.apple.com/documentation/photos/phchange/changedetails(for:)-33a6n) method, passing an asset or collection object you’ve previously fetched or a fetch result containing several such objects. The resulting [`PHObjectChangeDetails`](https://developer.apple.com/documentation/photos/phobjectchangedetails) or [`PHFetchResultChangeDetails`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails) object describes any changes that have happened to the object or fetch result since you last fetched it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHChange;
@@ -59,7 +67,23 @@ impl PHChange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectchangedetails?language=objc)
+    /// A description of changes that occurred in an asset or collection object.
+    ///
+    /// ## Overview
+    ///
+    /// A [`PHObjectChangeDetails`](https://developer.apple.com/documentation/photos/phobjectchangedetails) object provides detailed information about differences between two states of an asset or collection object—one that you previously obtained and an updated state that would result if you fetched that entity again. You observe changes by adopting the [`PHPhotoLibraryChangeObserver`](https://developer.apple.com/documentation/photos/phphotolibrarychangeobserver) protocol and registering your observer with the shared [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) object. When Photos notifies your observer of a change, you get change details by passing the object you’re interested in to the [`changeDetailsForObject:`](https://developer.apple.com/documentation/photos/phchange/changedetailsforobject:) method.
+    ///
+    /// For an asset collection or collection list, a [`PHObjectChangeDetails`](https://developer.apple.com/documentation/photos/phobjectchangedetails) object describe changes only to the collection’s properties. If you’re instead interested in changes to the collection’s membership, fetch the collection’s contents and use the [`changeDetails(for:)`](https://developer.apple.com/documentation/photos/phchange/changedetails(for:)-33a6n) method to track changes to the fetch result.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  Don’t map [`changedIndexes`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes) directly to [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) item indices in batch updates. Use these indices to reconfigure the corresponding cells after [`performBatchUpdates:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/performbatchupdates(_:completion:)). [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) and [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) expect the [`changedIndexes`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes) to be in the _before_ state, while PhotoKit provides them in the _after_ state, resulting in a crash if your app performs insertions and deletions at the same time as the changes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]
@@ -125,7 +149,20 @@ impl<ObjectType: Message + AsRef<PHObject>> PHObjectChangeDetails<ObjectType> {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phfetchresultchangedetails?language=objc)
+    /// A description of changes that occurred in the set of asset or collection objects listed in a fetch result.
+    ///
+    /// ## Overview
+    ///
+    /// A [`PHFetchResultChangeDetails`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails) object provides detailed information about the differences between two fetch results—one that you previously obtained and an updated one that would result if you performed the same fetch again. The change details object provides information useful for updating a UI that lists the contents of a fetch result, such as the indexes of added, removed, and rearranged objects.
+    ///
+    /// ### Processing Changes in Order
+    ///
+    /// PhotoKit describes [`changedIndexes`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes) in the _after_ state, while [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview)w’s [`performBatchUpdates:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/performbatchupdates(_:completion:)) expects them in the _before_ state. As a result, [`changedIndexes`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes) can’t be used safely inside [`performBatchUpdates:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/performbatchupdates(_:completion:)).
+    ///
+    /// Instead, use [`changedIndexes`](https://developer.apple.com/documentation/photos/phfetchresultchangedetails/changedindexes) _after_ and outside the [`performBatchUpdates:completion:`](https://developer.apple.com/documentation/uikit/uicollectionview/performbatchupdates(_:completion:)) call, reapplying the code used to configure cells in [`cellForItemAtIndexPath:`](https://developer.apple.com/documentation/uikit/uicollectionview/cellforitem(at:)) rather than telling [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) to reload.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let collectionView = UICollectionView()", "let fetchResultChangeDetails = PHFetchResultChangeDetails()", "let deletedCollectionIndicesBeforeChanges = IndexSet()", "let insertedCollectionIndicesAfterDeletions = IndexSet()", "let deletedPhotoPathsBeforeChanges: [IndexPath] = []", "let insertedPhotoPathsAfterDeletions: [IndexPath] = []", "", "collectionView.performBatchUpdates({ () -> Void in", "    if (!deletedCollectionIndicesBeforeChanges.isEmpty) {", "        collectionView.deleteSections(deletedCollectionIndicesBeforeChanges)", "    }", "    if (!insertedCollectionIndicesAfterDeletions.isEmpty) {", "        collectionView.insertSections(insertedCollectionIndicesAfterDeletions)", "    }", "    if (!deletedPhotoPathsBeforeChanges.isEmpty) {", "        collectionView.deleteItems(at: deletedPhotoPathsBeforeChanges)", "    }", "    if (!insertedPhotoPathsAfterDeletions.isEmpty) {", "        collectionView.insertItems(at: insertedPhotoPathsAfterDeletions)", "    }", "}, completion:nil)", "", "guard let changeIndices = fetchResultChangeDetails.changedIndexes else {", "    return", "}", "for indexSetElem in changeIndices {", "    let indexPath = IndexPath(item: indexSetElem, section: 0)", "    guard let changedCell = collectionView.cellForItem(at: indexPath) else {", "        break", "    }", "    // ... Configure changedCell here ...", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (nonatomic, strong) UICollectionView* collectionView;", "// ...", "PHFetchResultChangeDetails* fetchResultChangeDetails;", "NSIndexSet* deletedCollectionIndicesBeforeChanges;", "NSIndexSet* insertedCollectionIndicesAfterDeletions;", "NSArray* deletedPhotoPathsBeforeChanges;", "NSArray* insertedPhotoPathsAfterDeletions;", "", "[self.collectionView performBatchUpdates:^{", "    if (deletedCollectionIndicesBeforeChanges.count > 0) {", "        [self.collectionView deleteSections:deletedCollectionIndicesBeforeChanges];", "    }", "    if (insertedCollectionIndicesAfterDeletions.count > 0) {", "        [self.collectionView insertSections:insertedCollectionIndicesAfterDeletions];", "    }", "    if (deletedPhotoPathsBeforeChanges.count > 0) {", "        [self.collectionView deleteItemsAtIndexPaths:deletedPhotoPathsBeforeChanges];", "    }", "    if (insertedPhotoPathsAfterDeletions) {", "        [self.collectionView insertItemsAtIndexPaths:insertedPhotoPathsAfterDeletions];", "    }", "} completion:nil];", "", "[fetchResultChangeDetails.changedIndexes enumerateIndexesUsingBlock:^(NSUInteger index, BOOL* stop) {", "    NSIndexPath* indexPath = [NSIndexPath indexPathWithItem:index inSection:0];", "    UICollectionViewCell* changedCell = [self.collectionView cellForItemAtIndexPath:indexPath];", "    if (changedCell) {", "        // ... Configure changedCell here ...", "    }", "    // Set *stop = YES to stop iteration early.", "}];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHObject")]

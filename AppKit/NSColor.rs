@@ -15,23 +15,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithpatterncolorleakfix?language=objc)
+/// The specific version of the AppKit framework from OS X 10.1 that correctly autoreleases color objects.
+///
+/// ## Discussion
+///
+/// Developers do not need to use this constant unless they are writing applications for OS X 10.1 and earlier.
+///
+/// The constant represents the specific version of the AppKit framework that introduced the fix for correctly autoreleasing objects returned by the [`init(patternImage:)`](https://developer.apple.com/documentation/appkit/nscolor/init(patternimage:)) method.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype?language=objc)
+/// Constants that indicate the color’s type, and which methods may be called on the color object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorType(pub NSInteger);
 impl NSColorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/componentbased?language=objc)
+    /// Colors that include floating-point color components and a color space.
+    ///
+    /// ## Discussion
+    ///
+    /// Examples of this type are RGB, CMYK, and HSB colors. Before acessing components that are specific to one colorspace, such as the [`redComponent`](https://developer.apple.com/documentation/appkit/nscolor/redcomponent) of an RGB color, call [`colorUsingColorSpace:`](https://developer.apple.com/documentation/appkit/nscolor/usingcolorspace(_:)).
+    ///
+    ///
     #[doc(alias = "NSColorTypeComponentBased")]
     pub const ComponentBased: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/pattern?language=objc)
+    /// Colors that include an image to be used as a pattern.
+    ///
+    /// ## Discussion
+    ///
+    /// Colors of this type store a value in the [`patternImage`](https://developer.apple.com/documentation/appkit/nscolor/patternimage) property.
+    ///
+    ///
     #[doc(alias = "NSColorTypePattern")]
     pub const Pattern: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype/catalog?language=objc)
+    /// Colors that are retrieved from an asset catalog.
+    ///
+    /// ## Discussion
+    ///
+    /// Colors of this type have values for the [`catalogNameComponent`](https://developer.apple.com/documentation/appkit/nscolor/catalognamecomponent) and [`colorNameComponent`](https://developer.apple.com/documentation/appkit/nscolor/colornamecomponent) properties. A color of this type may also have device- and appearance-specific representations, allowing you to convert it to other types.
+    ///
+    ///
     #[doc(alias = "NSColorTypeCatalog")]
     pub const Catalog: Self = Self(2);
 }
@@ -44,25 +70,25 @@ unsafe impl RefEncode for NSColorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect?language=objc)
+/// Constants for user interactions that change the appearance of a view or control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorSystemEffect(pub NSInteger);
 impl NSColorSystemEffect {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/none?language=objc)
+    /// No additional effects.
     #[doc(alias = "NSColorSystemEffectNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/pressed?language=objc)
+    /// The color that indicates the item was pressed.
     #[doc(alias = "NSColorSystemEffectPressed")]
     pub const Pressed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/deeppressed?language=objc)
+    /// The color that indicates the item received a deep press.
     #[doc(alias = "NSColorSystemEffectDeepPressed")]
     pub const DeepPressed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/disabled?language=objc)
+    /// The color that indicates the item is disabled.
     #[doc(alias = "NSColorSystemEffectDisabled")]
     pub const Disabled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect/rollover?language=objc)
+    /// The color that indicates the mouse rolled over the item.
     #[doc(alias = "NSColorSystemEffectRollover")]
     pub const Rollover: Self = Self(4);
 }
@@ -76,7 +102,47 @@ unsafe impl RefEncode for NSColorSystemEffect {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor?language=objc)
+    /// An object that stores color data and sometimes opacity (alpha value).
+    ///
+    /// ## Overview
+    ///
+    /// Many methods in AppKit require you to specify color data using an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object; when drawing you use them to set the current fill and stroke colors. Color objects are immutable and thread-safe. You can create color objects in many ways:
+    ///
+    /// - Load colors from an asset catalog. Colors created from assets can adapt automatically to system appearance changes.
+    ///
+    /// - Use the semantic colors for custom UI elements, so that they match the appearance of other AppKit views; see [UI element colors](https://developer.apple.com/documentation/appkit/ui-element-colors).
+    ///
+    /// - Use the adaptable system colors, such as [`systemBlueColor`](https://developer.apple.com/documentation/appkit/nscolor/systemblue), when you want a specific tint that looks correct in both light and dark environments.
+    ///
+    /// - Create a color object from another object, such as a Core Graphics representation of a color, or a Core Image color.
+    ///
+    /// - Create a color from an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object, and paint a repeating pattern instead of using a solid color.
+    ///
+    /// - Create a color by applying a transform to another [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object. For example, you might perform a blend operation between two colors, or you might create a color that represents the same color, but in a different color space.
+    ///
+    /// - Create custom colors using raw component values, and a variety of color spaces, when you need to represent user-specified colors.
+    ///
+    /// For user-specified colors, you can also display a color panel and let the user specify the color. For information about color panels, see [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel).
+    ///
+    /// ### Color and color spaces
+    ///
+    /// A color object is typically represented internally as a Core Graphics color ([`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor)) in a Core Graphics color space ([`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace)). Colors can also be created in extended color spaces:
+    ///
+    /// - [`extendedSRGBColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace/extendedsrgb)
+    ///
+    /// - [`extendedGenericGamma22GrayColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace/extendedgenericgamma22gray)
+    ///
+    /// When you need to worry about color spaces, use extended color spaces as working color spaces. When you need to worry about representing that color as closely as possible in a specific color space, convert the color from the extended color space into the target color space.
+    ///
+    /// When working in an extended color space, color values are not clamped to fit inside the color gamut, meaning that component values may be less than `0.0` or greater than `1.0`. When displayed on an sRGB display, such colors are outside the gamut and won’t render accurately. However, extended color spaces are useful as working color spaces when you want a pixel format and representation that other color spaces can be easily converted into. For example, a color in the Display P3 color space can convert to an extended sRGB format, even if it isn’t within the sRGB color gamut. While some of the converted color’s values are outside of the 0-1.0 range, the color renders correctly when viewed on a device with a P3 display gamut.
+    ///
+    /// It is a programmer error to access color components of a color space that the `NSColor` object does not support. For example, you cannot access the [`redComponent`](https://developer.apple.com/documentation/appkit/nscolor/redcomponent) property and [`getRed:green:blue:alpha:`](https://developer.apple.com/documentation/appkit/nscolor/getred(_:green:blue:alpha:)) method on a color that uses the CMYK color space. Further, the [`getComponents:`](https://developer.apple.com/documentation/appkit/nscolor/getcomponents(_:)) method and [`numberOfComponents`](https://developer.apple.com/documentation/appkit/nscolor/numberofcomponents) property work only in color spaces that have individual components. As such, they return the components of color objects as individual floating-point values regardless of whether they’re based on [`NSColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspace) objects or named color spaces. However, older component-fetching methods such as [`getRed:green:blue:alpha:`](https://developer.apple.com/documentation/appkit/nscolor/getred(_:green:blue:alpha:)) are effective only on color objects based on named color spaces.
+    ///
+    /// If you have a color object in an unknown color space and you want to extract its components, convert the color object to a known color space and then use the component accessor methods of that color space.
+    ///
+    /// For design guidance, see Human Interface Guidelines > [Color](https://developer.apple.com/design/human-interface-guidelines/color/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColor;
@@ -1072,6 +1138,12 @@ impl private_CIColorNSAppKitAdditions::Sealed for CIColor {}
 unsafe impl CIColorNSAppKitAdditions for CIColor {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemcolorsdidchangenotification?language=objc)
+    /// Sent when the system colors have changed, such as through a system control panel interface.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification contains no notification object and no `userInfo` dictionary.
+    ///
+    ///
     pub static NSSystemColorsDidChangeNotification: &'static NSNotificationName;
 }

@@ -10,31 +10,29 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+///
+/// ## Overview
+///
+/// These are AXValueType wrappers for other structures. You must use the AXValueCreate and AXValueGetValue functions to convert between the wrapped structure and the native structure.
+///
+///
 /// These are AXValueType wrappers for other structures. You must use the AXValueCreate
 /// and AXValueGetValue functions to convert between the wrapped structure and the native structure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXValueType(pub u32);
 impl AXValueType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgpoint?language=objc)
     #[doc(alias = "kAXValueTypeCGPoint")]
     pub const CGPoint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgsize?language=objc)
     #[doc(alias = "kAXValueTypeCGSize")]
     pub const CGSize: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecgrect?language=objc)
     #[doc(alias = "kAXValueTypeCGRect")]
     pub const CGRect: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypecfrange?language=objc)
     #[doc(alias = "kAXValueTypeCFRange")]
     pub const CFRange: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypeaxerror?language=objc)
     #[doc(alias = "kAXValueTypeAXError")]
     pub const AXError: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvaluetype/kaxvaluetypeillegal?language=objc)
     #[doc(alias = "kAXValueTypeIllegal")]
     pub const Illegal: Self = Self(0);
 }
@@ -49,22 +47,16 @@ unsafe impl RefEncode for AXValueType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvaluecgpointtype?language=objc)
 pub static kAXValueCGPointType: u32 = AXValueType::CGPoint.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvaluecgsizetype?language=objc)
 pub static kAXValueCGSizeType: u32 = AXValueType::CGSize.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvaluecgrecttype?language=objc)
 pub static kAXValueCGRectType: u32 = AXValueType::CGRect.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvaluecfrangetype?language=objc)
 pub static kAXValueCFRangeType: u32 = AXValueType::CFRange.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvalueaxerrortype?language=objc)
 pub static kAXValueAXErrorType: u32 = AXValueType::AXError.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvalueillegaltype?language=objc)
 pub static kAXValueIllegalType: u32 = AXValueType::Illegal.0;
 
 #[doc(alias = "AXValueRef")]
@@ -85,8 +77,6 @@ cf_objc2_type!(
 unsafe impl ConcreteType for AXValue {
     /// Returns:
     /// Availability: Mac OS X version 10.3 or later
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460780-axvaluegettypeid?language=objc)
     #[doc(alias = "AXValueGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -98,6 +88,14 @@ unsafe impl ConcreteType for AXValue {
 }
 
 impl AXValue {
+    ///
+    /// Parameters:
+    /// - theType: - valuePtr:
+    /// ## Discussion
+    ///
+    /// Encodes a structure pointed to by valuePtr into a CFTypeRef.
+    ///
+    ///
     /// Encodes a structure pointed to by valuePtr into a CFTypeRef.
     ///
     ///
@@ -108,8 +106,6 @@ impl AXValue {
     /// # Safety
     ///
     /// `value_ptr` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459351-axvaluecreate?language=objc)
     #[doc(alias = "AXValueCreate")]
     #[inline]
     pub unsafe fn new(
@@ -126,13 +122,19 @@ impl AXValue {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    ///
+    /// Parameters:
+    /// - value:
+    /// ## Discussion
+    ///
+    /// Returns the structure type encoded in value. If the type is not recognized, it returns kAXValueIllegalType.
+    ///
+    ///
     /// Returns the structure type encoded in value. If the type is not recognized, it returns kAXValueIllegalType.
     ///
     ///
     /// Parameter `value`:
     /// Returns:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460911-axvaluegettype?language=objc)
     #[doc(alias = "AXValueGetType")]
     #[inline]
     pub unsafe fn r#type(&self) -> AXValueType {
@@ -142,6 +144,14 @@ impl AXValue {
         unsafe { AXValueGetType(self) }
     }
 
+    ///
+    /// Parameters:
+    /// - value:
+    /// ## Discussion
+    ///
+    /// Decodes the structure stored in value and copies it into valuePtr. If the structure stored in value is not the same as requested by theType, the function returns false.
+    ///
+    ///
     /// Decodes the structure stored in value and copies it into valuePtr. If the structure stored in value is not
     /// the same as requested by theType, the function returns false.
     ///
@@ -152,8 +162,6 @@ impl AXValue {
     /// # Safety
     ///
     /// `value_ptr` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462933-axvaluegetvalue?language=objc)
     #[doc(alias = "AXValueGetValue")]
     #[inline]
     pub unsafe fn value(&self, the_type: AXValueType, value_ptr: NonNull<c_void>) -> bool {

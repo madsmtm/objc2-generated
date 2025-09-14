@@ -11,6 +11,15 @@ use crate::*;
 extern_class!(
     /// The Core Image class that defines a vector object.
     ///
+    /// ## Overview
+    ///
+    /// A `CIVector` can store one or more `CGFloat` in one object. They can store a group of float values for a variety of different uses such as coordinate points, direction vectors, geometric rectangles, transform matrices, convolution weights, or just a list a parameter values.
+    ///
+    /// You use `CIVector` objects in conjunction with other Core Image classes, such as [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) and [`CIKernel`](https://developer.apple.com/documentation/coreimage/cikernel).  Many of the built-in Core Image filters have one or more `CIVector` inputs that you can set to affect the filter’s behavior.
+    ///
+    ///
+    /// The Core Image class that defines a vector object.
+    ///
     /// A `CIVector` can store one or more `CGFloat` in one object. They can store a group of float values
     /// for a variety of different uses such as coordinate points, direction vectors, geometric rectangles,
     /// transform matrices, convolution weights, or just a list a parameter values.
@@ -18,8 +27,6 @@ extern_class!(
     /// You use `CIVector` objects in conjunction with other Core Image classes, such as ``CIFilter-class``
     /// and ``CIKernel``.  Many of the built-in Core Image filters have one or more `CIVector` inputs that
     /// you can set to affect the filter's behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/civector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIVector;

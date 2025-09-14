@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// `WebDataSource` encapsulates the web content to be displayed in a web frame view. A `WebDataSource` object has a representation object, conforming to the `WebDocumentRepresentation` protocol, that holds the data in an appropriate format depending on the MIME type. You can extend WebKit to support new MIME types by implementing your own view and representation classes, and specifying the mapping between them using the  [`registerViewClass:representationClass:forMIMEType:`](https://developer.apple.com/documentation/webkit/webview-swift.class/registerclass(_:representationclass:formimetype:)) `WebView` class method.
+    ///
+    /// ## Overview
+    ///
+    /// `WebDataSource` objects have an associated initial request, possibly a modified request, and a response object. Since the data source may be in the process of being loaded, you should check the state of a data source using [`loading`](https://developer.apple.com/documentation/webkit/webdatasource/isloading) before accessing its data. Use [`data`](https://developer.apple.com/documentation/webkit/webdatasource/data) to get the raw data. Use the [`representation`](https://developer.apple.com/documentation/webkit/webdatasource/representation) method to get the actual representation object and query it for more details.
+    ///
+    ///
     /// A WebDataSource represents the data associated with a web page.
     /// A datasource has a WebDocumentRepresentation which holds an appropriate
     /// representation of the data.  WebDataSources manage a hierarchy of WebFrames.
     /// WebDataSources are typically related to a view by their containing WebFrame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdatasource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

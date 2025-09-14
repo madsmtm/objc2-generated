@@ -9,7 +9,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotification?language=objc)
+///
+/// ## Overview
+///
+/// A `CFUserNotification` object presents a simple dialog on the screen and optionally receives feedback from the user. The contents of the dialog can include a header, a message, an icon, text fields, a pop-up button, radio buttons or checkboxes, and up to three ordinary buttons. Use `CFUserNotification` in processes that do not otherwise have user interfaces, but may need occasional interaction with the user.
+///
+/// You create a user notification with the [`CFUserNotificationCreate`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreate(_:_:_:_:_:)) function. You pass in a dictionary whose keys describe the items to place into the dialog. (See [Dialog Description Keys](https://developer.apple.com/documentation/corefoundation/dialog-description-keys) for the list of keys.) A set of flags passed to the function determines, among other things, whether secure text fields are used (such as for password fields), whether radio buttons or checkboxes are used, and which of these buttons are checked by default. You can also specify a timeout for the dialog, in which case the dialog cancels itself if the user does not respond in the allotted time period.
+///
+/// A user notification displays its dialog as soon as it is created. If any reply is required, it may be awaited in one of two ways: either synchronously, using [`CFUserNotificationReceiveResponse`](https://developer.apple.com/documentation/corefoundation/cfusernotificationreceiveresponse(_:_:_:)), or asynchronously, using a run loop source created with [`CFUserNotificationCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreaterunloopsource(_:_:_:_:)). [`CFUserNotificationReceiveResponse`](https://developer.apple.com/documentation/corefoundation/cfusernotificationreceiveresponse(_:_:_:)) has a timeout parameter that determines how long it will block (zero meaning indefinitely) and it may be called as many times as necessary until a response arrives. If a user notification has not yet received a response, it may be updated with new information or it may be cancelled. User notifications may not be reused.
+///
+/// `CFUserNotification` provides two convenience functions, [`CFUserNotificationDisplayNotice`](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplaynotice(_:_:_:_:_:_:_:_:)) and [`CFUserNotificationDisplayAlert`](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplayalert(_:_:_:_:_:_:_:_:_:_:_:)), to display very basic dialogs that either require no response from the user or require only a single button to be pressed, respectively.
+///
+///
 #[doc(alias = "CFUserNotificationRef")]
 #[repr(C)]
 pub struct CFUserNotification {
@@ -25,12 +36,24 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFUserNotification"> for CFUserNotification {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcallback?language=objc)
+/// Callback invoked when an asynchronous user notification dialog is dismissed.
+///
+/// Parameters:
+/// - userNotification: The user notification that was dismissed.
+///
+/// - responseFlags: On return, contains flags identifying how the notification was dismissed, the state of any checkboxes, and the selected item of the pop-up menu. See [`CFUserNotificationReceiveResponse`](https://developer.apple.com/documentation/corefoundation/cfusernotificationreceiveresponse(_:_:_:)) for details.
+///
 pub type CFUserNotificationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFUserNotification, CFOptionFlags)>;
 
 unsafe impl ConcreteType for CFUserNotification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgettypeid()?language=objc)
+    /// Returns the type identifier for the `CFUserNotification` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the `CFUserNotification` opaque type.
+    ///
+    ///
     #[doc(alias = "CFUserNotificationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,7 +65,25 @@ unsafe impl ConcreteType for CFUserNotification {
 }
 
 impl CFUserNotification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreate(_:_:_:_:_:)?language=objc)
+    /// Creates a CFUserNotification object and displays its notification dialog on screen.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - timeout: The time to wait before the notification dialog dismisses itself if the user does not respond. If `0`, the notification never times out.
+    ///
+    /// - flags: A set of flags describing the type of notification to display. These flags specify an alert level for the notification (see [Alert Levels](https://developer.apple.com/documentation/corefoundation/1534483-alert-levels)), determine whether radio buttons or checkboxes are to be used (see [Button Flags](https://developer.apple.com/documentation/corefoundation/1534481-button-flags)), specify which, if any, of these buttons are checked by default (see [`CFUserNotificationCheckBoxChecked`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcheckboxchecked(_:))), specify whether any of the text fields are to be secure text fields (see [`CFUserNotificationSecureTextField`](https://developer.apple.com/documentation/corefoundation/cfusernotificationsecuretextfield(_:))), and determine which element of a pop-up menu, if present, should be selected by default (see [`CFUserNotificationPopUpSelection`](https://developer.apple.com/documentation/corefoundation/cfusernotificationpopupselection(_:))). Combine these flags together by performing a bitwise-OR operation with all the individual flags.
+    ///
+    /// - error: On return contains an integer error code. If `0`, the user notification was successfully created and displayed.
+    ///
+    /// - dictionary: A description of the elements to display in the notification dialog. The possible keys are listed in [Dialog Description Keys](https://developer.apple.com/documentation/corefoundation/dialog-description-keys). The dictionary must contain a value for the key [`kCFUserNotificationAlertHeaderKey`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertheaderkey), but the other keys are optional.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFUserNotification object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -74,7 +115,29 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationreceiveresponse(_:_:_:)?language=objc)
+    /// Waits for the user to respond to a notification or for the notification to time out.
+    ///
+    /// Parameters:
+    /// - userNotification: The user notification to use.
+    ///
+    /// - timeout: The amount of time to wait for the user to respond to `userNotification` or for the notification to time out. If neither happens before `timeout` passes, this function returns a non-`0` value. If `timeout` is `0`, the function blocks until the user notification is dismissed.
+    ///
+    /// - responseFlags: On return, contains flags identifying how the notification was dismissed, the state of any checkboxes, and the selected element of the pop-up menu. Bits 0-1 of the value hold an identifier for the button pressed by the user (see [Response Codes](https://developer.apple.com/documentation/corefoundation/1534504-response-codes)). Extract the identifier by performing a bitwise-AND operation with `0x3`. Bits 8-15 of `responseFlags` hold the state of up to 8 checkboxes or radio buttons, if present. Extract the flags by performing bitwise-AND operations with the return value of [`CFUserNotificationCheckBoxChecked`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcheckboxchecked(_:)). Bits 24-31 hold the index number of the element selected in a pop-up menu, if present. Extract the index by performing a 24-bit right shift: `responseFlags >> 24`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `0` if the call successfully received a response; a non-`0` value otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to poll a user notification for a user response. You can call it any number of times on the same user notification.
+    ///
+    /// To avoid polling and blocking your thread’s execution, you can create a run loop source for the user notification with [`CFUserNotificationCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreaterunloopsource(_:_:_:_:)). You will then receive a callback when the dialog is dismissed.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -97,7 +160,21 @@ impl CFUserNotification {
         unsafe { CFUserNotificationReceiveResponse(self, timeout, response_flags) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgetresponsevalue(_:_:_:)?language=objc)
+    /// Extracts the values of the text fields from a dismissed notification dialog.
+    ///
+    /// Parameters:
+    /// - userNotification: The user notification to use.
+    ///
+    /// - key: The dictionary key identifying the text fields to use. Currently, only [`kCFUserNotificationTextFieldValuesKey`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldvalueskey) is supported.
+    ///
+    /// - idx: The index of the text field value to return. The index corresponds to the order in which text fields are listed in the [`kCFUserNotificationTextFieldTitlesKey`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldtitleskey) array in the user notification’s description dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the text field identified by `key` and `idx`. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -120,7 +197,17 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationgetresponsedictionary(_:)?language=objc)
+    /// Returns the dictionary containing all the text field values from a dismissed notification dialog.
+    ///
+    /// Parameters:
+    /// - userNotification: The user notification to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary holding the values of all the text fields in `userNotification` when it was dismissed. The values are in an array stored with the key [`kCFUserNotificationTextFieldValuesKey`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldvalueskey). Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFUserNotificationGetResponseDictionary")]
     #[cfg(feature = "CFDictionary")]
     #[inline]
@@ -134,7 +221,23 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationupdate(_:_:_:_:)?language=objc)
+    /// Updates a displayed user notification dialog with new user interface information.
+    ///
+    /// Parameters:
+    /// - userNotification: The user notification to update.
+    ///
+    /// - timeout: The new timeout value for the dialog.
+    ///
+    /// - flags: A set of flags describing the type of notification to display. See [`CFUserNotificationCreate`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreate(_:_:_:_:_:)) for details.
+    ///
+    /// - dictionary: A description of the elements to display in the notification dialog. The possible keys are listed in [Dialog Description Keys](https://developer.apple.com/documentation/corefoundation/dialog-description-keys).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `0` if the cancel was successful; a non-`0` value otherwise.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -161,7 +264,23 @@ impl CFUserNotification {
         unsafe { CFUserNotificationUpdate(self, timeout, flags, dictionary) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcancel(_:)?language=objc)
+    /// Cancels a user notification dialog.
+    ///
+    /// Parameters:
+    /// - userNotification: The user notification to cancel.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `0` if the cancel was successful; a non-`0` value otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must cancel a user notification if you want to remove its dialog from the screen before the user dismisses it. It is not sufficient to just release the object.
+    ///
+    ///
     #[doc(alias = "CFUserNotificationCancel")]
     #[inline]
     pub fn cancel(&self) -> i32 {
@@ -171,7 +290,29 @@ impl CFUserNotification {
         unsafe { CFUserNotificationCancel(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationcreaterunloopsource(_:_:_:_:)?language=objc)
+    /// Creates a run loop source for a user notification.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - userNotification: The user notification to use.
+    ///
+    /// - callout: The callback function to invoke when the user notification dialog is dismissed.
+    ///
+    /// - order: A priority index indicating the order in which run loop sources are processed. User notifications currently ignore this parameter. Pass `0` for this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopSource object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A run loop source needs to be added to a run loop before it can fire and call its callback function. To add the source to a run loop, use [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +342,37 @@ impl CFUserNotification {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplaynotice(_:_:_:_:_:_:_:_:)?language=objc)
+    /// Displays a user notification dialog that does not need a user response.
+    ///
+    /// Parameters:
+    /// - timeout: The amount of time to wait for the user to dismiss the notification dialog before the dialog dismisses itself. Pass `0` to have the dialog never time out.
+    ///
+    /// - flags: A set of flags describing the type of notification dialog to display. The value is normally just the alert level from [Alert Levels](https://developer.apple.com/documentation/corefoundation/1534483-alert-levels). If you don’t want a default button displayed, perform a bitwise-OR operation with the alert level and the constant [`kCFUserNotificationNoDefaultButtonFlag`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationnodefaultbuttonflag).
+    ///
+    /// - iconURL: A file URL pointing to the icon to display in the dialog. If `NULL`, a default icon is used based on the notification’s alert level specified in `flags`.
+    ///
+    /// - soundURL: Not used.
+    ///
+    /// - localizationURL: A file URL pointing to a bundle that contains localized versions of the strings displayed in the dialog. Can be `NULL`.
+    ///
+    /// - alertHeader: The title of the notification dialog. Cannot be `NULL`.
+    ///
+    /// - alertMessage: The message string to display in the dialog. Can be `NULL`.
+    ///
+    /// - defaultButtonTitle: The title of the default button. If `NULL`, the string `OK` is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `0` if the cancel was successful; a non-`0` value otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns immediately. It does not wait for a user response after displaying the dialog.
+    ///
+    ///
     #[doc(alias = "CFUserNotificationDisplayNotice")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]
@@ -241,7 +412,43 @@ impl CFUserNotification {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfusernotificationdisplayalert(_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    /// Displays a user notification dialog and waits for a user response.
+    ///
+    /// Parameters:
+    /// - timeout: The amount of time to wait for the user to dismiss the notification dialog before the dialog dismisses itself. Pass `0` to have the dialog never time out.
+    ///
+    /// - flags: A set of flags describing the type of notification dialog to display. The value is normally just the alert level from [Alert Levels](https://developer.apple.com/documentation/corefoundation/1534483-alert-levels). If you don’t want a default button displayed, perform a bitwise-OR operation with the alert level and the constant [`kCFUserNotificationNoDefaultButtonFlag`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationnodefaultbuttonflag).
+    ///
+    /// - iconURL: A file URL pointing to the icon to display in the dialog. If `NULL`, a default icon is used based on the notification’s alert level specified in `flags`.
+    ///
+    /// - soundURL: Not used.
+    ///
+    /// - localizationURL: A file URL pointing to a bundle that contains localized versions of the strings displayed in the dialog. Can be `NULL`.
+    ///
+    /// - alertHeader: The title of the notification dialog. Cannot be `NULL`.
+    ///
+    /// - alertMessage: The message string to display in the dialog. Can be `NULL`.
+    ///
+    /// - defaultButtonTitle: The title of the default button. If `NULL`, the string `OK` is used.
+    ///
+    /// - alternateButtonTitle: The title of an optional alternate button. Can be `NULL`.
+    ///
+    /// - otherButtonTitle: The title of an optional third button. Can be `NULL`.
+    ///
+    /// - responseFlags: On return, contains flags identifying how the notification was dismissed. See [Response Codes](https://developer.apple.com/documentation/corefoundation/1534504-response-codes) for details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `0` if the cancel was successful; a non-`0` value otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function blocks the current thread’s execution until the dialog is dismissed, either by the user or by timing out.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -303,128 +510,194 @@ impl CFUserNotification {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationstopalertlevel?language=objc)
+/// The notification is very serious.
+///
+/// ## Discussion
+///
+/// A stop icon is displayed by default.
+///
+///
 pub const kCFUserNotificationStopAlertLevel: CFOptionFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationnotealertlevel?language=objc)
+/// The notification is not very serious.
+///
+/// ## Discussion
+///
+/// A note icon is displayed by default.
+///
+///
 pub const kCFUserNotificationNoteAlertLevel: CFOptionFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcautionalertlevel?language=objc)
+/// The notification is somewhat serious.
+///
+/// ## Discussion
+///
+/// A caution icon is displayed by default.
+///
+///
 pub const kCFUserNotificationCautionAlertLevel: CFOptionFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationplainalertlevel?language=objc)
+/// The notification is not serious.
+///
+/// ## Discussion
+///
+/// An information icon is displayed by default.
+///
+///
 pub const kCFUserNotificationPlainAlertLevel: CFOptionFlags = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultresponse?language=objc)
+/// The default button was pressed.
 pub const kCFUserNotificationDefaultResponse: CFOptionFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternateresponse?language=objc)
+/// The alternate button was pressed.
 pub const kCFUserNotificationAlternateResponse: CFOptionFlags = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherresponse?language=objc)
+/// The third button was pressed.
 pub const kCFUserNotificationOtherResponse: CFOptionFlags = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcancelresponse?language=objc)
+/// No button was pressed and the notification timed out.
 pub const kCFUserNotificationCancelResponse: CFOptionFlags = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationnodefaultbuttonflag?language=objc)
+/// Displays the dialog without the default, alternate, or other buttons.
+///
+/// ## Discussion
+///
+/// The dialog remains on screen until it times out or you cancel it with [`CFUserNotificationCancel`](https://developer.apple.com/documentation/corefoundation/cfusernotificationcancel(_:)). If you provide a title for the default button in the user notification’s description dictionary, this flag is ignored and buttons show up normally.
+///
+///
 pub const kCFUserNotificationNoDefaultButtonFlag: CFOptionFlags = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationuseradiobuttonsflag?language=objc)
+/// Creates a group of radio buttons instead of checkboxes for the elements in the [`kCFUserNotificationCheckBoxTitlesKey`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcheckboxtitleskey) array in the user notification’s description dictionary.
 pub const kCFUserNotificationUseRadioButtonsFlag: CFOptionFlags = 1 << 6;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationiconurlkey?language=objc)
+    /// A file URL pointing to the icon to display in the dialog.
+    ///
+    /// ## Discussion
+    ///
+    /// If absent, a default icon based on the alert level is used.
+    ///
+    ///
     pub static kCFUserNotificationIconURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationsoundurlkey?language=objc)
+    /// A file URL pointing to a sound that will be played when the alert appears.
     pub static kCFUserNotificationSoundURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationlocalizationurlkey?language=objc)
+    /// A file URL pointing to a bundle that contains localized versions of the strings displayed in the dialog.
     pub static kCFUserNotificationLocalizationURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertheaderkey?language=objc)
+    /// The title of the notification dialog.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is required.
+    ///
+    ///
     pub static kCFUserNotificationAlertHeaderKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertmessagekey?language=objc)
+    /// The message string to display in the dialog.
     pub static kCFUserNotificationAlertMessageKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttontitlekey?language=objc)
+    /// The title of the default button.
+    ///
+    /// ## Discussion
+    ///
+    /// If absent and the dialog is not being created with the [`kCFUserNotificationNoDefaultButtonFlag`](https://developer.apple.com/documentation/corefoundation/kcfusernotificationnodefaultbuttonflag) flag, a default button title of `OK` is used.
+    ///
+    ///
     pub static kCFUserNotificationDefaultButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttontitlekey?language=objc)
+    /// The title of an optional alternate button.
     pub static kCFUserNotificationAlternateButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttontitlekey?language=objc)
+    /// The title of an optional third button.
     pub static kCFUserNotificationOtherButtonTitleKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationprogressindicatorvaluekey?language=objc)
+    /// A value to indicate the progress of an operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a number between `0` and `1`, for a “definite” progress indicator, or a Boolean for an “indefinite” progress indicator.
+    ///
+    ///
     pub static kCFUserNotificationProgressIndicatorValueKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopuptitleskey?language=objc)
+    /// The list of strings to display in a pop-up menu.
+    ///
+    /// ## Discussion
+    ///
+    /// The array cannot have more than 256 elements.
+    ///
+    ///
     pub static kCFUserNotificationPopUpTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldtitleskey?language=objc)
+    /// The list of titles for all the text fields to display.
+    ///
+    /// ## Discussion
+    ///
+    /// If only one text field is to be displayed, you can pass its title string directly without putting it into an array first.
+    ///
+    ///
     pub static kCFUserNotificationTextFieldTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationcheckboxtitleskey?language=objc)
+    /// The list of titles for all the checkboxes or radio buttons to display.
+    ///
+    /// ## Discussion
+    ///
+    /// The array cannot have more than 8 elements. If only one checkbox is to be displayed, you can pass its title string directly without putting it into an array first.
+    ///
+    ///
     pub static kCFUserNotificationCheckBoxTitlesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationtextfieldvalueskey?language=objc)
+    /// The list of values to put into the text fields. If only one text field is to be displayed, you can pass its value string directly without putting it into an array first.
     pub static kCFUserNotificationTextFieldValuesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationpopupselectionkey?language=objc)
+    /// The item that was selected from a pop-up menu.
     pub static kCFUserNotificationPopUpSelectionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalerttopmostkey?language=objc)
     pub static kCFUserNotificationAlertTopMostKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationkeyboardtypeskey?language=objc)
     pub static kCFUserNotificationKeyboardTypesKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertaccessibilityidentifierkey?language=objc)
     pub static kCFUserNotificationAlertAccessibilityIdentifierKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttonaccessibilityidentifierkey?language=objc)
     pub static kCFUserNotificationDefaultButtonAccessibilityIdentifierKey:
         Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttonaccessibilityidentifierkey?language=objc)
     pub static kCFUserNotificationAlternateButtonAccessibilityIdentifierKey:
         Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttonaccessibilityidentifierkey?language=objc)
     pub static kCFUserNotificationOtherButtonAccessibilityIdentifierKey: Option<&'static CFString>;
 }
 

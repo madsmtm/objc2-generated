@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnostic?language=objc)
+/// An opaque reference representing a CFNetDiagnostic.
 #[doc(alias = "CFNetDiagnosticRef")]
 #[repr(C)]
 pub struct CFNetDiagnostic {
@@ -26,30 +26,36 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFNetDiagnostic"> for CFNetDiagnostic {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues?language=objc)
+/// Constants for diagnostic status values.
+///
+/// ## Overview
+///
+/// Diagnostic status values are returned by [`CFNetDiagnosticDiagnoseProblemInteractively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)) and [`CFNetDiagnosticCopyNetworkStatusPassively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)).
+///
+///
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetDiagnosticStatusValues(pub c_int);
 impl CFNetDiagnosticStatusValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/noerr?language=objc)
+    /// No error occurred but there is no status.
     #[doc(alias = "kCFNetDiagnosticNoErr")]
     #[deprecated]
     pub const NoErr: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/err?language=objc)
+    /// An error occurred that prevented the call from completing.
     #[doc(alias = "kCFNetDiagnosticErr")]
     #[deprecated]
     pub const Err: Self = Self(-66560);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectionup?language=objc)
+    /// The connection appears to be working.
     #[doc(alias = "kCFNetDiagnosticConnectionUp")]
     #[deprecated]
     pub const ConnectionUp: Self = Self(-66559);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectionindeterminate?language=objc)
+    /// The status of the connection is not known.
     #[doc(alias = "kCFNetDiagnosticConnectionIndeterminate")]
     #[deprecated]
     pub const ConnectionIndeterminate: Self = Self(-66558);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues/connectiondown?language=objc)
+    /// The connection does not appear to be working.
     #[doc(alias = "kCFNetDiagnosticConnectionDown")]
     #[deprecated]
     pub const ConnectionDown: Self = Self(-66557);
@@ -65,12 +71,30 @@ unsafe impl RefEncode for CFNetDiagnosticStatusValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatus?language=objc)
+/// A CFIndex type that is used to return status values from `CFNetDiagnostic` status and diagnostic functions. For a list of possible values, see [`CFNetDiagnosticStatusValues`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticstatusvalues).
 #[deprecated]
 pub type CFNetDiagnosticStatus = CFIndex;
 
 impl CFNetDiagnostic {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithstreams(_:_:_:)?language=objc)
+    /// Creates a network diagnostic object from a pair of CFStreams.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - readStream: Reference to a read stream whose connection has failed, or `NULL` if you do not want the CFNetDiagnosticRef to have a read stream.
+    ///
+    /// - writeStream: Reference to a write stream whose connection has failed, or `NULL` if you do not want the CFNetDiagnosticRef to have a write stream.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses references to a read steam and a write stream (or just a read stream or just a write stream) to create a reference to an instance of a CFNetDiagnostic object. You can pass the reference to [`CFNetDiagnosticDiagnoseProblemInteractively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)) to open a Network Diagnostics window or to [`CFNetDiagnosticCopyNetworkStatusPassively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)) to get a description of the connection referenced by `readStream` and `writeStream`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetDiagnosticRef at the same time.
+    ///
+    ///
     #[doc(alias = "CFNetDiagnosticCreateWithStreams")]
     #[deprecated]
     #[inline]
@@ -92,7 +116,29 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithurl(_:_:)?language=objc)
+    /// Creates a CFNetDiagnosticRef from a CFURLRef.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - url: CFURLRef that refers to the failed connection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// CFNetDiagnosticRef that you can pass to [`CFNetDiagnosticDiagnoseProblemInteractively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)) or [`CFNetDiagnosticCopyNetworkStatusPassively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)). Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses a URL to create a reference to an instance of a CFNetDiagnostic object. You can pass the reference to [`CFNetDiagnosticDiagnoseProblemInteractively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)) to open a Network Diagnostics window or to [`CFNetDiagnosticCopyNetworkStatusPassively`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)) to get a description of the connection referenced by `readStream` and `writeStream`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetDiagnosticRef at the same time.
+    ///
+    ///
     #[doc(alias = "CFNetDiagnosticCreateWithURL")]
     #[deprecated]
     #[inline]
@@ -109,7 +155,23 @@ impl CFNetDiagnostic {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticsetname(_:_:)?language=objc)
+    /// Overrides the displayed application name.
+    ///
+    /// Parameters:
+    /// - details: The network diagnostics object for which the application name is to be set.
+    ///
+    /// - name: Name that is to be set.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Frameworks requiring that an application name be displayed to the user derive the application name from the bundle identifier of the currently running application, in that application’s localization. If you want to override the derived application name, use this function to set the name that is displayed.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetDiagnosticRef at the same time.
+    ///
+    ///
     #[doc(alias = "CFNetDiagnosticSetName")]
     #[deprecated]
     #[inline]
@@ -120,7 +182,27 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticSetName(self, name) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticdiagnoseprobleminteractively(_:)?language=objc)
+    /// Opens a Network Diagnostics window.
+    ///
+    /// Parameters:
+    /// - details: A network diagnostics object, created by [`CFNetDiagnosticCreateWithStreams`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithstreams(_:_:_:)) or [`CFNetDiagnosticCreateWithURL`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithurl(_:_:)), for which the window is to be opened.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `CFNetDiagnosticNoErr` if no error occurred, or `CFNetDiagnosticErr` if an error occurred that prevented this call from completing successfully.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function opens the Network Diagnostics window and returns immediately once the window is open.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetDiagnosticRef at the same time.
+    ///
+    ///
     #[doc(alias = "CFNetDiagnosticDiagnoseProblemInteractively")]
     #[deprecated]
     #[inline]
@@ -133,7 +215,31 @@ impl CFNetDiagnostic {
         unsafe { CFNetDiagnosticDiagnoseProblemInteractively(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcopynetworkstatuspassively(_:_:)?language=objc)
+    /// Gets a network status value.
+    ///
+    /// Parameters:
+    /// - details: CFNetDiagnosticRef, created by [`CFNetDiagnosticCreateWithStreams`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithstreams(_:_:_:)) or [`CFNetDiagnosticCreateWithURL`](https://developer.apple.com/documentation/cfnetwork/cfnetdiagnosticcreatewithurl(_:_:)), for which the Network Diagnostics status is to be obtained.
+    ///
+    /// - description: If not `NULL`, upon return contains a localized string containing a description of the current network status. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A network status value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a status value that can be used to display basic information about the connection, and optionally gets a localized string containing a description of the current network status.
+    ///
+    /// This function is guaranteed not to generate network activity.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same CFNetDiagnosticRef at the same time.
+    ///
+    ///
     ///
     /// # Safety
     ///

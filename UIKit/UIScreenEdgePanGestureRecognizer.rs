@@ -8,10 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A continuous gesture recognizer that interprets panning gestures that start near an edge of the screen.
+    ///
+    /// ## Overview
+    ///
+    /// The system uses screen edge gestures in some cases to initiate view controller transitions. You can use this class to replicate the same gesture behavior for your own actions.
+    ///
+    /// After creating a screen edge pan gesture recognizer, assign an appropriate value to the [`edges`](https://developer.apple.com/documentation/uikit/uiscreenedgepangesturerecognizer/edges) property before attaching the gesture recognizer to your view. You use this property to specify the edges where the gesture can start. This gesture recognizer ignores any touches beyond the first touch.
+    ///
+    ///
     /// This subclass of UIPanGestureRecognizer only recognizes if the user slides their finger
     /// in from the bezel on the specified edge.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenedgepangesturerecognizer?language=objc)
     #[unsafe(super(UIPanGestureRecognizer, UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

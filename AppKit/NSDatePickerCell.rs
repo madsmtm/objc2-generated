@@ -7,19 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style?language=objc)
+/// Constants that define the visual appearance of the date picker cell.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerStyle(pub NSUInteger);
 impl NSDatePickerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/textfieldandstepper?language=objc)
     #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
     pub const TextFieldAndStepper: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/clockandcalendar?language=objc)
     #[doc(alias = "NSDatePickerStyleClockAndCalendar")]
     pub const ClockAndCalendar: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/style/textfield?language=objc)
     #[doc(alias = "NSDatePickerStyleTextField")]
     pub const TextField: Self = Self(2);
 }
@@ -32,16 +29,14 @@ unsafe impl RefEncode for NSDatePickerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/mode?language=objc)
+/// Constants that define whether the picker provides a single date, or a range of dates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerMode(pub NSUInteger);
 impl NSDatePickerMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/mode/single?language=objc)
     #[doc(alias = "NSDatePickerModeSingle")]
     pub const Single: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/mode/range?language=objc)
     #[doc(alias = "NSDatePickerModeRange")]
     pub const Range: Self = Self(1);
 }
@@ -54,29 +49,29 @@ unsafe impl RefEncode for NSDatePickerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags?language=objc)
+/// Constants that specify the date and time elements displayed by the picker.
+///
+/// ## Overview
+///
+/// You can combine these constants using the C bitwise `OR` operator.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerElementFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDatePickerElementFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/hourminute?language=objc)
         #[doc(alias = "NSDatePickerElementFlagHourMinute")]
         const HourMinute = 0x000c;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/hourminutesecond?language=objc)
         #[doc(alias = "NSDatePickerElementFlagHourMinuteSecond")]
         const HourMinuteSecond = 0x000e;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/timezone?language=objc)
         #[doc(alias = "NSDatePickerElementFlagTimeZone")]
         const TimeZone = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/yearmonth?language=objc)
         #[doc(alias = "NSDatePickerElementFlagYearMonth")]
         const YearMonth = 0x00c0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/yearmonthday?language=objc)
         #[doc(alias = "NSDatePickerElementFlagYearMonthDay")]
         const YearMonthDay = 0x00e0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepicker/elementflags/era?language=objc)
         #[doc(alias = "NSDatePickerElementFlagEra")]
         const Era = 0x0100;
     }
@@ -91,7 +86,7 @@ unsafe impl RefEncode for NSDatePickerElementFlags {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickercell?language=objc)
+    /// An object that controls the behavior of a date picker, or of a single date picker cell in a matrix.
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -338,7 +333,7 @@ impl NSDatePickerCell {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickercelldelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSDatePickerCell`](https://developer.apple.com/documentation/appkit/nsdatepickercell) objects.
     pub unsafe trait NSDatePickerCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
         /// # Safety
@@ -356,55 +351,92 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfieldandstepperdatepickerstyle?language=objc)
+///
+/// ## Discussion
+///
+/// Provide a text field and stepper style interface.
+///
+///
 #[deprecated]
 pub static NSTextFieldAndStepperDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::TextFieldAndStepper.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclockandcalendardatepickerstyle?language=objc)
+///
+/// ## Discussion
+///
+/// Provide a visual clock and calendar style interface.
+///
+///
 #[deprecated]
 pub static NSClockAndCalendarDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::ClockAndCalendar.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfielddatepickerstyle?language=objc)
+///
+/// ## Discussion
+///
+/// Provide a text field interface.
+///
+///
 #[deprecated]
 pub static NSTextFieldDatePickerStyle: NSDatePickerStyle =
     NSDatePickerStyle(NSDatePickerStyle::TextField.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssingledatemode?language=objc)
+///
+/// ## Discussion
+///
+/// Allow selection of a single date.
+///
+///
 #[deprecated]
 pub static NSSingleDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Single.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrangedatemode?language=objc)
+///
+/// ## Discussion
+///
+/// Allow selection of a range of dates. (First implemented in OS X v 10.5.)
+///
+///
 #[deprecated]
 pub static NSRangeDateMode: NSDatePickerMode = NSDatePickerMode(NSDatePickerMode::Range.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminutedatepickerelementflag?language=objc)
+/// Display and allow editing of the hour and minute elements of the date.
 #[deprecated]
 pub static NSHourMinuteDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinute.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshourminuteseconddatepickerelementflag?language=objc)
+/// Display and allow editing of the hour, minute and second elements of the date.
 #[deprecated]
 pub static NSHourMinuteSecondDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::HourMinuteSecond.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstimezonedatepickerelementflag?language=objc)
+/// Display and allow editing of the time zone.
+///
+/// ## Discussion
+///
+/// This flag has been declared for possible future use, and does not yet have any effect.
+///
+///
 #[deprecated]
 pub static NSTimeZoneDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::TimeZone.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdatepickerelementflag?language=objc)
+/// Display and allow editing of the year and month elements of the date.
 #[deprecated]
 pub static NSYearMonthDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonth.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsyearmonthdaydatepickerelementflag?language=objc)
+/// Display and allow editing of the year, month and day elements of the date.
 #[deprecated]
 pub static NSYearMonthDayDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::YearMonthDay.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseradatepickerelementflag?language=objc)
+/// Display and allow editing of the era of the date, if applicable.
+///
+/// ## Discussion
+///
+/// This flag has been declared for possible future use, and does not yet have any effect.
+///
+///
 #[deprecated]
 pub static NSEraDatePickerElementFlag: NSDatePickerElementFlags =
     NSDatePickerElementFlags(NSDatePickerElementFlags::Era.0);

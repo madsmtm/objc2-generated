@@ -10,14 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A voice control state containing title variants and images for use by a voice control template.
     /// `CPVoiceControlState`encapsulates the title variants and image(s) for a single voice control
     /// state, like listening, loading, or recognized.
     ///
     /// Your app may initialize the voice control template with one or more states, and
     /// you may call
     /// `activateVoiceControlState:`to switch between states you've defined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpvoicecontrolstate?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPVoiceControlState;
@@ -96,7 +95,13 @@ impl CPVoiceControlState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpvoicecontroltemplate?language=objc)
+    /// A template that displays a voice control indicator during audio input.
+    ///
+    /// ## Overview
+    ///
+    /// CarPlay navigation apps must show a voice control indicator during audio input by presenting a voice control template. When creating the template, provide one or more [`CPVoiceControlState`](https://developer.apple.com/documentation/carplay/cpvoicecontrolstate) objects. To switch between states, call the [`activateVoiceControlStateWithIdentifier:`](https://developer.apple.com/documentation/carplay/cpvoicecontroltemplate/activatevoicecontrolstate(withidentifier:)) method.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]

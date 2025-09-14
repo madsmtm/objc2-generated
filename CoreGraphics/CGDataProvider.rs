@@ -10,7 +10,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider?language=objc)
+/// An abstraction for data-reading tasks that eliminates the need to manage a raw memory buffer.
+///
+/// ## Overview
+///
+/// Data provider objects abstract the data-access task and eliminate the need for applications to manage data through a raw memory buffer.
+///
+/// For information on how to use CGDataProvider functions, see [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066) Programming Guide.
+///
+/// See also [`CGDataConsumerRef`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer).
+///
+///
 #[doc(alias = "CGDataProviderRef")]
 #[repr(C)]
 pub struct CGDataProvider {
@@ -26,22 +36,92 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDataProvider"> for CGDataProvider {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytescallback?language=objc)
+/// A callback function that copies from a provider data stream into a Core Graphics buffer.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`init(version:getBytes:skipForward:rewind:releaseInfo:)`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks/init(version:getbytes:skipforward:rewind:releaseinfo:)).
+///
+/// - buffer: The Core Graphics buffer into which you copy the specified number of bytes.
+///
+/// - count: The number of bytes to copy.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes copied. If no more data can be written to the buffer, you should return `0`.
+///
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics is ready to receive data from the provider data stream, your function is called. It should copy the specified number of bytes into `buffer`.
+///
+/// For information on how to associate your callback function with a data provider, see [`CGDataProviderRef`](https://developer.apple.com/documentation/coregraphics/cgdataprovider) and [`CGDataProviderSequentialCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks).
+///
+///
 pub type CGDataProviderGetBytesCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize) -> usize>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderskipforwardcallback?language=objc)
+/// A callback function that advances the current position in the data stream supplied by the provider.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`init(version:getBytes:skipForward:rewind:releaseInfo:)`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks/init(version:getbytes:skipforward:rewind:releaseinfo:)).
+///
+/// - count: The number of bytes to skip.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes that were actually skipped.
+///
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics needs to advance forward in the provider’s data stream, your function is called.
+///
+///
 #[cfg(feature = "libc")]
 pub type CGDataProviderSkipForwardCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, libc::off_t) -> libc::off_t>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderrewindcallback?language=objc)
+/// A callback function that moves the current position in the data stream back to the beginning.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`init(version:getBytes:skipForward:rewind:releaseInfo:)`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks/init(version:getbytes:skipforward:rewind:releaseinfo:)).
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics needs to read from the beginning of the provider’s data stream, your function is called.
+///
+/// For information on how to associate your callback function with a data provider, see [`CGDataProviderRef`](https://developer.apple.com/documentation/coregraphics/cgdataprovider) and [`CGDataProviderSequentialCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks).
+///
+///
 pub type CGDataProviderRewindCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleaseinfocallback?language=objc)
+/// A callback function that releases any private data or resources associated with the data provider.
+///
+/// Parameters:
+/// - info: A generic pointer to private information shared among your callback functions. This is the same pointer you supplied to [`init(version:getBytes:skipForward:rewind:releaseInfo:)`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks/init(version:getbytes:skipforward:rewind:releaseinfo:)).
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics frees a data provider that has an associated release function, the release function is called.
+///
+/// For information on how to associate your callback function with a data provider, see [`CGDataProviderRef`](https://developer.apple.com/documentation/coregraphics/cgdataprovider) and [`CGDataProviderSequentialCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks).
+///
+///
 pub type CGDataProviderReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks?language=objc)
+/// Defines a structure containing pointers to client-defined callback functions that manage the sending of data for a sequential-access data provider.
+///
+/// ## Overview
+///
+/// The functions specified by the `CGDataProviderSequentialCallbacks` structure are responsible for sequentially copying data to a memory buffer for Core Graphics to use. The functions are also responsible for handling the data provider’s basic memory management. You supply a `CGDataProviderSequentialCallbacks` structure to the function [`CGDataProviderCreateSequential`](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(sequentialinfo:callbacks:)) to create a sequential-access data provider.
+///
+///
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -73,20 +153,80 @@ unsafe impl RefEncode for CGDataProviderSequentialCallbacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytepointercallback?language=objc)
+/// A callback function that returns a generic pointer to the provider data.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to `CGDataProviderCreateDirectAccess`.
+///
+///
+/// ## Return Value
+///
+/// A generic pointer to your provider data. By suppling this pointer, you are giving Core Graphics read-only access to both the pointer and the underlying provider data. You must not move or modify the provider data until Core Graphics calls your [`CGDataProviderReleaseBytePointerCallback`](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasebytepointercallback) function.
+///
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics needs direct access to your provider data, this function is called.
+///
+/// For information on how to associate your function with a direct-access data provider, see `CGDataProviderCreateDirectAccess` and `CGDataProviderDirectAccessCallbacks`.
+///
+///
 pub type CGDataProviderGetBytePointerCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasebytepointercallback?language=objc)
+/// A callback function that releases the pointer Core Graphics obtained by calling [`CGDataProviderGetBytePointerCallback`](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytepointercallback).
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions.  This is the same pointer you supplied to `CGDataProviderCreateDirectAccess`.
+///
+/// - pointer: A pointer to your provider data. This is the same pointer you returned in [`CGDataProviderGetBytePointerCallback`](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytepointercallback).
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics no longer needs direct access to your provider data, your function is called. You may safely modify, move, or release your provider data at this time.
+///
+/// For information on how to associate your function with a direct-access data provider, see `CGDataProviderCreateDirectAccess` and `CGDataProviderDirectAccessCallbacks`.
+///
+///
 pub type CGDataProviderReleaseBytePointerCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovidergetbytesatpositioncallback?language=objc)
+/// A callback function that copies data from the provider into a Core Graphics buffer.
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGDataProviderCreateDirect`](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(directinfo:size:callbacks:)).
+///
+/// - buffer: The Core Graphics buffer into which you copy the specified number of bytes.
+///
+/// - position: Specifies the relative location in the data provider at which to begin copying data.
+///
+/// - count: The number of bytes to copy.
+///
+///
+/// ## Return Value
+///
+/// The number of bytes copied. If no more data can be written to the buffer, you should return 0.
+///
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics is ready to receive data from the provider, your function is called.
+///
+///
 #[cfg(feature = "libc")]
 pub type CGDataProviderGetBytesAtPositionCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, libc::off_t, usize) -> usize>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks?language=objc)
+/// Defines pointers to client-defined callback functions that manage the sending of data for a direct-access data provider.
+///
+/// ## Overview
+///
+/// You supply a [`CGDataProviderDirectCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks) structure to the function [`CGDataProviderCreateDirect`](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(directinfo:size:callbacks:)) to create a data provider for direct access. The functions specified by the [`CGDataProviderDirectCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks) structure are responsible for copying data a block at a time to a memory buffer for Core Graphics to use. The functions are also responsible for handling the data provider’s basic memory management. For the callback to work, one of the `getBytePointer` and `getBytesAtPosition` parameters must be non-`NULL`. If both are non-`NULL`, then `getBytePointer` is used to access the data.
+///
+///
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -119,7 +259,13 @@ unsafe impl RefEncode for CGDataProviderDirectCallbacks {
 }
 
 unsafe impl ConcreteType for CGDataProvider {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for data providers.
+    ///
+    /// ## Return Value
+    ///
+    /// The identifier for the opaque type [`CGDataProviderRef`](https://developer.apple.com/documentation/coregraphics/cgdataprovider).
+    ///
+    ///
     #[doc(alias = "CGDataProviderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -131,7 +277,25 @@ unsafe impl ConcreteType for CGDataProvider {
 }
 
 impl CGDataProvider {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(sequentialinfo:callbacks:)?language=objc)
+    /// Creates a sequential-access data provider.
+    ///
+    /// Parameters:
+    /// - info: A pointer to data of any type or `NULL`. When Core Graphics calls the functions specified in the `callbacks` parameter, it sends each of the functions this pointer.
+    ///
+    /// - callbacks: A pointer to a [`CGDataProviderSequentialCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataprovidersequentialcallbacks) structure that specifies the callback functions you implement to handle the data provider’s basic memory management.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a sequential-access data provider that uses callback functions to read data from your program in a single block.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -154,7 +318,27 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(directinfo:size:callbacks:)?language=objc)
+    /// Creates a direct-access data provider.
+    ///
+    /// Parameters:
+    /// - info: A pointer to data of any type or `NULL`. When Core Graphics calls the functions specified in the `callbacks` parameter, it sends each of the functions this pointer.
+    ///
+    /// - size: The number of bytes of data to provide.
+    ///
+    /// - callbacks: A pointer to a [`CGDataProviderDirectCallbacks`](https://developer.apple.com/documentation/coregraphics/cgdataproviderdirectcallbacks) structure that specifies the callback functions you implement to handle the data provider’s basic memory management.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a direct-access data provider that uses callback functions to read data from your program in a single block.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -180,12 +364,48 @@ impl CGDataProvider {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback?language=objc)
+/// A callback function that releases data you supply to the function [`CGDataProviderCreateWithData`](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(datainfo:data:size:releasedata:)).
+///
+/// Parameters:
+/// - info: A generic pointer to private data shared among your callback functions. This is the same pointer you supplied to [`CGDataProviderCreateWithData`](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(datainfo:data:size:releasedata:)).
+///
+/// - data: A pointer to your provider data.
+///
+/// - size: The size of the data.
+///
+///
+/// ## Discussion
+///
+/// When Core Graphics no longer needs direct access to your provider data, your function is called. You may safely modify, move, or release your provider data at this time.
+///
+///
 pub type CGDataProviderReleaseDataCallback =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<c_void>, usize)>;
 
 impl CGDataProvider {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(datainfo:data:size:releasedata:)?language=objc)
+    /// Creates a direct-access data provider that uses data your program supplies.
+    ///
+    /// Parameters:
+    /// - info: A pointer to data of any type, or `NULL`. When Core Graphics calls the function specified in the `releaseData` parameter, it sends this pointer as its first argument.
+    ///
+    /// - data: A pointer to the array of data that the provider contains.
+    ///
+    /// - size: A value that specifies the number of bytes that the data provider contains.
+    ///
+    /// - releaseData: A pointer to a release callback for the data provider, or `NULL`. Your release function is called when Core Graphics frees the data provider. For more information, see [`CGDataProviderReleaseDataCallback`](https://developer.apple.com/documentation/coregraphics/cgdataproviderreleasedatacallback).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a direct-access data provider that uses callback functions to read data from your program an entire block at one time.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -212,7 +432,23 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(data:)?language=objc)
+    /// Creates a data provider that reads from a CFData object.
+    ///
+    /// Parameters:
+    /// - data: The CFData object to read from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this function when you need to represent Core Graphics data as a CFData type. For example, you might create a CFData object when reading data from the pasteboard.
+    ///
+    ///
     #[doc(alias = "CGDataProviderCreateWithCFData")]
     #[inline]
     pub fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
@@ -225,7 +461,23 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(url:)?language=objc)
+    /// Creates a direct-access data provider that uses a URL to supply data.
+    ///
+    /// Parameters:
+    /// - url: A CFURL object for the URL that you want to read the data from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider or `NULL` if the data from the URL could not be accessed. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a direct-access data provider that supplies data from a URL. When you supply Core Graphics with a direct-access data provider, Core Graphics obtains data from your program in a single entire block.
+    ///
+    ///
     #[doc(alias = "CGDataProviderCreateWithURL")]
     #[inline]
     pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
@@ -236,7 +488,23 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/init(filename:)?language=objc)
+    /// Creates a direct-access data provider that uses a file to supply data.
+    ///
+    /// Parameters:
+    /// - filename: The full or relative pathname to use for the data provider. When you supply Core Graphics data via the provider, it reads the data from the specified file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data provider or `NULL` if the file could not be opened. In Objective-C, you’re responsible for releasing this object using [`CGDataProviderRelease`](https://developer.apple.com/documentation/coregraphics/cgdataproviderrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to create a direct-access data provider that supplies data from a file. When you supply Core Graphics with a direct-access data provider, Core Graphics obtains data from your program in a single block.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +521,17 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/data?language=objc)
+    /// Returns a copy of the provider’s data.
+    ///
+    /// Parameters:
+    /// - provider: The data provider whose data you want to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new data object containing a copy of the provider’s data. You are responsible for releasing this object.
+    ///
+    ///
     #[doc(alias = "CGDataProviderCopyData")]
     #[inline]
     pub fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
@@ -265,7 +543,6 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataprovider/info?language=objc)
     #[doc(alias = "CGDataProviderGetInfo")]
     #[inline]
     pub fn info(provider: Option<&CGDataProvider>) -> *mut c_void {

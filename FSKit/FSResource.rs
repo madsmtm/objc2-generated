@@ -8,37 +8,50 @@ use objc2_foundation::*;
 use crate::*;
 
 /// A type that represents the recognition and usability of a probed resource.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult?language=objc)
+/// A type that represents the recognition and usability of a probed resource.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSMatchResult(pub NSInteger);
 impl FSMatchResult {
-    /// The probe doesn't recognize the resource.
+    /// The probe doesn’t recognize the resource.
+    ///
+    /// ## Discussion
     ///
     /// This match result is appropriate when the file system module determines that the resource uses a completely different format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/notrecognized?language=objc)
+    ///
+    /// The probe doesn't recognize the resource.
+    ///
+    /// This match result is appropriate when the file system module determines that the resource uses a completely different format.
     #[doc(alias = "FSMatchResultNotRecognized")]
     pub const NotRecognized: Self = Self(0);
+    /// The probe recognizes the resource but can’t use it.
+    ///
+    /// ## Discussion
+    ///
+    /// This match result is appropriate when the file system module identifies the resource’s format but can’t use it. For example, if the resource uses a newer version than the module supports, the module can name the resource but can’t safely do anything with it.
+    ///
+    ///
     /// The probe recognizes the resource but can't use it.
     ///
     /// This match result is appropriate when the file system module identifies the resource's format but can't use it. For example, if the resource uses a newer version than the module supports, the module can name the resource but can't safely do anything with it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/recognized?language=objc)
     #[doc(alias = "FSMatchResultRecognized")]
     pub const Recognized: Self = Self(1);
     /// The probe recognizes the resource and is ready to use it, but only in a limited capacity.
     ///
-    /// This match result is appropriate when the file system module identifies the resource's format but also identifies incompatibilities. For example, if the module determines the resource uses new features that the module doesn't support, the module may only offer read-only access.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/usablebutlimited?language=objc)
+    /// This match result is appropriate when the file system module identifies the resource’s format but also identifies incompatibilities. For example, if the module determines the resource uses new features that the module doesn’t support, the module may only offer read-only access.
+    ///
+    ///
+    /// The probe recognizes the resource and is ready to use it, but only in a limited capacity.
+    ///
+    /// This match result is appropriate when the file system module identifies the resource's format but also identifies incompatibilities. For example, if the module determines the resource uses new features that the module doesn't support, the module may only offer read-only access.
     #[doc(alias = "FSMatchResultUsableButLimited")]
     pub const UsableButLimited: Self = Self(2);
     /// The probe recognizes the resource and is ready to use it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmatchresult/usable?language=objc)
+    /// The probe recognizes the resource and is ready to use it.
     #[doc(alias = "FSMatchResultUsable")]
     pub const Usable: Self = Self(3);
 }
@@ -52,6 +65,19 @@ unsafe impl RefEncode for FSMatchResult {
 }
 
 extern_class!(
+    /// An abstract resource a file system uses to provide data for a volume.
+    ///
+    /// ## Overview
+    ///
+    /// `FSResource` is a base class to represent the various possible sources of data for a file system. These range from dedicated storage devices like hard drives and flash storage to network connections, and beyond. Subclasses define behavior specific to a given kind of resource, such as [`FSBlockDeviceResource`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource) for disk partition (IOMedia) file systems. These file systems are typical disk file systems such as HFS, APFS, ExFAT, ext2fs, or NTFS.
+    ///
+    /// A resource’s type also determines its life cycle. Resources based on block storage devices come into being when the system probes the media underlying the volumes and container. Other kinds of resources, like those based on URLs, might have different life cycles. For example, a resource based on a `file://` URL might iniitalize when a person uses the “Connect to server” command in the macOS Finder.
+    ///
+    /// ### Proxying resources
+    ///
+    /// Some resources, like [`FSBlockDeviceResource`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource), come in proxy and non-proxy variants. This addresses the issue that opening an external device like `/dev/disk2s1` requires an entitlement. Proxy resources allow unentitled clients of FSKit to describe which disk an [`FSBlockDeviceResource`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource) should represent. This allows, for example, the `mount(8)` tool to mount FSKit file systems on block devices when run as root. The tool uses a proxy when executing a command like `mount -t ffs /dev/disk2s1 /some/path`, which prevents leaking privileged resource access.
+    ///
+    ///
     /// An abstract resource a file system uses to provide data for a volume.
     ///
     /// `FSResource` is a base class to represent the various possible sources of data for a file system.
@@ -71,8 +97,6 @@ extern_class!(
     /// Proxy resources allow unentitled clients of FSKit to describe which disk an ``FSBlockDeviceResource`` should represent.
     /// This allows, for example, the `mount(8)` tool to mount FSKit file systems on block devices when run as root.
     /// The tool uses a proxy when executing a command like `mount -t ffs /dev/disk2s1 /some/path`, which prevents leaking privileged resource access.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsresource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSResource;
@@ -132,6 +156,25 @@ impl FSResource {
 extern_class!(
     /// A range that describes contiguous metadata segments on disk.
     ///
+    /// ## Overview
+    ///
+    /// This type represents a range that begins at `startOffset` and ends at `startOffset + segmentLength * segmentCount`. Each segment in the range represents a single block in the resource’s buffer cache.
+    ///
+    /// For example, given an `FSMetadataRange` with the following properties:
+    ///
+    /// - `startOffset = 0`
+    ///
+    /// - `segmentLength = 512`
+    ///
+    /// - `segmentCount = 8`
+    ///
+    /// The range represents eight segments: from 0 to 511, then from 512 to 1023, and so on until a final segment of 3584 to 4095.
+    ///
+    /// Ensure that each metadata segment represents a range that’s already present in the resource’s buffer cache. Similarly, ensure that each segment’s offset and length matches the offset and length of the corresponding block in the buffer cache.
+    ///
+    ///
+    /// A range that describes contiguous metadata segments on disk.
+    ///
     /// This type represents a range that begins at `startOffset` and ends at `startOffset + segmentLength * segmentCount`.
     /// Each segment in the range represents a single block in the resource's buffer cache.
     ///
@@ -145,8 +188,6 @@ extern_class!(
     ///
     /// Ensure that each metadata segment represents a range that's already present in the resource's buffer cache.
     /// Similarly, ensure that each segment's offset and length matches the offset and length of the corresponding block in the buffer cache.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmetadatarange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSMetadataRange;
@@ -226,6 +267,17 @@ impl FSMetadataRange {
 extern_class!(
     /// A resource that represents a block storage disk partition.
     ///
+    /// ## Overview
+    ///
+    /// A `FSBlockDeviceResource` can exist in either a proxied or nonproxied version. Only the `fskitd` daemon creates “real” (nonproxied) instances of this class. Client applications and daemons create proxy objects for requests, and `fskitd` opens the underlying device during the processing of the request.
+    ///
+    /// This class wraps a file descriptor for a disk device or partition. Its fundamental identifier is the BSD disk name ([`BSDName`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource/bsdname)) for the underlying IOMedia object. However, [`FSBlockDeviceResource`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource) doesn’t expose the underlying file descriptor. Instead, it provides accessor methods that can read from and write to the partition, either directly or using the kernel buffer cache.
+    ///
+    /// When you use a `FSBlockDeviceResource`, your file system implementation also conforms to a maintenance operation protocol. These protocols add support for checking, repairing, and optionally formatting file systems. The system doesn’t mount block device file systems until they pass a file system check. For an [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem) that uses `FSBlockDeviceResource`, conform to `FSManageableResourceMaintenanceOperations`.
+    ///
+    ///
+    /// A resource that represents a block storage disk partition.
+    ///
     /// A `FSBlockDeviceResource` can exist in either a proxied or nonproxied version.
     /// Only the `fskitd` daemon creates "real" (nonproxied) instances of this class.
     /// Client applications and daemons create proxy objects for requests, and `fskitd` opens the underlying device during the processing of the request.
@@ -239,8 +291,6 @@ extern_class!(
     /// These protocols add support for checking, repairing, and optionally formatting file systems.
     /// The system doesn't mount block device file systems until they pass a file system check.
     /// For an ``FSUnaryFileSystem`` that uses `FSBlockDeviceResource`, conform to `FSManageableResourceMaintenanceOperations`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockdeviceresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSBlockDeviceResource;
@@ -572,6 +622,23 @@ impl FSBlockDeviceResource {
 extern_class!(
     /// A resource that represents an abstract URL.
     ///
+    /// ## Overview
+    ///
+    /// An `FSGenericURLResource` is a completely abstract resource. The only reference to its contents is a single URL, the contents of which are arbitrary. This URL might represent a PCI locator string like `/pci@f0000000/usb@5`, or some sort of network address for a remote file system. FSKit leaves interpretation of the URL and its contents entirely up to your implementation.
+    ///
+    /// Use the `Info.plist` key `FSSupportedSchemes` to provide an array of case-insensitive URL schemes that your implementation supports. The following example shows how a hypothetical `FSGenericURLResource` implementation declares support for the `rsh` and `ssh` URL schemes:
+    ///
+    /// ```swift
+    /// <key>FSSupportedSchemes</key>
+    /// <array>
+    ///     <string>rsh</string>
+    ///     <string>ssh</string>
+    /// </array>
+    /// ```
+    ///
+    ///
+    /// A resource that represents an abstract URL.
+    ///
     /// An `FSGenericURLResource` is a completely abstract resource.
     /// The only reference to its contents is a single URL, the contents of which are arbitrary.
     /// This URL might represent a PCI locator string like `/pci
@@ -600,8 +667,6 @@ extern_class!(
     /// </array
     /// >
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsgenericurlresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSGenericURLResource;
@@ -650,10 +715,15 @@ impl FSGenericURLResource {
 extern_class!(
     /// A resource that represents a path in the system file space.
     ///
+    /// ## Overview
+    ///
+    /// The URL passed to `FSPathURLResource` may be a security-scoped URL. If the URL is a security-scoped URL, FSKit transports it intact from a client application to your extension.
+    ///
+    ///
+    /// A resource that represents a path in the system file space.
+    ///
     /// The URL passed to `FSPathURLResource` may be a security-scoped URL.
     /// If the URL is a security-scoped URL, FSKit transports it intact from a client application to your extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspathurlresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSPathURLResource;
@@ -711,12 +781,17 @@ impl FSPathURLResource {
 }
 
 extern_protocol!(
+    /// Maintenance operations for a file system’s resources.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol includes operations to check and format a resource for an [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem). Conform to this protocol if you implement a [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem) that uses an [`FSBlockDeviceResource`](https://developer.apple.com/documentation/fskit/fsblockdeviceresource).
+    ///
+    ///
     /// Maintenance operations for a file system's resources.
     ///
     /// This protocol includes operations to check and format a resource for an ``FSUnaryFileSystem``.
     /// Conform to this protocol if you implement a ``FSUnaryFileSystem`` that uses an ``FSBlockDeviceResource-c.class``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsmanageableresourcemaintenanceoperations?language=objc)
     pub unsafe trait FSManageableResourceMaintenanceOperations: NSObjectProtocol {
         #[cfg(all(feature = "FSTask", feature = "FSTaskOptions"))]
         /// Starts checking the file system with the given options.
@@ -767,6 +842,17 @@ extern_protocol!(
 extern_class!(
     /// An object that represents the results of a specific probe.
     ///
+    /// ## Overview
+    ///
+    /// For any [`result`](https://developer.apple.com/documentation/fskit/fsproberesult/result) value other than [`FSMatchResultNotRecognized`](https://developer.apple.com/documentation/fskit/fsmatchresult/notrecognized), ensure the [`name`](https://developer.apple.com/documentation/fskit/fsproberesult/name) and [`containerID`](https://developer.apple.com/documentation/fskit/fsproberesult/containerid) values are non-`nil`. When a container or volume format doesn’t use a name, return an empty string. Also use an empty string in the case in which the format supports a name, but the value isn’t set yet.
+    ///
+    /// Some container or volume formats may lack a durable UUID on which to base a container identifier. This situation is only valid for unary file systems. In such a case, return a random UUID.
+    ///
+    /// With a block device resource, a probe operation may successfully get a result but encounter an error reading the name or UUID. If this happens, use whatever information is available, and provide an empty string or random UUID for the name or container ID, respectively.
+    ///
+    ///
+    /// An object that represents the results of a specific probe.
+    ///
     /// For any ``result`` value other than ``FSMatchResult/notRecognized``, ensure the ``name`` and ``containerID`` values are non-`nil`.
     /// When a container or volume format doesn't use a name, return an empty string.
     /// Also use an empty string in the case in which the format supports a name, but the value isn't set yet.
@@ -777,8 +863,6 @@ extern_class!(
     ///
     /// With a block device resource, a probe operation may successfully get a result but encounter an error reading the name or UUID.
     /// If this happens, use whatever information is available, and provide an empty string or random UUID for the name or container ID, respectively.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsproberesult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSProbeResult;

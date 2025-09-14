@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phprojectchangerequest?language=objc)
+    /// A request to change asset data in a Photos project extension.
+    ///
+    /// ## Overview
+    ///
+    /// Make a project change request to alter a project’s title or metadata. Respond to project change requests by updating your user interface as assets are added, modified, or removed.
+    ///
+    ///
     #[unsafe(super(PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHChangeRequest")]

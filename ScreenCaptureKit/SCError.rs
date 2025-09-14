@@ -7,77 +7,83 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerrordomain?language=objc)
+    /// A string representation of the error domain.
     pub static SCStreamErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code?language=objc)
+/// Codes for user cancellation events and errors that can occur in ScreenCaptureKit.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCStreamErrorCode(pub NSInteger);
 impl SCStreamErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/userdeclined?language=objc)
+    /// An error message that indicates the user didn’t grant Screen Recording permission to your app.
     #[doc(alias = "SCStreamErrorUserDeclined")]
     pub const UserDeclined: Self = Self(-3801);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedtostart?language=objc)
+    /// An error message that indicates a stream failed to start.
     #[doc(alias = "SCStreamErrorFailedToStart")]
     pub const FailedToStart: Self = Self(-3802);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/missingentitlements?language=objc)
+    /// An error message that indicates missing entitlements in your app.
     #[doc(alias = "SCStreamErrorMissingEntitlements")]
     pub const MissingEntitlements: Self = Self(-3803);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedapplicationconnectioninvalid?language=objc)
+    /// An error message that indicates the stream lost its connection to an app.
     #[doc(alias = "SCStreamErrorFailedApplicationConnectionInvalid")]
     pub const FailedApplicationConnectionInvalid: Self = Self(-3804);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedapplicationconnectioninterrupted?language=objc)
+    /// An error message that indicates there was an interruption in a connection to an app.
     #[doc(alias = "SCStreamErrorFailedApplicationConnectionInterrupted")]
     pub const FailedApplicationConnectionInterrupted: Self = Self(-3805);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failednomatchingapplicationcontext?language=objc)
+    /// An error message that indicates there isn’t a matching app context for streaming.
     #[doc(alias = "SCStreamErrorFailedNoMatchingApplicationContext")]
     pub const FailedNoMatchingApplicationContext: Self = Self(-3806);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/attempttostartstreamstate?language=objc)
+    /// An error message that indicates a stream is already running or doesn’t exist when trying to start a stream.
     #[doc(alias = "SCStreamErrorAttemptToStartStreamState")]
     pub const AttemptToStartStreamState: Self = Self(-3807);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/attempttostopstreamstate?language=objc)
+    /// An error message that indicates a stream is already stopped or doesn’t exist when trying to stop a stream.
     #[doc(alias = "SCStreamErrorAttemptToStopStreamState")]
     pub const AttemptToStopStreamState: Self = Self(-3808);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/attempttoupdatefilterstate?language=objc)
+    /// An error message that indicates a stream couldn’t update its content filter.
     #[doc(alias = "SCStreamErrorAttemptToUpdateFilterState")]
     pub const AttemptToUpdateFilterState: Self = Self(-3809);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/attempttoconfigstate?language=objc)
+    /// An error message that indicates a stream couldn’t update its configuration.
     #[doc(alias = "SCStreamErrorAttemptToConfigState")]
     pub const AttemptToConfigState: Self = Self(-3810);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/internalerror?language=objc)
+    /// An error message that indicates a stream can’t start due to a failure in ScreenCaptureKit’s internals.
     #[doc(alias = "SCStreamErrorInternalError")]
     pub const InternalError: Self = Self(-3811);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/invalidparameter?language=objc)
+    /// An error message that indicates an operation failed because of an invalid parameter value.
     #[doc(alias = "SCStreamErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(-3812);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/nowindowlist?language=objc)
+    /// An error message that indicates a stream doesn’t have windows available.
     #[doc(alias = "SCStreamErrorNoWindowList")]
     pub const NoWindowList: Self = Self(-3813);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/nodisplaylist?language=objc)
+    /// An error message that indicates a stream doesn’t have displays available.
     #[doc(alias = "SCStreamErrorNoDisplayList")]
     pub const NoDisplayList: Self = Self(-3814);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/nocapturesource?language=objc)
+    /// An error message that indicates a stream doesn’t have a source to capture.
     #[doc(alias = "SCStreamErrorNoCaptureSource")]
     pub const NoCaptureSource: Self = Self(-3815);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/removingstream?language=objc)
+    /// An error message that indicates a stream wasn’t removed.
     #[doc(alias = "SCStreamErrorRemovingStream")]
     pub const RemovingStream: Self = Self(-3816);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/userstopped?language=objc)
+    /// An error message that indicates the user stopped the stream.
+    ///
+    /// ## Discussion
+    ///
+    /// As a best practice, handle errors of this type as an intentional user interaction rather than an error.
+    ///
+    ///
     #[doc(alias = "SCStreamErrorUserStopped")]
     pub const UserStopped: Self = Self(-3817);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedtostartaudiocapture?language=objc)
+    /// An error message that indicates an audio stream failed to start.
     #[doc(alias = "SCStreamErrorFailedToStartAudioCapture")]
     pub const FailedToStartAudioCapture: Self = Self(-3818);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedtostopaudiocapture?language=objc)
+    /// An error message that indicates an audio stream failed to stop.
     #[doc(alias = "SCStreamErrorFailedToStopAudioCapture")]
     pub const FailedToStopAudioCapture: Self = Self(-3819);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/failedtostartmicrophonecapture?language=objc)
+    /// An error message that indicates microphone capture failed to start.
     #[doc(alias = "SCStreamErrorFailedToStartMicrophoneCapture")]
     pub const FailedToStartMicrophoneCapture: Self = Self(-3820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code/systemstoppedstream?language=objc)
+    /// An error message that indicates the system stopped the stream.
     #[doc(alias = "SCStreamErrorSystemStoppedStream")]
     pub const SystemStoppedStream: Self = Self(-3821);
 }

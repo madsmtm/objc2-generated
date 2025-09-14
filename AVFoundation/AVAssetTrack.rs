@@ -12,13 +12,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that models a track of media that an asset contains.
+    ///
+    /// ## Overview
+    ///
+    /// An asset contains one or more tracks of media that the framework models using the [`AVAssetTrack`](https://developer.apple.com/documentation/avfoundation/avassettrack) class. A track object holds the uniformly typed media that an asset provides such as audio, video, or closed captions.
+    ///
+    /// A track, like its containing [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset), doesn’t load all of its media upon creation. Instead, it defers loading its data until you perform an operation that requires it. Because loading the data can take time, an asset track adopts the [`AVAsynchronousKeyValueLoading`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading) protocol so you can load its property values asynchronously by calling the [`load(_:isolation:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/load(_:isolation:)) method.
+    ///
+    ///
     /// An AVAssetTrack object provides provides the track-level inspection interface for all assets.
     ///
     /// AVAssetTrack adopts the AVAsynchronousKeyValueLoading protocol. Methods in the protocol should be used to access a track's properties without blocking the current thread. To cancel load requests for all keys of AVAssetTrack one must message the parent AVAsset object (for example, [track.asset cancelLoading]).
     ///
     /// For clients who want to examine a subset of the metadata or other parts of the track, asynchronous methods like -loadMetadataForFormat:completionHandler: can be used to load this information without blocking. When using these asynchronous methods, it is not necessary to load the associated property beforehand. Swift clients can also use the load(:) method to load properties in a type safe manner.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetTrack;
@@ -353,75 +360,105 @@ impl AVAssetTrack {
     );
 }
 
+/// Constants that define track association types.
 /// The type of a track association.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype?language=objc)
 // NS_TYPED_ENUM
 pub type AVTrackAssociationType = NSString;
 
 extern "C" {
+    /// The track contains the same content as another track, but in a more widely supported format.
+    ///
+    /// ## Discussion
+    ///
+    /// A player that doesn’t support the format of the original track can use the fallback track instead. For example, an asset may contain both stereo and a 5.1-channel audio tracks. In this case, marking the stereo track as the fallback for the 5.1-channel track ensures that devices not capable of playing 5.1-channel audio can still play an equivalent track.
+    ///
+    ///
     /// Indicates an association between an audio track with another audio track that contains the same content but is typically encoded in a different format that's more widely supported, used to nominate a track that should be used in place of an unsupported track.
     ///
     /// Associations of type AVTrackAssociationTypeAudioFallback are supported only between audio tracks. This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that has content that's less widely supported, and the input parameter should be an instance of AVAssetWriterInput with a corresponding track that has content that's more widely supported.
     ///
     /// Example: Using AVTrackAssociationTypeAudioFallback, a stereo audio track with media subtype kAudioFormatMPEG4AAC could be nominated as the "fallback" for an audio track encoding the same source material but with media subtype kAudioFormatAC3 and a 5.1 channel layout. This would ensure that all clients are capable of playing back some form of the audio.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/audiofallback?language=objc)
     pub static AVTrackAssociationTypeAudioFallback: &'static AVTrackAssociationType;
 }
 
 extern "C" {
+    /// The associated track contains chapter information for the base track.
+    ///
+    /// ## Discussion
+    ///
+    /// The track containing the chapter information can be a text track, a video track, or a timed metadata track.
+    ///
+    ///
     /// Indicates an association between a track with another track that contains chapter information. The track containing chapter information may be a text track, a video track, or a timed metadata track.
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that has renderable content while the input parameter should be an instance of AVAssetWriterInput with a corresponding track that contains chapter metadata.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/chapterlist?language=objc)
     pub static AVTrackAssociationTypeChapterList: &'static AVTrackAssociationType;
 }
 
 extern "C" {
+    /// An association between a subtitle track containing forced and nonforced subtitles and one with a subtitle track containing only forced subtitles.
+    ///
+    /// ## Discussion
+    ///
+    /// Nonforced subtitles typically transcribe dialogue in a media asset and are typically not presented by default. Forced subtitles are those that are essential for presentation even if the user disables playback of normal subtitles (for example, when a character speaks in a language foreign to that of the audio track).
+    ///
+    /// Subtitle tracks must present forced subtitles with the same content and the same language, but may have different timing.
+    ///
+    ///
     /// Indicates an association between a subtitle track typically containing both forced and non-forced subtitles with another subtitle track that contains only forced subtitles, for use when the user indicates that only essential subtitles should be displayed. When such an association is established, the forced subtitles in both tracks are expected to present the same content in the same language but may have different timing.
     ///
     /// Associations of type AVTrackAssociationTypeForcedSubtitlesOnly are supported only between subtitle tracks. This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains non-forced subtitles, and the input parameter should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains forced subtitles only.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/forcedsubtitlesonly?language=objc)
     pub static AVTrackAssociationTypeForcedSubtitlesOnly: &'static AVTrackAssociationType;
 }
 
 extern "C" {
+    /// An association between two tracks that specifies when a user selects the main track, the system should follow that selection by automatically selecting the associated track.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, a follower of an audio track could be a subtitle track in the same language. When the user chooses a language for audio, the subtitle language “follows” the audio language selection.
+    ///
+    ///
     /// Indicates an association between a pair of tracks that specifies that, when the first of the pair is selected, the second of the pair should be considered an appropriate default for selection also. Example: a subtitle track in the same language as an audio track may be associated with that audio track using AVTrackAssociationTypeSelectionFollower, to indicate that selection of the subtitle track, in the absence of a directive for subtitle selection from the user, can "follow" the selection of the audio track.
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the input parameter should be an instance of AVAssetWriterInput whose selection may depend on the selection of the receiver. In the example above, the receiver would be the instance of AVAssetWriterInput corresponding with the audio track and the input parameter would be the instance of AVAssetWriterInput corresponding with the subtitle track.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/selectionfollower?language=objc)
     pub static AVTrackAssociationTypeSelectionFollower: &'static AVTrackAssociationType;
 }
 
 extern "C" {
+    /// An association between a timecode track providing timing information for the main track.
     /// Indicates an association between a track with another track that contains timecode information. The track containing timecode information should be a timecode track.
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that may be a video track or an audio track while the input parameter should be an instance of AVAssetWriterInput with a corresponding timecode track.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/timecode?language=objc)
     pub static AVTrackAssociationTypeTimecode: &'static AVTrackAssociationType;
 }
 
 extern "C" {
+    /// An association between a metadata track and the track that it describes or annotates.
+    ///
+    /// ## Discussion
+    ///
+    /// This track association is optional for [`AVAssetTrack`](https://developer.apple.com/documentation/avfoundation/avassettrack) objects with the media type [`AVMediaTypeMetadata`](https://developer.apple.com/documentation/avfoundation/avmediatype/metadata). When a metadata track lacks this track association, the system assumes the metadata describes or annotates the asset as a whole.
+    ///
+    ///
     /// Indicates an association between a metadata track and the track that's described or annotated via the contents of the metadata track.
     ///
     /// This track association is optional for AVAssetTracks with the mediaType AVMediaTypeMetadata. When a metadata track lacks this track association, its contents are assumed to describe or annotate the asset as a whole.
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType AVMediaTypeMetadata while the input parameter should be an instance of AVAssetWriterInput that's used to create the track to which the contents of the receiver's corresponding metadata track refer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/metadatareferent?language=objc)
     pub static AVTrackAssociationTypeMetadataReferent: &'static AVTrackAssociationType;
 }
 
 extern "C" {
     /// Indicates an association between a metadata track and another track where the metadata provides additional information for rendering of that track.
     ///
+    /// ## Discussion
+    ///
     /// This track association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType, AVMediaTypeMetadata, while the input parameter should be an instance of AVAssetWriterInput for the target track that would be rendered (for example, a video track).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/rendermetadatasource?language=objc)
+    ///
+    /// Indicates an association between a metadata track and another track where the metadata provides additional information for rendering of that track.
+    ///
+    /// This track association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType, AVMediaTypeMetadata, while the input parameter should be an instance of AVAssetWriterInput for the target track that would be rendered (for example, a video track).
     pub static AVTrackAssociationTypeRenderMetadataSource: &'static AVTrackAssociationType;
 }
 
@@ -523,39 +560,41 @@ impl AVAssetTrack {
 }
 
 extern "C" {
+    /// Posted when the timeRange of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of @“timeRange” has reached AVKeyValueStatusLoaded.
     /// Posted when the timeRange of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
     /// "
     /// timeRange" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracktimerangedidchangenotification?language=objc)
     pub static AVAssetTrackTimeRangeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// Posted when the array of segments of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of @“segments” has reached AVKeyValueStatusLoaded.
     /// Posted when the array of segments of an AVFragmentedAssetTrack changes while the associated instance of AVFragmentedAsset is being minded by an AVFragmentedAssetMinder, but only for changes that occur after the status of the value of
     /// "
     /// segments" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracksegmentsdidchangenotification?language=objc)
     pub static AVAssetTrackSegmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    /// Posted when the collection of track associations of an AVAssetTrack changes, but only for changes that occur after the status of the value of @“availableTrackAssociationTypes” has reached AVKeyValueStatusLoaded.
     /// Posted when the collection of track associations of an AVAssetTrack changes, but only for changes that occur after the status of the value of
     /// "
     /// availableTrackAssociationTypes" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettracktrackassociationsdidchangenotification?language=objc)
     pub static AVAssetTrackTrackAssociationsDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object that provides the track-level interface to inspect a fragmented asset’s media tracks.
+    ///
+    /// ## Overview
+    ///
+    /// This class subclasses [`AVAssetTrack`](https://developer.apple.com/documentation/avfoundation/avassettrack). It has no methods or properties of its own.
+    ///
+    ///
     /// A subclass of AVAssetTrack for handling tracks of fragmented assets. An AVFragmentedAssetTrack is capable of changing the values of certain of its properties, if its parent asset is associated with an instance of AVFragmentedAssetMinder when one or more fragments are appended to the underlying media resource.
     ///
     /// While its parent asset is associated with an AVFragmentedAssetMinder, AVFragmentedAssetTrack posts AVAssetTrackTimeRangeDidChangeNotification and AVAssetTrackSegmentsDidChangeNotification whenever new fragments are detected, as appropriate.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedassettrack?language=objc)
     #[unsafe(super(AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVFragmentedAssetTrack;

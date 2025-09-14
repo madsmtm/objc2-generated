@@ -8,6 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The platform configuration for booting macOS on Apple silicon.
+    ///
+    /// ## Overview
+    ///
+    /// When creating a VM, the [`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel) and [`auxiliaryStorage`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage) depend on the restore image that you use to install macOS.
+    ///
+    /// To choose the hardware model, start from `VZMacOSRestoreImage`.[`mostFeaturefulSupportedConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration) to get a supported configuration, then use its `VZMacOSConfigurationRequirements`.[`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel) property to get the hardware model.
+    ///
+    /// Use the hardware model to set up `VZMacPlatformConfiguration` and to initialize a new auxiliary storage with [`initCreatingStorageAtURL:hardwareModel:options:error:`](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/init(creatingstorageat:hardwaremodel:options:)).
+    ///
+    /// When you save a VM to disk and load it again, you must restore the [`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements/hardwaremodel), [`machineIdentifier`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/machineidentifier) and [`auxiliaryStorage`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/auxiliarystorage) properties to their original values.
+    ///
+    /// If you create multiple VMs from the same configuration, each should have a unique `auxiliaryStorage` and `machineIdentifier`.
+    ///
+    ///
     /// The platform configuration for booting macOS on Apple Silicon.
     ///
     /// When creating a virtual machine from scratch, the `hardwareModel` and `auxiliaryStorage` depend on the restore image
@@ -26,8 +41,6 @@ extern_class!(
     /// See also: VZMacOSRestoreImage
     ///
     /// See also: VZMacOSConfigurationRequirements
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration?language=objc)
     #[unsafe(super(VZPlatformConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPlatformConfiguration")]

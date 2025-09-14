@@ -8,9 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// A serial queue of command buffers to be executed by the device.
+    /// An instance you use to create, submit, and schedule command buffers to a specific GPU device to run the commands within those buffers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
+    /// ## Overview
+    ///
+    /// A command queue maintains an ordered list of command buffers. You use a command queue to:
+    ///
+    /// - Create command buffers, which you fill with commands for the GPU device that creates the queue
+    ///
+    /// - Submit command buffers to run on that GPU
+    ///
+    /// Create a command queue from an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance by calling its [`newCommandQueue`](https://developer.apple.com/documentation/metal/mtldevice/makecommandqueue()) or [`newCommandQueueWithMaxCommandBufferCount:`](https://developer.apple.com/documentation/metal/mtldevice/makecommandqueue(maxcommandbuffercount:)) method. Typically, you create one or more command queues when your app launches and then keep them throughout your app’s lifetime.
+    ///
+    /// With each [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) instance you create, you can create [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instances for that queue by calling its [`commandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandqueue/makecommandbuffer()) or [`commandBufferWithUnretainedReferences`](https://developer.apple.com/documentation/metal/mtlcommandqueue/makecommandbufferwithunretainedreferences()) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Each command queue is thread-safe and allows you to encode commands in multiple command buffers simultaneously.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about command buffers and encoding GPU commands to them — such as rendering images and computing data in parallel — see [Setting up a command structure](https://developer.apple.com/documentation/metal/setting-up-a-command-structure).
+    ///
+    ///
+    /// A serial queue of command buffers to be executed by the device.
     pub unsafe trait MTLCommandQueue: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object
         #[unsafe(method(label))]
@@ -108,7 +131,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueuedescriptor?language=objc)
+    /// A configuration that customizes the behavior for a new command queue.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCommandQueueDescriptor;

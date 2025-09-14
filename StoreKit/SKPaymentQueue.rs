@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentqueue?language=objc)
+    /// A queue of payment transactions for the App Store to process.
+    ///
+    /// ## Overview
+    ///
+    /// The payment queue communicates with the App Store and presents a user interface so that the user can authorize payment. The contents of the queue are persistent between launches of your app.
+    ///
+    /// To process a payment, first add at least one observer object ([`SKPaymentTransactionObserver`](https://developer.apple.com/documentation/storekit/skpaymenttransactionobserver)) to the queue (see [`addTransactionObserver:`](https://developer.apple.com/documentation/storekit/skpaymentqueue/add(_:)-5ciz2)). Then, add a payment object ([`SKPayment`](https://developer.apple.com/documentation/storekit/skpayment)) for the item the user wants to purchase. Each time you add a payment object, the queue creates a transaction object ([`SKPaymentTransaction`](https://developer.apple.com/documentation/storekit/skpaymenttransaction)) to process that payment and enqueues it to be processed. After payment is fulfilled, the queue updates the transaction object and then calls any observer objects to provide them the updated transaction. Your observer should process the transaction and then remove it from the queue.
+    ///
+    /// The exact mechanism you use to process a processed transaction depends on the design of your app and the product being purchased. Here are a few common examples:
+    ///
+    /// - If the product is a feature already built into your app, your app enables the feature to process the transaction.
+    ///
+    /// - If the product includes downloadable content provided by the App Store, your app retrieves the [`SKDownload`](https://developer.apple.com/documentation/storekit/skdownload) objects from the transaction and ask the payment queue to download them. You provide the actual content files to be served by the App Store to App Store Connect when you create the product information.
+    ///
+    /// - If the product represents downloadable content provided by your own server, your app might open a network connection to your server and download the content from there.
+    ///
+    /// For more information on designing the payment processing portion of your app, see [In-App Purchase Programming Guide](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
@@ -173,7 +191,13 @@ impl SKPaymentQueue {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentqueuedelegate?language=objc)
+    /// The protocol that provides information needed to complete transactions.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol includes a method that lets your app determine whether to continue a transaction if the customer’s App Store storefront changes.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub unsafe trait SKPaymentQueueDelegate: NSObjectProtocol {
         #[cfg(all(feature = "SKPaymentTransaction", feature = "SKStorefront"))]
@@ -198,7 +222,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionobserver?language=objc)
+    /// A set of methods that process transactions, unlock purchased functionality, and continue promoted In-App Purchases.
+    ///
+    /// ## Overview
+    ///
+    /// Observers of [`SKPaymentQueue`](https://developer.apple.com/documentation/storekit/skpaymentqueue) objects implement the methods of this protocol.
+    ///
+    /// The system calls an observer when the queue updates or removes transactions. An observer needs to process all successful transactions, unlock the functionality the user purchases, and then finish the transaction by calling the payment queue’s [`finishTransaction:`](https://developer.apple.com/documentation/storekit/skpaymentqueue/finishtransaction(_:)) method.
+    ///
+    ///
     #[deprecated = "Use StoreKit 2 Transaction APIs"]
     pub unsafe trait SKPaymentTransactionObserver: NSObjectProtocol {
         #[cfg(feature = "SKPaymentTransaction")]

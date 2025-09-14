@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// An object for storing the reference signatures for custom audio recordings and their associated metadata.
     ///
+    /// ## Overview
+    ///
     /// Create a custom catalog by adding reference signatures that you generate from audio that you provide. You also add the associated metadata for each signature. Save your custom catalog and share it with others. You can also load a saved catalog.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shcustomcatalog?language=objc)
+    ///
+    /// An object for storing the reference signatures for custom audio recordings and their associated metadata.
+    ///
+    /// Create a custom catalog by adding reference signatures that you generate from audio that you provide. You also add the associated metadata for each signature. Save your custom catalog and share it with others. You can also load a saved catalog.
     #[unsafe(super(SHCatalog, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SHCatalog")]

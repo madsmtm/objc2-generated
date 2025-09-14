@@ -10,6 +10,30 @@ use crate::*;
 extern_class!(
     /// A class representing the structure of a model.
     ///
+    /// ## Overview
+    ///
+    /// ```text
+    /// // Load the model structure.
+    /// [MLModelStructure loadContentsOfURL:modelURL completionHandler:^(MLModelStructure * _Nullable modelStructure, NSError * _Nullable error) {
+    ///    if (!modelStructure) {
+    ///        // Handle error.
+    ///        return;
+    ///    }
+    ///    if (modelStructure.neuralNetwork) {
+    ///        // Examine Neural network model.
+    ///    } else if (modelStructure.program) {
+    ///        // Examine ML Program model.
+    ///    } else if (modelStructure.pipeline) {
+    ///        // Examine Pipeline model.
+    ///    } else {
+    ///        // The model type is something else.
+    ///    }
+    /// }];
+    /// ```
+    ///
+    ///
+    /// A class representing the structure of a model.
+    ///
     /// ```text
     /// // Load the model structure.
     /// [MLModelStructure loadContentsOfURL:modelURL completionHandler:^(MLModelStructure * _Nullable modelStructure, NSError * _Nullable error) {
@@ -28,8 +52,6 @@ extern_class!(
     /// }
     /// }];
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructure-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructure;

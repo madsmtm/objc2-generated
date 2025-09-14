@@ -14,95 +14,107 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification the system posts when an error occurs during a capture session.
+    ///
+    /// ## Discussion
+    ///
+    /// Retrieve the underlying error from the notification’s user information dictionary using the key [`AVCaptureSessionErrorKey`](https://developer.apple.com/documentation/avfoundation/avcapturesessionerrorkey).
+    ///
+    ///
     /// Posted when an unexpected error occurs while an AVCaptureSession instance is running.
     ///
     ///
     /// The notification object is the AVCaptureSession instance that encountered a runtime error. The userInfo dictionary contains an NSError for the key AVCaptureSessionErrorKey.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/runtimeerrornotification?language=objc)
     pub static AVCaptureSessionRuntimeErrorNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// Key to retrieve the error object from a [`AVCaptureSessionRuntimeErrorNotification`](https://developer.apple.com/documentation/avfoundation/avcapturesession/runtimeerrornotification) user info dictionary.
     /// The key used to provide an NSError describing the failure condition in an AVCaptureSessionRuntimeErrorNotification.
     ///
     ///
     /// AVCaptureSessionErrorKey may be found in the userInfo dictionary provided with an AVCaptureSessionRuntimeErrorNotification. The NSError associated with the notification gives greater detail on the nature of the error, and in some cases recovery suggestions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionerrorkey?language=objc)
     pub static AVCaptureSessionErrorKey: &'static NSString;
 }
 
 extern "C" {
+    /// A notification the system posts when a capture session starts.
     /// Posted when an instance of AVCaptureSession successfully starts running.
     ///
     ///
     /// Clients may observe the AVCaptureSessionDidStartRunningNotification to know when an instance of AVCaptureSession starts running.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/didstartrunningnotification?language=objc)
     pub static AVCaptureSessionDidStartRunningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification the system posts when a capture session stops.
     /// Posted when an instance of AVCaptureSession stops running.
     ///
     ///
     /// Clients may observe the AVCaptureSessionDidStopRunningNotification to know when an instance of AVCaptureSession stops running. An AVCaptureSession instance may stop running automatically due to external system conditions, such as the device going to sleep, or being locked by a user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/didstoprunningnotification?language=objc)
     pub static AVCaptureSessionDidStopRunningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification the system posts when it interrupts a capture session.
+    ///
+    /// ## Discussion
+    ///
+    /// Retrieve the underlying error from the notification’s user information dictionary using the key [`AVCaptureSessionInterruptionReasonKey`](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreasonkey).
+    ///
+    ///
     /// Posted when an instance of AVCaptureSession becomes interrupted.
     ///
     ///
     /// Clients may observe the AVCaptureSessionWasInterruptedNotification to know when an instance of AVCaptureSession has been interrupted, for example, by an incoming phone call, or alarm, or another application taking control of needed hardware resources. When appropriate, the AVCaptureSession instance will stop running automatically in response to an interruption.
     ///
     /// Beginning in iOS 9.0, the AVCaptureSessionWasInterruptedNotification userInfo dictionary contains an AVCaptureSessionInterruptionReasonKey indicating the reason for the interruption.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/wasinterruptednotification?language=objc)
     pub static AVCaptureSessionWasInterruptedNotification: &'static NSNotificationName;
 }
 
+/// Constants identifying the reason a capture session was interrupted, found in an [`AVCaptureSessionWasInterruptedNotification`](https://developer.apple.com/documentation/avfoundation/avcapturesession/wasinterruptednotification) user info dictionary.
 /// Constants indicating interruption reason. One of these is returned with the ``AVCaptureSessionWasInterruptedNotification`` (see ``AVCaptureSessionInterruptionReasonKey``).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureSessionInterruptionReason(pub NSInteger);
 impl AVCaptureSessionInterruptionReason {
-    /// An interruption caused by the app being sent to the background while using a camera. Camera usage is prohibited while in the background. Beginning in iOS 9.0, ``AVCaptureSession`` no longer produces an ``AVCaptureSessionRuntimeErrorNotification`` if you attempt to start running a camera while in the background. Instead, it sends an ``AVCaptureSessionWasInterruptedNotification`` with ``AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground``. Provided you don't explicitly call ``AVCaptureSession/stopRunning``, your ``AVCaptureSession/startRunning`` request is preserved, and when your app comes back to foreground, you receive ``AVCaptureSessionInterruptionEndedNotification`` and your session starts running.
+    /// An interruption caused by the app being sent to the background while using a camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailableinbackground?language=objc)
+    /// ## Discussion
+    ///
+    /// Camera usage is prohibited while in the background. If you attempt to start running a camera while in the background, the capture session sends an [`AVCaptureSessionWasInterruptedNotification`](https://developer.apple.com/documentation/avfoundation/avcapturesession/wasinterruptednotification) with this interruption reason. If you don’t explicitly call the [`stopRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/stoprunning()) method, your [`startRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/startrunning()) request is preserved, and when your app comes back to foreground, you receive [`AVCaptureSessionInterruptionEndedNotification`](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionendednotification) and your session starts running.
+    ///
+    ///
+    /// An interruption caused by the app being sent to the background while using a camera. Camera usage is prohibited while in the background. Beginning in iOS 9.0, ``AVCaptureSession`` no longer produces an ``AVCaptureSessionRuntimeErrorNotification`` if you attempt to start running a camera while in the background. Instead, it sends an ``AVCaptureSessionWasInterruptedNotification`` with ``AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground``. Provided you don't explicitly call ``AVCaptureSession/stopRunning``, your ``AVCaptureSession/startRunning`` request is preserved, and when your app comes back to foreground, you receive ``AVCaptureSessionInterruptionEndedNotification`` and your session starts running.
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableInBackground")]
     pub const VideoDeviceNotAvailableInBackground: Self = Self(1);
+    /// An interruption caused by the audio hardware temporarily being made unavailable (for example, for a phone call or alarm).
     /// An interruption caused by the audio hardware temporarily being made unavailable, for instance, for a phone call, or alarm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/audiodeviceinusebyanotherclient?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient")]
     pub const AudioDeviceInUseByAnotherClient: Self = Self(2);
+    /// An interruption caused by the video device temporarily being made unavailable (for example, when used by another capture session).
     /// An interruption caused by the video device temporarily being made unavailable, for instance, when stolen away by another ``AVCaptureSession``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodeviceinusebyanotherclient?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient")]
     pub const VideoDeviceInUseByAnotherClient: Self = Self(3);
-    /// An interruption caused when the app is running in a multi-app layout, causing resource contention and degraded recording quality of service. Given your present ``AVCaptureSession`` configuration, the session may only be run if your app occupies the full screen.
+    /// An interruption caused when your app is running in Slide Over, Split View, or Picture in Picture mode on iPad.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailablewithmultipleforegroundapps?language=objc)
+    /// ## Discussion
+    ///
+    /// If your capture session configuration disallows accessing the camera while multitasking, the system interrupts it with this reason when a user switches to a multitasking mode like Split View. The system doesn’t interrupt your capture session with this reason if [`multitaskingCameraAccessEnabled`](https://developer.apple.com/documentation/avfoundation/avcapturesession/ismultitaskingcameraaccessenabled) is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
+    /// An interruption caused when the app is running in a multi-app layout, causing resource contention and degraded recording quality of service. Given your present ``AVCaptureSession`` configuration, the session may only be run if your app occupies the full screen.
     #[doc(
         alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps"
     )]
     pub const VideoDeviceNotAvailableWithMultipleForegroundApps: Self = Self(4);
+    /// An interruption due to system pressure, such as thermal duress.
     /// An interruption caused by the video device temporarily being made unavailable due to system pressure, such as thermal duress. See ``AVCaptureDevice/systemPressureState`` for more information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailableduetosystempressure?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure")]
     pub const VideoDeviceNotAvailableDueToSystemPressure: Self = Self(5);
+    /// An interruption caused by a `SCVideoStreamAnalyzer` when it detects sensitive content on an associated [`AVCaptureDeviceInput`](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinput).  To resume your capture session, call your analyzer’s `SCVideoStreamAnalyzer/continueStream` method.
     /// An interruption caused by a ``SCVideoStreamAnalyzer`` when it detects sensitive content on an associated ``AVCaptureDeviceInput``.  To resume your capture session, call your analyzer's ``SCVideoStreamAnalyzer/continueStream`` method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/sensitivecontentmitigationactivated?language=objc)
     #[doc(alias = "AVCaptureSessionInterruptionReasonSensitiveContentMitigationActivated")]
     pub const SensitiveContentMitigationActivated: Self = Self(6);
 }
@@ -116,35 +128,51 @@ unsafe impl RefEncode for AVCaptureSessionInterruptionReason {
 }
 
 extern "C" {
+    /// Key to retrieve information about a capture interruption from a [`AVCaptureSessionWasInterruptedNotification`](https://developer.apple.com/documentation/avfoundation/avcapturesession/wasinterruptednotification) user info dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a [`AVCaptureSessionInterruptionReason`](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason) value.
+    ///
+    ///
     /// The key used to provide an NSNumber describing the interruption reason in an AVCaptureSessionWasInterruptedNotification.
     ///
     ///
     /// AVCaptureSessionInterruptionReasonKey may be found in the userInfo dictionary provided with an AVCaptureSessionWasInterruptedNotification. The NSNumber associated with the notification tells you why the interruption occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreasonkey?language=objc)
     pub static AVCaptureSessionInterruptionReasonKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key to retrieve a state value that indicates the system pressure level and contributing factors that caused the interruption.
+    ///
+    /// ## Discussion
+    ///
+    /// If an interruption occurs and the value of [`AVCaptureSessionInterruptionReasonKey`](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreasonkey) equals [`AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure`](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason/videodevicenotavailableduetosystempressure), the [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary for the notification contains this key and a corresponding [`AVCaptureSystemPressureState`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class) value.
+    ///
+    ///
     /// The key used to provide an AVCaptureSystemPressureState indicating the system pressure level and contributing factors that caused the interruption.
     ///
     ///
     /// This key is only present when the AVCaptureSessionInterruptionReasonKey equals AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableDueToSystemPressure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionsystempressurestatekey?language=objc)
     pub static AVCaptureSessionInterruptionSystemPressureStateKey: &'static NSString;
 }
 
 extern "C" {
+    /// A notification the system posts when an interruption to a capture session finishes.
     /// Posted when an instance of AVCaptureSession ceases to be interrupted.
     ///
     ///
     /// Clients may observe the AVCaptureSessionInterruptionEndedNotification to know when an instance of AVCaptureSession ceases to be interrupted, for example, when a phone call ends, and hardware resources needed to run the session are again available. When appropriate, the AVCaptureSession instance that was previously stopped in response to an interruption will automatically restart once the interruption ends.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionendednotification?language=objc)
     pub static AVCaptureSessionInterruptionEndedNotification: &'static NSNotificationName;
 }
 
+/// Constants indicating video orientation.
+///
+/// ## Overview
+///
+/// You can set these constants to [`videoOrientation`](https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videoorientation) for a connection that has an [`AVCaptureVideoPreviewLayer`](https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer) output.
+///
+///
 /// Constants indicating video orientation, for use with AVCaptureVideoPreviewLayer (see AVCaptureVideoPreviewLayer.h) and AVCaptureConnection (see below).
 ///
 ///
@@ -155,27 +183,25 @@ extern "C" {
 /// Indicates that video should be oriented horizontally, home button on the right.
 ///
 /// Indicates that video should be oriented horizontally, home button on the left.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation?language=objc)
 // NS_ENUM
 #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVCaptureVideoOrientation(pub NSInteger);
 impl AVCaptureVideoOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/portrait?language=objc)
+    /// Indicates that video should be oriented vertically, top at the top.
     #[doc(alias = "AVCaptureVideoOrientationPortrait")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const Portrait: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/portraitupsidedown?language=objc)
+    /// Indicates that video should be oriented vertically, top at the bottom.
     #[doc(alias = "AVCaptureVideoOrientationPortraitUpsideDown")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const PortraitUpsideDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/landscaperight?language=objc)
+    /// Indicates that video should be oriented horizontally, top on the left.
     #[doc(alias = "AVCaptureVideoOrientationLandscapeRight")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideoorientation/landscapeleft?language=objc)
+    /// Indicates that video should be oriented horizontally, top on the right.
     #[doc(alias = "AVCaptureVideoOrientationLandscapeLeft")]
     #[deprecated = "Use AVCaptureDeviceRotationCoordinator instead"]
     pub const LandscapeLeft: Self = Self(4);
@@ -190,12 +216,48 @@ unsafe impl RefEncode for AVCaptureVideoOrientation {
 }
 
 extern_class!(
+    /// An object that configures capture behavior and coordinates the flow of data from input devices to capture outputs.
+    ///
+    /// ## Overview
+    ///
+    /// To perform real-time capture, you instantiate a capture session and add appropriate inputs and outputs. The following code fragment illustrates how to configure a capture device to record audio.
+    ///
+    /// ```swift
+    /// // Create the capture session.
+    /// let captureSession = AVCaptureSession()
+    ///
+    /// // Find the default audio device.
+    /// guard let audioDevice = AVCaptureDevice.default(for: .audio) else { return }
+    ///
+    /// do {
+    ///     // Wrap the audio device in a capture device input.
+    ///     let audioInput = try AVCaptureDeviceInput(device: audioDevice)
+    ///     // If the input can be added, add it to the session.
+    ///     if captureSession.canAddInput(audioInput) {
+    ///         captureSession.addInput(audioInput)
+    ///     }
+    /// } catch {
+    ///     // Configuration failed. Handle error.
+    /// }
+    /// ```
+    ///
+    /// Call the [`startRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/startrunning()) method to start the flow of data from the inputs to the outputs, and call the [`stopRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/stoprunning()) method to stop the flow.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`startRunning`](https://developer.apple.com/documentation/avfoundation/avcapturesession/startrunning()) method is a blocking call which can take some time, therefore start the session on a serial dispatch queue so that you don’t block the main queue (which keeps the UI responsive). See [AVCam: Building a camera app](https://developer.apple.com/documentation/avfoundation/avcam-building-a-camera-app) for an implementation example.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You use the [`sessionPreset`](https://developer.apple.com/documentation/avfoundation/avcapturesession/sessionpreset) property to customize the quality level, bitrate, or other settings for the output. Most common capture configurations are available through session presets; however, some specialized options (such as high frame rate) require directly setting a capture format on an [`AVCaptureDevice`](https://developer.apple.com/documentation/avfoundation/avcapturedevice) instance.
+    ///
+    ///
     /// AVCaptureSession is the central hub of the AVFoundation capture classes.
     ///
     ///
     /// To perform a real-time capture, a client may instantiate AVCaptureSession and add appropriate AVCaptureInputs, such as AVCaptureDeviceInput, and outputs, such as AVCaptureMovieFileOutput. [AVCaptureSession startRunning] starts the flow of data from the inputs to the outputs, and [AVCaptureSession stopRunning] stops the flow. A client may set the sessionPreset property to customize the quality level or bitrate of the output.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSession;
@@ -837,9 +899,8 @@ impl AVCaptureSession {
 }
 
 extern_protocol!(
+    /// A protocol that defines the interface to respond to capture control activation and presentation events.
     /// Defines an interface for delegates of `AVCaptureSession` to receive events about the session's controls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioncontrolsdelegate?language=objc)
     pub unsafe trait AVCaptureSessionControlsDelegate: NSObjectProtocol {
         /// Called when the controls of an `AVCaptureSession` instance become active and are available for interaction.
         ///
@@ -888,9 +949,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that defines the interface to respond to events about a capture session’s deferred start.
     /// Defines an interface for delegates of the capture session to receive events about the session's deferred start.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondeferredstartdelegate?language=objc)
     pub unsafe trait AVCaptureSessionDeferredStartDelegate: NSObjectProtocol {
         /// This method gets called by the session when deferred start is about to run.
         ///
@@ -911,6 +971,23 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A capture session that supports simultaneous capture from multiple inputs of the same media type.
+    ///
+    /// ## Overview
+    ///
+    /// The session preset for a multicamera session is always [`AVCaptureSessionPresetInputPriority`](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/inputpriority). Set each capture device’s [`activeFormat`](https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat) value to the desired quality of service.
+    ///
+    /// You can dynamically enable and disable this session’s individual camera inputs without interrupting capture preview. To stop an individual camera, disable all of its connections or connected ports. The camera then stops streaming data to save power and bandwidth. Other inputs that are streaming data through the session are unaffected.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your app only needs to capture from a single camera at a time, use [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A subclass of AVCaptureSession which supports simultaneous capture from multiple inputs of the same media type.
     ///
     ///
@@ -919,8 +996,6 @@ extern_class!(
     /// AVCaptureMultiCamSession supports dynamic enabling and disabling of individual camera inputs without interrupting preview. In order to stop an individual camera input, set the enabled property on all of its connections or connected ports to NO. When the last active connection or port is disabled, the source camera stops streaming to save power and bandwidth. Other inputs streaming data through the session are unaffected.
     ///
     /// Prior to iOS 26, AVCaptureMultiCamSession requires all input devices to have an activeFormat where multiCamSupported returns YES. In applications linked on or after iOS 26, this requirement is not enforced when only a single input device is used.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession?language=objc)
     #[unsafe(super(AVCaptureSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureMultiCamSession;
@@ -978,6 +1053,13 @@ impl AVCaptureMultiCamSession {
     );
 }
 
+/// Constants that indicate which interlacing modes the connection applies to video flowing through it.
+///
+/// ## Overview
+///
+/// The values apply to the [`videoFieldMode`](https://developer.apple.com/documentation/avfoundation/avcaptureconnection/videofieldmode) property.
+///
+///
 /// Constants indicating video field mode, for use with AVCaptureConnection's videoFieldMode property (see below).
 ///
 ///
@@ -988,23 +1070,21 @@ impl AVCaptureMultiCamSession {
 /// Indicates that the bottom video field only in interlaced content should be passed thru.
 ///
 /// Indicates that top and bottom video fields in interlaced content should be deinterlaced.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFieldMode(pub NSInteger);
 impl AVVideoFieldMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/both?language=objc)
+    /// A value that indicates that a video connection passes both the top and bottom video fields.
     #[doc(alias = "AVVideoFieldModeBoth")]
     pub const Both: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/toponly?language=objc)
+    /// A value that indicates that a video connection only passes the top video field.
     #[doc(alias = "AVVideoFieldModeTopOnly")]
     pub const TopOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/bottomonly?language=objc)
+    /// A value that indicates that a video connection only passes the bottom video field.
     #[doc(alias = "AVVideoFieldModeBottomOnly")]
     pub const BottomOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode/deinterlace?language=objc)
+    /// A value that indicates that a video connection deinterlaces the top and bottom video fields.
     #[doc(alias = "AVVideoFieldModeDeinterlace")]
     pub const Deinterlace: Self = Self(3);
 }
@@ -1018,6 +1098,15 @@ unsafe impl RefEncode for AVVideoFieldMode {
 }
 
 extern_class!(
+    /// An object that represents a connection from a capture input to a capture output.
+    ///
+    /// ## Overview
+    ///
+    /// Capture inputs have one or more input ports (instances of [`AVCaptureInputPort`](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port)). Capture outputs can accept data from one or more sources (for example, an [`AVCaptureMovieFileOutput`](https://developer.apple.com/documentation/avfoundation/avcapturemoviefileoutput) object accepts both video and audio data).
+    ///
+    /// You can add an `AVCaptureConnection` instance to a session using the [`addConnection:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/addconnection(_:)) method only if the [`canAddConnection:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/canaddconnection(_:)) method returns [`true`](https://developer.apple.com/documentation/swift/true). When using the [`addInput:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/addinput(_:)) or [`addOutput:`](https://developer.apple.com/documentation/avfoundation/avcapturesession/addoutput(_:)) method, the session forms connections automatically between all compatible inputs and outputs. You only need to add connections manually when adding an input or output with no connections. You can also use connections to enable or disable the flow of data from a given input or to a given output.
+    ///
+    ///
     /// AVCaptureConnection represents a connection between an AVCaptureInputPort or ports, and an AVCaptureOutput or AVCaptureVideoPreviewLayer present in an AVCaptureSession.
     ///
     ///
@@ -1026,8 +1115,6 @@ extern_class!(
     /// Connections involving audio expose an array of AVCaptureAudioChannel objects, which can be used for monitoring levels.
     ///
     /// Connections involving video expose video specific properties, such as videoMirrored and videoRotationAngle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureConnection;
@@ -1493,12 +1580,17 @@ impl AVCaptureConnection {
 }
 
 extern_class!(
+    /// An object that monitors average and peak power levels for an audio channel in a capture connection.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, an [`AVCaptureConnection`](https://developer.apple.com/documentation/avfoundation/avcaptureconnection) object that connects an audio input to an audio output provides an array of [`AVCaptureAudioChannel`](https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel) objects, one for each channel of audio available. You can poll for audio levels by iterating through these audio channel objects.
+    ///
+    ///
     /// AVCaptureAudioChannel represents a single channel of audio flowing through an AVCaptureSession.
     ///
     ///
     /// An AVCaptureConnection from an input producing audio to an output receiving audio exposes an array of AVCaptureAudioChannel objects, one for each channel of audio available. Iterating through these audio channel objects, a client may poll for audio levels. Instances of AVCaptureAudioChannel cannot be created directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiochannel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureAudioChannel;

@@ -7,6 +7,21 @@ use crate::*;
 
 #[cfg(feature = "SCDynamicStore")]
 impl SCDynamicStore {
+    /// Creates a dynamic store key that can be used to access a specific global (as opposed to a per-service or per-interface) network configuration entity.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - domain: The desired domain, such as the requested configuration or the current state.
+    ///
+    /// - entity: The specific global entity, such as IPv4 or DNS.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the formatted key.
+    ///
+    ///
     /// Creates a dynamic store key that can be used to access
     /// a specific global (as opposed to a per-service or per-interface)
     /// network configuration entity.
@@ -25,8 +40,6 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkglobalentity(_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkGlobalEntity")]
     #[inline]
     pub fn key_create_network_global_entity(
@@ -47,6 +60,19 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a dynamic store key that can be used to access the network interface configuration information in the dynamic store.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - domain: The desired domain, such as the requested configuration or the current state.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the formatted key.
+    ///
+    ///
     /// Creates a dynamic store key that can be used to access
     /// the network interface configuration information stored in
     /// the dynamic store.
@@ -62,8 +88,6 @@ impl SCDynamicStore {
     /// actual state (kSCDynamicStoreDomainState).
     ///
     /// Returns: Returns a string containing the formatted key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkinterface(_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterface")]
     #[inline]
     pub fn key_create_network_interface(
@@ -82,6 +106,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a dynamic store key that can be used to access the per-interface network configuration information in the dynamic store.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - domain: The desired domain, such as the requested configuration or the current state.
+    ///
+    /// - ifname: The interface name or a regular expression pattern.
+    ///
+    /// - entity: The specific global entity, such as IPv4 or DNS.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the formatted key.
+    ///
+    ///
     /// Creates a dynamic store key that can be used to access
     /// the per-interface network configuration information stored in
     /// the dynamic store.
@@ -103,8 +144,6 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkinterfaceentity(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkInterfaceEntity")]
     #[inline]
     pub fn key_create_network_interface_entity(
@@ -129,6 +168,17 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a dynamic store key that can be used to access the per-service network configuration information.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    /// - domain: The desired domain, such as the requested configuration or the current state.
+    ///
+    /// - serviceID: The service ID or a regular expression pattern.
+    ///
+    /// - entity: The specific global entity, such as IPv4 or DNS.
+    ///
     /// Creates a dynamic store key that can be used to access
     /// the per-service network configuration information stored in
     /// the dynamic store.
@@ -150,8 +200,6 @@ impl SCDynamicStore {
     /// as IPv4 (kSCEntNetIPv4) or DNS (kSCEntNetDNS).
     ///
     /// Returns: Returns a string containing the formatted key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatenetworkserviceentity(_:_:_:_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateNetworkServiceEntity")]
     #[inline]
     pub fn key_create_network_service_entity(
@@ -176,6 +224,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a key that can be used to receive notifications when the current computer name changes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A notification string for the current computer or host name.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with the [`SCDynamicStoreSetNotificationKeys`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)) function.
+    ///
+    ///
     /// Creates a key that can be used in conjuntion with
     /// SCDynamicStoreSetNotificationKeys function to receive
     /// notifications when the current computer name changes.
@@ -188,8 +253,6 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current computer or
     /// host name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatecomputername(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateComputerName")]
     #[inline]
     pub fn key_create_computer_name(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -204,6 +267,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a key that can be used to receive notifications when the current console user changes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A notification string for the current console user.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with the [`SCDynamicStoreSetNotificationKeys`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)) function.
+    ///
+    ///
     /// Creates a key that can be used in conjunction with
     /// SCDynamicStoreSetNotificationKeys function to receive
     /// notifications when the current console user changes.
@@ -215,8 +295,6 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current console user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreateconsoleuser(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateConsoleUser")]
     #[inline]
     pub fn key_create_console_user(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -231,6 +309,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a key that can be used to receive notifications when the `HostNames` entity changes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A notification string for the `HostNames` entity.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with the [`SCDynamicStoreSetNotificationKeys`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)) function. Note that the `HostNames` entity includes the local host name.
+    ///
+    ///
     /// Creates a key that can be used in conjunction with the
     /// SCDynamicStoreSetNotificationKeys function to receive
     /// notifications when the HostNames entity changes.  The
@@ -243,8 +338,6 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the HostNames entity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatehostnames(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateHostNames")]
     #[inline]
     pub fn key_create_host_names(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -259,6 +352,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a key that can be used to receive notifications when the location identifier changes.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A notification string for the current location identifier.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with the [`SCDynamicStoreSetNotificationKeys`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)) function.
+    ///
+    ///
     /// Creates a key that can be used in conjunction with the
     /// SCDynamicStoreSetNotificationKeys function to receive
     /// notifications when the location identifier changes.
@@ -271,8 +381,6 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns a notification string for the current location
     /// identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreatelocation(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateLocation")]
     #[inline]
     pub fn key_create_location(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {
@@ -287,6 +395,23 @@ impl SCDynamicStore {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates a key that can be used to receive notifications when the current network proxy settings are changed.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator that should be used to allocate memory for this key. This parameter may be `NULL` in which case the current default allocator is used. If this value is not a valid [`CFAllocatorRef`](https://developer.apple.com/documentation/corefoundation/cfallocator), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A notification string for the current proxy settings.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key with the [`SCDynamicStoreSetNotificationKeys`](https://developer.apple.com/documentation/systemconfiguration/scdynamicstoresetnotificationkeys(_:_:_:)) function.
+    ///
+    ///
     /// Creates a key that can be used in conjunction with
     /// the SCDynamicStoreSetNotificationKeys function to receive
     /// notifications when the current network proxy settings
@@ -299,8 +424,6 @@ impl SCDynamicStore {
     /// a valid CFAllocator, the behavior is undefined.
     ///
     /// Returns: Returns a notification string for the current proxy settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scdynamicstorekeycreateproxies(_:)?language=objc)
     #[doc(alias = "SCDynamicStoreKeyCreateProxies")]
     #[inline]
     pub fn key_create_proxies(allocator: Option<&CFAllocator>) -> CFRetained<CFString> {

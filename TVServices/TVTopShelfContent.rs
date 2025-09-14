@@ -5,6 +5,12 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcontent?language=objc)
+    /// The protocol that objects adopt to provide content for the top shelf.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t adopt this protocol in your own classes. The TVServices framework adopts this protocol in classes that can contain top shelf content, such as the [`TVTopShelfCarouselContent`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent) class.
+    ///
+    ///
     pub unsafe trait TVTopShelfContent: NSObjectProtocol {}
 );

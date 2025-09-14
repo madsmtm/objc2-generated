@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply?language=objc)
+/// Constants that indicate the preference pane’s availability to be deselected.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPreferencePaneUnselectReply(pub NSUInteger);
 impl NSPreferencePaneUnselectReply {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectcancel?language=objc)
+    /// Cancel the deselection.
     #[doc(alias = "NSUnselectCancel")]
     pub const UnselectCancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectnow?language=objc)
+    /// Continue the deselection.
     #[doc(alias = "NSUnselectNow")]
     pub const UnselectNow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectlater?language=objc)
+    /// Delay the deselection until the preference pane invokes [`replyToShouldUnselect:`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/reply(toshouldunselect:)).
     #[doc(alias = "NSUnselectLater")]
     pub const UnselectLater: Self = Self(2);
 }
@@ -35,47 +35,77 @@ unsafe impl RefEncode for NSPreferencePaneUnselectReply {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepanedounselectnotification?language=objc)
+    /// Notifies observers that the preference pane may be deselected.
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when [`reply(toShouldUnselect:)`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/reply(toshouldunselect:)) is invoked with an argument of [`true`](https://developer.apple.com/documentation/swift/true) after [`shouldUnselect`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/shouldunselect) has returned a value of [`NSPreferencePaneUnselectReply.unselectLater`](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectlater).
+    ///
+    ///
     pub static NSPreferencePaneDoUnselectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepanecancelunselectnotification?language=objc)
+    /// Notifies observers that the preference pane should not be deselected.
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when [`reply(toShouldUnselect:)`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/reply(toshouldunselect:)) is invoked with an argument of [`false`](https://developer.apple.com/documentation/swift/false) after [`shouldUnselect`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/shouldunselect) has returned a value of [`NSPreferencePaneUnselectReply.unselectLater`](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneunselectreply/unselectlater).
+    ///
+    ///
     pub static NSPreferencePaneCancelUnselectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneswitchtopanenotification?language=objc)
+    /// Notifies observers that the user selected a new preference pane.
     pub static NSPreferencePaneSwitchToPaneNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferenceprefpaneisavailablenotification?language=objc)
+    /// Notifies observers that the system preferences app is available to display your preferences.
     pub static NSPreferencePrefPaneIsAvailableNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepaneupdatehelpmenunotification?language=objc)
+    /// Notifies observers that your help menu content changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is an array of dictionaries containing the new help menu contents.
+    ///
+    ///
     pub static NSPreferencePaneUpdateHelpMenuNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nsprefpanehelpmenuinfoplistkey?language=objc)
+    /// The global help menu items associated with a preference pane.
     pub static NSPrefPaneHelpMenuInfoPListKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nsprefpanehelpmenutitlekey?language=objc)
+    /// The title of a help menu item in a preference pane.
     pub static NSPrefPaneHelpMenuTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nsprefpanehelpmenuanchorkey?language=objc)
+    /// The help book anchor to display.
     pub static NSPrefPaneHelpMenuAnchorKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/preferencepanes/nspreferencepane?language=objc)
+    /// The interface for providing preference panes to System Preferences or other apps.
+    ///
+    /// ## Overview
+    ///
+    /// Preference panes are subclasses of [`NSPreferencePane`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane), packaged up in bundles and loaded by a preference application, such as System Preferences. These bundles have a suffix of `.prefPane`. Bundles intended for use by System Preferences are located in the `Library/PreferencePanes` directories of the various file system domains. See the chapter [About the macOS File System](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW14) in [File System Programming Guide](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672) for information about domains.
+    ///
+    /// The preference pane bundle normally contains a nib file with the user interface for modifying user preferences. The nib file contains a window assigned to the _window outlet of the preference pane instance (the nib’s File’s Owner). The `NSPreferencePane` implementation of [`loadMainView`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/loadmainview()), invoked by the preference application, loads the nib file and uses the content view of _window as the preference pane’s main view. Override this method if you need a different technique for creating the user interface.
+    ///
+    /// The [`NSPreferencePane`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane) subclass is responsible for initializing the user interface with the current preference settings and recording any modifications the user makes. Through a series of `will...`, `did...`, and `should...` methods, the preference application notifies the preference pane when the pane is selected (displayed) and deselected, allowing the pane to perform the necessary actions at the appropriate times. Implement these methods (and any additional target-action methods connected to the interface) as needed to produce the desired behavior for your preference pane.
+    ///
+    /// Preference panes support Help menu items. Specify global help menu items in your bundle’s `Info.plist` file under the `NSPrefPaneHelpAnchors` key. To add dynamic help items, implement the [`updateHelpMenuWithArray:`](https://developer.apple.com/documentation/preferencepanes/nspreferencepane/updatehelpmenu(with:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPreferencePane;

@@ -19,6 +19,13 @@ unsafe impl RefEncode for cp_view_texture_map {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_view_texture_map", &[]));
 }
 
+/// A type that provides details about the textures associated with a view.
+///
+/// ## Discussion
+///
+/// A texture map helps you locate the content for a specific view within a texture. Texture maps are especially important when a layer uses a single texture to manage multiple views. For example, a head-mounted display might store the images for both the left and right eyes in a single texture. Pass this type to other functions to get specific details about the current texture, such as its view bounds or its index into a texture array.
+///
+///
 /// An opaque type that describes the relationship between a
 /// view and the underlying texture.
 ///
@@ -29,11 +36,36 @@ unsafe impl RefEncode for cp_view_texture_map {
 /// single texture. Pass this type to other functions to get specific details
 /// about the current texture, such as its view bounds or its index into
 /// a texture array.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_texture_map_t?language=objc)
 pub type cp_view_texture_map_t = *mut cp_view_texture_map;
 
 impl cp_view_texture_map {
+    /// The index of the view’s textures in the drawable.
+    ///
+    /// Parameters:
+    /// - view_texture_map: The texture map for the view.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The index of the color or depth texture in the drawable.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Compositor Services places the color and depth textures for this view at same index number in the drawable. Use the returned index to the [`colorTextures`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/colortextures) or [`depthTextures`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/depthtextures) properties to retrieve the appropriate texture.
+    ///
+    /// Compositor Services places the color and depth textures for this view at same index number in the drawable. In Swift, the index applies to the [`colorTextures`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/colortextures)and [`depthTextures`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/depthtextures) properties. In ObjectiveC, the index applies to the [`cp_drawable_get_color_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_color_texture) and [`cp_drawable_get_depth_texture`](https://developer.apple.com/documentation/compositorservices/cp_drawable_get_depth_texture) functions.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you draw with array-based textures, retrieve and apply the index from [`cp_view_texture_map_get_slice_index`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/sliceindex) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the index of the view’s textures in the drawable.
     ///
     /// - Parameters:
@@ -46,8 +78,6 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/textureindex?language=objc)
     #[doc(alias = "cp_view_texture_map_get_texture_index")]
     #[inline]
     pub unsafe fn texture_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -59,6 +89,25 @@ impl cp_view_texture_map {
         unsafe { cp_view_texture_map_get_texture_index(view_texture_map) }
     }
 
+    /// The index of the view’s texture in an array-based texture type.
+    ///
+    /// Parameters:
+    /// - view_texture_map: The texture map for the view.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The index of the color or depth texture in an array-based texture type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the returned index to retrieve the view’s texture when the texture type is [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray). When configuring your render pass descriptor, specify the index in the [`slice`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor/slice) property of the descriptor’s color and depth attachments.
+    ///
+    /// If you don’t use array-based textures for drawing, fetch the index using [`cp_view_texture_map_get_texture_index`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/textureindex) instead.
+    ///
+    ///
     /// Returns the index of the view’s texture in an array-based texture type.
     ///
     /// - Parameters:
@@ -80,8 +129,6 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/sliceindex?language=objc)
     #[doc(alias = "cp_view_texture_map_get_slice_index")]
     #[inline]
     pub unsafe fn slice_index(view_texture_map: cp_view_texture_map_t) -> usize {
@@ -93,6 +140,23 @@ impl cp_view_texture_map {
         unsafe { cp_view_texture_map_get_slice_index(view_texture_map) }
     }
 
+    /// The portion of the texture that the view uses to draw its content.
+    ///
+    /// Parameters:
+    /// - view_texture_map: The texture map for a view. Get this by calling the [`cp_view_get_view_texture_map`](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.property) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Metal viewport that specifies the view’s size and location in the texture.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This retrieves the size of the view and its location within the texture. If the layer dedicates a separate texture to each view, the texture bounds and view bounds match. However, if the layer uses a shared or layered texture, the view’s location or other slice index might differ.
+    ///
+    ///
     /// Returns the portion of the texture that the view uses to draw its content.
     ///
     /// - Parameters:
@@ -109,8 +173,6 @@ impl cp_view_texture_map {
     /// # Safety
     ///
     /// `view_texture_map` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.struct/viewport?language=objc)
     #[doc(alias = "cp_view_texture_map_get_viewport")]
     #[cfg(feature = "objc2-metal")]
     #[inline]
@@ -135,6 +197,13 @@ unsafe impl RefEncode for cp_view {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("cp_view", &[]));
 }
 
+/// A type that provides information on how to render content into the frame’s textures.
+///
+/// ## Discussion
+///
+/// Compositor Services provides a view for each distinct render viewpoint. For example, a head-mounted display typically contains two views: one for each eye. Use the information in the views to set up your render pass descriptor, or to determine which part of a texture to fill with content.
+///
+///
 /// An opaque type that manages the information for how to render
 /// content into the current frame.
 ///
@@ -143,11 +212,26 @@ unsafe impl RefEncode for cp_view {
 /// one for each eye. Use the information in the views to set up your
 /// render pass descriptor. For example, use it to determine which
 /// part of a texture to fill with content.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_t?language=objc)
 pub type cp_view_t = *mut cp_view;
 
 impl cp_view {
+    /// The texture map for a view.
+    ///
+    /// Parameters:
+    /// - view: A view associated with your drawable.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The texture map assigned to the specified view.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the texture map to fetch additional information you need to draw your content. For example, use it to fetch the rectangle that defines the view’s content area.
+    ///
+    ///
     /// Returns the texture map for this view.
     ///
     /// - Parameters:
@@ -161,8 +245,6 @@ impl cp_view {
     /// # Safety
     ///
     /// `view` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/view/texturemap-swift.property?language=objc)
     #[doc(alias = "cp_view_get_view_texture_map")]
     #[inline]
     pub unsafe fn view_texture_map(view: cp_view_t) -> cp_view_texture_map_t {

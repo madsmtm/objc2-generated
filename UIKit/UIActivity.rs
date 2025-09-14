@@ -7,120 +7,225 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct?language=objc)
+/// A structure that describes the types of activities for which the system has built-in support.
+///
+/// ## Overview
+///
+/// These constants represent the values that can be stored in the [`activityType`](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.property) property of system-defined activity objects.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttofacebook?language=objc)
+    /// A type of activity that posts the provided content to the user’s wall on Facebook.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypePostToFacebook: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttotwitter?language=objc)
+    /// A type of activity that posts the provided content to the user’s Twitter feed.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypePostToTwitter: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttoweibo?language=objc)
+    /// A type of activity that posts the provided content to the user’s Weibo feed.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypePostToWeibo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/message?language=objc)
+    /// A type of activity that posts the provided content to the Messages app.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) objects as data for the activity items. You may also specify [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects whose contents use the `sms` scheme.
+    ///
+    /// If the device has MMS or FaceTime enabled, you can provide [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items.
+    ///
+    /// To specify an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object, you must implement the [`UIActivityItemSource`](https://developer.apple.com/documentation/uikit/uiactivityitemsource) protocol, return the data object in [`activityViewController:itemForActivityType:`](https://developer.apple.com/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:itemforactivitytype:)), and return the data object’s UTI in [`activityViewController:dataTypeIdentifierForActivityType:`](https://developer.apple.com/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:datatypeidentifierforactivitytype:)).
+    ///
+    ///
     pub static UIActivityTypeMessage: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/mail?language=objc)
+    /// A type of activity that posts the provided content to a new email message.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) objects and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects pointing to local files as data for the activity items.
+    ///
+    /// To specify an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object, you must implement the [`UIActivityItemSource`](https://developer.apple.com/documentation/uikit/uiactivityitemsource) protocol, return the data object in [`activityViewController:itemForActivityType:`](https://developer.apple.com/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:itemforactivitytype:)), and return the data object’s UTI in [`activityViewController:dataTypeIdentifierForActivityType:`](https://developer.apple.com/documentation/uikit/uiactivityitemsource/activityviewcontroller(_:datatypeidentifierforactivitytype:)). Also, you may need to register the appropriate mapping so that the MIME type can be determined.
+    ///
+    ///
     pub static UIActivityTypeMail: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/print?language=objc)
+    /// A type of activity that prints the provided content.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) and [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects pointing to local files as data for the activity items. You can also provide [`UIPrintPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintpagerenderer), [`UIPrintFormatter`](https://developer.apple.com/documentation/uikit/uiprintformatter), and [`UIPrintInfo`](https://developer.apple.com/documentation/uikit/uiprintinfo) objects.
+    ///
+    ///
     pub static UIActivityTypePrint: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/copytopasteboard?language=objc)
+    /// A type of activity that posts the provided content to the pasteboard.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl), [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor), and [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypeCopyToPasteboard: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/assigntocontact?language=objc)
+    /// A type of activity that assigns the image to a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypeAssignToContact: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/savetocameraroll?language=objc)
+    /// A type of activity that assigns the image or video to the user’s camera roll.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object as data for image-based activity items. For image and video items, you can provide an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object with a path to the video.
+    ///
+    ///
     pub static UIActivityTypeSaveToCameraRoll: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/addtoreadinglist?language=objc)
+    /// A type of activity that adds the URL to Safari’s reading list.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object whose contents uses the `http` or `https` scheme that points to the page to add.
+    ///
+    ///
     pub static UIActivityTypeAddToReadingList: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttoflickr?language=objc)
+    /// A type of activity that posts the provided image to the user’s Flickr account.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects whose contents use the file scheme and point to an image. You can also use [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects whose contents are image data as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypePostToFlickr: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttovimeo?language=objc)
+    /// A type of activity that posts the provided video to the user’s Vimeo account.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide data from [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) whose contents use the file scheme and point to a video. You can use [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects whose contents are video data as data for the activty items.
+    ///
+    ///
     pub static UIActivityTypePostToVimeo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttotencentweibo?language=objc)
+    /// A type of activity that posts the provided content to the user’s Tencent Weibo feed.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items.
+    ///
+    ///
     pub static UIActivityTypePostToTencentWeibo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/airdrop?language=objc)
+    /// A type of activity that makes the provided content available through AirDrop.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can provide [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring), [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage), and [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects as data for the activity items. You may also provide [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) or [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects that contain the listed data types.
+    ///
+    ///
     pub static UIActivityTypeAirDrop: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/openinibooks?language=objc)
+    /// A type of activity that opens the content in iBooks.
     pub static UIActivityTypeOpenInIBooks: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/markupaspdf?language=objc)
+    /// A type of activity that marks up the provided content as a PDF file.
     pub static UIActivityTypeMarkupAsPDF: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/shareplay?language=objc)
+    /// A type of activity that makes the provided content available through SharePlay.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this service, you can use [`registerGroupActivity(_:)`](https://developer.apple.com/documentation/foundation/nsitemprovider/registergroupactivity(_:)) to provide an [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) with a [`GroupActivity`](https://developer.apple.com/documentation/groupactivities/groupactivity) object as an activity item. If no `GroupActivity` object is provided, the service will start a FaceTime call without an accompanying SharePlay session.
+    ///
+    ///
     pub static UIActivityTypeSharePlay: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/collaborationinvitewithlink?language=objc)
     pub static UIActivityTypeCollaborationInviteWithLink: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/collaborationcopylink?language=objc)
     pub static UIActivityTypeCollaborationCopyLink: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/addtohomescreen?language=objc)
     pub static UIActivityTypeAddToHomeScreen: &'static UIActivityType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category?language=objc)
+/// An enumeration that defines categories of activities.
+///
+/// ## Overview
+///
+/// Activities have a defined category, and the activity UI may show activities grouped by category.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActivityCategory(pub NSInteger);
 impl UIActivityCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category/action?language=objc)
+    /// Activities whose primary purpose is to take an action on the selected item, like copying an image or saving it to the camera roll.
     #[doc(alias = "UIActivityCategoryAction")]
     pub const Action: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category/share?language=objc)
+    /// Activities whose primary purpose is to share the selected item, like sending an image by email.
     #[doc(alias = "UIActivityCategoryShare")]
     pub const Share: Self = Self(1);
 }
@@ -134,7 +239,41 @@ unsafe impl RefEncode for UIActivityCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity?language=objc)
+    /// An abstract class that you subclass to implement app-specific services.
+    ///
+    /// ## Overview
+    ///
+    /// You should subclass [`UIActivity`](https://developer.apple.com/documentation/uikit/uiactivity) only if you want to provide custom services to people. A service takes data that’s passed to it, does something to that data, and returns the results. For example, a social media service might take whatever text, images, or other content is provided to it and post them to a person’s account. Activity objects are used in conjunction with a [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller) object, which is responsible for presenting services to people.
+    ///
+    /// The system already provides support for many standard services and makes them available through the [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller) object. For example, the standard activity view controller supports emailing data, posting items to one of a person’s social media accounts, and several other options. You don’t have to provide custom services for any of the built-in types.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// This class must be subclassed before it can be used. The job of an activity object is to act on the data provided to it and to provide some meta information that iOS can display to people. For more complex services, an activity object can also display a custom user interface and use it to gather additional information from people.
+    ///
+    /// #### Methods to override
+    ///
+    /// When subclassing, you must always override the following methods and use them to provide information about your service:
+    ///
+    /// - [`activityType`](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.property)
+    ///
+    /// - [`activityTitle`](https://developer.apple.com/documentation/uikit/uiactivity/activitytitle)
+    ///
+    /// - [`activityImage`](https://developer.apple.com/documentation/uikit/uiactivity/activityimage)
+    ///
+    /// - [`canPerformWithActivityItems:`](https://developer.apple.com/documentation/uikit/uiactivity/canperform(withactivityitems:))
+    ///
+    /// - [`prepareWithActivityItems:`](https://developer.apple.com/documentation/uikit/uiactivity/prepare(withactivityitems:))
+    ///
+    /// - [`activityCategory`](https://developer.apple.com/documentation/uikit/uiactivity/activitycategory)
+    ///
+    /// If your [`canPerformWithActivityItems:`](https://developer.apple.com/documentation/uikit/uiactivity/canperform(withactivityitems:)) method indicates that your subclass is able to operate on the specified data, the active [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller) object displays your service to people. When a person selects your service, the activity view controller calls the [`prepareWithActivityItems:`](https://developer.apple.com/documentation/uikit/uiactivity/prepare(withactivityitems:)) method followed by only one of these methods:
+    ///
+    /// - [`activityViewController`](https://developer.apple.com/documentation/uikit/uiactivity/activityviewcontroller) — Returns a view controller to present to a person. If your service requires additional input from a person, override this method and use it to return the view controller object responsible for presenting your custom UI. (You don’t need to present the view controller yourself.) After your view controller object gathers the needed input, it’s responsible for initiating the task associated with the service.
+    ///
+    /// - [`performActivity`](https://developer.apple.com/documentation/uikit/uiactivity/perform()) — Performs the service without displaying any additional UI. If your service doesn’t need additional input from a person, override this method and perform the task associated with the service.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivity;

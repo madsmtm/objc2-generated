@@ -6,51 +6,62 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A base 64 encoding.
     /// Specifies a base 64 encoding
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecbase64encoding?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecBase64Encoding: &'static CFString;
 }
 
 extern "C" {
+    /// A base 32 encoding.
     /// Specifies a base 32 encoding
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecbase32encoding?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecBase32Encoding: &'static CFString;
 }
 
 extern "C" {
+    /// A compressed encoding.
     /// Specifies a compressed encoding.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/kseczlibencoding?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecZLibEncoding: &'static CFString;
 }
 
 extern "C" {
+    /// The encoding used by an encode transform.
+    ///
+    /// ## Discussion
+    ///
+    /// See `Encoding Types` for a list of valid values.
+    ///
+    ///
     /// Used with SecTransformGetAttribute to query the attribute type.
     /// Returns one of the strings defined in the previous section.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencodetypeattribute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncodeTypeAttribute: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseclinelength64?language=objc)
+    /// A line length of 64 bytes.
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecLineLength64: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseclinelength76?language=objc)
+    /// A line length of 76 bytes.
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecLineLength76: &'static CFString;
 }
 
 extern "C" {
+    /// The length of encoded Base32 or Base64 lines.
+    ///
+    /// ## Discussion
+    ///
+    /// Some systems can’t handle excessively long lines, or may be defined to limit lines to specific lengths (for example RFC1421 - 64, and RFC2045 - 76).
+    ///
+    /// The corresponding value may be set to any positive value using a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) to limit to a specific length (values smaller then X for Base32 or Y for Base64 are assume to be X or Y), or to zero for no specific limit. Either of the string constants [`kSecLineLength64`](https://developer.apple.com/documentation/security/kseclinelength64) (RFC1421), or [`kSecLineLength76`](https://developer.apple.com/documentation/security/kseclinelength76) (RFC2045) may be used to set line lengths of 64 or 76 bytes.
+    ///
+    ///
     /// Used with SecTransformSetAttribute to set the length
     /// of encoded Base32 or Base64 lines.   Some systems will
     /// not decode or otherwise deal with excessively long lines,
@@ -64,18 +75,35 @@ extern "C" {
     /// limit.   Either of the string constants kSecLineLength64
     /// (RFC1421), or kSecLineLength76 (RFC2045) may be used to
     /// set line lengths of 64 or 76 bytes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecencodelinelengthattribute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecEncodeLineLengthAttribute: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccompressionratio?language=objc)
+    /// The compression ratio.
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecCompressionRatio: &'static CFString;
 }
 
+/// Creates an encode transform object.
+///
+/// Parameters:
+/// - encodeType: The type of digest to compute. You may pass `NULL` for this parameter, in which case an appropriate algorithm will be chosen for you. See `Encoding Types` for a list of valid values.
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `nil` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which computes an encode.
+///
+///
 /// Creates an encode computation object.
 ///
 /// Parameter `encodeType`: The type of encoding to compute.  You may pass NULL
@@ -98,8 +126,6 @@ extern "C" {
 ///
 /// - `encode_type` should be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secencodetransformcreate(_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

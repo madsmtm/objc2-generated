@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains details about the person who signed a message.
     /// Contains information about a message signer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagesigner?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEMessageSigner;

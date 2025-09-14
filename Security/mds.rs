@@ -6,16 +6,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_handle?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_HANDLE = CSSM_DL_HANDLE;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_db_handle?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -145,19 +142,15 @@ unsafe impl RefEncode for mds_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS = mds_funcs;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs_ptr?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS_PTR = *mut mds_funcs;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_initialize?language=objc)
-    ///
     /// # Safety
     ///
     /// - `p_caller_guid` must be a valid pointer.
@@ -175,21 +168,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_terminate?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Terminate(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_install?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Install(mds_handle: MDS_HANDLE) -> CSSM_RETURN;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/mds_uninstall?language=objc)
     #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated]
     pub fn MDS_Uninstall(mds_handle: MDS_HANDLE) -> CSSM_RETURN;

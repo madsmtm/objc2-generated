@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility?language=objc)
+/// An enumeration that defines the visibility of list separators.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListSeparatorVisibility(pub NSInteger);
 impl UIListSeparatorVisibility {
+    /// The collection view list section automatically determines the visibility of the separator.
     /// UICollectionView list sections will resolve this to an appropriate value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityautomatic?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The list separator is visible.
     /// UICollectionView list sections will resolve this to an appropriate value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityvisible?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityVisible")]
     pub const Visible: Self = Self(1);
+    /// The list separator is hidden.
     /// UICollectionView list sections will resolve this to an appropriate value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorvisibility/uilistseparatorvisibilityhidden?language=objc)
     #[doc(alias = "UIListSeparatorVisibilityHidden")]
     pub const Hidden: Self = Self(2);
 }
@@ -39,20 +36,55 @@ unsafe impl RefEncode for UIListSeparatorVisibility {
 }
 
 extern "C" {
+    /// A constant that specifies a placeholder size for separator insets.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the values from the edges in this constant to indicate that an edge’s inset needs replacement with an appropriate value according to the context.
+    ///
+    ///
     /// Use the values from the edges in this constant to indicate to the consumer of a UIListSeparatorConfiguration that the value for that
     /// edge should be replaced with an appropriate inset.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorautomaticinsets?language=objc)
     #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
     pub static UIListSeparatorAutomaticInsets: NSDirectionalEdgeInsets;
 }
 
 extern_class!(
+    /// A configuration that controls the list separator appearance in a list section.
+    ///
+    /// ## Overview
+    ///
+    /// To specify list separator appearance for a section, set a default sectionwide [`separatorConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/separatorconfiguration) on your [`UICollectionLayoutListConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration-swift.struct) when you create your list.
+    ///
+    /// ```swift
+    /// var listConfig = UICollectionLayoutListConfiguration(appearance: .plain)
+    /// listConfig.separatorConfiguration.color = .tertiarySystemFill
+    /// let layout = UICollectionViewCompositionalLayout.list(using: listConfig)
+    /// ```
+    ///
+    /// To override list separator appearance on a per-item basis, use the [`itemSeparatorHandler`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration-c.class/itemseparatorhandler) property.
+    ///
+    /// ```swift
+    /// var listConfig = UICollectionLayoutListConfiguration(appearance: .plain)
+    /// listConfig.separatorConfiguration.color = .tertiarySystemFill
+    ///
+    /// let indexPathToHide = IndexPath()
+    ///  
+    /// listConfig.itemSeparatorHandler = { (indexPath, sectionSeparatorConfiguration) in    
+    ///     var configuration = sectionSeparatorConfiguration
+    ///     if indexPath == indexPathToHide {
+    ///         configuration.bottomSeparatorVisibility = .hidden    
+    ///     }    
+    ///     return configuration
+    /// }
+    ///
+    /// let layout = UICollectionViewCompositionalLayout.list(using: listConfig)
+    /// ```
+    ///
+    ///
     /// This configuration allows for fine grained control of separator appearance in a UICollectionView List section.
     ///
     /// See: UICollectionLayoutListConfiguration.separatorConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

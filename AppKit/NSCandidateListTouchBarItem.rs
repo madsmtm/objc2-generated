@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem?language=objc)
+    /// A bar item that, along with its delegate, provides a list of textual suggestions for the current text view.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
@@ -220,7 +220,7 @@ impl<CandidateType: Message> NSCandidateListTouchBarItem<CandidateType> {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritemdelegate?language=objc)
+    /// A set of methods that a candidate list item delegate uses to enable selection state and list visibility.
     pub unsafe trait NSCandidateListTouchBarItemDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -291,7 +291,13 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/candidatelist?language=objc)
+    /// The standard identifier for a candidate list bar item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is the identifier for [`NSCandidateListTouchBarItem`](https://developer.apple.com/documentation/appkit/nscandidatelisttouchbaritem). Use a candidate list bar item to show word completion candidates to assist users typing text.
+    ///
+    ///
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier;
 }

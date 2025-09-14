@@ -7,20 +7,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentstitlemenuitemtag?language=objc)
+/// The menu item that provides the title of the menu group for recent search strings.
+///
+/// ## Discussion
+///
+/// This item is hidden if there are no recent strings.
+///
+/// You may use this tagged item for separator characters that also don’t appear if there are no recent strings to display.
+///
+///
 pub static NSSearchFieldRecentsTitleMenuItemTag: NSInteger = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentsmenuitemtag?language=objc)
+/// The location of recent search strings in the “recents” menu group.
 pub static NSSearchFieldRecentsMenuItemTag: NSInteger = 1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/clearrecentsmenuitemtag?language=objc)
+/// The menu item for clearing the current set of recent string searches in the menu.
+///
+/// ## Discussion
+///
+/// This item is hidden if there are no recent strings.
+///
+///
 pub static NSSearchFieldClearRecentsMenuItemTag: NSInteger = 1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/norecentsmenuitemtag?language=objc)
+/// The menu item that describes a lack of recent search strings.
+///
+/// ## Discussion
+///
+/// This item is hidden if there have been recent searches.
+///
+///
 pub static NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldcell?language=objc)
+    /// The programmatic interface for text fields that are used for text-based searches.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSSearchFieldCell`](https://developer.apple.com/documentation/appkit/nssearchfieldcell) class defines the programmatic interface for text fields that are optimized for text-based searches. An [`NSSearchFieldCell`](https://developer.apple.com/documentation/appkit/nssearchfieldcell) object is “wrapped” by an [`NSSearchField`](https://developer.apple.com/documentation/appkit/nssearchfield) control object, which directly inherits from the [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) class. The search field implemented by these classes presents a standard user interface for searches, including a search button, a cancel button, and a pop-up icon menu for listing recent search strings and custom search categories.
+    ///
+    /// When the user types and then pauses, the cell’s action message is sent to its target. You can query the cell’s string value for the current text to search for. Do not rely on the sender of the action to be an [`NSMenu`](https://developer.apple.com/documentation/appkit/nsmenu) object because the menu may change. If you need to change the menu, modify the search menu template and update the value in the [`searchMenuTemplate`](https://developer.apple.com/documentation/appkit/nssearchfieldcell/searchmenutemplate) property.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

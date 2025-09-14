@@ -7,28 +7,21 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGToneMapping(pub u32);
 impl CGToneMapping {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/default?language=objc)
     #[doc(alias = "kCGToneMappingDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/imagespecificlumascaling?language=objc)
     #[doc(alias = "kCGToneMappingImageSpecificLumaScaling")]
     pub const ImageSpecificLumaScaling: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/referencewhitebased?language=objc)
     #[doc(alias = "kCGToneMappingReferenceWhiteBased")]
     pub const ReferenceWhiteBased: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/iturecommended?language=objc)
     #[doc(alias = "kCGToneMappingITURecommended")]
     pub const ITURecommended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/exrgamma?language=objc)
     #[doc(alias = "kCGToneMappingEXRGamma")]
     pub const EXRGamma: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtonemapping/none?language=objc)
     #[doc(alias = "kCGToneMappingNone")]
     pub const None: Self = Self(5);
 }
@@ -43,7 +36,6 @@ unsafe impl RefEncode for CGToneMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontenttonemappinginfo-c.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGContentToneMappingInfo {
@@ -65,31 +57,25 @@ unsafe impl RefEncode for CGContentToneMappingInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpreferreddynamicrange?language=objc)
     pub static kCGPreferredDynamicRange: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdynamicrangehigh?language=objc)
     pub static kCGDynamicRangeHigh: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdynamicrangeconstrained?language=objc)
     pub static kCGDynamicRangeConstrained: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdynamicrangestandard?language=objc)
     pub static kCGDynamicRangeStandard: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcontentaveragelightlevel?language=objc)
     pub static kCGContentAverageLightLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcontentaveragelightlevelnits?language=objc)
     pub static kCGContentAverageLightLevelNits: &'static CFString;
 }

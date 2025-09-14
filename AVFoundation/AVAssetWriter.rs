@@ -11,6 +11,7 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
+/// Values that indicate the state of an asset writer.
 /// These constants are returned by the AVAssetWriter status property to indicate whether it can successfully write samples to its output file.
 ///
 ///
@@ -23,26 +24,30 @@ use crate::*;
 /// Indicates that the asset writer can no longer write samples to its output file because of an error. The error is described by the value of the asset writer's error property.
 ///
 /// Indicates that the asset writer can no longer write samples because writing was canceled with the cancelWriting method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetWriterStatus(pub NSInteger);
 impl AVAssetWriterStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/unknown?language=objc)
+    /// The asset writer’s status isn’t known.
     #[doc(alias = "AVAssetWriterStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/writing?language=objc)
+    /// The asset writer is writing.
     #[doc(alias = "AVAssetWriterStatusWriting")]
     pub const Writing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/completed?language=objc)
+    /// The asset writer finishes writing successfully.
     #[doc(alias = "AVAssetWriterStatusCompleted")]
     pub const Completed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/failed?language=objc)
+    /// The asset writer fails to write the output file.
+    ///
+    /// ## Discussion
+    ///
+    /// Query the [`error`](https://developer.apple.com/documentation/avfoundation/avassetwriter/error) property value to determine the cause of the failure.
+    ///
+    ///
     #[doc(alias = "AVAssetWriterStatusFailed")]
     pub const Failed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter/status-swift.enum/cancelled?language=objc)
+    /// The asset writer canceled the writing operation.
     #[doc(alias = "AVAssetWriterStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }
@@ -56,6 +61,21 @@ unsafe impl RefEncode for AVAssetWriterStatus {
 }
 
 extern_class!(
+    /// An object that writes media data to a container file.
+    ///
+    /// ## Overview
+    ///
+    /// You use an asset writer to write media to file formats such as the QuickTime movie file format and MPEG-4 file format. An asset writer automatically supports interleaving media data from concurrent tracks for efficient playback and storage. It can reencode media samples it writes to the output file, and may also write collections of metadata to the output file.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An asset writer is a single-use object that writes one output file. Create multiple asset writer instances if your app requires writing multiple output files.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVAssetWriter provides services for writing media data to a new file,
     ///
     ///
@@ -64,8 +84,6 @@ extern_class!(
     /// Instances of AVAssetWriter can re-encode media samples as they are written. Instances of AVAssetWriter can also optionally write metadata collections to the output file.
     ///
     /// A single instance of AVAssetWriter can be used once to write to a single file. Clients that wish to write to files multiple times must use a new instance of AVAssetWriter each time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetWriter;
@@ -587,7 +605,21 @@ impl AVAssetWriter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputgroup?language=objc)
+    /// A group of inputs with tracks that are mutually exclusive to each other for playback or processing.
+    ///
+    /// ## Overview
+    ///
+    /// Assets may contain multiple tracks of media that are mutually exclusive to each other when you play or process them. For example, an asset may contain multiple audio tracks for different spoken languages, but only one of them should play at a time. You use an input group to mark a collection of tracks as mutually exclusive to each other in the file the asset writer outputs.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  After associating several tracks by calling [`addTrackAssociationWithTrackOfInput:type:`](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/addtrackassociation(withtrackof:type:)), you can examine the media selection options an asset writer outputs before it writes the file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(AVMediaSelectionGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVMediaSelectionGroup")]
@@ -755,7 +787,7 @@ impl AVAssetWriter {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterdelegate?language=objc)
+    /// A delegate protocol that defines the methods to implement to respond to asset-writing events.
     pub unsafe trait AVAssetWriterDelegate: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "AVAssetSegmentReport")]
         /// A method invoked when a segment data is output.

@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cklocationsortdescriptor?language=objc)
+    /// An object for sorting records that contain location data.
+    ///
+    /// ## Overview
+    ///
+    /// You can add a location sort descriptor to your queries when searching for records. At creation time, you must provide the sort descriptor with a key that has a [`CLLocation`](https://developer.apple.com/documentation/corelocation/cllocation) object as its value. The sort descriptor uses the value of that key to perform the sort.
+    ///
+    /// CloudKit computes distance by drawing a direct line between the two locations that follows the curvature of the Earth. Distances don’t account for altitude changes between the two locations.
+    ///
+    ///
     #[unsafe(super(NSSortDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKLocationSortDescriptor;

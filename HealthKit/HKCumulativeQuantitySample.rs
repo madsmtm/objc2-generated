@@ -7,9 +7,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An HKQuantitySample subclass representing a quantity measurement with cumulative aggregation style.
+    /// A sample that represents a cumulative quantity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample?language=objc)
+    /// ## Overview
+    ///
+    /// A quantity sample contains one or more [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data that accumulates over time, such as step count, active energy burned, or walking distance.
+    ///
+    /// The [`HKCumulativeQuantitySample`](https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample) class is a concrete subclass of the [`HKQuantitySample`](https://developer.apple.com/documentation/healthkit/hkquantitysample) class. Cumulative quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+    ///
+    /// ### Extend Cumulative Quantity Samples
+    ///
+    /// Like many HealthKit classes, you should not subclass the [`HKCumulativeQuantitySample`](https://developer.apple.com/documentation/healthkit/hkcumulativequantitysample) class. You may extend this class by adding metadata with custom keys to save related data used by your app.
+    ///
+    /// For more information, see [`quantitySampleWithType:quantity:startDate:endDate:metadata:`](https://developer.apple.com/documentation/healthkit/hkquantitysample/init(type:quantity:start:end:metadata:)).
+    ///
+    ///
+    /// An HKQuantitySample subclass representing a quantity measurement with cumulative aggregation style.
     #[unsafe(super(HKQuantitySample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -178,6 +191,6 @@ impl HKCumulativeQuantitySample {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathsum?language=objc)
+    /// The key path for accessing the sum of a quantity series inside a predicate format string.
     pub static HKPredicateKeyPathSum: &'static NSString;
 }

@@ -10,19 +10,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition?language=objc)
+/// Constants that control the position of badges on LookAround views.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLookAroundBadgePosition(pub NSInteger);
 impl MKLookAroundBadgePosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/topleading?language=objc)
+    /// The value that indicates the top-left badge position.
     #[doc(alias = "MKLookAroundBadgePositionTopLeading")]
     pub const TopLeading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/toptrailing?language=objc)
+    /// The value that indicates the top-right badge position.
     #[doc(alias = "MKLookAroundBadgePositionTopTrailing")]
     pub const TopTrailing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundbadgeposition/bottomtrailing?language=objc)
+    /// The value that indicates the bottom-right badge position.
     #[doc(alias = "MKLookAroundBadgePositionBottomTrailing")]
     pub const BottomTrailing: Self = Self(2);
 }
@@ -36,7 +36,7 @@ unsafe impl RefEncode for MKLookAroundBadgePosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller?language=objc)
+    /// A class that manages the presentation and display of a LookAround view.
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -207,7 +207,7 @@ impl MKLookAroundViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundviewcontrollerdelegate?language=objc)
+    /// Methods you implement to respond to changes in the LookAround view controller.
     pub unsafe trait MKLookAroundViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

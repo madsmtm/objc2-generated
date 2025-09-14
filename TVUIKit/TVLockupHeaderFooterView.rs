@@ -13,9 +13,14 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// A header or footer view to be used in TVLockupView.
+    /// A view that contains header and footer information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvlockupheaderfooterview?language=objc)
+    /// ## Overview
+    ///
+    /// You can add header and footer views containing titles and subtitles to the lockup view. Headers and footers are always displayed when the lockup view is in focus.
+    ///
+    ///
+    /// A header or footer view to be used in TVLockupView.
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVLockupHeaderFooterView;

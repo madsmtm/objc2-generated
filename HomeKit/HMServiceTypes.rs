@@ -6,323 +6,277 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A switch service.
     /// Service type for switch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeswitch?language=objc)
     pub static HMServiceTypeSwitch: &'static NSString;
 }
 
 extern "C" {
+    /// A thermostat service.
     /// Service type for thermostat.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypethermostat?language=objc)
     pub static HMServiceTypeThermostat: &'static NSString;
 }
 
 extern "C" {
+    /// An outlet service.
     /// Service type for outlet.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeoutlet?language=objc)
     pub static HMServiceTypeOutlet: &'static NSString;
 }
 
 extern "C" {
+    /// A lock management service.
     /// Service type for lock management.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypelockmanagement?language=objc)
     pub static HMServiceTypeLockManagement: &'static NSString;
 }
 
 extern "C" {
+    /// An air quality sensor service.
     /// Service type for air quality sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeairqualitysensor?language=objc)
     pub static HMServiceTypeAirQualitySensor: &'static NSString;
 }
 
 extern "C" {
+    /// A carbon dioxide sensor service.
     /// Service type for carbon dioxide sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypecarbondioxidesensor?language=objc)
     pub static HMServiceTypeCarbonDioxideSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A carbon monoxide sensor service.
     /// Service type for carbon monoxide sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypecarbonmonoxidesensor?language=objc)
     pub static HMServiceTypeCarbonMonoxideSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A contact sensor service.
     /// Service type for contact sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypecontactsensor?language=objc)
     pub static HMServiceTypeContactSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A door service.
     /// Service type for door.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypedoor?language=objc)
     pub static HMServiceTypeDoor: &'static NSString;
 }
 
 extern "C" {
+    /// A humidity sensor service.
     /// Service type for humidity sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypehumiditysensor?language=objc)
     pub static HMServiceTypeHumiditySensor: &'static NSString;
 }
 
 extern "C" {
+    /// A leak sensor service.
     /// Service type for leak sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeleaksensor?language=objc)
     pub static HMServiceTypeLeakSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A light sensor service.
     /// Service type for light sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypelightsensor?language=objc)
     pub static HMServiceTypeLightSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A motion sensor service.
     /// Service type for motion sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypemotionsensor?language=objc)
     pub static HMServiceTypeMotionSensor: &'static NSString;
 }
 
 extern "C" {
+    /// An occupancy sensor service.
     /// Service type for occupancy sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeoccupancysensor?language=objc)
     pub static HMServiceTypeOccupancySensor: &'static NSString;
 }
 
 extern "C" {
+    /// A security system service.
     /// Service type for security system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypesecuritysystem?language=objc)
     pub static HMServiceTypeSecuritySystem: &'static NSString;
 }
 
 extern "C" {
+    /// A stateful programmable switch service.
     /// Service type for stateful programmable switch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypestatefulprogrammableswitch?language=objc)
     pub static HMServiceTypeStatefulProgrammableSwitch: &'static NSString;
 }
 
 extern "C" {
+    /// A stateless programmable switch service.
     /// Service type for stateless programmable switch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypestatelessprogrammableswitch?language=objc)
     pub static HMServiceTypeStatelessProgrammableSwitch: &'static NSString;
 }
 
 extern "C" {
+    /// A smoke sensor service.
     /// Service type for smoke sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypesmokesensor?language=objc)
     pub static HMServiceTypeSmokeSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A temperature sensor service.
     /// Service type for temperature sensor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypetemperaturesensor?language=objc)
     pub static HMServiceTypeTemperatureSensor: &'static NSString;
 }
 
 extern "C" {
+    /// A window service.
     /// Service type for window.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypewindow?language=objc)
     pub static HMServiceTypeWindow: &'static NSString;
 }
 
 extern "C" {
+    /// A window covering service.
     /// Service type for window covering.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypewindowcovering?language=objc)
     pub static HMServiceTypeWindowCovering: &'static NSString;
 }
 
 extern "C" {
+    /// A stream management service.
     /// Service type for stream management.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypecamerartpstreammanagement?language=objc)
     pub static HMServiceTypeCameraRTPStreamManagement: &'static NSString;
 }
 
 extern "C" {
+    /// A camera control service.
     /// Service type for camera control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypecameracontrol?language=objc)
     pub static HMServiceTypeCameraControl: &'static NSString;
 }
 
 extern "C" {
+    /// A microphone service.
     /// Service type for microphone.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypemicrophone?language=objc)
     pub static HMServiceTypeMicrophone: &'static NSString;
 }
 
 extern "C" {
+    /// An audio speaker service.
     /// Service type for speaker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypespeaker?language=objc)
     pub static HMServiceTypeSpeaker: &'static NSString;
 }
 
 extern "C" {
+    /// An air purifier service.
     /// Service type for air purifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeairpurifier?language=objc)
     pub static HMServiceTypeAirPurifier: &'static NSString;
 }
 
 extern "C" {
+    /// A filter maintenance service.
     /// Service type for filter maintenance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypefiltermaintenance?language=objc)
     pub static HMServiceTypeFilterMaintenance: &'static NSString;
 }
 
 extern "C" {
+    /// A slats service.
     /// Service type for slats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeslats?language=objc)
     pub static HMServiceTypeSlats: &'static NSString;
 }
 
 extern "C" {
+    /// A label namespace service used when an accessory supports multiple services of the same type.
     /// Service type for label namespace when accessory supports multiple services of the same type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypelabel?language=objc)
     pub static HMServiceTypeLabel: &'static NSString;
 }
 
 extern "C" {
+    /// An irrigation system service.
     /// Service type for irrigation system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeirrigationsystem?language=objc)
     pub static HMServiceTypeIrrigationSystem: &'static NSString;
 }
 
 extern "C" {
+    /// A valve service.
     /// Service type for valve.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypevalve?language=objc)
     pub static HMServiceTypeValve: &'static NSString;
 }
 
 extern "C" {
+    /// A faucet service.
     /// Service type for faucet.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypefaucet?language=objc)
     pub static HMServiceTypeFaucet: &'static NSString;
 }
 
 extern "C" {
+    /// An accessory information service.
     /// Service type for accessory information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeaccessoryinformation?language=objc)
     pub static HMServiceTypeAccessoryInformation: &'static NSString;
 }
 
 extern "C" {
+    /// A fan service.
     /// Service type for fan.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypefan?language=objc)
     pub static HMServiceTypeFan: &'static NSString;
 }
 
 extern "C" {
+    /// A garage door opener service.
     /// Service type for garage door opener.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypegaragedooropener?language=objc)
     pub static HMServiceTypeGarageDoorOpener: &'static NSString;
 }
 
 extern "C" {
+    /// A light bulb service.
     /// Service type for lightbulb.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypelightbulb?language=objc)
     pub static HMServiceTypeLightbulb: &'static NSString;
 }
 
 extern "C" {
+    /// A lock mechanism service.
     /// Service type for lock mechanism.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypelockmechanism?language=objc)
     pub static HMServiceTypeLockMechanism: &'static NSString;
 }
 
 extern "C" {
+    /// A battery service.
     /// Service type for battery.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypebattery?language=objc)
     pub static HMServiceTypeBattery: &'static NSString;
 }
 
 extern "C" {
+    /// A ventilation fan service.
     /// Service type for ventilation fan.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeventilationfan?language=objc)
     pub static HMServiceTypeVentilationFan: &'static NSString;
 }
 
 extern "C" {
+    /// A heater or cooler service.
     /// Service type for heater/cooler.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeheatercooler?language=objc)
     pub static HMServiceTypeHeaterCooler: &'static NSString;
 }
 
 extern "C" {
+    /// A humidifier or dehumidifier service.
     /// Service type for humidifier-dehumidifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypehumidifierdehumidifier?language=objc)
     pub static HMServiceTypeHumidifierDehumidifier: &'static NSString;
 }
 
 extern "C" {
+    /// A television service.
     /// Service type for television.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypetelevision?language=objc)
     pub static HMServiceTypeTelevision: &'static NSString;
 }
 
 extern "C" {
+    /// An accessory input source service.
     /// Service type for input source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypeinputsource?language=objc)
     pub static HMServiceTypeInputSource: &'static NSString;
 }
 
 extern "C" {
+    /// A doorbell service.
     /// Service type for doorbell.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypedoorbell?language=objc)
     pub static HMServiceTypeDoorbell: &'static NSString;
 }
 
 extern "C" {
+    /// A WiFi router service.
     /// Service type for Wi-Fi router.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypewifirouter?language=objc)
     pub static HMServiceTypeWiFiRouter: &'static NSString;
 }
 
 extern "C" {
+    /// A Satellite WiFi router service.
     /// Service type for Wi-Fi satellite.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicetypewifisatellite?language=objc)
     pub static HMServiceTypeWiFiSatellite: &'static NSString;
 }

@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An optimizer that represents the adaptive moment estimation algorithm.
     /// The MLCAdamOptimizer specifies the Adam optimizer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcadamoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]

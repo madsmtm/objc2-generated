@@ -9,75 +9,158 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtype?language=objc)
+/// A data type that CloudKit requires for record types.
 pub type CKRecordType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordfieldkey?language=objc)
+/// A data type that CloudKit requires for record field names.
 pub type CKRecordFieldKey = NSString;
 
 extern "C" {
-    /// Use this constant for the recordType parameter when fetching User Records.
+    /// The system type that identifies a user record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord-49k30?language=objc)
+    /// ## Discussion
+    ///
+    /// CloudKit automatically creates a user record for each unique user of the app. User records are empty initially. You can add data to the user record using the same rules that apply for all records. Specifically, the type of data for a particular field name must be the same in all user records. However, you can’t create new user records using this record type and you can’t query for records of this type. To locate user records, you must know the ID of the user record or use the methods that [`CKContainer`](https://developer.apple.com/documentation/cloudkit/ckcontainer) provides to discover user records.
+    ///
+    ///
+    /// Use this constant for the recordType parameter when fetching User Records.
     pub static CKRecordTypeUserRecord: &'static CKRecordType;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.recordID`.  Value is a ``CKRecordID``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordrecordidkey?language=objc)
     pub static CKRecordRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.creatorUserRecordID`.  Value is a ``CKRecordID``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreatoruserrecordidkey?language=objc)
     pub static CKRecordCreatorUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.creationDate`.  Value is a `NSDate`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordcreationdatekey?language=objc)
     pub static CKRecordCreationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.lastModifiedUserRecordID`.  Value is a ``CKRecordID``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordlastmodifieduserrecordidkey?language=objc)
     pub static CKRecordLastModifiedUserRecordIDKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.modificationDate`.  Value is a `NSDate`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordmodificationdatekey?language=objc)
     pub static CKRecordModificationDateKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// The key constant that a record uses for its parent reference.
     /// For use in queries to match on record properties.  Matches `record.parent`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey-2kx8l?language=objc)
     pub static CKRecordParentKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
+    /// The key constant that a record uses for its share reference.
     /// For use in queries to match on record properties.  Matches `record.share`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey-rrat?language=objc)
     pub static CKRecordShareKey: &'static CKRecordFieldKey;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordvalue-c.protocol?language=objc)
+    /// The protocol that provides strong type-checking for objects that the CloudKit framework stores on the server.
+    ///
+    /// ## Overview
+    ///
+    /// CloudKit supports the following classes that adopt this protocol:
+    ///
+    /// - [`NSString`](https://developer.apple.com/documentation/foundation/nsstring)
+    ///
+    /// - [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)
+    ///
+    /// - [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray)
+    ///
+    /// - [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate)
+    ///
+    /// - [`NSData`](https://developer.apple.com/documentation/foundation/nsdata)
+    ///
+    /// - [`CKRecord.Reference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference)
+    ///
+    /// - [`CKAsset`](https://developer.apple.com/documentation/cloudkit/ckasset)
+    ///
+    /// - [`CLLocation`](https://developer.apple.com/documentation/corelocation/cllocation)
+    ///
+    /// Don’t adopt this protocol in your custom classes. CloudKit doesn’t support writing custom data types to the server. Attempting to do so results in an error.
+    ///
+    ///
     pub unsafe trait CKRecordValue: NSObjectProtocol {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord?language=objc)
+    /// A collection of key-value pairs that store your app’s data.
+    ///
+    /// ## Overview
+    ///
+    /// Records are the fundamental objects that manage data in CloudKit. You can define any number of record types for your app, with each record type corresponding to a different type of information. Within a record type, you then define one or more fields, each with a name and a value. Records can contain simple data types, such as strings and numbers, or more complex types, such as geographic locations or pointers to other records.
+    ///
+    /// An important step in using CloudKit is defining the record types your app supports. A new record object doesn’t contain any keys or values. During development, you can add new keys and values at any time. The first time you set a value for a key and save the record, the server associates that type with the key for all records of the same type. The `CKRecord` class doesn’t impose these type constraints or do any local validation of a record’s contents. CloudKit enforces these constraints when you save the records.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The ability to add new keys is only possible during development. When you deploy to a production environment, the server returns an error if you try to specify an unknown record type or try to save a record that contains unknown keys.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Although records behave like dictionaries, there are limitations to the types of values you can assign to keys. The following are the object types that the `CKRecord` class supports. Attempting to specify objects of any other type results in failure. Fields of all types are searchable unless otherwise noted.
+    ///
+    /// ### Supported Data Types
+    ///
+    /// `CKRecord` fields support the following data types:
+    ///
+    /// - [`NSString`](https://developer.apple.com/documentation/foundation/nsstring): Stores relatively small amounts of text. Although strings themselves can be any length, use a [`CKAsset`](https://developer.apple.com/documentation/cloudkit/ckasset) to store large amounts of text.
+    ///
+    /// - [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber): Stores any numerical information, including integers and floating-point numbers.
+    ///
+    /// - [`NSData`](https://developer.apple.com/documentation/foundation/nsdata): Stores arbitrary bytes of data. A typical use for data objects is to map the bytes that they contain to a `struct`. Don’t use data objects for storing large binary data files; use a [`CKAsset`](https://developer.apple.com/documentation/cloudkit/ckasset) instead. Data fields aren’t searchable.
+    ///
+    /// - [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate): Stores day and time information in an accessible form.
+    ///
+    /// - [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray): Stores one or more objects of any other type in this table. You can store arrays of strings, arrays of numbers, arrays of references, and so on.
+    ///
+    /// - [`CLLocation`](https://developer.apple.com/documentation/corelocation/cllocation): Stores geographic coordinate data. You use locations in conjunction with the Core Location framework and any other services that handle location information.
+    ///
+    /// - [`CKAsset`](https://developer.apple.com/documentation/cloudkit/ckasset): Associates a disk-based file with the record. Although assets have a close association with records, you manage them separately. For more information about using assets, see [`CKAsset`](https://developer.apple.com/documentation/cloudkit/ckasset).
+    ///
+    /// - [`CKReference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference): Creates a link to a related record. A reference stores the ID of the target record. The advantage of using a reference instead of storing the ID as a string is that references can initiate cascade deletions of dependent records. The disadvantage is that references can only link between records in the same record zone. For more information, see [`CKReference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To ensure the speed of fetching and saving records, the data that a record stores must not exceed 1 MB. Assets don’t count toward this limit, but all other data types do.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Defining Records
+    ///
+    /// The process for defining your record types depends entirely on your app and the data you’re trying to represent. It’s best to design records that encapsulate data for one unit of information. For example, you might use one record type to store an employee’s name, job title, and date of hire, and use a separate record type to store the employee’s address information. Using different record types lets you manage, manipulate, and validate the two types of information separately.
+    ///
+    /// Use fields that contain [`CKReference`](https://developer.apple.com/documentation/cloudkit/ckrecord/reference) objects to establish relationships between different types of records. After you define your record types, use the iCloud Dashboard to set them up. During development, you can also create new record types programmatically.
+    ///
+    /// ### Indexing the Fields of a Record
+    ///
+    /// Indexes make it possible to search the contents of your records efficiently. During development, the server indexes all fields with data types it can use in the predicate of a query. This automatic indexing makes it easier to experiment with queries during development, but the indexes require space in a database and require time to generate and maintain.
+    ///
+    /// To manage the indexing behavior of your records in the production environment, use CloudKit Dashboard. When migrating your schema from the development environment to the production environment, enable indexing only for the fields that your app uses in queries, and disable it for all other fields.
+    ///
+    /// ### Customizing Records
+    ///
+    /// Use this class as-is to manage data coming from or going to the server, and don’t subclass it.
+    ///
+    /// ### Storing Records Locally
+    ///
+    /// If you store records in a local database, use the [`encodeSystemFieldsWithCoder:`](https://developer.apple.com/documentation/cloudkit/ckrecord/encodesystemfields(with:)) method to encode and store the record’s metadata. The metadata contains the record ID and the change tag, which you need later to sync records in a local database with those in CloudKit.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKRecord;
@@ -413,9 +496,8 @@ extern_conformance!(
 );
 
 extern_protocol!(
+    /// A protocol for managing the key-value pairs of a CloudKit record.
     /// Formalizes a protocol for getting and setting keys on a CKRecord.  Not intended to be used directly by client code
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordkeyvaluesetting?language=objc)
     pub unsafe trait CKRecordKeyValueSetting: NSObjectProtocol {
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]

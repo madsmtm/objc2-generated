@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroller?language=objc)
+    /// An abstract class that implements the [`NSEditor`](https://developer.apple.com/documentation/appkit/nseditor) and [`NSEditorRegistration`](https://developer.apple.com/documentation/appkit/nseditorregistration) informal protocols required for controller classes.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -5,10 +5,10 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbyteorder?language=objc)
+/// Flags that identify byte order.
 pub type CFByteOrder = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat32?language=objc)
+/// Structure holding a 32-bit float value in a platform-independentbyte order.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFSwappedFloat32 {
@@ -25,7 +25,7 @@ unsafe impl RefEncode for CFSwappedFloat32 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat64?language=objc)
+/// Structure holding a 64-bit float value in a platform-independentbyte order.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFSwappedFloat64 {

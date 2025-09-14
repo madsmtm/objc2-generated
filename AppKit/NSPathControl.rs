@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontrol?language=objc)
+    /// A display of a file system path or virtual path information.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) class uses [`NSPathCell`](https://developer.apple.com/documentation/appkit/nspathcell) to implement its user interface. [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) provides cover methods for most [`NSPathCell`](https://developer.apple.com/documentation/appkit/nspathcell) methods—the cover method simply invokes the corresponding cell method. See also [`NSPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcomponentcell), which represents individual components of the path, and two associated protocols: [`NSPathCellDelegate`](https://developer.apple.com/documentation/appkit/nspathcelldelegate) and [`NSPathControlDelegate`](https://developer.apple.com/documentation/appkit/nspathcontroldelegate).
+    ///
+    /// [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) has three styles represented by the [`NSPathStyle`](https://developer.apple.com/documentation/appkit/nspathcontrol/style) enumeration constants [`NSPathStyleStandard`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/standard), [`NSPathStyleNavigationBar`](https://developer.apple.com/documentation/appkit/nspathstyle/nspathstylenavigationbar), and [`NSPathStylePopUp`](https://developer.apple.com/documentation/appkit/nspathcontrol/style/popup). The represented path can be a file system path or any other type of path leading through a sequence of nodes or components, as defined by the programmer.
+    ///
+    /// [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) automatically supports drag and drop, which can be further customized via delegate methods. To accept drag and drop, [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) calls [`registerForDraggedTypes:`](https://developer.apple.com/documentation/appkit/nsview/registerfordraggedtypes(_:)) with [`NSFilenamesPboardType`](https://developer.apple.com/documentation/appkit/nsfilenamespboardtype) and [`NSURLPboardType`](https://developer.apple.com/documentation/appkit/nsurlpboardtype). When the URL value in the [`NSPathControl`](https://developer.apple.com/documentation/appkit/nspathcontrol) object changes because of an automatic drag and drop operation or the user selecting a new path via the open panel, the action is sent. In OS X v10.5 the value returned by [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathcomponentcell()) is `nil`, in macOS 10.6 and later, [`clickedPathComponentCell`](https://developer.apple.com/documentation/appkit/nspathcontrol/clickedpathcomponentcell()) returns the clicked cell.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -273,7 +283,7 @@ impl NSPathControl {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspathcontroldelegate?language=objc)
+    /// A set of methods that can be implemented by the delegate of a path control object to support dragging to and from the control.
     pub unsafe trait NSPathControlDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSControl",

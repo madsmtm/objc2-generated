@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that detects an animal body pose.
     /// Detects specific landmark points on animal bodies.
     ///
     /// This request will produce a collection of VNAnimalBodyPoseObservation objects which describe the pose of each detected animal body.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -105,5 +104,5 @@ impl VNDetectAnimalBodyPoseRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectanimalbodyposerequestrevision1?language=objc)
+/// A value that indicates the first revision for an animal body-pose request.
 pub static VNDetectAnimalBodyPoseRequestRevision1: NSUInteger = 1;

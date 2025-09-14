@@ -10,15 +10,39 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The default value to apply to a dimension.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant with any sizing-related [`NSSplitViewController`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller) property to get the default system behavior.
+    ///
+    ///
     /// This constant can be used with any sizing related
     /// `NSSplitViewController`properties to get the default system behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewcontroller/automaticdimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSplitViewControllerAutomaticDimension: CGFloat;
 }
 
 extern_class!(
+    /// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+    ///
+    /// ## Overview
+    ///
+    /// A split view controller manages a set of child views that it displays next to each other in a side-by-side or top-to-bottom arrangement.
+    ///
+    /// A split view controller owns an array of split view items ([`NSSplitViewItem`](https://developer.apple.com/documentation/appkit/nssplitviewitem)), each of which has a view controller ([`NSViewController`](https://developer.apple.com/documentation/appkit/nsviewcontroller)) and corresponding view. The split view controller’s [`splitView`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitview) object manages those child views and the dividers between them.
+    ///
+    /// By default, a split view arranges its child views vertically from top to bottom. To specify a horizontal (side-by-side) arrangement, implement the [`vertical`](https://developer.apple.com/documentation/appkit/nssplitview/isvertical) property of the [`splitView`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitview) object to return [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The split view controller serves as the delegate of its [`splitView`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller/splitview) object. If you override a split view delegate method, your override must call `super`.
+    ///
+    /// To use a split view controller, you must use Auto Layout for the child views and to support animations that collapse and reveal child views. For example, if you design a layout that contains two views, a content area and an optional sidebar, you employ Auto Layout constraints to specify whether the content area shrinks or remains the same size when the sidebar becomes visible.
+    ///
+    /// A split view controller employs lazy loading of its views. For example, adding a collapsed split view item as a new child doesn’t load the associated view until it shows.
+    ///
+    /// For more information about using [`NSSplitViewController`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller) in your app, see [Navigating Hierarchical Data Using Outline and Split Views](https://developer.apple.com/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views).
+    ///
+    ///
     /// NSSplitViewController is a container view controller that manages side-by-side (horizontal or vertical) children view controllers.
     /// Views are lazily loaded. For instance, adding a collapsed SplitViewItem will not load the associated ViewController's view until it is uncollapsed.
     /// The NSSplitViewController is set as the delegate of its managed NSSplitView. Any overrides of NSSplitViewDelegate methods must call super.
@@ -28,8 +52,6 @@ extern_class!(
     /// NSViewController's methods
     /// `-addChildViewController:,``-insertViewController:atIndex:,`and
     /// `-removeChildViewControllerAtIndex:`can all be used as convience methods to add children; default SplitViewItems will be appropriately created or destroyed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]

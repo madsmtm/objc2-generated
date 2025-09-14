@@ -7,25 +7,37 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidarchiveoperationexception?language=objc)
+    /// The name of the exception raised by `NSKeyedArchiver` if there is a problem creating an archive.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArchiveOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidunarchiveoperationexception?language=objc)
+    /// The name of the exception raised by `NSKeyedArchiver` if there is a problem extracting an archive.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidUnarchiveOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiverootobjectkey?language=objc)
+    /// Archives created using the class method [`archivedDataWithRootObject:`](https://developer.apple.com/documentation/foundation/nskeyedarchiver/archiveddata(withrootobject:)) use this key for the root object in the hierarchy of encoded objects. The [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) class method [`unarchiveObjectWithData:`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver/unarchiveobject(with:)) looks for this root key as well.
     #[cfg(feature = "NSString")]
     pub static NSKeyedArchiveRootObjectKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiver?language=objc)
+    /// An encoder that stores an object’s data to an archive referenced by keys.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver), a concrete subclass of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder), provides a way to encode objects (and scalar values) into an architecture-independent format suitable for storage in a file. When you archive a set of objects, the archiver writes the class information and instance variables for each object to the archive. The companion class [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) decodes the data in an archive and creates a set of objects equivalent to the original set.
+    ///
+    /// A keyed archive differs from a non-keyed archive in that all the objects and values encoded into the archive have names, or keys. When decoding a non-keyed archive, the decoder must decode values in the same order the original encoder used. When decoding a keyed archive, the decoder requests values by name, meaning it can decode values out of sequence or not at all. Keyed archives, therefore, provide better support for forward and backward compatibility.
+    ///
+    /// The keys given to encoded values must be unique only within the scope of the currently-encoding object. A keyed archive is hierarchical, so the keys used by object A to encode its instance variables don’t conflict with the keys used by object B. This is true even if A and B are instances of the same class. Within a single object, however, the keys used by a subclass can conflict with keys used in its superclasses.
+    ///
+    /// An [`NSArchiver`](https://developer.apple.com/documentation/foundation/nsarchiver) object can write the archive data to a file or to a mutable-data object (an instance of [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata)) that you provide.
+    ///
+    ///
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -284,7 +296,19 @@ impl DefaultRetained for NSKeyedArchiver {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc)
+    /// A decoder that restores data from an archive referenced by keys.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) is a concrete subclass of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) that defines methods for decoding a set of named objects (and scalar values) from a keyed archive. The [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver) class produces archives that this class can decode.
+    ///
+    /// The archiver creates keyed archive as a hierarchy of objects. The archiver treats each object as a namespace into which it can encode other objects. This means that an unarchiver can only decode objects encoded within the immediate scope of their parent object. Objects encoded elsewhere in the hierarchy — whether higher than, lower than, or parallel to this particular object — aren’t accessible. In this way, the keys used by a particular object to encode its instance variables need to be unique only within the scope of that object.
+    ///
+    /// If you invoke one of the `decode`-prefixed methods of this class using a key that does not exist in the archive, the return value indicates failure. This value varies by decoded type. For example, if a key does not exist in an archive, [`decodeBoolForKey:`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver/decodebool(forkey:)) returns [`false`](https://developer.apple.com/documentation/swift/false), [`decodeIntForKey:`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver/decodeintforkey:) returns `0`, and [`decodeObjectForKey:`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver/decodeobject(forkey:)) returns `nil`.
+    ///
+    /// [`NSKeyedUnarchiver`](https://developer.apple.com/documentation/foundation/nskeyedunarchiver) supports limited type coercion for numeric types. You can use any of the integer decode methods to decode a value encoded as any type of integer, whether a standard `Int` or an explicit 32-bit or 64-bit integer. Likewise, you can use the `Float`- or `Double`-returning decode methods to handle value encoded as a `Float` or `Double`. If an encoded value is too large to fit within the coerced type, the decoding method throws a [`NSRangeException`](https://developer.apple.com/documentation/foundation/nsexceptionname/rangeexception). Further, when trying to coerce a value to an incompatible type — for example decoding an `Int` as a `Float` — the decoding method throws an [`NSInvalidUnarchiveOperationException`](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidunarchiveoperationexception).
+    ///
+    ///
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]
@@ -648,7 +672,7 @@ impl NSKeyedUnarchiver {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedarchiverdelegate?language=objc)
+    /// The optional methods implemented by the delegate of a keyed archiver.
     pub unsafe trait NSKeyedArchiverDelegate: NSObjectProtocol {
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -706,7 +730,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchiverdelegate?language=objc)
+    /// The optional methods implemented by the delegate of a keyed unarchiver.
     pub unsafe trait NSKeyedUnarchiverDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSArray", feature = "NSCoder", feature = "NSString"))]
         #[optional]

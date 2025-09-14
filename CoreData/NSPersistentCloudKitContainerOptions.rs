@@ -10,9 +10,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// NSPersistentCloudKitContainerOptions provides customization of how NSPersistentCloudKitContainer aligns a given instance of NSPersistentStoreDescription with a CloudKit database.
+    /// An object that customizes how a store description aligns with a CloudKit database.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontaineroptions?language=objc)
+    /// ## Overview
+    ///
+    /// Use [`NSPersistentCloudKitContainerOptions`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontaineroptions) to customize the behavior of an [`NSPersistentCloudKitContainer`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer) or to create additional store descriptions that sync to other containers.
+    ///
+    /// For more information about setting up multiple stores, see [Setting Up Core Data with CloudKit](https://developer.apple.com/documentation/coredata/setting-up-core-data-with-cloudkit).
+    ///
+    ///
+    /// NSPersistentCloudKitContainerOptions provides customization of how NSPersistentCloudKitContainer aligns a given instance of NSPersistentStoreDescription with a CloudKit database.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerOptions;

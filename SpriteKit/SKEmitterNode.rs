@@ -12,19 +12,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder?language=objc)
+/// The order to use when the emitter’s particles are rendered.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKParticleRenderOrder(pub NSUInteger);
 impl SKParticleRenderOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/oldestlast?language=objc)
+    /// The particles are rendered from newest to oldest. This is the default value.
     #[doc(alias = "SKParticleRenderOrderOldestLast")]
     pub const OldestLast: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/oldestfirst?language=objc)
+    /// The particles are rendered from oldest to newest.
     #[doc(alias = "SKParticleRenderOrderOldestFirst")]
     pub const OldestFirst: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder/dontcare?language=objc)
+    /// The particles can be rendered in any order. SpriteKit may choose to reorder the particles to improve rendering performance.
     #[doc(alias = "SKParticleRenderOrderDontCare")]
     pub const DontCare: Self = Self(2);
 }
@@ -38,9 +38,26 @@ unsafe impl RefEncode for SKParticleRenderOrder {
 }
 
 extern_class!(
-    /// An emitter of particle sprites.
+    /// A source of various particle effects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skemitternode?language=objc)
+    /// ## Overview
+    ///
+    /// A [`SKEmitterNode`](https://developer.apple.com/documentation/spritekit/skemitternode) object is a node that automatically creates and renders small particle sprites. Particles are privately owned by [`SpriteKit`](https://developer.apple.com/documentation/spritekit)—your game cannot access the generated sprites. For example, you cannot add physics shapes to particles. Emitter nodes are often used to create smoke, fire, sparks, and other particle effects. A _particle_ is similar to an [`SKSpriteNode`](https://developer.apple.com/documentation/spritekit/skspritenode) object; it renders a textured or untextured image that is sized, colorized, and blended into the scene. However, particles differ from sprites in two important ways:
+    ///
+    /// - A particle’s texture is always stretched uniformly.
+    ///
+    /// - Particles are not represented by objects in SpriteKit. This means you cannot perform node-related tasks on particles, nor can you associate physics bodies with particles to make them interact with other content. Although there is no visible class representing particles added by the emitter node, you can think of a particle as having properties like any other object.
+    ///
+    /// Particles are purely visual objects, and their behavior is entirely defined by the emitter node that created them. The emitter node contains many properties to control the behavior of the particles it generates, including:
+    ///
+    /// - The birth rate and lifetime of the particle. You can also specify the order in which the particles are rendered and the maximum number of particles that are created before the emitter turns itself off.
+    ///
+    /// - The starting values of the particle, including its position, orientation, color, and size. You can choose to have these starting values randomized.
+    ///
+    /// - The changes to apply to the particle over its lifetime. Typically, these are specified as a rate of change over time. For example, you might specify that a particle rotates at a particular rate, in radians per second. The emitter automatically updates the particle data for each frame. In most cases, you can also create more sophisticated behaviors using keyframe sequences. For example, you might specify a keyframe sequence for a particle so that it starts out small, scales up to a larger size, then shrinks before dying.
+    ///
+    ///
+    /// An emitter of particle sprites.
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

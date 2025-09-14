@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlskeleton?language=objc)
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -77,12 +76,10 @@ impl MDLSkeleton {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdljointanimation?language=objc)
     pub unsafe trait MDLJointAnimation {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlpackedjointanimation?language=objc)
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]
@@ -161,7 +158,6 @@ impl MDLPackedJointAnimation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlanimationbindcomponent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAnimationBindComponent;

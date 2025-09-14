@@ -28,7 +28,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication?language=objc)
+    /// A representation of an app that users can access during an assessment.
+    ///
+    /// ## Overview
+    ///
+    /// Use an instance of this class when you want to make an app besides yours, like a calculator or a dictionary, available during an assessment. Create a representation of the app that you want to allow using the app’s bundle identifier and optionally the identifier of the team that distributes the app. You can get both identifiers for an app that you have installed using the `codesign` command line utility:
+    ///
+    /// ```shell
+    /// % codesign -v -d /Applications/MyApp.app
+    /// ```
+    ///
+    /// By default, the system requires that the app’s code signature is valid, and that either Apple distributes the app, or the developer notarizes the app or distributes it through the App Store. You can relax these requirements by setting the [`requiresSignatureValidation`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication/requiressignaturevalidation) property to `false`, but that creates a potential security risk. In that case, the only requirement is that the app has the specified bundle and team identifiers. Prefer to keep the signature requirement.
+    ///
+    /// Add the app to a session configuration by calling the [`setConfiguration:forApplication:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)) method, and then apply the configuration to either a new session that you create, or an existing session with the [`updateToConfiguration:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/update(to:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentApplication;
@@ -92,6 +106,14 @@ impl AEAssessmentApplication {
 
 /// The set of autocorrect features that you can enable during an assessment.
 ///
+/// ## Overview
+///
+/// Use one or more of the autocorrect modes to set the [`autocorrectMode`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.property) property of an [`AEAssessmentConfiguration`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration) instance. For example, you can enable both spelling and punctuation corrections by combining [`AEAutocorrectModeSpelling`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/spelling) and [`AEAutocorrectModePunctuation`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/punctuation):
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let config = AEAssessmentConfiguration()", "", "#if os(iOS) // Available only on iOS and iPadOS.", "config.autocorrectMode = [.punctuation, .spelling]", "#endif", "", "let session = AEAssessmentSession(configuration: config)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["AEAssessmentConfiguration *config = [AEAssessmentConfiguration new];", "", "#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR // Available only on iOS and iPadOS.", "config.autocorrectMode = AEAutocorrectModePunctuation | AEAutocorrectModeSpelling;", "#endif", "", "AEAssessmentSession *session = [[AEAssessmentSession alloc] initWithConfiguration:config];"], metadata: None }] }] })
+///
+/// The set of autocorrect features that you can enable during an assessment.
+///
 /// Use one or more of the autocorrect modes to set the ``AEAssessmentConfiguration/autocorrectMode-swift.property`` property of an ``AEAssessmentConfiguration`` instance. For example, you can enable both spelling and punctuation corrections by combining ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling`` and ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation``:
 ///
 /// ```swift
@@ -115,25 +137,33 @@ impl AEAssessmentApplication {
 /// - ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation``
 /// - ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling``
 /// - ``AEAutocorrectMode/AEAutocorrectModeNone``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AEAutocorrectMode(pub NSUInteger);
 bitflags::bitflags! {
     impl AEAutocorrectMode: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode/aeautocorrectmodenone?language=objc)
+/// A mode that indicates autocorrect doesn’t check anything.
+///
+/// ## Discussion
+///
+/// Set the [`autocorrectMode`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.property) value of an [`AEAssessmentConfiguration`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration) instance to [`AEAutocorrectModeNone`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode/aeautocorrectmodenone) to disable all autocorrect features during an assessment.
+///
+/// ```objc
+/// config.autocorrectMode = AEAutocorrectModeNone;
+/// ```
+///
+/// This is the default value of the [`autocorrectMode`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.property) property.
+///
+///
         #[doc(alias = "AEAutocorrectModeNone")]
         const None = 0;
 /// A mode in which autocorrect checks for spelling as the user types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/spelling?language=objc)
+/// A mode in which autocorrect checks for spelling as the user types.
         #[doc(alias = "AEAutocorrectModeSpelling")]
         const Spelling = 1<<0;
 /// A mode in which autocorrect checks punctuation as the user types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/autocorrectmode-swift.struct/punctuation?language=objc)
+/// A mode in which autocorrect checks punctuation as the user types.
         #[doc(alias = "AEAutocorrectModePunctuation")]
         const Punctuation = 1<<1;
     }
@@ -148,6 +178,16 @@ unsafe impl RefEncode for AEAutocorrectMode {
 }
 
 extern_class!(
+    /// Configuration information for an assessment session.
+    ///
+    /// ## Overview
+    ///
+    /// Create a configuration instance and pass it to the [`initWithConfiguration:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/init(configuration:)) initializer of an [`AEAssessmentSession`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession) instance to create a new assessment session. Before using the configuration, indicate which exceptions you want to allow for the assessment session’s restrictions by setting values on the configuration instance. For example, you can set values to allow dictation and certain aspects of autocorrect:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let config = AEAssessmentConfiguration()", "", "#if os(iOS) // These exceptions available only on iOS and iPadOS.", "config.allowsDictation = true", "config.autocorrectMode = [.punctuation, .spelling]", "#endif", "", "let session = AEAssessmentSession(configuration: config)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["AEAssessmentConfiguration *config = [AEAssessmentConfiguration new];", "", "#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR // These exceptions available only on iOS and iPadOS.", "config.allowsDictation = YES;", "config.autocorrectMode = AEAutocorrectModePunctuation | AEAutocorrectModeSpelling;", "#endif", "", "AEAssessmentSession *session = [[AEAssessmentSession alloc] initWithConfiguration:config];"], metadata: None }] }] })
+    /// While you provide a configuration instance when creating a session on iOS, iPadOS, and macOS, specific exceptions apply only to certain platforms. In particular, on macOS, you can selectively make specific apps besides your own available during an assessment — for example, to allow users to access a calculator or a dictionary. All other exceptions apply only to iOS and iPadOS.
+    ///
+    ///
     /// Configuration information for an assessment session.
     ///
     /// Create a configuration instance and pass it to the ``AEAssessmentSession/init(configuration:)`` initializer of an ``AEAssessmentSession`` instance to create a new assessment session. Before using the configuration, indicate which exceptions you want to allow for the assessment session's restrictions by setting values on the configuration instance. For example, you can set values to allow dictation and certain aspects of autocorrect:
@@ -205,8 +245,6 @@ extern_class!(
     /// ### Allowing content capture
     ///
     /// - ``allowsScreenshots``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentConfiguration;
@@ -493,7 +531,13 @@ impl AEAssessmentConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentparticipantconfiguration?language=objc)
+    /// Configuration information for an app that’s available during an assessment.
+    ///
+    /// ## Overview
+    ///
+    /// Use an instance of this class to configure the properties of an app that you allow to run during an assessment. Associate the participant configuration with an app (an [`AEAssessmentApplication`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentapplication) instance) when you call the [`setConfiguration:forApplication:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration/setconfiguration(_:for:)) method of a session configuration.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentParticipantConfiguration;
@@ -560,7 +604,37 @@ impl AEAssessmentParticipantConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession?language=objc)
+    /// A session that your app uses to protect an assessment.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`AEAssessmentSession`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession) class to manage an assessment session. The system allows only one active session at a time across all processes. The first session to run gets exclusive access to the system; subsequent session attempts fail until the first session ends.
+    ///
+    /// To create an assessment session, pass a new [`AEAssessmentConfiguration`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration) instance to the [`initWithConfiguration:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/init(configuration:)) method. Then, provide the session with a delegate that conforms to the [`AEAssessmentSessionDelegate`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate) protocol:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let config = AEAssessmentConfiguration()", "let session = AEAssessmentSession(configuration: config)", "session.delegate = self"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["AEAssessmentConfiguration *config = [AEAssessmentConfiguration new];", "AEAssessmentSession *session = [[AEAssessmentSession alloc] initWithConfiguration:config];", "session.delegate = self;"], metadata: None }] }] })
+    /// You can indicate exceptions to the restrictions imposed by an assessment session by setting the properties of the configuration instance, or you can use the default restrictions as shown above. The session tells its delegate about state changes during its life cycle. To start a session, call the session’s [`begin`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/begin()) method:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["session.begin()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[session begin];"], metadata: None }] }] })
+    /// The method returns immediately, and the session starts disabling system features. After achieving the desired state, the session calls its delegate’s [`assessmentSessionDidBegin:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentsessiondidbegin(_:)) method. Only after receiving this callback is it safe to begin your assessment. Be sure to keep a strong reference to the session as long as you want it to remain active. If the system deallocates an active session, the session automatically ends.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Prior to macOS 12.1, a DNS lookup that your app initiates during a session might fail. Be sure your app resolves all required domain names before beginning a session so that the system can cache the results. You can do this by using [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) to send a `HEAD` request to each domain name that your app needs to access.
+    ///
+    ///
+    ///
+    /// </div>
+    /// After completing an assessment and hiding all sensitive information, call the session’s [`end`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/end()) method:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["session.end()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[session end];"], metadata: None }] }] })
+    /// After making the call, wait for the session to call its delegate’s [`assessmentSessionDidEnd:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentsessiondidend(_:)) method before reporting assessment completion to the user.
+    ///
+    /// During assessment, the session’s delegate might receive an [`assessmentSession:wasInterruptedWithError:`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate/assessmentsession(_:wasinterruptedwitherror:)) callback to indicate a failure. If this happens, immediately stop the assessment, hide all sensitive content, and end the session. Because it might take time for your app to finalize the assessment, the session relies on your app to call the session’s [`end`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/end()) method:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func assessmentSession(_ session: AEAssessmentSession, wasInterruptedWithError error: Error) {", "    // Hide sensitive UI and optionally store assessment progress.", "", "    // End the session.", "    session.end()", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)assessmentSession:(AEAssessmentSession *)session wasInterruptedWithError:(NSError *)error {", "    // Hide sensitive UI and optionally store assessment progress.", "", "    // End the session.", "    [session end];", "}"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentSession;
@@ -634,7 +708,17 @@ impl AEAssessmentSession {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate?language=objc)
+    /// An interface that the session uses to provide information about session state changes to a delegate.
+    ///
+    /// ## Overview
+    ///
+    /// An assessment session operates asynchronously because it takes time to make the changes associated with starting or stopping a session, and external events might affect the state of the session. Adopt the [`AEAssessmentSessionDelegate`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsessiondelegate) protocol to receive callbacks at key points in the session life cycle. Store your adopter in the session’s [`delegate`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/delegate) property before starting a session.
+    ///
+    /// By listening for delegate callbacks, you learn when you can safely start an assessment after calling the session’s [`begin`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/begin()) method, when the session has finished after calling the [`end`](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentsession/end()) method, or if the session has been interrupted for some reason. You also find out when it’s safe to proceed after changing a session’s configuration.
+    ///
+    /// The session calls all delegate methods on the main thread.
+    ///
+    ///
     pub unsafe trait AEAssessmentSessionDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(assessmentSessionDidBegin:))]
@@ -682,29 +766,28 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterrordomain?language=objc)
+    /// A constant representing the error domain that the framework uses when issuing errors.
     pub static AEAssessmentErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code?language=objc)
+/// Error codes that the framework returns if a session fails.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AEAssessmentErrorCode(pub NSInteger);
 impl AEAssessmentErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/unknown?language=objc)
+    /// The session encountered an unknown error.
     #[doc(alias = "AEAssessmentErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/unsupportedplatform?language=objc)
+    /// The feature isn’t supported on this platform.
     #[doc(alias = "AEAssessmentErrorUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/multipleparticipantsnotsupported?language=objc)
+    /// A session fails to begin or update with a configuration that contains one or more participant applications because mulitple participant configurations are not supported by the device or platform.
     #[doc(alias = "AEAssessmentErrorMultipleParticipantsNotSupported")]
     pub const MultipleParticipantsNotSupported: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/configurationupdatesnotsupported?language=objc)
+    /// An active session fails to update its configuration because configuration updates are not supported by the current device or platform.
     #[doc(alias = "AEAssessmentErrorConfigurationUpdatesNotSupported")]
     pub const ConfigurationUpdatesNotSupported: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmenterror/code/requiredparticipantsnotavailable?language=objc)
     #[doc(alias = "AEAssessmentErrorRequiredParticipantsNotAvailable")]
     pub const RequiredParticipantsNotAvailable: Self = Self(5);
 }
@@ -718,11 +801,9 @@ unsafe impl RefEncode for AEAssessmentErrorCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aenotinstalledparticipantskey?language=objc)
     pub static AENotInstalledParticipantsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aerestrictedsystemparticipantskey?language=objc)
     pub static AERestrictedSystemParticipantsKey: &'static NSString;
 }

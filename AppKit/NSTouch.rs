@@ -6,32 +6,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct?language=objc)
+/// The possible phases of a touch.
+///
+/// ## Overview
+///
+/// These constants are used by [`phase`](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.property).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchPhase: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/began?language=objc)
+/// A finger touched the device. Or, a resting touch transitioned to an active touch and resting touches are not wanted by the view hierarchy.
         #[doc(alias = "NSTouchPhaseBegan")]
         const Began = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/moved?language=objc)
+/// A finger moved on the device.
         #[doc(alias = "NSTouchPhaseMoved")]
         const Moved = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/stationary?language=objc)
+/// A finger is touching the device, but hasn’t moved since the previous event.
         #[doc(alias = "NSTouchPhaseStationary")]
         const Stationary = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/ended?language=objc)
+/// A finger was lifted from the screen. Or, an active touch transitioned to a resting touch and resting touches are not wanted by the view hierarchy.
         #[doc(alias = "NSTouchPhaseEnded")]
         const Ended = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/cancelled?language=objc)
+/// The system cancelled tracking for the touch, as when (for example) the window associated with the touch resigns key or is deactivated.
         #[doc(alias = "NSTouchPhaseCancelled")]
         const Cancelled = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/touching?language=objc)
+/// Matches the [`NSTouchPhaseBegan`](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/began), [`NSTouchPhaseMoved`](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/moved), or [`NSTouchPhaseStationary`](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/stationary) phases of a touch.
         #[doc(alias = "NSTouchPhaseTouching")]
         const Touching = NSTouchPhase::Began.0|NSTouchPhase::Moved.0|NSTouchPhase::Stationary.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct/any?language=objc)
+/// Matches any phase of a touch.
         #[doc(alias = "NSTouchPhaseAny")]
         const Any = NSUIntegerMax as _;
     }
@@ -45,16 +51,16 @@ unsafe impl RefEncode for NSTouchPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype?language=objc)
+/// A bit mask identifying a direct or indirect touch type.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchType(pub NSInteger);
 impl NSTouchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype/direct?language=objc)
+    /// A direct touch from a user’s finger on a screen.
     #[doc(alias = "NSTouchTypeDirect")]
     pub const Direct: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype/indirect?language=objc)
+    /// An indirect touch that is not on a screen, like a digitizer touch.
     #[doc(alias = "NSTouchTypeIndirect")]
     pub const Indirect: Self = Self(1);
 }
@@ -67,17 +73,17 @@ unsafe impl RefEncode for NSTouchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask?language=objc)
+/// A bit mask identifying a direct or indirect touch type.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchTypeMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchTypeMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask/direct?language=objc)
+/// A direct touch from a user’s finger on a screen.
         #[doc(alias = "NSTouchTypeMaskDirect")]
         const Direct = 1<<NSTouchType::Direct.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask/indirect?language=objc)
+/// An indirect touch that is not on a screen, like a digitizer touch.
         #[doc(alias = "NSTouchTypeMaskIndirect")]
         const Indirect = 1<<NSTouchType::Indirect.0;
     }
@@ -96,7 +102,15 @@ impl NSTouchTypeMask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch?language=objc)
+    /// A snapshot of a particular touch at an instant in time.
+    ///
+    /// ## Overview
+    ///
+    /// A touch event is not persistent throughout the touch. A touch creates new instances as it progresses. Use the identity property to follow a specific touch across its lifetime.
+    ///
+    /// Touches do not have a corresponding screen location. The first touch of a touch collection latches to the view underlying the cursor using the same hit detection as mouse events. Additional touches on the same device latch to the same view. Latches remain on views until the user ends a touch or an event cancels it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTouch;

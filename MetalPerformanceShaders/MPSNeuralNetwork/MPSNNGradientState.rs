@@ -8,12 +8,11 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A class representing the state of a gradient kernel when it was encoded.
     /// at the time an -encode call was made. The contents are opaque.
     ///
     /// Gradient states must be created with [MPSCNNKernel resultStateForSourceImage:sourceStates:destinationImage:]
     /// or analogous interfaces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -156,17 +155,16 @@ impl MPSNNGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngradientstatebatch?language=objc)
+/// A batch of gradient state instances.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 pub type MPSNNGradientStateBatch = NSArray<MPSNNGradientState>;
 
 extern_class!(
+    /// A class representing the state of a gradient binary kernel when it was encoded.
     /// at the time an -encode call was made. The contents are opaque.
     ///
     /// Gradient states must be created with [MPSCNNBinaryKernel resultStateForPrimaryImage:secondaryImage:sourceStates:destinationImage:]
     /// or analogous interfaces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinarygradientstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -309,12 +307,11 @@ impl MPSNNBinaryGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnbinarygradientstatebatch?language=objc)
+/// A batch of binary gradient state instances.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 pub type MPSNNBinaryGradientStateBatch = NSArray<MPSNNBinaryGradientState>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiarygradientstate?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -457,6 +454,5 @@ impl MPSNNMultiaryGradientState {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnmultiarygradientstatebatch?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 pub type MPSNNMultiaryGradientStateBatch = NSArray<MPSNNMultiaryGradientState>;

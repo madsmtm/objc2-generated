@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontainerviewcontroller?language=objc)
+    /// A view controller that manages the presentation of search results in your interface.
+    ///
+    /// ## Overview
+    ///
+    /// In tvOS, rather than push a [`UISearchController`](https://developer.apple.com/documentation/uikit/uisearchcontroller) onto a navigation controller’s stack or use one as a child of another container view controller, embed an instance of this class and let it manage the presentation of the search controller’s content.
+    ///
+    /// [`UISearchContainerViewController`](https://developer.apple.com/documentation/uikit/uisearchcontainerviewcontroller) presents its [`UISearchController`](https://developer.apple.com/documentation/uikit/uisearchcontroller), instead of containing it. So implement view appearance methods, such as [`viewWillAppear:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/viewwillappear(_:)) and [`didMoveToParentViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/didmove(toparent:)) on both view controllers.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

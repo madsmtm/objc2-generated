@@ -7,10 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
+    /// An ASOneTimeCodeCredentialIdentity is used to describe an identity that can use a service upon successful one time code based authentication. Use this class to save entries into ASCredentialIdentityStore.
+    ///
+    ///
     /// An ASOneTimeCodeCredentialIdentity is used to describe an identity that can use a service upon successful one time code based authentication.
     /// Use this class to save entries into ASCredentialIdentityStore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asonetimecodecredentialidentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASOneTimeCodeCredentialIdentity;

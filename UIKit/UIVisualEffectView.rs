@@ -13,7 +13,27 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivisualeffectview?language=objc)
+    /// An object that implements some complex visual effects.
+    ///
+    /// ## Overview
+    ///
+    /// Depending on the desired effect, the effect may affect content layered behind the view or content added to the visual effect view’s [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview). Apply a visual effect view to an existing view and then apply a [`UIBlurEffect`](https://developer.apple.com/documentation/uikit/uiblureffect) or [`UIVibrancyEffect`](https://developer.apple.com/documentation/uikit/uivibrancyeffect) object to apply a blur or vibrancy effect to the existing view. After you add the visual effect view to the view hierarchy, add any subviews to the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview) property of the visual effect view. Don’t add subviews directly to the visual effect view itself.
+    ///
+    /// ### Set the correct alpha value
+    ///
+    /// When using the [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) class, avoid alpha values that are less than 1. Creating views that are partially transparent causes the system to combine the view and all the associated subviews during an offscreen render pass. [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) objects need to be combined as part of the content they’re layered on top of in order to look correct. Setting the alpha to less than 1 on the visual effect view or any of its superviews causes many effects to look incorrect or not show up at all.
+    ///
+    /// ### Use masks with a visual effect view
+    ///
+    /// Masks directly applied to a [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) are forwarded to the internal views that provide the visual effect, including the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview) itself. You can also apply masks directly to the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview). Applying a mask to a superview of a [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) object causes the effect to fail, and an exception is thrown.
+    ///
+    /// Any mask provided to [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) isn’t the view that actually performs the mask. UIKit makes a copy of the view and applies it to each subview. To reflect a size change to the mask, you must apply the change to the original mask and reset it on the effect view.
+    ///
+    /// ### Capture a snapshot of a visual effect view
+    ///
+    /// Many effects require support from the window that hosts the [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview). Attempting to take a snapshot of only the [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) results in a snapshot that doesn’t contain the effect. To take a snapshot of a view hierarchy that contains a [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview), you must take a snapshot of the entire [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow) or [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) that contains it.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

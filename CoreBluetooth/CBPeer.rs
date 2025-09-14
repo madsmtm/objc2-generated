@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbpeer?language=objc)
+    /// An object that represents a remote device.
+    ///
+    /// ## Overview
+    ///
+    /// The [`CBPeer`](https://developer.apple.com/documentation/corebluetooth/cbpeer) class is an abstract base class that defines common behavior for objects representing remote devices. You typically don’t create instances of either [`CBPeer`](https://developer.apple.com/documentation/corebluetooth/cbpeer) or its concrete subclasses. Instead, the system creates them for you during the process of peer discovery.
+    ///
+    /// Your app takes the role of either a central (by creating an instance of [`CBCentralManager`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager)) or a peripheral (by creating an instance of [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager)), and interacts through the manager with remote devices in the opposite role. During the process of peer discovery, where a central device scans for peripherals advertising services, the system creates objects from the concrete subclasses of [`CBPeer`](https://developer.apple.com/documentation/corebluetooth/cbpeer) to represent discovered remote devices. The concrete subclasses of [`CBPeer`](https://developer.apple.com/documentation/corebluetooth/cbpeer) are [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) and [`CBCentral`](https://developer.apple.com/documentation/corebluetooth/cbcentral).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBPeer;

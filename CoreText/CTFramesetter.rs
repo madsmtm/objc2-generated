@@ -11,7 +11,15 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesetter?language=objc)
+/// Generate text frames.
+///
+/// ## Overview
+///
+/// `CTFramesetter` is an object factory for [`CTFrameRef`](https://developer.apple.com/documentation/coretext/ctframe) objects.
+///
+/// The framesetter takes an attributed string object and a shape descriptor object and calls into the typesetter to create line objects that fill that shape. The output is a frame object containing an array of lines. The frame can then draw itself directly into the current graphic context.
+///
+///
 #[doc(alias = "CTFramesetterRef")]
 #[repr(C)]
 pub struct CTFramesetter {
@@ -28,9 +36,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTFramesetter {
+    /// Returns the Core Foundation type identifier of the framesetter object.
     /// Returns the CFType of the framesetter object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettergettypeid()?language=objc)
     #[doc(alias = "CTFramesetterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,6 +49,23 @@ unsafe impl ConcreteType for CTFramesetter {
 }
 
 impl CTFramesetter {
+    /// Creates a framesetter directly from a typesetter.
+    ///
+    /// Parameters:
+    /// - typesetter: The typesetter that the framesetter uses to lay out text.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// This function returns a reference to a `CTFramesetter` object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each framesetter uses a typesetter internally to perform line breaking and other contextual analysis according to the characters in a string. This function allows the framesetter to use a typesetter that the system constructs using specific options.
+    ///
+    ///
     /// Creates a framesetter directly from a typesetter.
     ///
     ///
@@ -58,8 +82,6 @@ impl CTFramesetter {
     ///
     ///
     /// See also: CTTypesetterCreateWithAttributedStringAndOptions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreatewithtypesetter(_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateWithTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
@@ -75,6 +97,31 @@ impl CTFramesetter {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates an immutable framesetter object from an attributed string.
+    ///
+    /// Parameters:
+    /// - attrString: The attributed string for constructing the framesetter object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a framesetter object if the call is successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the framesetter object to create and fill text frames with the [`CTFramesetterCreateFrame`](https://developer.apple.com/documentation/coretext/ctframesettercreateframe(_:_:_:_:)) call.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  By default, the text system doesn’t typeset text that requires an unreasonable amount of effort. To create a framesetter that supports typesetting text regardless of the amount of effort necessary, create a [`CTTypesetterRef`](https://developer.apple.com/documentation/coretext/cttypesetter) with the [`kCTTypesetterOptionAllowUnboundedLayout`](https://developer.apple.com/documentation/coretext/kcttypesetteroptionallowunboundedlayout) option set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), then use [`CTFramesetterCreateWithTypesetter`](https://developer.apple.com/documentation/coretext/ctframesettercreatewithtypesetter(_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Creates an immutable framesetter object from an attributed
     /// string.
     ///
@@ -87,8 +134,6 @@ impl CTFramesetter {
     ///
     ///
     /// Returns: This function will return a reference to a CTFramesetter object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreatewithattributedstring(_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateWithAttributedString")]
     #[inline]
     pub fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTFramesetter> {
@@ -103,6 +148,33 @@ impl CTFramesetter {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Creates an immutable frame using a framesetter.
+    ///
+    /// Parameters:
+    /// - framesetter: The framesetter used to create the frame.
+    ///
+    /// - stringRange: The range, of the attributed string that was used to create the framesetter, that is to be typeset in lines fitted into the frame. If the length portion of the range is set to `0`, then the framesetter continues to add lines until it runs out of text or space.
+    ///
+    /// - path: A CGPath object that specifies the shape of the frame. The path may be non-rectangular in versions of macOS 10.7 or later and versions of iOS 4.2 or later.
+    ///
+    /// - frameAttributes: Additional attributes that control the frame filling process can be specified here, or `NULL` if there are no such attributes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a new CTFrame object if the call was successful; otherwise, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call creates a frame full of glyphs in the shape of the path provided by the `path` parameter. The framesetter continues to fill the frame until it either runs out of text or it finds that text no longer fits.
+    ///
+    /// ### Special Considerations
+    ///
+    /// In versions of macOS prior to 10.7 and versions of iOS prior to 4.2, this function returns `NULL` if the CGPath specified by the `path` parameter is not rectangular.
+    ///
+    ///
     /// Creates an immutable frame from a framesetter.
     ///
     ///
@@ -137,8 +209,6 @@ impl CTFramesetter {
     ///
     /// - `frame_attributes` generic must be of the correct type.
     /// - `frame_attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettercreateframe(_:_:_:_:)?language=objc)
     #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
@@ -164,6 +234,23 @@ impl CTFramesetter {
 
     /// Returns the typesetter object being used by the framesetter.
     ///
+    /// Parameters:
+    /// - framesetter: The framesetter from which a typesetter is requested.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CTTypesetter object if the call was successful; otherwise, `NULL`. The framesetter maintains a reference to the returned object, which should not be released by the caller.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each framesetter uses a typesetter internally to perform line breaking and other contextual analysis based on the characters in a string; this function returns the typesetter being used by a particular framesetter in case the caller would like to perform other operations on that typesetter.
+    ///
+    ///
+    /// Returns the typesetter object being used by the framesetter.
+    ///
     ///
     /// Each framesetter uses a typesetter internally to perform
     /// line breaking and other contextual analysis based on the
@@ -177,8 +264,6 @@ impl CTFramesetter {
     ///
     /// Returns: This function will return a reference to a CTTypesetter
     /// object, which should not be released by the caller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettergettypesetter(_:)?language=objc)
     #[doc(alias = "CTFramesetterGetTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
@@ -194,6 +279,31 @@ impl CTFramesetter {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Determines the frame size needed for a string range.
+    ///
+    /// Parameters:
+    /// - framesetter: The framesetter used for measuring the frame size.
+    ///
+    /// - stringRange: The string range to which the frame size applies. The string range is a range over the string used to create the framesetter. If the length portion of the range is set to `0`, then the framesetter continues to add lines until it runs out of text or space.
+    ///
+    /// - frameAttributes: Additional attributes that control the frame filling process, or `NULL` if there are no such attributes.
+    ///
+    /// - constraints: The width and height to which the frame size is constrained. A value of [`CGFLOAT_MAX`](https://developer.apple.com/documentation/corefoundation/cgfloat_max) for either dimension indicates that it should be treated as unconstrained.
+    ///
+    /// - fitRange: On return, contains the range of the string that actually fit in the constrained size.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The actual dimensions for the given string range and constraints.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to determine how much space is needed to display a string, optionally by constraining the space along either dimension.
+    ///
+    ///
     /// Determines the frame size needed for a string range.
     ///
     ///
@@ -231,8 +341,6 @@ impl CTFramesetter {
     /// - `frame_attributes` generic must be of the correct type.
     /// - `frame_attributes` generic must be of the correct type.
     /// - `fit_range` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframesettersuggestframesizewithconstraints(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(

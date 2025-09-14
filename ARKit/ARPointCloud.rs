@@ -10,7 +10,13 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arpointcloud?language=objc)
+    /// A collection of points in the world coordinate space of the AR session.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) [`rawFeaturePoints`](https://developer.apple.com/documentation/arkit/arframe/rawfeaturepoints) property to obtain a point cloud representing intermediate results of the scene analysis ARKit uses to perform world tracking.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

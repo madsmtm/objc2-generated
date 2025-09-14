@@ -7,17 +7,39 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clheadingcomponentvalue?language=objc)
+/// A type used to report magnetic differences reported by the onboard hardware.
 pub type CLHeadingComponentValue = c_double;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/kclheadingfilternone?language=objc)
+    /// A constant indicating that all header values should be reported.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to indicate that any change to the heading, regardless of how small, should be reported.
+    ///
+    ///
     #[cfg(feature = "CLLocation")]
     pub static kCLHeadingFilterNone: CLLocationDegrees;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clheading?language=objc)
+    /// The orientation of the user’s device, relative to true or magnetic north.
+    ///
+    /// ## Overview
+    ///
+    /// A [`CLHeading`](https://developer.apple.com/documentation/corelocation/clheading) object contains computed values for the device’s azimuth (orientation) relative to true or magnetic north. It also includes the raw data for the three-dimensional vector used to compute those values. A navigation app might use the information to rotate a map so that it reflects the direction that the user is facing.
+    ///
+    /// Typically, you don’t create instances of this class yourself, nor do you subclass it. Instead, you receive instances of this class through the delegate assigned to the [`CLLocationManager`](https://developer.apple.com/documentation/corelocation/cllocationmanager) object whose [`startUpdatingHeading`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startupdatingheading()) method you called.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you want heading objects to contain valid data for the [`trueHeading`](https://developer.apple.com/documentation/corelocation/clheading/trueheading) property, configure your location manager object to deliver location updates. You can start the delivery of these updates by calling the location manager object’s [`startUpdatingLocation`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startupdatinglocation()) method.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLHeading;

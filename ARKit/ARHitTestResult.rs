@@ -8,9 +8,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Possible types for specifying a hit-test search, or for the result of a hit-test search.
 /// Option set of hit-test result types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -19,34 +18,84 @@ pub struct ARHitTestResultType(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl ARHitTestResultType: NSUInteger {
-/// Result type from intersecting the nearest feature point.
+/// A point on a surface detected by ARKit, but not part of any detected planes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/featurepoint?language=objc)
+/// ## Discussion
+///
+/// During a world-tracking AR session, ARKit builds a coarse point cloud representing its rough understanding of the 3D world around the user (see [`rawFeaturePoints`](https://developer.apple.com/documentation/arkit/arframe/rawfeaturepoints)). Individual feature points represent parts of the camera image likely to be part of a real-world surface, but not necessarily a planar surface.
+///
+/// When you search using this hit-test option, ARKit finds the feature point nearest to the hit-test ray (the extension of the 2D hit-test point into 3D world space), then returns the point on the ray nearest to that feature point.
+///
+///
+/// Result type from intersecting the nearest feature point.
         #[doc(alias = "ARHitTestResultTypeFeaturePoint")]
         const FeaturePoint = 1<<0;
-/// Result type from intersecting a horizontal plane estimate, determined for the current frame.
+/// A point on a real-world planar surface detected during the search, whose orientation is perpendicular to gravity.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedhorizontalplane?language=objc)
+/// ## Discussion
+///
+/// ARKit provides two ways to locate real-world flat surfaces in a scene. _Plane detection_ (enabled with [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) on your session configuration) is an ongoing process, continuously analyzing the scene to accurately map the position and extent of any planes in view. Because plane detection takes time, you can fall back to _plane estimation_ to get an instant, but less accurate, indication of whether a 2D point in the camera image corresponds to a real-world flat surface.
+///
+/// Because plane detection results are more accurate than plane estimation results, ARKit prefers the former when searching for both. If your hit-test search includes both [`ARHitTestResultTypeEstimatedHorizontalPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedhorizontalplane) and one or more [`ARHitTestResultTypeExistingPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane) types, and the search finds any already detected plane anchors, the search returns only the existing plane(s) and no estimated plane.
+///
+/// An estimated plane search returns at most one result—the best estimate for a horizontal plane intersecting the hit-test ray.
+///
+///
+/// Result type from intersecting a horizontal plane estimate, determined for the current frame.
         #[doc(alias = "ARHitTestResultTypeEstimatedHorizontalPlane")]
         const EstimatedHorizontalPlane = 1<<1;
-/// Result type from intersecting a vertical plane estimate, determined for the current frame.
+/// A point on a real-world planar surface detected during the search, whose orientation is parallel to gravity.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane?language=objc)
+/// ## Discussion
+///
+/// ARKit provides two ways to locate real-world flat surfaces in a scene. _Plane detection_ (enabled with [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) on your session configuration) is an ongoing process, continuously analyzing the scene to accurately map the position and extent of any planes in view. Because plane detection takes time, you can fall back to _plane estimation_ to get an instant, but less accurate, indication of whether a 2D point in the camera image corresponds to a real-world flat surface.
+///
+/// Because plane detection results are more accurate than plane estimation results, ARKit prefers the former when searching for both. If your hit-test search includes both [`ARHitTestResultTypeEstimatedVerticalPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedverticalplane) and one or more [`ARHitTestResultTypeExistingPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane) types, and the search finds any already detected plane anchors, the search returns only the existing plane(s) and no estimated plane.
+///
+/// An estimated plane search returns at most one result—the best estimate for a vertical plane intersecting the hit-test ray.
+///
+///
+/// Result type from intersecting a vertical plane estimate, determined for the current frame.
         #[doc(alias = "ARHitTestResultTypeEstimatedVerticalPlane")]
         const EstimatedVerticalPlane = 1<<2;
-/// Result type from intersecting with an existing plane anchor.
+/// A point on a real-world plane (already detected with the [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) option), without considering the plane’s size.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane?language=objc)
+/// ## Discussion
+///
+/// When searching for this result type, ARKit can return any point coplanar with an already detected plane, regardless of whether that plane’s already detected [`extent`](https://developer.apple.com/documentation/arkit/arplaneanchor/extent) or [`geometry`](https://developer.apple.com/documentation/arkit/arplaneanchor/geometry) includes that point. (That is, this result type searches the infinite extensions of detected planes.)
+///
+/// An existing plane search can return any number of results, depending on how many already-detected planes the hit test ray intersects (if any).
+///
+///
+/// Result type from intersecting with an existing plane anchor.
         #[doc(alias = "ARHitTestResultTypeExistingPlane")]
         const ExistingPlane = 1<<3;
-/// Result type from intersecting with an existing plane anchor, taking into account the plane’s extent.
+/// A point on a real-world plane (already detected with the [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) option), respecting the plane’s estimated size.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusingextent?language=objc)
+/// ## Discussion
+///
+/// When searching for this result type, ARKit returns a point coplanar with an already detected plane only if that point lies within the area defined by the plane’s [`center`](https://developer.apple.com/documentation/arkit/arplaneanchor/center) and [`extent`](https://developer.apple.com/documentation/arkit/arplaneanchor/extent) properties. Those properties (together with the anchor’s [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform)) define the smallest rectangular area that includes all regions ARKit estimates to be a part of the plane.
+///
+/// However, that rectangular area may contain regions that are not part of the same real-world surface. There may also be parts of the same real-world surface that lie outside the rectangle because ARKit has not yet recognized them as part of the same plane. You can get a more precise estimate of the plane area ARKit has recognized by testing with the [`ARHitTestResultTypeExistingPlaneUsingGeometry`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusinggeometry) type, or extend your hit test to an infinite plane with the [`ARHitTestResultTypeExistingPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane) type.
+///
+/// An existing plane search can return any number of results, depending on how many already-detected planes the hit test ray intersects (if any).
+///
+///
+/// Result type from intersecting with an existing plane anchor, taking into account the plane’s extent.
         #[doc(alias = "ARHitTestResultTypeExistingPlaneUsingExtent")]
         const ExistingPlaneUsingExtent = 1<<4;
-/// Result type from intersecting with an existing plane anchor, taking into account the plane’s geometry.
+/// A point on a real-world plane (already detected with the [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) option), respecting the plane’s estimated size and shape.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusinggeometry?language=objc)
+/// ## Discussion
+///
+/// When searching for this result type, ARKit returns a point coplanar with an already detected plane only if that point lies within the area defined by the plane’s [`geometry`](https://developer.apple.com/documentation/arkit/arplaneanchor/geometry). That property (together with the anchor’s [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform)) defines the smallest polygonal area that includes all regions ARKit estimates to be a part of the plane.
+///
+/// Because that polygon is always convex, it may contain regions that are not part of the same real-world surface. (It does, however, provide a more precise esitmate than a bounding rectangle provided by the [`ARHitTestResultTypeExistingPlaneUsingExtent`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplaneusingextent) type.) There may also be parts of the same real-world surface that lie outside the polygon because ARKit has not yet recognized them as part of the same plane. You extend your hit test to an infinite plane by using the [`ARHitTestResultTypeExistingPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/existingplane) type.
+///
+/// An existing plane search can return any number of results, depending on how many already-detected planes the hit test ray intersects (if any).
+///
+///
+/// Result type from intersecting with an existing plane anchor, taking into account the plane’s geometry.
         #[doc(alias = "ARHitTestResultTypeExistingPlaneUsingGeometry")]
         const ExistingPlaneUsingGeometry = 1<<5;
     }
@@ -64,9 +113,28 @@ unsafe impl RefEncode for ARHitTestResultType {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A result of an intersection found during a hit-test.
+    /// Information about a real-world surface found by examining a point on the screen.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult?language=objc)
+    /// ## Overview
+    ///
+    /// If you use SceneKit or SpriteKit as your renderer, you can search for real-world surfaces at a screen point using:
+    ///
+    /// - [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) [`hitTest:types:`](https://developer.apple.com/documentation/arkit/arscnview/hittest(_:types:))
+    ///
+    /// - [`ARSKView`](https://developer.apple.com/documentation/arkit/arskview) [`hitTest:types:`](https://developer.apple.com/documentation/arkit/arskview/hittest(_:types:))
+    ///
+    /// Otherwise, you can search the camera image for real-world content using the [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) [`hitTest:types:`](https://developer.apple.com/documentation/arkit/arframe/hittest(_:types:)) method. Because a frame is independent of a view, for this method you pass a point specified in normalized image coordinates (where `(0,0)` is the top left corner of the image and `(1,1)` is the lower right).
+    ///
+    /// All these methods return an array of [`ARHitTestResult`](https://developer.apple.com/documentation/arkit/arhittestresult) objects describing the content found. The number and order of results in the array depends on the search types you specify and the order you specify them in. For example, consider the code below:
+    ///
+    /// ```swift
+    /// let results = view.hitTest(point, [.existingPlaneUsingGeometry, .estimatedHorizontalPlane])
+    /// ```
+    ///
+    /// This [`hitTest:types:`](https://developer.apple.com/documentation/arkit/arscnview/hittest(_:types:)) call searches first for plane anchors already present in the session (according to the session configuration’s [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) settings); returning any such results (in order of distance from the camera) as the first elements in the array. This call also (due to the [`ARHitTestResultTypeEstimatedHorizontalPlane`](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype/estimatedhorizontalplane) request) attempts to determine whether the hit test ray intersects any horizontal surface not already found by plane detection, and returns that result (if any) as the last element in the array.
+    ///
+    ///
+    /// A result of an intersection found during a hit-test.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

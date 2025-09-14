@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A network device attachment that allows a custom network topology.
+    ///
+    /// ## Overview
+    ///
+    /// The Virtualization framework backs this attachment by a logical network which the client creates and customizes through the [`vmnet`](https://developer.apple.com/documentation/vmnet) framework APIs to allow custom network topology which allows multiple virtual machines to appear on the same network and connect with each other.
+    ///
+    ///
     /// Network device attachment that allows custom network topology.
     ///
     /// This attachment is backed by a logical network which is created and customized through
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZNetworkDeviceConfiguration
     ///
     /// See: VZVirtioNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvmnetnetworkdeviceattachment?language=objc)
     #[unsafe(super(VZNetworkDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZNetworkDeviceAttachment")]

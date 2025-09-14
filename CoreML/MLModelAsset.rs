@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstraction of a compiled Core ML model asset.
+    ///
+    /// ## Overview
+    ///
+    /// [`MLModelAsset`](https://developer.apple.com/documentation/coreml/mlmodelasset) provides a unified interface by abstracting the compiled model representations for `.mlmodelc` files and in-memory representations.
+    ///
+    /// To use an in-memory model, create an [`MLModelAsset`](https://developer.apple.com/documentation/coreml/mlmodelasset) with an in-memory model specification, then call [`loadModelAsset:configuration:completionHandler:`](https://developer.apple.com/documentation/coreml/mlmodel/load(_:configuration:completionhandler:)).
+    ///
+    ///
     /// A compiled model asset.
     ///
     /// `MLModelAsset` is an abstraction of a compiled model, which can be:
@@ -35,8 +44,6 @@ extern_class!(
     /// modelConfiguration.functionName = "MyFunction"
     /// let model = try await MLModel.load(asset: modelAsset, configuration: modelConfiguration)
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelAsset;

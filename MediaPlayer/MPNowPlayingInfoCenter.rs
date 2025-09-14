@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype?language=objc)
+/// The type of media currently playing.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingInfoMediaType(pub NSUInteger);
 impl MPNowPlayingInfoMediaType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/none?language=objc)
+    /// There is no now playing media item.
     #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/audio?language=objc)
+    /// The now playing media item is an audio item.
     #[doc(alias = "MPNowPlayingInfoMediaTypeAudio")]
     pub const Audio: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype/video?language=objc)
+    /// The now playing media item is a video item.
     #[doc(alias = "MPNowPlayingInfoMediaTypeVideo")]
     pub const Video: Self = Self(2);
 }
@@ -32,25 +32,25 @@ unsafe impl RefEncode for MPNowPlayingInfoMediaType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate?language=objc)
+/// The playback state of the app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingPlaybackState(pub NSUInteger);
 impl MPNowPlayingPlaybackState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/unknown?language=objc)
+    /// The current state of the app is unknown.
     #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/playing?language=objc)
+    /// The app is currently playing a media item.
     #[doc(alias = "MPNowPlayingPlaybackStatePlaying")]
     pub const Playing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/paused?language=objc)
+    /// The app is currently paused.
     #[doc(alias = "MPNowPlayingPlaybackStatePaused")]
     pub const Paused: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/stopped?language=objc)
+    /// The app has stopped playing.
     #[doc(alias = "MPNowPlayingPlaybackStateStopped")]
     pub const Stopped: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate/interrupted?language=objc)
+    /// The app has been interrupted during playback.
     #[doc(alias = "MPNowPlayingPlaybackStateInterrupted")]
     pub const Interrupted: Self = Self(4);
 }
@@ -64,7 +64,71 @@ unsafe impl RefEncode for MPNowPlayingPlaybackState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter?language=objc)
+    /// An object for setting the Now Playing information for media that your app plays.
+    ///
+    /// ## Overview
+    ///
+    /// If your app also provides Now Playing information containing information about the current track, use this object to update that information at appropriate times. This object contains a [`nowPlayingInfo`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter/nowplayinginfo) dictionary describing the playing item.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Siri can provide suggestions in search, News, Safari, and other apps using on-device information that you contribute through the Now Playing APIs. Users can control Siri on-device learning through Siri and Search settings for your app.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system displays Now Playing information on the device’s Lock Screen and in the media controls in Control Center. If the user directs playback of your media to Apple TV using AirPlay, the Now Playing information appears on the television screen. If the user connects a device to an iPod accessory, such as in a car, the accessory may display Now Playing information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To ensure that your app interacts successfully with the widest possible range of accessories, provide values for as many information properties as you can in the [`nowPlayingInfo`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter/nowplayinginfo) dictionary.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The information you can specify includes all of the Now Playing metadata properties (see the Accessing Now Playing metadata properties topic group below), and the following subset of [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem) properties:
+    ///
+    /// - [`MPMediaItemPropertyAlbumTitle`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtitle)
+    ///
+    /// - [`MPMediaItemPropertyAlbumTrackCount`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtrackcount)
+    ///
+    /// - [`MPMediaItemPropertyAlbumTrackNumber`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtracknumber)
+    ///
+    /// - [`MPMediaItemPropertyArtist`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartist)
+    ///
+    /// - [`MPMediaItemPropertyArtwork`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartwork)
+    ///
+    /// - [`MPMediaItemPropertyComposer`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomposer)
+    ///
+    /// - [`MPMediaItemPropertyDiscCount`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydisccount)
+    ///
+    /// - [`MPMediaItemPropertyDiscNumber`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydiscnumber)
+    ///
+    /// - [`MPMediaItemPropertyGenre`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertygenre)
+    ///
+    /// - [`MPMediaItemPropertyMediaType`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertymediatype)
+    ///
+    /// - [`MPMediaItemPropertyPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid)
+    ///
+    /// - [`MPMediaItemPropertyPlaybackDuration`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaybackduration)
+    ///
+    /// - [`MPMediaItemPropertyTitle`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertytitle)
+    ///
+    /// You don’t have direct control over what information the system displays, or its formatting. You set the values in the [`nowPlayingInfo`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter/nowplayinginfo) dictionary and the system or the connected accessory handles displaying the information in a consistent manner for all apps.
+    ///
+    /// You can ensure that your app interacts well with other apps providing Now Playing information by following the best practices in the [Becoming a now playable app](https://developer.apple.com/documentation/mediaplayer/becoming-a-now-playable-app) sample code project.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In iOS 17.2 and later, the Journal app encourages people to reflect and write about their day-to-day experiences, including media they listened to or watched. If your app donates media information to [`MPNowPlayingInfoCenter`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocenter), and you choose not to opt-out, the media played may appear as a suggestion in the Journal app, or other apps that use the Journaling Suggestions framework.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingInfoCenter;
@@ -135,125 +199,243 @@ impl MPNowPlayingInfoCenter {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyelapsedplaybacktime?language=objc)
+    /// The elapsed time of the Now Playing item, in seconds.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `double`. Elapsed time is automatically calculated, by the system, from the previously provided elapsed time and the playback rate. It isn’t necessary to update this property frequently.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyElapsedPlaybackTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackrate?language=objc)
+    /// The playback rate of the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `double`. The default value is `1.0`, which indicates a normal playback rate. A playback rate value of `2.0` means twice the normal playback rate; a piece of media played at this rate would take half as long to play to completion. A value of `0.5` means half the normal playback rate; a piece of media played at this rate would take twice as long to play to completion.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyPlaybackRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertydefaultplaybackrate?language=objc)
+    /// The default playback rate for the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `double`. Set this property if your app is playing a media item at a playback rate other than `1.0` as its default rate.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyDefaultPlaybackRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueueindex?language=objc)
+    /// The index of the Now Playing item in the app’s playback queue.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger). The playback queue uses zero-based indexing. For example, to display first item in the queue as “item 1 of 10,” set the item’s index to `0`.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyPlaybackQueueIndex: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackqueuecount?language=objc)
+    /// The total number of items in the app’s playback queue.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger).
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyPlaybackQueueCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertychapternumber?language=objc)
+    /// The number corresponding to the currently playing chapter.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger). Chapter numbering uses zero-based indexing. For example, to display the first chapter in the Now Playing item as “Chapter 1,” set the chapter number to `0`.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyChapterNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertychaptercount?language=objc)
+    /// The total number of chapters in the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger).
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyChapterCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyislivestream?language=objc)
+    /// A number that denotes whether the Now Playing item is a live stream.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `boolean`. A value of `1.0` indicates the now playing item is a live stream.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyIsLiveStream: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyavailablelanguageoptions?language=objc)
+    /// The available language option groups for the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an array of [`MPNowPlayingInfoLanguageOptionGroup`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoptiongroup) items. The system can play only one language option in a given group at a time.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyAvailableLanguageOptions: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycurrentlanguageoptions?language=objc)
+    /// The currently active language options for the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an array of [`MPNowPlayingInfoLanguageOption`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfolanguageoption) items.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyCurrentLanguageOptions: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfocollectionidentifier?language=objc)
+    /// The identifier of the collection the Now Playing item belongs to.
+    ///
+    /// ## Discussion
+    ///
+    /// The identifier can be an album, artist, playlist, etc.
+    ///
+    ///
     pub static MPNowPlayingInfoCollectionIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexternalcontentidentifier?language=objc)
+    /// The opaque identifier that uniquely identifies the Now Playing item, even through app relaunches.
+    ///
+    /// ## Discussion
+    ///
+    /// This is only used to reference the item to the Now Playing app and can be in any format.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyExternalContentIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexternaluserprofileidentifier?language=objc)
+    /// The opaque identifier that uniquely identifies the profile the Now Playing item plays from, even through app relaunches.
+    ///
+    /// ## Discussion
+    ///
+    /// This is only used to reference the profile to the Now Playing app and can be in any format.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyExternalUserProfileIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyserviceidentifier?language=objc)
+    /// The service provider associated with the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is a unique [NSString](https://developer.apple.com/library/archive/releasenotes/Foundation/RN-FoundationOlderNotes/index.html#//apple_ref/doc/uid/TP40008080-TRANSLATED_CHAPTER_965-TRANSLATED_DEST_198) that identifies the service provider for the now-playing item. If the Now Playing item belongs to a channel or subscription service, you can use this key to coordinate various types of Now Playing content from the service provider.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyServiceIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyplaybackprogress?language=objc)
+    /// The current progress of the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `float`. A value of `0.0` indicates the item isn’t watched, while a value of `1.0` indicates the item was fully watched. This is a high-level indicator. Use [`MPNowPlayingInfoPropertyElapsedPlaybackTime`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyelapsedplaybacktime) for detailed information about how much of the item the user watched.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyPlaybackProgress: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertymediatype?language=objc)
+    /// The media type of the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a [`MPNowPlayingInfoMediaType`](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype).
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyMediaType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyasseturl?language=objc)
+    /// The URL pointing to the Now Playing item’s underlying asset.
+    ///
+    /// ## Discussion
+    ///
+    /// The system UI uses this constant when video thumbnails or audio waveform visualizations are applicable.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyAssetURL: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycurrentplaybackdate?language=objc)
+    /// The date associated with the current elapsed playback time.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyCurrentPlaybackDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyadtimeranges?language=objc)
+    /// A list of ad breaks in the Now Playing item.
     pub static MPNowPlayingInfoPropertyAdTimeRanges: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertycreditsstarttime?language=objc)
+    /// The start time for the credits, in seconds, without ads, for the Now Playing item.
     pub static MPNowPlayingInfoPropertyCreditsStartTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyinternationalstandardrecordingcode?language=objc)
+    /// The International Standard Recording Code (ISRC) of the Now Playing item.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a string that represents the International Standard Recording Code (ISRC) for a song, if one is available. System services that leverage Now Playing data, such as Music Haptics, use this value. For more information, read [Music Haptics](https://developer.apple.com/documentation/mediaaccessibility/music-haptics).
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyInternationalStandardRecordingCode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfopropertyexcludefromsuggestions?language=objc)
+    /// A number that denotes whether to exclude the Now Playing item from content suggestions.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object configured as a `boolean`.
+    ///
+    ///
     pub static MPNowPlayingInfoPropertyExcludeFromSuggestions: &'static NSString;
 }
 
 extern "C" {
     /// 1:1 (square) animated artwork for the current media item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfoproperty1x1animatedartwork?language=objc)
+    /// 1:1 (square) animated artwork for the current media item.
     pub static MPNowPlayingInfoProperty1x1AnimatedArtwork: &'static NSString;
 }
 
 extern "C" {
     /// 3:4 (tall) animated artwork for the current media item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfoproperty3x4animatedartwork?language=objc)
+    /// 3:4 (tall) animated artwork for the current media item.
     pub static MPNowPlayingInfoProperty3x4AnimatedArtwork: &'static NSString;
 }

@@ -36,14 +36,12 @@ use crate::*;
 
 extern "C" {
     /// The project version number for CoreLocationUI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/corelocationuiversionnumber?language=objc)
+    /// The project version number for CoreLocationUI.
     pub static CoreLocationUIVersionNumber: c_double;
 }
 
 extern "C" {
     /// The project version string for CoreLocationUI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/corelocationuiversionstring?language=objc)
+    /// The project version string for CoreLocationUI.
     pub static CoreLocationUIVersionString: *mut c_uchar;
 }

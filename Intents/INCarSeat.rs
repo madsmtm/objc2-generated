@@ -4,62 +4,98 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat?language=objc)
+/// Constants indicating a seat position.
 // NS_ENUM
 #[deprecated = "INCarSeat is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCarSeat(pub NSInteger);
 impl INCarSeat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/unknown?language=objc)
+    /// An unknown seat position.
     #[doc(alias = "INCarSeatUnknown")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/driver?language=objc)
+    /// The driver’s seat.
+    ///
+    /// ## Discussion
+    ///
+    /// The driver’s seat could be in the front left or front right of the car, depending on the car.
+    ///
+    ///
     #[doc(alias = "INCarSeatDriver")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Driver: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/passenger?language=objc)
+    /// The front passenger’s seat.
+    ///
+    /// ## Discussion
+    ///
+    /// The passenger’s seat could be in the front left or front right of the car, depending on the car.
+    ///
+    ///
     #[doc(alias = "INCarSeatPassenger")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Passenger: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/frontleft?language=objc)
+    /// The front-left car seat.
     #[doc(alias = "INCarSeatFrontLeft")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const FrontLeft: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/frontright?language=objc)
+    /// The front-right car seat.
     #[doc(alias = "INCarSeatFrontRight")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const FrontRight: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/front?language=objc)
+    /// The front seats.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this to specify all front seats.
+    ///
+    ///
     #[doc(alias = "INCarSeatFront")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Front: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/rearleft?language=objc)
+    /// The rear-left car seat.
+    ///
+    /// ## Discussion
+    ///
+    /// In cars with three rows of seating, rear seats are the second row.
+    ///
+    ///
     #[doc(alias = "INCarSeatRearLeft")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const RearLeft: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/rearright?language=objc)
+    /// The rear-right car seat.
+    ///
+    /// ## Discussion
+    ///
+    /// In cars with three rows of seating, rear seats are the second row.
+    ///
+    ///
     #[doc(alias = "INCarSeatRearRight")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const RearRight: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/rear?language=objc)
+    /// The rear seats.
+    ///
+    /// ## Discussion
+    ///
+    /// In cars with three rows of seating, rear seats are the second row.
+    ///
+    ///
     #[doc(alias = "INCarSeatRear")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const Rear: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/thirdrowleft?language=objc)
+    /// The left seat in third-row seating.
     #[doc(alias = "INCarSeatThirdRowLeft")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const ThirdRowLeft: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/thirdrowright?language=objc)
+    /// The right seat in third-row seating.
     #[doc(alias = "INCarSeatThirdRowRight")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const ThirdRowRight: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/thirdrow?language=objc)
+    /// The third row seats.
     #[doc(alias = "INCarSeatThirdRow")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const ThirdRow: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarseat/all?language=objc)
+    /// All seats in the car.
     #[doc(alias = "INCarSeatAll")]
     #[deprecated = "INCarSeat is deprecated. There is no replacement."]
     pub const All: Self = Self(12);

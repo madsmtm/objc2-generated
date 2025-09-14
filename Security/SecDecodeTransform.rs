@@ -6,13 +6,37 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The encoding used by a decode transform.
+    ///
+    /// ## Discussion
+    ///
+    /// See `Encoding Types` for a list of valid values.
+    ///
+    ///
     /// Used with SecTransformGetAttribute to query the attribute type.
     /// Returns one of the strings defined in the previous section.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdecodetypeattribute?language=objc)
     pub static kSecDecodeTypeAttribute: &'static CFString;
 }
 
+/// Creates a decode transform object.
+///
+/// Parameters:
+/// - DecodeType: The type of digest to decode. You may pass `NULL` for this parameter, in which case an appropriate algorithm will be chosen for you. See `Encoding Types` for a list of valid values.
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `NULL` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which computes a decode.
+///
+///
 /// Creates an decode computation object.
 ///
 /// Parameter `DecodeType`: The type of digest to decode.  You may pass NULL
@@ -35,8 +59,6 @@ extern "C" {
 ///
 /// - `decode_type` should be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdecodetransformcreate(_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

@@ -7,11 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Metadata that describes a characteristic’s value and that may be useful for presentation purposes.
+    ///
+    /// ## Overview
+    ///
+    /// Querying a characteristic’s metadata enables you to build a user interface that reflects the underlying units, minima, and maxima, and other aspects of the characteristic value.
+    ///
+    ///
     /// This class defines the metadata for a characteristic. Metadata provides
     /// further information about a characteristic’s value, which can be used
     /// for presentation purposes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMCharacteristicMetadata;
@@ -131,177 +136,193 @@ impl HMCharacteristicMetadata {
 }
 
 extern "C" {
+    /// Indicates that the characteristic has Boolean values.
     /// Describes that the value format is boolean.
     ///
     ///
     /// The value is an NSNumber containing the boolean value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatbool?language=objc)
     pub static HMCharacteristicMetadataFormatBool: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has `int` values.
     /// Describes that the value format is an integer.
     ///
     ///
     /// The value is an NSNumber containing a signed 32-bit integer with a range [-2147483648, 2147483647].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatint?language=objc)
     pub static HMCharacteristicMetadataFormatInt: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has `float` values.
     /// Describes that the value format is a float.
     ///
     ///
     /// The value is an NSNumber containing a 32-bit float.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatfloat?language=objc)
     pub static HMCharacteristicMetadataFormatFloat: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has string values.
     /// Describes that the value format is a string.
     ///
     ///
     /// The value is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatstring?language=objc)
     pub static HMCharacteristicMetadataFormatString: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has array values.
     /// Describes that the value format is an array.
     ///
     ///
     /// The value is an NSArray.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatarray?language=objc)
     pub static HMCharacteristicMetadataFormatArray: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has dictionary values.
     /// Describes that the value format is a dictionary.
     ///
     ///
     /// The value is an NSDictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatdictionary?language=objc)
     pub static HMCharacteristicMetadataFormatDictionary: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has unsigned 8-bit integer values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an unsigned 16-bit integer with a range `[0, 255]`.
+    ///
+    ///
     /// Describes that the value format is an unsigned 8-bit integer.
     ///
     ///
     /// The value is an NSNumber containing an unsigned 8-bit integer with a range [0, 255].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatuint8?language=objc)
     pub static HMCharacteristicMetadataFormatUInt8: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has unsigned 16-bit integer values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an unsigned 16-bit integer with a range `[0, 65535]`.
+    ///
+    ///
     /// Describes that the value format is an unsigned 16-bit integer.
     ///
     ///
     /// The value is an NSNumber containing an unsigned 16-bit integer with a range [0, 65535].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatuint16?language=objc)
     pub static HMCharacteristicMetadataFormatUInt16: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has unsigned 32-bit integer values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an unsigned 32-bit integer with a range `[0, 4294967295]`.
+    ///
+    ///
     /// Describes that the value format is an unsigned 32-bit integer.
     ///
     ///
     /// The value is an NSNumber containing an unsigned 32-bit integer with a range [0, 4294967295].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatuint32?language=objc)
     pub static HMCharacteristicMetadataFormatUInt32: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has unsigned 64-bit integer values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an unsigned 64-bit integer with a range `[0, 18446744073709551615]`.
+    ///
+    ///
     /// Describes that the value format is an unsigned 64-bit integer.
     ///
     ///
     /// The value is an NSNumber containing an unsigned 64-bit integer with a range [0, 18446744073709551615].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatuint64?language=objc)
     pub static HMCharacteristicMetadataFormatUInt64: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has data blob values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object containing bytes of data.
+    ///
+    ///
     /// Describes that the value format is a data blob.
     ///
     ///
     /// The value is an NSData containing the bytes of data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformatdata?language=objc)
     pub static HMCharacteristicMetadataFormatData: &'static NSString;
 }
 
 extern "C" {
+    /// Indicates that the characteristic has TLV8 values.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object containing a set of one or more TLV8’s, which are packed type-length-value items with an 8-bit type, 8-bit length, and N-byte value.
+    ///
+    ///
     /// Describes that the value format is a TLV8.
     ///
     ///
     /// The value is an NSData containing a set of one or more TLV8's, which are packed type-length-value items with an 8-bit type, 8-bit length, and N-byte value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataformattlv8?language=objc)
     pub static HMCharacteristicMetadataFormatTLV8: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is celsius.
     /// Describes that the unit of the characteristic is in Celsius.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitscelsius?language=objc)
     pub static HMCharacteristicMetadataUnitsCelsius: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is fahrenheit.
     /// Describes that the unit of the characteristic is in Fahrenheit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitsfahrenheit?language=objc)
     pub static HMCharacteristicMetadataUnitsFahrenheit: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is a percentage.
     /// Describes that the unit of the characteristic is a percentage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitspercentage?language=objc)
     pub static HMCharacteristicMetadataUnitsPercentage: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is the degrees of an arc.
     /// Describes that the unit of the characteristic is arc degree.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitsarcdegree?language=objc)
     pub static HMCharacteristicMetadataUnitsArcDegree: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is seconds.
     /// Describes that the unit of the characteristic is seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitsseconds?language=objc)
     pub static HMCharacteristicMetadataUnitsSeconds: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is lux (that is, illuminance).
     /// Describes that the unit of the characteristic is Lux (illuminance).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitslux?language=objc)
     pub static HMCharacteristicMetadataUnitsLux: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characters is parts per million.
     /// Describes that the unit of the characteristic is parts per million.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitspartspermillion?language=objc)
     pub static HMCharacteristicMetadataUnitsPartsPerMillion: &'static NSString;
 }
 
 extern "C" {
+    /// The unit of the characteristic is micrograms per cubic meter.
     /// Describes that the unit of the characteristic is micrograms per cubic meter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicmetadataunitsmicrogramspercubicmeter?language=objc)
     pub static HMCharacteristicMetadataUnitsMicrogramsPerCubicMeter: &'static NSString;
 }

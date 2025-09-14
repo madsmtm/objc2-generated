@@ -7,32 +7,50 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage?language=objc)
+/// Allowed uses for the encryption key in a certificate.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecTrustSettingsKeyUsage: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesignature?language=objc)
+/// The key can be used to sign data or verify a signature.
         #[doc(alias = "kSecTrustSettingsKeyUseSignature")]
         const UseSignature = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useendecryptdata?language=objc)
+/// The key can be used to encrypt or decrypt data.
         #[doc(alias = "kSecTrustSettingsKeyUseEnDecryptData")]
         const UseEnDecryptData = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useendecryptkey?language=objc)
+/// The key can be used to encrypt or decrypt (wrap or unwrap) a key.
+///
+/// ## Discussion
+///
+/// Private keys must be wrapped before they can be exported from a keychain.
+///
+///
         #[doc(alias = "kSecTrustSettingsKeyUseEnDecryptKey")]
         const UseEnDecryptKey = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesigncert?language=objc)
+/// The key can be used to sign a certificate or verify a signature.
         #[doc(alias = "kSecTrustSettingsKeyUseSignCert")]
         const UseSignCert = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usesignrevocation?language=objc)
+/// The key can be used to sign an OCSP (online certificate status protocol) message or CRL (certificate verification list), or to verify a signature.
+///
+/// ## Discussion
+///
+/// OCSP messages and CRLs are used to revoke certificates.
+///
+///
         #[doc(alias = "kSecTrustSettingsKeyUseSignRevocation")]
         const UseSignRevocation = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/usekeyexchange?language=objc)
+/// The key is a private key that has been shared using a key exchange protocol, such as Diffie-Hellman key exchange.
         #[doc(alias = "kSecTrustSettingsKeyUseKeyExchange")]
         const UseKeyExchange = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage/useany?language=objc)
+/// The key can be used for any purpose.
+///
+/// ## Discussion
+///
+/// This is the default key-use setting if no other key use is specified.
+///
+///
         #[doc(alias = "kSecTrustSettingsKeyUseAny")]
         const UseAny = 0xffffffff;
     }
@@ -48,27 +66,44 @@ unsafe impl RefEncode for SecTrustSettingsKeyUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Result of a trust settings evaluation.
+/// Trust settings returned in usage constraints dictionaries.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult?language=objc)
+/// ## Overview
+///
+/// These values appear in the usage constraints dictionaries returned by the [`SecTrustSettingsCopyTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:)) and [`SecTrustSettingsSetTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)) functions.
+///
+///
+/// Result of a trust settings evaluation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsResult(pub u32);
 impl SecTrustSettingsResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/invalid?language=objc)
+    /// Never valid in a trust settings array or in an API call.
     #[doc(alias = "kSecTrustSettingsResultInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustroot?language=objc)
+    /// This root certificate is explicitly trusted.
+    ///
+    /// ## Discussion
+    ///
+    /// If the certificate is not a root (self-signed) certificate, the usage constraints dictionary is invalid.
+    ///
+    ///
     #[doc(alias = "kSecTrustSettingsResultTrustRoot")]
     pub const TrustRoot: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustasroot?language=objc)
+    /// This non-root certificate is explicitly trusted as if it were a trusted root.
     #[doc(alias = "kSecTrustSettingsResultTrustAsRoot")]
     pub const TrustAsRoot: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/deny?language=objc)
+    /// This certificate is explicitly distrusted.
     #[doc(alias = "kSecTrustSettingsResultDeny")]
     pub const Deny: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult/unspecified?language=objc)
+    /// This certificate is neither trusted nor distrusted. This value can be used to specify an “allowed error” without assigning trust to a specific certificate.
+    ///
+    /// ## Discussion
+    ///
+    /// This value can be used to specify an allowed error without assigning trust to the certificate.
+    ///
+    ///
     #[doc(alias = "kSecTrustSettingsResultUnspecified")]
     pub const Unspecified: Self = Self(4);
 }
@@ -83,19 +118,31 @@ unsafe impl RefEncode for SecTrustSettingsResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain?language=objc)
+/// The trust settings domains.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsDomain(pub u32);
 impl SecTrustSettingsDomain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/user?language=objc)
+    /// Per-user trust settings.
     #[doc(alias = "kSecTrustSettingsDomainUser")]
     pub const User: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/admin?language=objc)
+    /// Locally administered, system-wide trust settings.
+    ///
+    /// ## Discussion
+    ///
+    /// Administrator privileges are required to make changes to this domain.
+    ///
+    ///
     #[doc(alias = "kSecTrustSettingsDomainAdmin")]
     pub const Admin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain/system?language=objc)
+    /// System trust settings.
+    ///
+    /// ## Discussion
+    ///
+    /// These trust settings are immutable and comprise the set of trusted root certificates supplied in macOS. These settings are read-only, even by root.
+    ///
+    ///
     #[doc(alias = "kSecTrustSettingsDomainSystem")]
     pub const System: Self = Self(2);
 }
@@ -112,7 +159,65 @@ unsafe impl RefEncode for SecTrustSettingsDomain {
 
 #[cfg(feature = "SecTrust")]
 impl SecTrust {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:)?language=objc)
+    /// Obtains the trust settings for a certificate.
+    ///
+    /// Parameters:
+    /// - certRef: The certificate for which you want the trust settings. Pass the value [`kSecTrustSettingsDefaultRootCertSetting`](https://developer.apple.com/documentation/security/ksectrustsettingsdefaultrootcertsetting) to obtain the default root certificate trust settings for the domain.
+    ///
+    /// - domain: The domain from which you want to get trust settings. For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - trustSettings: On return, an array of [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) objects that specify the trust settings for the certificate. For the contents of the dictionaries, see the discussion below. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you’re finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound) if no trust settings exist for the specified certificate and domain.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system expresses each certificate’s trust settings as a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) that includes any number (including zero) of dictionaries of type [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary), each of which describes one set of usage constraints. Each usage-constraints dictionary may contain any of the following key-value pairs:
+    ///
+    /// - [`kSecTrustSettingsPolicy`](https://developer.apple.com/documentation/security/ksectrustsettingspolicy): A policy object ([`SecPolicyRef`](https://developer.apple.com/documentation/security/secpolicy)) that specifies the certificate verification policy; for example: TLS or SMIME. Create a policy object using the `SecPolicyCreate` functions; for example, to create a standard TLS verification policy, use [`SecPolicyCreateSSL`](https://developer.apple.com/documentation/security/secpolicycreatessl(_:_:)).
+    ///
+    /// - [`kSecTrustSettingsApplication`](https://developer.apple.com/documentation/security/ksectrustsettingsapplication): A trusted application reference ([`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication)) for the app that checks the certificate’s trust settings. Use the [`SecTrustedApplicationCreateFromPath`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) function to get this reference.
+    ///
+    /// - [`kSecTrustSettingsPolicyString`](https://developer.apple.com/documentation/security/ksectrustsettingspolicystring): A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) that contains policy-specific data. For an SMIME policy, this string contains an email address. For a TLS policy, it contains a host name.
+    ///
+    /// - [`kSecTrustSettingsKeyUsage`](https://developer.apple.com/documentation/security/ksectrustsettingskeyusage): A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that contains an `SInt32` value specifying the operations that can use the encryption key in this certificate. For possible values, see [`SecTrustSettingsKeyUsage`](https://developer.apple.com/documentation/security/sectrustsettingskeyusage).
+    ///
+    /// - [`kSecTrustSettingsResult`](https://developer.apple.com/documentation/security/ksectrustsettingsresult): A `CFNumber` that contains an `SInt32` value indicating the effective trust setting for this usage-constraints dictionary.
+    ///
+    /// The system includes a usage-constraints dictionary in its evaluation of trust for a certificate only if the policy, application, and key use given in the dictionary match the use for which the system is evaluating the certificate. If this is the case, then the system combines the value of the `kSecTrustSettingsResult` key with the values from other matching dictionaries to determine the overall trust setting for the certificate, using a logical `OR` operation.
+    ///
+    /// If this key isn’t present, the system assumes a default value of `kSecTrustSettingsResultTrustRoot`. Only a root certificate can have this value; therefore it’s invalid to create a usage-constraints dictionary for a non-root certificate without this key.
+    ///
+    /// For the possible values for this key, see [`SecTrustSettingsResult`](https://developer.apple.com/documentation/security/sectrustsettingsresult).
+    ///
+    /// - [`kSecTrustSettingsAllowedError`](https://developer.apple.com/documentation/security/ksectrustsettingsallowederror): A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that contains an `SInt32` value indicating a `CSSM_RETURN` result code. If the system encounters this result code due to an error when it evaluates the trust for a certificate, it ignores the error.
+    ///
+    /// The system applies this “allowed error” value to the certificate evaluation only if the usage-constraints dictionary meets the criteria described with the `kSecTrustSettingsResult` key. A usage-constraints dictionary with no constraints but with an allowed error value causes the system to always ignore that value when evaluating a certificate.
+    ///
+    /// The system determines the overall trust settings for a certificate by combining the trust-settings results from all the usage-constraints dictionaries that match the use for which it’s evaluating the certificate. Trust settings for a given use apply if _any_ of the dictionaries in the certificate’s trust-settings array matches the specified use.
+    ///
+    /// If the value of the [`kSecTrustSettingsResult`](https://developer.apple.com/documentation/security/ksectrustsettingsresult) key is a value other than [`kSecTrustSettingsResultUnspecified`](https://developer.apple.com/documentation/security/sectrustsettingsresult/unspecified) for a usage constraints-dictionary that has no constraints, the system uses the default value [`kSecTrustSettingsResultTrustRoot`](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustroot). To specify a value for the [`kSecTrustSettingsAllowedError`](https://developer.apple.com/documentation/security/ksectrustsettingsallowederror) component without explicitly trusting or distrusting the associated certificate, set the value of the [`kSecTrustSettingsResult`](https://developer.apple.com/documentation/security/ksectrustsettingsresult) key to [`kSecTrustSettingsResultUnspecified`](https://developer.apple.com/documentation/security/sectrustsettingsresult/unspecified).
+    ///
+    /// The `trustSettings` parameter can return a valid but empty [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). This empty trust-settings array means “always trust this certificate” with an overall trust setting for the certificate of [`kSecTrustSettingsResultTrustRoot`](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustroot). However, an empty trust settings array isn’t the same as no trust settings, where the `trustSettings` parameter returns `NULL`. No trust-settings array means “this certificate must be verifiable using a known trusted certificate”.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The trust settings result value [`kSecTrustSettingsResultTrustRoot`](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustroot) can only apply to root (self-signed) certificates. It’s an error to apply it to non-root certificates, including implicitly by using an empty trust settings array. Instead, use [`kSecTrustSettingsResultTrustAsRoot`](https://developer.apple.com/documentation/security/sectrustsettingsresult/trustasroot).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Special considerations
+    ///
+    /// The system authenticates the person before making changes to per-user trust settings. On macOS 11 and later, the system authenticates the person as an administrator before making changes to system-wide trust settings. Therefore, you can only modify trust settings when running in a GUI environment; for example, a launch daemon can’t modify the settings.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -135,7 +240,33 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyTrustSettings(cert_ref, domain, trust_settings) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingssettrustsettings(_:_:_:)?language=objc)
+    /// Specifies trust settings for a certificate.
+    ///
+    /// Parameters:
+    /// - certRef: The certificate for which you want to specify the trust settings. Pass the value [`kSecTrustSettingsDefaultRootCertSetting`](https://developer.apple.com/documentation/security/ksectrustsettingsdefaultrootcertsetting) to set the default root certificate trust settings for the domain.
+    ///
+    /// - domain: The trust settings domain of the trust settings that you wish to specify.  For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - trustSettingsDictOrArray: The trust settings you wish to specify for this certificate, in the form of a `CFDictionary` object, a `CFArray` of `CFDictionary` objects, or `NULL`. The contents of `CFDictionary` objects used to specify trust settings are detailed in the [`SecTrustSettingsCopyTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingscopytrustsettings(_:_:_:)) function description. Pass `NULL` if you want to specify an empty trust settings array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you pass `NULL` for the `trustSettingsDictOrArray` parameter, then the trust settings for this certificate are stored as an empty trust settings array, indicating “always trust this root certificate regardless of use.” This setting is valid only for a self-signed (root) certificate. To instead remove all trust settings for the certificate (interpreted as “this certificate must be verified to a known trusted certificate”), use the [`SecTrustSettingsRemoveTrustSettings`](https://developer.apple.com/documentation/security/sectrustsettingsremovetrustsettings(_:_:)) function.
+    ///
+    /// If the specified certificate already has trust settings in the specified domain, this function replaces them.
+    ///
+    /// ### Special Considerations
+    ///
+    /// When making changes to per-user trust settings, the user is prompted with an alert panel asking for authentication (user name and password or other credentials normally used for login). Therefore, it is not possible to modify per-user trust settings when not running in a GUI environment (that is, when the user is not logged in via the login window). When making changes to system-wide trust settings, the user is prompted with an alert panel asking for an administrator’s name and password unless the calling process is running as root, in which case no further authentication is needed. Note that this function might block while waiting for user input.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -158,7 +289,25 @@ impl SecTrust {
         unsafe { SecTrustSettingsSetTrustSettings(cert_ref, domain, trust_settings_dict_or_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsremovetrustsettings(_:_:)?language=objc)
+    /// Deletes the trust settings for a certificate.
+    ///
+    /// Parameters:
+    /// - certRef: The certificate whose trust settings you wish to remove. Pass the value [`kSecTrustSettingsDefaultRootCertSetting`](https://developer.apple.com/documentation/security/ksectrustsettingsdefaultrootcertsetting) to remove the default root certificate trust settings for the domain.
+    ///
+    /// - domain: The trust settings domain for which you wish to remove the trust settings. For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound) if no trust settings exist for the certificate.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a certificate has no trust settings, the certificate must be verified to a known, trusted certificate.
+    ///
+    ///
     #[doc(alias = "SecTrustSettingsRemoveTrustSettings")]
     #[cfg(feature = "SecBase")]
     #[inline]
@@ -175,7 +324,19 @@ impl SecTrust {
         unsafe { SecTrustSettingsRemoveTrustSettings(cert_ref, domain) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopycertificates(_:_:)?language=objc)
+    /// Obtains an array of all certificates that have trust settings in a specific trust settings domain.
+    ///
+    /// Parameters:
+    /// - domain: The trust settings domain for which you want a list of certificates. For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - certArray: On return, an array of `SecCertificateRef` objects representing the certificates that have trust settings in the specified domain. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecNoTrustSettings`](https://developer.apple.com/documentation/security/errsecnotrustsettings) if no trust settings exist for the specified domain.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +356,21 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyCertificates(domain, cert_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscopymodificationdate(_:_:_:)?language=objc)
+    /// Obtains the date and time at which a certificate’s trust settings were last modified.
+    ///
+    /// Parameters:
+    /// - certRef: The certificate for which you wish to obtain the modification time. Pass the value `kSecTrustSettingsDefaultRootCertSetting` to obtain the modification time for the default root certificate trust settings for the domain.
+    ///
+    /// - domain: The trust settings domain of the trust settings for which you wish to obtain the modification time (it’s possible for a single certificate to have trust settings in more than one domain). For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - modificationDate: On return, the date and time at which the certificate’s trust settings were last modified. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecItemNotFound`](https://developer.apple.com/documentation/security/errsecitemnotfound) if no trust settings exist for the specified certificate and domain.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -218,7 +393,25 @@ impl SecTrust {
         unsafe { SecTrustSettingsCopyModificationDate(cert_ref, domain, modification_date) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingscreateexternalrepresentation(_:_:)?language=objc)
+    /// Obtains an external, portable representation of the specified domain’s trust settings.
+    ///
+    /// Parameters:
+    /// - domain: The trust settings domain for which you want an external representation of trust settings. For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - trustSettings: An external representation of the domain’s trust settings. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Returns [`errSecNoTrustSettings`](https://developer.apple.com/documentation/security/errsecnotrustsettings) if no trust settings exist for the specified domain.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Trust settings for a certificate are associated with the hash of the certificate. Whenever the system encounters a certificate with the hash value associated with the trust settings, it applies those trust settings to the certificate. This function allows you to export trust settings to a portable data format that can subsequently be imported on another machine. You can use this ability, for example, to clone trust settings to all the machines within an enterprise or university.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -238,7 +431,25 @@ impl SecTrust {
         unsafe { SecTrustSettingsCreateExternalRepresentation(domain, trust_settings) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsimportexternalrepresentation(_:_:)?language=objc)
+    /// Imports trust settings into a trust domain.
+    ///
+    /// Parameters:
+    /// - domain: The trust settings domain into which you want to import trust settings. For possible values, see [`SecTrustSettingsDomain`](https://developer.apple.com/documentation/security/sectrustsettingsdomain).
+    ///
+    /// - trustSettings: An external representation of the trust settings (created by the [`SecTrustSettingsCreateExternalRepresentation`](https://developer.apple.com/documentation/security/sectrustsettingscreateexternalrepresentation(_:_:)) function) that you want to import.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Trust settings for a certificate are associated with the hash of the certificate. Whenever the system encounters a certificate with the hash value associated with the trust settings, it applies those trust settings to the certificate. This function allows you to import trust settings in a portable data format that was exported from another machine. You can use this ability, for example, to clone trust settings to all the machines within an enterprise or university.
+    ///
+    ///
     #[doc(alias = "SecTrustSettingsImportExternalRepresentation")]
     #[inline]
     pub unsafe fn settings_import_external_representation(

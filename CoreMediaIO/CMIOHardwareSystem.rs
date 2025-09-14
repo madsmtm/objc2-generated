@@ -5,42 +5,24 @@ use core::ffi::*;
 use crate::*;
 
 /// A CMIOHardwarePropertyID is an integer that identifies a specific piece of information about the CMIOSystemObject.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmiohardwarepropertyid?language=objc)
 #[cfg(feature = "CMIOHardwareObject")]
 pub type CMIOHardwarePropertyID = CMIOObjectPropertySelector;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiosystemobjectclassid?language=objc)
 pub const kCMIOSystemObjectClassID: c_uint = 0x61737973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectsystemobject?language=objc)
 pub const kCMIOObjectSystemObject: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyprocessismain?language=objc)
 pub const kCMIOHardwarePropertyProcessIsMain: c_uint = 0x6d61696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyprocessismaster?language=objc)
 #[deprecated]
 pub const kCMIOHardwarePropertyProcessIsMaster: c_uint = 0x6d617374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyisinitingorexiting?language=objc)
 pub const kCMIOHardwarePropertyIsInitingOrExiting: c_uint = 0x696e6f74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydevices?language=objc)
 pub const kCMIOHardwarePropertyDevices: c_uint = 0x64657623;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultinputdevice?language=objc)
 pub const kCMIOHardwarePropertyDefaultInputDevice: c_uint = 0x64496e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydefaultoutputdevice?language=objc)
 pub const kCMIOHardwarePropertyDefaultOutputDevice: c_uint = 0x644f7574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertydeviceforuid?language=objc)
 pub const kCMIOHardwarePropertyDeviceForUID: c_uint = 0x64756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysleepingisallowed?language=objc)
 pub const kCMIOHardwarePropertySleepingIsAllowed: c_uint = 0x736c6570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyunloadingisallowed?language=objc)
 pub const kCMIOHardwarePropertyUnloadingIsAllowed: c_uint = 0x756e6c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertypluginforbundleid?language=objc)
 pub const kCMIOHardwarePropertyPlugInForBundleID: c_uint = 0x70696269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyusersessionisactiveorheadless?language=objc)
 pub const kCMIOHardwarePropertyUserSessionIsActiveOrHeadless: c_uint = 0x75736572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertysuspendedbysystem?language=objc)
 pub const kCMIOHardwarePropertySuspendedBySystem: c_uint = 0x73627973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowscreencapturedevices?language=objc)
 pub const kCMIOHardwarePropertyAllowScreenCaptureDevices: c_uint = 0x79657320;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmiohardwarepropertyallowwirelessscreencapturedevices?language=objc)
 pub const kCMIOHardwarePropertyAllowWirelessScreenCaptureDevices: c_uint = 0x77736364;

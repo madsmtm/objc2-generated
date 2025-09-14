@@ -13,7 +13,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocuseffect?language=objc)
+    /// The base class for defining a visual focus effect.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusEffect;
@@ -48,25 +48,22 @@ impl UIFocusEffect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum?language=objc)
+/// Constants that describe positions for drawing the halo focus effect.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusHaloEffectPosition(pub NSInteger);
 impl UIFocusHaloEffectPosition {
+    /// A constant that automatically chooses a position for drawing the halo effect depending on the focus item and its containing view hierarchy.
     /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/automatic?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A constant that draws the halo effect around the shape.
     /// Draws the halo around the given shape.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/outside?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionOutside")]
     pub const Outside: Self = Self(1);
+    /// A constant that draws the halo effect inside the shape.
     /// Draws the halo inside the given shape.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum/inside?language=objc)
     #[doc(alias = "UIFocusHaloEffectPositionInside")]
     pub const Inside: Self = Self(2);
 }
@@ -80,7 +77,7 @@ unsafe impl RefEncode for UIFocusHaloEffectPosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect?language=objc)
+    /// A visual focus effect that draws a halo around the focus item.
     #[unsafe(super(UIFocusEffect, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusHaloEffect;

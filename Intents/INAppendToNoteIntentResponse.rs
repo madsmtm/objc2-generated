@@ -7,38 +7,82 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAppendToNoteIntentResponseCode(pub NSInteger);
 impl INAppendToNoteIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeUnspecified")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to update the note. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeReady")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of updating the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you began updating the note but didn’t receive a confirmation of the update. You might use this code when a server handles note modification and you’ve not yet received a confirmation from that server.
+    ///
+    /// When handling the intent, you might want to first configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeInProgress")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/success?language=objc)
+    /// You successfully updated the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after updating the note successfully. Your response should contain the details of the note that you updated.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeSuccess")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failure?language=objc)
+    /// You were unable to update the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from updating the note.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailure")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to update the note.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t update the note from your Intents extension but can do so from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponsecode/failurecannotupdatepasswordprotectednote?language=objc)
+    /// You were unable to update the note because your app requires additional authorization to do so.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t update the note because of protections put in place by your app. Don’t use this code for general errors.
+    ///
+    ///
     #[doc(alias = "INAppendToNoteIntentResponseCodeFailureCannotUpdatePasswordProtectedNote")]
     #[deprecated = "INAppendToNoteIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCannotUpdatePasswordProtectedNote: Self = Self(6);
@@ -53,7 +97,15 @@ unsafe impl RefEncode for INAppendToNoteIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintentresponse?language=objc)
+    /// Your app’s response to a request to append content to a note.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INAppendToNoteIntentResponse`](https://developer.apple.com/documentation/intents/inappendtonoteintentresponse) object to return information about the updated note. Siri communicates the information from the response to the user at appropriate times. Be sure to include the details of the note in the [`note`](https://developer.apple.com/documentation/intents/inappendtonoteintentresponse/note) property.
+    ///
+    /// You create an [`INAppendToNoteIntentResponse`](https://developer.apple.com/documentation/intents/inappendtonoteintentresponse) object in the [`confirmAppendToNote:completion:`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling/confirm(intent:completion:)) and [`handleAppendToNote:completion:`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INAppendToNoteIntentHandling`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

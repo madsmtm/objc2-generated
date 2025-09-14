@@ -9,50 +9,37 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype?language=objc)
+/// The key types for platform single sign-on.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationProviderExtensionKeyType(pub NSInteger);
 impl ASAuthorizationProviderExtensionKeyType {
+    /// The user device signing key.
     /// The user's device signing key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/userdevicesigning?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceSigning")]
     pub const UserDeviceSigning: Self = Self(1);
+    /// The user device encryption key.
     /// The user's device encryption key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/userdeviceencryption?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserDeviceEncryption")]
     pub const UserDeviceEncryption: Self = Self(2);
+    /// The user Secure Enclave key.
     /// The user's Secure Enclave backed key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/usersecureenclavekey?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSecureEnclaveKey")]
     pub const UserSecureEnclaveKey: Self = Self(3);
     /// The shared device signing key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/shareddevicesigning?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceSigning")]
     pub const SharedDeviceSigning: Self = Self(4);
     /// The shared device encryption key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/shareddeviceencryption?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeSharedDeviceEncryption")]
     pub const SharedDeviceEncryption: Self = Self(5);
     /// The currentdevice signing key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/currentdevicesigning?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceSigning")]
     pub const CurrentDeviceSigning: Self = Self(10);
     /// The current device encryption key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/currentdeviceencryption?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeCurrentDeviceEncryption")]
     pub const CurrentDeviceEncryption: Self = Self(11);
     /// The current device encryption key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkeytype/usersmartcard?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionKeyTypeUserSmartCard")]
     pub const UserSmartCard: Self = Self(20);
 }
@@ -66,7 +53,13 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionKeyType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginmanager?language=objc)
+    /// An interface to maintain platform single sign-on (SSO) during authentication and registration.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to perform registration and authentication tasks, and to repair registrations.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginManager;

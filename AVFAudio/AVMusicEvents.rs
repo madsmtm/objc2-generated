@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A base class for the events you associate with a music track.
     /// The base class for all events associated with an AVMusicTrack.
     ///
     /// This class is provided to allow enumeration of the heterogenous events contained within an AVMusicTrack.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicEvent;
@@ -40,6 +39,7 @@ impl AVMusicEvent {
 }
 
 extern_class!(
+    /// An object that represents MIDI note on or off messages.
     /// The event class representing MIDI note-on/off messages.
     ///
     /// Parameter `channel`: The MIDI channel for the note.  Range: 0-15.
@@ -52,8 +52,6 @@ extern_class!(
     ///
     /// The AVAudioSequencer will automatically send a MIDI note-off after the note duration has passed.
     /// To send an explicit note-off event, create an AVMIDINoteEvent with its velocity set to zero.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidinoteevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDINoteEvent;
@@ -143,9 +141,8 @@ impl AVMIDINoteEvent {
 }
 
 extern_class!(
+    /// A base class for all MIDI messages that operate on a single MIDI channel.
     /// The event base class for all MIDI messages which operate on a single MIDI channel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIChannelEvent;
@@ -182,117 +179,116 @@ impl AVMIDIChannelEvent {
     );
 }
 
+/// Constants that represents control change event types.
 /// Types of MIDI control change events.  See the General MIDI Specification for details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMIDIControlChangeMessageType(pub NSInteger);
 impl AVMIDIControlChangeMessageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/bankselect?language=objc)
+    /// An event type for switching bank selection.
     #[doc(alias = "AVMIDIControlChangeMessageTypeBankSelect")]
     pub const BankSelect: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/modwheel?language=objc)
+    /// An event type for modulating a vibrato effect.
     #[doc(alias = "AVMIDIControlChangeMessageTypeModWheel")]
     pub const ModWheel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/breath?language=objc)
+    /// An event type for a breath controller.
     #[doc(alias = "AVMIDIControlChangeMessageTypeBreath")]
     pub const Breath: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/foot?language=objc)
+    /// An event type for sending continuous stream of values when using a foot controller.
     #[doc(alias = "AVMIDIControlChangeMessageTypeFoot")]
     pub const Foot: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/portamentotime?language=objc)
+    /// An event type for controlling the portamento rate.
     #[doc(alias = "AVMIDIControlChangeMessageTypePortamentoTime")]
     pub const PortamentoTime: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/dataentry?language=objc)
+    /// An event type for controlling the data entry parameters.
     #[doc(alias = "AVMIDIControlChangeMessageTypeDataEntry")]
     pub const DataEntry: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/volume?language=objc)
+    /// An event type for controlling the channel volume.
     #[doc(alias = "AVMIDIControlChangeMessageTypeVolume")]
     pub const Volume: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/balance?language=objc)
+    /// An event type for controlling the left and right channel balance.
     #[doc(alias = "AVMIDIControlChangeMessageTypeBalance")]
     pub const Balance: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/pan?language=objc)
+    /// An event type for controlling the left and right channel pan.
     #[doc(alias = "AVMIDIControlChangeMessageTypePan")]
     pub const Pan: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/expression?language=objc)
+    /// An event type that represents an expression controller.
     #[doc(alias = "AVMIDIControlChangeMessageTypeExpression")]
     pub const Expression: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/sustain?language=objc)
+    /// An event type for switching a damper pedal on or off.
     #[doc(alias = "AVMIDIControlChangeMessageTypeSustain")]
     pub const Sustain: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/portamento?language=objc)
+    /// An event type for switching portamento on or off.
     #[doc(alias = "AVMIDIControlChangeMessageTypePortamento")]
     pub const Portamento: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/sostenuto?language=objc)
+    /// An event type for switching sostenuto on or off.
     #[doc(alias = "AVMIDIControlChangeMessageTypeSostenuto")]
     pub const Sostenuto: Self = Self(66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/soft?language=objc)
+    /// An event type for lowering the volume of the notes.
     #[doc(alias = "AVMIDIControlChangeMessageTypeSoft")]
     pub const Soft: Self = Self(67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/legatopedal?language=objc)
+    /// An event type for switching the legato pedal on or off.
     #[doc(alias = "AVMIDIControlChangeMessageTypeLegatoPedal")]
     pub const LegatoPedal: Self = Self(68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/hold2pedal?language=objc)
+    /// An event type for holding notes.
     #[doc(alias = "AVMIDIControlChangeMessageTypeHold2Pedal")]
     pub const Hold2Pedal: Self = Self(69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/filterresonance?language=objc)
+    /// An event type for a filter resonance.
     #[doc(alias = "AVMIDIControlChangeMessageTypeFilterResonance")]
     pub const FilterResonance: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/releasetime?language=objc)
+    /// An event type for controlling the release time.
     #[doc(alias = "AVMIDIControlChangeMessageTypeReleaseTime")]
     pub const ReleaseTime: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/attacktime?language=objc)
+    /// An event type for controlling the attack time.
     #[doc(alias = "AVMIDIControlChangeMessageTypeAttackTime")]
     pub const AttackTime: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/brightness?language=objc)
+    /// An event type for controlling the brightness.
     #[doc(alias = "AVMIDIControlChangeMessageTypeBrightness")]
     pub const Brightness: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/decaytime?language=objc)
+    /// An event type for controlling the decay time.
     #[doc(alias = "AVMIDIControlChangeMessageTypeDecayTime")]
     pub const DecayTime: Self = Self(75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/vibratorate?language=objc)
+    /// An event type for controlling the vibrato rate.
     #[doc(alias = "AVMIDIControlChangeMessageTypeVibratoRate")]
     pub const VibratoRate: Self = Self(76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/vibratodepth?language=objc)
+    /// An event type for controlling the vibrato depth.
     #[doc(alias = "AVMIDIControlChangeMessageTypeVibratoDepth")]
     pub const VibratoDepth: Self = Self(77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/vibratodelay?language=objc)
+    /// An event type for controlling the vibrato delay.
     #[doc(alias = "AVMIDIControlChangeMessageTypeVibratoDelay")]
     pub const VibratoDelay: Self = Self(78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/reverblevel?language=objc)
+    /// An event type for controlling the reverb level.
     #[doc(alias = "AVMIDIControlChangeMessageTypeReverbLevel")]
     pub const ReverbLevel: Self = Self(91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/choruslevel?language=objc)
+    /// An event type for controlling the chorus level.
     #[doc(alias = "AVMIDIControlChangeMessageTypeChorusLevel")]
     pub const ChorusLevel: Self = Self(93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/rpn_lsb?language=objc)
+    /// An event type that represents the registered parameter number LSB.
     #[doc(alias = "AVMIDIControlChangeMessageTypeRPN_LSB")]
     pub const RPN_LSB: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/rpn_msb?language=objc)
+    /// An event type that represents the registered parameter number MSB.
     #[doc(alias = "AVMIDIControlChangeMessageTypeRPN_MSB")]
     pub const RPN_MSB: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/allsoundoff?language=objc)
+    /// An event type for muting all sounding notes.
     #[doc(alias = "AVMIDIControlChangeMessageTypeAllSoundOff")]
     pub const AllSoundOff: Self = Self(120);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/resetallcontrollers?language=objc)
+    /// An event type for resetting all controllers to their default state.
     #[doc(alias = "AVMIDIControlChangeMessageTypeResetAllControllers")]
     pub const ResetAllControllers: Self = Self(121);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/allnotesoff?language=objc)
+    /// An event type for muting all sounding notes while maintaining the release time.
     #[doc(alias = "AVMIDIControlChangeMessageTypeAllNotesOff")]
     pub const AllNotesOff: Self = Self(123);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/omnimodeoff?language=objc)
+    /// An event type for setting omni off mode.
     #[doc(alias = "AVMIDIControlChangeMessageTypeOmniModeOff")]
     pub const OmniModeOff: Self = Self(124);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/omnimodeon?language=objc)
+    /// An event type for setting omni on mode.
     #[doc(alias = "AVMIDIControlChangeMessageTypeOmniModeOn")]
     pub const OmniModeOn: Self = Self(125);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/monomodeon?language=objc)
+    /// An event type for setting the device mode to monophonic.
     #[doc(alias = "AVMIDIControlChangeMessageTypeMonoModeOn")]
     pub const MonoModeOn: Self = Self(126);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum/monomodeoff?language=objc)
+    /// An event type for setting the device mode to polyphonic.
     #[doc(alias = "AVMIDIControlChangeMessageTypeMonoModeOff")]
     pub const MonoModeOff: Self = Self(127);
 }
@@ -306,9 +302,8 @@ unsafe impl RefEncode for AVMIDIControlChangeMessageType {
 }
 
 extern_class!(
+    /// An object that represents a MIDI control change message.
     /// The event class representing MIDI control change messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIControlChangeEvent;
@@ -362,9 +357,8 @@ impl AVMIDIControlChangeEvent {
 }
 
 extern_class!(
+    /// An object that represents a MIDI poly or key pressure event.
     /// The event class representing MIDI "poly" or "key" pressure messages.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipolypressureevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPolyPressureEvent;
@@ -428,11 +422,16 @@ impl AVMIDIPolyPressureEvent {
 }
 
 extern_class!(
+    /// An object that represents a MIDI program or patch change message.
+    ///
+    /// ## Overview
+    ///
+    /// The effect of this message depends on the [`AVMusicTrack`](https://developer.apple.com/documentation/avfaudio/avmusictrack) destination audio unit.
+    ///
+    ///
     /// The event class representing MIDI program or patch change messages.
     ///
     /// The effect of these messages will depend on the containing AVMusicTrack's destinationAudioUnit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiprogramchangeevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIProgramChangeEvent;
@@ -486,12 +485,17 @@ impl AVMIDIProgramChangeEvent {
 }
 
 extern_class!(
+    /// An object that represents a MIDI channel pressure message.
+    ///
+    /// ## Overview
+    ///
+    /// The effect of this message depends on the [`AVMusicTrack`](https://developer.apple.com/documentation/avfaudio/avmusictrack) destination audio unit, and the capabilities of the destination’s loaded instrument.
+    ///
+    ///
     /// The event class representing MIDI channel pressure messages.
     ///
     /// The effect of these messages will depend on the containing AVMusicTrack's destinationAudioUnit
     /// and the capabilities of the destination's currently-loaded instrument.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidichannelpressureevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIChannelPressureEvent;
@@ -542,12 +546,11 @@ impl AVMIDIChannelPressureEvent {
 }
 
 extern_class!(
+    /// An object that represents a MIDI pitch bend message.
     /// The event class representing MIDI pitch bend messages.
     ///
     /// The effect of these messages will depend on the AVMusicTrack's destinationAudioUnit
     /// and the capabilities of the destination's currently-loaded instrument.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidipitchbendevent?language=objc)
     #[unsafe(super(AVMIDIChannelEvent, AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPitchBendEvent;
@@ -598,11 +601,16 @@ impl AVMIDIPitchBendEvent {
 }
 
 extern_class!(
+    /// An object that represents a MIDI system exclusive message.
+    ///
+    /// ## Overview
+    ///
+    /// You can’t modify the size and contents of this event once you create it.
+    ///
+    ///
     /// The event class representing MIDI system exclusive messages.
     ///
     /// The size and contents of an AVMIDISysexEvent cannot be modified once created.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidisysexevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDISysexEvent;
@@ -641,60 +649,59 @@ impl AVMIDISysexEvent {
     );
 }
 
+/// Constants that represent the types of meta events.
 /// Constants which indicate which type of MIDI Meta-Event to create.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMIDIMetaEventType(pub NSInteger);
 impl AVMIDIMetaEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/sequencenumber?language=objc)
+    /// An event type that represents a sequence number.
     #[doc(alias = "AVMIDIMetaEventTypeSequenceNumber")]
     pub const SequenceNumber: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/text?language=objc)
+    /// An event type that represents text.
     #[doc(alias = "AVMIDIMetaEventTypeText")]
     pub const Text: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/copyright?language=objc)
+    /// An event type that represents a copyright.
     #[doc(alias = "AVMIDIMetaEventTypeCopyright")]
     pub const Copyright: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/trackname?language=objc)
+    /// An event type that represents a track name.
     #[doc(alias = "AVMIDIMetaEventTypeTrackName")]
     pub const TrackName: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/instrument?language=objc)
+    /// An event type that represents an instrument.
     #[doc(alias = "AVMIDIMetaEventTypeInstrument")]
     pub const Instrument: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/lyric?language=objc)
+    /// An event type that represents a lyric.
     #[doc(alias = "AVMIDIMetaEventTypeLyric")]
     pub const Lyric: Self = Self(0x05);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/marker?language=objc)
+    /// An event type that represents a marker.
     #[doc(alias = "AVMIDIMetaEventTypeMarker")]
     pub const Marker: Self = Self(0x06);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/cuepoint?language=objc)
+    /// An event type that represents a cue point.
     #[doc(alias = "AVMIDIMetaEventTypeCuePoint")]
     pub const CuePoint: Self = Self(0x07);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/midichannel?language=objc)
+    /// An event type that represents a MIDI channel.
     #[doc(alias = "AVMIDIMetaEventTypeMidiChannel")]
     pub const MidiChannel: Self = Self(0x20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/midiport?language=objc)
+    /// An event type that represents a MIDI port.
     #[doc(alias = "AVMIDIMetaEventTypeMidiPort")]
     pub const MidiPort: Self = Self(0x21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/endoftrack?language=objc)
+    /// An event type that represents the end of the track.
     #[doc(alias = "AVMIDIMetaEventTypeEndOfTrack")]
     pub const EndOfTrack: Self = Self(0x2f);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/tempo?language=objc)
+    /// An event type that represents a tempo.
     #[doc(alias = "AVMIDIMetaEventTypeTempo")]
     pub const Tempo: Self = Self(0x51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/smpteoffset?language=objc)
+    /// An event type that represents a SMPTE time offset.
     #[doc(alias = "AVMIDIMetaEventTypeSmpteOffset")]
     pub const SmpteOffset: Self = Self(0x54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/timesignature?language=objc)
+    /// An event type that represents a time signature.
     #[doc(alias = "AVMIDIMetaEventTypeTimeSignature")]
     pub const TimeSignature: Self = Self(0x58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/keysignature?language=objc)
+    /// An event type that represents a key signature.
     #[doc(alias = "AVMIDIMetaEventTypeKeySignature")]
     pub const KeySignature: Self = Self(0x59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/proprietaryevent?language=objc)
+    /// An event type that represents a proprietary event.
     #[doc(alias = "AVMIDIMetaEventTypeProprietaryEvent")]
     pub const ProprietaryEvent: Self = Self(0x7f);
 }
@@ -708,6 +715,15 @@ unsafe impl RefEncode for AVMIDIMetaEventType {
 }
 
 extern_class!(
+    /// An object that represents MIDI meta event messages.
+    ///
+    /// ## Overview
+    ///
+    /// You can’t modify the size and contents of this event once you create it. This doesn’t verify that the content matches the MIDI specification.
+    ///
+    /// You can only add [`AVMIDIMetaEventTypeTempo`](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/tempo), [`AVMIDIMetaEventTypeSmpteOffset`](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/smpteoffset), or [`AVMIDIMetaEventTypeTimeSignature`](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype/timesignature) to a sequence’s tempo track.
+    ///
+    ///
     /// The event class representing MIDI Meta-Event messages.
     ///
     /// The size and contents of an AVMIDIMetaEvent cannot be modified once created.
@@ -716,8 +732,6 @@ extern_class!(
     /// or AVMIDIMetaEventTypeTimeSignature can only be added to a sequence's tempo track.
     ///
     /// The class does not verify that the content matches the MIDI specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIMetaEvent;
@@ -763,14 +777,19 @@ impl AVMIDIMetaEvent {
 }
 
 extern_class!(
+    /// An object that represents a custom user message.
+    ///
+    /// ## Overview
+    ///
+    /// When playback of an [`AVMusicTrack`](https://developer.apple.com/documentation/avfaudio/avmusictrack) reaches this event, the system calls the track’s callback. You can’t modify the size and contents of an [`AVMusicUserEvent`](https://developer.apple.com/documentation/avfaudio/avmusicuserevent) once you create it.
+    ///
+    ///
     /// The event class representing custom user messages.
     ///
     /// When a scheduled AVMusicUserEvent is reached during playback of a AVMusicTrack, the track's
     /// user callback block will be called if it has been set.  The event's NSData will be provided as
     /// an argument to that block.
     /// The size and contents of an AVMusicUserEvent cannot be modified once created.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmusicuserevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMusicUserEvent;
@@ -810,23 +829,33 @@ impl AVMusicUserEvent {
 }
 
 extern "C" {
+    /// A constant that represents the default instrument identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The system uses the instrument loaded on the channel [`groupID`](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent/groupid).
+    ///
+    ///
     /// A constant representing the default instrument ID to use for an AVExtendedNoteOnEvent.  This indicates to the
     /// system to use the instrument currently loaded on the channel referenced by the groupID.  This is the only
     /// supported value at this time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent/defaultinstrument?language=objc)
     pub static AVExtendedNoteOnEventDefaultInstrument: u32;
 }
 
 extern_class!(
+    /// An object that represents a custom extension of a MIDI note on event.
+    ///
+    /// ## Overview
+    ///
+    /// Use this to allow an app to trigger a custom note on event on one of several Apple audio units that support it. The floating point note and velocity numbers allow for optional fractional control of the note’s runtime properties that the system modulates by those inputs. This event supports the possibility of an audio unit with more than the standard 16 MIDI channels.
+    ///
+    ///
     /// The event class representing a custom extension of a MIDI note-on.
     ///
     /// Using an AVExtendedNoteOnEvent allows an application to trigger a specialized note-on event on one of several
     /// Apple audio units which support it.  The floating point note and velocity numbers allow optional fractional control
     /// of the note's run-time properties which are modulated by those inputs.  In addition, it supports the possibility
     /// of an audio unit with more than the standard 16 MIDI channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExtendedNoteOnEvent;
@@ -951,6 +980,17 @@ impl AVExtendedNoteOnEvent {
 }
 
 extern_class!(
+    /// An object that represents a parameter event on a music track’s destination.
+    ///
+    /// ## Overview
+    ///
+    /// When you configure an audio unit as the destination for an [`AVMusicTrack`](https://developer.apple.com/documentation/avfaudio/avmusictrack) that contains this event, you can schedule and automate parameter changes.
+    ///
+    /// When the track is playing as part of a sequence, the destination audio unit receives set-parameter messages whose values change smoothly along a linear ramp between each event’s beat location.
+    ///
+    /// If you add an event to an empty, non-automation track, the track becomes an automation track.
+    ///
+    ///
     /// The event class representing a parameter set/change event on the AVMusicTrack's destinationAudioUnit.
     ///
     /// AVParameterEvents make it possible to schedule and/or automate parameter changes on the audio unit
@@ -960,8 +1000,6 @@ extern_class!(
     /// messages whose values change smoothly along a linear ramp between each event's beat location.
     ///
     /// If an AVParameterEvent is added to an empty, non-automation track, the track becomes an automation track.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avparameterevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVParameterEvent;
@@ -1048,12 +1086,11 @@ impl AVParameterEvent {
 }
 
 extern_class!(
+    /// An object that represents a preset load and change on the music track’s destination audio unit.
     /// The event class representing a preset load and change on the AVMusicTrack's destinationAudioUnit.
     ///
     /// AVAUPresetEvents make it possible to schedule and/or automate preset changes on the audio unit
     /// that has been configured as the destination for the AVMusicTrack containing this event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaupresetevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAUPresetEvent;
@@ -1130,12 +1167,11 @@ impl AVAUPresetEvent {
 }
 
 extern_class!(
+    /// An object that represents a tempo change to a specific beats-per-minute value.
     /// The event class representing a tempo change to a specific beats-per-minute value.
     ///
     /// This event provides a way to specify a tempo change that is less cumbersome than using
     /// tempo meta-events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendedtempoevent?language=objc)
     #[unsafe(super(AVMusicEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExtendedTempoEvent;

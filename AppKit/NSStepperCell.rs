@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssteppercell?language=objc)
+    /// An `NSStepperCell` object controls the appearance and behavior of an [`NSStepper`](https://developer.apple.com/documentation/appkit/nsstepper) object.
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]

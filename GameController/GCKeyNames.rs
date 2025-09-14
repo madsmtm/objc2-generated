@@ -6,6 +6,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The keyboard code for the a or A character.
     /// A set of strings that can be used to access keyboard buttons
     ///
     ///
@@ -13,672 +14,670 @@ extern "C" {
     /// See: GCKeyboardInput.h
     ///
     /// See: GCPhysicalInputProfile.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeya?language=objc)
     pub static GCKeyA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyb?language=objc)
+    /// The keyboard code for the b or B character.
     pub static GCKeyB: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyc?language=objc)
+    /// The keyboard code for the c or C character.
     pub static GCKeyC: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyd?language=objc)
+    /// The keyboard code for the d or D character.
     pub static GCKeyD: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeye?language=objc)
+    /// The keyboard code for the e or E character.
     pub static GCKeyE: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf?language=objc)
+    /// The keyboard code for the f or F character.
     pub static GCKeyF: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyg?language=objc)
+    /// The keyboard code for the g or G character.
     pub static GCKeyG: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyh?language=objc)
+    /// The keyboard code for the h or H character.
     pub static GCKeyH: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyi?language=objc)
+    /// The keyboard code for the i or I character.
     pub static GCKeyI: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyj?language=objc)
+    /// The keyboard code for the j or J character.
     pub static GCKeyJ: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyk?language=objc)
+    /// The keyboard code for the k or K character.
     pub static GCKeyK: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyl?language=objc)
+    /// The keyboard code for the l or L character.
     pub static GCKeyL: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeym?language=objc)
+    /// The keyboard code for the m or M character.
     pub static GCKeyM: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyn?language=objc)
+    /// The keyboard code for the n or N character.
     pub static GCKeyN: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyo?language=objc)
+    /// The keyboard code for the o or O character.
     pub static GCKeyO: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyp?language=objc)
+    /// The keyboard code for the p or P character.
     pub static GCKeyP: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyq?language=objc)
+    /// The keyboard code for the q or Q character.
     pub static GCKeyQ: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyr?language=objc)
+    /// The keyboard code for the r or R character.
     pub static GCKeyR: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeys?language=objc)
+    /// The keyboard code for the s or S character.
     pub static GCKeyS: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyt?language=objc)
+    /// The keyboard code for the t or T character.
     pub static GCKeyT: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyu?language=objc)
+    /// The keyboard code for the u or U character.
     pub static GCKeyU: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyv?language=objc)
+    /// The keyboard code for the v or V character.
     pub static GCKeyV: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyw?language=objc)
+    /// The keyboard code for the w or W character.
     pub static GCKeyW: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyx?language=objc)
+    /// The keyboard code for the x or X character.
     pub static GCKeyX: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyy?language=objc)
+    /// The keyboard code for the y or Y character.
     pub static GCKeyY: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyz?language=objc)
+    /// The keyboard code for the z or Z character.
     pub static GCKeyZ: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyone?language=objc)
+    /// The keyboard code for the 1 or ! character.
     pub static GCKeyOne: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeytwo?language=objc)
+    /// The keyboard code for the 2 or @ character.
     pub static GCKeyTwo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeythree?language=objc)
+    /// The keyboard code for the 3 or # character.
     pub static GCKeyThree: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyfour?language=objc)
+    /// The keyboard code for the 4 or $ character.
     pub static GCKeyFour: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyfive?language=objc)
+    /// The keyboard code for the 5 or % character.
     pub static GCKeyFive: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeysix?language=objc)
+    /// The keyboard code for the 6 or ^ character.
     pub static GCKeySix: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyseven?language=objc)
+    /// The keyboard code for the 7 or & character.
     pub static GCKeySeven: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyeight?language=objc)
+    /// The keyboard code for the 8 or * character.
     pub static GCKeyEight: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeynine?language=objc)
+    /// The keyboard code for the 9 or ( character.
     pub static GCKeyNine: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyzero?language=objc)
+    /// The keyboard code for the 0 or ) character.
     pub static GCKeyZero: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyreturnorenter?language=objc)
+    /// The keyboard code for the Return or Enter key.
     pub static GCKeyReturnOrEnter: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyescape?language=objc)
+    /// The keyboard code for the Escape key.
     pub static GCKeyEscape: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeydeleteorbackspace?language=objc)
+    /// The keyboard code for the Delete or Backspace key.
     pub static GCKeyDeleteOrBackspace: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeytab?language=objc)
+    /// The keyboard code for the Tab key.
     pub static GCKeyTab: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyspacebar?language=objc)
+    /// The keyboard code for the Space Bar key.
     pub static GCKeySpacebar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyhyphen?language=objc)
+    /// The keyboard code for the - or _ key.
     pub static GCKeyHyphen: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyequalsign?language=objc)
+    /// The keyboard code for the = or + key.
     pub static GCKeyEqualSign: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyopenbracket?language=objc)
+    /// The keyboard code for the [ or { key.
     pub static GCKeyOpenBracket: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyclosebracket?language=objc)
+    /// The keyboard code for the ] or } key.
     pub static GCKeyCloseBracket: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeybackslash?language=objc)
+    /// The keyboard code for the \ or | key.
     pub static GCKeyBackslash: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeynonuspound?language=objc)
+    /// The keyboard code for the non-US Pound or _ key.
     pub static GCKeyNonUSPound: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeysemicolon?language=objc)
+    /// The keyboard code for the ; or : key.
     pub static GCKeySemicolon: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyquote?language=objc)
+    /// The keyboard code for the ’ or “ key.
     pub static GCKeyQuote: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeygraveaccentandtilde?language=objc)
+    /// The keyboard code for the Grave Accent or Tilde key.
     pub static GCKeyGraveAccentAndTilde: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycomma?language=objc)
+    /// The keyboard code for the Comma or < key.
     pub static GCKeyComma: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyperiod?language=objc)
+    /// The keyboard code for the Period or > key.
     pub static GCKeyPeriod: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyslash?language=objc)
+    /// The keyboard code for the / or ? key.
     pub static GCKeySlash: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycapslock?language=objc)
+    /// The keyboard code for the Caps Lock key.
     pub static GCKeyCapsLock: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf1?language=objc)
+    /// The keyboard code for the F1 key.
     pub static GCKeyF1: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf2?language=objc)
+    /// The keyboard code for the F2 key.
     pub static GCKeyF2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf3?language=objc)
+    /// The keyboard code for the F3 key.
     pub static GCKeyF3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf4?language=objc)
+    /// The keyboard code for the F4 key.
     pub static GCKeyF4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf5?language=objc)
+    /// The keyboard code for the F5 key.
     pub static GCKeyF5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf6?language=objc)
+    /// The keyboard code for the F6 key.
     pub static GCKeyF6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf7?language=objc)
+    /// The keyboard code for the F7 key.
     pub static GCKeyF7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf8?language=objc)
+    /// The keyboard code for the F8 key.
     pub static GCKeyF8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf9?language=objc)
+    /// The keyboard code for the F9 key.
     pub static GCKeyF9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf10?language=objc)
+    /// The keyboard code for the F10 key.
     pub static GCKeyF10: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf11?language=objc)
+    /// The keyboard code for the F11 key.
     pub static GCKeyF11: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf12?language=objc)
+    /// The keyboard code for the F12 key.
     pub static GCKeyF12: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf13?language=objc)
+    /// The keyboard code for the F13 key.
     pub static GCKeyF13: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf14?language=objc)
+    /// The keyboard code for the F14 key.
     pub static GCKeyF14: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf15?language=objc)
+    /// The keyboard code for the F15 key.
     pub static GCKeyF15: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf16?language=objc)
+    /// The keyboard code for the F16 key.
     pub static GCKeyF16: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf17?language=objc)
+    /// The keyboard code for the F17 key.
     pub static GCKeyF17: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf18?language=objc)
+    /// The keyboard code for the F18 key.
     pub static GCKeyF18: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf19?language=objc)
+    /// The keyboard code for the F19 key.
     pub static GCKeyF19: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyf20?language=objc)
+    /// The keyboard code for the F20 key.
     pub static GCKeyF20: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyprintscreen?language=objc)
+    /// The keyboard code for the Print Screen key.
     pub static GCKeyPrintScreen: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyscrolllock?language=objc)
+    /// The keyboard code for the Scroll Lock key.
     pub static GCKeyScrollLock: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeypause?language=objc)
+    /// The keyboard code for the Pause key.
     pub static GCKeyPause: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinsert?language=objc)
+    /// The keyboard code for the Insert key.
     pub static GCKeyInsert: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyhome?language=objc)
+    /// The keyboard code for the Home key.
     pub static GCKeyHome: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeypageup?language=objc)
+    /// The keyboard code for the Page Up key.
     pub static GCKeyPageUp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeydeleteforward?language=objc)
+    /// The keyboard code for the Delete-Forward key.
     pub static GCKeyDeleteForward: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyend?language=objc)
+    /// The keyboard code for the End key.
     pub static GCKeyEnd: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeypagedown?language=objc)
+    /// The keyboard code for the Page Down key.
     pub static GCKeyPageDown: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyrightarrow?language=objc)
+    /// The keyboard code for the Right Arrow key.
     pub static GCKeyRightArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyleftarrow?language=objc)
+    /// The keyboard code for the Left Arrow key.
     pub static GCKeyLeftArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeydownarrow?language=objc)
+    /// The keyboard code for the Down Arrow key.
     pub static GCKeyDownArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyuparrow?language=objc)
+    /// The keyboard code for the Up Arrow key.
     pub static GCKeyUpArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadnumlock?language=objc)
+    /// The keyboard code for the keypad Num Lock or Clear key.
     pub static GCKeyKeypadNumLock: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadslash?language=objc)
+    /// The keyboard code for the keypad / key.
     pub static GCKeyKeypadSlash: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadasterisk?language=objc)
+    /// The keyboard code for the keypad * key.
     pub static GCKeyKeypadAsterisk: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadhyphen?language=objc)
+    /// The keyboard code for the keypad - key.
     pub static GCKeyKeypadHyphen: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadplus?language=objc)
+    /// The keyboard code for the keypad + key.
     pub static GCKeyKeypadPlus: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadenter?language=objc)
+    /// The keyboard code for the keypad Enter key.
     pub static GCKeyKeypadEnter: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad1?language=objc)
+    /// The keyboard code for the keypad 1 or End key.
     pub static GCKeyKeypad1: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad2?language=objc)
+    /// The keyboard code for the keypad 2 or Down Arrow key.
     pub static GCKeyKeypad2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad3?language=objc)
+    /// The keyboard code for the keypad 3 or Page Down key.
     pub static GCKeyKeypad3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad4?language=objc)
+    /// The keyboard code for the keypad 4 or Left Arrow key.
     pub static GCKeyKeypad4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad5?language=objc)
+    /// The keyboard code for the keypad 5 key.
     pub static GCKeyKeypad5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad6?language=objc)
+    /// The keyboard code for the keypad 6 or Right Arrow key.
     pub static GCKeyKeypad6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad7?language=objc)
+    /// The keyboard code for the keypad 7 or Home key.
     pub static GCKeyKeypad7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad8?language=objc)
+    /// The keyboard code for the keypad 8 or Up Arrow key.
     pub static GCKeyKeypad8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad9?language=objc)
+    /// The keyboard code for the keypad 9 or Page Up key.
     pub static GCKeyKeypad9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypad0?language=objc)
+    /// The keyboard code for the keypad 0 or Insert key.
     pub static GCKeyKeypad0: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadperiod?language=objc)
+    /// The keyboard code for the keypad Period or Delete key.
     pub static GCKeyKeypadPeriod: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeykeypadequalsign?language=objc)
+    /// The keyboard code for the keypad = key.
     pub static GCKeyKeypadEqualSign: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeynonusbackslash?language=objc)
+    /// The keyboard code for the non-US Slash or | key.
     pub static GCKeyNonUSBackslash: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyapplication?language=objc)
+    /// The keyboard code for the Application key.
     pub static GCKeyApplication: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeypower?language=objc)
+    /// The keyboard code for the Power key.
     pub static GCKeyPower: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational1?language=objc)
+    /// The keyboard code for the first international key.
     pub static GCKeyInternational1: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational2?language=objc)
+    /// The keyboard code for the second international key.
     pub static GCKeyInternational2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational3?language=objc)
+    /// The keyboard code for the third international key.
     pub static GCKeyInternational3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational4?language=objc)
+    /// The keyboard code for the fourth international key.
     pub static GCKeyInternational4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational5?language=objc)
+    /// The keyboard code for the fifth international key.
     pub static GCKeyInternational5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational6?language=objc)
+    /// The keyboard code for the sixth international key.
     pub static GCKeyInternational6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational7?language=objc)
+    /// The keyboard code for the seventh international key.
     pub static GCKeyInternational7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational8?language=objc)
+    /// The keyboard code for the eighth international key.
     pub static GCKeyInternational8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyinternational9?language=objc)
+    /// The keyboard code for the ninth international key.
     pub static GCKeyInternational9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang1?language=objc)
+    /// The keyboard code for the first language key.
     pub static GCKeyLANG1: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang2?language=objc)
+    /// The keyboard code for the second language key.
     pub static GCKeyLANG2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang3?language=objc)
+    /// The keyboard code for the third language key.
     pub static GCKeyLANG3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang4?language=objc)
+    /// The keyboard code for the fourth language key.
     pub static GCKeyLANG4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang5?language=objc)
+    /// The keyboard code for the fifth language key.
     pub static GCKeyLANG5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang6?language=objc)
+    /// The keyboard code for the sixth language key.
     pub static GCKeyLANG6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang7?language=objc)
+    /// The keyboard code for the seventh language key.
     pub static GCKeyLANG7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang8?language=objc)
+    /// The keyboard code for the eighth language key.
     pub static GCKeyLANG8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeylang9?language=objc)
+    /// The keyboard code for the ninth language key.
     pub static GCKeyLANG9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyleftcontrol?language=objc)
+    /// The keyboard code for the Control key on the left side of the keyboard.
     pub static GCKeyLeftControl: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyleftshift?language=objc)
+    /// The keyboard code for the Shift key on the left side of the keyboard.
     pub static GCKeyLeftShift: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyleftalt?language=objc)
+    /// The keyboard code for the Option or Alt key on the left side of the keyboard.
     pub static GCKeyLeftAlt: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyleftgui?language=objc)
+    /// The keyboard code for the Command key on the left side of the keyboard.
     pub static GCKeyLeftGUI: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyrightcontrol?language=objc)
+    /// The keyboard code for the Control key on the right side of the keyboard.
     pub static GCKeyRightControl: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyrightshift?language=objc)
+    /// The keyboard code for the Shift key on the right side of the keyboard.
     pub static GCKeyRightShift: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyrightalt?language=objc)
+    /// The keyboard code for the Option or Alt key on the right side of the keyboard.
     pub static GCKeyRightAlt: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyrightgui?language=objc)
+    /// The keyboard code for the Command key on the right side of the keyboard.
     pub static GCKeyRightGUI: &'static NSString;
 }

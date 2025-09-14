@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpdfconfiguration?language=objc)
+    /// The configuration data to use when generating a PDF representation of a web view’s contents.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`WKPDFConfiguration`](https://developer.apple.com/documentation/webkit/wkpdfconfiguration) object when you want to generate a PDF version of your web view’s content. Use this object to specify the portion of the web view to capture. To generate the PDF content, pass the configuration object to the [`createPDF(configuration:completionHandler:)`](https://developer.apple.com/documentation/webkit/wkwebview/createpdf(configuration:completionhandler:)) method of [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), which returns the PDF data for you to use.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

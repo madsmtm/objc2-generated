@@ -10,7 +10,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpdashboardbutton?language=objc)
+    /// A shortcut button for placement on the CarPlay Dashboard.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPDashboardButton;

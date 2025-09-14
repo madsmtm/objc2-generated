@@ -8,9 +8,49 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Used to request information from an identity document stored as a Wallet pass.
+    /// An object that presents a sheet that prompts the user to allow a request for identity information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityauthorizationcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to request [`PKIdentityElement`](https://developer.apple.com/documentation/passkit/pkidentityelement) objects from a mobile driver’s license or state identification card. When you request identity information, the system prompts the user for approval.
+    ///
+    /// ```swift
+    /// // Create an authorization controller.
+    /// let controller = PKIdentityAuthorizationController()
+    ///
+    /// // Describe the elements you request.
+    /// let descriptor = PKIdentityDriversLicenseDescriptor()
+    /// descriptor.addElements([.age(atLeast: 18)],
+    ///                         intentToStore: .willNotStore)
+    /// descriptor.addElements([.givenName, .portrait],
+    ///                         intentToStore: .mayStore(days: 30))
+    ///
+    /// // Create the request.
+    /// let request = PKIdentityRequest()
+    /// request.descriptor = descriptor
+    /// request.merchantIdentifier = // A merchant identifier you configure in the developer portal.
+    /// request.nonce = // Generate a nonce to verify a request is only made once.
+    ///
+    /// // Prompt the user for approval.
+    /// controller.requestDocument(request) { document, error in
+    ///     // Handle the document response or error, if necessary.
+    /// }
+    /// ```
+    ///
+    /// The system returns response data as an encoded concise binary object representation (CBOR) blob; CBOR is a binary format similar to JSON. You must decrypt the response on your server.
+    ///
+    /// For design guidance, see [Human Interface Guidelines > Technologies > Wallet](https://developer.apple.com/design/human-interface-guidelines/technologies/wallet/introduction).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This API only works on iPhone and returns an error if you access it on iPad. This framework requires a special entitlement from Apple. This entitlement is not yet available.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Used to request information from an identity document stored as a Wallet pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityAuthorizationController;

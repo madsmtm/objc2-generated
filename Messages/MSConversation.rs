@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msconversation?language=objc)
+    /// An object that represents a conversation in the Messages app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MSConversation`](https://developer.apple.com/documentation/messages/msconversation) class represents a conversation in the Messages app. Use conversation objects to access information about the currently selected message or the conversation participants, or to send text, stickers, attachments, or message objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSConversation;

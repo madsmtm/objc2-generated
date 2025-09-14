@@ -12,9 +12,14 @@ use crate::*;
 extern_class!(
     /// A class that describes the properties of a 2D-convolution operator.
     ///
+    /// ## Overview
+    ///
     /// Use an instance of this class is to add a 2D-convolution operator with the desired properties to the graph.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution2dopdescriptor?language=objc)
+    ///
+    /// A class that describes the properties of a 2D-convolution operator.
+    ///
+    /// Use an instance of this class is to add a 2D-convolution operator with the desired properties to the graph.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -279,9 +284,14 @@ impl MPSGraphConvolution2DOpDescriptor {
 extern_class!(
     /// A class that describes the properties of a 3D-convolution operator.
     ///
+    /// ## Overview
+    ///
     /// Use an instance of this class is to add a 3D-convolution operator with desired properties to the graph.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphconvolution3dopdescriptor?language=objc)
+    ///
+    /// A class that describes the properties of a 3D-convolution operator.
+    ///
+    /// Use an instance of this class is to add a 3D-convolution operator with desired properties to the graph.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

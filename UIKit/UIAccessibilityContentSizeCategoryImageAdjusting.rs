@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontentsizecategoryimageadjusting?language=objc)
+    /// Methods to determine when to adjust images for different content size categories.
+    ///
+    /// ## Overview
+    ///
+    /// Objects adopt this protocol when they support scaling image assets to the size required by the accessibility content size categories. Typically, an object sets the [`adjustsImageSizeForAccessibilityContentSizeCategory`](https://developer.apple.com/documentation/uikit/uiaccessibilitycontentsizecategoryimageadjusting/adjustsimagesizeforaccessibilitycontentsizecategory) property to [`true`](https://developer.apple.com/documentation/swift/true) only when its image contains vector data that can scale well to the larger sizes required for accessibility.
+    ///
+    ///
     pub unsafe trait UIAccessibilityContentSizeCategoryImageAdjusting:
         NSObjectProtocol + MainThreadOnly
     {

@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Generic secret
+    /// Data that’s protected by a persisted right.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lasecret?language=objc)
+    /// ## Overview
+    ///
+    /// You create [`LASecret`](https://developer.apple.com/documentation/localauthentication/lasecret) instances when you store an [`LAPersistedRight`](https://developer.apple.com/documentation/localauthentication/lapersistedright); you can’t create them directly.
+    ///
+    ///
+    /// Generic secret
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LASecret;

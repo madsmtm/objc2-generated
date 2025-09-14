@@ -7,264 +7,381 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption?language=objc)
 #[deprecated = "Use new CIRAWFilter class instead."]
 // NS_TYPED_ENUM
 pub type CIRAWFilterOption = NSString;
 
 extern "C" {
+    /// A key for allowing draft mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a Boolean value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.  It’s best not to use draft mode if the image needs to be drawn without draft mode at a later time, because changing the value from [`true`](https://developer.apple.com/documentation/swift/true) to [`false`](https://developer.apple.com/documentation/swift/false) is an expensive operation. If the optional scale factor is smaller than a certain value, additionally setting draft mode can improve image decoding speed without any perceivable loss of quality. However, turning on draft mode does not have any effect if the scale factor is not below this threshold.
+    ///
+    ///
     /// NSNumber (BOOL) : Setting Draft Mode to YES can improve image decoding speed without minimal loss of quality.
     /// The default value is NO.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/allowdraftmode?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputAllowDraftModeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the version number of the method to be used for decoding. A newly initialized object defaults to the newest available decoder version for the given image type. You can request an alternative, older version to maintain compatibility with older releases. Must be one of the values listed for the [`kCISupportedDecoderVersionsKey`](https://developer.apple.com/documentation/coreimage/cirawfilteroption/supporteddecoderversions) key, otherwise a `nil` output image is generated. The associated value must be an `NSNumber` object that specifies an integer value in range of `0` to the current decoder version. When you request a specific version of the decoder, Core Image produces an image that is _visually_ the same across different versions of the operating system. Core Image, however, does not guarantee that  the same bits are produced across different versions of the operating system. That’s because the rounding behavior of floating-point arithmetic can vary due to differences in compilers or hardware. Note that this option has no effect if the image used for initialization is not RAW.
     /// NSString: Version string representing the decoder version to be used. A newly initialized object defaults to the newest available decoder version for the given image type. User can request an alternative, older version in order to maintain compatibility with older releases. Must be one of kCISupportedDecoderVersions (below), otherwise a nil output image will be generated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/decoderversion?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputDecoderVersionKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSArray : Array of all supported decoder versions for the given image type, sorted in increasingly newer order. Each entry is a NSString. All entries would represent a valid version identifier to be passed in for kCIInputDecoderVersion. This value can be only read; setting this value will raise an exception.
+    /// A key for the supported decoder versions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/supporteddecoderversions?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is  an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object that contains all supported decoder versions for the given image type, sorted in increasingly newer order. Each entry is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object that contains key-value pairs. All entries represent a valid version identifier that can be passed as the `kCIDecoderVersion` value for the key `kCIDecoderMethodKey`. Version values are read-only; attempting to set this value raises an exception. Currently, the only defined key is `@"version"` which has as its value an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) that uniquely describing a given decoder version. This string might not be suitable for user interface display..
+    ///
+    ///
+    /// NSArray : Array of all supported decoder versions for the given image type, sorted in increasingly newer order. Each entry is a NSString. All entries would represent a valid version identifier to be passed in for kCIInputDecoderVersion. This value can be only read; setting this value will raise an exception.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCISupportedDecoderVersionsKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// The amount of baseline exposure applied.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a float that expresses the amount of baseline exposure applied to an image.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of 0 indicates linear response.  The default varies with camera settings.
+    ///
+    ///
     /// NSNumber (float) : A value controlling the amount of baseline exposure applied to the image.
     /// A value of 0 indicates no baseline exposure, i.e. linear response. Default varies from with camera settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/baselineexposure?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputBaselineExposureKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the amount of boost to apply to an image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. The value must be in the range of `0...1`. A value of `0` indicates no boost, that is, a linear response. The default value is `1`, which indicates full boost.
+    ///
+    ///
     /// NSNumber (float) : A value in the range of 0...1, controlling the amount of boost applied to the image.
     /// A value of 0 indicates no boost, i.e. linear response. Default is 1, full boost.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/boostamount?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputBoostKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the amount to boost the shadow areas of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies floating-point value. The value has no effect if the image used for initialization is not RAW.
+    ///
+    ///
     /// NSNumber (float) : The amount to boost the shadow areas of the image. Can be used to lighten details in shadows.
     /// Has no effect if the image used for initialization was not RAW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/boostshadowamount?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputBoostShadowAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// Whether or not to disable gamut mapping.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of [`true`](https://developer.apple.com/documentation/swift/true) disables gamut mapping.  The default is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// NSNumber (BOOL) : Setting DisableGamutMap to YES disables gamut mapping.
     /// The default value is NO.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/disablegamutmap?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputDisableGamutMapKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (float): The X value of the chromaticity. You can always query this value and you'll get the current X value for neutral X,Y.
+    /// The x value of the chromaticity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/neutralchromaticityx?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.  You can query this value to get the current x value for neutral x, y.
+    ///
+    ///
+    /// NSNumber (float): The X value of the chromaticity. You can always query this value and you'll get the current X value for neutral X,Y.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNeutralChromaticityXKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (float): The Y value of the chromaticity. You can always query this value and you'll get the current Y value for neutral X,Y.
+    /// The y value of the chromaticity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/neutralchromaticityy?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.  You can query this value to get the current y value for neutral x, y.
+    ///
+    ///
+    /// NSNumber (float): The Y value of the chromaticity. You can always query this value and you'll get the current Y value for neutral X,Y.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNeutralChromaticityYKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (float) : The color temperature to be considered neutral. You can always query this value and you'll get the current value for temperature.
+    /// A key for neutral temperature.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/neutraltemperature?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. You can query this value to get the current temperature value.
+    ///
+    ///
+    /// NSNumber (float) : The color temperature to be considered neutral. You can always query this value and you'll get the current value for temperature.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNeutralTemperatureKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (float) : The tint to be considered neutral. You can always query this value and you'll get the current value for tint.
+    /// A key for the neutral tint.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/neutraltint?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. Use this key to set or fetch the temperature and tint values.  You can query this value to get the current tint value.
+    ///
+    ///
+    /// NSNumber (float) : The tint to be considered neutral. You can always query this value and you'll get the current value for tint.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNeutralTintKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the neutral position. Use this key to set the location in geometric coordinates of the unrotated output image that should be used as neutral. You cannot query this value; it is undefined for reading. The associated value is a two-element [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) object that specifies the location (`x`, `y`).
     /// CIVector : (x, y) location in geometric coordinates of the unrotated output image that should be used as neutral.
     /// You can't query this value - it's undefined for reading.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/neutrallocation?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNeutralLocationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (float) : The desired scale factor at which the image will be eventually drawn. Setting this value can greatly improve the drawing performance. A value of 1 would mean identity, values smaller than 1 will result in a smaller output image. Changing the Scale Factor with enabled Draft Mode may also improve performance.
+    /// A key for the scale factor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/scalefactor?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a floating-point value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies the desired scale factor at which the image will be drawn. Setting this value can greatly improve the drawing performance. A value of `1` is the identity. In some cases, if you change the scale factor and enable draft mode, performance can decrease. See [`kCIInputAllowDraftModeKey`](https://developer.apple.com/documentation/coreimage/cirawfilteroption/allowdraftmode).
+    ///
+    ///
+    /// NSNumber (float) : The desired scale factor at which the image will be eventually drawn. Setting this value can greatly improve the drawing performance. A value of 1 would mean identity, values smaller than 1 will result in a smaller output image. Changing the Scale Factor with enabled Draft Mode may also improve performance.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputScaleFactorKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (BOOL) : Normally, an image is loaded in its proper orientation, given the associated metadata gives an indication about the orientation. For special purposes it may be useful to load the image in its physical orientation. The exact meaning of this is dependent on the image in question. The default value is NO.
+    /// A key for specifying whether to ignore the image orientation
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/ignoreimageorientation?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a Boolean value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.  The default value is [`false`](https://developer.apple.com/documentation/swift/false). An image is usually loaded in its proper orientation, as long as the associated metadata records its orientation. For special purposes you might want to load the image in its physical orientation. The exact meaning of “physical orientation” is dependent on the specific image.
+    ///
+    ///
+    /// NSNumber (BOOL) : Normally, an image is loaded in its proper orientation, given the associated metadata gives an indication about the orientation. For special purposes it may be useful to load the image in its physical orientation. The exact meaning of this is dependent on the image in question. The default value is NO.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputIgnoreImageOrientationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (int) : Overriding this value allows the user to change the orientation of the image. The valid values are in range 1...8 and follow the EXIF specification. Changing this value makes for instance rotation in 90-degree increments easy. The value is disregarded when the kCIInputIgnoreImageOrientationKey flag is set.
+    /// A key for the image orientation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/imageorientation?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is an integer value packaged as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. Valid values are in range `1...8` and follow the EXIF specification. The value is disregarded when the `kCIIgnoreImageOrientationKey` flag is set. You can change the orientation of the image by overriding this value. By changing this value you can rotate an image in 90-degree increments.
+    ///
+    ///
+    /// NSNumber (int) : Overriding this value allows the user to change the orientation of the image. The valid values are in range 1...8 and follow the EXIF specification. Changing this value makes for instance rotation in 90-degree increments easy. The value is disregarded when the kCIInputIgnoreImageOrientationKey flag is set.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputImageOrientationKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (BOOL) : Determines if the default sharpening should be on. default = YES. Has no effect if the image used for initialization was not RAW.
+    /// A key for the sharpening state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/enablesharpening?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a `BOOL` value ([`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false)). The default is [`true`](https://developer.apple.com/documentation/swift/true). This option has no effect if the image used for initialization is not RAW.
+    ///
+    ///
+    /// NSNumber (BOOL) : Determines if the default sharpening should be on. default = YES. Has no effect if the image used for initialization was not RAW.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputEnableSharpeningKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (BOOL) : Determines if progressive chromatic noise tracking (based on ISO and exposure time) should be used. default = YES. Has no effect if the image used for initialization was not RAW.
+    /// A key for progressive chromatic noise tracking (based on ISO and exposure time).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/enablechromaticnoisetracking?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a `BOOL` value ([`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false)). The default is [`true`](https://developer.apple.com/documentation/swift/true). This option has no effect if the image used for initialization is not RAW.
+    ///
+    ///
+    /// NSNumber (BOOL) : Determines if progressive chromatic noise tracking (based on ISO and exposure time) should be used. default = YES. Has no effect if the image used for initialization was not RAW.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputEnableChromaticNoiseTrackingKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of noise reduction applied. Range is 0 to 1.
+    /// A key for the amount to reduce noise in the image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/noisereductionamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a floating-point value between `0.0` and `1.0`. The value has no effect if the image used for initialization is not RAW.
+    ///
+    ///
+    /// NSNumber (double) : The amount of noise reduction applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of moire reduction applied. Range is 0 to 1.
+    /// The amount of moiré reduction to apply.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/moireamount?language=objc)
+    /// ## Discussion
+    ///
+    /// A key for an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a double that expresses the amount of moiré reduction applied to an image.
+    ///
+    /// ## Discussion
+    ///
+    /// The range of valid moiré reduction is 0.0 to 1.0.
+    ///
+    ///
+    /// NSNumber (double) : The amount of moire reduction applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputMoireAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (BOOL) : Determines if the default vendor lens correction be on. default = YES if raw image used for initialization contains lens distortion parameters.
+    /// A key for whether to automatically correct for image distortion from known lenses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/enablevendorlenscorrection?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. If this value is [`true`](https://developer.apple.com/documentation/swift/true), or if this option is not specified but the image contains metadata for lens distortion parameters, Core Image corrects for lens distortion.
+    ///
+    ///
+    /// NSNumber (BOOL) : Determines if the default vendor lens correction be on. default = YES if raw image used for initialization contains lens distortion parameters.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputEnableVendorLensCorrectionKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of luminance noise reduction applied. Range is 0 to 1.
+    /// A key for the amount of noise reduction to apply to luminance data in the image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/luminancenoisereductionamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a value between `0.0` and `1.0`.
+    ///
+    ///
+    /// NSNumber (double) : The amount of luminance noise reduction applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputLuminanceNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of color noise reduction applied. Range is 0 to 1.
+    /// A key for the amount of noise reduction to apply to color data in the image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/colornoisereductionamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a value between `0.0` and `1.0`.
+    ///
+    ///
+    /// NSNumber (double) : The amount of color noise reduction applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputColorNoiseReductionAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of noise reduction sharpness applied. Range is 0 to 1.
+    /// A key for the amount of sharpness enhancement to apply during noise reduction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/noisereductionsharpnessamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a value between `0.0` and `1.0`.
+    ///
+    ///
+    /// NSNumber (double) : The amount of noise reduction sharpness applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNoiseReductionSharpnessAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of noise reduction contrast applied. Range is 0 to 1.
+    /// A key for the amount of contrast enhancement to apply during noise reduction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/noisereductioncontrastamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a value between `0.0` and `1.0`.
+    ///
+    ///
+    /// NSNumber (double) : The amount of noise reduction contrast applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNoiseReductionContrastAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
-    /// NSNumber (double) : The amount of noise reduction detail applied. Range is 0 to 1.
+    /// A key for the amount of detail enhancement to apply during noise reduction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/noisereductiondetailamount?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a value between `0.0` and `1.0`.
+    ///
+    ///
+    /// NSNumber (double) : The amount of noise reduction detail applied. Range is 0 to 1.
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputNoiseReductionDetailAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
     /// NSNumber (BOOL) : Allows the output to have an Extended Dynamic Range with values greater than 1 possible
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/ciinputenableedrmodekey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputEnableEDRModeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
     /// NSNumber (double): The amount of the local tone map. Range is 0 to 1. Default is 1
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/ciinputlocaltonemapamountkey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputLocalToneMapAmountKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the filter to apply to the image while it is temporarily in a linear color space as part of  RAW image processing. The associated value must be a [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class) object.
     /// CIFilter (id) : CIFilter to be applied to the RAW image while it is in linear space.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/linearspacefilter?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIInputLinearSpaceFilter: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the full native size of the original, non-transformed RAW image. The associated value is a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) object whose X and Y values are the image’s width and height. This key is read-only.
     /// CIVector containing the full native size of the unscaled image. The vector's X value is the width, Y is the height.
     /// This is not affected by changing either kCIInputIgnoreImageOrientationKey or kCIInputImageOrientationKey.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/outputnativesize?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIOutputNativeSizeKey: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
+    /// A key for the set of input keys available for use.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) object containing the set of input keys which may be used to affect the output image. (Depending on the input image type and the decoder version, some input keys may be unavailable.) This key is read-only.
+    ///
+    ///
     /// Read-only NSSet containing a list of keys that affect the output image.
     /// Depending on the RAW decoder version (kCIInputDecoderVersionKey) and the input image type,
     /// some input keys might have no effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/activekeys?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIActiveKeys: Option<&'static CIRAWFilterOption>;
 }
 
 extern "C" {
     /// Read-only NSDictionary containing properties for the output image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawfilteroption/propertieskey?language=objc)
     #[deprecated = "Use new CIRAWFilter class instead."]
     pub static kCIPropertiesKey: Option<&'static CIRAWFilterOption>;
 }

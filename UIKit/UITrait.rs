@@ -9,7 +9,94 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdefinition-3572h?language=objc)
+    /// A type representing a trait in a trait collection.
+    ///
+    /// ## Overview
+    ///
+    /// All traits contained in a [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) conform to this protocol. Three protocols refine `UITraitDefinition`: [`UINSIntegerTraitDefinition`](https://developer.apple.com/documentation/uikit/uinsintegertraitdefinition), [`UICGFloatTraitDefinition`](https://developer.apple.com/documentation/uikit/uicgfloattraitdefinition), or [`UIObjectTraitDefinition`](https://developer.apple.com/documentation/uikit/uiobjecttraitdefinition). You can create custom traits by defining your own object conforming one of these three protocols, as appropriate for your trait value.
+    ///
+    /// The example below defines a new trait that holds an [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) value:
+    ///
+    /// ```objc
+    /// typedef NS_ENUM(NSInteger, Theme) {
+    ///     ThemeStandard,
+    ///     ThemeMonochrome
+    /// };
+    ///
+    /// @interface MyThemeTrait : NSObject<UINSIntegerTraitDefinition>
+    /// @end
+    ///
+    /// @implementation MyThemeTrait
+    /// + (NSInteger)defaultValue { return ThemeStandard; }
+    /// @end
+    /// ```
+    ///
+    /// Defining [`defaultValue`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/defaultvalue) is the minimum requirement to conform to this protocol. The [`defaultValue`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/defaultvalue) must be constant.
+    ///
+    /// The best candidates for trait values are simple scalars: [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) and [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). You can also use lightweight objects as trait values, but these are less efficient than simple scalars. Examples of lightweight objects include [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), or a composite of similarly lightweight objects. Make sure the default value never changes, preferably by making the object immutable. The system frequently checks trait values for equality, so classes need an efficient implementation of [`isEqual(_:)`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)).
+    ///
+    /// If you use your custom trait to implement custom dynamic colors, implement [`affectsColorAppearance`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/affectscolorappearance) and return `YES`. Returning `YES` tells the system to update and redraw views automatically when the trait changes. The system responds to changes to your trait similar to changes in system traits contained in [`systemTraitsAffectingColorAppearance`](https://developer.apple.com/documentation/uikit/uitraitcollection/systemtraitsaffectingcolorappearance-64z7q). Changes to traits that affect color appearance are more expensive, so opt in to this behavior only when necessary, and change such traits infrequently.
+    ///
+    /// A trait type serves as a unique key, identifying a trait within a trait collection. Methods such as [`valueForNSIntegerTrait:`](https://developer.apple.com/documentation/uikit/uitraitcollection/valuefornsintegertrait:) and [`registerForTraitChanges:withHandler:`](https://developer.apple.com/documentation/uikit/uitraitchangeobservable-7qoet/registerfortraitchanges:withhandler:) take a trait type to identify the trait in a collection.
+    ///
+    /// ### Traits in both Swift and Objective-C
+    ///
+    /// If you need to access traits from both Swift and Objective-C code, create a type conforming to [`UITraitDefinition`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15) in both languages. To define a trait that’s accessible from both Swift and Objective-C, follow these guidelines :
+    ///
+    /// - In Swift, define a structure that conforms to [`UITraitDefinition`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15).
+    ///
+    /// - In Objective-C, define an [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) subclass that conforms to [`UINSIntegerTraitDefinition`](https://developer.apple.com/documentation/uikit/uinsintegertraitdefinition), [`UICGFloatTraitDefinition`](https://developer.apple.com/documentation/uikit/uicgfloattraitdefinition), or [`UIObjectTraitDefinition`](https://developer.apple.com/documentation/uikit/uiobjecttraitdefinition).
+    ///
+    /// - Implement [`defaultValue`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/defaultvalue), [`name`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/name), and [`identifier`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/identifier), and make the values the same in Objective-C and Swift.
+    ///
+    /// - If your trait holds an object value, make the class visible to both Swift and Objective-C.
+    ///
+    /// - If your trait holds a fundamental value type, make your Objective-C types correspond to Swift types, as in the following table:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Swift" }] }], [Paragraph { inline_content: [Text { text: "Objective-C" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/Bool", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NSInteger", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/Int", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NSInteger", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Swift/Double", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// For Swift [`Bool`](https://developer.apple.com/documentation/swift/bool) values, Objective-C uses 0 for `false` and 1 for `true`.
+    ///
+    /// If your Swift trait uses an optional type for the [`defaultValue`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15/defaultvalue), Objective-C represents a Swift `nil` value with a special Objective-C constant. The table below lists the Objective-C values that correspond to a Swift `nil` value.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Swift optional type" }] }], [Paragraph { inline_content: [Text { text: "Swift value" }] }], [Paragraph { inline_content: [Text { text: "Objective-C type" }] }], [Paragraph { inline_content: [Text { text: "Objective-C value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Int?" }] }], [Paragraph { inline_content: [CodeVoice { code: "nil" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NSInteger", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNotFound-4qp9h", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "Double?" }] }], [Paragraph { inline_content: [CodeVoice { code: "nil" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFLOAT_MAX", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [CodeVoice { code: "CGFloat?" }] }], [Paragraph { inline_content: [CodeVoice { code: "nil" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFloat-swift.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGFLOAT_MAX", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    /// In Objective-C, your trait value may require an [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) subclass if your data model exceeds the simple scalars of [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) and [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct). To use this value in Swift, import your Objective-C class into Swift, and use it for the value of your custom trait in both languages. Other than bridging with Objective-C, avoid using reference types for Swift trait values.
+    ///
+    /// You can prevent Swift from importing your Objective-C class name by applying the `NS_REFINED_FOR_SWIFT` macro to your Objective-C interface. This macro allows you to name your Swift trait structure with the same name as your Objective-C trait class.
+    ///
+    /// The example below defines a trait in Objective-C, with a custom `Theme` type for a trait value.
+    ///
+    /// ```objc
+    /// typedef NS_ENUM(NSInteger, Theme) {
+    ///     ThemeStandard,
+    ///     ThemeMonochrome
+    /// };
+    ///
+    /// NS_REFINED_FOR_SWIFT @interface ThemeTrait : NSObject<UINSIntegerTraitDefinition>
+    /// @end
+    ///
+    /// @implementation ThemeTrait
+    /// + (NSInteger)defaultValue { return ThemeStandard; }
+    /// + (NSString *)name { return @"Theme"; }
+    /// + (NSString *)identifier { return @"com.example.themetrait"; }
+    /// @end
+    ///
+    /// ```
+    ///
+    /// The following code example shows the definition of a Swift trait so that UIKit recognizes it as the same trait as defined above in Objective-C:
+    ///
+    /// ```swift
+    /// // The NS_REFINED_FOR_SWIFT macro allows this struct to have
+    /// // the same name as the Objective-C trait class.
+    /// struct ThemeTrait: UITraitDefinition {
+    ///     static let defaultValue = Theme.standard
+    ///     static let name = "Theme"
+    ///     static let identifier = "com.example.themetrait"
+    /// }
+    /// ```
+    ///
+    /// The `NS_REFINED_FOR_SWIFT` macro makes your Objective-C class available in Swift by prepending double underscores to the class name. You can use this to make your Swift implementation call your Objective-C class properties. For more details, refer to [Improving Objective-C API Declarations for Swift](https://developer.apple.com/documentation/swift/improving-objective-c-api-declarations-for-swift).
+    ///
+    ///
     pub unsafe trait UITraitDefinition: MainThreadOnly {
         /// A unique identifier string for the trait (reverse-DNS format recommended).
         /// Allows the trait to be encoded/decoded, and to map both a Swift and Objective-C trait to the same data.
@@ -34,11 +121,9 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrait-1dbah?language=objc)
 pub type UITrait = AnyClass;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattraitdefinition?language=objc)
     pub unsafe trait UICGFloatTraitDefinition: UITraitDefinition + MainThreadOnly {
         #[cfg(feature = "objc2-core-foundation")]
         /// The default value for this trait in a trait collection when no value has been set.
@@ -48,11 +133,9 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicgfloattrait?language=objc)
 pub type UICGFloatTrait = AnyClass;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertraitdefinition?language=objc)
     pub unsafe trait UINSIntegerTraitDefinition: UITraitDefinition + MainThreadOnly {
         /// The default value for this trait in a trait collection when no value has been set.
         #[unsafe(method(defaultValue))]
@@ -61,11 +144,9 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinsintegertrait?language=objc)
 pub type UINSIntegerTrait = AnyClass;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttraitdefinition?language=objc)
     pub unsafe trait UIObjectTraitDefinition: UITraitDefinition + MainThreadOnly {
         /// The default value for this trait in a trait collection when no value has been set.
         #[unsafe(method(defaultValue))]
@@ -76,11 +157,9 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjecttrait?language=objc)
 pub type UIObjectTrait = AnyClass;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfaceidiom-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -117,7 +196,6 @@ impl UITraitUserInterfaceIdiom {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacestyle-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -154,7 +232,6 @@ impl UITraitUserInterfaceStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlayoutdirection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -191,7 +268,6 @@ impl UITraitLayoutDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplayscale-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -228,7 +304,6 @@ impl UITraitDisplayScale {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithorizontalsizeclass-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -265,7 +340,6 @@ impl UITraitHorizontalSizeClass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitverticalsizeclass-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -302,7 +376,6 @@ impl UITraitVerticalSizeClass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitforcetouchcapability-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -339,7 +412,6 @@ impl UITraitForceTouchCapability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitpreferredcontentsizecategory-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -376,7 +448,6 @@ impl UITraitPreferredContentSizeCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplaygamut-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -413,7 +484,6 @@ impl UITraitDisplayGamut {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitaccessibilitycontrast-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -450,7 +520,6 @@ impl UITraitAccessibilityContrast {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacelevel-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -487,7 +556,6 @@ impl UITraitUserInterfaceLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlegibilityweight-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -524,7 +592,6 @@ impl UITraitLegibilityWeight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitactiveappearance-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -561,7 +628,6 @@ impl UITraitActiveAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittoolbaritempresentationsize-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -598,7 +664,6 @@ impl UITraitToolbarItemPresentationSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitimagedynamicrange-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -635,7 +700,6 @@ impl UITraitImageDynamicRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittypesettinglanguage-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -672,7 +736,6 @@ impl UITraitTypesettingLanguage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitscenecapturestate-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -709,7 +772,6 @@ impl UITraitSceneCaptureState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithdrheadroomusagelimit-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -746,7 +808,6 @@ impl UITraitHDRHeadroomUsageLimit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitresolvesnaturalalignmentwithbasewritingdirection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

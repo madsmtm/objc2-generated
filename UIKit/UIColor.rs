@@ -14,22 +14,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum?language=objc)
+/// A type that indicates the prominence of a color in the interface.
+///
+/// ## Overview
+///
+/// Interface elements, such as text labels, can have a different level of prominence in the UI. For example, a title label appears more prominently than a subtitle or caption. When you specify a label’s color, you can pass one of the [`UIColorProminence`](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum) constants to [`colorWithProminence:`](https://developer.apple.com/documentation/uikit/uicolor/withprominence(_:)) to communicate how prominently to display that color in the UI.
+///
+/// The following code creates a label with a secondary, vibrant red color:
+///
+/// ```swift
+/// let label = UILabel()
+/// label.preferredVibrancy = .automatic
+/// label.textColor = .systemRed.withProminence(.secondary)
+/// ```
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIColorProminence(pub NSInteger);
 impl UIColorProminence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/primary?language=objc)
+    /// A color with a primary prominence, the most prominent in the interface.
     #[doc(alias = "UIColorProminencePrimary")]
     pub const Primary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/secondary?language=objc)
+    /// A color with a secondary prominence.
     #[doc(alias = "UIColorProminenceSecondary")]
     pub const Secondary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/tertiary?language=objc)
+    /// A color with a tertiary prominence.
     #[doc(alias = "UIColorProminenceTertiary")]
     pub const Tertiary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor/prominence-swift.enum/quaternary?language=objc)
+    /// A color with a quaternary prominence, the least prominent in the interface.
     #[doc(alias = "UIColorProminenceQuaternary")]
     pub const Quaternary: Self = Self(3);
 }
@@ -43,7 +57,23 @@ unsafe impl RefEncode for UIColorProminence {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicolor?language=objc)
+    /// An object that stores color data and sometimes opacity.
+    ///
+    /// ## Overview
+    ///
+    /// Use color to customize your app’s appearance, communicate status, and help people visualize data. To learn more about using color in your apps, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/foundations/color/).
+    ///
+    /// [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) provides a list of class properties that create adaptable and fixed colors such as blue, green, purple, and more. [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) also offers properties to specify system-provided colors for UI elements such as labels, text, and buttons. You can create color objects by specifying color component values such as RGB, hue, and saturation. You can also create colors from other color objects and even create a pattern-based color from an image.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Most developers have no need to subclass [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor). The only time subclassing might be necessary is if you require support for additional color spaces or color models. If you do subclass, the properties and methods you add must be safe to use from multiple threads.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIColor;

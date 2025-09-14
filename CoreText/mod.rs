@@ -2748,36 +2748,70 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5?language=objc)
+///
+/// ## Discussion
+///
+/// The Core Text framework version in OS X version 10.5.
+///
+///
 pub const kCTVersionNumber10_5: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_2?language=objc)
+///
+/// ## Discussion
+///
+/// The Core Text framework version in OS X version 10.5.2.
+///
+///
 pub const kCTVersionNumber10_5_2: c_uint = 0x00020001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_3?language=objc)
+///
+/// ## Discussion
+///
+/// The Core Text framework version in OS X version 10.5.3.
+///
+///
 pub const kCTVersionNumber10_5_3: c_uint = 0x00020002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_5?language=objc)
+///
+/// ## Discussion
+///
+/// The Core Text framework version in OS X version 10.5.5.
+///
+///
 pub const kCTVersionNumber10_5_5: c_uint = 0x00020003;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_6?language=objc)
+///
+/// ## Discussion
+///
+/// The Core Text framework version in OS X version 10.6.
+///
+///
 pub const kCTVersionNumber10_6: c_uint = 0x00030000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_7?language=objc)
 pub const kCTVersionNumber10_7: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_8?language=objc)
 pub const kCTVersionNumber10_8: c_uint = 0x00050000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_9?language=objc)
 pub const kCTVersionNumber10_9: c_uint = 0x00060000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_10?language=objc)
 pub const kCTVersionNumber10_10: c_uint = 0x00070000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_11?language=objc)
 pub const kCTVersionNumber10_11: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_12?language=objc)
 pub const kCTVersionNumber10_12: c_uint = 0x00090000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_13?language=objc)
 pub const kCTVersionNumber10_13: c_uint = 0x000A0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_14?language=objc)
 pub const kCTVersionNumber10_14: c_uint = 0x000B0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_15?language=objc)
 pub const kCTVersionNumber10_15: c_uint = 0x000C0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber11_0?language=objc)
 pub const kCTVersionNumber11_0: c_uint = 0x000D0000;
+/// Returns the version of the Core Text framework.
+///
+/// ## Return Value
+///
+/// The version number. This value is for comparison with the constants listed in `Core Text Framework Version Numbers`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns a number indicating the version of the Core Text framework. Note that framework version is not always an accurate indicator of feature availability. The recommended way to use this function is first to check that the function pointer is non-null, followed by calling it and comparing its result to a defined constant (or constants). For example, to determine whether the CoreText API is available:
+///
+/// ```objc
+/// if (&CTGetCoreTextVersion != NULL && CTGetCoreTextVersion() >= kCTVersionNumber10_5) {
+///  // CoreText API is available
+/// }
+/// ```
+///
+///
 /// Returns the version of the CoreText framework.
 ///
 ///
@@ -2801,8 +2835,6 @@ pub const kCTVersionNumber11_0: c_uint = 0x000D0000;
 /// Returns: The version number. This value is for comparison with the
 /// constants beginning with kCTVersionNumber and will not exceed
 /// kCTVersionNumber11_0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctgetcoretextversion()?language=objc)
 #[deprecated = "Use -[NSProcessInfo operatingSystemVersion]"]
 #[inline]
 pub extern "C-unwind" fn CTGetCoreTextVersion() -> u32 {

@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbraillemap?language=objc)
+    /// A representation of a two-dimensional braille display.
+    ///
+    /// ## Overview
+    ///
+    /// A braille map object represents a two-dimensional braille display that’s connected to the current Apple device. By specifying the dot patterns in the braille map, you can change the content the user experiences. To render the data from the braille map to the display, implement [`AXBrailleMapRenderer`](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXBrailleMap;
@@ -71,7 +77,17 @@ impl AXBrailleMap {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer?language=objc)
+    /// The interface for providing data for a braille map.
+    ///
+    /// ## Overview
+    ///
+    /// You update the braille display in one of these ways:
+    ///
+    /// - Implement [`accessibilityBrailleMapRenderRegion`](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer/accessibilitybraillemaprenderregion) to specify an area of the UI to render to the braille display. With this approach, VoiceOver handles the process of converting the data to a braille map by rendering the image of the screen in that region and updating the braille display automatically.
+    ///
+    /// - Implement [`accessibilityBrailleMapRenderer`](https://developer.apple.com/documentation/accessibility/axbraillemaprenderer/accessibilitybraillemaprenderer) to update the braille map manually. With this approach, you get more detailed control over what to display, but you must modify the braille map yourself.
+    ///
+    ///
     pub unsafe trait AXBrailleMapRenderer: NSObjectProtocol {
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]

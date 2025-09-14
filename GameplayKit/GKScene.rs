@@ -8,19 +8,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// Identifies scene classes from other frameworks that support embedded GameplayKit information.
+    ///
+    /// ## Overview
+    ///
+    /// You do not define classes that adopt this protocol. GameplayKit adds this protocol declaration to classes (such as [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene)) for which the [`GKScene`](https://developer.apple.com/documentation/gameplaykit/gkscene) class supports archiving and loading embedded GameplayKit information.
+    ///
+    /// For more information, see [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// Protocol that specifies the type of objects that can be used as root nodes of a GKScene.
     ///
     ///
     /// See: GKScene.rootNode
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkscenerootnodetype?language=objc)
     pub unsafe trait GKSceneRootNodeType: NSObjectProtocol {}
 );
 
 extern_class!(
-    /// A scene stores and handles loading of data related to a particular scene.
+    /// A container for associating GameplayKit objects with a SpriteKit scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkscene?language=objc)
+    /// ## Overview
+    ///
+    /// When you create a scene in the Xcode SpriteKit scene editor, Xcode automatically creates a [`GKScene`](https://developer.apple.com/documentation/gameplaykit/gkscene) object to manage any GameplayKit objects you add to the scene (entities, components, or pathfinding graphs) and archive them alongside the SpriteKit scene content.
+    ///
+    /// To use a SpriteKit scene that contains GameplayKit objects, load the scene file with the [`GKScene`](https://developer.apple.com/documentation/gameplaykit/gkscene) [`sceneWithFileNamed:`](https://developer.apple.com/documentation/gameplaykit/gkscene/init(filenamed:)) method. You can then use the [`entities`](https://developer.apple.com/documentation/gameplaykit/gkscene/entities) and [`graphs`](https://developer.apple.com/documentation/gameplaykit/gkscene/graphs) properties to access the [`GKEntity`](https://developer.apple.com/documentation/gameplaykit/gkentity) (and associated [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent)) objects and [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) objects in the scene, and the [`rootNode`](https://developer.apple.com/documentation/gameplaykit/gkscene/rootnode) property to access the scene’s SpriteKit content.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Any SpriteKit node in the scene to which you’ve attached an entity or components automatically has a [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) object to manage the relationship between the node and the the [`GKEntity`](https://developer.apple.com/documentation/gameplaykit/gkentity) object it represents.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information on Entity-Component architecture and pathfinding graphs, see [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) and [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A scene stores and handles loading of data related to a particular scene.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKScene;

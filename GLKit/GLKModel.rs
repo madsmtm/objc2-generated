@@ -12,19 +12,15 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/kglkmodelerrordomain?language=objc)
     pub static kGLKModelErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/kglkmodelerrorkey?language=objc)
     pub static kGLKModelErrorKey: &'static NSString;
 }
 
 extern_class!(
     /// Allocator passed to MDLAsset init method to load vertex and index data directly into OpenGL buffer object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmeshbufferallocator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKMeshBufferAllocator;
@@ -60,8 +56,6 @@ extern_class!(
     /// Mesh buffers created when  needs to allocate memory to back vertex or index data
     ///
     /// Memory backing these buffer are OpenGL buffers. Model I/O will load index and vertex data from from a model asset directly in to the OpenGL buffer object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmeshbuffer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKMeshBuffer;
@@ -142,7 +136,6 @@ impl GLKMeshBuffer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glksubmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKSubmesh;
@@ -219,7 +212,6 @@ impl GLKSubmesh {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmesh?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKMesh;
@@ -342,8 +334,6 @@ unsafe impl RefEncode for GLKVertexAttributeParameters {
 
 extern "C-unwind" {
     /// Returns parameters to use in a call to glVertexAttribPointer given a MDLVertexFormat
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattributeparametersfrommodelio(_:)?language=objc)
     #[cfg(all(feature = "objc2-model-io", feature = "objc2-open-gl"))]
     #[cfg(target_os = "macos")]
     pub fn GLKVertexAttributeParametersFromModelIO(

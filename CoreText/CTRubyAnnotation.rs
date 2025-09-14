@@ -9,7 +9,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotation?language=objc)
 #[doc(alias = "CTRubyAnnotationRef")]
 #[repr(C)]
 pub struct CTRubyAnnotation {
@@ -26,9 +25,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTRubyAnnotation {
-    /// Returns the CFType of the ruby annotation object
+    /// Retrieves the type of the ruby annotation object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) of the ruby annotation object.
+    ///
+    ///
+    /// Returns the CFType of the ruby annotation object
     #[doc(alias = "CTRubyAnnotationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,6 +43,7 @@ unsafe impl ConcreteType for CTRubyAnnotation {
     }
 }
 
+/// Constants that specify how to align the ruby text and the base text relative to each other when they have different lengths.
 /// These constants specify how to align the ruby annotation and the base text relative to each other when they don't have the same length.
 ///
 ///
@@ -61,35 +66,63 @@ unsafe impl ConcreteType for CTRubyAnnotation {
 ///
 ///
 /// If the ruby text is not adjacent to a line edge it is aligned as with kCTRubyAlignmentAuto. If it is adjacent to a line edge the end of ruby text adjacent to the line edge is aligned to the line edge. This is only relevant if the width of the ruby text is greater than the width of the base text; otherwise alignment is as with kCTRubyAlignmentAuto.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/invalid?language=objc)
+    /// The alignment is invalid.
     #[doc(alias = "kCTRubyAlignmentInvalid")]
     pub const Invalid: Self = Self(255);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/auto?language=objc)
+    /// Core Text automatically determines the alignment.
     #[doc(alias = "kCTRubyAlignmentAuto")]
     pub const Auto: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/start?language=objc)
+    /// Aligns the ruby text with the starting edge of the base text.
     #[doc(alias = "kCTRubyAlignmentStart")]
     pub const Start: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/center?language=objc)
+    /// Centers the ruby text within the width of the base text.
+    ///
+    /// ## Discussion
+    ///
+    /// If the ruby text is wider than the base text, Core Text centers the base text within the width of the ruby text.
+    ///
+    ///
     #[doc(alias = "kCTRubyAlignmentCenter")]
     pub const Center: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/end?language=objc)
+    /// Aligns the ruby text with the ending edge of the base text.
     #[doc(alias = "kCTRubyAlignmentEnd")]
     pub const End: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/distributeletter?language=objc)
+    /// Distributes the ruby text evenly over the width of the base text, aligning the first and last characters of the ruby text with the first and last characters of the base text.
+    ///
+    /// ## Discussion
+    ///
+    /// If the width of the ruby text is less than the width of the base text, Core Text evenly distributes the ruby text over the width of the base text. The first character of the ruby text aligns with the first character of the base text, and the last character of the ruby text aligns with the last character of the base text.
+    ///
+    /// If the width of the base text is less than the width of the ruby text, Core Text evenly distributes the base text over the width of the ruby text.
+    ///
+    ///
     #[doc(alias = "kCTRubyAlignmentDistributeLetter")]
     pub const DistributeLetter: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/distributespace?language=objc)
+    /// Distributes the ruby text evenly over the width of the base text, adding space before the first and after the last character.
+    ///
+    /// ## Discussion
+    ///
+    /// If the width of the ruby text is less than the width of the base text, Core Text evenly distributes the ruby text over the width of the base text. A certain amount of space, usually half of the intercharacter width of the ruby text, appears before the first and after the last character.
+    ///
+    /// If the width of the base text is less than the width of the ruby text, Core Text similarly aligns the base text to the width of the ruby text.
+    ///
+    ///
     #[doc(alias = "kCTRubyAlignmentDistributeSpace")]
     pub const DistributeSpace: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment/lineedge?language=objc)
+    /// Aligns the ruby text to an adjacent line edge.
+    ///
+    /// ## Discussion
+    ///
+    /// If the ruby text is adjacent to a line edge, Core Text aligns the end of the ruby text adjacent to the line edge to that line edge. This only applies if the width of the ruby text is greater than the width of the base text; otherwise, the alignment is [`kCTRubyAlignmentAuto`](https://developer.apple.com/documentation/coretext/ctrubyalignment/auto).
+    ///
+    /// If the ruby text isn’t adjacent to a line edge, the alignment is [`kCTRubyAlignmentAuto`](https://developer.apple.com/documentation/coretext/ctrubyalignment/auto).
+    ///
+    ///
     #[doc(alias = "kCTRubyAlignmentLineEdge")]
     pub const LineEdge: Self = Self(6);
 }
@@ -104,6 +137,7 @@ unsafe impl RefEncode for CTRubyAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify whether, and on which side, ruby text can overhang adjacent text if it’s wider than the base text.
 /// These constants specify whether, and on which side, ruby text is allowed to overhang adjacent text if it is wider than the base text.
 ///
 ///
@@ -117,26 +151,24 @@ unsafe impl RefEncode for CTRubyAlignment {
 ///
 ///
 /// The ruby text cannot overhang the proceeding or following text.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/invalid?language=objc)
+    /// The overhang specification is invalid.
     #[doc(alias = "kCTRubyOverhangInvalid")]
     pub const Invalid: Self = Self(255);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/auto?language=objc)
+    /// The ruby text can overhang adjacent text on both sides.
     #[doc(alias = "kCTRubyOverhangAuto")]
     pub const Auto: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/start?language=objc)
+    /// The ruby text can overhang the text that precedes it.
     #[doc(alias = "kCTRubyOverhangStart")]
     pub const Start: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/end?language=objc)
+    /// The ruby text can overhang the text that follows it.
     #[doc(alias = "kCTRubyOverhangEnd")]
     pub const End: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang/none?language=objc)
+    /// The ruby text can’t overhang the preceding or following text.
     #[doc(alias = "kCTRubyOverhangNone")]
     pub const None: Self = Self(3);
 }
@@ -151,6 +183,7 @@ unsafe impl RefEncode for CTRubyOverhang {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify the position of the ruby text relative to to the base text.
 /// These constants specify the position of the ruby text with respect to the base text.
 ///
 ///
@@ -164,26 +197,36 @@ unsafe impl RefEncode for CTRubyOverhang {
 ///
 ///
 /// The ruby text follows the base text with no special styling.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyPosition(pub u8);
 impl CTRubyPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/before?language=objc)
+    /// The ruby text is positioned before the base text, appearing above horizontal text and to the right of vertical text.
     #[doc(alias = "kCTRubyPositionBefore")]
     pub const Before: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/after?language=objc)
+    /// The ruby text is positioned after the base text, appearing below horizontal text and to the left of vertical text.
     #[doc(alias = "kCTRubyPositionAfter")]
     pub const After: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/intercharacter?language=objc)
+    /// The ruby text is positioned to the right of the base text, regardless of whether it’s horizontal or vertical.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the way that Bopomofo annotations are attached to Chinese text in Taiwan.
+    ///
+    ///
     #[doc(alias = "kCTRubyPositionInterCharacter")]
     pub const InterCharacter: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/inline?language=objc)
+    /// The ruby text follows the base text with no special styling.
     #[doc(alias = "kCTRubyPositionInline")]
     pub const Inline: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition/count?language=objc)
+    /// A constant that accounts for all ruby positions during ruby annotation creation.
+    ///
+    /// ## Discussion
+    ///
+    /// When you create a ruby annotation using [`CTRubyAnnotationCreate`](https://developer.apple.com/documentation/coretext/ctrubyannotationcreate(_:_:_:_:)), use this constant to allocate an array of [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) texts that contains a sufficient number of elements for each [`CTRubyPosition`](https://developer.apple.com/documentation/coretext/ctrubyposition).
+    ///
+    ///
     #[doc(alias = "kCTRubyPositionCount")]
     pub const Count: Self = Self(4);
 }
@@ -199,6 +242,29 @@ unsafe impl RefEncode for CTRubyPosition {
 }
 
 impl CTRubyAnnotation {
+    /// Creates an immutable ruby annotation object.
+    ///
+    /// Parameters:
+    /// - alignment: An alignment value that specifies how the ruby text and the base text align relative to each other.
+    ///
+    /// - overhang: An overhang value that specifies how the ruby text overhangs adjacent characters.
+    ///
+    /// - sizeFactor: A size factor that specifies the annotation text size as a percentage of the base text size.
+    ///
+    /// - text: An array of [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects, indexed by [`CTRubyPosition`](https://developer.apple.com/documentation/coretext/ctrubyposition). Pass in `NULL` for any unused positions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a [`CTRubyAnnotationRef`](https://developer.apple.com/documentation/coretext/ctrubyannotation) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to create a ruby annotation object in the most straightforward and efficient way.
+    ///
+    ///
     /// Creates an immutable ruby annotation object.
     ///
     ///
@@ -223,8 +289,6 @@ impl CTRubyAnnotation {
     /// # Safety
     ///
     /// `text` array element must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreate")]
     #[inline]
     pub unsafe fn new(
@@ -253,8 +317,6 @@ extern "C" {
     ///
     ///
     /// Value must be a CFNumberRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename?language=objc)
     pub static kCTRubyAnnotationSizeFactorAttributeName: &'static CFString;
 }
 
@@ -266,12 +328,35 @@ extern "C" {
     ///
     ///
     /// Value must be a CFBooleanRef. Default is false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctrubyannotationscaletofitattributename?language=objc)
     pub static kCTRubyAnnotationScaleToFitAttributeName: &'static CFString;
 }
 
 impl CTRubyAnnotation {
+    /// Creates an immutable ruby annotation object with the specified attributes.
+    ///
+    /// Parameters:
+    /// - alignment: An alignment value that specifies how the ruby text and the base text align relative to each other.
+    ///
+    /// - overhang: An overhang value that specifies how the ruby text overhangs adjacent characters.
+    ///
+    /// - position: The position of the annotation text.
+    ///
+    /// - string: An unformatted string whose attributes derive from the `attributes` parameter.
+    ///
+    /// - attributes: An attribute dictionary to combine with `string`. If you don’t specify [`kCTFontAttributeName`](https://developer.apple.com/documentation/coretext/kctfontattributename), the system deduces the ruby annotation’s font from the base text and uses a size factor of the [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) value keyed by [`kCTRubyAnnotationSizeFactorAttributeName`](https://developer.apple.com/documentation/coretext/kctrubyannotationsizefactorattributename).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a [`CTRubyAnnotationRef`](https://developer.apple.com/documentation/coretext/ctrubyannotation) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to create a ruby annotation object with more precise control of the annotation text.
+    ///
+    ///
     /// Creates an immutable ruby annotation object.
     ///
     ///
@@ -303,8 +388,6 @@ impl CTRubyAnnotation {
     ///
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreatewithattributes(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(
@@ -333,6 +416,17 @@ impl CTRubyAnnotation {
 
     /// Creates an immutable copy of a ruby annotation object.
     ///
+    /// Parameters:
+    /// - rubyAnnotation: The ruby annotation object to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A valid reference to an immutable [`CTRubyAnnotationRef`](https://developer.apple.com/documentation/coretext/ctrubyannotation) object that’s a copy of `rubyAnnotation`, if the `rubyAnnotation` object is valid.
+    ///
+    ///
+    /// Creates an immutable copy of a ruby annotation object.
+    ///
     ///
     /// Parameter `rubyAnnotation`: The ruby annotation that you wish to copy.
     ///
@@ -341,8 +435,6 @@ impl CTRubyAnnotation {
     /// function will return valid reference to an immutable
     /// CTRubyAnnotation object that is a copy of the one passed into
     /// "rubyAnnotation".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationcreatecopy(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
     #[inline]
     pub fn copy(&self) -> CFRetained<CTRubyAnnotation> {
@@ -357,6 +449,17 @@ impl CTRubyAnnotation {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Retrieves the alignment value of a ruby annotation object.
+    ///
+    /// Parameters:
+    /// - rubyAnnotation: The ruby annotation object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The alignment of `rubyAnnotation`, if the `rubyAnnotation` object is valid; otherwise, [`kCTRubyAlignmentInvalid`](https://developer.apple.com/documentation/coretext/ctrubyalignment/invalid).
+    ///
+    ///
     /// Get the alignment value of a ruby annotation object.
     ///
     ///
@@ -365,8 +468,6 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetalignment(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetAlignment")]
     #[inline]
     pub fn alignment(&self) -> CTRubyAlignment {
@@ -376,6 +477,17 @@ impl CTRubyAnnotation {
         unsafe { CTRubyAnnotationGetAlignment(self) }
     }
 
+    /// Retrieves the overhang value of a ruby annotation object.
+    ///
+    /// Parameters:
+    /// - rubyAnnotation: The ruby annotation object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The overhang value of `rubyAnnotation`, if the `rubyAnnotation` object is valid; otherwise, [`kCTRubyOverhangInvalid`](https://developer.apple.com/documentation/coretext/ctrubyoverhang/invalid).
+    ///
+    ///
     /// Get the overhang value of a ruby annotation object.
     ///
     ///
@@ -384,8 +496,6 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetoverhang(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetOverhang")]
     #[inline]
     pub fn overhang(&self) -> CTRubyOverhang {
@@ -395,6 +505,17 @@ impl CTRubyAnnotation {
         unsafe { CTRubyAnnotationGetOverhang(self) }
     }
 
+    /// Retrieves the size factor of a ruby annotation object.
+    ///
+    /// Parameters:
+    /// - rubyAnnotation: The ruby annotation object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The size factor of `rubyAnnotation`, if the `rubyAnnotation` object is valid; otherwise, `0`.
+    ///
+    ///
     /// Get the size factor of a ruby annotation object.
     ///
     ///
@@ -403,8 +524,6 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference is valid, then this
     /// function will return its sizeFactor. Otherwise it will return 0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgetsizefactor(_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
     #[inline]
     pub fn size_factor(&self) -> CGFloat {
@@ -414,6 +533,19 @@ impl CTRubyAnnotation {
         unsafe { CTRubyAnnotationGetSizeFactor(self) }
     }
 
+    /// Retrieves the ruby text for a particular position in a ruby annotation.
+    ///
+    /// Parameters:
+    /// - rubyAnnotation: The ruby annotation object.
+    ///
+    /// - position: The position of the ruby text to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) for the ruby text at the specified position, if the `rubyAnnotation` object is valid; otherwise, `NULL`.
+    ///
+    ///
     /// Get the ruby text for a particular position in a ruby annotation.
     ///
     ///
@@ -425,8 +557,6 @@ impl CTRubyAnnotation {
     ///
     /// Returns: If the "rubyAnnotation" reference and the position are valid, then this
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyannotationgettextforposition(_:_:)?language=objc)
     #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
     #[inline]
     pub fn text_for_position(&self, position: CTRubyPosition) -> Option<CFRetained<CFString>> {

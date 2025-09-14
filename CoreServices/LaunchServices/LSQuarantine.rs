@@ -6,61 +6,107 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantineagentnamekey?language=objc)
+    /// The app name of the quarantining agent.
+    ///
+    /// ## Discussion
+    ///
+    /// When setting quarantine properties, this agent name is set automatically to the current process name if this key is not present in the caller’s dictionary.
+    ///
+    ///
+    ///
+    ///
     pub static kLSQuarantineAgentNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantineagentbundleidentifierkey?language=objc)
+    /// The bundle identifier of the quarantining agent.
+    ///
+    /// ## Discussion
+    ///
+    /// When setting quarantine properties, the bundle identifier is set automatically to the main bundle identifier of the current process if the key is not present in the caller’s dictionary.
+    ///
+    ///
+    ///
+    ///
     pub static kLSQuarantineAgentBundleIdentifierKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetimestampkey?language=objc)
+    /// The date and time of the item’s quarantine.
+    ///
+    /// ## Discussion
+    ///
+    /// When setting quarantine properties, this property is set automatically to the current date and time if this key is not present in the caller’s dictionary.
+    ///
+    ///
     pub static kLSQuarantineTimeStampKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypekey?language=objc)
+    /// A symbolic string identifying the reason for the quarantine.
+    ///
+    /// ## Discussion
+    ///
+    ///
+    ///
+    ///
     pub static kLSQuarantineTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypewebdownload?language=objc)
+    /// The type when the data is from a website download.
     pub static kLSQuarantineTypeWebDownload: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypeotherdownload?language=objc)
+    /// The type when the data is from a download.
     pub static kLSQuarantineTypeOtherDownload: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypeemailattachment?language=objc)
+    /// The type when the data is an attachment from an email message.
     pub static kLSQuarantineTypeEmailAttachment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypeinstantmessageattachment?language=objc)
+    /// The type when the data is an attachment from a message.
     pub static kLSQuarantineTypeInstantMessageAttachment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypecalendareventattachment?language=objc)
+    /// The type when the data is an attachment from a calendar event.
     pub static kLSQuarantineTypeCalendarEventAttachment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinetypeotherattachment?language=objc)
+    /// The type when the data is an attachment from a generic source.
     pub static kLSQuarantineTypeOtherAttachment: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantineoriginurlkey?language=objc)
+    /// The URL of the resource originally hosting the quarantined item.
+    ///
+    /// ## Discussion
+    ///
+    /// For web downloads, this property is the URL of the web page on which the user initiated the download. For attachments, this property is the URL of the resource to which the quarantined item was attached (e.g. the email message, calendar event, etc.). The origin URL may be a file URL for local resources, or a custom URL to which the quarantining app will respond when asked to open it. The quarantining app should respond by displaying the resource to the user.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// The origin URL should not be set to the data URL, or the quarantining app may start downloading the file again if the user choses to view the origin URL while resolving a quarantine warning.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    ///
+    ///
+    ///
+    ///
     pub static kLSQuarantineOriginURLKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsquarantinedataurlkey?language=objc)
+    /// The actual URL of the quarantined item.
     pub static kLSQuarantineDataURLKey: &'static CFString;
 }

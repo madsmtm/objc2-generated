@@ -6,131 +6,183 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainftp?language=objc)
+    /// The error code is an FTP error code.
     pub static kCFStreamErrorDomainFTP: i32;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpusername?language=objc)
+    /// FTP User Name stream property key for set and copy operations. A value of type CFString for storing the login user name. Don’t set this property when anonymous FTP is desired.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPUserName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftppassword?language=objc)
+    /// FTP Password stream property key for set and copy operations. A value of type CFString for storing the login password. Don’t set this property when anonymous FTP is desired.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpusepassivemode?language=objc)
+    /// FTP Passive Mode stream property key for set and copy operations. Set this property to `kCFBooleanTrue` to enable passive mode; set this property to `kCFBooleanFalse` to disable passive mode.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPUsePassiveMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpresourcesize?language=objc)
+    /// FTP Resource Size read stream property key copy operations. This property stores a CFNumber of type `kCFNumberLongLongType` representing the size of a resource in bytes.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPResourceSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpfetchresourceinfo?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Fetch Resource Information stream property key for set and copy operations. Set this property to `kCFBooleanTrue` to require that resource information, such as size, must be provided before download starts; set this property to `kCFBooleanFalse` to allow downloads to start without resource information. For this version, size is the only resource information.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPFetchResourceInfo: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpfiletransferoffset?language=objc)
+    /// FTP File Transfer Offset stream property key for set and copy operations. The value of this property is a CFNumber of type `kCFNumberLongLongType` representing the file offset at which to start the transfer.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPFileTransferOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpattemptpersistentconnection?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Attempt Persistent Connection stream property key for set and copy operations. Set this property to `kCFBooleanTrue` to enable the reuse of existing server connections; set this property to `kCFBooleanFalse` to not reuse existing server connections. By default, this property is set to `kCFBooleanTrue`.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPAttemptPersistentConnection: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxy?language=objc)
+    /// FTP Proxy stream property key for set and copy operations. The property is a value of type CFDictionary that holds proxy dictionary key-value pairs. The dictionary returned by SystemConfiguration can also be set as the value of this property.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyhost?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Proxy Host stream property key or an FTP Proxy dictionary key for set and copy operations. The value of this property is a CFString containing the host name of a proxy server. This property can be set and copied individually or via a CFDictionary. This property is the same as the `kSCPropNetProxiesFTPProxy` property defined in `SCSchemaDefinitions.h`.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyHost: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyport?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Proxy Port stream property key or an FTP Proxy dictionary key for set and copy operations. The value of this property is a CFNumber of type `kCFNumberIntType` containing the port number of a proxy server. This property can be set and copied individually or via a CFDictionary. This property is the same as the `kSCPropNetProxiesFTPPort` property defined in `SCSchemaDefinitions.h`.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxyuser?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Proxy Host stream property key or FTP Proxy dictionary key for set and copy operations. The value of this property is a CFString containing the username to be used when connecting to the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyUser: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfstreampropertyftpproxypassword?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// FTP Proxy Port stream property key or FTP Proxy dictionary key for set and copy operations. The value of this property is a CFString containing the password to be used when connecting to the proxy server.
+    ///
+    ///
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFStreamPropertyFTPProxyPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcemode?language=objc)
+    /// CFDictionary key for getting the CFNumber containing the access permissions, defined in `sys/types.h`, of the FTP resource.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcename?language=objc)
+    /// CFDictionary key for getting the CFString containing the name of the FTP resource.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourceowner?language=objc)
+    /// CFDictionary key for getting the CFString containing the name of the owner of the FTP resource.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceOwner: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcegroup?language=objc)
+    /// CFDictionary key for getting the CFString containing the name of a group that shares the FTP resource.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceGroup: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcelink?language=objc)
+    /// CFDictionary key for getting the CFString containing the symbolic link information. If the item is a symbolic link, the CFString contains the path to the item that the link references.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceLink: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcesize?language=objc)
+    /// CFDictionary key for getting the CFNumber containing the size in bytes of the FTP resource.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcetype?language=objc)
+    /// CFDictionary key for getting the CFNumber containing the type of the FTP resource as defined in `sys/dirent.h`.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfftpresourcemoddate?language=objc)
+    /// CFDictionary key for getting the CFDate containing the last date and time the FTP resource was modified.
     #[deprecated = "Use NSURLSessionAPI for ftp requests"]
     pub static kCFFTPResourceModDate: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfreadstreamcreatewithftpurl(_:_:)?language=objc)
+/// Creates an FTP read stream.
+///
+/// Parameters:
+/// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - ftpURL: A pointer to a CFURL structure for the URL to be downloaded that can be created by calling any of the `CFURLCreate` functions, such as `CFURLCreateWithString`.
+///
+///
+/// ## Return Value
+///
+/// A new read stream, or `NULL` if the call failed. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates an FTP read stream for downloading data from an FTP URL. If the `ftpURL` parameter is created with the user name and password as part of the URL (such as `ftp://username:password@ftp.example.com`) then the user name and password will automatically be set in the `CFReadStream`. Otherwise, call [`CFReadStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfreadstreamsetproperty(_:_:_:)) to set the steam’s properties, such as `kCFStreamPropertyFTPUserName` and `kCFStreamPropertyFTPPassword` to associate a user name and password with the stream that are used to log in when the stream is opened. See `Constants` for a description of all FTP stream properties.
+///
+/// To initiate a connection with the FTP server, call [`CFReadStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfreadstreamopen(_:)). To read the FTP stream, call [`CFReadStreamRead`](https://developer.apple.com/documentation/corefoundation/cfreadstreamread(_:_:_:)). If the URL refers to a directory, the stream provides the listing results sent by the server. If the URL refers to a file, the stream provides the data in that file.
+///
+/// To close a connection with the FTP server, call [`CFReadStreamClose`](https://developer.apple.com/documentation/corefoundation/cfreadstreamclose(_:)).
+///
+///
 #[deprecated = "Use NSURLSessionAPI for ftp requests"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
@@ -149,7 +201,29 @@ pub unsafe extern "C-unwind" fn CFReadStreamCreateWithFTPURL(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfftpcreateparsedresourcelisting(_:_:_:_:)?language=objc)
+    /// Parses an FTP listing to a dictionary.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the dictionary. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - buffer: A pointer to a buffer holding zero or more lines of resource listing.
+    ///
+    /// - bufferLength: The length in bytes of the buffer pointed to by `buffer`.
+    ///
+    /// - parsed: Upon return, contains a dictionary containing the parsed resource information. If parsing fails, a `NULL` pointer is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of bytes parsed, `0` if no bytes were available for parsing, or `-1` if parsing failed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function examines the contents of buffer as an FTP directory listing and parses into a CFDictionary the information for a single file or folder. The CFDictionary is returned in the `parsed` parameter, and the number of bytes used from buffer is returned.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -164,7 +238,33 @@ extern "C-unwind" {
     ) -> CFIndex;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfwritestreamcreatewithftpurl(_:_:)?language=objc)
+/// Creates an FTP write stream.
+///
+/// Parameters:
+/// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+///
+/// - ftpURL: A pointer to a CFURL structure for the URL to be uploaded created by calling any of the `CFURLCreate` functions, such as `CFURLCreateWithString`.
+///
+///
+/// ## Return Value
+///
+/// A new write stream, or `NULL` if the call failed. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates an FTP write stream for uploading data to an FTP URL. If the `ftpURL` parameter is created with the user name and password as part of the URL (such as `ftp://username:password@ftp.example.com`) then the user name and password will automatically be set in the `CFWriteStream`. Call [`CFWriteStreamSetProperty`](https://developer.apple.com/documentation/corefoundation/cfwritestreamsetproperty(_:_:_:)) to set the steam’s properties, such as `kCFStreamPropertyFTPUserName` and `kCFStreamPropertyFTPPassword` to associate a user name and password with the stream that are used to log in when the stream is opened. See `Constants` for a description of all FTP stream properties.
+///
+/// After creating the write stream, you can call [`CFWriteStreamGetStatus`](https://developer.apple.com/documentation/corefoundation/cfwritestreamgetstatus(_:)) at any time to check the status of the stream.
+///
+/// To initiate a connection with the FTP server, call [`CFWriteStreamOpen`](https://developer.apple.com/documentation/corefoundation/cfwritestreamopen(_:)). If the URL specifies a directory, the open is immediately followed by the event `kCFStreamEventEndEncountered` (and the stream passes to the state `kCFStreamStatusAtEnd`). Once the stream reaches this state, the directory has been created. Intermediary directories are not created.
+///
+/// To write to the FTP stream, call [`CFWriteStreamWrite`](https://developer.apple.com/documentation/corefoundation/cfwritestreamwrite(_:_:_:)).
+///
+/// To close a connection with the FTP server, call [`CFWriteStreamClose`](https://developer.apple.com/documentation/corefoundation/cfwritestreamclose(_:)).
+///
+///
 #[deprecated = "Use NSURLSessionAPI for ftp requests"]
 #[inline]
 pub unsafe extern "C-unwind" fn CFWriteStreamCreateWithFTPURL(

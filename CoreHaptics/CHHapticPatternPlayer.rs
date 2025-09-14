@@ -8,12 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol that defines a standard pattern player capable of playing haptic patterns with fixed parameters.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of a pattern player through a [`CHHapticEngine`](https://developer.apple.com/documentation/corehaptics/chhapticengine) object by calling a factory method such as [`createPlayerWithPattern:error:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/makeplayer(with:)). When you ask a pattern player to play a haptic pattern, the player submits those commands to the haptic engine on your behalf.
+    ///
+    /// Use the advanced pattern player, [`CHHapticAdvancedPatternPlayer`](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayer), when your haptic pattern needs to change during playback, or when you’d like to sync your haptic with a custom audio track. The advanced player allows your app to dynamically change haptic characteristics such as intensity and sharpness through dynamic parameters and parameter curves, capabilities not found in the standard player.
+    ///
+    ///
     /// A protocol which defines operations for starting, stopping, and sending parameters to a pattern player.
     ///
     /// Instances of these objects are created via the factory methods such as
     /// `CHHapticEngine(createPlayerWithPattern:error)`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternplayer?language=objc)
     pub unsafe trait CHHapticPatternPlayer: NSObjectProtocol {
         /// Start playing the pattern at the specified time (see `CHHapticEngine(currentTime)`).
         /// If 'time' is set to `CHHapticTimeImmediate`, the pattern is started as soon as possible.
@@ -70,24 +77,30 @@ extern_protocol!(
     }
 );
 
+/// A typealias for the completion handler to run after a haptic finishes playback.
 /// Block which is called asynchronously when a CHHapticAdvancedPatternPlayer finishes playing.
 ///
 /// Parameter `error`: If the call to start the player fails, this is set to a valid NSError describing the error.
 ///
 /// In general, callbacks arrive on a non-main thread and it is the client's responsibility to handle them
 /// in a thread-safe manner.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticAdvancedPatternPlayerCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_protocol!(
+    /// A protocol that defines an advanced pattern player capable of looping, seeking, pausing, and resuming haptic playback.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of this pattern player through a [`CHHapticEngine`](https://developer.apple.com/documentation/corehaptics/chhapticengine) object by calling a factory method such as [`createAdvancedPlayerWithPattern:error:`](https://developer.apple.com/documentation/corehaptics/chhapticengine/makeadvancedplayer(with:)). When you ask an advanced pattern player to play, pause, or resume a haptic pattern, the player submits those commands to the haptic engine on your behalf.
+    ///
+    /// Unlike [`CHHapticPatternPlayer`](https://developer.apple.com/documentation/corehaptics/chhapticpatternplayer), the advanced pattern player supports looping of haptic and audio patterns, by setting [`loopEnabled`](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayer/loopenabled). The advanced pattern player can also call a block when the player finishes, through its [`completionHandler`](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayer/completionhandler) property.
+    ///
+    ///
     /// A protocol which defines operations for pausing, resuming, seeking, and sending parameters to a pattern player.
     ///
     /// Instances of these objects are created via the factory methods such as `CHHapticEngine(createAdvancedPlayerWithPattern:error)`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayer?language=objc)
     pub unsafe trait CHHapticAdvancedPatternPlayer: CHHapticPatternPlayer {
         /// Pause playback of the pattern at the specified time (see `CHHapticEngine(currentTime)`).
         ///

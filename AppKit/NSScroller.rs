@@ -9,20 +9,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum?language=objc)
+/// These constants specify which parts of the scroller are visible.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUsableScrollerParts(pub NSUInteger);
 impl NSUsableScrollerParts {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/noscrollerparts?language=objc)
+    /// Specifies that the scroller has neither a knob nor scroll buttons, only the knob slot.
     #[doc(alias = "NSNoScrollerParts")]
     pub const NoScrollerParts: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/onlyscrollerarrows?language=objc)
+    /// Specifies that the scroller has only scroll buttons, no knob.
     #[doc(alias = "NSOnlyScrollerArrows")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const OnlyScrollerArrows: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.enum/allscrollerparts?language=objc)
+    /// Specifies that the scroller has at least a knob, possibly also scroll buttons.
     #[doc(alias = "NSAllScrollerParts")]
     pub const AllScrollerParts: Self = Self(2);
 }
@@ -35,33 +35,33 @@ unsafe impl RefEncode for NSUsableScrollerParts {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part?language=objc)
+/// These constants specify the different parts of the scroller:
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerPart(pub NSUInteger);
 impl NSScrollerPart {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/nopart?language=objc)
+    /// Don’t scroll at all.
     #[doc(alias = "NSScrollerNoPart")]
     pub const NoPart: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/decrementpage?language=objc)
+    /// Up or left by a large amount.
     #[doc(alias = "NSScrollerDecrementPage")]
     pub const DecrementPage: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/knob?language=objc)
+    /// Directly to the scroller’s value, as given by [`floatValue`](https://developer.apple.com/documentation/appkit/nscontrol/floatvalue).
     #[doc(alias = "NSScrollerKnob")]
     pub const Knob: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/incrementpage?language=objc)
+    /// Down or right by a large amount.
     #[doc(alias = "NSScrollerIncrementPage")]
     pub const IncrementPage: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/decrementline?language=objc)
+    /// Up or left by a small amount.
     #[doc(alias = "NSScrollerDecrementLine")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const DecrementLine: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/incrementline?language=objc)
+    /// Down or right by a small amount.
     #[doc(alias = "NSScrollerIncrementLine")]
     #[deprecated = "Scroller arrows are not used anymore."]
     pub const IncrementLine: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/part/knobslot?language=objc)
+    /// Directly to the scroller’s value, as given by [`floatValue`](https://developer.apple.com/documentation/appkit/nscontrol/floatvalue).
     #[doc(alias = "NSScrollerKnobSlot")]
     pub const KnobSlot: Self = Self(6);
 }
@@ -74,16 +74,16 @@ unsafe impl RefEncode for NSScrollerPart {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/style?language=objc)
+/// Constants to specify the scroller style.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerStyle(pub NSInteger);
 impl NSScrollerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/style/legacy?language=objc)
+    /// Specifies legacy-style scrollers as prior to macOS 10.7.
     #[doc(alias = "NSScrollerStyleLegacy")]
     pub const Legacy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/style/overlay?language=objc)
+    /// Specifies overlay-style scrollers in macOS 10.7 and later.
     #[doc(alias = "NSScrollerStyleOverlay")]
     pub const Overlay: Self = Self(1);
 }
@@ -96,19 +96,37 @@ unsafe impl RefEncode for NSScrollerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum?language=objc)
+/// Specify different knob styles.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerKnobStyle(pub NSInteger);
 impl NSScrollerKnobStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/default?language=objc)
+    /// Specifies a dark knob with a light border.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default style; it is good against any background.
+    ///
+    ///
     #[doc(alias = "NSScrollerKnobStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/dark?language=objc)
+    /// Specifies a dark knob.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is particularly good against a light background.
+    ///
+    ///
     #[doc(alias = "NSScrollerKnobStyleDark")]
     pub const Dark: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.enum/light?language=objc)
+    /// Specifies a light knob.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is particularly good against a dark background.
+    ///
+    ///
     #[doc(alias = "NSScrollerKnobStyleLight")]
     pub const Light: Self = Self(2);
 }
@@ -122,7 +140,17 @@ unsafe impl RefEncode for NSScrollerKnobStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller?language=objc)
+    /// An object that controls scrolling of a document view within a scroll view or other type of container view.
+    ///
+    /// ## Overview
+    ///
+    /// A scroller displays a slot containing a knob that the user can drag directly to the desired location. The knob indicates both the position within the document view and—by varying in size within the slot—the amount visible relative to the size of the document view.
+    ///
+    /// Typically, you don’t need to program with scrollers; instead, you configure them with an [`NSScrollView`](https://developer.apple.com/documentation/appkit/nsscrollview) object in a [Nib file](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/NibFile.html#//apple_ref/doc/uid/TP40008195-CH34).
+    ///
+    /// Don’t use an scroller when a slider would be more appropriate. An [`NSSlider`](https://developer.apple.com/documentation/appkit/nsslider) object represents a range of values for something in the application and lets the user choose a setting. A scroller represents the relative position of the visible portion of a view and lets the user choose which portion to view.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -335,27 +363,33 @@ impl NSScroller {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/preferredscrollerstyledidchangenotification?language=objc)
+    /// Posted if the preferred scroller style changes.
+    ///
+    /// ## Discussion
+    ///
+    /// For a full discussion, see [`preferredScrollerStyle`](https://developer.apple.com/documentation/appkit/nsscroller/preferredscrollerstyle).
+    ///
+    ///
     pub static NSPreferredScrollerStyleDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition?language=objc)
+/// These constants specify where the scroller’s buttons appear and are used by the [`arrowsPosition`](https://developer.apple.com/documentation/appkit/nsscroller/arrowsposition) property.
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollArrowPosition(pub NSUInteger);
 impl NSScrollArrowPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsmaxend?language=objc)
+    /// Buttons at bottom or right. This constant has been deprecated.
     #[doc(alias = "NSScrollerArrowsMaxEnd")]
     pub const ScrollerArrowsMaxEnd: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsminend?language=objc)
+    /// Buttons at top or left. This has been deprecated.
     #[doc(alias = "NSScrollerArrowsMinEnd")]
     pub const ScrollerArrowsMinEnd: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsdefaultsetting?language=objc)
+    /// Buttons are displayed according to the system-wide appearance preferences.
     #[doc(alias = "NSScrollerArrowsDefaultSetting")]
     pub const ScrollerArrowsDefaultSetting: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrowposition/scrollerarrowsnone?language=objc)
+    /// No buttons.
     #[doc(alias = "NSScrollerArrowsNone")]
     pub const ScrollerArrowsNone: Self = Self(2);
 }
@@ -368,17 +402,17 @@ unsafe impl RefEncode for NSScrollArrowPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrow?language=objc)
+/// These constants describe the two scroller buttons and are used by [`drawArrow:highlight:`](https://developer.apple.com/documentation/appkit/nsscroller/drawarrow(_:highlight:)).
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerArrow(pub NSUInteger);
 impl NSScrollerArrow {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrow/incrementarrow?language=objc)
+    /// The down or right scroll button.
     #[doc(alias = "NSScrollerIncrementArrow")]
     pub const IncrementArrow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscroller/arrow/decrementarrow?language=objc)
+    /// The up or left scroll button.
     #[doc(alias = "NSScrollerDecrementArrow")]
     pub const DecrementArrow: Self = Self(1);
 }

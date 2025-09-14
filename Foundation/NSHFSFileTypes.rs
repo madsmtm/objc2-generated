@@ -4,7 +4,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfiletypeforhfstypecode(_:)?language=objc)
+/// Returns a string encoding a file type code.
+///
+/// Parameters:
+/// - hfsFileTypeCode: An HFS file type code.
+///
+///
+/// ## Return Value
+///
+/// A string that encodes `hfsFileTypeCode`.
+///
+///
 #[cfg(feature = "NSString")]
 #[inline]
 pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
@@ -18,7 +28,17 @@ pub extern "C-unwind" fn NSFileTypeForHFSTypeCode(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshfstypecodefromfiletype(_:)?language=objc)
+    /// Returns a file type code.
+    ///
+    /// Parameters:
+    /// - fileTypeString: A string of the sort encoded by `NSFileTypeForHFSTypeCode()`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The HFS file type code corresponding to `fileTypeString`, or `0` if it cannot be found.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -27,7 +47,17 @@ extern "C-unwind" {
     pub fn NSHFSTypeCodeFromFileType(file_type_string: Option<&NSString>) -> OSType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshfstypeoffile(_:)?language=objc)
+/// Returns a string encoding a file type.
+///
+/// Parameters:
+/// - fullFilePath: The full absolute path of a file.
+///
+///
+/// ## Return Value
+///
+/// A string that encodes `fullFilePath`’s HFS file type, or `nil` if the operation was not successful
+///
+///
 ///
 /// # Safety
 ///

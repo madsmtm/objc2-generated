@@ -6,7 +6,7 @@ use core::ptr::NonNull;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionidentity?language=objc)
+    /// An identity quaternion.
     #[cfg(feature = "GLKMathTypes")]
     pub static GLKQuaternionIdentity: GLKQuaternion;
 }
@@ -22,25 +22,65 @@ extern "C" {
 // TODO: pub fn GLKQuaternionMakeWithAngleAndVector3Axis(radians: c_float,axis_vector: GLKVector3,) -> GLKQuaternion;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionmakewithmatrix3(_:)?language=objc)
+    /// Creates a quaternion from a rotation matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A rotation matrix to convert into a quaternion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new quaternion.
+    ///
+    ///
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionMakeWithMatrix3(matrix: GLKMatrix3) -> GLKQuaternion;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionmakewithmatrix4(_:)?language=objc)
+    /// Creates a quaternion from a rotation matrix.
+    ///
+    /// Parameters:
+    /// - matrix: A rotation matrix to convert into a quaternion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new quaternion.
+    ///
+    ///
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionMakeWithMatrix4(matrix: GLKMatrix4) -> GLKQuaternion;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionangle(_:)?language=objc)
+    /// Returns the rotation angle of a quaternion.
+    ///
+    /// Parameters:
+    /// - quaternion: A quaternion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The angle of the rotation in radians (a positive angle is counterclockwise).
+    ///
+    ///
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionAngle(quaternion: GLKQuaternion) -> c_float;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionaxis(_:)?language=objc)
+    /// Returns the axis of rotation of a quaternion.
+    ///
+    /// Parameters:
+    /// - quaternion: A quaternion.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The axis of rotation.
+    ///
+    ///
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionAxis(quaternion: GLKQuaternion) -> GLKVector3;
 }
@@ -52,7 +92,21 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionMultiply(quaternion_left: GLKQuaternion,quaternion_right: GLKQuaternion,) -> GLKQuaternion;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionslerp(_:_:_:)?language=objc)
+    /// Returns the spherical linear interpolation of two quaternions.
+    ///
+    /// Parameters:
+    /// - quaternionStart: The starting point.
+    ///
+    /// - quaternionEnd: The ending point.
+    ///
+    /// - t: The interpolation factor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new quaternion. When `t=0`, the result is the start quaternion. When `t=1.0`, the result is the end quaternion. For any other value of `t`, the result is a spherical linear interpolation between the two quaternions.
+    ///
+    ///
     #[cfg(feature = "GLKMathTypes")]
     pub fn GLKQuaternionSlerp(
         quaternion_start: GLKQuaternion,
@@ -72,7 +126,15 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector3(quaternion: GLKQuaternion,vector: GLKVector3,) -> GLKVector3;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionrotatevector3array(_:_:_:)?language=objc)
+    /// Applies a quaternion rotation to an array of vectors.
+    ///
+    /// Parameters:
+    /// - quaternion: A quaternion.
+    ///
+    /// - vectors: On entry, an array of input vectors. On return, an array of output vectors.
+    ///
+    /// - vectorCount: The number of vectors in the array.
+    ///
     ///
     /// # Safety
     ///
@@ -88,7 +150,15 @@ extern "C-unwind" {
 // TODO: pub fn GLKQuaternionRotateVector4(quaternion: GLKQuaternion,vector: GLKVector4,) -> GLKVector4;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternionrotatevector4array(_:_:_:)?language=objc)
+    /// Applies a quaternion rotation to an array of vectors.
+    ///
+    /// Parameters:
+    /// - quaternion: A quaternion.
+    ///
+    /// - vectors: On entry, an array of input vectors. On return, an array of output vectors.
+    ///
+    /// - vectorCount: The number of vectors in the array.
+    ///
     ///
     /// # Safety
     ///

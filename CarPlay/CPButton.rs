@@ -12,13 +12,21 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbuttonmaximumimagesize?language=objc)
+    /// The maximum size of a button’s image that CarPlay supports.
     #[cfg(feature = "objc2-core-foundation")]
     pub static CPButtonMaximumImageSize: CGSize;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbutton?language=objc)
+    /// A button that displays an image and invokes a handler when the user taps it.
+    ///
+    /// ## Overview
+    ///
+    /// You create instances of `CPButton` to provide a template’s actions. The button displays a custom image that communicates its function. When a user taps the button, CarPlay invokes the handler you provide. The template that contains the button manages its appearance.
+    ///
+    /// The framework provides specialized subclasses for common actions, such as [`CPContactCallButton`](https://developer.apple.com/documentation/carplay/cpcontactcallbutton) or [`CPContactMessageButton`](https://developer.apple.com/documentation/carplay/cpcontactmessagebutton).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPButton;

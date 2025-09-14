@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
+    /// An object that represents the geometry preferences for a window scene in an iOS app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/ios?language=objc)
+    /// ## Overview
+    ///
+    /// Use this class to express iOS-specific geometry preferences when you call [`requestGeometryUpdateWithPreferences:errorHandler:`](https://developer.apple.com/documentation/uikit/uiwindowscene/requestgeometryupdate(_:errorhandler:)).
+    ///
+    ///
+    /// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

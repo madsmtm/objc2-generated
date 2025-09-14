@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspanel?language=objc)
+    /// A special kind of window that typically performs a function that is auxiliary to the main window.
+    ///
+    /// ## Overview
+    ///
+    /// For details about how panels work (especially to find out how their behavior differs from window behavior), see [How Panels Work](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/WinPanel/Concepts/UsingPanels.html#//apple_ref/doc/uid/20000224).
+    ///
+    ///
     #[unsafe(super(NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
@@ -177,7 +183,15 @@ impl NSPanel {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsreleasealertpanel(_:)?language=objc)
+    /// Disposes of an alert panel.
+    ///
+    /// ## Discussion
+    ///
+    /// When you’re finished with a panel created by a function such as [`NSGetAlertPanel`](https://developer.apple.com/documentation/appkit/nsgetalertpanel), [`NSGetCriticalAlertPanel`](https://developer.apple.com/documentation/appkit/nsgetcriticalalertpanel), or [`NSGetInformationalAlertPanel`](https://developer.apple.com/documentation/appkit/nsgetinformationalalertpanel), you must dispose of it by passing it to this function.
+    ///
+    /// Note that the alert panel may not be deallocated immediately because it may have internal references that are disposed of in a deferred way. You should not make the assumption that the alert panel is immediately removed from the application window list.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -187,15 +201,15 @@ extern "C-unwind" {
     pub fn NSReleaseAlertPanel(panel: Option<&AnyObject>);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertdefaultreturn?language=objc)
+/// The user pressed the default button.
 #[deprecated = "Use NSAlertFirstButtonReturn with an NSAlert presentation instead"]
 pub const NSAlertDefaultReturn: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertalternatereturn?language=objc)
+/// The user pressed the alternate button.
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertAlternateReturn: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertotherreturn?language=objc)
+/// The user pressed a second alternate button.
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertOtherReturn: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalerterrorreturn?language=objc)
+/// The alert cannot identify the reason it was closed; it may have been closed by an external source or by a button other than those listed above.
 #[deprecated = "Use NSAlertFirstButtonReturn and other NSModalResponses with an NSAlert presentation instead"]
 pub const NSAlertErrorReturn: c_int = -2;

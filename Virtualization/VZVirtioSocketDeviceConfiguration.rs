@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object that requests the creation of a socket device to communicate with the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtioSocketDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration) object to implement port-based communication between the guest operating system and the host computer. When you add this object to the [`socketDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/socketdevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration), the virtual machine provides a corresponding [`VZVirtioSocketDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdevice) object to use to configure the ports. Add only one [`VZVirtioSocketDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration) to your virtual machine’s configuration.
+    ///
+    ///
     /// Configuration of the Virtio socket device.
     ///
     /// This configuration creates a Virtio socket device for the guest which communicates with the host through the Virtio interface.
@@ -14,8 +21,6 @@ extern_class!(
     /// Only one Virtio socket device can be used per virtual machine.
     ///
     /// See: VZVirtioSocketDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosocketdeviceconfiguration?language=objc)
     #[unsafe(super(VZSocketDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZSocketDeviceConfiguration")]

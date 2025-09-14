@@ -6,13 +6,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetaskstaskunsupportedreason?language=objc)
+/// Constants that indicates the reason the app can’t support the snooze task request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSnoozeTasksTaskUnsupportedReason(pub NSInteger);
 impl INSnoozeTasksTaskUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetaskstaskunsupportedreason/notasksfound?language=objc)
+    /// A resolution result that indicates no tasks were found.
     #[doc(alias = "INSnoozeTasksTaskUnsupportedReasonNoTasksFound")]
     pub const NoTasksFound: Self = Self(1);
 }
@@ -26,7 +26,15 @@ unsafe impl RefEncode for INSnoozeTasksTaskUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetaskstaskresolutionresult?language=objc)
+    /// A resolution result for snoozing a task.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INSnoozeTasksTaskResolutionResult`](https://developer.apple.com/documentation/intents/insnoozetaskstaskresolutionresult) object when resolving parameters containing an [`INSnoozeTasksTaskUnsupportedReason`](https://developer.apple.com/documentation/intents/insnoozetaskstaskunsupportedreason) value. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INTaskResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

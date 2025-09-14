@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfield?language=objc)
+    /// Text the user can select or edit to send an action message to a target when the user presses the Return key.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) class uses the [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) class to implement its user interface. Text fields display text either as a static label or as an editable input field. The content of a text field is either plain text or a rich-text attributed string. Text fields also support line wrapping to display multiline text, and a variety of truncation styles if the content doesn’t fit the available space.
+    ///
+    /// The parent class, [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol), provides the methods for setting the values of the text field, such as [`stringValue`](https://developer.apple.com/documentation/appkit/nscontrol/stringvalue) and [`doubleValue`](https://developer.apple.com/documentation/appkit/nscontrol/doublevalue). There are corresponding methods to retrieve values.
+    ///
+    /// In macOS 12 and later, if you explicitly call the `layoutManager` property on your text field, the framework will revert to a compatibility mode that uses [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager). The text view also switches to this compatibility mode when it encounters text content that’s not yet supported.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -532,7 +542,7 @@ impl NSTextField {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfielddelegate?language=objc)
+    /// A protocol that a text field delegate can use to control its field editor action menu.
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSTextFieldDelegate:
         NSControlTextEditingDelegate + MainThreadOnly

@@ -8,41 +8,73 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/unichar?language=objc)
+/// Type for UTF-16 code units.
 pub type unichar = c_ushort;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions?language=objc)
+/// These values represent the options available to many of the string classes’ search and comparison methods.
+///
+/// ## Overview
+///
+/// See [Searching, Comparing, and Sorting Strings](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/SearchingStrings.html#//apple_ref/doc/uid/20000149) for details on the effects of these options.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringCompareOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringCompareOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/caseinsensitive?language=objc)
+/// A case-insensitive search.
         #[doc(alias = "NSCaseInsensitiveSearch")]
         const CaseInsensitiveSearch = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/literal?language=objc)
+/// Exact character-by-character equivalence.
         #[doc(alias = "NSLiteralSearch")]
         const LiteralSearch = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/backwards?language=objc)
+/// Search from end of source string.
         #[doc(alias = "NSBackwardsSearch")]
         const BackwardsSearch = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/anchored?language=objc)
+/// Search is limited to start (or end, if `NSBackwardsSearch`) of source string.
         #[doc(alias = "NSAnchoredSearch")]
         const AnchoredSearch = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/numeric?language=objc)
+/// Numbers within strings are compared using numeric value, that is, `Name2.txt` < `Name7.txt` < `Name25.txt`.
+///
+/// ## Discussion
+///
+/// Numeric comparison only applies to the numerals in the string, not other characters that would have meaning in a numeric representation such as a negative sign, a comma, or a decimal point.
+///
+/// This option only applies to compare methods, not find.
+///
+///
         #[doc(alias = "NSNumericSearch")]
         const NumericSearch = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/diacriticinsensitive?language=objc)
+/// Search ignores diacritic marks.
+///
+/// ## Discussion
+///
+/// For example, ‘ö’ is equal to ‘o’.
+///
+///
         #[doc(alias = "NSDiacriticInsensitiveSearch")]
         const DiacriticInsensitiveSearch = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/widthinsensitive?language=objc)
+/// Search ignores width differences in characters that have full-width and half-width forms, as occurs in East Asian character sets.
+///
+/// ## Discussion
+///
+/// For example, with this option, the full-width Latin small letter ‘ａ’ (`U+FF41`) is equal to the basic Latin small letter ‘a’ (`U+0061`).
+///
+///
         #[doc(alias = "NSWidthInsensitiveSearch")]
         const WidthInsensitiveSearch = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/forcedordering?language=objc)
+/// Comparisons are forced to return either `NSOrderedAscending` or `NSOrderedDescending` if the strings are equivalent but not strictly equal.
+///
+/// ## Discussion
+///
+/// This option ensures reliable, reproducible results when sorting. For example, “aaa” is greater than “AAA”  if [`NSCaseInsensitiveSearch`](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/caseinsensitive) is specified.
+///
+///
         #[doc(alias = "NSForcedOrderingSearch")]
         const ForcedOrderingSearch = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/regularexpression?language=objc)
+/// The search string is treated as an ICU-compatible regular expression. If set, no other options can apply except [`NSCaseInsensitiveSearch`](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/caseinsensitive) and [`NSAnchoredSearch`](https://developer.apple.com/documentation/foundation/nsstring/compareoptions/anchored). You can use this option only with the `rangeOfString:`… methods and [`stringByReplacingOccurrencesOfString:withString:options:range:`](https://developer.apple.com/documentation/foundation/nsstring/replacingoccurrences(of:with:options:range:)).
         #[doc(alias = "NSRegularExpressionSearch")]
         const RegularExpressionSearch = 1024;
     }
@@ -56,67 +88,93 @@ unsafe impl RefEncode for NSStringCompareOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencoding?language=objc)
+/// The following constants are provided by `NSString` as possible string encodings.
+///
+/// ## Discussion
+///
+/// These values represent the various character encodings supported by the `NSString` classes. This is an incomplete list. Additional encodings are defined in [String Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFStrings/introCFStrings.html#//apple_ref/doc/uid/10000131i) (see `CFStringEncodingExt.h`); these encodings can be used with `NSString` by first passing the Core Foundation encoding to the [`CFStringConvertEncodingToNSStringEncoding(_:)`](https://developer.apple.com/documentation/corefoundation/cfstringconvertencodingtonsstringencoding(_:)) function.
+///
+///
 pub type NSStringEncoding = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsasciistringencoding?language=objc)
+/// Strict 7-bit ASCII encoding within 8-bit chars; ASCII values 0…127 only.
 pub const NSASCIIStringEncoding: NSStringEncoding = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextstepstringencoding?language=objc)
+/// 8-bit ASCII encoding with NEXTSTEP extensions.
 pub const NSNEXTSTEPStringEncoding: NSStringEncoding = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjapaneseeucstringencoding?language=objc)
+/// 8-bit EUC encoding for Japanese text.
 pub const NSJapaneseEUCStringEncoding: NSStringEncoding = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf8stringencoding?language=objc)
+/// An 8-bit representation of Unicode characters, suitable for transmission or storage by ASCII-based systems.
 pub const NSUTF8StringEncoding: NSStringEncoding = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin1stringencoding?language=objc)
+/// 8-bit ISO Latin 1 encoding.
 pub const NSISOLatin1StringEncoding: NSStringEncoding = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssymbolstringencoding?language=objc)
+/// 8-bit Adobe Symbol encoding vector.
 pub const NSSymbolStringEncoding: NSStringEncoding = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonlossyasciistringencoding?language=objc)
+/// 7-bit verbose ASCII to represent all Unicode characters.
 pub const NSNonLossyASCIIStringEncoding: NSStringEncoding = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsshiftjisstringencoding?language=objc)
+/// 8-bit Shift-JIS encoding for Japanese text.
 pub const NSShiftJISStringEncoding: NSStringEncoding = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisolatin2stringencoding?language=objc)
+/// 8-bit ISO Latin 2 encoding.
 pub const NSISOLatin2StringEncoding: NSStringEncoding = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunicodestringencoding?language=objc)
+/// The canonical Unicode encoding for string objects.
 pub const NSUnicodeStringEncoding: NSStringEncoding = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1251stringencoding?language=objc)
+/// Microsoft Windows codepage 1251, encoding Cyrillic characters; equivalent to AdobeStandardCyrillic font encoding.
 pub const NSWindowsCP1251StringEncoding: NSStringEncoding = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1252stringencoding?language=objc)
+/// Microsoft Windows codepage 1252; equivalent to WinLatin1.
 pub const NSWindowsCP1252StringEncoding: NSStringEncoding = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1253stringencoding?language=objc)
+/// Microsoft Windows codepage 1253, encoding Greek characters.
 pub const NSWindowsCP1253StringEncoding: NSStringEncoding = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1254stringencoding?language=objc)
+/// Microsoft Windows codepage 1254, encoding Turkish characters.
 pub const NSWindowsCP1254StringEncoding: NSStringEncoding = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswindowscp1250stringencoding?language=objc)
+/// Microsoft Windows codepage 1250; equivalent to WinLatin2.
 pub const NSWindowsCP1250StringEncoding: NSStringEncoding = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso2022jpstringencoding?language=objc)
+/// ISO 2022 Japanese encoding for email.
 pub const NSISO2022JPStringEncoding: NSStringEncoding = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmacosromanstringencoding?language=objc)
+/// Classic Macintosh Roman encoding.
 pub const NSMacOSRomanStringEncoding: NSStringEncoding = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16stringencoding?language=objc)
+///
+/// ## Discussion
+///
+/// An alias for `NSUnicodeStringEncoding`.
+///
+///
 pub const NSUTF16StringEncoding: NSStringEncoding = NSUnicodeStringEncoding;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16bigendianstringencoding?language=objc)
+/// `NSUTF16StringEncoding` encoding with explicit endianness specified.
 pub const NSUTF16BigEndianStringEncoding: NSStringEncoding = 0x90000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf16littleendianstringencoding?language=objc)
+/// `NSUTF16StringEncoding` encoding with explicit endianness specified.
 pub const NSUTF16LittleEndianStringEncoding: NSStringEncoding = 0x94000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32stringencoding?language=objc)
+/// 32-bit UTF encoding.
 pub const NSUTF32StringEncoding: NSStringEncoding = 0x8c000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32bigendianstringencoding?language=objc)
+/// `NSUTF32StringEncoding` encoding with explicit endianness specified.
 pub const NSUTF32BigEndianStringEncoding: NSStringEncoding = 0x98000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsutf32littleendianstringencoding?language=objc)
+/// `NSUTF32StringEncoding` encoding with explicit endianness specified.
 pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/encodingconversionoptions?language=objc)
+/// Options for converting string encodings.
+///
+/// ## Overview
+///
+/// These constants are available in OS X v10.4; they are, however, differently named:
+///
+/// ```objc
+/// typedef enum {
+///     NSAllowLossyEncodingConversion = 1,
+///     NSExternalRepresentationEncodingConversion = 2
+/// } NSStringEncodingConversionOptions;
+/// ```
+///
+/// You can use them in OS X v10.4 if you define the symbols as `extern` constants.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEncodingConversionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/encodingconversionoptions/allowlossy?language=objc)
+/// Allows lossy conversion.
         #[doc(alias = "NSStringEncodingConversionAllowLossy")]
         const AllowLossy = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/encodingconversionoptions/externalrepresentation?language=objc)
+/// Specifies an external representation (with a byte-order mark, if necessary, to indicate endianness).
         #[doc(alias = "NSStringEncodingConversionExternalRepresentation")]
         const ExternalRepresentation = 2;
     }
@@ -131,7 +189,65 @@ unsafe impl RefEncode for NSStringEncodingConversionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring?language=objc)
+    /// A static, plain-text Unicode string object.
+    ///
+    /// ## Overview
+    ///
+    /// You can use this type in Swift when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// The [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) class and its mutable subclass, [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring), provide an extensive set of APIs for working with strings, including methods for comparing, searching, and modifying strings. [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects are used throughout Foundation and other Cocoa frameworks, serving as the basis for all textual and linguistic functionality on the platform.
+    ///
+    /// [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) is _toll-free bridged_ with its Core Foundation counterpart, [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### String Objects
+    ///
+    /// An [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object encodes a Unicode-compliant text string, represented as a sequence of UTF–16 code units. All lengths, character indexes, and ranges are expressed in terms of 16-bit platform-endian values, with index values starting at `0`.
+    ///
+    /// An [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object can be initialized from or written to a C buffer, an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object, or the contents of an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl). It can also be encoded and decoded to and from ASCII, UTF–8, UTF–16, UTF–32, or any other string encoding represented by [`NSStringEncoding`](https://developer.apple.com/documentation/foundation/nsstringencoding).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  An immutable string is a text string that is defined when it is created and subsequently cannot be changed. An immutable string is implemented as an array of UTF–16 code units (in other words, a text string). To create and manage an immutable string, use the [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) class. To construct and manage a string that can be changed after it has been created, use [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The objects you create using [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring) are referred to as string objects (or, when no confusion will result, merely as strings). The term C string refers to the standard `char *` type.
+    ///
+    /// Because of the nature of class clusters, string objects aren’t actual instances of the [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) or [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring) classes but of one of their private subclasses. Although a string object’s class is private, its interface is public, as declared by these abstract superclasses, [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring). The string classes adopt the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) and [`NSMutableCopying`](https://developer.apple.com/documentation/foundation/nsmutablecopying) protocols, making it convenient to convert a string of one type to the other.
+    ///
+    /// #### Understanding Characters
+    ///
+    /// A string object presents itself as a sequence of UTF–16 code units. You can determine how many UTF-16 code units a string object contains with the [`length`](https://developer.apple.com/documentation/foundation/nsstring/length) method and can retrieve a specific UTF-16 code unit with the [`characterAtIndex:`](https://developer.apple.com/documentation/foundation/nsstring/character(at:)) method. These two “primitive” methods provide basic access to a string object.
+    ///
+    /// Most use of strings, however, is at a higher level, with the strings being treated as single entities: You compare strings against one another, search them for substrings, combine them into new strings, and so on. If you need to access string objects character by character, you must understand the Unicode character encoding, specifically issues related to composed character sequences. For details see _The Unicode Standard, Version 4.0_ (The Unicode Consortium, Boston: Addison-Wesley, 2003, ISBN 0-321-18578-1) and the Unicode Consortium web site: [http://www.unicode.org/](http://www.unicode.org/). See also [Characters and Grapheme Clusters](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/stringsClusters.html#//apple_ref/doc/uid/TP40008025) in [String Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/introStrings.html#//apple_ref/doc/uid/10000035i).
+    ///
+    /// Localized string comparisons are based on the Unicode Collation Algorithm, as tailored for different languages by CLDR (Common Locale Data Repository). Both are projects of the Unicode Consortium. Unicode is a registered trademark of Unicode, Inc.
+    ///
+    /// #### Interpreting UTF-16-Encoded Data
+    ///
+    /// When creating an `NSString` object from a UTF-16-encoded string (or a byte stream interpreted as UTF-16), if the byte order is not otherwise specified, `NSString` assumes that the UTF-16 characters are big-endian, unless there is a BOM (byte-order mark), in which case the BOM dictates the byte order. When creating an `NSString` object from an array of `unichar` values, the returned string is always native-endian, since the array always contains UTF–16 code units in native byte order.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// It is possible to subclass [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) (and [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring)), but doing so requires providing storage facilities for the string (which is not inherited by subclasses) and implementing two primitive methods. The abstract [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) and [`NSMutableString`](https://developer.apple.com/documentation/foundation/nsmutablestring) classes are the public interface of a class cluster consisting mostly of private, concrete classes that create and return a string object appropriate for a given situation. Making your own concrete subclass of this cluster imposes certain requirements (discussed in [Methods to Override](https://developer.apple.com/documentation/foundation/nsstring#methods-to-override)).
+    ///
+    /// Make sure your reasons for subclassing [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) are valid. Instances of your subclass should represent a string and not something else. Thus the only attributes the subclass should have are the length of the character buffer it’s managing and access to individual characters in the buffer. Valid reasons for making a subclass of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) include providing a different backing store (perhaps for better performance) or implementing some aspect of object behavior differently, such as memory management. If your purpose is to add non-essential attributes or metadata to your subclass of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), a better alternative would be object composition (see [Alternatives to Subclassing](https://developer.apple.com/documentation/foundation/nsstring#alternatives-to-subclassing)). Cocoa already provides an example of this with the [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) class.
+    ///
+    /// #### Methods to Override
+    ///
+    /// Any subclass of `NSString`   _must_ override the primitive instance methods [`length`](https://developer.apple.com/documentation/foundation/nsstring/length) and [`characterAtIndex:`](https://developer.apple.com/documentation/foundation/nsstring/character(at:)). These methods must operate on the backing store that you provide for the characters of the string. For this backing store you can use a static array, a dynamically allocated buffer, a standard `NSString` object, or some other data type or mechanism. You may also choose to override, partially or fully, any other `NSString` method for which you want to provide an alternative implementation. For example, for better performance it is recommended that you override [`getCharacters:range:`](https://developer.apple.com/documentation/foundation/nsstring/getcharacters(_:range:)) and give it a faster implementation.
+    ///
+    /// You might want to implement an initializer for your subclass that is suited to the backing store that the subclass is managing. The `NSString` class does not have a designated initializer, so your initializer need only invoke the [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method of `super`. The `NSString` class adopts the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying), [`NSMutableCopying`](https://developer.apple.com/documentation/foundation/nsmutablecopying), and [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocols; if you want instances of your own custom subclass created from copying or coding, override the methods in these protocols.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Often a better and easier alternative to making a subclass of `NSString`—or of any other abstract, public class of a class cluster, for that matter—is object composition. This is especially the case when your intent is to add to the subclass metadata or some other attribute that is not essential to a string object. In object composition, you would have an `NSString` object as one instance variable of your custom class (typically a subclass of `NSObject`) and one or more instance variables that store the metadata that you want for the custom object. Then just design your subclass interface to include accessor methods for the embedded string object and the metadata.
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on `NSString`. Keep in mind, however, that this category will be in effect for all instances of `NSString` that you use, and this might have unintended consequences.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSString;
@@ -230,41 +346,85 @@ impl DefaultRetained for NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions?language=objc)
+/// Constants to specify kinds of substrings and styles of enumeration.
+///
+/// ## Overview
+///
+/// These options are used with the [`enumerateSubstringsInRange:options:usingBlock:`](https://developer.apple.com/documentation/foundation/nsstring/enumeratesubstrings(in:options:using:)) method. Pass in one `NSStringEnumerationBy...` option and combine with any of the remaining enumeration style constants using the C bitwise `OR` operator.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bylines?language=objc)
+///
+/// ## Discussion
+///
+/// Enumerates by lines. Equivalent to [`lineRangeForRange:`](https://developer.apple.com/documentation/foundation/nsstring/linerange(for:)).
+///
+///
         #[doc(alias = "NSStringEnumerationByLines")]
         const ByLines = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/byparagraphs?language=objc)
+///
+/// ## Discussion
+///
+/// Enumerates by paragraphs. Equivalent to [`paragraphRangeForRange:`](https://developer.apple.com/documentation/foundation/nsstring/paragraphrange(for:)).
+///
+///
         #[doc(alias = "NSStringEnumerationByParagraphs")]
         const ByParagraphs = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bycomposedcharactersequences?language=objc)
+///
+/// ## Discussion
+///
+/// Enumerates by composed character sequences. Equivalent to [`rangeOfComposedCharacterSequencesForRange:`](https://developer.apple.com/documentation/foundation/nsstring/rangeofcomposedcharactersequences(for:)).
+///
+///
         #[doc(alias = "NSStringEnumerationByComposedCharacterSequences")]
         const ByComposedCharacterSequences = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bywords?language=objc)
+///
+/// ## Discussion
+///
+/// Enumerates by words.
+///
+///
         #[doc(alias = "NSStringEnumerationByWords")]
         const ByWords = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bysentences?language=objc)
+///
+/// ## Discussion
+///
+/// Enumerates by sentences.
+///
+///
         #[doc(alias = "NSStringEnumerationBySentences")]
         const BySentences = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bycaretpositions?language=objc)
         #[doc(alias = "NSStringEnumerationByCaretPositions")]
         const ByCaretPositions = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/bydeletionclusters?language=objc)
         #[doc(alias = "NSStringEnumerationByDeletionClusters")]
         const ByDeletionClusters = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/reverse?language=objc)
+///
+/// ## Discussion
+///
+/// Causes enumeration to occur from the end of the specified range to the start.
+///
+///
         #[doc(alias = "NSStringEnumerationReverse")]
         const Reverse = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/substringnotrequired?language=objc)
+///
+/// ## Discussion
+///
+/// A way to indicate that the block does not need substring, in which case `nil` will be passed. This is simply a performance shortcut.
+///
+///
         #[doc(alias = "NSStringEnumerationSubstringNotRequired")]
         const SubstringNotRequired = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstring/enumerationoptions/localized?language=objc)
+///
+/// ## Discussion
+///
+/// Causes the enumeration to occur using the current locale. This does not make a difference in line, paragraph, or composed character sequence enumeration, but it may for words or sentences.
+///
+///
         #[doc(alias = "NSStringEnumerationLocalized")]
         const Localized = 1<<10;
     }
@@ -278,87 +438,245 @@ unsafe impl RefEncode for NSStringEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform?language=objc)
+/// Constants representing an ICU string transform.
+///
+/// ## Discussion
+///
+/// These constants are used by the [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) method [`stringByApplyingTransform:reverse:`](https://developer.apple.com/documentation/foundation/nsstring/applyingtransform(_:reverse:)).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSStringTransform = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintokatakana?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Katakana script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “katakana” transliterates to “カタカナ”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinKatakana`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinkatakana).
+    ///
+    ///
     pub static NSStringTransformLatinToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintohiragana?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Hiragana script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “hiragana” transliterates to “ひらがな”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinHiragana`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhiragana).
+    ///
+    ///
     pub static NSStringTransformLatinToHiragana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintohangul?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Hangul script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “hangul” transliterates to “한굴”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinHangul`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhangul).
+    ///
+    ///
     pub static NSStringTransformLatinToHangul: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintoarabic?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Arabic script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “ạlʿarabīẗ‎” transliterates to “العَرَبِية”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinArabic`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinarabic).
+    ///
+    ///
     pub static NSStringTransformLatinToArabic: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintohebrew?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Hebrew script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “ʻbryţ” transliterates to “עברית”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinHebrew`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinhebrew).
+    ///
+    ///
     pub static NSStringTransformLatinToHebrew: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintothai?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Thai script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “p̣hās̄ʹā thịy” transliterates to “ภาษาไทย”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinThai`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatinthai).
+    ///
+    ///
     pub static NSStringTransformLatinToThai: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintocyrillic?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Cyrillic script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “kirillica” transliterates to “кириллица”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinCyrillic`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatincyrillic).
+    ///
+    ///
     pub static NSStringTransformLatinToCyrillic: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/latintogreek?language=objc)
+    /// A constant containing the transliteration of a string from Latin script to Greek script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “Ellēnikó alphábēto‎” transliterates to “Ελληνικό αλφάβητο”.
+    ///
+    /// This is equivalent to [`kCFStringTransformLatinGreek`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformlatingreek).
+    ///
+    ///
     pub static NSStringTransformLatinToGreek: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/tolatin?language=objc)
+    /// A constant containing the transliteration of a string from any script to Latin script.
+    ///
+    /// ## Discussion
+    ///
+    /// This is equivalent to [`kCFStringTransformToLatin`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtolatin).
+    ///
+    ///
     pub static NSStringTransformToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/mandarintolatin?language=objc)
+    /// A constant containing the transliteration of a string from Han script to Latin.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the string “hàn zì” transliterates to “汉字”.
+    ///
+    /// This is equivalent to [`kCFStringTransformMandarinLatin`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformmandarinlatin).
+    ///
+    ///
     pub static NSStringTransformMandarinToLatin: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/hiraganatokatakana?language=objc)
+    /// A constant containing the transliteration of a string from Hiragana script to Katakana script.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “ひらがな” transliterates to “カタカナ”.
+    ///
+    /// This is equivalent to [`kCFStringTransformHiraganaKatakana`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformhiraganakatakana).
+    ///
+    ///
     pub static NSStringTransformHiraganaToKatakana: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/fullwidthtohalfwidth?language=objc)
+    /// A constant containing the transformation of a string from full-width CJK characters to half-width forms.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “マット” transforms to “ﾏｯﾄ”.
+    ///
+    /// This is equivalent to [`kCFStringTransformFullwidthHalfwidth`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformfullwidthhalfwidth).
+    ///
+    ///
     pub static NSStringTransformFullwidthToHalfwidth: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/toxmlhex?language=objc)
+    /// A constant containing the transformation of a string from characters to XML hexadecimal escape codes.
+    ///
+    /// ## Discussion
+    ///
+    /// This transformation is reversible.
+    ///
+    /// For example, the string “❦” transforms to “&#x2766;”.
+    ///
+    /// This is equivalent to [`kCFStringTransformToXMLHex`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtoxmlhex).
+    ///
+    ///
     pub static NSStringTransformToXMLHex: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/tounicodename?language=objc)
+    /// An identifier for a transform that converts characters to Unicode names.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the string “🐶🐮” transforms to `"``\N{DOG FACE}\N{COW FACE}"` .
+    ///
+    /// Passing this constant to the [`applyTransform:reverse:range:updatedRange:`](https://developer.apple.com/documentation/foundation/nsmutablestring/applytransform(_:reverse:range:updatedrange:)) method is equivalent to passing [`kCFStringTransformToUnicodeName`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformtounicodename) to [`CFStringTransform`](https://developer.apple.com/documentation/corefoundation/cfstringtransform(_:_:_:_:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The result of a forward transformation delimits each Unicode name with enclosing curly braces and the leading character sequence `"\N"`. In some programming languages, `"\N{...}"` is used as an escape sequence for Unicode characters in strings and regular expressions; this isn’t supported in Swift or Objective-C. To perform the reverse transform of a string literal in Swift or Objective-C, escape the leading backslash (`"\\N{...}"`) for each Unicode name.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSStringTransformToUnicodeName: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/stripcombiningmarks?language=objc)
+    /// A constant containing the transformation of a string by removing combining marks.
+    ///
+    /// ## Discussion
+    ///
+    /// This is equivalent to [`kCFStringTransformStripCombiningMarks`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripcombiningmarks).
+    ///
+    ///
     pub static NSStringTransformStripCombiningMarks: &'static NSStringTransform;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringtransform/stripdiacritics?language=objc)
+    /// A constant containing the transformation of a string by removing diacritics.
+    ///
+    /// ## Discussion
+    ///
+    /// This is equivalent to [`kCFStringTransformStripDiacritics`](https://developer.apple.com/documentation/corefoundation/kcfstringtransformstripdiacritics).
+    ///
+    ///
     pub static NSStringTransformStripDiacritics: &'static NSStringTransform;
 }
 
@@ -1342,47 +1660,81 @@ impl NSMutableString {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type NSStringEncodingDetectionOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/suggestedencodingskey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying any suggested string encodings. Use this when you have prior knowledge about the likely or expected encoding. The corresponding value for this key is an `NSArray` of `NSNumber` objects that contain `NSStringEncoding` values. If this option is unspecified, all allowed encodings are evaluated with equal consideration.
+    ///
+    ///
     pub static NSStringEncodingDetectionSuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/disallowedencodingskey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying any string encodings not to be considered. The corresponding value for this key is an `NSArray` of `NSNumber` objects that contain `NSStringEncoding` values. If this option is unspecified, no additional string encodings are removed from consideration.
+    ///
+    ///
     pub static NSStringEncodingDetectionDisallowedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/useonlysuggestedencodingskey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying whether to only consider suggested string encodings. Use this only if you specify a value for `NSStringEncodingDetectionSuggestedEncodingsKey`. The corresponding value for this key is an `NSNumber` object containing a Boolean value. By default, this value is `@(NO)`.
+    ///
+    ///
     pub static NSStringEncodingDetectionUseOnlySuggestedEncodingsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/allowlossykey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying whether to allow lossy string conversion. The corresponding value for this key is an `NSNumber` object containing a Boolean value. If `@(NO)`, the a lossy string encoding may not be chosen. By default, this value is `@(YES)`.
+    ///
+    ///
     pub static NSStringEncodingDetectionAllowLossyKey: &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/fromwindowskey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying whether to consider string encodings corresponding to Windows codepage numbers. The corresponding value for this key is an `NSNumber` object containing a Boolean value. If `@(YES)`, Windows string encodings are removed from consideration. By default, this value is `@(NO)`.
+    ///
+    ///
     pub static NSStringEncodingDetectionFromWindowsKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/lossysubstitutionkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying the string used to substitute for any unsupported characters when converting to a lossy string encoding. If a `@(NO)` value is specified for `NSStringEncodingDetectionAllowLossyKey`, this option has no effect. The corresponding value for this key is an `NSString` object. By default, this value is `U+FFFD`.
+    ///
+    ///
     pub static NSStringEncodingDetectionLossySubstitutionKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/stringencodingdetectionoptionskey/likelylanguagekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Option specifying the likely two-letter ISO 639-1 language code for the converted string. Use this when you have prior knowledge about the expected language of the converted string. The corresponding value for this key is an `NSString` object. If no value is specified, the language of the converted string is not considered.
+    ///
+    ///
     pub static NSStringEncodingDetectionLikelyLanguageKey:
         &'static NSStringEncodingDetectionOptionsKey;
 }
@@ -1422,7 +1774,19 @@ extern_conformance!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc)
+    /// A dynamic plain-text Unicode string object.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, you can use this type instead of a [`String`](https://developer.apple.com/documentation/swift/string) in cases that require reference semantics.
+    ///
+    /// The `NSMutableString` class declares the programmatic interface to an object that manages a mutable string—that is, a string whose contents can be edited—that conceptually represents an array of Unicode characters. To construct and manage an immutable string—or a string that cannot be changed after it has been created—use an object of the [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) class.
+    ///
+    /// The `NSMutableString` class adds one primitive method—[`replaceCharactersInRange:withString:`](https://developer.apple.com/documentation/foundation/nsmutablestring/replacecharacters(in:with:))—to the basic string-handling behavior inherited from `NSString`. All other methods that modify a string work through this method. For example, [`insertString:atIndex:`](https://developer.apple.com/documentation/foundation/nsmutablestring/insert(_:at:)) simply replaces the characters in a range of `0` length, while [`deleteCharactersInRange:`](https://developer.apple.com/documentation/foundation/nsmutablestring/deletecharacters(in:)) replaces the characters in a given range with no characters.
+    ///
+    /// NSMutableString is “toll-free bridged” with its Core Foundation counterpart, [`CFMutableStringRef`](https://developer.apple.com/documentation/corefoundation/cfmutablestring). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    ///
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableString;
@@ -1582,13 +1946,13 @@ impl NSMutableString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/characterconversionexception?language=objc)
+    /// `NSString` raises an `NSCharacterConversionException` if a string cannot be represented in a file-system or string encoding.
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSCharacterConversionException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/parseerrorexception?language=objc)
+    /// `NSString` raises an `NSParseErrorException` if a string cannot be parsed as a property list.
     #[cfg(feature = "NSObjCRuntime")]
     pub static NSParseErrorException: &'static NSExceptionName;
 }
@@ -1815,7 +2179,6 @@ impl NSMutableString {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssimplecstring?language=objc)
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSimpleCString;
@@ -1876,7 +2239,6 @@ impl DefaultRetained for NSSimpleCString {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconstantstring?language=objc)
     #[unsafe(super(NSSimpleCString, NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConstantString;

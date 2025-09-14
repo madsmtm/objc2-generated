@@ -9,7 +9,39 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewinteraction?language=objc)
+    /// A class that registers a view to provide a custom user experience in response to 3D Touch interactions.
+    ///
+    /// ## Overview
+    ///
+    /// A 3D Touch interaction results in a _preview interaction_ that comprises two phases, the first also called _preview_, followed by _commit_. The interaction progresses through these phases as a person applies more force with a touch. The following image shows the relationship between the force of a person’s touch and the phases of the preview interaction.
+    ///
+    ///
+    /// ![An illustration showing the preview interaction as it progresses through the preview phase and into the commit phases in response to increasing touch force.](https://docs-assets.developer.apple.com/published/be9bfae0ee50a5a22bc56521a0d7dea9/media-2793214%402x.png)
+    ///
+    ///
+    /// When using view controller previewing, _peek_ represents the preview phase, and _pop_ the commit phase.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you want to provide the system default view controller previewing behavior (_peek_ and _pop_), use the [`registerForPreviewingWithDelegate:sourceView:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/registerforpreviewing(with:sourceview:)) and [`unregisterForPreviewingWithContext:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/unregisterforpreviewing(withcontext:)) methods on [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) instead of [`UIPreviewInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction). See `Working With 3D Touch Previews and Preview Quick Actions` for further details.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A preview interaction is responsible for managing 3D Touch interactions for a specified view. It uses a delegate object to communicate the progress and status of the interaction to your code.
+    ///
+    /// To use a preview interaction in your app:
+    ///
+    /// 1. Create a [`UIPreviewInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction) object, passing the view into the default initializer.
+    ///
+    /// 2. Create a delegate object that conforms to the [`UIPreviewInteractionDelegate`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate) protocol, and implement the appropriate methods.
+    ///
+    /// 3. Assign the delegate object to the [`delegate`](https://developer.apple.com/documentation/uikit/uipreviewinteraction/delegate) property on the preview interaction object.
+    ///
+    /// For more information about the state transitions through which a preview interaction progresses, see [`UIPreviewInteractionDelegate`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -76,7 +108,43 @@ impl UIPreviewInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate?language=objc)
+    /// A set of methods for communicating the progress of a preview interaction.
+    ///
+    /// ## Overview
+    ///
+    /// A preview interaction abstracts a 3D Touch interaction into a state machine and communicates its progress through the state machine though a delegate. You’re responsible for implementing the appropriate UI behavior.
+    ///
+    /// Create an object that conforms to this protocol and assign it to the [`delegate`](https://developer.apple.com/documentation/uikit/uipreviewinteraction/delegate) property on an instance of [`UIPreviewInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction). Use this delegate object to respond to the state changes that occur within the preview interaction as the user performs 3D Touch interactions.
+    ///
+    /// ### Control preview interaction state changes
+    ///
+    /// The methods on [`UIPreviewInteractionDelegate`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate) allow you to control whether a preview interaction is allowed to begin, and to observe its progress through the phases of a preview interaction. This allows you to provide a custom user experience while maintaining coherence with the system.
+    ///
+    /// A preview interaction consists of two main phases: _preview_ and _commit_. The following image is a visualization of the underlying state machine associated with a preview interaction.
+    ///
+    ///
+    /// ![Flow diagram showing the four underlying states of a preview interaction: preview, commit, complete and canceled. Delegate methods communicate the transitions between these states.](https://docs-assets.developer.apple.com/published/243a01439bb1546ab30a297552eda2dd/media-2825116%402x.png)
+    ///
+    ///
+    /// The [`previewInteractionShouldBegin:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteractionshouldbegin(_:)) method is called as the user begins to press on a view that has a preview interaction associated with it. Implement this method and return [`false`](https://developer.apple.com/documentation/swift/false) to prevent the preview interaction from continuing. Returning [`true`](https://developer.apple.com/documentation/swift/true), or not implementing this optional method, will allow the preview interaction to continue.
+    ///
+    /// Once a preview interaction begins, it enters the first phase — also called _preview_ —_ _through which it progresses as the user presses harder on the view. During this phase, the [`previewInteraction:didUpdatePreviewTransition:ended:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatepreviewtransition:ended:)) method is called repeatedly, reporting the progress through the transition as a [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) with a value from `0` to `1`. Implement this method and use the `transitionProgress` parameter to update the UI, providing visual feedback to the user.
+    ///
+    /// When the `ended` parameter changes from [`false`](https://developer.apple.com/documentation/swift/false) to [`true`](https://developer.apple.com/documentation/swift/true), the preview interaction transitions to the second phase — _commit_. There are no further calls to the [`previewInteraction:didUpdatePreviewTransition:ended:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatepreviewtransition:ended:)) delegate method.
+    ///
+    /// The progress through the _commit_ phase is reported to the [`previewInteraction:didUpdateCommitTransition:ended:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatecommittransition:ended:)) delegate method. Implement this method and use the `transitionP``rogress` parameter to update the UI appropriately. The preview interaction is said to be completed when the `ended` parameter is true, at which point you should complete any UI changes.
+    ///
+    /// At any point before the preview interaction is completed, it can be canceled, either when the user lifts their finger from the screen, or when the [`cancelInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction/cancel()) method is called on the [`UIPreviewInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction) instance. When this happens, the [`previewInteractionDidCancel:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteractiondidcancel(_:)) delegate method is called. You should use this method to cancel any UI transitions currently in progress.
+    ///
+    /// ### Preview interaction user interface updates
+    ///
+    /// [`UIPreviewInteraction`](https://developer.apple.com/documentation/uikit/uipreviewinteraction) abstracts 3D Touch interactions away from touch force, allowing you to provide your own user interface updates for an interaction pattern that’s well understood by people. The preview interaction sits between view controller previewing (_peek_ and _pop_) and the force values in [`UITouch`](https://developer.apple.com/documentation/uikit/uitouch), in that you’re required to provide your own user interface updates but don’t need to handle raw touch force values.
+    ///
+    /// It’s important that during the preview and commit phases, you update the UI in such a way that a person is aware that the interaction is taking place. For example, pressing a table row in the Mail app first progressively blurs the other rows (the preview phase), and then shows a popover of the email as the commit phase begins. Throughout the commit phase, the popover grows, before finally transitioning to the email detail view at the end of the commit phase.
+    ///
+    /// You can provide any user experience you want to accompany the preview and commit phases, but be sure to follow the appropriate section on 3D Touch in the [iOS Human Interface Guidelines](https://developer.apple.com/ios/human-interface-guidelines/). Consider using [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) to implement the UI changes that track the progress through the preview and commit phases of the preview interaction. This class allows you to build an animation and then scrub through that animation, using the [`fractionComplete`](https://developer.apple.com/documentation/uikit/uiviewanimating/fractioncomplete) property. This maps perfectly to the `transitionProgress` property provided in the [`previewInteraction:didUpdatePreviewTransition:ended:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatepreviewtransition:ended:)) and [`previewInteraction:didUpdateCommitTransition:ended:`](https://developer.apple.com/documentation/uikit/uipreviewinteractiondelegate/previewinteraction(_:didupdatecommittransition:ended:)) methods, allowing you to use [`UIViewPropertyAnimator`](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator) to update the UI in response to a person’s touch force.
+    ///
+    ///
     pub unsafe trait UIPreviewInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

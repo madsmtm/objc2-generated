@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The EKReminder class represents a reminder (task/todo).
+    /// A class that represents a reminder in a calendar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminder?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`reminderWithEventStore:`](https://developer.apple.com/documentation/eventkit/ekreminder/init(eventstore:)) method to create a new reminder. Use the properties in the class to get and modify certain information about a reminder.
+    ///
+    ///
+    /// The EKReminder class represents a reminder (task/todo).
     #[unsafe(super(EKCalendarItem, EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "EKCalendarItem", feature = "EKObject"))]

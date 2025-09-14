@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobject?language=objc)
+    /// The abstract superclass for Photos model objects (assets and collections).
+    ///
+    /// ## Overview
+    ///
+    /// You do not create or use instances of this class directly. Instead, work with instances of its concrete subclasses—[`PHAsset`](https://developer.apple.com/documentation/photos/phasset), [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection), [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist), and [`PHObjectPlaceholder`](https://developer.apple.com/documentation/photos/phobjectplaceholder).
+    ///
+    /// Because the [`PHObject`](https://developer.apple.com/documentation/photos/phobject) class implements the [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) and [`hash`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/hash) methods in terms of its [`localIdentifier`](https://developer.apple.com/documentation/photos/phobject/localidentifier) property, you can use techniques that depend on these methods to keep track of asset and collection objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObject;
@@ -56,7 +64,18 @@ impl PHObject {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjectplaceholder?language=objc)
+    /// A read-only proxy object that represents a Photos asset or collection to create.
+    ///
+    /// ## Overview
+    ///
+    /// You obtain object placeholders when you use change requests to create assets, collections, or collection lists. After the change request completes, you can use the object placeholder to fetch the newly created object. You can also use an object placeholder to make additional change requests involving the object to create.
+    ///
+    /// For example, the following code uses a placeholder to add a newly created asset to an album.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let createAssetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)", "let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset!", "let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)", "albumChangeRequest!.addAssets([assetPlaceholder] as NSFastEnumeration)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHAssetChangeRequest *createAssetRequest =", "    [PHAssetChangeRequest creationRequestForAssetFromImage:image];", "PHObjectPlaceholder *assetPlaceholder = createAssetRequest.placeholderForCreatedAsset;", "PHAssetCollectionChangeRequest *albumChangeRequest =", "    [PHAssetCollectionChangeRequest changeRequestForAssetCollection:album];", "[albumChangeRequest addAssets:@[ assetPlaceholder ]];"], metadata: None }] }] })
+    /// A placeholder always has the same local identifier as the asset, collection, or collection list that it represents. To find the object that corresponds to a placeholder, read the placeholder’s [`localIdentifier`](https://developer.apple.com/documentation/photos/phobject/localidentifier) property and use it to fetch the actual object. Alternatively, because the [`PHObjectPlaceholder`](https://developer.apple.com/documentation/photos/phobjectplaceholder) class implements the `==` and [`hash`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/hash) methods in terms of its [`localIdentifier`](https://developer.apple.com/documentation/photos/phobject/localidentifier) property, you can also find the object for a placeholder using techniques that depend on these methods.
+    ///
+    ///
     #[unsafe(super(PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHObjectPlaceholder;

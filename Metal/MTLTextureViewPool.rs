@@ -8,10 +8,15 @@ use crate::*;
 extern_protocol!(
     /// A pool of lightweight texture views.
     ///
+    /// ## Overview
+    ///
+    /// Use texture view pools to create lightweight texture view objects of [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) and [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instances.
+    ///
+    ///
+    /// A pool of lightweight texture views.
+    ///
     /// Use texture view pools to create lightweight texture view objects of ``MTLTexture``
     /// and ``MTLBuffer`` instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureviewpool?language=objc)
     #[cfg(feature = "MTLResourceViewPool")]
     pub unsafe trait MTLTextureViewPool: MTLResourceViewPool {
         #[cfg(all(

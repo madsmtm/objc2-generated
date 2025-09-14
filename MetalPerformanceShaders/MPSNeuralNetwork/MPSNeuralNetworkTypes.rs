@@ -6,15 +6,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionflags?language=objc)
+/// Options used to control how kernel weights are stored and used in the CNN kernels
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionFlags(pub NSUInteger);
 impl MPSCNNConvolutionFlags {
     /// Use default options
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionflags/none?language=objc)
     #[doc(alias = "MPSCNNConvolutionFlagsNone")]
     #[deprecated]
     pub const None: Self = Self(0);
@@ -28,20 +26,16 @@ unsafe impl RefEncode for MPSCNNConvolutionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags?language=objc)
+/// Options used to control binary convolution kernels.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNBinaryConvolutionFlags(pub NSUInteger);
 impl MPSCNNBinaryConvolutionFlags {
     /// Use default in binary convolution options
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/none?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionFlagsNone")]
     pub const None: Self = Self(0);
     /// Scale the binary convolution operation using the beta-image option as detailed in MPSCNNBinaryConvolution
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags/usebetascaling?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionFlagsUseBetaScaling")]
     pub const UseBetaScaling: Self = Self(1 << 0);
 }
@@ -54,25 +48,22 @@ unsafe impl RefEncode for MPSCNNBinaryConvolutionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype?language=objc)
+/// Options that defines what operations are used to perform binary convolution.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNBinaryConvolutionType(pub NSUInteger);
 impl MPSCNNBinaryConvolutionType {
+    /// A convolution type that operates as a normal convolution, except that the weights are binary values.
     /// Otherwise a normal convolution operation, except that the weights are binary values
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/binaryweights?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeBinaryWeights")]
     pub const BinaryWeights: Self = Self(0);
+    /// A convolution type that uses input image binarization and the XNOR-operation.
     /// Use input image binarization and the XNOR-operation to perform the actual convolution - See MPSCNNBinaryConvolution for details
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/xnor?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeXNOR")]
     pub const XNOR: Self = Self(1);
+    /// A convolution type that uses input image binarization and the AND-operation.
     /// Use input image binarization and the AND-operation to perform the actual convolution - See MPSCNNBinaryConvolution for details
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype/and?language=objc)
     #[doc(alias = "MPSCNNBinaryConvolutionTypeAND")]
     pub const AND: Self = Self(2);
 }
@@ -85,7 +76,7 @@ unsafe impl RefEncode for MPSCNNBinaryConvolutionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption?language=objc)
+/// Options that specify convolution accumulator precision.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -93,13 +84,9 @@ pub struct MPSNNConvolutionAccumulatorPrecisionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNConvolutionAccumulatorPrecisionOption: NSUInteger {
 /// Set accumulator type to half precision float.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/half?language=objc)
         #[doc(alias = "MPSNNConvolutionAccumulatorPrecisionOptionHalf")]
         const Half = 0;
 /// Set accumulator type to single precision float.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption/float?language=objc)
         #[doc(alias = "MPSNNConvolutionAccumulatorPrecisionOptionFloat")]
         const Float = 1<<0;
     }
@@ -113,7 +100,7 @@ unsafe impl RefEncode for MPSNNConvolutionAccumulatorPrecisionOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle?language=objc)
+/// Options that control how graph nodes are trained.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -121,18 +108,12 @@ pub struct MPSNNTrainingStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNTrainingStyle: NSUInteger {
 /// Do not train this node, for example in transfer learning
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicenone?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceNone")]
         const UpdateDeviceNone = 0;
 /// The weight update pass will be called in a command buffer completion callback, with a nil command buffer
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicecpu?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceCPU")]
         const UpdateDeviceCPU = 1;
 /// The weight update pass will be called immediately after the gradient pass is encoded, with a nonnull command buffer
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle/updatedevicegpu?language=objc)
         #[doc(alias = "MPSNNTrainingStyleUpdateDeviceGPU")]
         const UpdateDeviceGPU = 2;
     }
@@ -146,7 +127,7 @@ unsafe impl RefEncode for MPSNNTrainingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags?language=objc)
+/// Options that define how statistics are calculated during batch normalization.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -154,28 +135,18 @@ pub struct MPSCNNBatchNormalizationFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNBatchNormalizationFlags: NSUInteger {
 /// Default Settings
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/default?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsDefault")]
         const Default = 0;
 /// Statistics are calculated if another node consumes the gradient node (training). The data source is used otherwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsautomatic?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsAutomatic")]
         const CalculateStatisticsAutomatic = MPSCNNBatchNormalizationFlags::Default.0;
 /// Statistics are calculated always
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsalways?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsAlways")]
         const CalculateStatisticsAlways = 1;
 /// Statistics are never calculated. Predefined values from the data source are used instead
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsnever?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsNever")]
         const CalculateStatisticsNever = 2;
 /// Bits used for  MPSCNNBatchNormalizationFlagsCalculateStatistics
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags/calculatestatisticsmask?language=objc)
         #[doc(alias = "MPSCNNBatchNormalizationFlagsCalculateStatisticsMask")]
         const CalculateStatisticsMask = 3;
     }
@@ -189,7 +160,56 @@ unsafe impl RefEncode for MPSCNNBatchNormalizationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod?language=objc)
+/// Options that define a graph’s padding.
+///
+/// ## Overview
+///
+/// The [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) must make automatic decisions about how big to make the result of each filter node. This is typically determined by a combination of input image size, size of the filter window (for example, convolution weights), filter stride, and a description of how much extra space beyond the edges of the image to allow the filter read. By knowing the properties of the filter, you can then infer the size of the result image. Most of this information is known to the [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) as part of its normal operation. However, the amount of padding to add and where to add it is a matter of choice left to you. Different neural network frameworks such as TensorFlow and Caffe make different choices here. Depending on where your network was trained, you will need to adjust the policies used by MPS during inference. In the event that the padding method is not simply described by this enumeration, you may provide you own custom policy definition by overriding the [`destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadding/destinationimagedescriptor(forsourceimages:sourcestates:for:suggesteddescriptor:)) method in a custom [`MPSNNPadding`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadding) child class. Common values that influence the size of the result image by adjusting the amount of padding added to the source images:
+///
+/// - [`MPSNNPaddingMethodSizeValidOnly`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/validonly) Result values are only produced for the area that is guaranteed to have all of its input values defined (i.e. not off the edge).  This produces the smallest result image
+///
+/// - [`MPSNNPaddingMethodSizeSame`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizesame) The result image is the same size as the input image. If the stride is not 1, then the result is scaled accordingly.
+///
+/// - [`MPSNNPaddingMethodSizeFull`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizefull) Result values are produced for any position for which at least one input value is defined (i.e. not off the edge).
+///
+/// - [`MPSNNPaddingMethodCustom`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/custom) The sizing and centering policy is given by the [`destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadding/destinationimagedescriptor(forsourceimages:sourcestates:for:suggesteddescriptor:)).
+///
+/// Except possibly when [`MPSNNPaddingMethodCustom`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/custom) is used, the area within the source image that is read will be centered on the source image. Even so, at times the area can not be perfectly centered because the source image has odd size and the region read has even size, or vice versa. In such cases, you may use the following values to select where to put the extra padding:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/topLeft", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Leftover padding is added to the top or left side of image as appropriate." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metalperformanceshaders/documentation/MetalPerformanceShaders/MPSNNPaddingMethod/addRemainderToBottomRight", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Leftover padding is added to the bottom or right side of image as appropriate." }] }]]], alignments: None, metadata: None })
+/// Here again, different external frameworks may use different policies.
+///
+/// In some cases, Caffe introduces the notion of a region beyond the padding which is invalid. This can happen when the padding is set to a width narrower than what is needed for a destination size. In such cases, `MPSCNNPaddingMethodExcludeEdges` is used to adjust normalization factors for filter weights (particularly in pooling) such that invalid regions beyond the padding are not counted towards the filter area. Currently, only pooling supports this feature. Other filters ignore it.
+///
+///  The size and a add remainder policies always appear together in the [`MPSNNPaddingMethod`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod). There is no provision for a size policy without a remainder policy or vice versa. It is, in practice, used as a bit field.
+///
+///  Most MPS neural network filters are considered forward filters. Some (for example, convolution transpose and unpooling) are considered reverse filters. For the reverse filters, the image stride is measured in destination values rather than source values and has the effect of enlarging the image rather than reducing it. When a reverse filter is used to “undo” the effects of a forward filter, the size policy should be the opposite of the forward padding method. For example, if the forward filter used [`MPSNNPaddingMethodSizeValidOnly`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/validonly) `|` [`MPSNNPaddingMethodAddRemainderToTopLeft`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/topleft), the reverse filter should use [`MPSNNPaddingMethodSizeFull`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizefull) | [`MPSNNPaddingMethodAddRemainderToTopLeft`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/topleft). Some consideration of the geometry of inputs and outputs will reveal why this is so. It is usually not important to adjust the centering method because the size of the reverse result generally doesn’t suffer from centering asymmetries. That is: the size would usually be given by:
+///
+/// ```swift
+/// static int DestSizeReverse( int sourceSize, int stride, int filterWindowSize, Style style ) {
+///     // style = {-1,0,1} for valid-only, same, full
+///     return (sourceSize-1) * stride + 1 + style  * (filterWindowSize-1);  
+/// }
+///
+/// ```
+///
+/// so the result size is exactly the one needed for the source size and there are no centering problems. In some cases where the reverse pass is intended to completely reverse a forward pass, the [`MPSState`](https://developer.apple.com/documentation/metalperformanceshaders/mpsstate) object produced by the forward pass should be used to determine the size of the reverse pass result image.
+///
+///  Tensorflow does not appear to provide a full padding method, but instead appears to use its valid-only padding mode for reverse filters to in effect achieve what is called [`MPSNNPaddingMethodSizeFull`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizefull) here.
+///
+/// ### Walkthrough of Operation of Padding Policy
+///
+/// Most [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) objects have two types of encode calls. There is one for which you must pass in a preallocated [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) to receive the results. This is for manual configuration. It assumes you know what you are doing, and asks you to correctly set a diversity of properties to correctly position image inputs and size results. It does not use the padding policy. You must size the result correctly, set the [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/cliprect), [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset) and other properties as needed yourself.
+///
+/// Layered on top of that is usually another flavor of encode call that returns a destination image instead from the left hand side of the function. It is designed to automatically configure itself based on the [`paddingPolicy`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode/paddingpolicy). When this more automated encode method is called, it invokes a method in the [`MPSKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel) that looks at the [`MPSNNPaddingMethod`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod) bitfield of the policy. Based on the information therein and the size of the input images and other filter properties, it determines the size of the output, sets the offset property, and returns an appropriate [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) for the destination image.
+///
+/// If you set the [`MPSNNPaddingMethodCustom`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/custom) bit in the [`MPSNNPaddingMethod`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod), then the [`destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadding/destinationimagedescriptor(forsourceimages:sourcestates:for:suggesteddescriptor:)) method is called. The [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) prepared earlier is passed in as the last parameter. You can use this descriptor or modify as needed. In addition, you can adjust any properties of the [`MPSKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel) with which it will be used. If, for example, the descriptor is not the right [`MPSImageFeatureChannelFormat`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat), you can change it, or make your own [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) based on the one handed to you. This is your opportunity to customize the configuration of the [`MPSKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel). In some cases (for example, [`paddingForTensorflowAveragePooling`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnndefaultpadding/fortensorflowaveragepooling())) you might change other properties such as the filter edging mode, or adjust the offset that was already set for you. When the kernel is fully configured, return the [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor).
+///
+/// The [`MPSImageDescriptor`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagedescriptor) is then passed to the [`destinationImageAllocator`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationimageallocator) to allocate the image. You might provide such an allocator if you want to use your own custom [`MTLHeap`](https://developer.apple.com/documentation/metal/mtlheap) rather than the MPS internal heap. The allocator can be set either directly in the [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) or through the [`imageAllocator`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator) property.
+///
+/// It is intended that most of the time, default values for padding method and destination image allocator should be good enough. Only minimal additional configuration should be required, apart from occasional adjustments to set the [`MPSNNPaddingMethod`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod) when something other than default padding for the object is needed. If you find yourself encumbered by frequent adjustments of this kind, you might find it to your advantage to subclass [`MPSNNFilterNode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode) or [`MPSCNNKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel) objects to adjust the default padding policy and allocator at initialization time.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -197,86 +217,57 @@ pub struct MPSNNPaddingMethod(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNPaddingMethod: NSUInteger {
 /// Extra padding pixels are distributed as evenly as possible to all sides
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/centered?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignCentered")]
         const AlignCentered = 0;
 /// Extra padding pixels appear on top and left sides
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/aligntopleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignTopLeft")]
         const AlignTopLeft = 1;
 /// Extra padding pixels appear on the bottom and right sides
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/alignbottomright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignBottomRight")]
         const AlignBottomRight = 2;
 /// Extra padding pixels are not defined.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/align_reserved?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlign_reserved")]
         const Align_reserved = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/alignmask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAlignMask")]
         const AlignMask = MPSNNPaddingMethod::Align_reserved.0;
+/// A padding method where leftover padding is added to the top or left side of image as appropriate.
 /// Extra padding pixels are accumulated to top and left sides
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/topleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToTopLeft")]
         const AddRemainderToTopLeft = 0<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertotopright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToTopRight")]
         const AddRemainderToTopRight = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertobottomleft?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToBottomLeft")]
         const AddRemainderToBottomLeft = 2<<2;
 /// Extra padding pixels are accumulated to bottom and right sides
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertobottomright?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToBottomRight")]
         const AddRemainderToBottomRight = 3<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/addremaindertomask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodAddRemainderToMask")]
         const AddRemainderToMask = MPSNNPaddingMethod::AddRemainderToBottomRight.0;
+/// A padding method where result values are only produced for the area that is guaranteed to have all of its input values defined
 /// The result is the largest image for which *all* source pixels are valid for result pixels
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/validonly?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeValidOnly")]
         const SizeValidOnly = 0;
 /// The result is the same size as the input image (before strides)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizesame?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeSame")]
         const SizeSame = 1<<4;
 /// The result is the largest image for which *any* source pixel is valid for result pixels
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizefull?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeFull")]
         const SizeFull = 2<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/size_reserved?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSize_reserved")]
         const Size_reserved = 3<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/customwhitelistfornodefusion?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustomWhitelistForNodeFusion")]
 #[deprecated]
         const CustomWhitelistForNodeFusion = 1<<13;
 /// By itself, MPSNNPaddingMethodCustom will inhibit automatic fusion between nodes producing and consuming the image described by the padding policy. MPSNNPaddingMethodCustomAllowForNodeFusion signals that the custom method is benign and fusion may go ahead.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/customallowfornodefusion?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustomAllowForNodeFusion")]
         const CustomAllowForNodeFusion = 1<<13;
 /// Use destinationImageDescriptorForSourceImages:sourceStates:forKernel:suggestedDescriptor: to calculate padding and offset.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/custom?language=objc)
         #[doc(alias = "MPSNNPaddingMethodCustom")]
         const Custom = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/sizemask?language=objc)
         #[doc(alias = "MPSNNPaddingMethodSizeMask")]
         const SizeMask = 0x7f0;
 /// The caffe framework constrains the average pooling area to the limits of the padding area in cases
 /// where a pixel would read beyond the padding area. Set this bit for Caffe emulation with average pooling.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod/excludeedges?language=objc)
         #[doc(alias = "MPSNNPaddingMethodExcludeEdges")]
         const ExcludeEdges = 1<<15;
     }
@@ -291,6 +282,7 @@ unsafe impl RefEncode for MPSNNPaddingMethod {
 }
 
 extern_protocol!(
+    /// The protocol that provides a description of how kernels should pad images.
     /// A method to describe how MPSCNNKernels should pad images when data outside the image is needed
     ///
     /// Different (non-Apple) CNN frameworks have different policies for how to size the result
@@ -300,8 +292,6 @@ extern_protocol!(
     /// MPSNNPaddingMethodFull, MPSNNPaddingMethodSameTL, MPSNNPaddingMethodSameBR. You
     /// may also implement your own padding definition with a block that conforms
     /// to this prototype.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadding?language=objc)
     pub unsafe trait MPSNNPadding: NSObjectProtocol + NSSecureCoding {
         /// Get the preferred padding method for the node
         #[unsafe(method(paddingMethod))]
@@ -414,12 +404,11 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A class that provides predefined padding policies for common tasks.
     /// This class provides some pre-rolled padding policies for common tasks
     ///
     /// You are, of course, welcome to write your own class that conforms to
     /// The MPSNNPadding protocol and use that instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnndefaultpadding?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNDefaultPadding;
@@ -516,6 +505,7 @@ impl MPSNNDefaultPadding {
 }
 
 extern_protocol!(
+    /// A protocol for objects that contain information about an image size elsewhere in the graph.
     /// MPSStates conforming to this protocol contain information about a image size elsewhere in the graph
     ///
     /// In some graphs a sequence of operations are done, then they are undone ins a series of 'reverse'
@@ -529,8 +519,6 @@ extern_protocol!(
     /// reconstitute a based on c and b, we need to use a = c * b + remainder, not just a = c*b.  Similarly, when
     /// undoing a downsizing operation, we need the original size to find which answer in the range of
     /// a = c*b + [0,b-1] is the right one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesizeencodingstate?language=objc)
     pub unsafe trait MPSImageSizeEncodingState: NSObjectProtocol {
         /// The width of the source image passed to MPSCNNConvolution encode call.
         #[unsafe(method(sourceWidth))]

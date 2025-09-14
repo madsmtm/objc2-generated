@@ -7,46 +7,38 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherrordomain?language=objc)
     pub static SFSpeechErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes that can be thrown under the Speech framework’s error domain.
 /// Error codes that can be thrown under the Speech framework's error domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SFSpeechErrorCode(pub NSInteger);
 impl SFSpeechErrorCode {
     /// There was an internal error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/internalserviceerror?language=objc)
+    /// There was an internal error.
     #[doc(alias = "SFSpeechErrorCodeInternalServiceError")]
     pub const InternalServiceError: Self = Self(1);
     /// The audio file could not be read.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/audioreadfailed?language=objc)
+    /// The audio file could not be read.
     #[doc(alias = "SFSpeechErrorCodeAudioReadFailed")]
     pub const AudioReadFailed: Self = Self(2);
     /// The custom language model templates were malformed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/undefinedtemplateclassname?language=objc)
+    /// The custom language model templates were malformed.
     #[doc(alias = "SFSpeechErrorCodeUndefinedTemplateClassName")]
     pub const UndefinedTemplateClassName: Self = Self(7);
     /// The custom language model file was malformed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/malformedsupplementalmodel?language=objc)
+    /// The custom language model file was malformed.
     #[doc(alias = "SFSpeechErrorCodeMalformedSupplementalModel")]
     pub const MalformedSupplementalModel: Self = Self(8);
     /// The operation timed out.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/timeout?language=objc)
+    /// The operation timed out.
     #[doc(alias = "SFSpeechErrorCodeTimeout")]
     pub const Timeout: Self = Self(12);
     /// A required parameter is missing/nil.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeecherror/code/missingparameter?language=objc)
+    /// A required parameter is missing/nil.
     #[doc(alias = "SFSpeechErrorCodeMissingParameter")]
     pub const MissingParameter: Self = Self(13);
 }

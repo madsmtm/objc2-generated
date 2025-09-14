@@ -8,6 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Provides registration and management of Crash Detection events.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to determine Crash Detection availabilty on iPhone, detect authorization status, and register for Crash Detection events. Not all iPhones support Crash Detection, so verify that [`available`](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager/isavailable) returns [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// Check the value of [`authorizationStatus`](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager/authorizationstatus) to determine if the person designates this app on their iPhone to receive Crash Detection events. If the value is not [`SAAuthorizationStatusAuthorized`](https://developer.apple.com/documentation/safetykit/saauthorizationstatus/authorized), set [`delegate`](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager/delegate) and call [`requestAuthorizationWithCompletionHandler:`](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager/requestauthorization(completionhandler:)) to request authorization.
+    ///
+    /// After your app has authorization to receive Crash Detection events, adopt [`SACrashDetectionDelegate`](https://developer.apple.com/documentation/safetykit/sacrashdetectiondelegate) and implement [`crashDetectionManager:didDetectEvent:`](https://developer.apple.com/documentation/safetykit/sacrashdetectiondelegate/crashdetectionmanager(_:diddetect:)). If a vehicular crash occurs, the system calls the method with the Crash Detection event.
+    ///
+    ///
     /// SACrashDetectionManager
     ///
     ///
@@ -16,8 +27,6 @@ extern_class!(
     /// Set the delegate immediately after creating an instance of SACrashDetectionManager. Creating multiple instances of SACrashDetectionManager is not supported and should be avoided.
     ///
     /// SACrashDetectionManager requires an entitlement from Apple. To apply for the entitlement, see Crash Detection Entitlement Request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectionmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SACrashDetectionManager;
@@ -94,6 +103,13 @@ impl SACrashDetectionManager {
 }
 
 extern_protocol!(
+    /// The protocol that an object adopts to receive Crash Detection events and changes to the authorization status.
+    ///
+    /// ## Overview
+    ///
+    /// Upon app launch, immediately set the delegate so it receives Crash Detection events. If the app isn’t running, the system launches it in the background and then sends the event.
+    ///
+    ///
     /// SACrashDetectionDelegate
     ///
     ///
@@ -101,8 +117,6 @@ extern_protocol!(
     ///
     ///
     /// See also: SACrashDetectionManager
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/sacrashdetectiondelegate?language=objc)
     pub unsafe trait SACrashDetectionDelegate: NSObjectProtocol {
         #[cfg(feature = "SACrashDetectionEvent")]
         /// Update the delegate with a new Crash Detection event

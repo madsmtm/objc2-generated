@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.enum?language=objc)
+/// Values that control the map’s elevation style.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapElevationStyle(pub NSInteger);
 impl MKMapElevationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.enum/flat?language=objc)
+    /// The value that represents the flat map elevation style.
     #[doc(alias = "MKMapElevationStyleFlat")]
     pub const Flat: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration/elevationstyle-swift.enum/realistic?language=objc)
+    /// The value that represents a map elevation style with realistic ground contours.
     #[doc(alias = "MKMapElevationStyleRealistic")]
     pub const Realistic: Self = Self(1);
 }
@@ -30,7 +30,7 @@ unsafe impl RefEncode for MKMapElevationStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapconfiguration?language=objc)
+    /// An abstract class that represents the shared elements of map configurations.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapConfiguration;

@@ -10,12 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Information about the camera characteristics used to capture images and depth data.
+    ///
+    /// ## Overview
+    ///
+    /// Information about the calibration of a camera—such as its pixel focal length, principal point, and lens distortion characteristics—helps to determine the geometric relationships between the camera device and the images it captures. You can use this information to accurately render visual effects into images produced by a camera or perform computer vision tasks such as correcting images for geometric distortions.
+    ///
+    ///
     /// AVCameraCalibrationData is a model object describing a camera's calibration information.
     ///
     ///
     /// When rendering effects to images produced by cameras, or performing computer vision tasks such as correcting images for geometric distortions, it is necessary to characterize the camera's calibration information, such as its pixel focal length, principal point, lens distortion characteristics, etc. AVCameraCalibrationData provides this information.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCameraCalibrationData;

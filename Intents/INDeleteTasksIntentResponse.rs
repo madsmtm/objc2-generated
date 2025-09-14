@@ -7,34 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDeleteTasksIntentResponseCode(pub NSInteger);
 impl INDeleteTasksIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INDeleteTasksIntentResponseCodeUnspecified")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase, after you’ve verified you’re able to delete the tasks from the specified task list. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INDeleteTasksIntentResponseCodeReady")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/inprogress?language=objc)
+    /// A response code that indicates deletion is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if you began deleting tasks from the task list but didn’t confirm the process was complete. For example, when a server handles the deletion and you’ve not yet received a confirmation from that server. Configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INDeleteTasksIntentResponseCodeInProgress")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after successfully deleting the tasks from the task list successfully. Your response should contain the details of the task list and tasks you changed.
+    ///
+    ///
     #[doc(alias = "INDeleteTasksIntentResponseCodeSuccess")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to delete the task.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevent you from deleting the tasks from the task list.
+    ///
+    ///
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailure")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to delete the tasks.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t delete the tasks from your Intents extension, but the user can do so from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INDeleteTasksIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -49,7 +79,15 @@ unsafe impl RefEncode for INDeleteTasksIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetasksintentresponse?language=objc)
+    /// Your response to a request to delete tasks.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INDeleteTasksIntentResponse`](https://developer.apple.com/documentation/intents/indeletetasksintentresponse) object to return information about your attempt to delete an existing task. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INDeleteTasksIntentResponse`](https://developer.apple.com/documentation/intents/indeletetasksintentresponse) object in the [`confirmDeleteTasks:completion:`](https://developer.apple.com/documentation/intents/indeletetasksintenthandling/confirm(intent:completion:)) and [`handleDeleteTasks:completion:`](https://developer.apple.com/documentation/intents/indeletetasksintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INDeleteTasksIntentHandling`](https://developer.apple.com/documentation/intents/indeletetasksintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

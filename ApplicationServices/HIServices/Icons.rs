@@ -8,251 +8,137 @@ use objc2_core_services::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignnone?language=objc)
 pub const kAlignNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignverticalcenter?language=objc)
 pub const kAlignVerticalCenter: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligntop?language=objc)
 pub const kAlignTop: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignbottom?language=objc)
 pub const kAlignBottom: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignhorizontalcenter?language=objc)
 pub const kAlignHorizontalCenter: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignabsolutecenter?language=objc)
 pub const kAlignAbsoluteCenter: c_uint = kAlignVerticalCenter | kAlignHorizontalCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligncentertop?language=objc)
 pub const kAlignCenterTop: c_uint = kAlignTop | kAlignHorizontalCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligncenterbottom?language=objc)
 pub const kAlignCenterBottom: c_uint = kAlignBottom | kAlignHorizontalCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignleft?language=objc)
 pub const kAlignLeft: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligncenterleft?language=objc)
 pub const kAlignCenterLeft: c_uint = kAlignVerticalCenter | kAlignLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligntopleft?language=objc)
 pub const kAlignTopLeft: c_uint = kAlignTop | kAlignLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignbottomleft?language=objc)
 pub const kAlignBottomLeft: c_uint = kAlignBottom | kAlignLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignright?language=objc)
 pub const kAlignRight: c_uint = 0x0C;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligncenterright?language=objc)
 pub const kAlignCenterRight: c_uint = kAlignVerticalCenter | kAlignRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kaligntopright?language=objc)
 pub const kAlignTopRight: c_uint = kAlignTop | kAlignRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507611-anonymous/kalignbottomright?language=objc)
 pub const kAlignBottomRight: c_uint = kAlignBottom | kAlignRight;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atnone?language=objc)
 pub const atNone: c_uint = kAlignNone;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atverticalcenter?language=objc)
 pub const atVerticalCenter: c_uint = kAlignVerticalCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/attop?language=objc)
 pub const atTop: c_uint = kAlignTop;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atbottom?language=objc)
 pub const atBottom: c_uint = kAlignBottom;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/athorizontalcenter?language=objc)
 pub const atHorizontalCenter: c_uint = kAlignHorizontalCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atabsolutecenter?language=objc)
 pub const atAbsoluteCenter: c_uint = kAlignAbsoluteCenter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atcentertop?language=objc)
 pub const atCenterTop: c_uint = kAlignCenterTop;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atcenterbottom?language=objc)
 pub const atCenterBottom: c_uint = kAlignCenterBottom;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atleft?language=objc)
 pub const atLeft: c_uint = kAlignLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atcenterleft?language=objc)
 pub const atCenterLeft: c_uint = kAlignCenterLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/attopleft?language=objc)
 pub const atTopLeft: c_uint = kAlignTopLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atbottomleft?language=objc)
 pub const atBottomLeft: c_uint = kAlignBottomLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atright?language=objc)
 pub const atRight: c_uint = kAlignRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atcenterright?language=objc)
 pub const atCenterRight: c_uint = kAlignCenterRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/attopright?language=objc)
 pub const atTopRight: c_uint = kAlignTopRight;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507703-anonymous/atbottomright?language=objc)
 pub const atBottomRight: c_uint = kAlignBottomRight;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconalignmenttype?language=objc)
 pub type IconAlignmentType = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformnone?language=objc)
 pub const kTransformNone: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformdisabled?language=objc)
 pub const kTransformDisabled: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformoffline?language=objc)
 pub const kTransformOffline: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformopen?language=objc)
 pub const kTransformOpen: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel1?language=objc)
 pub const kTransformLabel1: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel2?language=objc)
 pub const kTransformLabel2: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel3?language=objc)
 pub const kTransformLabel3: c_uint = 0x0300;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel4?language=objc)
 pub const kTransformLabel4: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel5?language=objc)
 pub const kTransformLabel5: c_uint = 0x0500;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel6?language=objc)
 pub const kTransformLabel6: c_uint = 0x0600;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformlabel7?language=objc)
 pub const kTransformLabel7: c_uint = 0x0700;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformselected?language=objc)
 pub const kTransformSelected: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformselecteddisabled?language=objc)
 pub const kTransformSelectedDisabled: c_uint = kTransformSelected | kTransformDisabled;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformselectedoffline?language=objc)
 pub const kTransformSelectedOffline: c_uint = kTransformSelected | kTransformOffline;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507672-anonymous/ktransformselectedopen?language=objc)
 pub const kTransformSelectedOpen: c_uint = kTransformSelected | kTransformOpen;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttnone?language=objc)
 pub const ttNone: c_uint = kTransformNone;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttdisabled?language=objc)
 pub const ttDisabled: c_uint = kTransformDisabled;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttoffline?language=objc)
 pub const ttOffline: c_uint = kTransformOffline;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttopen?language=objc)
 pub const ttOpen: c_uint = kTransformOpen;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel1?language=objc)
 pub const ttLabel1: c_uint = kTransformLabel1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel2?language=objc)
 pub const ttLabel2: c_uint = kTransformLabel2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel3?language=objc)
 pub const ttLabel3: c_uint = kTransformLabel3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel4?language=objc)
 pub const ttLabel4: c_uint = kTransformLabel4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel5?language=objc)
 pub const ttLabel5: c_uint = kTransformLabel5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel6?language=objc)
 pub const ttLabel6: c_uint = kTransformLabel6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttlabel7?language=objc)
 pub const ttLabel7: c_uint = kTransformLabel7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttselected?language=objc)
 pub const ttSelected: c_uint = kTransformSelected;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttselecteddisabled?language=objc)
 pub const ttSelectedDisabled: c_uint = kTransformSelectedDisabled;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttselectedoffline?language=objc)
 pub const ttSelectedOffline: c_uint = kTransformSelectedOffline;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507763-anonymous/ttselectedopen?language=objc)
 pub const ttSelectedOpen: c_uint = kTransformSelectedOpen;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icontransformtype?language=objc)
 pub type IconTransformType = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorlarge1bit?language=objc)
 pub const kSelectorLarge1Bit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorlarge4bit?language=objc)
 pub const kSelectorLarge4Bit: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorlarge8bit?language=objc)
 pub const kSelectorLarge8Bit: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorlarge32bit?language=objc)
 pub const kSelectorLarge32Bit: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorlarge8bitmask?language=objc)
 pub const kSelectorLarge8BitMask: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorsmall1bit?language=objc)
 pub const kSelectorSmall1Bit: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorsmall4bit?language=objc)
 pub const kSelectorSmall4Bit: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorsmall8bit?language=objc)
 pub const kSelectorSmall8Bit: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorsmall32bit?language=objc)
 pub const kSelectorSmall32Bit: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorsmall8bitmask?language=objc)
 pub const kSelectorSmall8BitMask: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectormini1bit?language=objc)
 pub const kSelectorMini1Bit: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectormini4bit?language=objc)
 pub const kSelectorMini4Bit: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectormini8bit?language=objc)
 pub const kSelectorMini8Bit: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorhuge1bit?language=objc)
 pub const kSelectorHuge1Bit: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorhuge4bit?language=objc)
 pub const kSelectorHuge4Bit: c_uint = 0x02000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorhuge8bit?language=objc)
 pub const kSelectorHuge8Bit: c_uint = 0x04000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorhuge32bit?language=objc)
 pub const kSelectorHuge32Bit: c_uint = 0x08000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorhuge8bitmask?language=objc)
 pub const kSelectorHuge8BitMask: c_uint = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectoralllargedata?language=objc)
 pub const kSelectorAllLargeData: c_uint = 0x000000FF;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorallsmalldata?language=objc)
 pub const kSelectorAllSmallData: c_uint = 0x0000FF00;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorallminidata?language=objc)
 pub const kSelectorAllMiniData: c_uint = 0x00FF0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorallhugedata?language=objc)
 pub const kSelectorAllHugeData: c_uint = 0xFF000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorall1bitdata?language=objc)
 pub const kSelectorAll1BitData: c_uint =
     kSelectorLarge1Bit | kSelectorSmall1Bit | kSelectorMini1Bit | kSelectorHuge1Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorall4bitdata?language=objc)
 pub const kSelectorAll4BitData: c_uint =
     kSelectorLarge4Bit | kSelectorSmall4Bit | kSelectorMini4Bit | kSelectorHuge4Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorall8bitdata?language=objc)
 pub const kSelectorAll8BitData: c_uint =
     kSelectorLarge8Bit | kSelectorSmall8Bit | kSelectorMini8Bit | kSelectorHuge8Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorall32bitdata?language=objc)
 pub const kSelectorAll32BitData: c_uint =
     kSelectorLarge32Bit | kSelectorSmall32Bit | kSelectorHuge32Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507713-anonymous/kselectorallavailabledata?language=objc)
 pub const kSelectorAllAvailableData: c_uint = 0xFFFFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconselectorvalue?language=objc)
 pub type IconSelectorValue = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svlarge1bit?language=objc)
 pub const svLarge1Bit: c_uint = kSelectorLarge1Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svlarge4bit?language=objc)
 pub const svLarge4Bit: c_uint = kSelectorLarge4Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svlarge8bit?language=objc)
 pub const svLarge8Bit: c_uint = kSelectorLarge8Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svsmall1bit?language=objc)
 pub const svSmall1Bit: c_uint = kSelectorSmall1Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svsmall4bit?language=objc)
 pub const svSmall4Bit: c_uint = kSelectorSmall4Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svsmall8bit?language=objc)
 pub const svSmall8Bit: c_uint = kSelectorSmall8Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svmini1bit?language=objc)
 pub const svMini1Bit: c_uint = kSelectorMini1Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svmini4bit?language=objc)
 pub const svMini4Bit: c_uint = kSelectorMini4Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svmini8bit?language=objc)
 pub const svMini8Bit: c_uint = kSelectorMini8Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svalllargedata?language=objc)
 pub const svAllLargeData: c_uint = kSelectorAllLargeData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svallsmalldata?language=objc)
 pub const svAllSmallData: c_uint = kSelectorAllSmallData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svallminidata?language=objc)
 pub const svAllMiniData: c_uint = kSelectorAllMiniData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svall1bitdata?language=objc)
 pub const svAll1BitData: c_uint = kSelectorAll1BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svall4bitdata?language=objc)
 pub const svAll4BitData: c_uint = kSelectorAll4BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svall8bitdata?language=objc)
 pub const svAll8BitData: c_uint = kSelectorAll8BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507687-anonymous/svallavailabledata?language=objc)
 pub const svAllAvailableData: c_uint = kSelectorAllAvailableData;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconactionprocptr?language=objc)
 pub type IconActionProcPtr =
     Option<unsafe extern "C-unwind" fn(ResType, *mut Handle, *mut c_void) -> OSErr>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icongetterprocptr?language=objc)
 pub type IconGetterProcPtr = Option<unsafe extern "C-unwind" fn(ResType, *mut c_void) -> Handle>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/iconactionupp?language=objc)
 pub type IconActionUPP = IconActionProcPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/icongetterupp?language=objc)
 pub type IconGetterUPP = IconGetterProcPtr;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462738-newiconactionupp?language=objc)
-    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -260,8 +146,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1458777-newicongetterupp?language=objc)
-    ///
     /// # Safety
     ///
     /// `user_routine` must be implemented correctly.
@@ -269,8 +153,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461028-disposeiconactionupp?language=objc)
-    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -278,8 +160,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461061-disposeicongetterupp?language=objc)
-    ///
     /// # Safety
     ///
     /// `user_upp` must be implemented correctly.
@@ -287,8 +167,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464116-invokeiconactionupp?language=objc)
-    ///
     /// # Safety
     ///
     /// - `the_icon` must be a valid pointer.
@@ -303,8 +181,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1460976-invokeicongetterupp?language=objc)
-    ///
     /// # Safety
     ///
     /// - `your_data_ptr` must be a valid pointer.
@@ -316,19 +192,13 @@ extern "C-unwind" {
     ) -> Handle;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ploticonrefflags?language=objc)
 pub type PlotIconRefFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507743-anonymous/kploticonrefnormalflags?language=objc)
 pub const kPlotIconRefNormalFlags: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507743-anonymous/kploticonrefnoimage?language=objc)
 pub const kPlotIconRefNoImage: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1507743-anonymous/kploticonrefnomask?language=objc)
 pub const kPlotIconRefNoMask: c_uint = 1 << 2;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1459977-iconreftoiconfamily?language=objc)
-    ///
     /// # Safety
     ///
     /// - `the_icon_ref` must be a valid pointer.
@@ -342,8 +212,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462050-seticonfamilydata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -353,8 +221,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462743-geticonfamilydata?language=objc)
-    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -363,8 +229,6 @@ extern "C-unwind" {
     pub fn GetIconFamilyData(icon_family: IconFamilyHandle, icon_type: OSType, h: Handle) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1461049-iconrefcontainscgpoint?language=objc)
-///
 /// # Safety
 ///
 /// - `test_pt` must be a valid pointer.
@@ -400,8 +264,6 @@ pub unsafe extern "C-unwind" fn IconRefContainsCGPoint(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462553-iconrefintersectscgrect?language=objc)
-///
 /// # Safety
 ///
 /// - `test_rect` must be a valid pointer.
@@ -437,8 +299,6 @@ pub unsafe extern "C-unwind" fn IconRefIntersectsCGRect(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464005-iconreftohishape?language=objc)
-///
 /// # Safety
 ///
 /// - `icon_rect` must be a valid pointer.
@@ -464,8 +324,6 @@ pub unsafe extern "C-unwind" fn IconRefToHIShape(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1464419-isiconrefmaskempty?language=objc)
-///
 /// # Safety
 ///
 /// `icon_ref` must be a valid pointer.
@@ -480,8 +338,6 @@ pub unsafe extern "C-unwind" fn IsIconRefMaskEmpty(icon_ref: IconRef) -> bool {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1463088-geticonrefvariant?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer.

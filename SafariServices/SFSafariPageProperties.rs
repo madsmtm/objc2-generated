@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafaripageproperties?language=objc)
+    /// An object that captures information about a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// Use the properties object to retrieve page information, such as the current URL, page title, active status, and private browsing status.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSafariPageProperties;

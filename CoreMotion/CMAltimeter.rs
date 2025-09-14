@@ -7,11 +7,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltitudehandler?language=objc)
+/// A block for receiving relative altitude data.
+///
+/// Parameters:
+/// - altitudeData: The relative change in altitude data. If there’s an error generating the data, this parameter is `nil`.
+///
+/// - error: The error object. Returns `nil` if the altimeter successfully delivers the altitude data. When an error occurs, you can use the information in the provided object to recover the data or to alert the user.
+///
+///
+/// ## Discussion
+///
+/// You pass a block of this type to the altimeter object’s [`startRelativeAltitudeUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmaltimeter/startrelativealtitudeupdates(to:withhandler:)) method when starting the delivery of altitude data.
+///
+///
 #[cfg(all(feature = "CMAltitude", feature = "CMLogItem", feature = "block2"))]
 pub type CMAltitudeHandler = *mut block2::DynBlock<dyn Fn(*mut CMAltitudeData, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmabsolutealtitudehandler?language=objc)
+/// A block for receiving absolute altitude data.
+///
+/// Parameters:
+/// - altitudeData: The current altitude for the device. If there’s an error generating the data, this parameter is `nil`.
+///
+/// - error: The error object. Returns `nil` if the altimeter successfully delivers the altitude data. When an error occurs, you can use the information in the provided object to recover the data or to alert the user.
+///
+///
+/// ## Discussion
+///
+/// You pass a block of this type to the altimeter object’s [`startAbsoluteAltitudeUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmaltimeter/startabsolutealtitudeupdates(to:withhandler:)) method when starting the delivery of altitude data.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Absolute altitude is only available on iPhone 12 and later and Apple Watch 6 or SE and later.
+///
+///
+///
+/// </div>
+///
 #[cfg(all(
     feature = "CMAbsoluteAltitude",
     feature = "CMLogItem",
@@ -21,7 +53,27 @@ pub type CMAbsoluteAltitudeHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltimeter?language=objc)
+    /// An object that initiates the delivery of altitude-related changes.
+    ///
+    /// ## Overview
+    ///
+    /// Altitude events report changes in both the relative and absolute altitude. For example, a hiking app could use this object to track the user’s elevation change over the course of a hike, or to report their current absolute altitude during the hike.
+    ///
+    /// Because altitude events may not be available on all devices, always call the [`isRelativeAltitudeAvailable`](https://developer.apple.com/documentation/coremotion/cmaltimeter/isrelativealtitudeavailable()) method before starting relative altitude updates, and call [`isAbsoluteAltitudeAvailable`](https://developer.apple.com/documentation/coremotion/cmaltimeter/isabsolutealtitudeavailable()) before starting absolute altitude updates.
+    ///
+    /// After checking the availability of altitude data, call the [`startRelativeAltitudeUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmaltimeter/startrelativealtitudeupdates(to:withhandler:)) method to start receiving relative altitude data, or call the [`startAbsoluteAltitudeUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmaltimeter/startabsolutealtitudeupdates(to:withhandler:)) method for absolute altitude data.
+    ///
+    /// Core Motion generates events at regular intervals (regardless of whether the data has changed) and delivers them to the block you specified. When you no longer need the event data, call the [`stopRelativeAltitudeUpdates`](https://developer.apple.com/documentation/coremotion/cmaltimeter/stoprelativealtitudeupdates()) or [`stopAbsoluteAltitudeUpdates`](https://developer.apple.com/documentation/coremotion/cmaltimeter/stopabsolutealtitudeupdates()) methods respectively.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To use this API, you must include the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app’s `Info.plist` file and provide a usage description string for this key. The usage description appears in the prompt that the user must accept the first time the system asks the user to access motion data for your app. If you don’t include a usage description string, your app crashes when you call this API.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMAltimeter;

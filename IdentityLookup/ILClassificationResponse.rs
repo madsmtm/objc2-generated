@@ -8,9 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A response to an ILClassificationRequest.
+    /// A response object that tells the system how to handle the reported communications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationresponse?language=objc)
+    /// ## Overview
+    ///
+    /// To work in areas where Wi-Fi connections and cellular data may be unreliable, the extension sends the response using an SMS message. As long as the action isn’t [`ILClassificationActionNone`](https://developer.apple.com/documentation/identitylookup/ilclassificationaction/none), the extension creates an SMS message to the number provided by the `ILClassificationExtensionSMSReportDestination` key in the extension’s `info.plist` file.
+    ///
+    /// The message’s body contains a JSON string with both the classification action and the contents of the user info dictionary. For more information, see [`NSJSONSerialization`](https://developer.apple.com/documentation/foundation/jsonserialization).
+    ///
+    ///
+    /// A response to an ILClassificationRequest.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILClassificationResponse;

@@ -4,49 +4,70 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A structure that defines dictionary keys to configure the caption converter and validator.
 /// Keys for the captions settings dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsettingskey?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionSettingsKey = NSString;
 
 extern "C" {
-    /// Indicates the output media type of a caption conversion operation. For example, AVMediaTypeClosedCaption.
+    /// A key that identifies the output media type of a caption conversion operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsettingskey/mediatype?language=objc)
+    /// ## Discussion
+    ///
+    /// This includes the media types [`AVMediaTypeClosedCaption`](https://developer.apple.com/documentation/avfoundation/avmediatype/closedcaption) or [`AVMediaTypeSubtitle`](https://developer.apple.com/documentation/avfoundation/avmediatype/subtitle), for example.
+    ///
+    ///
+    /// Indicates the output media type of a caption conversion operation. For example, AVMediaTypeClosedCaption.
     pub static AVCaptionMediaTypeKey: Option<&'static AVCaptionSettingsKey>;
 }
 
 extern "C" {
+    /// A key that identifies the output media subtype of a caption conversion operation.
+    ///
+    /// ## Discussion
+    ///
+    /// This key supports numeric and string forms of media subtypes for caption conversions.
+    ///
+    ///
     /// Indicates the output media subtype of a caption conversion operation. For example, [NSNumber numberWithInt:kCMClosedCaptionFormatType_CEA608].
     ///
     /// Both numeric and string forms of media subtypes are accepted for caption conversions, so you could, for example, use
     /// "
     /// c608" instead of [NSNumber numberWithInt:kCMClosedCaptionFormatType_CEA608].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsettingskey/mediasubtype?language=objc)
     pub static AVCaptionMediaSubTypeKey: Option<&'static AVCaptionSettingsKey>;
 }
 
 extern "C" {
+    /// A key that identifies the frame duration that the system uses for the time code.
+    ///
+    /// ## Discussion
+    ///
+    /// Some formats, such as TTML, use time code notation to indicate the timing of a caption. Use this key to specify the frame rate of the time code.
+    ///
+    ///
     /// Frame duration used for the time code.
     ///
     /// Some formats, such as TTML, use time code notation to indicate the timing of a caption. Use the property to specify the frame rate of the time code.
     ///
     /// For example, if the time code steps for every 1001 / 30000 seconds, the value should be CMTime(value: 1001, scale: 30000).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsettingskey/timecodeframeduration?language=objc)
     pub static AVCaptionTimeCodeFrameDurationKey: Option<&'static AVCaptionSettingsKey>;
 }
 
 extern "C" {
+    /// A key that identifies whether the system uses drop frame time code.
+    ///
+    /// ## Discussion
+    ///
+    /// Some formats, such as SCC, use time code notation to indicate the timing of a caption. Use the property to specify whether the system uses the drop frame time code or non-drop frame time code.
+    ///
+    /// The default is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Indicates whether to use drop frame time code.
     ///
     /// Some formats, such as SCC, use time code notation to indicate the timing of a caption. Use the property to specify whether to use the drop frame time code or non-drop frame time code.
     /// When the value for this key is a NSNumber indicating the BOOL YES, the receiver will use the drop frame time code.
     /// When the value for this key is a NSNumber indicating the BOOL NO, the receiver will use the non-drop frame time code.
     /// The default is NO.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsettingskey/usedropframetimecode?language=objc)
     pub static AVCaptionUseDropFrameTimeCodeKey: Option<&'static AVCaptionSettingsKey>;
 }

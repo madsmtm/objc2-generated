@@ -13,11 +13,24 @@ use objc2_io_kit::*;
 use crate::*;
 
 extern_class!(
+    /// The class that claims and configures devices, retrieves descriptors, and sends device requests.
+    ///
+    /// ## Overview
+    ///
+    /// This class enables management of the device state, including sending control requests to the default endpoint 0, configuring the device, and resetting the device. The interest handler also allows monitoring of the device state. The client creates the class and initializes it with [`initWithIOService:options:queue:error:interestHandler:`](https://developer.apple.com/documentation/iousbhost/iousbhostobject/initwithioservice:options:queue:error:interesthandler:).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To prevent other drivers from changing the state of your device, maintain an [`IOUSBHostDevice`](https://developer.apple.com/documentation/kernel/iousbhostdevice) object until you no longer need control over the device.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The IOUSBHostObject representing a USB device
     ///
     /// This class provides functionality to send control requests to the default control endpoint
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevice?language=objc)
     #[unsafe(super(IOUSBHostObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOUSBHostObject")]

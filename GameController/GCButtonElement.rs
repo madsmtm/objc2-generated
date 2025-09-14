@@ -6,13 +6,12 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of an element that represents a momentary switch, such as a push button.
     /// An object conforming to
     /// `GCButtonElement`represents a momentary switch,
     /// such as a push button.  A button's input only asserts while the user is
     /// interacting with it, and then returns to a preferred state (not pressed, not
     /// touched).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcbuttonelement?language=objc)
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCButtonElement: GCPhysicalInputElement {
         #[cfg(all(feature = "GCLinearInput", feature = "GCPressedStateInput"))]

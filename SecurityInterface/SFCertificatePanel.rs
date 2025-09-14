@@ -11,9 +11,24 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// SFCertificatePanel is a panel and sheet interface that displays one or more certificates.
+    /// A panel or sheet that displays one or more certificates.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfcertificatepanel?language=objc)
+    /// ## Overview
+    ///
+    /// The following figure shows an example of a certificate panel.
+    ///
+    ///
+    /// ![Certificate panel](https://docs-assets.developer.apple.com/published/bd8edd7bcf22321f8b84c87b057c8d5c/media-1965612.jpg)
+    ///
+    ///
+    /// An [`SFCertificatePanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatepanel) can optionally display all of the certificates in a certificate chain.
+    ///
+    /// This class displays certificate details, but not trust settings. To display a certificate with editable trust settings in a panel or sheet, use the [`SFCertificateTrustPanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel) class. To display certificates in a custom view, use the [`SFCertificateView`](https://developer.apple.com/documentation/securityinterface/sfcertificateview) class.
+    ///
+    /// Note that for macOS 10.4 and later, this class displays the evaluation status for each certificate. You can modify how the certificates are evaluated by calling the [`setPolicies:`](https://developer.apple.com/documentation/securityinterface/sfcertificatepanel/setpolicies(_:)) method.
+    ///
+    ///
+    /// SFCertificatePanel is a panel and sheet interface that displays one or more certificates.
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFCertificatePanel;

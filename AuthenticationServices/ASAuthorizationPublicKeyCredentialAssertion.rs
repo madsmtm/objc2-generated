@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialassertion?language=objc)
+    /// An interface for establishing a public key-based assertion.
+    ///
+    /// ## Overview
+    ///
+    /// Both [`ASAuthorizationSecurityKeyPublicKeyCredentialAssertion`](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertion) and [`ASAuthorizationPlatformPublicKeyCredentialAssertion`](https://developer.apple.com/documentation/authenticationservices/asauthorizationplatformpublickeycredentialassertion) adhere to this interface.
+    ///
+    ///
     #[cfg(all(
         feature = "ASAuthorizationCredential",
         feature = "ASPublicKeyCredential"

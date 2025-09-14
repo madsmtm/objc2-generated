@@ -11,13 +11,26 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
+    /// A panel or sheet that lets the user edit the trust settings in any of the certificates in a certificate chain.
+    ///
+    /// ## Overview
+    ///
+    /// The following figure shows an example of a certificate trust panel.
+    ///
+    ///
+    /// ![Certificate trust panel](https://docs-assets.developer.apple.com/published/0f9063c88a6bdf97bfa3276c530ac319/media-1965607.jpg)
+    ///
+    ///
+    /// You can use this class to enable a user to make trust decisions when one or more certificates required for an operation are invalid or cannot be verified.
+    ///
+    /// To display a certificate in a panel or sheet without editable trust settings, use the [`SFCertificatePanel`](https://developer.apple.com/documentation/securityinterface/sfcertificatepanel) class. To display certificates in a custom view, use the [`SFCertificateView`](https://developer.apple.com/documentation/securityinterface/sfcertificateview) class.
+    ///
+    ///
     /// SFCertificateTrustPanel is a panel and sheet interface that allows a user to make trust decisions
     /// when one or more certificates involved in an operation are invalid or cannot be verified. It should be used
     /// whenever confirmation is required before proceeding with a certificate-related operation. It can also be
     /// displayed as an informative alert without requiring a decision to be made (if the operation or transaction
     /// has already occurred.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfcertificatetrustpanel?language=objc)
     #[unsafe(super(SFCertificatePanel, NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SFCertificatePanel")]

@@ -13,14 +13,38 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// A Core Animation layer that displays video from a camera device.
+    ///
+    /// ## Overview
+    ///
+    /// Use this layer to provide a preview of the content the camera captures. A convenient way to use this class in iOS is to set it as the backing layer for a view as shown below.
+    ///
+    /// ```swift
+    /// class PreviewView: UIView {
+    ///     // Use a capture video preview layer as the view's backing layer.
+    ///     override class var layerClass: AnyClass {
+    ///         AVCaptureVideoPreviewLayer.self
+    ///     }
+    ///     
+    ///     var previewLayer: AVCaptureVideoPreviewLayer {
+    ///         layer as! AVCaptureVideoPreviewLayer
+    ///     }
+    ///     
+    ///     // Connect the layer to a capture session.
+    ///     var session: AVCaptureSession? {
+    ///         get { previewLayer.session }
+    ///         set { previewLayer.session = newValue }
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     /// A CoreAnimation layer subclass for previewing the visual output of an AVCaptureSession.
     ///
     ///
     /// An AVCaptureVideoPreviewLayer instance is a subclass of CALayer and is therefore suitable for insertion in a layer hierarchy as part of a graphical interface. One creates an AVCaptureVideoPreviewLayer instance with the capture session to be previewed, using +layerWithSession: or -initWithSession:. Using the
     /// "
     /// videoGravity" property, one can influence how content is viewed relative to the layer bounds. On some hardware configurations, the orientation of the layer can be manipulated using @"orientation" and @"mirrored".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideopreviewlayer?language=objc)
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

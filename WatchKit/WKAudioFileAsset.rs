@@ -7,12 +7,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that stores a reference to an audio file and provides metadata information about that file.
+    ///
+    /// ## Overview
+    ///
+    /// You create assets when you want to play audio from your watchOS app. Use the audio file asset object to store the location of the file and any Now Playing information you want displayed while the audio is playing.
+    ///
+    /// Audio assets must refer to files on the local file system. If you have audio files that are stored on a server, you must download them to the user’s Apple Watch before attempting to play them using an audio file asset object.
+    ///
+    /// It is recommended that you encode audio files using 32 kbps stereo AAC. You may use other bit rates, or the LPCM encoding, as preferred for your content.
+    ///
+    /// To play an audio file asset, wrap it in a [`WKAudioFilePlayerItem`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayeritem) object. The player item object stores information about the playback status of the asset and works with a [`WKAudioFilePlayer`](https://developer.apple.com/documentation/watchkit/wkaudiofileplayer) object to coordinate playback. If you want to queue several audio files for playback, you manage those items using a [`WKAudioFileQueuePlayer`](https://developer.apple.com/documentation/watchkit/wkaudiofilequeueplayer) object.
+    ///
+    ///
     /// WatchKit corollary to AVFoundation AVAsset abstract class
     ///
     ///
     /// This class provides the functionality of AVAsset for Watch OS apps. Only file-based assets are allowed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiofileasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafariextensionhandling?language=objc)
+    /// A protocol for implementing event handling in a Safari app extension.
     pub unsafe trait SFSafariExtensionHandling: NSObjectProtocol {
         #[cfg(feature = "SFSafariPage")]
         /// This is called when a content script from an extension dispatches a message to the app extension.

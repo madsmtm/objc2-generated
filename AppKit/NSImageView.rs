@@ -7,30 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Values that can be used to enable or constrain display of High Dynamic Range (HDR) content in NSImageViews. Displaying HDR content in an NSImageView requires that the assigned NSImage has HDR content in the ITU-R 2100 color space and also that the output device has Extended Dynamic Range (EDR) capabilities.
+/// Describes how High Dynamic Range (HDR) image content displays.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange?language=objc)
+/// ## Overview
+///
+/// Use this type to enable or constrain the display of High Dynamic Range (HDR) in an [`NSImageView`](https://developer.apple.com/documentation/appkit/nsimageview). Displaying HDR content in an [`NSImageView`](https://developer.apple.com/documentation/appkit/nsimageview) requires that the [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) has HDR content in the ITU-R 2100 color space and that the output device has Extended Dynamic Range (EDR) capabilities.
+///
+///
+/// Values that can be used to enable or constrain display of High Dynamic Range (HDR) content in NSImageViews. Displaying HDR content in an NSImageView requires that the assigned NSImage has HDR content in the ITU-R 2100 color space and also that the output device has Extended Dynamic Range (EDR) capabilities.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageDynamicRange(pub NSInteger);
 impl NSImageDynamicRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/unspecified?language=objc)
+    /// Indicates that the dynamic range treatment of the image is unknown or otherwise unspecified.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`imageDynamicRange`](https://developer.apple.com/documentation/appkit/nsimageview/imagedynamicrange) property can return this type when the system can’t determine the High Dynamic Range (HDR) of the image. Otherwise, the use of this value isn’t encouraged and results in undefined behavior.
+    ///
+    ///
     #[doc(alias = "NSImageDynamicRangeUnspecified")]
     pub const Unspecified: Self = Self(-1);
+    /// Restricts the image content dynamic range to the standard range regardless of the actual range of the image content.
     /// Restrict the image content dynamic range to the standard range regardless of the actual range of the image content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/standard?language=objc)
     #[doc(alias = "NSImageDynamicRangeStandard")]
     pub const Standard: Self = Self(0);
+    /// Allows for constrained High Dynamic Range (HDR) image content which is useful for mixing HDR and Standard Dynamic Range (SDR) content.
     /// Allow constrained HDR image content. Useful when mixing HDR and SDR content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/constrainedhigh?language=objc)
     #[doc(alias = "NSImageDynamicRangeConstrainedHigh")]
     pub const ConstrainedHigh: Self = Self(1);
+    /// Allows image content to use extended dynamic range if it has dynamic range content.
     /// Allow image content to use extended dynamic range if it has high dynamic range content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange/high?language=objc)
     #[doc(alias = "NSImageDynamicRangeHigh")]
     pub const High: Self = Self(2);
 }
@@ -44,7 +52,21 @@ unsafe impl RefEncode for NSImageDynamicRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview?language=objc)
+    /// A display of image data in a frame.
+    ///
+    /// ## Overview
+    ///
+    /// Image views can be static or editable. A static image view only displays the image that you specify. An editable image view object lets the user change the displayed image. You can also configure an image view to allow copying, pasting, deleting, and dragging of the image.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  An image view calls its action method only when the user drags an image into the image view’s bounds, and the image view must be editable to receive dragged images. If you want to display an image and respond to clicks in the image, use an [NSButton](https://developer.apple.com/library/archive/technotes/tn2219/_index.html#//apple_ref/doc/uid/DTS10004624-CH1-SUBSECTION12) object instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

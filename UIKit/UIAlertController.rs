@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum?language=objc)
+/// Styles to apply to action buttons in an alert.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertActionStyle(pub NSInteger);
 impl UIAlertActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/default?language=objc)
+    /// Apply the default style to the action’s button.
     #[doc(alias = "UIAlertActionStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/cancel?language=objc)
+    /// Apply a style that indicates the action cancels the operation and leaves things unchanged.
     #[doc(alias = "UIAlertActionStyleCancel")]
     pub const Cancel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction/style-swift.enum/destructive?language=objc)
+    /// Apply a style that indicates the action might change or delete data.
     #[doc(alias = "UIAlertActionStyleDestructive")]
     pub const Destructive: Self = Self(2);
 }
@@ -32,16 +32,22 @@ unsafe impl RefEncode for UIAlertActionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller/style?language=objc)
+/// Constants indicating the type of alert to display.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerStyle(pub NSInteger);
 impl UIAlertControllerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller/style/actionsheet?language=objc)
+    /// An action sheet displayed by the view controller that presented it.
+    ///
+    /// ## Discussion
+    ///
+    /// Use an action sheet to present the user with a set of alternatives for how to proceed with a given task. You can also use this style to prompt the user to confirm a potentially dangerous action. This alert style isn’t supported by tvOS; use [`UIAlertControllerStyleAlert`](https://developer.apple.com/documentation/uikit/uialertcontroller/style/alert) instead.
+    ///
+    ///
     #[doc(alias = "UIAlertControllerStyleActionSheet")]
     pub const ActionSheet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller/style/alert?language=objc)
+    /// An alert displayed modally for the app.
     #[doc(alias = "UIAlertControllerStyleAlert")]
     pub const Alert: Self = Self(1);
 }
@@ -54,16 +60,24 @@ unsafe impl RefEncode for UIAlertControllerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity?language=objc)
+/// Constants for specifying the severity of an alert in apps built with Mac Catalyst.
+///
+/// ## Overview
+///
+/// This enumeration defines the severity options used by the [`severity`](https://developer.apple.com/documentation/uikit/uialertcontroller/severity) property of [`UIAlertController`](https://developer.apple.com/documentation/uikit/uialertcontroller). In apps built with Mac Catalyst, the severity determines the style of the presented alert. A [`UIAlertControllerSeverityCritical`](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/critical) alert appears with a caution icon, and an alert with a [`UIAlertControllerSeverityDefault`](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/default) severity doesn’t. UIKit ignores the alert severity on iOS.
+///
+/// You should only use the [`UIAlertControllerSeverityCritical`](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/critical) severity if an alert truly requires special attention from the user. For more information, see the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/macos/windows-and-views/alerts/) on alerts.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerSeverity(pub NSInteger);
 impl UIAlertControllerSeverity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/default?language=objc)
+    /// Indicates that the system should present the alert using the standard alert style.
     #[doc(alias = "UIAlertControllerSeverityDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity/critical?language=objc)
+    /// Indicates that the system should present the alert using the critical, or caution, style.
     #[doc(alias = "UIAlertControllerSeverityCritical")]
     pub const Critical: Self = Self(1);
 }
@@ -77,7 +91,13 @@ unsafe impl RefEncode for UIAlertControllerSeverity {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertaction?language=objc)
+    /// An action that can be taken when the user taps a button in an alert.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class to configure information about a single action, including the title to display in the button, any styling information, and a handler to execute when the user taps the button. After creating an alert action object, add it to a [`UIAlertController`](https://developer.apple.com/documentation/uikit/uialertcontroller) object before displaying the corresponding alert to the user.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -141,7 +161,26 @@ impl UIAlertAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontroller?language=objc)
+    /// An object that displays an alert message.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to configure alerts and action sheets with the message that you want to display and the actions from which to choose. After configuring the alert controller with the actions and style you want, present it using the [`presentViewController:animated:completion:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/present(_:animated:completion:)) method. UIKit displays alerts and action sheets modally over your app’s content.
+    ///
+    /// In addition to displaying a message to a user, you can associate actions with your alert controller to give people a way to respond. For each action you add using the [`addAction:`](https://developer.apple.com/documentation/uikit/uialertcontroller/addaction(_:)) method, the alert controller configures a button with the action details. When a person taps that action, the alert controller executes the block you provided when creating the action object. The following code shows how to configure an alert with a single action.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let alert = UIAlertController(title: \"My Alert\", message: \"This is an alert.\", preferredStyle: .alert) ", "alert.addAction(UIAlertAction(title: NSLocalizedString(\"OK\", comment: \"Default action\"), style: .default, handler: { _ in ", "NSLog(\"The \\\"OK\\\" alert occured.\")", "}))", "self.present(alert, animated: true, completion: nil)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIAlertController* alert = [UIAlertController alertControllerWithTitle:@\"My Alert\"", "                               message:@\"This is an alert.\"", "                               preferredStyle:UIAlertControllerStyleAlert];", " ", "UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@\"OK\" style:UIAlertActionStyleDefault", "   handler:^(UIAlertAction * action) {}];", " ", "[alert addAction:defaultAction];", "[self presentViewController:alert animated:YES completion:nil];"], metadata: None }] }] })
+    /// When configuring an alert with the [`UIAlertControllerStyleAlert`](https://developer.apple.com/documentation/uikit/uialertcontroller/style/alert) style, you can also add text fields to the alert interface. The alert controller lets you provide a block for configuring your text fields prior to display. The alert controller maintains a reference to each text field so that you can access its value later.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The [`UIAlertController`](https://developer.apple.com/documentation/uikit/uialertcontroller) class is intended to be used as-is and doesn’t support subclassing. The view hierarchy for this class is private and must not be modified.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

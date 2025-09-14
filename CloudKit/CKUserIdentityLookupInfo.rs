@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckuseridentity/lookupinfo-swift.class?language=objc)
+    /// The criteria to use when searching for discoverable iCloud users.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object when you want to discover the identities of your app’s users with [`CKDiscoverUserIdentitiesOperation`](https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation), or to create a share’s participants with [`CKFetchShareParticipantsOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchshareparticipantsoperation).
+    ///
+    /// You create individual instances by providing an email address, phone number, or user record ID. Alternatively, create an array of objects all at once by using one of the convenience methods, such as [`lookupInfosWithEmails:`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/lookupinfo-swift.class/lookupinfos(withemails:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKUserIdentityLookupInfo;

@@ -4,19 +4,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposecontrollerdeferredaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MFMailComposeControllerDeferredAction(pub NSInteger);
 impl MFMailComposeControllerDeferredAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposecontrollerdeferredaction/none?language=objc)
     #[doc(alias = "MFMailComposeControllerDeferredActionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposecontrollerdeferredaction/adjustinsertionpoint?language=objc)
     #[doc(alias = "MFMailComposeControllerDeferredActionAdjustInsertionPoint")]
     pub const AdjustInsertionPoint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmailcomposecontrollerdeferredaction/addmissingrecipients?language=objc)
     #[doc(alias = "MFMailComposeControllerDeferredActionAddMissingRecipients")]
     pub const AddMissingRecipients: Self = Self(2);
 }

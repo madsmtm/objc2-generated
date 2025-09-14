@@ -6,23 +6,59 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions?language=objc)
+/// Options to use when reading the contents or attributes of a file or directory.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorReadingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/withoutchanges?language=objc)
+///
+/// ## Discussion
+///
+/// Specify this constant if your code does not need other objects to save changes first. If you do _not_ specify this constant, the [`savePresentedItemChangesWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/savepresenteditemchanges(completionhandler:)) method of relevant file presenters is called before your code reads the item.
+///
+///
         #[doc(alias = "NSFileCoordinatorReadingWithoutChanges")]
         const WithoutChanges = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/resolvessymboliclink?language=objc)
+///
+/// ## Discussion
+///
+/// Specify this constant if you want an item that might be a symbolic link to resolve to the file pointed to by that link (instead of to the link itself). When you use this option, the system provides the resolved URL to the accessor block in place of the original URL.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  This option cannot be used with the [`prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/prepare(forreadingitemsat:options:writingitemsat:options:error:byaccessor:)) method.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSFileCoordinatorReadingResolvesSymbolicLink")]
         const ResolvesSymbolicLink = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/immediatelyavailablemetadataonly?language=objc)
+/// Specify this constant if you want to read an item’s metadata without triggering a download.
+///
+/// ## Discussion
+///
+/// Specifying this option grants the coordinated read immediately (barring any conflicts with other readers, writers or file presenters on the same system), instead of waiting for the system to download the file’s contents and any additional metadata (for example, conflicting versions or thumbnails).
+///
+/// Attempting to actually read the item’s contents during this coordinated read may give unexpected results or fail.
+///
+///
         #[doc(alias = "NSFileCoordinatorReadingImmediatelyAvailableMetadataOnly")]
         const ImmediatelyAvailableMetadataOnly = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/readingoptions/foruploading?language=objc)
+/// Specify this content when reading an item for the purpose of uploading its contents.
+///
+/// ## Discussion
+///
+/// When this option is used, the file coordinator creates a temporary snapshot of the item being read and relinquishes its claim on the original file. This action prevents the read operation from blocking other coordinated writes during a potentially long upload.
+///
+/// If the item being read is a directory (such as a document package), then the snapshot is a new file containing the zipped contents of the directory. The URL passed to the accessor block points to the zipped file.
+///
+/// When using this option, you may upload the document outside the accessor block. However, you should open a file descriptor to the file or relocate the file within the accessor block before doing so. The file coordinator unlinks the file after the block returns, rendering it inaccessible through the URL.
+///
+///
         #[doc(alias = "NSFileCoordinatorReadingForUploading")]
         const ForUploading = 1<<3;
     }
@@ -36,26 +72,60 @@ unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions?language=objc)
+/// Options to use when changing the contents or attributes of a file or directory.
+///
+/// ## Overview
+///
+/// You must specify only one constant at a time for a given write operation.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/fordeleting?language=objc)
+///
+/// ## Discussion
+///
+/// When this constant is specified, the file coordinator calls the [`accommodatePresentedItemDeletionWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/accommodatepresenteditemdeletion(completionhandler:)) or [`accommodatePresentedSubitemDeletionAtURL:completionHandler:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/accommodatepresentedsubitemdeletion(at:completionhandler:)) method of relevant file presenters to give them a chance to make adjustments before the item is deleted.
+///
+///
         #[doc(alias = "NSFileCoordinatorWritingForDeleting")]
         const ForDeleting = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/formoving?language=objc)
+///
+/// ## Discussion
+///
+/// When specified for a directory item, the file coordinator waits for already running read and write operations of the directory’s contents, which were themselves initiated through a file coordinator, to finish before moving the directory. Queued, but not executing, read and write operations on the directory’s contents wait until the move operation finishes.
+///
+/// This option has no effect on files. You can safely use it when moving file-system items without checking to see whether those items are files or directories.
+///
+///
         #[doc(alias = "NSFileCoordinatorWritingForMoving")]
         const ForMoving = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/formerging?language=objc)
+///
+/// ## Discussion
+///
+/// When this constant is specified, the file coordinator calls the [`savePresentedItemChangesWithCompletionHandler:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/savepresenteditemchanges(completionhandler:)) method of relevant file presenters to give them a chance to save their changes before your code makes its changes.
+///
+///
         #[doc(alias = "NSFileCoordinatorWritingForMerging")]
         const ForMerging = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/forreplacing?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies whether the act of writing to the file involves actually replacing the file with a different file (or directory). If the current file coordinator is waiting for another object to move or rename the file, this option treats the operation as the creation of a new file (instead of as the replacement of the old file); otherwise, this constant causes the same behavior as the [`NSFileCoordinatorWritingForDeleting`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/fordeleting) constant. Use this method when the moving or creating an item should replace any item currently stored at that location. To avoid a race condition, use it regardless of whether an item is actually in the way before the writing begins. Do not use this method when simply updating the contents of the existing file.
+///
+///
         #[doc(alias = "NSFileCoordinatorWritingForReplacing")]
         const ForReplacing = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator/writingoptions/contentindependentmetadataonly?language=objc)
+/// Select this option when writing to change the file’s metadata only and not its contents.
+///
+/// ## Discussion
+///
+/// Any changes written to the item’s contents during this coordinated write may not be preserved or may fail. Changing metadata that is related to the item’s content is also not supported, and those changes may not be preserved. For example, changing the value of [`NSURLTagNamesKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/tagnameskey) is supported, but changing the value of [`NSURLContentModificationDateKey`](https://developer.apple.com/documentation/foundation/urlresourcekey/contentmodificationdatekey) is not.
+///
+///
         #[doc(alias = "NSFileCoordinatorWritingContentIndependentMetadataOnly")]
         const ContentIndependentMetadataOnly = 1<<4;
     }
@@ -70,7 +140,13 @@ unsafe impl RefEncode for NSFileCoordinatorWritingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileaccessintent?language=objc)
+    /// The details of a coordinated-read or coordinated-write operation.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class when performing asynchronous operations with a file coordinator using the coordinator’s [`coordinateAccessWithIntents:queue:byAccessor:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/coordinate(with:queue:byaccessor:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileAccessIntent;
@@ -130,7 +206,47 @@ impl DefaultRetained for NSFileAccessIntent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinator?language=objc)
+    /// An object that coordinates the reading and writing of files and directories among file presenters.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator) class coordinates the reading and writing of files and directories among multiple processes and objects in the same process. You use instances of this class as is to read from, write to, modify the attributes of, change the location of, or delete a file or directory, but before your code to perform those actions executes, the file coordinator lets registered file presenter objects perform any tasks that they might require to ensure their own integrity. For example, if you want to change the location of a file, other objects interested in that file need to know where you intend to move it so that they can update their references.
+    ///
+    /// Objects that adopt the [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) protocol must register themselves with the [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator) class to be notified of any pending changes. They do this by calling the [`addFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/addfilepresenter(_:)) class method. A file presenter must balance calls to [`addFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/addfilepresenter(_:)) with a call to [`removeFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/removefilepresenter(_:)) before being released, even in a garbage-collected application. The file presenter class maintains a list of active file presenter objects in the current application and uses that list, plus the file coordinator classes in other processes, to deliver notifications to all of the objects interested in a particular item.
+    ///
+    /// Instances of [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator) are meant to be used on a per-file-operation basis, where a file operation is something like opening and reading the contents of a file or moving a batch of files and directories to a new location. There is no benefit to keeping a file coordinator object past the length of the planned operation. In fact, because file coordinators retain file presenter objects, keeping one around could prevent the file presenter objects from being released in a timely manner.
+    ///
+    /// For information about implementing a file presenter object to receive file-related notifications, see [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter).
+    ///
+    /// ### File Presenters and iOS
+    ///
+    /// If your app or extension enters the background with an active file presenter, it may be terminated by the system in order to prevent deadlock on that file. To prevent this situation, call [`removeFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/removefilepresenter(_:)) to remove the file presenter in the [`applicationDidEnterBackground:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationdidenterbackground(_:)) method or in response to a [`UIApplicationDidEnterBackgroundNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didenterbackgroundnotification) notification. Call [`addFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/addfilepresenter(_:)) to add the file presenter again in the [`applicationWillEnterForeground:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillenterforeground(_:)) method or in response to a [`UIApplicationWillEnterForegroundNotification`](https://developer.apple.com/documentation/uikit/uiapplication/willenterforegroundnotification) notification.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class automatically removes itself when your app goes to the background. It automatically adds itself again when your app returns to the foreground.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### File Coordinators and iOS
+    ///
+    /// A coordinated read or write will automatically begin a background task when granted, similar to one created with the [`beginBackgroundTaskWithExpirationHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/beginbackgroundtask(expirationhandler:)) method. This helps ensure that your app or extension has sufficient time to finish the read or write operation if it’s suspended, without creating a deadlock on access to that file by other processes. If a process is suspended while waiting for a coordinated read or write to be granted, the request is canceled, and an `NSError` object with the code [`NSUserCancelledError`](https://developer.apple.com/documentation/foundation/nsusercancellederror-swift.var) is produced. If the background task expires, the process is terminated.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class automatically requests additional background time and safely performs coordinated reads and writes when loading and saving the document.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Threading Considerations
+    ///
+    /// Each file coordinator object you create should be used on a single thread only. If you need to coordinate file operations across multiple objects in different threads, each object should create its own file coordinator.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileCoordinator;

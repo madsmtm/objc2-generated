@@ -5,13 +5,53 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdedicatedhost?language=objc)
+/// Declares dedicated hosting for the given host.
+///
+/// ## Discussion
+///
+/// In dedicated hosting, the host has exactly one guest (the one this call specifies) and the host spends all of its time running that guest (or running on its behalf). This declaration is irreversible for the lifetime of the host. If the guest terminates, the host terminates as well. Any code object that refers to a dedicated host is assumed by the system to be referring to the guest. Note that this is a declaration about the given host, and is not binding on other hosts on either side of the hosting chain (though they may declare dedicated hosting as well).
+///
+/// It is invalid to declare dedicated hosting if the host already has other guests, and it is invalid to introduce additional guests for this host after this call.
+///
+///
 pub const kSecCSDedicatedHost: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsgenerateguesthash?language=objc)
+/// Ask the host to generate the unique binary identifier ([`kSecCodeInfoUnique`](https://developer.apple.com/documentation/security/kseccodeinfounique)) from the copy on disk at the path given.
+///
+/// ## Discussion
+///
+/// Ideally, when the host launches the guest code it should bring the signature in the code directory into memory at the same time, create the unique binary identifier by calculating the SHA-1 hash of the signature, and pass it to the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function as the [`kSecGuestAttributeHash`](https://developer.apple.com/documentation/security/ksecguestattributehash) attribute in the dictionary when it creates a guest. Doing so guarantees that the identifier was made from the same version of the code as was loaded into memory. This identifier can be used by the host and other processes to make sure the code has not been altered, because the hash of the code directory is a unique identifier of a particular instance of the signature. The `kSecCSGenerateGuestHash` flag tells Code Signing Services to fetch the signature from disk and do the calculation itself. Having the system create the identifier from the code on disk is convenient but is not the most secure option because it is possible for an attacker with write access to substitute a different copy of the code directory on disk after the code is loaded into memory but before the system generates the identifier.
+///
+///
 pub const kSecCSGenerateGuestHash: u32 = 2;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostcreateguest?language=objc)
+    /// Creates a new guest and describes its initial properties.
+    ///
+    /// Parameters:
+    /// - host: A guest code object identifying the code that is to be the direct host of the new guest. Pass [`kSecNoGuest`](https://developer.apple.com/documentation/security/ksecnoguest) if the process calling this function is to be the host. To create a guest of another guest (extending the hosting chain), pass the guest code object of the guest that is to act as the new guest’s host. If the specified host already has a dedicated guest, then that dedicated guest becomes the actual host of the new guest (unless the dedicated guest also has a dedicated guest, in which case the same algorithm is replied recursively). See [`kSecCSDedicatedHost`](https://developer.apple.com/documentation/security/kseccsdedicatedhost) for a discussion of dedicated hosts.
+    ///
+    /// - status: Code status flags for the new guest (see [`SecCodeStatus`](https://developer.apple.com/documentation/security/seccodestatus)). Note that certain code status flags can be set only once, by the caller of the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function when it creates the guest. In particular, if you do not set the [`valid`](https://developer.apple.com/documentation/security/seccodestatus/valid) flag during creation of the guest, then the new guest is created dynamically invalid and can never become dynamically valid.
+    ///
+    /// - path: The canonical path to the guest’s code on disk. This is the path you would pass to the [`SecStaticCodeCreateWithPath(_:_:_:)`](https://developer.apple.com/documentation/security/secstaticcodecreatewithpath(_:_:_:)) function to make a static code object reference. You must use an absolute path.
+    ///
+    /// - attributes: A key-value dictionary of attributes that can be used to identify this particular guest among all of the caller’s guests. The [`kSecGuestAttributeCanonical`](https://developer.apple.com/documentation/security/ksecguestattributecanonical) attribute—containing the guest’s code object (that is, the [`SecGuestRef`](https://developer.apple.com/documentation/security/secguestref) object returned in the `newGuest` parameter) is automatically added to the guest’s attributes. Pass `NULL` for this parameter if you do not want to establish any other attributes for this guest. Although you can specify any key-value pairs in this attributes dictionary, the keys in [Guest Attribute Dictionary Keys](https://developer.apple.com/documentation/security/guest-attribute-dictionary-keys) are conventionally used for this purpose.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) and [Guest Creation Flags](https://developer.apple.com/documentation/security/guest-creation-flags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior. Pass [`kSecCSDedicatedHost`](https://developer.apple.com/documentation/security/kseccsdedicatedhost) to make the code specified in the `host` parameter the dedicated host for the new guest.
+    ///
+    /// - newGuest: On return, the guest code object that identifies the new guest.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Code that calls this function becomes a code host operating in proxy hosting mode. Subsequently, Code Signing Services caches information about guest code provided by the host when it calls the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest), [`SecHostSetGuestStatus`](https://developer.apple.com/documentation/security/sechostsetgueststatus), and [`SecHostRemoveGuest`](https://developer.apple.com/documentation/security/sechostremoveguest) functions. Code Signing Services uses this information to report hosting status to callers directly without consulting the host. A code host running in proxy hosting mode cannot switch to dynamic hosting mode.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -31,7 +71,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostremoveguest?language=objc)
+    /// Removes a guest from a host.
+    ///
+    /// Parameters:
+    /// - host: The guest code object of the host of the guest. You cannot specify a host of a host here except in the case of a dedicated host. For a dedicated host, the dedicated host is automatically substituted for its guest. See [`kSecCSDedicatedHost`](https://developer.apple.com/documentation/security/kseccsdedicatedhost) for a discussion of dedicated hosts.
+    ///
+    /// - guest: The guest code object for the guest whose guest relationship you wish to terminate.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function removes all memory of the guest-host relationship from the Code Signing Services hosting system. You cannot remove a dedicated guest. The specified guest must have been created using the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function. If you remove a guest that is also a host, all of the guest’s guests are removed, recursively, as well, even if one or more of those guests are dedicated hosts.
+    ///
+    ///
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostRemoveGuest(host: SecGuestRef, guest: SecGuestRef, flags: SecCSFlags)
@@ -39,14 +99,54 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostselectguest?language=objc)
+    /// Makes the calling thread the proxy for a specified guest.
+    ///
+    /// Parameters:
+    /// - guestRef: A guest code object identifying the code on whose behalf the calling thread is to act. To indicate that the calling thread will act on its own behalf, rather than for any guest, pass [`kSecNoGuest`](https://developer.apple.com/documentation/security/ksecnoguest).
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The specified guest must be dynamically valid. This function works both for hosts acting in proxy mode and those acting in dynamic mode. The selected guest setting remains in effect until it is changed or the thread terminates.
+    ///
+    /// This function tells the system that your application is acting on behalf of the selected guest (or on its own behalf if you specify [`kSecNoGuest`](https://developer.apple.com/documentation/security/ksecnoguest) for the `guestRef` parameter). This function acts on a per-thread basis; that is, each of your application’s threads can call this function to select a guest for that thread. Thereafter, the system assumes that any action taken by your application on that thread is on behalf of the selected guest. For example, if your application attempts to access the keychain, the system assumes that the selected guest is the application that is attempting to access the keychain and acts accordingly. You can call this function as often as necessary to act on behalf of as many guests as you wish.
+    ///
+    /// Note that if you are using blocks to implement concurrency, you can’t tell which thread your code will be running on. Therefore, you must make this function call at the beginning of each block to be sure that the guest selection is set correctly for the thread.
+    ///
+    ///
     #[cfg(feature = "CSCommon")]
     #[deprecated]
     pub fn SecHostSelectGuest(guest_ref: SecGuestRef, flags: SecCSFlags) -> OSStatus;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostselectedguest?language=objc)
+    /// Retrieves the handle for the guest currently selected for the calling thread.
+    ///
+    /// Parameters:
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - guestRef: On return, the guest code object of the current selected guest for the calling thread. If no guest is active on this thread (that is, the thread is acting for the host), the value returned is [`kSecNoGuest`](https://developer.apple.com/documentation/security/ksecnoguest).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function may be called in either dynamic hosting mode or proxy hosting mode. If the host has more than one guest, it can set a different selected guest for each thread.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -57,7 +157,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostsetgueststatus?language=objc)
+    /// Updates the status and attributes of a particular guest.
+    ///
+    /// Parameters:
+    /// - guestRef: The guest code object of the code on whose behalf this thread is acting.
+    ///
+    /// - status: A new set of code status flags for the guest (see [`SecCodeStatus`](https://developer.apple.com/documentation/security/seccodestatus). The host must enforce the restrictions on changes to guest status: the [`valid`](https://developer.apple.com/documentation/security/seccodestatus/valid) bit can only be cleared and the [`hard`](https://developer.apple.com/documentation/security/seccodestatus/hard) and [`kill`](https://developer.apple.com/documentation/security/seccodestatus/kill) flags can only be set. Pass the previous guest status to indicate that no change is desired.
+    ///
+    /// - attributes: A key-value dictionary of attributes that can be used to identify this particular guest among all of the caller’s guests. If you include this dictionary, it completely replaces earlier-specified attributes. Pass `NULL` for this parameter if you do not want to change the attributes for this guest. Although you can specify any key-value pairs in this attributes dictionary, the keys in [Guest Attribute Dictionary Keys](https://developer.apple.com/documentation/security/guest-attribute-dictionary-keys) are conventionally used for this purpose.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass `kSecCSDefaultFlags` for standard behavior.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function must be called by a host acting in proxy mode every time the status of a guest changes so that Code Signing Services can update the information cache for that guest. The specified guest must have been created using the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -74,7 +196,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/sechostsethostingport?language=objc)
+    /// Tells code signing services that the calling code will directly respond to hosting inquiries over the given port.
+    ///
+    /// Parameters:
+    /// - hostingPort: A Mach message port with send rights. This port is recorded and handed to parties interested in querying the host about its children.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want to use dynamic hosting mode (see [Guest Code](https://developer.apple.com/documentation/security/code-signing-services#guest-code)), call this function before calling any other code signing services hosting functions. When you call [`SecHostSetHostingPort`](https://developer.apple.com/documentation/security/sechostsethostingport), the calling code takes direct responsibility for answering questions about its guests using the hosting IPC services. After you call this function, you cannot call the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest), [`SecHostRemoveGuest`](https://developer.apple.com/documentation/security/sechostremoveguest), or [`SecHostSetGuestStatus`](https://developer.apple.com/documentation/security/sechostsetgueststatus) functions.
+    ///
+    /// The [`SecHostSelectGuest`](https://developer.apple.com/documentation/security/sechostselectguest) and [`SecHostSelectedGuest`](https://developer.apple.com/documentation/security/sechostselectedguest) functions work after calling this function.
+    ///
+    /// Once you call this function, the calling code must act in dynamic hosting mode; proxy hosting mode is disabled for the lifetime of the calling code.
+    ///
+    /// Dynamic hosting is useful if you have a large host with many guests that are changing status frequently. In that case, it’s more efficient to only respond to requests for information when they’re made than to call the status update functions ([`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest), [`SecHostSetGuestStatus`](https://developer.apple.com/documentation/security/sechostsetgueststatus), or [`SecHostRemoveGuest`](https://developer.apple.com/documentation/security/sechostremoveguest)) every time something changes. However, dynamic hosting mode is not fully supported by high-level API functions at this time. Unless you have extensive knowledge of Mach messaging and have a particular need to manage your guest code dynamically, it is recommended that you use proxy hosting mode.
+    ///
+    ///
     #[cfg(all(feature = "CSCommon", feature = "libc"))]
     #[deprecated]
     pub fn SecHostSetHostingPort(hosting_port: libc::mach_port_t, flags: SecCSFlags) -> OSStatus;

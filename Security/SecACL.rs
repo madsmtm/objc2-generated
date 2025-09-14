@@ -7,7 +7,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector?language=objc)
+/// Bits that define when a keychain should require a passphrase.
 // NS_OPTIONS
 #[cfg(feature = "cssmconfig")]
 #[repr(transparent)]
@@ -16,19 +16,19 @@ pub struct SecKeychainPromptSelector(pub uint16);
 #[cfg(feature = "cssmconfig")]
 bitflags::bitflags! {
     impl SecKeychainPromptSelector: uint16 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/requirepassphase?language=objc)
+/// Indicates that a passphrase should be required for every access.
         #[doc(alias = "kSecKeychainPromptRequirePassphase")]
         const RequirePassphase = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/unsigned?language=objc)
+/// Indicates that a passphrase should be required when an unsigned application attempts to use the keychain, overriding the system default.
         #[doc(alias = "kSecKeychainPromptUnsigned")]
         const Unsigned = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/unsignedact?language=objc)
+/// Indicates that a passphrase should be required when an unsigned application attempts to use the keychain.
         #[doc(alias = "kSecKeychainPromptUnsignedAct")]
         const UnsignedAct = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/invalid?language=objc)
+/// Indicates that a passphrase should be required when an application with an invalid signature attempts to use the keychain, overriding the system default.
         #[doc(alias = "kSecKeychainPromptInvalid")]
         const Invalid = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainpromptselector/invalidact?language=objc)
+/// Indicates that a passphrase should be required when an application with an invalid signature attempts to use the keychain.
         #[doc(alias = "kSecKeychainPromptInvalidAct")]
         const InvalidAct = 0x0080;
     }
@@ -46,11 +46,22 @@ unsafe impl RefEncode for SecKeychainPromptSelector {
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecACL {
+    /// Returns the unique identifier of the opaque type to which an ACL entry belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) instance. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) method on a specific instance. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecACL instances.
     ///
     /// Returns: The CFTypeID of SecACL instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclgettypeid()?language=objc)
     #[doc(alias = "SecACLGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -63,6 +74,45 @@ unsafe impl ConcreteType for SecACL {
 
 #[cfg(feature = "SecBase")]
 impl SecACL {
+    /// Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item’s access object.
+    ///
+    /// Parameters:
+    /// - access: The access object to which to add the information.
+    ///
+    /// - applicationList: An array of trusted application objects (that is, [`SecTrustedApplication`](https://developer.apple.com/documentation/security/sectrustedapplication) instances) identifying applications that are allowed access to the keychain item without user confirmation. Use the [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) function to create trusted application objects. If you set this parameter to `NULL`, then any application can use this item. If you pass an empty array, then there are no trusted applications. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    /// - description: The human readable name to be used to refer to this item when the user is prompted.
+    ///
+    /// - promptSelector: A pointer to a prompt selector. If you set the `CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE` bit, the user is prompted for the keychain password each time a non-trusted application attempts to access this item, even if the keychain is already unlocked.
+    ///
+    /// - newAcl: On return, points to an access control list object, which is a reference to the new access control list entry.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecACLCreateWithSimpleContents(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The ACL object returned by this function is a reference to an access control list (ACL) entry. The ACL entry includes a list of trusted applications (see [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:))), the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL entry applies. By default, a new ACL entry applies to all operations (the CSSM authorization tag is set to `CSSM_ACL_AUTHORIZATION_ANY`). Use the [`SecACLSetAuthorizations`](https://developer.apple.com/documentation/security/secaclsetauthorizations) function to set the list of operations for an ACL object.
+    ///
+    /// The system allows exactly one owner ACL entry in each access object. The `SecACLCreateFromSimpleContents` function fails if you attempt to add a second owner ACL. To change owner access controls, use the [`SecAccessCopySelectedACLList`](https://developer.apple.com/documentation/security/secaccesscopyselectedacllist) function to find the owner ACL (that is, the only ACL with a CSSM authorization tag of `CSSM_ACL_AUTHORIZATION_CHANGE_ACL`) and the [`SecACLSetSimpleContents`](https://developer.apple.com/documentation/security/secaclsetsimplecontents) function to change it as needed.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecACLCreateWithSimpleContents(_:_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item's access.
     ///
     /// Parameter `access`: An access reference.
@@ -85,8 +135,6 @@ impl SecACL {
     /// - `application_list` generic must be of the correct type.
     /// - `prompt_selector` must be a valid pointer.
     /// - `new_acl` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcreatefromsimplecontents?language=objc)
     #[doc(alias = "SecACLCreateFromSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -118,6 +166,43 @@ impl SecACL {
         }
     }
 
+    /// Creates a new ACL entry with the given characteristics, and adds it to an access instance.
+    ///
+    /// Parameters:
+    /// - access: The access instance to which to add the information.
+    ///
+    /// - applicationList: An array of [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) instances identifying apps that are allowed access to the keychain item without user confirmation.
+    ///
+    /// Set this parameter to `nil` to indicate that any app can use this item. Pass an empty array to indicate that there are no trusted apps.
+    ///
+    /// - description: The human readable name to be used to refer to this item when the user is prompted.
+    ///
+    /// - promptSelector: A set of prompt selector flags. See [`SecKeychainPromptSelector`](https://developer.apple.com/documentation/security/seckeychainpromptselector) for possible values.
+    ///
+    /// - newAcl: A pointer the method uses to return the new [`SecACLRef`](https://developer.apple.com/documentation/security/secacl) instance.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The ACL entry returned by this method includes a list of trusted apps, the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL entry applies. By default, a new ACL entry applies to all operations. Use the [`SecACLUpdateAuthorizations`](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)) method to set the list of operations for an ACL entry.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting in macOS 10.13.1, for added security, the system ignores the `promptSelector` property of an ACL object and always prompts for the keychain password when asking the user whether to add an app to the list of trusted apps.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system requires exactly one owner ACL entry in each access instance. The [`SecACLCreateWithSimpleContents`](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)) method fails if you attempt to add a second owner entry. To change owner access controls, use the [`SecAccessCopyMatchingACLList`](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)) function to find the owner entry (the only one with an authorization tag of [`kSecACLAuthorizationChangeACL`](https://developer.apple.com/documentation/security/ksecaclauthorizationchangeacl)) and the [`SecACLSetContents`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) method to change it as needed.
+    ///
+    ///
     /// Creates a new access control list entry from the application list, description, and prompt selector provided and adds it to an item's access.
     ///
     /// Parameter `access`: An access reference.
@@ -136,8 +221,6 @@ impl SecACL {
     ///
     /// - `application_list` generic must be of the correct type.
     /// - `new_acl` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcreatewithsimplecontents(_:_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLCreateWithSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -169,13 +252,28 @@ impl SecACL {
         }
     }
 
+    /// Removes the specified ACL entry from the access instance that contains it.
+    ///
+    /// Parameters:
+    /// - aclRef: An ACL entry to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method fails if you attempt to remove the owner entry because an access instance must have exactly one such ACL at all times. If you need to change ownership settings, modify the existing owner entry rather than replacing it. In particular, use the [`SecAccessCopyMatchingACLList`](https://developer.apple.com/documentation/security/secaccesscopymatchingacllist(_:_:)) method with the [`kSecACLAuthorizationChangeACL`](https://developer.apple.com/documentation/security/ksecaclauthorizationchangeacl) authorization to find the existing entry, and the [`SecACLSetContents`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) method to change it as needed.
+    ///
+    ///
     /// Removes the access control list entry specified.
     ///
     /// Parameter `aclRef`: The reference to the access control list entry to remove.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclremove(_:)?language=objc)
     #[doc(alias = "SecACLRemove")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -187,6 +285,41 @@ impl SecACL {
         unsafe { SecACLRemove(self) }
     }
 
+    /// Returns the application list, description, and CSSM prompt selector for a given access control list entry.
+    ///
+    /// Parameters:
+    /// - acl: An ACL object that identifies the access control list entry from which you want information.
+    ///
+    /// - applicationList: On return, points to an array of [`SecTrustedApplication`](https://developer.apple.com/documentation/security/sectrustedapplication) instances identifying applications that are allowed access to the keychain item without user confirmation. If this parameter returns `NULL`, then any application can use this item. If this parameter returns a valid pointer but the array is empty, then there are no trusted applications. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    /// - description: On return, the name of the keychain item that appears in the dialog box when the user is prompted for permission to use the item. Note that this name is not necessarily the same as the one displayed for the item by the Keychain Access application. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished using it.
+    ///
+    /// - promptSelector: On return, points to the prompt selector flag for the given access control list entry. If the `CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE` bit is set, the user is prompted for the keychain password each time a non-trusted application attempts to access this item, even if the keychain is already unlocked.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecACLCopyContents(_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclcopycontents(_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An access control list entry applies to a specific use or set of uses for a specific keychain item. The ACL object includes a list of trusted applications (see [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:))), the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL object applies. Use the [`SecACLGetAuthorizations`](https://developer.apple.com/documentation/security/secaclgetauthorizations) function to get the list of operations for an ACL object.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecACLCopyContents(_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclcopycontents(_:_:_:_:)) instead.
+    ///
+    ///
     /// Returns the application list, description, and CSSM prompt selector for a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
@@ -207,8 +340,6 @@ impl SecACL {
     /// - `application_list` must be a valid pointer.
     /// - `description` must be a valid pointer.
     /// - `prompt_selector` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopysimplecontents?language=objc)
     #[doc(alias = "SecACLCopySimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -230,6 +361,49 @@ impl SecACL {
         unsafe { SecACLCopySimpleContents(self, application_list, description, prompt_selector) }
     }
 
+    /// Returns the application list, description, and prompt selector for a given ACL entry.
+    ///
+    /// Parameters:
+    /// - acl: The ACL entry from which you want information.
+    ///
+    /// - applicationList: The address of an array into which a copy of the application list should be stored on return. This array is filled with [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) instances identifying applications that are allowed access to the keychain item without user confirmation.
+    ///
+    /// If the array is `nil`, then any app can use this item. If the array is empty, then there are no trusted applications.
+    ///
+    /// Call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release this array when you are finished using it.
+    ///
+    /// - description: The address of a string into which a copy of the description is stored on return. This description is the name of the keychain item that appears in the dialog box when the user is prompted for permission to use the item.
+    ///
+    /// Note that this name is not necessarily the same as the name displayed for the item by the Keychain Access app.
+    ///
+    /// Call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release this string when you are finished using it.
+    ///
+    /// - promptSelector: The address of a [`SecKeychainPromptSelector`](https://developer.apple.com/documentation/security/seckeychainpromptselector) instance into which a copy of the prompt selector is stored on return.
+    ///
+    /// If the [`kSecKeychainPromptRequirePassphase`](https://developer.apple.com/documentation/security/seckeychainpromptselector/requirepassphase) bit is set, the user is prompted for the keychain password each time a non-trusted application attempts to access this item, even if the keychain is already unlocked.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An ACL entry applies to a specific use or set of uses for a specific keychain item. The entry includes a list of trusted applications, the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL entry applies.
+    ///
+    /// Use the [`SecACLCopyAuthorizations`](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)) method to get the list of operations for an ACL entry.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting in macOS 10.13.1, for added security, the system ignores the `promptSelector` property of an ACL entry and always prompts for the keychain password when asking the user whether to add an app to the list of trusted apps.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the application list, description, and prompt selector for a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
@@ -247,8 +421,6 @@ impl SecACL {
     /// - `application_list` must be a valid pointer.
     /// - `description` must be a valid pointer.
     /// - `prompt_selector` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopycontents(_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLCopyContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -270,6 +442,43 @@ impl SecACL {
         unsafe { SecACLCopyContents(self, application_list, description, prompt_selector) }
     }
 
+    /// Sets the application list, description, and prompt selector for a given access control list entry.
+    ///
+    /// Parameters:
+    /// - acl: An ACL object that identifies the access control list entry.
+    ///
+    /// - applicationList: An array of trusted application objects (that is, [`SecTrustedApplication`](https://developer.apple.com/documentation/security/sectrustedapplication) instances) identifying applications that are allowed access to the keychain item without user confirmation. Use the [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) function to create trusted application objects. If you set this parameter to `NULL`, then any application can use this item. If you pass an empty array, then all applications are treated as untrusted.
+    ///
+    /// - description: The name of the keychain item that appears in the dialog box when the user is prompted for permission to use the item. Note that this name is not necessarily the same as the one displayed for the item by the Keychain Access application.
+    ///
+    /// - promptSelector: The prompt selector flag for the given access control list entry. Set the `CSSM_ACL_KEYCHAIN_PROMPT_REQUIRE_PASSPHRASE` bit to have the user prompted for the keychain password each time a non-trusted application attempts to access this item, even if the keychain is already unlocked.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecACLSetContents(_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Because an ACL object is always associated with an access object, when you modify an ACL entry, you are modifying the access object as well. There is no need for a separate function to write a modified ACL object back into the access object.
+    ///
+    /// Use the [`SecACLGetAuthorizations`](https://developer.apple.com/documentation/security/secaclgetauthorizations) function to get the list of operations for an ACL object.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecACLSetContents(_:_:_:_:)`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) instead.
+    ///
+    ///
     /// Sets the application list, description, and CSSM prompt selector for a given access control list entry.
     ///
     /// Parameter `acl`: A reference to the access control list entry to edit.
@@ -289,8 +498,6 @@ impl SecACL {
     ///
     /// - `application_list` generic must be of the correct type.
     /// - `prompt_selector` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetsimplecontents?language=objc)
     #[doc(alias = "SecACLSetSimpleContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmapple", feature = "cssmconfig"))]
     #[deprecated = "CSSM is not supported"]
@@ -312,6 +519,41 @@ impl SecACL {
         unsafe { SecACLSetSimpleContents(self, application_list, description, prompt_selector) }
     }
 
+    /// Sets the application list, description, and prompt selector for a given ACL entry.
+    ///
+    /// Parameters:
+    /// - acl: The ACL entry to modify.
+    ///
+    /// - applicationList: An array of [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) instances identifying apps that are allowed access to the keychain item without user confirmation. Use the [`SecTrustedApplicationCreateFromPath`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) method to create trusted app objects.
+    ///
+    /// If you set this parameter to `nil`, then any app can use this item. If you pass an empty array, then no apps are trusted.
+    ///
+    /// - description: The name of the keychain item that appears in the dialog box when the user is prompted for permission to use the item. Note that this name is not necessarily the same as the one displayed for the item by the Keychain Access app.
+    ///
+    /// - promptSelector: The prompt selector flags for the given access control list entry. See [`SecKeychainPromptSelector`](https://developer.apple.com/documentation/security/seckeychainpromptselector) for details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because an ACL entry is always associated with an access instance, when you modify the entry, you are modifying the access instance as well.
+    ///
+    /// Use the [`SecACLCopyAuthorizations`](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)) method to get the list of operations for an ACL entry.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Starting in macOS 10.13.1, for added security, the system ignores the `promptSelector` property of an ACL entry and always prompts for the keychain password when asking the user whether to add an app to the list of trusted apps.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Sets the application list, description, and prompt selector for a given access control list entry.
     ///
     /// Parameter `acl`: A reference to the access control list entry to edit.
@@ -327,8 +569,6 @@ impl SecACL {
     /// # Safety
     ///
     /// `application_list` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)?language=objc)
     #[doc(alias = "SecACLSetContents")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig"))]
     #[deprecated = "SecKeychain is deprecated"]
@@ -350,6 +590,41 @@ impl SecACL {
         unsafe { SecACLSetContents(self, application_list, description, prompt_selector) }
     }
 
+    /// Retrieves the CSSM authorization tags of a given access control list entry.
+    ///
+    /// Parameters:
+    /// - acl: An ACL object that identifies the access control list entry from which you wish to retrieve the authorization tags.
+    ///
+    /// - tags: A pointer to an array of CSSM authorization tags. You must allocate this array before calling the function. On return, this array contains the authorization tags of the specified ACL entry.
+    ///
+    /// - tagCount: On entry, points to the number of elements in the array you passed in the `tags` parameter. On return, points to the number of tags actually returned or, in the case of an overflow, the number of tags required.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecACLCopyAuthorizations(_:)`](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An ACL object includes a list of trusted applications (see [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:))), the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL object applies. Use this function to retrieve the list of operations for an ACL object. Use the [`SecACLCopySimpleContents`](https://developer.apple.com/documentation/security/secaclcopysimplecontents) function to retrieve the other information.
+    ///
+    /// The `SecACLGetAuthorizations` function returns an error if there are more tags to return than the number of elements you allocated in the `tags` array. A 20-element array should suffice for most purposes; however, you can test for the `errSecBufferTooSmall` error and increase the size of the array before calling the function again if necessary. Alternatively, you can call the function with a tag count of `0`, read the value returned in the `tagCount` parameter, and then call the function again using that value.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecACLCopyAuthorizations(_:)`](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)) instead.
+    ///
+    ///
     /// Retrieve the CSSM authorization tags of a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
@@ -367,8 +642,6 @@ impl SecACL {
     ///
     /// - `tags` must be a valid pointer.
     /// - `tag_count` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclgetauthorizations?language=objc)
     #[doc(alias = "SecACLGetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -388,13 +661,30 @@ impl SecACL {
         unsafe { SecACLGetAuthorizations(self, tags, tag_count) }
     }
 
+    /// Retrieves the authorization tags of a given ACL entry.
+    ///
+    /// Parameters:
+    /// - acl: The ACL entry from which you wish to retrieve the authorization tags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array containing the authorizations for this entry. In Objective-C, free this object with a call to the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An ACL instance includes a list of trusted apps, the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL entry applies. Use this method to retrieve the list of operations for an ACL entry. Use the [`SecACLCopyContents`](https://developer.apple.com/documentation/security/secaclcopycontents(_:_:_:_:)) method to retrieve the other information.
+    ///
+    /// The [`SecACLCopyAuthorizations`](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)) method returns an error if there are more tags to return than the number of elements you allocated in the `tags` array. A 20-element array should suffice for most purposes; however, you can test for the [`errSecBufferTooSmall`](https://developer.apple.com/documentation/security/errsecbuffertoosmall) error and increase the size of the array before calling the method again if necessary. Alternatively, you can call the method with a tag count of `0`, read the value returned in the `tagCount` parameter, and then call the method again using that value.
+    ///
+    ///
     /// Retrieve the authorization tags of a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
     ///
     /// Returns: On return, a CFArrayRef of the authorizations for this ACL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclcopyauthorizations(_:)?language=objc)
     #[doc(alias = "SecACLCopyAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -409,6 +699,41 @@ impl SecACL {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Sets the CSSM authorization tags for a given access control list entry.
+    ///
+    /// Parameters:
+    /// - acl: An ACL object that identifies the access control list entry for which you wish to set authorization tags.
+    ///
+    /// - tags: An array of CSSM authorization tags.
+    ///
+    /// - tagCount: The number of tags in the CSSM authorization tag array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function is deprecated. Use [`SecACLUpdateAuthorizations(_:_:)`](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An ACL object includes a list of trusted applications (see [`SecTrustedApplicationCreateFromPath(_:_:)`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:))), the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL object applies. Use this function to set a list of operations for an ACL object, or set the `CSSM_ACL_AUTHORIZATION_ANY` tag to allow all operations. Use the [`SecACLSetSimpleContents`](https://developer.apple.com/documentation/security/secaclsetsimplecontents) function to set the other information.
+    ///
+    /// Because an ACL object is always associated with an access object, when you modify an ACL entry, you are modifying the access object as well. There is no need for a separate function to write a modified ACL object back into the access object.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated in macOS 10.7 and later; use [`SecACLUpdateAuthorizations(_:_:)`](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)) instead.
+    ///
+    ///
     /// Sets the CSSM authorization tags of a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
@@ -425,8 +750,6 @@ impl SecACL {
     /// # Safety
     ///
     /// `tags` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclsetauthorizations?language=objc)
     #[doc(alias = "SecACLSetAuthorizations")]
     #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
     #[deprecated = "CSSM is not supported"]
@@ -446,6 +769,27 @@ impl SecACL {
         unsafe { SecACLSetAuthorizations(self, tags, tag_count) }
     }
 
+    /// Sets the authorization tags for a given ACL.
+    ///
+    /// Parameters:
+    /// - acl: An ACL object that identifies the access control list entry for which you wish to set authorization tags.
+    ///
+    /// - authorizations: An array of authorization tags. See `CSSM_ACL_AUTHORIZATION_TAG` for details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An ACL entry includes a list of trusted apps, the name of the keychain item as it appears in user prompts, the prompt selector flag, and a list of one or more operations to which this ACL entry applies. Use this method to set a list of operations for an ACL entry, or set the [`kSecACLAuthorizationAny`](https://developer.apple.com/documentation/security/ksecaclauthorizationany) tag to allow all operations. Use the [`SecACLSetContents`](https://developer.apple.com/documentation/security/secaclsetcontents(_:_:_:_:)) method to set the other information.
+    ///
+    /// Because an ACL entry is always associated with an access instance, when you modify an entry, you are modifying the access instance as well.
+    ///
+    ///
     /// Sets the authorization tags of a given access control list entry.
     ///
     /// Parameter `acl`: An access control list entry reference.
@@ -457,8 +801,6 @@ impl SecACL {
     /// # Safety
     ///
     /// `authorizations` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaclupdateauthorizations(_:_:)?language=objc)
     #[doc(alias = "SecACLUpdateAuthorizations")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

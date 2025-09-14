@@ -6,28 +6,85 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum?language=objc)
+/// Constants for specifying how to represent quantities of time.
+///
+/// ## Overview
+///
+/// All date and time values are localized and formatted according to the current user’s language preferences.
+///
+/// The following table shows how the quantity of 9 hours, 41 minutes, and 30 seconds is displayed in the U.S. English locale for each style:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Style" }] }], [Paragraph { inline_content: [Text { text: "Displayed result" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/spellOut", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“nine hours, forty-one minutes, thirty seconds”" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/full", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“9 hours, 41 minutes, 30 seconds”" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/short", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“9 hr, 41 min, 30 sec”" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/brief", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“9hr 41min 30sec”" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/abbreviated", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“9h 41m 30s”" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/DateComponentsFormatter/UnitsStyle-swift.enum/positional", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "“9:31:30”" }] }]]], alignments: None, metadata: None })
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateComponentsFormatterUnitsStyle(pub NSInteger);
 impl NSDateComponentsFormatterUnitsStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/positional?language=objc)
+    /// A style that uses the position of a unit of time to identify its value.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is most commonly used for time values where the hour, minute, and second values are separated by colons. You can use the zero formatting behaviors ([`NSDateComponentsFormatterZeroFormattingBehavior`](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct)) to further modify the formatting of this value.
+    ///
+    /// For example, one hour and ten minutes is displayed in the U.S. English locale as “1:10:00”.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This style may fall back to the behavior of [`NSDateComponentsFormatterUnitsStyleAbbreviated`](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/abbreviated) when attempting to display large time quantities.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStylePositional")]
     pub const Positional: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/abbreviated?language=objc)
+    /// A style that uses the most abbreviated spelling for units of time.
+    ///
+    /// ## Discussion
+    ///
+    /// This style represents the shortest representation of units and quantities of time.
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as “3y 9mo 26d 19h 17s”.
+    ///
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleAbbreviated")]
     pub const Abbreviated: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/short?language=objc)
+    /// A style that uses a shortened spelling for units.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as “3 yrs, 9 mths, 26 days, 19 hr, 17 sec”.
+    ///
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleShort")]
     pub const Short: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/full?language=objc)
+    /// A style that spells out the units of time, but not the quantities.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as “3 years, 9 months, 26 days, 19 hours, 17 seconds”.
+    ///
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleFull")]
     pub const Full: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/spellout?language=objc)
+    /// A style that spells out the units and quantities of time.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as “three years, nine months, twenty-six days, nineteen hours, seventeen seconds”.
+    ///
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleSpellOut")]
     pub const SpellOut: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/brief?language=objc)
+    /// A style that uses a shortened spelling for units of time that is shorter than [`NSDateComponentsFormatterUnitsStyleShort`](https://developer.apple.com/documentation/foundation/datecomponentsformatter/unitsstyle-swift.enum/short).
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the quantity of 3 years, 9 months, 26 days, 19 hours, and 17 seconds is displayed in the U.S. English locale as “3yrs 9mths 26days 19hr 17sec”.
+    ///
+    ///
     #[doc(alias = "NSDateComponentsFormatterUnitsStyleBrief")]
     pub const Brief: Self = Self(5);
 }
@@ -40,32 +97,32 @@ unsafe impl RefEncode for NSDateComponentsFormatterUnitsStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct?language=objc)
+/// Formatting constants for when values contain zeroes.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateComponentsFormatterZeroFormattingBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDateComponentsFormatterZeroFormattingBehavior: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentsformatterzeroformattingbehavior/nsdatecomponentsformatterzeroformattingbehaviornone?language=objc)
+/// No formatting behavior. This behavior prevents the dropping of zero values or adding of zeroes for padding. For example, with hours, minutes, and seconds displayed, the abbreviated value for one hour and 10 seconds is “1h 0m 10s”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/default?language=objc)
+/// The default formatting behavior. When using positional units, this behavior drops leading zeroes but pads middle and trailing values with zeros as needed. For example, with hours, minutes, and seconds displayed, the value for one hour and 10 seconds is “1:00:10”. For all other unit styles, this behavior drops all units whose values are 0. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour and 10 seconds is displayed as “1h 10s”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDefault")]
         const Default = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropleading?language=objc)
+/// The drop leading zeroes formatting behavior. Units whose values are 0 are dropped starting at the beginning of the sequence. Units continue to be dropped until a non-zero value is encountered. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of ten minutes is displayed as “10m 0s”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropLeading")]
         const DropLeading = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropmiddle?language=objc)
+/// The drop middle zero units behavior. Units whose values are 0 are dropped from anywhere in the middle of a sequence. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour, zero minutes, and five seconds is displayed as “0d 1h 5s”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropMiddle")]
         const DropMiddle = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/droptrailing?language=objc)
+/// The drop trailing zero units behavior. Units whose value is 0 are dropped starting at the end of the sequence. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour is displayed as “0d 1h”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropTrailing")]
         const DropTrailing = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/dropall?language=objc)
+/// The drop all zero units behavior. This behavior drops all units whose values are 0. For example, when days, hours, minutes, and seconds are allowed, the abbreviated version of one hour is displayed as “1h”.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorDropAll")]
         const DropAll = NSDateComponentsFormatterZeroFormattingBehavior::DropLeading.0|NSDateComponentsFormatterZeroFormattingBehavior::DropMiddle.0|NSDateComponentsFormatterZeroFormattingBehavior::DropTrailing.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter/zeroformattingbehavior-swift.struct/pad?language=objc)
+/// The add padding zeroes behavior. This behavior pads values with zeroes as appropriate. For example, consider the value of one hour formatted using the positional and abbreviated unit styles. When days, hours, minutes, and seconds are allowed, the value is displayed as “0d 1:00:00” using the positional style, and as “0d 1h 0m 0s” using the abbreviated style.
         #[doc(alias = "NSDateComponentsFormatterZeroFormattingBehaviorPad")]
         const Pad = 1<<16;
     }
@@ -80,7 +137,26 @@ unsafe impl RefEncode for NSDateComponentsFormatterZeroFormattingBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/datecomponentsformatter?language=objc)
+    /// A formatter that creates string representations of quantities of time.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSDateComponentsFormatter`](https://developer.apple.com/documentation/foundation/datecomponentsformatter) object takes quantities of time and formats them as a user-readable string. Use a date components formatter to create strings for your app’s interface. The formatter object has many options for creating both abbreviated and expanded strings. The formatter takes the current user’s locale and language into account when generating strings.
+    ///
+    /// To use this class, create an instance, configure its properties, and call one of its methods to generate an appropriate string. The properties of this class let you configure the calendar and specify the date and time units you want displayed in the resulting string. The listing below shows how to configure a formatter to create the string “About 5 minutes remaining”.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let formatter = DateComponentsFormatter()", "formatter.unitsStyle = .full", "formatter.includesApproximationPhrase = true", "formatter.includesTimeRemainingPhrase = true", "formatter.allowedUnits = [.minute]", " ", "// Use the configured formatter to generate the string.", "let outputString = formatter.string(from: 300.0)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateComponentsFormatter *formatter = [[NSDateComponentsFormatter alloc] init];", "formatter.unitsStyle = NSDateComponentsFormatterUnitsStyleFull;", "formatter.includesApproximationPhrase = YES;", "formatter.includesTimeRemainingPhrase = YES;", "formatter.allowedUnits = NSCalendarUnitMinute;", " ", "// Use the configured formatter to generate the string.", "NSString* outputString = [formatter stringFromTimeInterval:300.0];"], metadata: None }] }] })
+    /// The methods of this class may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`Date.RelativeFormatStyle`](https://developer.apple.com/documentation/foundation/date/relativeformatstyle) rather than [`NSDateComponentsFormatter`](https://developer.apple.com/documentation/foundation/datecomponentsformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

@@ -7,33 +7,40 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
+    /// The exception raised if there is an exactness error.
     /// *************    Exceptions        **********
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberexactnessexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberoverflowexception?language=objc)
+    /// The exception raised on overflow.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberunderflowexception?language=objc)
+    /// The exception raised on underflow.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberdividebyzeroexception?language=objc)
+    /// The exception raised on divide by zero.
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors?language=objc)
+    /// A protocol that declares three methods that control the discretionary aspects of working with decimal numbers.
+    ///
+    /// ## Overview
+    ///
+    /// The [`scale`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/scale()) and [`roundingMode`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/roundingmode()) methods determine the precision of `NSDecimalNumber`’s return values and the way in which those values should be rounded to fit that precision. The [`exceptionDuringOperation:error:leftOperand:rightOperand:`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/exceptionduringoperation(_:error:leftoperand:rightoperand:)) method determines the way in which an `NSDecimalNumber` object should handle different calculation errors.
+    ///
+    /// For an example of a class that adopts the `NSDecimalBehaviors` protocol, see the specification for [`NSDecimalNumberHandler`](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler).
+    ///
+    ///
     pub unsafe trait NSDecimalNumberBehaviors {
         #[cfg(feature = "NSDecimal")]
         #[unsafe(method(roundingMode))]
@@ -61,9 +68,24 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// *************    NSDecimalNumber: the class        **********
+    /// An object for representing and performing arithmetic on base-10 numbers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal); use [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// `NSDecimalNumber`, an immutable subclass of `NSNumber`, provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as `mantissa x 10^exponent` where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from –128 through 127.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) structure, which bridges to the [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// *************    NSDecimalNumber: the class        **********
     #[unsafe(super(NSNumber, NSValue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSValue")]
@@ -382,9 +404,18 @@ impl DefaultRetained for NSDecimalNumber {
 }
 
 extern_class!(
-    /// *********    A class for defining common behaviors        ******
+    /// A class that adopts the decimal number behaviors protocol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberhandler?language=objc)
+    /// ## Overview
+    ///
+    /// This class allows you to set the way an [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber) object rounds off and handles errors, without having to create a custom class.
+    ///
+    /// You can use an instance of this class as an argument to any of the [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber) methods that end with `...Behavior:`. If you don’t think you need special behavior, you probably don’t need this class—it is likely that [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber)’s default behavior will suit your needs.
+    ///
+    /// For more information, see the [`NSDecimalNumberBehaviors`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors) protocol specification.
+    ///
+    ///
+    /// *********    A class for defining common behaviors        ******
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDecimalNumberHandler;

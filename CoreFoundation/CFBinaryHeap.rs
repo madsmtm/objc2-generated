@@ -9,7 +9,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcomparecontext?language=objc)
+/// Not used.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -40,6 +40,7 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Structure containing the callbacks for values for a `CFBinaryHeap` object.
 /// Structure containing the callbacks for values of a CFBinaryHeap.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFBinaryHeap creation functions.
@@ -60,8 +61,6 @@ unsafe impl RefEncode for CFBinaryHeapCompareContext {
 /// is used by the CFCopyDescription() function.
 /// Field: compare The callback used to compare values in the binary heap for
 /// equality in some operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -109,14 +108,20 @@ unsafe impl RefEncode for CFBinaryHeapCallBacks {
 }
 
 extern "C" {
+    /// Predefined [`CFBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks) structure containing a set of callbacks appropriate for use when the values in a binary heap are all `CFString` objects.
     /// Predefined CFBinaryHeapCallBacks structure containing a set
     /// of callbacks appropriate for use when the values in a CFBinaryHeap
     /// are all CFString types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstringbinaryheapcallbacks?language=objc)
     pub static kCFStringBinaryHeapCallBacks: CFBinaryHeapCallBacks;
 }
 
+/// Callback function used to apply a function to all members of a binary heap.
+///
+/// Parameters:
+/// - val: The current value from the binary heap.
+///
+/// - context: The program-defined context parameter given to the [`CFBinaryHeapApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplyfunction(_:_:_:)) function.
+///
 /// Type of the callback function used by the apply functions of
 /// CFBinaryHeap.
 ///
@@ -124,14 +129,16 @@ extern "C" {
 ///
 /// Parameter `context`: The user-defined context parameter given to the apply
 /// function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplierfunction?language=objc)
 pub type CFBinaryHeapApplierFunction =
     Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// This is the type of a reference to CFBinaryHeaps.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheap?language=objc)
+/// ## Overview
+///
+/// `CFBinaryHeap` implements a container that stores values sorted using a binary search algorithm. All binary heaps are mutable; there is not a separate immutable variety. Binary heaps can be useful as priority queues.
+///
+///
+/// This is the type of a reference to CFBinaryHeaps.
 #[doc(alias = "CFBinaryHeapRef")]
 #[repr(C)]
 pub struct CFBinaryHeap<T: ?Sized = Opaque> {
@@ -167,9 +174,14 @@ impl<T: ?Sized> CFBinaryHeap<T> {
 }
 
 unsafe impl ConcreteType for CFBinaryHeap {
-    /// Returns the type identifier of all CFBinaryHeap instances.
+    /// Returns the type identifier of the `CFBinaryHeap` opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of the `CFBinaryHeap` opaque type.
+    ///
+    ///
+    /// Returns the type identifier of all CFBinaryHeap instances.
     #[doc(alias = "CFBinaryHeapGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -181,6 +193,23 @@ unsafe impl ConcreteType for CFBinaryHeap {
 }
 
 impl CFBinaryHeap {
+    /// Creates a new mutable or fixed-mutable binary heap.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the binary heap. The binary heap starts empty and can grow to this number of values. If this parameter is `0`, the binary heap’s maximum capacity is limited only by memory.
+    ///
+    /// - callBacks: A pointer to a [`CFBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks) structure initialized with the callbacks that operate on the values placed into the binary heap. If the binary heap will be holding `CFString` objects, pass the [`kCFStringBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/kcfstringbinaryheapcallbacks) constant. This functions makes a copy of the contents of the callbacks structure, so that a pointer to a structure on the stack can be passed in, or can be reused for multiple binary heap creations. This callbacks parameter may not be `NULL`.
+    ///
+    /// - compareContext: Not used. Pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFBinaryHeap` object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable binary heap with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -231,8 +260,6 @@ impl CFBinaryHeap {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - `compare_context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapCreate")]
     #[inline]
     pub unsafe fn new(
@@ -253,6 +280,21 @@ impl CFBinaryHeap {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new mutable or fixed-mutable binary heap with the values from a pre-existing binary heap.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the binary heap. The binary heap starts with the same number of values as `heap` and can grow to this number of values. If this parameter is `0`, the binary heap’s maximum capacity is limited only by memory. If nonzero, `capacity` must be large enough to hold all the values in `heap`.
+    ///
+    /// - heap: The binary heap which is to be copied. The values from the binary heap are copied as pointers into the new binary heap (that is, the values themselves are copied, not that to which the values point, if anything). However, the values are also retained by the new binary heap.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new `CFBinaryHeap` object holding the same values as `heap`. The new binary heap uses the same callbacks as `heap`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable binary heap with the values from the given binary heap.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -287,8 +329,6 @@ impl CFBinaryHeap {
     /// - `allocator` might not allow `None`.
     /// - `heap` generic must be of the correct type.
     /// - `heap` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcreatecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -307,6 +347,17 @@ impl CFBinaryHeap {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the number of values currently in a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of values in `heap`.
+    ///
+    ///
     /// Returns the number of values currently in the binary heap.
     ///
     /// Parameter `heap`: The binary heap to be queried. If this parameter is not a valid
@@ -317,8 +368,6 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetcount(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> CFIndex {
@@ -328,6 +377,19 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapGetCount(self) }
     }
 
+    /// Counts the number of times a given value occurs in a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to search.
+    ///
+    /// - value: The value for which to find matches in the binary heap. The compare callback provided in the [`CFBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks) structure when the binary heap was created is used to compare. If `value`, or any of the values in the binary heap, are not understood by the compare callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of times `value` occurs in `heap`.
+    ///
+    ///
     /// Counts the number of times the given value occurs in the binary heap.
     ///
     /// Parameter `heap`: The binary heap to be searched. If this parameter is not a
@@ -346,8 +408,6 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -357,6 +417,19 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapGetCountOfValue(self, value) }
     }
 
+    /// Returns whether a given value is in a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to search.
+    ///
+    /// - value: The value for which to find matches in the binary heap. The compare callback provided in the [`CFBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks) structure when the binary heap was created is used to compare values. If `value`, or any of the values in the binary heap, are not understood by the compare callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` is a member of `heap`, `false` otherwise.
+    ///
+    ///
     /// Reports whether or not the value is in the binary heap.
     ///
     /// Parameter `heap`: The binary heap to be searched. If this parameter is not a
@@ -375,8 +448,6 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
@@ -387,6 +458,17 @@ impl CFBinaryHeap {
         ret != 0
     }
 
+    /// Returns the minimum value in a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The minimum value in `heap` as determined by the binary heap’s compare callback. If `heap` contains several equal minimum values, any one may be returned. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Returns the minimum value is in the binary heap.  If the heap contains several equal
     /// minimum values, any one may be returned.
     ///
@@ -399,8 +481,6 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetminimum(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetMinimum")]
     #[inline]
     pub unsafe fn minimum(&self) -> *const c_void {
@@ -410,6 +490,19 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapGetMinimum(self) }
     }
 
+    /// Returns the minimum value in a binary heap, if present.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    /// - value: On return, the minimum value in `heap` as determined by the binary heap’s compare callback. If `heap` contains several equal minimum values, any one may be returned. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if a minimum value exists in `heap`, `false` otherwise. `false` is returned only if `heap` is empty.
+    ///
+    ///
     /// Returns the minimum value is in the binary heap, if present.  If the heap contains several equal
     /// minimum values, any one may be returned.
     ///
@@ -427,8 +520,6 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetminimumifpresent(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetMinimumIfPresent")]
     #[inline]
     pub unsafe fn minimum_if_present(&self, value: *mut *const c_void) -> bool {
@@ -442,6 +533,13 @@ impl CFBinaryHeap {
         ret != 0
     }
 
+    /// Copies all the values from a binary heap into a sorted C array.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    /// - values: On return, the memory pointed to by this argument holds a C array of all the values in heap, sorted from minimum to maximum values. You must allocate sufficient memory to hold all the values in `heap` before calling this function. If the values are Core Foundation objects, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
     /// Fills the buffer with values from the binary heap.
     ///
     /// Parameter `heap`: The binary heap to be queried. If this parameter is not a
@@ -456,8 +554,6 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapgetvalues(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapGetValues")]
     #[inline]
     pub unsafe fn values(&self, values: *mut *const c_void) {
@@ -467,6 +563,15 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapGetValues(self, values) }
     }
 
+    /// Iteratively applies a function to all the values in a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    /// - applier: The callback function to call once for each value in `heap`.
+    ///
+    /// - context: A program-defined value that is passed to the `applier` callback function, but is otherwise unused by this function.
+    ///
     /// Calls a function once for each value in the binary heap.
     ///
     /// Parameter `heap`: The binary heap to be operated upon. If this parameter is not a
@@ -490,8 +595,6 @@ impl CFBinaryHeap {
     /// - `heap` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -509,6 +612,13 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapApplyFunction(self, applier, context) }
     }
 
+    /// Adds a value to a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    /// - value: The value to add to the binary heap. The value is retained by the binary heap using the retain callback provided in the [`CFBinaryHeapCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbinaryheapcallbacks) structure when the binary heap was created.
+    ///
     /// Adds the value to the binary heap.
     ///
     /// Parameter `heap`: The binary heap to which the value is to be added. If this parameter is not a
@@ -523,8 +633,6 @@ impl CFBinaryHeap {
     ///
     /// - `heap` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapaddvalue(_:_:)?language=objc)
     #[doc(alias = "CFBinaryHeapAddValue")]
     #[inline]
     pub unsafe fn add_value(&self, value: *const c_void) {
@@ -534,6 +642,17 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapAddValue(self, value) }
     }
 
+    /// Removes the minimum value from a binary heap.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `heap` contains several equal minimum values, only one of them is removed. If `heap` is empty, this function does nothing.
+    ///
+    ///
     /// Removes the minimum value from the binary heap.
     ///
     /// Parameter `heap`: The binary heap from which the minimum value is to be removed. If this
@@ -542,8 +661,6 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapremoveminimumvalue(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapRemoveMinimumValue")]
     #[inline]
     pub unsafe fn remove_minimum_value(&self) {
@@ -553,6 +670,11 @@ impl CFBinaryHeap {
         unsafe { CFBinaryHeapRemoveMinimumValue(self) }
     }
 
+    /// Removes all values from a binary heap, making it empty.
+    ///
+    /// Parameters:
+    /// - heap: The binary heap to use.
+    ///
     /// Removes all the values from the binary heap, making it empty.
     ///
     /// Parameter `heap`: The binary heap from which all of the values are to be
@@ -562,8 +684,6 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// `heap` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbinaryheapremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFBinaryHeapRemoveAllValues")]
     #[inline]
     pub unsafe fn remove_all_values(&self) {

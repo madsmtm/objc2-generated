@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A neuron activation kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -28,8 +29,6 @@ extern_class!(
     ///
     /// Note: This function computes the same result as MPSMatrixFullyConnected that has
     /// unit weight matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneuron?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -367,6 +366,7 @@ impl MPSMatrixNeuron {
 }
 
 extern_class!(
+    /// A gradient neuron activation kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -378,8 +378,6 @@ extern_class!(
     /// MPSMatrixNeuron object.  The corresponding properties and data used by
     /// the MPSMatrixNeuronGradient object should correspond to those used by
     /// the forward MPSMatrixNeuron object for which the gradient is being computed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixneurongradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -8,159 +8,313 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// ********************** Attributes ***********************
+    /// The font of the text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsfontattributename?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this attribute is a [`UIFont`](https://developer.apple.com/documentation/uikit/uifont) object. Use this attribute to change the font for a range of text. If you do not specify this attribute, the string uses a 12-point Helvetica(Neue) font by default.
+    ///
+    ///
+    /// ********************** Attributes ***********************
     pub static NSFontAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyleattributename?language=objc)
+    /// The paragraph style of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSParagraphStyle`](https://developer.apple.com/documentation/uikit/nsparagraphstyle) object. Use this attribute to apply multiple attributes to a range of text. If you do not specify this attribute, the string uses the default paragraph attributes, as returned by the [`default`](https://developer.apple.com/documentation/uikit/nsparagraphstyle/default) method of [`NSParagraphStyle`](https://developer.apple.com/documentation/uikit/nsparagraphstyle).
+    ///
+    ///
     pub static NSParagraphStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsforegroundcolorattributename?language=objc)
+    /// The color of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS, the value of this attribute is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) instance. In iOS, tvOS, watchOS, and Mac Catalyst, the value of this attribute is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) instance. Use this attribute to specify the color of the text during rendering. If you don’t specify this attribute, the text renders in black.
+    ///
+    ///
     pub static NSForegroundColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsbackgroundcolorattributename?language=objc)
+    /// The color of the background behind the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object. Use this attribute to specify the color of the background area behind the text. If you do not specify this attribute, no background color is drawn.
+    ///
+    ///
     pub static NSBackgroundColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsligatureattributename?language=objc)
+    /// The ligature of the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an integer. Ligatures cause specific character combinations to be rendered using a single custom glyph that corresponds to those characters. The value `0` indicates no ligatures. The value `1` indicates the use of the default ligatures. The value `2` indicates the use of all ligatures. The default value for this attribute is `1`. (Value `2` is unsupported on iOS.)
+    ///
+    ///
     pub static NSLigatureAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nskernattributename?language=objc)
+    /// The kerning of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating-point value. This value specifies the number of points by which to adjust kern-pair characters. Kerning prevents unwanted space from occurring between specific characters and depends on the font. The value `0` means kerning is disabled. The default value for this attribute is `0`.
+    ///
+    ///
     pub static NSKernAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstrackingattributename?language=objc)
+    /// The amount to modify the default tracking.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating-point value. The value represents the amount of space, in points, to add between the specified characters. A positive value increases the spacing between characters, and a negative value brings the characters closer together. Specify `0` to disable tracking.
+    ///
+    /// The effect of this attribute is similar to the effect of [`NSKernAttributeName`](https://developer.apple.com/documentation/uikit/nskernattributename), but the system treats tracking as trailing whitespace. A nonzero amount of tracking disables nonessential ligatures, unless the [`NSLigatureAttributeName`](https://developer.apple.com/documentation/uikit/nsligatureattributename) attribute is present.
+    ///
+    ///
     pub static NSTrackingAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstrikethroughstyleattributename?language=objc)
+    /// The strikethrough style of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an integer. This value indicates whether the text has a line through it and corresponds to one of the constants described in [`NSUnderlineStyle`](https://developer.apple.com/documentation/uikit/nsunderlinestyle). The default value for this attribute is [`NSUnderlineStyleNone`](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylenone).
+    ///
+    ///
     pub static NSStrikethroughStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyleattributename?language=objc)
+    /// The underline style of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an integer. This value indicates whether the text is underlined and corresponds to one of the constants described in [`NSUnderlineStyle`](https://developer.apple.com/documentation/uikit/nsunderlinestyle). The default value for this attribute is [`NSUnderlineStyleNone`](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylenone).
+    ///
+    ///
     pub static NSUnderlineStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstrokecolorattributename?language=objc)
+    /// The color of the stroke.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this parameter is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object. If it is not defined (which is the case by default), it is assumed to be the same as the value of [`NSForegroundColorAttributeName`](https://developer.apple.com/documentation/uikit/nsforegroundcolorattributename); otherwise, it describes the outline color. For more details, see [Drawing attributed strings that are both filled and stroked](https://developer.apple.com/library/archive/qa/qa1531/_index.html#//apple_ref/doc/uid/DTS40007490).
+    ///
+    ///
     pub static NSStrokeColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstrokewidthattributename?language=objc)
+    /// The width of the stroke.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating-point value. This value represents the amount to change the stroke width and is specified as a percentage of the font point size. Specify `0` (the default) for no additional changes. Specify positive values to change the stroke width alone. Specify negative values to stroke and fill the text. For example, a typical value for outlined text would be `3.0`.
+    ///
+    ///
     pub static NSStrokeWidthAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsshadowattributename?language=objc)
+    /// The shadow of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSShadow`](https://developer.apple.com/documentation/uikit/nsshadow) object. The default value of this property is `nil`.
+    ///
+    ///
     pub static NSShadowAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexteffectattributename?language=objc)
+    /// An attribute that applies a text effect to the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. Use this attribute to specify a text effect, such as [`NSTextEffectLetterpressStyle`](https://developer.apple.com/documentation/uikit/nstexteffectletterpressstyle). The default value of this property is `nil`, indicating no text effect.
+    ///
+    ///
     pub static NSTextEffectAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattachmentattributename?language=objc)
+    /// The attachment for the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSTextAttachment`](https://developer.apple.com/documentation/uikit/nstextattachment) object. The default value of this property is `nil`, indicating no attachment.
+    ///
+    ///
     pub static NSAttachmentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinkattributename?language=objc)
+    /// The link for the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an - [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object (preferred) or an - [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. The default value of this property is `nil`, indicating no link.
+    ///
+    ///
     pub static NSLinkAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsbaselineoffsetattributename?language=objc)
+    /// The vertical offset for the position of the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating point value indicating the character’s offset from the baseline, in points. The default value is `0`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// This attribute is different from [`kCTLanguageAttributeName`](https://developer.apple.com/documentation/coretext/kctlanguageattributename); you need to use [`kCTLanguageAttributeName`](https://developer.apple.com/documentation/coretext/kctlanguageattributename) if you are writing code for [`Core Text`](https://developer.apple.com/documentation/coretext).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSBaselineOffsetAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinecolorattributename?language=objc)
+    /// The color of the underline.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object. The default value is `nil`, indicating same as foreground color.
+    ///
+    ///
     pub static NSUnderlineColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstrikethroughcolorattributename?language=objc)
+    /// The color of the strikethrough.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is a [`UIColor`](https://developer.apple.com/documentation/uikit/uicolor) object. The default value is nil, indicating same as foreground color.
+    ///
+    ///
     pub static NSStrikethroughColorAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionattributename?language=objc)
+    /// The writing direction of the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) objects representing the nested levels of writing direction overrides, in order from outermost to innermost.
+    ///
+    /// This attribute provides a means to override the default bidirectional text algorithm, equivalent to using the Unicode bidi control characters `LRE`, `RLE`, `LRO`, or `RLO` paired with `PDF`, but as a higher-level attribute. (See [Unicode Standard Annex #9](http://unicode.org/reports/tr9/) for information about the Unicode bidi formatting codes.) The `NSWritingDirectionAttributeName` constant is a character-level attribute that provides a higher-level alternative to the inclusion of explicit bidirectional control characters in text. It is the `NSAttributedString` equivalent of the HTML markup using `bdo` element with the `dir` attribute.
+    ///
+    /// The values of the `NSNumber` objects should be `0`, `1`, `2`, or `3`, for `LRE`, `RLE`, `LRO`, or `RLO` respectively, and combinations of [`NSWritingDirection.leftToRight`](https://developer.apple.com/documentation/uikit/nswritingdirection/lefttoright) and [`NSWritingDirection.rightToLeft`](https://developer.apple.com/documentation/uikit/nswritingdirection/righttoleft) with [`NSTextWritingDirection.embedding`](https://developer.apple.com/documentation/uikit/nstextwritingdirection/embedding) or [`NSTextWritingDirection.override`](https://developer.apple.com/documentation/uikit/nstextwritingdirection/override), as shown in the following table.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Array " }, CodeVoice { code: "NSNumber" }, Text { text: " Values" }] }], [Paragraph { inline_content: [Text { text: "Unicode Control Characters" }] }], [Paragraph { inline_content: [Text { text: "Writing Direction Constants" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "0" }] }], [Paragraph { inline_content: [CodeVoice { code: "LRE" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSWritingDirectionLeftToRight | NSTextWritingDirectionEmbedding" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "1" }] }], [Paragraph { inline_content: [CodeVoice { code: "RLE" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSWritingDirectionRightToLeft | NSTextWritingDirectionEmbedding" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "2" }] }], [Paragraph { inline_content: [CodeVoice { code: "LRO" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSWritingDirectionLeftToRight | NSTextWritingDirectionOverride" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "3" }] }], [Paragraph { inline_content: [CodeVoice { code: "RLO" }] }], [Paragraph { inline_content: [CodeVoice { code: "NSWritingDirectionRightToLeft | NSTextWritingDirectionOverride" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSWritingDirectionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightstyleattributename?language=objc)
+    /// An attribute that adds a highlight color to the text to emphasize it.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSTextHighlightStyle`](https://developer.apple.com/documentation/uikit/nstexthighlightstyle) structure. The default value of this attribute is nil, which does not add a highlight to the text.
+    ///
+    /// A highlight adds a background color behind the text, and adjusts the color of the text itself to contrast appropriately. The [`NSTextHighlightStyleDefault`](https://developer.apple.com/documentation/uikit/nstexthighlightstyledefault) highlight style applies the system highlight color to your text. To apply a different color, add the [`NSTextHighlightColorSchemeAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeattributename) attribute to your text in addition to this one. Use the [`NSTextHighlightColorSchemeAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeattributename) key to specify which highlight color you want.
+    ///
+    ///
     pub static NSTextHighlightStyleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeattributename?language=objc)
+    /// The custom highlight color to apply to the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSTextHighlightColorScheme`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorscheme) structure. The default value of this attribute is nil, which applies the default system highlight color to the text when the [`NSTextHighlightStyleAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightstyleattributename) attribute is present.
+    ///
+    /// A highlight adds a background color behind the text, and applies a contrasting foreground color to the text itself. Set the value of this attribute to [`NSTextHighlightColorSchemeDefault`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemedefault), or don’t specify the attribute at all, to apply a highlight with the default system color. Specify a different value for this attribute to apply that highlight color instead.
+    ///
+    ///
     pub static NSTextHighlightColorSchemeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsadaptiveimageglyphattributename?language=objc)
+    /// The adaptive image glyph for the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSAdaptiveImageGlyph`](https://developer.apple.com/documentation/uikit/nsadaptiveimageglyph) object. The default value of this property is `nil`, which indicates there is no adaptive image glyph.
+    ///
+    ///
     pub static NSAdaptiveImageGlyphAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingtoolsexclusionattributename?language=objc)
     pub static NSWritingToolsExclusionAttributeName: &'static NSAttributedStringKey;
 }
 
-/// ********************** Attribute values ***********************
+/// Constants for the underline style and strikethrough style attribute keys.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle?language=objc)
+/// ## Overview
+///
+/// Use these constants to specify the [`NSUnderlineStyleAttributeName`](https://developer.apple.com/documentation/uikit/nsunderlinestyleattributename) and [`NSStrikethroughStyleAttributeName`](https://developer.apple.com/documentation/uikit/nsstrikethroughstyleattributename) attributes of an attributed string.
+///
+///
+/// ********************** Attribute values ***********************
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUnderlineStyle(pub NSInteger);
 bitflags::bitflags! {
     impl NSUnderlineStyle: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylenone?language=objc)
+/// Don’t draw a line.
         #[doc(alias = "NSUnderlineStyleNone")]
         const None = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/single?language=objc)
+/// Draw a single line.
         #[doc(alias = "NSUnderlineStyleSingle")]
         const Single = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/thick?language=objc)
+/// Draw a thick line.
         #[doc(alias = "NSUnderlineStyleThick")]
         const Thick = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/double?language=objc)
+/// Draw a double line.
         #[doc(alias = "NSUnderlineStyleDouble")]
         const Double = 0x09;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/nsunderlinestylepatternsolid?language=objc)
+/// Draw a solid line.
         #[doc(alias = "NSUnderlineStylePatternSolid")]
         const PatternSolid = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndot?language=objc)
+/// Draw a line of dots.
         #[doc(alias = "NSUnderlineStylePatternDot")]
         const PatternDot = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndash?language=objc)
+/// Draw a line of dashes.
         #[doc(alias = "NSUnderlineStylePatternDash")]
         const PatternDash = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndashdot?language=objc)
+/// Draw a line of alternating dashes and dots.
         #[doc(alias = "NSUnderlineStylePatternDashDot")]
         const PatternDashDot = 0x0300;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/patterndashdotdot?language=objc)
+/// Draw a line of alternating dashes and two dots.
         #[doc(alias = "NSUnderlineStylePatternDashDotDot")]
         const PatternDashDotDot = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinestyle/byword?language=objc)
+/// Draw the line only beneath or through words, not whitespace.
         #[doc(alias = "NSUnderlineStyleByWord")]
         const ByWord = 0x8000;
     }
@@ -174,16 +328,24 @@ unsafe impl RefEncode for NSUnderlineStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionformattype?language=objc)
+/// Constants for the writing direction attribute key.
+///
+/// ## Overview
+///
+/// Use these constants as the values for the [`writingDirection`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/writingdirection) key in Swift or the [`NSWritingDirectionAttributeName`](https://developer.apple.com/documentation/uikit/nswritingdirectionattributename) key in Objective-C.
+///
+/// You can use the logical OR operator to combine these constants with [`NSWritingDirectionLeftToRight`](https://developer.apple.com/documentation/uikit/nswritingdirection/lefttoright) or [`NSWritingDirectionRightToLeft`](https://developer.apple.com/documentation/uikit/nswritingdirection/righttoleft) when used with the [`writingDirection`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/writingdirection) key in Swift or the [`NSWritingDirectionAttributeName`](https://developer.apple.com/documentation/uikit/nswritingdirectionattributename) key in Objective-C to specify formatting controls defined by the Unicode Bidirectional Algorithm in [Unicode Standard Annex #9](http://unicode.org/reports/tr9/).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirectionFormatType(pub NSInteger);
 impl NSWritingDirectionFormatType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionformattype/embedding?language=objc)
+    /// Text is embedded in text with another writing direction. For example, an English quotation in the middle of an Arabic sentence could be marked as being embedded left-to-right text.
     #[doc(alias = "NSWritingDirectionEmbedding")]
     pub const Embedding: Self = Self(0 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirectionformattype/override?language=objc)
+    /// Enables character types with inherent directionality to be overridden when required for special cases, such as for part numbers made of mixed English, digits, and Hebrew letters to be written from right to left.
     #[doc(alias = "NSWritingDirectionOverride")]
     pub const Override: Self = Self(1 << 1);
 }
@@ -196,55 +358,79 @@ unsafe impl RefEncode for NSWritingDirectionFormatType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexteffectstyle?language=objc)
+/// Constants for the type of effect to apply to the text.
+///
+/// ## Overview
+///
+/// Use this constant as the value for the [`NSTextEffectAttributeName`](https://developer.apple.com/documentation/uikit/nstexteffectattributename) key.
+///
+///
 // NS_TYPED_ENUM
 pub type NSTextEffectStyle = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexteffectletterpressstyle?language=objc)
+    /// A graphical text effect that gives glyphs the appearance of letterpress printing, which involves pressing the type into the paper.
     pub static NSTextEffectLetterpressStyle: &'static NSTextEffectStyle;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightstyle?language=objc)
+/// Constants that specify the type of highlight to apply to text.
+///
+/// ## Overview
+///
+/// Use an [`NSTextHighlightStyle`](https://developer.apple.com/documentation/uikit/nstexthighlightstyle) structure as the value of the [`NSTextHighlightStyleAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightstyleattributename) attribute. That attribute applies a highlight to the text to emphasize it. The highlight contributes a background color and a contrasting foreground color to the text.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextHighlightStyle = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightstyledefault?language=objc)
+    /// The default highlight style to apply to text.
+    ///
+    /// ## Overview
+    ///
+    /// Use this constant as the value for the [`NSTextHighlightStyleAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightstyleattributename) attribute. The system applies the default highlight color to your text. To specify a different highlight color, add the [`NSTextHighlightColorSchemeAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeattributename) attribute to your text and set its value to the color you want.
+    ///
+    ///
     pub static NSTextHighlightStyleDefault: &'static NSTextHighlightStyle;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorscheme?language=objc)
+/// Constants that specify the highlight color to use with the text.
+///
+/// ## Overview
+///
+/// Use an [`NSTextHighlightColorScheme`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorscheme) structure as the value of the [`NSTextHighlightColorSchemeAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeattributename) attribute. That attribute specifies which color to use when drawing the highlight on the text. This attribute specifies only the color option. To display the highlight itself, add the [`NSTextHighlightStyleAttributeName`](https://developer.apple.com/documentation/uikit/nstexthighlightstyleattributename) attribute to the text.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextHighlightColorScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemedefault?language=objc)
+    /// The default system highlight color.
     pub static NSTextHighlightColorSchemeDefault: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemepurple?language=objc)
+    /// A purple highlight color.
     pub static NSTextHighlightColorSchemePurple: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemepink?language=objc)
+    /// A pink highlight color.
     pub static NSTextHighlightColorSchemePink: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeorange?language=objc)
+    /// An orange highlight color.
     pub static NSTextHighlightColorSchemeOrange: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschememint?language=objc)
+    /// A mint green highlight color.
     pub static NSTextHighlightColorSchemeMint: &'static NSTextHighlightColorScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexthighlightcolorschemeblue?language=objc)
+    /// A blue highlight color.
     pub static NSTextHighlightColorSchemeBlue: &'static NSTextHighlightColorScheme;
 }
 
@@ -268,56 +454,79 @@ pub unsafe trait NSAttributedStringAttributeFixing:
 impl private_NSAttributedStringAttributeFixing::Sealed for NSMutableAttributedString {}
 unsafe impl NSAttributedStringAttributeFixing for NSMutableAttributedString {}
 
-/// ********************** Document formats ***********************
+/// Constants for the document type document attribute key.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattributedstringdocumenttype?language=objc)
+/// ## Discussion
+///
+/// Use these constants as values for the [`NSDocumentTypeDocumentAttribute`](https://developer.apple.com/documentation/uikit/nsdocumenttypedocumentattribute) key in the document attributes dictionary.
+///
+///
+/// ********************** Document formats ***********************
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsplaintextdocumenttype?language=objc)
+    /// Plain text document.
     pub static NSPlainTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrtftextdocumenttype?language=objc)
+    /// Rich text format document.
     pub static NSRTFTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrtfdtextdocumenttype?language=objc)
+    /// Rich text format with attachments document.
     pub static NSRTFDTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nshtmltextdocumenttype?language=objc)
+    /// Hypertext markup language (HTML) document.
     pub static NSHTMLTextDocumentType: &'static NSAttributedStringDocumentType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutsectionkey?language=objc)
+/// Constants for the text layout sections document attribute key.
+///
+/// ## Discussion
+///
+/// Use these constants as values for the [`NSTextLayoutSectionsAttribute`](https://developer.apple.com/documentation/uikit/nstextlayoutsectionsattribute) key in the document attributes dictionary.
+///
+///
 // NS_TYPED_ENUM
 pub type NSTextLayoutSectionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutsectionorientation?language=objc)
+    /// The orientation of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an [`NSLayoutManager.TextLayoutOrientation`](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation) value. The default value is [`NSLayoutManager.TextLayoutOrientation.horizontal`](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/horizontal).
+    ///
+    ///
     pub static NSTextLayoutSectionOrientation: &'static NSTextLayoutSectionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutsectionrange?language=objc)
+    /// The character range.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`NSRange`](https://developer.apple.com/documentation/foundation/nsrange-c.struct) representing a character range. The default value is a range covering the entire string.
+    ///
+    ///
     pub static NSTextLayoutSectionRange: &'static NSTextLayoutSectionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingtype?language=objc)
+/// Constants that specify the text scaling.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextScalingType(pub NSInteger);
 impl NSTextScalingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingtype/standard?language=objc)
+    /// Font sizes throughout the document appear visually similar to how they would render in macOS and non-Apple platforms.
     #[doc(alias = "NSTextScalingStandard")]
     pub const ScalingStandard: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingtype/ios?language=objc)
+    /// Font sizes throughout the document appear visually similar to how they would render in iOS.
     #[doc(alias = "NSTextScalingiOS")]
     pub const ScalingiOS: Self = Self(1);
 }
@@ -330,131 +539,278 @@ unsafe impl RefEncode for NSTextScalingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattributedstringdocumentattributekey?language=objc)
+/// The attributes you apply to an entire document.
+///
+/// ## Discussion
+///
+/// The [`NSAttributedStringDocumentAttributeKey`](https://developer.apple.com/documentation/uikit/nsattributedstringdocumentattributekey) type defines attributes that apply to an entire attributed string, and not to specific ranges of characters. You specify these attributes when writing an attributed string to disk, or reading text from a file on disk. Use these attributes to specify metadata about the overall document, including its author or title, page margin details, font-scaling options for cross-platform interchange, and more.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdocumenttypedocumentattribute?language=objc)
+    /// The document type.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is one of the document types declared in [`NSAttributedStringDocumentType`](https://developer.apple.com/documentation/uikit/nsattributedstringdocumenttype). For reader methods, this key in options can specify the document type for interpreting the contents. Upon return, the document attributes can contain this key for indicating the actual format used to read the contents. For write methods, this key specifies the format for generating the data.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"DocumentType"`.
+    ///
+    ///
     pub static NSDocumentTypeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscharacterencodingdocumentattribute?language=objc)
+    /// The string encoding for the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing integer specifying [`NSStringEncoding`](https://developer.apple.com/documentation/foundation/nsstringencoding) for the file; default for plain text is the default encoding. This key in options can specify the string encoding for reading the data. Upon return, the document attributes can contain the actual encoding used. For writing methods, this value is used for generating the plain text data.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"CharacterEncoding"`.
+    ///
+    ///
     pub static NSCharacterEncodingDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdefaultattributesdocumentattribute?language=objc)
+    /// The default document attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object containing attributes to be applied to plain files. Used by reader methods. This key in options can specify the default attributes applied to the entire document contents. Upon return, the document attributes can contain this key indicating the actual attributes used.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"DefaultAttributes"`.
+    ///
+    ///
     pub static NSDefaultAttributesDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nspapersizedocumentattribute?language=objc)
+    /// The paper size for the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`NSSize`](https://developer.apple.com/documentation/foundation/nssize).
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"PaperSize"`.
+    ///
+    ///
     pub static NSPaperSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsviewsizedocumentattribute?language=objc)
+    /// The view size.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`NSSize`](https://developer.apple.com/documentation/foundation/nssize).
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"ViewSize"`.
+    ///
+    ///
     pub static NSViewSizeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsviewzoomdocumentattribute?language=objc)
+    /// The view zoom.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing a float. For example, a value of 100 indicates 100% zoom.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"ViewZoom"`.
+    ///
+    ///
     pub static NSViewZoomDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsviewmodedocumentattribute?language=objc)
+    /// The view mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an integer. A value of 0 indicates normal, and a value of 1 indicates page layout (use the value `@"PaperSize"`).
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"ViewMode"`.
+    ///
+    ///
     pub static NSViewModeDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdefaultfontexcludeddocumentattribute?language=objc)
     pub static NSDefaultFontExcludedDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsreadonlydocumentattribute?language=objc)
+    /// An indication of whether the document is read-only.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains an integer. A value of `1` indicates read-only. If the value is `0`, missing, or negative, the document doesn’t display as read-only.
+    ///
+    /// This attribute is not related to the file system protection on the file. Instead, this attribute can affect how the file displays to the user.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"ReadOnly"`.
+    ///
+    ///
     pub static NSReadOnlyDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsbackgroundcolordocumentattribute?language=objc)
+    /// The background color of the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object representing the document-wide page background color.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"BackgroundColor"`.
+    ///
+    /// For applications linked on versions prior to macOS 10.5, HTML import sets the `NSBackgroundColorDocumentAttribute` to `[NSColor whiteColor]` in cases in which the HTML does not specify a background color. For applications linked on macOS 10.5 and later, no `NSBackgroundColorDocumentAttribute` is set in these cases.
+    ///
+    ///
     pub static NSBackgroundColorDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nshyphenationfactordocumentattribute?language=objc)
+    /// The hyphenation factor of the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a float. A value of 0 indicates that hyphenation is off, and a value of 1 indicates full hyphenation.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"HyphenationFactor"`.
+    ///
+    ///
     pub static NSHyphenationFactorDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdefaulttabintervaldocumentattribute?language=objc)
+    /// The default tab stop interval for the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a float. Represents the document-wide default tab stop interval.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"DefaultTabInterval"`.
+    ///
+    ///
     pub static NSDefaultTabIntervalDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutsectionsattribute?language=objc)
+    /// The layout orientations for each section.
+    ///
+    /// ## Discussion
+    ///
+    /// An [NSArray](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47205) containing [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects, each dictionary describing a layout orientation section. The dictionary can have two attributes: [`NSTextLayoutSectionOrientation`](https://developer.apple.com/documentation/uikit/nstextlayoutsectionorientation) and [`NSTextLayoutSectionRange`](https://developer.apple.com/documentation/uikit/nstextlayoutsectionrange). When there is a gap between sections, it’s assumed to have [`NSLayoutManager.TextLayoutOrientation.horizontal`](https://developer.apple.com/documentation/uikit/nslayoutmanager/textlayoutorientation/horizontal).
+    ///
+    ///
     pub static NSTextLayoutSectionsAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextscalingdocumentattribute?language=objc)
+    /// The text-scaling mode to use when displaying the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is one of the options of the [`NSTextScalingType`](https://developer.apple.com/documentation/uikit/nstextscalingtype) type. Some platforms scale fonts to improve their appearance. When saving a document, include this attribute to specify the type of scaling to apply to the text at display time.
+    ///
+    ///
     pub static NSTextScalingDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nssourcetextscalingdocumentattribute?language=objc)
+    /// The text-scaling mode you used when creating the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is one of the options of the [`NSTextScalingType`](https://developer.apple.com/documentation/uikit/nstextscalingtype) type. Some platforms scale fonts to improve their appearance. Include this attribute to specify the original text-scaling mode you used to create the text.
+    ///
+    ///
     pub static NSSourceTextScalingDocumentAttribute:
         &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscocoaversiondocumentattribute?language=objc)
+    /// The version of Cocoa that created the file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a float. For RTF files only, stores the version of Cocoa with which the file was created. Absence of this value indicates RTF file not created by Cocoa or its predecessors.
+    ///
+    /// Values less than `100` are pre–macOS; `100` is macOS 10.0 or 10.1; `102` is macOS 10.2 and 10.3; values greater than `102` correspond to values of `NSAppKitVersionNumber` in macOS 10.4 and later.
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"CocoaRTFVersion"`.
+    ///
+    ///
     pub static NSCocoaVersionDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsattributedstringdocumentreadingoptionkey?language=objc)
+/// Options for constructing an attributed string from data you read from disk.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAttributedStringDocumentReadingOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdocumenttypedocumentoption?language=objc)
+    /// The document type.
+    ///
+    /// ## Overview
+    ///
+    /// One of the document types described in [`NSAttributedStringDocumentType`](https://developer.apple.com/documentation/uikit/nsattributedstringdocumenttype), indicating a document type to be forced when loading the document. The previous string constant was `@"DocumentType"`.
+    ///
+    ///
     pub static NSDocumentTypeDocumentOption: &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdefaultattributesdocumentoption?language=objc)
     pub static NSDefaultAttributesDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscharacterencodingdocumentoption?language=objc)
+    /// The string encoding.
+    ///
+    /// ## Overview
+    ///
+    /// For plain text documents; [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing the unsigned int [`NSStringEncoding`](https://developer.apple.com/documentation/foundation/nsstringencoding) to override any encoding specified in an HTML document. The previous string constant was `@"CharacterEncoding"`.
+    ///
+    ///
     pub static NSCharacterEncodingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstargettextscalingdocumentoption?language=objc)
+    /// The text scaling mode to use after reading the text from disk.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is one of the options of the [`NSTextScalingType`](https://developer.apple.com/documentation/uikit/nstextscalingtype) type. Some platforms scale fonts to improve their appearance. Include this option to specify the text-scaling mode you want to use for the document you read.
+    ///
+    ///
     pub static NSTargetTextScalingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nssourcetextscalingdocumentoption?language=objc)
+    /// The text-scaling mode to associate with the document’s content.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is one of the options of the [`NSTextScalingType`](https://developer.apple.com/documentation/uikit/nstextscalingtype) type. Some platforms scale fonts to improve their appearance. Include this option to specify the text-scaling mode to associate with the document’s contents on disk.
+    ///
+    ///
     pub static NSSourceTextScalingDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextkit1listmarkerformatdocumentoption?language=objc)
     pub static NSTextKit1ListMarkerFormatDocumentOption:
         &'static NSAttributedStringDocumentReadingOptionKey;
 }
@@ -602,71 +958,108 @@ impl private_NSAttributedStringKitAdditions::Sealed for NSAttributedString {}
 unsafe impl NSAttributedStringKitAdditions for NSAttributedString {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nspapermargindocumentattribute?language=objc)
+    /// The paper margin of the document.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing [`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets).
+    ///
+    /// The string constant in macOS 10.3 and earlier is `@"PaperMargin"`.
+    ///
+    ///
     pub static NSPaperMarginDocumentAttribute: &'static NSAttributedStringDocumentAttributeKey;
 }
 
 extern "C" {
-    /// ********************** Deprecated ***********************
+    /// The obliqueness of the text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nsobliquenessattributename?language=objc)
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating point value indicating skew to be applied to glyphs. The default value is `0`, indicating no skew.
+    ///
+    ///
+    /// ********************** Deprecated ***********************
     #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSObliquenessAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsexpansionattributename?language=objc)
+    /// The expansion factor of the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating point value indicating the log of the expansion factor to be applied to glyphs. The default value is `0`, indicating no expansion.
+    ///
+    ///
     #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSExpansionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsverticalglyphformattributename?language=objc)
+    /// The vertical glyph form of the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this attribute is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an integer. The value `0` indicates horizontal text. The value `1` indicates vertical text. In iOS, horizontal text is always used and specifying a different value is undefined.
+    ///
+    ///
     #[deprecated = "This attribute is not supported with TextKit 2"]
     pub static NSVerticalGlyphFormAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatternsolid?language=objc)
+/// A solid line.
 #[deprecated]
 pub static NSUnderlinePatternSolid: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternSolid.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndot?language=objc)
+/// A line of dots.
 #[deprecated]
 pub static NSUnderlinePatternDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDot.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndash?language=objc)
+/// A line of dashes.
 #[deprecated]
 pub static NSUnderlinePatternDash: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDash.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndashdot?language=objc)
+/// A line of alternating dashes and dots.
 #[deprecated]
 pub static NSUnderlinePatternDashDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDot.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinepatterndashdotdot?language=objc)
+/// A line of alternating dashes and two dots.
 #[deprecated]
 pub static NSUnderlinePatternDashDotDot: NSUnderlineStyle =
     NSUnderlineStyle(NSUnderlineStyle::PatternDashDotDot.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsunderlinebyword?language=objc)
+/// A line only beneath or through words, not whitespace.
 #[deprecated]
 pub static NSUnderlineByWord: NSUnderlineStyle = NSUnderlineStyle(NSUnderlineStyle::ByWord.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection?language=objc)
+/// Options for specifying text-writing direction.
+///
+/// ## Overview
+///
+/// You can use the logical OR operator to combine these constants with [`NSWritingDirectionLeftToRight`](https://developer.apple.com/documentation/uikit/nswritingdirection/lefttoright) or [`NSWritingDirectionRightToLeft`](https://developer.apple.com/documentation/uikit/nswritingdirection/righttoleft) when used with [`writingDirection`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/writingdirection) to specify formatting controls defined by the Unicode Bidirectional Algorithm in [Unicode Standard Annex #9](http://unicode.org/reports/tr9/).
+///
+///
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextWritingDirection(pub NSInteger);
 impl NSTextWritingDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection/embedding?language=objc)
+    /// Text is embedded in text with another writing direction.
+    ///
+    /// ## Overview
+    ///
+    /// For example, an English quotation in the middle of an Arabic sentence could be marked as being embedded left-to-right text.
+    ///
+    ///
     #[doc(alias = "NSTextWritingDirectionEmbedding")]
     #[deprecated]
     pub const Embedding: Self = Self(0 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextwritingdirection/override?language=objc)
+    /// Enables character types with inherent directionality to be overridden when required for special cases, such as for part numbers made of mixed English, digits, and Hebrew letters to be written from right to left.
     #[doc(alias = "NSTextWritingDirectionOverride")]
     #[deprecated]
     pub const Override: Self = Self(1 << 1);

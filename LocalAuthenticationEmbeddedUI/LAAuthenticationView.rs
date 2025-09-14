@@ -11,6 +11,72 @@ use objc2_local_authentication::*;
 use crate::*;
 
 extern_class!(
+    /// A graphical representation of the state of biometric authentication.
+    ///
+    /// ## Overview
+    ///
+    /// In the view that you use to manage authentication, add a local authentication view as a subview and provide it with an [`LAContext`](https://developer.apple.com/documentation/localauthentication/lacontext) instance. For example, you can do this in the doc://com.apple.documentation/documentation/appkit/nsviewcontroller/1434405-loadview method of your view controller:
+    ///
+    /// ```swift
+    /// func loadView() {
+    ///     laContext = LAContext()
+    ///     laView = LAAuthenticationView(context: laContext)
+    ///
+    ///     view.addSubview(laView)
+    ///     laView.translatesAutoresizingMaskIntoConstraints = false
+    ///
+    ///     // Add more subviews and layout constraints...
+    /// }
+    /// ```
+    ///
+    /// When the view appears, call the context’s [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to initiate the authentication:
+    ///
+    /// ```swift
+    /// override func viewDidAppear() {
+    ///     super.viewDidAppear()
+    ///
+    ///     laContext.evaluatePolicy(
+    ///         .deviceOwnerAuthenticationWithBiometricsOrWatch,
+    ///         localizedReason: "access your data"
+    ///     ) { success, error in
+    ///         // Handle the result.
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// The local authentication view displays an icon that depends on the type of authentication you request, and the types of authentication that the system supports. For example, for a device that supports Touch ID, if you request the [`LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorwatch) policy, like in the example above, the view displays the familiar finger print icon:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/152306b9f0be4f0721f157bec89caa20/laauthenticationview-1~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/63abc31f750ffd3e74f794a1a8a9e37c/laauthenticationview-1%402x.png 2x" />
+    ///     <img alt="A screenshot of a circular icon with a pattern that resembles a finger print." src="https://docs-assets.developer.apple.com/published/63abc31f750ffd3e74f794a1a8a9e37c/laauthenticationview-1%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// In the case above, if the user has a connected Apple Watch, that authentication mechanism works as well. If you limit the authentication to the [`LAPolicyDeviceOwnerAuthenticationWithWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch) policy, the icon shows an Apple Watch in profile:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7437b162fe1303d930e0ae8149718c44/laauthenticationview-2~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/27733d7dd339bc1a9956c15a7d5f16b7/laauthenticationview-2%402x.png 2x" />
+    ///     <img alt="A screenshot of a circular icon containing the profile of an Apple Watch." src="https://docs-assets.developer.apple.com/published/7437b162fe1303d930e0ae8149718c44/laauthenticationview-2~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// You can include other content around this icon that suits your app. The system also displays a message on the Touch Bar or on the user’s Apple Watch, if appropriate. When the evaluation succeeds, the icon transitions into a checkmark:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4d6fd0c66c2bb47b85b6588b243916f6/laauthenticationview-3~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8172fa3530a97505e520e30b6d4e1845/laauthenticationview-3%402x.png 2x" />
+    ///     <img alt="A screenshot of a circular icon with a blue checkmark inside." src="https://docs-assets.developer.apple.com/published/8172fa3530a97505e520e30b6d4e1845/laauthenticationview-3%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// If you call the evaluation without first attaching it to a local authentication view, the system shows a standard authentication alert instead.
+    ///
+    ///
     /// Compact authentication view providing authentication similar to
     /// `LAContext`evaluatePolicy API.
     ///
@@ -18,8 +84,6 @@ extern_class!(
     /// users to use Touch ID or Watch to authenticate. The reason for the
     /// authentication must be apparent from the surrounding UI to avoid confusion and
     /// security risks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthenticationembeddedui/laauthenticationview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

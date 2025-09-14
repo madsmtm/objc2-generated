@@ -7,8 +7,7 @@ use crate::*;
 
 extern_class!(
     /// A class representing a constant value in the Program.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramvalue?language=objc)
+    /// A class representing a constant value in the Program.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramValue;

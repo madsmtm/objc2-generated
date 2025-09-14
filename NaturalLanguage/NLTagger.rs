@@ -7,29 +7,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options?language=objc)
+/// Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTaggerOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitwords?language=objc)
+/// Omit tokens of type [`NLTagWord`](https://developer.apple.com/documentation/naturallanguage/nltag/word) (items considered to be words).
         #[doc(alias = "NLTaggerOmitWords")]
         const OmitWords = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitpunctuation?language=objc)
+/// Omit tokens of type [`NLTagPunctuation`](https://developer.apple.com/documentation/naturallanguage/nltag/punctuation) (all punctuation).
         #[doc(alias = "NLTaggerOmitPunctuation")]
         const OmitPunctuation = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitwhitespace?language=objc)
+/// Omit tokens of type [`NLTagWhitespace`](https://developer.apple.com/documentation/naturallanguage/nltag/whitespace) (whitespace of all sorts).
         #[doc(alias = "NLTaggerOmitWhitespace")]
         const OmitWhitespace = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/omitother?language=objc)
+/// Omit tokens of type [`NLTagOther`](https://developer.apple.com/documentation/naturallanguage/nltag/other) (non-linguistic items, such as symbols).
         #[doc(alias = "NLTaggerOmitOther")]
         const OmitOther = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/joinnames?language=objc)
+/// Typically, multiple-word names will be returned as multiple tokens, following the standard tokenization practice of the tagger.
+///
+/// ## Discussion
+///
+/// If this option is set, then multiple-word names will be joined together and returned as a single token.
+///
+///
         #[doc(alias = "NLTaggerJoinNames")]
         const JoinNames = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/options/joincontractions?language=objc)
+/// Contractions will be returned as one token.
         #[doc(alias = "NLTaggerJoinContractions")]
         const JoinContractions = 1<<5;
     }
@@ -43,19 +49,19 @@ unsafe impl RefEncode for NLTaggerOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult?language=objc)
+/// The response to an asset request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTaggerAssetsResult(pub NSInteger);
 impl NLTaggerAssetsResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/available?language=objc)
+    /// The asset is now available and loaded onto the device.
     #[doc(alias = "NLTaggerAssetsResultAvailable")]
     pub const Available: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/notavailable?language=objc)
+    /// The asset is unavailable on the device.
     #[doc(alias = "NLTaggerAssetsResultNotAvailable")]
     pub const NotAvailable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger/assetsresult/error?language=objc)
+    /// The framework couldn’t load the asset due to an error.
     #[doc(alias = "NLTaggerAssetsResultError")]
     pub const Error: Self = Self(2);
 }
@@ -69,7 +75,23 @@ unsafe impl RefEncode for NLTaggerAssetsResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagger?language=objc)
+    /// A tagger that analyzes natural language text.
+    ///
+    /// ## Overview
+    ///
+    /// [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) supports many different languages and scripts. Use it to segment natural language text into paragraph, sentence, or word units and to tag each unit with information like part of speech, lexical class, lemma, script, and language.
+    ///
+    /// When you create a linguistic tagger, you specify what kind of information you’re interested in by passing one or more [`NLTagScheme`](https://developer.apple.com/documentation/naturallanguage/nltagscheme) values. Set the [`string`](https://developer.apple.com/documentation/naturallanguage/nltagger/string) property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in Enumerating linguistic tags, to get the information requested for a given scheme and unit.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t use an instance of [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger) simultaneously from multiple threads.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLTagger;

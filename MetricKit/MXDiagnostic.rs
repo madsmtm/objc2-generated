@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract data class for a diagnostic.
     /// An abstract class that describes a diagnostic report vended by MetricKit.
     ///
     /// All supported diagnostics are subclasses of MXDiagnostic.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxdiagnostic?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXDiagnostic;

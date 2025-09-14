@@ -7,13 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that identifies the origin of a particular resource.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKSecurityOrigin`](https://developer.apple.com/documentation/webkit/wksecurityorigin) object is a transient, data-only object that identifies the host name, protocol, and port number associated with a particular resource. You don’t create [`WKSecurityOrigin`](https://developer.apple.com/documentation/webkit/wksecurityorigin) objects directly. Instead, WebKit creates them for the resources it loads. A _first-party_ load is any load URL has the same security origin as the requesting web site. First-party webpages can access each other’s resources, such as scripts and databases.
+    ///
+    /// Because a [`WKSecurityOrigin`](https://developer.apple.com/documentation/webkit/wksecurityorigin) object is transient, it doesn’t uniquely identify a security origin across multiple delegate method calls.
+    ///
+    ///
     /// A WKSecurityOrigin object contains information about a security origin.
     ///
     /// An instance of this class is a transient, data-only object;
     /// it does not uniquely identify a security origin across multiple delegate method
     /// calls.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wksecurityorigin?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

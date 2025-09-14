@@ -9,13 +9,12 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies properties used by a loss data descriptor.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNLossDataDescriptor specifies a loss data descriptor.
     /// The same descriptor can be used to initialize both the
     /// labels and the optional weights data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossdatadescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLossDataDescriptor;
@@ -111,14 +110,13 @@ impl MPSCNNLossDataDescriptor {
 }
 
 extern_class!(
+    /// A class that stores the per-element weight buffer used by loss and gradient loss kernels.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNLossLabels is used to hold the per-element weights buffer
     /// used by both MPSCNNLoss forward filter and MPSNNLossGradient backward filter.
     /// The MPSCNNLoss forward filter populates the MPSCNNLossLabels object
     /// and the MPSNNLossGradient backward filter consumes the state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosslabels?language=objc)
     #[unsafe(super(MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
@@ -395,18 +393,17 @@ impl MPSCNNLossLabels {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlosslabelsbatch?language=objc)
+/// A batch of loss labels instances.
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 pub type MPSCNNLossLabelsBatch = NSArray<MPSCNNLossLabels>;
 
 extern_class!(
+    /// An object that specifies properties used by a loss kernel.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNLossDescriptor specifies a loss filter descriptor.
     /// The same descriptor can be used to initialize both the
     /// MPSCNNLoss and the MPSNNLossGradient filters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnlossdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNLossDescriptor;
@@ -590,6 +587,7 @@ impl MPSCNNLossDescriptor {
 }
 
 extern_class!(
+    /// A kernel that computes the loss and loss gradient between specified predictions and labels.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNLoss filter is only used for training. This filter performs both the forward and
@@ -777,8 +775,6 @@ extern_class!(
     ///
     /// The number of output feature channels remains the same as the number of input feature
     /// channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnloss?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -997,6 +993,7 @@ impl MPSCNNLoss {
 }
 
 extern_class!(
+    /// An object that specifies properties used by a YOLO loss kernel.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// The MPSCNNYOLOLossDescriptor specifies a loss filter descriptor
@@ -1034,8 +1031,6 @@ extern_class!(
     /// typical cases is of the type
     /// MPSCNNLossTypeSoftMaxCrossEntropy.
     /// For details on how to set up the label values and anchorboxes see https://arxiv.org/abs/1612.08242
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololossdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSCNNYOLOLossDescriptor;
@@ -1305,7 +1300,7 @@ impl MPSCNNYOLOLossDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnyololoss?language=objc)
+    /// A kernel that computes the YOLO loss and loss gradient between specified predictions and labels.
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1565,8 +1560,6 @@ extern_class!(
     /// MPSNNInitialGradientfilter.
     /// NOTE: This filter does not support non-default offset or cliprects and setting them to other
     /// than default values will result in undefined results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnforwardloss?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1800,8 +1793,6 @@ extern_class!(
     ///
     /// The MPSNNLossGradient filter specifies the gradient filter for
     /// MPSNNForwardLoss.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradient?language=objc)
     #[unsafe(super(MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2070,8 +2061,6 @@ extern_class!(
     /// L = f, which means that dL/dL1 = df/df * df/dL1 = 1 * L2, which
     /// shows that we get the correct gradient by providing unit input as input gradient to
     /// the MPSCNNMultiplyGradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnninitialgradient?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

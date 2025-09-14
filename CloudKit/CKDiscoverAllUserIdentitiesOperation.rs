@@ -8,12 +8,78 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An operation that uses the device’s contacts to search for discoverable iCloud users.
+    ///
+    /// ## Overview
+    ///
+    /// Use this operation to discover iCloud users that match entries in the device’s Contacts database. CloudKit uses the email addresses and phone numbers in each Contact record to search for a matching iCloud account.
+    ///
+    /// Although your app doesn’t need authorization to use the Contacts database to execute this operation, if it has authorization, you can use the [`contactIdentifiers`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers) property on any returned user identity to fetch the corresponding Contact record from the database.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This operation scales linearly with the number of email addresses and phone numbers in the device’s Contacts database, and may take some time to complete.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Before CloudKit can return a user’s identity, you must ask for their permission by calling [`requestApplicationPermission:completionHandler:`](https://developer.apple.com/documentation/cloudkit/ckcontainer/requestapplicationpermission(_:completionhandler:)). Do this as part of any onboarding where you can highlight the benefits of being discoverable within the context of your app.
+    ///
+    /// The operation executes the handlers you provide on an internal queue it manages. Your handlers must be capable of executing on a background queue. Tasks that need access to the main queue must redirect as appropriate.
+    ///
+    /// The operation calls [`discoverAllUserIdentitiesCompletionBlock`](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation/discoveralluseridentitiescompletionblock) after it executes and returns results. Use the completion handler to perform housekeeping tasks for the operation. It should also manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because this class inherits from [`NSOperation`](https://developer.apple.com/documentation/foundation/operation), you can also set the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property. The operation calls both completion handlers if they’re both set.
+    ///
+    ///
+    ///
+    /// </div>
+    /// CloudKit operations have a default QoS of [`NSQualityOfServiceDefault`](https://developer.apple.com/documentation/foundation/qualityofservice/default). Operations with this service level are discretionary. The system schedules their execution at an optimal time according to battery level and network conditions, among other factors. Use the [`qualityOfService`](https://developer.apple.com/documentation/foundation/operation/qualityofservice) property to set a more appropriate QoS for the operation.
+    ///
+    /// The following example shows how to create the operation, configure its callbacks, and execute it using the default container’s queue:
+    ///
+    /// ```swift
+    /// func fetchUserIdentities(
+    ///     completion: @escaping (Result<[CKUserIdentity], Error>) -> Void) {
+    ///         
+    ///     var identities = [CKUserIdentity]()
+    ///     
+    ///     // Create an operation to discover all the iCloud users
+    ///     // in the user's Contacts database that use the app, and
+    ///     // opt in to being discoverable.
+    ///     let operation = CKDiscoverAllUserIdentitiesOperation()
+    ///     
+    ///     // Cache the user identities as CloudKit discovers them.  
+    ///     operation.userIdentityDiscoveredBlock = { userIdentity in
+    ///         identities.append(userIdentity)
+    ///     }
+    ///     
+    ///     // If the operation fails, return the error to the caller.
+    ///     // Otherwise, return the array of discovered user identities.
+    ///     operation.discoverAllUserIdentitiesCompletionBlock = { error in
+    ///         if let error = error {
+    ///             completion(.failure(error))
+    ///         } else {
+    ///             completion(.success(identities))
+    ///         }
+    ///     }
+    ///     
+    ///     // Set an appropriate QoS and add the operation to the
+    ///     // default container's queue to execute it.
+    ///     operation.qualityOfService = .userInitiated
+    ///     CKContainer.default().add(operation)
+    /// }
+    /// ```
+    ///
+    ///
     /// Finds all discoverable users in the device's contacts database. No Contacts access dialog will be displayed.
     ///
     ///
     /// This operation scales linearly with the number of email addresses and phone numbers in the device's address book.  It may take some time to complete.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation?language=objc)
     #[unsafe(super(CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CKOperation")]

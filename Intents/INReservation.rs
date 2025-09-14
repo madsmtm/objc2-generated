@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inreservation?language=objc)
+    /// An object that describes a reservation.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class directly. Instead, use the subclass associated with the type of reservation created.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INReservation;

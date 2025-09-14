@@ -6,13 +6,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// Error domain corresponding to the CWErr type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    ///
+    /// Error domain corresponding to the CWErr type.
     pub static CWErrorDomain: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the power state of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the power state of the Wi-Fi interface changes.
     ///
     ///
@@ -26,13 +34,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwpowerdidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypePowerDidChange event type"]
     pub static CWPowerDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the SSID of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the SSID of the Wi-Fi interface changes.
     ///
     ///
@@ -46,13 +58,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwssiddidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeSSIDDidChange event type"]
     pub static CWSSIDDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the BSSID of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the BSSID of the Wi-Fi interface changes.
     ///
     ///
@@ -66,13 +82,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwbssiddidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeBSSIDDidChange event type"]
     pub static CWBSSIDDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the link state of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the link of the Wi-Fi interface changes.
     ///
     ///
@@ -86,13 +106,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkdidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkDidChange event type"]
     pub static CWLinkDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the op mode of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the operating mode of the Wi-Fi interface changes.
     ///
     ///
@@ -106,13 +130,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmodedidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeModeDidChange event type"]
     pub static CWModeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the country or region code of any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the adopted country code of the Wi-Fi interface changes.
     ///
     ///
@@ -126,13 +154,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcountrycodedidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeCountryCodeDidChange event type"]
     pub static CWCountryCodeDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when new entries are added to the scan cache, or existing entries are updated with more current information. The _object_ for this notification is the corresponding BSD interface name. This notification does not contain a _userInfo_ dictionary.
+    ///
+    ///
     /// Posted when the scan cache of the Wi-Fi interface is updated with new scan results.
     ///
     ///
@@ -146,13 +178,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwscancachedidupdatenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeScanCacheUpdated event type"]
     pub static CWScanCacheDidUpdateNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the link quality for any WLAN interface changes. The _object_ for this notification is the corresponding BSD interface name. The _userInfo_ dictionary for this notification contains the current RSSI and current transmit rate for the given CoreWLAN interface.
+    ///
+    ///
     /// Posted when the link quality of the current Wi-Fi association changes.
     ///
     ///
@@ -166,13 +202,17 @@ extern "C" {
     /// userInfo
     /// </i>
     /// dictionary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitydidchangenotification?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// NSNumber containing the current RSSI value for the WLAN interface. Found in the _userInfo_ dictionary for the _CWLinkQualityChangedNotification_.
+    ///
+    ///
     /// NSNumber containing the current RSSI value for the Wi-Fi interface.
     ///
     ///
@@ -185,13 +225,17 @@ extern "C" {
     /// CWLinkQualityChangedNotification
     /// </i>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationrssikey?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityNotificationRSSIKey: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// NSNumber containing the current transmit rate value for the WLAN interface. Found in the _userInfo_ dictionary for the _CWLinkQualityChangedNotification_.
+    ///
+    ///
     /// NSNumber containing the current transmit rate for the Wi-Fi interface.
     ///
     ///
@@ -204,8 +248,6 @@ extern "C" {
     /// CWLinkQualityChangedNotification
     /// </i>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwlinkqualitynotificationtransmitratekey?language=objc)
     #[deprecated = "Use -[CWWiFiClient startMonitoringEventWithType:error:] with the CWEventTypeLinkQualityDidChange event type"]
     pub static CWLinkQualityNotificationTransmitRateKey: &'static NSString;
 }

@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessoryposition?language=objc)
+/// A structure that specifies the position of the accessory relative to the primary pointer.
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -42,55 +42,55 @@ impl UIPointerAccessoryPosition {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontop?language=objc)
+    /// An accessory position at the top of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionTop: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontopright?language=objc)
+    /// An accessory position at the top-right of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionTopRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionright?language=objc)
+    /// An accessory position at the right of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottomright?language=objc)
+    /// An accessory position at the bottom-right of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionBottomRight: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottom?language=objc)
+    /// An accessory position at the bottom of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionBottom: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionbottomleft?language=objc)
+    /// An accessory position at the bottom-left of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionBottomLeft: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositionleft?language=objc)
+    /// An accessory position at the left of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionLeft: UIPointerAccessoryPosition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessorypositiontopleft?language=objc)
+    /// An accessory position at the top-left of the primary pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIPointerAccessoryPositionTopLeft: UIPointerAccessoryPosition;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointeraccessory?language=objc)
+    /// Constants that describe accessories to display alongside the primary pointer.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that indicate how to render web view content.
+///
+/// ## Overview
+///
+/// Browsers often render webpages differently based on device type. For example, Safari provides a desktop-class experience when displaying webpages on Mac and iPad, but it displays a mobile experience when displaying pages on iPhone. Use content modes to specify how you want your web view to render content within your app.
+///
+///
 /// A content mode represents the type of content to load, as well as
 /// additional layout and rendering adaptations that are applied as a result of
 /// loading the content
@@ -15,20 +22,18 @@ use crate::*;
 ///
 /// WKContentModeRecommended behaves like WKContentModeMobile on iPhone and iPad mini
 /// and WKContentModeDesktop on other iPad models as well as Mac.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKContentMode(pub NSInteger);
 impl WKContentMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/recommended?language=objc)
+    /// The content mode that is appropriate for the current device.
     #[doc(alias = "WKContentModeRecommended")]
     pub const Recommended: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/mobile?language=objc)
+    /// The content mode that represents a mobile experience.
     #[doc(alias = "WKContentModeMobile")]
     pub const Mobile: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode/desktop?language=objc)
+    /// The content mode that represents a desktop experience.
     #[doc(alias = "WKContentModeDesktop")]
     pub const Desktop: Self = Self(2);
 }
@@ -41,26 +46,26 @@ unsafe impl RefEncode for WKContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Overview
+///
+/// A secure navigation policy represents whether or not there is a preference for loading a webpage with https, and how failures should be handled.
+///
+///
 /// A secure navigation policy represents whether or not there is a
 /// preference for loading a webpage with https, and how failures should be
 /// handled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebpagePreferencesUpgradeToHTTPSPolicy(pub NSInteger);
 impl WKWebpagePreferencesUpgradeToHTTPSPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/keepasrequested?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested")]
     pub const KeepAsRequested: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/automaticfallbacktohttp?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyAutomaticFallbackToHTTP")]
     pub const AutomaticFallbackToHTTP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/usermediatedfallbacktohttp?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyUserMediatedFallbackToHTTP")]
     pub const UserMediatedFallbackToHTTP: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy/erroronfailure?language=objc)
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyErrorOnFailure")]
     pub const ErrorOnFailure: Self = Self(3);
 }
@@ -74,12 +79,17 @@ unsafe impl RefEncode for WKWebpagePreferencesUpgradeToHTTPSPolicy {
 }
 
 extern_class!(
+    /// An object that specifies the behaviors to use when loading and rendering page content.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`WKWebpagePreferences`](https://developer.apple.com/documentation/webkit/wkwebpagepreferences) object when you want to change the default rendering behavior of your web view. Typically, iOS devices render web content for a mobile experience, and Mac devices render content for a desktop experience.
+    ///
+    ///
     /// A WKWebpagePreferences object is a collection of properties that
     /// determine the preferences to use when loading and rendering a page.
     ///
     /// Contains properties used to determine webpage preferences.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

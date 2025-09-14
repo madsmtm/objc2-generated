@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that saves relevant shortcuts.
     /// Where relevant shortcuts are provided to Siri.
     ///
     /// See also: INRelevantShortcut
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRelevantShortcutStore;

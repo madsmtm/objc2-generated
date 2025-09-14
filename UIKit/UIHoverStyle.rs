@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The hover style to apply to a view, including an effect and a shape to use for displaying that effect.
     /// The hover style to apply to a view, including an effect and a shape to use
     /// for displaying that effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

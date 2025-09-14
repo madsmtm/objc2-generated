@@ -7,18 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The coordinate types of DL-TDOA measurement updates that Nearby Interaction supports.
+/// The possible coordinate types for Downlink Time-Difference-of-Arrival measurement updates.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype?language=objc)
+/// ## Overview
+///
+/// The [`NIDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement) class [`coordinates`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates) property is of this type.
+///
+/// For more information on Downlink Time-Difference-of-Arrival measurements, see [`NIDLTDOAConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration).
+///
+///
+/// The coordinate types of DL-TDOA measurement updates that Nearby Interaction supports.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOACoordinatesType(pub NSInteger);
 impl NIDLTDOACoordinatesType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype/geodetic?language=objc)
+    /// A coordinate type that specifies a latitude, longitude, and altitude triplet.
+    ///
+    /// ## Discussion
+    ///
+    /// When the coordinate type ([`coordinatesType`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype)) for a given measurement ([`NIDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement)) is this option, the value of the measurement’s [`coordinates`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates) is a triplet of the format (latitude, longitude, altitude).
+    ///
+    ///
     #[doc(alias = "NIDLTDOACoordinatesTypeGeodetic")]
     pub const Geodetic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype/relative?language=objc)
+    /// A coordinate type that specifies a 3D Cartesian triplet.
+    ///
+    /// ## Discussion
+    ///
+    /// When the coordinate type ([`coordinatesType`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype)) for a given measurement ([`NIDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement)) is this option, the value of the measurement’s [`coordinates`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates) is a triplet of the format (x, y, z).
+    ///
+    ///
     #[doc(alias = "NIDLTDOACoordinatesTypeRelative")]
     pub const Relative: Self = Self(1);
 }
@@ -31,21 +50,26 @@ unsafe impl RefEncode for NIDLTDOACoordinatesType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The measurement types of DL-TDOA measurement updates that Nearby Interaction supports.
+/// The possible phases of downlink positioning signals.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype?language=objc)
+/// ## Overview
+///
+/// The [`NIDLTDOAMeasurement`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement) class [`measurementType`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype) property is of this type.
+///
+///
+/// The measurement types of DL-TDOA measurement updates that Nearby Interaction supports.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOAMeasurementType(pub NSInteger);
 impl NIDLTDOAMeasurementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/poll?language=objc)
+    /// A type that indicates the measurement derives from an initiating anchor’s first message.
     #[doc(alias = "NIDLTDOAMeasurementTypePoll")]
     pub const Poll: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/response?language=objc)
+    /// A type that indicates the measurement derives from responder anchors’ messages.
     #[doc(alias = "NIDLTDOAMeasurementTypeResponse")]
     pub const Response: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype/final?language=objc)
+    /// A type that indicates the measurement derives from an initial anchor’s last message.
     #[doc(alias = "NIDLTDOAMeasurementTypeFinal")]
     pub const Final: Self = Self(2);
 }
@@ -59,9 +83,16 @@ unsafe impl RefEncode for NIDLTDOAMeasurementType {
 }
 
 extern_class!(
-    /// Represents a single measurement relative to a DL-TDOA anchor.
+    /// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement?language=objc)
+    /// ## Overview
+    ///
+    /// Your app runs on a receiver device that fields messages from nearby physical base stations, or _anchors_. The framework processes the messages into instances of this class and provides them to your app through the  [`session:didUpdateDLTDOAMeasurements:`](https://developer.apple.com/documentation/nearbyinteraction/nisessiondelegate/session(_:didupdatedltdoa:)) callback. Your app analyzes the measurements to calculate the receiver’s position relative to the anchors in the tracked area.
+    ///
+    /// Only sessions that run a [`NIDLTDOAConfiguration`](https://developer.apple.com/documentation/nearbyinteraction/nidltdoaconfiguration) receive Downlink Time-Difference-of-Arrival measurements.
+    ///
+    ///
+    /// Represents a single measurement relative to a DL-TDOA anchor.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NIDLTDOAMeasurement;

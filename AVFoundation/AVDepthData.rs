@@ -10,16 +10,26 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/quality?language=objc)
+/// Values indicating the overall quality of a depth data map.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataQuality(pub NSInteger);
 impl AVDepthDataQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/quality/low?language=objc)
+    /// The depth map is a poor candidate for rendering high-quality depth effects or reconstructing a 3D scene.
+    ///
+    /// ## Discussion
+    ///
+    /// Low quality occurs when the process generating the depth map (such as inference of depth from disparity on a device with dual cameras) cannot find enough distinct key points in the input images, resulting in a large number of invalid depth values in the (pre-filtered) map.
+    ///
+    ///
     #[doc(alias = "AVDepthDataQualityLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/quality/high?language=objc)
+    /// The depth map is a good candidate for rendering high-quality depth effects or reconstructing a 3D scene.
+    ///
+    /// ## Discussion
+    ///
+    ///
     #[doc(alias = "AVDepthDataQualityHigh")]
     pub const High: Self = Self(1);
 }
@@ -32,16 +42,30 @@ unsafe impl RefEncode for AVDepthDataQuality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/accuracy?language=objc)
+/// Values indicating the general accuracy of a depth data map.
+///
+/// ## Overview
+///
+/// The accuracy of a depth data map is highly dependent on the camera calibration data used to generate it. If the camera’s focal length cannot be precisely determined at the time of capture, a scaling error in the z (depth) plane is introduced. If the camera’s optical center can’t be precisely determined at capture time, a principal point error is introduced, leading to an offset error in the disparity estimate.
+///
+/// These values report the accuracy of a map’s values with respect to its reported units.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataAccuracy(pub NSInteger);
 impl AVDepthDataAccuracy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/accuracy/relative?language=objc)
+    /// Values within the depth data map are usable for foreground/background separation, but are not absolutely accurate in the physical world.
+    ///
+    /// ## Discussion
+    ///
+    /// This level of accuracy indicates that values within a depth map are usable relative to one another (that is, a depth value of 2 is twice as far as a depth value of 1), but do not accurately convey real-world distance.
+    ///
+    ///
     #[doc(alias = "AVDepthDataAccuracyRelative")]
     pub const Relative: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata/accuracy/absolute?language=objc)
+    /// Values within the depth map are absolutely accurate within the physical world.
     #[doc(alias = "AVDepthDataAccuracyAbsolute")]
     pub const Absolute: Self = Self(1);
 }
@@ -55,6 +79,31 @@ unsafe impl RefEncode for AVDepthDataAccuracy {
 }
 
 extern_class!(
+    /// A container for per-pixel distance or disparity information captured by compatible camera devices.
+    ///
+    /// ## Overview
+    ///
+    /// _Depth data_ is a generic term for a map of per-pixel data containing depth-related information. A depth data object wraps a disparity or depth map and provides conversion methods, focus information, and camera calibration data to aid in using the map for rendering or computer vision tasks.
+    ///
+    /// A depth map describes at each pixel the distance to an object, in meters.
+    ///
+    /// A disparity map describes normalized shift values for use in comparing two images. The value for each pixel in the map is in units of 1/meters: (`pixelShift / (pixelFocalLength * baselineInMeters)`).
+    ///
+    /// The capture pipeline generates disparity or depth maps from camera images containing nonrectilinear data. Camera lenses have small imperfections that cause small distortions in their resultant images compared to an ideal pinhole camera model, so [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) maps contain nonrectilinear (nondistortion-corrected) data as well. The maps’ values are warped to match the lens distortion characteristics present in the YUV image pixel buffers captured at the same time.
+    ///
+    /// Because a depth data map is nonrectilinear, you can use an [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) map as a proxy for depth when rendering effects to its accompanying image, but not to correlate points in 3D space. To use depth data for computer vision tasks, use the data in the [`cameraCalibrationData`](https://developer.apple.com/documentation/avfoundation/avdepthdata/cameracalibrationdata) property to rectify the depth data.
+    ///
+    /// There are two ways to capture depth data:
+    ///
+    /// - The [`AVCaptureDepthDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput) class captures and delivers depth data in a stream (similar to how the [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) delivers video data).
+    ///
+    /// - The [`AVCapturePhotoOutput`](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput) class delivers depth data as a property of an [`AVCapturePhoto`](https://developer.apple.com/documentation/avfoundation/avcapturephoto) object containing the captured image.
+    ///
+    /// You can also create [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) objects using information obtained from image files with the [`Image I/O`](https://developer.apple.com/documentation/imageio) framework.
+    ///
+    /// When editing images containing depth information, use the methods listed in Transforming and Processing to generate derivative [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) objects reflecting the edits that have been performed.
+    ///
+    ///
     /// An object wrapping a map of disparity or depth pixel data, plus metadata.
     ///
     ///
@@ -70,8 +119,6 @@ extern_class!(
     /// Disparity / depth maps are generated from camera images containing non-rectilinear data. Camera lenses have small imperfections that cause small distortions in their resultant images compared to a pinhole camera. AVDepthData maps contain non-rectilinear (non-distortion-corrected) data as well. Their values are warped to match the lens distortion characteristics present in their accompanying YUV image. Therefore an AVDepthData map can be used as a proxy for depth when rendering effects to its accompanying image, but not to correlate points in 3D space. In order to use AVDepthData for computer vision tasks, you should use its accompanying camera calibration data to rectify the depth data (see AVCameraCalibrationData).
     ///
     /// When capturing depth data from a camera using AVCaptureDepthDataOutput, AVDepthData objects are delivered to your AVCaptureDepthDataOutputDelegate in a streaming fashion. When capturing depth data along with photos using AVCapturePhotoOutput, depth data is delivered to your AVCapturePhotoCaptureDelegate as a property of an AVCapturePhoto (see -[AVCapturePhotoCaptureDelegate captureOutput:didFinishProcessingPhoto:error:]). When working with image files containing depth information, AVDepthData may be instantiated using information obtained from ImageIO. When editing images containing depth information, derivative AVDepthData objects may be instantiated reflecting the edits that have been performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDepthData;

@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgvector?language=objc)
+/// A structure that contains a two-dimensional vector.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGVector {
@@ -24,22 +24,17 @@ unsafe impl RefEncode for CGVector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CGRectEdge {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/minxedge?language=objc)
     #[doc(alias = "CGRectMinXEdge")]
     #[default]
     MinXEdge = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/minyedge?language=objc)
     #[doc(alias = "CGRectMinYEdge")]
     MinYEdge = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/maxxedge?language=objc)
     #[doc(alias = "CGRectMaxXEdge")]
     MaxXEdge = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgrectedge/maxyedge?language=objc)
     #[doc(alias = "CGRectMaxYEdge")]
     MaxYEdge = 3,
 }
@@ -54,7 +49,6 @@ unsafe impl RefEncode for CGRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgaffinetransform?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGAffineTransform {
@@ -86,7 +80,6 @@ unsafe impl RefEncode for CGAffineTransform {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgaffinetransformcomponents?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGAffineTransformComponents {

@@ -13,7 +13,31 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipickerview?language=objc)
+    /// A view that uses a spinning-wheel or slot-machine metaphor to show one or more sets of values.
+    ///
+    /// ## Overview
+    ///
+    /// A picker view displays one or more wheels that the user manipulates to select items. Each wheel — known as a _component_ — has a series of indexed rows representing the selectable items. Each row displays a string or view so that the user can identify the item on that row. Users select items by rotating the wheels to the desired values, which align with a selection indicator.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`UIDatePicker`](https://developer.apple.com/documentation/uikit/uidatepicker) class uses a custom subclass of [`UIPickerView`](https://developer.apple.com/documentation/uikit/uipickerview) to display dates and times. To see an example, tap the add (”+”) button in the Alarm pane of the Clock app.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You provide the data to display in your picker view using a picker data source (an object that adopts the [`UIPickerViewDataSource`](https://developer.apple.com/documentation/uikit/uipickerviewdatasource) protocol). Use your picker view delegate (an object that adopts the [`UIPickerViewDelegate`](https://developer.apple.com/documentation/uikit/uipickerviewdelegate) protocol) to provide views for displaying your data and responding to user selections.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`UIPickerView`](https://developer.apple.com/documentation/uikit/uipickerview) and its descendants aren’t available when the user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -213,7 +237,13 @@ impl UIPickerView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipickerviewdatasource?language=objc)
+    /// The interface for a picker view’s data source.
+    ///
+    /// ## Overview
+    ///
+    /// The data source of a [`UIPickerView`](https://developer.apple.com/documentation/uikit/uipickerview) object must adopt this protocol to mediate between the picker view object and your app’s data model for that picker view. The data source provides the picker view with the number of components, and the number of rows in each component, for displaying the picker view data. Both methods in this protocol are required.
+    ///
+    ///
     pub unsafe trait UIPickerViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(numberOfComponentsInPickerView:))]
@@ -232,7 +262,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipickerviewdelegate?language=objc)
+    /// The interface for a picker view’s delegate.
+    ///
+    /// ## Overview
+    ///
+    /// The delegate of a [`UIPickerView`](https://developer.apple.com/documentation/uikit/uipickerview) object must adopt this protocol and implement at least some of its methods to provide the picker view with the data it needs to construct itself.
+    ///
+    /// The delegate implements the required methods of this protocol to return height, width, row title, and the view content for the rows in each component. It must also provide the content for each component’s row, either as a string or a view. Typically the delegate implements other optional methods to respond to new selections or deselections of component rows.
+    ///
+    /// See [`UIPickerView`](https://developer.apple.com/documentation/uikit/uipickerview) for a discussion of components, rows, row content, and row selection.
+    ///
+    ///
     pub unsafe trait UIPickerViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIResponder",

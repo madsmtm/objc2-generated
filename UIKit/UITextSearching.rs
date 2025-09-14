@@ -7,28 +7,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchdocumentidentifier?language=objc)
+/// A string that uniquely identifies a specific document when searching for matching text across multiple documents.
+///
+/// ## Discussion
+///
+/// The [`UITextSearching`](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq) and [`UITextSearchAggregator`](https://developer.apple.com/documentation/uikit/uitextsearchaggregator-swift.struct) protocols use this type to distinguish matches in a specific document from text in other documents with the same range.
+///
+///
 pub type UITextSearchDocumentIdentifier = AnyObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle?language=objc)
+/// Constants that describe the style a find session uses to decorate the text.
+///
+/// ## Overview
+///
+/// Use [`UITextSearchFoundTextStyle`](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle) to identify ranges of text your app decorates to indicate matches, highlighted matches and non-matching text.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSearchFoundTextStyle(pub NSInteger);
 impl UITextSearchFoundTextStyle {
+    /// A style that indicates the text isn’t a match.
     /// No style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/normal?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleNormal")]
     pub const Normal: Self = Self(0);
+    /// A style that indicates the text is a match, but not highlighted.
     /// "Found" style. Used to indicate matches that have been found, but not currently highlighted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/found?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleFound")]
     pub const Found: Self = Self(1);
+    /// A style that indicates the text is a highlighted match.
     /// Highlighted style, used to indicate a match that is found and currently highlighted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchfoundtextstyle/highlighted?language=objc)
     #[doc(alias = "UITextSearchFoundTextStyleHighlighted")]
     pub const Highlighted: Self = Self(2);
 }
@@ -42,7 +51,13 @@ unsafe impl RefEncode for UITextSearchFoundTextStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchaggregator-c.protocol?language=objc)
+    /// The methods you use on a find session’s aggregator to collect matching text ranges for a search.
+    ///
+    /// ## Overview
+    ///
+    /// To track text ranges that match the search, call these methods on the aggregator for the searchable object implementing the [`UITextSearching`](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq) protocol for a [`UITextSearchingFindSession`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession).
+    ///
+    ///
     pub unsafe trait UITextSearchAggregator: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Returns all currently reported found ranges via
@@ -111,7 +126,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq?language=objc)
+    /// The methods you use on a find session’s searchable objects to perform search operations and decorate the found text results.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol on the class that encapsulates the searchable content for your view. This allows you to use an instance of [`UITextSearchingFindSession`](https://developer.apple.com/documentation/uikit/uitextsearchingfindsession) to manage the session for a find interaction.
+    ///
+    ///
     pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Overlap from UITextInput: Returns the currently selected text range, if applicable. Nil otherwise.

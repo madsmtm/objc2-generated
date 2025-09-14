@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalanceamount?language=objc)
+    /// A balance associated with an account.
+    ///
+    /// ## Overview
+    ///
+    /// A balance reflects any credit or debit associated with the account. Balances may reflect an amount of money, frequent flier miles, or points accumulated toward rewards.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INBalanceAmount;

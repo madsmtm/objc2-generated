@@ -8,14 +8,25 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// OpenGL texture based image buffer
+/// A reference to an OpenGL texture-based image buffer object.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexture?language=objc)
+/// ## Discussion
+///
+/// The Core Video OpenGL texture is a wrapper around the standard OpenGL texture.
+///
+///
+/// OpenGL texture based image buffer
 #[doc(alias = "CVOpenGLTextureRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVOpenGLTexture = CVImageBuffer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegettypeid()?language=objc)
+/// Obtains the Core Foundation ID for the Core Video OpenGL texture type.
+///
+/// ## Return Value
+///
+/// The Core Foundation ID for this type.
+///
+///
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
 pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
@@ -25,13 +36,28 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
     unsafe { CVOpenGLTextureGetTypeID() }
 }
 
+/// Returns the texture target (for example, `GL_TEXTURE_2D`) of an OpenGL texture.
+///
+/// Parameters:
+/// - image: The Core Video OpenGL texture whose target you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The OpenGL texture target.
+///
+///
+///
+/// ## Discussion
+///
+/// See the [OpenGL specification](http://www.opengl.org/documentation/) for more information about texture targets.
+///
+///
 /// Returns the texture target (eg. 2D vs. rect texture extension) of the CVOpenGLTexture
 ///
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: OpenGL texture target
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegettarget(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -47,13 +73,28 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GL
     unsafe { CVOpenGLTextureGetTarget(image) }
 }
 
+/// Returns the texture target name of a CoreVideo OpenGL texture.
+///
+/// Parameters:
+/// - image: The Core Video OpenGL texture whose texture target name you want to obtain.
+///
+///
+/// ## Return Value
+///
+/// The target name of the texture.
+///
+///
+///
+/// ## Discussion
+///
+/// See the [OpenGL specification](http://www.opengl.org/documentation/) for more information about texture targets.
+///
+///
 /// Returns the texture target name of the CVOpenGLTexture
 ///
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: OpenGL texture target name
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltexturegetname(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -69,13 +110,28 @@ pub extern "C-unwind" fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLui
     unsafe { CVOpenGLTextureGetName(image) }
 }
 
+/// Determines whether an OpenGL texture is flipped vertically.
+///
+/// Parameters:
+/// - image: The Core Video OpenGL texture whose vertical orientation you want to determine.
+///
+///
+/// ## Return Value
+///
+/// Returns `true` if (0,0) in the texture is in the upper-left corner, and `false` if (0,0) is in the lower-left corner.
+///
+///
+///
+/// ## Discussion
+///
+/// Quartz assumes a lower-left origin.
+///
+///
 /// Returns whether the image is flipped vertically or not.
 ///
 /// Parameter `image`: Target CVOpenGLTexture
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvopengltextureisflipped(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]

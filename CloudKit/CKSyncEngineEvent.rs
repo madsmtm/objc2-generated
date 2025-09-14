@@ -6,73 +6,60 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Describes an event that occurs during a sync operation.
 /// An event that occurs during the operation of a `CKSyncEngine`.
 /// See ``CKSyncEngineEvent`` for more details.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineEventType(pub NSInteger);
 impl CKSyncEngineEventType {
+    /// An event indicating an update to the sync engine’s state.
     /// The sync engine state was updated. You should persist it locally.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/stateupdate?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeStateUpdate")]
     pub const StateUpdate: Self = Self(0);
+    /// An event indicating a change to the device’s iCloud account.
     /// The user signed in or out of their account.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/accountchange?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeAccountChange")]
     pub const AccountChange: Self = Self(1);
+    /// An event indicating there are fetched database changes to process.
     /// The sync engine fetched new database changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/fetcheddatabasechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeFetchedDatabaseChanges")]
     pub const FetchedDatabaseChanges: Self = Self(2);
+    /// An event indicating there are fetched record zone changes to process.
     /// The sync engine fetched new record zone changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/fetchedrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeFetchedRecordZoneChanges")]
     pub const FetchedRecordZoneChanges: Self = Self(3);
+    /// An event indicating a sent batch of database changes.
     /// The sync engine sent a batch of database changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/sentdatabasechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeSentDatabaseChanges")]
     pub const SentDatabaseChanges: Self = Self(4);
+    /// An event indicating a sent batch of record zone changes.
     /// The sync engine sent a batch of record zone changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/sentrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeSentRecordZoneChanges")]
     pub const SentRecordZoneChanges: Self = Self(5);
+    /// An event indicating an imminent database fetch.
     /// The sync engine is about to fetch changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willfetchchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillFetchChanges")]
     pub const WillFetchChanges: Self = Self(6);
+    /// An event indicating an imminent fetch of changes in a record zone.
     /// The sync engine is about to fetch record zone changes from the server for a specific zone.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willfetchrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillFetchRecordZoneChanges")]
     pub const WillFetchRecordZoneChanges: Self = Self(7);
+    /// An event that indicates the record zone fetch is done.
     /// The sync engine finished fetching record zone changes from the server for a specific zone.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didfetchrecordzonechanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidFetchRecordZoneChanges")]
     pub const DidFetchRecordZoneChanges: Self = Self(8);
+    /// An event that indicates the database fetch is done.
     /// The sync engine finished fetching changes from the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didfetchchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidFetchChanges")]
     pub const DidFetchChanges: Self = Self(9);
+    /// An event indicating an imminent send of local changes.
     /// The sync engine is about to send changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/willsendchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeWillSendChanges")]
     pub const WillSendChanges: Self = Self(10);
+    /// An event that indicates a finished send operation.
     /// The sync engine finished sending changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/didsendchanges?language=objc)
     #[doc(alias = "CKSyncEngineEventTypeDidSendChanges")]
     pub const DidSendChanges: Self = Self(11);
 }
@@ -86,6 +73,23 @@ unsafe impl RefEncode for CKSyncEngineEventType {
 }
 
 extern_class!(
+    /// An event that occurs during a sync operation.
+    ///
+    /// ## Overview
+    ///
+    /// All sync operation events descend from this base class, and as such you don’t create instances of it directly. Instead, the sync engine dispatches them to your app’s delegate, periodically, throughout a sync operation.
+    ///
+    /// Use the [`type`](https://developer.apple.com/documentation/cloudkit/cksyncengineevent/type) property to determine the event’s proper type, and then use the corresponding convenience property to retrieve a reference to the event that’s downcast to the appropriate subclass. For example, when [`type`](https://developer.apple.com/documentation/cloudkit/cksyncengineevent/type) is set to [`CKSyncEngineEventType.stateUpdate`](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype/stateupdate), use the [`stateUpdateEvent`](https://developer.apple.com/documentation/cloudkit/cksyncengineevent/stateupdateevent) property to get the downcast reference .
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your app will crash if you access a noncorresponding convenience property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An event that occurs during the operation of a `CKSyncEngine`.
     ///
     /// While syncing, `CKSyncEngine` posts several different types of events.
@@ -121,8 +125,6 @@ extern_class!(
     /// - ``CKSyncEngineDidSendChangesEvent``
     ///
     /// See the documentation for each event struct for more details about when and why an event might be posted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineEvent;
@@ -273,6 +275,7 @@ impl CKSyncEngineEvent {
 }
 
 extern_class!(
+    /// An object that provides information about an update to the sync engine’s state.
     /// The sync engine state was updated, and you should persist it locally.
     ///
     /// In order to function properly and efficiently, `CKSyncEngine` tracks some state internally.
@@ -285,8 +288,6 @@ extern_class!(
     ///
     /// This state is directly tied to the changes you fetch and send with the sync engine.
     /// You should ensure that any changes fetched prior to receiving this state are also persisted alongside this state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginestateupdateevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineStateUpdateEvent;
@@ -327,12 +328,13 @@ impl CKSyncEngineStateUpdateEvent {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype?language=objc)
+/// Describes a change to the device’s iCloud account.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineAccountChangeType(pub NSInteger);
 impl CKSyncEngineAccountChangeType {
+    /// A change indicating a sign-in to an iCloud account.
     /// The user signed in to an account.
     ///
     /// If you already have data stored locally, you have a few options:
@@ -341,23 +343,19 @@ impl CKSyncEngineAccountChangeType {
     /// - Keep the local data separate from cloud-synced data (e.g. a separate "local account").
     /// - Delete the local data.
     /// - Prompt the user to make the decision.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/signin?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSignIn")]
     pub const SignIn: Self = Self(0);
+    /// A change indicating a sign-out of an iCloud account.
     /// The user signed out of their account.
     ///
     /// You should delete any locally-stored data for the previous account.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/signout?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSignOut")]
     pub const SignOut: Self = Self(1);
+    /// A change indicating a switch between two iCloud accounts.
     /// The user switched from one account to another.
     /// This might happen if the user signs out and in to a new account while your application is quit.
     ///
     /// You should delete any locally-stored data for the previous account.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype/switchaccounts?language=objc)
     #[doc(alias = "CKSyncEngineAccountChangeTypeSwitchAccounts")]
     pub const SwitchAccounts: Self = Self(2);
 }
@@ -371,6 +369,7 @@ unsafe impl RefEncode for CKSyncEngineAccountChangeType {
 }
 
 extern_class!(
+    /// An event that provides information about a change to the device’s iCloud account.
     /// The user signed in or out of their account.
     ///
     /// The sync engine automatically listens for account changes, and it will send this event when the user signs in or out.
@@ -381,8 +380,6 @@ extern_class!(
     ///
     /// Note that it's possible the account changes multiple times while your app is quit.
     /// If this happens, you will only receive one account change event representing the transition between the last known state and the current state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangeevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineAccountChangeEvent;
@@ -455,13 +452,24 @@ impl CKSyncEngineAccountChangeEvent {
 }
 
 extern_class!(
+    /// An object that provides information about fetched database changes.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although CloudKit doesn’t guarantee the order of fetched database changes, the typical order for both deletions and modifications is oldest to newest.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A batch of database changes was fetched from the server.
     ///
     /// If there are a lot of new changes on the server, then you might receive many of these events in a row.
     ///
     /// The ordering of fetched changes is not guaranteed, but changes will typically be fetched from oldest to newest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetcheddatabasechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedDatabaseChangesEvent;
@@ -512,13 +520,24 @@ impl CKSyncEngineFetchedDatabaseChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about fetched record zone changes.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although CloudKit doesn’t guarantee the order of fetched database changes, the typical order for both deletions and modifications is oldest to newest.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A batch of record zone changes was fetched from the server.
     ///
     /// If there are a lot of new changes on the server, then you might receive many of these events in a row.
     ///
     /// The ordering of fetched changes is not guaranteed, but changes will typically be fetched from oldest to newest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordZoneChangesEvent;
@@ -569,11 +588,10 @@ impl CKSyncEngineFetchedRecordZoneChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about a sent batch of database changes.
     /// The sync engine finished sending a batch of database changes to the server.
     ///
     /// If a change failed, try to resolve the issue causing the error and make the change again if necessary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesentdatabasechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentDatabaseChangesEvent;
@@ -644,6 +662,7 @@ impl CKSyncEngineSentDatabaseChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about a sent batch of record zone changes.
     /// The sync engine finished sending a batch of record zone changes to the server.
     ///
     /// If a record save succeeded, you should encode the system fields of this record to use the next time you save. See `encodeSystemFields` on ``CKRecord``.
@@ -651,8 +670,6 @@ extern_class!(
     /// If a record deletion succeeded, you should remove any local system fields for that record.
     ///
     /// If the record change failed, try to resolve the issue causing the error and save the record again if necessary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesentrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineSentRecordZoneChangesEvent;
@@ -723,6 +740,7 @@ impl CKSyncEngineSentRecordZoneChangesEvent {
 }
 
 extern_class!(
+    /// An object that represents an imminent database fetch.
     /// The sync engine is about to fetch changes from the server.
     ///
     /// This might be a good signal to prepare your local data store for incoming changes if necessary.
@@ -731,8 +749,6 @@ extern_class!(
     /// Note that this event might not always occur every time you call `fetchChanges`.
     /// For example, if you call `fetchChanges` concurrently while the engine is already fetching changes, this event might not be sent.
     /// Similarly, if there's no logged-in account, the engine might short-circuit the call to `fetchChanges`, and this event won't be sent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillfetchchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchChangesEvent;
@@ -774,11 +790,10 @@ impl CKSyncEngineWillFetchChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about an imminent fetch of changes in a record zone.
     /// The sync engine is about to fetch record zone changes from the server for a specific zone.
     ///
     /// This might be a good signal to prepare your local data store for incoming changes if necessary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillfetchrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillFetchRecordZoneChangesEvent;
@@ -820,13 +835,12 @@ impl CKSyncEngineWillFetchRecordZoneChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about a finished record zone fetch.
     /// The sync engine finished fetching record zone changes from the server for a specific zone.
     ///
     /// This might be a good signal to perform any post-processing tasks on a per-zone basis if necessary.
     ///
     /// You should receive one `CKSyncEngineDidFetchRecordZoneChangesEvent` for each `CKSyncEngineWillFetchRecordZoneChangesEvent`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidfetchrecordzonechangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchRecordZoneChangesEvent;
@@ -877,13 +891,12 @@ impl CKSyncEngineDidFetchRecordZoneChangesEvent {
 }
 
 extern_class!(
+    /// An object that represents a completed database fetch.
     /// The sync engine finished fetching changes from the server.
     ///
     /// This might be a good signal to perform any post-processing tasks required after persisting fetched changes to disk.
     ///
     /// You should receive one `CKSyncEngineDidFetchChangesEvent` for each `CKSyncEngineWillFetchChangesEvent`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidfetchchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidFetchChangesEvent;
@@ -925,9 +938,8 @@ impl CKSyncEngineDidFetchChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about an imminent send of local changes.
     /// The sync engine is about to send changes to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginewillsendchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineWillSendChangesEvent;
@@ -969,11 +981,10 @@ impl CKSyncEngineWillSendChangesEvent {
 }
 
 extern_class!(
+    /// An object that provides information about a finished send operation.
     /// The sync engine finished sending changes to the server.
     ///
     /// You should receive one `CKSyncEngineDidSendChangesEvent` for every `CKSyncEngineWillSendChangesEvent`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedidsendchangesevent?language=objc)
     #[unsafe(super(CKSyncEngineEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineDidSendChangesEvent;
@@ -1015,7 +1026,7 @@ impl CKSyncEngineDidSendChangesEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedrecorddeletion?language=objc)
+    /// An object that describes the deletion of an individual record.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedRecordDeletion;
@@ -1061,27 +1072,48 @@ impl CKSyncEngineFetchedRecordDeletion {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason?language=objc)
+/// Describes the reason for a record zone deletion.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineZoneDeletionReason(pub NSInteger);
 impl CKSyncEngineZoneDeletionReason {
+    /// Your app deleted the record zone.
     /// A deletion from your software.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/deleted?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonDeleted")]
     pub const Deleted: Self = Self(0);
+    /// The owner of the iCloud account purged your app’s data using the Settings app.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Upon receipt of deletions with this reason, you must delete any locally cached data and not resend it to iCloud.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A deletion from the user via the iCloud storage UI.
     /// This is an indication that the user wanted all data deleted, so local cached data should be wiped and not re-uploaded to the server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/purged?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonPurged")]
     pub const Purged: Self = Self(1);
+    /// The owner of the iCloud account reset their encrypted data.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Upon receipt of deletions with this reason, you must delete any locally cached data and not resend it to iCloud.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The user chose to reset all encrypted data for their account.
     /// This is an indication that the user had to reset encrypted data during account recovery, so local cached data should be re-uploaded to the server to minimize data loss.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason/encrypteddatareset?language=objc)
     #[doc(alias = "CKSyncEngineZoneDeletionReasonEncryptedDataReset")]
     pub const EncryptedDataReset: Self = Self(2);
 }
@@ -1095,7 +1127,7 @@ unsafe impl RefEncode for CKSyncEngineZoneDeletionReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefetchedzonedeletion?language=objc)
+    /// An object that describes the deletion of a record zone.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFetchedZoneDeletion;
@@ -1141,7 +1173,7 @@ impl CKSyncEngineFetchedZoneDeletion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefailedrecordsave?language=objc)
+    /// A type that describes an unsuccessful attempt to modify an individual record.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedRecordSave;
@@ -1187,7 +1219,7 @@ impl CKSyncEngineFailedRecordSave {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginefailedzonesave?language=objc)
+    /// An object that describes an unsuccessful attempt to modify a single record zone.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineFailedZoneSave;

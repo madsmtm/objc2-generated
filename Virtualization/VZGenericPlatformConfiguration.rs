@@ -9,13 +9,12 @@ use crate::*;
 
 extern_class!(
     /// The platform configuration for a generic Intel or ARM virtual machine.
+    /// The platform configuration for a generic Intel or ARM virtual machine.
     ///
     /// When a virtual machine is saved to disk then loaded again, the `machineIdentifier`
     /// must be restored to the original value.
     ///
     /// If multiple virtual machines are created from the same configuration, each should have a unique `machineIdentifier`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration?language=objc)
     #[unsafe(super(VZPlatformConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZPlatformConfiguration")]

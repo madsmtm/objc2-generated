@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlctensoroptimizerdevicedata?language=objc)
+    /// An encapsulation of the device memory associated with a tensor that an optimizer uses.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

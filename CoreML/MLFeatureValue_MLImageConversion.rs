@@ -10,23 +10,32 @@ use objc2_image_io::*;
 
 use crate::*;
 
+/// The initializer options you use to crop and scale an image when creating an image feature value.
 /// Options keys passed into the MLFeatureValue construction for image types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MLFeatureValueImageOption = NSString;
 
 extern "C" {
-    /// Key for CGRect describing a crop region of interest of image source in normalized coordinates
+    /// The option you use to crop an image when creating an image feature value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption/croprect?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this value as a dictionary key for the `options` argument of an image-based `MLFeatureValue` initializer. Pair this key with a [`VNImageCropAndScaleOption`](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption) value in the initializer’s `options` dictionary. For example, see [`featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:`](https://developer.apple.com/documentation/coreml/mlfeaturevalue/init(cgimage:pixelswide:pixelshigh:pixelformattype:options:)).
+    ///
+    ///
+    /// Key for CGRect describing a crop region of interest of image source in normalized coordinates
     pub static MLFeatureValueImageOptionCropRect: &'static MLFeatureValueImageOption;
 }
 
 extern "C" {
-    /// Key for VNImageCropAndScaleOption describing how to crop and scale the image (or region of interest) to the desired size
+    /// The option you use to crop and scale an image when creating an image feature value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption/cropandscale?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this value as a dictionary key for the `options` argument of an image-based `MLFeatureValue` initializer. Pair this key with a [`VNImageCropAndScaleOption`](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption) value in the initializer’s `options` dictionary. For example, see [`featureValueWithCGImage:pixelsWide:pixelsHigh:pixelFormatType:options:error:`](https://developer.apple.com/documentation/coreml/mlfeaturevalue/init(cgimage:pixelswide:pixelshigh:pixelformattype:options:)).
+    ///
+    ///
+    /// Key for VNImageCropAndScaleOption describing how to crop and scale the image (or region of interest) to the desired size
     pub static MLFeatureValueImageOptionCropAndScale: &'static MLFeatureValueImageOption;
 }
 

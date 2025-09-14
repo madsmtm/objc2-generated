@@ -4,205 +4,314 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme?language=objc)
+/// Constants for the tag schemes specified when initializing a linguistic tagger.
+///
+/// ## Overview
+///
+/// When initializing a linguistic tagger with [`init(_:)`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/init(_:)), you specify one or more tag schemes that correspond to the kind of information you’re interested in for a selection of natural language text. To ensure optimal performance, avoid specifying tag schemes that you won’t use.
+///
+/// Some tag schemes are only available for certain units and languages. Use [`availableTagSchemesForUnit:language:`](https://developer.apple.com/documentation/naturallanguage/nltagger/availabletagschemes(for:language:)) to determine the possible values for a specified language and linguistic unit.
+///
+/// When working with linguistic tags using the methods described in Getting linguistic tags and Enumerating linguistic tags in [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger), the returned tag value depends on the specified scheme. For example, given the token “Überraschung”, the returned tag is [`NLTagNoun`](https://developer.apple.com/documentation/naturallanguage/nltag/noun) when using the [`NLTagSchemeLexicalClass`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/lexicalclass) tag scheme, [`NLLanguageGerman`](https://developer.apple.com/documentation/naturallanguage/nllanguage/german) (German language) when using the [`NLTagSchemeLanguage`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/language) tag scheme, and “Latn” (Latin script) when using the [`NLTagSchemeScript`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/script) tag scheme, as shown in the following code.
+///
+/// ```swift
+/// let tagger = NLTagger(tagSchemes: [.lexicalClass, .language, .script], options: 0)
+/// tagger.string = "Überraschung"
+///
+/// tagger.tag(at: 0, unit: .word, scheme: .lexicalClass, tokenRange: nil) // Noun
+/// tagger.tag(at: 0, unit: .word, scheme: .language, tokenRange: nil) // german
+/// tagger.tag(at: 0, unit: .word, scheme: .script, tokenRange: nil) // Latn
+/// ```
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLTagScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/tokentype?language=objc)
+    /// A scheme that classifies tokens according to their broad type: word, punctuation, or whitespace.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Token types in [`NLTag`](https://developer.apple.com/documentation/naturallanguage/nltag).
+    ///
+    /// To classify tokens by a more specific type, for example, distinguishing words between nouns and verbs, use the [`NLTagSchemeLexicalClass`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/lexicalclass) scheme.
+    ///
+    ///
     pub static NLTagSchemeTokenType: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/lexicalclass?language=objc)
+    /// A scheme that classifies tokens according to class: part of speech, type of punctuation, or whitespace.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Lexical classes in [`NLTag`](https://developer.apple.com/documentation/naturallanguage/nltag).
+    ///
+    /// The lexical class of a tag is a further distinction of its token type. Token types and lexical classes have the following correspondence:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Token Type" }] }], [Paragraph { inline_content: [Text { text: "Lexical classes" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/noun", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/verb", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/adjective", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/adverb", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/pronoun", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/determiner", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/particle", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/preposition", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/number", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/conjunction", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/interjection", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/classifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/idiom", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/otherWord", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/punctuation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/sentenceTerminator", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/openQuote", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/closeQuote", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/openParenthesis", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/closeParenthesis", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/wordJoiner", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/dash", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/otherPunctuation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/whitespace", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/paragraphBreak", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/otherWhitespace", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.naturallanguage/documentation/NaturalLanguage/NLTag/other", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "None" }] }] }]]], alignments: None, metadata: None })
+    ///
     pub static NLTagSchemeLexicalClass: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/nametype?language=objc)
+    /// A scheme that classifies tokens according to whether they are part of a named entity.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Name types in [`NLTag`](https://developer.apple.com/documentation/naturallanguage/nltag).
+    ///
+    ///
     pub static NLTagSchemeNameType: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/nametypeorlexicalclass?language=objc)
+    /// A scheme that classifies tokens corresponding to names according to [`NLTagSchemeNameType`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/nametype), and classifies all other tokens according to [`NLTagSchemeLexicalClass`](https://developer.apple.com/documentation/naturallanguage/nltagscheme/lexicalclass).
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Name types and Lexical classes in [`NLTag`](https://developer.apple.com/documentation/naturallanguage/nltag).
+    ///
+    ///
     pub static NLTagSchemeNameTypeOrLexicalClass: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/lemma?language=objc)
+    /// A scheme that supplies a stem form of a word token, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the stem of the English word “reading” is “read”.
+    ///
+    ///
     pub static NLTagSchemeLemma: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/language?language=objc)
+    /// A scheme that supplies the language for a token, if it can determine one.
+    ///
+    /// ## Discussion
+    ///
+    /// Each value for this tag scheme is listed in [`NLLanguage`](https://developer.apple.com/documentation/naturallanguage/nllanguage).
+    ///
+    /// The tagger generally attempts to determine the language of text at the level of an entire sentence, paragraph, or document, rather than word by word.
+    ///
+    ///
     pub static NLTagSchemeLanguage: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/script?language=objc)
+    /// A scheme that supplies the script for a token, if it can determine one.
+    ///
+    /// ## Discussion
+    ///
+    /// Each value for this tag scheme is an ISO 15924 script identifier. For example, the identifier for Latin script is “Latn” and the identifier for Simplified Chinese script is “Hans”. The identifier “Zyyy” is used if a specific script cannot be determined.
+    ///
+    ///
     pub static NLTagSchemeScript: Option<&'static NLTagScheme>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltagscheme/sentimentscore?language=objc)
+    /// A scheme that scores text as positive, negative, or neutral based on its sentiment polarity.
+    ///
+    /// ## Discussion
+    ///
+    /// The range of a sentiment score is `[-1.0, 1.0]`. A score of `1.0` is the most positive, a score of `-1.0` is the most negative, and a score of `0.0` is neutral.
+    ///
+    /// ```swift
+    /// let text = "It's pretty good."
+    ///
+    /// let tagger = NLTagger(tagSchemes: [.tokenType, .sentimentScore])
+    /// tagger.string = text
+    ///
+    /// tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .paragraph,
+    ///                      scheme: .sentimentScore, options: []) { sentiment, _ in
+    ///     
+    ///     if let sentimentScore = sentiment {
+    ///         print(sentimentScore.rawValue)
+    ///     }
+    ///     
+    ///     return true
+    /// }
+    /// ```
+    ///
+    ///
     pub static NLTagSchemeSentimentScore: Option<&'static NLTagScheme>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag?language=objc)
+/// A token type, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
+///
+/// ## Overview
+///
+/// When you create a linguistic tagger, you specify one or more [`NLTagScheme`](https://developer.apple.com/documentation/naturallanguage/nltagscheme) constants that correspond to the kind of information you want to know about a selection of natural language text. When working with linguistic tags using the methods described in Getting linguistic tags and Enumerating linguistic tags in [`NLTagger`](https://developer.apple.com/documentation/naturallanguage/nltagger), the returned value depends on the specified scheme. The [`NLTag`](https://developer.apple.com/documentation/naturallanguage/nltag) type represents the constant values that can be returned for certain [`NLTagScheme`](https://developer.apple.com/documentation/naturallanguage/nltagscheme) values.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLTag = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/word?language=objc)
+    /// A tag indicating that the token is a word.
     pub static NLTagWord: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/punctuation?language=objc)
+    /// A tag indicating that the token is punctuation.
     pub static NLTagPunctuation: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/whitespace?language=objc)
+    /// A tag indicating that the token is white space of any sort.
     pub static NLTagWhitespace: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/other?language=objc)
+    /// A tag indicating that the token is a non-linguistic item, such as a symbol.
     pub static NLTagOther: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/noun?language=objc)
+    /// A tag indicating that the token is a noun.
     pub static NLTagNoun: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/verb?language=objc)
+    /// A tag indicating that the token is a verb.
     pub static NLTagVerb: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/adjective?language=objc)
+    /// A tag indicating that the token is an adjective
     pub static NLTagAdjective: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/adverb?language=objc)
+    /// A tag indicating that the token is an adverb.
     pub static NLTagAdverb: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/pronoun?language=objc)
+    /// A tag indicating that the token is a pronoun.
     pub static NLTagPronoun: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/determiner?language=objc)
+    /// A tag indicating that the token is a determiner.
+    ///
+    /// ## Discussion
+    ///
+    /// Determiners clarify nouns. Common determiners are articles (like _a_ or _the_), demonstratives (like _this_ or _that_), quantifiers (like _all_ or _some_), and possessives (like _your_ or _their_).
+    ///
+    ///
     pub static NLTagDeterminer: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/particle?language=objc)
+    /// A tag indicating that the token is a particle.
     pub static NLTagParticle: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/preposition?language=objc)
+    /// A tag indicating that the token is a preposition.
     pub static NLTagPreposition: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/number?language=objc)
+    /// A tag indicating that the token is a number.
     pub static NLTagNumber: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/conjunction?language=objc)
+    /// A tag indicating that the token is a conjunction.
     pub static NLTagConjunction: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/interjection?language=objc)
+    /// A tag indicating that the token is an interjection.
     pub static NLTagInterjection: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/classifier?language=objc)
+    /// A tag indicating that the token is a classifier.
     pub static NLTagClassifier: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/idiom?language=objc)
+    /// A tag indicating that the token is an idiom.
     pub static NLTagIdiom: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/otherword?language=objc)
+    /// A tag indicating that the token is a word other than a kind described by other lexical classes (noun, verb, adjective, adverb, pronoun, determiner, particle, preposition, number, conjunction, interjection, classifier, and idiom).
     pub static NLTagOtherWord: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/sentenceterminator?language=objc)
+    /// A tag indicating that the token is punctuation at the end of a sentence.
     pub static NLTagSentenceTerminator: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/openquote?language=objc)
+    /// A tag indicating that the token is an open quote.
     pub static NLTagOpenQuote: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/closequote?language=objc)
+    /// A tag indicating that the token is a close quote.
     pub static NLTagCloseQuote: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/openparenthesis?language=objc)
+    /// A tag indicating that the token is an open parenthesis.
     pub static NLTagOpenParenthesis: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/closeparenthesis?language=objc)
+    /// A tag indicating that the token is a close parenthesis.
     pub static NLTagCloseParenthesis: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/wordjoiner?language=objc)
+    /// A tag indicating that the token is a word joiner, signifying that two tokens on each side should not be broken up.
+    ///
+    /// ## Discussion
+    ///
+    /// Word joiners are typically used in languages that do not use explicit spaces.
+    ///
+    ///
     pub static NLTagWordJoiner: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/dash?language=objc)
+    /// A tag indicating that the token is a dash.
     pub static NLTagDash: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/otherpunctuation?language=objc)
+    /// A tag indicating that the token is punctuation other than a kind described by other lexical classes (sentence terminator, open or close quote, open or close parenthesis, word joiner, and dash).
     pub static NLTagOtherPunctuation: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/paragraphbreak?language=objc)
+    /// A tag indicating that the token is a paragraph break.
     pub static NLTagParagraphBreak: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/otherwhitespace?language=objc)
+    /// A tag indicating that the token is whitespace other than a kind described by other lexical classes (paragraph break).
     pub static NLTagOtherWhitespace: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/personalname?language=objc)
+    /// A tag indicating that the token is a personal name.
     pub static NLTagPersonalName: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/placename?language=objc)
+    /// A tag indicating that the token is a place name.
     pub static NLTagPlaceName: Option<&'static NLTag>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltag/organizationname?language=objc)
+    /// A tag indicating that the token is an organization name.
     pub static NLTagOrganizationName: Option<&'static NLTag>;
 }

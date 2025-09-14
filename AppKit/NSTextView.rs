@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity?language=objc)
+/// These constants specify how much the text view extends the selection when the user drags the mouse. They’re used by [`selectionGranularity`](https://developer.apple.com/documentation/appkit/nstextview/selectiongranularity), and [`selectionRangeForProposedRange:granularity:`](https://developer.apple.com/documentation/appkit/nstextview/selectionrange(forproposedrange:granularity:)):
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionGranularity(pub NSUInteger);
 impl NSSelectionGranularity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbycharacter?language=objc)
+    /// Extends the selection character by character.
     #[doc(alias = "NSSelectByCharacter")]
     pub const SelectByCharacter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbyword?language=objc)
+    /// Extends the selection word by word.
     #[doc(alias = "NSSelectByWord")]
     pub const SelectByWord: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity/selectbyparagraph?language=objc)
+    /// Extends the selection paragraph by paragraph.
     #[doc(alias = "NSSelectByParagraph")]
     pub const SelectByParagraph: Self = Self(2);
 }
@@ -34,16 +34,16 @@ unsafe impl RefEncode for NSSelectionGranularity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity?language=objc)
+/// These constants specify the preferred direction of selection. They’re used by [`selectionAffinity`](https://developer.apple.com/documentation/appkit/nstextview/selectionaffinity) and [`setSelectedRange:affinity:stillSelecting:`](https://developer.apple.com/documentation/appkit/nstextview/setselectedrange(_:affinity:stillselecting:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionAffinity(pub NSUInteger);
 impl NSSelectionAffinity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity/upstream?language=objc)
+    /// The selection is moving toward the top of the document.
     #[doc(alias = "NSSelectionAffinityUpstream")]
     pub const Upstream: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity/downstream?language=objc)
+    /// The selection is moving toward the bottom of the document.
     #[doc(alias = "NSSelectionAffinityDownstream")]
     pub const Downstream: Self = Self(1);
 }
@@ -57,12 +57,48 @@ unsafe impl RefEncode for NSSelectionAffinity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsallromaninputsourceslocaleidentifier?language=objc)
+    /// A meta-locale identifier representing the set of Roman input sources available. You can pass `[NSArray arrayWithObject: NSAllRomanInputSourcesLocaleIdentifier]` to the [`allowedInputSourceLocales`](https://developer.apple.com/documentation/appkit/nstextview/allowedinputsourcelocales) property to restrict allowed input sources to Roman only.
     pub static NSAllRomanInputSourcesLocaleIdentifier: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview?language=objc)
+    /// A view that draws text and handles user interactions with that text.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) class is the front-end class to the AppKit text system. The class draws the text managed by the back-end components and handles user events to select and modify its text, in addition to supporting rich text, attachments, input management, and key binding, and marked text attributes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you need only to implement a simple editable text field, see [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield).
+    ///
+    ///
+    ///
+    /// </div>
+    /// [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) is the principal means to obtain a text object that caters to almost all needs for displaying and managing text at the user interface level. While [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) is a subclass of the [`NSText`](https://developer.apple.com/documentation/appkit/nstext) class — which declares the most general Cocoa interface to the text system — [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) adds major features beyond the capabilities of [`NSText`](https://developer.apple.com/documentation/appkit/nstext). You can also do more powerful and more creative text manipulation (such as displaying text in a circle) using [`NSTextStorage`](https://developer.apple.com/documentation/appkit/nstextstorage), [`NSTextLayoutManager`](https://developer.apple.com/documentation/appkit/nstextlayoutmanager), [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer), and related classes.
+    ///
+    /// You’re more likely to use the [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) class than [`NSText`](https://developer.apple.com/documentation/appkit/nstext). It’s also important to remember that [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) conforms to a large number of protocols, the methods of which are available to instances of the [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) class.
+    ///
+    /// [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) communicates with its delegate through methods declared both by the [`NSTextViewDelegate`](https://developer.apple.com/documentation/appkit/nstextviewdelegate) and by its superclass’s protocol, [`NSTextDelegate`](https://developer.apple.com/documentation/appkit/nstextdelegate). All delegation messages come from the first text view.
+    ///
+    /// In macOS 12 and later, if you explicitly call the `layoutManager` property on a text view or text container, the framework reverts to a compatibility mode that uses [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager). The text view also switches to this compatibility mode when it encounters text content that’s not yet supported, such as [`NSTextTable`](https://developer.apple.com/documentation/appkit/nstexttable).
+    ///
+    /// ### About Delegate Methods
+    ///
+    /// The `NSTextView` class communicates with its delegate through methods declared both by the [`NSTextViewDelegate`](https://developer.apple.com/documentation/appkit/nstextviewdelegate) and by its superclass’s protocol, [`NSTextDelegate`](https://developer.apple.com/documentation/appkit/nstextdelegate). All delegation messages come from the first text view.
+    ///
+    /// ### Becoming the first responder
+    ///
+    /// When the system invokes [`becomeFirstResponder`](https://developer.apple.com/documentation/appkit/nsresponder/becomefirstresponder()) on a text view, if the previous first responder was not a text view on the same layout manager as the receiving text view, the receiving text view draws the selection and updates the insertion point if necessary.
+    ///
+    /// To make a text view the first responder, call the containing window’s [`makeFirstResponder:`](https://developer.apple.com/documentation/appkit/nswindow/makefirstresponder(_:)) method. Never invoke a text view’s [`becomeFirstResponder`](https://developer.apple.com/documentation/appkit/nsresponder/becomefirstresponder()) method directly.
+    ///
+    /// ### Resigning as first responder
+    ///
+    /// When the system invokes [`resignFirstResponder`](https://developer.apple.com/documentation/appkit/nsresponder/resignfirstresponder()) on a text view, if the object that will become the new first responder is a text view attached to the same layout manager as the receiver, the receiving text view returns [`true`](https://developer.apple.com/documentation/swift/true) with no further action. Otherwise, it sends a [`textShouldEndEditing:`](https://developer.apple.com/documentation/appkit/nstextdelegate/textshouldendediting(_:)) message to its delegate (if any). If the delegate returns [`false`](https://developer.apple.com/documentation/swift/false), the text view returns [`false`](https://developer.apple.com/documentation/swift/false). If the delegate returns [`true`](https://developer.apple.com/documentation/swift/true), the text view hides the selection highlighting and posts an [`NSTextDidEndEditingNotification`](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification) to the default notification center and then returns [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[unsafe(super(NSText, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
@@ -1864,7 +1900,7 @@ impl NSTextView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdelegate?language=objc)
+    /// A set of optional methods that text view delegates can use to manage selection, set text attributes, work with the spell checker, and more.
     #[cfg(feature = "NSText")]
     pub unsafe trait NSTextViewDelegate: NSTextDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -2327,100 +2363,126 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/characterpicker?language=objc)
+    /// The standard identifier for selecting special characters such as Emoji.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textcolorpicker?language=objc)
+    /// The identifier for a Touch Bar item used to select the text color.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textstyle?language=objc)
+    /// The identifier for a Touch Bar item used to control the text style.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textalignment?language=objc)
+    /// The identifier for a Touch Bar item used to select the text alignment.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textlist?language=objc)
+    /// The identifier for a Touch Bar item used to control the text list style.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textformat?language=objc)
+    /// The identifier for a group of text format controls.
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/willchangenotifyingtextviewnotification?language=objc)
+    /// Posted when a new text view is established as the text view that sends notifications.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification allows observers to reregister themselves for the new text view. Methods such as [`removeTextContainerAtIndex:`](https://developer.apple.com/documentation/appkit/nslayoutmanager/removetextcontainer(at:)), [`textContainerChangedTextView:`](https://developer.apple.com/documentation/appkit/nslayoutmanager/textcontainerchangedtextview(_:)), and [`insertTextContainer:atIndex:`](https://developer.apple.com/documentation/appkit/nslayoutmanager/inserttextcontainer(_:at:)) cause this notification to be posted.
+    ///
+    /// The notification object is the old notifying text view, or `nil`. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldNotifyingTextView\"" }] }], [Paragraph { inline_content: [Text { text: "The old " }, CodeVoice { code: "NSTextView" }, Text { text: ", if one exists, otherwise " }, CodeVoice { code: "nil" }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSNewNotifyingTextView\"" }] }], [Paragraph { inline_content: [Text { text: "The new " }, CodeVoice { code: "NSTextView" }, Text { text: ", if one exists, otherwise " }, CodeVoice { code: "nil" }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// There’s no delegate method associated with this notification. The text-handling system ensures that when a new text view replaces an old one as the notifying text view, the existing delegate becomes the delegate of the new text view, and the delegate is registered to receive text view notifications from the new notifying text view. All other observers are responsible for registering themselves on receiving this notification.
+    ///
+    ///
     pub static NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didchangeselectionnotification?language=objc)
+    /// Posted when the selected range of characters changes.
+    ///
+    /// ## Discussion
+    ///
+    /// `NSTextView` posts this notification whenever [`setSelectedRange:affinity:stillSelecting:`](https://developer.apple.com/documentation/appkit/nstextview/setselectedrange(_:affinity:stillselecting:)) is invoked, either directly or through the many methods ([`mouseDown:`](https://developer.apple.com/documentation/appkit/nsresponder/mousedown(with:)), [`selectAll:`](https://developer.apple.com/documentation/appkit/nstext/selectall(_:)), and so on) that invoke it indirectly. When the user is selecting text, this notification is posted only once, at the end of the selection operation. The text view’s delegate receives a [`textViewDidChangeSelection:`](https://developer.apple.com/documentation/appkit/nstextviewdelegate/textviewdidchangeselection(_:)) message when this notification is posted.
+    ///
+    /// The notification object is the notifying text view. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldSelectedCharacterRange\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSValue" }, Text { text: " object containing an " }, CodeVoice { code: "NSRange" }, Text { text: " structure with the originally selected range." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSTextViewDidChangeSelectionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didchangetypingattributesnotification?language=objc)
+    /// Posted when there is a change in the typing attributes within a text view.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is posted, via the [`textViewDidChangeTypingAttributes:`](https://developer.apple.com/documentation/appkit/nstextviewdelegate/textviewdidchangetypingattributes(_:)) delegate method, whether or not text has changed as a result of the attribute change.
+    ///
+    ///
     pub static NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/willswitchtonslayoutmanagernotification?language=objc)
+    /// Posted by the framework before switching to the compatibility mode layout manager.
     pub static NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didswitchtonslayoutmanagernotification?language=objc)
+    /// Posted by the framework after switching to using the compatibility mode layout manager.
     pub static NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction?language=objc)
+/// These constants define the tags for [`performFindPanelAction:`](https://developer.apple.com/documentation/appkit/nstextview/performfindpanelaction(_:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSFindPanelAction(pub NSUInteger);
 impl NSFindPanelAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/showfindpanel?language=objc)
+    /// Displays the find panel.
     #[doc(alias = "NSFindPanelActionShowFindPanel")]
     pub const ShowFindPanel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/next?language=objc)
+    /// Finds the next instance of the queried text.
     #[doc(alias = "NSFindPanelActionNext")]
     pub const Next: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/previous?language=objc)
+    /// Finds the previous instance of the queried text.
     #[doc(alias = "NSFindPanelActionPrevious")]
     pub const Previous: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceall?language=objc)
+    /// Replaces all query instances within the text view.
     #[doc(alias = "NSFindPanelActionReplaceAll")]
     pub const ReplaceAll: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replace?language=objc)
+    /// Replaces a single query instance within the text view.
     #[doc(alias = "NSFindPanelActionReplace")]
     pub const Replace: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceandfind?language=objc)
+    /// Replaces a single query instance and finds the next.
     #[doc(alias = "NSFindPanelActionReplaceAndFind")]
     pub const ReplaceAndFind: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/setfindstring?language=objc)
+    /// Sets the query string to the current selection.
     #[doc(alias = "NSFindPanelActionSetFindString")]
     pub const SetFindString: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/replaceallinselection?language=objc)
+    /// Replaces all query instances within the selection.
     #[doc(alias = "NSFindPanelActionReplaceAllInSelection")]
     pub const ReplaceAllInSelection: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/selectall?language=objc)
+    /// Selects all query instances in the text view.
     #[doc(alias = "NSFindPanelActionSelectAll")]
     pub const SelectAll: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelaction/selectallinselection?language=objc)
+    /// Selects all query instances within the selection.
     #[doc(alias = "NSFindPanelActionSelectAllInSelection")]
     pub const SelectAllInSelection: Self = Self(10);
 }
@@ -2434,41 +2496,79 @@ unsafe impl RefEncode for NSFindPanelAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptions?language=objc)
+    /// Type for the find panel metadata property list.
+    ///
+    /// ## Discussion
+    ///
+    /// Used with the [`propertyListForType:`](https://developer.apple.com/documentation/appkit/nspasteboard/propertylist(fortype:)) method of [`NSPasteboard`](https://developer.apple.com/documentation/appkit/nspasteboard).
+    ///
+    ///
     #[cfg(feature = "NSPasteboard")]
     pub static NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey?language=objc)
+/// Search options for the find panel.
 // NS_TYPED_ENUM
 pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey/findpanelcaseinsensitivesearch?language=objc)
+    /// A Boolean value indicating whether the search is case-insensitive.
+    ///
+    /// ## Discussion
+    ///
+    /// The value [`true`](https://developer.apple.com/documentation/swift/true) indicates a case-insensitive search; [`false`](https://developer.apple.com/documentation/swift/false) indicates a case-sensitive search.
+    ///
+    ///
     pub static NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey/findpanelsubstringmatch?language=objc)
+    /// A number object containing the match type to use in the find panel.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing one of the values defined in [`NSFindPanelSubstringMatchType`](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype).
+    ///
+    ///
     pub static NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype?language=objc)
+/// The type of substring matching used by the Find panel.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFindPanelSubstringMatchType(pub NSUInteger);
 impl NSFindPanelSubstringMatchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/contains?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Finds a word containing the search string.
+    ///
+    ///
     #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]
     pub const Contains: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/startswith?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Finds a word starting with the search string.
+    ///
+    ///
     #[doc(alias = "NSFindPanelSubstringMatchTypeStartsWith")]
     pub const StartsWith: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/fullword?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Finds a word exactly matching the search string.
+    ///
+    ///
     #[doc(alias = "NSFindPanelSubstringMatchTypeFullWord")]
     pub const FullWord: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype/endswith?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Finds a word ending with the search string.
+    ///
+    ///
     #[doc(alias = "NSFindPanelSubstringMatchTypeEndsWith")]
     pub const EndsWith: Self = Self(3);
 }

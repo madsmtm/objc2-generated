@@ -8,7 +8,13 @@ use objc2_core_location::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpolyline?language=objc)
+    /// An open polygon overlay consisting of one or more connected line segments.
+    ///
+    /// ## Overview
+    ///
+    /// The points connect end-to-end in the order that you provide them. The first and last points don’t automatically connect to each other.
+    ///
+    ///
     #[unsafe(super(MKMultiPoint, MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKMultiPoint", feature = "MKShape"))]

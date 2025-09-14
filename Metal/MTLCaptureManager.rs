@@ -8,29 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerrordomain?language=objc)
+    /// The error domain for capture errors.
     pub static MTLCaptureErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror?language=objc)
+/// Errors returned by capture sessions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLCaptureError(pub NSInteger);
 impl MTLCaptureError {
+    /// The requested capture options are not available.
     /// Capturing is not supported, maybe the destination is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/notsupported?language=objc)
     #[doc(alias = "MTLCaptureErrorNotSupported")]
     pub const NotSupported: Self = Self(1);
+    /// A capture session is already in progress.
     /// A capture is already in progress.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/alreadycapturing?language=objc)
     #[doc(alias = "MTLCaptureErrorAlreadyCapturing")]
     pub const AlreadyCapturing: Self = Self(2);
+    /// The descriptor contained invalid parameters.
     /// The MTLCaptureDescriptor contains an invalid parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcaptureerror/invaliddescriptor?language=objc)
     #[doc(alias = "MTLCaptureErrorInvalidDescriptor")]
     pub const InvalidDescriptor: Self = Self(3);
 }
@@ -43,22 +40,19 @@ unsafe impl RefEncode for MTLCaptureError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The kinds of destinations for captured command data.
 /// The destination where you want the GPU trace to be captured to.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLCaptureDestination(pub NSInteger);
 impl MTLCaptureDestination {
+    /// An option specifying that data should be captured to Xcode and that execution should stop in Xcode after the data is captured.
     /// Capture to Developer Tools (Xcode) and stop the execution after capturing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination/developertools?language=objc)
     #[doc(alias = "MTLCaptureDestinationDeveloperTools")]
     pub const DeveloperTools: Self = Self(1);
+    /// An option specifying that the captured command data should be saved to a GPU trace document.
     /// Capture to a GPU Trace document and continue execution after capturing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedestination/gputracedocument?language=objc)
     #[doc(alias = "MTLCaptureDestinationGPUTraceDocument")]
     pub const GPUTraceDocument: Self = Self(2);
 }
@@ -72,7 +66,7 @@ unsafe impl RefEncode for MTLCaptureDestination {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturedescriptor?language=objc)
+    /// A configuration for a Metal capture session.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCaptureDescriptor;
@@ -160,7 +154,31 @@ impl DefaultRetained for MTLCaptureDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcapturemanager?language=objc)
+    /// An instance you use to capture Metal command data in your app.
+    ///
+    /// ## Overview
+    ///
+    /// A capture manager works with the frame capture feature to:
+    ///
+    /// - Capture data about Metal commands programmatically. See [Capturing a Metal workload programmatically](https://developer.apple.com/documentation/xcode/capturing-a-metal-workload-programmatically).
+    ///
+    /// - Only capture commands that apply to a specific [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice), command queue, or [`MTLCaptureScope`](https://developer.apple.com/documentation/metal/mtlcapturescope) instance.
+    ///
+    /// - Assign a default [`MTLCaptureScope`](https://developer.apple.com/documentation/metal/mtlcapturescope) instance for captures you create in Xcode by clicking the Capture GPU workload button in the debug bar, which has an icon with the Metal logo.
+    ///
+    /// The Metal debugger requires you to enable GPU Frame Capture in your project settings; see [Capturing a Metal workload in Xcode](https://developer.apple.com/documentation/xcode/capturing-a-metal-workload-in-xcode).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The capture manager records commands within the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance that you create and commit while the capture session is active.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about Metal frame capture, see [Metal debugger](https://developer.apple.com/documentation/xcode/metal-debugger).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLCaptureManager;

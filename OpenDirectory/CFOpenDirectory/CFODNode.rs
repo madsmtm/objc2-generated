@@ -8,13 +8,18 @@ use crate::*;
 
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl ConcreteType for ODNodeRef {
+    /// Returns the type ID for an Open Directory node.
+    ///
+    /// ## Return Value
+    ///
+    /// The type ID for an Open Directory node.
+    ///
+    ///
     /// Standard GetTypeID function support for CF-based objects
     ///
     /// Returns the typeID for the ODNode objects
     ///
     /// Returns: a valid CFTypeID for the ODNode object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodegettypeid()?language=objc)
     #[doc(alias = "ODNodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -26,6 +31,23 @@ unsafe impl ConcreteType for ODNodeRef {
 }
 
 impl ODNodeRef {
+    /// Returns a new node created with a specified type.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - session: The session to create the node in.
+    ///
+    /// - nodeType: The type of the node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created node.
+    ///
+    ///
     /// Creates an ODNodeRef based on a specific node type
     ///
     /// Creates an ODNodeRef based on a specific node type
@@ -46,8 +68,6 @@ impl ODNodeRef {
     /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatewithnodetype(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateWithNodeType")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -72,6 +92,23 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a new node created with a specified name.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - session: The session to create the node in.
+    ///
+    /// - nodeName: The name of the node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created node.
+    ///
+    ///
     /// Creates an ODNodeRef based on a partciular node name
     ///
     /// Creates an ODNodeRef based on a particular node name
@@ -93,8 +130,6 @@ impl ODNodeRef {
     /// - `session` might not allow `None`.
     /// - `node_name` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatewithname(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateWithName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -116,6 +151,27 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a copy of an existing node.
+    ///
+    /// Parameters:
+    /// - allocator: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - node: The node to copy.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of `inNode`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The copy includes remote credentials used for proxy and node authentication.
+    ///
+    ///
     /// Creates a copy, including any remote credentials used for Proxy and/or Node authentication
     ///
     /// Creates a copy of the object including all credentials used for the original.  Can be used for future
@@ -134,8 +190,6 @@ impl ODNodeRef {
     /// - `allocator` might not allow `None`.
     /// - `node` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreatecopy(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateCopy")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -155,6 +209,19 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the names of subnodes for a given node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of subnode names.
+    ///
+    ///
     /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes
     ///
     /// Returns a CFArray of subnode names for this node, which may contain sub-nodes or search policy nodes.
@@ -169,8 +236,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysubnodenames(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -185,6 +250,25 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns an array of the subnodes of a given node that are currently unreachable.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of unreachable subnodes, or `NULL` if all subnodes are reachable.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is typically used to detect unreachable search policy nodes.
+    ///
+    ///
     /// Will return names of subnodes that are not currently reachable.
     ///
     /// Will return names of subnodes that are not currently reachable.  Commonly used with Search policy nodes
@@ -200,8 +284,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyunreachablesubnodenames(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyUnreachableSubnodeNames")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -219,6 +301,17 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the name of a node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The name of `inNode`.
+    ///
+    ///
     /// Returns the node name of the node that was opened
     ///
     /// Returns the node name of the node that was opened
@@ -226,8 +319,6 @@ impl ODNodeRef {
     /// Parameter `node`: an ODNodeRef to use
     ///
     /// Returns: a CFStringRef of the node name that is current or NULL if no open node
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodegetname(_:)?language=objc)
     #[doc(alias = "ODNodeGetName")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -239,6 +330,21 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns a dictionary containing details about a node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - keys: An array of keys corresponding to the values returned in the dictionary.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing details about `inNode` corresponding to keys specified by `inKeys`.
+    ///
+    ///
     /// Returns a dictionary with details about the node in dictionary form
     ///
     /// Returns a dictionary with details about the node in dictionary form.
@@ -257,8 +363,6 @@ impl ODNodeRef {
     /// - `keys` generic must be of the correct type.
     /// - `keys` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopydetails(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyDetails")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -278,6 +382,25 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns an array of the record types supported by a given node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of supported record types.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `inNode` does not support checking for supported record types, all possible record types are returned.
+    ///
+    ///
     /// Returns a CFArrayRef of the record types supported by this node.
     ///
     /// Returns a CFArrayRef of the record types supported by this node.  If node does not support the check
@@ -292,8 +415,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedrecordtypes(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedRecordTypes")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -311,6 +432,27 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns an array of attribute types supported by a given node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - recordType: The record type to list supported attribute types for. Can be `NULL`.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of supported attribute types.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `inRecordType` is `NULL`, this function returns all attribute types supported by all record types of the node; otherwise, only attribute types specific to `inRecordType` are returned.
+    ///
+    ///
     /// Will return a list of attribute types supported for that attribute if possible
     ///
     /// Will return a list of attribute types supported for that attribute if possible.  If no specific
@@ -329,8 +471,6 @@ impl ODNodeRef {
     ///
     /// - `record_type` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedattributes(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedAttributes")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -353,6 +493,33 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Sets credentials for interacting with a node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - recordType: The record type that uses the credentials. Can be `NULL`. The default value is `kODRecordTypeUsers`.
+    ///
+    /// - recordName: The username to use to authenticate with the node.
+    ///
+    /// - password: The password to use to authenticate with the node.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the credentials are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function fails, the previous credentials for the node are used.
+    ///
+    /// This function sets credentials for all references to the node. If you only want to set credentials for a single record referencing the node, use [`ODRecordSetNodeCredentials`](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentials(_:_:_:_:)) instead.
+    ///
+    ///
     /// Sets the credentials for interaction with the ODNode
     ///
     /// Sets the credentials for interaction with the ODNode.  Record references, etc. will use these credentials
@@ -379,8 +546,6 @@ impl ODNodeRef {
     /// - `record_name` might not allow `None`.
     /// - `password` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentials(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetCredentials")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -406,6 +571,37 @@ impl ODNodeRef {
         unsafe { ODNodeSetCredentials(self, record_type, record_name, password, error) }
     }
 
+    /// Sets credentials for interacting with a node using a specified authentication method.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - recordType: The record type that uses the credentials. Can be `NULL`. The default value is `kODRecordTypeUsers`.
+    ///
+    /// - authType: The type of authentication to use.
+    ///
+    /// - authItems: An array of `CFString` or `CFData` objects to be used in the authentication process.
+    ///
+    /// - outAuthItems: An array of `CFData` objects returned from the authentication process, if any are returned; `NULL` otherwise.
+    ///
+    /// - outContext: The proper context if the authentication attempt requires a context; `NULL` otherwise. If not `NULL`, then more calls must be made with the Context to continue the authentication.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if no error occurs; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function fails, the previous credentials for the node are used.
+    ///
+    /// This function sets credentials for all references to the node. If you only want to set credentials for a single record referencing the node, use [`ODRecordSetNodeCredentialsExtended`](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentialsextended(_:_:_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Allows use of other Open Directory types of authentications to set the credentials for an ODNode
     ///
     /// Allows the caller to use other types of authentications that are available in Open Directory, that may
@@ -440,8 +636,6 @@ impl ODNodeRef {
     /// - `out_auth_items` must be a valid pointer.
     /// - `out_context` must be a valid pointer.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsextended(_:_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetCredentialsExtended")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -481,6 +675,29 @@ impl ODNodeRef {
         }
     }
 
+    /// Sets credentials for interacting with a node with the Kerberos cache.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - cacheName: The name of the Kerberos cache to use. Can be `NULL`. By default, the currently active Kerberos cache is used.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the credentials are successfully set; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function fails, the previous credentials for the node are used.
+    ///
+    /// This function sets credentials for all references to the node. If you only want to set credentials for a single record referencing the node, use [`ODRecordSetNodeCredentialsUsingKerberosCache`](https://developer.apple.com/documentation/opendirectory/odrecordsetnodecredentialsusingkerberoscache) instead.
+    ///
+    ///
     /// Unsupported function.
     ///
     /// Unsupported function.
@@ -489,8 +706,6 @@ impl ODNodeRef {
     ///
     /// - `cache_name` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetcredentialsusingkerberoscache?language=objc)
     #[doc(alias = "ODNodeSetCredentialsUsingKerberosCache")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -510,6 +725,33 @@ impl ODNodeRef {
         unsafe { ODNodeSetCredentialsUsingKerberosCache(self, cache_name, error) }
     }
 
+    /// Creates a record in a specified node with specified properties.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - recordType: The record’s type.
+    ///
+    /// - recordName: The record’s name.
+    ///
+    /// - attributeDict: A dictionary of key-value pairs representing attributes for the record. Can be `NULL`.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created record.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The keys in `inAttributes` can be of type `CFStringRef` or one of the `ODRecordType` constants. The values in `inAttributes` must be of type `CFArrayRef`, containing elements of type `CFStringRef` or `CFDataRef`.
+    ///
+    /// If any of the attributes in `inAttributes` fails to be set, the record is deleted and `outError` is set.
+    ///
+    ///
     /// Takes a record and all of the provided attributes and creates the record in the node
     ///
     /// Takes all the provided attributes and type to create an entire record.  The function will assign a
@@ -540,8 +782,6 @@ impl ODNodeRef {
     /// - `attribute_dict` generic must be of the correct type.
     /// - `attribute_dict` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecreaterecord(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCreateRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -569,6 +809,25 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns a reference to a record of a node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - recordType: The type of the record.
+    ///
+    /// - recordName: The name of the record.
+    ///
+    /// - attributes: An array of directory attributes to be copied in addition to the record. Can be `NULL`.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a specified record of `inNode`.
+    ///
+    ///
     /// Simple API to open / create a references to a particular record on a Node
     ///
     /// Simple API to open / create a references to a particular record on a Node
@@ -596,8 +855,6 @@ impl ODNodeRef {
     /// - `attributes` should be of the correct type.
     /// - `attributes` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyrecord(_:_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyRecord")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -624,6 +881,23 @@ impl ODNodeRef {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the result of a custom call to a node.
+    ///
+    /// Parameters:
+    /// - node: The node.
+    ///
+    /// - customCode: The custom code to send to the node.
+    ///
+    /// - data: Data required by `inCustomCode`. Can be `NULL`.
+    ///
+    /// - error: An error reference for error details. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The result of the custom call.
+    ///
+    ///
     /// Sends a custom call to a node.
     ///
     /// This will send a custom call to a node along with the specified data, returning the result.
@@ -642,8 +916,6 @@ impl ODNodeRef {
     ///
     /// - `data` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecustomcall(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCustomCall")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -692,8 +964,6 @@ impl ODNodeRef {
     /// - `payload` should be of the correct type.
     /// - `payload` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecustomfunction(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeCustomFunction")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -728,8 +998,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopypolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeCopyAccountPolicies"]
@@ -760,8 +1028,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopysupportedpolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopySupportedPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
@@ -798,8 +1064,6 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "use ODNodeSetAccountPolicies"]
@@ -839,8 +1103,6 @@ impl ODNodeRef {
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -881,8 +1143,6 @@ impl ODNodeRef {
     ///
     /// - `policy_type` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderemovepolicy(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeRemovePolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -936,8 +1196,6 @@ impl ODNodeRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodeaddaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeAddAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -983,8 +1241,6 @@ impl ODNodeRef {
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnoderemoveaccountpolicy(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodeRemoveAccountPolicy")]
     #[cfg(all(
         feature = "CFOpenDirectoryConstants",
@@ -1037,8 +1293,6 @@ impl ODNodeRef {
     /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodesetaccountpolicies(_:_:_:)?language=objc)
     #[doc(alias = "ODNodeSetAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1072,8 +1326,6 @@ impl ODNodeRef {
     /// # Safety
     ///
     /// `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodecopyaccountpolicies(_:_:)?language=objc)
     #[doc(alias = "ODNodeCopyAccountPolicies")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -1119,8 +1371,6 @@ impl ODNodeRef {
     /// - `password` might not allow `None`.
     /// - `record_name` might not allow `None`.
     /// - `error` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odnodepasswordcontentcheck(_:_:_:_:)?language=objc)
     #[doc(alias = "ODNodePasswordContentCheck")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

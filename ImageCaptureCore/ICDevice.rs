@@ -9,18 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type of image capture device.
 /// Image Capture Device Types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceType(pub NSUInteger);
 impl ICDeviceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetype/camera?language=objc)
+    /// The device is a camera.
     #[doc(alias = "ICDeviceTypeCamera")]
     pub const Camera: Self = Self(0x00000001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetype/scanner?language=objc)
+    /// The device is a scanner.
     #[doc(alias = "ICDeviceTypeScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -33,24 +32,23 @@ unsafe impl RefEncode for ICDeviceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The location of the image capture device.
 /// Image Capture Device Location Types
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationType(pub NSUInteger);
 impl ICDeviceLocationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/local?language=objc)
+    /// A device that’s directly attached to the Mac through its USB or FireWire port.
     #[doc(alias = "ICDeviceLocationTypeLocal")]
     pub const Local: Self = Self(0x00000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/shared?language=objc)
+    /// A device that’s shared by other Mac hosts.
     #[doc(alias = "ICDeviceLocationTypeShared")]
     pub const Shared: Self = Self(0x00000200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/bonjour?language=objc)
+    /// A supported Bonjour services device.
     #[doc(alias = "ICDeviceLocationTypeBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtype/bluetooth?language=objc)
+    /// A paired Bluetooth device.
     #[doc(alias = "ICDeviceLocationTypeBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
 }
@@ -63,18 +61,17 @@ unsafe impl RefEncode for ICDeviceLocationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Masks for detecting different device types.
 /// Image Capture Device Type Mask
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetypemask?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceTypeMask(pub NSUInteger);
 impl ICDeviceTypeMask {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetypemask/camera?language=objc)
+    /// A mask for detecting a camera.
     #[doc(alias = "ICDeviceTypeMaskCamera")]
     pub const Camera: Self = Self(0x00000001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetypemask/scanner?language=objc)
+    /// A mask for detecting a scanner.
     #[doc(alias = "ICDeviceTypeMaskScanner")]
     pub const Scanner: Self = Self(0x00000002);
 }
@@ -87,27 +84,26 @@ unsafe impl RefEncode for ICDeviceTypeMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Masks for detecting different device locations.
 /// Image Capture Device Location Type Mask
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICDeviceLocationTypeMask(pub NSUInteger);
 impl ICDeviceLocationTypeMask {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/local?language=objc)
+    /// A mask for detecting a local device, such as USB or FireWire.
     #[doc(alias = "ICDeviceLocationTypeMaskLocal")]
     pub const Local: Self = Self(0x00000100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/shared?language=objc)
+    /// A mask for detecting a device shared by another Mac host.
     #[doc(alias = "ICDeviceLocationTypeMaskShared")]
     pub const Shared: Self = Self(0x00000200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/bonjour?language=objc)
+    /// A mask for detecting a network device that publishes a Bonjour service.
     #[doc(alias = "ICDeviceLocationTypeMaskBonjour")]
     pub const Bonjour: Self = Self(0x00000400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/bluetooth?language=objc)
+    /// A mask for detecting a paired Bluetooth device.
     #[doc(alias = "ICDeviceLocationTypeMaskBluetooth")]
     pub const Bluetooth: Self = Self(0x00000800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationtypemask/remote?language=objc)
+    /// A mask for detecting a remote device, such as a shared, Bonjour, or Bluetooth device.
     #[doc(alias = "ICDeviceLocationTypeMaskRemote")]
     pub const Remote: Self = Self(0x0000FE00);
 }
@@ -120,140 +116,119 @@ unsafe impl RefEncode for ICDeviceLocationTypeMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport?language=objc)
+/// The hardware connection types a device can use.
 // NS_TYPED_ENUM
 pub type ICDeviceTransport = NSString;
 
 extern "C" {
     /// Indicates that the device uses USB transport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeusb?language=objc)
     pub static ICTransportTypeUSB: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses FireWire transport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypefirewire?language=objc)
     pub static ICTransportTypeFireWire: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses Bluetooth transport.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypebluetooth?language=objc)
     pub static ICTransportTypeBluetooth: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device use mounts as a mass-storage volume.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypemassstorage?language=objc)
     pub static ICTransportTypeMassStorage: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device use mounts as a exFat storage volume.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeexfat?language=objc)
     pub static ICTransportTypeExFAT: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses TCP/IP transport. These devices are discovered using Bonjour.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypetcpip?language=objc)
     pub static ICTransportTypeTCPIP: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device transport is based on proximity instead of a predefined phyiscal layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeproximity?language=objc)
     pub static ICTransportTypeProximity: &'static ICDeviceTransport;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus?language=objc)
+/// The status types that a device might deliver while in use.
 // NS_TYPED_ENUM
 pub type ICDeviceStatus = NSString;
 
 extern "C" {
     /// Key for a non-localized notification string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/statusnotificationkey?language=objc)
     pub static ICStatusNotificationKey: &'static ICDeviceStatus;
 }
 
 extern "C" {
     /// One of values defined in ICReturnCode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/statuscodekey?language=objc)
     pub static ICStatusCodeKey: &'static ICDeviceStatus;
 }
 
 extern "C" {
     /// Key for a localized notification string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/localizedstatusnotificationkey?language=objc)
     pub static ICLocalizedStatusNotificationKey: &'static ICDeviceStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability?language=objc)
+/// Constants that describe the capabilities of a camera.
 // NS_TYPED_ENUM
 pub type ICDeviceCapability = NSString;
 
 extern "C" {
+    /// Indicates that the camera can eject or disconnect.
     /// Indicates either the device is mounted as a mass-storage volume and can be ejected or the it is a remote device with an active connection that can be disconnected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/canejectordisconnect?language=objc)
     pub static ICDeviceCanEjectOrDisconnect: &'static ICDeviceCapability;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsessionoptions?language=objc)
+/// Session options for altering the delivery of the device contents.
 // NS_TYPED_ENUM
 pub type ICSessionOptions = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsessionoptions/enumerationchronologicalorder?language=objc)
     pub static ICEnumerationChronologicalOrder: &'static ICSessionOptions;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions?language=objc)
+/// Options for the location of the image capture device.
 // NS_TYPED_ENUM
 pub type ICDeviceLocationOptions = NSString;
 
 extern "C" {
+    /// A device that’s directly attached to the Mac through its USB port.
     /// This description is returned for locationDescription property of a device connected to a USB port.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionusb?language=objc)
     pub static ICDeviceLocationDescriptionUSB: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
+    /// A device that’s directly attached to the Mac through its FireWire port.
     /// This description is returned for locationDescription property of a device connected to a FireWire port.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionfirewire?language=objc)
     pub static ICDeviceLocationDescriptionFireWire: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
+    /// A paired Bluetooth device.
     /// This description is returned for locationDescription property of a device connected via Bluetooth.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionbluetooth?language=objc)
     pub static ICDeviceLocationDescriptionBluetooth: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
+    /// A mass storage device.
     /// This description is returned for locationDescription property of a device that is mounted as a mass-storage volume.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionmassstorage?language=objc)
     pub static ICDeviceLocationDescriptionMassStorage: &'static ICDeviceLocationOptions;
 }
 
 extern_class!(
-    /// ICDevice is an abstract class that represents a device supported by Image Capture facility. ImageCaptureCore defines two concrete subclasses of ICDevice, ICCameraDevice and ICScannerDevice. ICDeviceBrowser creates instances of these two subclasses to represent cameras and scanners it finds.
+    /// An abstract object that represents a device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevice?language=objc)
+    /// ## Overview
+    ///
+    /// The device browser uses the concrete subclasses [`ICCameraDevice`](https://developer.apple.com/documentation/imagecapturecore/iccameradevice) and [`ICScannerDevice`](https://developer.apple.com/documentation/imagecapturecore/icscannerdevice) to represent the cameras and scanners it finds.
+    ///
+    ///
+    /// ICDevice is an abstract class that represents a device supported by Image Capture facility. ImageCaptureCore defines two concrete subclasses of ICDevice, ICCameraDevice and ICScannerDevice. ICDeviceBrowser creates instances of these two subclasses to represent cameras and scanners it finds.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ICDevice;
@@ -558,11 +533,16 @@ impl ICDevice {
 }
 
 extern_protocol!(
+    /// Methods for responding to device events and changes.
+    ///
+    /// ## Overview
+    ///
+    /// Unless otherwise noted, all completion blocks execute on the calling thread.
+    ///
+    ///
     /// A delegate of ICDevice must conform to ICDeviceDelegate protocol.
     ///
     /// Note: Unless otherwise noted, all delegate callbacks will occur on the main thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicedelegate?language=objc)
     pub unsafe trait ICDeviceDelegate: NSObjectProtocol {
         /// This message is sent when a session is closed on a device.
         ///

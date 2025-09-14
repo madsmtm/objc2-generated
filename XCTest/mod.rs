@@ -33,24 +33,22 @@ use objc2_xc_ui_automation::*;
 use crate::*;
 
 extern "C" {
+    /// The error domain for errors that can occur while the test is waiting to fulfill expectations.
     /// Domain for errors provided by the XCTest framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterrordomain?language=objc)
     pub static XCTestErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes for errors that can occur while the test is waiting to fulfill expectations.
 /// Error codes used with errors in the XCTestErrorDomain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTestErrorCode(pub NSInteger);
 impl XCTestErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code/timeoutwhilewaiting?language=objc)
+    /// A code that represents a timeout the test encountered while waiting to fulfill expectations.
     #[doc(alias = "XCTestErrorCodeTimeoutWhileWaiting")]
     pub const TimeoutWhileWaiting: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code/failurewhilewaiting?language=objc)
+    /// A code that represents a test failure the test encountered while waiting to fulfill expectations.
     #[doc(alias = "XCTestErrorCodeFailureWhileWaiting")]
     pub const FailureWhileWaiting: Self = Self(1);
 }
@@ -64,11 +62,16 @@ unsafe impl RefEncode for XCTestErrorCode {
 }
 
 extern_class!(
+    /// An abstract base class for creating, managing, and executing tests.
+    ///
+    /// ## Overview
+    ///
+    /// The [`XCTest`](https://developer.apple.com/documentation/xctest/xctest) class provides shared functionality that [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase) and [`XCTestSuite`](https://developer.apple.com/documentation/xctest/xctestsuite) use for creating, managing, and executing tests. In most cases, you subclass [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase) directly when defining tests in your project.
+    ///
+    ///
     /// An abstract base class for testing. XCTestCase and XCTestSuite extend XCTest to provide
     /// for creating, managing, and executing tests. Most developers will not need to subclass
     /// XCTest directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTest;
@@ -385,9 +388,8 @@ pub(crate) extern "C-unwind" fn _XCTGetCurrentExceptionReasonWithFallback(
 }
 
 extern_protocol!(
+    /// A named substep of a test method.
     /// Represents a test activity.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctactivity?language=objc)
     pub unsafe trait XCTActivity: NSObjectProtocol {
         /// Human-readable name of the activity, given at creation time.
         #[unsafe(method(name))]
@@ -403,6 +405,19 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The primary class for defining test cases, test methods, and performance tests.
+    ///
+    /// ## Overview
+    ///
+    /// A test case is a group of related test methods, with optional setup and teardown before and after tests run. See [Defining Test Cases and Test Methods](https://developer.apple.com/documentation/xctest/defining-test-cases-and-test-methods) for more information.
+    ///
+    /// `XCTestCase` conforms to [`XCTActivity`](https://developer.apple.com/documentation/xctest/xctactivity), so you can simplify complex tests by organizing them into activities, and attach output to tests for later analysis. For more information, see [Activities and Attachments](https://developer.apple.com/documentation/xctest/activities-and-attachments).
+    ///
+    /// Create tests for asynchronous operations using expectations. For more information, see `Testing Asynchronous Operations with Expectations`. If your app uses Swift [Concurrency](https://developer.apple.com/documentation/swift/concurrency), annotate test methods with `async` or `async throws` instead to test asynchronous operations, and use standard Swift concurrency patterns in your tests.
+    ///
+    /// Create tests to measure performance for specific blocks of code using the methods in the Measuring Performance section below. Build performance tests as part of a continuous improvement cycle for performance in your app. For more information, see [Improving your app’s performance](https://developer.apple.com/documentation/xcode/improving-your-app-s-performance).
+    ///
+    ///
     /// XCTestCase is a concrete subclass of XCTest that should be the override point for
     /// most developers creating tests for their projects. A test case subclass can have
     /// multiple test methods and supports setup and tear down that executes for every test
@@ -455,8 +470,6 @@ extern_class!(
     ///     @end
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestcase?language=objc)
     #[unsafe(super(XCTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestCase;
@@ -672,14 +685,13 @@ extern_conformance!(
     unsafe impl XCTActivity for XCTestCase {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemetric?language=objc)
+/// Performance metrics that the test records.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type XCTPerformanceMetric = NSString;
 
 extern "C" {
+    /// A performance metric that records the time in seconds to execute a block of code.
     /// Records wall clock time in seconds between startMeasuring/stopMeasuring.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemetric/wallclocktime?language=objc)
     pub static XCTPerformanceMetric_WallClockTime: &'static XCTPerformanceMetric;
 }
 
@@ -878,11 +890,16 @@ impl XCTestCase {
 }
 
 extern_class!(
+    /// A base class for collecting information about a specific execution of a test.
+    ///
+    /// ## Overview
+    ///
+    /// `XCTestRun` classifies failures in explicit test assertions as _expected_, and failures from unrelated or uncaught exceptions as _unexpected_.
+    ///
+    ///
     /// A test run collects information about the execution of a test. Failures in explicit
     /// test assertions are classified as "expected", while failures from unrelated or
     /// uncaught exceptions are classified as "unexpected".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestrun?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestRun;
@@ -1055,7 +1072,13 @@ impl XCTestRun {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestcaserun?language=objc)
+    /// An object that collects information about a specific execution of a test case.
+    ///
+    /// ## Overview
+    ///
+    /// The test runner manages the creation and tracking of `XCTestCaseRun` for each [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase) in an [`XCTestSuite`](https://developer.apple.com/documentation/xctest/xctestsuite).
+    ///
+    ///
     #[unsafe(super(XCTestRun, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestCaseRun;
@@ -1117,9 +1140,8 @@ impl XCTestCaseRun {
 }
 
 extern_class!(
+    /// An object that observes test activity and events.
     /// XCTestObserver is deprecated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -1207,14 +1229,12 @@ impl DefaultRetained for XCTestObserver {
 
 extern "C" {
     /// XCTestObserverClassKey is deprecated and ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobserverclasskey?language=objc)
     #[deprecated]
     pub static XCTestObserverClassKey: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestlog?language=objc)
+    /// An object that logs test failures and errors.
     #[unsafe(super(XCTestObserver, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -1254,6 +1274,35 @@ impl DefaultRetained for XCTestLog {
 }
 
 extern_protocol!(
+    /// A protocol that defines methods the test runner calls in response to significant events during test runs.
+    ///
+    /// ## Overview
+    ///
+    /// The system calls the notification methods for [`XCTestObservation`](https://developer.apple.com/documentation/xctest/xctestobservation) in the following sequence for a test bundle:
+    ///
+    /// 1. [`testBundleWillStart:`](https://developer.apple.com/documentation/xctest/xctestobservation/testbundlewillstart(_:)) — exactly once per test bundle
+    ///
+    /// 2. [`testSuiteWillStart:`](https://developer.apple.com/documentation/xctest/xctestobservation/testsuitewillstart(_:)) — exactly once per test suite
+    ///
+    /// 3. [`testCaseWillStart:`](https://developer.apple.com/documentation/xctest/xctestobservation/testcasewillstart(_:)) — exactly once per test case
+    ///
+    /// 4. [`testCase:didRecordIssue:`](https://developer.apple.com/documentation/xctest/xctestobservation/testcase(_:didrecord:)-4cou6)  — for each test failure, zero or more times per test case at any point between test case start and finish
+    ///
+    /// 5. [`testCase:didRecordExpectedFailure:`](https://developer.apple.com/documentation/xctest/xctestobservation/testcase(_:didrecord:)-8k955)  — for each expected test failure, zero or more times per test case at any point between test case start and finish
+    ///
+    /// 6. [`testCaseDidFinish:`](https://developer.apple.com/documentation/xctest/xctestobservation/testcasedidfinish(_:)) — exactly once per test case
+    ///
+    /// 7. [`testSuite:didRecordIssue:`](https://developer.apple.com/documentation/xctest/xctestobservation/testsuite(_:didrecord:)-3rk9k) — for each test failure, zero or more times per test suite at any point between test suite start and finish
+    ///
+    /// 8. [`testSuite:didRecordExpectedFailure:`](https://developer.apple.com/documentation/xctest/xctestobservation/testsuite(_:didrecord:)-1xjkv) — for each expected test failure, zero or more times per test suite at any point between test suite start and finish
+    ///
+    /// 9. [`testSuiteDidFinish:`](https://developer.apple.com/documentation/xctest/xctestobservation/testsuitedidfinish(_:)) — exactly once per test suite
+    ///
+    /// 10. [`testBundleDidFinish:`](https://developer.apple.com/documentation/xctest/xctestobservation/testbundledidfinish(_:)) — exactly once per test bundle
+    ///
+    /// See [`XCTestObservationCenter`](https://developer.apple.com/documentation/xctest/xctestobservationcenter) for details about registering and removing test observers.
+    ///
+    ///
     /// Objects conforming to XCTestObservation can register to be notified of the progress of test runs. See XCTestObservationCenter
     /// for details on registration.
     ///
@@ -1267,8 +1316,6 @@ extern_protocol!(
     /// -testSuite:didRecordIssue:                  // zero or more times per test suite, any time between test suite start and finish
     /// -testSuiteDidFinish:                        // exactly once per test suite
     /// -testBundleDidFinish:                            // exactly once per test bundle
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobservation?language=objc)
     pub unsafe trait XCTestObservation: NSObjectProtocol {
         /// Sent immediately before tests begin as a hook for any pre-testing setup.
         ///
@@ -1447,6 +1494,23 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// Provides information about the progress of test runs to registered observers.
+    ///
+    /// ## Overview
+    ///
+    /// Observers can be any object that conforms to the [`XCTestObservation`](https://developer.apple.com/documentation/xctest/xctestobservation) protocol. Register new observers with the [`addTestObserver:`](https://developer.apple.com/documentation/xctest/xctestobservationcenter/addtestobserver(_:)) method and remove them with the [`removeTestObserver:`](https://developer.apple.com/documentation/xctest/xctestobservationcenter/removetestobserver(_:)) method.
+    ///
+    /// If an [NSPrincipalClass](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/plist/info/NSPrincipalClass) key is declared in the test bundle’s Info.plist file, XCTest automatically creates a single instance of that class when the test bundle is loaded. You can use this instance as a place to register observers or do other pretesting global setup before testing for that bundle begins.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Observers must be registered manually. The NSPrincipalClass instance is not automatically registered as an observer even if the class conforms to [`XCTestObservation`](https://developer.apple.com/documentation/xctest/xctestobservation).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The XCTestObservationCenter distributes information about the progress of test runs to registered
     /// observers. Observers can be any object conforming to the XCTestObservation protocol.
     ///
@@ -1458,8 +1522,6 @@ extern_class!(
     /// registered as an observer even if the class conforms to
     /// <XCTestObservation
     /// >.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestobservationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestObservationCenter;
@@ -1513,7 +1575,6 @@ impl DefaultRetained for XCTestObservationCenter {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctselftestmain()?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn XCTSelfTestMain() -> c_int {
@@ -1524,7 +1585,7 @@ pub extern "C-unwind" fn XCTSelfTestMain() -> c_int {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestprobe?language=objc)
+    /// An object that observes test activity status.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]
@@ -1564,37 +1625,31 @@ impl DefaultRetained for XCTestProbe {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestedunitpath?language=objc)
     #[deprecated]
     pub static XCTestedUnitPath: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopekey?language=objc)
     #[deprecated]
     pub static XCTestScopeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeall?language=objc)
     #[deprecated]
     pub static XCTestScopeAll: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopenone?language=objc)
     #[deprecated]
     pub static XCTestScopeNone: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestscopeself?language=objc)
     #[deprecated]
     pub static XCTestScopeSelf: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesttoolkey?language=objc)
     #[deprecated]
     pub static XCTestToolKey: Option<&'static NSString>;
 }
@@ -1667,6 +1722,13 @@ impl DefaultRetained for _XCTSkipFailureException {
 }
 
 extern_class!(
+    /// A collection of test cases to manage as a test suite.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, Xcode automatically manages test suites for you. Only use [`XCTestSuite`](https://developer.apple.com/documentation/xctest/xctestsuite) if you need to define your own custom test suites programmatically.
+    ///
+    ///
     /// A concrete subclass of XCTest, XCTestSuite is a collection of test cases. Suites
     /// are usually managed by the IDE, but XCTestSuite also provides API for dynamic test
     /// and suite management:
@@ -1699,8 +1761,6 @@ extern_class!(
     ///
     /// This creates a suite of suites with all the XCTestCase subclasses methods that start
     /// with "test" and take no arguments.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestsuite?language=objc)
     #[unsafe(super(XCTest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestSuite;
@@ -1758,7 +1818,13 @@ impl XCTestSuite {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestsuiterun?language=objc)
+    /// An object that collects information about a specific execution of a test suite.
+    ///
+    /// ## Overview
+    ///
+    /// The test runner manages the creation and tracking of `XCTestSuiteRun` for an [`XCTestSuite`](https://developer.apple.com/documentation/xctest/xctestsuite).
+    ///
+    ///
     #[unsafe(super(XCTestRun, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestSuiteRun;
@@ -1815,16 +1881,24 @@ impl XCTestSuiteRun {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum?language=objc)
+/// The possible lifetime values for a test attachment.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTAttachmentLifetime(pub NSInteger);
 impl XCTAttachmentLifetime {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/keepalways?language=objc)
+    /// Indicates that the attachment should be persisted as part of the test’s results even if the test passes.
     #[doc(alias = "XCTAttachmentLifetimeKeepAlways")]
     pub const KeepAlways: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/deleteonsuccess?language=objc)
+    /// Indicates that the attachment should be deleted if the test passes.
+    ///
+    /// ## Discussion
+    ///
+    /// [`XCTAttachmentLifetimeDeleteOnSuccess`](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/deleteonsuccess) is the default lifetime for all new attachments. This lifetime indicates that an attachment should be discarded if its test passes successfully, to save on storage space.
+    ///
+    /// To persist an attachment even when its test passes, set the attachment’s [`lifetime`](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.property) property to [`XCTAttachmentLifetimeKeepAlways`](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum/keepalways) after attachment initialization.
+    ///
+    ///
     #[doc(alias = "XCTAttachmentLifetimeDeleteOnSuccess")]
     pub const DeleteOnSuccess: Self = Self(1);
 }
@@ -1838,6 +1912,7 @@ unsafe impl RefEncode for XCTAttachmentLifetime {
 }
 
 extern_class!(
+    /// Data from a test method’s execution, such as a file, image, screenshot, data blob, or ZIP file.
     /// Represents the concept of data attached to an XCTActivity. Allows reporting more context about the test run
     /// for debugging, such as screenshots, log files, and configuration dictionaries.
     ///
@@ -1890,8 +1965,6 @@ extern_class!(
     ///      }
     ///  
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTAttachment;
@@ -1989,19 +2062,19 @@ impl XCTAttachment {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality?language=objc)
+/// Compression quality options for image-based attachments.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTImageQuality(pub NSInteger);
 impl XCTImageQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/original?language=objc)
+    /// Original image quality, represented as a lossless PNG image.
     #[doc(alias = "XCTImageQualityOriginal")]
     pub const Original: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/medium?language=objc)
+    /// Medium image quality, represented as a high quality lossy JPEG image.
     #[doc(alias = "XCTImageQualityMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality/low?language=objc)
+    /// Low image quality, represented as a highly compressed lossy JPEG image.
     #[doc(alias = "XCTImageQualityLow")]
     pub const Low: Self = Self(2);
 }
@@ -2109,7 +2182,13 @@ impl XCTAttachment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctcontext?language=objc)
+    /// A proxy for the current testing context.
+    ///
+    /// ## Overview
+    ///
+    /// `XCTContext` provides a way for activities ([`XCTActivity`](https://developer.apple.com/documentation/xctest/xctactivity)) to run against the current testing context, either directly in a test case or in custom testing utilities. You can break up long test methods in UI tests or integration tests into activities to reuse, and to simplify results in the Xcode test reports. Use [`runActivity(named:block:)`](https://developer.apple.com/documentation/xctest/xctcontext/runactivity(named:block:)) to run a block of code as a named substep in a test. For more information, see [Grouping Tests into Substeps with Activities](https://developer.apple.com/documentation/xctest/grouping-tests-into-substeps-with-activities).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTContext;
@@ -2186,6 +2265,7 @@ impl DefaultRetained for XCTContext {
     }
 }
 
+/// Instructs the test to expect a failure in an upcoming assertion.
 /// Declares that the test is expected to fail at some point beyond the call. This can be used to both document and
 /// suppress a known issue when immediate resolution is not possible. Issues caught by XCTExpectFailure do not
 /// impact the aggregate results of the test suites which own them.
@@ -2201,8 +2281,6 @@ impl DefaultRetained for XCTContext {
 ///
 /// Parameter `failureReason`: Explanation of the issue being suppressed. If it contains
 /// a URL, that URL can be extracted and presented as a link in reporting UI (Xcode and CI).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailure?language=objc)
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
     extern "C-unwind" {
@@ -2211,14 +2289,13 @@ pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
     unsafe { XCTExpectFailure(failure_reason) }
 }
 
+/// Instructs the test to expect a failure in an upcoming assertion, with options to customize expected failure checking and handling.
 /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior.
 ///
 ///
 /// Parameter `options`: The options can include a custom issue matching block as well as the ability to
 /// disable "strict" behavior, which relaxes the requirement that a call to XCTExpectFailure must be matched
 /// against at least one recorded issue.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailurewithoptions?language=objc)
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureWithOptions(
     failure_reason: Option<&NSString>,
@@ -2233,14 +2310,13 @@ pub extern "C-unwind" fn XCTExpectFailureWithOptions(
     unsafe { XCTExpectFailureWithOptions(failure_reason, options) }
 }
 
+/// Instructs the test to expect a failure in an assertion in the provided block of code.
 /// Like XCTExpectFailure, but limits the scope in which issues are matched.
 ///
 ///
 /// Parameter `failingBlock`: The scope of code in which the failure is expected. Note that this will only
 /// match against failures in that scope on the same thread; failures in dispatch callouts or other code
 /// running on a different thread will not be matched.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailureinblock?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureInBlock(
@@ -2256,10 +2332,9 @@ pub extern "C-unwind" fn XCTExpectFailureInBlock(
     unsafe { XCTExpectFailureInBlock(failure_reason, failing_block) }
 }
 
+/// Instructs the test to expect a failure in an assertion in the provided block of code, with options to customize expected failure checking and handling.
 /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior and
 /// limits the scope in which issues are matched.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectfailurewithoptionsinblock?language=objc)
 #[cfg(feature = "block2")]
 #[inline]
 pub extern "C-unwind" fn XCTExpectFailureWithOptionsInBlock(
@@ -2278,10 +2353,15 @@ pub extern "C-unwind" fn XCTExpectFailureWithOptionsInBlock(
 }
 
 extern_class!(
+    /// Options that determine how the test matches the expected failure to an actual test failure, and whether an unfulfilled expected failure results in a test failure.
+    ///
+    /// ## Overview
+    ///
+    /// Create options and provide them to `XCTExpectFailure` functions to tell the test system how to match an expected failure, whether to enable an expected failure during a test, and whether an unfulfilled expected failure generates a test failure.
+    ///
+    ///
     /// Describes the rules for matching issues to expected failures and other behaviors related to
     /// expected failure handling.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectedfailure/options?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTExpectedFailureOptions;
@@ -2386,10 +2466,15 @@ impl DefaultRetained for XCTExpectedFailureOptions {
 }
 
 extern_class!(
+    /// An object that represents an expected test failure.
+    ///
+    /// ## Overview
+    ///
+    /// The test system creates and tracks instances of `XCTExpectedFailure` when you call one of the `XCTExpectFailure` functions. Don’t create or use them directly.
+    ///
+    ///
     /// Contains the details about a single instance of an expected failure, including the failure
     /// reason and the underlying issue that was recorded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectedfailure?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTExpectedFailure;
@@ -2436,42 +2521,47 @@ impl DefaultRetained for XCTExpectedFailure {
     }
 }
 
+/// Constants that indicate types of test failures, such as assertion failures, performance regressions, or thrown errors.
 /// Types of failures and other issues that can be reported for tests.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTIssueType(pub NSInteger);
 impl XCTIssueType {
+    /// A test failure due to a failed test assertion or related API.
     /// Issue raised by a failed XCTAssert or related API.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/assertionfailure?language=objc)
     #[doc(alias = "XCTIssueTypeAssertionFailure")]
     pub const AssertionFailure: Self = Self(0);
-    /// Issue raised by the test throwing an error in Swift. This could also occur if an Objective C test is implemented in the form `- (BOOL)testFoo:(NSError **)outError` and returns NO with a non-nil out error.
+    /// A test failure when the test throws an error in Swift.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/thrownerror?language=objc)
+    /// ## Discussion
+    ///
+    /// This could also occur if an Objective-C test uses the form `-(BOOL)testExample:(NSError **)outError` and returns `NO` with a non-`nil` out error.
+    ///
+    ///
+    /// Issue raised by the test throwing an error in Swift. This could also occur if an Objective C test is implemented in the form `- (BOOL)testFoo:(NSError **)outError` and returns NO with a non-nil out error.
     #[doc(alias = "XCTIssueTypeThrownError")]
     pub const ThrownError: Self = Self(1);
+    /// A test failure when code throws an exception and doesn’t catch it.
     /// Code in the test throws and does not catch an exception, Objective C, C++, or other.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/uncaughtexception?language=objc)
     #[doc(alias = "XCTIssueTypeUncaughtException")]
     pub const UncaughtException: Self = Self(2);
+    /// A test failure due to a performance regression.
     /// One of the XCTestCase(measure:) family of APIs detected a performance regression.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/performanceregression?language=objc)
     #[doc(alias = "XCTIssueTypePerformanceRegression")]
     pub const PerformanceRegression: Self = Self(3);
-    /// One of the framework APIs failed internally. For example, XCUIApplication was unable to launch or terminate an app or XCUIElementQuery was unable to complete a query.
+    /// A test failure due to an internal failure in the testing framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/system?language=objc)
+    /// ## Discussion
+    ///
+    /// This type of failure could happen if `XCUIApplication` was unable to launch or terminate an app, or if `XCUIElementQuery` was unable to complete a query.
+    ///
+    ///
+    /// One of the framework APIs failed internally. For example, XCUIApplication was unable to launch or terminate an app or XCUIElementQuery was unable to complete a query.
     #[doc(alias = "XCTIssueTypeSystem")]
     pub const System: Self = Self(4);
+    /// A test failure due to an expected test failure that doesn’t occur.
     /// Issue raised when XCTExpectFailure is used but no matching issue is recorded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype/unmatchedexpectedfailure?language=objc)
     #[doc(alias = "XCTIssueTypeUnmatchedExpectedFailure")]
     pub const UnmatchedExpectedFailure: Self = Self(5);
 }
@@ -2486,32 +2576,47 @@ unsafe impl RefEncode for XCTIssueType {
 
 /// An enum representing the severity of a test issue.
 ///
+/// ## Overview
+///
+/// The numeric values of this enum’s cases are comparable. A case which represents higher severity has a larger numeric value than one which represents lower severity. Specifying a numeric severity value other than one corresponding to a case defined below when initializing an `XCTIssue` is unsupported.
+///
+///
+/// An enum representing the severity of a test issue.
+///
 /// The numeric values of this enum's cases are comparable. A case which represents
 /// higher severity has a larger numeric value than one which represents lower
 /// severity. Specifying a numeric severity value other than one corresponding to
 /// a case defined below when initializing an ``XCTIssue`` is unsupported.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct XCTIssueSeverity(pub NSInteger);
 impl XCTIssueSeverity {
+    /// The severity level for an issue which should be noted but is not necessarily an error.
+    ///
+    /// ## Discussion
+    ///
+    /// An issue with warning severity does not cause the test it’s associated with to be marked as a failure, but is noted in the results.
+    ///
+    ///
     /// The severity level for an issue which should be noted but is not
     /// necessarily an error.
     ///
     /// An issue with warning severity does not cause the test it's associated
     /// with to be marked as a failure, but is noted in the results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum/warning?language=objc)
     #[doc(alias = "XCTIssueSeverityWarning")]
     pub const Warning: Self = Self(4);
     /// The severity level for an issue which represents an error in a test.
     ///
+    /// ## Discussion
+    ///
+    /// An issue with error severity causes the test it’s associated with to be marked as a failure.
+    ///
+    ///
+    /// The severity level for an issue which represents an error in a test.
+    ///
     /// An issue with error severity causes the test it's associated with to be
     /// marked as a failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum/error?language=objc)
     #[doc(alias = "XCTIssueSeverityError")]
     pub const Error: Self = Self(8);
 }
@@ -2525,9 +2630,14 @@ unsafe impl RefEncode for XCTIssueSeverity {
 }
 
 extern_class!(
-    /// Encapsulates all data concerning a test failure or other issue.
+    /// An object that represents a test failure, and includes source code call stacks for test reporting and investigation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, `XCTIssueReference` bridges to the Objective-C class `XCTIssue`. When you need reference semantics in your Swift test handling, use `XCTIssueReference`; otherwise, use the Swift value semantic [`XCTIssue`](https://developer.apple.com/documentation/xctest/xctissue-swift.struct). In Objective-C, `XCTIssue` supports bridging to Swift with `XCTIssueReference`.
+    ///
+    ///
+    /// Encapsulates all data concerning a test failure or other issue.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTIssue;
@@ -2666,9 +2776,8 @@ impl XCTIssue {
 }
 
 extern_class!(
+    /// A mutable object that represents a test failure, and includes source code call stacks for test reporting and investigation.
     /// Mutable variant of XCTIssue, suitable for modifying by overrides in the reporting chain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmutableissue?language=objc)
     #[unsafe(super(XCTIssue, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTMutableIssue;
@@ -2835,20 +2944,20 @@ impl XCTMutableIssue {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct?language=objc)
+/// Test measurement options that control how measurement starts and stops.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTMeasurementInvocationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl XCTMeasurementInvocationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasurementinvocationoptions/xctmeasurementinvocationnone?language=objc)
+/// An invocation option that specifies that the test automatically takes measurements at the beginning and ending of a measure block.
         #[doc(alias = "XCTMeasurementInvocationNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct/manuallystart?language=objc)
+/// An invocation option that specifies that the test starts taking measurements when the `startMeasuring()` function is called.
         #[doc(alias = "XCTMeasurementInvocationManuallyStart")]
         const ManuallyStart = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct/manuallystop?language=objc)
+/// An invocation option that specifies that the test stops taking measurements when the `stopMeasuring()` function is called.
         #[doc(alias = "XCTMeasurementInvocationManuallyStop")]
         const ManuallyStop = 1<<1;
     }
@@ -2863,9 +2972,8 @@ unsafe impl RefEncode for XCTMeasurementInvocationOptions {
 }
 
 extern_class!(
+    /// Options to control the gathering of performance measurements during tests.
     /// Collection of options which configures behavior when passed into the -[XCTMeasure measure*] APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTMeasureOptions;
@@ -2929,25 +3037,22 @@ impl DefaultRetained for XCTMeasureOptions {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum?language=objc)
+/// Constants that state whether larger or smaller measurements, relative to a set baseline, indicate better performance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTPerformanceMeasurementPolarity(pub NSInteger);
 impl XCTPerformanceMeasurementPolarity {
+    /// A performance measurement where a smaller value, relative to a set baseline, indicates better performance.
     /// Represents measurements where smaller values are considered "better".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/preferssmaller?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityPrefersSmaller")]
     pub const PrefersSmaller: Self = Self(-1);
+    /// A performance measurement that doesn’t specify whether a larger or smaller value, relative to a set baseline, indicates better performance.
     /// Represents measurements which do not have a meaningful polarity. Suitable for situations where neither smaller nor larger values are considered "better".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/unspecified?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// A performance measurement where a larger value, relative to a set baseline, indicates better performance.
     /// Represents measurements where larger values are considered "better".
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum/preferslarger?language=objc)
     #[doc(alias = "XCTPerformanceMeasurementPolarityPrefersLarger")]
     pub const PrefersLarger: Self = Self(1);
 }
@@ -2961,9 +3066,8 @@ unsafe impl RefEncode for XCTPerformanceMeasurementPolarity {
 }
 
 extern_class!(
+    /// A point in time that captures the start or finish of a performance test iteration.
     /// Encapsulates timestamps at various levels
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurementtimestamp?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTPerformanceMeasurementTimestamp;
@@ -3023,9 +3127,8 @@ impl DefaultRetained for XCTPerformanceMeasurementTimestamp {
 }
 
 extern_class!(
+    /// A measurement from a single iteration of a performance test.
     /// Contains the data acquired from a single metric being measured for an individual iteration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTPerformanceMeasurement;
@@ -3173,12 +3276,17 @@ impl DefaultRetained for XCTPerformanceMeasurement {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods that objects must provide when gathering metrics during performance tests.
+    ///
+    /// ## Overview
+    ///
+    /// Objects that gather metrics during performance tests must conform to `XCTMetric`. Before you create your own conforming objects, first use the metrics classes that `XCTest` supplies.
+    ///
+    ///
     /// Defines a protocol which may be used with the -measureWithMetrics* methods on XCTestCase.
     ///
     ///
     /// Classes conforming to XCTMetric must also adopt NSCopying, as a unique metric instance is copied for each iteration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmetric?language=objc)
     pub unsafe trait XCTMetric: NSCopying + NSObjectProtocol {
         /// Report measurements for the iteration that started and ended at the specified times.
         ///
@@ -3211,9 +3319,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A metric which gathers monotonic time data.
+    /// A metric to record the time that elapses during a performance test.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctclockmetric?language=objc)
+    /// ## Overview
+    ///
+    /// `XCTClockMetric` measures the total elapsed time during execution of the block argument to [`measureWithMetrics:block:`](https://developer.apple.com/documentation/xctest/xctestcase/measure(metrics:block:)). The metric records time monotonically, regardless of changes to the system clock. Its result includes time spent executing code under test, and time when the CPU is idle or running other code.
+    ///
+    ///
+    /// A metric which gathers monotonic time data.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTClockMetric;
@@ -3264,6 +3377,13 @@ impl DefaultRetained for XCTClockMetric {
 }
 
 extern_class!(
+    /// A metric to record the time that a performance test spends executing a signposted region of code.
+    ///
+    /// ## Overview
+    ///
+    /// This metric captures the time that elapses between the [`begin`](https://developer.apple.com/documentation/os/ossignposttype/begin) and [`end`](https://developer.apple.com/documentation/os/ossignposttype/end) events for a specific named [`os_signpost(_:dso:log:name:signpostID:)`](https://developer.apple.com/documentation/os/os_signpost(_:dso:log:name:signpostid:)-2oz8u) region. It doesn’t record any results when there isn’t a matching pair of `begin` and `end` events.
+    ///
+    ///
     /// A metric which measures timestamp data gathered from os_signposts.
     /// If the interval being measured is an animation os_signpost interval then the following
     /// data will also be gathered:
@@ -3272,8 +3392,6 @@ extern_class!(
     /// - number of hitches
     /// - hitch total time duration (ms)
     /// - hitch time ratio (ms per s)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctossignpostmetric?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTOSSignpostMetric;
@@ -3374,9 +3492,8 @@ impl XCTOSSignpostMetric {
 }
 
 extern_class!(
+    /// A metric to record the application launch duration for a performance test.
     /// A metric which measures application launch durations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctapplicationlaunchmetric?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTApplicationLaunchMetric;
@@ -3439,9 +3556,20 @@ impl DefaultRetained for XCTApplicationLaunchMetric {
 }
 
 extern_class!(
-    /// A metric which measures instructions retired and time utilization of the CPU.
+    /// A metric to record information about CPU activity during a performance test.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctcpumetric?language=objc)
+    /// ## Overview
+    ///
+    /// `XCTCPUMetric` captures the following statistics about CPU activity; each metric is captured while the block argument to a [`measureWithMetrics:block:`](https://developer.apple.com/documentation/xctest/xctestcase/measure(metrics:block:)) call runs in a performance test:
+    ///
+    /// - _CPU time_ is the length of time, in seconds, that the CPU is active and executing instructions for the measured target. When the CPU switches context to execute a different process or thread or becomes idle, this value doesn’t increase.
+    ///
+    /// - _CPU cycles_ is the number of clock cycles that occur while the CPU is active and executing instructions for the measured target.
+    ///
+    /// - _CPU instructions retired_ is the number of processor instructions that run to completion during execution of the measured target. It’s possible for a CPU to abandon processing an instruction during execution, for example, if the instruction is evaluated out of order and logically follows a branch in the code that the CPU discovers it doesn’t need to take. An abandoned instruction doesn’t contribute to the retired instructions metric.
+    ///
+    ///
+    /// A metric which measures instructions retired and time utilization of the CPU.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTCPUMetric;
@@ -3508,9 +3636,14 @@ impl DefaultRetained for XCTCPUMetric {
 }
 
 extern_class!(
-    /// A metric which measures utilization of physical memory.
+    /// A metric to record the physical memory that a performance test uses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmemorymetric?language=objc)
+    /// ## Overview
+    ///
+    /// `XCTMemoryMetric` compares the memory use before and after running the block argument to [`measureWithMetrics:block:`](https://developer.apple.com/documentation/xctest/xctestcase/measure(metrics:block:)), and reports the difference.
+    ///
+    ///
+    /// A metric which measures utilization of physical memory.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTMemoryMetric;
@@ -3561,9 +3694,14 @@ impl DefaultRetained for XCTMemoryMetric {
 }
 
 extern_class!(
-    /// A metric which measures utilization of the file storage media.
+    /// A metric to record the amount of data that a performance test logically writes to storage.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctstoragemetric?language=objc)
+    /// ## Overview
+    ///
+    /// `XCTStorageMetric` records the amount of data logically written to the disk in the block argument to [`measureWithMetrics:block:`](https://developer.apple.com/documentation/xctest/xctestcase/measure(metrics:block:)). The logical size of data written is the number of bytes in all requests to write to the disk. The logical size can be different from the size of physically written data, based on how the file system organizes data, and the fact that the disk controller replaces content in fixed-size blocks.
+    ///
+    ///
+    /// A metric which measures utilization of the file storage media.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTStorageMetric;
@@ -3614,9 +3752,14 @@ impl DefaultRetained for XCTStorageMetric {
 }
 
 extern_class!(
-    /// A metric which measures the hitches encountered.
+    /// A metric to measure the number of hitches your UI encounters in a performance test.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcthitchmetric?language=objc)
+    /// ## Discussion
+    ///
+    /// A hitch occurs when your app doesn’t prepare the content it displays in time for the system to render it in the next screen update. For more information, see [Understanding hitches in your app](https://developer.apple.com/documentation/xcode/understanding-hitches-in-your-app).
+    ///
+    ///
+    /// A metric which measures the hitches encountered.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTHitchMetric;
@@ -3651,9 +3794,8 @@ impl XCTHitchMetric {
 }
 
 extern_class!(
+    /// An object that contains a file URL and line number that represents a distinct location in source code.
     /// Contains a file URL and line number representing a distinct location in source code related to a run of a test.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctsourcecodelocation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTSourceCodeLocation;
@@ -3708,9 +3850,8 @@ impl XCTSourceCodeLocation {
 }
 
 extern_class!(
+    /// An object that contains symbolication information for a specified frame in a call stack.
     /// Contains symbolication information for a given frame in a call stack.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctsourcecodesymbolinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTSourceCodeSymbolInfo;
@@ -3762,9 +3903,8 @@ impl XCTSourceCodeSymbolInfo {
 }
 
 extern_class!(
+    /// An object that represents a single frame in a call stack that supports retrieval of symbol information for the address.
     /// Represents a single frame in a call stack and supports retrieval of symbol information for the address.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctsourcecodeframe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTSourceCodeFrame;
@@ -3829,10 +3969,9 @@ impl XCTSourceCodeFrame {
 }
 
 extern_class!(
+    /// An object that contains call stack and source code location details to provide context for a point of execution in a test.
     /// Call stack and optional specific location - which may or may not be also included in the call stack
     /// providing context around a point of execution in a test.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctsourcecodecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTSourceCodeContext;
@@ -3909,28 +4048,33 @@ impl DefaultRetained for XCTSourceCodeContext {
     }
 }
 
+/// Result states returned by a waiter when it completes, times out, fails, or is interrupted.
 /// Values returned by a waiter when it completes, times out, or is interrupted due to another waiter
 /// higher in the call stack timing out.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct XCTWaiterResult(pub NSInteger);
 impl XCTWaiterResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/completed?language=objc)
+    /// All of the waiter’s expectations were fulfilled successfully.
     #[doc(alias = "XCTWaiterResultCompleted")]
     pub const Completed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/timedout?language=objc)
+    /// The waiter timed out before all of its expectations were fulfilled.
     #[doc(alias = "XCTWaiterResultTimedOut")]
     pub const TimedOut: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/incorrectorder?language=objc)
+    /// The waiter’s expectations were not fulfilled in the required order.
     #[doc(alias = "XCTWaiterResultIncorrectOrder")]
     pub const IncorrectOrder: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/invertedfulfillment?language=objc)
+    /// An inverted expectation was fulfilled.
     #[doc(alias = "XCTWaiterResultInvertedFulfillment")]
     pub const InvertedFulfillment: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result/interrupted?language=objc)
+    /// The waiter was interrupted prior to its expectations being fulfilled or timing out.
+    ///
+    /// ## Discussion
+    ///
+    /// This occurs when an “outer” waiter times out, resulting in any waiters nested inside it being interrupted to allow the call stack to quickly unwind.
+    ///
+    ///
     #[doc(alias = "XCTWaiterResultInterrupted")]
     pub const Interrupted: Self = Self(5);
 }
@@ -3944,6 +4088,15 @@ unsafe impl RefEncode for XCTWaiterResult {
 }
 
 extern_class!(
+    /// Waits for the fulfillment of a group of expectations.
+    ///
+    /// ## Overview
+    ///
+    /// You can use waiters with or without a delegate to respond to events such as completion, timeout, or invalid expectation fulfillment. [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase) automatically conforms to the [`XCTWaiterDelegate`](https://developer.apple.com/documentation/xctest/xctwaiterdelegate) protocol and automatically reports timeouts and other unexpected events as test failures.
+    ///
+    /// You can use waiters without a delegate or any association with a test case instance. This allows test support libraries to provide convenience methods for waiting without having to pass test cases through those APIs.
+    ///
+    ///
     /// Manages waiting - pausing the current execution context - for an array of XCTestExpectations. Waiters
     /// can be used with or without a delegate to respond to events such as completion, timeout, or invalid
     /// expectation fulfillment. XCTestCase conforms to the delegate protocol and will automatically report
@@ -3952,8 +4105,6 @@ extern_class!(
     /// Waiters can be used without a delegate or any association with a test case instance. This allows test
     /// support libraries to provide convenience methods for waiting without having to pass test cases through
     /// those APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTWaiter;
@@ -4260,13 +4411,18 @@ impl DefaultRetained for XCTWaiter {
 }
 
 extern_protocol!(
+    /// Defines methods that are called when [`XCTWaiter`](https://developer.apple.com/documentation/xctest/xctwaiter) expectations are fulfilled correctly or incorrectly.
+    ///
+    /// ## Overview
+    ///
+    /// [`XCTestCase`](https://developer.apple.com/documentation/xctest/xctestcase) instances automatically conform to the [`XCTWaiterDelegate`](https://developer.apple.com/documentation/xctest/xctwaiterdelegate) protocol. If you pass a test case instance as the delegate property of [`XCTWaiter`](https://developer.apple.com/documentation/xctest/xctwaiter)’s [`initWithDelegate:`](https://developer.apple.com/documentation/xctest/xctwaiter/init(delegate:)) initializer, that test case will automatically report timeouts and other unexpected events as test failures.
+    ///
+    ///
     /// Events are reported to the waiter's delegate via these methods. XCTestCase conforms to the delegate
     /// protocol and will automatically report timeouts and other unexpected events as test failures.
     ///
     ///
     /// Note: These methods are invoked on an arbitrary queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiterdelegate?language=objc)
     pub unsafe trait XCTWaiterDelegate: NSObjectProtocol {
         /// Invoked when not all waited on expectations are fulfilled during the timeout period. If the delegate
         /// is an XCTestCase instance, this will be reported as a test failure.
@@ -4318,9 +4474,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An expected outcome in an asynchronous test.
     /// Expectations represent specific conditions in asynchronous testing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctestexpectation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTestExpectation;
@@ -4445,6 +4600,19 @@ impl DefaultRetained for XCTestExpectation {
     }
 }
 
+/// A custom handler to call when observing a KVO change for a specified key path.
+///
+/// Parameters:
+/// - observedObject: The observed object, which helps to avoid block-capture issues.
+///
+/// - change: The KVO change dictionary.
+///
+///
+/// ## Return Value
+///
+/// Your custom handler returns [`true`](https://developer.apple.com/documentation/swift/true) if the system fulfills the expectation after the observed change; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// A block to be invoked when a change is observed for the keyPath of the observed object.
 ///
 ///
@@ -4455,16 +4623,19 @@ impl DefaultRetained for XCTestExpectation {
 ///
 ///
 /// Returns: Return YES if the expectation is fulfilled, NO if it is not.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctkvoexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCKeyValueObservingExpectationHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
 
 extern_class!(
-    /// Expectation subclass for waiting on a condition defined Key Value Observation of a key path for an object.
+    /// An expectation that a specific key-value observing (KVO) condition fulfills.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctkvoexpectation?language=objc)
+    /// ## Overview
+    ///
+    /// Apple discourages the use of this symbol in Swift. Use [`XCTKeyPathExpectation`](https://developer.apple.com/documentation/xctest/xctkeypathexpectation) instead.
+    ///
+    ///
+    /// Expectation subclass for waiting on a condition defined Key Value Observation of a key path for an object.
     #[unsafe(super(XCTestExpectation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTKVOExpectation;
@@ -4591,6 +4762,17 @@ impl XCTKVOExpectation {
     );
 }
 
+/// A custom handler to be called when a matching notification is received.
+///
+/// Parameters:
+/// - notification: The notification object.
+///
+///
+/// ## Return Value
+///
+/// Your custom handler should return [`true`](https://developer.apple.com/documentation/swift/true) if the expectation is considered fulfilled after the notification is received, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// A block to be invoked when a notification matching the specified name is observed
 /// from the object.
 ///
@@ -4599,16 +4781,13 @@ impl XCTKVOExpectation {
 ///
 ///
 /// Returns: Return YES if the expectation is fulfilled, NO if it is not.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnsnotificationexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCNotificationExpectationHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSNotification>) -> Bool>;
 
 extern_class!(
+    /// An expectation that is fulfilled when an expected `NSNotification` is received.
     /// Expectation subclass for waiting on a condition defined by an NSNotification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnsnotificationexpectation?language=objc)
     #[unsafe(super(XCTestExpectation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTNSNotificationExpectation;
@@ -4713,23 +4892,33 @@ impl XCTNSNotificationExpectation {
     );
 }
 
+/// A handler XCTest calls when evaluating the predicate returns `true`.
+///
+/// ## Return Value
+///
+/// Your custom handler should return [`true`](https://developer.apple.com/documentation/swift/true) if the expectation is considered fulfilled, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// Handler called when evaluating the predicate against the object returns true. If the handler is not
 /// provided the first successful evaluation will fulfill the expectation. If provided, the handler will
 /// be queried each time the notification is received to determine whether the expectation should be fulfilled
 /// or not.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnspredicateexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCPredicateExpectationHandler = *mut block2::DynBlock<dyn Fn() -> Bool>;
 
 extern_class!(
+    /// An expectation that’s fulfilled when an `NSPredicate` is satisfied.
+    ///
+    /// ## Overview
+    ///
+    /// When you use an instance of this class from Swift and await using [`fulfillment(of:timeout:enforceOrder:)`](https://developer.apple.com/documentation/xctest/xctestcase/fulfillment(of:timeout:enforceorder:)) rather than [`waitForExpectations:`](https://developer.apple.com/documentation/xctest/xctestcase/wait(for:)), XCTest evaluates the associated predicate on the main actor.
+    ///
+    ///
     /// Expectation subclass for waiting on a condition defined by an NSPredicate and an object.
     ///
     /// When an instance of this class is used from Swift and is awaited using
     /// `fulfillment(of:)`rather than
     /// `wait(for:),`XCTest evaluates the associated predicate on the main actor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnspredicateexpectation?language=objc)
     #[unsafe(super(XCTestExpectation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTNSPredicateExpectation;
@@ -4830,14 +5019,23 @@ impl XCTNSPredicateExpectation {
     );
 }
 
+/// A block the test runner calls when the test fulfills a waiter’s expectations, or when it times out.
+///
+/// Parameters:
+/// - error: The error the waiter object encountered while waiting, which can be a timeout or a failure. See [`XCTestErrorCode`](https://developer.apple.com/documentation/xctest/xctesterror/code) for a list of possible errors.
+///
+///
+/// ## Discussion
+///
+/// Pass a block with this signature to [`waitForExpectationsWithTimeout:handler:`](https://developer.apple.com/documentation/xctest/xctestcase/waitforexpectations(timeout:handler:)). Your block should handle any errors the waiter object encounters, including a timeout, and should perform assertions when the test fulfills the expectation for the waiter object.
+///
+///
 /// A block to be invoked when a call to -waitForExpectationsWithTimeout:handler: times out or has
 /// had all associated expectations fulfilled.
 ///
 ///
 /// Parameter `error`: If the wait timed out or a failure was raised while waiting, the error's code
 /// will specify the type of failure. Otherwise error will be nil.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcwaitcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type XCWaitCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
@@ -5145,23 +5343,33 @@ extern_conformance!(
     unsafe impl XCTWaiterDelegate for XCTestCase {}
 );
 
+/// A custom handler to be called when a matching notification is received.
+///
+/// ## Return Value
+///
+/// Your custom handler should return [`true`](https://developer.apple.com/documentation/swift/true) if the expectation is considered fulfilled after the notification is received, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 /// Handler called when the expectation has received the Darwin notification. If the handler is not
 /// provided the first posting of the notification will fulfill the expectation. If provided, the handler
 /// will be queried each time the notification is received to determine whether the expectation should
 /// be fulfilled or not. This allows the caller to check Darwin state variables or perform other logic
 /// beyond simply verifying that the notification has been posted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCTDarwinNotificationExpectationHandler = *mut block2::DynBlock<dyn Fn() -> Bool>;
 
 extern_class!(
+    /// An expectation that is fulfilled when an expected Darwin notification is received.
+    ///
+    /// ## Overview
+    ///
+    /// If a custom [`handler`](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectation/handler-swift.property) value is not provided, the expectation will be fulfilled as soon as a matching Darwin notification is received from any process.
+    ///
+    ///
     /// Expectation subclass for waiting on a condition defined by a Darwin notification. The notification
     /// which may be posted in the same process or by other processes. Be aware that Darwin notifications
     /// may be coalesced when posted in quick succession, so be careful especially when using the
     /// `expectedFulfillmentCount` property with this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectation?language=objc)
     #[unsafe(super(XCTestExpectation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTDarwinNotificationExpectation;

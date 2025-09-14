@@ -7,42 +7,90 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForBillsIntentResponseCode(pub NSInteger);
 impl INSearchForBillsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeUnspecified")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to perform the search. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeReady")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/inprogress?language=objc)
+    /// The search is still in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this code if the search is running but you’re unable to return the results after a few seconds of having your handler called.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeInProgress")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/success?language=objc)
+    /// You successfully retrieved the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after performing the search successfully. Your response should contain the details of the found bills.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeSuccess")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failure?language=objc)
+    /// You were unable to retrieve the search results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from performing the search.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailure")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t perform the search from your Intents extension but can perform it from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurecredentialsunverified?language=objc)
+    /// You were unable to perform the search because you couldn’t verify the user’s credentials.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you’re unable to verify the credentials of the current user. You might use this response code if the user is currently logged out of your app or is unknown to you. You might also use it if the user’s account isn’t configured to handle bill payments.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponsecode/failurebillnotfound?language=objc)
+    /// The search yielded no results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the search yielded no results.
+    ///
+    ///
     #[doc(alias = "INSearchForBillsIntentResponseCodeFailureBillNotFound")]
     #[deprecated = "INSearchForBillsIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureBillNotFound: Self = Self(7);
@@ -57,7 +105,15 @@ unsafe impl RefEncode for INSearchForBillsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforbillsintentresponse?language=objc)
+    /// Your app’s response to a request to a search for bills.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForBillsIntentResponse`](https://developer.apple.com/documentation/intents/insearchforbillsintentresponse) object to return the list of bills found during a search operation. After performing a search using the criteria specified in an [`INSearchForBillsIntent`](https://developer.apple.com/documentation/intents/insearchforbillsintent) object, create an instance of this class and fill it with the results of that search. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSearchForBillsIntentResponse`](https://developer.apple.com/documentation/intents/insearchforbillsintentresponse) object in the [`confirmSearchForBills:completion:`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling/confirm(intent:completion:)) and [`handleSearchForBills:completion:`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling/handle(intent:completion:)) methods of your search for bills handler object. For more information about implementing your handler object, see [`INSearchForBillsIntentHandling`](https://developer.apple.com/documentation/intents/insearchforbillsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

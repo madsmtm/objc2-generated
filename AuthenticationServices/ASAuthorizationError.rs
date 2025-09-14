@@ -7,58 +7,65 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerrordomain?language=objc)
+    /// The domain of authorization errors.
     pub static ASAuthorizationErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code?language=objc)
+/// Codes that authorization errors can have.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASAuthorizationError(pub NSInteger);
 impl ASAuthorizationError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/unknown?language=objc)
+    /// The authorization attempt failed for an unknown reason.
     #[doc(alias = "ASAuthorizationErrorUnknown")]
     pub const Unknown: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/canceled?language=objc)
+    /// The user canceled the authorization attempt.
     #[doc(alias = "ASAuthorizationErrorCanceled")]
     pub const Canceled: Self = Self(1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/invalidresponse?language=objc)
+    /// The authorization request received an invalid response.
     #[doc(alias = "ASAuthorizationErrorInvalidResponse")]
     pub const InvalidResponse: Self = Self(1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/nothandled?language=objc)
+    /// The authorization request wasn’t handled.
     #[doc(alias = "ASAuthorizationErrorNotHandled")]
     pub const NotHandled: Self = Self(1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/failed?language=objc)
+    /// The authorization attempt failed.
     #[doc(alias = "ASAuthorizationErrorFailed")]
     pub const Failed: Self = Self(1004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/notinteractive?language=objc)
+    /// The authorization request isn’t interactive.
     #[doc(alias = "ASAuthorizationErrorNotInteractive")]
     pub const NotInteractive: Self = Self(1005);
+    /// This error should only be returned when specifying @c excludedCredentials on a public key credential registration request.
     /// This error should only be returned when specifying
     /// `excludedCredentials`on a public key credential registration request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/matchedexcludedcredential?language=objc)
     #[doc(alias = "ASAuthorizationErrorMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(1006);
-    /// This error signals that the import request failed. Details will be available in the `userInfo` of the NSError.
+    /// The credential import request failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/credentialimport?language=objc)
+    /// ## Discussion
+    ///
+    /// Details are available in the error’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo).
+    ///
+    ///
+    /// This error signals that the import request failed. Details will be available in the `userInfo` of the NSError.
     #[doc(alias = "ASAuthorizationErrorCredentialImport")]
     pub const CredentialImport: Self = Self(1007);
-    /// This error signals that the export request failed. Details will be available in the `userInfo` of the NSError.
+    /// The credential export request failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/credentialexport?language=objc)
+    /// ## Discussion
+    ///
+    /// Details are available in the error’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo).
+    ///
+    ///
+    /// This error signals that the export request failed. Details will be available in the `userInfo` of the NSError.
     #[doc(alias = "ASAuthorizationErrorCredentialExport")]
     pub const CredentialExport: Self = Self(1008);
     /// This error signals the user has an existing Sign in with Apple account that they would prefer to use instead of continuing the current request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/prefersigninwithapple?language=objc)
+    /// This error signals the user has an existing Sign in with Apple account that they would prefer to use instead of continuing the current request.
     #[doc(alias = "ASAuthorizationErrorPreferSignInWithApple")]
     pub const PreferSignInWithApple: Self = Self(1009);
     /// This error signals that the device is not currently set up to create passkeys.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationerror-swift.struct/code/devicenotconfiguredforpasskeycreation?language=objc)
+    /// This error signals that the device is not currently set up to create passkeys.
     #[doc(alias = "ASAuthorizationErrorDeviceNotConfiguredForPasskeyCreation")]
     pub const DeviceNotConfiguredForPasskeyCreation: Self = Self(1010);
 }

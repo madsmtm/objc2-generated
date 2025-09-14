@@ -7,28 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation?language=objc)
+/// A type that represents an authorization operation.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 
 extern "C" {
+    /// An operation the system invokes when the extension configuration is removed from the system.
     /// Operation which is invoked when the extension configuration is removed from the system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation/configurationremoved?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
 
 extern "C" {
     /// Operation which is invoked when a request is sent direct to the extension instead of loaded in an ASWebAuthenticationSession.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation/directrequest?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationDirectRequest:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationrequesthandler?language=objc)
+    /// An interface through which a single sign-on (SSO) authentication provider extension handles authentication requests.
     pub unsafe trait ASAuthorizationProviderExtensionAuthorizationRequestHandler:
         NSObjectProtocol + MainThreadOnly
     {
@@ -52,7 +49,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionauthorizationrequest?language=objc)
+    /// An authorization request that your provider extension handles.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionAuthorizationRequest;

@@ -8,9 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Delegate that will receive messages regarding GKAgent updates.
+    /// Implement this protocol to synchronize the state of an agent with its visual representation in your game.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// A [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) object simulates its own movement according to constraints and goals. Use this protocol to manage an external object related to the agent, such as the sprite or 3D object that provides that agent’s visual representation in your game.
+    ///
+    /// You can synchronize with an agent in either or both directions:
+    ///
+    /// - To update a visual representation based on the latest data from the agent simulation, implement the [`agentDidUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate/agentdidupdate(_:)) method. In this method you can read the [`position`](https://developer.apple.com/documentation/gameplaykit/gkagent2d/position) and [`rotation`](https://developer.apple.com/documentation/gameplaykit/gkagent2d/rotation) properties of the agent (as a [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) or [`GKAgent3D`](https://developer.apple.com/documentation/gameplaykit/gkagent3d) object) and set the corresponding attributes of whatever object provides the agent’s visual representation.
+    ///
+    /// - To update the agent simulation with data from an external source—for example, if the game object corresponding to an agent is also affected by a physics engine such as those used in SpriteKit and SceneKit—implement the [`agentWillUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate/agentwillupdate(_:)) method. In this method you can set the [`position`](https://developer.apple.com/documentation/gameplaykit/gkagent2d/position) and [`rotation`](https://developer.apple.com/documentation/gameplaykit/gkagent2d/rotation) properties of the agent (as a [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) or [`GKAgent3D`](https://developer.apple.com/documentation/gameplaykit/gkagent3d) object) so that the next simulation step will take your changes to those properties into account.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  If you use the [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) class to manage the relationship between an entity and a SpriteKit node,  set your [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) instance as the delegate for that entity’s agent, and GameplayKit will automatically synchronize the agent and its SpriteKit representation.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// Delegate that will receive messages regarding GKAgent updates.
     pub unsafe trait GKAgentDelegate: NSObjectProtocol {
         #[cfg(feature = "GKComponent")]
         #[optional]
@@ -27,6 +48,53 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A component that moves a game entity according to a set of goals and realistic constraints.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) class is abstract, defining only the general functionality of an agent—its movement constraints and the [`behavior`](https://developer.apple.com/documentation/gameplaykit/gkagent/behavior) property containing its goals ([`GKGoal`](https://developer.apple.com/documentation/gameplaykit/gkgoal) objects). To implement agent-based gameplay, choose a concrete subclass that fits your game.
+    ///
+    /// - Use the [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) class for 2D game worlds, or for 3D games where all gameplay-relevant movement is constrained to two dimensions.
+    ///
+    /// - Use the [`GKAgent3D`](https://developer.apple.com/documentation/gameplaykit/gkagent3d) class for game worlds that allow movement in three dimensions.
+    ///
+    /// To learn more about the agent simulation, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    /// ### An Agent is a Component
+    ///
+    /// Because [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) is a subclass of [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent), you can use Entity-Component architecture to add agent-based behaviors to your game. (For details on this architecture, see [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).)
+    ///
+    /// To integrate agents with gameplay, call each agent’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method each time you want to update the simulation that governs the agent’s behavior. Typically, you call this method once for each frame processed by your game’s graphics engine—for example, in the [`update:`](https://developer.apple.com/documentation/spritekit/skscene/update(_:)) method of a SpriteKit scene or the [`renderer:updateAtTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:updateattime:)) method of a SceneKit renderer delegate. If your game uses Entity-Component architecture, you can use a [`GKComponentSystem`](https://developer.apple.com/documentation/gameplaykit/gkcomponentsystem) object to update all the agents in the game scene for each frame. If not, you must call each agent’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method directly.
+    ///
+    /// ### An Agent Simulates Movement Based on Goals
+    ///
+    /// Each time an agent’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method runs, the agent evaluates each [`GKGoal`](https://developer.apple.com/documentation/gameplaykit/gkgoal) object listed in its [`behavior`](https://developer.apple.com/documentation/gameplaykit/gkagent/behavior) property to find the change in direction and speed necessary to move toward fulfilling that goal (within the limits of the time delta and the agent’s maximum speed and turn rate). It then combines the effects from all the goals in its behavior, using the weights specified in the [`GKBehavior`](https://developer.apple.com/documentation/gameplaykit/gkbehavior) object to modulate the influence of each goal, resulting in a total change in its direction and speed.
+    ///
+    /// There are two options for using the output of this simulation to move game entities:
+    ///
+    /// - In a per-frame update that executes after the agent’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method—such as the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkcomponent/update(deltatime:)) method of another [`GKComponent`](https://developer.apple.com/documentation/gameplaykit/gkcomponent) subclass in your game or a game engine method such as [`didEvaluateActions`](https://developer.apple.com/documentation/spritekit/skscene/didevaluateactions()) (SpriteKit) or [`renderer:willRenderScene:atTime:`](https://developer.apple.com/documentation/scenekit/scnscenerendererdelegate/renderer(_:willrenderscene:attime:)) (SceneKit)—examine the position and rotation of each agent and use that information to update the properties of any visual objects representing the agents.
+    ///
+    /// - Set the [`delegate`](https://developer.apple.com/documentation/gameplaykit/gkagent/delegate) property of each agent to an object responsible for that agent’s visual representation. That object can implement the [`agentDidUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate/agentdidupdate(_:)) method, which the agent calls every time it updates its position and direction. In that method, you can examine the agent’s properties and make corresponding changes to a visual representation.
+    ///
+    /// In addition, an agent delegate can implement the [`agentWillUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate/agentwillupdate(_:)) method to feed information into the agent simulation. This option can be useful for combining agent-based movement with an external physics engine (such as those found in SceneKit and SpriteKit), or with other APIs that might apply motion to an agent’s visual representation (such as SpriteKit actions). However, the agent simulation cannot account for momentum introduced by such influences, so the accuracy of the agent’s planning will be reduced in these scenarios.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  If you use the [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) class to manage the relationship between an entity and a SpriteKit node,  set your [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) instance as the delegate for that entity’s agent, and GameplayKit will automatically synchronize the agent and its SpriteKit representation.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The simulation responsible for agent movement is based on realistic physical behaviors; however, this simulation is _not_ connected to the physics subsystems in SpriteKit, SceneKit, or any other graphics engine. For example, setting the [`mass`](https://developer.apple.com/documentation/gameplaykit/gkagent/mass) property of an agent does not affect the collision behavior of any SpriteKit physics bodies.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An agent is a point mass whose local coordinate system is aligned to its velocity.  Agents have a variety of
     /// steering functions that can be used to simulate vehicles or entities with agency.
     /// The units of mass, velocity and radius are dimensionless but related. The visual representation of these values
@@ -36,8 +104,6 @@ extern_class!(
     /// Values close to 1.0 should be canonical and are expected to yield pleasing results. When applied to visuals
     /// these values should be scaled and biased into their target coordinate system and a simple filter on top ensures
     /// any noise generated from the steering logic doesn't affect the visual represtentation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkagent?language=objc)
     #[unsafe(super(GKComponent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKComponent")]
@@ -174,12 +240,19 @@ impl GKAgent {
 }
 
 extern_class!(
+    /// An agent that operates in a two-dimensional space.
+    ///
+    /// ## Overview
+    ///
+    /// Agents are game entities that move according to realistic constraints and whose behavior is determined by goals that motivate movement. The general functionality of an agent is defined by the abstract superclass [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent); however, you use instances of the [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) class to implement agent-based gameplay in a 2D game (or in a 3D game where gameplay-relevant movement is restricted to two dimensions).
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A 2D specalization of an agent that moves on a 2-axis logical coordinate system. This coordinate system does not
     /// need to match the visual coordinate system of the delegate. One simple case of that is isometric 2D content where the
     /// game model is on a flat 2D plane but the visuals are displayed on an angle where one of the logical axes are used for
     /// simulated depth as well as some translation in the display plane.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkagent2d?language=objc)
     #[unsafe(super(GKAgent, GKComponent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKComponent")]
@@ -247,9 +320,16 @@ impl GKAgent2D {
 }
 
 extern_class!(
-    /// A 3D specialization of an agent that moves on a 3-axis logical coordinate system.
+    /// An agent that operates in a three-dimensional space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkagent3d?language=objc)
+    /// ## Overview
+    ///
+    /// Agents are game entities that move according to realistic constraints and whose behavior is determined by goals that motivate movement. The general functionality of an agent is defined by the abstract superclass [`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent); however, you use instances of the [`GKAgent3D`](https://developer.apple.com/documentation/gameplaykit/gkagent3d) class to implement agent-based gameplay in a 3D game.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A 3D specialization of an agent that moves on a 3-axis logical coordinate system.
     #[unsafe(super(GKAgent, GKComponent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKComponent")]

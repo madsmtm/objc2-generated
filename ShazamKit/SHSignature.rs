@@ -9,11 +9,18 @@ use crate::*;
 extern_class!(
     /// An object that contains the opaque data and other information for a signature.
     ///
+    /// ## Overview
+    ///
+    /// Save your signature to a file and share it with others by writing the data to a file. You can use the saved signatures of reference recordings to populate a custom catalog.
+    ///
+    /// Check whether your captured query signature is long enough to search for a match by comparing [`duration`](https://developer.apple.com/documentation/shazamkit/shsignature/duration) to the [`minimumQuerySignatureDuration`](https://developer.apple.com/documentation/shazamkit/shcatalog/minimumquerysignatureduration) and [`maximumQuerySignatureDuration`](https://developer.apple.com/documentation/shazamkit/shcatalog/maximumquerysignatureduration) of a catalog.
+    ///
+    ///
+    /// An object that contains the opaque data and other information for a signature.
+    ///
     /// Save your signature to a file and share it with others by writing the data to a file. You can use the saved signatures of reference recordings to populate a custom catalog.
     ///
     /// Check whether your captured query signature is long enough to search for a match by comparing ``duration`` to the ``SHCatalog/minimumQuerySignatureDuration`` and ``SHCatalog/maximumQuerySignatureDuration`` of a catalog.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shsignature?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SHSignature;

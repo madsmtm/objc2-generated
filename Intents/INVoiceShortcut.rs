@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A shortcut that has been added to Siri
+    /// A shortcut the user added to Siri.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/invoiceshortcut?language=objc)
+    /// ## Overview
+    ///
+    /// To add a shortcut to Siri, create an [`INShortcut`](https://developer.apple.com/documentation/intents/inshortcutreference) object and add it using [`INUIAddVoiceShortcutViewController`](https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutviewcontroller). You don’t create an instance of [`INVoiceShortcut`](https://developer.apple.com/documentation/intents/invoiceshortcut); the system creates the instance for you when an instance is needed.
+    ///
+    ///
+    /// A shortcut that has been added to Siri
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INVoiceShortcut;

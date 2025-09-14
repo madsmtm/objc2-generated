@@ -6,6 +6,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Returns a CFDictionary containing the current systemwide internet proxy settings.
+///
+/// ## Discussion
+///
+/// The dictionary returned contains key-value pairs that represent the current internet proxy settings. The keys in this dictionary are defined in [Global Proxy Settings Constants](https://developer.apple.com/documentation/cfnetwork/global-proxy-settings-constants).
+///
+/// The caller is responsible for releasing the returned dictionary.
+///
+///
 /// Returns a CFDictionary containing the current system internet proxy settings.
 ///
 /// Returns: Returns a dictionary containing key-value pairs that represent
@@ -14,8 +23,6 @@ use crate::*;
 /// NULL if no proxy settings have been defined or if an error
 /// was encountered.
 /// The caller is responsible for releasing the returned dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopysystemproxysettings()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
 ) -> Option<CFRetained<CFDictionary>> {
@@ -26,7 +33,31 @@ pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopyproxiesforurl(_:_:)?language=objc)
+/// Returns the list of proxies that should be used to download a given URL.
+///
+/// Parameters:
+/// - url: The URL your application intends to access.
+///
+/// - proxySettings: A dictionary describing the available proxy settings. The dictionary should be in the format returned by `SystemConfiguration.framework`. (See [`kCFStreamErrorDomainSystemConfiguration`](https://developer.apple.com/documentation/cfnetwork/kcfstreamerrordomainsystemconfiguration) for more information.)
+///
+///
+/// ## Return Value
+///
+/// Returns an array of dictionaries. Each dictionary describes a single proxy. The array is ordered optimally for requesting the URL specified.
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should try to download a URL using the first proxy in the array, try the second proxy if the first one fails, and so on.
+///
+/// Every proxy dictionary has an entry for `kCFProxyTypeKey`.  If the type is anything except `kCFProxyTypeAutoConfigurationURL`, the dictionary also has entries for the proxy’s host and port (under `kCFProxyHostNameKey` and `kCFProxyPortNumberKey` respectively).  If the type is `kCFProxyTypeAutoConfigurationURL`, it has an entry for `kCFProxyAutoConfigurationURLKey`.
+///
+/// The keys for username and password are optional and are present only if the username or password could be extracted from the information passed in (either from the URL itself or from the proxy dictionary supplied).  These APIs do not consult any external credential stores such as the Keychain.
+///
+/// For more information, see [CFNetwork Programming Guide](https://developer.apple.com/library/archive/documentation/Networking/Conceptual/CFNetwork/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001132).
+///
+///
 ///
 /// # Safety
 ///
@@ -48,11 +79,51 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfproxyautoconfigurationresultcallback?language=objc)
+/// Callback function called when a proxy autoconfiguration computation has completed.
+///
+/// Parameters:
+/// - client: The client reference originally passed in the `clientContext` parameter of the `CFNetworkExecuteProxyAutoConfigurationScript` or `CFNetworkExecuteProxyAutoConfigurationURL` call that triggered this callback.
+///
+/// - proxyList: The list of proxies returned by the autoconfiguration script. This list is in a format suitable for passing to `CFProxyCopyProxiesForURL` (with the added guarantee that no entries will ever be autoconfiguration URL entries). If an error occurs, this value will be `NULL`.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  If you want to keep this list, you must retain it when your callback receives it.
+///
+///
+///
+/// </div>
+/// - error: An error object that indicates any error that may have occurred. If no error occurred, this value will be NULL.
+///
 pub type CFProxyAutoConfigurationResultCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, NonNull<CFArray>, *mut CFError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopyproxiesforautoconfigurationscript(_:_:_:)?language=objc)
+/// Executes a proxy autoconfiguration script to determine the best proxy to use to retrieve a specified URL.
+///
+/// Parameters:
+/// - proxyAutoConfigurationScript: A `CFString` containing the code of the autoconfiguration script to execute.
+///
+/// - targetURL: The URL your application intends to access.
+///
+/// - error: The address of an error object reference that is overwritten on return if an error occurs.
+///
+///
+/// ## Return Value
+///
+/// Returns an array of dictionaries. Each dictionary describes a single proxy. The array is ordered optimally for requesting the URL specified.
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should try to download a URL using the first proxy in the array, try the second proxy if the first one fails, and so on.
+///
+/// Every proxy dictionary has an entry for `kCFProxyTypeKey`.  If the type is anything except `kCFProxyTypeAutoConfigurationURL`, the dictionary also has entries for the proxy’s host and port (under `kCFProxyHostNameKey` and `kCFProxyPortNumberKey` respectively).  If the type is `kCFProxyTypeAutoConfigurationURL`, it has an entry for `kCFProxyAutoConfigurationURLKey`.
+///
+/// The keys for username and password are optional and are present only if the username or password could be extracted from the information passed in (either from the URL itself or from the proxy dictionary supplied).  These APIs do not consult any external credential stores such as the Keychain.
+///
+///
 ///
 /// # Safety
 ///
@@ -80,7 +151,31 @@ pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForAutoConfigurationScript(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkexecuteproxyautoconfigurationscript(_:_:_:_:)?language=objc)
+/// Downloads a proxy autoconfiguration script and executes it.
+///
+/// Parameters:
+/// - proxyAutoConfigurationScript: A `CFString` containing the code of the autoconfiguration script to be executed.
+///
+/// - targetURL: The URL that your application intends to eventually download using the proxies.
+///
+/// - cb: A callback to be called when execution of the script is finished.
+///
+/// - clientContext: A stream context containing a client info object and optionally retain and release callbacks for that object.
+///
+///
+/// ## Discussion
+///
+/// This function returns a run loop source that the caller should schedule. Once execution of the script has completed, the specified callback function is called.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  If you want to terminate the request before completion, you should invalidate the run loop source.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -113,7 +208,31 @@ pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationScript(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetworkexecuteproxyautoconfigurationurl(_:_:_:_:)?language=objc)
+/// Downloads a proxy autoconfiguration script and executes it.
+///
+/// Parameters:
+/// - proxyAutoConfigURL: The URL of the autoconfiguration script.
+///
+/// - targetURL: The URL that your application intends to eventually download using the proxies.
+///
+/// - cb: A callback to be called when execution of the script is finished.
+///
+/// - clientContext: A stream context containing a client info object and optionally retain and release callbacks for that object.
+///
+///
+/// ## Discussion
+///
+/// This function returns a run loop source that the caller should schedule. Once downloading and execution of the script has completed, the specified callback function is called.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  If you want to terminate the request before completion, you should invalidate the run loop source.
+///
+///
+///
+/// </div>
+///
 ///
 /// # Safety
 ///
@@ -147,201 +266,241 @@ pub unsafe extern "C-unwind" fn CFNetworkExecuteProxyAutoConfigurationURL(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the type of proxy. The value can be any of the values listed in [Proxy Types](https://developer.apple.com/documentation/cfnetwork/proxy-types).
+    ///
+    ///
     pub static kCFProxyTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyhostnamekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFString` value containing either the hostname or IP number of the proxy host.
+    ///
+    ///
     pub static kCFProxyHostNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyportnumberkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFNumber` value specifying the port that should be used to contact the proxy.
+    ///
+    ///
     pub static kCFProxyPortNumberKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyautoconfigurationurlkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFURL` value specifying the location of the proxy autoconfiguration (PAC) file. This key is only present for proxies of type `kCFProxyTypeAutoConfigurationURL`.
+    ///
+    ///
     pub static kCFProxyAutoConfigurationURLKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyautoconfigurationjavascriptkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFString` value containing the full JavaScript source for the proxy autoconfiguration (PAC) file. This key is only present for proxies of type `kCFProxyAutoConfigurationJavaScript`.
+    ///
+    ///
     pub static kCFProxyAutoConfigurationJavaScriptKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyusernamekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The username to be used when contacting the proxy. This key is only present if the username can be determined from the information passed in. (External credential stores such as the keychain are not consulted.)
+    ///
+    ///
     pub static kCFProxyUsernameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxypasswordkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The password to be used when contacting the proxy. This key is only present if the password can be determined from the information passed in. (External credential stores such as the keychain are not consulted.)
+    ///
+    ///
     pub static kCFProxyPasswordKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypenone?language=objc)
+    /// Specifies that no proxy should be used.
     pub static kCFProxyTypeNone: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypehttp?language=objc)
+    /// Specifies an HTTP proxy.
     pub static kCFProxyTypeHTTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypehttps?language=objc)
+    /// Specifies an HTTPS proxy.
     pub static kCFProxyTypeHTTPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypesocks?language=objc)
+    /// Specifies a SOCKS proxy.
     pub static kCFProxyTypeSOCKS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypeftp?language=objc)
+    /// Specifies an FTP proxy.
     pub static kCFProxyTypeFTP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypeautoconfigurationurl?language=objc)
+    /// Specifies that the proxy is determined by an autoconfiguration file at a given URL.
     pub static kCFProxyTypeAutoConfigurationURL: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxytypeautoconfigurationjavascript?language=objc)
+    /// Specifies that the proxy is determined by a provided autoconfiguration script.
     pub static kCFProxyTypeAutoConfigurationJavaScript: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfproxyautoconfigurationhttpresponsekey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A `CFHTTPMessageRef` value found in the user info dictionary of an authentication error returned to the [`CFNetworkCopyProxiesForAutoConfigurationScript`](https://developer.apple.com/documentation/cfnetwork/cfnetworkcopyproxiesforautoconfigurationscript(_:_:_:)) function or to a [`CFProxyAutoConfigurationResultCallback`](https://developer.apple.com/documentation/cfnetwork/cfproxyautoconfigurationresultcallback) callback.
+    ///
+    ///
     pub static kCFProxyAutoConfigurationHTTPResponseKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesexceptionslist?language=objc)
+    /// Value is a `CFArray` of `CFString` objects indicating host name patterns that should bypass the proxy.
     pub static kCFNetworkProxiesExceptionsList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesexcludesimplehostnames?language=objc)
+    /// Value is a `CFNumber` object indicating whether simple host names are excluded. Simple host names are excluded if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesExcludeSimpleHostnames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesftpenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether an FTP proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesFTPEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesftppassive?language=objc)
+    /// Value is a `CFNumber` object indicating whether an FTP proxy’s passive mode is enabled. The passive mode is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesFTPPassive: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesftpport?language=objc)
+    /// Value is a `CFNumber` object indicating the port number of an FTP proxy.
     pub static kCFNetworkProxiesFTPPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesftpproxy?language=objc)
+    /// Value is a `CFString` object indicating the host name or IP number of an FTP proxy.
     pub static kCFNetworkProxiesFTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesgopherenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether a gopher proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesGopherEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesgopherport?language=objc)
+    /// Value is a `CFNumber` indicating the port number of a gopher proxy.
     pub static kCFNetworkProxiesGopherPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesgopherproxy?language=objc)
+    /// Value is a `CFString` object indicating the host name or IP number of a gopher proxy.
     pub static kCFNetworkProxiesGopherProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether an HTTP proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesHTTPEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpport?language=objc)
+    /// Value is a `CFNumber` object containing the port number associated with the HTTP proxy.
     pub static kCFNetworkProxiesHTTPPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpproxy?language=objc)
+    /// Value is a `CFString` object containing the HTTP proxy host name or IP number.
     pub static kCFNetworkProxiesHTTPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpsenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether an HTTPS proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesHTTPSEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpsport?language=objc)
+    /// Value is a `CFNumber` object containing the port number associated with the HTTPS proxy.
     pub static kCFNetworkProxiesHTTPSPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxieshttpsproxy?language=objc)
+    /// Value is a `CFString` object containing the HTTPS proxy host name or IP number.
     pub static kCFNetworkProxiesHTTPSProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesrtspenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether an RTSP proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesRTSPEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesrtspport?language=objc)
+    /// Value is a `CFNumber` object containing the port number associated with the RTSP proxy.
     pub static kCFNetworkProxiesRTSPPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesrtspproxy?language=objc)
+    /// Value is a `CFString` object containing the RTSP proxy host name or IP number.
     pub static kCFNetworkProxiesRTSPProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiessocksenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether a SOCKS proxy is enabled. The proxy is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesSOCKSEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiessocksport?language=objc)
+    /// Value is a `CFNumber` object containing the port number associated with the SOCKS proxy.
     pub static kCFNetworkProxiesSOCKSPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiessocksproxy?language=objc)
+    /// Value is a `CFString` object containing the SOCKS proxy host name or IP number.
     pub static kCFNetworkProxiesSOCKSProxy: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesproxyautoconfigenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether proxy autoconfiguration is enabled. Proxy autoconfiguration is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesProxyAutoConfigEnable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesproxyautoconfigurlstring?language=objc)
+    /// Value is a `CFString` object that contains the URL of the proxy autoconfiguration (PAC) file.
     pub static kCFNetworkProxiesProxyAutoConfigURLString: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesproxyautoconfigjavascript?language=objc)
+    /// Value is a `CFString` object that contains the full JavaScript source of the ProxyAutoConfig (PAC) file.
     pub static kCFNetworkProxiesProxyAutoConfigJavaScript: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfnetworkproxiesproxyautodiscoveryenable?language=objc)
+    /// Value is a `CFNumber` object indicating whether proxy autodiscovery is enabled. Proxy autodiscovery is enabled if the key is present and the associated value is nonzero.
     pub static kCFNetworkProxiesProxyAutoDiscoveryEnable: &'static CFString;
 }

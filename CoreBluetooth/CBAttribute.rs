@@ -6,7 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattribute?language=objc)
+    /// A representation of common aspects of services offered by a peripheral.
+    ///
+    /// ## Overview
+    ///
+    /// Concrete subclasses of [`CBAttribute`](https://developer.apple.com/documentation/corebluetooth/cbattribute) (and their mutable counterparts) represent the services a peripheral offers, the characteristics of those services, and the descriptors attached to those characteristics. The concrete subclasses are:
+    ///
+    /// - [`CBService`](https://developer.apple.com/documentation/corebluetooth/cbservice)
+    ///
+    /// - [`CBCharacteristic`](https://developer.apple.com/documentation/corebluetooth/cbcharacteristic)
+    ///
+    /// - [`CBDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbdescriptor)
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBAttribute;

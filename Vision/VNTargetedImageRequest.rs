@@ -17,9 +17,14 @@ use objc2_image_io::*;
 use crate::*;
 
 extern_class!(
-    /// A request that requires an initial image as a starting point for its work.
+    /// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntargetedimagerequest?language=objc)
+    /// ## Overview
+    ///
+    /// Other Vision request handlers that operate on both the processed image and a secondary image inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis, and pass in auxiliary image data by filling in the `options` dictionary at initialization.
+    ///
+    ///
+    /// A request that requires an initial image as a starting point for its work.
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]

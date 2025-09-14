@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// Base interface for describing a Metal 4 shader function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4functiondescriptor?language=objc)
+    /// Base interface for describing a Metal 4 shader function.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4FunctionDescriptor;

@@ -32,11 +32,16 @@ use crate::*;
 extern_class!(
     /// A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
     ///
+    /// ## Overview
+    ///
+    /// Use the Finder Sync controller to configure your extension, to set badges on items in the Finder’s window, and to get a list of selected and targeted items.
+    ///
+    ///
+    /// A controller that acts as a bridge between your Finder Sync extension and the Finder itself.
+    ///
     /// Use the Finder Sync controller to configure your extension, to set badges
     /// on items in the Finder’s window, and to get a list of selected and targeted
     /// items.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersynccontroller?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSyncController;
@@ -213,36 +218,31 @@ impl FIFinderSyncController {
     );
 }
 
+/// The different kinds of custom menus that the Finder Sync extension can provide.
 /// The different kinds of custom menus that the Finder Sync extension can
 /// provide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FIMenuKind(pub NSUInteger);
 impl FIMenuKind {
+    /// A shortcut menu created when the user control-clicks on an item or a group of selected items inside the Finder window.
     /// A shortcut menu created when the user control-clicks on an item or a
     /// group of selected items inside the Finder window.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforitems?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForItems")]
     pub const ContextualMenuForItems: Self = Self(0);
+    /// A shortcut menu created when the user control-clicks on the Finder window’s background.
     /// A shortcut menu created when the user control-clicks on the Finder
     /// window’s background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforcontainer?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForContainer")]
     pub const ContextualMenuForContainer: Self = Self(1);
+    /// A shortcut menu created when the user control-clicks on an item in the sidebar.
     /// A shortcut menu created when the user control-clicks on an item in the
     /// sidebar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/contextualmenuforsidebar?language=objc)
     #[doc(alias = "FIMenuKindContextualMenuForSidebar")]
     pub const ContextualMenuForSidebar: Self = Self(2);
     /// A menu created when the user clicks on the extension’s toolbar button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind/toolbaritemmenu?language=objc)
+    /// A menu created when the user clicks on the extension’s toolbar button.
     #[doc(alias = "FIMenuKindToolbarItemMenu")]
     pub const ToolbarItemMenu: Self = Self(3);
 }
@@ -257,8 +257,7 @@ unsafe impl RefEncode for FIMenuKind {
 
 extern_protocol!(
     /// The group of methods to implement for modifying the Finder user interface to express file synchronization status and control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersyncprotocol?language=objc)
+    /// The group of methods to implement for modifying the Finder user interface to express file synchronization status and control.
     #[doc(alias = "FIFinderSync")]
     #[name = "FIFinderSync"]
     pub unsafe trait FIFinderSyncProtocol {
@@ -410,6 +409,13 @@ extern_protocol!(
 extern_class!(
     /// A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.
     ///
+    /// ## Overview
+    ///
+    /// Subclass the FIFinderSync class when you want to customize the appearance of the Finder. Although the FIFinderSync class doesn’t provide any developer accessible API, it does adopt the [`FIFinderSync`](https://developer.apple.com/documentation/findersync/fifindersyncprotocol) protocol. This protocol declares methods you can implement to modify the appearance of the Finder. For more information on these methods, see [`FIFinderSync`](https://developer.apple.com/documentation/findersync/fifindersyncprotocol). To learn more about creating a Finder Sync extension, see [Finder Sync](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/Finder.html#//apple_ref/doc/uid/TP40014214-CH15) in [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    ///
+    /// A type to subclass to add badges, custom shortcut menus, and toolbar buttons to the Finder.
+    ///
     /// Subclass the FIFinderSync class when you want to customize the appearance of
     /// the Finder. Although the FIFinderSync class doesn’t provide any developer
     /// accessible API, it does adopt the ``FIFinderSyncProtocol``
@@ -423,8 +429,6 @@ extern_class!(
     ///
     /// ## See Also
     /// - ``FinderSync/FIFinderSyncProtocol``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersync-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSync;

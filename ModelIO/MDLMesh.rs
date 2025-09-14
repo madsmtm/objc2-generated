@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that provides convenience access to vertex data for a specific vertex attribute of a mesh.
+    ///
+    /// ## Overview
+    ///
+    /// You retrieve a vertex attribute data object by calling the [`vertexAttributeDataForAttributeNamed:`](https://developer.apple.com/documentation/modelio/mdlmesh/vertexattributedata(forattributenamed:)) method of a [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) object, which is shorthand for looking up the the [`MDLMeshBuffer`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer) object corresponding to the named attribute and using the [`map`](https://developer.apple.com/documentation/modelio/mdlmeshbuffer/map()) method to gain read-only access to its contents.
+    ///
+    ///
     /// convenience object to quickly access vertex attribute data
     ///
     /// created by MDLMesh's vertexAttributeData selector
     /// Setting values on this object has no effect on the
     /// underlying objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlvertexattributedata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLVertexAttributeData;
@@ -95,12 +100,17 @@ impl MDLVertexAttributeData {
 }
 
 extern_class!(
+    /// A container for vertex buffer data to be used in rendering a 3D object.
+    ///
+    /// ## Overview
+    ///
+    /// A mesh contains one or more [`MDLSubmesh`](https://developer.apple.com/documentation/modelio/mdlsubmesh) objects. Each submesh contains index buffer data that describes how the mesh’s vertices should be combined for drawing and references material information describing an intended surface appearance for the submesh. Typically, you obtain meshes by traversing the object hierarchy of a [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) object, but you can also create meshes from your own vertex data or create parametric meshes. The [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) class also supports processing meshes to generate vertex attributes or to bake lighting information.
+    ///
+    ///
     /// A vertex buffer with info to interpret vertex data
     ///
     /// Includes a collection of submeshs which have indexbuffer and
     /// material information
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmesh?language=objc)
     #[unsafe(super(MDLObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MDLObject")]

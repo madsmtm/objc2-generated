@@ -6,12 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSUserInterfaceItemIdentifier = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfaceitemidentification?language=objc)
+    /// A set of methods used to associate a unique identifier with objects in your user interface.
+    ///
+    /// ## Overview
+    ///
+    /// The protocol is adopted by AppKit interface objects to support window restoration, whereby information about window and other interface-related objects is preserved and used to restore the application’s interface during the next launch cycle.
+    ///
+    ///
     pub unsafe trait NSUserInterfaceItemIdentification {
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]

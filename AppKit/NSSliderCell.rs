@@ -9,22 +9,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum?language=objc)
+/// The position where a linear slider’s tick marks appear (above, below, leading, or trailing).
+///
+/// ## Overview
+///
+/// Use these constants for setting [`tickMarkPosition`](https://developer.apple.com/documentation/appkit/nsslidercell/tickmarkposition).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTickMarkPosition(pub NSUInteger);
 impl NSTickMarkPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/below?language=objc)
+    /// A constant indicating that tick marks are displayed below the slider.
     #[doc(alias = "NSTickMarkPositionBelow")]
     pub const Below: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/above?language=objc)
+    /// A constant indicating that tick marks are displayed above the slider.
     #[doc(alias = "NSTickMarkPositionAbove")]
     pub const Above: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/leading?language=objc)
+    /// A constant indicating that tick marks are displayed on the leading side of the slider.
     #[doc(alias = "NSTickMarkPositionLeading")]
     pub const Leading: Self = Self(NSTickMarkPosition::Above.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.enum/trailing?language=objc)
+    /// A constant indicating that tick marks are displayed on the trailing side of the slider.
     #[doc(alias = "NSTickMarkPositionTrailing")]
     pub const Trailing: Self = Self(NSTickMarkPosition::Below.0);
 }
@@ -37,16 +43,16 @@ unsafe impl RefEncode for NSTickMarkPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.enum?language=objc)
+/// The types of sliders, used by [`sliderType`](https://developer.apple.com/documentation/appkit/nsslidercell/slidertype).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSliderType(pub NSUInteger);
 impl NSSliderType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.enum/linear?language=objc)
+    /// A bar representing a range, and a knob indicating the currently selected value.
     #[doc(alias = "NSSliderTypeLinear")]
     pub const Linear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.enum/circular?language=objc)
+    /// A dial representing an angular range.
     #[doc(alias = "NSSliderTypeCircular")]
     pub const Circular: Self = Self(1);
 }
@@ -60,7 +66,13 @@ unsafe impl RefEncode for NSSliderType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidercell?language=objc)
+    /// The appearance and behavior of an [`NSSlider`](https://developer.apple.com/documentation/appkit/nsslider) object.
+    ///
+    /// ## Overview
+    ///
+    /// You can customize an [`NSSliderCell`](https://developer.apple.com/documentation/appkit/nsslidercell) to a certain degree, using its properties. If this doesn’t give you sufficient flexibility, you can create a subclass. In that subclass, you can override any of the following methods: [`knobRectFlipped:`](https://developer.apple.com/documentation/appkit/nsslidercell/knobrect(flipped:)), [`drawBarInside:flipped:`](https://developer.apple.com/documentation/appkit/nsslidercell/drawbar(inside:flipped:)), [`drawKnob:`](https://developer.apple.com/documentation/appkit/nsslidercell/drawknob(_:)), and [`prefersTrackingUntilMouseUp`](https://developer.apple.com/documentation/appkit/nsslidercell/preferstrackinguntilmouseup).
+    ///
+    ///
     #[unsafe(super(NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSActionCell", feature = "NSCell"))]
@@ -371,26 +383,56 @@ impl NSSliderCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkbelow?language=objc)
+///
+/// ## Discussion
+///
+/// Tick marks below (for horizontal sliders); the default for horizontal sliders.
+///
+///
 #[deprecated]
 pub static NSTickMarkBelow: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Below.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkabove?language=objc)
+///
+/// ## Discussion
+///
+/// Tick marks above (for horizontal sliders).
+///
+///
 #[deprecated]
 pub static NSTickMarkAbove: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Above.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkleft?language=objc)
+///
+/// ## Discussion
+///
+/// Tick marks to the left (for vertical sliders).
+///
+///
 #[deprecated]
 pub static NSTickMarkLeft: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Leading.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkright?language=objc)
+///
+/// ## Discussion
+///
+/// Tick marks to the right (for vertical sliders).
+///
+///
 #[deprecated]
 pub static NSTickMarkRight: NSTickMarkPosition = NSTickMarkPosition(NSTickMarkPosition::Trailing.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinearslider?language=objc)
+///
+/// ## Discussion
+///
+/// A bar representing a range, and a knob indicating the currently selected value.
+///
+///
 #[deprecated]
 pub static NSLinearSlider: NSSliderType = NSSliderType(NSSliderType::Linear.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscircularslider?language=objc)
+///
+/// ## Discussion
+///
+/// A dial representing an angular range.
+///
+///
 #[deprecated]
 pub static NSCircularSlider: NSSliderType = NSSliderType(NSSliderType::Circular.0);

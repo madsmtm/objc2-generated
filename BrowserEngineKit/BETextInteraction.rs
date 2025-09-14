@@ -11,7 +11,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextinteraction?language=objc)
+    /// An interaction you add to a text view to support extended text gestures.
+    ///
+    /// ## Overview
+    ///
+    /// Add a `BETextInteraction` object to your browser text view’s [`textInputView`](https://developer.apple.com/documentation/browserenginekit/betextinput/textinputview). When your browser text view receives text-interaction actions, call the methods on this object to invoke the standard operating system behavior.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

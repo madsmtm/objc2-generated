@@ -9,9 +9,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A user interface for an eraser tool item in PKToolPicker.
+    /// An item that represents an eraser tool in the tool picker.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktoolpickereraseritem?language=objc)
+    /// ## Overview
+    ///
+    /// An eraser item represents a [`PKEraserTool`](https://developer.apple.com/documentation/pencilkit/pkerasertool-swift.struct) — a tool for erasing content in a canvas view — in a [`PKToolPicker`](https://developer.apple.com/documentation/pencilkit/pktoolpicker).
+    ///
+    ///
+    /// A user interface for an eraser tool item in PKToolPicker.
     #[unsafe(super(PKToolPickerItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKToolPickerItem")]

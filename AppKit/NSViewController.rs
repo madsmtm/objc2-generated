@@ -7,38 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions?language=objc)
+/// Animation options for view transitions in a view controller.
+///
+/// ## Overview
+///
+/// The up and down slide animation options are disjoint and you cannot combine them.
+///
+/// Likewise, the left and right slide animation options are disjoint and you cannot combine them.
+///
+/// User interaction with transitioning views is prevented for all animation options except the [`NSViewControllerTransitionAllowUserInteraction`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/allowuserinteraction) option.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewControllerTransitionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSViewControllerTransitionOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontrollertransitionoptions/nsviewcontrollertransitionnone?language=objc)
+/// A transition with no animation (the default). Specifying another animation option from this enumeration overrides this option.
         #[doc(alias = "NSViewControllerTransitionNone")]
         const None = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/crossfade?language=objc)
+/// A transition animation that fades the new view in and simultaneously fades the old view out. You can combine this animation option with any of the “slide” options in this enumeration.
         #[doc(alias = "NSViewControllerTransitionCrossfade")]
         const Crossfade = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideup?language=objc)
+/// A transition animation that slides the old view up while the new view comes into view from the bottom.  In other words, both views slide up.
         #[doc(alias = "NSViewControllerTransitionSlideUp")]
         const SlideUp = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slidedown?language=objc)
+/// A transition animation that slides the old view down while the new view slides into view from the top. In other words, both views slide down.
         #[doc(alias = "NSViewControllerTransitionSlideDown")]
         const SlideDown = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideleft?language=objc)
+/// A transition animation that slides the old view to the left while the new view slides into view from the right. In other words, both views slide to the left.
         #[doc(alias = "NSViewControllerTransitionSlideLeft")]
         const SlideLeft = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideright?language=objc)
+/// A transition animation that slides the old view to the right while the new view slides into view from the left.  In other words, both views slide to the right.
         #[doc(alias = "NSViewControllerTransitionSlideRight")]
         const SlideRight = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideforward?language=objc)
+/// A transition animation that reflects the user interface layout direction ([`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection)) in a “forward” manner, as follows:
+///
+/// ## Discussion
+///
+/// - For left-to-right user interface layout direction, the [`NSViewControllerTransitionSlideLeft`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideleft) animation option.
+///
+/// - For right-to-left user interface layout direction, the [`NSViewControllerTransitionSlideRight`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideright) animation option.
+///
+///
         #[doc(alias = "NSViewControllerTransitionSlideForward")]
         const SlideForward = 0x140;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slidebackward?language=objc)
+/// A transition animation that reflects the user interface layout direction ([`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection)) in a “backward” manner, as follows
+///
+/// ## Discussion
+///
+/// - For left-to-right user interface layout direction, the [`NSViewControllerTransitionSlideRight`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideright) animation option.
+///
+/// - For right-to-left user interface layout direction, the [`NSViewControllerTransitionSlideLeft`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/slideleft) animation option.
+///
+///
         #[doc(alias = "NSViewControllerTransitionSlideBackward")]
         const SlideBackward = 0x180;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions/allowuserinteraction?language=objc)
+/// A transition animation that allows user interaction during the transition.
         #[doc(alias = "NSViewControllerTransitionAllowUserInteraction")]
         const AllowUserInteraction = 0x1000;
     }
@@ -53,7 +79,49 @@ unsafe impl RefEncode for NSViewControllerTransitionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontroller?language=objc)
+    /// A controller that manages a view, typically loaded from a nib file.
+    ///
+    /// ## Overview
+    ///
+    /// View controller management includes:
+    ///
+    /// - Memory management of top-level objects similar to that performed by the [`NSWindowController`](https://developer.apple.com/documentation/appkit/nswindowcontroller) class, taking the same care to prevent reference cycles when controls are bound to the nib file’s owner.
+    ///
+    /// - Declaring a generic [`view`](https://developer.apple.com/documentation/appkit/nsviewcontroller/view) property, to make it easy to establish bindings in the nib to an object that isn’t yet known at nib-loading time or readily available to the code that’s doing the nib loading.
+    ///
+    /// - Implementing the key-value binding NSEditor informal protocol, so that apps using a view controller can easily make bound controls in the views commit or discard changes by the user.
+    ///
+    /// In macOS 10.10 and later, a view controller offers a full set of life cycle methods, allowing you to manage the content of a window in a way that is on a par with iOS view controller management. These methods, presented in order here to reflect a typical cycle, are:
+    ///
+    /// _View life cycle:_
+    ///
+    /// 1. [`viewDidLoad`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewdidload())
+    ///
+    /// 2. [`viewWillAppear`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewwillappear())
+    ///
+    /// 3. [`viewDidAppear`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewdidappear())
+    ///
+    /// _User interaction cycle:_
+    ///
+    /// 1. [`updateViewConstraints`](https://developer.apple.com/documentation/appkit/nsviewcontroller/updateviewconstraints())
+    ///
+    /// 2. [`viewWillLayout`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewwilllayout())
+    ///
+    /// 3. [`viewDidLayout`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewdidlayout())
+    ///
+    /// 4. [`viewWillDisappear`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewwilldisappear())
+    ///
+    /// 5. [`viewDidDisappear`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewdiddisappear())
+    ///
+    /// In addition, in macOS 10.10 and later, a view controller participates in the responder chain. You can implement action methods directly in the view controller. Corresponding actions that originate in the view controller’s view proceed up the responder chain and are handled by those methods.
+    ///
+    /// Prior to OS X v10.10, a typical usage pattern for loading a nib file was to subclass [`NSViewController`](https://developer.apple.com/documentation/appkit/nsviewcontroller) and override its [`loadView`](https://developer.apple.com/documentation/appkit/nsviewcontroller/loadview()) method to call `[super loadView]`. But in macOS 10.10 and later, the [`loadView`](https://developer.apple.com/documentation/appkit/nsviewcontroller/loadview()) method automatically looks for a nib file with the same name as the view controller. To take advantage of this behavior, name a nib file after its corresponding view controller and pass `nil` to both parameters of the [`initWithNibName:bundle:`](https://developer.apple.com/documentation/appkit/nsviewcontroller/init(nibname:bundle:)) method.
+    ///
+    /// A view controller employs lazy loading of its view: Immediately after a view controller is loaded into memory, the value of its [`viewLoaded`](https://developer.apple.com/documentation/appkit/nsviewcontroller/isviewloaded) property is [`false`](https://developer.apple.com/documentation/swift/false). The value changes to [`true`](https://developer.apple.com/documentation/swift/true) after the [`loadView`](https://developer.apple.com/documentation/appkit/nsviewcontroller/loadview()) method returns and just before the system calls the [`viewDidLoad`](https://developer.apple.com/documentation/appkit/nsviewcontroller/viewdidload()) method.
+    ///
+    /// A view controller is meant to be highly reusable, such as for dynamically representing various objects. For example, the  [`addAccessoryController:`](https://developer.apple.com/documentation/appkit/nspagelayout/addaccessorycontroller(_:)) methods of the [`NSPageLayout`](https://developer.apple.com/documentation/appkit/nspagelayout) and [`NSPrintPanel`](https://developer.apple.com/documentation/appkit/nsprintpanel) classes take an [`NSViewController`](https://developer.apple.com/documentation/appkit/nsviewcontroller) instance as the argument, and set the [`representedObject`](https://developer.apple.com/documentation/appkit/nsviewcontroller/representedobject) property to the [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) object that is to be shown to the user. This allows a developer to easily create new printing accessory views using bindings and the [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo) class’s key-value coding and key-value observing compliance. When the user dismisses a printing dialog, the  [`NSPageLayout`](https://developer.apple.com/documentation/appkit/nspagelayout) and [`NSPrintPanel`](https://developer.apple.com/documentation/appkit/nsprintpanel) classes each send NSEditor messages to each accessory view controller to ensure that the user’s changes have been committed or discarded properly. The titles of the accessories are retrieved from the view controllers and shown to the user in menus that the user can choose from.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -392,7 +460,15 @@ impl NSViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewcontrollerpresentationanimator?language=objc)
+    /// A set of methods that let you define animations to play when transitioning between two view controllers.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol only if you want to provide custom animations. You might find what you need in the [`NSViewControllerTransitionOptions`](https://developer.apple.com/documentation/appkit/nsviewcontroller/transitionoptions) enumeration, which provides many predefined animations.
+    ///
+    /// A class that adopts this protocol is responsible for both presenting and dismissing a view controller.
+    ///
+    ///
     pub unsafe trait NSViewControllerPresentationAnimator:
         NSObjectProtocol + MainThreadOnly
     {

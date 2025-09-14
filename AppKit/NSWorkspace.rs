@@ -10,17 +10,23 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/iconcreationoptions?language=objc)
+/// Constants that describe options for creating icons.
+///
+/// ## Overview
+///
+/// Use these constants with the [`setIcon:forFile:options:`](https://developer.apple.com/documentation/appkit/nsworkspace/seticon(_:forfile:options:)) method. You can combine these using the C bitwise OR operator.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceIconCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceIconCreationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/iconcreationoptions/excludequickdrawelementsiconcreationoption?language=objc)
+/// An option to suppress generation of the QuickDraw format icon representations that are used in macOS 10.0 through macOS 10.4.
         #[doc(alias = "NSExcludeQuickDrawElementsIconCreationOption")]
         const ExcludeQuickDrawElementsIconCreationOption = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/iconcreationoptions/exclude10_4elementsiconcreationoption?language=objc)
+/// An option to suppress generation of the new higher resolution icon representations that are supported in macOS 10.4.
         #[doc(alias = "NSExclude10_4ElementsIconCreationOption")]
         const Exclude10_4ElementsIconCreationOption = 1<<2;
     }
@@ -35,7 +41,24 @@ unsafe impl RefEncode for NSWorkspaceIconCreationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace?language=objc)
+    /// A workspace that can launch other apps and perform a variety of file-handling services.
+    ///
+    /// ## Overview
+    ///
+    /// There is one shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) object per app. You use the class method [`sharedWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace/shared) to access it. For example, the following statement uses an [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) object to request that a file be opened in the TextEdit app:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["NSWorkspace.shared.openFile(\"/Myfiles/README\", withApplication: \"TextEdit\")"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[[NSWorkspace sharedWorkspace] openFile:@\"/Myfiles/README\" withApplication:@\"TextEdit\"];"], metadata: None }] }] })
+    /// You can use the workspace object to:
+    ///
+    /// - Open, manipulate, and get information about files and devices.
+    ///
+    /// - Track changes to the file system, devices, and the user database.
+    ///
+    /// - Get and set Finder information for files.
+    ///
+    /// - Launch apps.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspace;
@@ -327,7 +350,13 @@ impl DefaultRetained for NSWorkspace {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration?language=objc)
+    /// The configuration options for opening URLs or launching apps.
+    ///
+    /// ## Overview
+    ///
+    /// Create an [`NSWorkspaceOpenConfiguration`](https://developer.apple.com/documentation/appkit/nsworkspace/openconfiguration) object before launching an app or opening a URL using the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) object. Use the properties of this object to customize the behavior of the launched app or the handling of the URLs. For example, you might tell the app to hide itself immediately after launch.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceOpenConfiguration;
@@ -488,22 +517,46 @@ impl DefaultRetained for NSWorkspaceOpenConfiguration {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/desktopimageoptionkey?language=objc)
+/// Keys that indicate how to display a new desktop image.
+///
+/// ## Discussion
+///
+/// Specify the following keys when calling the [`setDesktopImageURL:forScreen:options:error:`](https://developer.apple.com/documentation/appkit/nsworkspace/setdesktopimageurl(_:for:options:)) method.
+///
+///
 // NS_TYPED_ENUM
 pub type NSWorkspaceDesktopImageOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/desktopimageoptionkey/imagescaling?language=objc)
+    /// A key that contains the behavior to use when scaling the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains an [`NSImageScaling`](https://developer.apple.com/documentation/appkit/nsimagescaling) constant as declared in [`NSCell`](https://developer.apple.com/documentation/appkit/nscell). If you don’t include this key, the workspace object uses [`NSImageScaleProportionallyUpOrDown`](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallyupordown). [`NSImageScaleProportionallyDown`](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallydown) isn’t supported.
+    ///
+    ///
     pub static NSWorkspaceDesktopImageScalingKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/desktopimageoptionkey/allowclipping?language=objc)
+    /// A key that contains the behavior to use when clipping the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean, which affects the interpretation of Proportional scaling types. When the value is [`false`](https://developer.apple.com/documentation/swift/false), the workspace object makes the image fully visible, but it may include empty space on the sides or top and bottom. When the value is [`true`](https://developer.apple.com/documentation/swift/true), the image fills the entire screen, but may be clipped. If you don’t specify this key, the workspace assumes a value of [`false`](https://developer.apple.com/documentation/swift/false).  Non-proportional scaling types ignore this value.
+    ///
+    ///
     pub static NSWorkspaceDesktopImageAllowClippingKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/desktopimageoptionkey/fillcolor?language=objc)
+    /// A key that contains the behavior to use when filling the empty space around the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is the [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object to use when filling any empty space around the image. If you don’t specify this key, the workspace object uses a default color. Currently, the system supports only colors that use or can be converted to use the [`NSCalibratedRGBColorSpace`](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedrgb) color space. The system also ignores any alpha value in the color you specify.
+    ///
+    ///
     pub static NSWorkspaceDesktopImageFillColorKey: &'static NSWorkspaceDesktopImageOptionKey;
 }
 
@@ -538,19 +591,51 @@ impl NSWorkspace {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype?language=objc)
+/// The types of privileged file operations that can be authorized by the user.
+///
+/// ## Overview
+///
+/// To enable your app to prompt the user for these file permissions, you must have a Privileged File Operation entitlement. If you have an app on the Mac App Store or plan to submit your app for review, you can [request this entitlement](https://developer.apple.com/go/?id=workspace-authorization).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceAuthorizationType(pub NSInteger);
 impl NSWorkspaceAuthorizationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/createsymboliclink?language=objc)
+    /// Authorization for the app to create a symbolic link.
+    ///
+    /// ## Discussion
+    ///
+    /// Signifies that the user has granted authorization for [`createSymbolicLinkAtURL:withDestinationURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/createsymboliclink(at:withdestinationurl:)).
+    ///
+    ///
     #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
     pub const CreateSymbolicLink: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/setattributes?language=objc)
+    /// Authorization for the app to change specific file attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Signifies that the user has granted authorization for [`setAttributes:ofItemAtPath:error:`](https://developer.apple.com/documentation/foundation/filemanager/setattributes(_:ofitematpath:)).
+    ///
+    /// Only these attributes can be modified:
+    ///
+    /// - [`NSFileOwnerAccountID`](https://developer.apple.com/documentation/foundation/fileattributekey/owneraccountid)
+    ///
+    /// - [`NSFileGroupOwnerAccountID`](https://developer.apple.com/documentation/foundation/fileattributekey/groupowneraccountid)
+    ///
+    /// - [`NSFilePosixPermissions`](https://developer.apple.com/documentation/foundation/fileattributekey/posixpermissions)
+    ///
+    ///
     #[doc(alias = "NSWorkspaceAuthorizationTypeSetAttributes")]
     pub const SetAttributes: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorizationtype/replacefile?language=objc)
+    /// Authorization for the app to perform an atomic file write without changing the target file’s permissions.
+    ///
+    /// ## Discussion
+    ///
+    /// Signifies that the user has granted authorization for [`replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/replaceitem(at:withitemat:backupitemname:options:resultingitemurl:)). When you use a [`NSFileManager`](https://developer.apple.com/documentation/foundation/filemanager) with this authorization, the file manager ignores the `backupItemName` and `options` parameters.
+    ///
+    ///
     #[doc(alias = "NSWorkspaceAuthorizationTypeReplaceFile")]
     pub const ReplaceFile: Self = Self(2);
 }
@@ -564,7 +649,13 @@ unsafe impl RefEncode for NSWorkspaceAuthorizationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/authorization?language=objc)
+    /// The authorization granted to the app by the user.
+    ///
+    /// ## Overview
+    ///
+    /// To enable your app to prompt the user for these file permissions, you must have a Privileged File Operation entitlement. If you have an app on the Mac App Store or plan to submit your app for review, you can [request this entitlement](https://developer.apple.com/go/?id=workspace-authorization).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSWorkspaceAuthorization;
@@ -635,187 +726,505 @@ impl private_NSFileManagerNSWorkspaceAuthorization::Sealed for NSFileManager {}
 unsafe impl NSFileManagerNSWorkspaceAuthorization for NSFileManager {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey?language=objc)
+    /// The value corresponding to this key is an instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that reflects the affected app.
     pub static NSWorkspaceApplicationKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/willlaunchapplicationnotification?language=objc)
+    /// A notification that the workspace posts when the Finder is about to launch an app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// The system doesn’t post this notification for background apps or for apps that have the `LSUIElement` key in their `Info.plist` file. If you want to know when all apps (including background apps) launch or terminate, use key-value observing to monitor the value that returns from the [`runningApplications`](https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceWillLaunchApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didlaunchapplicationnotification?language=objc)
+    /// A notification that the workspace posts when a new app starts up.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// The system doesn’t post this notification for background apps or for apps that have the [`LSUIElement`](https://developer.apple.com/documentation/bundleresources/information-property-list/lsuielement) key in their `Info.plist` file. If you want to know when all apps (including background apps) launch or terminate, use key-value observing to monitor the value that returns from the [`runningApplications`](https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidLaunchApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didterminateapplicationnotification?language=objc)
+    /// A notification that the workspace posts when an app finishes executing.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// The system doesn’t post this notification for background apps or for apps that have the `LSUIElement` key in their `Info.plist` file. If you want to know when all apps (including background apps) launch or terminate, use key-value observing to monitor the value that returns from the [`runningApplications`](https://developer.apple.com/documentation/appkit/nsworkspace/runningapplications) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidTerminateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didhideapplicationnotification?language=objc)
+    /// A notification that the workspace posts when the Finder hides an app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidHideApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didunhideapplicationnotification?language=objc)
+    /// A notification that the workspace posts when the Finder unhides an app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidUnhideApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didactivateapplicationnotification?language=objc)
+    /// A notification that the workspace posts when the Finder is about to activate an app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidActivateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/diddeactivateapplicationnotification?language=objc)
+    /// A notification that the workspace posts when the Finder deactivates an app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains the [`NSWorkspaceApplicationKey`](https://developer.apple.com/documentation/appkit/nsworkspace/applicationuserinfokey) key with a corresponding instance of [`NSRunningApplication`](https://developer.apple.com/documentation/appkit/nsrunningapplication) that represents the affected app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidDeactivateApplicationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/localizedvolumenameuserinfokey?language=objc)
+    /// A string containing the user-visible name of the volume.
     pub static NSWorkspaceVolumeLocalizedNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/volumeurluserinfokey?language=objc)
+    /// A URL containing the mount path of the volume.
     pub static NSWorkspaceVolumeURLKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/oldlocalizedvolumenameuserinfokey?language=objc)
+    /// A string containing the old user-visible name of the volume
     pub static NSWorkspaceVolumeOldLocalizedNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/oldvolumeurluserinfokey?language=objc)
+    /// A URL containing the old mount path of the volume
     pub static NSWorkspaceVolumeOldURLKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didmountnotification?language=objc)
+    /// A notification that the workspace posts when a new device mounts.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidMountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didunmountnotification?language=objc)
+    /// A notification that the workspace posts when the Finder unmounts a device.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification posts even if a volume becomes forcibly and immediately unavailable, such as when simply unplugging a drive.
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains a key `@"NSDevicePath"` that returns the path where the device mounts as a string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidUnmountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/willunmountnotification?language=objc)
+    /// A notification that the workspace posts when the Finder is about to unmount a device.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification doesn’t post if a volume becomes forcibly and immediately unavailable, such as when simply unplugging a drive.
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains a key `@"NSDevicePath"` that returns the path where the device mounts as a string.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceWillUnmountNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didrenamevolumenotification?language=objc)
+    /// A notification that the workspace posts when a volume changes its name or mount path.
+    ///
+    /// ## Discussion
+    ///
+    /// These notifications typically change simultaneously, in which case, the workspace posts only one notification.
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance. The `userInfo` dictionary may contain the following keys:
+    ///
+    /// - [`NSWorkspaceVolumeLocalizedNameKey`](https://developer.apple.com/documentation/appkit/nsworkspace/localizedvolumenameuserinfokey)
+    ///
+    /// - [`NSWorkspaceVolumeURLKey`](https://developer.apple.com/documentation/appkit/nsworkspace/volumeurluserinfokey)
+    ///
+    /// - [`NSWorkspaceVolumeOldLocalizedNameKey`](https://developer.apple.com/documentation/appkit/nsworkspace/oldlocalizedvolumenameuserinfokey)
+    ///
+    /// - [`NSWorkspaceVolumeOldURLKey`](https://developer.apple.com/documentation/appkit/nsworkspace/oldvolumeurluserinfokey)
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidRenameVolumeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/willpoweroffnotification?language=objc)
+    /// A notification that the workspace posts when the user requests a logout or powers off the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceWillPowerOffNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/willsleepnotification?language=objc)
+    /// A notification that the workspace posts before the device goes to sleep.
+    ///
+    /// ## Discussion
+    ///
+    /// An observer of this message can delay sleep for up to 30 seconds while handling this notification.
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceWillSleepNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didwakenotification?language=objc)
+    /// A notification that the workspace posts when the device wakes from sleep.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidWakeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/screensdidsleepnotification?language=objc)
+    /// A notification that the workspace posts when the device’s screen goes to sleep.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// Not many apps use this notification, but it can be useful for certain hardware-based drawing decisions, for example when using OpenGL.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceScreensDidSleepNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/screensdidwakenotification?language=objc)
+    /// A notification that the workspace posts when the device’s screens wake.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// Not many apps use this notification, but it can be useful for certain hardware-based drawing decisions, for example when using OpenGL.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceScreensDidWakeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/sessiondidbecomeactivenotification?language=objc)
+    /// A notification that the workspace posts after a user session switches in.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification allows an app to re-enable some processing, such as when a switched-out session switches back in.
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceSessionDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/sessiondidresignactivenotification?language=objc)
+    /// A notification that the workspace posts before a user session switches out.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification allows an app to disable some processing, such as when its user session switches out, and re-enable when that session switches back in.
+    ///
+    /// The notification object is the shared [`NSWorkspace`](https://developer.apple.com/documentation/appkit/nsworkspace) instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// If an app launches in an inactive session, the workspace sends [`NSWorkspaceSessionDidResignActiveNotification`](https://developer.apple.com/documentation/appkit/nsworkspace/sessiondidresignactivenotification) after [`NSApplicationWillFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification) and before sending [`NSApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceSessionDidResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didchangefilelabelsnotification?language=objc)
+    /// A notification that the workspace posts when the Finder file labels or colors change.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceDidChangeFileLabelsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/activespacedidchangenotification?language=objc)
+    /// A notification that the workspace posts when a Spaces change occurs.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceActiveSpaceDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname?language=objc)
+/// Constants that define types of file operations.
+///
+/// ## Overview
+///
+/// These constants specify different types of file operations used by [`performFileOperation:source:destination:files:tag:`](https://developer.apple.com/documentation/appkit/nsworkspace/performfileoperation(_:source:destination:files:tag:)).
+///
+///
 #[deprecated]
 // NS_TYPED_ENUM
 pub type NSWorkspaceFileOperationName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions?language=objc)
+/// Constants specifying how you want to launch an app
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceLaunchOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andprint?language=objc)
+/// Print items instead of opening them.
         #[doc(alias = "NSWorkspaceLaunchAndPrint")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setForPrinting:YES] instead."]
         const AndPrint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/witherrorpresentation?language=objc)
+/// Display an error panel to the user if a failure occurs.
         #[doc(alias = "NSWorkspaceLaunchWithErrorPresentation")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setPromptsUserIfNeeded:YES] instead."]
         const WithErrorPresentation = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/inhibitingbackgroundonly?language=objc)
+/// Causes launch to fail if the target is background-only.
         #[doc(alias = "NSWorkspaceLaunchInhibitingBackgroundOnly")]
 #[deprecated = "This option does nothing."]
         const InhibitingBackgroundOnly = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/withoutaddingtorecents?language=objc)
+/// Do not add the app or documents to the Recents menu.
         #[doc(alias = "NSWorkspaceLaunchWithoutAddingToRecents")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAddsToRecentItems:YES] instead."]
         const WithoutAddingToRecents = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/withoutactivation?language=objc)
+/// Launch the app but do not bring it into the foreground.
         #[doc(alias = "NSWorkspaceLaunchWithoutActivation")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setActivates:NO] instead."]
         const WithoutActivation = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/async?language=objc)
+/// Launch the app and return the results asynchronously.
         #[doc(alias = "NSWorkspaceLaunchAsync")]
 #[deprecated = "When using NSWorkspaceOpenConfiguration, all launches are asynchronous."]
         const Async = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/newinstance?language=objc)
+/// Create a new instance of the app, even if one is already running.
         #[doc(alias = "NSWorkspaceLaunchNewInstance")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setCreatesNewApplicationInstance:YES] instead."]
         const NewInstance = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andhide?language=objc)
+/// Tell the app to hide itself as soon as it finishes launching.
         #[doc(alias = "NSWorkspaceLaunchAndHide")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHides:YES] instead."]
         const AndHide = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/andhideothers?language=objc)
+/// Hide all apps except the newly launched one.
         #[doc(alias = "NSWorkspaceLaunchAndHideOthers")]
 #[deprecated = "Use -[NSWorkspaceOpenConfiguration setHidesOthers:YES] instead."]
         const AndHideOthers = 0x00200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/default?language=objc)
+/// Launch the app asynchronously and launch it in the Classic environment, if required.
         #[doc(alias = "NSWorkspaceLaunchDefault")]
 #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
         const Default = NSWorkspaceLaunchOptions::Async.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/allowingclassicstartup?language=objc)
+/// Start up the Classic compatibility environment, if it is required by the app.
         #[doc(alias = "NSWorkspaceLaunchAllowingClassicStartup")]
 #[deprecated = "The Classic environment is no longer supported."]
         const AllowingClassicStartup = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchoptions/preferringclassic?language=objc)
+/// Force the app to launch in the Classic compatibility environment.
         #[doc(alias = "NSWorkspaceLaunchPreferringClassic")]
 #[deprecated = "The Classic environment is no longer supported."]
         const PreferringClassic = 0x00040000;
@@ -830,32 +1239,32 @@ unsafe impl RefEncode for NSWorkspaceLaunchOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchconfigurationkey?language=objc)
+/// The following keys can be used in the configuration dictionary of the [`launchApplicationAtURL:options:configuration:error:`](https://developer.apple.com/documentation/appkit/nsworkspace/launchapplication(at:options:configuration:)) method.  Each key is optional, and if omitted, default behavior is applied.
 #[deprecated = "Use NSWorkspaceOpenConfiguration instead."]
 // NS_TYPED_ENUM
 pub type NSWorkspaceLaunchConfigurationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchconfigurationkey/appleevent?language=objc)
+    /// The value is the first NSAppleEventDescriptor to send to the new app.  If an instance of the app is already running, this is sent to that app.
     #[deprecated = "Use -[NSWorkspaceOpenConfiguration setAppleEvent:] instead."]
     pub static NSWorkspaceLaunchConfigurationAppleEvent: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchconfigurationkey/arguments?language=objc)
+    /// The value is an `NSArray` of `NSStrings`, passed to the new app in the `argv` parameter.  Ignored if a new instance of the app is not launched. This constant is not available to sandboxed apps.
     #[deprecated = "Use -[NSWorkspaceOpenConfiguration setArguments:] instead."]
     pub static NSWorkspaceLaunchConfigurationArguments: &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchconfigurationkey/environment?language=objc)
+    /// The value is an `NSDictionary`, mapping `NSStrings` to `NSStrings`, containing environment variables to set for the new app.  Ignored if a new instance of the app is not launched. This constant is not available to sandboxed apps.
     #[deprecated = "Use -[NSWorkspaceOpenConfiguration setEnvironment:] instead."]
     pub static NSWorkspaceLaunchConfigurationEnvironment:
         &'static NSWorkspaceLaunchConfigurationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/launchconfigurationkey/architecture?language=objc)
+    /// The value is an NSNumber containing an Mach-O Architecture constant.  Ignored if a new instance of the app is not launched.
     #[deprecated = "Do not specify an architecutre. When unspecified, the architecture for a new application instance will be determined based on the available architectures in its executable."]
     pub static NSWorkspaceLaunchConfigurationArchitecture:
         &'static NSWorkspaceLaunchConfigurationKey;
@@ -1137,97 +1546,133 @@ impl NSWorkspace {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/moveoperation?language=objc)
+    /// Move file to destination.
+    ///
+    /// ## Discussion
+    ///
+    /// Behaves the same as [`moveItemAtURL:toURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/moveitem(at:to:)).
+    ///
+    ///
     #[deprecated = "Use -[NSFileManager moveItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceMoveOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/copyoperation?language=objc)
+    /// Copy file to destination.
+    ///
+    /// ## Discussion
+    ///
+    /// Behaves the same as [`copyItemAtURL:toURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/copyitem(at:to:)).
+    ///
+    ///
     #[deprecated = "Use -[NSFileManager copyItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceCopyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/linkoperation?language=objc)
+    /// Create hard link to file in destination.
+    ///
+    /// ## Discussion
+    ///
+    /// Behaves the same as [`linkItemAtURL:toURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/linkitem(at:to:)).
+    ///
+    ///
     #[deprecated = "Use -[NSFileManager linkItemAtURL:toURL:error:] instead."]
     pub static NSWorkspaceLinkOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/compressoperation?language=objc)
+    /// Compress file. This operation always returns an error.
     #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceCompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/decompressoperation?language=objc)
+    /// Decompress file. This operation always returns an error.
     #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceDecompressOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/encryptoperation?language=objc)
+    /// Encrypt file. This operation always returns an error.
     #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceEncryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/decryptoperation?language=objc)
+    /// Decrypt file. This operation always returns an error.
     #[deprecated = "This operation is unimplemented."]
     pub static NSWorkspaceDecryptOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/destroyoperation?language=objc)
+    /// Destroy file.
+    ///
+    /// ## Discussion
+    ///
+    /// Behaves the same as  [`removeItemAtURL:error:`](https://developer.apple.com/documentation/foundation/filemanager/removeitem(at:)).
+    ///
+    ///
     #[deprecated = "Use -[NSFileManager removeItemAtURL:error:] instead."]
     pub static NSWorkspaceDestroyOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/recycleoperation?language=objc)
+    /// Move file to trash.
+    ///
+    /// ## Discussion
+    ///
+    /// The file is moved to the trash folder on the volume containing the file using the same semantics as [`NSWorkspaceMoveOperation`](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/moveoperation). If a file with the same name currently exists in the trash folder, the new file is renamed. If no trash folder exists on the volume containing the file, the operation fails.
+    ///
+    ///
     #[deprecated = "Use -[NSWorkspace recycleURLs:completionHandler:] instead."]
     pub static NSWorkspaceRecycleOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/fileoperationname/duplicateoperation?language=objc)
+    /// Duplicate file in source directory.
     #[deprecated = "Use -[NSWorkspace duplicateURLs:completionHandler:] instead."]
     pub static NSWorkspaceDuplicateOperation: &'static NSWorkspaceFileOperationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/didperformfileoperationnotification?language=objc)
+    /// Posted when a file operation has been performed in the receiving app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The `userInfo` dictionary contains a key `@"NSOperationNumber"` with a `NSNumber` object containing an integer indicating the type of file operation
+    ///
+    ///
     #[deprecated]
     pub static NSWorkspaceDidPerformFileOperationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplainfiletype?language=objc)
+    /// Plain (untyped) file.
     #[deprecated]
     pub static NSPlainFileType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectoryfiletype?language=objc)
+    /// Directory.
     #[deprecated]
     pub static NSDirectoryFileType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationfiletype?language=objc)
+    /// Cocoa app.
     #[deprecated]
     pub static NSApplicationFileType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilesystemfiletype?language=objc)
+    /// File-system mount point.
     #[deprecated]
     pub static NSFilesystemFileType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshellcommandfiletype?language=objc)
+    /// Executable shell command.
     #[deprecated]
     pub static NSShellCommandFileType: &'static NSString;
 }

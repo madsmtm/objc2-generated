@@ -13,6 +13,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A node that plays audio.
+    ///
+    /// ## Overview
+    ///
+    /// A [`SKAudioNode`](https://developer.apple.com/documentation/spritekit/skaudionode) object is used to add an audio to a scene. The sounds are played automatically using AVFoundation, and the node can optionally add 3D spatial audio effects to the audio when it is played.
+    ///
+    /// The currently presented [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) object mixes the audio from nodes in the scene based on parameters defined in the [`AVAudio3DMixing`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing) protocol. A scene’s [`audioEngine`](https://developer.apple.com/documentation/spritekit/skscene/audioengine) property allows overall control of volume and playback.
+    ///
+    /// By default, [`SKAudioNode`](https://developer.apple.com/documentation/spritekit/skaudionode) objects are positional, i.e. their [`positional`](https://developer.apple.com/documentation/spritekit/skaudionode/ispositional) property is set to [`true`](https://developer.apple.com/documentation/swift/true). If you add an audio node to a scene with a [`listener`](https://developer.apple.com/documentation/spritekit/skscene/listener) set, SpriteKit will set the stereo balance and the volume based on the relative positions of the two nodes.
+    ///
+    /// You can explicitly set the volume or stereo balance to an audio node by running actions on it.
+    ///
+    /// SpriteKit includes actions that reduce an audio node’s volume by changing either its occlusion or obstruction. The difference between these actions is that occlusion affects both the direct and reverb paths of the sound while obstruction only affects the direct path. The _change volume_ action offers absolute control over an audio node’s volume.
+    ///
+    /// You can manually set the stereo balance of an audio node with a _stereo pan_ action.
+    ///
+    /// Special effects, such as speeding up or slowing down audio by changing the playback rate and adding reverb are also available as audio actions.
+    ///
+    /// To learn more about audio actions, see Controlling the Audio of a Node in [Action Initializers](https://developer.apple.com/documentation/spritekit/action-initializers).
+    ///
+    ///
     /// A SpriteKit scene graph audio node that provides a way to link audio graphs to a SpriteKit scene.
     /// The currently presented scene is responsible for mixing the audio from nodes in the scene.
     ///
@@ -23,8 +44,6 @@ extern_class!(
     /// See: AVAudio3DMixing
     ///
     /// See: SKScene.listener
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skaudionode?language=objc)
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

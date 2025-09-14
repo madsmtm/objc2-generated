@@ -6,22 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate?language=objc)
+/// Values that represent the current state of a monitoring condition.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLMonitoringState(pub NSUInteger);
 impl CLMonitoringState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunknown?language=objc)
+    /// The condition is in an unknown state.
     #[doc(alias = "CLMonitoringStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstatesatisfied?language=objc)
+    /// The condition is in a satisfied state.
     #[doc(alias = "CLMonitoringStateSatisfied")]
     pub const Satisfied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunsatisfied?language=objc)
+    /// The condition is in an unsatisfied state.
     #[doc(alias = "CLMonitoringStateUnsatisfied")]
     pub const Unsatisfied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringstate/clmonitoringstateunmonitored?language=objc)
+    /// The condition is in an unmonitored state.
     #[doc(alias = "CLMonitoringStateUnmonitored")]
     pub const Unmonitored: Self = Self(3);
 }
@@ -35,7 +35,13 @@ unsafe impl RefEncode for CLMonitoringState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clmonitoringevent?language=objc)
+    /// The object that the framework passes to the monitor’s callback handler upon receiving an event.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of `CLMonitoringEvent` contain detailed information about an event in the monitoring of a [`CLCondition`](https://developer.apple.com/documentation/corelocation/clcondition-swift.protocol) by a [`CLMonitor`](https://developer.apple.com/documentation/corelocation/clmonitor-2r51v).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLMonitoringEvent;

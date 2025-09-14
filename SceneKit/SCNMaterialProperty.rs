@@ -12,21 +12,38 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// Filtering modes
+/// Texture filtering modes, used by the [`minificationFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/minificationfilter), [`magnificationFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/magnificationfilter), and [`mipFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/mipfilter) properties.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode?language=objc)
+/// ## Overview
+///
+/// Texture filtering determines the appearance of a material property’s contents when portions of the material surface appear larger or smaller than the original texture image. For example, when a texture is applied to a plane that recedes away from the camera into the distance:
+///
+/// - The texture coordinates at a point near the camera may correspond to a small fraction of a pixel in the original image. SceneKit uses the [`magnificationFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/magnificationfilter) property to determine the color of the sampled texel at that point.
+///
+/// - The texture coordinates at a point far from the camera may correspond to an area of several pixels in the original image. SceneKit uses the [`minificationFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/minificationfilter) property to determine the color of the sampled texel at that point.
+///
+/// SceneKit also uses the filter specified by the [`mipFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/mipfilter) property when generating mipmap levels for a texture image.
+///
+///
+/// Filtering modes
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNFilterMode(pub NSInteger);
 impl SCNFilterMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/none?language=objc)
+    /// No texture filtering is applied.
+    ///
+    /// ## Discussion
+    ///
+    /// Only valid for the [`mipFilter`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/mipfilter) property, specifying that SceneKit should not use mip mapping.
+    ///
+    ///
     #[doc(alias = "SCNFilterModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/nearest?language=objc)
+    /// Texture filtering returns the color from only one texel, whose location is nearest to the coordinates being sampled.
     #[doc(alias = "SCNFilterModeNearest")]
     pub const Nearest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfiltermode/linear?language=objc)
+    /// Texture filtering sample texels from the neighborhood of the coordinates being sampled and linearly interpolates their colors.
     #[doc(alias = "SCNFilterModeLinear")]
     pub const Linear: Self = Self(2);
 }
@@ -39,24 +56,57 @@ unsafe impl RefEncode for SCNFilterMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Wrap modes
+/// Modes to apply to texture wrapping, used by the [`wrapT`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/wrapt) and [`wrapS`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/wraps) properties.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode?language=objc)
+/// ## Overview
+///
+/// Wrapping modes determine texture mapping behavior for cases where a material’s texture coordinates extend outside the range from `0.0` to `1.0`. For example, if you use the [`contentsTransform`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/contentstransform) property to shrink a texture relative to the surface of a geometry, you use the wrap mode properties to determine whether the texture repeats across the surface. The figure below shows the effect of each wrapping mode on an otherwise identical material.
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/56b89682a8bddd05b937dd5b9ca9b645/media-2929787%402x.png)
+///
+///
+///
+/// Wrap modes
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNWrapMode(pub NSInteger);
 impl SCNWrapMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/clamp?language=objc)
+    /// Texture coordinates are clamped to the range from `0.0` to `1.0`, inclusive.
+    ///
+    /// ## Discussion
+    ///
+    /// Texture sampling in areas whose texture coordinates would fall outside this range produces texel colors from the nearest edge of the texture image.
+    ///
+    ///
     #[doc(alias = "SCNWrapModeClamp")]
     pub const Clamp: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/repeat?language=objc)
+    /// Texture sampling uses only the fractional part of texture coordinates, passing through the range from `0.0` to (but not including) `1.0`.
+    ///
+    /// ## Discussion
+    ///
+    /// Texture sampling in areas of the material whose texture coordinates would fall outside from `0.0` to `1.0` results in tiling the texture image across the surface using the material.
+    ///
+    ///
     #[doc(alias = "SCNWrapModeRepeat")]
     pub const Repeat: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/clamptoborder?language=objc)
+    /// Texture sampling uses texture colors for coordinates in the range from `0.0` to `1.0` (inclusive) and the material property’s [`borderColor`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/bordercolor) value otherwise.
+    ///
+    /// ## Discussion
+    ///
+    /// Texture sampling in areas whose texture coordinates would fall outside this range uses the [`borderColor`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/bordercolor) property instead of texel colors from the texture image.
+    ///
+    ///
     #[doc(alias = "SCNWrapModeClampToBorder")]
     pub const ClampToBorder: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnwrapmode/mirror?language=objc)
+    /// Texture sampling of texture coordinates outside range from `0.0` to `1.0` should behave as if the range reverses before repeating.
+    ///
+    /// ## Discussion
+    ///
+    /// Texture sampling in areas of the material whose texture coordinates would fall outside from `0.0` to `1.0` results in tiling both texture image and its mirror image across the surface using the material.
+    ///
+    ///
     #[doc(alias = "SCNWrapModeMirror")]
     pub const Mirror: Self = Self(4);
 }
@@ -70,11 +120,46 @@ unsafe impl RefEncode for SCNWrapMode {
 }
 
 extern_class!(
+    /// A container for the color or texture of one of a material’s visual properties.
+    ///
+    /// ## Overview
+    ///
+    /// A material has several visual properties that together determine its appearance under lighting and shading. SceneKit renders each pixel in the scene by combining the information from material properties with the locations, intensities, and colors of lights.
+    ///
+    /// A material property’s contents can be either a color, which provides a uniform effect across the surface of a material, or a texture, which SceneKit maps across the surface of a material using texture coordinates provided by the geometry object the material is attached to. A texture, in turn, can come from any of several sources, such as an image object, a URL to an image file, a specially formatted image or set of images for use as a cube map, or even animated content provided by Core Animation, SpriteKit, or AVFoundation—for the full set of options, see the [`contents`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/contents) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Typically, you associate texture images with materials when creating 3D assets with third-party authoring tools, and the scene files containing those assets reference external image files. For best results when shipping assets in your app bundle, place scene files in a folder with the `.scnassets` extension, and place image files referenced as textures from those scenes in an Asset Catalog.
+    ///
+    /// Xcode then optimizes the scene and texture resources for best performance on each target device, and prepares your texture resources for delivery features such as App Thinning and On-Demand Resources.
+    ///
+    ///
+    ///
+    /// </div>
+    /// SceneKit uses the material property’s [`contents`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/contents) object in different ways for each visual property of a material. For example:
+    ///
+    /// - When you provide a color for the [`diffuse`](https://developer.apple.com/documentation/scenekit/scnmaterial/diffuse) property, it determines the material’s base color—geometries using the material appear shaded in gradations of this color when illuminated by white light. If you instead provide an image, SceneKit maps the image across the geometry’s surface instead of shading with a uniform base color.
+    ///
+    /// - When you provide a color for the [`specular`](https://developer.apple.com/documentation/scenekit/scnmaterial/specular) property, it affects the color of light reflected directly toward the viewer from the surface of a geometry using the material. If you instead provide a grayscale image, it determines the tendency of the material to reflect light directly toward the viewer—lighter pixels in the image make those areas of the material appear more shiny, and darker pixels make the material appear more matte.
+    ///
+    /// - The [`normal`](https://developer.apple.com/documentation/scenekit/scnmaterial/normal) property specifies the orientation of a surface at each point. Materials are uniformly smooth by default, so specifying a color for this property has no useful effect. Instead, you can specify an image for this property that describes the contours of the surface. SceneKit uses this image (called a normal map) in lighting, creating the illusion of a complex, bumpy surface without increasing the complexity of the geometry.
+    ///
+    /// For more details on each visual property and the ways their contents affect a material’s appearance, see [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial).
+    ///
+    /// SceneKit also uses [`SCNMaterialProperty`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty) objects elsewhere:
+    ///
+    /// - To provide content to be rendered behind a scene, in the [`background`](https://developer.apple.com/documentation/scenekit/scnscene/background) property of an [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object,
+    ///
+    /// - To affect the color and shape of illumination from a light source, in the [`gobo`](https://developer.apple.com/documentation/scenekit/scnlight/gobo) property of an [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) object.
+    ///
+    /// - To bind texture samplers to custom GLSL shader source code snippets, in classes conforming to the [`SCNShadable`](https://developer.apple.com/documentation/scenekit/scnshadable) protocol.
+    ///
+    ///
     /// The contents of a SCNMaterial slot
     ///
     /// This can be used to specify the various properties of SCNMaterial slots such as diffuse, ambient, etc.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterialproperty?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNMaterialProperty;

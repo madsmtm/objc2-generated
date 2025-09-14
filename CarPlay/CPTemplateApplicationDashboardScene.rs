@@ -9,7 +9,30 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationdashboardscenedelegate?language=objc)
+    /// The methods for responding to the life-cycle events of your navigation app’s dashboard scene.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol defines methods that CarPlay calls when the scene connects and disconnects, and your implementation provides the appropriate behavior when these events occur. For example, setting the window’s root view controller when CarPlay connects your navigation app’s dashboard scene.
+    ///
+    /// You don’t create instances of your dashboard scene delegate directly. Instead, you specify the name of the class as part of the CarPlay scene configuration you add to your `Info.plist` file—see the example below—or that you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method.
+    ///
+    /// ```plist
+    /// <key>CPTemplateApplicationDashboardSceneSessionRoleApplication</key>
+    /// <array>
+    ///     <dict>
+    ///         <key>UISceneClassName</key>
+    ///         <string>CPTemplateApplicationDashboardScene</string>
+    ///         <key>UISceneConfigurationName</key>
+    ///         <string>MyCarPlayDashboardSceneConfiguration</string>
+    ///         <!-- Specify the name of your dashboard scene delegate class. -->
+    ///         <key>UISceneDelegateClassName</key>
+    ///         <string>MyCarPlayDashboardSceneDelegate</string>
+    ///     </dict>
+    /// </array>
+    /// ```
+    ///
+    ///
     #[cfg(feature = "objc2-ui-kit")]
     pub unsafe trait CPTemplateApplicationDashboardSceneDelegate: UISceneDelegate {
         #[cfg(feature = "CPDashboardController")]
@@ -45,7 +68,30 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationdashboardscene?language=objc)
+    /// A CarPlay scene that controls your app’s dashboard navigation window.
+    ///
+    /// ## Overview
+    ///
+    /// A dashboard scene manages the display of your navigation app’s dashboard window on the CarPlay Dashboard, and notifies its delegate—an object that conforms to [`CPTemplateApplicationDashboardSceneDelegate`](https://developer.apple.com/documentation/carplay/cptemplateapplicationdashboardscenedelegate)—about scene life-cycle events. Use the dashboard controller the scene provides to supply shortcut buttons to display when there’s no active navigation session, further customizing you app’s presence on the CarPlay Dashboard.
+    ///
+    /// You don’t create an instance of the dashboard scene directly. Instead, you specify the name of the class as part of the CarPlay Dashboard scene configuration that you add to your `Info.plist` file—see the example below—or that you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method.
+    ///
+    /// ```plist
+    /// <key>CPTemplateApplicationDashboardSceneSessionRoleApplication</key>
+    /// <array>
+    ///     <dict>
+    ///         <!-- Specify the name of the CarPlay Dashboard scene class. -->
+    ///         <key>UISceneClassName</key>
+    ///         <string>CPTemplateApplicationDashboardScene</string>
+    ///         <key>UISceneConfigurationName</key>
+    ///         <string>MyCarPlayDashboardSceneConfiguration</string>
+    ///         <key>UISceneDelegateClassName</key>
+    ///         <string>MyCarPlayDashboardSceneDelegate</string>
+    ///     </dict>
+    /// </array>
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIScene, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -116,7 +162,6 @@ impl CPTemplateApplicationDashboardScene {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationdashboardscenesessionroleapplication?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     pub static CPTemplateApplicationDashboardSceneSessionRoleApplication:
         &'static UISceneSessionRole;

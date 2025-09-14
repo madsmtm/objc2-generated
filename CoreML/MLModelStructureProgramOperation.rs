@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class representing an Operation in a Program.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureprogramoperation?language=objc)
+    /// A class representing an Operation in a Program.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureProgramOperation;

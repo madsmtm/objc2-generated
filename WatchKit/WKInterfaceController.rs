@@ -13,16 +13,16 @@ use objc2_user_notifications::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype?language=objc)
+/// The type of notification interface to display.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserNotificationInterfaceType(pub NSInteger);
 impl WKUserNotificationInterfaceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype/default?language=objc)
+    /// A constant indicating that the system should display the corresponding static interface instead. When you return this value, the system takes responsibility for displaying the notification’s content.
     #[doc(alias = "WKUserNotificationInterfaceTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype/custom?language=objc)
+    /// A constant indicating that the system should display your dynamic notification interface.
     #[doc(alias = "WKUserNotificationInterfaceTypeCustom")]
     pub const Custom: Self = Self(1);
 }
@@ -35,74 +35,80 @@ unsafe impl RefEncode for WKUserNotificationInterfaceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon?language=objc)
+/// Template images that you can use for menus.
+///
+/// ## Overview
+///
+/// Use these constants with the [`addMenuItemWithItemIcon:title:action:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/addmenuitem(with:title:action:)-6pb4t) method to configure actions for your interface controller’s menu.
+///
+///
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMenuItemIcon(pub NSInteger);
 impl WKMenuItemIcon {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/accept?language=objc)
+    /// The icon indicating an action to accept an event or item.
     #[doc(alias = "WKMenuItemIconAccept")]
     #[deprecated]
     pub const Accept: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/add?language=objc)
+    /// The icon indicating an action for adding an item.
     #[doc(alias = "WKMenuItemIconAdd")]
     #[deprecated]
     pub const Add: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/block?language=objc)
+    /// The icon indicating an action to block or prevent something from happening.
     #[doc(alias = "WKMenuItemIconBlock")]
     #[deprecated]
     pub const Block: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/decline?language=objc)
+    /// The icon indicating an action to decline or cancel an event.
     #[doc(alias = "WKMenuItemIconDecline")]
     #[deprecated]
     pub const Decline: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/info?language=objc)
+    /// The icon indicating an action to retrieve more information.
     #[doc(alias = "WKMenuItemIconInfo")]
     #[deprecated]
     pub const Info: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/maybe?language=objc)
+    /// The icon indicating an answer of maybe for an action.
     #[doc(alias = "WKMenuItemIconMaybe")]
     #[deprecated]
     pub const Maybe: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/more?language=objc)
+    /// The icon indicating that more actions or options are available.
     #[doc(alias = "WKMenuItemIconMore")]
     #[deprecated]
     pub const More: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/mute?language=objc)
+    /// The icon indicating an action to mute the sound.
     #[doc(alias = "WKMenuItemIconMute")]
     #[deprecated]
     pub const Mute: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/pause?language=objc)
+    /// The icon indicating an action to pause playback.
     #[doc(alias = "WKMenuItemIconPause")]
     #[deprecated]
     pub const Pause: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/play?language=objc)
+    /// The icon indicating an action to play some content.
     #[doc(alias = "WKMenuItemIconPlay")]
     #[deprecated]
     pub const Play: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/repeat?language=objc)
+    /// The icon indicating that played content should repeat in a loop.
     #[doc(alias = "WKMenuItemIconRepeat")]
     #[deprecated]
     pub const Repeat: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/resume?language=objc)
+    /// The icon indicating an action to resume playing some content.
     #[doc(alias = "WKMenuItemIconResume")]
     #[deprecated]
     pub const Resume: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/share?language=objc)
+    /// The icon indicating an action to share content.
     #[doc(alias = "WKMenuItemIconShare")]
     #[deprecated]
     pub const Share: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/shuffle?language=objc)
+    /// The icon indicating an action to shuffle content.
     #[doc(alias = "WKMenuItemIconShuffle")]
     #[deprecated]
     pub const Shuffle: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/speaker?language=objc)
+    /// The icon indicating audio output.
     #[doc(alias = "WKMenuItemIconSpeaker")]
     #[deprecated]
     pub const Speaker: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmenuitemicon/trash?language=objc)
+    /// The icon indicating an action to delete some content.
     #[doc(alias = "WKMenuItemIconTrash")]
     #[deprecated]
     pub const Trash: Self = Self(15);
@@ -116,19 +122,19 @@ unsafe impl RefEncode for WKMenuItemIcon {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode?language=objc)
+/// The input modes supported by the text input controller.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKTextInputMode(pub NSInteger);
 impl WKTextInputMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/plain?language=objc)
+    /// Text from dictation and suggestions only. Do not allow emoji of any kind.
     #[doc(alias = "WKTextInputModePlain")]
     pub const Plain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/allowemoji?language=objc)
+    /// Text from dictation and suggestions plus non animated emoji.
     #[doc(alias = "WKTextInputModeAllowEmoji")]
     pub const AllowEmoji: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode/allowanimatedemoji?language=objc)
+    /// Text from dictation and suggestions plus both animated and non animated emoji.
     #[doc(alias = "WKTextInputModeAllowAnimatedEmoji")]
     #[deprecated = "Animated Emojis are no longer supported. Use WKTextInputModeAllowEmoji instead"]
     pub const AllowAnimatedEmoji: Self = Self(2);
@@ -142,19 +148,19 @@ unsafe impl RefEncode for WKTextInputMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle?language=objc)
+/// Constants indicating the styles for standard system alerts.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAlertControllerStyle(pub NSInteger);
 impl WKAlertControllerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/alert?language=objc)
+    /// An alert sheet with stacked buttons. The alert sheet includes a default Cancel button at the bottom of the sheet. You can add other buttons, which are placed above the Cancel button.
     #[doc(alias = "WKAlertControllerStyleAlert")]
     pub const Alert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/sidebysidebuttonsalert?language=objc)
+    /// An alert sheet with side-by-side buttons.
     #[doc(alias = "WKAlertControllerStyleSideBySideButtonsAlert")]
     pub const SideBySideButtonsAlert: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle/actionsheet?language=objc)
+    /// An action sheet style. Action sheets are modal sheets that can be dismissed using the Cancel button in the top-left corner of the sheet. You can also add one or two custom buttons to perform related tasks.
     #[doc(alias = "WKAlertControllerStyleActionSheet")]
     pub const ActionSheet: Self = Self(2);
 }
@@ -167,16 +173,16 @@ unsafe impl RefEncode for WKAlertControllerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation?language=objc)
+/// Scrolling orientations for page-based interfaces.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPageOrientation(pub NSInteger);
 impl WKPageOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation/horizontal?language=objc)
+    /// A horizontal page-based scrolling orientation.
     #[doc(alias = "WKPageOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation/vertical?language=objc)
+    /// A vertical page-based scrolling orientation.
     #[doc(alias = "WKPageOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -189,19 +195,19 @@ unsafe impl RefEncode for WKPageOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition?language=objc)
+/// Onscreen scroll positions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceScrollPosition(pub NSInteger);
 impl WKInterfaceScrollPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/top?language=objc)
+    /// The top of the screen.
     #[doc(alias = "WKInterfaceScrollPositionTop")]
     pub const Top: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/centeredvertically?language=objc)
+    /// The vertical center of the screen.
     #[doc(alias = "WKInterfaceScrollPositionCenteredVertically")]
     pub const CenteredVertically: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition/bottom?language=objc)
+    /// The bottom of the screen.
     #[doc(alias = "WKInterfaceScrollPositionBottom")]
     pub const Bottom: Self = Self(2);
 }
@@ -214,19 +220,19 @@ unsafe impl RefEncode for WKInterfaceScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity?language=objc)
+/// Constants indicating the appearance of video content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKVideoGravity(pub NSInteger);
 impl WKVideoGravity {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resizeaspect?language=objc)
+    /// Content is resized to fit the bounds rectangle, preserving the original aspect ratio of the content. Content that does not completely fill the bounds rectangle is centered in the partial axis.
     #[doc(alias = "WKVideoGravityResizeAspect")]
     pub const ResizeAspect: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resizeaspectfill?language=objc)
+    /// Content is resized to fill the bounds rectangle completely while preserving the original aspect ratio of the content. This option results in cropping of the edges of the video in the axis it exceeds.
     #[doc(alias = "WKVideoGravityResizeAspectFill")]
     pub const ResizeAspectFill: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity/resize?language=objc)
+    /// Content is resized to fit the entire bounds rectangle. This option does not preserve the original aspect ratio of the content.
     #[doc(alias = "WKVideoGravityResize")]
     pub const Resize: Self = Self(2);
 }
@@ -239,19 +245,19 @@ unsafe impl RefEncode for WKVideoGravity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset?language=objc)
+/// Constants indicating the quality of audio recordings.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioRecorderPreset(pub NSInteger);
 impl WKAudioRecorderPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/narrowbandspeech?language=objc)
+    /// Audio quality suitable for basic speech recording. This preset records audio with an 8 kHz sampling rate using either the LPCM 128 kbps or AAC 24 kbps format.
     #[doc(alias = "WKAudioRecorderPresetNarrowBandSpeech")]
     pub const NarrowBandSpeech: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/widebandspeech?language=objc)
+    /// Audio quality suitable for higher fidelity speech recording. This preset records audio with a 16 kHz sampling rate using either the LPCM 256 kbps or AAC 32 kbps format.
     #[doc(alias = "WKAudioRecorderPresetWideBandSpeech")]
     pub const WideBandSpeech: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset/highqualityaudio?language=objc)
+    /// A high-quality audio recording. This preset records audio with a 44.1 kHz sampling rate using either the LPCM 705.6 kbps or AAC 96 kbps format.
     #[doc(alias = "WKAudioRecorderPresetHighQualityAudio")]
     pub const HighQualityAudio: Self = Self(2);
 }
@@ -265,47 +271,90 @@ unsafe impl RefEncode for WKAudioRecorderPreset {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmediaplayercontrolleroptionsautoplaykey?language=objc)
+    /// The option to play a media file automatically when it is displayed. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value indicating whether the media file should begin playing automatically when the interface is displayed. Playback is also contingent upon the file being available and ready to play on Apple Watch. If you do not specify this option, the user must initiate playback.
     pub static WKMediaPlayerControllerOptionsAutoplayKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmediaplayercontrolleroptionsstarttimekey?language=objc)
+    /// The number of seconds into the media file at which to begin playback. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an [`NSTimeInterval`](https://developer.apple.com/documentation/foundation/timeinterval) value. Playback begins at the specified number of seconds past the original start point of the media file. If you do not specify this option, playback begins at the beginning of the media file.
     pub static WKMediaPlayerControllerOptionsStartTimeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmediaplayercontrolleroptionsvideogravitykey?language=objc)
+    /// The behavior for resizing the video to fit the available space. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an appropriate constant of the [`WKVideoGravity`](https://developer.apple.com/documentation/watchkit/wkvideogravity) type.
     pub static WKMediaPlayerControllerOptionsVideoGravityKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkmediaplayercontrolleroptionsloopskey?language=objc)
+    /// The behavior for playing the media in a loop. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. Set the value to [`true`](https://developer.apple.com/documentation/swift/true) to play the media file in a loop. If this key is not present, the media file plays one time and then ends.
     pub static WKMediaPlayerControllerOptionsLoopsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecordercontrolleroptionsactiontitlekey?language=objc)
+    /// The title to display on the button that the user taps to accept a recording. The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. If you do not specify this option, the button title is set to “Save”.
     pub static WKAudioRecorderControllerOptionsActionTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecordercontrolleroptionsalwaysshowactiontitlekey?language=objc)
+    /// The behavior for showing the action button. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with a Boolean value. When the value is [`true`](https://developer.apple.com/documentation/swift/true), the recording interface always shows the action button. When the value is [`false`](https://developer.apple.com/documentation/swift/false), the sheet shows the button only after the user has recorded some audio. The default value for this option is YES.
     pub static WKAudioRecorderControllerOptionsAlwaysShowActionTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecordercontrolleroptionsautorecordkey?language=objc)
+    /// The automatic recording behavior of the action sheet. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with a Boolean value. When the value is [`true`](https://developer.apple.com/documentation/swift/true), the recording interface starts recording as soon as it is presented. When the value is [`false`](https://developer.apple.com/documentation/swift/false), the user must start recording manually. The default value for this option is [`true`](https://developer.apple.com/documentation/swift/true).
     pub static WKAudioRecorderControllerOptionsAutorecordKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecordercontrolleroptionsmaximumdurationkey?language=objc)
+    /// The maximum length of recorded audio clips. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with an [`NSTimeInterval`](https://developer.apple.com/documentation/foundation/timeinterval) value containing the maximum duration in seconds. If you do not specify this option, there is no maximum recording time.
     pub static WKAudioRecorderControllerOptionsMaximumDurationKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller?language=objc)
+    /// A class that provides the infrastructure for managing the interface in a watchOS app.
+    ///
+    /// ## Overview
+    ///
+    /// An interface controller serves the same purpose as a [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) object in a UIKit app, except that it doesn’t manage any actual views. It runs in your WatchKit extension and remotely manages the behavior associated with an interface controller in your Watch app’s storyboard file. You subclass [`WKInterfaceController`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller) and use its methods to configure the elements of your storyboard scene and to respond to interactions with those elements.
+    ///
+    /// Your interface controller code runs locally on the user’s Apple Watch but is separate from the interface that it manages. When you change the value of an interface object in your code, the system forwards the needed information to your Watch app, which makes the corresponding changes onscreen.
+    ///
+    /// ### Initialize your interface controllers
+    ///
+    /// When the user interacts with your app content, the system launches your extension and creates the appropriate interface controller objects automatically. Apps use different interface controllers to manage their notification and app interfaces; WatchKit uses the information in your app’s main storyboard file to determine which interface controller to load. Notification scenes are configured specially so that the system can identify them. For your app, WatchKit loads your app’s main interface controller initially, but you may change the initial interface controller at launch time.
+    ///
+    /// When creating an interface controller, WatchKit instantiates the class and calls its [`init`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/init()) method. You can use this method to initialize variables and load data; however, don’t use it to configure your user interface. The controller’s user interface elements may not be properly initialized when this method runs.
+    ///
+    /// Next, the system calls the [`awakeWithContext:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/awake(withcontext:)) method. If WatchKit passes a valid object to the [`awakeWithContext:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/awake(withcontext:)) method, use the information in that object to customize the initialization process. Also, the controller’s user interface elements are guaranteed to be available at this point. This means that you can safely use this method to configure your user interface.
+    ///
+    /// The [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method lets you know when your interface is about to become active. Use the [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method to perform any last minute tasks, such as checking for updates to your content; however, don’t use it for your primary initialization.
+    ///
+    /// The [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method may be called at times when your interface isn’t yet onscreen. For example, WatchKit may call the method in advance so that you have time to update your content. WatchKit calls the [`didAppear`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/didappear()) method to let you know when your interface becomes visible. Similarly, WatchKit calls the [`willDisappear`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willdisappear()) and [`didDeactivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/diddeactivate()) methods when your interface moves offscreen again.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An interface controller can make changes to its interface only in the [`awakeWithContext:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/awake(withcontext:)) method, in the [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method, and while the interface is active. Once the system calls the [`didDeactivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/diddeactivate()) method, it ignores any attempts to change the value of the controller’s interface objects until the system calls the interface controller’s [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method again.
+    ///
+    ///
+    ///
+    /// </div>
+    /// In iOS Simulator, WatchKit calls the [`didDeactivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/diddeactivate()) method for the current interface controller when you lock the simulator by selecting Hardware > Lock. When you subsequently unlock the simulator, WatchKit calls that interface controller’s [`willActivate`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/willactivate()) method again. You can use this capability to debug your activation and deactivation code.
+    ///
+    /// ### Interface Builder configuration options
+    ///
+    /// Xcode lets you configure information about your interface controller in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Identifier" }] }], [Paragraph { inline_content: [Text { text: "The name of the interface controller. Use this name to specify which interface controller to push or present." }] }]], [[Paragraph { inline_content: [Text { text: "Title" }] }], [Paragraph { inline_content: [Text { text: "The title string assigned to the interface controller. You can set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/setTitle(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Is Initial Controller" }] }], [Paragraph { inline_content: [Text { text: "A Boolean indicating whether the object is the app’s root interface controller. Only one interface controller at a time may have this option enabled. This option doesn’t apply to glance or notification interface controllers." }] }]], [[Paragraph { inline_content: [Text { text: "Activity Indicator On Load" }] }], [Paragraph { inline_content: [Text { text: "A Boolean value that indicates whether the interface controller’s contents are hidden until the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willActivate()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method returns. When you enable this option, the system displays a progress indicator until the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceController/willActivate()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method returns. You might disable this option if your interface contains mostly static information that can be displayed right away." }] }]], [[Paragraph { inline_content: [Text { text: "Always Bounce" }] }], [Paragraph { inline_content: [Text { text: "A Boolean value that turns off scrolling and allows built-in controls and containers to fill content to the screen edges, regardless of the content-safe area." }] }]], [[Paragraph { inline_content: [Text { text: "Full Screen" }] }], [Paragraph { inline_content: [Text { text: "A Boolean value that determines whether SpriteKit or SceneKit content can use the full screen. The system hides the status bar but displays the time in the upper-right corner with a gradient behind it, making the time clearly visible against the scene." }] }]], [[Paragraph { inline_content: [Text { text: "Fixed to screen edges" }] }], [Paragraph { inline_content: [Text { text: "A Boolean value that indicates whether the contents ignore the safe area and minimum layout margins. When you enable this option, the system turns off scrolling, and allows built-in controls and containers to fill content to the screen edges." }] }]], [[Paragraph { inline_content: [Text { text: "Background" }] }], [Paragraph { inline_content: [Text { text: "The background image displayed behind the scene’s content. The image specified in your storyboard scrolls with your interface controller’s content." }] }]], [[Paragraph { inline_content: [Text { text: "Mode" }] }], [Paragraph { inline_content: [Text { text: "The content mode for the background image. This mode defines how the background image scales or fills the screen and behaves in the same way as the constants for the " }, Reference { identifier: "doc://com.apple.documentation/documentation/UIKit/UIView/ContentMode-swift.enum", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " type." }] }]], [[Paragraph { inline_content: [Text { text: "Animate" }] }], [Paragraph { inline_content: [Text { text: "A Boolean value indicating whether an animated background image starts running its animation automatically after being loaded. Set this option to " }, CodeVoice { code: "Yes" }, Text { text: " if you want the animation to start automatically; set it to " }, CodeVoice { code: "No" }, Text { text: " if you prefer to start the animation programmatically." }] }]], [[Paragraph { inline_content: [Text { text: "Color" }] }], [Paragraph { inline_content: [Text { text: "The background color to be displayed behind the scene’s content." }] }]], [[Paragraph { inline_content: [Text { text: "Insets" }] }], [Paragraph { inline_content: [Text { text: "The amount of space (in points) to insert between the edges of the interface controller and its content. Select Custom to specify different values for the top, bottom, left, and right edges." }] }]], [[Paragraph { inline_content: [Text { text: "Spacing" }] }], [Paragraph { inline_content: [Text { text: "Additional spacing (in points) to include between items in the interface controller." }] }]]], alignments: None, metadata: None })
+    /// ### Subclassing notes
+    ///
+    /// Subclass `WKInterfaceController` when you have a storyboard scene that requires configuration at runtime or that handles user interactions. Typically, you define a custom subclass for each unique storyboard scene that your app manages. In your subclass, define outlets for any interface objects you need to configure and define action methods for responding to interactions with the elements of your storyboard scene.
+    ///
+    /// Most custom interface controllers you use in your app require a custom interface controller subclass. Even glances need an interface controller to update the glance contents. The only storyboard scene that can’t use a custom interface controller is the scene associated with a static notification interface. When implementing an interface controller for your dynamic notification interface, subclass [`WKUserNotificationInterfaceController`](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller) instead.
+    ///
+    /// Override any methods of the class needed to configure your interface and get it ready to display. Most interface controllers override the [`init`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/init()) and [`awakeWithContext:`](https://developer.apple.com/documentation/watchkit/wkinterfacecontroller/awake(withcontext:)) methods. Override any other methods that make sense based on your needs.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -719,7 +768,39 @@ impl WKInterfaceController {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller?language=objc)
+    /// An interface controller object that manages a dynamic user interface for a local or remote notification.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that support notifications can define one or more subclasses of [`WKUserNotificationInterfaceController`](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller) and use them to implement their dynamic notification interfaces. For example, you might use a dynamic interface to display custom data from the notification payload or add related graphics.
+    ///
+    /// To create the custom notification interface, add a notification interface controller to your storyboard. Interface Builder provides a static interface and you can add a dynamic interface as needed. Set the class of the dynamic interface controller to the name of your [`WKUserNotificationInterfaceController`](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller) subclass.
+    ///
+    /// Apps can include multiple notification interfaces in their storyboard file, and associate each interface with a different category. Categories define the purpose of an incoming notification and are custom to your app. In Interface Builder, specify the category information for each of your notification interfaces using the notification category object attached to the static notification interface controller. When sending notifications to a user, add the appropriate category string to the remote notification payload or set the string in the [`categoryIdentifier`](https://developer.apple.com/documentation/usernotifications/unnotificationcontent/categoryidentifier) property of a local notification.
+    ///
+    /// After initializing your interface controller, WatchKit calls the [`didReceiveNotification:`](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacecontroller/didreceive(_:)) method to provide you with the payload data from the notification. Your implementations of those methods should update any interface objects and call the provided completion handler as quickly as possible. If you don’t call the completion handler in a timely manner, WatchKit displays your static notification interface instead.
+    ///
+    /// ### Actionable Notifications
+    ///
+    /// For each category your app supports, you can also register actions for that category. When a category has registered actions, WatchKit adds a button for each action to the corresponding static or dynamic notification interface. Because the system automatically adds the buttons, don’t manually add your own to your custom notification interface. For more information about registering actions, see [Declaring your actionable notification types](https://developer.apple.com/documentation/usernotifications/declaring-your-actionable-notification-types).
+    ///
+    /// When the user taps an action button, the system launches your app and calls your notification delegate’s [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method. The response parameter’s [`actionIdentifier`](https://developer.apple.com/documentation/usernotifications/unnotificationresponse/actionidentifier) property contains the identifier for the selected action. Implement your delegate’s [`userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate/usernotificationcenter(_:didreceive:withcompletionhandler:)) method to check this identifier, and then perform the corresponding task. For more information, see [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    /// The following rules define where the system handles the action:
+    ///
+    /// - The system always handles foreground actions on the device where the user selected the action. For example, if you send a remote notification to the user’s iPhone and the system automatically forwards it to their Apple Watch, tapping the action runs it on the watch.
+    ///
+    /// - The system always handles background actions on the device that was the notification’s target. For example, if you send a notification to the user’s iPhone and the system automatically forwards it to their Apple Watch, tapping the action runs it in the background on their iPhone.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your notification interface controller in your storyboard file. A notification interface controller supports almost all of the attributes associated with its parent class plus those in the following table.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Has Dynamic Interface" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the app supports a dynamic interface for notifications of this type. WatchKit displays dynamic interfaces whenever possible, but WatchKit may fall back to using your static interface because of power restrictions or when your WatchKit extension doesn’t respond in a timely manner. " }, Image { identifier: "spacer", metadata: None }, Text { text: " Apple Watch always displays the static interface in Notification Center." }] }]]], alignments: None, metadata: None })
+    /// The notification category object associated with your notification interface controllers also contains configurable attributes. The following table lists the attributes of the notification category object and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Name" }] }], [Paragraph { inline_content: [Text { text: "The name of the category that this interface supports. For local notifications, this value corresponds to the string in the " }, Reference { identifier: "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationContent/categoryIdentifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property of the " }, Reference { identifier: "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationContent", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object. For remote notifications, it’s the string in the " }, CodeVoice { code: "category" }, Text { text: " key in the payload. When a notification arrives, WatchKit uses the category string in the notification to decide which of your interface controllers to display." }] }]], [[Paragraph { inline_content: [Text { text: "Sash Color" }] }], [Paragraph { inline_content: [Text { text: "The color to apply to the sash at the top of the long-look notification interface." }] }]], [[Paragraph { inline_content: [Text { text: "Wants Sash Blur" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the sash includes a blur effect over the background." }] }]], [[Paragraph { inline_content: [Text { text: "Title Color" }] }], [Paragraph { inline_content: [Text { text: "The color to apply to the text displayed in the sash." }] }]], [[Paragraph { inline_content: [Text { text: "Description" }] }], [Paragraph { inline_content: [Text { text: "The format string to display when multiple notifications of the same type arrive simultaneously. If you specify a custom string, you can use the " }, CodeVoice { code: "%d" }, Text { text: " variable to reflect the number of notifications. If you don’t specify a custom string, WatchKit uses the string " }, CodeVoice { code: "%d Notifications" }, Text { text: " to reflect the number of notifications that arrived." }] }]], [[Paragraph { inline_content: [Text { text: "Has Dynamic Interface" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the app supports dynamic interfaces for notifications of this type. WatchKit displays dynamic interfaces whenever possible, but it may fall back to using your static interface because of power restrictions or when your WatchKit extension doesn’t respond in a timely manner. " }, Image { identifier: "spacer", metadata: None }, Text { text: " Apple Watch always displays the static interface in Notification Center." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

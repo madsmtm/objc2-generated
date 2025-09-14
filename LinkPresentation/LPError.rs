@@ -7,40 +7,34 @@ use crate::*;
 
 extern "C" {
     /// The domain for Link Presentation errors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperrordomain?language=objc)
+    /// The domain for Link Presentation errors.
     pub static LPErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code?language=objc)
+/// Possible error values that can be returned from LinkPresentation APIs.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LPErrorCode(pub NSInteger);
 impl LPErrorCode {
     /// An unknown error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/unknown?language=objc)
+    /// An unknown error.
     #[doc(alias = "LPErrorUnknown")]
     pub const Unknown: Self = Self(1);
     /// An error indicating that a metadata fetch failed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchfailed?language=objc)
+    /// An error indicating that a metadata fetch failed.
     #[doc(alias = "LPErrorMetadataFetchFailed")]
     pub const MetadataFetchFailed: Self = Self(2);
     /// An error indicating that the metadata fetch was canceled by the client.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchcancelled?language=objc)
+    /// An error indicating that the metadata fetch was canceled by the client.
     #[doc(alias = "LPErrorMetadataFetchCancelled")]
     pub const MetadataFetchCancelled: Self = Self(3);
     /// An error indicating that the metadata fetch took longer than allowed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchtimedout?language=objc)
+    /// An error indicating that the metadata fetch took longer than allowed.
     #[doc(alias = "LPErrorMetadataFetchTimedOut")]
     pub const MetadataFetchTimedOut: Self = Self(4);
     /// An error indicating that the metadata fetch was not allowed due to system policies.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/linkpresentation/lperror/code/metadatafetchnotallowed?language=objc)
+    /// An error indicating that the metadata fetch was not allowed due to system policies.
     #[doc(alias = "LPErrorMetadataFetchNotAllowed")]
     pub const MetadataFetchNotAllowed: Self = Self(5);
 }

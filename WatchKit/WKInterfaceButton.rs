@@ -10,7 +10,28 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacebutton?language=objc)
+    /// A button in the user interface of your watchOS app.
+    ///
+    /// ## Overview
+    ///
+    /// The content of a button’s tappable area is filled with text and an optional background color or image. When tapped by the user, the button calls its associated action method, which you define on the owning interface controller. Use that action method to initiate tasks and update your app’s interface.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a button object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myButton: WKInterfaceButton!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceButton* myButton;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen button.
+    ///
+    /// To respond to taps in the button, declare a method of this form in the interface controller class that manages the button:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func buttonAction()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)buttonAction"], metadata: None }] }] })
+    /// You can change the name of your action method to anything you like. In your Xcode storyboard, connect the button’s selector to the custom action method defined in your class.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your button interface object in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Content" }] }], [Paragraph { inline_content: [Text { text: "The type of content contained in the button. A button can contain a single text label or a group. For buttons containing a group, you can add text, images, and other objects to the group." }] }]], [[Paragraph { inline_content: [Text { text: "Title" }] }], [Paragraph { inline_content: [Text { text: "The title string assigned to the interface controller. You can also set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setTitle(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setAttributedTitle(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Color (Button)" }] }], [Paragraph { inline_content: [Text { text: "The color to apply to the button’s title." }] }]], [[Paragraph { inline_content: [Text { text: "Font" }] }], [Paragraph { inline_content: [Text { text: "The font to apply to the button’s title. You can set font information programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setAttributedTitle(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Enabled" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the button is enabled and sends events when tapped. You can also configure this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setEnabled(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Background" }] }], [Paragraph { inline_content: [Text { text: "The background image to display in the button. You can also set this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setBackgroundImage(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setBackgroundImageData(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", or " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceButton/setBackgroundImageNamed(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Color (Background)" }] }], [Paragraph { inline_content: [Text { text: "The background color for the button." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

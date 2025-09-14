@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that specifies properties used by a neuron kernel.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSNNNeuronDescriptor specifies a neuron descriptor.
@@ -71,8 +72,6 @@ extern_class!(
     /// by setting the parameter b to 6.0f:
     /// https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/relu6.
     /// For default behavior, set the value of a to 1.0f and the value of b to 6.0f.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnneurondescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNNeuronDescriptor;
@@ -253,6 +252,13 @@ impl MPSNNNeuronDescriptor {
 }
 
 extern_class!(
+    /// A filter that applies a neuron activation function.
+    ///
+    /// ## Overview
+    ///
+    /// Do not use this class directly; use one of the [`MPSCNNNeuron`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuron) subclasses instead.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// This filter applies a neuron activation function.
@@ -307,8 +313,6 @@ extern_class!(
     /// MPSCNNNeuronTypeGeLU            ///
     /// <
     /// f(x) = (1.0 + erf(x * sqrt(0.5))) * 0.5 * x
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuron?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -457,6 +461,7 @@ impl MPSCNNNeuron {
 }
 
 extern_class!(
+    /// A gradient neuron filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// This filter is a backward filter for the neuron activation function filter.
@@ -531,8 +536,6 @@ extern_class!(
     ///
     /// The result of the above operation is multiplied with the gradient, computed
     /// by the preceeding filter (going backwards).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurongradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -681,11 +684,20 @@ impl MPSCNNNeuronGradient {
 }
 
 extern_class!(
+    /// A linear neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = a * x + b](https://docs-assets.developer.apple.com/published/b44cee07d047df5bb5c706c0a9e0a6a4/media-2903542%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the linear neuron filter. For each pixel, applies the following function: f(x) = a * x + b
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlinear?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -838,6 +850,19 @@ impl MPSCNNNeuronLinear {
 }
 
 extern_class!(
+    /// A ReLU (Rectified Linear Unit) neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = x if x >= 0 | a * x if x < 0](https://docs-assets.developer.apple.com/published/3594c12f5cf297de5d13dd1755397c23/media-2903544%402x.png)
+    ///
+    ///
+    /// This filter is called _l__eaky ReLU_ in CNN literature. Some CNN literature defines _classical_ _ReLU_ as `max(0, x)`. If you want this behavior, simply set the `a` property to `0`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the ReLU neuron filter.
@@ -847,8 +872,6 @@ extern_class!(
     /// 0
     /// This is called Leaky ReLU in literature. Some literature defines
     /// classical ReLU as max(0, x). If you want this behavior, simply pass a = 0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -998,6 +1021,19 @@ impl MPSCNNNeuronReLU {
 }
 
 extern_class!(
+    /// A parametric ReLU (Rectified Linear Unit) neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x_i) = x_i, if x_i >= 0 | a_i * x_i if x_i < 0](https://docs-assets.developer.apple.com/published/95c19cdea26a32c5047215a3d05cd831/media-2923194%402x.png)
+    ///
+    ///
+    /// Where `i` in `[0 ... channels - 1]`. That is, parameters `a``ᵢ` are learned and applied to each channel separately. Compare this to [`MPSCNNNeuronReLU`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelu) where parameter `a` is shared across all channels.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the parametric ReLU neuron filter.
@@ -1009,8 +1045,6 @@ extern_class!(
     /// i.e. parameters a_i are learned and applied to each channel separately. Compare
     /// this to ReLu where parameter a is shared across all channels.
     /// See https://arxiv.org/pdf/1502.01852.pdf for details.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronprelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1168,11 +1202,20 @@ impl MPSCNNNeuronPReLU {
 }
 
 extern_class!(
+    /// A sigmoid neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = 1 / (1 + e^-x)](https://docs-assets.developer.apple.com/published/65487cbdd9b7706b4caf87008947837d/media-2903545%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the sigmoid neuron filter.  For each pixel, applies the following function: f(x) = 1 / (1 + e^-x)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsigmoid?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1312,11 +1355,20 @@ impl MPSCNNNeuronSigmoid {
 }
 
 extern_class!(
+    /// A hard sigmoid neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = clamp((a * x) + b, 0, 1)](https://docs-assets.developer.apple.com/published/4205d99219acb5a3f88a4bb486e7de2b/media-2903540%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the hard sigmoid neuron filter.  For each pixel, applies the following function: f(x) = clamp((a * x) + b, 0, 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronhardsigmoid?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1469,12 +1521,21 @@ impl MPSCNNNeuronHardSigmoid {
 }
 
 extern_class!(
+    /// A hyperbolic tangent neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = a * tanh(b * x)](https://docs-assets.developer.apple.com/published/b88b212a126a6043e53bd34fe1846fd9/media-2903548%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the hyperbolic tangent neuron filter.
     /// For each pixel, applies the following function: f(x) = a * tanh(b * x)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontanh?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1627,11 +1688,20 @@ impl MPSCNNNeuronTanH {
 }
 
 extern_class!(
+    /// An absolute neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = | x |](https://docs-assets.developer.apple.com/published/4761831cbf9e0c262f333c4545f46a23/media-2903538%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the absolute neuron filter.  For each pixel, applies the following function: f(x) = | x |
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronabsolute?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1771,12 +1841,21 @@ impl MPSCNNNeuronAbsolute {
 }
 
 extern_class!(
+    /// A parametric softplus neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = a * log(1 + e^(b * x))](https://docs-assets.developer.apple.com/published/2d44780bc7adfe922470d03b38d4ccf3/media-2903546%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the parametric softplus neuron filter.
     /// For each pixel, applies the following function: f(x) = a * log(1 + e^(b * x))
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftplus?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -1929,12 +2008,21 @@ impl MPSCNNNeuronSoftPlus {
 }
 
 extern_class!(
+    /// A softsign neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = x / (1 + abs(x))](https://docs-assets.developer.apple.com/published/de97dbe062a4f937c9617e78b48e0d33/media-2903547%402x.png)
+    ///
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the softsign neuron filter.
     /// For each pixel, applies the following function: f(x) = x / (1 + abs(x))
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronsoftsign?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2074,6 +2162,15 @@ impl MPSCNNNeuronSoftSign {
 }
 
 extern_class!(
+    /// A parametric ELU neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    /// ![f(x) = a * (exp(x) - 1) if x <  0 | f(x) = [ a * (exp(x) - 1) if x <  0](media-2903539)
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the parametric ELU neuron filter.
@@ -2081,8 +2178,6 @@ extern_class!(
     /// <
     /// 0
     /// [ x               , x >= 0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronelu?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2232,6 +2327,19 @@ impl MPSCNNNeuronELU {
 }
 
 extern_class!(
+    /// A ReLUN neuron filter.
+    ///
+    /// ## Overview
+    ///
+    /// For each pixel in an image, the filter applies the following function:
+    ///
+    ///
+    /// ![f(x) = x , x >= 0 |  a * x, x <  0 |  b , x >= b](https://docs-assets.developer.apple.com/published/e6dedfb2f9e4f6bf206255a219d3da48/media-2923195%402x.png)
+    ///
+    ///
+    /// The default value of `a` is 1.0 and the default value of `b` is 6.0.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// Specifies the ReLUN neuron filter.
@@ -2243,8 +2351,6 @@ extern_class!(
     /// As an example, the TensorFlow Relu6 activation layer can be implemented
     /// by setting the parameter b to 6.0f:
     /// https://www.tensorflow.org/api_docs/cc/class/tensorflow/ops/relu6.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronrelun?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2397,12 +2503,11 @@ impl MPSCNNNeuronReLUN {
 }
 
 extern_class!(
+    /// A power neuron filter.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the Power neuron filter.
     /// For each pixel, applies the following function: f(x) = (a * x + b) ^ c.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronpower?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2558,14 +2663,13 @@ impl MPSCNNNeuronPower {
 }
 
 extern_class!(
+    /// An exponential neuron filter.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the Exponential neuron filter.
     /// For each pixel, applies the following function: f(x) = c ^ (a * x + b).
     ///
     /// If the value of c is -1.0f, the base (c) is set to e.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronexponential?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -2721,14 +2825,13 @@ impl MPSCNNNeuronExponential {
 }
 
 extern_class!(
+    /// A logarithm neuron filter.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the Logarithm neuron filter.
     /// For each pixel, applies the following function: f(x) = log_c(a * x + b).
     ///
     /// If the value of c is -1.0f, the base (c) is set to e.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneuronlogarithm?language=objc)
     #[unsafe(super(MPSCNNNeuron, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

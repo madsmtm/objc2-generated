@@ -6,9 +6,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// The MTLParallelRenderCommandEncoder protocol is designed to allow a single render to texture operation to be efficiently (and safely) broken up across multiple threads.
+    /// An instance that splits up a single render pass so that it can be simultaneously encoded from multiple threads.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder?language=objc)
+    /// ## Overview
+    ///
+    /// Your app does not define classes that implement this protocol. To create an [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) instance, call the [`parallelRenderCommandEncoderWithDescriptor:`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeparallelrendercommandencoder(descriptor:)) method of the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance that you want to encode the rendering commands into. Then, call the renderCommandEncoder method on this [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) instance to create one or more [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) instances. The subordinate [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) instances created encode their commands to the same command buffer and target the same [`MTLRenderPassAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpassattachmentdescriptor) instance. The [`MTLParallelRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlparallelrendercommandencoder) instance ensures the attachment load and store actions only occur at the start and end of the entire rendering pass.
+    ///
+    /// You can assign each [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) to its own thread and each can encode commands in parallel. You are responsible for any thread synchronization that is required. After all the subordinate encoders have finished encoding their commands, call [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) to execute the commands. The rendering commands are executed in the order that the subordinate encoders were created.
+    ///
+    ///
+    /// The MTLParallelRenderCommandEncoder protocol is designed to allow a single render to texture operation to be efficiently (and safely) broken up across multiple threads.
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLParallelRenderCommandEncoder: MTLCommandEncoder {
         #[cfg(feature = "MTLRenderCommandEncoder")]

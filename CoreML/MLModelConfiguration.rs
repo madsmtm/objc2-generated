@@ -10,22 +10,32 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits?language=objc)
+/// The set of processing-unit configurations the model can use to make predictions.
+///
+/// ## Overview
+///
+/// Use this enumeration to set or inspect the processing units you allow a model to use when it makes a prediction.
+///
+/// Use `all` to allow the OS to select the best processing unit to use (including the neural engine, if available).
+///
+/// Use [`MLComputeUnitsCPUOnly`](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuonly) to restrict the model to the CPU, if your app might run in the background or runs other GPU intensive tasks.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLComputeUnits(pub NSInteger);
 impl MLComputeUnits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuonly?language=objc)
+    /// The option you choose to limit the model to only use the CPU.
     #[doc(alias = "MLComputeUnitsCPUOnly")]
     pub const CPUOnly: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuandgpu?language=objc)
+    /// The option you choose to allow the model to use both the CPU and GPU, but not the neural engine.
     #[doc(alias = "MLComputeUnitsCPUAndGPU")]
     pub const CPUAndGPU: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/all?language=objc)
+    /// The option you choose to allow the model to use all compute units available, including the neural engine.
     #[doc(alias = "MLComputeUnitsAll")]
     pub const All: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeunits/cpuandneuralengine?language=objc)
+    /// The option you choose to allow the model to use both the CPU and neural engine, but not the GPU.
     #[doc(alias = "MLComputeUnitsCPUAndNeuralEngine")]
     pub const CPUAndNeuralEngine: Self = Self(3);
 }
@@ -39,9 +49,24 @@ unsafe impl RefEncode for MLComputeUnits {
 }
 
 extern_class!(
-    /// An object to hold options for loading a model.
+    /// The settings for creating or updating a machine learning model.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// Use a model configuration to:
+    ///
+    /// - Set or override model parameters.
+    ///
+    /// - Designate which device the model uses to make predictions, such as a GPU.
+    ///
+    /// - Restrict the model to use a specific computational device category, such as a CPU.
+    ///
+    /// You typically use a model configuration instance to configure an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) instance as you create it with [`modelWithContentsOfURL:configuration:error:`](https://developer.apple.com/documentation/coreml/mlmodel/init(contentsof:configuration:)) or create an [`MLUpdateTask`](https://developer.apple.com/documentation/coreml/mlupdatetask). See [Personalizing a Model with On-Device Updates](https://developer.apple.com/documentation/coreml/personalizing-a-model-with-on-device-updates).
+    ///
+    /// Configure your model parameters by setting values for each relevant [`MLParameterKey`](https://developer.apple.com/documentation/coreml/mlparameterkey) in the [`parameters`](https://developer.apple.com/documentation/coreml/mlmodelconfiguration/parameters) property.
+    ///
+    ///
+    /// An object to hold options for loading a model.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelConfiguration;

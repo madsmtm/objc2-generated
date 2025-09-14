@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingmethod?language=objc)
+    /// An object that defines a shipping method for delivering physical goods.
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

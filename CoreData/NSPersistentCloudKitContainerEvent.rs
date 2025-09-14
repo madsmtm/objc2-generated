@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype?language=objc)
+/// The type of event in a persistent CloudKit container, either setup, import, or export.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerEventType(pub NSInteger);
 impl NSPersistentCloudKitContainerEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/setup?language=objc)
+    /// An event the persistent CloudKit container generates when setting up a store.
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeSetup")]
     pub const Setup: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/import?language=objc)
+    /// An event the persistent CloudKit container generates when importing records into a store.
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeImport")]
     pub const Import: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype/export?language=objc)
+    /// An event the persistent CloudKit container generates when exporting managed objects from a store.
     #[doc(alias = "NSPersistentCloudKitContainerEventTypeExport")]
     pub const Export: Self = Self(2);
 }
@@ -32,17 +32,17 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerEventType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventchangednotification?language=objc)
+    /// A notification that contains details about an event in a persistent CloudKit container.
     pub static NSPersistentCloudKitContainerEventChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventnotificationuserinfokey?language=objc)
+    /// The user info dictionary key for the persistent CloudKit container event.
     pub static NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event?language=objc)
+    /// An object that represents activity in a persistent CloudKit container.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEvent;

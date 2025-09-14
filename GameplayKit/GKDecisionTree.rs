@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode?language=objc)
+    /// A node for use in manually creating decision trees, representing a specific question and possible answers, or an action that follows from answering other questions.
+    ///
+    /// ## Overview
+    ///
+    /// A [`GKDecisionNode`](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode) instance represents an element in a decision tree (a [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree) object). Decision trees contain two kinds of nodes. Some nodes, including the tree’s root node, represent individual decisions to be made (also called a question or _attribute_) and reference child nodes for each possible outcome of (or _branch_ from) that decision. Each branch can lead to another question node, or to a leaf node—nodes that have no branches represent a final outcome (or _action_) to result from the tree’s decision-making process. After creating a decision tree from a set of nodes, you can present the tree with a set of inputs (values for attributes, or answers to questions) and the tree provides a final action that follows from the branches corresponding to each attribute.
+    ///
+    /// There are two ways to create a decision tree. You use the [`GKDecisionNode`](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode) class directly only when you want to define an entire decision tree manually—that is, to specify each question, the possible branches from each question, and the possible final actions. To create such a decision tree, start with the [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree)  [`initWithAttribute:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/init(attribute:)) initializer, then use the methods listed in Creating Child Nodes for Decision Branches to add branches to the tree.
+    ///
+    /// To instead automatically learn a decision tree given a set of questions and example answers, use the [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree)  [`initWithExamples:actions:attributes:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/init(examples:actions:attributes:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKDecisionNode;
@@ -99,7 +109,59 @@ impl GKDecisionNode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree?language=objc)
+    /// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
+    ///
+    /// ## Overview
+    ///
+    /// You can define a decision tree manually, by specifying questions, answers, and actions, or you can allow the [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree) class to automatically learn a predictive model based on example data. A decision tree has several elements:
+    ///
+    /// - _Attributes_ represent individual questions to be answered or choices to be made.
+    ///
+    /// - _Branches_ are the possible answers to the questions or choices posed by each attribute.
+    ///
+    /// - _Actions_ are the final outcomes of the tree’s decision-making process. Each branch from an attribute leads either to another attribute or to an action.
+    ///
+    /// When you use the [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree) class, attributes and actions can be any object type relevant to your app or game. You can define branches for specific answer values, using predicates, or with weights that influence a random decision. For example, a strategy combat game might use a decision tree to choose what a character should do on its turn, based on several criteria about the match in progress. In this case:
+    ///
+    /// - For attributes, you might use (non-user-visible) strings that represent those criteria, such as `"Type?"` (what type of enemy is the character’s opponent?), `"HP?"` (how much health does the opponent have remaining?), and `"Special?"` (is the character’s special move available for use?).
+    ///
+    /// - For branches, you’d use an appropriate style for each attribute. The `"Type?"` attribute might have a branch for each possible enemy type, but the `"HP?"` attribute could use predicates to determine whether the enemy’s health is above or below a certain threshold value.
+    ///
+    /// - For actions, you might define your own enumerated type representing the kinds of attacks the character can choose (such as `Pound`, `Tackle`, and `Barrier`). Alternately, you might use instances of your own custom classes representing items or spells available to the character.
+    ///
+    /// [Figure 1](/documentation/gameplaykit/gkdecisiontree#1965709) illustrates a possible tree structure based on the above example attributes, branches, and actions.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/830b9b95793f8ae2657e979f69f65b17/media-1965709%402x.png)
+    ///
+    ///
+    /// ### Creating a Decision Tree
+    ///
+    /// The [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree) class offers two ways to create decision trees.
+    ///
+    /// In a _manually defined decision tree_, you define each attribute to be tested (or question to be asked), the possible branches (or answers) from each attribute, and the actions (or final outcomes) resulting from each complete series of attribute tests and branches. To manually create a tree, start by using the [`initWithAttribute:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/init(attribute:)) initializer to define the first question to be asked. Then, use [`GKDecisionNode`](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode) methods on the new tree’s [`rootNode`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/rootnode) object to define branches and the child nodes they lead to, with accompanying attribute or action values.
+    ///
+    /// In a _learned decision tree_, you provide a set of attributes (or questions); a body of example items, each of which represents a set of attribute values (or answers to questions); and the final action to be taken for each example. The [`GKDecisionTree`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree) class then automatically infers a decision tree structure that, when presented with a set of attribute values matching or similar to one of your examples, predicts the corresponding action. To create a learned decision tree, use the [`initWithExamples:actions:attributes:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/init(examples:actions:attributes:)) initializer. The following table shows sample input for a learned decision tree (based on the same hypothetical game shown in [Figure 1](/documentation/gameplaykit/gkdecisiontree#1965709)).
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Opponent Type " }, Image { identifier: "spacer", metadata: None }, Text { text: " (“Type?” attribute)" }] }], [Paragraph { inline_content: [Text { text: "Opponent Health " }, Image { identifier: "spacer", metadata: None }, Text { text: " (“HP?” attribute)" }] }], [Paragraph { inline_content: [Text { text: "Can Use Special Move " }, Image { identifier: "spacer", metadata: None }, Text { text: " (“Special?” attribute)" }] }], [Paragraph { inline_content: [Text { text: "Move to Use " }, Image { identifier: "spacer", metadata: None }, Text { text: " (Action)" }] }]], [[Paragraph { inline_content: [Text { text: "Electric" }] }], [Paragraph { inline_content: [Text { text: "10" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Text { text: "Psychic Strike" }] }]], [[Paragraph { inline_content: [Text { text: "Electric" }] }], [Paragraph { inline_content: [Text { text: "30" }] }], [Paragraph { inline_content: [Text { text: "No" }] }], [Paragraph { inline_content: [Text { text: "Pound" }] }]], [[Paragraph { inline_content: [Text { text: "Electric" }] }], [Paragraph { inline_content: [Text { text: "40" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Text { text: "Barrier" }] }]], [[Paragraph { inline_content: [Text { text: "Fire" }] }], [Paragraph { inline_content: [Text { text: "10" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }], [Paragraph { inline_content: [Text { text: "Pound" }] }]], [[Paragraph { inline_content: [Text { text: "Fire" }] }], [Paragraph { inline_content: [Text { text: "30" }] }], [Paragraph { inline_content: [Text { text: "No" }] }], [Paragraph { inline_content: [Text { text: "Tackle" }] }]], [[Paragraph { inline_content: [Text { text: "Water" }] }], [Paragraph { inline_content: [Text { text: "10" }] }], [Paragraph { inline_content: [Text { text: "No" }] }], [Paragraph { inline_content: [Text { text: "Pound" }] }]], [[Paragraph { inline_content: [Text { text: "Water" }] }], [Paragraph { inline_content: [Text { text: "40" }] }], [Paragraph { inline_content: [Text { text: "No" }] }], [Paragraph { inline_content: [Text { text: "Tackle" }] }]]], alignments: None, metadata: None })
+    /// After creating either kind of decision tree, you can use the inherited [`description`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/description) property to examine its structure.
+    ///
+    /// ### Making Decisions
+    ///
+    /// After you’ve created a tree, use the [`findActionForAnswers:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/findaction(foranswers:)) method to evaluate it and choose an action. When you call that method, you provide a set of inputs (values for attributes, or answers to questions), and the tree follows the branches corresponding to each input value to produce an action.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  When defining an attribute with a small set of possible values, define your own enum type to name the possible values. Then use the underlying numeric value of that enum when building trees with the [`GKDecisionNode`](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode) [`createBranchWithValue:attribute:`](https://developer.apple.com/documentation/gameplaykit/gkdecisionnode/createbranch(value:attribute:)) method or the [`initWithExamples:actions:attributes:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/init(examples:actions:attributes:)) initializer, and when passing a set of attribute values to the [`findActionForAnswers:`](https://developer.apple.com/documentation/gameplaykit/gkdecisiontree/findaction(foranswers:)) method.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For example, the following code evaluates a tree similar to the examples in [Figure 1](/documentation/gameplaykit/gkdecisiontree#1965709) and the table above:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let answers = [", "    \"Type?\": MyEnemyType.Electric.rawValue, // an enum value", "    \"HP?\": 20,", "    \"Special?\": true,", "]", "let action = myDecisionTree.findAction(forAnswers: answers)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDictionary *answers = @{", "    @\"Type?\" : @(MyEnemyTypeElectric), // an enum value", "    @\"HP?\" : @20,", "    @\"Special?\" : @YES,", "};", "NSString *action = [myDecisionTree findActionForAnswers:answers];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKDecisionTree;

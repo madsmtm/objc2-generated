@@ -7,36 +7,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption?language=objc)
+/// A structure that defines playback configuration options for an asset.
 // NS_TYPED_ENUM
 pub type AVAssetPlaybackConfigurationOption = NSString;
 
 extern "C" {
+    /// An option that indicates whether the asset can render as stereo video.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps may use this property to determine whether to configure stereo video rendering.
+    ///
+    ///
     /// Indicates whether or not the asset can be rendered as stereo video.
     ///
     /// Clients may use this property to determine whether to configure stereo video rendering.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/stereovideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern "C" {
+    /// An option that indicates whether the asset is in a multiview compression format and can render as stereo video.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps may use this property to determine whether to configure stereo video rendering.
+    ///
+    ///
     /// Indicates whether or not the asset can rendered as stereo video and is also in a multiview compression format.
     ///
     /// Clients may use this property to determine whether to configure stereo video rendering.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/stereomultiviewvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoMultiviewVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern "C" {
+    /// An option that indicates whether the asset can render as spatial video.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps may use this property to determine whether to configure spatial video rendering.
+    ///
+    ///
     /// Indicates whether or not the asset can be rendered as spatial video.
     ///
     /// Clients may use this property to determine whether to configure spatial video rendering.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/spatialvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionSpatialVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -44,9 +59,14 @@ extern "C" {
 extern "C" {
     /// Indicates whether the asset calls for the use of a non-rectilinear projection for rendering video.
     ///
+    /// ## Discussion
+    ///
     /// Clients may use this property to determine whether to configure a non-rectilinear projection when displaying video.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/nonrectilinearprojection?language=objc)
+    ///
+    /// Indicates whether the asset calls for the use of a non-rectilinear projection for rendering video.
+    ///
+    /// Clients may use this property to determine whether to configure a non-rectilinear projection when displaying video.
     pub static AVAssetPlaybackConfigurationOptionNonRectilinearProjection:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -54,19 +74,23 @@ extern "C" {
 extern "C" {
     /// Indicates whether the asset is Apple Immersive Video.
     ///
+    /// ## Discussion
+    ///
     /// Clients may use this property to switch into specific display and control modes for Apple Immersive Video playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/appleimmersivevideo?language=objc)
+    ///
+    /// Indicates whether the asset is Apple Immersive Video.
+    ///
+    /// Clients may use this property to switch into specific display and control modes for Apple Immersive Video playback.
     pub static AVAssetPlaybackConfigurationOptionAppleImmersiveVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
 
 extern_class!(
+    /// An object that provides playback information for an asset.
     /// AVAssetPlaybackAssistant provides playback information for an asset.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackassistant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetPlaybackAssistant;

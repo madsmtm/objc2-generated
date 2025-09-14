@@ -8,7 +8,37 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarditem?language=objc)
+    /// An item on a pasteboard.
+    ///
+    /// ## Overview
+    ///
+    /// There are three main uses for an [`NSPasteboardItem`](https://developer.apple.com/documentation/appkit/nspasteboarditem) object:
+    ///
+    /// - Providing data on the pasteboard.
+    ///
+    /// You can create one or more pasteboard items, set data or data providers for types, and write them to the pasteboard.
+    ///
+    /// - Customizing data already on the pasteboard.
+    ///
+    /// As a delegate or subclass, you can retrieve the pasteboard items currently on the pasteboard, read the existing types and data, and set new data and data providers for types as necessary.
+    ///
+    /// - Retrieving data from the pasteboard.
+    ///
+    /// You can retrieve pasteboard items from the pasteboard and then read the data for types you’re interested in.
+    ///
+    /// A pasteboard item can be associated with a single pasteboard. When you create an item, you can write it to any pasteboard. When you pass an item to a pasteboard in [`writeObjects:`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)), that item becomes bound to the pasteboard it writes to. When you retrieve items from a pasteboard using [`pasteboardItems`](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboarditems) or [`readObjectsForClasses:options:`](https://developer.apple.com/documentation/appkit/nspasteboard/readobjects(forclasses:options:)), the returned items are associated with the messaged pasteboard. Passing an item that is already associated with a pasteboard into [`writeObjects:`](https://developer.apple.com/documentation/appkit/nspasteboard/writeobjects(_:)) causes an exception.
+    ///
+    /// Use pasteboard items during a single pasteboard interaction, rather than retaining and reusing them. A pasteboard item is only valid until the owner of the pasteboard changes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When a pasteboard item’s owner changes, it becomes stale and its methods return an empty array, `nil`, or [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPasteboardItem;
@@ -313,7 +343,13 @@ impl DefaultRetained for NSPasteboardItem {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboarditemdataprovider?language=objc)
+    /// A set of methods implemented by the data provider of a pasteboard item to provide the data for a particular UTI type.
+    ///
+    /// ## Overview
+    ///
+    /// You can specify an object as a pasteboard data provider for a pasteboard item using [`NSPasteboardItem`](https://developer.apple.com/documentation/appkit/nspasteboarditem)’s [`setDataProvider:forTypes:`](https://developer.apple.com/documentation/appkit/nspasteboarditem/setdataprovider(_:fortypes:)) method. The data provider must implement this protocol to provide data upon request.
+    ///
+    ///
     pub unsafe trait NSPasteboardItemDataProvider: NSObjectProtocol {
         #[cfg(feature = "NSPasteboard")]
         #[unsafe(method(pasteboard:item:provideDataForType:))]

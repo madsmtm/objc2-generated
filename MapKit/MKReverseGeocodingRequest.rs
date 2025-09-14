@@ -10,7 +10,55 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkreversegeocodingrequest?language=objc)
+    /// A class that looks up address strings for the provided geographic coordinates.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this class to look up an address by a coordinate you provide. This example shows how to use a [`Task`](https://developer.apple.com/documentation/swift/task) modifier on a SwiftUI view to reverse geocodes an array of coordinates to the corresponding addresses that MapKit returns in an array of [`MKMapItem`](https://developer.apple.com/documentation/mapkit/mkmapitem) objects.
+    ///
+    /// ```swift
+    ///
+    ///     struct MyReverseGeocoderView: View {
+    ///
+    ///
+    ///     let fountainCoordinates = [
+    ///         CLLocation(latitude: 39.042617, longitude: -94.587526),
+    ///         CLLocation(latitude: 40.774313, longitude: -73.970835),
+    ///         CLLocation(latitude: -33.870986, longitude: 151.211786),
+    ///         CLLocation(latitude: 41.875790, longitude: -87.618953),
+    ///         ]
+    ///
+    ///
+    ///         // An array that holds resolved information about the fountains.
+    ///         @State var fountains: [MKMapItem] = []
+    ///
+    ///
+    ///         var body: some View {
+    ///         // SwiftUI body views
+    ///         }
+    ///         .task {
+    ///             var fountainMapItems = [MKMapItem]()
+    ///             for coordinate in fountainCoordinates {
+    ///                 if let request = MKReverseGeocodingRequest(location: coordinate) {
+    ///                     let mapitems = try? await request.mapItems
+    ///                     if let mapitem = mapitems?.first {
+    ///                         fountainMapItems.append(mapitem)
+    ///                     }
+    ///                 }
+    ///             }
+    ///             fountains = fountainMapItems
+    ///             // The fountains `MKMapItems` array contains information describing
+    ///             // details about the following places based on the provided coordinates:
+    ///             //
+    ///             // Mill Creek Park Fountain, Kansas City, Missouri
+    ///             // Bethesda Terrace Fountain, Central Park, New York City
+    ///             // Archibald Fountain, Sydney, Australia
+    ///             // Buckingham Fountain, Chicago, Illinois
+    ///         }
+    ///     }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKReverseGeocodingRequest;

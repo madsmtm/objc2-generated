@@ -12,9 +12,8 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// Provides movement hint information for the focused item.
     /// Provides information about the current state of hinting for the focused item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementhint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFocusMovementHint;

@@ -20,11 +20,31 @@ unsafe impl RefEncode for CGPDFScanner {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGPDFScanner", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerref?language=objc)
+/// A type used to parse a PDF content stream.
 pub type CGPDFScannerRef = *mut CGPDFScanner;
 
 impl CGPDFScanner {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannercreate(_:_:_:)?language=objc)
+    /// Creates a PDF scanner.
+    ///
+    /// Parameters:
+    /// - cs: A PDF content stream object. (See [CGPDFContentStream](https://developer.apple.com/documentation/coregraphics/cgpdfcontentstream).)
+    ///
+    /// - table: A table of callbacks for the PDF operators you want to handle.
+    ///
+    /// - info: A pointer to data you want passed to your callback function. (See [CGPDFOperatorTable](https://developer.apple.com/documentation/coregraphics/cgpdfoperatortable).)
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A PDF scanner object. In Objective-C, you’re responsible for releasing this object by calling the function [`CGPDFScannerRelease`](https://developer.apple.com/documentation/coregraphics/cgpdfscannerrelease(_:)).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you want to parse the contents of the PDF stream, call the function [`CGPDFScannerScan`](https://developer.apple.com/documentation/coregraphics/cgpdfscannerscan(_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -49,7 +69,17 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerCreate(cs, table, info) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerretain(_:)?language=objc)
+    /// Increments the retain count of a scanner object.
+    ///
+    /// Parameters:
+    /// - scanner: The scanner object to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The same scanner object passed to the function in the `scanner` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -63,7 +93,11 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRetain(scanner) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerrelease(_:)?language=objc)
+    /// Decrements the retain count of a scanner object.
+    ///
+    /// Parameters:
+    /// - scanner: The scanner object to release.
+    ///
     ///
     /// # Safety
     ///
@@ -77,7 +111,23 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerRelease(scanner) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerscan(_:)?language=objc)
+    /// Parses the content stream of a PDF scanner object.
+    ///
+    /// Parameters:
+    /// - scanner: The scanner object whose content stream you want to parse.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the entire stream is parsed successfully; [`false`](https://developer.apple.com/documentation/swift/false) if parsing fails (for example, if the stream data is corrupted).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function [`CGPDFScannerScan`](https://developer.apple.com/documentation/coregraphics/cgpdfscannerscan(_:)) parses the PDF content stream associated with the scanner. Each time Core Graphics parses a PDF operator for which you register a callback, Core Graphics invokes your callback.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -91,7 +141,17 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerScan(scanner) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannergetcontentstream(_:)?language=objc)
+    /// Returns the content stream associated with a PDF scanner object.
+    ///
+    /// Parameters:
+    /// - scanner: The scanner object whose content stream you want to obtain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The content stream associated with `scanner`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -106,7 +166,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerGetContentStream(scanner) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopobject(_:_:)?language=objc)
+    /// Retrieves an object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the object is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -122,7 +194,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopObject(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopboolean(_:_:)?language=objc)
+    /// Retrieves a Boolean object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the PDF Boolean object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the boolean object is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -138,7 +222,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopBoolean(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopinteger(_:_:)?language=objc)
+    /// Retrieves an integer object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the PDF integer object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the PDF integer is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -154,7 +250,25 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopInteger(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopnumber(_:_:)?language=objc)
+    /// Retrieves a real value object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the real value object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the real value is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number retrieved from the scanner can be a real value or an integer value. However, the result is always converted to a value of type [`CGPDFReal`](https://developer.apple.com/documentation/coregraphics/cgpdfreal).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -170,7 +284,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopNumber(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopname(_:_:)?language=objc)
+    /// Retrieves a character string from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the character string popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the string is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -185,7 +311,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopName(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopstring(_:_:)?language=objc)
+    /// Retrieves a string object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the string object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the string is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +339,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopString(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpoparray(_:_:)?language=objc)
+    /// Retrieves an array object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the PDF array object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the array object is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -217,7 +367,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopArray(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopdictionary(_:_:)?language=objc)
+    /// Retrieves a PDF dictionary object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the PDF dictionary object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the PDF dictionary object is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -236,7 +398,19 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopDictionary(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerpopstream(_:_:)?language=objc)
+    /// Retrieves a PDF stream object from the scanner stack.
+    ///
+    /// Parameters:
+    /// - scanner: A valid scanner object.
+    ///
+    /// - value: On output, points to the PDF stream object popped from the scanner stack.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the stream object is retrieved successfully; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -252,8 +426,6 @@ impl CGPDFScanner {
         unsafe { CGPDFScannerPopStream(scanner, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfscannerstop(_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `s` must be a valid pointer.

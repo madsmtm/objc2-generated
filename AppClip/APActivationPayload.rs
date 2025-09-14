@@ -11,28 +11,24 @@ use crate::*;
 
 extern "C" {
     /// A string that identifies the activation payload’s error domain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderrordomain?language=objc)
+    /// A string that identifies the activation payload’s error domain.
     pub static APActivationPayloadErrorDomain: &'static NSErrorDomain;
 }
 
 /// Error codes that an App Clip activation payload returns.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderror/code?language=objc)
+/// Error codes that an App Clip activation payload returns.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct APActivationPayloadErrorCode(pub NSInteger);
 impl APActivationPayloadErrorCode {
+    /// The user denied location access, or the source of the App Clip invocation wasn’t from an NFC tag or visual code.
     /// The user denied location access, or the source of the App Clip
     /// invocation wasn’t from an NFC tag or visual code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderror/code/disallowed?language=objc)
     #[doc(alias = "APActivationPayloadErrorCodeDisallowed")]
     pub const Disallowed: Self = Self(1);
     /// The provided URL doesn’t match the registered App Clip URL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayloaderror/code/doesnotmatch?language=objc)
+    /// The provided URL doesn’t match the registered App Clip URL.
     #[doc(alias = "APActivationPayloadErrorCodeDoesNotMatch")]
     pub const DoesNotMatch: Self = Self(2);
 }
@@ -48,6 +44,15 @@ unsafe impl RefEncode for APActivationPayloadErrorCode {
 extern_class!(
     /// Information that’s passed to an App Clip on launch.
     ///
+    /// ## Overview
+    ///
+    /// When users launch an App Clip, the platform passes an activation payload to the App Clip as part of an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object. When the App Clip receives the payload, confirm the user’s physical location at the time of the invocation.
+    ///
+    /// For more information, see [Responding to invocations](https://developer.apple.com/documentation/appclip/responding-to-invocations).
+    ///
+    ///
+    /// Information that’s passed to an App Clip on launch.
+    ///
     /// When users launch an App Clip, the platform passes an activation payload to
     /// the App Clip as part of an
     /// <doc
@@ -58,8 +63,6 @@ extern_class!(
     /// For more information, see
     /// <doc
     /// :responding-to-invocations>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appclip/apactivationpayload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct APActivationPayload;

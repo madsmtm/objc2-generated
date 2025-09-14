@@ -11,6 +11,15 @@ use crate::*;
 extern_class!(
     /// A set of properties that configure a frame interpolator, and a factory method that creates the effect.
     ///
+    /// ## Overview
+    ///
+    /// A frame interpolator inspects two frames your game or app renders and, based on their properties, generates an extra frame at a fraction of the cost, helping you to increase your frame rate.
+    ///
+    /// When you configure this descriptor, set the properties that determine the pixel format for each texture to the respective format of the texture you later assign to the scaler. For example, make sure that the format to which you set the [`colorTextureFormat`](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatordescriptor/colortextureformat) property matches the format of the texture you later assign to the interpolator’s `MTLFXFrameInterpolatorDescriptor/colorTexture` property.
+    ///
+    ///
+    /// A set of properties that configure a frame interpolator, and a factory method that creates the effect.
+    ///
     /// A frame interpolator inspects two frames your game or app renders and, based on their properties, generates
     /// an extra frame at a fraction of the cost, helping you to increase your frame rate.
     ///
@@ -18,8 +27,6 @@ extern_class!(
     /// respective format of the texture you later assign to the scaler. For example, make sure that the format to which
     /// you set the ``colorTextureFormat`` property matches the format of the texture you later assign to the interpolator's
     /// ``MTLFXFrameInterpolatorDescriptor/colorTexture`` property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatordescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXFrameInterpolatorDescriptor;
@@ -219,7 +226,6 @@ impl MTLFXFrameInterpolatorDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatorbase?language=objc)
     pub unsafe trait MTLFXFrameInterpolatorBase: NSObjectProtocol {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this frame interpolator.
         #[unsafe(method(colorTextureUsage))]
@@ -596,7 +602,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolator?language=objc)
     pub unsafe trait MTLFXFrameInterpolator: MTLFXFrameInterpolatorBase {
         /// Encode this frame interpolator's work into a command buffer.
         ///

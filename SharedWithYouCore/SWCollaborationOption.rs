@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that determines how the system shares a document in a collaboration.
+    ///
+    /// ## Overview
+    ///
+    /// The `SWCollaborationOption` represents a user-configurable setting for a collaboration that the system uses to share the document. The system displays these options on the Share Sheet or in Messages.
+    ///
+    ///
     /// A user-facing option for configuring a shareable collaborative item
     ///
     /// SWCollaborationOptions represent the available settings (such as permissions) a user can configure on a collaborative item
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationoption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWCollaborationOption;

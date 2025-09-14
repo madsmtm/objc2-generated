@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneconfiguration?language=objc)
+    /// Information about the objects and storyboard for UKit to use when creating a particular scene.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object to specify information that UIKit can use to create a new scene for your app. Specifically, you must provide the class of the specific scene you want, the class of the scene delegate object your app uses to manage scenes of that type, and a storyboard containing the scene’s initial view controller.
+    ///
+    /// When the user requests a new instance of your app’s user interface, UIKit looks in your app’s `Info.plist` file for the configuration data it needs to create the corresponding scene object. It then packages that information into a [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object and delivers it as part of the session it passes to the [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:)) method of your app delegate. You can accept that configuration data as is or create a return a new [`UISceneConfiguration`](https://developer.apple.com/documentation/uikit/uisceneconfiguration) object with a different set of configuration details.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

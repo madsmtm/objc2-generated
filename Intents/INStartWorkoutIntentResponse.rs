@@ -6,37 +6,85 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartWorkoutIntentResponseCode(pub NSInteger);
 impl INStartWorkoutIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INStartWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/continueinapp?language=objc)
+    /// A response code that indicates your app extension is ready to transfer control to the app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, SiriKit launches your app in the foreground and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization time. (If you didn’t provide a user activity object, SiriKit creates one for you). SiriKit adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to start the workout.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to start the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from performing the task.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code only when you can’t start the workout through SiriKit because of extenuating circumstances. For example, you might use this code if the user must log into your app before starting workouts and isn’t currently logged in. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failureongoingworkout?language=objc)
+    /// A response code that indicates a workout is already in progress, so another can’t start.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user is already in the middle of a workout.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureOngoingWorkout")]
     pub const FailureOngoingWorkout: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/failurenomatchingworkout?language=objc)
+    /// A response code that indicates you didn’t find the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user specifies a workout name that your app doesn’t recognize.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/handleinapp?language=objc)
+    /// A response code that indicates you want to handle the intent in your app instead.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you want SiriKit to launch your app in the background so that you can handle the intent there. With this code, the user continues to interact with Siri, but your app has an opportunity to set up a workout session or any other information needed to manage the user’s workout more effectively.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app successfully starts the workout.
+    ///
+    ///
     #[doc(alias = "INStartWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(8);
 }
@@ -50,7 +98,15 @@ unsafe impl RefEncode for INStartWorkoutIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentresponse?language=objc)
+    /// Your app’s response to a start workout intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INStartWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/instartworkoutintentresponse) object to specify whether your app is able to start a workout. The response object contains only the response code that indicates whether to launch your app or whether there was a problem.
+    ///
+    /// You create an [`INStartWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/instartworkoutintentresponse) object in the [`confirmStartWorkout:completion:`](https://developer.apple.com/documentation/intents/instartworkoutintenthandling/confirm(intent:completion:)) and [`handleStartWorkout:completion:`](https://developer.apple.com/documentation/intents/instartworkoutintenthandling/handle(intent:completion:)) methods of your start workout handler object. For more information about implementing your handler object, see [`INStartWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/instartworkoutintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

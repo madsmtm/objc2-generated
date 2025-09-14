@@ -11,9 +11,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// View controller to manage turn-based matches, invite friends and perform automatching. Present modally from the top view controller.
+    /// An interface that allows a player to invite other players to a turn-based match and automatch to fill any empty slots.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// Before you create a `GKTurnBasedMatchmakerViewController` object, create a [`GKMatchRequest`](https://developer.apple.com/documentation/gamekit/gkmatchrequest) object and configure it according to the parameters of your game. Then, pass the match request to the [`initWithMatchRequest:`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller/init(matchrequest:)) initializer to create the view controller.
+    ///
+    /// Configure the view controller and set its delegate before you present it to the local player. The view controller allows the local player to choose other players and optionally fill empty slots using automatch. The interface also allows players to select an existing match, forfeit a match, or view a completed match.
+    ///
+    /// Implement the [`GKTurnBasedMatchmakerViewControllerDelegate`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontrollerdelegate) protocol to handle when a player selects players, cancels matchmaking, or encounters an error. Implement the [`turnBasedMatchmakerViewController:didFindMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontrollerdelegate/turnbasedmatchmakerviewcontroller(_:didfind:)) delegate method to dismiss the view controller when the local player invites players.
+    ///
+    /// Register as a listener of the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol and implement [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) methods that handle other turn-based events. For example, implement the [`player:receivedTurnEventForMatch:didBecomeActive:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedturneventfor:didbecomeactive:)) to update match data and present the gameplay interface for the local player to take their turn.
+    ///
+    /// In iOS, you present and dismiss the view controller from another view controller in your game, using the methods provided by the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class. If you use SwiftUI, you can get the root view controller from the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object. In macOS, you use the [`GKDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller) class to present and dismiss the view controller.
+    ///
+    ///
+    /// View controller to manage turn-based matches, invite friends and perform automatching. Present modally from the top view controller.
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -164,7 +177,13 @@ impl GKTurnBasedMatchmakerViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontrollerdelegate?language=objc)
+    /// A protocol that handles when the status of turn-based matchmaking changes.
+    ///
+    /// ## Overview
+    ///
+    /// To receive notifications when a player cancels turn-based matchmaking or an error occurs, implement this protocol in the [`GKTurnBasedMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller) object’s delegate.
+    ///
+    ///
     pub unsafe trait GKTurnBasedMatchmakerViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

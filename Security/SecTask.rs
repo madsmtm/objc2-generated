@@ -9,9 +9,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// The Core Foundation type representing a task.
 /// CFType used for representing a task
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectask?language=objc)
 #[doc(alias = "SecTaskRef")]
 #[repr(C)]
 pub struct SecTask {
@@ -28,11 +27,22 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SecTask {
+    /// Returns the unique identifier of the opaque type to which a task object belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecTaskRef`](https://developer.apple.com/documentation/security/sectask) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecTaskRef`](https://developer.apple.com/documentation/security/sectask) object. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type ID for CF instances of SecTask.
     ///
     /// Returns: A CFTypeID for SecTask
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskgettypeid()?language=objc)
     #[doc(alias = "SecTaskGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -44,12 +54,21 @@ unsafe impl ConcreteType for SecTask {
 }
 
 impl SecTask {
+    /// Creates a task object for the current task.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator. Pass `NULL` to use the default.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new task, or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this task’s memory when you are done with it.
+    ///
+    ///
     /// Create a SecTask object for the current task.
     ///
     /// Returns: The newly created SecTask object or NULL on error.  The caller must
     /// CFRelease the returned object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcreatefromself(_:)?language=objc)
     #[doc(alias = "SecTaskCreateFromSelf")]
     #[inline]
     pub unsafe fn from_self(allocator: Option<&CFAllocator>) -> Option<CFRetained<SecTask>> {
@@ -60,6 +79,27 @@ impl SecTask {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the value of a single entitlement for the represented task.
+    ///
+    /// Parameters:
+    /// - task: The task whose entitlement you want.
+    ///
+    /// - entitlement: The name of the entitlement to be fetched.
+    ///
+    /// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of the specified entitlement for the process or `NULL` if the entitlement value could not be retrieved. The type of the returned value depends on the entitlement specified. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An empty return value may indicate an error, or it may indicate that the entitlement is simply not present.  In the latter case, no error is returned.
+    ///
+    ///
     /// Returns the value of a single entitlement for the represented
     /// task.
     ///
@@ -83,8 +123,6 @@ impl SecTask {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopyvalueforentitlement(_:_:_:)?language=objc)
     #[doc(alias = "SecTaskCopyValueForEntitlement")]
     #[inline]
     pub unsafe fn value_for_entitlement(
@@ -103,6 +141,21 @@ impl SecTask {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the values of multiple entitlements for the represented task.
+    ///
+    /// Parameters:
+    /// - task: The task whose entitlements you want.
+    ///
+    /// - entitlements: An array of the names of the entitlement to be fetched.
+    ///
+    /// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the entitlement names as keys with the corresponding entitlements as the dictionary values, or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this dictionary’s memory when you are done with it.
+    ///
+    ///
     /// Returns the values of multiple entitlements for the represented
     /// task.
     ///
@@ -120,8 +173,6 @@ impl SecTask {
     ///
     /// - `entitlements` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopyvaluesforentitlements(_:_:_:)?language=objc)
     #[doc(alias = "SecTaskCopyValuesForEntitlements")]
     #[inline]
     pub unsafe fn values_for_entitlements(
@@ -140,6 +191,19 @@ impl SecTask {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the value of the code signing identifier.
+    ///
+    /// Parameters:
+    /// - task: The task whose code signing identifier you want.
+    ///
+    /// - error: A pointer that the function uses to provide an error object with details if an error occurs. The caller becomes responsible for the object’s memory. Pass `NULL` to ignore the error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representing the code signing identifier for the task, or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this string’s memory when you are done with it.
+    ///
+    ///
     /// Return the value of the codesigning identifier.
     ///
     /// Parameter `task`: A previously created SecTask object
@@ -151,8 +215,6 @@ impl SecTask {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskcopysigningidentifier(_:_:)?language=objc)
     #[doc(alias = "SecTaskCopySigningIdentifier")]
     #[inline]
     pub unsafe fn signing_identifier(
@@ -172,8 +234,6 @@ impl SecTask {
     /// Return the code sign status flags
     ///
     /// Parameter `task`: A previously created SecTask object
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectaskgetcodesignstatus(_:)?language=objc)
     #[doc(alias = "SecTaskGetCodeSignStatus")]
     #[inline]
     pub unsafe fn code_sign_status(&self) -> u32 {

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationitem?language=objc)
+    /// A data object that provides content for an information template.
+    ///
+    /// ## Overview
+    ///
+    /// [`CPInformationTemplate`](https://developer.apple.com/documentation/carplay/cpinformationtemplate) uses information items to populate the rows of its list. Depending on the template’s layout, the item’s [`title`](https://developer.apple.com/documentation/carplay/cpinformationitem/title) and [`detail`](https://developer.apple.com/documentation/carplay/cpinformationitem/detail) values stack vertically or horizontally in the row. Use the `title` property to describe the content, and the `detail` property to provide the content. For example, when using `CPInformationTemplate` to present a food order summary, you could provide an item that displays the number of minutes until the order is ready.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPInformationItem;

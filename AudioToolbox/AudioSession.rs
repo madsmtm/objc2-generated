@@ -7,89 +7,186 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_reason?language=objc)
+/// Identifies the reason for the audio route change.
+///
+/// ## Discussion
+///
+/// Value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object that identifies the reason for the audio route change. See [Audio Route Change Reasons](https://developer.apple.com/documentation/audiotoolbox/1618380-audio-route-change-reasons).
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Note
+///  It is typically more convenient to instead use the [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) version of this constant, [`kAudioSession_RouteChangeKey_Reason`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_routechangekey_reason).
+///
+///
+///
+/// </div>
+///
 pub const kAudioSession_AudioRouteChangeKey_Reason: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_Reason\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_oldroute?language=objc)
 pub const kAudioSession_AudioRouteChangeKey_OldRoute: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_OldRoute\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnoerror?language=objc)
+/// No error has occurred.
 pub const kAudioSessionNoError: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnotinitialized?language=objc)
+/// An Audio Session function was called without first initializing the session. To avoid this error, call the `AudioSessionInitialize` function before attempting to use the session.
 pub const kAudioSessionNotInitialized: c_uint = 0x21696e69;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionalreadyinitialized?language=objc)
+/// The `AudioSessionInitialize` function was called more than once during the lifetime of your application.
 pub const kAudioSessionAlreadyInitialized: c_uint = 0x696e6974;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninitializationerror?language=objc)
+/// There was an error during audio session initialization.
 pub const kAudioSessionInitializationError: c_uint = 0x696e693f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionunsupportedpropertyerror?language=objc)
+/// The audio session property is not supported.
 pub const kAudioSessionUnsupportedPropertyError: c_uint = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionbadpropertysizeerror?language=objc)
+/// The size of the audio session property data was not correct.
 pub const kAudioSessionBadPropertySizeError: c_uint = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnotactiveerror?language=objc)
+/// The audio operation failed because your application’s audio session was not active.
 pub const kAudioSessionNotActiveError: c_uint = 0x21616374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioservicesnohardwareerror?language=objc)
+/// The audio operation failed because the device has no audio input available.
 pub const kAudioServicesNoHardwareError: c_uint = 0x6e6f6877;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnocategoryset?language=objc)
+/// The audio operation failed because it requires the audio session to have an explicitly-set category, but none was set. To use a hardware codec you must explicitly initialize the audio session and explicitly set an audio session category.
 pub const kAudioSessionNoCategorySet: c_uint = 0x3f636174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionincompatiblecategory?language=objc)
+/// The specified audio session category cannot be used for the attempted audio operation. For example, you attempted to play or record audio with the audio session category set to `kAudioSessionCategory_AudioProcessing`.
 pub const kAudioSessionIncompatibleCategory: c_uint = 0x21636174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionunspecifiederror?language=objc)
+/// An unspecified audio session error has occurred. This typically results from the audio system being in an inconsistent state.
 pub const kAudioSessionUnspecifiedError: c_uint = 0x77686174;
 
-/// Type used for specifying an AudioSession property.
+/// The data type for an audio session property identifier.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertyid?language=objc)
+/// ## Discussion
+///
+/// Each Audio Session property has a four-character identifier. The properties are listed in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+///
+///
+/// Type used for specifying an AudioSession property.
 pub type AudioSessionPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionbegininterruption?language=objc)
+/// Your app’s audio session has just been interrupted, such as by a phone call.
 pub const kAudioSessionBeginInterruption: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionendinterruption?language=objc)
+/// The interruption to your app’s audio session has just ended. In the case where a user confirms the interruption, such as answering a phone call, your app will not receive this constant.
 pub const kAudioSessionEndInterruption: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_ambientsound?language=objc)
+/// For an app in which sound playback is nonprimary—that is, your app can be used successfully with the sound turned off.
+///
+/// ## Discussion
+///
+/// This category is appropriate for “play along” style apps, such as a virtual piano that a user plays over iPod audio. When you use this category, audio from other apps mixes with your audio. Your audio is silenced by screen locking and by the Silent switch (called the _Ring/Silent switch_ on iPhone).
+///
+/// This category is equivalent to the [`AVAudioSessionCategoryAmbient`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/ambient) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_AmbientSound: c_uint = 0x616d6269;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_soloambientsound?language=objc)
+/// The default category, used unless you set a category with the [`AudioSessionSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetproperty(_:_:_:)) function.
+///
+/// ## Discussion
+///
+/// When you use this category, audio from other apps is silenced. Your audio is silenced by screen locking and by the Silent switch (called the _Ring/Silent switch_ on iPhone).
+///
+/// This category is equivalent to the [`AVAudioSessionCategorySoloAmbient`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/soloambient) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_SoloAmbientSound: c_uint = 0x736f6c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_mediaplayback?language=objc)
+/// For playing recorded music or other sounds that are central to the successful use of your app.
+///
+/// ## Discussion
+///
+/// When using this category, your app audio continues with the Silent switch set to silent or when the screen locks. (The switch is called the _Ring/Silent switch_ on iPhone.)
+///
+/// This category normally prevents audio from other apps from mixing with your app’s audio. To allow mixing for this category, use the [`kAudioSessionProperty_OverrideCategoryMixWithOthers`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategorymixwithothers) property.
+///
+/// This category is equivalent to the [`AVAudioSessionCategoryPlayback`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_MediaPlayback: c_uint = 0x6d656469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio?language=objc)
+/// For recording audio; this category silences playback audio. Recording continues with the screen locked.
+///
+/// ## Discussion
+///
+/// This category is equivalent to the [`AVAudioSessionCategoryRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/record) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_RecordAudio: c_uint = 0x72656361;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord?language=objc)
+/// Allows recording (input) and playback (output) of audio, such as for a VOIP (voice over IP) app.
+///
+/// ## Discussion
+///
+/// Your audio continues with the Silent switch set to silent and with the screen locked. (The switch is called the _Ring/Silent switch_ on iPhone.)
+///
+/// This category is appropriate for simultaneous recording and playback, and also for apps that record and play back but not simultaneously. If you want to ensure that sounds such as Messages alerts do not play while your app is recording, use the [`kAudioSessionCategory_RecordAudio`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio) category instead.
+///
+/// This category normally prevents audio from other apps from mixing with your app’s audio. To allow mixing when using this category, use the [`kAudioSessionProperty_OverrideCategoryMixWithOthers`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategorymixwithothers) property.
+///
+/// This category is equivalent to the [`AVAudioSessionCategoryPlayAndRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_PlayAndRecord: c_uint = 0x706c6172;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_audioprocessing?language=objc)
+/// For using an audio hardware codec or signal processor while not playing or recording audio. Use this category, for example, when performing offline audio format conversion.
+///
+/// ## Discussion
+///
+/// This category disables playback (audio output) and disables recording (audio input).
+///
+/// Audio processing does not normally continue when your app is in the background. However, when your app moves to the background, you can request additional time to complete processing. for more information, see [Internationalizing Your App](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/ExpectedAppBehaviors/ExpectedAppBehaviors.html#//apple_ref/doc/uid/TP40007072-CH3-SW10) in [App Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072).
+///
+/// This category is equivalent to the [`AVAudioSessionCategoryAudioProcessing`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/audioprocessing) category provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionCategory_AudioProcessing: c_uint = 0x70726f63;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoverrideaudioroute_none?language=objc)
+/// Specifies, for the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) category, that output audio should go to the receiver. This is the default output audio route for this category.
 pub const kAudioSessionOverrideAudioRoute_None: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoverrideaudioroute_speaker?language=objc)
+/// Specifies, for the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) category,  that output audio should go to the speaker, not the receiver.
 pub const kAudioSessionOverrideAudioRoute_Speaker: c_uint = 0x73706b72;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_unknown?language=objc)
+/// The audio route changed but the reason is not known.
 pub const kAudioSessionRouteChangeReason_Unknown: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_newdeviceavailable?language=objc)
+/// A new audio hardware device became available; for example, a headset was plugged in.
 pub const kAudioSessionRouteChangeReason_NewDeviceAvailable: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_olddeviceunavailable?language=objc)
+/// The previously-used audio hardware device is now unavailable; for example, a headset was unplugged.
 pub const kAudioSessionRouteChangeReason_OldDeviceUnavailable: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_categorychange?language=objc)
+/// The audio session category has changed.
 pub const kAudioSessionRouteChangeReason_CategoryChange: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_override?language=objc)
+/// The audio route has been overridden.
+///
+/// ## Discussion
+///
+/// For example, while using the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) category, output audio has been redirected to the speaker using the [`kAudioSessionProperty_OverrideAudioRoute`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overrideaudioroute) property.
+///
+///
 pub const kAudioSessionRouteChangeReason_Override: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_wakefromsleep?language=objc)
+/// The device woke from sleep.
 pub const kAudioSessionRouteChangeReason_WakeFromSleep: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_nosuitablerouteforcategory?language=objc)
+/// There is no audio hardware route for the audio session category.
+///
+/// ## Discussion
+///
+/// For example, the [`kAudioSessionCategory_RecordAudio`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio) is set but there is no audio input device.
+///
+///
 pub const kAudioSessionRouteChangeReason_NoSuitableRouteForCategory: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionroutechangereason_routeconfigurationchange?language=objc)
 pub const kAudioSessionRouteChangeReason_RouteConfigurationChange: c_uint = 8;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_routechangekey_reason?language=objc)
+    /// The reason for the audio route change.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object that identifies the reason for the audio route change. See [Audio Route Change Reasons](https://developer.apple.com/documentation/audiotoolbox/1618380-audio-route-change-reasons).
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_RouteChangeKey_Reason: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_previousroutedescription?language=objc)
+    /// Describes the previous audio route.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object that describes the previous audio route. For specifics on the contents of this dictionary, see [`kAudioSession_AudioRouteKey_Inputs`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs) and [`kAudioSession_AudioRouteKey_Outputs`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs).
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_AudioRouteChangeKey_PreviousRouteDescription:
@@ -97,34 +194,65 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_currentroutedescription?language=objc)
+    /// Describes the current audio route.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object that describes the current audio route. For specifics on the contents of this dictionary, see [`kAudioSession_AudioRouteKey_Inputs`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs) and [`kAudioSession_AudioRouteKey_Outputs`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs).
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_inputs?language=objc)
+    /// An object containing details about audio input used in the current audio route.
+    ///
+    /// ## Discussion
+    ///
+    /// If there is an audio input available, the array contains a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object with a single key, namely [`kAudioSession_AudioRouteKey_Type`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_type), whose value is one of the constants in [Audio Input Routes](https://developer.apple.com/documentation/audiotoolbox/audio-input-routes).
+    ///
+    /// If no audio input is available, the array is empty.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_AudioRouteKey_Inputs: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_outputs?language=objc)
+    /// An object containing details about the audio output used in the current audio route.
+    ///
+    /// ## Discussion
+    ///
+    /// If there is an audio output available, the array usually contains one [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object with a single key, namely [`kAudioSession_AudioRouteKey_Type`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_type), whose value is one of the constants in [Audio Output Routes](https://developer.apple.com/documentation/audiotoolbox/audio-output-routes).
+    ///
+    /// In certain circumstances, such as when a ringtone is being sent to the device speaker and to a connected headset, the array contains more than one dictionary.
+    ///
+    /// If no audio output is available, the array is empty.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_AudioRouteKey_Outputs: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutekey_type?language=objc)
+    /// Audio routes input or output dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object that serves as the one key for an audio routes input or output dictionary, whose value specifies an input source or output destination.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_AudioRouteKey_Type: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// A line in input
     /// These are the strings used with the kAudioSession_AudioRouteKey_Type key for the CFDictionary associated
     /// with kAudioSession_AudioRouteKey_Inputs.
     /// Available in iOS 5.0 or greater
@@ -138,42 +266,47 @@ extern "C" {
     /// A microphone that is part of a Bluetooth Hands-Free Profile device
     ///
     /// A Universal Serial Bus input
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_linein?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionInputRoute_LineIn: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_builtinmic?language=objc)
+    /// A built-in microphone input.
+    ///
+    /// ## Discussion
+    ///
+    /// Some early iOS devices do not have this input.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionInputRoute_BuiltInMic: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_headsetmic?language=objc)
+    /// A microphone that is part of a headset.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionInputRoute_HeadsetMic: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_bluetoothhfp?language=objc)
+    /// A microphone that is part of a Bluetooth Hands-Free Profile (HFP) device.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionInputRoute_BluetoothHFP: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninputroute_usbaudio?language=objc)
+    /// A Universal Serial Bus (USB) input, accessed through the device 30-pin connector.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionInputRoute_USBAudio: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Analog line-level output.
     /// These are strings used with the kAudioSession_AudioRouteKey_Type key for the CFDictionary associated
     /// with kAudioSession_AudioRouteKey_Outputs.
     /// Available in iOS 5.0 or greater
@@ -195,173 +328,447 @@ extern "C" {
     /// Output via High-Definition Multimedia Interface
     ///
     /// Output on a remote Air Play device
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_lineout?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_LineOut: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_headphones?language=objc)
+    /// Speakers in headphones or in a headset.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_Headphones: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetoothhfp?language=objc)
+    /// Speakers that are part of a Bluetooth Hands-Free Profile (HFP) accessory.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_BluetoothHFP: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_bluetootha2dp?language=objc)
+    /// Speakers in a Bluetooth A2DP device.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_BluetoothA2DP: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinreceiver?language=objc)
+    /// The built-in speaker you hold to your ear when on a phone call.
+    ///
+    /// ## Discussion
+    ///
+    /// Some iOS devices do not have this output.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_BuiltInReceiver: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_builtinspeaker?language=objc)
+    /// The primary built-in speaker.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_BuiltInSpeaker: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_usbaudio?language=objc)
+    /// Speaker(s) in a Universal Serial Bus (USB) accessory, accessed through the device 30-pin connector.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_USBAudio: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_hdmi?language=objc)
+    /// An output available through the HDMI interface.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_HDMI: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoutputroute_airplay?language=objc)
+    /// An output on an AirPlay device.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSessionOutputRoute_AirPlay: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_id?language=objc)
+    /// An audio input source.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object, defined by a USB audio accessory attached to the device through the iPad camera connection kit, that identifies an audio input source. When setting a source on the accessory, use this identifier.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_InputSourceKey_ID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_description?language=objc)
+    /// Audio input source description.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object, defined by the accessory, that describes an audio input source and that is suitable for displaying in a user interface.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_InputSourceKey_Description: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_id?language=objc)
+    /// The output destination.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object, defined by a USB audio accessory attached to the device through the iPad camera connection kit, that identifies the output destination. When setting an audio output destination on the accessory, use this identifier. For possible values, see [Audio Output Routes](https://developer.apple.com/documentation/audiotoolbox/audio-output-routes).
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_OutputDestinationKey_ID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_description?language=objc)
+    /// The audio output destination.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object, defined by the accessory, that describes the audio output destination and that is suitable for displaying in a user interface.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub static kAudioSession_OutputDestinationKey_Description: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninterruptiontype_shouldresume?language=objc)
+/// Indicates that the interruption that has just ended was one for which it is appropriate to immediately resume playback; for example, an incoming phone call was rejected by the user.
 pub const kAudioSessionInterruptionType_ShouldResume: c_uint = 0x6972736d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioninterruptiontype_shouldnotresume?language=objc)
+/// Indicates that the interruption that has just ended was one for which it is not appropriate to resume playback; for example, your app had been interrupted by iPod playback.
 pub const kAudioSessionInterruptionType_ShouldNotResume: c_uint = 0x2172736d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptiontype?language=objc)
+/// Values that indicate the nature of the interruption that ended.
 pub type AudioSessionInterruptionType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_default?language=objc)
+/// The default mode; used unless you set a mode with the [`AudioSessionSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetproperty(_:_:_:)) function.
+///
+/// ## Discussion
+///
+/// When this mode is in use, audio session behavior matches that of iOS versions prior to iOS 5.0. You can use this mode with every audio session category. On devices with more than one built-in microphone, the primary microphone is used.
+///
+/// This mode is equivalent to the [`AVAudioSessionModeDefault`](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/default) mode provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionMode_Default: c_uint = 0x64666c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_voicechat?language=objc)
+/// Specify this mode if your app is performing two-way voice communication, such as using Voice over Internet Protocol (VoIP).
+///
+/// ## Discussion
+///
+/// When this mode is in use, the device’s tonal equalization is optimized for voice. For use with the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) audio session category. On devices with more than one built-in microphone, the primary microphone is used.
+///
+/// Using this mode has the side effect of setting the [`kAudioSessionProperty_OverrideCategoryEnableBluetoothInput`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategoryenablebluetoothinput) category override to `TRUE`.
+///
+/// This mode is equivalent to the [`AVAudioSessionModeVoiceChat`](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/voicechat) mode provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionMode_VoiceChat: c_uint = 0x76636374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_videorecording?language=objc)
+/// Specify this mode if your app is recording a movie.
+///
+/// ## Discussion
+///
+/// For use with the [`kAudioSessionCategory_RecordAudio`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio) audio session category. Also works with the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) category. On devices with more than one built-in microphone, the microphone closest to the video camera is used.
+///
+/// Using this mode may result in the system providing appropriate audio signal processing.
+///
+/// This mode is equivalent to the [`AVAudioSessionModeVideoRecording`](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/videorecording) mode provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionMode_VideoRecording: c_uint = 0x76726364;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_measurement?language=objc)
+/// Specify this mode if your app is performing measurement of incoming audio.
+///
+/// ## Discussion
+///
+/// When this mode is in use, the device does not perform automatic gain adjustment on incoming audio. For use with the [`kAudioSessionCategory_RecordAudio`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio) or [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) audio session categories. On devices with more than one built-in microphone, the primary microphone is used.
+///
+/// This mode is equivalent to the [`AVAudioSessionModeMeasurement`](https://developer.apple.com/documentation/avfaudio/avaudiosession/mode-swift.struct/measurement) mode provided in the AVFoundation framework.
+///
+///
 pub const kAudioSessionMode_Measurement: c_uint = 0x6d736d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_gamechat?language=objc)
 pub const kAudioSessionMode_GameChat: c_uint = 0x676d6374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_preferredhardwaresamplerate?language=objc)
+/// Your preferred hardware sample rate for the audio session. A read/write `Float64` value. The actual sample rate may be different and can be obtained using the `kAudioSessionProperty_CurrentHardwareSampleRate` property.
 pub const kAudioSessionProperty_PreferredHardwareSampleRate: c_uint = 0x68777372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_preferredhardwareiobufferduration?language=objc)
+/// Your preferred hardware I/O buffer duration in seconds. Do not set this property unless you require lower I/O latency than is provided by default.
+///
+/// ## Discussion
+///
+/// A read/write `Float32` value.
+///
+/// The actual I/O buffer duration may be different from the value that you request, and can be obtained from the [`kAudioSessionProperty_CurrentHardwareIOBufferDuration`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareiobufferduration) property.
+///
+///
 pub const kAudioSessionProperty_PreferredHardwareIOBufferDuration: c_uint = 0x696f6264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audiocategory?language=objc)
+/// The category for the audio session. A read/write `UInt32` value.
+///
+/// ## Discussion
+///
+/// See [Audio Session Categories](https://developer.apple.com/documentation/audiotoolbox/1618427-audio-session-categories).
+///
+///
 pub const kAudioSessionProperty_AudioCategory: c_uint = 0x61636174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audioroutechange?language=objc)
+/// The reason the audio route changed.
+///
+/// ## Discussion
+///
+/// A [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object containing the reason the audio route changed along with details on the previous and current audio route.
+///
+/// ## Discussion
+///
+/// The dictionary contains the keys and corresponding values described in [Audio Route Change Dictionary Keys](https://developer.apple.com/documentation/audiotoolbox/audio-route-change-dictionary-keys).
+///
+/// The [`kAudioSessionProperty_AudioRouteChange`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audioroutechange) dictionary is available to your app only by way of the [`AudioSessionPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener) callback function.
+///
+///
 pub const kAudioSessionProperty_AudioRouteChange: c_uint = 0x726f6368;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwaresamplerate?language=objc)
+/// Indicates the current hardware sample rate. A read-only `Float64` value.
 pub const kAudioSessionProperty_CurrentHardwareSampleRate: c_uint = 0x63687372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareinputnumberchannels?language=objc)
+/// Indicates the current number of audio hardware input channels. A read-only `UInt32` value.
 pub const kAudioSessionProperty_CurrentHardwareInputNumberChannels: c_uint = 0x63686963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareoutputnumberchannels?language=objc)
+/// Indicates the current number of audio hardware output channels. A read-only `UInt32` value.
 pub const kAudioSessionProperty_CurrentHardwareOutputNumberChannels: c_uint = 0x63686f63;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareoutputvolume?language=objc)
+/// Indicates the current audio output volume as `Float32` value between 0.0 and 1.0. Read-only. This value is available to your app by way of a property listener callback function. See [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)).
 pub const kAudioSessionProperty_CurrentHardwareOutputVolume: c_uint = 0x63686f76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareinputlatency?language=objc)
+/// Indicates the current hardware input latency, in seconds, as a read-only `Float32` value.
 pub const kAudioSessionProperty_CurrentHardwareInputLatency: c_uint = 0x63696c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareoutputlatency?language=objc)
+/// Indicates the current hardware output latency, in seconds, as a read-only `Float32` value.
 pub const kAudioSessionProperty_CurrentHardwareOutputLatency: c_uint = 0x636f6c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_currenthardwareiobufferduration?language=objc)
+/// Indicates the current hardware IO buffer duration, in seconds, as a read-only `Float32` value.
 pub const kAudioSessionProperty_CurrentHardwareIOBufferDuration: c_uint = 0x63686264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_otheraudioisplaying?language=objc)
+/// Indicates whether or not another app (typically, the iPod app) is currently playing audio. Read-only. A non-zero `UInt32` value indicates that other audio is playing.
 pub const kAudioSessionProperty_OtherAudioIsPlaying: c_uint = 0x6f746872;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overrideaudioroute?language=objc)
+/// Specifies whether or not to override the audio session category’s typical audio route.
+///
+/// ## Discussion
+///
+/// A write-only `UInt32` value. Can be set with one of two values: [`kAudioSessionOverrideAudioRoute_None`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoverrideaudioroute_none), which specifies that you want to use the typical audio route; and [`kAudioSessionOverrideAudioRoute_Speaker`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoverrideaudioroute_speaker), when sends output audio to the built-in speaker. This property can be used only with the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) (or the equivalent [`AVAudioSessionCategoryPlayAndRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord)) category.
+///
+/// If a headset is plugged in at the time you set this property’s value to [`kAudioSessionOverrideAudioRoute_Speaker`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionoverrideaudioroute_speaker), the system changes the audio routing for input as well as for output: input comes from the built-in microphone; output goes to the built-in speaker.
+///
+/// Upon an audio route change (such as by plugging in or unplugging a headset), or upon interruption, this property reverts to its default value.
+///
+/// See also [`kAudioSessionProperty_OverrideCategoryDefaultToSpeaker`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategorydefaulttospeaker).
+///
+///
 pub const kAudioSessionProperty_OverrideAudioRoute: c_uint = 0x6f767264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audioinputavailable?language=objc)
+/// Indicates if audio input is available (a nonzero value) or not (a value of 0).
+///
+/// ## Discussion
+///
+/// A read-only `UInt32` value, interpreted as a Boolean value. Use this property, rather than the device model, to determine if audio input is available.
+///
+/// You can listen for changes in the value of this property using a callback function.  For instance, if a user plugs a headset into an iPod touch (2nd generation), audio input becomes available via the wired microphone and your callback is invoked. See [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)).
+///
+///
 pub const kAudioSessionProperty_AudioInputAvailable: c_uint = 0x61696176;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_serverdied?language=objc)
+/// Indicates if the audio server has died (indicated by a nonzero `UInt32` value) or is still running (a value of 0).
+///
+/// ## Discussion
+///
+/// This value is available to your app only by way of a property listener callback function. See [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)).
+///
+///
 pub const kAudioSessionProperty_ServerDied: c_uint = 0x64696564;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_othermixableaudioshouldduck?language=objc)
+/// For audio session categories that allow audio mixing with other apps, specifies whether other audio should be reduced in level when your app produces sound. This property has a value of `FALSE` (0) by default. Set it to a nonzero value to turn on ducking.
+///
+/// ## Discussion
+///
+/// When your app is finished playing sound, be sure to set this property back to `FALSE` to remove ducking.
+///
+///
 pub const kAudioSessionProperty_OtherMixableAudioShouldDuck: c_uint = 0x6475636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategorymixwithothers?language=objc)
+/// Changes the mixing behavior of the [`kAudioSessionCategory_MediaPlayback`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_mediaplayback) and [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) audio session categories.
+///
+/// ## Discussion
+///
+/// A read/write `UInt32` value. By default, the value of this property is `FALSE` (`0`).
+///
+/// Setting this property to `TRUE` (any nonzero value) allows audio mixing with other apps. Other aspects of these categories, such as their Silent switch behavior, are not affected. (The switch is called the _Ring/Silent switch_ on iPhone.)
+///
+/// When the audio session category changes, such as during an interruption, the value of this property reverts to `FALSE`. To regain mixing behavior you must then re-set this property.
+///
+/// Always check to see if setting this property succeeds or fails, and react appropriately; behavior may change in future releases of iOS.
+///
+///
 pub const kAudioSessionProperty_OverrideCategoryMixWithOthers: c_uint = 0x636d6978;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategorydefaulttospeaker?language=objc)
+/// Specifies whether or not to route audio to the speaker (instead of to the receiver) when no other audio route, such as a headset, is connected.
+///
+/// ## Discussion
+///
+/// A read/write `UInt32` value. By default, the value of this property is `FALSE` (`0`).
+///
+/// This property retains its value through an audio route change (such as when plugging in or unplugging a headset), and upon interruption; it reverts to its default value only upon an audio session category change.  This property can be used only with the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) (or the equivalent [`AVAudioSessionCategoryPlayAndRecord`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playandrecord)) category.
+///
+/// See also [`kAudioSessionProperty_OverrideAudioRoute`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overrideaudioroute).
+///
+///
 pub const kAudioSessionProperty_OverrideCategoryDefaultToSpeaker: c_uint = 0x6373706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_overridecategoryenablebluetoothinput?language=objc)
+/// Allows a paired Bluetooth device to appear as an available audio input route.
+///
+/// ## Discussion
+///
+/// A read/write `UInt32` value. By default, the value of this property is `FALSE` (`0`).
+///
+/// This property can be used to modify the  [`kAudioSessionCategory_RecordAudio`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_recordaudio) or [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) categories. Attempting to set this property to `TRUE` will fail for all other categories.
+///
+/// This property affects the [`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord) category as follows: If the audio input to the device is coming from a Bluetooth headset, setting this property to `TRUE` results in audio output also going to the Bluetooth headset.
+///
+///
 pub const kAudioSessionProperty_OverrideCategoryEnableBluetoothInput: c_uint = 0x63626c75;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_interruptiontype?language=objc)
+/// Indicates the type of an end-interruption event.
+///
+/// ## Discussion
+///
+/// A read-only `UInt32` value that is one of the constants in the [`AudioSessionInterruptionType`](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptiontype) enumeration.
+///
+/// Query this property within your interruption callback to find out whether or not it is appropriate to immediately resume the audio operation that was interrupted. Media playback apps (typically, those that have a “play” button) can use this property’s value as an indication for whether or not to resume playing after an interruption ends. Other app types (such as games) should normally resume audio playback whenever an interruption ends.
+///
+/// This property’s value is available within the scope of your app’s interruption listener callback function (see [`AudioSessionInterruptionListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptionlistener)), and valid only when your callback receives the [`kAudioSessionEndInterruption`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionendinterruption) state identifier. At all other times, this property’s value is invalid.
+///
+///
 pub const kAudioSessionProperty_InterruptionType: c_uint = 0x74797065;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_mode?language=objc)
+/// A read/write `UIInt32` value that specifies the audio session mode.
+///
+/// ## Discussion
+///
+/// An audio session mode is a key that identifies a set of device audio configuration details, such as whether or not the device performs automatic gain adjustment on incoming audio. A mode refines the configuration provided by a category ([`kAudioSessionProperty_AudioCategory`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audiocategory)).
+///
+/// The available modes are described in [Audio Session Modes](https://developer.apple.com/documentation/audiotoolbox/1618405-audio-session-modes). The default mode is [`kAudioSessionMode_Default`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionmode_default).
+///
+///
 pub const kAudioSessionProperty_Mode: c_uint = 0x6d6f6465;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputsources?language=objc)
+/// Details on the available audio input sources.
+///
+/// ## Discussion
+///
+/// A [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing details on the available audio input sources in a USB audio accessory attached through the iPad camera connection kit.
+///
+/// ## Discussion
+///
+/// Each element of the array contains a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object with the keys and corresponding values described in [USB Accessory Audio Source Dictionary Keys](https://developer.apple.com/documentation/audiotoolbox/usb-accessory-audio-source-dictionary-keys).
+///
+/// If there is no audio input source available from the attached accessory, this property’s value is an empty array.
+///
+/// This property is read-only. You can employ an [`AudioSessionPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener) callback function to listen for changes in this property’s value.
+///
+///
 pub const kAudioSessionProperty_InputSources: c_uint = 0x73726373;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_outputdestinations?language=objc)
+/// Details on the available audio output destinations.
+///
+/// ## Discussion
+///
+/// A [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object containing details on the available audio output destinations in a USB audio accessory attached through the iPad camera connection kit.
+///
+/// ## Discussion
+///
+/// Each element of the array contains a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object with the keys and corresponding values described in [USB Accessory Audio Destination Dictionary Keys](https://developer.apple.com/documentation/audiotoolbox/usb-accessory-audio-destination-dictionary-keys).
+///
+/// If there is no audio output destination available from the attached accessory, this property’s value is an empty array.
+///
+/// This property is read-only. You can employ an [`AudioSessionPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener) callback function to listen for changes in this property’s value.
+///
+///
 pub const kAudioSessionProperty_OutputDestinations: c_uint = 0x64737473;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputsource?language=objc)
+/// The audio input source.
+///
+/// ## Discussion
+///
+/// A read/write [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object that indicates the audio input source, from a USB audio accessory attached through the iPad camera connection kit, that you want to use.
+///
+/// ## Discussion
+///
+/// The value must be one of the identifiers provided as a [`kAudioSession_InputSourceKey_ID`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_inputsourcekey_id) key as part of the [`kAudioSessionProperty_InputSources`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputsources) array.
+///
+///
 pub const kAudioSessionProperty_InputSource: c_uint = 0x69737263;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_outputdestination?language=objc)
+/// The audio output destination.
+///
+/// ## Discussion
+///
+/// A read/write [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object that indicates the audio output destination, from a USB audio accessory attached through the iPad camera connection kit, that you want to use.
+///
+/// ## Discussion
+///
+/// The value must be one of the identifiers provided as a [`kAudioSession_OutputDestinationKey_ID`](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_outputdestinationkey_id) key as part of the [`kAudioSessionProperty_OutputDestinations`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_outputdestinations) array.
+///
+///
 pub const kAudioSessionProperty_OutputDestination: c_uint = 0x6f647374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputgainavailable?language=objc)
+/// A read-only `UInt32` value that indicates whether or not audio input gain adjustment is available, where a nonzero value means adjustment is available.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Some audio inputs on some devices do not support gain adjustment. You must check this property’s value before attempting to set audio input gain.
+///
+///
+///
+/// </div>
+///
 pub const kAudioSessionProperty_InputGainAvailable: c_uint = 0x69676176;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputgainscalar?language=objc)
+/// A read/write `Float32` value that indicates the audio input gain setting for the active input source.
+///
+/// ## Discussion
+///
+/// The range for this value is `[0.0, 1.0]`, as follows:
+///
+/// - `0` indicates the lowest audio input gain setting
+///
+/// - `1` indicates the highest audio input gain setting
+///
+/// Attempting to set a value outside this range results in the value being clamped to this range. This property’s value is valid only if audio input gain is available (see [`kAudioSessionProperty_InputGainAvailable`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_inputgainavailable)).
+///
+/// If no app with an active audio session is using this property for a given input source, the system restores the default input gain setting for the input source.
+///
+/// You can employ an [`AudioSessionPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener) callback function to listen for changes in this property’s value.
+///
+///
 pub const kAudioSessionProperty_InputGainScalar: c_uint = 0x69677363;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audioroutedescription?language=objc)
+/// Information about an audio route.
+///
+/// ## Discussion
+///
+/// A read-only [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object containing information about an audio route.
+///
+/// ## Discussion
+///
+/// The dictionary contains the keys and corresponding values described in [Audio Route Description Dictionary Keys](https://developer.apple.com/documentation/audiotoolbox/audio-route-description-dictionary-keys).
+///
+///
 pub const kAudioSessionProperty_AudioRouteDescription: c_uint = 0x63726172;
 
+/// Invoked when an audio interruption in iOS begins or ends.
+///
+/// Parameters:
+/// - inClientData: Data that you specified in the `inClientData` parameter of the [`AudioSessionInitialize`](https://developer.apple.com/documentation/audiotoolbox/audiosessioninitialize(_:_:_:_:)) function. Can be `NULL`.
+///
+/// - inInterruptionState: A constant that indicates whether the interruption has just started or just ended. See [Audio Session Interruption States](https://developer.apple.com/documentation/audiotoolbox/1618425-audio-session-interruption-state).
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyInterruptionListener`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// To register your interruption listener callback with your application’s audio session object, specify it in the [`AudioSessionInitialize`](https://developer.apple.com/documentation/audiotoolbox/audiosessioninitialize(_:_:_:_:)) function.
+///
+///
 /// A function to be called when an interruption begins or ends.
 ///
 /// AudioSessionInterruptionListener has to be provided by client applications in the
@@ -371,10 +778,29 @@ pub const kAudioSessionProperty_AudioRouteDescription: c_uint = 0x63726172;
 ///
 /// Parameter `inInterruptionState`: Indicates if the interruption begins (kAudioSessionBeginInterruption)
 /// or ends (kAudioSessionEndInterruption)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptionlistener?language=objc)
 pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*mut c_void, u32)>;
 
+/// Invoked when an audio session property changes in iOS.
+///
+/// Parameters:
+/// - inClientData: Data that you specified in the `inClientData` parameter of the [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)) function. Can be `NULL`.
+///
+/// - inID: The identifier for the audio session property whose value just changed. See [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+///
+/// - inDataSize: The size, in bytes, of the value of the changed property.
+///
+/// - inData: The new value of the changed property.
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyPropertyListener`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// You can register one or more property listener callbacks with your application’s audio session object by calling the [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)) function.
+///
+///
 /// A function to be executed when a property changes.
 ///
 /// AudioSessionPropertyListener may be provided by client application to be
@@ -387,12 +813,33 @@ pub type AudioSessionInterruptionListener = Option<unsafe extern "C-unwind" fn(*
 /// Parameter `inDataSize`: The size of the payload
 ///
 /// Parameter `inData`: The payload of the property that changed (see data type for each property)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionpropertylistener?language=objc)
 pub type AudioSessionPropertyListener =
     Option<unsafe extern "C-unwind" fn(*mut c_void, AudioSessionPropertyID, u32, *const c_void)>;
 
 extern "C-unwind" {
+    /// Initializes an iOS application’s audio session object.
+    ///
+    /// Parameters:
+    /// - inRunLoop: The run loop  that the interruption listener callback should be run on. Pass `NULL` to use the main run loop.
+    ///
+    /// - inRunLoopMode: The mode for the run loop that the interruption listener function will run on. Passing `NULL` is equivalent to passing `kCFRunLoopDefaultMode`.
+    ///
+    /// - inInterruptionListener: The interruption listener callback function. The application’s audio session object invokes the callback when the session is interrupted and (if the application is still running) when the interruption ends. Can be `NULL`. See [`AudioSessionInterruptionListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessioninterruptionlistener).
+    ///
+    /// - inClientData: Data that you would like to be passed to your interruption listener callback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your application must call this function before making any other Audio Session Services calls. You may activate and deactivate your audio session as needed (see [`AudioSessionSetActive`](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetactive(_:))), but should initialize it only once.
+    ///
+    ///
     /// Initialize the AudioSession.
     ///
     /// This function has to be called once before calling any other
@@ -416,8 +863,6 @@ extern "C-unwind" {
     /// - `in_run_loop_mode` might not allow `None`.
     /// - `in_interruption_listener` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessioninitialize(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated = "no longer supported"]
     pub fn AudioSessionInitialize(
@@ -428,6 +873,25 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Actives or deactivates your application’s audio session.
+///
+/// Parameters:
+/// - active: Pass `true` to activate your application’s audio session, or `false` to deactivate it.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// Activating your audio session may interrupt audio sessions belonging to other applications running in the background, depending on categories and priorities. Deactivating your audio session allows other, interrupted audio sessions to resume.
+///
+/// When another active audio session does not allow mixing, attempting to activate your audio session may fail.
+///
+///
 /// Activate or deactivate the AudioSession.
 ///
 /// Call this function with active set to true to activate this AudioSession (interrupt
@@ -437,8 +901,6 @@ extern "C-unwind" {
 /// When active is true this call may fail if the currently active AudioSession has a higher priority.
 ///
 /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetactive(_:)?language=objc)
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioSessionSetActive(active: bool) -> OSStatus {
@@ -448,9 +910,36 @@ pub unsafe extern "C-unwind" fn AudioSessionSetActive(active: bool) -> OSStatus 
     unsafe { AudioSessionSetActive(active as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionsetactiveflag_notifyothersondeactivation?language=objc)
+/// Indicates that when your audio session deactivates, other audio sessions that had been interrupted by your session can return to their active state.
+///
+/// ## Discussion
+///
+/// Used only when deactivating your audio session.
+///
+///
 pub const kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation: c_uint = 1 << 0;
 
+/// Activates or deactivates your application’s audio session; provides flags for use by other audio sessions.
+///
+/// Parameters:
+/// - active: Pass `true` to activate your application’s audio session, or `false` to deactivate it.
+///
+/// - inFlags: A bitmapped value containing one or more flags from the [Audio Session Activation Flags](https://developer.apple.com/documentation/audiotoolbox/1618357-audio-session-activation-flags) enumeration.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// Activating your audio session may interrupt audio sessions belonging to other applications running in the background, depending on categories and priorities. Deactivating your audio session allows other, interrupted audio sessions to resume.
+///
+/// When another active audio session does not allow mixing, attempting to activate your audio session may fail.
+///
+///
 /// Same functionality as AudioSessionSetActive, with an additional flags parameter for
 /// refining behavior.
 ///
@@ -465,8 +954,6 @@ pub const kAudioSessionSetActiveFlag_NotifyOthersOnDeactivation: c_uint = 1 << 0
 /// Parameter `active`: A Boolean indicating if you want to make this AudioSession active or inactive.
 ///
 /// Parameter `inFlags`: A bitmap containing one or more flags from the AudioSessionActivationFlags enum.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetactivewithflags(_:_:)?language=objc)
 #[deprecated = "no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
@@ -480,6 +967,33 @@ pub unsafe extern "C-unwind" fn AudioSessionSetActiveWithFlags(
 }
 
 extern "C-unwind" {
+    /// Gets the value of a specified audio session property.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property that you want to get the value of.
+    ///
+    /// - ioDataSize: On input, the memory size for the `outData` parameter. On output, the actual size of the property value.
+    ///
+    /// - outData: On output, the value of the specified audio session property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Audio session properties are listed and described in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Get the value of a property.
     ///
     /// This function can be called to get the value for a property of the AudioSession.
@@ -502,8 +1016,6 @@ extern "C-unwind" {
     ///
     /// - `io_data_size` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessiongetproperty(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetProperty(
         in_id: AudioSessionPropertyID,
@@ -513,6 +1025,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the value of a specified audio session property.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property that you want to set the value of.
+    ///
+    /// - inDataSize: The size, in bytes, of the value in the `inData` parameter.
+    ///
+    /// - inData: The value that you are applying to the specified audio session property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Audio session properties are listed and described in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+    ///
+    ///
     /// Set the value of a property.
     ///
     /// This function can be called to set the value for a property of the AudioSession.
@@ -533,8 +1066,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionsetproperty(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionSetProperty(
         in_id: AudioSessionPropertyID,
@@ -544,6 +1075,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the size of the value for a specified audio session property.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property whose value you want to get the size of.
+    ///
+    /// - outDataSize: On output, the size of the property value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Audio session properties are listed and described in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+    ///
+    ///
     /// Get the size of the payload for a property.
     ///
     /// This function can be called to get the size for the payload of a property.
@@ -556,8 +1106,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessiongetpropertysize(_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionGetPropertySize(
         in_id: AudioSessionPropertyID,
@@ -566,6 +1114,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Adds a property listener callback function to your application’s audio session object.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property whose value changes you want to listen for.
+    ///
+    /// - inProc: The name of your property listener callback function.
+    ///
+    /// - inClientData: Data that you would like to be passed to your property listener callback.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When an audio session property value changes, and you have added a listener callback for that property, the audio session object invokes the callback.
+    ///
+    /// You can add exactly one listener callback for a given `inID`-`inClientData` pair. In other words, you can add more than one property listener callback function for a given audio session property, provided you pass a unique `inClientData` parameter value each time you add a property listener.
+    ///
+    /// Audio session properties are listed and described in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+    ///
+    ///
     /// Add a property listener.
     ///
     /// This function can be used to add a listener to be called when a property changes.
@@ -587,8 +1160,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionAddPropertyListener(
         in_id: AudioSessionPropertyID,
@@ -598,16 +1169,46 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// see AudioSessionRemovePropertyListenerWithUserData
+    /// Removes an audio session property listener callback function.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property whose value changes you no longer want to listen for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
     ///
     /// see AudioSessionRemovePropertyListenerWithUserData
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionremovepropertylistener(_:)?language=objc)
+    /// see AudioSessionRemovePropertyListenerWithUserData
     #[deprecated = "no longer supported"]
     pub fn AudioSessionRemovePropertyListener(in_id: AudioSessionPropertyID) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Removes a property listener callback function from your application’s audio session object.
+    ///
+    /// Parameters:
+    /// - inID: The identifier for the audio session property whose value changes you no longer want to listen for.
+    ///
+    /// - inProc: The name of your property listener callback function.
+    ///
+    /// - inClientData: The same custom data for the property listener callback that you passed when calling the [`AudioSessionAddPropertyListener`](https://developer.apple.com/documentation/audiotoolbox/audiosessionaddpropertylistener(_:_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Audio session properties are listed and described in [Audio Session Property Identifiers](https://developer.apple.com/documentation/audiotoolbox/1618455-audio-session-property-identifie).
+    ///
+    ///
     /// Remove a property listener.
     ///
     /// This function can be called to remove the listener for a property. The caller
@@ -631,8 +1232,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosessionremovepropertylistenerwithuserdata(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AudioSessionRemovePropertyListenerWithUserData(
         in_id: AudioSessionPropertyID,
@@ -641,10 +1240,9 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_userinterfacesoundeffects?language=objc)
+/// For sound effects such as touch feedback, explosions, and so on.
 pub const kAudioSessionCategory_UserInterfaceSoundEffects: c_uint = 0x75696678;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_liveaudio?language=objc)
+/// For live performance of music, such as for an app that simulates a piano.
 pub const kAudioSessionCategory_LiveAudio: c_uint = 0x6c697665;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionproperty_audioroute?language=objc)
 pub const kAudioSessionProperty_AudioRoute: c_uint = 0x726f7574;

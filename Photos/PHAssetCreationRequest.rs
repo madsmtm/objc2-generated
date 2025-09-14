@@ -13,7 +13,13 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcecreationoptions?language=objc)
+    /// A set of options affecting the creation of a new Photos asset from underlying resources.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class when creating an asset for addition to the Photos library with a [`PHAssetCreationRequest`](https://developer.apple.com/documentation/photos/phassetcreationrequest) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResourceCreationOptions;
@@ -96,7 +102,25 @@ impl PHAssetResourceCreationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetcreationrequest?language=objc)
+    /// A request to create a new Photos asset from underlying data resources, for use in a photo library change block.
+    ///
+    /// ## Overview
+    ///
+    /// A [`PHAssetCreationRequest`](https://developer.apple.com/documentation/photos/phassetcreationrequest) object, used within a photo library change block, constructs a new photo or video asset from data resources, and adds it to the Photos library. This class works in terms of the raw data resources that together form an asset, so you can use it together with the [`PHAssetResource`](https://developer.apple.com/documentation/photos/phassetresource) class to perform a complete copy (or backup and restore) of an asset’s underlying resources. To instead simply create a new asset from an image object, image file, or video file, see the superclass [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest).
+    ///
+    /// To create a new asset from data resources, first start a change block using the shared [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) method [`performChanges:completionHandler:`](https://developer.apple.com/documentation/photos/phphotolibrary/performchanges(_:completionhandler:)) or [`performChangesAndWait:error:`](https://developer.apple.com/documentation/photos/phphotolibrary/performchangesandwait(_:)). Then, within the change block:
+    ///
+    /// 1. Within the change block, create a new asset creation request with the [`creationRequestForAsset`](https://developer.apple.com/documentation/photos/phassetcreationrequest/forasset()) method.
+    ///
+    /// 2. Add image, video, or data resources using the methods in the Providing Data Resources for the New Asset section below.
+    ///
+    /// 3. (Optional.) Set metadata for the new asset using methods and properties of the superclass [`PHAssetChangeRequest`](https://developer.apple.com/documentation/photos/phassetchangerequest).
+    ///
+    /// After Photos runs the change block and calls your completion handler, the new asset is created in the Photos library.
+    ///
+    /// If you instantiate or use this class outside a photo library change block, Photos throws an exception. For details on change blocks, see [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary).
+    ///
+    ///
     #[unsafe(super(PHAssetChangeRequest, PHChangeRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PHAssetChangeRequest", feature = "PHChangeRequest"))]

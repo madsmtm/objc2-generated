@@ -8,25 +8,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle?language=objc)
+/// The mass of the objects in the collision simulated by an impact feedback generator object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImpactFeedbackStyle(pub NSInteger);
 impl UIImpactFeedbackStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/light?language=objc)
+    /// A collision between small, light user interface elements.
     #[doc(alias = "UIImpactFeedbackStyleLight")]
     pub const Light: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/medium?language=objc)
+    /// A collision between moderately sized user interface elements.
     #[doc(alias = "UIImpactFeedbackStyleMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/heavy?language=objc)
+    /// A collision between large, heavy user interface elements.
     #[doc(alias = "UIImpactFeedbackStyleHeavy")]
     pub const Heavy: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/soft?language=objc)
+    /// A collision between user interface elements that are soft, exhibiting a large amount of compression or elasticity.
     #[doc(alias = "UIImpactFeedbackStyleSoft")]
     pub const Soft: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator/feedbackstyle/rigid?language=objc)
+    /// A collision between user interface elements that are rigid, exhibiting a small amount of compression or elasticity.
     #[doc(alias = "UIImpactFeedbackStyleRigid")]
     pub const Rigid: Self = Self(4);
 }
@@ -40,7 +40,60 @@ unsafe impl RefEncode for UIImpactFeedbackStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimpactfeedbackgenerator?language=objc)
+    /// A concrete feedback generator subclass that creates haptics to simulate physical impacts.
+    ///
+    /// ## Overview
+    ///
+    /// Use impact feedback to indicate when an impact occurs. For example, you might trigger impact feedback when a user interface object collides with another object.
+    ///
+    /// The following code example shows how to use a pan gesture to drag a square, playing haptic feedback to indicate when the square collides with the edge of its superview.
+    ///
+    /// ```swift
+    /// var feedback = UIImpactFeedbackGenerator()
+    ///
+    /// override func viewDidLoad() {
+    ///     super.viewDidLoad()
+    ///     
+    ///     // Create an impact feedback object and associate it with the view.
+    ///     feedback = UIImpactFeedbackGenerator(view: view)
+    ///     
+    ///     // Draw a basic square and add it to the view hierarchy.
+    ///     let center = CGPoint(x: view.center.x - 50, y: view.center.y - 50)
+    ///     let square = UIView(frame: CGRect(origin: center,
+    ///                                      size: CGSize(width: 100, height: 100)))
+    ///     square.backgroundColor = .tintColor
+    ///     view.addSubview(square)
+    ///     
+    ///     // Add a pan gesture to allow dragging the square.
+    ///     let panGesture = UIPanGestureRecognizer(target: self, action: #selector(dragSquare(_:)))
+    ///     square.isUserInteractionEnabled = true
+    ///     square.addGestureRecognizer(panGesture)
+    /// }
+    ///
+    /// @objc
+    /// private func dragSquare(_ sender: UIPanGestureRecognizer) {
+    ///     guard let square = sender.view else { return }
+    ///     
+    ///     if sender.state == .began {
+    ///         // Prepare the feedback object.
+    ///         feedback.prepare()
+    ///     }
+    ///
+    ///     // Move the square in response to a pan gesture.
+    ///     let distance = sender.translation(in: view)
+    ///     square.center = CGPoint(x: square.center.x + distance.x, y: square.center.y + distance.y)
+    ///     sender.setTranslation(CGPoint.zero, in: view)
+    ///
+    ///     // Play impact feedback if the square bumps into the edge of its superview.
+    ///     if square.hitEdge(of: view) {
+    ///         feedback.impactOccurred(intensity: 1, at: sender.location(in: view))
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// For more information, read [Playing haptic feedback in your app](https://developer.apple.com/documentation/applepencil/playing-haptic-feedback-in-your-app).
+    ///
+    ///
     #[unsafe(super(UIFeedbackGenerator, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

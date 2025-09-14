@@ -7,19 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind?language=objc)
+/// Constants that indicate how someone engaged with search-related content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CSUserInteraction(pub NSInteger);
 impl CSUserInteraction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/select?language=objc)
     #[doc(alias = "CSUserInteractionSelect")]
     pub const Select: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/default?language=objc)
     #[doc(alias = "CSUserInteractionDefault")]
     pub const Default: Self = Self(CSUserInteraction::Select.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery/userinteractionkind/focus?language=objc)
     #[doc(alias = "CSUserInteractionFocus")]
     pub const Focus: Self = Self(1);
 }
@@ -33,7 +30,15 @@ unsafe impl RefEncode for CSUserInteraction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquerycontext?language=objc)
+    /// The configuration details to apply to a user query.
+    ///
+    /// ## Overview
+    ///
+    /// Use an instance of `CSUserQueryContext` to configure the search parameters for a [`CSUserQuery`](https://developer.apple.com/documentation/corespotlight/csuserquery) object. This object stores configuration details that the query uses to modify the search results it delivers. For example, use this object to specify the maximum number of results or suggestions you want the query to return. You can also use it to enable or disable the ranking of results by Spotlight.
+    ///
+    /// For information about search filters and other configurable query parameters, see the parent class [`CSSearchQueryContext`](https://developer.apple.com/documentation/corespotlight/cssearchquerycontext).
+    ///
+    ///
     #[unsafe(super(CSSearchQueryContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CSSearchQuery")]
@@ -141,7 +146,25 @@ impl CSUserQueryContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csuserquery?language=objc)
+    /// A type you use to initiate searches from your interface and offer suggested text completions.
+    ///
+    /// ## Overview
+    ///
+    /// A `CSUserQuery` object provides the back-end support for your app’s search features. Combine this object with your app’s search interface to perform lexical and semantic searches of human-entered search terms. You can configure a query object to return ranked or unranked results. You can also use it to get a list of suggestions to display from your search interface.
+    ///
+    /// When the text in your search control changes, create a query object to begin searching for results based on the current text. You use a query object only once to perform a search. If the text changes again while a previous query is in progress, cancel the old query and execute the new one. For this reason, it’s a good idea to delay the start of each query until there is a sufficient gap between changes.
+    ///
+    /// Configure the query parameters using a [`CSUserQueryContext`](https://developer.apple.com/documentation/corespotlight/csuserquerycontext) object, which you can reuse for multiple queries. The context lets you configure the behavior for ranking results, specify the maximum number of results and suggestions, and filter the results using a predicate string. When you’re ready to start the query, choose one of the following options:
+    ///
+    /// - Get the value of the [`responses`](https://developer.apple.com/documentation/corespotlight/csuserquery/responses-swift.property) property and iterate over the results.
+    ///
+    /// - Configure the [`foundItemsHandler`](https://developer.apple.com/documentation/corespotlight/cssearchquery/founditemshandler) property and call [`start`](https://developer.apple.com/documentation/corespotlight/csuserquery/start()) to execute the query manually.
+    ///
+    /// Each query runs until Spotlight returns the requested maximum number of results. If you don’t specify the maximum number of results, Spotlight runs until it returns all results. To end a search before you receive all the results, call the [`cancel`](https://developer.apple.com/documentation/corespotlight/csuserquery/cancel()) method. Cancelling a query is especially important if you’re about to start a new query with an updated search string.
+    ///
+    /// For more information about configuring a `CSUserQuery` object, see [Building a search interface for your app](https://developer.apple.com/documentation/corespotlight/building-a-search-interface-for-your-app).
+    ///
+    ///
     #[unsafe(super(CSSearchQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CSSearchQuery")]

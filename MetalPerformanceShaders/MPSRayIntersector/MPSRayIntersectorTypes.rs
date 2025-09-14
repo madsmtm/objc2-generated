@@ -10,8 +10,6 @@ use crate::*;
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraypackedorigindirection?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayPackedOriginDirection {
@@ -34,14 +32,13 @@ unsafe impl RefEncode for MPSRayPackedOriginDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A 3D ray with an origin, a direction, and an intersection distance range from the origin.
 /// Represents a 3D ray with an origin, a direction, and an intersection
 /// distance range from the origin
 ///
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmindistancedirectionmaxdistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayOriginMinDistanceDirectionMaxDistance {
@@ -77,13 +74,12 @@ unsafe impl RefEncode for MPSRayOriginMinDistanceDirectionMaxDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A 3D ray with an origin, a direction, and a mask to filter out intersections.
 /// Represents a 3D ray with an origin, a direction, and a mask to filter out intersections
 ///
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmaskdirectionmaxdistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MPSRayOriginMaskDirectionMaxDistance {
@@ -118,14 +114,13 @@ unsafe impl RefEncode for MPSRayOriginMaskDirectionMaxDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An intersection result that contains the distance from the ray origin to the intersection point.
 /// Returned intersection result which contains the distance from the ray origin to the
 /// intersection point
 ///
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistance?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistance {
@@ -144,14 +139,13 @@ unsafe impl RefEncode for MPSIntersectionDistance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An intersection result that contains the distance from the ray origin to the intersection point, and the index of the intersected primitive.
 /// Intersection result which contains the distance from the ray origin to the
 /// intersection point and the index of the intersected primitive
 ///
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndex {
@@ -180,8 +174,6 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndex {
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndex {
@@ -209,14 +201,13 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexBufferIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An intersection result that contains the origin-intersection distance, and intersected primitive and instance indices.
 /// Intersection result which contains the distance from the ray origin to the intersection
 /// point, the index of the intersected primitive, and the index of the intersected instance.
 ///
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexinstanceindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexInstanceIndex {
@@ -252,8 +243,6 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexInstanceIndex {
 ///
 /// This type is available from the Metal Shading Language by including the
 /// MetalPerformanceShaders/MetalPerformanceShaders.h header.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindexinstanceindex?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex {

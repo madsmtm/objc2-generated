@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementtype?language=objc)
+/// Defines the possible types of index elements.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFetchIndexElementType(pub NSUInteger);
 impl NSFetchIndexElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementtype/binary?language=objc)
+    /// A binary index type.
     #[doc(alias = "NSFetchIndexElementTypeBinary")]
     pub const Binary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementtype/rtree?language=objc)
+    /// An R-tree index type.
     #[doc(alias = "NSFetchIndexElementTypeRTree")]
     pub const RTree: Self = Self(1);
 }
@@ -30,7 +30,7 @@ unsafe impl RefEncode for NSFetchIndexElementType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchindexelementdescription?language=objc)
+    /// Description of an Index Element
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchIndexElementDescription;

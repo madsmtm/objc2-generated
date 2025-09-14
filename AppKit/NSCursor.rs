@@ -8,53 +8,44 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The position along the perimeter of a rectangular frame (its edges and corners) from which it’s resized.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition?language=objc)
+/// The position along the perimeter of a rectangular frame (its edges and corners) from which it’s resized.
 // NS_CLOSED_ENUM
 #[repr(usize)] // NSUInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub enum NSCursorFrameResizePosition {
     /// The top edge of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/top?language=objc)
+    /// The top edge of the frame.
     #[doc(alias = "NSCursorFrameResizePositionTop")]
     Top = 1 << 0,
     /// The left edge of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/left?language=objc)
+    /// The left edge of the frame.
     #[doc(alias = "NSCursorFrameResizePositionLeft")]
     Left = 1 << 1,
     /// The bottom edge of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottom?language=objc)
+    /// The bottom edge of the frame.
     #[doc(alias = "NSCursorFrameResizePositionBottom")]
     Bottom = 1 << 2,
     /// The right edge of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/right?language=objc)
+    /// The right edge of the frame.
     #[doc(alias = "NSCursorFrameResizePositionRight")]
     Right = 1 << 3,
     /// The top left corner of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/topleft?language=objc)
+    /// The top left corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionTopLeft")]
     TopLeft = NSCursorFrameResizePosition::Top as NSUInteger
         | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The top right corner of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/topright?language=objc)
+    /// The top right corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionTopRight")]
     TopRight = NSCursorFrameResizePosition::Top as NSUInteger
         | NSCursorFrameResizePosition::Right as NSUInteger,
     /// The bottom left corner of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottomleft?language=objc)
+    /// The bottom left corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionBottomLeft")]
     BottomLeft = NSCursorFrameResizePosition::Bottom as NSUInteger
         | NSCursorFrameResizePosition::Left as NSUInteger,
     /// The bottom right corner of the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition/bottomright?language=objc)
+    /// The bottom right corner of the frame.
     #[doc(alias = "NSCursorFrameResizePositionBottomRight")]
     BottomRight = NSCursorFrameResizePosition::Bottom as NSUInteger
         | NSCursorFrameResizePosition::Right as NSUInteger,
@@ -69,8 +60,7 @@ unsafe impl RefEncode for NSCursorFrameResizePosition {
 }
 
 /// The directions in which a rectangular frame can be resized.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections?language=objc)
+/// The directions in which a rectangular frame can be resized.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -78,18 +68,15 @@ pub struct NSCursorFrameResizeDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCursorFrameResizeDirections: NSUInteger {
 /// Indicates that the shape can be resized inwards to be smaller.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsinward?language=objc)
+/// Indicates that the shape can be resized inwards to be smaller.
         #[doc(alias = "NSCursorFrameResizeDirectionsInward")]
         const Inward = 1<<0;
 /// Indicates that the shape can be resized outwards to be larger.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsoutward?language=objc)
+/// Indicates that the shape can be resized outwards to be larger.
         #[doc(alias = "NSCursorFrameResizeDirectionsOutward")]
         const Outward = 1<<1;
 /// Indicates that the shape can be resized inwards or wards to be either smaller or larger, respectively.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections/nscursorframeresizedirectionsall?language=objc)
+/// Indicates that the shape can be resized inwards or wards to be either smaller or larger, respectively.
         #[doc(alias = "NSCursorFrameResizeDirectionsAll")]
         const All = NSCursorFrameResizeDirections::Inward.0|NSCursorFrameResizeDirections::Outward.0;
     }
@@ -104,7 +91,45 @@ unsafe impl RefEncode for NSCursorFrameResizeDirections {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor?language=objc)
+    /// A pointer (also called a cursor).
+    ///
+    /// ## Overview
+    ///
+    /// The following table shows and describes the system cursors, and indicates the class method for obtaining them:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Cursor" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555572", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The arrow cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/arrow", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555577", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The I-beam cursor for indicating insertion points (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/iBeam", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555579", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The cross-hair cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/crosshair", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555583", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The closed-hand cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/closedHand", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555589", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The open-hand cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/openHand", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555596", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The pointing-hand cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/pointingHand", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555601", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-left cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeLeft", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555605", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-right cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeRight", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555610", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-left-and-right cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeLeftRight", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555619", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-up cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeUp", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555626", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-down cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeDown", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555629", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The resize-up-and-down cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/resizeUpDown", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555632", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The disappearing item cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/disappearingItem", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555638", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The I-Beam text cursor for vertical layout (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/iBeamCursorForVerticalLayout", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")." }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555643", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The not allowed cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/operationNotAllowed", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")." }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555647", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The drag link cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/dragLink", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")." }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555652", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The drag copy cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/dragCopy", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")." }] }]], [[Paragraph { inline_content: [Image { identifier: "media-2555658", metadata: None }] }], [Paragraph { inline_content: [Text { text: "The contextual menu cursor (" }, Reference { identifier: "doc://com.apple.appkit/documentation/AppKit/NSCursor/contextualMenu", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")." }] }]]], alignments: None, metadata: None })
+    /// In macOS 10.3 and later, cursor size is no longer limited to 16 by 16 pixels.
+    ///
+    /// ### Cursor rectangles
+    ///
+    /// In Cocoa, you can change the currently displayed cursor based on the position of the mouse over one of your views. You might use this technique to provide visual feedback about what actions the user can take with the mouse. For example, you might display one of the resize cursors whenever the mouse moves over a portion of your view that acts as a custom resizing handle. To set this up, you associate a cursor object with one or more cursor rectangles in the view.
+    ///
+    /// Cursor rectangles are a specialized type of tracking rectangles, which are used to monitor the mouse location in a view. Views implement cursor rectangles using tracking rectangles but provide methods for setting and refreshing cursor rectangles that are distinct from the generic tracking rectangle interface. For information on how to set up cursor rectangles, see [Mouse-Tracking and Cursor-Update Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/MouseTrackingEvents/MouseTrackingEvents.html#//apple_ref/doc/uid/10000060i-CH11).
+    ///
+    /// ### Balancing cursor hiding and unhiding
+    ///
+    /// Each call to [`hide`](https://developer.apple.com/documentation/appkit/nscursor/hide()) cursor must have a corresponding [`unhide`](https://developer.apple.com/documentation/appkit/nscursor/unhide()) call. For example,
+    ///
+    /// ```objc
+    /// [NSCursor hide];
+    /// [NSCursor hide];
+    /// // ...
+    /// [NSCursor unhide];
+    /// ```
+    ///
+    /// Will result in the cursor still being hidden because the `hide` and `unhide` method invocations are not balanced. Instead you must balance the method calls, such as in the following example:
+    ///
+    /// ```objc
+    /// [NSCursor hide];
+    /// [NSCursor hide];
+    /// // ...
+    /// [NSCursor unhide];
+    /// [NSCursor unhide];
+    /// ```
+    ///
+    /// There are corresponding cursor `hide` and `unhide` calls, thus the cursor will become visible.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCursor;
@@ -304,7 +329,13 @@ impl DefaultRetained for NSCursor {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithcursorsizesupport?language=objc)
+/// The specific version of the AppKit framework that introduced support for cursors larger than 16 x 16 pixels in size.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for OS X v10.2 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithCursorSizeSupport: NSAppKitVersion = 682.0 as _;
 

@@ -7,8 +7,7 @@ use crate::*;
 
 extern_class!(
     /// Describes the placement and style of the system windowing controls for a scene
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/windowingcontrolstyle?language=objc)
+    /// Describes the placement and style of the system windowing controls for a scene
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneWindowingControlStyle;

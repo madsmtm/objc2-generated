@@ -9,26 +9,106 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagretaincallback?language=objc)
+/// Prototype of a callback function used to retain a value being added to a bag.
+///
+/// Parameters:
+/// - allocator: The bag’s allocator.
+///
+/// - value: The value being added to the bag.
+///
+///
+/// ## Return Value
+///
+/// The value to store in the bag, which is usually the `value` parameter passed to this callback, but may be a different   value if a different value should be stored in the collection.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) in a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure.
+///
+///
 pub type CFBagRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreleasecallback?language=objc)
+/// Prototype of a callback function used to release a value before it’s removed from a bag.
+///
+/// Parameters:
+/// - allocator: The bag’s allocator.
+///
+/// - value: The value being removed from the bag.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) in a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure.
+///
+///
 pub type CFBagReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcopydescriptioncallback?language=objc)
+/// Prototype of a callback function used to get a description of a value in a bag.
+///
+/// Parameters:
+/// - value: The value to be described.
+///
+///
+/// ## Return Value
+///
+/// A textual description of `value`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) in a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure. This callback is used by the [`CFCopyDescription`](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)) function.
+///
+///
 pub type CFBagCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagequalcallback?language=objc)
+/// Prototype of a callback function used to determine if two values in a bag are equal.
+///
+/// Parameters:
+/// - value1: A value in the bag.
+///
+/// - value2: Another value in the bag.
+///
+///
+/// ## Return Value
+///
+/// `true` if `value1` and `value2` are equal, `false` otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) in a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure.
+///
+///
 pub type CFBagEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaghashcallback?language=objc)
+/// Prototype of a callback function invoked to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.
+///
+/// Parameters:
+/// - value: The value used to compute the hash code.
+///
+///
+/// ## Return Value
+///
+/// An integer that can be used as a table address in a hash table structure.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) in a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure.
+///
+///
 pub type CFBagHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks?language=objc)
+/// This structure contains the callbacks used to retain, release, describe, and compare the values of a CFBag object.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -62,19 +142,49 @@ unsafe impl RefEncode for CFBagCallBacks {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypebagcallbacks?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure containing a set of callbacks appropriate for use when the values in a CFBag are all CFType-derived objects. The retain callback is `CFRetain`, the release callback is `CFRelease`, the copy callback is `CFCopyDescription`, the equal callback is `CFEqual`, and the hash callback is `CFHash`. Therefore, if you use this constant when creating the collection, items are automatically retained when added to the collection, and released when removed from the collection.
+    ///
+    ///
     pub static kCFTypeBagCallBacks: CFBagCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringbagcallbacks?language=objc)
+    /// Predefined [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure containing a set of callbacks appropriate for use when the values in a CFBag are all CFString objects. The bag makes immutable copies of the strings placed into it.
     pub static kCFCopyStringBagCallBacks: CFBagCallBacks;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagapplierfunction?language=objc)
+/// Prototype of a callback function that may be applied to every value in a bag.
+///
+/// Parameters:
+/// - value: The current value in a bag.
+///
+/// - context: The program-defined context parameter given to the apply   function.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to the [`CFBagApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfbagapplyfunction(_:_:_:)) function which iterates over the values in a bag and applies the behavior defined in the applier function to each value in a bag.
+///
+///
 pub type CFBagApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbag?language=objc)
+///
+/// ## Overview
+///
+/// CFBag and its derived mutable type, [`CFMutableBagRef`](https://developer.apple.com/documentation/corefoundation/cfmutablebag), manage non-sequential collections of values called bags in which there can be duplicate values. CFBag creates static bags and CFMutableBag creates dynamic bags.
+///
+/// Use bags or sets as an alternative to arrays when the order of elements isn’t important and performance in testing whether a value is contained in the collection is a consideration—while arrays are ordered, testing for membership is slower than with bags or sets. Use bags over sets if you want to allow duplicate values in your collections.
+///
+/// You create a static bag object using either the [`CFBagCreate`](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)) or [`CFBagCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfbagcreatecopy(_:_:)) function. These functions return a bag containing the values you pass in as arguments. (Note that bags can’t contain `NULL` pointers; in most cases, though, you can use the kCFNull constant instead.) Values are not copied but retained using the retain callback provided when the bag was created. Similarly, when a value is removed from a bag, it is released using the release callback.
+///
+/// CFBag provides functions for querying the values of a bag. The [`CFBagGetCount`](https://developer.apple.com/documentation/corefoundation/cfbaggetcount(_:)) returns the number of values in a bag, the [`CFBagContainsValue`](https://developer.apple.com/documentation/corefoundation/cfbagcontainsvalue(_:_:)) function checks if a value is in a bag, and [`CFBagGetValues`](https://developer.apple.com/documentation/corefoundation/cfbaggetvalues(_:_:)) returns a C array containing all the values in a bag.
+///
+/// The [`CFBagApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfbagapplyfunction(_:_:_:)) function lets you apply a function to all values in a bag.
+///
+///
 #[doc(alias = "CFBagRef")]
 #[repr(C)]
 pub struct CFBag<T: ?Sized = Opaque> {
@@ -109,7 +219,16 @@ impl<T: ?Sized> CFBag<T> {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebag?language=objc)
+///
+/// ## Overview
+///
+/// CFMutableBag manages dynamic bags. The basic interface for managing bags is provided by [`CFBagRef`](https://developer.apple.com/documentation/corefoundation/cfbag). CFMutableBag adds functions to modify the contents of a bag.
+///
+/// You create a mutable bag object using either the [`CFBagCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutable(_:_:_:)) or [`CFBagCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutablecopy(_:_:_:)) function.
+///
+/// CFMutableBag provides several functions for adding and removing values from a bag. The [`CFBagAddValue`](https://developer.apple.com/documentation/corefoundation/cfbagaddvalue(_:_:)) function adds a value to a bag and [`CFBagRemoveValue`](https://developer.apple.com/documentation/corefoundation/cfbagremovevalue(_:_:)) removes values from a bag.
+///
+///
 #[doc(alias = "CFMutableBagRef")]
 #[repr(C)]
 pub struct CFMutableBag<T: ?Sized = Opaque> {
@@ -145,7 +264,19 @@ impl<T: ?Sized> CFMutableBag<T> {
 }
 
 unsafe impl ConcreteType for CFBag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggettypeid()?language=objc)
+    /// Returns the type identifier for the CFBag opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFBag opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableBag objects have the same type identifier as CFBag objects.
+    ///
+    ///
     #[doc(alias = "CFBagGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -157,7 +288,23 @@ unsafe impl ConcreteType for CFBag {
 }
 
 impl CFBag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreate(_:_:_:_:)?language=objc)
+    /// Creates an immutable bag containing specified values.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bag and its storage for values. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - values: A C array of the pointer-sized values to be in the new bag. This parameter may be `NULL` if the `numValues` parameter is 0. The C array is not changed or freed by this function. `values` must be a valid pointer to a C array of at least `numValues` elements.
+    ///
+    /// - numValues: The number of values to copy from the `values` C array in the new CFBag object. If the number is negative or is greater than the actual number of values, the behavior is undefined.
+    ///
+    /// - callBacks: A pointer to a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the bag. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations. This parameter may be `NULL`, which is treated as if a valid structure of version 0 with all fields `NULL` had been passed in. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined. If the collection contains CFType objects only, then pass [`kCFTypeBagCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypebagcallbacks) as this parameter to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bag, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -184,7 +331,19 @@ impl CFBag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatecopy(_:_:)?language=objc)
+    /// Creates an immutable bag with the values of another bag.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bag and its storage for values. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theBag: The bag to copy. The pointer values from `theBag` are copied into the new bag. However, the values are also retained by the new bag. The count of the new bag is the same as the count of `theBag`. The new bag uses the same callbacks as `theBag`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bag that contains the same values as `theBag`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -209,7 +368,31 @@ impl CFBag {
 }
 
 impl CFMutableBag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutable(_:_:_:)?language=objc)
+    /// Creates a new empty mutable bag.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator object to use to allocate memory for the new bag and its storage for values. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new bag. The bag starts empty and can grow to this number of values (and it can have less). If this parameter is `0`, the bag’s maximum capacity is not limited. This value must not be negative.
+    ///
+    /// - callBacks: A pointer to a [`CFBagCallBacks`](https://developer.apple.com/documentation/corefoundation/cfbagcallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the bag. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations. This parameter may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in.
+    ///
+    /// If any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a `CFBagCallBacks` structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    /// If the collection contains only CFType objects, then pass kCFTypeBagCallBacks as this parameter to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable bag, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an new empty mutable bag to which you can add values using the [`CFBagAddValue`](https://developer.apple.com/documentation/corefoundation/cfbagaddvalue(_:_:)) function. The `capacity` parameter specifies the maximum number of values that the CFBag object can contain. If it is `0`, then there is no limit to the number of values that can be added (aside from constraints such as available memory).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -234,7 +417,21 @@ impl CFMutableBag {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcreatemutablecopy(_:_:_:)?language=objc)
+    /// Creates a new mutable bag with the values from another bag.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bag and its storage for values. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new bag. The bag starts with the same count as `theBag`, and can grow to this number of values (and it can have less). If this value is `0`, the bag’s maximum capacity is not limited. This value must be greater than or equal to the count of `theBag`, and must not be negative.
+    ///
+    /// - theBag: The bag to copy. The pointer values from `theBag` are copied into the new bag. However, the values are also retained by the new bag. The count of the new bag is the same as the count of `theBag`. The new bag uses the same callbacks as `theBag`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable bag that contains the same values as `theBag`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -262,7 +459,17 @@ impl CFMutableBag {
 }
 
 impl CFBag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetcount(_:)?language=objc)
+    /// Returns the number of values currently in a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of values in `theBag`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -276,7 +483,19 @@ impl CFBag {
         unsafe { CFBagGetCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetcountofvalue(_:_:)?language=objc)
+    /// Returns the number of times a value occurs in a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to examine.
+    ///
+    /// - value: The value for which to find matches in `theBag`. The equal callback provided when `theBag` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theBag`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of times `value` occurs in `theBag`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -291,7 +510,19 @@ impl CFBag {
         unsafe { CFBagGetCountOfValue(self, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagcontainsvalue(_:_:)?language=objc)
+    /// Reports whether or not a value is in a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to examine.
+    ///
+    /// - value: The value to match in `theBag`. The equal callback provided when `theBag` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theBag`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` is contained in `theBag`, otherwise `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -307,7 +538,25 @@ impl CFBag {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalue(_:_:)?language=objc)
+    /// Returns a requested value from a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to examine.
+    ///
+    /// - value: The value for which to find matches in `theBag`. The equal callback provided when `theBag` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theBag`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to `value`, or `NULL` if `value` is not in `theBag`. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the implementation of the equal callback specified when creating `theBag`, the value returned may not have the same pointer equality as `value`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -322,7 +571,27 @@ impl CFBag {
         unsafe { CFBagGetValue(self, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalueifpresent(_:_:_:)?language=objc)
+    /// Reports whether or not a value is in a bag, and returns that value indirectly if it exists.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to be searched.
+    ///
+    /// - candidate: The value for which to find matches in `theBag`. The equal callback provided when `theBag` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `candidate`, or any other value in `theBag`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    /// - value: A pointer to a value object. Set to the matching value if it exists in the bag, otherwise `NULL`. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` is present in `theBag`, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the implementation of the equal callback specified when creating `theBag`, the value returned in `value` may not have the same pointer equality as `candidate`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -347,7 +616,13 @@ impl CFBag {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbaggetvalues(_:_:)?language=objc)
+    /// Fills a buffer with values from a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to examine.
+    ///
+    /// - values: A C array of pointer-sized values to be filled with values from `theBag`. The value must be a valid C array of the appropriate type and size (that is, a size equal to the count of `theBag`).
+    ///
     ///
     /// # Safety
     ///
@@ -362,7 +637,21 @@ impl CFBag {
         unsafe { CFBagGetValues(self, values) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagapplyfunction(_:_:_:)?language=objc)
+    /// Calls a function once for each value in a bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to operate upon.
+    ///
+    /// - applier: The callback function to call once for each value in the `theBag`. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. If there are values in the range that the `applier` function does not expect or cannot properly apply to, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the second parameter to the `applier` function, but is otherwise unused by this function. If the context is not what is expected by the applier function, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// While this function iterates over a mutable collection, it is unsafe for the `applier` function to change the contents of the collection.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -384,7 +673,19 @@ impl CFBag {
 }
 
 impl CFMutableBag {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagaddvalue(_:_:)?language=objc)
+    /// Adds a value to a mutable bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag to which `value` is added.
+    ///
+    /// - value: A CFType object or a pointer value to add to `theBag` (or the value itself, if it fits into the size of a pointer).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `value` parameter is retained by `theBag` using the retain callback provided when `theBag` was created. If `value` is not of the type expected by the retain callback, the behavior is undefined. If `value` already exists in the collection, it is simply retained again—no memory is allocated for the added value. Use a CFSet object if you don’t want duplicate values in your collection.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -400,7 +701,19 @@ impl CFMutableBag {
         unsafe { CFBagAddValue(the_bag, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagreplacevalue(_:_:)?language=objc)
+    /// Replaces a value in a mutable bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag from which `value` is to be replaced.
+    ///
+    /// - value: The value to be replaced in the collection. If this value does not already exist in the collection, the function does nothing. You may pass the value itself instead of a pointer if it is pointer-size or less. The equal callback provided when `theBag` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theBag`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the implementation of the equal callback specified when creating `theBag`, the object that is replaced by `value` may not have the same pointer equality.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -416,7 +729,19 @@ impl CFMutableBag {
         unsafe { CFBagReplaceValue(the_bag, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagsetvalue(_:_:)?language=objc)
+    /// Sets a value in a mutable bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag in which `value` is to be set.
+    ///
+    /// - value: The value to be set in the collection. If this value already exists in `theBag`, it is replaced. You may pass the value itself instead of a pointer to it if the value is pointer-size or less. If `theBag` is fixed-size and the value is beyond its capacity, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the implementation of the equal callback specified when creating `theBag`, the value that is replaced by `value` may not have the same pointer equality.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -432,7 +757,13 @@ impl CFMutableBag {
         unsafe { CFBagSetValue(the_bag, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagremovevalue(_:_:)?language=objc)
+    /// Removes a value from a mutable bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag from which `value` is to be removed.
+    ///
+    /// - value: The value to be removed from the collection.
+    ///
     ///
     /// # Safety
     ///
@@ -448,7 +779,11 @@ impl CFMutableBag {
         unsafe { CFBagRemoveValue(the_bag, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbagremoveallvalues(_:)?language=objc)
+    /// Removes all values from a mutable bag.
+    ///
+    /// Parameters:
+    /// - theBag: The bag from which all of the values are to be removed.
+    ///
     ///
     /// # Safety
     ///

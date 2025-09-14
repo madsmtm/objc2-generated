@@ -7,7 +7,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistributedlock?language=objc)
+    /// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
+    ///
+    /// ## Overview
+    ///
+    /// The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an [`NSDistributedLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock) object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running.
+    ///
+    /// Use the [`tryLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock/try()) method to attempt to acquire a lock. You should generally use the [`unlock`](https://developer.apple.com/documentation/foundation/nsdistributedlock/unlock()) method to release the lock rather than [`breakLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock/break()).
+    ///
+    /// [`NSDistributedLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock) doesn’t conform to the [`NSLocking`](https://developer.apple.com/documentation/foundation/nslocking) protocol, nor does it have a `lock` method. The protocol’s [`lock`](https://developer.apple.com/documentation/foundation/nslocking/lock()) method is intended to block the execution of the thread until successful. For an [`NSDistributedLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock) object, this could mean polling the file system at some predetermined rate. A better solution is to provide the [`tryLock`](https://developer.apple.com/documentation/foundation/nsdistributedlock/try()) method and let you determine the polling frequency that makes sense for your application.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDistributedLock;

@@ -8,11 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract base class for objects representing impassable areas in a game world.
+    ///
+    /// ## Overview
+    ///
+    /// You do not use this class directly; instead, create instances of its concrete subclasses [`GKCircleObstacle`](https://developer.apple.com/documentation/gameplaykit/gkcircleobstacle), [`GKSphereObstacle`](https://developer.apple.com/documentation/gameplaykit/gksphereobstacle), and [`GKPolygonObstacle`](https://developer.apple.com/documentation/gameplaykit/gkpolygonobstacle). To make agents ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) avoid obstacles, create a goal with the goalToAvoidObstacles:timeBeforeCollisionToAvoid: method.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    /// For more information, see [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// Represents an impassible area in 2D space.
     /// Able to be avoided by GKAgent's steering functions
     /// GKGraph can generate navigation graphs from a list of obstacles
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkobstacle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKObstacle;
@@ -40,9 +49,16 @@ impl GKObstacle {
 }
 
 extern_class!(
-    /// An obstacle with an impassible radius
+    /// A circular impassable area to be avoided by agents.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkcircleobstacle?language=objc)
+    /// ## Overview
+    ///
+    /// To make agents ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) avoid obstacles, create a goal with the [`goalToAvoidObstacles:maxPredictionTime:`](https://developer.apple.com/documentation/gameplaykit/gkgoal/init(toavoid:maxpredictiontime:)-7oslq) method. Agents affected by an avoid-obstacles goal will attempt to move such that their radius never overlaps that of a circular obstacle.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// An obstacle with an impassible radius
     #[unsafe(super(GKObstacle, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKCircleObstacle;
@@ -88,9 +104,18 @@ impl GKCircleObstacle {
 }
 
 extern_class!(
-    /// An obstacle with an impassible closed polygon
+    /// A polygon-shaped impassable area in a 2D game world.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkpolygonobstacle?language=objc)
+    /// ## Overview
+    ///
+    /// Polygon obstacles serve two purposes in GameplayKit: You can use polygon obstacles to construct a navigability graph of your game world (a [`GKObstacleGraph`](https://developer.apple.com/documentation/gameplaykit/gkobstaclegraph) object) for use in pathfinding. You can also use polygon obstacles to define regions for agents ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) to avoid, using the [`GKGoal`](https://developer.apple.com/documentation/gameplaykit/gkgoal) method [`goalToAvoidObstacles:maxPredictionTime:`](https://developer.apple.com/documentation/gameplaykit/gkgoal/init(toavoid:maxpredictiontime:)-7oslq).
+    ///
+    /// To easily create obstacles for use with a SpriteKit game, create and arrange a set of nodes that define the non-navigable regions of your game world. You can create such nodes programmatically, or use the SpriteKit Scene Editor in Xcode. If you’re already using nodes with physics bodies to keep sprites from entering those regions, you can reuse those nodes. Then, use the [`obstaclesFromNodeBounds:`](https://developer.apple.com/documentation/spritekit/sknode/obstacles(fromnodebounds:)), [`obstaclesFromSpriteTextures:accuracy:`](https://developer.apple.com/documentation/spritekit/sknode/obstacles(fromspritetextures:accuracy:)), or [`obstaclesFromNodePhysicsBodies:`](https://developer.apple.com/documentation/spritekit/sknode/obstacles(fromnodephysicsbodies:)) method to generate a set of [`GKPolygonObstacle`](https://developer.apple.com/documentation/gameplaykit/gkpolygonobstacle) objects.
+    ///
+    /// To learn more about both ways of using polygon obstacles, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) and [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// An obstacle with an impassible closed polygon
     #[unsafe(super(GKObstacle, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKPolygonObstacle;
@@ -131,10 +156,17 @@ impl GKPolygonObstacle {
 }
 
 extern_class!(
+    /// A spherical impassable volume to be avoided by agents.
+    ///
+    /// ## Overview
+    ///
+    /// To make agents ([`GKAgent`](https://developer.apple.com/documentation/gameplaykit/gkagent) objects) avoid obstacles, create a goal with the [`goalToAvoidObstacles:maxPredictionTime:`](https://developer.apple.com/documentation/gameplaykit/gkgoal/init(toavoid:maxpredictiontime:)-7oslq) method. Agents affected by an avoid-obstacles goal will attempt to move such that their radius never overlaps that of a spherical obstacle.
+    ///
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// An obstacle with an impassible radius in 3D space
     /// For use with GKAgent3D.  Using this with a GKAgent2D is no different than using GKCircleObstacle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gksphereobstacle?language=objc)
     #[unsafe(super(GKObstacle, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKSphereObstacle;

@@ -4,16 +4,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype?language=objc)
+/// Constants indicating the type of location-based search to perform.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INLocationSearchType(pub NSInteger);
 impl INLocationSearchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype/unknown?language=objc)
+    /// An unknown search type.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, don’t consider location values as part of your search criteria.
+    ///
+    ///
     #[doc(alias = "INLocationSearchTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlocationsearchtype/bylocationtrigger?language=objc)
+    /// A search type that requires matching the trigger location of a reminder to the specified location.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, search for tasks that have reminders generated when the user is near a specified location.
+    ///
+    ///
     #[doc(alias = "INLocationSearchTypeByLocationTrigger")]
     pub const ByLocationTrigger: Self = Self(1);
 }

@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Groups together parameters for creating a command allocator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandallocatordescriptor?language=objc)
+    /// Groups together parameters for creating a command allocator.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CommandAllocatorDescriptor;
@@ -66,8 +65,7 @@ impl DefaultRetained for MTL4CommandAllocatorDescriptor {
 
 extern_protocol!(
     /// Manages the memory backing the encoding of GPU commands into command buffers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandallocator?language=objc)
+    /// Manages the memory backing the encoding of GPU commands into command buffers.
     pub unsafe trait MTL4CommandAllocator: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// Returns the GPU device that this command allocator belongs to.

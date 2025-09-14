@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that tracks two trackpad touches moving opposite each other in a circular motion.
+    ///
+    /// ## Overview
+    ///
+    /// This rotation gesture implies that the underlying view should rotate in a matching direction. The gesture is recognized when the trackpad touches end.
+    ///
+    /// Upon creation, the gesture recognizer sets the value of the [`delaysRotationEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[unsafe(super(NSGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSGestureRecognizer")]

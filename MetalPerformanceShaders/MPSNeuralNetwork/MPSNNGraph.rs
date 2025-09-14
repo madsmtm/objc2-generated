@@ -8,17 +8,41 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A notification when an asynchronous graph execution has finished.
 /// A notification when computeAsyncWithSourceImages:completionHandler: has finished
 ///
 /// Parameter `result`: If no error, the image produced by the graph operation.
 ///
 /// Parameter `error`: If an error occurs, more information might be found here.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraphcompletionhandler?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSImage", feature = "block2"))]
 pub type MPSNNGraphCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut MPSImage, *mut NSError)>;
 
 extern_class!(
+    /// An optimized representation of a graph of neural network image and filter nodes.
+    ///
+    /// ## Overview
+    ///
+    /// Once you have prepared a graph of [`MPSNNImageNode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode), [`MPSNNFilterNode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnfilternode), and, if needed, [`MPSNNStateNode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnstatenode) objects, you may initialize a [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) using the image node that you wish to appear as the result. The graph object will introspect the graph representation and determine which nodes are needed for inputs, and which nodes are produced as output state (if any). Nodes which are not needed to calculate the result image node are ignored. Some nodes may be internally concatenated with other nodes for better performance.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`MPSNNImageNode`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode) that you choose as the result node may be interior to a graph. This feature is provided as a means to examine intermediate computations in the full graph for debugging purposes.
+    ///
+    ///
+    ///
+    /// </div>
+    /// During [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) construction, the graph attached to the result node will be parsed and reduced to an optimized representation. This representation may be saved using the [`NSSecureCoding`](https://developer.apple.com/documentation/foundation/nssecurecoding) protocol for later recall.
+    ///
+    /// When decoding a [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) using a [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder), it will be created against the system default [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice). If you would like to set the device, your [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) should conform to the [`MPSDeviceProvider`](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceprovider) protocol.
+    ///
+    /// ### Debugging Tips
+    ///
+    /// In typical usage, some refinement, especially of padding policies, may be required to get the expected answer from Metal Performance Shaders. If the result image is the wrong size, padding is typically the problem. When the answers are incorrect, the [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/offset) or other property may be incorrectly configured at some stage. As the graph is generated starting from an output image node, you may create other graphs starting at any image node within the graph. This will give you a view into the result produced from each intermediate layer with a minimum of fuss. In addition, the usual [`debugDescription`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/debugdescription()) method is available to inspect objects to make sure they conform to expectation.
+    ///
+    /// Note that certain operations such as neuron filters that follow convolution filters and image concatenation may be optimized away by the [`MPSNNGraph`](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph) when it is constructed. The convolution can do neuron operations as part of its operation. Concatenation is best done by writing the result of earlier filter passes in the right place using [`destinationFeatureChannelOffset`](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnkernel/destinationfeaturechanneloffset) rather than by adding an extra copy. Other optimizations may be added as framework capabilities improve.
+    ///
+    ///
     /// Optimized representation of a graph of MPSNNImageNodes and MPSNNFilterNodes
     ///
     /// Once you have prepared a graph of MPSNNImageNodes and MPSNNFilterNodes
@@ -50,8 +74,6 @@ extern_class!(
     /// There is a lot of information about what optimizations are done to your
     /// graph, including some information on why certain optimizations were not
     /// made.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraph?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

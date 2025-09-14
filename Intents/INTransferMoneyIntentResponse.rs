@@ -7,42 +7,92 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTransferMoneyIntentResponseCode(pub NSInteger);
 impl INTransferMoneyIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeUnspecified")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you’ve verified that you’re able to fulfill the intent. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeReady")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/inprogress?language=objc)
+    /// You’ve received the transaction details but haven’t yet scheduled the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the transaction details, but haven’tt yet scheduled it. You might use this code when scheduling the transaction requires communicating with your server and you’ve not yet received a confirmation from that server.
+    ///
+    /// When handling an intent, you might want to first configure a timer to fire if your server doesn’t return within a few seconds. Use your timer’s handler block to provide the in-progress response back to Siri.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeInProgress")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/success?language=objc)
+    /// You successfully scheduled the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after scheduling the transaction successfully. Returning this code doesn’t require a transfer of funds. It only means that you’ve recorded the transaction in order to perform the transfer on the specified date.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeSuccess")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failure?language=objc)
+    /// You were unable to schedule the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from scheduling the transaction.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailure")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to schedule the transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you require additional information that you can only obtain from your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failurecredentialsunverified?language=objc)
+    /// The transaction failed because you were unable to verify the user’s credentials.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you’re unable to verify the user’s credentials. You might use this response code if the user is currently logged out of your app or is unknown to you.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureCredentialsUnverified")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureCredentialsUnverified: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponsecode/failureinsufficientfunds?language=objc)
+    /// The transaction failed because the user’s account didn’t contain sufficient funds.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the user’s source account doesn’t contain the necessary funds for the transfer.
+    ///
+    ///
     #[doc(alias = "INTransferMoneyIntentResponseCodeFailureInsufficientFunds")]
     #[deprecated = "INTransferMoneyIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureInsufficientFunds: Self = Self(7);
@@ -57,7 +107,15 @@ unsafe impl RefEncode for INTransferMoneyIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintentresponse?language=objc)
+    /// Your app’s response to a request to transfer money.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INTransferMoneyIntentResponse`](https://developer.apple.com/documentation/intents/intransfermoneyintentresponse) object to specify the details of the transfer operation that you perform. After creating the object, fill in the details of the transaction, including the amount to transfer, the accounts involved, and the date to make the transaction. Siri communicates the details back to the user at appropriate times.
+    ///
+    /// You create an [`INTransferMoneyIntentResponse`](https://developer.apple.com/documentation/intents/intransfermoneyintentresponse) object in the [`confirmTransferMoney:completion:`](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling/confirm(intent:completion:)) and [`handleTransferMoney:completion:`](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INPayBillIntentHandling`](https://developer.apple.com/documentation/intents/inpaybillintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

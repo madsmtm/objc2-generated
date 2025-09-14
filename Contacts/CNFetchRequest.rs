@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnfetchrequest?language=objc)
+    /// The base class for contact fetch requests.
+    ///
+    /// ## Overview
+    ///
+    /// To fetch contacts, use [`CNContactFetchRequest`](https://developer.apple.com/documentation/contacts/cncontactfetchrequest).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNFetchRequest;

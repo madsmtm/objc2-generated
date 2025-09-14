@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationfreetext?language=objc)
+    /// A `PDFAnnotationFreeText` object displays text on a page.
+    ///
+    /// ## Overview
+    ///
+    /// Unlike a `PDFAnnotationText` object, a `PDFAnnotationFreeText` object has no open or closed state; its text is always visible. The text annotation performed in Preview uses `PDFAnnotationFreeText`.
+    ///
+    /// The `PDFAnnotation` class’s [`contents`](https://developer.apple.com/documentation/pdfkit/pdfannotation/contents) property lets you get and set the textual content for a `PDFAnnotationFreeText` object.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

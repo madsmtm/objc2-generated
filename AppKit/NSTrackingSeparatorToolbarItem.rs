@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem?language=objc)
+    /// A toolbar separator that aligns with the vertical split view in the same window.
+    ///
+    /// ## Overview
+    ///
+    /// Use a `NSTrackingSeparatorToolbarItem` to divide an [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) into sections that visually align with the views on either side of the divider of the [`splitView`](https://developer.apple.com/documentation/appkit/nstrackingseparatortoolbaritem/splitview). This keeps [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem)s above the content that’s the [`target`](https://developer.apple.com/documentation/appkit/nstoolbaritem/target) for the item’s [`target`](https://developer.apple.com/documentation/appkit/nstoolbaritem/target).
+    ///
+    /// The `splitView` must be in the same window as the toolbar containing this item before showing the toolbar.
+    ///
+    ///
     #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]

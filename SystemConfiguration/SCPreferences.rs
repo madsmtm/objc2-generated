@@ -14,10 +14,9 @@ use objc2_security::*;
 
 use crate::*;
 
+/// The handle to an open preferences session for accessing system configuration preferences.
 /// This is the handle to an open preferences session for
 /// accessing system configuration preferences.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferences?language=objc)
 #[doc(alias = "SCPreferencesRef")]
 #[repr(C)]
 pub struct SCPreferences {
@@ -33,6 +32,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SCPreferences"> for SCPreferences {}
 );
 
+/// The type of notification (used with the [`SCPreferencesCallBack`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescallback) callback).
 /// Used with the SCPreferencesCallBack callback
 /// to describe the type of notification.
 ///
@@ -40,18 +40,16 @@ cf_objc2_type!(
 ///
 /// request has been made to apply the currently saved
 /// preferences to the active system configuration.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPreferencesNotification(pub u32);
 bitflags::bitflags! {
     impl SCPreferencesNotification: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification/commit?language=objc)
+/// Indicates when new preferences have been saved.
         #[doc(alias = "kSCPreferencesNotificationCommit")]
         const Commit = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification/apply?language=objc)
+/// Indicates when a request has been made to apply the currently saved preferences to the active system configuration.
         #[doc(alias = "kSCPreferencesNotificationApply")]
         const Apply = 1<<1;
     }
@@ -67,6 +65,7 @@ unsafe impl RefEncode for SCPreferencesNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure containing user-specified data and callbacks for accessing system configuration preferences.
 /// Structure containing user-specified data and callbacks for SCPreferences.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the SCPreferencesSetCallback function.
@@ -83,8 +82,6 @@ unsafe impl RefEncode for SCPreferencesNotification {
 /// The value may be NULL.
 /// Field: copyDescription The callback used to provide a description of
 /// the info field.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -115,6 +112,15 @@ unsafe impl RefEncode for SCPreferencesContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Type of the callback function used when the preferences have been updated or applied.
+///
+/// Parameters:
+/// - prefs: The preferences session.
+///
+/// - notificationType: The type of notification, such as changes committed or changes applied. See [`SCPreferencesNotification`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification) for information about possible values.
+///
+/// - info: A C pointer to a user-specified block of data.
+///
 /// Type of the callback function used when the
 /// preferences have been updated and/or applied.
 ///
@@ -124,16 +130,13 @@ unsafe impl RefEncode for SCPreferencesContext {
 /// committed, changes applied, etc.
 ///
 /// Parameter `info`: A C pointer to a user-specified block of data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescallback?language=objc)
 pub type SCPreferencesCallBack = Option<
     unsafe extern "C-unwind" fn(NonNull<SCPreferences>, SCPreferencesNotification, *mut c_void),
 >;
 
 unsafe impl ConcreteType for SCPreferences {
+    /// Returns the type identifier of all `SCPreferences` instances.
     /// Returns the type identifier of all SCPreferences instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgettypeid()?language=objc)
     #[doc(alias = "SCPreferencesGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -145,6 +148,23 @@ unsafe impl ConcreteType for SCPreferences {
 }
 
 impl SCPreferences {
+    /// Initiates access to the per-system set of configuration preferences.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for this preferences session. If the value is not a valid `CFAllocator`, the behavior is undefined. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default `CFAllocator`.
+    ///
+    /// - name: The name of the calling process.
+    ///
+    /// - prefsID: The name of the group of preferences to be accessed or updated. A name that starts with a leading “/” character specifies the absolute path to the file containing the preferences to be accessed. A name that does not start with a leading “/” character specifies a file relative to the default system preferences directory.
+    ///
+    /// To access the default system preferences, pass in `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the new preferences session. You must release the returned value.
+    ///
+    ///
     /// Initiates access to the per-system set of configuration
     /// preferences.
     ///
@@ -163,8 +183,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns a reference to the new SCPreferences.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreate(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesCreate")]
     #[inline]
     pub fn new(
@@ -183,6 +201,25 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Initiates access to the per-system set of configuration preferences with the specified authorization.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for this preferences session. If the value is not a valid `CFAllocator`, the behavior is undefined. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default `CFAllocator`.
+    ///
+    /// - name: The name of the calling process.
+    ///
+    /// - prefsID: The name of the group of preferences to be accessed or updated. A name that starts with a leading “/” character specifies the absolute path to the file containing the preferences to be accessed. A name that does not start with a leading “/” character specifies a file relative to the default system preferences directory.
+    ///
+    /// To access the default system preferences, pass in `NULL`.
+    ///
+    /// - authorization: An authorization reference that is used to authorize any access to the enhanced privileges needed to manage the preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the new preferences session. You must release the returned value.
+    ///
+    ///
     /// Initiates access to the per-system set of configuration
     /// preferences.
     ///
@@ -209,8 +246,6 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `authorization` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreatewithauthorization(_:_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesCreateWithAuthorization")]
     #[cfg(feature = "objc2-security")]
     #[inline]
@@ -236,6 +271,25 @@ impl SCPreferences {
 
     /// Locks access to the configuration preferences.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - wait: A Boolean value indicating whether the calling process should block, waiting for another process to complete its update operation and release its lock.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the lock was obtained; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains exclusive access to the configuration preferences. Clients attempting to obtain exclusive access to the preferences either receive a [`kSCStatusPrefsBusy`](https://developer.apple.com/documentation/systemconfiguration/kscstatusprefsbusy) error or they block, waiting for the lock to be released.
+    ///
+    ///
+    /// Locks access to the configuration preferences.
+    ///
     /// This function obtains exclusive access to the configuration
     /// preferences.  Clients attempting to obtain exclusive access
     /// to the preferences will either receive a kSCStatusPrefsBusy
@@ -249,8 +303,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferenceslock(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesLock")]
     #[inline]
     pub fn lock(&self, wait: bool) -> bool {
@@ -261,6 +313,31 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Commits changes made to the configuration preferences to persistent storage.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the lock was obtained; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Implicit calls to the [`SCPreferencesLock`](https://developer.apple.com/documentation/systemconfiguration/scpreferenceslock(_:_:)) and [`SCPreferencesUnlock`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesunlock(_:)) functions are made if exclusive access has not already been established.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This function commits changes to persistent storage. To apply the changes to the running system, use the [`SCPreferencesApplyChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesapplychanges(_:)) function.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Commits changes made to the configuration preferences to
     /// persistent storage.
     ///
@@ -277,8 +354,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)?language=objc)
     #[doc(alias = "SCPreferencesCommitChanges")]
     #[inline]
     pub fn commit_changes(&self) -> bool {
@@ -289,6 +364,17 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Requests that the currently stored configuration preferences be applied to the active configuration.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the lock was obtained; `FALSE` if an error occurred.
+    ///
+    ///
     /// Requests that the currently stored configuration
     /// preferences be applied to the active configuration.
     ///
@@ -296,8 +382,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesapplychanges(_:)?language=objc)
     #[doc(alias = "SCPreferencesApplyChanges")]
     #[inline]
     pub fn apply_changes(&self) -> bool {
@@ -310,6 +394,23 @@ impl SCPreferences {
 
     /// Releases exclusive access to the configuration preferences.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the lock was obtained; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After exclusive access has been released, other clients can establish exclusive access to the preferences.
+    ///
+    ///
+    /// Releases exclusive access to the configuration preferences.
+    ///
     /// This function releases the exclusive access lock to the
     /// preferences.  Other clients will be now be able to establish
     /// exclusive access to the preferences.
@@ -318,8 +419,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the lock was obtained;
     /// FALSE if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesunlock(_:)?language=objc)
     #[doc(alias = "SCPreferencesUnlock")]
     #[inline]
     pub fn unlock(&self) -> bool {
@@ -330,6 +429,17 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Returns a value that can be used to determine if the saved configuration preferences have changed.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Data that reflects the signature of the configuration preferences at the time of the call to the [`SCPreferencesCreate`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescreate(_:_:_:)) function.
+    ///
+    ///
     /// Returns a sequence of bytes that can be used to determine
     /// if the saved configuration preferences have changed.
     ///
@@ -337,8 +447,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns a CFDataRef that reflects the signature of the configuration
     /// preferences at the time of the call to the SCPreferencesCreate function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgetsignature(_:)?language=objc)
     #[doc(alias = "SCPreferencesGetSignature")]
     #[inline]
     pub fn signature(&self) -> Option<CFRetained<CFData>> {
@@ -349,14 +457,23 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns the currently defined preference keys.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of currently defined preference keys. You must release the returned value.
+    ///
+    ///
     /// Returns an array of currently defined preference keys.
     ///
     /// Parameter `prefs`: The preferences session.
     ///
     /// Returns: Returns the list of keys.
     /// You must release the returned value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescopykeylist(_:)?language=objc)
     #[doc(alias = "SCPreferencesCopyKeyList")]
     #[inline]
     pub fn key_list(&self) -> Option<CFRetained<CFArray>> {
@@ -367,6 +484,25 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Retrieves the value associated with the specified preference key.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - key: The preference key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value associated with the specified preference key (can be `NULL` if no value exists).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To avoid inadvertantly reading stale data, first call [`SCPreferencesLock`](https://developer.apple.com/documentation/systemconfiguration/scpreferenceslock(_:_:)) before calling this function.
+    ///
+    ///
     /// Returns the data associated with a preference key.
     ///
     /// This function retrieves data associated with the specified
@@ -381,8 +517,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns the value associated with the specified preference key;
     /// NULL if no value was located.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgetvalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesGetValue")]
     #[inline]
     pub fn value(&self, key: &CFString) -> Option<CFRetained<CFPropertyList>> {
@@ -396,6 +530,27 @@ impl SCPreferences {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Associates the specified value with the specified preference key.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - key: The preference key.
+    ///
+    /// - value: The value to associate with the preference key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the value was added; [`false`](https://developer.apple.com/documentation/swift/false) if the key already exists or if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To commit these changes to permanent storage, you must call [`SCPreferencesCommitChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)).
+    ///
+    ///
     /// Adds data for a preference key.
     ///
     /// This function associates new data with the specified key.
@@ -416,8 +571,6 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesaddvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesAddValue")]
     #[inline]
     pub unsafe fn add_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -432,6 +585,27 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Updates the data associated with the specified preference key with the specified value.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - key: The preference key.
+    ///
+    /// - value: The value to associate with the preference key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the value was set; `FALSE` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function adds or replaces the value associated with the specified key. To commit these changes to permanent storage you must call [`SCPreferencesCommitChanges`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescommitchanges(_:)).
+    ///
+    ///
     /// Updates the data associated with a preference key.
     ///
     /// This function adds or replaces the value associated with the
@@ -451,8 +625,6 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `value` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetvalue(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetValue")]
     #[inline]
     pub unsafe fn set_value(&self, key: &CFString, value: &CFPropertyList) -> bool {
@@ -467,6 +639,19 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Removes the data associated with the specified preference key.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - key: The preference key.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the value was removed; `FALSE` if the key does not exist or if an error occurred.
+    ///
+    ///
     /// Removes the data associated with a preference key.
     ///
     /// This function removes the data associated with the specified
@@ -479,8 +664,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the value was removed;
     /// FALSE if the key did not exist or if an error occurred.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesremovevalue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesRemoveValue")]
     #[inline]
     pub fn remove_value(&self, key: &CFString) -> bool {
@@ -491,6 +674,27 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Assigns the specified callback to the specified preferences session.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - callout: The function to be called when the preferences have been changed or applied. If `NULL`, the current callback is removed.
+    ///
+    /// - context: The context associated with the callback function. See [`SCPreferencesContext`](https://developer.apple.com/documentation/systemconfiguration/scpreferencescontext) for more information about this structure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the callback was successfully associated with the preferences session; otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is called when the changes to the preferences have been committed or applied.
+    ///
+    ///
     /// Assigns a callback to a preferences session.  The function
     /// is called when the changes to the preferences have been
     /// committed or applied.
@@ -510,8 +714,6 @@ impl SCPreferences {
     ///
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetcallback(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetCallback")]
     #[inline]
     pub unsafe fn set_callback(
@@ -530,6 +732,21 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Schedules commit and apply notifications for the specified preferences session using the specified run loop and mode.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - runLoop: The run loop on which the notification should be scheduled. Do not pass `NULL`.
+    ///
+    /// - runLoopMode: The run loop mode with which to schedule the notification. Do not pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notifications are successfully scheduled; otherwise, `FALSE`.
+    ///
+    ///
     /// Schedule commit and apply notifications for the specified
     /// preferences session using the specified run loop and mode.
     ///
@@ -544,8 +761,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the notifications are successfully scheduled;
     /// FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesScheduleWithRunLoop")]
     #[inline]
     pub fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -560,6 +775,21 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Unschedules commit and apply notifications for the specified preferences session from the specified run loop and mode.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - runLoop: The run loop from which the notification should be unscheduled. Do not pass `NULL`.
+    ///
+    /// - runLoopMode: The run loop mode associated with the scheduled notification. Do not pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notifications are successfully unscheduled; otherwise, `FALSE`.
+    ///
+    ///
     /// Unschedule commit and apply notifications for the specified
     /// preferences session from the specified run loop and mode.
     ///
@@ -574,8 +804,6 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the notifications are successfully unscheduled;
     /// FALSE otherwise.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "SCPreferencesUnscheduleFromRunLoop")]
     #[inline]
     pub fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) -> bool {
@@ -590,6 +818,19 @@ impl SCPreferences {
         ret != 0
     }
 
+    /// Schedules commit and apply notifications for the specified preferences session using the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    /// - queue: The dispatch queue on which to run the callback function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the notifications are successfully scheduled; otherwise, `FALSE`.
+    ///
+    ///
     /// Schedule commit and apply notifications for the specified
     /// preferences session.
     ///
@@ -603,8 +844,6 @@ impl SCPreferences {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "SCPreferencesSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -621,6 +860,17 @@ impl SCPreferences {
 
     /// Synchronizes accessed preferences with committed changes.
     ///
+    /// Parameters:
+    /// - prefs: The preferences session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Any references to preference values returned by calls to [`SCPreferencesGetValue`](https://developer.apple.com/documentation/systemconfiguration/scpreferencesgetvalue(_:_:)) are no longer valid unless they were explicitly retained or copied. Any preference values that were updated (added, set, or removed), but not committed, are discarded.
+    ///
+    ///
+    /// Synchronizes accessed preferences with committed changes.
+    ///
     /// Any references to preference values returned by calls to the
     /// SCPreferencesGetValue function are no longer valid unless they
     /// were explicitly retained or copied.  Any preference values
@@ -628,8 +878,6 @@ impl SCPreferences {
     /// be discarded.
     ///
     /// Parameter `prefs`: The preferences session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencessynchronize(_:)?language=objc)
     #[doc(alias = "SCPreferencesSynchronize")]
     #[inline]
     pub fn synchronize(&self) {

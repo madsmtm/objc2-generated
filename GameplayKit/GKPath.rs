@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkpath?language=objc)
+    /// A polygonal path that can be followed by an agent.
+    ///
+    /// ## Overview
+    ///
+    /// To make an agent move to or stay within the area defined by a path, create a goal with the [`goalToStayOnPath:maxPredictionTime:`](https://developer.apple.com/documentation/gameplaykit/gkgoal/init(tostayon:maxpredictiontime:)) method; to make an agent traverse along a path, create a goal with the [`goalToFollowPath:maxPredictionTime:forward:`](https://developer.apple.com/documentation/gameplaykit/gkgoal/init(tofollow:maxpredictiontime:forward:)) method.
+    ///
+    /// A path can be expressed as a sequence of either 2D points or 3D points. Use the former to create paths for use by [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) objects, and the latter to create paths for [`GKAgent3D`](https://developer.apple.com/documentation/gameplaykit/gkagent3d) objects to follow.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The coordinate system in which you express the path’s vertices and radius is arbitrary; you may choose how to map agent positions and sizes into your game scene. It often makes sense to use the same coordinate system as your game engine—for example, when using agents in a SpriteKit-based game, you’d typically specify a path in screen points.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To learn more about using goals and agents, see [Agents, Goals, and Behaviors](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Agent.html#//apple_ref/doc/uid/TP40015172-CH8) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKPath;

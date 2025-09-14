@@ -24,8 +24,6 @@ extern_class!(
     /// also reduce aliasing due to textures and high-frequency shading.
     ///
     /// For reference, see "High-Quality Temporal Supersampling" by Karis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalaa?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

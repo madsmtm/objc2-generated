@@ -8,9 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Models a finite state machine that has a single current state.
+    /// A finite-state machine—a collection of state objects that each define logic for a particular state of gameplay and rules for transitioning between states.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkstatemachine?language=objc)
+    /// ## Overview
+    ///
+    /// In GameplayKit, you subclass [`GKState`](https://developer.apple.com/documentation/gameplaykit/gkstate) to define each state and the rules for allowed transitions between states, and use a [`GKStateMachine`](https://developer.apple.com/documentation/gameplaykit/gkstatemachine) instance to manage a machine that combines several states. This system provides a way to organize code in your game by organizing state-dependent actions into methods that run when entering a state, when exiting a state, and periodically while in a state (for example, on every animation frame your game renders).
+    ///
+    /// You can use state machines to govern various aspects of a game. For example:
+    ///
+    /// - An enemy character might use a state machine with Chase, Flee, Dead, and Respawn states, each of which drives the enemy’s behavior, with state transitions determined by player actions and elapsed time.
+    ///
+    /// - An automated turret might use a state machine with Ready, Firing, and Cooldown states, controlling when it seeks out nearby targets and how often it fires.
+    ///
+    /// - A game user interface might use Menu, Playing, Paused, and GameOver states, each of which determines what UI elements are shown and what other game elements are running.
+    ///
+    /// To build a state machine, first define a distinct subclass of [`GKState`](https://developer.apple.com/documentation/gameplaykit/gkstate) for each possible state of the machine. In each state class, the [`isValidNextState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/isvalidnextstate(_:)) method determines which other state classes the machine may transition into from that state. Then, create a state machine object by constructing instances of the state classes and passing them to one of the methods listed in Creating a State Machine below. Finally, set the machine in motion by choosing an initial state for it to enter with the [`enterState:`](https://developer.apple.com/documentation/gameplaykit/gkstatemachine/enter(_:)) method.
+    ///
+    /// To define state-dependent behavior, override the [`didEnterWithPreviousState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/didenter(from:)), [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkstate/update(deltatime:)), and [`willExitWithNextState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/willexit(to:)) methods in each [`GKState`](https://developer.apple.com/documentation/gameplaykit/gkstate) subclass.
+    ///
+    /// - The state machine notifies the current state whenever a state change happens. Use the [`didEnterWithPreviousState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/didenter(from:)) and [`willExitWithNextState:`](https://developer.apple.com/documentation/gameplaykit/gkstate/willexit(to:)) methods to perform actions in response to a state change. For example, an enemy character entering the Flee state might change its appearance to indicate that is has become vulnerable to attack by the player.
+    ///
+    /// - When you call a state machine’s [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkstatemachine/update(deltatime:)) method, the state machine calls the [`updateWithDeltaTime:`](https://developer.apple.com/documentation/gameplaykit/gkstate/update(deltatime:)) method of its current state. Use this method to organize per-frame update code by state. For example, an enemy character in the Chase state can update its position to pursue the player, and an enemy in the Flee state can update its position to evade the player.
+    ///
+    /// For more information about state machines, read [State Machines](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/StateMachine.html#//apple_ref/doc/uid/TP40015172-CH7) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// Models a finite state machine that has a single current state.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKStateMachine;

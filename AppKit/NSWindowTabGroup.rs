@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtabgroup?language=objc)
+    /// A group of windows that display together as a single tabbed window.
+    ///
+    /// ## Overview
+    ///
+    /// AppKit automatically creates instances of [`NSWindowTabGroup`](https://developer.apple.com/documentation/appkit/nswindowtabgroup) to reflect the tabbing state of your windows. You can access a window’s current tab group using the [`tabGroup`](https://developer.apple.com/documentation/appkit/nswindow/tabgroup) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -21,17 +21,46 @@ unsafe impl RefEncode for __SecRandom {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("__SecRandom", &[]));
 }
 
+/// An abstract Core Foundation-type object containing information about a random number generator.
 /// Reference to a (pseudo) random number generator.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrandomref?language=objc)
 pub type SecRandomRef = *const __SecRandom;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecrandomdefault?language=objc)
+    /// An alias for the default random number generator.
+    ///
+    /// ## Discussion
+    ///
+    /// When passed to the [`SecRandomCopyBytes`](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)) function as the random number generator reference, this constant indicates that the default number generator should be used.
+    ///
+    /// This constant is a synonym for `NULL`.
+    ///
+    ///
     pub static kSecRandomDefault: SecRandomRef;
 }
 
 extern "C-unwind" {
+    /// Generates an array of cryptographically secure random bytes.
+    ///
+    /// Parameters:
+    /// - rnd: The random number generator object to use. Specify [`kSecRandomDefault`](https://developer.apple.com/documentation/security/ksecrandomdefault) to use the default random number generator.
+    ///
+    /// - count: The number of random bytes to return in the array pointed to by the `bytes` parameter.
+    ///
+    /// - bytes: A pointer to an array that the function fills with cryptographically secure random bytes. Use an array that is large enough to hold at least `count` bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code set to [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess) or some other value on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Always test the returned status to make sure that the array has been updated with new, random data before trying to use the values. For example, to create 10 random bytes:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var bytes = [Int8](repeating: 0, count: 10)", "let status = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)", "", "if status == errSecSuccess { // Always test the status.", "    print(bytes)", "    // Prints something different every time you run.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["SInt8 bytes[10];", "int status = SecRandomCopyBytes(kSecRandomDefault, (sizeof bytes)/(sizeof bytes[0]), &bytes);", "    ", "if (status == errSecSuccess) { // Always test the status.", "    for (int i = 0; i < (sizeof bytes)/(sizeof bytes[0]); i++) {", "        NSLog(@\"%d\", bytes[i]);", "    }", "    // Prints something different every time you run.", "}"], metadata: None }] }] })
+    ///
     /// Return count random bytes in *bytes, allocated by the caller. It
     /// is critical to check the return value for error.
     ///
@@ -58,8 +87,6 @@ extern "C-unwind" {
     ///
     /// - `rnd` must be a valid pointer or null.
     /// - `bytes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrandomcopybytes(_:_:_:)?language=objc)
     #[must_use]
     pub fn SecRandomCopyBytes(rnd: SecRandomRef, count: usize, bytes: NonNull<c_void>) -> c_int;
 }

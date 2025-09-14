@@ -6,7 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintentresolutionresult?language=objc)
+    /// A resolution result for a parameter of an intent object.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult) object describes how your app resolves a parameter of an intent object. This class is abstract and you don’t create instances of it directly. Instead, you use class methods to instantiate the appropriate subclass whose type matches the type of data that you’re trying to resolve. This class defines methods that are common to all resolution result objects.
+    ///
+    /// During the resolution phase of a request, each parameter you resolve requires a resolution result object of a specific type. When creating that resolution result object, use the class method that represents your resolution. Subclasses of [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult) define methods for returning a successful resolution and may contain other methods for confirming values or disambiguating from among several possible values. Use the methods of this class when a value isn’t required, when a required value is missing, or when the value specified by the user doesn’t correspond to a supported solution.
+    ///
+    /// When creating resolution result objects, always strive toward successful resolutions. If needed, take advantage of information you’ve regarding the user’s behavior patterns or interactions with your app. For example, if the user always has the same workout goals, use the previous workout goals as default values rather than asking the user to specify goal information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INIntentResolutionResult;

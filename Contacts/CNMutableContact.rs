@@ -8,6 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A mutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.
+    ///
+    /// ## Overview
+    ///
+    /// `CNMutableContact` objects are not a thread-safe class. To access the contact information in a thread-safe manner, use a [`CNContact`](https://developer.apple.com/documentation/contacts/cncontact) object instead.
+    ///
+    /// You may modify only those properties whose values you fetched from the contacts database. When fetching a contact, you specify which properties you want to retrieve from the database. The contact store then populates the properties of a [`CNContact`](https://developer.apple.com/documentation/contacts/cncontact) object with those values. After creating a mutable copy of that object, you can modify only those properties for which a value exists. If you attempt to access a property that is not available, the `CNMutableContact` object throws a [`CNContactPropertyNotFetchedExceptionName`](https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname) exception.
+    ///
+    /// To remove the value for a property, set string and array properties to empty, and set all other properties to `nil`.
+    ///
+    ///
     /// A mutable value object representing a contact.
     ///
     ///
@@ -15,8 +26,6 @@ extern_class!(
     ///
     ///
     /// Note: To remove properties when saving a mutable contact, set string properties and array properties to empty values. Set other properties to nil.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnmutablecontact?language=objc)
     #[unsafe(super(CNContact, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CNContact")]

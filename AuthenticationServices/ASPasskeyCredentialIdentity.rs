@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A description that uniquely identifies a particular passkey credential.
     /// An ASPasswordCredentialIdentity is used to describe an identity that can use a service upon successful passkey based authentication.
     /// Use this class to save entries into ASCredentialIdentityStore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeycredentialidentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyCredentialIdentity;

@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains the record changes for a single send operation.
     /// A batch of record zone changes that `CKSyncEngine` will send to the server in a single request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginerecordzonechangebatch?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngineRecordZoneChangeBatch;

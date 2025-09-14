@@ -21,12 +21,12 @@ unsafe impl RefEncode for SecAsn1Coder {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("SecAsn1Coder", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderref?language=objc)
+/// An object that represents an ASN.1 coder.
 #[deprecated = "SecAsn1 is not supported"]
 pub type SecAsn1CoderRef = *mut SecAsn1Coder;
 
 impl SecAsn1Coder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1codercreate?language=objc)
+    /// Creates an ASN.1 coder object.
     ///
     /// # Safety
     ///
@@ -41,7 +41,7 @@ impl SecAsn1Coder {
         unsafe { SecAsn1CoderCreate(coder) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coderrelease?language=objc)
+    /// Destroys an ASN.1 coder object and releases all of its memory.
     ///
     /// # Safety
     ///
@@ -58,7 +58,7 @@ impl SecAsn1Coder {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1decode?language=objc)
+    /// Decodes untyped DER data.
     ///
     /// # Safety
     ///
@@ -78,7 +78,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1decodedata?language=objc)
+    /// Decodes an ASN.1 item in DER format.
     ///
     /// # Safety
     ///
@@ -97,7 +97,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1encodeitem?language=objc)
+    /// Encodes data in DER format.
     ///
     /// # Safety
     ///
@@ -115,7 +115,7 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1malloc?language=objc)
+/// Allocates memory in the coder object’s memory pool.
 ///
 /// # Safety
 ///
@@ -134,7 +134,7 @@ pub unsafe extern "C-unwind" fn SecAsn1Malloc(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1allocitem?language=objc)
+    /// Allocates memory for an item’s data field in the coder object’s memory pool.
     ///
     /// # Safety
     ///
@@ -150,7 +150,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1alloccopy?language=objc)
+    /// Allocates memory for an item’s data field in the coder object’s memory pool and copies in a block of data.
     ///
     /// # Safety
     ///
@@ -168,7 +168,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1alloccopyitem?language=objc)
+    /// Allocates memory for an item’s data field in the coder object’s memory pool and copies in a block of data from another item.
     ///
     /// # Safety
     ///
@@ -185,7 +185,7 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1oidcompare?language=objc)
+    /// Compares two decoded object identifiers.
     ///
     /// # Safety
     ///

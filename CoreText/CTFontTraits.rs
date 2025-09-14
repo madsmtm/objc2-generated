@@ -9,121 +9,246 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The symbolic traits value from the font traits dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is returned as a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object.
+    ///
+    ///
     /// kCTFontSymbolicTrait
     ///
     /// Dictionary key to access the symbolic traits value.
     ///
     /// Use this key to access the symbolic traits value from the font traits dictionary. The value is returned as a CFNumberRef.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontsymbolictrait?language=objc)
     pub static kCTFontSymbolicTrait: &'static CFString;
 }
 
 extern "C" {
+    /// The normalized weight trait from the font traits dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value returned is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) representing a float value between `-1.0` and `1.0` for normalized weight. The value of `0.0` corresponds to the regular or medium font weight.
+    ///
+    ///
     /// kCTFontWeightTrait
     ///
     /// Dictionary key to access the weight trait value.
     ///
     /// Use this key to access the normalized weight trait from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized weight. The value of 0.0 corresponds to the regular or medium font weight.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontweighttrait?language=objc)
     pub static kCTFontWeightTrait: &'static CFString;
 }
 
 extern "C" {
+    /// The normalized proportion (width condense or expand) trait from the font traits dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// This value corresponds to the relative interglyph spacing for a given font. The value returned is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object representing a float between `-1.0` and `1.0`. The value of `0.0` corresponds to regular glyph spacing, and negative values represent condensed glyph spacing.
+    ///
+    ///
     /// kCTFontWidthTrait
     ///
     /// Dictionary key to access the width (condense/expand) trait value.
     ///
     /// Use this key to access the normalized proportion trait from the font traits dictionary. This value corresponds to the relative inter-glyph spacing for a given font. The value returned is a CFNumberRef representing a float between -1.0 and 1.0. The value of 0.0 corresponds to regular glyph spacing while negative values represent condensed glyph spacing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontwidthtrait?language=objc)
     pub static kCTFontWidthTrait: &'static CFString;
 }
 
 extern "C" {
+    /// The normalized slant angle from the font traits dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// The value returned is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object representing a float value between `-1.0` and `1.0` for normalized slant angle. The value of `0.0` corresponds to 0 degrees clockwise rotation from the vertical and `1.0` corresponds to 30 degrees clockwise rotation.
+    ///
+    ///
     /// kCTFontSlantTrait
     ///
     /// Dictionary key to access the slant trait value.
     ///
     /// Use this key to access the normalized slant angle from the font traits dictionary. The value returned is a CFNumberRef representing a float value between -1.0 and 1.0 for normalized slant angle. The value or 0.0 corresponds to 0 degree clockwise rotation from the vertical and 1.0 corresponds to 30 degrees clockwise rotation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontslanttrait?language=objc)
     pub static kCTFontSlantTrait: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctfontclassmaskshift?language=objc)
+/// Value used to shift the font class to the uppermost four bits of the symbolic traits.
 pub const kCTFontClassMaskShift: c_uint = 28;
 
+/// The symbolic representation of stylistic font attributes.
+///
+/// ## Overview
+///
+/// `CTFontSymbolicTraits` symbolically describes stylistic aspects of a font. The upper 16 bits are used to describe appearance of the font, whereas the lower 16 bits are for typeface information. The font appearance information represented by the upper 16 bits can be used for stylistic font matching.
+///
+///
 /// Symbolic representation of stylistic font attributes.
 ///
 /// CTFontSymbolicTraits symbolically describes stylistic aspects of a font. The top 4 bits is used to describe appearance of the font while the lower 28 bits for typeface. The font appearance information represented by the upper 4 bits can be used for stylistic font matching.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontSymbolicTraits(pub u32);
 bitflags::bitflags! {
     impl CTFontSymbolicTraits: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traititalic?language=objc)
+/// The font typestyle is italic.
+///
+/// ## Discussion
+///
+/// Additional detail is available via [`kCTFontSlantTrait`](https://developer.apple.com/documentation/coretext/kctfontslanttrait).
+///
+///
         #[doc(alias = "kCTFontTraitItalic")]
         const TraitItalic = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitbold?language=objc)
+/// The font typestyle is boldface.
+///
+/// ## Discussion
+///
+/// Additional detail is available via [`kCTFontWeightTrait`](https://developer.apple.com/documentation/coretext/kctfontweighttrait).
+///
+///
         #[doc(alias = "kCTFontTraitBold")]
         const TraitBold = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitexpanded?language=objc)
+/// The font typestyle is expanded.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  [`kCTFontExpandedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/expandedtrait) and [`kCTFontCondensedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/condensedtrait) are mutually exclusive.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kCTFontTraitExpanded")]
         const TraitExpanded = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitcondensed?language=objc)
+/// The font typestyle is condensed.
+///
+/// ## Discussion
+///
+/// Additional detail is available via [`kCTFontWidthTrait`](https://developer.apple.com/documentation/coretext/kctfontwidthtrait).
+///
+/// <div class="warning">
+///
+/// ### Important
+///  [`kCTFontExpandedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/expandedtrait) and [`kCTFontCondensedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/condensedtrait) are mutually exclusive.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kCTFontTraitCondensed")]
         const TraitCondensed = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitmonospace?language=objc)
+/// The font uses fixed-pitch glyphs if available.
+///
+/// ## Discussion
+///
+/// The font may have multiple glyph advances (many CJK glyphs contain two spaces).
+///
+///
         #[doc(alias = "kCTFontTraitMonoSpace")]
         const TraitMonoSpace = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitvertical?language=objc)
+/// The font uses vertical glyph variants and metrics.
         #[doc(alias = "kCTFontTraitVertical")]
         const TraitVertical = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traituioptimized?language=objc)
+/// The font synthesizes appropriate attributes for user interface rendering, such as control titles, if necessary.
         #[doc(alias = "kCTFontTraitUIOptimized")]
         const TraitUIOptimized = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitcolorglyphs?language=objc)
+/// The font contains color glyphs.
+///
+/// ## Discussion
+///
+/// Possible font tables that can contain color glyphs include ‘[sbix](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6sbix.html)’, ‘`COLR`’, and ‘`SVG_`’.
+///
+///
         #[doc(alias = "kCTFontTraitColorGlyphs")]
         const TraitColorGlyphs = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitcomposite?language=objc)
+/// The font is in Composite Font Reference format.
+///
+/// ## Discussion
+///
+/// For CFR, a cascade list is expected per font.
+///
+///
         #[doc(alias = "kCTFontTraitComposite")]
         const TraitComposite = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/traitclassmask?language=objc)
+/// Mask for the font class.
         #[doc(alias = "kCTFontTraitClassMask")]
         const TraitClassMask = 15<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/italictrait?language=objc)
+/// The font typestyle is italic.
+///
+/// ## Discussion
+///
+/// Additional detail is available via [`kCTFontSlantTrait`](https://developer.apple.com/documentation/coretext/kctfontslanttrait).
+///
+///
         #[doc(alias = "kCTFontItalicTrait")]
         const ItalicTrait = CTFontSymbolicTraits::TraitItalic.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/boldtrait?language=objc)
+/// The font typestyle is boldface.
+///
+/// ## Discussion
+///
+/// Additional detail is available via [`kCTFontWeightTrait`](https://developer.apple.com/documentation/coretext/kctfontweighttrait).
+///
+///
         #[doc(alias = "kCTFontBoldTrait")]
         const BoldTrait = CTFontSymbolicTraits::TraitBold.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/expandedtrait?language=objc)
+/// The font typestyle is expanded.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  [`kCTFontExpandedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/expandedtrait) and [`kCTFontCondensedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/condensedtrait) are mutually exclusive.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "kCTFontExpandedTrait")]
         const ExpandedTrait = CTFontSymbolicTraits::TraitExpanded.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/condensedtrait?language=objc)
+/// The font typestyle is condensed.
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  [`kCTFontExpandedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/expandedtrait) and [`kCTFontCondensedTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/condensedtrait) are mutually exclusive.
+///
+///
+///
+/// </div>
+/// Additional detail is available via [`kCTFontWidthTrait`](https://developer.apple.com/documentation/coretext/kctfontwidthtrait).
+///
+///
         #[doc(alias = "kCTFontCondensedTrait")]
         const CondensedTrait = CTFontSymbolicTraits::TraitCondensed.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/monospacetrait?language=objc)
+/// The font uses fixed-pitch glyphs if available.
+///
+/// ## Discussion
+///
+/// The font may have multiple glyph advances (many CJK glyphs contain two spaces).
+///
+///
         #[doc(alias = "kCTFontMonoSpaceTrait")]
         const MonoSpaceTrait = CTFontSymbolicTraits::TraitMonoSpace.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/verticaltrait?language=objc)
+/// The font uses vertical glyph variants and metrics.
         #[doc(alias = "kCTFontVerticalTrait")]
         const VerticalTrait = CTFontSymbolicTraits::TraitVertical.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/uioptimizedtrait?language=objc)
+/// The font synthesizes appropriate attributes for user interface rendering, such as control titles, if necessary.
         #[doc(alias = "kCTFontUIOptimizedTrait")]
         const UIOptimizedTrait = CTFontSymbolicTraits::TraitUIOptimized.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/colorglyphstrait?language=objc)
+/// The font contains color glyphs.
         #[doc(alias = "kCTFontColorGlyphsTrait")]
         const ColorGlyphsTrait = CTFontSymbolicTraits::TraitColorGlyphs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/compositetrait?language=objc)
+/// The font is in Composite Font Reference format.
         #[doc(alias = "kCTFontCompositeTrait")]
         const CompositeTrait = CTFontSymbolicTraits::TraitComposite.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/classmasktrait?language=objc)
+/// Mask for the font class.
         #[doc(alias = "kCTFontClassMaskTrait")]
         const ClassMaskTrait = CTFontSymbolicTraits::TraitClassMask.0;
     }
@@ -139,81 +264,98 @@ unsafe impl RefEncode for CTFontSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The stylistic class values of the font.
+///
+/// ## Overview
+///
+/// `CTFontStylisticClass` identifies certain stylistic qualities of the font. These values correspond closely to the font class values in the OpenType OS/2 table. The class values are bundled in the upper four bits of the [`CTFontSymbolicTraits`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits) and can be obtained via [`kCTFontClassMaskTrait`](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits/classmasktrait).
+///
+///
 /// Stylistic class values.
 ///
 /// CTFontStylisticClass classifies certain stylistic qualities of the font. These values correspond closely to the font class values in the OpenType 'OS/2' table. The class values are bundled in the upper four bits of the CTFontSymbolicTraits and can be obtained via the kCTFontTraitClassMask.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontStylisticClass(pub u32);
 bitflags::bitflags! {
     impl CTFontStylisticClass: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/kctfontclassunknown?language=objc)
+/// The font has no design classification.
         #[doc(alias = "kCTFontClassUnknown")]
         const ClassUnknown = 0<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classoldstyleserifs?language=objc)
+/// A font style based on the Latin printing style of the 15th to 17th century.
         #[doc(alias = "kCTFontClassOldStyleSerifs")]
         const ClassOldStyleSerifs = 1<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classtransitionalserifs?language=objc)
+/// A font style based on the Latin printing style of the 18th to 19th century.
         #[doc(alias = "kCTFontClassTransitionalSerifs")]
         const ClassTransitionalSerifs = 2<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classmodernserifs?language=objc)
+/// A font style based on the Latin printing style of the 20th century.
         #[doc(alias = "kCTFontClassModernSerifs")]
         const ClassModernSerifs = 3<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classclarendonserifs?language=objc)
+/// A font style variation of the Oldstyle Serifs and the Transitional Serifs.
         #[doc(alias = "kCTFontClassClarendonSerifs")]
         const ClassClarendonSerifs = 4<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classslabserifs?language=objc)
+/// A font style characterized by serifs with a square transition between the strokes and the serifs (no brackets).
         #[doc(alias = "kCTFontClassSlabSerifs")]
         const ClassSlabSerifs = 5<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classfreeformserifs?language=objc)
+/// A font style that includes serifs but expresses a design freedom that doesn’t generally fit within the other serif design classifications.
         #[doc(alias = "kCTFontClassFreeformSerifs")]
         const ClassFreeformSerifs = 7<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classsansserif?language=objc)
+/// A font style that includes most basic letter forms (excluding Scripts and Ornamentals) that do not have serifs on the strokes.
         #[doc(alias = "kCTFontClassSansSerif")]
         const ClassSansSerif = 8<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classornamentals?language=objc)
+/// A font style that includes highly decorated or stylized character shapes such as those typically used in headlines.
         #[doc(alias = "kCTFontClassOrnamentals")]
         const ClassOrnamentals = 9<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classscripts?language=objc)
+/// A font style among those typefaces designed to simulate handwriting.
         #[doc(alias = "kCTFontClassScripts")]
         const ClassScripts = 10<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/classsymbolic?language=objc)
+/// A generally design-independent font style.
+///
+/// ## Discussion
+///
+/// A class typically assigned to fonts used for special characters, such as icons, dingbats, technical symbols, and so on.
+///
+///
         #[doc(alias = "kCTFontClassSymbolic")]
         const ClassSymbolic = 12<<kCTFontClassMaskShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/kctfontunknownclass?language=objc)
+/// The font has no design classification.
         #[doc(alias = "kCTFontUnknownClass")]
         const UnknownClass = CTFontStylisticClass::ClassUnknown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/oldstyleserifsclass?language=objc)
+/// The font’s style is based on the Latin printing style of the 15th to 17th century.
         #[doc(alias = "kCTFontOldStyleSerifsClass")]
         const OldStyleSerifsClass = CTFontStylisticClass::ClassOldStyleSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/transitionalserifsclass?language=objc)
+/// The font’s style is based on the Latin printing style of the 18th to 19th century.
         #[doc(alias = "kCTFontTransitionalSerifsClass")]
         const TransitionalSerifsClass = CTFontStylisticClass::ClassTransitionalSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/modernserifsclass?language=objc)
+/// The font’s style is based on the Latin printing style of the 20th century.
         #[doc(alias = "kCTFontModernSerifsClass")]
         const ModernSerifsClass = CTFontStylisticClass::ClassModernSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/clarendonserifsclass?language=objc)
+/// The font’s style is a variation of the Oldstyle Serifs and the Transitional Serifs.
         #[doc(alias = "kCTFontClarendonSerifsClass")]
         const ClarendonSerifsClass = CTFontStylisticClass::ClassClarendonSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/slabserifsclass?language=objc)
+/// The font’s style is characterized by serifs with a square transition between the strokes and the serifs (no brackets).
         #[doc(alias = "kCTFontSlabSerifsClass")]
         const SlabSerifsClass = CTFontStylisticClass::ClassSlabSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/freeformserifsclass?language=objc)
+/// The font’s style includes serifs but expresses a design freedom that doesn’t generally fit within the other serif design classifications.
         #[doc(alias = "kCTFontFreeformSerifsClass")]
         const FreeformSerifsClass = CTFontStylisticClass::ClassFreeformSerifs.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/sansserifclass?language=objc)
+/// The font’s style includes most basic letter forms (excluding Scripts and Ornamentals) that do not have serifs on the strokes.
         #[doc(alias = "kCTFontSansSerifClass")]
         const SansSerifClass = CTFontStylisticClass::ClassSansSerif.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/ornamentalsclass?language=objc)
+/// The font’s style includes highly decorated or stylized character shapes such as those typically used in headlines.
         #[doc(alias = "kCTFontOrnamentalsClass")]
         const OrnamentalsClass = CTFontStylisticClass::ClassOrnamentals.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/scriptsclass?language=objc)
+/// The font’s style is among those typefaces designed to simulate handwriting.
         #[doc(alias = "kCTFontScriptsClass")]
         const ScriptsClass = CTFontStylisticClass::ClassScripts.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass/symbolicclass?language=objc)
+/// The font’s style is generally design independent.
+///
+/// ## Discussion
+///
+/// Typically assigned to fonts for special characters, such as icons, dingbats, technical symbols, and so on.
+///
+///
         #[doc(alias = "kCTFontSymbolicClass")]
         const SymbolicClass = CTFontStylisticClass::ClassSymbolic.0;
     }

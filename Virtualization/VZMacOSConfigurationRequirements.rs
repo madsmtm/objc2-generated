@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes the parameter constraints required by a specific configuration of macOS.
     /// VZMacOSConfigurationRequirements describes the parameter constraints required by a specific configuration of macOS.
     ///
     /// When a VZMacOSRestoreImage is loaded, it can be inspected to determine the configurations supported by that restore image.
@@ -13,8 +14,6 @@ extern_class!(
     /// See also: VZMacHardwareModel
     ///
     /// See also: VZMacOSRestoreImage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosconfigurationrequirements?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacOSConfigurationRequirements;

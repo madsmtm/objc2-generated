@@ -7,6 +7,29 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Promote all active Bluetooth connections into an online MIDI device capable of input and output.
+    ///
+    /// ## Return Value
+    ///
+    /// A status code that indicates the result of the activation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To establish a Bluetooth MIDI driver connection to a Bluetooth Low Energy (BLE) MIDI peripheral, perform the following steps:
+    ///
+    /// 1. Scan for the peripheral’s advertised BLE MIDI service by using [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth).
+    ///
+    /// 2. Connect to the advertised peripheral by using [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth).
+    ///
+    /// 3. Call [`MIDIBluetoothDriverActivateAllConnections`](https://developer.apple.com/documentation/coremidi/midibluetoothdriveractivateallconnections()) upon successful connection.
+    ///
+    /// 4. Confirm the peripheral’s registration by using [`Core MIDI`](https://developer.apple.com/documentation/coremidi) and inspecting [`MIDIDeviceRef`](https://developer.apple.com/documentation/coremidi/midideviceref).
+    ///
+    /// If the device reference is present, [`Core MIDI`](https://developer.apple.com/documentation/coremidi) owns a connection to the peripheral, so use [`Core Bluetooth`](https://developer.apple.com/documentation/corebluetooth) to disconnect from the peripheral.
+    ///
+    ///
     /// Promotes all active CoreBluetooth connections to peripherals' Bluetooth LE MIDI
     /// service into online MIDI devices capable of I/O.
     ///
@@ -23,12 +46,27 @@ extern "C-unwind" {
     /// 4. Using CoreMIDI API, confirm the peripheral's registration by locating its MIDIDeviceRef.
     /// 5. If present, CoreMIDI now owns a connection the peripheral.
     /// 6. Using CoreBluetooth API, disconnect from the peripheral now managed by CoreMIDI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midibluetoothdriveractivateallconnections()?language=objc)
     pub fn MIDIBluetoothDriverActivateAllConnections() -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disconnect the Bluetooth MIDI driver from a Bluetooth Low Energy MIDI peripheral.
+    ///
+    /// Parameters:
+    /// - uuid: A unique identifier that represents the peripheral to disconnect.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A status code that indicates the result of the disconnect.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a [`Core MIDI`](https://developer.apple.com/documentation/coremidi) device is in a connected state to a Bluetooth Low Energy MIDI peripheral with the identifier you specify, the system disconnects it.
+    ///
+    ///
     /// Disconnects the Bluetooth MIDI driver from a BLE MIDI peripheral.
     ///
     ///
@@ -39,8 +77,6 @@ extern "C-unwind" {
     ///
     ///
     /// If a CoreMIDI is connected to a BLE MIDI peripheral with the supplied UUID, it will disconnect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midibluetoothdriverdisconnect(_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIBluetoothDriverDisconnect(uuid: &CFString) -> OSStatus;
 }

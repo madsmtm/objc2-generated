@@ -8,8 +8,6 @@ use crate::*;
 
 extern_class!(
     /// Type that defines formatting style presented in text formatting view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontrollerformattingstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerFormattingStyle;

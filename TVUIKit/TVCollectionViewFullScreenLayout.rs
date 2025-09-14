@@ -11,7 +11,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcollectionviewfullscreenlayoutattributes?language=objc)
+    /// Attributes to manage the appearance of the collection view’s layout.
     #[unsafe(super(UICollectionViewLayoutAttributes, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVCollectionViewFullScreenLayoutAttributes;
@@ -132,7 +132,13 @@ impl TVCollectionViewFullScreenLayoutAttributes {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcollectionviewdelegatefullscreenlayout?language=objc)
+    /// Methods that send notifications of events during cell transitions.
+    ///
+    /// ## Overview
+    ///
+    /// The methods contained in this protocol help you manage and control cell transitions.
+    ///
+    ///
     pub unsafe trait TVCollectionViewDelegateFullScreenLayout:
         UICollectionViewDelegate
     {
@@ -159,7 +165,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcollectionviewfullscreenlayout?language=objc)
+    /// A collection view layout that organizes items into a browsable, full-screen display format.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to create a full-screen browsing experience. Full-screen layouts are an immersive way to present and navigate through content.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/51fe536c1da37db04d03d2df780d4763/media-3332103~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/dc256aae53b2cb0d0bc0e88c31ab8fa5/media-3332103%402x.png 2x" />
+    ///     <img alt="A diagram showing the TVCollectionViewFullScreenLayout. One cell is centered, and two cells are peeking from the left and right sides." src="https://docs-assets.developer.apple.com/published/dc256aae53b2cb0d0bc0e88c31ab8fa5/media-3332103%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[unsafe(super(UICollectionViewLayout, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVCollectionViewFullScreenLayout;

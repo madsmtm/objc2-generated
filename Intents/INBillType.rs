@@ -4,102 +4,102 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype?language=objc)
+/// Constants indicating the type of bill.
 // NS_ENUM
 #[deprecated = "INBillType is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INBillType(pub NSInteger);
 impl INBillType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/unknown?language=objc)
+    /// An unknown type of bill.
     #[doc(alias = "INBillTypeUnknown")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/autoinsurance?language=objc)
+    /// An auto insurance bill.
     #[doc(alias = "INBillTypeAutoInsurance")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const AutoInsurance: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/cable?language=objc)
+    /// A cable television bill.
     #[doc(alias = "INBillTypeCable")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Cable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/carlease?language=objc)
+    /// A car lease payment.
     #[doc(alias = "INBillTypeCarLease")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const CarLease: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/carloan?language=objc)
+    /// A car loan payment.
     #[doc(alias = "INBillTypeCarLoan")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const CarLoan: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/creditcard?language=objc)
+    /// A credit card bill.
     #[doc(alias = "INBillTypeCreditCard")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const CreditCard: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/electricity?language=objc)
+    /// An electricity bill.
     #[doc(alias = "INBillTypeElectricity")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Electricity: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/gas?language=objc)
+    /// A gasoline bill.
     #[doc(alias = "INBillTypeGas")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Gas: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/garbageandrecycling?language=objc)
+    /// A garbage and recycling bill.
     #[doc(alias = "INBillTypeGarbageAndRecycling")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const GarbageAndRecycling: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/healthinsurance?language=objc)
+    /// A health insurance bill.
     #[doc(alias = "INBillTypeHealthInsurance")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const HealthInsurance: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/homeinsurance?language=objc)
+    /// A home insurance bill.
     #[doc(alias = "INBillTypeHomeInsurance")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const HomeInsurance: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/internet?language=objc)
+    /// An internet service bill.
     #[doc(alias = "INBillTypeInternet")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Internet: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/lifeinsurance?language=objc)
+    /// A life insurance payment.
     #[doc(alias = "INBillTypeLifeInsurance")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const LifeInsurance: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/mortgage?language=objc)
+    /// A mortgage payment.
     #[doc(alias = "INBillTypeMortgage")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Mortgage: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/musicstreaming?language=objc)
+    /// A music streaming bill.
     #[doc(alias = "INBillTypeMusicStreaming")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const MusicStreaming: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/phone?language=objc)
+    /// A telephone bill.
     #[doc(alias = "INBillTypePhone")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Phone: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/rent?language=objc)
+    /// A rental payment.
     #[doc(alias = "INBillTypeRent")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Rent: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/sewer?language=objc)
+    /// A sewer service payment.
     #[doc(alias = "INBillTypeSewer")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Sewer: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/studentloan?language=objc)
+    /// A student loan payment.
     #[doc(alias = "INBillTypeStudentLoan")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const StudentLoan: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/trafficticket?language=objc)
+    /// A traffic ticket bill.
     #[doc(alias = "INBillTypeTrafficTicket")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const TrafficTicket: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/tuition?language=objc)
+    /// A school tuition bill.
     #[doc(alias = "INBillTypeTuition")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Tuition: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/utilities?language=objc)
+    /// A utility bill.
     #[doc(alias = "INBillTypeUtilities")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Utilities: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltype/water?language=objc)
+    /// A water bill.
     #[doc(alias = "INBillTypeWater")]
     #[deprecated = "INBillType is deprecated. There is no replacement."]
     pub const Water: Self = Self(22);

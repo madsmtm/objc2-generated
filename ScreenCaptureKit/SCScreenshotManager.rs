@@ -15,16 +15,22 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.enum?language=objc)
+/// A value that specifies the type of display a screenshot rendering optimizes for.
+///
+/// ## Overview
+///
+/// Specifying local or canonical display attributes optimizes output for presentation on either the capture display or any high dynamic range display.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDisplayIntent(pub NSInteger);
 impl SCScreenshotDisplayIntent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.enum/canonical?language=objc)
+    /// Specifies that the screenshot renders with canonical display attributes optimizing output for presentation on a high dynamic range display.
     #[doc(alias = "SCScreenshotDisplayIntentCanonical")]
     pub const Canonical: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/displayintent-swift.enum/local?language=objc)
+    /// Specifies that the screenshot renders with local display attributes optimizing output for presentation on the capture display.
     #[doc(alias = "SCScreenshotDisplayIntentLocal")]
     pub const Local: Self = Self(1);
 }
@@ -37,19 +43,19 @@ unsafe impl RefEncode for SCScreenshotDisplayIntent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum?language=objc)
+/// Specifies the type of images returned to the client; standard dynamic range, high dynamic range, or both.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDynamicRange(pub NSInteger);
 impl SCScreenshotDynamicRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/sdr?language=objc)
+    /// Returns a standard dynamic range image to the client.
     #[doc(alias = "SCScreenshotDynamicRangeSDR")]
     pub const SDR: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/hdr?language=objc)
+    /// Returns a high dynamic range image to the client.
     #[doc(alias = "SCScreenshotDynamicRangeHDR")]
     pub const HDR: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration/dynamicrange-swift.enum/bothsdrandhdr?language=objc)
+    /// Returns both standard dynamic range and high dynamic range image versions to the client.
     #[doc(alias = "SCScreenshotDynamicRangeSDRAndHDR")]
     pub const SDRAndHDR: Self = Self(2);
 }
@@ -63,7 +69,13 @@ unsafe impl RefEncode for SCScreenshotDynamicRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotconfiguration?language=objc)
+    /// An object that contains screenshot properties such as output width, height, and image quality specifications.
+    ///
+    /// ## Overview
+    ///
+    /// `SCScreenshotConfiguration` provides a default image capture configuration for [`SCScreenshotManager`](https://developer.apple.com/documentation/screencapturekit/scscreenshotmanager). Only configure its properties if you need to customize the output. Additional options for customization include dynamic range settings, image reproduction optimizations, and ignoring user interface elements.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCScreenshotConfiguration;
@@ -231,7 +243,7 @@ impl SCScreenshotConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotoutput?language=objc)
+    /// An object that contains all images requested by the client.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCScreenshotOutput;
@@ -301,7 +313,7 @@ impl SCScreenshotOutput {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotmanager?language=objc)
+    /// An instance for the capture of single frames from a stream.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCScreenshotManager;

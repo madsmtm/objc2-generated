@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcaxiselement?language=objc)
+    /// The common properties for an element that represents an absolute or relative input value along an axis.
     #[cfg(feature = "GCPhysicalInputElement")]
     pub unsafe trait GCAxisElement: GCPhysicalInputElement {
         #[cfg(feature = "GCAxisInput")]

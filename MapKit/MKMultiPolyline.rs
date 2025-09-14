@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmultipolyline?language=objc)
+    /// A collection of multipolyline shapes, each consisting of one or more connected line segments.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`MKMultiPolyline`](https://developer.apple.com/documentation/mapkit/mkmultipolyline) object when you have multiple distinct polyline shapes that you intend to render using the same style.
+    ///
+    ///
     #[unsafe(super(MKShape, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKShape")]

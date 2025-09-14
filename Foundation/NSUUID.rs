@@ -7,7 +7,27 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuuid?language=objc)
+    /// A universally unique value that can be used to identify types, interfaces, and other items.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`UUID`](https://developer.apple.com/documentation/foundation/nsuuid/uuid); use [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// UUIDs (Universally Unique Identifiers), also known as GUIDs (Globally Unique Identifiers) or IIDs (Interface Identifiers), are 128-bit values. UUIDs created by `NSUUID` conform to RFC 4122 version 4 and are created with random bytes.
+    ///
+    /// The standard format for UUIDs represented in ASCII is a string punctuated by hyphens, for example `68753A44-4D6F-1226-9C60-0050E4C00067`. The hex representation looks, as you might expect, like a list of numerical values preceded by 0x. For example, `0xD7`, `0x36`, `0x95`, `0x0A`, `0x4D`, `0x6E`, `0x12`, `0x26`, `0x80`, `0x3A`, `0x00`, `0x50`, `0xE4`, `0xC0`, `0x00`, `0x67`. Because a UUID is expressed simply as an array of bytes, there are no endianness considerations for different platforms.
+    ///
+    /// The `NSUUID` class is _not_ toll-free bridged with CoreFoundation’s [`CFUUIDRef`](https://developer.apple.com/documentation/corefoundation/cfuuid). Use UUID strings to convert between `CFUUIDRef` and `NSUUID`, if needed. Two `NSUUID` objects are not guaranteed to be comparable by pointer value (as [`CFUUIDRef`](https://developer.apple.com/documentation/corefoundation/cfuuid) is); use [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) to compare two `NSUUID` instances.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`UUID`](https://developer.apple.com/documentation/foundation/nsuuid/uuid) structure, which bridges to the [`NSUUID`](https://developer.apple.com/documentation/foundation/nsuuid) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSUUID;

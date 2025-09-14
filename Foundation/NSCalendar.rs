@@ -8,283 +8,439 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier?language=objc)
+/// The supported calendar types.
+///
+/// ## Discussion
+///
+/// Use these identifiers to specify the kind of calendar. The Gregorian calendar is the calendar typically used in Europe, the Western Hemisphere, and elsewhere.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSCalendarIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/gregorian?language=objc)
+    /// Identifier for the Gregorian calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierGregorian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/buddhist?language=objc)
+    /// Identifier for the Buddhist calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierBuddhist: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/chinese?language=objc)
+    /// Identifier for the Chinese calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierChinese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/coptic?language=objc)
+    /// Identifier for the Coptic calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierCoptic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/ethiopicametemihret?language=objc)
+    /// Identifier for the Ethiopic (Amete Mihret) calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteMihret: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/ethiopicametealem?language=objc)
+    /// Identifier for the Ethiopic (Amete Alem) calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierEthiopicAmeteAlem: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/hebrew?language=objc)
+    /// Identifier for the Hebrew calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierHebrew: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/iso8601?language=objc)
+    /// Identifier for the ISO8601 calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierISO8601: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/indian?language=objc)
+    /// Identifier for the Indian calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIndian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamic?language=objc)
+    /// Identifier for the Islamic calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamic: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamiccivil?language=objc)
+    /// Identifier for the Islamic civil calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicCivil: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/japanese?language=objc)
+    /// Identifier for the Japanese calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierJapanese: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/persian?language=objc)
+    /// Identifier for the Persian calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierPersian: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/republicofchina?language=objc)
+    /// Identifier for the Republic of China calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierRepublicOfChina: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamictabular?language=objc)
+    /// Identifier for a tabular Islamic calendar.
+    ///
+    /// ## Discussion
+    ///
+    /// This calendar uses arithmetical calculations of months, and is based on the astronomical epoch (Thursday, July 15, 622 CE).
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicTabular: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamicummalqura?language=objc)
+    /// Identifier for the Islamic Umm al-Qura calendar.
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierIslamicUmmAlQura: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/bangla?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierBangla: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/gujarati?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierGujarati: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/kannada?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierKannada: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/malayalam?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierMalayalam: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/marathi?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierMarathi: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/odia?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierOdia: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/tamil?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierTamil: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/telugu?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierTelugu: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/vikram?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierVikram: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/dangi?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierDangi: &'static NSCalendarIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/identifier/vietnamese?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSCalendarIdentifierVietnamese: &'static NSCalendarIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit?language=objc)
+/// Calendrical units such as year, month, day and hour.
+///
+/// ## Overview
+///
+/// Calendar units may be used as a bit mask to specify a combination of units. Values in this enumeration are equal to the corresponding constants in `CFCalendarUnit`.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarUnit(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarUnit: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/era?language=objc)
+/// Identifier for the era unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitEra`.
+///
+///
         #[doc(alias = "NSCalendarUnitEra")]
         const Era = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/year?language=objc)
+/// Identifier for the year unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitYear`.
+///
+///
         #[doc(alias = "NSCalendarUnitYear")]
         const Year = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/month?language=objc)
+/// Identifier for the month unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitMonth`.
+///
+///
         #[doc(alias = "NSCalendarUnitMonth")]
         const Month = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/day?language=objc)
+/// Identifier for the day unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitDay`.
+///
+///
         #[doc(alias = "NSCalendarUnitDay")]
         const Day = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/hour?language=objc)
+/// Identifier for the hour unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitHour`.
+///
+///
         #[doc(alias = "NSCalendarUnitHour")]
         const Hour = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/minute?language=objc)
+/// Identifier for the minute unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitMinute`.
+///
+///
         #[doc(alias = "NSCalendarUnitMinute")]
         const Minute = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/second?language=objc)
+/// Identifier for the second unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is a `double`. Equal to `kCFCalendarUnitSecond`.
+///
+///
         #[doc(alias = "NSCalendarUnitSecond")]
         const Second = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekday?language=objc)
+/// Identifier for the weekday unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitWeekday`. The weekday units are the numbers `1` through `N` (where for the Gregorian calendar `N`=`7` and `1` is Sunday).
+///
+///
         #[doc(alias = "NSCalendarUnitWeekday")]
         const Weekday = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekdayordinal?language=objc)
+/// Identifier for the ordinal weekday unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitWeekdayOrdinal`. The weekday ordinal unit describes ordinal position within the month unit of the corresponding weekday unit. For example, in the Gregorian calendar a weekday ordinal unit of `2` for a weekday unit `3` indicates “the second Tuesday in the month”.
+///
+///
         #[doc(alias = "NSCalendarUnitWeekdayOrdinal")]
         const WeekdayOrdinal = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/quarter?language=objc)
+/// Identifier for the quarter of the calendar.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitQuarter`.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The `NSCalendarUnitQuarter` unit is largely unimplemented, and is not recommended for use.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "NSCalendarUnitQuarter")]
         const Quarter = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekofmonth?language=objc)
+/// Identifier for the week of the month calendar unit.
         #[doc(alias = "NSCalendarUnitWeekOfMonth")]
         const WeekOfMonth = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/weekofyear?language=objc)
+/// Identifier for the week of the year calendar unit.
         #[doc(alias = "NSCalendarUnitWeekOfYear")]
         const WeekOfYear = 8192;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/yearforweekofyear?language=objc)
+/// Identifier for the week-counting year unit.
+///
+/// ## Discussion
+///
+/// See the [`DateComponents`](https://developer.apple.com/documentation/foundation/datecomponents) property [`yearForWeekOfYear`](https://developer.apple.com/documentation/foundation/datecomponents/yearforweekofyear) (or [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) property [`yearForWeekOfYear`](https://developer.apple.com/documentation/foundation/nsdatecomponents/yearforweekofyear) in Objective-C) for a discussion of the semantics of this component.
+///
+///
         #[doc(alias = "NSCalendarUnitYearForWeekOfYear")]
         const YearForWeekOfYear = 16384;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nanosecond?language=objc)
+/// Identifier for the nanosecond unit.
         #[doc(alias = "NSCalendarUnitNanosecond")]
         const Nanosecond = 32768;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/dayofyear?language=objc)
         #[doc(alias = "NSCalendarUnitDayOfYear")]
         const DayOfYear = 65536;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/calendar?language=objc)
+/// Identifier for the calendar of a date components object.
+///
+/// ## Discussion
+///
+/// The corresponding value is an [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar).
+///
+///
         #[doc(alias = "NSCalendarUnitCalendar")]
         const Calendar = 1048576;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/timezone?language=objc)
+/// Identifier for the time zone of a date components object.
+///
+/// ## Discussion
+///
+/// The corresponding value is an [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone).
+///
+///
         #[doc(alias = "NSCalendarUnitTimeZone")]
         const TimeZone = 2097152;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/isleapmonth?language=objc)
         #[doc(alias = "NSCalendarUnitIsLeapMonth")]
         const IsLeapMonth = 1073741824;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/isrepeatedday?language=objc)
         #[doc(alias = "NSCalendarUnitIsRepeatedDay")]
         const IsRepeatedDay = 2147483648;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nseracalendarunit?language=objc)
+/// Specifies the era unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitEra`.
+///
+///
 #[deprecated]
         const NSEraCalendarUnit = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearcalendarunit?language=objc)
+/// Specifies the year unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitYear`.
+///
+///
 #[deprecated]
         const NSYearCalendarUnit = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsmonthcalendarunit?language=objc)
+/// Specifies the month unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitMonth`.
+///
+///
 #[deprecated]
         const NSMonthCalendarUnit = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsdaycalendarunit?language=objc)
+/// Specifies the day unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitDay`.
+///
+///
 #[deprecated]
         const NSDayCalendarUnit = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nshourcalendarunit?language=objc)
+/// Specifies the hour unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitHour`.
+///
+///
 #[deprecated]
         const NSHourCalendarUnit = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsminutecalendarunit?language=objc)
+/// Specifies the minute unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `NSInteger`. Equal to `kCFCalendarUnitMinute`.
+///
+///
 #[deprecated]
         const NSMinuteCalendarUnit = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nssecondcalendarunit?language=objc)
+/// Specifies the second unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is a `double`. Equal to `kCFCalendarUnitSecond`.
+///
+///
 #[deprecated]
         const NSSecondCalendarUnit = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekcalendarunit?language=objc)
+/// Specifies the week unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `kCFCalendarUnitSecond`. Equal to `kCFCalendarUnitWeek`.
+///
+///
 #[deprecated = "NSCalendarUnitWeekOfMonth or NSCalendarUnitWeekOfYear, depending on which you mean"]
         const NSWeekCalendarUnit = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekdaycalendarunit?language=objc)
+/// Specifies the weekday unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `kCFCalendarUnitSecond`. Equal to `kCFCalendarUnitWeekday`. The weekday units are the numbers 1 through N (where for the Gregorian calendar N=7 and 1 is Sunday).
+///
+///
 #[deprecated]
         const NSWeekdayCalendarUnit = 512;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekdayordinalcalendarunit?language=objc)
+/// Specifies the ordinal weekday unit.
+///
+/// ## Discussion
+///
+/// The corresponding value is an `kCFCalendarUnitSecond`. Equal to `kCFCalendarUnitWeekdayOrdinal`. The weekday ordinal unit describes ordinal position within the month unit of the corresponding weekday unit. For example, in the Gregorian calendar a weekday ordinal unit of 2 for a weekday unit 3 indicates “the second Tuesday in the month”.
+///
+///
 #[deprecated]
         const NSWeekdayOrdinalCalendarUnit = 1024;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsquartercalendarunit?language=objc)
+/// Specifies the quarter unit.
+///
+/// ## Discussion
+///
+/// In macOS 10.6 and earlier this was defined as equal to [`kCFCalendarUnitQuarter`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/quarter). In macOS 10.7 and later it is defined as `(1 << 20)`.
+///
+///
 #[deprecated]
         const NSQuarterCalendarUnit = 2048;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekofmonthcalendarunit?language=objc)
+/// Specifies the original week of a month calendar unit.
 #[deprecated]
         const NSWeekOfMonthCalendarUnit = 4096;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsweekofyearcalendarunit?language=objc)
+/// Specifies the original week of the year calendar unit.
 #[deprecated]
         const NSWeekOfYearCalendarUnit = 8192;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nsyearforweekofyearcalendarunit?language=objc)
+/// Specifies the year when the calendar is being interpreted as a week-based calendar.
 #[deprecated]
         const NSYearForWeekOfYearCalendarUnit = 16384;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nscalendarcalendarunit?language=objc)
+/// Specifies the calendar of the calendar.
 #[deprecated]
         const NSCalendarCalendarUnit = 1048576;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/unit/nstimezonecalendarunit?language=objc)
+/// Specifies the time zone of the calendar as an `NSTimeZone`.
 #[deprecated]
         const NSTimeZoneCalendarUnit = 2097152;
     }
@@ -298,35 +454,35 @@ unsafe impl RefEncode for NSCalendarUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options?language=objc)
+/// The options for arithmetic operations involving calendars.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/wrapcomponents?language=objc)
+/// Specifies that the components specified for an `NSDateComponents` object should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
         #[doc(alias = "NSCalendarWrapComponents")]
         const WrapComponents = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchstrictly?language=objc)
+/// Specifies that the operation should travel as far forward or backward as necessary looking for a match.
         #[doc(alias = "NSCalendarMatchStrictly")]
         const MatchStrictly = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/searchbackwards?language=objc)
+/// Specifies that the operation should travel backwards to find the previous match before the given date.
         #[doc(alias = "NSCalendarSearchBackwards")]
         const SearchBackwards = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchprevioustimepreservingsmallerunits?language=objc)
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the _previous_ existing value of the missing unit and preserves the lower units’ values.
         #[doc(alias = "NSCalendarMatchPreviousTimePreservingSmallerUnits")]
         const MatchPreviousTimePreservingSmallerUnits = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchnexttimepreservingsmallerunits?language=objc)
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the _next_ existing value of the missing unit and preserves the lower units’ values.
         #[doc(alias = "NSCalendarMatchNextTimePreservingSmallerUnits")]
         const MatchNextTimePreservingSmallerUnits = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchnexttime?language=objc)
+/// Specifies that, when there is no matching time before the end of the next instance of the next highest unit specified in the given `NSDateComponents` object, this method uses the _next_ existing value of the missing unit and _does not_ preserve the lower units’ values.
         #[doc(alias = "NSCalendarMatchNextTime")]
         const MatchNextTime = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchfirst?language=objc)
+/// Specifies that, if there are two or more matching times, the operation should return the first occurrence.
         #[doc(alias = "NSCalendarMatchFirst")]
         const MatchFirst = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar/options/matchlast?language=objc)
+/// Specifies that, if there are two or more matching times, the operation should return the last occurrence.
         #[doc(alias = "NSCalendarMatchLast")]
         const MatchLast = 1<<13;
     }
@@ -340,12 +496,72 @@ unsafe impl RefEncode for NSCalendarOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswrapcalendarcomponents?language=objc)
+/// Specifies that the components specified for an `NSDateComponents` object should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
 #[deprecated]
 pub const NSWrapCalendarComponents: NSUInteger = NSCalendarOptions::WrapComponents.0;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendar?language=objc)
+    /// A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`Calendar`](https://developer.apple.com/documentation/foundation/calendar); use [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) objects encapsulate information about systems of reckoning time in which the beginning, length, and divisions of a year are defined. They provide information about the calendar and support for calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time.
+    ///
+    /// [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) is _toll-free bridged_ with its Core Foundation counterpart, [`CFCalendarRef`](https://developer.apple.com/documentation/corefoundation/cfcalendar). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Calendar`](https://developer.apple.com/documentation/foundation/calendar) structure, which bridges to the [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Locales and Calendars
+    ///
+    /// Most locales use the most widely used civil calendar, called the _Gregorian calendar_ ([`NSCalendarIdentifierGregorian`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/gregorian)), but there remain exceptions to this trend. For example:
+    ///
+    /// - In Saudi Arabia, some locales use primarily the Islamic Umm al-Qura calendar ([`NSCalendarIdentifierIslamicUmmAlQura`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamicummalqura)).
+    ///
+    /// - In Ethiopia, some locales use primarily the Ethiopian calendar ([`NSCalendarIdentifierEthiopicAmeteMihret`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/ethiopicametemihret) or [`NSCalendarIdentifierEthiopicAmeteAlem`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/ethiopicametealem)).
+    ///
+    /// - In Iran and Afghanistan, some locales use primarily the Persian calendar ([`NSCalendarIdentifierPersian`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/persian)).
+    ///
+    /// - In Thailand, some locales use primarily the Buddhist calendar ([`NSCalendarIdentifierBuddhist`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/buddhist)).
+    ///
+    /// Other locales use another calendar alongside the Gregorian calendar. For example:
+    ///
+    /// - India also uses the Indian national calendar ([`NSCalendarIdentifierIndian`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/indian)).
+    ///
+    /// - Israel also uses the Hebrew calendar ([`NSCalendarIdentifierHebrew`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/hebrew)).
+    ///
+    /// - China mainland and other regions also use the Chinese calendar ([`NSCalendarIdentifierChinese`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/chinese)), primarily to calculate astronomical date and Chinese traditional holidays.
+    ///
+    /// - Japan also uses the Japanese calendar ([`NSCalendarIdentifierJapanese`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/japanese)), primarily to add year names.
+    ///
+    /// Independent of any particular locale, certain calendars are used primarily to calculate dates for religious observances. Among these are the Buddhist ([`NSCalendarIdentifierBuddhist`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/buddhist)), Coptic ([`NSCalendarIdentifierCoptic`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/coptic)), Hebrew ([`NSCalendarIdentifierHebrew`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/hebrew)), and Islamic ([`NSCalendarIdentifierIslamic`](https://developer.apple.com/documentation/foundation/nscalendar/identifier/islamic)) calendars.
+    ///
+    /// ### How NSCalendar Models the Gregorian Calendar
+    ///
+    /// The Gregorian calendar was first introduced in 1582, as a replacement for the Julian Calendar. According to the Julian calendar, a leap day is added to February for any year with a number divisible by 4, which results in an annual disparity of 11 minutes, or 1 day every 128 years. The Gregorian calendar revised the rules for leap day calculation, by skipping the leap day for any year with a number divisible by 100, unless that year number is also divisible by 400, resulting in an annual disparity of only 26 seconds, or 1 day every 3323 years.
+    ///
+    /// To transition from the Julian calendar to the Gregorian calendar, 10 days were dropped from the Gregorian calendar (October 5–14).
+    ///
+    /// After the Gregorian calendar was introduced, many regions continued to use the Julian calendar, with Turkey being the last country or region to adopt the Gregorian calendar, in 1926. As a result of the staggered adoption, the transition period for regions at the time of adoption have different start dates and a different number of skipped days to account for the additional disparity from leap day calculations.
+    ///
+    /// [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) models the behavior of a _proleptic_ Gregorian calendar (_as defined by ISO 8601:2004_), which extends the Gregorian calendar backward in time from the date of its introduction. This behavior should be taken into account when working with dates created before the transition period of the affected locales.
+    ///
+    /// ### Calendar Arithmetic
+    ///
+    /// To do calendar arithmetic, you use [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects in conjunction with a calendar. For example, to convert between a decomposed date in one calendar and another calendar, you must first convert the decomposed elements into a date using the first calendar, then decompose it using the second. [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) provides the absolute scale and epoch (reference point) for dates and times, which can then be rendered into a particular calendar, for calendrical computations or user display.
+    ///
+    /// Two [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) methods that return a date object, [`dateFromComponents:`](https://developer.apple.com/documentation/foundation/nscalendar/date(from:)), [`dateByAddingComponents:toDate:options:`](https://developer.apple.com/documentation/foundation/nscalendar/date(byadding:to:options:)), take as a parameter an [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object that describes the calendrical components required for the computation. You can provide as many components as you need (or choose to). When there is incomplete information to compute an absolute time, default values similar to `0` and `1` are usually chosen by a calendar, but this is a calendar-specific choice. If you provide inconsistent information, calendar-specific disambiguation is performed (which may involve ignoring one or more of the parameters). Related methods ([`components:fromDate:`](https://developer.apple.com/documentation/foundation/nscalendar/components(_:from:)) and [`components:fromDate:toDate:options:`](https://developer.apple.com/documentation/foundation/nscalendar/components(_:from:to:options:)-84y5w)) take a bit mask parameter that specifies which components to calculate when returning an [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object. The bit mask is composed of [`NSCalendarUnit`](https://developer.apple.com/documentation/foundation/nscalendar/unit) constants (see `Constants`).
+    ///
+    /// In a calendar, day, week, weekday, month, and year numbers are generally 1-based, but there may be calendar-specific exceptions. Ordinal numbers, where they occur, are 1-based. Some calendars represented by this API may have to map their basic unit concepts into year/month/week/day/… nomenclature. For example, a calendar composed of 4 quarters in a year instead of 12 months uses the month unit to represent quarters. The particular values of the unit are defined by each calendar, and are not necessarily consistent with values for that unit in another calendar.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCalendar;
@@ -928,19 +1144,56 @@ impl NSCalendar {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nscalendardaychanged?language=objc)
+    /// A notification that is posted whenever the calendar day of the system changes, as determined by the system calendar, locale, and time zone.
+    ///
+    /// ## Discussion
+    ///
+    /// If the the device is asleep when the day changes, this notification will be posted on wakeup. Only one notification will be posted on wakeup if the device has been asleep for multiple days.
+    ///
+    /// There are no guarantees about the timeliness of when this notification will be received by observers. As such, you should not rely on this notification being posted or received at any precise time.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCalendarDayChangedNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponentundefined?language=objc)
+/// Specifies a date component without a value.
 pub const NSDateComponentUndefined: NSInteger = NSIntegerMax as _;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundefineddatecomponent?language=objc)
+/// Specifies a date component without a value.
 #[deprecated]
 pub const NSUndefinedDateComponent: NSInteger = NSDateComponentUndefined;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatecomponents?language=objc)
+    /// An object that specifies a date or time in terms of units (such as year, month, day, hour, and minute) to be evaluated in a calendar system and time zone.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`DateComponents`](https://developer.apple.com/documentation/foundation/datecomponents); use [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) encapsulates the components of a date in an extendable, object-oriented manner. It’s used to specify a date by providing the temporal components that make up a date and time: hour, minutes, seconds, day, month, year, and so on. You can also use it to specify a duration of time, for example, 5 hours and 16 minutes. An [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object is not required to define all the component fields. When a new instance of [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) is created, the date components are set to [`NSDateComponentUndefined`](https://developer.apple.com/documentation/foundation/nsdatecomponentundefined).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object is meaningless in itself; you need to know what calendar it is interpreted against, and you need to know whether the values are absolute values of the units, or quantities of the units.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An instance of [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) is not responsible for answering questions about a date beyond the information with which it was initialized. For example, if you initialize one with May 4, 2017, its weekday is [`NSDateComponentUndefined`](https://developer.apple.com/documentation/foundation/nsdatecomponentundefined), not Thursday. To get the correct day of the week, you must create a suitable instance of [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar), create an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object using [`dateFromComponents:`](https://developer.apple.com/documentation/foundation/nscalendar/date(from:)) and then use [`components:fromDate:`](https://developer.apple.com/documentation/foundation/nscalendar/components(_:from:)) to retrieve the weekday—as illustrated in the following example.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let dateComponents = NSDateComponents()", "dateComponents.day = 4", "dateComponents.month = 5", "dateComponents.year = 2017", "", "if let gregorianCalendar = NSCalendar(calendarIdentifier: .gregorian),", "    let date = gregorianCalendar.date(from: dateComponents as DateComponents) {", "    let weekday = gregorianCalendar.component(.weekday, from: date)", "    print(weekday) // 5, which corresponds to Thursday in the Gregorian Calendar", "}", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateComponents *dateComponents = [[NSDateComponents alloc] init];", "dateComponents.day = 4;", "dateComponents.month = 5;", "dateComponents.year = 2017;", " ", "NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];", "NSDate *date = [gregorianCalendar dateFromComponents:dateComponents];", " ", "NSInteger weekday = [gregorianCalendar component:NSCalendarUnitWeekday fromDate:date];", "NSLog(@\"%d\", weekday); // 5, which corresponds to Thursday in the Gregorian Calendar"], metadata: None }] }] })
+    /// For more details, see [Calendars, Date Components, and Calendar Units](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/Articles/dtCalendars.html#//apple_ref/doc/uid/TP40003470) in [Date and Time Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/DatesAndTimes.html#//apple_ref/doc/uid/10000039i).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`DateComponents`](https://developer.apple.com/documentation/foundation/datecomponents) structure, which bridges to the [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDateComponents;

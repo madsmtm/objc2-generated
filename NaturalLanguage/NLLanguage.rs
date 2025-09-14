@@ -4,296 +4,296 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage?language=objc)
+/// The languages that the Natural Language framework supports.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLLanguage = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/undetermined?language=objc)
+    /// The unique identifier string for a language the Natural Language framework doesn’t recognize.
     pub static NLLanguageUndetermined: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/amharic?language=objc)
+    /// The unique identifier string for the Amharic language.
     pub static NLLanguageAmharic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/arabic?language=objc)
+    /// The unique identifier string for the Arabic language.
     pub static NLLanguageArabic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/armenian?language=objc)
+    /// The unique identifier string for the Armenian language.
     pub static NLLanguageArmenian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/bengali?language=objc)
+    /// The unique identifier string for the Bengali language.
     pub static NLLanguageBengali: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/bulgarian?language=objc)
+    /// The unique identifier string for the Bulgarian language.
     pub static NLLanguageBulgarian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/burmese?language=objc)
+    /// The unique identifier string for the Burmese language.
     pub static NLLanguageBurmese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/catalan?language=objc)
+    /// The unique identifier string for the Catalan language.
     pub static NLLanguageCatalan: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/cherokee?language=objc)
+    /// The unique identifier string for the Cherokee language.
     pub static NLLanguageCherokee: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/croatian?language=objc)
+    /// The unique identifier string for the Croatian language.
     pub static NLLanguageCroatian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/czech?language=objc)
+    /// The unique identifier string for the Czech language.
     pub static NLLanguageCzech: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/danish?language=objc)
+    /// The unique identifier string for the Danish language.
     pub static NLLanguageDanish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/dutch?language=objc)
+    /// The unique identifier string for the Dutch language.
     pub static NLLanguageDutch: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/english?language=objc)
+    /// The unique identifier string for the English language.
     pub static NLLanguageEnglish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/finnish?language=objc)
+    /// The unique identifier string for the Finnish language.
     pub static NLLanguageFinnish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/french?language=objc)
+    /// The unique identifier string for the French language.
     pub static NLLanguageFrench: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/georgian?language=objc)
+    /// The unique identifier string for the Georgian language.
     pub static NLLanguageGeorgian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/german?language=objc)
+    /// The unique identifier string for the German language.
     pub static NLLanguageGerman: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/greek?language=objc)
+    /// The unique identifier string for the Greek language.
     pub static NLLanguageGreek: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/gujarati?language=objc)
+    /// The unique identifier string for the Gujarati language.
     pub static NLLanguageGujarati: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hebrew?language=objc)
+    /// The unique identifier string for the Hebrew language.
     pub static NLLanguageHebrew: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hindi?language=objc)
+    /// The unique identifier string for the Hindi language.
     pub static NLLanguageHindi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hungarian?language=objc)
+    /// The unique identifier string for the Hungarian language.
     pub static NLLanguageHungarian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/icelandic?language=objc)
+    /// The unique identifier string for the Icelandic language.
     pub static NLLanguageIcelandic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/indonesian?language=objc)
+    /// The unique identifier string for the Indonesian language.
     pub static NLLanguageIndonesian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/italian?language=objc)
+    /// The unique identifier string for the Italian language.
     pub static NLLanguageItalian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/japanese?language=objc)
+    /// The unique identifier string for the Japanese language.
     pub static NLLanguageJapanese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/kannada?language=objc)
+    /// The unique identifier string for the Kannada language.
     pub static NLLanguageKannada: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/khmer?language=objc)
+    /// The unique identifier string for the Khmer language.
     pub static NLLanguageKhmer: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/korean?language=objc)
+    /// The unique identifier string for the Korean language.
     pub static NLLanguageKorean: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/lao?language=objc)
+    /// The unique identifier string for the Lao language.
     pub static NLLanguageLao: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/malay?language=objc)
+    /// The unique identifier string for the Malay language.
     pub static NLLanguageMalay: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/malayalam?language=objc)
+    /// The unique identifier string for the Malayalam language.
     pub static NLLanguageMalayalam: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/marathi?language=objc)
+    /// The unique identifier string for the Marathi language.
     pub static NLLanguageMarathi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/mongolian?language=objc)
+    /// The unique identifier string for the Mongolian language.
     pub static NLLanguageMongolian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/norwegian?language=objc)
+    /// The unique identifier string for the Norwegian language.
     pub static NLLanguageNorwegian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/oriya?language=objc)
+    /// The unique identifier string for the Oriya language.
     pub static NLLanguageOriya: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/persian?language=objc)
+    /// The unique identifier string for the Persian language.
     pub static NLLanguagePersian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/polish?language=objc)
+    /// The unique identifier string for the Polish language.
     pub static NLLanguagePolish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/portuguese?language=objc)
+    /// The unique identifier string for the Portuguese language.
     pub static NLLanguagePortuguese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/punjabi?language=objc)
+    /// The unique identifier string for the Punjabi language.
     pub static NLLanguagePunjabi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/romanian?language=objc)
+    /// The unique identifier string for the Romanian language.
     pub static NLLanguageRomanian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/russian?language=objc)
+    /// The unique identifier string for the Russian language.
     pub static NLLanguageRussian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/simplifiedchinese?language=objc)
+    /// The unique identifier string for the Simplified Chinese language.
     pub static NLLanguageSimplifiedChinese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/sinhalese?language=objc)
+    /// The unique identifier string for the Sinhalese language.
     pub static NLLanguageSinhalese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/slovak?language=objc)
+    /// The unique identifier string for the Slovak language.
     pub static NLLanguageSlovak: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/spanish?language=objc)
+    /// The unique identifier string for the Spanish language.
     pub static NLLanguageSpanish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/swedish?language=objc)
+    /// The unique identifier string for the Swedish language.
     pub static NLLanguageSwedish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/tamil?language=objc)
+    /// The unique identifier string for the Tamil language.
     pub static NLLanguageTamil: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/telugu?language=objc)
+    /// The unique identifier string for the Telugu language.
     pub static NLLanguageTelugu: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/thai?language=objc)
+    /// The unique identifier string for the Thai language.
     pub static NLLanguageThai: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/tibetan?language=objc)
+    /// The unique identifier string for the Tibetan language.
     pub static NLLanguageTibetan: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/traditionalchinese?language=objc)
+    /// The unique identifier string for the Traditional Chinese language.
     pub static NLLanguageTraditionalChinese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/turkish?language=objc)
+    /// The unique identifier string for the Turkish language.
     pub static NLLanguageTurkish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/ukrainian?language=objc)
+    /// The unique identifier string for the Ukrainian language.
     pub static NLLanguageUkrainian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/urdu?language=objc)
+    /// The unique identifier string for the Urdu language.
     pub static NLLanguageUrdu: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/vietnamese?language=objc)
+    /// The unique identifier string for the Vietnamese language.
     pub static NLLanguageVietnamese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/kazakh?language=objc)
+    /// The unique identifier string for the Kazakh language.
     pub static NLLanguageKazakh: Option<&'static NLLanguage>;
 }

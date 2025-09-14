@@ -9,68 +9,72 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that identify playback suspension reasons.
 /// Describes why an AVCoordinatedPlaybackParticipant is not currently available to participate in coordinated playback.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVCoordinatedPlaybackSuspensionReason = NSString;
 
 extern "C" {
+    /// The system interrupts a participant’s audio session.
     /// The participant's audio session was interrupted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/audiosessioninterrupted?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonAudioSessionInterrupted:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern "C" {
+    /// The player object is buffering media data after a stall.
     /// The player is buffering data after a stall.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/stallrecovery?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonStallRecovery:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern "C" {
-    /// The participant is presented with interstitial content instead of the main player.
+    /// A participant is playing content other than the primary content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/playinginterstitial?language=objc)
+    /// ## Discussion
+    ///
+    /// Interstitials are content a player presents that’s unrelated to the primary content, such as advertisements and legal warnings.
+    ///
+    ///
+    /// The participant is presented with interstitial content instead of the main player.
     pub static AVCoordinatedPlaybackSuspensionReasonPlayingInterstitial:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern "C" {
+    /// It’s not possible for a participant to start or resume coordinated playback.
     /// The participant cannot participate in coordinated playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/coordinatedplaybacknotpossible?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonCoordinatedPlaybackNotPossible:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern "C" {
+    /// A playback object requires user intervention to resume playback.
     /// The participant's playback object is in a state that requires manual intervention by the user to resume playback.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/useractionrequired?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonUserActionRequired:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern "C" {
+    /// A participant is actively changing the current time.
     /// The participant is actively changing current time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/userischangingcurrenttime?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonUserIsChangingCurrentTime:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
 
 extern_class!(
+    /// An object that represents a temporary suspension of coordinated playback.
+    ///
+    /// ## Overview
+    ///
+    /// See the playback coordinator’s [`beginSuspensionForReason:`](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/beginsuspension(for:)) method for details about suspending playback.
+    ///
+    ///
     /// A representation of a temporary break in participation.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// - NOTE: See AVPlaybackCoordinator's beginSuspensionForReason: method for details on use.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCoordinatedPlaybackSuspension;
@@ -121,29 +125,44 @@ impl AVCoordinatedPlaybackSuspension {
 }
 
 extern "C" {
+    /// A notification that the coordinator posts when its other participants change.
     /// Posted by the playback coordinator when its otherParticipants property changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipantsdidchangenotification?language=objc)
     pub static AVPlaybackCoordinatorOtherParticipantsDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification that the coordinator posts when its suspension reasons change.
     /// Posted by the playback coordinator when its suspensionReasons property changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsdidchangenotification?language=objc)
     pub static AVPlaybackCoordinatorSuspensionReasonsDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
+    /// An object that coordinates the playback of players in a connected group.
+    ///
+    /// ## Overview
+    ///
+    /// The framework provides two playback coordinator subclasses that manage different types of player objects:
+    ///
+    /// - [`AVPlayerPlaybackCoordinator`](https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator) coordinates the state of [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) objects. If your app uses [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer), continue to use its standard interfaces to control playback. The coordinator intercepts changes to the player’s rate and time, and propagates them to other players in the group.
+    ///
+    /// - [`AVDelegatingPlaybackCoordinator`](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator) coordinates the state of custom player objects. If your app uses a custom player, such as one that renders media using [`AVSampleBufferDisplayLayer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer) and [`AVSampleBufferAudioRenderer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer), use this object to coordinate group playback. Adopt the coordinator’s delegate protocol so that your player responds to the commands that the coordinator issues.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Use the [`Group Activities`](https://developer.apple.com/documentation/groupactivities) framework to connect a playback coordinator to its peers.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The playback coordinator negotiates playback state between a player, such as AVPlayer or a custom playback object represented by an implementation of the AVPlaybackCoordinatorPlaybackControlDelegate protocol, and a group of other connected players.
     ///
     /// AVPlaybackCoordinator will match rate and time of all connected players. This means that a local rate change or seek will be reflected in all connected players. Equally, a rate change or seek in any of the connected players will be reflected locally.
     /// AVPlaybackCoordinator does not manage the items in the play queue of the connected players, so it is up to player's owner to share and match the play queue across participants.
     /// The coordinator does, however, keep track of the identity of items enqueued in each player. This means that for one player's current time and rate to be applied on another player, both players must be playing the same item. If two players are playing different items, they each have independent playback states. When one of the two players transitions to the other's item later, it will match the time and rate of that other player.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlaybackCoordinator;
@@ -210,11 +229,16 @@ impl AVPlaybackCoordinator {
 }
 
 extern_class!(
+    /// An object that represents a participant in a coordinated playback session.
+    ///
+    /// ## Overview
+    ///
+    /// Access the other participants in a session through the playback coordinator’s [`otherParticipants`](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipants) property to determine their playback readiness and suspension reasons.
+    ///
+    ///
     /// A participant in a coordinated playback group connected through AVPlaybackCoordinator.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybackparticipant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCoordinatedPlaybackParticipant;
@@ -345,14 +369,39 @@ impl AVPlaybackCoordinator {
 }
 
 extern_class!(
+    /// A playback coordinator subclass that coordinates the playback of player objects in a connected group.
+    ///
+    /// ## Overview
+    ///
+    /// This object coordinates the state of [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) objects. You don’t create an instance of the coordinator, but instead access the player’s instance through its [`playbackCoordinator`](https://developer.apple.com/documentation/avfoundation/avplayer/playbackcoordinator) property.
+    ///
+    /// Use the standard interfaces of [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) to control playback in your app. The coordinator automatically intercepts calls that affect transport control state, like [`setRate:time:atHostTime:`](https://developer.apple.com/documentation/avfoundation/avplayer/setrate(_:time:athosttime:)), [`pause`](https://developer.apple.com/documentation/avfoundation/avplayer/pause()), and [`seekToTime:completionHandler:`](https://developer.apple.com/documentation/avfoundation/avplayer/seek(to:completionhandler:)-75bls), and propagates them to other participants in the group when appropriate. Similarly, the coordinator observes rate and time changes from other participants and imposes them on the player. If this occurs, the player item posts notifications that identify the originating participant.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ea01cb5d2ba841466e20d951d5d574f9/media-3839391~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7d8b117e91846756e31d0dac9c28a3d1/media-3839391%402x.png 2x" />
+    ///     <img alt="A diagram representing two devices that each contain representations of the app, AVPlayer, AVPlayerItem, and AVPlayerPlaybackCoordinator relationships. The two AVPlayerPlaybackCoordinator items have a two-way dotted-line connection between the two devices." src="https://docs-assets.developer.apple.com/published/ea01cb5d2ba841466e20d951d5d574f9/media-3839391~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// This object may automatically suspend coordinated playback when a system state change causes the player’s [`timeControlStatus`](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.property) value to change from a playing state to a waiting or paused state. A suspension that begins because the player enters a waiting state due to an event like a network stall or interstitial playback, ends automatically when the player finishes waiting. However, if the system pauses playback due to a system state change, such as an audio session interruption, the suspension ends only after the player’s rate changes back to nonzero.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A playback coordinator doesn’t manage the playback queue of connected players. You need to implement custom logic to enqueue the same item across all connected players.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An AVPlaybackCoordinator subclass for controlling an AVPlayer
     ///
     /// While the coordinator is connected to other participants, it will intercept rate changes and seeks issued to the player to share these with other participants if appropriate.
     /// Clients of AVPlayer can thus use the AVPlayer interfaces to modify the playback state of connected participants. When appropriate, the coordinator will also impose rate changes and seeks from other participants on the player. If this occurs, the corresponding notifications will carry an originating participant in their payload.
     /// See AVPlayer's playbackCoordinator property for more details about player behavior changes.
     /// AVPlayerPlaybackCoordinator may begin suspensions on behalf of the player when the player's timeControlStatus changes from AVPlayerTimeControlStatusPlaying to AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate or AVPlayerTimeControlStatusPaused. These suspensions will end when the player's timeControlStatus changes back to AVPlayerTimeControlStatusPlaying. This means that a suspension that begun because the player entered a waiting state, will end automatically when the player is done waiting. A suspension that begun because the player paused, will only end once the player's rate changes back to non-zero.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinator?language=objc)
     #[unsafe(super(AVPlaybackCoordinator, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerPlaybackCoordinator;
@@ -433,9 +482,8 @@ impl AVPlayerPlaybackCoordinator {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to participate in playback coordination.
     /// Delegate protocol for AVPlayerPlaybackCoordinator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerplaybackcoordinatordelegate?language=objc)
     pub unsafe trait AVPlayerPlaybackCoordinatorDelegate:
         NSObjectProtocol + Send + Sync
     {
@@ -474,18 +522,16 @@ extern_protocol!(
     }
 );
 
+/// Constants that define rate change options.
 /// Configuration for a call to [AVDelegatingPlaybackCoordinator coordinateRateChangeToRate:options:].
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDelegatingPlaybackCoordinatorRateChangeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorRateChangeOptions: NSUInteger {
+/// Indicates that the coordinator should begin playback as soon as possible, regardless of other participant’s readiness or suspensions.
 /// Requests that the coordinator begin playback as soon as possible and ignore other participant's readiness and suspensions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions/playimmediately?language=objc)
         #[doc(alias = "AVDelegatingPlaybackCoordinatorRateChangeOptionPlayImmediately")]
         const PlayImmediately = 1<<0;
     }
@@ -499,18 +545,16 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorRateChangeOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define seek options.
 /// Configuration for a call to [AVDelegatingPlaybackCoordinator coordinateSeekToTime:options:].
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDelegatingPlaybackCoordinatorSeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorSeekOptions: NSUInteger {
+/// An option that Indicates that the coordinator needs to resume playback as soon as possible, regardless of other participant’s readiness or suspensions.
 /// Requests that the coordinator resume playback as soon as possible after the seek is complete and ignore other participant's readiness and suspensions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions/resumeimmediately?language=objc)
         #[doc(alias = "AVDelegatingPlaybackCoordinatorSeekOptionResumeImmediately")]
         const ResumeImmediately = 1<<0;
     }
@@ -525,11 +569,26 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorSeekOptions {
 }
 
 extern_class!(
+    /// A playback coordinator subclass that coordinates the playback of custom player objects in a connected group.
+    ///
+    /// ## Overview
+    ///
+    /// This object coordinates the state of custom player objects, such as those that render media using [`AVSampleBufferDisplayLayer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer) and [`AVSampleBufferAudioRenderer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer), or that play audio using [`AVAudioEngine`](https://developer.apple.com/documentation/avfaudio/avaudioengine).
+    ///
+    /// Adopt the [`AVPlaybackCoordinatorPlaybackControlDelegate`](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinatorplaybackcontroldelegate) protocol so that your app responds to playback commands from the coordinator. The commands provide the details of a requested state change so you can control your player object accordingly.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/44b98f365a7845fac8a1cb8ab5fdcc33/media-3783472~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f1475dd7253b6e97cc096c2648300c98/media-3783472%402x.png 2x" />
+    ///     <img alt="A diagram representing two devices that each contain representations of the app, AVDelegatingPlaybackCoordinator, playback control delegate, and custom playback object relationships. The two AVDelegatingPlaybackCoordinator items have a two-way dotted-line connection between the two devices." src="https://docs-assets.developer.apple.com/published/f1475dd7253b6e97cc096c2648300c98/media-3783472%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// An AVPlaybackCoordinator subclass for controlling a custom playback object.
     ///
     /// - NOTE: Use AVPlayer's playbackCoordinator property to get an AVPlaybackCoordinator for an AVPlayer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinator?language=objc)
     #[unsafe(super(AVPlaybackCoordinator, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinator;
@@ -650,9 +709,8 @@ impl AVDelegatingPlaybackCoordinator {
 }
 
 extern_protocol!(
+    /// A protocol that defines the method to implement to respond to playback commands from the playback coordinator.
     /// A custom player implementation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinatorplaybackcontroldelegate?language=objc)
     pub unsafe trait AVPlaybackCoordinatorPlaybackControlDelegate:
         NSObjectProtocol + Send + Sync
     {
@@ -744,11 +802,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An abstract superclass for playback commands.
+    ///
+    /// ## Overview
+    ///
+    /// Playback commands inherit state that identifies their originator and applicable item.
+    ///
+    ///
     /// Abstract superclass for playback commands
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaybackcontrolcommand?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinatorPlaybackControlCommand;
@@ -805,11 +868,10 @@ impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
 }
 
 extern_class!(
+    /// A command that indicates to play at a specific rate and time.
     /// A playback command requesting playback with specific timing.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorplaycommand?language=objc)
     #[unsafe(super(AVDelegatingPlaybackCoordinatorPlaybackControlCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinatorPlayCommand;
@@ -876,14 +938,19 @@ impl AVDelegatingPlaybackCoordinatorPlayCommand {
 }
 
 extern_class!(
+    /// A command that indicates to start buffering data in preparation for playback.
+    ///
+    /// ## Overview
+    ///
+    /// When your app receives this command, update its user interface to indicate that playback is buffering.
+    ///
+    ///
     /// A playback command requesting buffering in anticipation of playback.
     ///
     /// Receiving this command should be reflected to the user as playback in a buffering state.
     /// To cancel the group intent to begin playback and move back into a paused state, call [AVDelegatingPlaybackCoordinator coordinateRateChangeToRate:0 options: 0]
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorbufferingcommand?language=objc)
     #[unsafe(super(AVDelegatingPlaybackCoordinatorPlaybackControlCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinatorBufferingCommand;
@@ -939,11 +1006,10 @@ impl AVDelegatingPlaybackCoordinatorBufferingCommand {
 }
 
 extern_class!(
+    /// A command that indicates to pause playback.
     /// A playback command requesting a pause
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorpausecommand?language=objc)
     #[unsafe(super(AVDelegatingPlaybackCoordinatorPlaybackControlCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinatorPauseCommand;
@@ -996,11 +1062,10 @@ impl AVDelegatingPlaybackCoordinatorPauseCommand {
 }
 
 extern_class!(
+    /// A command that indicates to seek to a new time in the item timeline.
     /// A playback command requesting a seek.
     ///
     /// If the current playback rate is non-zero, playback should not automatically resume after the seek. Instead the delegate should pause and wait for the coordinator to issue another PlayCommand. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand?language=objc)
     #[unsafe(super(AVDelegatingPlaybackCoordinatorPlaybackControlCommand, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVDelegatingPlaybackCoordinatorSeekCommand;

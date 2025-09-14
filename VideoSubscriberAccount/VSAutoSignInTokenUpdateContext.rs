@@ -6,11 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that contains information about a person’s choice in the Automatic Sign-In prompt.
+    ///
+    /// ## Overview
+    ///
+    /// The framework returns an instance of this structure when your app calls [`requestAutoSignInAuthorizationWithCompletionHandler:`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/requestautosigninauthorizationwithcompletionhandler:) to prompt a person for approval to opt in to Automatic Sign-In.
+    ///
+    /// Check the [`authorization`](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintokenupdatecontext/authorization) property of this structure to determine the persons choice. If the value is [`VSAutoSignInAuthorizationGranted`](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationgranted), generate a sign in token and pass the instance of this structure and the token to the framework using the [`updateAutoSignInToken:updateContext:completionHandler:`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/updateautosignintoken:updatecontext:completionhandler:) method.
+    ///
+    ///
     /// Context object used to update the auto sign in token.
     /// This object has to be obtained through a user consent flow using `-[VSUserAccountManager requestAutoSignInAuthorizationWithCompletionHandler:]`,
     /// then it is passed to `-[VSUserAccountManager updateAutoSignInToken:updateContext:completionHandler:]`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintokenupdatecontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAutoSignInTokenUpdateContext;

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantguest?language=objc)
+    /// The person assigned to a reservation.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRestaurantGuest`](https://developer.apple.com/documentation/intents/inrestaurantguest) object identifies the user assigned to a reservation and includes contact information used to communicate changes or updates to the reservation. During the creation of a reservation, the system sends a [`INGetRestaurantGuestIntent`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintent) intent to your Intents extension and asks it to provide the identity of the guest to assign to the reservation. You create an instance of this class and associate it with your response to that intent.
+    ///
+    /// Depending on the preferences you return to the system about how to display guest information, the user might have the option of changing the name and contact info assigned to a reservation. When that happens, the system may return a new instance of this class during the final booking stages of the reservation with the revised guest information.
+    ///
+    ///
     #[unsafe(super(INPerson, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INPerson")]

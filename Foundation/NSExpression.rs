@@ -6,49 +6,48 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum?language=objc)
+/// Defines the possible types of an expression.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSExpressionType(pub NSUInteger);
 impl NSExpressionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/constantvalue?language=objc)
+    /// An expression that always returns the same value.
     #[doc(alias = "NSConstantValueExpressionType")]
     pub const ConstantValueExpressionType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/evaluatedobject?language=objc)
+    /// An expression that always returns the parameter object itself.
     #[doc(alias = "NSEvaluatedObjectExpressionType")]
     pub const EvaluatedObjectExpressionType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/variable?language=objc)
+    /// An expression that always returns whatever value is associated with the key specified by ‘variable’ in the bindings dictionary.
     #[doc(alias = "NSVariableExpressionType")]
     pub const VariableExpressionType: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/keypath?language=objc)
+    /// An expression that returns something that can be used as a key path.
     #[doc(alias = "NSKeyPathExpressionType")]
     pub const KeyPathExpressionType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/function?language=objc)
+    /// An expression that returns the result of evaluating a function.
     #[doc(alias = "NSFunctionExpressionType")]
     pub const FunctionExpressionType: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/unionset?language=objc)
+    /// An expression that creates a union of the results of two nested expressions.
     #[doc(alias = "NSUnionSetExpressionType")]
     pub const UnionSetExpressionType: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/intersectset?language=objc)
+    /// An expression that creates an intersection of the results of two nested expressions.
     #[doc(alias = "NSIntersectSetExpressionType")]
     pub const IntersectSetExpressionType: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/minusset?language=objc)
+    /// An expression that combines two nested expression results by set subtraction.
     #[doc(alias = "NSMinusSetExpressionType")]
     pub const MinusSetExpressionType: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/subquery?language=objc)
+    /// An expression that filters a collection using a subpredicate.
     #[doc(alias = "NSSubqueryExpressionType")]
     pub const SubqueryExpressionType: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/aggregate?language=objc)
+    /// An expression that defines an aggregate of `NSExpression` objects.
     #[doc(alias = "NSAggregateExpressionType")]
     pub const AggregateExpressionType: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/anykey?language=objc)
+    /// An expression that represents any key.
     #[doc(alias = "NSAnyKeyExpressionType")]
     pub const AnyKeyExpressionType: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/block?language=objc)
+    /// An expression that uses a Block.
     #[doc(alias = "NSBlockExpressionType")]
     pub const BlockExpressionType: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/conditional?language=objc)
     #[doc(alias = "NSConditionalExpressionType")]
     pub const ConditionalExpressionType: Self = Self(20);
 }
@@ -62,7 +61,53 @@ unsafe impl RefEncode for NSExpressionType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexpression?language=objc)
+    /// An expression for use in a comparison predicate.
+    ///
+    /// ## Overview
+    ///
+    /// Comparison operations in an [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate) derive from two expressions as instances of the [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression) class. You create expressions for constant values, key paths, and so on.
+    ///
+    /// Generally, anywhere in the [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression) class hierarchy where there’s a composite API and subtypes that may only reasonably respond to a subset of that API, invoking a method that doesn’t make sense for that subtype throws an exception.
+    ///
+    /// ### Aggregate Expressions
+    ///
+    /// [`NSAggregateExpressionType`](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/aggregate) allows you to create predicates containing expressions that evaluate to collections that contain further expressions. The collection may be an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), [`NSSet`](https://developer.apple.com/documentation/foundation/nsset), or [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) object.
+    ///
+    /// Core Data doesn’t support aggregate expressions.
+    ///
+    /// ### Subquery Expressions
+    ///
+    /// The [`NSSubqueryExpressionType`](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/subquery) creates a subexpression that returns a subset of a collection of objects. This allows you to create sophisticated queries across relationships, such as a search for multiple correlated values on the destination object of a relationship.
+    ///
+    /// ### Set Expressions
+    ///
+    /// The set expressions ([`NSUnionSetExpressionType`](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/unionset), [`NSIntersectSetExpressionType`](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/intersectset), and [`NSMinusSetExpressionType`](https://developer.apple.com/documentation/foundation/nsexpression/expressiontype-swift.enum/minusset)) combine results in a manner similar to the [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) methods.
+    ///
+    /// Both sides of these expressions must evaluate to a collection; the left side must evaluate to an `NSSet` object, and the right side can be any other collection type.
+    ///
+    /// ```objc
+    /// (expression UNION expression)
+    /// (expression INTERSECT expression)
+    /// (expression MINUS expression)
+    /// ```
+    ///
+    /// Core Data doesn’t support set expressions.
+    ///
+    /// ### Function Expressions
+    ///
+    /// In macOS 10.4, [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression) only supports a predefined set of functions: `sum`, `count`, `min`, `max`, and `average`. You access these predefined functions in the predicate syntax using custom keywords (for example, `MAX(1, 5, 10)`).
+    ///
+    /// In macOS 10.5 and later, function expressions also support arbitrary method invocations. To implement this extended functionality, use the syntax `FUNCTION(receiver, selectorName, arguments, ...),` as in the following example:
+    ///
+    /// ```objc
+    /// FUNCTION(@"/Developer/Tools/otest", @"lastPathComponent") => @"otest"
+    /// ```
+    ///
+    /// All methods must take one or more `id` arguments and return an `id` value, although you can use the `CAST` expression to convert datatypes with lossy string representations (for example, `CAST(####, "NSDate")`). macOS 10.5 extends the `CAST` expression to provide support for casting to classes for use in creating receivers for function expressions.
+    ///
+    /// Although Core Data supports evaluation of the predefined functions, it doesn’t support the evaluation of custom predicate functions in the persistent stores (during a fetch).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSExpression;

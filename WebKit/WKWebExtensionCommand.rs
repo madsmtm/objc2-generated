@@ -11,13 +11,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates the properties for an individual web extension command.
+    ///
+    /// ## Overview
+    ///
+    /// Provides access to command properties such as a unique identifier, a descriptive title, and shortcut keys. Commands can be used by a web extension to perform specific actions within a web extension context, such toggling features, or interacting with web content. These commands enhance the functionality of the extension by allowing users to invoke actions quickly.
+    ///
+    ///
     /// A ``WKWebExtensionCommand`` object encapsulates the properties for an individual web extension command.
     ///
     /// Provides access to command properties such as a unique identifier, a descriptive title, and shortcut keys. Commands
     /// can be used by a web extension to perform specific actions within a web extension context, such toggling features, or interacting with
     /// web content. These commands enhance the functionality of the extension by allowing users to invoke actions quickly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/command?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

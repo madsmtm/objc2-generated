@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertytransform?language=objc)
+    /// Coordinate transform information for use in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKEffectPropertyTransform`](https://developer.apple.com/documentation/glkit/glkeffectpropertytransform) class defines properties that provide the coordinate transformations to be performed when rendering the effect.
+    ///
+    ///
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]

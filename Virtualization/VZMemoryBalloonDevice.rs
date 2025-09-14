@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The common behavior for memory devices.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate this class directly. To request a memory ballon device, add an appropriate configuration object to the [`memoryBalloonDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices) property of the [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object that you use to configure the virtual machine. In response, the system instantiates the subclass of [`VZMemoryBalloonDevice`](https://developer.apple.com/documentation/virtualization/vzmemoryballoondevice) that matches your request. For example, if you supply a [`VZVirtioTraditionalMemoryBalloonDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondeviceconfiguration) object in your configuration, the system creates a [`VZVirtioTraditionalMemoryBalloonDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondevice) object.
+    ///
+    ///
     /// Base class representing a memory balloon device in a virtual machine.
     ///
     /// VZMemoryBalloonDevice should not be instantiated directly.
@@ -19,8 +26,6 @@ extern_class!(
     /// See: VZVirtioTraditionalMemoryBalloonDevice
     ///
     /// See: VZVirtioTraditionalMemoryBalloonDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmemoryballoondevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMemoryBalloonDevice;

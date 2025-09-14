@@ -5,19 +5,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype?language=objc)
+/// Constants that describe the possible types of a compound predicate.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompoundPredicateType(pub NSUInteger);
 impl NSCompoundPredicateType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/not?language=objc)
+    /// A logical NOT predicate.
     #[doc(alias = "NSNotPredicateType")]
     pub const NotPredicateType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/and?language=objc)
+    /// A logical AND predicate.
     #[doc(alias = "NSAndPredicateType")]
     pub const AndPredicateType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate/logicaltype/or?language=objc)
+    /// A logical OR predicate.
     #[doc(alias = "NSOrPredicateType")]
     pub const OrPredicateType: Self = Self(2);
 }
@@ -31,7 +31,19 @@ unsafe impl RefEncode for NSCompoundPredicateType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscompoundpredicate?language=objc)
+    /// A specialized predicate that evaluates logical combinations of other predicates.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`NSCompoundPredicate`](https://developer.apple.com/documentation/foundation/nscompoundpredicate) to create an `AND` or `OR` compound predicate of one or more other predicates, or the `NOT` of a single predicate. For the logical `AND` and `OR` operations:
+    ///
+    /// - An `AND` predicate with no subpredicates evaluates to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// - An `OR` predicate with no subpredicates evaluates to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// - A compound predicate with one or more subpredicates evaluates to the truth of its subpredicates.
+    ///
+    ///
     #[unsafe(super(NSPredicate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPredicate")]

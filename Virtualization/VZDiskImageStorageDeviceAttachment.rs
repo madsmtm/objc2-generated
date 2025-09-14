@@ -6,21 +6,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An integer that describes the disk image caching mode.
 /// Whether the host caches disk image data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZDiskImageCachingMode(pub NSInteger);
 impl VZDiskImageCachingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/automatic?language=objc)
+    /// Allows the virtualization framework to automatically determine whether to enable data caching.
     #[doc(alias = "VZDiskImageCachingModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/uncached?language=objc)
+    /// Disables data caching.
     #[doc(alias = "VZDiskImageCachingModeUncached")]
     pub const Uncached: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagecachingmode/cached?language=objc)
+    /// Enables data caching.
     #[doc(alias = "VZDiskImageCachingModeCached")]
     pub const Cached: Self = Self(2);
 }
@@ -33,28 +32,51 @@ unsafe impl RefEncode for VZDiskImageCachingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode?language=objc)
+/// An integer that describes the disk image synchronization mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct VZDiskImageSynchronizationMode(pub NSInteger);
 impl VZDiskImageSynchronizationMode {
+    /// Synchronizes data to the permanent storage holding the disk image.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode synchronizes the data with the permanent storage holding the disk image and ensures the data moves from the disk’s internal cache to permanent storage. This ensures there’s no loss of already synchronized data in the case of panic or loss of power.
+    ///
+    ///
     /// The data is synchronized to the permanent storage holding the disk image.
     /// No synchronized data is lost on panic or loss of power.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/full?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeFull")]
     pub const Full: Self = Self(1);
+    /// Synchronizes data to the drive using the system’s best-effort synchronization mode.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode synchronizes the data with the drive, but doesn’t ensure the data moves from the disk’s internal cache to permanent storage.
+    ///
+    /// This is a best-effort mode with the same guarantees as the `fsync(_:)` system call.
+    ///
+    ///
     /// Synchronize the data to the drive.
     ///
     /// This mode synchronizes the data with the drive, but does not ensure the data is moved from the disk's internal cache
     /// to permanent storage.
     ///
     /// This is a best-effort mode with the same guarantees as the fsync() system call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/fsync?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeFsync")]
     pub const Fsync: Self = Self(2);
+    /// Disables data synchronization with the permanent storage.
+    ///
+    /// ## Discussion
+    ///
+    /// This option doesn’t guarantee data integrity if any error condition occurs, such as disk full on the host, panic, power loss, and so on.
+    ///
+    /// This mode is useful when a VM is run only once to perform a task to completion or failure. In that case, the framework can’t safely reuse the disk image on failure.
+    ///
+    /// Using this mode may result in improved performance because no synchronization with the underlying storage is necessary.
+    ///
+    ///
     /// Do not synchronize the data with the permanent storage.
     /// This option does not guarantee data integrity if any error condition occurs such as disk full on the host,
     /// panic, power loss, etc.
@@ -63,8 +85,6 @@ impl VZDiskImageSynchronizationMode {
     /// In that case, the disk image cannot safely be reused on failure.
     ///
     /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagesynchronizationmode/none?language=objc)
     #[doc(alias = "VZDiskImageSynchronizationModeNone")]
     pub const None: Self = Self(3);
 }
@@ -78,6 +98,73 @@ unsafe impl RefEncode for VZDiskImageSynchronizationMode {
 }
 
 extern_class!(
+    /// A device that stores content in a disk image.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZDiskImageStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment) object to manage the storage for a disk in a virtual machine (VM). The guest operating system sees the storage as a disk, and when the guest operating system writes files to the disk, the virtual machine stores the files in the disk image you provide.
+    ///
+    /// The virtualization framework supports two disk image formats:
+    ///
+    /// - RAW disk images: A file that’s the requested size of the VM disk, this format results in a 1-to-1 mapping between the offsets in the file and the offsets in the VM disk.
+    ///
+    /// - ASIF disk images: _Apple Sparse Image Format_ (ASIF) files transfer more efficiently between hosts or disks because their intrinsic structure doesn’t depend on the host file system’s capabilities. The size the ASIF file takes on the file system is proportional to the actual data stored in the disk image.
+    ///
+    /// ## Create the disk image
+    ///
+    /// Create disk images using `diskutil`, a command-line utility you can access through the Terminal app. The `diskutil` utility performs a number of functions. The command uses a specific structure that tells the app what function it’s performing, including many arguments documented in its online manual page documents. For more information, see the `diskutil` manual page by using the command `man diskutil` in Terminal.
+    ///
+    /// The command to creates disk image files you use with VMs starts with `diskutil image create blank`, followed by three required arguments that describe the structure, size, and location of the disk image. The general format of the command follows the pattern shown here:
+    ///
+    /// ```text
+    /// diskutil image create blank --fs none --format FORMAT --size SIZE IMAGE_PATH
+    /// ```
+    ///
+    /// Use these parameters to specify the configuration of the disk image:
+    ///
+    /// - `--format`: An argument that describes the specific file-system format to use, either `RAW` or `ASIF`. `diskutil` supports other file-system formats as well, not all of which Virtualization supports. For more information, see the `diskutil` manual page by using the command `man diskutil` in Terminal.
+    ///
+    /// - `--fs`: An argument that specifies the file system to use when creating the disk image.
+    ///
+    /// - `--size`: An argument that describes the size of the file system to create, usually specified in gigabytes with the suffix `GiB`; for example, `256GiB` specifies a 256 GB image file size. You can also specify sizes in megabytes, using the MiB notation; for example, `256MiB`.
+    ///
+    /// - `IMAGE_PATH`: The file system path that represents the location where `diskutil` creates the `RAW` or `ASIF` file.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    /// Using `diskutil` improperly can result in data loss. Most commands don’t present confirmation prompts, so check to ensure you’re writing to the volume you expect. Also, back up your data before using any of these commands.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To create a RAW disk image in the file system of the host computer, open Terminal and run the following command, replacing the placeholder values with your own, for example:
+    ///
+    /// ```text
+    /// diskutil image create blank --fs none --format RAW --size SIZE IMAGE_PATH
+    /// ```
+    ///
+    /// A best practice is to give disk images a common and easily recognizable file extension, such as `.img`; for example `VM_Image.img`.
+    ///
+    /// To create an ASIF image, replace `RAW` with `ASIF`, as shown here:
+    ///
+    /// ```text
+    /// diskutil image create blank --fs none --format ASIF --size SIZE IMAGE_PATH
+    /// ```
+    ///
+    /// You can execute `diskutil` commands under app control to create disk images programmatically.
+    ///
+    /// You can also create `ASIF` or `RAW` disk images interactively using Disk Utility, a utility app that Apple provides with macOS. To create volumes with Disk Utility, open the app, then select File > New Image > Blank Image. Configure the form by selecting the disk format (either `ASIF` or `RAW`), volume size, and location for the new volume, and then click Save. For more information on using Disk Utility, see [Disk Utility User Guide](https://support.apple.com/guide/disk-utility/welcome/mac).
+    ///
+    /// Alternatively, you can create a raw disk image programmatically using the UNIX `open()` and `truncate()` standard library functions as shown here:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["private func createRAWDiskImage() {", "    let diskFd = open(diskImageURL.path, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)", "    if diskFd == -1 {", "        fatalError(\"Cannot create disk image.\")", "    }", "", "    // 128 GB disk space.", "    var result = ftruncate(diskFd, 128 * 1024 * 1024 * 1024)", "    if result != 0 {", "        fatalError(\"ftruncate() failed.\")", "    }", "", "    result = close(diskFd)", "    if result != 0 {", "        fatalError(\"Failed to close the disk image.\")", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["", "static void createRAWDiskImage(void)", "{", "    int fd = open([getDiskImageURL() fileSystemRepresentation], O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);", "    if (fd == -1) {", "        abortWithErrorMessage(@\"Cannot create disk image.\");", "    }", "", "    // 128 GB disk space.", "    int result = ftruncate(fd, 128ull * 1024ull * 1024ull * 1024ull);", "    if (result) {", "        abortWithErrorMessage(@\"ftruncate() failed.\");", "    }", "", "    result = close(fd);", "    if (result) {", "        abortWithErrorMessage(@\"Failed to close the disk image.\");", "    }", "}", ""], metadata: None }] }] })
+    /// ### Initialize the disk image
+    ///
+    /// After creating the disk image, you use it to initialize a VM’s [`VZDiskImageStorageDeviceAttachment`](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment) object. Use the attachment object to configure the [`VZVirtioBlockDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration) object that you add to your virtual machine’s configuration, as shown here:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["", "guard let diskImageAttachment = try? VZDiskImageStorageDeviceAttachment(url: diskImageURL, readOnly: false) else {", "    fatalError(\"Failed to create Disk image.\")", "}", "let disk = VZVirtioBlockDeviceConfiguration(attachment: diskImageAttachment)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objective-c"), code: ["", "NSError *error;", "VZDiskImageStorageDeviceAttachment *diskAttachment = [[VZDiskImageStorageDeviceAttachment alloc] initWithURL:getDiskImageURL() readOnly:NO error:&error];", "if (!diskAttachment) {", "    abortWithErrorMessage([NSString stringWithFormat:@\"Failed to create VZDiskImageStorageDeviceAttachment. %@\", error.localizedDescription]);", "}", "VZVirtioBlockDeviceConfiguration *disk = [[VZVirtioBlockDeviceConfiguration alloc] initWithAttachment:diskAttachment];"], metadata: None }] }] })
+    ///
     /// Storage device attachment using a disk image to implement the storage.
     ///
     /// This storage device attachment uses a disk image on the host file system as the drive of the storage device.
@@ -93,8 +180,6 @@ extern_class!(
     /// See: VZUSBMassStorageDeviceConfiguration
     ///
     /// See: VZVirtioBlockDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdiskimagestoragedeviceattachment?language=objc)
     #[unsafe(super(VZStorageDeviceAttachment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZStorageDeviceAttachment")]

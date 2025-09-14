@@ -12,16 +12,13 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISliderStyle(pub NSInteger);
 impl UISliderStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider/style/default?language=objc)
     #[doc(alias = "UISliderStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider/style/thumbless?language=objc)
     #[doc(alias = "UISliderStyleThumbless")]
     pub const Thumbless: Self = Self(1);
 }
@@ -35,7 +32,113 @@ unsafe impl RefEncode for UISliderStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uislider?language=objc)
+    /// A control for selecting a single value from a continuous range of values.
+    ///
+    /// ## Overview
+    ///
+    /// As you move the _thumb_ of a slider, it passes its updated value to any actions attached to it. The appearance of sliders is configurable; you can tint the track and the thumb, and provide images to appear at the ends of the slider. You can add sliders to your interface programmatically or by using Interface Builder.
+    ///
+    /// The following image shows the terms used to describe the constituent parts of a [`UISlider`](https://developer.apple.com/documentation/uikit/uislider) object in a left-to-right configuration.
+    ///
+    ///
+    /// ![Example slider object.](https://docs-assets.developer.apple.com/published/697482ef987ca5611fd201862aa90b1e/media-2555491%402x.png)
+    ///
+    ///
+    /// To add a slider to your interface:
+    ///
+    /// - Specify the range of values the slider represents.
+    ///
+    /// - Optionally, configure the appearance of the slider with appropriate tint colors, and limit images.
+    ///
+    /// - Connect one or more action methods to the slider.
+    ///
+    /// - Set up Auto Layout rules to govern the size and position of the slider in your interface.
+    ///
+    /// ### Respond to user interaction
+    ///
+    /// Sliders use the target-action design pattern to notify your app when the user moves the slider. To be notified when the slider’s value changes, register your action method with the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) event. At runtime, the slider calls your method in response to the user changing the slider’s value.
+    ///
+    /// By default, the slider sends value-changed events continuously as the user moves the slider’s thumb control. Setting the [`continuous`](https://developer.apple.com/documentation/uikit/uislider/iscontinuous) property to [`false`](https://developer.apple.com/documentation/swift/false) causes the slider to send an event only when the user releases the slider’s thumb control, setting the final value.
+    ///
+    /// You connect a slider to your action method by using the [`addTarget:action:forControlEvents:`](https://developer.apple.com/documentation/uikit/uicontrol/addtarget(_:action:for:)) method or by creating a connection in Interface Builder. The signature of an action method takes one of three forms, as shown in the following code. Choose the form that provides the information that you need to respond to the value change in the slider.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func doSomething()", "@IBAction func doSomething(sender: UISlider)", "@IBAction func doSomething(sender: UISlider, forEvent event: UIEvent)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)doSomething;", "- (IBAction)doSomething:(id)sender;", "- (IBAction)doSomething:(id)sender forEvent:(UIEvent*)event;"], metadata: None }] }] })
+    /// ### Debug sliders
+    ///
+    /// When debugging issues with sliders, follow these tips to avoid common pitfalls:
+    ///
+    /// - **Use either a custom tint color or a custom image, but not both.** When customizing slider appearance with images or tint, use one option or the other, but not both. Conflicting settings for track and thumb appearance are resolved in favor of the most recently set value. For example, setting a new minimum track image for any state clears any custom tint color you may have provided for minimum track images. Similarly, setting the thumb tint color removes any custom thumb images associated with the slider.
+    ///
+    /// - **The current value must be between the minimum and maximum values.** If you try to programmatically set a slider’s current value to be below the minimum or above the maximum, it’s set to the minimum or maximum instead. However, if you set the value beyond the range of the minimum or maximum in Interface Builder, the minimum or minimum values are updated instead.
+    ///
+    /// - **Set custom images for all control states.** If you use custom track and thumb images for your slider, remember to set an image for every possible [`UIControlState`](https://developer.apple.com/documentation/uikit/uicontrol/state-swift.struct). Any control state that doesn’t have a corresponding custom image assigned to it displays the standard image instead. If you set one custom image, be sure to set them all.
+    ///
+    /// ### Configure slider attributes in Interface Builder
+    ///
+    /// The following table lists the core attributes that you configure for sliders in Interface Builder.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Value Minimum / Maximum" }] }], [Paragraph { inline_content: [Text { text: "Specifies the values attached to the endpoints of the slider, the minimum representing the leading end of the slider and the maximum representing the trailing end. Access these values at runtime using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/minimumValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/maximumValue", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " properties." }] }]], [[Paragraph { inline_content: [Text { text: "Value Current" }] }], [Paragraph { inline_content: [Text { text: "Represents the initial value of the slider. The value must be between the minimum and maximum values. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/value", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// The following table lists the attributes that control the appearance of a slider.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Min Image" }] }], [Paragraph { inline_content: [Text { text: "Specifies the image displayed at the leading end of the slider. If blank, no image is displayed. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/minimumValueImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Max Image" }] }], [Paragraph { inline_content: [Text { text: "Specifies the image displayed at the trailing end of the slider. If blank, no image is displayed. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/maximumValueImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Min Track Tint" }] }], [Paragraph { inline_content: [Text { text: "Specifies the tint color of the track to the leading side of the slider’s thumb. The value defaults to the slider’s inherited tint color. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/minimumTrackTintColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Max Track Tint" }] }], [Paragraph { inline_content: [Text { text: "Specifies the tint color of the track to the trailing side of the slider’s thumb. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/maximumTrackTintColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Thumb Tint" }] }], [Paragraph { inline_content: [Text { text: "Controls the tint color of the slider’s thumb. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/thumbTintColor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// The following table lists the attributes that configure the events associated with a slider.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Events: Continuous Updates" }] }], [Paragraph { inline_content: [Text { text: "Controls when attached actions are triggered: when checked, action events are called whenever the thumb is moved during user interaction. When not checked, attached actions are triggered only on completion of user interaction. Access this value at runtime with the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISlider/isContinuous", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// For information about the sliders’s inherited Interface Builder attributes, see [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) and [`UIView`](https://developer.apple.com/documentation/uikit/uiview).
+    ///
+    /// ### Customize the slider’s appearance
+    ///
+    /// Use Auto Layout to specify the position and width of a slider. The intrinsic height is determined by the intrinsic heights of the minimum and maximum images, if present. The width of the track automatically adjusts to accommodate the minimum and maximum images.
+    ///
+    /// The most common way to customize the slider’s appearance is to provide custom minimum and maximum value images. These images sit at either end of the slider control and indicate which value that end of the slider represents. Set the values of the [`minimumValueImage`](https://developer.apple.com/documentation/uikit/uislider/minimumvalueimage) and [`maximumValueImage`](https://developer.apple.com/documentation/uikit/uislider/maximumvalueimage) properties to appropriate [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) objects to display images at the ends of the slider. The following image shows a slider configured with minimum and maximum images that imply volume adjustment.
+    ///
+    ///
+    /// ![Image of a slider with minimum and maximum images.](https://docs-assets.developer.apple.com/published/9c342329a09b857d4e45ec2cabee3951/media-2555496%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Sliders respond to user interaction with dynamic effects and appearance. If you set custom tint colors for the track or thumb, the slider maintains this behavior. If you use images to customize the appearance of the track, then the slider doesn’t apply the dynamic effects or alter the appearance.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To set custom tint colors for both the track and the thumb of a slider, use the [`minimumTrackTintColor`](https://developer.apple.com/documentation/uikit/uislider/minimumtracktintcolor), [`maximumTrackTintColor`](https://developer.apple.com/documentation/uikit/uislider/maximumtracktintcolor), and [`thumbTintColor`](https://developer.apple.com/documentation/uikit/uislider/thumbtintcolor) properties, as shown in the following image.
+    ///
+    ///
+    /// ![Image of a slider with custom tint colors.](https://docs-assets.developer.apple.com/published/2a9e07e4096750c145d5673c3c1840a1/media-2555498%402x.png)
+    ///
+    ///
+    /// By default, the minimum track tint color defers to the tint color of the slider control.
+    ///
+    /// To completely change the appearance of the slider, you can specify images for the thumb and the track. Provide images for each of the control states (normal, highlighted, and so on) with the [`setMinimumTrackImage:forState:`](https://developer.apple.com/documentation/uikit/uislider/setminimumtrackimage(_:for:)), [`setMaximumTrackImage:forState:`](https://developer.apple.com/documentation/uikit/uislider/setmaximumtrackimage(_:for:)), and [`setThumbImage:forState:`](https://developer.apple.com/documentation/uikit/uislider/setthumbimage(_:for:)) methods. Set the [`capInsets`](https://developer.apple.com/documentation/uikit/uiimage/capinsets) property for the track images to facilitate horizontal stretching. To access the images used in the current control state, use the [`currentMinimumTrackImage`](https://developer.apple.com/documentation/uikit/uislider/currentminimumtrackimage), [`currentMaximumTrackImage`](https://developer.apple.com/documentation/uikit/uislider/currentmaximumtrackimage), and [`currentThumbImage`](https://developer.apple.com/documentation/uikit/uislider/currentthumbimage) properties, as shown in the following image.
+    ///
+    ///
+    /// ![Image of a slider with custom track and thumb images.](https://docs-assets.developer.apple.com/published/63d9b43d57b05ccbcff8d4b365668b63/media-2555497%402x.png)
+    ///
+    ///
+    /// ### Provide localized strings
+    ///
+    /// Sliders have no special properties related to internationalization. However, if you use a slider with a label, make sure you provide localized strings for the label.
+    ///
+    /// Sliders automatically adjust to the appropriate interface direction, ensuring that the minimum end of the slider is always at the leading end and the maximum end at the trailing end. If you override [`minimumValueImageRectForBounds:`](https://developer.apple.com/documentation/uikit/uislider/minimumvalueimagerect(forbounds:)) or [`maximumValueImageRectForBounds:`](https://developer.apple.com/documentation/uikit/uislider/maximumvalueimagerect(forbounds:)) in a subclass of [`UISlider`](https://developer.apple.com/documentation/uikit/uislider), be sure to take the user interface layout direction into account.
+    ///
+    /// For more information, see [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i).
+    ///
+    /// ### Make sliders accessible
+    ///
+    /// Sliders are accessible by default. The default accessibility traits for a slider are User Interaction Enabled and Adjustable.
+    ///
+    /// When enabled on a device, VoiceOver speaks the accessibility label, value, traits, and hint to the user. VoiceOver speaks this information when a user swipes up and down (not left and right) over the slider. For example, using the Ringer and Alerts volume slider (Settings > Sounds > Ringer and Alerts), VoiceOver speaks the following:
+    ///
+    /// ```objc
+    /// "Sound volume: 13 percent. Adjustable. Swipe up or down with one finger to adjust the value."
+    /// ```
+    ///
+    /// For more information about making iOS controls accessible, see the accessibility information in [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol). For general information about making your interface accessible, see [Accessibility Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008785).
+    ///
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

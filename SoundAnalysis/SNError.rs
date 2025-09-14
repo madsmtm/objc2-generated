@@ -6,29 +6,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerrordomain?language=objc)
+    /// A string that identifies the Sound Analysis error domain.
     pub static SNErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code?language=objc)
+/// The enumerated error codes that the Sound Analysis framework produces.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SNErrorCode(pub NSInteger);
 impl SNErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/unknownerror?language=objc)
+    /// An error that represents a failure that no other error handles.
     #[doc(alias = "SNErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/operationfailed?language=objc)
+    /// An error that occurs when the framework fails to analyze audio.
     #[doc(alias = "SNErrorCodeOperationFailed")]
     pub const OperationFailed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidformat?language=objc)
+    /// An error that indicates the audio data’s format isn’t valid.
     #[doc(alias = "SNErrorCodeInvalidFormat")]
     pub const InvalidFormat: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidmodel?language=objc)
+    /// An error that indicates the sound classifier’s underlying Core ML model is an invalid model type.
     #[doc(alias = "SNErrorCodeInvalidModel")]
     pub const InvalidModel: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snerror/code/invalidfile?language=objc)
+    /// An error that indicates an audio file is invalid.
     #[doc(alias = "SNErrorCodeInvalidFile")]
     pub const InvalidFile: Self = Self(5);
 }

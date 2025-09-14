@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Describes a shader function from a Metal library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4libraryfunctiondescriptor?language=objc)
+    /// Describes a shader function from a Metal library.
     #[unsafe(super(MTL4FunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4FunctionDescriptor")]

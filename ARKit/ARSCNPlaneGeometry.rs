@@ -15,9 +15,24 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A SceneKit geometry representing a plane.
+    /// A SceneKit representation of the 2D shape of a plane, for use with plane detection results in an AR session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscnplanegeometry?language=objc)
+    /// ## Overview
+    ///
+    /// [`ARSCNPlaneGeometry`](https://developer.apple.com/documentation/arkit/arscnplanegeometry) is a subclass of [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) that wraps the mesh data provided by the [`ARPlaneGeometry`](https://developer.apple.com/documentation/arkit/arplanegeometry) class. You can use [`ARSCNPlaneGeometry`](https://developer.apple.com/documentation/arkit/arscnplanegeometry) to visualize the plane shape estimates provided by ARKit in a SceneKit view.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`ARSCNPlaneGeometry`](https://developer.apple.com/documentation/arkit/arscnplanegeometry) is available only in SceneKit views or renderers that use Metal. This class is not supported for OpenGL-based SceneKit rendering.
+    ///
+    ///
+    ///
+    /// </div>
+    /// As your AR session continues to run, ARKit provides refined estimates of a detected plane’s 2D shape. Use the [`updateFromPlaneGeometry:`](https://developer.apple.com/documentation/arkit/arscnplanegeometry/update(from:)) method to incorporate those refinements into the plane’s SceneKit representation.
+    ///
+    ///
+    /// A SceneKit geometry representing a plane.
     #[unsafe(super(SCNGeometry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "objc2", feature = "objc2-scene-kit"))]

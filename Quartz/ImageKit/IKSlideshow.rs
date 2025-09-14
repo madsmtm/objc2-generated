@@ -8,11 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `IKSlideshowDataSource` protocol describes the methods that an [`IKSlideshow`](https://developer.apple.com/documentation/quartz/ikslideshow) object uses to access the contents of its data source object.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Slide show data source methods may be called on secondary threads. When you implement these methods, you must ensure that they are safe to run on threads other than the main thread.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The data source of IKSlideshow must conform to IKSlideshowDataSource protocol.
     ///
     /// The data source methods may be called one a non-main thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowdatasource?language=objc)
     pub unsafe trait IKSlideshowDataSource {
         /// return number of items in Slideshow.
         #[unsafe(method(numberOfSlideshowItems))]
@@ -71,11 +82,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The `IKSlideshow` class encapsulates a data source and options for a slideshow.
     /// IKSlideshow handles a slideshow with images, PDFs
     /// &
     /// more.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshow?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKSlideshow;
@@ -187,76 +197,99 @@ impl IKSlideshow {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodeimages?language=objc)
+    /// All items in the slideshow are images.
     pub static IKSlideshowModeImages: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodepdf?language=objc)
+    /// All items in the slideshow are PDF documents.
     pub static IKSlideshowModePDF: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowmodeother?language=objc)
+    /// There are a mixture of items in the slideshow (image, PDF, text, HTML, and so on).
     pub static IKSlideshowModeOther: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowwraparound?language=objc)
+    /// A key for starting the slideshow over after the last slide shows. The associated value is a `Boolean` data type.
     pub static IKSlideshowWrapAround: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowstartpaused?language=objc)
+    /// A key for starting in a paused state. The associated value is a `Boolean` data type.
     pub static IKSlideshowStartPaused: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowstartindex?language=objc)
+    /// A key for the slideshow item index. The associated value is an index.
     pub static IKSlideshowStartIndex: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowscreen?language=objc)
+    /// A key specifying the screen on which the slideshow is displayed.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSScreen`](https://developer.apple.com/documentation/appkit/nsscreen) object. By default [`mainScreen`](https://developer.apple.com/documentation/appkit/nsscreen/main) is used.
+    ///
+    ///
     pub static IKSlideshowScreen: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowaudiofile?language=objc)
+    /// A key specifying the audio file played during the slideshow.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object.
+    ///
+    ///
     pub static IKSlideshowAudioFile: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaybox?language=objc)
+    /// A key for the PDF display box.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a type of display box, such as [`kPDFDisplayBoxMediaBox`](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/mediabox) or [`kPDFDisplayBoxMediaBox`](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/mediabox). See [`PDFPage`](https://developer.apple.com/documentation/pdfkit/pdfpage) for more information.
+    ///
+    ///
     pub static IKSlideshowPDFDisplayBox: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaymode?language=objc)
+    /// A key for the PDF display mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a PDF display mode constant, such as [`kPDFDisplaySinglePage`](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/singlepage) or [`kPDFDisplayTwoUp`](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode/twoup). See [`PDFView`](https://developer.apple.com/documentation/pdfkit/pdfview) for more information.
+    ///
+    ///
     pub static IKSlideshowPDFDisplayMode: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikslideshowpdfdisplaysasbook?language=objc)
+    /// A key for displaying the slideshow as a book. The associated value is a `Boolean` data type.
     pub static IKSlideshowPDFDisplaysAsBook: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_iphotobundleidentifier?language=objc)
+    /// The iPhoto application—`com.apple.iPhoto`.
     pub static IK_iPhotoBundleIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_aperturebundleidentifier?language=objc)
+    /// The Aperature application—`com.apple.Aperture`.
     pub static IK_ApertureBundleIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_mailbundleidentifier?language=objc)
+    /// The Mail application—`com.apple.mail`.
     pub static IK_MailBundleIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ik_photosbundleidentifier?language=objc)
     pub static IK_PhotosBundleIdentifier: Option<&'static NSString>;
 }

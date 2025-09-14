@@ -6,28 +6,41 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The local name of a peripheral.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    ///
     /// A
     /// <code>
     /// NSString
     /// </code>
     /// containing the local name of a peripheral.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatalocalnamekey?language=objc)
     pub static CBAdvertisementDataLocalNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// The transmit power of a peripheral.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    /// This key and value are available if the peripheral provides its transmitting power level in its advertising packet. You can calculate the path loss by comparing the RSSI value with the transmitting power level.
+    ///
+    ///
     /// A
     /// <code>
     /// NSNumber
     /// </code>
     /// containing the transmit power of a peripheral.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatatxpowerlevelkey?language=objc)
     pub static CBAdvertisementDataTxPowerLevelKey: &'static NSString;
 }
 
 extern "C" {
+    /// An array of service UUIDs.
     /// A list of one or more
     /// <code>
     /// CBUUID
@@ -37,12 +50,17 @@ extern "C" {
     /// CBService
     /// </code>
     /// UUIDs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataserviceuuidskey?language=objc)
     pub static CBAdvertisementDataServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// A dictionary that contains service-specific advertisement data.
+    ///
+    /// ## Discussion
+    ///
+    /// The keys ([`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) objects) represent CBService UUIDs, and the values ([`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects) represent service-specific data.
+    ///
+    ///
     /// A dictionary containing service-specific advertisement data. Keys are
     /// <code>
     /// CBUUID
@@ -56,23 +74,35 @@ extern "C" {
     /// NSData
     /// </code>
     /// objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataservicedatakey?language=objc)
     pub static CBAdvertisementDataServiceDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// The manufacturer data of a peripheral.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object.
+    ///
+    ///
     /// A
     /// <code>
     /// NSData
     /// </code>
     /// object containing the manufacturer data of a peripheral.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatamanufacturerdatakey?language=objc)
     pub static CBAdvertisementDataManufacturerDataKey: &'static NSString;
 }
 
 extern "C" {
+    /// An array of UUIDs found in the overflow area of the advertisement data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an array of one or more [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) objects, representing [`CBService`](https://developer.apple.com/documentation/corebluetooth/cbservice) UUIDs.
+    ///
+    /// Because data stored in this area results from not fitting in the main advertisement, UUIDs listed here are “best effort” and may not always be accurate. For details about the overflow area of advertisement data, see the [`startAdvertising:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/startadvertising(_:)) method in [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager).
+    ///
+    ///
     /// A list of one or more
     /// <code>
     /// CBUUID
@@ -87,20 +117,30 @@ extern "C" {
     ///
     ///
     /// See: startAdvertising:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataoverflowserviceuuidskey?language=objc)
     pub static CBAdvertisementDataOverflowServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that indicates whether the advertising event type is connectable.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. You can use this value to determine whether your app can currently connect to a peripheral.
+    ///
+    ///
     /// An NSNumber (Boolean) indicating whether or not the advertising event type was connectable. This can be used to determine
     /// whether or not a peripheral is connectable in that instant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdataisconnectable?language=objc)
     pub static CBAdvertisementDataIsConnectable: &'static NSString;
 }
 
 extern "C" {
+    /// An array of solicited service UUIDs.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an array of one or more [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) objects, representing [`CBService`](https://developer.apple.com/documentation/corebluetooth/cbservice) UUIDs.
+    ///
+    ///
     /// A list of one or more
     /// <code>
     /// CBUUID
@@ -110,7 +150,5 @@ extern "C" {
     /// CBService
     /// </code>
     /// UUIDs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbadvertisementdatasolicitedserviceuuidskey?language=objc)
     pub static CBAdvertisementDataSolicitedServiceUUIDsKey: &'static NSString;
 }

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuseractivityrestoring?language=objc)
+    /// The protocol you adopt to restore an object’s state from a user activity.
     pub unsafe trait UIUserActivityRestoring: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]

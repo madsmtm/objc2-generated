@@ -10,7 +10,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopovercontroller?language=objc)
+    /// An object that manages the presentation of content in a popover.
+    ///
+    /// ## Overview
+    ///
+    /// The `UIPopoverController` class is used to manage the presentation of content in a popover. You use popovers to present information temporarily. The popover content is layered on top of your existing content and the background is dimmed automatically. The popover remains visible until the user taps outside of the popover window or you explicitly dismiss it. Popover controllers are for use exclusively on iPad devices. Attempting to create one on other devices results in an exception.
+    ///
+    /// To display a popover, create an instance of this class and present it using one of the appropriate methods. When initializing an instance of this class, you must specify the view controller that provides the content for the popover. Popovers normally derive their size from the view controller they present. However, you can change the size of the popover by modifying the value in the [`popoverContentSize`](https://developer.apple.com/documentation/uikit/uipopovercontroller/contentsize) property or by calling the [`setPopoverContentSize:animated:`](https://developer.apple.com/documentation/uikit/uipopovercontroller/setcontentsize(_:animated:)) method. The latter approach is particularly effective if you need to animate changes to the popover’s size. The size you specify is just the preferred size for the popover’s view. The actual size may be altered to ensure that the popover fits on the screen and does not collide with the keyboard.
+    ///
+    /// When displayed, taps outside of the popover window cause the popover to be dismissed automatically. To allow the user to interact with the specified views and not dismiss the popover, you can assign one or more views to the [`passthroughViews`](https://developer.apple.com/documentation/uikit/uipopovercontroller/passthroughviews) property. Taps inside the popover window do not automatically cause the popover to be dismissed. Your view and view controller code must handle actions and events inside the popover explicitly and call the [`dismissPopoverAnimated:`](https://developer.apple.com/documentation/uikit/uipopovercontroller/dismiss(animated:)) method as needed.
+    ///
+    /// If the user rotates the device while a popover is visible, the popover controller hides the popover and then shows it again at the end of the rotation. The popover controller attempts to position the popover appropriately for you but you can also implement the [`popoverController:willRepositionPopoverToRect:inView:`](https://developer.apple.com/documentation/uikit/uipopovercontrollerdelegate/popovercontroller(_:willrepositionpopoverto:in:)) method in the popover delegate to specify a new position.
+    ///
+    /// You can assign a delegate to the popover to manage interactions with the popover and receive notifications about its dismissal. For information about the methods of the delegate object, see [`UIPopoverControllerDelegate`](https://developer.apple.com/documentation/uikit/uipopovercontrollerdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -216,7 +230,15 @@ impl UIPopoverController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopovercontrollerdelegate?language=objc)
+    /// The interface for the delegate of a popover controller object.
+    ///
+    /// ## Overview
+    ///
+    /// Popover controllers notify their delegate whenever user interactions would cause the dismissal of the popover and, in some cases, give the user a chance to prevent that dismissal.
+    ///
+    /// For more information about the [`UIPopoverController`](https://developer.apple.com/documentation/uikit/uipopovercontroller) class, see [`UIPopoverController`](https://developer.apple.com/documentation/uikit/uipopovercontroller).
+    ///
+    ///
     pub unsafe trait UIPopoverControllerDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]
         #[optional]

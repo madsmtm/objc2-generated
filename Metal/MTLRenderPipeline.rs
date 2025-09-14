@@ -7,76 +7,217 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor?language=objc)
+/// The source and destination blend factors are often needed to complete specification of a blend operation. In most cases, the blend factor for both RGB values (_F(rgb)_) and alpha values (_F(a)_) are similar to one another, but in some cases, such as `MTLBlendFactorSourceAlphaSaturated`, the blend factor is slightly different. Four blend factors (`MTLBlendFactorBlendColor`, `MTLBlendFactorOneMinusBlendColor`, `MTLBlendFactorBlendAlpha`, and `MTLBlendFactorOneMinusBlendAlpha`) refer to a constant blend color value that is set by the [`setBlendColorRed:green:blue:alpha:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/setblendcolor(red:green:blue:alpha:)) method of `MTLRenderCommandEncoder`.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendFactor(pub NSUInteger);
 impl MTLBlendFactor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/zero?language=objc)
+    /// Blend factor of zero.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = 0`
+    ///
+    /// `F(a) = 0`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorZero")]
     pub const Zero: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/one?language=objc)
+    /// Blend factor of one.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = 1`
+    ///
+    /// `F(a) = 1`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOne")]
     pub const One: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcecolor?language=objc)
+    /// Blend factor of source values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = Source.rgb`
+    ///
+    /// `F(a) = Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorSourceColor")]
     pub const SourceColor: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussourcecolor?language=objc)
+    /// Blend factor of one minus source values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = 1 - Source.rgb`
+    ///
+    /// `F(a) = 1 - Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusSourceColor")]
     pub const OneMinusSourceColor: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcealpha?language=objc)
+    /// Blend factor of source alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorSourceAlpha")]
     pub const SourceAlpha: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussourcealpha?language=objc)
+    /// Blend factor of one minus source alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = 1 - Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusSourceAlpha")]
     pub const OneMinusSourceAlpha: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/destinationcolor?language=objc)
+    /// Blend factor of destination values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = Dest.rgb`
+    ///
+    /// `F(a) = Dest.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorDestinationColor")]
     pub const DestinationColor: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusdestinationcolor?language=objc)
+    /// Blend factor of one minus destination values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = 1 - Dest.rgb`
+    ///
+    /// `F(a) = 1 - Dest.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusDestinationColor")]
     pub const OneMinusDestinationColor: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/destinationalpha?language=objc)
+    /// Blend factor of destination alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = Dest.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorDestinationAlpha")]
     pub const DestinationAlpha: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusdestinationalpha?language=objc)
+    /// Blend factor of one minus destination alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = 1 - Dest.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusDestinationAlpha")]
     pub const OneMinusDestinationAlpha: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/sourcealphasaturated?language=objc)
+    /// Blend factor of the minimum of either source alpha or one minus destination alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = min(Source.a, 1 - Dest.a)`
+    ///
+    /// `F(a) = 1`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorSourceAlphaSaturated")]
     pub const SourceAlphaSaturated: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/blendcolor?language=objc)
+    /// Blend factor of RGB values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = rgb`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorBlendColor")]
     pub const BlendColor: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusblendcolor?language=objc)
+    /// Blend factor of one minus RGB values.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = 1 - rgb`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusBlendColor")]
     pub const OneMinusBlendColor: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/blendalpha?language=objc)
+    /// Blend factor of alpha value.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorBlendAlpha")]
     pub const BlendAlpha: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminusblendalpha?language=objc)
+    /// Blend factor of one minus alpha value.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = 1 - a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusBlendAlpha")]
     pub const OneMinusBlendAlpha: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/source1color?language=objc)
+    /// Blend factor of source values. This option supports dual-source blending and reads from the second color output of the fragment function.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = Source.rgb`
+    ///
+    /// `F(a) = Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorSource1Color")]
     pub const Source1Color: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussource1color?language=objc)
+    /// Blend factor of one minus source values. This option supports dual-source blending and reads from the second color output of the fragment function.
+    ///
+    /// ## Discussion
+    ///
+    /// `F(rgb) = 1 - Source.rgb`
+    ///
+    /// `F(a) = 1 - Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusSource1Color")]
     pub const OneMinusSource1Color: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/source1alpha?language=objc)
+    /// Blend factor of source alpha. This option supports dual-source blending and reads from the second color output of the fragment function.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorSource1Alpha")]
     pub const Source1Alpha: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/oneminussource1alpha?language=objc)
+    /// Blend factor of one minus source alpha. This option supports dual-source blending and reads from the second color output of the fragment function.
+    ///
+    /// ## Discussion
+    ///
+    /// `F = 1 - Source.a`
+    ///
+    ///
     #[doc(alias = "MTLBlendFactorOneMinusSource1Alpha")]
     pub const OneMinusSource1Alpha: Self = Self(18);
+    /// Defers assigning the blend factor.
+    ///
+    /// ## Discussion
+    ///
+    /// Until you specialize this value in the pipeline state, it:
+    ///
+    /// - behaves as `MTLBlendFactorOne` for `sourceRGBBlendFactor` and `sourceAlphaBlendFactor`
+    ///
+    /// - behaves as `MTLBlendFactorZero` for `destinationRGBBlendFactor` and `destinationAlphaBlendFactor`
+    ///
+    ///
     /// Defers assigning the blend factor.
     ///
     /// Until you specialize this value in the pipeline state, it:
     /// * behaves as `MTLBlendFactorOne` for `sourceRGBBlendFactor` and `sourceAlphaBlendFactor`
     /// * behaves as `MTLBlendFactorZero` for `destinationRGBBlendFactor` and `destinationAlphaBlendFactor`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor/unspecialized?language=objc)
     #[doc(alias = "MTLBlendFactorUnspecialized")]
     pub const Unspecialized: Self = Self(19);
 }
@@ -89,30 +230,69 @@ unsafe impl RefEncode for MTLBlendFactor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation?language=objc)
+/// For every pixel, `MTLBlendOperation` determines how to combine and weight the source fragment values with the destination values. Some blend operations multiply the source values by a source blend factor (SBF), multiply the destination values by a destination blend factor (DBF), and then combine the results using addition or subtraction. Other blend operations use either a minimum or maximum function to determine the result.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendOperation(pub NSUInteger);
 impl MTLBlendOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/add?language=objc)
+    /// Add portions of both source and destination pixel values.
+    ///
+    /// ## Discussion
+    ///
+    /// `RGB = Source.rgb * SBF + Dest.rgb * DBF`
+    ///
+    /// `A = Source.a * SBF + Dest.a * DBF`
+    ///
+    ///
     #[doc(alias = "MTLBlendOperationAdd")]
     pub const Add: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/subtract?language=objc)
+    /// Subtract a portion of the destination pixel values from a portion of the source.
+    ///
+    /// ## Discussion
+    ///
+    /// `RGB = Source.rgb * SBF - Dest.rgb * DBF`
+    ///
+    /// `A = Source.a * SBF - Dest.a * DBF`
+    ///
+    ///
     #[doc(alias = "MTLBlendOperationSubtract")]
     pub const Subtract: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/reversesubtract?language=objc)
+    /// Subtract a portion of the source values from a portion of the destination pixel values.
+    ///
+    /// ## Discussion
+    ///
+    /// `RGB = Dest.rgb * DBF - Source.rgb * SBF`
+    ///
+    /// `A = Dest.a * DBF - Source.a * SBF`
+    ///
+    ///
     #[doc(alias = "MTLBlendOperationReverseSubtract")]
     pub const ReverseSubtract: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/min?language=objc)
+    /// Minimum of the source and destination pixel values.
+    ///
+    /// ## Discussion
+    ///
+    /// `RGB = min(Source.rgb, Dest.rgb)`
+    ///
+    /// `A = min(Source.a, Dest.a)`
+    ///
+    ///
     #[doc(alias = "MTLBlendOperationMin")]
     pub const Min: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/max?language=objc)
+    /// Maximum of the source and destination pixel values.
+    ///
+    /// ## Discussion
+    ///
+    /// `RGB = max(Source.rgb, Dest.rgb)`
+    ///
+    /// `A = max(Source.a, Dest.a)`
+    ///
+    ///
     #[doc(alias = "MTLBlendOperationMax")]
     pub const Max: Self = Self(4);
     /// Defers assigning the blend operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation/unspecialized?language=objc)
+    /// Defers assigning the blend operation.
     #[doc(alias = "MTLBlendOperationUnspecialized")]
     pub const Unspecialized: Self = Self(5);
 }
@@ -125,36 +305,47 @@ unsafe impl RefEncode for MTLBlendOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask?language=objc)
+/// Values used to specify a mask to permit or restrict writing to color channels of a color value.
+///
+/// ## Overview
+///
+/// The values [`MTLColorWriteMaskRed`](https://developer.apple.com/documentation/metal/mtlcolorwritemask/red), [`MTLColorWriteMaskGreen`](https://developer.apple.com/documentation/metal/mtlcolorwritemask/green), [`MTLColorWriteMaskBlue`](https://developer.apple.com/documentation/metal/mtlcolorwritemask/blue), and [`MTLColorWriteMaskAlpha`](https://developer.apple.com/documentation/metal/mtlcolorwritemask/alpha) select one color channel each, and they can be bitwise combined.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLColorWriteMask(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLColorWriteMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/mtlcolorwritemasknone?language=objc)
+/// All color channels are disabled.
         #[doc(alias = "MTLColorWriteMaskNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/red?language=objc)
+/// The red color channel is enabled.
         #[doc(alias = "MTLColorWriteMaskRed")]
         const Red = 0x1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/green?language=objc)
+/// The green color channel is enabled.
         #[doc(alias = "MTLColorWriteMaskGreen")]
         const Green = 0x1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/blue?language=objc)
+/// The blue color channel is enabled.
         #[doc(alias = "MTLColorWriteMaskBlue")]
         const Blue = 0x1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/alpha?language=objc)
+/// The alpha color channel is enabled.
         #[doc(alias = "MTLColorWriteMaskAlpha")]
         const Alpha = 0x1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/all?language=objc)
+/// All color channels are enabled.
         #[doc(alias = "MTLColorWriteMaskAll")]
         const All = 0xf;
 /// Defers assigning the color write mask.
 ///
+/// ## Discussion
+///
 /// Until you specialize this value in the pipeline state, it behaves as `MTLColorWriteMaskAll`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask/unspecialized?language=objc)
+///
+/// Defers assigning the color write mask.
+///
+/// Until you specialize this value in the pipeline state, it behaves as `MTLColorWriteMaskAll`.
         #[doc(alias = "MTLColorWriteMaskUnspecialized")]
         const Unspecialized = 0x10;
     }
@@ -168,22 +359,22 @@ unsafe impl RefEncode for MTLColorWriteMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass?language=objc)
+/// The primitive topologies available for rendering.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveTopologyClass(pub NSUInteger);
 impl MTLPrimitiveTopologyClass {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/unspecified?language=objc)
+    /// An unspecified primitive.
     #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/point?language=objc)
+    /// A point primitive.
     #[doc(alias = "MTLPrimitiveTopologyClassPoint")]
     pub const Point: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/line?language=objc)
+    /// A line primitive.
     #[doc(alias = "MTLPrimitiveTopologyClassLine")]
     pub const Line: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass/triangle?language=objc)
+    /// A triangle primitive.
     #[doc(alias = "MTLPrimitiveTopologyClassTriangle")]
     pub const Triangle: Self = Self(3);
 }
@@ -196,22 +387,39 @@ unsafe impl RefEncode for MTLPrimitiveTopologyClass {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode?language=objc)
+/// Options for choosing the partition mode that the tessellator applies when deriving the number and spacing of segments for subdividing a corresponding edge.
+///
+/// ## Overview
+///
+/// The table lists the tessellation factor range for each partitioning mode.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Partitioning mode" }] }], [Paragraph { inline_content: [Text { text: "Tessellation factor range" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLTessellationPartitionMode/pow2", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "[" }, CodeVoice { code: "1" }, Text { text: ", " }, Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxTessellationFactor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "]" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLTessellationPartitionMode/integer", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "[" }, CodeVoice { code: "1" }, Text { text: ", " }, Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxTessellationFactor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "]" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLTessellationPartitionMode/fractionalOdd", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "[" }, CodeVoice { code: "1" }, Text { text: ", " }, Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxTessellationFactor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "-1]" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLTessellationPartitionMode/fractionalEven", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "[" }, CodeVoice { code: "2" }, Text { text: ", " }, Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLRenderPipelineDescriptor/maxTessellationFactor", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "]" }] }]]], alignments: None, metadata: None })
+/// The floating-point tessellation level is always clamped to its corresponding range before calculating the final tessellation factor. After clamping, the calculation depends on the chosen partitioning mode:
+///
+/// - For the [`MTLTessellationPartitionModePow2`](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/pow2) partitioning mode, the result is rounded up to the nearest integer `n`, where `n` is a power of two. The corresponding edge is divided into `n` segments of equal length in (u, v) space.
+///
+/// - For the [`MTLTessellationPartitionModeInteger`](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/integer) partitioning mode, the result is rounded up to the nearest integer `n`. The corresponding edge is divided into `n` segments of equal length in (u, v) space.
+///
+/// - For the [`MTLTessellationPartitionModeFractionalOdd`](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionalodd) partitioning mode, the tessellation level is rounded up the the nearest odd integer `n`. If `n` is `1`, the edge is not subdivided. Otherwise, the corresponding edge is divided into `n-2` segments of equal length, and two additional segments of equal length that are typically shorter than the other segments. The length of the two additional segments relative to the others decreases monotonically by the value of `n-f`, where `f` is the clamped floating-point tessellation level. If `n-f` is `0` the additional segments equal length to the other segments. As `n-f` approaches `2`, the relative length of the additional segments approaches `0`. The two additional segments should be placed symmetrically on opposite sides of the subdivided edge. The relative location of these two segments is undefined, but must be identical for any pair of subdivided edges with identical values of `f`.
+///
+/// - For the [`MTLTessellationPartitionModeFractionalEven`](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionaleven) partitioning mode, the tessellation level is rounded up the the nearest even integer `n`.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationPartitionMode(pub NSUInteger);
 impl MTLTessellationPartitionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/pow2?language=objc)
+    /// A power of two partitioning mode.
     #[doc(alias = "MTLTessellationPartitionModePow2")]
     pub const Pow2: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/integer?language=objc)
+    /// An integer partitioning mode.
     #[doc(alias = "MTLTessellationPartitionModeInteger")]
     pub const Integer: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionalodd?language=objc)
+    /// A fractional odd partitioning mode.
     #[doc(alias = "MTLTessellationPartitionModeFractionalOdd")]
     pub const FractionalOdd: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode/fractionaleven?language=objc)
+    /// A fractional even partitioning mode.
     #[doc(alias = "MTLTessellationPartitionModeFractionalEven")]
     pub const FractionalEven: Self = Self(3);
 }
@@ -224,22 +432,22 @@ unsafe impl RefEncode for MTLTessellationPartitionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction?language=objc)
+/// Options for specifying the step function that determines the tessellation factors for a patch from the tessellation factor buffer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorStepFunction(pub NSUInteger);
 impl MTLTessellationFactorStepFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/constant?language=objc)
+    /// A constant step function. For all instances, the tessellation factor for all patches in a patch draw call is at the `offset` location in the tessellation factor buffer.
     #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
     pub const Constant: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perpatch?language=objc)
+    /// A per-patch step function. For all instances, the tessellation factor for all patches in a patch draw call is at the `offset + (drawPatchIndex * tessellationFactorStride)` location in the tessellation factor buffer.
     #[doc(alias = "MTLTessellationFactorStepFunctionPerPatch")]
     pub const PerPatch: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perinstance?language=objc)
+    /// A per-instance step function. For a given instance ID, the tessellation factor for a patch in a patch draw call is at the `offset + (instanceID * instanceStride)` location in the tessellation factor buffer.
     #[doc(alias = "MTLTessellationFactorStepFunctionPerInstance")]
     pub const PerInstance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction/perpatchandperinstance?language=objc)
+    /// A per-patch and per-instance step function. For a given instance ID, the tessellation factor for a patch in a patch draw call is at the `offset + (drawPatchIndex * tessellationFactorStride + instanceID * instanceStride)` location in the tessellation factor buffer.
     #[doc(alias = "MTLTessellationFactorStepFunctionPerPatchAndPerInstance")]
     pub const PerPatchAndPerInstance: Self = Self(3);
 }
@@ -252,13 +460,13 @@ unsafe impl RefEncode for MTLTessellationFactorStepFunction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorformat?language=objc)
+/// Options for specifying the format of the tessellation factors in a tessellation factor buffer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorFormat(pub NSUInteger);
 impl MTLTessellationFactorFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorformat/half?language=objc)
+    /// A 16-bit floating-point format.
     #[doc(alias = "MTLTessellationFactorFormatHalf")]
     pub const Half: Self = Self(0);
 }
@@ -271,19 +479,19 @@ unsafe impl RefEncode for MTLTessellationFactorFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype?language=objc)
+/// Options for specifying the size of the control point indices in a control point index buffer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationControlPointIndexType(pub NSUInteger);
 impl MTLTessellationControlPointIndexType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/none?language=objc)
+    /// No size. This value should only be used when drawing patches without a control point index buffer.
     #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/uint16?language=objc)
+    /// The size of a 16-bit unsigned integer.
     #[doc(alias = "MTLTessellationControlPointIndexTypeUInt16")]
     pub const UInt16: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype/uint32?language=objc)
+    /// The size of a 32-bit unsigned integer.
     #[doc(alias = "MTLTessellationControlPointIndexTypeUInt32")]
     pub const UInt32: Self = Self(2);
 }
@@ -297,7 +505,25 @@ unsafe impl RefEncode for MTLTessellationControlPointIndexType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor?language=objc)
+    /// A color render target that specifies the color configuration and color operations for a render pipeline.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLRenderPipelineColorAttachmentDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor) instance defines the configuration of a color attachment associated with a rendering pipeline.
+    ///
+    /// The [`pixelFormat`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/pixelformat) property must be specified for the rendering pipeline state at the color attachment.
+    ///
+    /// Blend operations determine how a source fragment is combined with a destination value in a color attachment to determine the pixel value to be written. The following properties define whether and how blending is performed:
+    ///
+    /// - The [`blendingEnabled`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/isblendingenabled) property enables blending. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// - The [`writeMask`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/writemask) property identifies which color channels are blended. The default value is [`MTLColorWriteMaskAll`](https://developer.apple.com/documentation/metal/mtlcolorwritemask/all), which allows all color channels to be blended.
+    ///
+    /// - The [`rgbBlendOperation`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/rgbblendoperation) and [`alphaBlendOperation`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/alphablendoperation) properties assign the blend operations for RGB and alpha pixel data. The default value for both properties is [`MTLBlendOperationAdd`](https://developer.apple.com/documentation/metal/mtlblendoperation/add).
+    ///
+    /// - The [`sourceRGBBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/sourcergbblendfactor), [`sourceAlphaBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/sourcealphablendfactor), [`destinationRGBBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/destinationrgbblendfactor), and [`destinationAlphaBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/destinationalphablendfactor) properties assign the source and destination blend factors. The default value for [`sourceRGBBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/sourcergbblendfactor) and [`sourceAlphaBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/sourcealphablendfactor) is [`MTLBlendFactorOne`](https://developer.apple.com/documentation/metal/mtlblendfactor/one). The default value for [`destinationRGBBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/destinationrgbblendfactor) and [`destinationAlphaBlendFactor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptor/destinationalphablendfactor) is [`MTLBlendFactorZero`](https://developer.apple.com/documentation/metal/mtlblendfactor/zero).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineColorAttachmentDescriptor;
@@ -436,8 +662,7 @@ impl DefaultRetained for MTLRenderPipelineColorAttachmentDescriptor {
 
 extern_class!(
     /// Allows you to easily specify color attachment remapping from logical to physical indices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogicaltophysicalcolorattachmentmap?language=objc)
+    /// Allows you to easily specify color attachment remapping from logical to physical indices.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLLogicalToPhysicalColorAttachmentMap;
@@ -514,7 +739,25 @@ impl DefaultRetained for MTLLogicalToPhysicalColorAttachmentMap {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection?language=objc)
+    /// Information about the arguments of a graphics function.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTLRenderPipelineReflection`](https://developer.apple.com/documentation/metal/mtlrenderpipelinereflection) class is an interface that represents the parameters for the shaders in a render pipeline state (see [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate)). Each pipeline state can include object, mesh, vertex, fragment, and tile shaders.
+    ///
+    /// You create a reflection instance at the same time as the pipeline state that it represents by calling the appropriate [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) method. For example, the [`newRenderPipelineStateWithDescriptor:options:reflection:error:`](https://developer.apple.com/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:reflection:)) and [`newRenderPipelineStateWithDescriptor:options:completionHandler:`](https://developer.apple.com/documentation/metal/mtldevice/makerenderpipelinestate(descriptor:options:completionhandler:)-5gdww) methods create the pipeline state and the reflection instances at the same time.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Only create reflection instances if you need them because each one can require a significant amount of memory.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information, see [Pipeline state creation](https://developer.apple.com/documentation/metal/pipeline-state-creation).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineReflection;
@@ -596,7 +839,42 @@ impl DefaultRetained for MTLRenderPipelineReflection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor?language=objc)
+    /// An argument of options you pass to a GPU device to get a render pipeline state.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor) instance configures the state of the pipeline to use during a rendering pass, including rasterization (such as multisampling), visibility, blending, tessellation, and graphics function state. Use standard allocation and initialization techniques to create an [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor) object. Then configure and use the descriptor to create an [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) object.
+    ///
+    /// To specify the vertex or fragment function in the rendering pipeline descriptor, set the [`vertexFunction`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexfunction) or [`fragmentFunction`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/fragmentfunction) property, respectively, to the desired [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) object. The system ignores the tessellation stage properties if you don’t set the [`vertexFunction`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexfunction) property to a post-tessellation vertex function. A vertex function is a post-tessellation vertex function if the `[[ patch(patch-type, N) ]]` attribute precedes the function’s signature in your Metal Shading Language source. See the “Post-Tessellation Vertex Functions” section of [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) for more information.
+    ///
+    /// Setting the [`fragmentFunction`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/fragmentfunction) property to `nil` disables the rasterization of pixels into the color attachment. This action is typically for outputting vertex function data into a buffer object, or for depth-only rendering.
+    ///
+    /// If the vertex shader has an argument with per-vertex input attributes, set the [`vertexDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor) property to an [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) object that describes the organization of that vertex data.
+    ///
+    /// ### Multisampling and the render pipeline
+    ///
+    /// If a color attachment supports multisampling (essentially, the attachment is an [`MTLTextureType2DMultisample`](https://developer.apple.com/documentation/metal/mtltexturetype/type2dmultisample) type color texture), you can create multiple samples per fragment, and the following rendering pipeline descriptor properties determine coverage:
+    ///
+    /// - [`rasterSampleCount`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/rastersamplecount) is the number of samples for each pixel.
+    ///
+    /// - If [`alphaToCoverageEnabled`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatocoverageenabled) is [`true`](https://developer.apple.com/documentation/swift/true), the GPU uses the alpha channel fragment output for [`colorAttachments`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/colorattachments) to compute a coverage mask that affects the values the GPU writes to all attachments (color, depth, and stencil).
+    ///
+    /// - If [`alphaToOneEnabled`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatooneenabled) is [`true`](https://developer.apple.com/documentation/swift/true), the GPU changes alpha channel fragment values for [`colorAttachments`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/colorattachments) to `1.0`, which is the largest representable value.
+    ///
+    /// If [`alphaToCoverageEnabled`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/isalphatocoverageenabled) is [`true`](https://developer.apple.com/documentation/swift/true), an implementation-defined `coverageToMask` function uses the alpha channel fragment output from [`colorAttachments`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/colorattachments) to create an intermediate coverage mask, which sets a number of bits in its output proportionally to the value of the floating-point input. For example, if the input is `0.0f`, the function sets the output to `0x0`. If the input is `1.0f`, the function sets all output bits (in effect, `~0x0`). If the input is `0.5f`, the function sets half of the bits, according to the implementation, which often uses dither patterns.
+    ///
+    /// To determine a final coverage mask, the function performs a logical `AND` on the resulting coverage mask `alphaCoverageMask` with the masks from the rasterizer and fragment shader, as the following code shows:
+    ///
+    /// ```objective-c
+    /// if (alphaToCoverageEnabled) then
+    ///     alphaCoverageMask = coverageToMask(colorAttachment0.alpha);
+    ///
+    /// finalCoverageMask = originalRasterizerCoverageMask
+    ///                     & alphaCoverageMask
+    ///                     & fragShaderSampleMaskOutput;
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineDescriptor;
@@ -1068,7 +1346,13 @@ impl DefaultRetained for MTLRenderPipelineDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinefunctionsdescriptor?language=objc)
+    /// A collection of functions for updating a render pipeline.
+    ///
+    /// ## Overview
+    ///
+    /// When you create a render pipeline that takes visible functions as parameters, you must specify all possible functions that the render pipeline can call. If you already have a pipeline, you can create a new render pipeline with the same configuration but additional callable functions. To create the new pipeline state, configure an [`MTLRenderPipelineFunctionsDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinefunctionsdescriptor) instance with the additional callable functions to add, and then call the pipeline state’s [`newRenderPipelineStateWithAdditionalBinaryFunctions:error:`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate/makerenderpipelinestate(additionalbinaryfunctions:)-84te1) method, passing the descriptor.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineFunctionsDescriptor;
@@ -1183,12 +1467,19 @@ impl DefaultRetained for MTLRenderPipelineFunctionsDescriptor {
 }
 
 extern_protocol!(
+    /// An interface that represents a graphics pipeline configuration for a render pass, which the pass applies to the draw commands you encode.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTLRenderPipelineState`](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate) protocol is an interface that represents a specific configuration for the graphics-rendering pipeline, including which shaders it uses. Use a pipeline state to configure a render pass by calling the [`setRenderPipelineState:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/setrenderpipelinestate(_:)) method of an [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) instance.
+    ///
+    /// To create a pipeline state, call the appropriate [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) method (see [Pipeline state creation](https://developer.apple.com/documentation/metal/pipeline-state-creation)). You typically make pipeline states at a noncritical time, like when the app first launches. This is because graphics drivers may need time to evaluate and build each pipeline state. However, you can quickly use and reuse each pipeline state throughout your app’s lifetime.
+    ///
+    ///
     /// MTLRenderPipelineState represents a compiled render pipeline
     ///
     ///
     /// MTLRenderPipelineState is a compiled render pipeline and can be set on a MTLRenderCommandEncoder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinestate?language=objc)
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLRenderPipelineState:
         MTLAllocation + NSObjectProtocol + Send + Sync
@@ -1442,7 +1733,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderpipelinecolorattachmentdescriptorarray?language=objc)
+    /// An array of render pipeline color attachment descriptor objects.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLRenderPipelineColorAttachmentDescriptorArray;
@@ -1498,7 +1789,7 @@ impl DefaultRetained for MTLRenderPipelineColorAttachmentDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptor?language=objc)
+    /// A description of a tile-shading render pipeline’s color render target.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptor;
@@ -1553,7 +1844,7 @@ impl DefaultRetained for MTLTileRenderPipelineColorAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinecolorattachmentdescriptorarray?language=objc)
+    /// An array of color attachment descriptors for the tile render pipeline.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineColorAttachmentDescriptorArray;
@@ -1609,7 +1900,7 @@ impl DefaultRetained for MTLTileRenderPipelineColorAttachmentDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltilerenderpipelinedescriptor?language=objc)
+    /// An object that configures new render pipeline state objects for tile shading.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLTileRenderPipelineDescriptor;
@@ -1850,9 +2141,8 @@ impl DefaultRetained for MTLTileRenderPipelineDescriptor {
 }
 
 extern_class!(
+    /// An object that configures new render pipeline state objects for mesh shading.
     /// As an alternative to a vertex + fragment shader render pipeline, this render pipeline uses a (object +) mesh + fragment shader for rendering geometry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmeshrenderpipelinedescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLMeshRenderPipelineDescriptor;

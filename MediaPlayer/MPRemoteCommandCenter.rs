@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter?language=objc)
+    /// An object that responds to remote control events sent by external accessories and system controls.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class yourself. Instead, use the [`sharedCommandCenter`](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter/shared()) method to retrieve the shared command center object. The properties of the shared command center object contain [`MPRemoteCommand`](https://developer.apple.com/documentation/mediaplayer/mpremotecommand) objects that respond to the various kinds of remote control events. You configure these objects to respond to the events you’re interested to handle in your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPRemoteCommandCenter;

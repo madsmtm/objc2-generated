@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/mssticker?language=objc)
+    /// A sticker that can be sent as a new message or attached to an existing balloon in the Messages app’s  transcript.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSSticker;

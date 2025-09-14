@@ -6,43 +6,43 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror?language=objc)
+/// A uniform type for result codes returned by functions in Core Graphics.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGError(pub i32);
 impl CGError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/success?language=objc)
+    /// The requested operation was completed successfully.
     #[doc(alias = "kCGErrorSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/failure?language=objc)
+    /// A general failure occurred.
     #[doc(alias = "kCGErrorFailure")]
     pub const Failure: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/illegalargument?language=objc)
+    /// One or more of the parameters passed to a function are invalid. Check for `NULL` pointers.
     #[doc(alias = "kCGErrorIllegalArgument")]
     pub const IllegalArgument: Self = Self(1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidconnection?language=objc)
+    /// The parameter representing a connection to the window server is invalid.
     #[doc(alias = "kCGErrorInvalidConnection")]
     pub const InvalidConnection: Self = Self(1002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidcontext?language=objc)
+    /// The `CPSProcessSerNum` or context identifier parameter is not valid.
     #[doc(alias = "kCGErrorInvalidContext")]
     pub const InvalidContext: Self = Self(1003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/cannotcomplete?language=objc)
+    /// The requested operation is inappropriate for the parameters passed in, or the current system state.
     #[doc(alias = "kCGErrorCannotComplete")]
     pub const CannotComplete: Self = Self(1004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/notimplemented?language=objc)
+    /// Return value from obsolete function stubs present for binary compatibility, but not typically called.
     #[doc(alias = "kCGErrorNotImplemented")]
     pub const NotImplemented: Self = Self(1006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/rangecheck?language=objc)
+    /// A parameter passed in has a value that is inappropriate, or which does not map to a useful operation or value.
     #[doc(alias = "kCGErrorRangeCheck")]
     pub const RangeCheck: Self = Self(1007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/typecheck?language=objc)
+    /// A data type or token was encountered that did not match the expected type or token.
     #[doc(alias = "kCGErrorTypeCheck")]
     pub const TypeCheck: Self = Self(1008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/invalidoperation?language=objc)
+    /// The requested operation is not valid for the parameters passed in, or the current system state.
     #[doc(alias = "kCGErrorInvalidOperation")]
     pub const InvalidOperation: Self = Self(1010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerror/noneavailable?language=objc)
+    /// The requested operation could not be completed as the indicated resources were not found.
     #[doc(alias = "kCGErrorNoneAvailable")]
     pub const NoneAvailable: Self = Self(1011);
 }
@@ -57,12 +57,9 @@ unsafe impl RefEncode for CGError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerrorcallback?language=objc)
 pub type CGErrorCallback = Option<unsafe extern "C-unwind" fn()>;
 
 impl CGError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgerrorsetcallback(_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `callback` must be implemented correctly.

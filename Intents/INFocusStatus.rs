@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/infocusstatus?language=objc)
+    /// The user’s preference for receiving notifications.
+    ///
+    /// ## Overview
+    ///
+    /// When a user wants to focus, they can choose to prevent or delay notifications from most apps. Use this information to display that the user is in a focus to other people in your communication service.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INFocusStatus;

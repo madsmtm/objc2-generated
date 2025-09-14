@@ -6,24 +6,36 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// *************    Type definitions        **********
+/// These constants specify rounding behaviors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode?language=objc)
+/// ## Overview
+///
+/// The rounding mode matters only if the [`scale`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/scale()) method sets a limit on the precision of `NSDecimalNumber` return values. It has no effect if [`scale`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/scale()) returns `NSDecimalNoScale`. Assuming that [`scale`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/scale()) returns 1, the rounding mode has the following effects on various original values:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Original Value" }] }], [Paragraph { inline_content: [Text { text: "NSRoundPlain" }] }], [Paragraph { inline_content: [Text { text: "NSRoundDown & NS RoundUp" }] }], [Paragraph { inline_content: [Text { text: "NSRoundBankers" }] }]], [[Paragraph { inline_content: [Text { text: "1.24" }] }], [Paragraph { inline_content: [Text { text: "1.2" }] }], [Paragraph { inline_content: [Text { text: "1.2 & 1.3" }] }], [Paragraph { inline_content: [Text { text: "1.2" }] }]], [[Paragraph { inline_content: [Text { text: "1.26" }] }], [Paragraph { inline_content: [Text { text: "1.3" }] }], [Paragraph { inline_content: [Text { text: "1.2 & 1.3" }] }], [Paragraph { inline_content: [Text { text: "1.3" }] }]], [[Paragraph { inline_content: [Text { text: "1.25" }] }], [Paragraph { inline_content: [Text { text: "1.3" }] }], [Paragraph { inline_content: [Text { text: "1.2 & 1.3" }] }], [Paragraph { inline_content: [Text { text: "1.2" }] }]], [[Paragraph { inline_content: [Text { text: "1.35" }] }], [Paragraph { inline_content: [Text { text: "1.4" }] }], [Paragraph { inline_content: [Text { text: "1.3  & 1.4" }] }], [Paragraph { inline_content: [Text { text: "1.4" }] }]], [[Paragraph { inline_content: [Text { text: "–1.35" }] }], [Paragraph { inline_content: [Text { text: "–1.4" }] }], [Paragraph { inline_content: [Text { text: "–1.4  & -1.3" }] }], [Paragraph { inline_content: [Text { text: "–1.4" }] }]]], alignments: None, metadata: None })
+///
+/// *************    Type definitions        **********
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRoundingMode(pub NSUInteger);
 impl NSRoundingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/plain?language=objc)
+    /// Round to the closest possible return value; when caught halfway between two positive numbers, round up; when caught between two negative numbers, round down.
     #[doc(alias = "NSRoundPlain")]
     pub const RoundPlain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/down?language=objc)
+    /// Round return values down.
     #[doc(alias = "NSRoundDown")]
     pub const RoundDown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/up?language=objc)
+    /// Round return values up.
     #[doc(alias = "NSRoundUp")]
     pub const RoundUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/bankers?language=objc)
+    /// Round to the closest possible return value; when halfway between two possibilities, return the possibility whose last digit is even.
+    ///
+    /// ## Discussion
+    ///
+    /// In practice, this means that, over the long run, numbers will be rounded up as often as they are rounded down; there will be no systematic bias.
+    ///
+    ///
     #[doc(alias = "NSRoundBankers")]
     pub const RoundBankers: Self = Self(3);
 }
@@ -36,25 +48,25 @@ unsafe impl RefEncode for NSRoundingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror?language=objc)
+/// Calculation error constants used to describe an error in [`exceptionDuringOperation:error:leftOperand:rightOperand:`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/exceptionduringoperation(_:error:leftoperand:rightoperand:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalculationError(pub NSUInteger);
 impl NSCalculationError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/noerror?language=objc)
+    /// No error occurred.
     #[doc(alias = "NSCalculationNoError")]
     pub const NoError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/lossofprecision?language=objc)
+    /// The number can’t be represented in 38 significant digits.
     #[doc(alias = "NSCalculationLossOfPrecision")]
     pub const LossOfPrecision: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/underflow?language=objc)
+    /// The number is too small to represent.
     #[doc(alias = "NSCalculationUnderflow")]
     pub const Underflow: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/overflow?language=objc)
+    /// The number is too large to represent.
     #[doc(alias = "NSCalculationOverflow")]
     pub const Overflow: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumber/calculationerror/dividebyzero?language=objc)
+    /// The caller tried to divide by `0`.
     #[doc(alias = "NSCalculationDivideByZero")]
     pub const DivideByZero: Self = Self(4);
 }
@@ -70,14 +82,27 @@ unsafe impl RefEncode for NSCalculationError {
 impl NSDecimal {
     // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
 
+    /// Copies the value of a decimal number.
+    ///
+    /// Parameters:
+    /// - destination: A [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) reference that receives the copied value.
+    ///
+    /// - source: A source [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) to copy.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Copies the value in `source` to `destination`.
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     /// *************    Operations        **********
     ///
     /// # Safety
     ///
     /// - `destination` must be a valid pointer.
     /// - `source` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcopy(_:_:)?language=objc)
     #[doc(alias = "NSDecimalCopy")]
     #[inline]
     pub unsafe fn copy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>) {
@@ -87,7 +112,15 @@ impl NSDecimal {
         unsafe { NSDecimalCopy(destination, source) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcompact(_:)?language=objc)
+    /// Compacts the decimal structure for efficiency.
+    ///
+    /// ## Discussion
+    ///
+    /// Formats number so that calculations using it will take up as little memory as possible. All the `NSDecimal...` arithmetic functions expect compact [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) arguments.
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -101,7 +134,19 @@ impl NSDecimal {
         unsafe { NSDecimalCompact(number) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalcompare(_:_:)?language=objc)
+    /// Compares two decimal values.
+    ///
+    /// ## Return Value
+    ///
+    /// `NSOrderedDescending` if `leftOperand` is bigger than `rightOperand`; `NSOrderedAscending` if `rightOperand` is bigger than `leftOperand`; or `NSOrderedSame` if the two operands are equal.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -123,7 +168,17 @@ impl NSDecimal {
         unsafe { NSDecimalCompare(left_operand, right_operand) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalround(_:_:_:_:)?language=objc)
+    /// Rounds off the decimal value.
+    ///
+    /// ## Discussion
+    ///
+    /// Rounds `number` off according to the parameters `scale` and `roundingMode` and stores the result in `result`.
+    ///
+    /// The `scale` value specifies the number of digits `result` can have after its decimal point. `roundingMode` specifies the way that number is rounded off. There are four possible values for `roundingMode`: [`NSRoundDown`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/down), [`NSRoundUp`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/up), [`NSRoundPlain`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/plain), and [`NSRoundBankers`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/bankers). For thorough discussions of `scale` and `roundingMode`, see [`NSDecimalNumberBehaviors`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -148,7 +203,20 @@ impl NSDecimal {
         unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnormalize(_:_:_:)?language=objc)
+    /// Normalizes the internal format of two decimal numbers to simplify later operations.
+    ///
+    /// ## Discussion
+    ///
+    /// [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) instances are represented in memory as a mantissa and an exponent, expressing the value mantissa x 10^exponent. A number can have many representations; for example, the following table lists several valid representations for the number 100:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Mantissa" }] }], [Paragraph { inline_content: [Text { text: "Exponent" }] }]], [[Paragraph { inline_content: [Text { text: "100" }] }], [Paragraph { inline_content: [Text { text: "0" }] }]], [[Paragraph { inline_content: [Text { text: "10" }] }], [Paragraph { inline_content: [Text { text: "1" }] }]], [[Paragraph { inline_content: [Text { text: "1" }] }], [Paragraph { inline_content: [Text { text: "2" }] }]]], alignments: None, metadata: None })
+    /// Format `number1` and `number2` so that they have equal exponents. This format makes addition and subtraction very convenient. Both [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)) and [`NSDecimalSubtract`](https://developer.apple.com/documentation/foundation/nsdecimalsubtract(_:_:_:_:)) call [`NSDecimalNormalize`](https://developer.apple.com/documentation/foundation/nsdecimalnormalize(_:_:_:)). You may want to use it if you write more complicated addition or subtraction routines.
+    ///
+    /// For explanations of the possible return values, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -171,7 +239,25 @@ impl NSDecimal {
         unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)?language=objc)
+    /// Adds two decimal values.
+    ///
+    /// ## Discussion
+    ///
+    /// Adds `leftOperand` to `rightOperand` and stores the sum in `result`. [`NSDecimal`](https://developer.apple.com/documentation/foundation/decimal) instances can represent a number with up to 38 significant digits. If a number is more precise than that, it must be rounded off. `roundingMode` determines how to round it off. There are four possible rounding modes:
+    ///
+    /// - [`NSRoundDown`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/down)
+    ///
+    /// - [`NSRoundUp`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/up)
+    ///
+    /// - [`NSRoundPlain`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/plain)
+    ///
+    /// - [`NSRoundBankers`](https://developer.apple.com/documentation/foundation/nsdecimalnumber/roundingmode/bankers)
+    ///
+    /// The return value indicates whether any machine limitations were encountered in the addition. If none were encountered, the function returns `NSCalculationNoError`. Otherwise it may return one of the following values: `NSCalculationLossOfPrecision`, `NSCalculationOverflow` or `NSCalculationUnderflow`. For descriptions of all these error conditions, see [`exceptionDuringOperation:error:leftOperand:rightOperand:`](https://developer.apple.com/documentation/foundation/nsdecimalnumberbehaviors/exceptionduringoperation(_:error:leftoperand:rightoperand:)) in NSDecimalNumberBehaviors.
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -197,7 +283,17 @@ impl NSDecimal {
         unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalsubtract(_:_:_:_:)?language=objc)
+    /// Subtracts one decimal value from another.
+    ///
+    /// ## Discussion
+    ///
+    /// Subtracts `rightOperand` from `leftOperand` and stores the difference, possibly rounded off according to `roundingMode`, in `result`.
+    ///
+    /// For explanations of the possible return values and rounding modes, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -223,7 +319,17 @@ impl NSDecimal {
         unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalmultiply(_:_:_:_:)?language=objc)
+    /// Multiplies two decimal numbers together.
+    ///
+    /// ## Discussion
+    ///
+    /// Multiplies `rightOperand` by `leftOperand` and stores the product, possibly rounded off according to `roundingMode`, in `result`.
+    ///
+    /// For explanations of the possible return values and rounding modes, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -249,7 +355,19 @@ impl NSDecimal {
         unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimaldivide(_:_:_:_:)?language=objc)
+    /// Divides one decimal value by another.
+    ///
+    /// ## Discussion
+    ///
+    /// Divides `leftOperand` by `rightOperand` and stores the quotient, possibly rounded off according to `roundingMode`, in `result`. If `rightOperand` is 0, returns `NSDivideByZero`.
+    ///
+    /// For explanations of the possible return values and rounding modes, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// Note that repeating decimals or numbers with a mantissa larger than 38 digits cannot be represented precisely.
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -275,7 +393,17 @@ impl NSDecimal {
         unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalpower(_:_:_:_:)?language=objc)
+    /// Raises the decimal value to the specified power.
+    ///
+    /// ## Discussion
+    ///
+    /// Raises `number` to `power`, possibly rounding off according to `roundingMode`, and stores the resulting value in `result`.
+    ///
+    /// For explanations of the possible return values and rounding modes, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -300,7 +428,17 @@ impl NSDecimal {
         unsafe { NSDecimalPower(result, number, power, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalmultiplybypowerof10(_:_:_:_:)?language=objc)
+    /// Multiplies a decimal by the specified power of 10.
+    ///
+    /// ## Discussion
+    ///
+    /// Multiplies `number` by `power` of 10 and stores the product, possibly rounded off according to `roundingMode`, in `result`.
+    ///
+    /// For explanations of the possible return values and rounding modes, see [`NSDecimalAdd`](https://developer.apple.com/documentation/foundation/nsdecimaladd(_:_:_:_:)).
+    ///
+    /// For more information, see [Number and Value Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/NumbersandValues/NumbersandValues.html#//apple_ref/doc/uid/10000038i).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -325,7 +463,13 @@ impl NSDecimal {
         unsafe { NSDecimalMultiplyByPowerOf10(result, number, power, rounding_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalstring(_:_:)?language=objc)
+    /// Returns a string representation of the decimal value appropriate for the specified locale.
+    ///
+    /// Parameters:
+    /// - dcm: The decimal value to represent.
+    ///
+    /// - locale: Either an instance of [`NSLocale`](https://developer.apple.com/documentation/foundation/nslocale) or a dictionary with a string value corresponding to the [`NSLocaleDecimalSeparator`](https://developer.apple.com/documentation/foundation/nslocale/key/decimalseparator) key.
+    ///
     ///
     /// # Safety
     ///

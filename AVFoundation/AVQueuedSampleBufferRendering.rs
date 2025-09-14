@@ -10,6 +10,7 @@ use objc2_core_media::*;
 
 use crate::*;
 
+/// The statuses for sample buffer rendering.
 /// These constants are the possible status values for queued sample buffer renderers.
 ///
 /// Indicates that the receiver is in a fresh state without any sample buffers enqueued on it.
@@ -17,20 +18,18 @@ use crate::*;
 /// Indicates at least one sample buffer has been enqueued on the receiver.
 ///
 /// Indicates that the receiver cannot currently enqueue or render sample buffers because of an error.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVQueuedSampleBufferRenderingStatus(pub NSInteger);
 impl AVQueuedSampleBufferRenderingStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/unknown?language=objc)
+    /// The object doesn’t have any sample buffers enqueued.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/rendering?language=objc)
+    /// The object is rendering the sample buffer.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusRendering")]
     pub const Rendering: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrenderingstatus/failed?language=objc)
+    /// The object can no longer render sample buffers because of an error.
     #[doc(alias = "AVQueuedSampleBufferRenderingStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -44,7 +43,13 @@ unsafe impl RefEncode for AVQueuedSampleBufferRenderingStatus {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrendering?language=objc)
+    /// Methods you can implement to enqueue sample buffers for presentation.
+    ///
+    /// ## Overview
+    ///
+    /// [`AVSampleBufferDisplayLayer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferdisplaylayer) and [`AVSampleBufferAudioRenderer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferaudiorenderer) conform to this protocol. When used in conjunction with an [`AVSampleBufferRenderSynchronizer`](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer), an object conforming to `AVQueuedSampleBufferRendering` can only be attached to a single synchronizer.
+    ///
+    ///
     pub unsafe trait AVQueuedSampleBufferRendering: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         /// The renderer's timebase, which governs how time stamps are interpreted.

@@ -9,12 +9,19 @@ use crate::*;
 extern_class!(
     /// A clinical coding that represents a medical concept using a standardized coding system.
     ///
+    /// ## Overview
+    ///
+    /// A clinical coding pairs a [`system`](https://developer.apple.com/documentation/healthkit/hkclinicalcoding/system), an optional [`version`](https://developer.apple.com/documentation/healthkit/hkclinicalcoding/version), and a [`code`](https://developer.apple.com/documentation/healthkit/hkclinicalcoding/code) which identify a medical concept.
+    ///
+    /// This model is closely related to the [FHIR Coding model](https://build.fhir.org/datatypes.html#Coding).
+    ///
+    ///
+    /// A clinical coding that represents a medical concept using a standardized coding system.
+    ///
     /// A clinical coding pairs a ``system``, an optional ``version``,
     /// and a ``code`` which identify a medical concept.
     ///
     /// This model is closely related to the [FHIR Coding model](https://build.fhir.org/datatypes.html#Coding).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicalcoding?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKClinicalCoding;

@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the CPU or one or more GPUs the framework uses to execute a neural network.
     /// A device that will be used to execute a neural network.
     /// If a MLCdevice is created with multiple devices using the [devicesWithType:selectMultipleDvices], on configurations
     /// where multiple GPUs are available such as on the Mac Pro, the framework may transparently schedule the execution
@@ -16,8 +17,6 @@ extern_class!(
     /// one training and/or inference graph associated with this device.  If multiple graphs are used, they must be compiled using
     /// MLCGraphCompilationOptionsLinkGraphs specified in compileOptions and the multiple graphs should be linked together
     /// with linkWithGraphs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

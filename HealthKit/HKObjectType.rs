@@ -7,9 +7,38 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract class representing a type of object that can be stored by HealthKit.
+    /// An abstract superclass with subclasses that identify a specific type of data for the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobjecttype?language=objc)
+    /// ## Overview
+    ///
+    /// The `HKObjectType` class is an abstract class. Don’t instantiate an `HKObjectType` object directly. Instead, instantiate one of the following concrete subclasses:
+    ///
+    /// - [`HKActivitySummaryType`](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype)
+    ///
+    /// - [`HKCategoryType`](https://developer.apple.com/documentation/healthkit/hkcategorytype)
+    ///
+    /// - [`HKCorrelationType`](https://developer.apple.com/documentation/healthkit/hkcorrelationtype)
+    ///
+    /// - [`HKCharacteristicType`](https://developer.apple.com/documentation/healthkit/hkcharacteristictype)
+    ///
+    /// - [`HKDocumentType`](https://developer.apple.com/documentation/healthkit/hkdocumenttype)
+    ///
+    /// - [`HKQuantityType`](https://developer.apple.com/documentation/healthkit/hkquantitytype)
+    ///
+    /// - [`HKSeriesType`](https://developer.apple.com/documentation/healthkit/hkseriestype)
+    ///
+    /// - [`HKWorkoutType`](https://developer.apple.com/documentation/healthkit/hkworkouttype)
+    ///
+    /// The `HKObjectType` class provides a convenience method to create each of these subclasses.
+    ///
+    /// ### Work with Object Types
+    ///
+    /// Like many HealthKit classes, HealthKit object types aren’t extensible. Don’t subclass these classes.
+    ///
+    /// Additionally, wherever possible, this class uses a single instance to represent all copies of the same type. For example, if you make two calls to the [`quantityTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/quantitytype(foridentifier:)) method with the same identifier, the system returns the same instance. Reusing object types helps reduce HealthKit’s overall memory usage.
+    ///
+    ///
+    /// An abstract class representing a type of object that can be stored by HealthKit.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKObjectType;
@@ -149,9 +178,18 @@ impl HKObjectType {
 }
 
 extern_class!(
-    /// Represents a type of object that describes a characteristic of the user (such as date of birth).
+    /// A type that represents data that doesn’t typically change over time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcharacteristictype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKCharacteristicType`](https://developer.apple.com/documentation/healthkit/hkcharacteristictype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create a characteristic type instance, use the object type’s [`characteristicTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/characteristictype(foridentifier:)) convenience method.
+    ///
+    /// Unlike the other object types, characteristic types cannot be used to create and save new HealthKit objects. Instead, users must enter and edit their characteristic data using the Health app. Similarly, you cannot create queries for characteristic types. Instead, use the HealthKit store to access the data (see Reading characteristic data).
+    ///
+    /// HealthKit provides five characteristic types: biological sex, blood type, birthdate, Fitzpatrick skin type, and wheelchair use. These types are used only when asking for permission to read data from the HealthKit store.
+    ///
+    ///
+    /// Represents a type of object that describes a characteristic of the user (such as date of birth).
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCharacteristicType;
@@ -204,9 +242,14 @@ impl HKCharacteristicType {
 }
 
 extern_class!(
-    /// Represents a type of HKSample.
+    /// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hksampletype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKSampleType`](https://developer.apple.com/documentation/healthkit/hksampletype) class is an abstract subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class, used to represent data samples. Never instantiate an [`HKSampleType`](https://developer.apple.com/documentation/healthkit/hksampletype) object directly. Instead, work with one of its concrete subclasses: [`HKCategoryType`](https://developer.apple.com/documentation/healthkit/hkcategorytype), [`HKCorrelationType`](https://developer.apple.com/documentation/healthkit/hkcorrelationtype), [`HKQuantityType`](https://developer.apple.com/documentation/healthkit/hkquantitytype), or [`HKWorkoutType`](https://developer.apple.com/documentation/healthkit/hkworkouttype) classes.
+    ///
+    ///
+    /// Represents a type of HKSample.
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSampleType;
@@ -321,9 +364,28 @@ impl HKSampleType {
 }
 
 extern_class!(
-    /// Represent a type of HKCategorySample.
+    /// A type that identifies samples that contain a value from a small set of possible values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKCategoryType`](https://developer.apple.com/documentation/healthkit/hkcategorytype) class is a concrete subclass of the HKObjectType class. To create a category type instance, use the [`init(_:)`](https://developer.apple.com/documentation/healthkit/hkcategorytype/init(_:)) convenience method.  For example, the following code creates a category sample type for handwashing events.
+    ///
+    /// ```swift
+    /// let handwashingCategoryType = HKCategoryType(.handwashingEvent)
+    /// ```
+    ///
+    /// Use category types to:
+    ///
+    /// - Request permission to read or write matching category samples.
+    ///
+    /// - Create and share matching category samples.
+    ///
+    /// - Query for matching category samples.
+    ///
+    /// For a complete list of category types, refer to [`HKCategoryTypeIdentifier`](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifier).
+    ///
+    ///
+    /// Represent a type of HKCategorySample.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCategoryType;
@@ -376,9 +438,30 @@ impl HKCategoryType {
 }
 
 extern_class!(
-    /// Represents a type of HKCorrelation
+    /// A type that identifies samples that group multiple subsamples.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelationtype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKCorrelationType`](https://developer.apple.com/documentation/healthkit/hkcorrelationtype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create a correlation type instance, use the object type’s [`correlationTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/correlationtype(foridentifier:)) conveniance method.
+    ///
+    /// Use correlation types to:
+    ///
+    /// - Request permission to read or write matching quantity samples.
+    ///
+    /// - Create and share matching quantity samples.
+    ///
+    /// - Query for matching quantity samples.
+    ///
+    /// HealthKit provides two correlation types: blood pressure and food.
+    ///
+    /// ### Using Correlation Types
+    ///
+    /// Like many HealthKit classes, correlation types are not extensible and should not be subclassed.
+    ///
+    /// This class reuses the same instance whenever possible. Letting multiple queries share the same workout type helps reduce the overall memory usage.
+    ///
+    ///
+    /// Represents a type of HKCorrelation
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCorrelationType;
@@ -431,9 +514,20 @@ impl HKCorrelationType {
 }
 
 extern_class!(
-    /// Represents a type of HKDocument.
+    /// A sample type used to create queries for documents.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumenttype?language=objc)
+    /// ## Overview
+    ///
+    /// To create a document type instance, use the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class’s [`documentTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/documenttype(foridentifier:)) convenience method.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Like many HealthKit classes, document types are not extensible and should not be subclassed.
+    ///
+    /// Additionally, this class reuses the same instance whenever possible. Letting multiple queries share the same document type helps reduce the overall memory usage.
+    ///
+    ///
+    /// Represents a type of HKDocument.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDocumentType;
@@ -486,9 +580,22 @@ impl HKDocumentType {
 }
 
 extern_class!(
-    /// Represents types of HKQuantitySamples.
+    /// A type that identifies samples that store numerical values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantitytype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKQuantityType`](https://developer.apple.com/documentation/healthkit/hkquantitytype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create a quantity type instance, use the object type’s [`quantityTypeForIdentifier:`](https://developer.apple.com/documentation/healthkit/hkobjecttype/quantitytype(foridentifier:)) convenience method.
+    ///
+    /// Use quantity types to:
+    ///
+    /// - Request permission to read or write matching quantity samples.
+    ///
+    /// - Create and share matching quantity samples.
+    ///
+    /// - Query for matching quantity samples.
+    ///
+    ///
+    /// Represents types of HKQuantitySamples.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantityType;
@@ -553,9 +660,16 @@ impl HKQuantityType {
 }
 
 extern_class!(
-    /// Represents a workout or exercise
+    /// A type that identifies samples that store information about a workout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouttype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKWorkoutType`](https://developer.apple.com/documentation/healthkit/hkworkouttype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create a workout type instances, use the [`workoutType`](https://developer.apple.com/documentation/healthkit/hkobjecttype/workouttype())  convenience method.
+    ///
+    /// All workouts use the same workout type instance.
+    ///
+    ///
+    /// Represents a workout or exercise
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutType;
@@ -608,9 +722,8 @@ impl HKWorkoutType {
 }
 
 extern_class!(
+    /// A type that indicates the data stored in a series sample.
     /// Represents a type of HKSeriesSample
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkseriestype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKSeriesType;
@@ -671,9 +784,30 @@ impl HKSeriesType {
 }
 
 extern_class!(
-    /// Represents an HKActivitySummary
+    /// A type that identifies activity summary objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype?language=objc)
+    /// ## Overview
+    ///
+    /// Use the activity summary type to request permission to read [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects from the HealthKit store. To create an activity summary type, use the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class’s [`activitySummaryType`](https://developer.apple.com/documentation/healthkit/hkobjecttype/activitysummarytype()) convenience method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Although you can request permission to read [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects, you can’t request permission to share them. For more information, see [`requestAuthorizationToShareTypes:readTypes:completion:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/requestauthorization(toshare:read:completion:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`HKActivitySummaryType`](https://developer.apple.com/documentation/healthkit/hkactivitysummarytype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. Like many HealthKit classes, activity summary types aren’t extensible and you shouldn’t subclass them.
+    ///
+    /// ### Access and Modify Activity Summaries
+    ///
+    /// Any workouts that you save to the HealthKit store may affect that day’s summary. For more information, see [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout).
+    ///
+    /// To query for activity summary objects, use an [`HKActivitySummaryQuery`](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery). You can also create your own [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects (for example, to display in an [`HKActivityRingView`](https://developer.apple.com/documentation/healthkitui/hkactivityringview)), but you can’t save them to the HealthKit store.
+    ///
+    ///
+    /// Represents an HKActivitySummary
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummaryType;
@@ -726,9 +860,22 @@ impl HKActivitySummaryType {
 }
 
 extern_class!(
-    /// Represents an audiogram sample.
+    /// A type that identifies samples that contain audiogram data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsampletype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKAudiogramSampleType`](https://developer.apple.com/documentation/healthkit/hkaudiogramsampletype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create an audiogram sample type instance, use the object type’s [`audiogramSampleType`](https://developer.apple.com/documentation/healthkit/hkobjecttype/audiogramsampletype()) convenience method.
+    ///
+    /// Use audiogram sample types to:
+    ///
+    /// - Request permission to read or write audiogram samples.
+    ///
+    /// - Create and share audiogram samples.
+    ///
+    /// - Query for audiogram samples.
+    ///
+    ///
+    /// Represents an audiogram sample.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKAudiogramSampleType;
@@ -781,9 +928,22 @@ impl HKAudiogramSampleType {
 }
 
 extern_class!(
-    /// Represents an electrocardiogram sample.
+    /// A type that identifies samples containing electrocardiogram data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKElectrocardiogramType`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramtype) class is a concrete subclass of the [`HKObjectType`](https://developer.apple.com/documentation/healthkit/hkobjecttype) class. To create an electrocardiogram type instance, use the object type’s [`electrocardiogramType`](https://developer.apple.com/documentation/healthkit/hkobjecttype/electrocardiogramtype()) convenience method.
+    ///
+    /// Use the electrocardiogram type to:
+    ///
+    /// - Request permission to read electrocardiogram samples
+    ///
+    /// - Query for electrocardiogram samples
+    ///
+    /// Electrocardiogram samples are read-only. You can request permission to read the samples using this identifier, but you can’t request authorization to share them. This means you can’t save new electrocardiogram samples to the HealthKit store. To add test data in iOS Simulator, open the Health app and select Browse > Heart > Electrocardiograms (ECG) > Add Data.
+    ///
+    ///
+    /// Represents an electrocardiogram sample.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramType;
@@ -836,9 +996,13 @@ impl HKElectrocardiogramType {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// Represents a recorded log of a specific medication, represented by HKMedicationDoseEvent samples.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventtype?language=objc)
+    ///
+    /// Represents a recorded log of a specific medication, represented by HKMedicationDoseEvent samples.
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKMedicationDoseEventType;
@@ -891,9 +1055,39 @@ impl HKMedicationDoseEventType {
 }
 
 extern_class!(
-    /// Represents a prescription type
+    /// A type that identifies samples that store a prescription.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkprescriptiontype?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKPrescriptionType`](https://developer.apple.com/documentation/healthkit/hkprescriptiontype) class is a concrete subclass of the [`HKSampleType`](https://developer.apple.com/documentation/healthkit/hksampletype) class. To create a vision prescription type instances, use the [`visionPrescriptionType`](https://developer.apple.com/documentation/healthkit/hkobjecttype/visionprescriptiontype()) convenience method.
+    ///
+    /// Use this data type to request permission to save vision prescriptions to the HealthKit store.
+    ///
+    /// ```swift
+    /// // Create the prescription data type.
+    /// let visionPrescriptionType = HKObjectType.visionPrescriptionType()
+    ///
+    ///
+    /// // Request authorization to save vision prescription samples.
+    /// store.requestAuthorization(toShare: [visionPrescriptionType],
+    ///                            read: []) { success, error in
+    ///     if let error {
+    ///         // Handle errors here.
+    ///         fatalError("*** An error occurred while requesting permission: \(error.localizedDescription) ***")
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Important Vision prescription samples require per-object authorization. Requesting authorization to read these samples using [`requestAuthorization(toShare:read:)`](https://developer.apple.com/documentation/healthkit/hkhealthstore/requestauthorization(toshare:read:)) fails with an error. Instead, use [`requestPerObjectReadAuthorizationForType:predicate:completion:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/requestperobjectreadauthorization(for:predicate:completion:)) to request authorization before querying for samples.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Represents a prescription type
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKPrescriptionType;
@@ -947,8 +1141,6 @@ impl HKPrescriptionType {
 
 extern_class!(
     /// Represents a scored assessment sample
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkscoredassessmenttype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKScoredAssessmentType;
@@ -1002,8 +1194,6 @@ impl HKScoredAssessmentType {
 
 extern_class!(
     /// Represents an experienced feeling and its surrounding context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindtype?language=objc)
     #[unsafe(super(HKSampleType, HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStateOfMindType;
@@ -1056,9 +1246,13 @@ impl HKStateOfMindType {
 }
 
 extern_class!(
+    ///
+    /// ## Overview
+    ///
     /// Represents the set of authorizeable HKUserAnnotatedMedications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationtype?language=objc)
+    ///
+    /// Represents the set of authorizeable HKUserAnnotatedMedications.
     #[unsafe(super(HKObjectType, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKUserAnnotatedMedicationType;

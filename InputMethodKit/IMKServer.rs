@@ -7,9 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// Key used to obtain an input method's mode dictionary from the input method's bundle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkmodedictionary?language=objc)
+    /// ## Discussion
+    ///
+    /// The key used to obtain an input method mode dictionary from the input method bundle.
+    ///
+    ///
+    /// Key used to obtain an input method's mode dictionary from the input method's bundle.
     pub static IMKModeDictionary: &'static NSString;
 }
 
@@ -24,13 +28,12 @@ extern "C" {
 }
 
 extern_class!(
+    /// The `IMKServer` class manages client connections to your input method.  When you write the main function for your input method, you create an `IMKServer` object.  You should never need to override this class.
     /// This class manages input sessions.
     ///
     /// An input method should create one and only one of these objects.  An IMKServer creates an NSConnection that can be connected to by input clients.  After a connection has been made an IMKServer manages communication between the client and the input method.  For each communication session the IMKServer will create an IMKInputController class as well as delegate classes for that controller.  Each controller object then serves as a proxy for the input session on the client side.  This means that input methods do not have to concern themselves with managing client sessions.  A given controller will only receive communication from a single session.
     ///
     /// IMKServer's also will manage a basic candidate window for an input method.  See IMKCandidates.h to understand how to create a candidate window and associate the candidate window with the IMKServer object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkserver?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IMKServer;

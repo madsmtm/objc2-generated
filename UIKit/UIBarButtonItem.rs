@@ -11,44 +11,59 @@ use objc2_symbols::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum?language=objc)
+/// Constants that specify the style of an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarButtonItemStyle(pub NSInteger);
 impl UIBarButtonItemStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/plain?language=objc)
+    /// A button style with plain text styling.
+    ///
+    /// ## Discussion
+    ///
+    /// This item style is the default.
+    ///
+    ///
     #[doc(alias = "UIBarButtonItemStylePlain")]
     pub const Plain: Self = Self(0);
     /// A button item style for a prominent button.
     ///
-    /// For example, use this for a button that completes or finalizes some task.
-    /// Buttons with this style will not be visually grouped with other items
-    /// in a navigation bar or toolbar, and will also have other styling changes
-    /// appropriate to their context to indicate their prominence.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/prominent?language=objc)
-    #[doc(alias = "UIBarButtonItemStyleProminent")]
-    pub const Prominent: Self = Self(2);
+    /// For example, use this for a button that completes or finalizes some task. Buttons with this style will not be visually grouped with other items in a navigation bar or toolbar, and will also have other styling changes appropriate to their context to indicate their prominence.
+    ///
+    ///
     /// A button item style for a prominent button.
     ///
     /// For example, use this for a button that completes or finalizes some task.
     /// Buttons with this style will not be visually grouped with other items
     /// in a navigation bar or toolbar, and will also have other styling changes
     /// appropriate to their context to indicate their prominence.
+    #[doc(alias = "UIBarButtonItemStyleProminent")]
+    pub const Prominent: Self = Self(2);
+    /// A simple button style with a border.
+    /// A button item style for a prominent button.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/bordered?language=objc)
+    /// For example, use this for a button that completes or finalizes some task.
+    /// Buttons with this style will not be visually grouped with other items
+    /// in a navigation bar or toolbar, and will also have other styling changes
+    /// appropriate to their context to indicate their prominence.
     #[doc(alias = "UIBarButtonItemStyleBordered")]
     #[deprecated]
     pub const Bordered: Self = Self(1);
+    /// A button style for a done button.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, use this style for a button that completes some task and returns to the previous view.
+    ///
+    ///
     /// A button item style for a prominent button.
     ///
     /// For example, use this for a button that completes or finalizes some task.
     /// Buttons with this style will not be visually grouped with other items
     /// in a navigation bar or toolbar, and will also have other styling changes
     /// appropriate to their context to indicate their prominence.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/done?language=objc)
     #[doc(alias = "UIBarButtonItemStyleDone")]
     #[deprecated]
     pub const Done: Self = Self(UIBarButtonItemStyle::Prominent.0);
@@ -62,89 +77,106 @@ unsafe impl RefEncode for UIBarButtonItemStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem?language=objc)
+/// Constants that define system-supplied images for bar button items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarButtonSystemItem(pub NSInteger);
 impl UIBarButtonSystemItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/done?language=objc)
+    /// The system Done button, localized.
     #[doc(alias = "UIBarButtonSystemItemDone")]
     pub const Done: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/cancel?language=objc)
+    /// The system Cancel button, localized.
     #[doc(alias = "UIBarButtonSystemItemCancel")]
     pub const Cancel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/edit?language=objc)
+    /// The system Edit button, localized.
     #[doc(alias = "UIBarButtonSystemItemEdit")]
     pub const Edit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/save?language=objc)
+    /// The system Save button, localized.
     #[doc(alias = "UIBarButtonSystemItemSave")]
     pub const Save: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/add?language=objc)
+    /// The system plus button containing an icon of a plus sign.
     #[doc(alias = "UIBarButtonSystemItemAdd")]
     pub const Add: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/flexiblespace?language=objc)
+    /// Blank space to add between other items.
+    ///
+    /// ## Discussion
+    ///
+    /// The space is distributed equally between the other items. Other item properties are ignored when this value is set.
+    ///
+    ///
     #[doc(alias = "UIBarButtonSystemItemFlexibleSpace")]
     pub const FlexibleSpace: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/fixedspace?language=objc)
+    /// Blank space to add between other items.
+    ///
+    /// ## Discussion
+    ///
+    /// Only the [`width`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/width) property is used when this value is set.
+    ///
+    ///
     #[doc(alias = "UIBarButtonSystemItemFixedSpace")]
     pub const FixedSpace: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/compose?language=objc)
+    /// The system compose button.
     #[doc(alias = "UIBarButtonSystemItemCompose")]
     pub const Compose: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/reply?language=objc)
+    /// The system reply button.
     #[doc(alias = "UIBarButtonSystemItemReply")]
     pub const Reply: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/action?language=objc)
+    /// The system action button.
     #[doc(alias = "UIBarButtonSystemItemAction")]
     pub const Action: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/organize?language=objc)
+    /// The system organize button.
     #[doc(alias = "UIBarButtonSystemItemOrganize")]
     pub const Organize: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/bookmarks?language=objc)
+    /// The system bookmarks button.
     #[doc(alias = "UIBarButtonSystemItemBookmarks")]
     pub const Bookmarks: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/search?language=objc)
+    /// The system search button.
     #[doc(alias = "UIBarButtonSystemItemSearch")]
     pub const Search: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/refresh?language=objc)
+    /// The system refresh button.
     #[doc(alias = "UIBarButtonSystemItemRefresh")]
     pub const Refresh: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/stop?language=objc)
+    /// The system stop button.
     #[doc(alias = "UIBarButtonSystemItemStop")]
     pub const Stop: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/camera?language=objc)
+    /// The system camera button.
     #[doc(alias = "UIBarButtonSystemItemCamera")]
     pub const Camera: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/trash?language=objc)
+    /// The system trash button.
     #[doc(alias = "UIBarButtonSystemItemTrash")]
     pub const Trash: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/play?language=objc)
+    /// The system play button.
     #[doc(alias = "UIBarButtonSystemItemPlay")]
     pub const Play: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/pause?language=objc)
+    /// The system pause button.
     #[doc(alias = "UIBarButtonSystemItemPause")]
     pub const Pause: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/rewind?language=objc)
+    /// The system rewind button.
     #[doc(alias = "UIBarButtonSystemItemRewind")]
     pub const Rewind: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/fastforward?language=objc)
+    /// The system fast forward button.
     #[doc(alias = "UIBarButtonSystemItemFastForward")]
     pub const FastForward: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/undo?language=objc)
+    /// The system undo button.
     #[doc(alias = "UIBarButtonSystemItemUndo")]
     pub const Undo: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/redo?language=objc)
+    /// The system redo button.
     #[doc(alias = "UIBarButtonSystemItemRedo")]
     pub const Redo: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/pagecurl?language=objc)
+    /// The system page curl button.
+    ///
+    /// ## Discussion
+    ///
+    /// This bar button image can be used only for bar button items placed on toolbars.
+    ///
+    ///
     #[doc(alias = "UIBarButtonSystemItemPageCurl")]
     #[deprecated]
     pub const PageCurl: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/close?language=objc)
+    /// The system close button.
     #[doc(alias = "UIBarButtonSystemItemClose")]
     pub const Close: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem/systemitem/writingtools?language=objc)
     #[doc(alias = "UIBarButtonSystemItemWritingTools")]
     pub const WritingTools: Self = Self(25);
 }
@@ -158,7 +190,15 @@ unsafe impl RefEncode for UIBarButtonSystemItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem?language=objc)
+    /// A specialized button for placement on a toolbar, navigation bar, or shortcuts bar.
+    ///
+    /// ## Overview
+    ///
+    /// You typically use Interface Builder to create and configure bar button items. However, you can customize the appearance of buttons by sending the setter messages to [`UIBarButtonItemAppearance`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance) to customize all buttons, or to a specific [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) instance. You can use customized buttons in standard places in a [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem) object or a [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar) instance.
+    ///
+    /// In general, specify a value for the normal state so that other states without a custom value set can use it. Similarly, when a property depends on the bar metrics (for instance, on the iPhone in landscape orientation, bars have a different height from the standard), specify a value of [`UIBarMetricsDefault`](https://developer.apple.com/documentation/uikit/uibarmetrics/default).
+    ///
+    ///
     #[unsafe(super(UIBarItem, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

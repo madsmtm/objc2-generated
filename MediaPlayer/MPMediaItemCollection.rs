@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitemcollection?language=objc)
+    /// A sorted set of media items from the media library.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, you use this class by requesting an array of [`collections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections) from a media query by way of its collections property. [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery) describes media queries.
+    ///
+    /// The grouping type for the media query determines the arrangement of the media items you obtain. You also use the media query [`collections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collections) property to obtain synced playlists, as described in [`MPMediaPlaylist`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist).
+    ///
+    /// A media item collection can have a wide range of metadata associated with it. You access this metadata using the [`valueForProperty:`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity/value(forproperty:)) method along with the property keys described in this document. You can also access metadata in a batch fashion using the [`enumerateValuesForProperties:usingBlock:`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity/enumeratevalues(forproperties:using:)) method. In some cases, this is more efficient. [`MPMediaEntity`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity) defines and describes both of these methods.
+    ///
+    ///
     #[unsafe(super(MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]

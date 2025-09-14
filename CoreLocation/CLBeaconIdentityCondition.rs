@@ -6,14 +6,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconmajorvalue?language=objc)
+/// The most significant value in a beacon.
 pub type CLBeaconMajorValue = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconminorvalue?language=objc)
+/// The least significant value in a beacon.
 pub type CLBeaconMinorValue = u16;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconidentitycondition?language=objc)
+    /// A condition that describes the identity characteristics of a beacon.
+    ///
+    /// ## Overview
+    ///
+    /// Core Location defines a beacon identity by UUID, and major and minor values. You need to specify the UUID. If you only specify a UUID, the framework treats the major and minor values as wildcards and any beacons with the same UUID satisfy the condition. Similarly, if you specify only a UUID and a major value, the framework treats the minor value as a wildcard and any beacons with the same UUID and major value satisfy the condition.
+    ///
+    ///
     #[unsafe(super(CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLCondition")]

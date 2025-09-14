@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendaritem?language=objc)
+    /// An abstract superclass for calendar events and reminders.
+    ///
+    /// ## Overview
+    ///
+    /// The `EKCalendarItem` is a an abstract superclass for calendar events and reminders. This class provides common properties and methods for accessing properties of calendar items such as the ability to set the calendar, title, and location, as well as support for attaching notes, displaying attendees, setting multiple alarms, and specifying recurrence rules.
+    ///
+    ///
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

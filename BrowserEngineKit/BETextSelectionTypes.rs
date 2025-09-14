@@ -4,40 +4,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEGestureType(pub NSInteger);
 impl BEGestureType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/loupe?language=objc)
     #[doc(alias = "BEGestureTypeLoupe")]
     pub const Loupe: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/onefingertap?language=objc)
     #[doc(alias = "BEGestureTypeOneFingerTap")]
     pub const OneFingerTap: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/doubletapandhold?language=objc)
     #[doc(alias = "BEGestureTypeDoubleTapAndHold")]
     pub const DoubleTapAndHold: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/doubletap?language=objc)
     #[doc(alias = "BEGestureTypeDoubleTap")]
     pub const DoubleTap: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/onefingerdoubletap?language=objc)
     #[doc(alias = "BEGestureTypeOneFingerDoubleTap")]
     pub const OneFingerDoubleTap: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/onefingertripletap?language=objc)
     #[doc(alias = "BEGestureTypeOneFingerTripleTap")]
     pub const OneFingerTripleTap: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/twofingersingletap?language=objc)
     #[doc(alias = "BEGestureTypeTwoFingerSingleTap")]
     pub const TwoFingerSingleTap: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/twofingerrangedselectgesture?language=objc)
     #[doc(alias = "BEGestureTypeTwoFingerRangedSelectGesture")]
     pub const TwoFingerRangedSelectGesture: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/imphraseboundarydrag?language=objc)
     #[doc(alias = "BEGestureTypeIMPhraseBoundaryDrag")]
     pub const IMPhraseBoundaryDrag: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype/forcetouch?language=objc)
     #[doc(alias = "BEGestureTypeForceTouch")]
     pub const ForceTouch: Self = Self(15);
 }
@@ -50,28 +39,21 @@ unsafe impl RefEncode for BEGestureType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BESelectionTouchPhase(pub NSInteger);
 impl BESelectionTouchPhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/started?language=objc)
     #[doc(alias = "BESelectionTouchPhaseStarted")]
     pub const Started: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/moved?language=objc)
     #[doc(alias = "BESelectionTouchPhaseMoved")]
     pub const Moved: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/ended?language=objc)
     #[doc(alias = "BESelectionTouchPhaseEnded")]
     pub const Ended: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/endedmovingforward?language=objc)
     #[doc(alias = "BESelectionTouchPhaseEndedMovingForward")]
     pub const EndedMovingForward: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/endedmovingbackward?language=objc)
     #[doc(alias = "BESelectionTouchPhaseEndedMovingBackward")]
     pub const EndedMovingBackward: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase/endednotmoving?language=objc)
     #[doc(alias = "BESelectionTouchPhaseEndedNotMoving")]
     pub const EndedNotMoving: Self = Self(5);
 }
@@ -84,23 +66,18 @@ unsafe impl RefEncode for BESelectionTouchPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BESelectionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl BESelectionFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags/beselectionflagsnone?language=objc)
         #[doc(alias = "BESelectionFlagsNone")]
         const SelectionFlagsNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags/wordisneartap?language=objc)
         #[doc(alias = "BEWordIsNearTap")]
         const WordIsNearTap = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags/selectionflipped?language=objc)
         #[doc(alias = "BESelectionFlipped")]
         const SelectionFlipped = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags/phraseboundarychanged?language=objc)
         #[doc(alias = "BEPhraseBoundaryChanged")]
         const PhraseBoundaryChanged = 1<<2;
     }

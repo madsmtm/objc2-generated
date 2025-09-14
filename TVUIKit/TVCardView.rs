@@ -13,11 +13,20 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A view that responds to focus interaction with a motion effect it applies to all of its subviews.
+    ///
+    /// ## Overview
+    ///
+    /// A `TVCardView` object is a specialized version of [`TVLockupView`](https://developer.apple.com/documentation/tvuikit/tvlockupview) that presents an arbitrarily composed view hierarchy in a floating content view. You add custom subviews to the [`contentView`](https://developer.apple.com/documentation/tvuikit/tvlockupview/contentview) property, and the subviews act as a single unit in regard to selection and motion effects. You typically use a TVCardView to display ratings and reviews for a media item. The following figure shows a rating card that consists of two label views (the rating and related information) and an image view (the stars).
+    ///
+    ///
+    /// ![A darkened screen with a highlighted box in the upper left corner containing the rating for a media item.](https://docs-assets.developer.apple.com/published/9e3a591eedd92d1c844d51b7ed6b4f51/media-3016830%402x.png)
+    ///
+    ///
+    ///
     /// TVCardView is a floating style lockup view.
     ///
     /// Clients should add custom subviews to .contentView, which floats and responds to focus interaction with a motion effect that applies to all subviews as one unit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvcardview?language=objc)
     #[unsafe(super(TVLockupView, UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVLockupView")]

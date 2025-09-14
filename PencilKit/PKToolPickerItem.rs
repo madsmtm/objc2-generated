@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for an item in the tool picker.
     /// A user interface for a tool item in PKToolPicker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktoolpickeritem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKToolPickerItem;

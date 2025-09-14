@@ -9,7 +9,21 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresource?language=objc)
+    /// An underlying data resource associated with a photo, video, or Live Photo asset in the Photos library.
+    ///
+    /// ## Overview
+    ///
+    /// Each [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) object references one or more resources. Use these objects to work with those resources directly, like when backing up or restoring assets.
+    ///
+    /// - A photo asset can contain both JPEG and RAW files representing the same photo.
+    ///
+    /// - A Live Photo asset contains both still photo and video resources.
+    ///
+    /// - An edited asset contains resources representing asset content before and after the edit, as well as a resource corresponding to the [`PHAdjustmentData`](https://developer.apple.com/documentation/photos/phadjustmentdata) object that describes the edit.
+    ///
+    /// To work with the data contained in an asset resource, fetch it using the [`PHAssetResourceManager`](https://developer.apple.com/documentation/photos/phassetresourcemanager) class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHAssetResource;

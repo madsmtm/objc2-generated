@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that indicate the status of a validator.
 /// These constants are returned by the AVCaptionConversionValidator status property to indicate the progress of a validation operation.
 ///
 ///
@@ -19,23 +20,21 @@ use crate::*;
 /// Indicates that the validation operation has been completed.
 ///
 /// Indicates that the validation operation was stopped prior to completion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionConversionValidatorStatus(pub NSInteger);
 impl AVCaptionConversionValidatorStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/unknown?language=objc)
+    /// A status that indicates the system didn’t initialize the validation operation.
     #[doc(alias = "AVCaptionConversionValidatorStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/validating?language=objc)
+    /// A status that indicates the system validation is in progress.
     #[doc(alias = "AVCaptionConversionValidatorStatusValidating")]
     pub const Validating: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/completed?language=objc)
+    /// A status that indicates the system validation is complete.
     #[doc(alias = "AVCaptionConversionValidatorStatusCompleted")]
     pub const Completed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum/stopped?language=objc)
+    /// A status that indicates the system validation stopped prior to completion.
     #[doc(alias = "AVCaptionConversionValidatorStatusStopped")]
     pub const Stopped: Self = Self(3);
 }
@@ -49,9 +48,8 @@ unsafe impl RefEncode for AVCaptionConversionValidatorStatus {
 }
 
 extern_class!(
+    /// An object that validates captions for a conversion operation.
     /// Performs a validation of captions for a conversion operation and warns about problems that are encountered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionValidator;
@@ -179,25 +177,22 @@ impl AVCaptionConversionValidator {
 }
 
 /// The type of a caption conversion warning.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning/warningtype-swift.struct?language=objc)
+/// The type of a caption conversion warning.
 // NS_TYPED_ENUM
 pub type AVCaptionConversionWarningType = NSString;
 
 extern "C" {
+    /// A type that indicates one or more captions exceed the media data capacity for media of the type and subtype that the conversion settings specify.
     /// Indicates that one or more captions in the validator's captions array exceed the capacity for media data of the media type and subtype specified by the conversion settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning/warningtype-swift.struct/excessmediadata?language=objc)
     pub static AVCaptionConversionWarningTypeExcessMediaData:
         &'static AVCaptionConversionWarningType;
 }
 
 extern_class!(
+    /// An object that represents a conversion warning produced by a validator.
     /// Reports a specific problem encountered during the validation of a caption conversion.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionWarning;
@@ -242,26 +237,23 @@ impl AVCaptionConversionWarning {
     );
 }
 
+/// Constants that indicate an adjustment type.
 /// The type of a caption conversion adjustment.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment/adjustmenttype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionConversionAdjustmentType = NSString;
 
 extern "C" {
     /// Indicates a timing adjustment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment/adjustmenttype-swift.struct/timerange?language=objc)
+    /// Indicates a timing adjustment.
     pub static AVCaptionConversionAdjustmentTypeTimeRange:
         &'static AVCaptionConversionAdjustmentType;
 }
 
 extern_class!(
+    /// An object that describes an adjustment to correct a problem found during validation of a caption conversion.
     /// Describes an adjustment that can be performed in order to correct a problem encountered during the validation of a caption conversion.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionAdjustment;
@@ -293,11 +285,10 @@ impl AVCaptionConversionAdjustment {
 }
 
 extern_class!(
+    /// An object that describes an adjustment to the time range of one or more captions.
     /// Describes an adjustment to the timeRange of one or more captions.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversiontimerangeadjustment?language=objc)
     #[unsafe(super(AVCaptionConversionAdjustment, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionConversionTimeRangeAdjustment;

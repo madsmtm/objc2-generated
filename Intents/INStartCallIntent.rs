@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintent?language=objc)
+    /// A request to start an audio or video call with one or more users.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates [`INStartCallIntent`](https://developer.apple.com/documentation/intents/instartcallintent) objects when the user wants to place a call using your app. A call intent object contains either the users to call or redialing information. It’s up to you to match the information in this object to contacts in your app and initiate the resulting call.
+    ///
+    /// Your Intents extension receives this intent when the user tries to initiate a call from the Siri interface. If your app supports CallKit, you may also receive this intent when the user tries to initiate a call from system interfaces, such as the Recents tab of the Phone app.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INStartCallIntentHandling`](https://developer.apple.com/documentation/intents/instartcallintenthandling) protocol. Your handler should confirm the request and create an [`INStartCallIntentResponse`](https://developer.apple.com/documentation/intents/instartcallintentresponse) object that indicates it’s possible to begin the call. Don’t try to initiate calls directly from your Intents extension. Instead, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that your app must then use to initiate the call. SiriKit places an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object in the user activity object with this intent. For calls initiated through Siri, the interaction object also includes the response provided by your Intents extension.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -110,11 +125,18 @@ impl INStartCallIntent {
 }
 
 extern_protocol!(
+    /// An interface that handles requests to start audio and video calls.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INStartCallIntentHandling`](https://developer.apple.com/documentation/intents/instartcallintenthandling) protocol to resolve, confirm, and handle requests to start an audio or video call with the designated users. Adopt this protocol in an object of your Intents extension that’s capable of validating the call information. Your Intents extension shouldn’t try to initiate the call directly. Instead, a successful response involves asking Siri to launch your app to begin the call.
+    ///
+    /// Siri delivers an [`INStartCallIntent`](https://developer.apple.com/documentation/intents/instartcallintent) object to your handler when the user asks to initiate a call using your app. The provided intent object contains information about who the user wants to call. Use the methods of this protocol to resolve the list of callable contacts and to validate that your app can place the call successfully.
+    ///
+    ///
     /// Protocol to declare support for handling an INStartCallIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintenthandling?language=objc)
     pub unsafe trait INStartCallIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

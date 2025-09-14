@@ -10,7 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller?language=objc)
+    /// An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.
+    ///
+    /// ## Overview
+    ///
+    /// Because a title bar accessory view controller is contained in a visual effect view (that is, [`NSVisualEffectView`](https://developer.apple.com/documentation/appkit/nsvisualeffectview)), it automatically handles the blur behind the accessory view and the size and location changes for the content of the view when a window goes in and out of full screen mode. If you’re currently using [`NSToolbar`](https://developer.apple.com/documentation/appkit/nstoolbar) fullscreen accessory APIs, such as [`fullScreenAccessoryView`](https://developer.apple.com/documentation/appkit/nstoolbar/fullscreenaccessoryview), you should use [`NSTitlebarAccessoryViewController`](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller) APIs instead.
+    ///
+    /// Typically, you create an `NSTitlebarAccessoryViewController` object, give it your custom view, set the [`layoutAttribute`](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute) property to ensure that it displays correctly in relation to the title bar, and add the view controller to your window. For more information about [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) methods you can use to add and remove a title bar accessory view controller, see Managing Title Bars.
+    ///
+    /// Don’t override the `view` property in your `NSTitlebarAccessoryViewController` subclass. Instead, you can override [`loadView`](https://developer.apple.com/documentation/appkit/nsviewcontroller/loadview()), and set the `view` property in that method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  `NSTitlebarAccessoryViewController` observes the view’s frame for changes. Depending on the value of [`layoutAttribute`](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute), you can change either the height or the width of the view. Specifically, you can change the view’s height when [`layoutAttribute`](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute) is [`NSLayoutAttributeBottom`](https://developer.apple.com/documentation/uikit/nslayoutconstraint/attribute/bottom), and you can change the view’s width when the [`layoutAttribute`](https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute) is [`NSLayoutAttributeRight`](https://developer.apple.com/documentation/uikit/nslayoutconstraint/attribute/right) or [`NSLayoutAttributeLeft`](https://developer.apple.com/documentation/uikit/nslayoutconstraint/attribute/left). The remaining size direction is automatically set to the maximum size as required for the window.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSViewController"))]

@@ -13,9 +13,14 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// A model representing the camera and its parameters.
+    /// Information about the camera position and imaging characteristics for a given frame.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcamera?language=objc)
+    /// ## Overview
+    ///
+    /// You get camera information from the [`camera`](https://developer.apple.com/documentation/arkit/arframe/camera) property of each [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) ARKit delivers.
+    ///
+    ///
+    /// A model representing the camera and its parameters.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

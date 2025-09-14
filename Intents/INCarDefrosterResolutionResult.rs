@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incardefrosterresolutionresult?language=objc)
+    /// A resolution result for which defroster to use in a car.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INCarDefrosterResolutionResult`](https://developer.apple.com/documentation/intents/incardefrosterresolutionresult) object is what you return when resolving parameters containing a [`INCarDefroster`](https://developer.apple.com/documentation/intents/incardefroster) value. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

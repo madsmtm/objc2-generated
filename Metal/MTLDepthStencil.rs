@@ -7,34 +7,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction?language=objc)
+/// Options used to specify how a sample compare operation should be performed on a depth texture.
+///
+/// ## Overview
+///
+/// Whenever the comparison test passes, the incoming fragment is compared to the stored data at the specified location.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompareFunction(pub NSUInteger);
 impl MTLCompareFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/never?language=objc)
+    /// A new value never passes the comparison test.
     #[doc(alias = "MTLCompareFunctionNever")]
     pub const Never: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/less?language=objc)
+    /// A new value passes the comparison test if it is less than the existing value.
     #[doc(alias = "MTLCompareFunctionLess")]
     pub const Less: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/equal?language=objc)
+    /// A new value passes the comparison test if it is equal to the existing value.
     #[doc(alias = "MTLCompareFunctionEqual")]
     pub const Equal: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/lessequal?language=objc)
+    /// A new value passes the comparison test if it is less than or equal to the existing value.
     #[doc(alias = "MTLCompareFunctionLessEqual")]
     pub const LessEqual: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/greater?language=objc)
+    /// A new value passes the comparison test if it is greater than the existing value.
     #[doc(alias = "MTLCompareFunctionGreater")]
     pub const Greater: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/notequal?language=objc)
+    /// A new value passes the comparison test if it is not equal to the existing value.
     #[doc(alias = "MTLCompareFunctionNotEqual")]
     pub const NotEqual: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/greaterequal?language=objc)
+    /// A new value passes the comparison test if it is greater than or equal to the existing value.
     #[doc(alias = "MTLCompareFunctionGreaterEqual")]
     pub const GreaterEqual: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction/always?language=objc)
+    /// A new value always passes the comparison test.
     #[doc(alias = "MTLCompareFunctionAlways")]
     pub const Always: Self = Self(7);
 }
@@ -47,34 +53,34 @@ unsafe impl RefEncode for MTLCompareFunction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation?language=objc)
+/// The operation performed on a currently stored stencil value when a comparison test passes or fails.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStencilOperation(pub NSUInteger);
 impl MTLStencilOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/keep?language=objc)
+    /// Keep the current stencil value.
     #[doc(alias = "MTLStencilOperationKeep")]
     pub const Keep: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/zero?language=objc)
+    /// Set the stencil value to zero.
     #[doc(alias = "MTLStencilOperationZero")]
     pub const Zero: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/replace?language=objc)
+    /// Replace the stencil value with the stencil reference value, which is set by the [`setStencilReferenceValue:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/setstencilreferencevalue(_:)) method of [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder).
     #[doc(alias = "MTLStencilOperationReplace")]
     pub const Replace: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/incrementclamp?language=objc)
+    /// If the current stencil value is not the maximum representable value, increase the stencil value by one. Otherwise, if the current stencil value is the maximum representable value, do not change the stencil value.
     #[doc(alias = "MTLStencilOperationIncrementClamp")]
     pub const IncrementClamp: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/decrementclamp?language=objc)
+    /// If the current stencil value is not zero, decrease the stencil value by one. Otherwise, if the current stencil value is zero, do not change the stencil value.
     #[doc(alias = "MTLStencilOperationDecrementClamp")]
     pub const DecrementClamp: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/invert?language=objc)
+    /// Perform a logical bitwise invert operation on the current stencil value.
     #[doc(alias = "MTLStencilOperationInvert")]
     pub const Invert: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/incrementwrap?language=objc)
+    /// If the current stencil value is not the maximum representable value, increase the stencil value by one. Otherwise, if the current stencil value is the maximum representable value, set the stencil value to zero.
     #[doc(alias = "MTLStencilOperationIncrementWrap")]
     pub const IncrementWrap: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation/decrementwrap?language=objc)
+    /// If the current stencil value is not zero, decrease the stencil value by one. Otherwise, if the current stencil value is zero, set the stencil value to the maximum representable value.
     #[doc(alias = "MTLStencilOperationDecrementWrap")]
     pub const DecrementWrap: Self = Self(7);
 }
@@ -88,7 +94,15 @@ unsafe impl RefEncode for MTLStencilOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstencildescriptor?language=objc)
+    /// An object that defines the front-facing or back-facing stencil operations of a depth and stencil state object.
+    ///
+    /// ## Overview
+    ///
+    /// A stencil test is a comparison between a masked reference value and a masked value stored in a stencil attachment. (A value is _masked_ by performing a logical AND operation on it with the [`readMask`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/readmask) value.) The [`MTLStencilDescriptor`](https://developer.apple.com/documentation/metal/mtlstencildescriptor) object defines how to update the contents of the stencil attachment, based on the results of the stencil test and the depth test.
+    ///
+    /// The [`stencilCompareFunction`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/stencilcomparefunction) property defines the stencil test. The [`stencilFailureOperation`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/stencilfailureoperation), [`depthFailureOperation`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/depthfailureoperation), and [`depthStencilPassOperation`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/depthstencilpassoperation) properties specify what to do to a stencil value stored in the stencil attachment for three different test outcomes: if the stencil test fails, if the stencil test passes and the depth test fails, or if both stencil and depth tests succeed, respectively. [`writeMask`](https://developer.apple.com/documentation/metal/mtlstencildescriptor/writemask) determines which stencil bits can be modified as the result of a stencil operation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLStencilDescriptor;
@@ -191,7 +205,19 @@ impl DefaultRetained for MTLStencilDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor?language=objc)
+    /// An instance that configures new [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instances.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLDepthStencilDescriptor`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor) instance is used to define a specific configuration of the depth and stencil stages of a rendering pipeline. To create an [`MTLDepthStencilDescriptor`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor) instance, use standard allocation and initialization techniques.
+    ///
+    /// To enable writing the depth value to a depth attachment, set the depthWriteEnabled property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The depthCompareFunction property specifies how the depth test is performed. If a fragment’s depth value fails the depth test, the fragment is discarded. [`MTLCompareFunctionLess`](https://developer.apple.com/documentation/metal/mtlcomparefunction/less) is a commonly used value for [`depthCompareFunction`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/depthcomparefunction), because fragment values that are farther away from the viewer than the pixel depth value (a previously written fragment) fail the depth test and are considered occluded by the earlier depth value.
+    ///
+    /// The [`frontFaceStencil`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/frontfacestencil) and [`backFaceStencil`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor/backfacestencil) properties define two independent stencil descriptors: one for front-facing primitives and the other for back-facing primitives, respectively. Both properties can be set to the same MTLStencilDescriptor instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLDepthStencilDescriptor;
@@ -286,7 +312,21 @@ impl DefaultRetained for MTLDepthStencilDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthstencilstate?language=objc)
+    /// A depth and stencil state instance that specifies the depth and stencil configuration and operations used in a render pass.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) protocol defines the interface for a lightweight instance used to encode how a graphics rendering pass should perform depth and stencil operations. The [`MTLRenderCommandEncoder`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder) uses an [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instance to set the depth and stencil state for a rendering pass.
+    ///
+    /// Do not use standard allocation and initialization techniques to create an [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instance. To create an [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instance:
+    ///
+    /// 1. Create an [`MTLDepthStencilDescriptor`](https://developer.apple.com/documentation/metal/mtldepthstencildescriptor) instance that defines the operations you want the rendering pass to use.
+    ///
+    /// 2. Then call the [`newDepthStencilStateWithDescriptor:`](https://developer.apple.com/documentation/metal/mtldevice/makedepthstencilstate(descriptor:)) method of [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) to create an [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instance.
+    ///
+    /// Typically, you create [`MTLDepthStencilState`](https://developer.apple.com/documentation/metal/mtldepthstencilstate) instances when your app is first initialized and then reuse them throughout the lifetime of your app.
+    ///
+    ///
     pub unsafe trait MTLDepthStencilState: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]

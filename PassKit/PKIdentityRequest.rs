@@ -8,9 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Request for information from an identity document stored as a Wallet pass.
+    /// An object that represents a request for identity information from a Wallet pass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityrequest?language=objc)
+    /// ## Overview
+    ///
+    /// A request consists of a [`PKIdentityDocumentDescriptor`](https://developer.apple.com/documentation/passkit/pkidentitydocumentdescriptor), a [`nonce`](https://developer.apple.com/documentation/passkit/pkidentityrequest/nonce), and a [`merchantIdentifier`](https://developer.apple.com/documentation/passkit/pkidentityrequest/merchantidentifier). A [`PKIdentityDocumentDescriptor`](https://developer.apple.com/documentation/passkit/pkidentitydocumentdescriptor) describes the document an app requests.
+    ///
+    /// You use a [`nonce`](https://developer.apple.com/documentation/passkit/pkidentityrequest/nonce) to verify a request is only made once. It’s up to the app and its server to generate the [`nonce`](https://developer.apple.com/documentation/passkit/pkidentityrequest/nonce) before making the request, and to verify the [`nonce`](https://developer.apple.com/documentation/passkit/pkidentityrequest/nonce) when the server receives the response.
+    ///
+    /// The [`merchantIdentifier`](https://developer.apple.com/documentation/passkit/pkidentityrequest/merchantidentifier) maps to an identifier you configure in the developer portal. Payment and identitity requests share the same identifier, so it’s important that the name of the property matches the equivalent [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest), if necessary.
+    ///
+    ///
+    /// Request for information from an identity document stored as a Wallet pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityRequest;

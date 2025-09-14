@@ -10,56 +10,46 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The flattening mode for returned indices with max-pooling.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode?language=objc)
+/// The flattening mode for returned indices with max-pooling.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphPoolingReturnIndicesMode(pub NSUInteger);
 impl MPSGraphPoolingReturnIndicesMode {
     /// No indices returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/none?language=objc)
+    /// No indices returned.
     #[doc(alias = "MPSGraphPoolingReturnIndicesNone")]
     pub const None: Self = Self(0);
     /// Returns indices flattened in inner most (last) dimension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten1d?language=objc)
+    /// Returns indices flattened in inner most (last) dimension.
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten1D")]
     pub const GlobalFlatten1D: Self = Self(1);
     /// Returns indices flattened in 2 innermost dimensions. eg: HW in NCHW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten2d?language=objc)
+    /// Returns indices flattened in 2 innermost dimensions. eg: HW in NCHW.
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten2D")]
     pub const GlobalFlatten2D: Self = Self(2);
     /// Returns indices flattened in 3 innernost dimensions. eg: HWC in NHWC.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten3d?language=objc)
+    /// Returns indices flattened in 3 innernost dimensions. eg: HWC in NHWC.
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten3D")]
     pub const GlobalFlatten3D: Self = Self(3);
     /// Returns indices flattened in 4 innermost dimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/globalflatten4d?language=objc)
+    /// Returns indices flattened in 4 innermost dimensions.
     #[doc(alias = "MPSGraphPoolingReturnIndicesGlobalFlatten4D")]
     pub const GlobalFlatten4D: Self = Self(4);
     /// Returns indices within pooling window, flattened in inner most dimension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten1d?language=objc)
+    /// Returns indices within pooling window, flattened in inner most dimension.
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten1D")]
     pub const LocalFlatten1D: Self = Self(5);
     /// Returns indices within pooling window, flattened in 2 innermost dimensions. eg: HW in NCHW.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten2d?language=objc)
+    /// Returns indices within pooling window, flattened in 2 innermost dimensions. eg: HW in NCHW.
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten2D")]
     pub const LocalFlatten2D: Self = Self(6);
     /// Returns indices within pooling window, flattened in 3 innernost dimensions. eg: HWC in NHWC.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten3d?language=objc)
+    /// Returns indices within pooling window, flattened in 3 innernost dimensions. eg: HWC in NHWC.
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten3D")]
     pub const LocalFlatten3D: Self = Self(7);
     /// Returns indices within pooling window, flattened in 4 innermost dimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpoolingreturnindicesmode/localflatten4d?language=objc)
+    /// Returns indices within pooling window, flattened in 4 innermost dimensions.
     #[doc(alias = "MPSGraphPoolingReturnIndicesLocalFlatten4D")]
     pub const LocalFlatten4D: Self = Self(8);
 }
@@ -75,6 +65,27 @@ unsafe impl RefEncode for MPSGraphPoolingReturnIndicesMode {
 extern_class!(
     /// The class that defines the parameters for a 2D pooling operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following methods:
+    ///
+    /// - [`maxPooling2DWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling2d(withsourcetensor:descriptor:name:))
+    ///
+    /// - [`maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling2dreturnindices(_:descriptor:name:))
+    ///
+    /// - [`maxPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling2dgradient(withgradienttensor:sourcetensor:descriptor:name:))
+    ///
+    /// - [`maxPooling2DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling2dgradient(withgradienttensor:indicestensor:outputshape:descriptor:name:))
+    ///
+    /// - [`maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling2dgradient(withgradienttensor:indicestensor:outputshapetensor:descriptor:name:))
+    ///
+    /// - [`avgPooling2DWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/avgpooling2d(withsourcetensor:descriptor:name:))
+    ///
+    /// - [`avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/avgpooling2dgradient(withgradienttensor:sourcetensor:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a 2D pooling operation.
+    ///
     /// Use this descriptor with the following methods:
     /// - ``MPSGraph/maxPooling2DWithSourceTensor:descriptor:name:``
     /// - ``MPSGraph/maxPooling2DReturnIndicesWithSourceTensor:descriptor:name:``
@@ -83,8 +94,6 @@ extern_class!(
     /// - ``MPSGraph/maxPooling2DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:``
     /// - ``MPSGraph/avgPooling2DWithSourceTensor:descriptor:name:``
     /// - ``MPSGraph/avgPooling2DGradientWithGradientTensor:sourceTensor:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling2dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]
@@ -396,6 +405,31 @@ impl MPSGraphPooling2DOpDescriptor {
 extern_class!(
     /// The class that defines the parameters for a 4D pooling operation.
     ///
+    /// ## Overview
+    ///
+    /// Use this descriptor with the following methods:
+    ///
+    /// - [`maxPooling4DWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling4d(_:descriptor:name:))
+    ///
+    /// - [`maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling4dreturnindices(_:descriptor:name:))
+    ///
+    /// - [`maxPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling4dgradient(_:source:descriptor:name:))
+    ///
+    /// - [`maxPooling4DGradientWithGradientTensor:indicesTensor:outputShape:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling4dgradient(withgradienttensor:indicestensor:outputshape:descriptor:name:))
+    ///
+    /// - [`maxPooling4DGradientWithGradientTensor:indicesTensor:outputShapeTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/maxpooling4dgradient(withgradienttensor:indicestensor:outputshapetensor:descriptor:name:))
+    ///
+    /// - [`avgPooling4DWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/avgpooling4d(_:descriptor:name:))
+    ///
+    /// - [`avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/avgpooling4dgradient(_:source:descriptor:name:))
+    ///
+    /// - [`L2NormPooling4DWithSourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/l2normpooling4d(_:descriptor:name:))
+    ///
+    /// - [`L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:`](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraph/l2normpooling4dgradient(_:source:descriptor:name:))
+    ///
+    ///
+    /// The class that defines the parameters for a 4D pooling operation.
+    ///
     /// Use this descriptor with the following methods:
     /// - ``MPSGraph/maxPooling4DWithSourceTensor:descriptor:name:``
     /// - ``MPSGraph/maxPooling4DReturnIndicesWithSourceTensor:descriptor:name:``
@@ -406,8 +440,6 @@ extern_class!(
     /// - ``MPSGraph/avgPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:``
     /// - ``MPSGraph/L2NormPooling4DWithSourceTensor:descriptor:name:``
     /// - ``MPSGraph/L2NormPooling4DGradientWithGradientTensor:sourceTensor:descriptor:name:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpooling4dopdescriptor?language=objc)
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

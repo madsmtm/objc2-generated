@@ -9,62 +9,87 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The execution states of the VM.
 /// Execution state of the virtual machine.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZVirtualMachineState(pub NSInteger);
 impl VZVirtualMachineState {
-    /// Initial state before the virtual machine is started.
+    /// The VM isn’t running.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopped?language=objc)
+    /// ## Discussion
+    ///
+    /// This state is the initial state of the virtual machine.
+    ///
+    ///
+    /// Initial state before the virtual machine is started.
     #[doc(alias = "VZVirtualMachineStateStopped")]
     pub const Stopped: Self = Self(0);
+    /// The VM is running.
     /// Running virtual machine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/running?language=objc)
     #[doc(alias = "VZVirtualMachineStateRunning")]
     pub const Running: Self = Self(1);
-    /// A started virtual machine is paused. This state can only be transitioned from VZVirtualMachineStatePausing.
+    /// The framework has paused a started VM.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/paused?language=objc)
+    /// ## Discussion
+    ///
+    /// The virtual machine can enter this state only from the [`VZVirtualMachineStatePausing`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/pausing) state.
+    ///
+    ///
+    /// A started virtual machine is paused. This state can only be transitioned from VZVirtualMachineStatePausing.
     #[doc(alias = "VZVirtualMachineStatePaused")]
     pub const Paused: Self = Self(2);
-    /// The virtual machine has encountered an internal error.
+    /// The VM encountered an unrecoverable error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/error?language=objc)
+    /// ## Discussion
+    ///
+    /// The VM encountered an unrecoverable error and the framework can no longer use the VM; you need to destroy the [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) object.
+    ///
+    ///
+    /// The virtual machine has encountered an internal error.
     #[doc(alias = "VZVirtualMachineStateError")]
     pub const Error: Self = Self(3);
+    /// The VM is configuring the hardware preparing to run.
     /// The virtual machine is configuring the hardware and starting.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/starting?language=objc)
     #[doc(alias = "VZVirtualMachineStateStarting")]
     pub const Starting: Self = Self(4);
-    /// The virtual machine is being paused. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStatePaused.
+    /// The VM is pausing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/pausing?language=objc)
+    /// ## Discussion
+    ///
+    /// This state is an intermediate state between the [`VZVirtualMachineStateRunning`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/running) and [`VZVirtualMachineStatePaused`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/paused) states.
+    ///
+    ///
+    /// The virtual machine is being paused. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStatePaused.
     #[doc(alias = "VZVirtualMachineStatePausing")]
     pub const Pausing: Self = Self(5);
-    /// The virtual machine is being resumed. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStateRunning.
+    /// The VM is resuming from a paused state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/resuming?language=objc)
+    /// ## Discussion
+    ///
+    /// This state is an intermediate state between the [`VZVirtualMachineStatePaused`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/paused) and [`VZVirtualMachineStateRunning`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/running) states.
+    ///
+    ///
+    /// The virtual machine is being resumed. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStateRunning.
     #[doc(alias = "VZVirtualMachineStateResuming")]
     pub const Resuming: Self = Self(6);
-    /// The virtual machine is being stopped. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStateStop.
+    /// The VM is stopping.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopping?language=objc)
+    /// ## Discussion
+    ///
+    /// This is the intermediate state between [`VZVirtualMachineStateRunning`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/running) and [`VZVirtualMachineStateStopped`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/stopped).
+    ///
+    ///
+    /// The virtual machine is being stopped. This is the intermediate state between VZVirtualMachineStateRunning and VZVirtualMachineStateStop.
     #[doc(alias = "VZVirtualMachineStateStopping")]
     pub const Stopping: Self = Self(7);
+    /// The VM is saving its state.
     /// The virtual machine is being saved. This is the intermediate state between VZVirtualMachineStatePaused and VZVirtualMachineStatePaused.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/saving?language=objc)
     #[doc(alias = "VZVirtualMachineStateSaving")]
     pub const Saving: Self = Self(8);
+    /// The VM is restoring from a saved state.
     /// The virtual machine is being restored. This is the intermediate state between VZVirtualMachineStateStopped and either VZVirtualMachineStatePaused on success or VZVirtualMachineStateStopped on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/state-swift.enum/restoring?language=objc)
     #[doc(alias = "VZVirtualMachineStateRestoring")]
     pub const Restoring: Self = Self(9);
 }
@@ -78,6 +103,23 @@ unsafe impl RefEncode for VZVirtualMachineState {
 }
 
 extern_class!(
+    /// An object that manages the overall state and configuration of your VM.
+    ///
+    /// ## Overview
+    ///
+    /// A [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) object emulates a complete hardware machine of the same architecture as the underlying Mac computer. Use the VM to execute a guest operating system and any other apps you install. The VM manages the resources that the guest operating system uses, providing access to some hardware resources while emulating others.
+    ///
+    /// Create and configure a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object with details about how you want to configure your VM, and use that object to create the [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) object. After creating the VM, call the [`start(completionHandler:)`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/start(completionhandler:)) method (Swift)  or the [`startWithCompletionHandler:`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/start()) method (Objective-C) to start the VM and boot the guest operating system.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The creation of a virtual machine requires your app to have the [`com.apple.security.virtualization`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.virtualization) entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// VZVirtualMachine represents the entire state of a single virtual machine.
     ///
     /// A Virtual Machine is the emulation of a complete hardware machine of the same architecture as the real hardware machine.
@@ -95,8 +137,6 @@ extern_class!(
     /// See also: VZVirtualMachineConfiguration
     ///
     /// See also: VZMacOSInstaller
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtualMachine;

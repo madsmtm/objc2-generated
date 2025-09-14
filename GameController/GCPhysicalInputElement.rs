@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties of physical input elements.
     /// The
     /// `GCPhysicalInputElement`protocol is a base protocol for specific types
     /// of elements that represent controls on a device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelement?language=objc)
     pub unsafe trait GCPhysicalInputElement: NSObjectProtocol {
         /// The set of aliases that can be used to access this element with keyed subscript
         /// notation.
@@ -39,11 +38,10 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A collection of physical input elements.
     /// An instance of
     /// `GCPhysicalInputElementCollection`contains the collection of
     /// input elements found in a device's physical input profile.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelementcollection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputElementCollection<

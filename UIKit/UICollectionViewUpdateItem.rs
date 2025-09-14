@@ -6,25 +6,50 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action?language=objc)
+/// Constants indicating the type of action being performed on an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionUpdateAction(pub NSInteger);
 impl UICollectionUpdateAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/insert?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Insert the item into the collection view.
+    ///
+    ///
     #[doc(alias = "UICollectionUpdateActionInsert")]
     pub const Insert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/delete?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Remove the item from the collection view.
+    ///
+    ///
     #[doc(alias = "UICollectionUpdateActionDelete")]
     pub const Delete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/reload?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Reload the item, which consists of deleting and then inserting the item.
+    ///
+    ///
     #[doc(alias = "UICollectionUpdateActionReload")]
     pub const Reload: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/move?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Move the item from its current location to a new location.
+    ///
+    ///
     #[doc(alias = "UICollectionUpdateActionMove")]
     pub const Move: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem/action/none?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Take no action on the item.
+    ///
+    ///
     #[doc(alias = "UICollectionUpdateActionNone")]
     pub const None: Self = Self(4);
 }
@@ -38,7 +63,13 @@ unsafe impl RefEncode for UICollectionUpdateAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewupdateitem?language=objc)
+    /// An object that describes a single change to make to an item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. When updating its content, the collection view object creates them and passes them to the layout object’s [`prepareForCollectionViewUpdates:`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout/prepare(forcollectionviewupdates:)) method, which can use them to prepare the layout object for the upcoming changes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

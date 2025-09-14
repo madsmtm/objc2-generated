@@ -6,28 +6,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode?language=objc)
+/// A constant that indicates your app’s ability to handle an intent to share the user’s focus status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INShareFocusStatusIntentResponseCode(pub NSInteger);
 impl INShareFocusStatusIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/unspecified?language=objc)
+    /// An unspecified response code.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/ready?language=objc)
+    /// Your intent handler is ready to handle the intent.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/inprogress?language=objc)
+    /// Your intent handler is handling the intent, but it may take some time.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/success?language=objc)
+    /// Your intent handler successfully updated the user’s communication status.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/failure?language=objc)
+    /// Your intent handler is unable to handle the intent.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user needs to launch your app to update their focus status.
     #[doc(alias = "INShareFocusStatusIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -41,7 +41,7 @@ unsafe impl RefEncode for INShareFocusStatusIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insharefocusstatusintentresponse?language=objc)
+    /// Your app’s response to an intent that shares the user’s focus status.
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

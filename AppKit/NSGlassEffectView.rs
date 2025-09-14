@@ -9,20 +9,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlassEffectViewStyle(pub NSInteger);
 impl NSGlassEffectViewStyle {
     /// Standard glass effect style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.enum/regular?language=objc)
+    /// Standard glass effect style.
     #[doc(alias = "NSGlassEffectViewStyleRegular")]
     pub const Regular: Self = Self(0);
     /// Clear glass effect style.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.enum/clear?language=objc)
+    /// Clear glass effect style.
     #[doc(alias = "NSGlassEffectViewStyleClear")]
     pub const Clear: Self = Self(1);
 }
@@ -37,8 +34,7 @@ unsafe impl RefEncode for NSGlassEffectViewStyle {
 
 extern_class!(
     /// A view that embeds its content view in a dynamic glass effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectview?language=objc)
+    /// A view that embeds its content view in a dynamic glass effect.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -193,9 +189,20 @@ impl NSGlassEffectView {
 extern_class!(
     /// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
     ///
-    /// - Tip: Using a glass effect container view can improve performance by reducing the number of passes required to render similar glass effect views.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglasseffectcontainerview?language=objc)
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    /// Using a glass effect container view can improve performance by reducing the number of passes required to render similar glass effect views.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A view that efficiently merges descendant glass effect views together when they are within a specified proximity to each other.
+    ///
+    /// - Tip: Using a glass effect container view can improve performance by reducing the number of passes required to render similar glass effect views.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

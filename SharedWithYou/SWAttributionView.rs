@@ -12,24 +12,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The context for the content that influences the ranking of this view’s highlight.
+///
+/// ## Overview
+///
+/// Set the appropriate display context on [`SWAttributionView`](https://developer.apple.com/documentation/sharedwithyou/swattributionview) before the system adds the view to a window. This informs the system about how the user is consuming the attributed content, and influences future relevancy ranking of the [`SWHighlight`](https://developer.apple.com/documentation/sharedwithyou/swhighlight) for this view.
+///
+///
 /// The context for the content being displayed; influences future ranking of this view's SWHighlight
 ///
 /// Set the appropriate display context on SWAttributionView before it is added to a window. This informs the system about how the user is consuming the attributed content, and influences future relevancy ranking of the SWHighlight for this view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewDisplayContext(pub NSInteger);
 impl SWAttributionViewDisplayContext {
-    /// The default context. Indicates that the attributed content shown along with this view is being offered to the user for consumption
+    /// Indicates that the system is offering the attributed content shown along with this view to the user for consumption.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum/summary?language=objc)
+    /// ## Discussion
+    ///
+    /// The is the default value for [`displayContext`](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.property).
+    ///
+    ///
+    /// The default context. Indicates that the attributed content shown along with this view is being offered to the user for consumption
     #[doc(alias = "SWAttributionViewDisplayContextSummary")]
     pub const Summary: Self = Self(0);
+    /// Indicates that the attributed content shown along with this view is being actively consumed by the user.
     /// Indicates that the attributed content shown along with this view is being actively consumed by the user
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum/detail?language=objc)
     #[doc(alias = "SWAttributionViewDisplayContextDetail")]
     pub const Detail: Self = Self(1);
 }
@@ -42,32 +51,27 @@ unsafe impl RefEncode for SWAttributionViewDisplayContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The horizontal alignment of attribution view’s contents.
 /// The horizontal alignment of SWAttributionView's contents
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewHorizontalAlignment(pub NSInteger);
 impl SWAttributionViewHorizontalAlignment {
+    /// Allows the system to choose the horizontal alignment.
     /// The default horizontal alignment, to be chosen by SWAttributionView
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/default?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentDefault")]
     pub const Default: Self = Self(0);
+    /// Aligns horizontally with the leading edge of the view.
     /// Horizontally align with the leading edge of the view (depends on the user interface layout direction)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/leading?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentLeading")]
     pub const Leading: Self = Self(1);
+    /// Aligns horizontally with the center of the view.
     /// Horizontally align with the center of the view
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/center?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// Aligns horizontally with the trailing edge of the view.
     /// Horizontally align with the trailing edge of the view (depends on the user interface layout direction)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum/trailing?language=objc)
     #[doc(alias = "SWAttributionViewHorizontalAlignmentTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -80,27 +84,23 @@ unsafe impl RefEncode for SWAttributionViewHorizontalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The background styling of the attribution view’s contents.
 /// The background styling of SWAttributionView's contents
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewBackgroundStyle(pub NSInteger);
 impl SWAttributionViewBackgroundStyle {
+    /// The default background style the system chooses.
     /// The default background style, to be chosen by SWAttributionView
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/default?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleDefault")]
     pub const Default: Self = Self(0);
+    /// A non-material background color for the view’s contents, best when placed over monochrome backgrounds.
     /// A non-material background color for the view's contents, best when placed over monochrome backgrounds
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/color?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleColor")]
     pub const Color: Self = Self(1);
+    /// A material background blur for the view’s contents, best when placed over multicolored backgrounds.
     /// A material background blur for the view's contents, best when placed over multicolored backgrounds
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum/material?language=objc)
     #[doc(alias = "SWAttributionViewBackgroundStyleMaterial")]
     pub const Material: Self = Self(2);
 }
@@ -114,7 +114,17 @@ unsafe impl RefEncode for SWAttributionViewBackgroundStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview?language=objc)
+    /// A view that displays the sender who shares a highlight and provides related actions.
+    ///
+    /// ## Overview
+    ///
+    /// The `SWAttributionView` also allows users to get back to the conversation about the [`SWHighlight`](https://developer.apple.com/documentation/sharedwithyou/swhighlight) content, and other related actions using a [`highlightMenu`](https://developer.apple.com/documentation/sharedwithyou/swattributionview/highlightmenu).
+    ///
+    /// Place an `SWAttributionView` next to the content represented by its `SWHighlight`. The `SWAttributionView` displays the names and avatars within the provided horizontal space.
+    ///
+    /// You can constrain this view’s width anchor or set its frame width to control the maximum width of its contents after which truncation may occur. Don’t constrain the view’s height, as the height is dependent on the [`preferredContentSizeCategory`](https://developer.apple.com/documentation/uikit/uiapplication/preferredcontentsizecategory), and the resulting font size. To provide enough vertical space around this view, reference its [`heightAnchor`](https://developer.apple.com/documentation/uikit/uiview/heightanchor) when using Auto Layout, or its [`intrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/intrinsiccontentsize) when using manual layout.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior/mode-swift.enum?language=objc)
+/// The type of force for the push behavior.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPushBehaviorMode(pub NSInteger);
 impl UIPushBehaviorMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior/mode-swift.enum/continuous?language=objc)
+    /// Option for continuous force.
     #[doc(alias = "UIPushBehaviorModeContinuous")]
     pub const Continuous: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior/mode-swift.enum/instantaneous?language=objc)
+    /// Option for instantaneous force.
     #[doc(alias = "UIPushBehaviorModeInstantaneous")]
     pub const Instantaneous: Self = Self(1);
 }
@@ -32,7 +32,31 @@ unsafe impl RefEncode for UIPushBehaviorMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipushbehavior?language=objc)
+    /// A behavior that applies a continuous or instantaneous force to one or more dynamic items, causing those items to change position accordingly.
+    ///
+    /// ## Overview
+    ///
+    /// A _dynamic item_ is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol starting in iOS 7.0. You can use a custom object as a dynamic item for such purposes as reacting to rotation or position changes computed by a dynamic animator—an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class.
+    ///
+    /// The default magnitude of a push behavior’s force vector is `nil`, equivalent to no force. A continuous force vector with a magnitude of `1.0`, applied to a 100 point x 100 point view whose density value is `1.0`, results in view acceleration of 100 points / second² in the direction of the vector; this value is also known as the UIKit Newton.
+    ///
+    /// You express a push behavior’s force vector in terms of magnitude ([`magnitude`](https://developer.apple.com/documentation/uikit/uipushbehavior/magnitude)) and radian angle ([`angle`](https://developer.apple.com/documentation/uikit/uipushbehavior/angle)). Instead of using radian angle, you can equivalently express direction using _x_ and _y_ components by using the [`pushDirection`](https://developer.apple.com/documentation/uikit/uipushbehavior/pushdirection) property. Whichever approach you use, the alternate, equivalent values update automatically.
+    ///
+    /// For each dynamic item that you associate with a push, the force is applied at the item center or at a specified offset from the center in item-relative coordinates.
+    ///
+    /// To use a push behavior with a dynamic item, perform these two steps:
+    ///
+    /// 1. Associate the item with the behavior using the [`addItem:`](https://developer.apple.com/documentation/uikit/uipushbehavior/additem(_:)) method, or initialize a new push behavior with an array of items using the [`initWithItems:mode:`](https://developer.apple.com/documentation/uikit/uipushbehavior/init(items:mode:)) method
+    ///
+    /// 2. Enable the behavior by adding it to an animator using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method
+    ///
+    /// After enabling a push behavior, you can activate it and deactivate it using the [`active`](https://developer.apple.com/documentation/uikit/uipushbehavior/active) property.
+    ///
+    /// The coordinate system that pertains to a push behavior, and the types of dynamic items you can use with the behavior, depend on how you initialized the associated animator. For details, read the Overview of [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    /// You can include a push behavior in a custom, composite behavior by starting with a [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) object and adding a push behavior with the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method.  If you want to influence a push behavior at each step of a dynamic animation, implement the inherited [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) method.
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

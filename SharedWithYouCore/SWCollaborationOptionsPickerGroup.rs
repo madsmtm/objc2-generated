@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a group of collaboration options that the system displays together with mutually exclusive options.
+    ///
+    /// ## Overview
+    ///
+    /// `SWCollaborationOptionsPickerGroup` displays as a picker view. A person can select only one option in the group. To allow a person to select more than one option, use [`SWCollaborationOptionsGroup`](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationoptionsgroup).
+    ///
+    ///
     /// Represents a group of SWCollaborationOptions that should be grouped together in a picker list, with mutually exclusive options.
     ///
     /// SWCollaborationOptionsPickerGroup is displayed as a picker view. Only one option in the group can be selected by the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationoptionspickergroup?language=objc)
     #[unsafe(super(SWCollaborationOptionsGroup, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SWCollaborationOptionsGroup")]

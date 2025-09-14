@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration for one class of token.
     /// Holds configuration of one class of tokens
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenDriverConfiguration;
@@ -75,9 +74,16 @@ impl TKTokenDriverConfiguration {
 }
 
 extern_class!(
-    /// Holds configuration of one token identified by unique token's instanceID
+    /// A token’s configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class?language=objc)
+    /// ## Overview
+    ///
+    /// When you introduce a new [`TKTokenConfiguration`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class) into the system, it can inform the system about its identities, consisting of both private keys and certificates, which the [`keychainItems`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/keychainitems) property provides. Use the [`configurationData`](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class/configurationdata) property to set additional configuration data.
+    ///
+    /// You configure always-available tokens on a per-user basis. Although the token driver and the app hosting the token extension are shared across the system, the configuration for a token is stored individually for each user.
+    ///
+    ///
+    /// Holds configuration of one token identified by unique token's instanceID
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenConfiguration;

@@ -8,22 +8,21 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSMatrixDecompositionStatus(pub c_int);
 impl MPSMatrixDecompositionStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/success?language=objc)
+    /// A status indicating the decomposition was performed successfully.
     #[doc(alias = "MPSMatrixDecompositionStatusSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/failure?language=objc)
+    /// A status indicating the decomposition was not able to be completed.
     #[doc(alias = "MPSMatrixDecompositionStatusFailure")]
     pub const Failure: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/singular?language=objc)
+    /// A status indicating the resulting decomposition is not suitable for use in a subsequent system solve.
     #[doc(alias = "MPSMatrixDecompositionStatusSingular")]
     pub const Singular: Self = Self(-2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionstatus/nonpositivedefinite?language=objc)
+    /// A status indicating a non-positive-definite pivot value was calculated.
     #[doc(alias = "MPSMatrixDecompositionStatusNonPositiveDefinite")]
     pub const NonPositiveDefinite: Self = Self(-3);
 }
@@ -37,6 +36,21 @@ unsafe impl RefEncode for MPSMatrixDecompositionStatus {
 }
 
 extern_class!(
+    /// A kernel for computing the LU factorization of a matrix using partial pivoting with row interchanges.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel object computes an LU factorization, _PA = LU_, where:
+    ///
+    /// - _A_ is a matrix for which the LU factorization is to be computed
+    ///
+    /// - _L_ is a unit lower triangular matrix
+    ///
+    /// - _U_ is an upper triangular matrix
+    ///
+    /// - _P_ is a permutation matrix
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -51,8 +65,6 @@ extern_class!(
     /// A is a matrix for which the LU factorization is to be computed.
     /// L is a unit lower triangular matrix and U is an upper triangular
     /// matrix.  P is a permutation matrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositionlu?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -251,6 +263,25 @@ impl MPSMatrixDecompositionLU {
 }
 
 extern_class!(
+    /// A kernel for computing the Cholesky factorization of a matrix.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel computes one of the following factorizations of a matrix _A_:
+    ///
+    /// - _A = LLᵀ_
+    ///
+    /// - _A = UᵀU_
+    ///
+    /// where:
+    ///
+    /// - _A_ is a symmetric positive-definite matrix for which the factorization is to be computed
+    ///
+    /// - _L_ is the lower triangular matrix
+    ///
+    /// - _U_ is the upper triangular matrix
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -266,8 +297,6 @@ extern_class!(
     /// A is a symmetric positive-definite matrix for which the
     /// factorization is to be computed. L and U are lower and upper
     /// triangular matrices respectively.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixdecompositioncholesky?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

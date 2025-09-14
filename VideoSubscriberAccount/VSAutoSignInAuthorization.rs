@@ -4,27 +4,47 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// Auto sign in authorization state.
+/// The possible states the framework sets for Automatic Sign-In.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization?language=objc)
+/// ## Overview
+///
+/// The framework sets the [`authorization`](https://developer.apple.com/documentation/videosubscriberaccount/vsautosignintoken/authorization) property to one of these values depending on how a person responds to the framework prompt that offers to enable Automatic Sign-In.
+///
+///
+/// Auto sign in authorization state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSAutoSignInAuthorization(pub NSInteger);
 impl VSAutoSignInAuthorization {
-    /// Consent to auto sign in hasn't been granted nor denied.
+    /// A state that indicates the framework needs to reauthorize Automatic Sign-In.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationnotdetermined?language=objc)
+    /// ## Discussion
+    ///
+    /// This authorization state indicates that either a person hasn’t answered the prompt to opt in to Automatic Sign-In, or that the app (or server) deletes the token value.
+    ///
+    /// When [`authorization`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/autosignintoken-swift.struct/authorization) for the current Automatic Sign-In token is this state, the app needs to call [`requestAutoSignInAuthorization()`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/requestautosigninauthorization()) again before creating a token value for the account.
+    ///
+    /// For more information, see [Signing people in to their media accounts automatically](https://developer.apple.com/documentation/videosubscriberaccount/signing-people-in-to-media-apps-automatically).
+    ///
+    ///
+    /// Consent to auto sign in hasn't been granted nor denied.
     #[doc(alias = "VSAutoSignInAuthorizationNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// Authorized to store and use auto sign in tokens.
+    /// A state that indicates the person opts in to Automatic Sign-In.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationgranted?language=objc)
+    /// ## Discussion
+    ///
+    /// This authorization state indicates that a person approves the prompt to opt in to Automatic Sign-In.
+    ///
+    /// For more information, see [`requestAutoSignInAuthorization()`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/requestautosigninauthorization()).
+    ///
+    ///
+    /// Authorized to store and use auto sign in tokens.
     #[doc(alias = "VSAutoSignInAuthorizationGranted")]
     pub const Granted: Self = Self(1);
+    /// A state that indicates the person denied authorization.
     /// Consent to use auto sign in has been denied.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsautosigninauthorization/vsautosigninauthorizationdenied?language=objc)
     #[doc(alias = "VSAutoSignInAuthorizationDenied")]
     pub const Denied: Self = Self(2);
 }

@@ -7,17 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/bookname?language=objc)
 pub type NSHelpBookName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/anchorname?language=objc)
 pub type NSHelpAnchorName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpkey?language=objc)
 pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager?language=objc)
+    /// An object for displaying online help for an app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSHelpManager`](https://developer.apple.com/documentation/appkit/nshelpmanager) class provides an approach to displaying online help. An app contains one [`NSHelpManager`](https://developer.apple.com/documentation/appkit/nshelpmanager) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -114,12 +117,24 @@ impl NSHelpManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpmodedidactivatenotification?language=objc)
+    /// Posted when the application enters context-sensitive help mode. This typically happens when the user holds down the Help key.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the help manager. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSContextHelpModeDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpmodediddeactivatenotification?language=objc)
+    /// Posted when the application exits context-sensitive help mode. This happens when the user clicks the mouse button while the cursor is anywhere on the screen after displaying a context-sensitive help topic.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the help manager. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName;
 }
 

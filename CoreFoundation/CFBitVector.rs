@@ -9,10 +9,15 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbit?language=objc)
+/// A binary value of either `0` or `1`.
 pub type CFBit = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvector?language=objc)
+///
+/// ## Overview
+///
+/// CFBitVector and its derived mutable type, [`CFMutableBitVectorRef`](https://developer.apple.com/documentation/corefoundation/cfmutablebitvector), manage ordered collections of bit values, which are either `0` or `1`. CFBitVector creates static bit vectors and CFMutableBitVector creates dynamic bit vectors.
+///
+///
 #[doc(alias = "CFBitVectorRef")]
 #[repr(C)]
 pub struct CFBitVector {
@@ -28,7 +33,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFBitVector"> for CFBitVector {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablebitvector?language=objc)
+///
+/// ## Overview
+///
+/// CFMutableBitVector objects manage dynamic bit vectors. The basic interface for managing bit vectors is provided by [`CFBitVectorRef`](https://developer.apple.com/documentation/corefoundation/cfbitvector). CFMutableBitVector adds functions to modify the contents of a bit vector.
+///
+/// You create a mutable bit vector object using either the [`CFBitVectorCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutable(_:_:)) or [`CFBitVectorCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutablecopy(_:_:_:)) function. You add to and remove from a bit vector by altering the size of the bit vector with the [`CFBitVectorSetCount`](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetcount(_:_:)) function
+///
+///
 #[doc(alias = "CFMutableBitVectorRef")]
 #[repr(C)]
 pub struct CFMutableBitVector {
@@ -45,7 +57,19 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFBitVector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgettypeid()?language=objc)
+    /// Returns the type identifier for the CFBitVector opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFBitVector opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableBitVector objects have the same type identifier as CFBitVector objects.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -57,7 +81,21 @@ unsafe impl ConcreteType for CFBitVector {
 }
 
 impl CFBitVector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreate(_:_:_:)?language=objc)
+    /// Creates an immutable bit vector from a block of memory.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bit vector. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bytes: A pointer to the bit values to store in the new bit vector. The values are copied into the bit vector’s own memory. The bit indices are numbered left-to-right with `0` being the left-most, or most-significant, bit in the byte stream.
+    ///
+    /// - numBits: The number of bits in the bit vector.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bit vector. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -81,7 +119,19 @@ impl CFBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatecopy(_:_:)?language=objc)
+    /// Creates an immutable bit vector that is a copy of another bit vector.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new bit vector. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bv: The bit vector to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bit vector holding the same bit values as `bv`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -105,7 +155,21 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutable(_:_:)?language=objc)
+    /// Creates a mutable bit vector.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new bit vector. The bit vector starts empty and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. The value must not be negative.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bit vector. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -126,7 +190,23 @@ impl CFMutableBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcreatemutablecopy(_:_:_:)?language=objc)
+    /// Creates a new mutable bit vector from a pre-existing bit vector.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new bit vector. The bit vector starts with the same number of values as `bv` and can grow to this number of values (it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. If non-`0`, `capacity` must be large enough to hold all bit values from `bv`.
+    ///
+    /// - bv: The bit vector to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new bit vector holding the same bit values as `bv`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029)
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -152,7 +232,17 @@ impl CFMutableBitVector {
 }
 
 impl CFBitVector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetcount(_:)?language=objc)
+    /// Returns the number of bit values in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current size of `bv`.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -162,7 +252,21 @@ impl CFBitVector {
         unsafe { CFBitVectorGetCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetcountofbit(_:_:_:)?language=objc)
+    /// Counts the number of times a certain bit value occurs within a range of bits in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    /// - range: The range of bits in `bv` to search.
+    ///
+    /// - value: The bit value to count.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of occurrences of `value` in the specified range of `bv`.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetCountOfBit")]
     #[inline]
     pub fn count_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -172,7 +276,21 @@ impl CFBitVector {
         unsafe { CFBitVectorGetCountOfBit(self, range, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorcontainsbit(_:_:_:)?language=objc)
+    /// Returns whether a bit vector contains a particular bit value.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to search.
+    ///
+    /// - range: The range of bits in `bv` to search.
+    ///
+    /// - value: The bit value for which to search.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the specified range of bits in `bv` contains `value`, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFBitVectorContainsBit")]
     #[inline]
     pub fn contains_bit(&self, range: CFRange, value: CFBit) -> bool {
@@ -183,7 +301,19 @@ impl CFBitVector {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetbitatindex(_:_:)?language=objc)
+    /// Returns the bit value at a given index in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    /// - idx: The index of the bit value in `bv` to return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The bit value at index `idx` in `bv`.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetBitAtIndex")]
     #[inline]
     pub fn bit_at_index(&self, idx: CFIndex) -> CFBit {
@@ -193,7 +323,15 @@ impl CFBitVector {
         unsafe { CFBitVectorGetBitAtIndex(self, idx) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetbits(_:_:_:)?language=objc)
+    /// Returns the bit values in a range of indices in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    /// - range: The range of bit values to return.
+    ///
+    /// - bytes: On return, contains the requested bit values from `bv`. This argument must point to enough memory to hold the number of bits requested. The requested bits are left-aligned with the first requested bit stored in the left-most, or most-significant, bit of the byte stream.
+    ///
     ///
     /// # Safety
     ///
@@ -207,7 +345,21 @@ impl CFBitVector {
         unsafe { CFBitVectorGetBits(self, range, bytes) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetfirstindexofbit(_:_:_:)?language=objc)
+    /// Locates the first occurrence of a certain bit value within a range of bits in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    /// - range: The range of bits in `bv` to search.
+    ///
+    /// - value: The bit value for which to search.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The index of the first occurrence of `value` in the specified range of `bv`, or `kCFNotFound` if `value` is not present.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetFirstIndexOfBit")]
     #[inline]
     pub fn first_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -221,7 +373,21 @@ impl CFBitVector {
         unsafe { CFBitVectorGetFirstIndexOfBit(self, range, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorgetlastindexofbit(_:_:_:)?language=objc)
+    /// Locates the last occurrence of a certain bit value within a range of bits in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to examine.
+    ///
+    /// - range: The range of bits in `bv` to search.
+    ///
+    /// - value: The bit value for which to search.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The index of the last occurrence of `value` in the specified range of `bv`, or `kCFNotFound` if `value` is not present.
+    ///
+    ///
     #[doc(alias = "CFBitVectorGetLastIndexOfBit")]
     #[inline]
     pub fn last_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
@@ -237,7 +403,19 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetcount(_:_:)?language=objc)
+    /// Changes the size of a mutable bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - count: The new size for `bv`. If `count` is greater than the current size of `bv`, the additional bit values are set to `0`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `bv` was created with a fixed capacity, you cannot increase its size beyond that capacity.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -251,7 +429,13 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetCount(bv, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorflipbitatindex(_:_:)?language=objc)
+    /// Flips a bit value in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - idx: The index of the bit value to flip. The index must be in the range `0…N-1`, where `N` is the count of the vector.
+    ///
     ///
     /// # Safety
     ///
@@ -265,7 +449,13 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBitAtIndex(bv, idx) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorflipbits(_:_:)?language=objc)
+    /// Flips a range of bit values in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - range: The range of bit values in `bv` to flip. The range must not exceed `0…N-1`, where `N` is the count of the vector.
+    ///
     ///
     /// # Safety
     ///
@@ -279,7 +469,15 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorFlipBits(bv, range) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetbitatindex(_:_:_:)?language=objc)
+    /// Sets the value of a particular bit in a bit vector.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - idx: The index of the bit value to set. The index must be in the range `0…N-1`, where `N` is the count of the vector.
+    ///
+    /// - value: The bit value to which to set the bit at index `idx`.
+    ///
     ///
     /// # Safety
     ///
@@ -297,7 +495,15 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBitAtIndex(bv, idx, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetbits(_:_:_:)?language=objc)
+    /// Sets a range of bits in a bit vector to a particular value.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - range: The range of bits to set. The range must not exceed `0…N-1`, where `N` is the count of the vector.
+    ///
+    /// - value: The bit value to which to set the range of bits.
+    ///
     ///
     /// # Safety
     ///
@@ -311,7 +517,13 @@ impl CFMutableBitVector {
         unsafe { CFBitVectorSetBits(bv, range, value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbitvectorsetallbits(_:_:)?language=objc)
+    /// Sets all bits in a bit vector to a particular value.
+    ///
+    /// Parameters:
+    /// - bv: The bit vector to modify.
+    ///
+    /// - value: The bit value to which to set all bits in `bv`.
+    ///
     ///
     /// # Safety
     ///

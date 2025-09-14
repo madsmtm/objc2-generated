@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents caching options for a UNIX domain socket.
+    ///
+    /// ## Overview
+    ///
+    /// This object configures Rosetta to communicate with the Rosetta daemon using a UNIX domain socket.
+    ///
+    ///
     /// Caching options for a Unix Domain Socket.
     ///
     /// This object configures Rosetta to communicate with the Rosetta daemon using a Unix Domain Socket.
     ///
     /// See: VZLinuxRosettaCachingOptions
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaunixsocketcachingoptions?language=objc)
     #[unsafe(super(VZLinuxRosettaCachingOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZLinuxRosettaCachingOptions")]

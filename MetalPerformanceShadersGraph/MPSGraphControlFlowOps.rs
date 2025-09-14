@@ -8,9 +8,14 @@ use crate::*;
 
 /// The scope where all the operations defined in this block get control-dependency operations.
 ///
-/// - Returns: A valid tensor with the results forwarded to the return of `controlDependency` call.
+/// ## Return Value
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphcontrolflowdependencyblock?language=objc)
+/// A valid tensor with the results forwarded to the return of `controlDependency` call.
+///
+///
+/// The scope where all the operations defined in this block get control-dependency operations.
+///
+/// - Returns: A valid tensor with the results forwarded to the return of `controlDependency` call.
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -21,10 +26,15 @@ pub type MPSGraphControlFlowDependencyBlock =
 
 /// A block of operations executed under either the if or else condition.
 ///
+/// ## Return Value
+///
+/// Tensors returned by user. If not empty, the user must define both the then and else blocks, both should have the same number of arguments, and each corresponding argument should have the same element types.
+///
+///
+/// A block of operations executed under either the if or else condition.
+///
 /// - Returns: Tensors returned by user. If not empty, the user must define both the then and else blocks,
 /// both should have the same number of arguments, and each corresponding argument should have the same element types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphifthenelseblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -35,12 +45,23 @@ pub type MPSGraphIfThenElseBlock =
 
 /// The block that executes before the condition evaluates for each iteration.
 ///
+/// Parameters:
+/// - inputTensors: Input tensors to the `whileConditionBlock`, for the first iteration will be same as initialInputs passed to the while loop.
+///
+/// - resultTensors: A valid `MPSGraphTensor` array with results forwarded to after block or returned from the while loop depending on the predicate tensor. It will be empty and the caller block should fill it up before returning.
+///
+///
+/// ## Return Value
+///
+/// Tensor MUST be set and have a single scalar value, used to decide between executing the body block or returning from the while loop.
+///
+///
+/// The block that executes before the condition evaluates for each iteration.
+///
 /// - Parameters:
 /// - inputTensors: Input tensors to the `whileConditionBlock`, for the first iteration will be same as initialInputs passed to the while loop.
 /// - resultTensors: A valid `MPSGraphTensor` array with results forwarded to after block or returned from the while loop depending on the predicate tensor. It will be empty and the caller block should fill it up before returning.
 /// - Returns: Tensor MUST be set and have a single scalar value, used to decide between executing the body block or returning from the while loop.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhilebeforeblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -55,11 +76,20 @@ pub type MPSGraphWhileBeforeBlock = *mut block2::DynBlock<
 
 /// The block that executes after the condition evaluates for each iteration.
 ///
+/// Parameters:
+/// - bodyBlockArguments: Inputs to the body of the while loop passed by the condition block return, and should be the same element types as the return of the while loop.
+///
+///
+/// ## Return Value
+///
+/// A valid `MPSGraphTensor` array with results forwarded to the condition block.
+///
+///
+/// The block that executes after the condition evaluates for each iteration.
+///
 /// - Parameters:
 /// - bodyBlockArguments: Inputs to the body of the while loop passed by the condition block return, and should be the same element types as the return of the while loop.
 /// - Returns: A valid `MPSGraphTensor` array with results forwarded to the condition block.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphwhileafterblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",
@@ -71,12 +101,23 @@ pub type MPSGraphWhileAfterBlock = *mut block2::DynBlock<
 
 /// A block for the body in the for loop.
 ///
+/// Parameters:
+/// - index: The for loop index per iteration, it is a scalar tensor.
+///
+/// - iterationArguments: Arguments for this iteration, with the same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
+///
+///
+/// ## Return Value
+///
+/// A valid MPSGraphTensor array with same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
+///
+///
+/// A block for the body in the for loop.
+///
 /// - Parameters:
 /// - index: The for loop index per iteration, it is a scalar tensor.
 /// - iterationArguments: Arguments for this iteration, with the same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
 /// - Returns: A valid MPSGraphTensor array with same count and corresponding element types as `initialIterationArguments` and return types of the `for` loop.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphforloopbodyblock?language=objc)
 #[cfg(all(
     feature = "MPSGraphCore",
     feature = "MPSGraphTensor",

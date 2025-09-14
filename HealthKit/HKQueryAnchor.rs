@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This object encapsulates the state of an HKAnchoredObjectQuery
+    /// An object used to identify all the samples previously returned by an anchored object query.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryanchor?language=objc)
+    /// ## Overview
+    ///
+    /// The system returns [`HKQueryAnchor`](https://developer.apple.com/documentation/healthkit/hkqueryanchor) objects in both the anchored object query’s results handler and it’s update handler. Use the anchors to query for samples added or deleted after the result or update.
+    ///
+    ///
+    /// This object encapsulates the state of an HKAnchoredObjectQuery
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQueryAnchor;

@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Settings for group presets.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines playback speed and volume rates of change that an app can apply to groups. To create a group preset setting, instantiate an object of this type and pass it to the `settings` parameter of [`initWithEngine:settings:timeToTarget:timeToReset:`](https://developer.apple.com/documentation/phase/phasegrouppreset/init(engine:settings:timetotarget:timetoreset:)).
+    ///
+    /// For an example of preset settings, see [`PHASEGroupPreset`](https://developer.apple.com/documentation/phase/phasegrouppreset).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -15,8 +24,6 @@ extern_class!(
     /// A PHASEGroupPresetSetting is an object that holds settings that can be applied to a PHASEGroup object.
     ///
     /// These can be either be manually created and added to a PHASEGroupPreset object, or created inline using PHASEGroupPreset addGroup.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasegrouppresetsetting?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEGroupPresetSetting;
@@ -83,6 +90,18 @@ impl PHASEGroupPresetSetting {
 }
 
 extern_class!(
+    /// A collection of settings for groups.
+    ///
+    /// ## Overview
+    ///
+    /// Group presets pair groups with audio settings that your app can apply to specific sounds at a particular time in your app’s life cycle. This class enables many predefined group settings to take effect all at once.
+    ///
+    /// ### Toggle Between Group Presets
+    ///
+    /// The group preset’s utility materializes when you switch between settings. The following example creates two group presets: one for an in-game experience and another for a menu that displays when the user pauses the app.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Create sound group objects.", "let bgmGroup = PHASEGroup(identifier:\"backgroundMusicGroup\")", "let voGroup = PHASEGroup(identifier:\"voiceOverGroup\")", "let menuGroup = PHASEGroup(identifier:\"menuSoundsGroup\")", "", "// Register the groups with the engine.", "bgmGroup.register(engine: myEngine)", "voGroup.register(engine: myEngine)", "menuGroup.register(engine: myEngine)", "        ", "// Create settings for the groups.", "let groupSettingFullVolume = PHASEGroupPresetSetting(gain: 1.0, rate: 1.0, gainCurveType: .linear, rateCurveType: .linear)", "let groupSettingZeroVolume = PHASEGroupPresetSetting(gain: 0.0, rate: 1.0, gainCurveType: .linear, rateCurveType: .linear)", "        ", "// Create a dictionary for the `settings` argument of the group preset initializer.", "var pauseMenuDictionary: [String : PHASEGroupPresetSetting] = [:]", "        ", "// Enable volume only for menu group sounds.", "pauseMenuDictionary[menuGroup.identifier] = groupSettingFullVolume", "pauseMenuDictionary[bgmGroup.identifier] = groupSettingZeroVolume", "pauseMenuDictionary[voGroup.identifier] = groupSettingZeroVolume", "let pauseMenuPreset = PHASEGroupPreset(engine: myEngine, settings: pauseMenuDictionary, timeToTarget: 1.0, timeToReset: 1.0)", "        ", "// Create a settings dictionary for the in-game experience.", "var inGameDictionary: [String : PHASEGroupPresetSetting] = [:]", "", "// Enable volume only for in-game sounds.", "inGameDictionary[menuGroup.identifier] = groupSettingZeroVolume", "inGameDictionary[bgmGroup.identifier] = groupSettingFullVolume", "inGameDictionary[voGroup.identifier] = groupSettingFullVolume", "let inGamePreset = PHASEGroupPreset(engine: myEngine, settings: inGameDictionary, timeToTarget: 1.0, timeToReset: 1.0)", "        ", "// Activate the pause menu preset when the user pauses the app.", "pauseMenuPreset.activate()", "", "// Activate the in-game preset when the user resumes the app.", "inGamePreset.activate()", "", "// Clear the current preset by deactivating it.", "if let groupPreset = myEngine.activeGroupPreset {", "    groupPreset.deactivate()", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Create groups for the sounds. ", "PHASEGroup* bgmGroup = [[PHASEGroup alloc] initWithEngine:_objects->mEngine uid:@\"backgroundMusicGroup\"];", "PHASEGroup* voGroup = [[PHASEGroup alloc] initWithEngine:_objects->mEngine uid:@\"voiceOverGroup\"];", "PHASEGroup* menuGroup = [[PHASEGroup alloc] initWithEngine:_objects->mEngine uid:@\"menuSoundsGroup\"];", "", "// Create settings for the groups.", "PHASEGroupPresetSetting* groupSettingFullVolume = [PHASEGroupPresetSetting alloc] initWithGain:1", "    rate:1 gainCurveType:PHASECurveTypeLinear rateCurveType:PHASECurveTypeLinear];", "                                                ", "PHASEGroupPresetSetting* groupSettingZeroVolume = [PHASEGroupPresetSetting alloc] initWithGain:0", "    rate:1 gainCurveType:PHASECurveTypeLinear rateCurveType:PHASECurveTypeLinear];", "", "// Create a dictionary for the `settings` argument of the group preset initializer.", "NSMutableDictionary<PHASEGroup*, PHASEGroupPresetSetting*> pauseMenuDictionary;", "", "// Enable volume only for menu group sounds.", "[pauseMenuDictionary setObject:groupSettingFullVolume forKey:menuGroup]", "[pauseMenuDictionary setObject:groupSettingZeroVolume forKey:bgmGroup]", "[pauseMenuDictionary setObject:groupSettingZeroVolume forKey:voGroup]", "PHASEGroupPreset* pauseMenuPreset = [[PHASEGroupPreset alloc] initWithEngine:myPHASEEngine", "    settings:pauseMenuDictionary timeToTarget:1 timeToReset:1];", "", "// Create a settings dictionary for the in-game experience.", "NSMutableDictionary<PHASEGroup*, PHASEGroupPresetSetting*> inGameDictionary;", "", "// Enable volume only for in-game sounds.", "[inGameDictionary setObject:groupSettingZeroVolume forKey:menuGroup]", "[inGameDictionary setObject:groupSettingFullVolume forKey:bgmGroup]", "[inGameDictionary setObject:groupSettingFullVolume forKey:voGroup]", "PHASEGroupPreset* inGamePreset = [[PHASEGroupPreset alloc] initWithEngine:myPHASEEngine", "    settings:inGameDictionary timeToTarget:1 timeToReset:1];", "", "// Activate the pause menu preset when the user pauses the app.", "[pauseMenuPreset activate];", "", "// Activate the in-game preset when the user resumes the app. ", "[inGamePreset activate];", "", "// Clear the current preset by deactivating it.", "[myPHASEEngine.activeGroupPreset deactivate]", ""], metadata: None }] }] })
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -91,8 +110,6 @@ extern_class!(
     ///
     /// Initialize beforehand, and use activate or deactivate to switch to the new preset during playback.
     /// Activating a preset will automatically deactivate the current one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasegrouppreset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEGroupPreset;

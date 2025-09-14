@@ -6,98 +6,98 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerrordomain?language=objc)
+    /// The error domain for the Contacts framework.
     pub static CNErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code?language=objc)
+/// Error codes that the system may return when you use Contacts framework methods.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNErrorCode(pub NSInteger);
 impl CNErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/communicationerror?language=objc)
+    /// An error that indicates a communication error occurred.
     #[doc(alias = "CNErrorCodeCommunicationError")]
     pub const CommunicationError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/dataaccesserror?language=objc)
+    /// An error with data access.
     #[doc(alias = "CNErrorCodeDataAccessError")]
     pub const DataAccessError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/authorizationdenied?language=objc)
+    /// An error that indicates the system denied authorization.
     #[doc(alias = "CNErrorCodeAuthorizationDenied")]
     pub const AuthorizationDenied: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/noaccessablewritablecontainers?language=objc)
+    /// An error that indicates there are no accessible writable containers.
     #[doc(alias = "CNErrorCodeNoAccessableWritableContainers")]
     pub const NoAccessableWritableContainers: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/unauthorizedkeys?language=objc)
+    /// An error that indicates unauthorized keys usage.
     #[doc(alias = "CNErrorCodeUnauthorizedKeys")]
     pub const UnauthorizedKeys: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/featuredisabledbyuser?language=objc)
+    /// An error that indicates the user disabled the feature.
     #[doc(alias = "CNErrorCodeFeatureDisabledByUser")]
     pub const FeatureDisabledByUser: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/featurenotavailable?language=objc)
+    /// An error that indicates the feature isn’t available.
     #[doc(alias = "CNErrorCodeFeatureNotAvailable")]
     pub const FeatureNotAvailable: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/recorddoesnotexist?language=objc)
+    /// An error that indicates a record doesn’t exist.
     #[doc(alias = "CNErrorCodeRecordDoesNotExist")]
     pub const RecordDoesNotExist: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/insertedrecordalreadyexists?language=objc)
+    /// An error that indicates the inserted record already exists.
     #[doc(alias = "CNErrorCodeInsertedRecordAlreadyExists")]
     pub const InsertedRecordAlreadyExists: Self = Self(201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/containmentcycle?language=objc)
+    /// An error with the containment cycle.
     #[doc(alias = "CNErrorCodeContainmentCycle")]
     pub const ContainmentCycle: Self = Self(202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/containmentscope?language=objc)
+    /// An error with containment scope.
     #[doc(alias = "CNErrorCodeContainmentScope")]
     pub const ContainmentScope: Self = Self(203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/parentrecorddoesnotexist?language=objc)
+    /// An error that indicates the parent record doesn’t exist.
     #[doc(alias = "CNErrorCodeParentRecordDoesNotExist")]
     pub const ParentRecordDoesNotExist: Self = Self(204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/recordidentifierinvalid?language=objc)
+    /// An error that indicates a record identifier is invalid.
     #[doc(alias = "CNErrorCodeRecordIdentifierInvalid")]
     pub const RecordIdentifierInvalid: Self = Self(205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/recordnotwritable?language=objc)
+    /// An error that indicates a record isn’t writable.
     #[doc(alias = "CNErrorCodeRecordNotWritable")]
     pub const RecordNotWritable: Self = Self(206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/parentcontainernotwritable?language=objc)
+    /// An error that indicates the parent container isn’t writable.
     #[doc(alias = "CNErrorCodeParentContainerNotWritable")]
     pub const ParentContainerNotWritable: Self = Self(207);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/validationmultipleerrors?language=objc)
+    /// An error that indicates the system encountered multiple validation errors.
     #[doc(alias = "CNErrorCodeValidationMultipleErrors")]
     pub const ValidationMultipleErrors: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/validationtypemismatch?language=objc)
+    /// A validation error that indicates a type mismatch.
     #[doc(alias = "CNErrorCodeValidationTypeMismatch")]
     pub const ValidationTypeMismatch: Self = Self(301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/validationconfigurationerror?language=objc)
+    /// An error with validation configuration.
     #[doc(alias = "CNErrorCodeValidationConfigurationError")]
     pub const ValidationConfigurationError: Self = Self(302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/predicateinvalid?language=objc)
+    /// An error that indicates an invalid predicate.
     #[doc(alias = "CNErrorCodePredicateInvalid")]
     pub const PredicateInvalid: Self = Self(400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/policyviolation?language=objc)
+    /// An error that indicates a policy violation.
     #[doc(alias = "CNErrorCodePolicyViolation")]
     pub const PolicyViolation: Self = Self(500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/clientidentifierinvalid?language=objc)
+    /// An error that indicates the client identifier is invalid.
     #[doc(alias = "CNErrorCodeClientIdentifierInvalid")]
     pub const ClientIdentifierInvalid: Self = Self(600);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/clientidentifierdoesnotexist?language=objc)
+    /// An error that indicates the client identifier doesn’t exist.
     #[doc(alias = "CNErrorCodeClientIdentifierDoesNotExist")]
     pub const ClientIdentifierDoesNotExist: Self = Self(601);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/clientidentifiercollision?language=objc)
+    /// An error that indicates a client identifier collision.
     #[doc(alias = "CNErrorCodeClientIdentifierCollision")]
     pub const ClientIdentifierCollision: Self = Self(602);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/changehistoryexpired?language=objc)
+    /// An error that indicates the change history expired.
     #[doc(alias = "CNErrorCodeChangeHistoryExpired")]
     pub const ChangeHistoryExpired: Self = Self(603);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/changehistoryinvalidanchor?language=objc)
+    /// An error that indicates a change history anchor is invalid.
     #[doc(alias = "CNErrorCodeChangeHistoryInvalidAnchor")]
     pub const ChangeHistoryInvalidAnchor: Self = Self(604);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/changehistoryinvalidfetchrequest?language=objc)
+    /// An error that indicates a change history fetch request is invalid.
     #[doc(alias = "CNErrorCodeChangeHistoryInvalidFetchRequest")]
     pub const ChangeHistoryInvalidFetchRequest: Self = Self(605);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/vcardmalformed?language=objc)
+    /// An error that indicates a malformed vCard.
     #[doc(alias = "CNErrorCodeVCardMalformed")]
     pub const VCardMalformed: Self = Self(700);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerror/code/vcardsummarizationerror?language=objc)
+    /// An error that indicates a vCard summarization problem.
     #[doc(alias = "CNErrorCodeVCardSummarizationError")]
     pub const VCardSummarizationError: Self = Self(701);
 }
@@ -111,29 +111,49 @@ unsafe impl RefEncode for CNErrorCode {
 }
 
 extern "C" {
-    /// When available an array of one or more CNContact, CNGroup, CNContainer, CNSaveRequest, or CNFetchRequest objects for which the error code applies.
+    /// The contact, group, and container objects for which the error code applies.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordskey?language=objc)
+    /// ## Discussion
+    ///
+    /// An array of one or more [`CNContact`](https://developer.apple.com/documentation/contacts/cncontact), [`CNGroup`](https://developer.apple.com/documentation/contacts/cngroup), or [`CNContainer`](https://developer.apple.com/documentation/contacts/cncontainer) objects for which the error code applies.
+    ///
+    ///
+    /// When available an array of one or more CNContact, CNGroup, CNContainer, CNSaveRequest, or CNFetchRequest objects for which the error code applies.
     pub static CNErrorUserInfoAffectedRecordsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// When available an array of one or more NSString objects for which the error code applies.
+    /// String objects for which the error code applies.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfoaffectedrecordidentifierskey?language=objc)
+    /// ## Discussion
+    ///
+    /// An array of one or more [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects for which the error code applies.
+    ///
+    ///
+    /// When available an array of one or more NSString objects for which the error code applies.
     pub static CNErrorUserInfoAffectedRecordIdentifiersKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// An array of NSErrors for CNErrorCodeValidationMultipleErrors.
+    /// An array of validation-related error objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfovalidationerrorskey?language=objc)
+    /// ## Discussion
+    ///
+    /// An array of [`NSError`](https://developer.apple.com/documentation/foundation/nserror) objects for [`CNErrorCodeValidationMultipleErrors`](https://developer.apple.com/documentation/contacts/cnerror/code/validationmultipleerrors).
+    ///
+    ///
+    /// An array of NSErrors for CNErrorCodeValidationMultipleErrors.
     pub static CNErrorUserInfoValidationErrorsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// An array of key paths associated with a given error. For validation errors this will contain key paths to specific object properties.
+    /// An array of key paths associated with a given error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnerroruserinfokeypathskey?language=objc)
+    /// ## Discussion
+    ///
+    /// For validation errors, this contains key paths to specific object properties.
+    ///
+    ///
+    /// An array of key paths associated with a given error. For validation errors this will contain key paths to specific object properties.
     pub static CNErrorUserInfoKeyPathsKey: Option<&'static NSString>;
 }

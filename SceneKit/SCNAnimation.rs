@@ -13,26 +13,22 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationprotocol?language=objc)
     #[doc(alias = "SCNAnimation")]
     #[name = "SCNAnimation"]
     pub unsafe trait SCNAnimationProtocol: NSObjectProtocol {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstartblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNAnimationDidStartBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstopblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNAnimationDidStopBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>, Bool),
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntimingfunction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNTimingFunction;
@@ -83,9 +79,25 @@ impl SCNTimingFunction {
 }
 
 extern_protocol!(
-    /// The SCNAnimatable protocol defines an animatable property. Objects that implement this protocol can be animated through these methods.
+    /// The common interface for attaching animations to nodes, geometries, materials, and other SceneKit objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimatable?language=objc)
+    /// ## Overview
+    ///
+    /// SceneKit uses the same architecture as the Core Animation framework, allowing you to animate property changes implicitly or explicitly. For implicit animation, use the [`SCNTransaction`](https://developer.apple.com/documentation/scenekit/scntransaction) class to quickly create simple animations with very little code. For more complex animations, explicitly create [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) objects, and use the methods in the [`SCNAnimatable`](https://developer.apple.com/documentation/scenekit/scnanimatable) protocol to attach them to the SceneKit objects you want to animate. You also use the methods in this protocol to control any animations already attached to a SceneKit object.
+    ///
+    /// For example, making a node spin continuously for as long as it appears in the scene graph requires explicitly creating an animation that repeats. The following code creates such an animation and attaches it to a node:
+    ///
+    /// ```objc
+    /// CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"rotation"];
+    /// // Animate one complete revolution around the node's Y axis.
+    /// rotationAnimation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
+    /// rotationAnimation.duration = 10.0; // One revolution in ten seconds.
+    /// rotationAnimation.repeatCount = FLT_MAX; // Repeat the animation forever.
+    /// [node addAnimation:rotationAnimation forKey:nil]; // Attach the animation to the node to start it.
+    /// ```
+    ///
+    ///
+    /// The SCNAnimatable protocol defines an animatable property. Objects that implement this protocol can be animated through these methods.
     pub unsafe trait SCNAnimatable: NSObjectProtocol {
         /// Adds and runs an animation
         ///
@@ -235,8 +247,6 @@ extern_protocol!(
 
 extern_class!(
     /// SCNAnimation represents an animation that targets a specific key path.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimation-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAnimation;
@@ -571,8 +581,6 @@ impl SCNAnimation {
 
 extern_class!(
     /// SCNAnimationPlayer let you control when and how to play and blend an animation
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationplayer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAnimationPlayer;
@@ -682,18 +690,36 @@ impl SCNAnimationPlayer {
     );
 }
 
-/// Signature for the block executed when the animation event is triggered.
+/// Signature for the block called when an animation event triggers.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationeventblock?language=objc)
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - animation: The animation triggering the animation event.
+///
+/// - animatedObject: The Scene Kit object affected by the animation.
+///
+/// - playingBackward: [`true`](https://developer.apple.com/documentation/swift/true) if the animation is playing in reverse; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+/// Signature for the block executed when the animation event is triggered.
 #[cfg(feature = "block2")]
 pub type SCNAnimationEventBlock = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn SCNAnimationProtocol>>, NonNull<AnyObject>, Bool),
 >;
 
 extern_class!(
-    /// SCNAnimationEvent encapsulates a block to trigger at a specific time.
+    /// A container for a closure, a block in Objective-C, to be executed at a specific time during playback of an animation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationevent?language=objc)
+    /// ## Overview
+    ///
+    /// Use animation events to add actions to animations, such as playing a sound to coincide with the movement of an animated character, or removing a node from the scene after playing an animation that fades out its visible geometry.
+    ///
+    /// After you create an animation event, you attach it to an animation object using the object’s [`animationEvents`](https://developer.apple.com/documentation/quartzcore/caanimation/animationevents) property.
+    ///
+    ///
+    /// SCNAnimationEvent encapsulates a block to trigger at a specific time.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAnimationEvent;

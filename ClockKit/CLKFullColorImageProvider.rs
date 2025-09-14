@@ -10,7 +10,17 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkfullcolorimageprovider?language=objc)
+    /// A full-color image displayed by a complication.
+    ///
+    /// ## Overview
+    ///
+    /// All graphic complications support full-color images; however, some watch faces display these images as tinted images. Tinted images are black and white images with a highlight color that matches the watch face. If you don’t provide a tinted image provider, ClockKit automatically desaturates the full-color image to create the tinted image.
+    ///
+    /// The template also often masks these image to produce circular images or rounded rectangles.
+    ///
+    /// For information about the image sizes and masks, see [Apple Watch Human Interface Guidelines](https://developer.apple.com/watch/human-interface-guidelines/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

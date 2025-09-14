@@ -15,8 +15,7 @@ use objc2_user_notifications::*;
 use crate::*;
 
 /// Constants indicating the type of media button to display.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype?language=objc)
+/// Constants indicating the type of media button to display.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -24,29 +23,44 @@ pub struct UNNotificationContentExtensionMediaPlayPauseButtonType(pub NSUInteger
 impl UNNotificationContentExtensionMediaPlayPauseButtonType {
     /// No media button.
     ///
+    /// ## Discussion
+    ///
+    /// Specify this option when you don’t want a media button. This is the default option.
+    ///
+    ///
+    /// No media button.
+    ///
     /// Specify this option when you don't want a media button. This is the
     /// default option.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/none?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeNone")]
     pub const None: Self = Self(0);
+    /// A standard play/pause button.
+    ///
+    /// ## Discussion
+    ///
+    /// This button is always visible. When tapped, its appearance changes between the play and pause icons and triggers the appropriate play and pause actions.
+    ///
+    ///
     /// A standard play/pause button.
     ///
     /// This button is always visible. When tapped, its appearance changes
     /// between the play and pause icons and triggers the appropriate play and
     /// pause actions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/default?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeDefault")]
     pub const Default: Self = Self(1);
+    /// A partially transparent play/pause button that is layered on top of your media content.
+    ///
+    /// ## Discussion
+    ///
+    /// This button draws a play icon over the content initially. When playback begins, the button disappears. Tapping the content again pauses playback and displays the play button again.
+    ///
+    ///
     /// A partially transparent play/pause button that is layered on top of your
     /// media content.
     ///
     /// This button draws a play icon over the content initially. When playback
     /// begins, the button disappears. Tapping the content again pauses playback and
     /// displays the play button again.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionmediaplaypausebuttontype/overlay?language=objc)
     #[doc(alias = "UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay")]
     pub const Overlay: Self = Self(2);
 }
@@ -60,33 +74,47 @@ unsafe impl RefEncode for UNNotificationContentExtensionMediaPlayPauseButtonType
 }
 
 /// Constants indicating the preferred response to a notification.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption?language=objc)
+/// Constants indicating the preferred response to a notification.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationContentExtensionResponseOption(pub NSUInteger);
 impl UNNotificationContentExtensionResponseOption {
-    /// Don't dismiss the notification interface.
+    /// Don’t dismiss the notification interface.
+    ///
+    /// ## Discussion
     ///
     /// The content extension handles the selected action.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/donotdismiss?language=objc)
+    ///
+    /// Don't dismiss the notification interface.
+    ///
+    /// The content extension handles the selected action.
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDoNotDismiss")]
     pub const DoNotDismiss: Self = Self(0);
     /// Dismiss the notification interface.
     ///
+    /// ## Discussion
+    ///
     /// The content extension handles the selected action.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/dismiss?language=objc)
+    ///
+    /// Dismiss the notification interface.
+    ///
+    /// The content extension handles the selected action.
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDismiss")]
     pub const Dismiss: Self = Self(1);
     /// Dismiss the notification interface and forward the notification to the app.
     ///
+    /// ## Discussion
+    ///
+    /// Choose this option when you want the app to respond to the action or handle it.
+    ///
+    ///
+    /// Dismiss the notification interface and forward the notification to the app.
+    ///
     /// Choose this option when you want the app to respond to the action or handle
     /// it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextensionresponseoption/dismissandforwardaction?language=objc)
     #[doc(alias = "UNNotificationContentExtensionResponseOptionDismissAndForwardAction")]
     pub const DismissAndForwardAction: Self = Self(2);
 }
@@ -100,6 +128,22 @@ unsafe impl RefEncode for UNNotificationContentExtensionResponseOption {
 }
 
 extern_protocol!(
+    /// An object that presents a custom interface for a delivered local or remote notification.
+    ///
+    /// ## Overview
+    ///
+    /// The `UNNotificationContentExtension` protocol provides the entry point for a notification content app extension, which displays a custom interface for your app’s notifications. You adopt this protocol in the custom [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) subclass that you use to present your interface. You create this type of extension to improve the way your notifications are presented, possibly by adding custom colors and branding, or by incorporating media and other dynamic content into your notification interface.
+    ///
+    /// To define a notification content app extension, add a notification content extension target to the Xcode project containing your app. The default Xcode template contains a source file and storyboard for your view controller. The `Info.plist` file of the extension comes mostly configured. Specifically, the `NSExtensionPointIdentifier` key is set to the value `com.apple.usernotifications.content-extension`, and the `NSExtensionMainStoryboard` key is set to the name of the project’s storyboard file. However, the `NSExtensionAttribute` key contains a dictionary of additional keys and values, which are listed in the following table.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "UNNotificationExtensionCategory" }, Text { text: " (Required)" }] }], [Paragraph { inline_content: [Text { text: "A string or an array of strings. Each string contains the identifier of a category declared by the app using the " }, Reference { identifier: "doc://com.apple.documentation/documentation/UserNotifications/UNNotificationCategory", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " class." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "UNNotificationExtensionInitialContentSizeRatio" }, Text { text: " (Required)" }] }], [Paragraph { inline_content: [Text { text: "A floating-point number that represents the initial size of your view controller’s view expressed as a ratio of its height to its width. The system uses this value to set the initial size of the view controller while your extension is loading. For example, a value of 0.5 results in a view controller whose height is half its width. You can change the size of your view controller after your extension loads." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "UNNotificationExtensionDefaultContentHidden" }] }], [Paragraph { inline_content: [Text { text: "A Boolean. When set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/YES", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", the system displays only your custom view controller in the notification interface. When set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NO", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", the system displays the default notification content in addition to your view controller’s content. Custom action buttons and the Dismiss button are always displayed, regardless of this setting. If you don’t specify this key, the default value is set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NO", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "UNNotificationExtensionOverridesDefaultTitle" }] }], [Paragraph { inline_content: [Text { text: "A Boolean. When set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/YES", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", the system uses the " }, Reference { identifier: "doc://com.apple.documentation/documentation/UIKit/UIViewController/title", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property of your view controller as the title of the notification. When set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NO", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", the system sets the notification’s title to the name of your app. If you don’t specify this key, the default value is set to " }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NO", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]]], alignments: None, metadata: None })
+    /// If the notification category includes custom actions, the system automatically adds action buttons to your notification interface; don’t create those buttons yourself. If your view controller implements the optional [`didReceiveNotificationResponse:completionHandler:`](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextension/didreceive(_:completionhandler:)) method, the system calls that method to respond to any selected actions. If your view controller doesn’t implement that method, the system delivers the selected action to your app for handling.
+    ///
+    /// The system prevents the delivery of touch events to your view controller while it is onscreen. Do not install gesture recognizers or rely on touch events in your interface.
+    ///
+    /// For information about how to implement your notification content app extension, see [Customizing the Appearance of Notifications](https://developer.apple.com/documentation/usernotificationsui/customizing-the-appearance-of-notifications).
+    ///
+    ///
     /// An object that presents a custom interface for a delivered local or remote
     /// notification.
     ///
@@ -163,8 +207,6 @@ extern_protocol!(
     /// extension, see
     /// <doc
     /// :customizing-the-appearance-of-notifications>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/usernotificationsui/unnotificationcontentextension?language=objc)
     pub unsafe trait UNNotificationContentExtension: NSObjectProtocol {
         #[cfg(feature = "objc2-user-notifications")]
         /// Delivers a new notification to your notification content app extension.

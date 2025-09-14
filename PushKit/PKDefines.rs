@@ -5,6 +5,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Constants reflecting the push types you want to support.
+/// Constants reflecting the push types you want to support.
 ///
 /// ## Topics
 ///
@@ -13,7 +14,5 @@ use crate::*;
 /// - ``PushKit/PKPushTypeComplication``
 /// - ``PushKit/PKPushTypeFileProvider``
 /// - ``PushKit/PKPushTypeVoIP``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype?language=objc)
 // NS_TYPED_ENUM
 pub type PKPushType = NSString;

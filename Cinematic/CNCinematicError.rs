@@ -7,35 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerrordomain?language=objc)
     pub static CNCinematicErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CNCinematicErrorCode(pub NSInteger);
 impl CNCinematicErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/unknown?language=objc)
     #[doc(alias = "CNCinematicErrorCodeUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/unreadable?language=objc)
     #[doc(alias = "CNCinematicErrorCodeUnreadable")]
     pub const Unreadable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/incomplete?language=objc)
     #[doc(alias = "CNCinematicErrorCodeIncomplete")]
     pub const Incomplete: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/malformed?language=objc)
     #[doc(alias = "CNCinematicErrorCodeMalformed")]
     pub const Malformed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/unsupported?language=objc)
     #[doc(alias = "CNCinematicErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/incompatible?language=objc)
     #[doc(alias = "CNCinematicErrorCodeIncompatible")]
     pub const Incompatible: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncinematicerror/code/cancelled?language=objc)
     #[doc(alias = "CNCinematicErrorCodeCancelled")]
     pub const Cancelled: Self = Self(7);
 }

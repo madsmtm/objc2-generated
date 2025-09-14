@@ -7,7 +7,29 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicate?language=objc)
+    /// A definition of logical conditions for constraining a search for a fetch or for in-memory filtering.
+    ///
+    /// ## Overview
+    ///
+    /// Predicates represent logical conditions, which you can use to filter collections of objects. Although it’s common to create predicates directly from instances of [`NSComparisonPredicate`](https://developer.apple.com/documentation/foundation/nscomparisonpredicate), [`NSCompoundPredicate`](https://developer.apple.com/documentation/foundation/nscompoundpredicate), and [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression), you often create predicates from a format string that the class methods parse on [`NSPredicate`](https://developer.apple.com/documentation/foundation/nspredicate). Examples of predicate format strings include:
+    ///
+    /// - Simple comparisons, such as `grade == "7"` or `firstName like "Juan"`
+    ///
+    /// - Case- and diacritic-insensitive lookups, such as `name contains[cd] "stein"`
+    ///
+    /// - Logical operations, such as `(firstName like "Mei") OR (lastName like "Chen")`
+    ///
+    /// - Temporal range constraints, such as `date between {$YESTERDAY, $TOMORROW}`
+    ///
+    /// - Relational conditions, such as `group.name like "work*"`
+    ///
+    /// - Aggregate operations, such as `@sum.items.price < 1000`
+    ///
+    /// For a complete syntax reference, refer to the [Predicate Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789).
+    ///
+    /// You can also create predicates that include variables using the [`evaluateWithObject:substitutionVariables:`](https://developer.apple.com/documentation/foundation/nspredicate/evaluate(with:substitutionvariables:)) method so that you can predefine the predicate before substituting concrete values at runtime.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPredicate;

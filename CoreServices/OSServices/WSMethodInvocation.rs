@@ -11,174 +11,175 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationresult?language=objc)
+    /// Dictionary entry if the invocation result is not a fault.  If you don't know what field to ask for, you can ask for this key.  You can also specify the name of a reply parameter in the invocation using `kWSMethodInvocationResultParameterName`. This will add an alias for the given name to the result dictionary so that this key will return the named parameter.
     #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationResult: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultstring?language=objc)
+    /// If the result is a fault, this key returns a CFString with the fault type. If the fault type is `kWSNetworkStreamFaultString`, then the fault is a network error. In the case of a network error, `kWSFaultCode` should be ignored, and `kWSFaultExtra` returns a dictionary indicating the network error.
     #[deprecated = "No longer supported"]
     pub static kWSFaultString: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultcode?language=objc)
+    /// If the result is a fault, this key returns a CFNumber with the fault code, unless the fault is a network error, in which case this field should be ignored.
     #[deprecated = "No longer supported"]
     pub static kWSFaultCode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsfaultextra?language=objc)
+    /// If the result is a fault, and the fault is a network error, the key returns a CFDictionary with the network error. This key may also return a CFString, or `NULL`.
     #[deprecated = "No longer supported"]
     pub static kWSFaultExtra: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsnetworkstreamfaultstring?language=objc)
+    /// If `kWSFaultExtra` is a dictionary, this key returns a CFString from that dictionary for debug purposes.
     #[deprecated = "No longer supported"]
     pub static kWSNetworkStreamFaultString: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrormessage?language=objc)
+    /// If `kWSFaultExtra` is a dictionary, this key returns a CFString from that dictionary containing the stream error message.
     #[deprecated = "No longer supported"]
     pub static kWSStreamErrorMessage: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrordomain?language=objc)
+    /// If `kWSFaultExtra` is a dictionary, this key returns a `CFNumberRef` from that dictionary containing domain number. See `CFStream.h` for domain numbers.
     #[deprecated = "No longer supported"]
     pub static kWSStreamErrorDomain: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsstreamerrorerror?language=objc)
+    /// If `kWSFaultExtra` is a dictionary, this key returns a `CFNumberRef` from that dictionary containing error number. See `CFStream.h` for error numbers.
     #[deprecated = "No longer supported"]
     pub static kWSStreamErrorError: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpmessage?language=objc)
+    /// The message.
     #[deprecated = "No longer supported"]
     pub static kWSHTTPMessage: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpresponsemessage?language=objc)
+    /// The key used to retrieve the response from the reply dictionary..
     #[deprecated = "No longer supported"]
     pub static kWSHTTPResponseMessage: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpextraheaders?language=objc)
+    /// A CFDictionary of `{ key (CFString), val (CFString) }` pairs.
     #[deprecated = "No longer supported"]
     pub static kWSHTTPExtraHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpversion?language=objc)
+    /// The `CFHTTPMessageRef` version such as “http/1.1”.
     #[deprecated = "No longer supported"]
     pub static kWSHTTPVersion: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpproxy?language=objc)
+    /// The `CFURLRef` of the SOCKS proxy.
     #[deprecated = "No longer supported"]
     pub static kWSHTTPProxy: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwshttpfollowsredirects?language=objc)
+    /// A CFBoolean that controls whether the invocation follows redirects (default is false).
     #[deprecated = "No longer supported"]
     pub static kWSHTTPFollowsRedirects: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugoutgoingheaders?language=objc)
+    /// If this flag is set, the result includes the outgoing message headers.
     #[deprecated = "No longer supported"]
     pub static kWSDebugOutgoingHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugoutgoingbody?language=objc)
+    /// If this flag is set, the result includes the outgoing message body.
     #[deprecated = "No longer supported"]
     pub static kWSDebugOutgoingBody: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugincomingheaders?language=objc)
+    /// If this flag is set, the result includes the incoming message headers.
     #[deprecated = "No longer supported"]
     pub static kWSDebugIncomingHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsdebugincomingbody?language=objc)
+    /// If this flag is set, the result includes the incoming message body.
     #[deprecated = "No longer supported"]
     pub static kWSDebugIncomingBody: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapbodyencodingstyle?language=objc)
     #[deprecated = "No longer supported"]
     pub static kWSSOAPBodyEncodingStyle: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapmethodnamespaceuri?language=objc)
     #[deprecated = "No longer supported"]
     pub static kWSSOAPMethodNamespaceURI: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapstyledoc?language=objc)
     #[deprecated = "No longer supported"]
     pub static kWSSOAPStyleDoc: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapstylerpc?language=objc)
     #[deprecated = "No longer supported"]
     pub static kWSSOAPStyleRPC: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwssoapmessageheaders?language=objc)
+    /// A `CFArrayRef` of XML header elements, as `CFStringRefs`.
     #[deprecated = "No longer supported"]
     pub static kWSSOAPMessageHeaders: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordparameterorder?language=objc)
+    /// A `CFArrayRef` of `CFStringRefs` containing the parameter names, in order.
     #[deprecated = "No longer supported"]
     pub static kWSRecordParameterOrder: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordnamespaceuri?language=objc)
+    /// A  `CFStringRef` containing the namespace.
     #[deprecated = "No longer supported"]
     pub static kWSRecordNamespaceURI: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsrecordtype?language=objc)
+    /// A `CFStringRef` containing the record type.
     #[deprecated = "No longer supported"]
     pub static kWSRecordType: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationresultparametername?language=objc)
+    /// Set this property to create an alias to a parameter to be returned by `kWSMethodInvocationResult`. Pass in the parameter name as a `CFStringRef`.
     #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationResultParameterName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kwsmethodinvocationtimeoutvalue?language=objc)
     #[deprecated = "No longer supported"]
     pub static kWSMethodInvocationTimeoutValue: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationref?language=objc)
+/// An opaque reference to a web services method invocation.
+///
+/// ## Discussion
+///
+/// The `WSMethodInvocationRef` is the fundamental object of web services. Create it using `WSMethodInvocationCreate`. Use it to set parameters, callbacks, and settings for a method invocation, and to invoke a method and obtain a response.
+///
+///
 #[doc(alias = "WSMethodInvocationRef")]
 #[repr(C)]
 pub struct WSMethodInvocation {
@@ -195,7 +196,20 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for WSMethodInvocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576434-wsmethodinvocationgettypeid?language=objc)
+    /// Returns the type ID of the current method invocation.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns the ID of the current method invocation. You should call this immediately after creating the invocation reference.
+    ///
+    ///
     #[doc(alias = "WSMethodInvocationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -207,7 +221,28 @@ unsafe impl ConcreteType for WSMethodInvocation {
 }
 
 impl WSMethodInvocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576406-wsmethodinvocationcreate?language=objc)
+    /// Creates a reference to a method invocation, containing the URL of the service, the operation name, and the protocol.
+    ///
+    /// Parameters:
+    /// - url: The endpoint of the service.
+    ///
+    /// - methodName: The name of the operation to be called.
+    ///
+    /// - protocol: A string defined above that determines the type of invocation object to create. There are string constants for XML-RPC, SOAP 1.1, or SOAP 1.2. Other protocols are not recognized.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `WSMethodInvocationRef` object that can be passed to `WSMethodInvocationInvoke` or scheduled with a run loop.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a web services method invocation object. This is the fundamental object used when passing method parameters or settings, callbacks, or custom serializers or deserializers. This object may be executed synchronously using `WSMethodInvocationInvoke` or scheduled on a run loop for asynchronous execution using `WSMethodInvocationScheduleWithRunLoop`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -233,7 +268,24 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576400-wsmethodinvocationcreatefromseri?language=objc)
+    /// Creates a method invocation object from an XML serialization.
+    ///
+    /// Parameters:
+    /// - contract: The result of a previously serialized `WSMethodInvocationRef`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `WSMethodInvocationRef` object that can be passed to `WSMethodInvocationInvoke` or scheduled with a run loop.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a web services method invocation object from a previously serialized contract. You can use this with a serialization returned from `WSMethodInvocationCopySerialization`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +305,24 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576441-wsmethodinvocationcopyserializat?language=objc)
+    /// Creates an XML serialization of a method invocation.
+    ///
+    /// Parameters:
+    /// - invocation: The invocation to serialize.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFDataRef` of the serialized XML method invocation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a serialized version of the method invocation which can be used at a later time.
+    ///
+    ///
     #[doc(alias = "WSMethodInvocationCopySerialization")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -267,7 +336,21 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576420-wsmethodinvocationsetparameters?language=objc)
+    /// Set the parameter names, types, and order for a method invocation.
+    ///
+    /// Parameters:
+    /// - invocation: The invocation reference.
+    ///
+    /// - parameters: A `CFDictionaryRef` of `CFString` keys and `CFTypeRef` values.
+    ///
+    /// - parameterOrder: A `CFArrayRef` of `CFString` parameter names in order for XML-RPC.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sets the parameters for a method invocation. The parameters dictionary should contain the names and types of the parameters. The parameter order array should contain the names of the parameters in the order they should be passed. The `parameterOrder` may be `NULL`, in which case the order of the parameters is undefined.  If the parameters dictionary contains more or fewer parameters than are specified by the order, the behavior is undefined.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -294,7 +377,26 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetParameters(self, parameters, parameter_order) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576399-wsmethodinvocationcopyparameters?language=objc)
+    /// Creates a copy of the parameters dictionary and sets the order in an array.
+    ///
+    /// Parameters:
+    /// - invocation: the invocation
+    ///
+    /// - parameterOrder: a pointer to a `CFArray` which will will receive the names, in their specified order, of the input parameter values.  This parameter may be `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// a `CFDictionaryRef`
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Copies the parameters from the invocation. The resulting dictionary contains the parameter dictionary. The `parameterOrder` output parameter, if not `NULL`, will contain the order used to serialize the parameters.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -316,7 +418,21 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576407-wsmethodinvocationsetproperty?language=objc)
+    /// Sets a named property of the method invocation.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reference.
+    ///
+    /// - propertyName: A `CFStringRef` name of the property to set.
+    ///
+    /// - propertyValue: A `CFTypeRef` containing the new property value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Adds properties to a method invocation.  These properties can be user-defined or one of the declared properties, which may alter the behavior of the invocation. Declared properties start with the string "kWS," for example `kWSHTTPFollowsRedirects`. Use these properties to add SOAP action headers or to set debug properties, such as including the raw XML in the method response dictionary. Properties are serialized along with the contract, so you should avoid using raw pointers in a `CFNumber`, for example.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -341,7 +457,26 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetProperty(self, property_name, property_value) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576432-wsmethodinvocationcopyproperty?language=objc)
+    /// Creates a copy of a named property of the invocation reference.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation.
+    ///
+    /// - propertyName: The name of the property to retrieve.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// the `CFTypeRef` value of the property, or `NULL` if the property was not specified.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Returns a property from an invocation.  If the result is `NULL`, the property doesn't exist.  Being a copy call, you must release the result.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -360,7 +495,24 @@ impl WSMethodInvocation {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576428-wsmethodinvocationinvoke?language=objc)
+    /// Invokes an web services operation synchronously.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reference.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// a `CFDictionaryRef` containing the result of the execution or a fault, and optional debug information.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Executes the invocation synchronously. If the call was successful, the result contains the result of the invocation. If the invocation failed for any reason, including out of memory or invalid parameter errors, then the result contains a fault structure. You must release the result when you are done with it. To execute the invocation asynchronously (recommended), use WSMethodInvocationScheduleWithRunLoop.
+    ///
+    ///
     #[doc(alias = "WSMethodInvocationInvoke")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -375,13 +527,48 @@ impl WSMethodInvocation {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationcallbackprocptr?language=objc)
+/// This is the callback that handles method invocation completion when the method is invoked asynchronously.
+///
+/// Parameters:
+/// - invocation: The method invocation for which this callback handles completion.
+///
+/// - info: Private callback data.
+///
+/// - outRef: A `CFDictionaryRef` containing the method invocation result or a fault structure, and optional debug information.
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyCompletionCallback, declare it like this:
+///
+/// <a id="1681575"></a>
+/// ### Discussion
+///
+/// Your callback is passed a reference to the invocation just completed, a pointer to private data, and a dictionary that contains the return value or falut for this invocation.  The  callback is responsible for releasing the dictionary when it is  no longer used.
+///
+///
 #[deprecated = "No longer supported"]
 pub type WSMethodInvocationCallBackProcPtr =
     Option<unsafe extern "C-unwind" fn(*mut WSMethodInvocation, *mut c_void, *const CFDictionary)>;
 
 impl WSMethodInvocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576439-wsmethodinvocationsetcallback?language=objc)
+    /// Set a callback to handle the response to an asynchronous method invocation.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reference.
+    ///
+    /// - clientCB: A `ProcPtr` to be called when the invocation completes.
+    ///
+    /// - context: A pointer to a `WSClientContext`. The structure will be copied.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sets the callback to handle the response for an asynchronous method invocation.  The callback is passed a reference to the method invocation just completed, a pointer to private data, and a dictionary that contains the return values for the operation or a fault structure. Test for a fault using `WSMethodResultIsFault`. The callback parses the method response dictionary, which contains the deserialized return data, and may contain the raw XML of the return message as well. The callback is responsible for releasing the result ref.
+    ///
+    /// Call with a `clientCB` and context of `NULL` to clear the invocation callback.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -406,7 +593,21 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationSetCallBack(self, client_cb, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576408-wsmethodinvocationschedulewithru?language=objc)
+    /// Schedule a method invocation for asynchronous execution on a run loop.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reference.
+    ///
+    /// - runLoop: The run loop upon which to schedule the invocation.
+    ///
+    /// - runLoopMode: The run loop mode.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Schedules the invocation to execute on the run loop. You must also set a callback to handle the response, using `WSMethodInvocationSetCallBack`. This is the recommended way to invoke web services, due to the unpredictable network delays inherent in such operations.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -431,7 +632,21 @@ impl WSMethodInvocation {
         unsafe { WSMethodInvocationScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576409-wsmethodinvocationunschedulefrom?language=objc)
+    /// Unschedules a method invocation from a run loop.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reeference.
+    ///
+    /// - runLoop: The run loop from which to unschedule the invocation.
+    ///
+    /// - runLoopMode: The run loop mode.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Unschedules the invocation from a given run loop and mode.  If the invocation has not yet completed, its callback will not be called.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -457,7 +672,24 @@ impl WSMethodInvocation {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576401-wsmethodresultisfault?language=objc)
+/// Tests a method result dictionary for a fault condition.
+///
+/// Parameters:
+/// - methodResult: A method result dictionary.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A boolean TRUE if the result contains a fault condition.
+///
+///
+///
+/// ## Discussion
+///
+/// If the result is a fault, look in the `kWSFaultCode`, `kWSFaultString`, and `kWSFaultExtra` fields of the dictionary.  If not a  fault, `kWSMethodInvocationResult` will contain the result of the execution. If debugging information was requested, it will be available in the dictionary as well.
+///
+///
 ///
 /// # Safety
 ///
@@ -476,7 +708,33 @@ pub unsafe extern "C-unwind" fn WSMethodResultIsFault(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationserializationprocptr?language=objc)
+/// This is an optional callback that handles custom serialization of a particular data type for method invocation.
+///
+/// Parameters:
+/// - invocation: The method invocation for which this callback handles serialization.
+///
+/// - obj: The CFTypeRef for which this callback produces serialized XML.
+///
+/// - info: Private callback data.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A `CFStringRef` containing valid XML.  The caller of this callback will release the string. If you return `NULL`, the default serializer is used.
+///
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MySerilaizerCallback, declare it like this:
+///
+/// <a id="1681581"></a>
+/// ### Discussion
+///
+/// This callback is called whenever a type to be serialized by the method invocation has the given CFTypeID. The callback should return an XML snippet that will be understood by the server as a correct serialization for a given type.  If the callback returns `NULL`, the default serializer is used.
+///
+///
 #[deprecated = "No longer supported"]
 pub type WSMethodInvocationSerializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
@@ -487,7 +745,23 @@ pub type WSMethodInvocationSerializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576435-wsmethodinvocationaddserializati?language=objc)
+    /// Specifies a callback to be made when creating the XML for an method invocation.
+    ///
+    /// Parameters:
+    /// - invocation: The invocation currently being serialized
+    ///
+    /// - objType: The `CFTypeID` of the object to serialize
+    ///
+    /// - serializationProc: The `ProcPtr` to the callback
+    ///
+    /// - context:  A pointer to a `WSClientContext`.  The structure will be copied.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a callback which will be called to produce the XML that represents the serialization of a given type ref.  See `WSTypes.h` for a list of `CFTypes` for which there are default serializers.  If your callback returns `NULL`, the default serializer will be used.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -517,7 +791,35 @@ impl WSMethodInvocation {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationdeserializationprocptr?language=objc)
+/// This is an optional callback that handles custom deserialization of a particular data type for a method response.
+///
+/// Parameters:
+/// - invocation: The method invocation for which this callback handles deserialization.
+///
+/// - msgRoot: The root element of the XML to be deserialized.
+///
+/// - deserializeRoot: The tree element of the XML to be deserialized.
+///
+/// - info: Private callback data.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A `CFTypeRef` representing the deserialized data. The caller will release this data. If you return `NULL`, the default deserializer is used.
+///
+///
+///
+/// ## Discussion
+///
+/// If your callback is named MyDeserilaizerCallback, declare it like this:
+///
+/// <a id="1681593"></a>
+/// ### Discussion
+///
+/// This callback is passed a reference to the invocation currently being executed, the root of the response parse tree, the current node being deserialized, and a pointer to private data. The return result should be a valid `CFTypeRef` object (which will be released  by the caller) or `NULL` to allow the default deserializer to act. Unlike the serialization callback, which is called only for a specified data type, the deserialization callback is called for every element to be deserialized.
+///
+///
 #[deprecated = "No longer supported"]
 pub type WSMethodInvocationDeserializationProcPtr = Option<
     unsafe extern "C-unwind" fn(
@@ -529,7 +831,25 @@ pub type WSMethodInvocationDeserializationProcPtr = Option<
 >;
 
 impl WSMethodInvocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1576436-wsmethodinvocationadddeserializa?language=objc)
+    /// Specifies a callback to be made when parsing the XML in a method response.
+    ///
+    /// Parameters:
+    /// - invocation: The method invocation reference.
+    ///
+    /// - typeNamespace: The fully resolved namespace for a specific type. For example, this field could be: `CFSTR("http://www.Myserver.com/myNameSpace")`. If `NULL`, the default namespace will be used.
+    ///
+    /// - typeName: The non-qualified type name. Note that this is the XML /name/ to be deserialized, not the name of the type. For example, if the XML is  `<Sharename xsi:type="xsd:string">Album-9</Sharename>`, the `typeName` is `Sharename`, not `string`. This parameter must not be `NULL`.
+    ///
+    /// - deserializationProc: A `ProcPtr` to the callback to be called to perform the deserialization.
+    ///
+    /// - context: A pointer to a `WSClientContext`. The structure will be copied.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a callback to be made when parsing an XML method response.  Used to deserialize types the default deserializer does not handle. The callback should return a `CFTypeRef` containing the deserialized object value.  If the callback returns `NULL`, the default deserializer is used.
+    ///
+    ///
     ///
     /// # Safety
     ///

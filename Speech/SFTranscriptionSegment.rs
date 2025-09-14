@@ -10,6 +10,25 @@ use crate::*;
 extern_class!(
     /// A discrete part of an entire transcription, as identified by the speech recognizer.
     ///
+    /// ## Overview
+    ///
+    /// Use [`SFTranscriptionSegment`](https://developer.apple.com/documentation/speech/sftranscriptionsegment) to get details about a part of an overall [`SFTranscription`](https://developer.apple.com/documentation/speech/sftranscription). An [`SFTranscriptionSegment`](https://developer.apple.com/documentation/speech/sftranscriptionsegment) represents an utterance, which is a vocalized word or group of words that represent a single meaning to the speech recognizer ([`SFSpeechRecognizer`](https://developer.apple.com/documentation/speech/sfspeechrecognizer)).
+    ///
+    /// You don’t create transcription object segments directly. Instead, you access them from a transcription’s [`segments`](https://developer.apple.com/documentation/speech/sftranscription/segments) property.
+    ///
+    /// A transcription segment includes the following information:
+    ///
+    /// - The text of the utterance, plus any alternative interpretations of the spoken word.
+    ///
+    /// - The character range of the segment within the [`formattedString`](https://developer.apple.com/documentation/speech/sftranscription/formattedstring) of its parent [`SFTranscription`](https://developer.apple.com/documentation/speech/sftranscription).
+    ///
+    /// - A [`confidence`](https://developer.apple.com/documentation/speech/sftranscriptionsegment/confidence) value, indicating how likely it is that the specified string matches the audible speech.
+    ///
+    /// - A [`timestamp`](https://developer.apple.com/documentation/speech/sftranscriptionsegment/timestamp) and [`duration`](https://developer.apple.com/documentation/speech/sftranscriptionsegment/duration) value, indicating the position of the segment within the provided audio stream.
+    ///
+    ///
+    /// A discrete part of an entire transcription, as identified by the speech recognizer.
+    ///
     /// Use ``SFTranscriptionSegment`` to get details about a part of an overall ``SFTranscription``. An ``SFTranscriptionSegment`` represents an utterance, which is a vocalized word or group of words that represent a single meaning to the speech recognizer (``SFSpeechRecognizer``).
     ///
     /// You don't create transcription object segments directly. Instead, you access them from a transcription's ``SFTranscription/segments`` property.
@@ -20,8 +39,6 @@ extern_class!(
     /// - The character range of the segment within the ``SFTranscription/formattedString`` of its parent ``SFTranscription``.
     /// - A ``confidence`` value, indicating how likely it is that the specified string matches the audible speech.
     /// - A ``timestamp`` and ``duration`` value, indicating the position of the segment within the provided audio stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sftranscriptionsegment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFTranscriptionSegment;

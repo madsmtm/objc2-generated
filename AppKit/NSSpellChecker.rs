@@ -7,87 +7,96 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey?language=objc)
+/// Constants that define options for text checking.
+///
+/// ## Overview
+///
+/// The constants are optional keys that can be used in the options dictionary parameter of the [`checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:`](https://developer.apple.com/documentation/appkit/nsspellchecker/check(_:range:types:options:inspelldocumentwithtag:orthography:wordcount:)), [`requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:`](https://developer.apple.com/documentation/appkit/nsspellchecker/requestchecking(of:range:types:options:inspelldocumentwithtag:completionhandler:)), and [`menuForResult:string:options:atLocation:inView:`](https://developer.apple.com/documentation/appkit/nsspellchecker/menu(for:string:options:atlocation:in:)) methods.
+///
+///
 // NS_TYPED_ENUM
 pub type NSTextCheckingOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/orthography?language=objc)
+    /// An `NSOrthography` instance indicating an orthography to be used as a starting point for orthography checking, or as the orthography if orthography checking is not enabled.
     pub static NSTextCheckingOrthographyKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/quotes?language=objc)
+    /// An `NSArray` containing four strings to be used with `quoteCheckingResult(range:replacementString:)` (opening double quote, closing double quote, opening single quote, and closing single quote in that order).
+    ///
+    /// ## Discussion
+    ///
+    /// If not specified, values will be taken from user’s preferences.
+    ///
+    ///
     pub static NSTextCheckingQuotesKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/replacements?language=objc)
+    /// An NSDictionary containing replacements to be used with NSTextCheckingTypeReplacement; if not specified, values will be taken from user’s preferences.
     pub static NSTextCheckingReplacementsKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/referencedate?language=objc)
+    /// An NSDate to be associated with the document, used as a referent for relative dates; if not specified, the current date will be used.
     pub static NSTextCheckingReferenceDateKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/referencetimezone?language=objc)
+    /// An NSTimeZone to be associated with the document, used as a reference for dates without time zones; if not specified, the current time zone will be used.
     pub static NSTextCheckingReferenceTimeZoneKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documenturl?language=objc)
+    /// An NSURL to be associated with the document.
     pub static NSTextCheckingDocumentURLKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documenttitle?language=objc)
+    /// An NSString containing the title to be associated with the document.
     pub static NSTextCheckingDocumentTitleKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documentauthor?language=objc)
+    /// An NSString containing the name of an author to be associated with the document
     pub static NSTextCheckingDocumentAuthorKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/regularexpressions?language=objc)
     pub static NSTextCheckingRegularExpressionsKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/selectedrange?language=objc)
     pub static NSTextCheckingSelectedRangeKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/generateinlinepredictionskey?language=objc)
     pub static NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse?language=objc)
+/// The correction response passed to the[`recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:`](https://developer.apple.com/documentation/appkit/nsspellchecker/record(_:tocorrection:forword:language:inspelldocumentwithtag:)) method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionResponse(pub NSInteger);
 impl NSCorrectionResponse {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/none?language=objc)
+    /// No response was received from the user.
     #[doc(alias = "NSCorrectionResponseNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/accepted?language=objc)
+    /// The user accepted the correction.
     #[doc(alias = "NSCorrectionResponseAccepted")]
     pub const Accepted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/rejected?language=objc)
+    /// The user rejected the correction by dismissing the correction indicator.
     #[doc(alias = "NSCorrectionResponseRejected")]
     pub const Rejected: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/ignored?language=objc)
+    /// The user continued in such a way as to ignore the correction.
     #[doc(alias = "NSCorrectionResponseIgnored")]
     pub const Ignored: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/edited?language=objc)
+    /// After the correction was accepted, the user edited the corrected word (to something other than its original form.
     #[doc(alias = "NSCorrectionResponseEdited")]
     pub const Edited: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse/reverted?language=objc)
+    /// After the correction was accepted, the user reverted the correction back to the original word.
     #[doc(alias = "NSCorrectionResponseReverted")]
     pub const Reverted: Self = Self(5);
 }
@@ -100,19 +109,19 @@ unsafe impl RefEncode for NSCorrectionResponse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype?language=objc)
+/// Constants that allow an app to specify the correction indicator type displayed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionIndicatorType(pub NSInteger);
 impl NSCorrectionIndicatorType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/default?language=objc)
+    /// The default indicator that shows a proposed correction.
     #[doc(alias = "NSCorrectionIndicatorTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/reversion?language=objc)
+    /// Provides the option to revert to the original form after a correction has been made.
     #[doc(alias = "NSCorrectionIndicatorTypeReversion")]
     pub const Reversion: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype/guesses?language=objc)
+    /// Shows multiple alternatives from which the user may choose the appropriate spelling.
     #[doc(alias = "NSCorrectionIndicatorTypeGuesses")]
     pub const Guesses: Self = Self(2);
 }
@@ -126,7 +135,13 @@ unsafe impl RefEncode for NSCorrectionIndicatorType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker?language=objc)
+    /// An interface to the Cocoa spell-checking service.
+    ///
+    /// ## Overview
+    ///
+    /// To handle all its spell checking, an app needs only one instance of [`NSSpellChecker`](https://developer.apple.com/documentation/appkit/nsspellchecker), known as the spell checker. Using the spell checker you manage the Spelling panel, in which the user can specify decisions about words that are suspect. The spell checker also offers the ability to provide word completions to augment the text completion system.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSpellChecker;
@@ -552,49 +567,43 @@ impl DefaultRetained for NSSpellChecker {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticspellingcorrectionnotification?language=objc)
+    /// This notification is posted when the spell checker did change text using automatic spell checking correction. The are posted to the application’s default notification center.
     pub static NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomatictextreplacementnotification?language=objc)
+    /// Posted when the spell checker changed text using automatic text replacement.  This notification is posted to the app’s default notification center.
     pub static NSSpellCheckerDidChangeAutomaticTextReplacementNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticquotesubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticdashsubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticcapitalizationnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticCapitalizationNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticperiodsubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomatictextcompletionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticTextCompletionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticinlinepredictionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticInlinePredictionNotification:
         &'static NSNotificationName;
 }

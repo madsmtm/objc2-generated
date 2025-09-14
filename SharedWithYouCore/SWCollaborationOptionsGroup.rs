@@ -8,18 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A string constant for the options type identifier.
     /// String identifier used to initialize a UTType to represent the type of the array of SWCollaborationOptionsGroups when registering to and reading from the NSItemProvider
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/utcollaborationoptionstypeidentifier?language=objc)
     pub static UTCollaborationOptionsTypeIdentifier: &'static NSString;
 }
 
 extern_class!(
+    /// An object that represents a group of collaboration options that the system displays together.
     /// A group of SWCollaborationOptions that should be displayed and configured together
     ///
     /// Use SWCollaborationOptionsGroup to represent a group of options used to configure a collaborative item. An SWCollaborationOptionsGroup with one option indicates a switch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swcollaborationoptionsgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWCollaborationOptionsGroup;

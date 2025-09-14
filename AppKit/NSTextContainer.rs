@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontainer?language=objc)
+    /// A region where text layout occurs.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager) uses [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) to determine where to break lines, lay out portions of text, and so on. An [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer) object typically defines rectangular regions, but you can define exclusion paths inside the text container to create regions where text doesn’t flow. You can also subclass to create text containers with nonrectangular regions, such as circular regions, regions with holes in them, or regions that flow alongside graphics.
+    ///
+    /// You can access instances of the [`NSTextContainer`](https://developer.apple.com/documentation/appkit/nstextcontainer), [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager), and [`NSTextStorage`](https://developer.apple.com/documentation/appkit/nstextstorage) classes from threads other than the main thread as long as the app guarantees access from only one thread at a time.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContainer;
@@ -221,24 +229,33 @@ extern_conformance!(
     unsafe impl NSTextLayoutOrientationProvider for NSTextContainer {}
 );
 
-/// ************************** Deprecated ***************************
+/// Values that describe the progression of text on a page.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection?language=objc)
+/// ## Overview
+///
+/// The typesetter decides which way text should flow and passes these values as arguments to the text container, which uses them to calculate the next line rectangle.
+///
+/// Line sweep is the direction text progresses within a line. See [Text System Storage Layer Overview](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextStorageLayer/TextStorageLayer.html#//apple_ref/doc/uid/10000087i).
+///
+/// The only values currently used by the supplied typesetters are `NSLineSweepRight` and `NSLineMovesDown`. An `NSTextContainer` subclass should be able to deal with any value, and an `NSTypesetter` subclass should be able to use any of them.
+///
+///
+/// ************************** Deprecated ***************************
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineSweepDirection(pub NSUInteger);
 impl NSLineSweepDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepleft?language=objc)
+    /// Characters move from right to left.
     #[doc(alias = "NSLineSweepLeft")]
     pub const Left: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepright?language=objc)
+    /// Characters move from left to right.
     #[doc(alias = "NSLineSweepRight")]
     pub const Right: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepdown?language=objc)
+    /// Characters move from top to bottom.
     #[doc(alias = "NSLineSweepDown")]
     pub const Down: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection/nslinesweepup?language=objc)
+    /// Characters move from bottom to top.
     #[doc(alias = "NSLineSweepUp")]
     pub const Up: Self = Self(3);
 }
@@ -251,25 +268,31 @@ unsafe impl RefEncode for NSLineSweepDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection?language=objc)
+/// The direction in which a line moves.
+///
+/// ## Overview
+///
+/// Line movement is the direction in which lines move. See [Text System Storage Layer Overview](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextStorageLayer/TextStorageLayer.html#//apple_ref/doc/uid/10000087i).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineMovementDirection(pub NSUInteger);
 impl NSLineMovementDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinedoesntmove?language=objc)
+    /// Line has no movement.
     #[doc(alias = "NSLineDoesntMove")]
     pub const DoesntMove: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesleft?language=objc)
+    /// Lines move from right to left.
     #[doc(alias = "NSLineMovesLeft")]
     pub const MovesLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesright?language=objc)
+    /// Lines move from left to right.
     #[doc(alias = "NSLineMovesRight")]
     pub const MovesRight: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesdown?language=objc)
+    /// Lines move from top to bottom.
     #[doc(alias = "NSLineMovesDown")]
     pub const MovesDown: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection/nslinemovesup?language=objc)
+    /// Lines move from bottom to top.
     #[doc(alias = "NSLineMovesUp")]
     pub const MovesUp: Self = Self(4);
 }

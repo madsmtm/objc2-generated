@@ -8,7 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetcarlockstatusintent?language=objc)
+    /// A request to lock or unlock the user’s car.
+    ///
+    /// ## Overview
+    ///
+    /// When the user asks to lock or unlock the car, Siri creates an `INSetCarLockStatusIntent` object. This intent object can contain the name of the user’s car and the requested lock status. Use this object to lock or unlock the car.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSetCarLockStatusIntentHandling`](https://developer.apple.com/documentation/intents/insetcarlockstatusintenthandling) protocol. Your handler should confirm the request and create an [`INSetCarLockStatusIntentResponse`](https://developer.apple.com/documentation/intents/insetcarlockstatusintentresponse) object with the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device?" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to lock or unlock their car in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive, and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Lock my car." }] }], [Paragraph { inline_content: [Text { text: "Unlock my truck." }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "把车锁上。" }] }], [Paragraph { inline_content: [Text { text: "给后备箱解锁。" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "幫我鎖車" }] }], [Paragraph { inline_content: [Text { text: "幫手開部卡車嘅鎖" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "鎖上車子。" }] }], [Paragraph { inline_content: [Text { text: "解鎖卡車。" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "帮我锁车" }] }], [Paragraph { inline_content: [Text { text: "帮手开部卡车嘅锁" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "اقفل سيارتي" }] }], [Paragraph { inline_content: [Text { text: "افتح قفل شاحنتي" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Lås min bil" }] }], [Paragraph { inline_content: [Text { text: "Lås min bil op" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Schließe mein Auto ab" }] }], [Paragraph { inline_content: [Text { text: "Schließe mein Auto auf" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Cierra el coche." }] }], [Paragraph { inline_content: [Text { text: "Abre la camioneta." }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Lukitse auto" }] }], [Paragraph { inline_content: [Text { text: "Avaa auto" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Ferme ma voiture." }] }], [Paragraph { inline_content: [Text { text: "Ouvre ma voiture." }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תנעלי את הרכב שלי" }] }], [Paragraph { inline_content: [Text { text: "פתח את הרכב שלי" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Chiudi la mia auto." }] }], [Paragraph { inline_content: [Text { text: "Apri la mia auto." }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "車をロックして" }] }], [Paragraph { inline_content: [Text { text: "トラックのロックを解除して" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "차 잠가줘" }] }], [Paragraph { inline_content: [Text { text: "트럭 열어줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Kunci kereta saya" }] }], [Paragraph { inline_content: [Text { text: "Buka kunci trak saya" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Lås bilen min" }] }], [Paragraph { inline_content: [Text { text: "Lås opp bilen min" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Doe mijn auto op slot." }] }], [Paragraph { inline_content: [Text { text: "Open mijn auto." }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Tranca meu carro" }] }], [Paragraph { inline_content: [Text { text: "Destrancar meu carro" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Закрой мою машину." }] }], [Paragraph { inline_content: [Text { text: "Открой мой грузовик" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Lås min bil." }] }], [Paragraph { inline_content: [Text { text: "Lås upp min lastbil." }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "ล\u{e47}อครถ" }] }], [Paragraph { inline_content: [Text { text: "ปลดล\u{e47}อครถ" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Arabamı kilitle." }] }], [Paragraph { inline_content: [Text { text: "Aracımın kilidini aç." }] }]]], alignments: None, metadata: None })
+    /// Unlike other SiriKit intents, these phrases do not always require your app’s name. Siri infers the app name when possible (for example, based on unique user vocabulary registered by your app). If necessary, Siri verifies the app’s name before launching your extension.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -78,11 +98,18 @@ impl INSetCarLockStatusIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for requesting to lock or unlock a car.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the `INSetCarLockStatusIntentHandling` protocol to resolve, confirm, and handle requests to lock or unlock the user’s car. Adopt this protocol in an object of your Intents extension that is capable of locking or unlocking the car.
+    ///
+    /// Siri delivers an [`INSetCarLockStatusIntent`](https://developer.apple.com/documentation/intents/insetcarlockstatusintent) object to your handler when the user asks to lock or unlock the car. The provided intent object can contain the car’s name (if specified), and the requested lock status (locked or unlocked).
+    ///
+    ///
     /// Protocol to declare support for handling an INSetCarLockStatusIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insetcarlockstatusintenthandling?language=objc)
     pub unsafe trait INSetCarLockStatusIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

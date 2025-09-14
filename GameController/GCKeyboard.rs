@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification that posts after a keyboard connects to the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCKeyboard`](https://developer.apple.com/documentation/gamecontroller/gckeyboard) object that represents the keyboard. If the user connects multiple keyboards, the framework posts this notification only after the first keyboard connects to the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     /// Use these constants with NSNotificationCenter to listen to connection and disconnection events
     ///
     /// Use GCKeyboardDidConnectNotification for observing keyboard connection
@@ -18,17 +27,30 @@ extern "C" {
     /// See: NSNotificationCetner
     ///
     /// Note: All connected keyboards are coalesced into one keyboard object, so notification about connection/disconnection will only be delivered once until last keyboard disconnects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboarddidconnectnotification?language=objc)
     pub static GCKeyboardDidConnectNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboarddiddisconnectnotification?language=objc)
+    /// A notification that posts after a single keyboard, or the last of multiple keyboards, disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a [`GCKeyboard`](https://developer.apple.com/documentation/gamecontroller/gckeyboard) object that represents one or more keyboards. If the user connects multiple keyboards, the framework posts this notification only after the last keyboard disconnects from the device.
+    ///
+    /// The system posts this notification on the main thread.
+    ///
+    ///
     pub static GCKeyboardDidDisconnectNotification: &'static NSString;
 }
 
 extern_class!(
+    /// An object that represents a physical keyboard connected to a device.
+    ///
+    /// ## Overview
+    ///
+    /// To get the keyboard object and its input values, register for the [`GCKeyboardDidConnect`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/gckeyboarddidconnect) (Swift) or [`GCKeyboardDidConnectNotification`](https://developer.apple.com/documentation/gamecontroller/gckeyboarddidconnectnotification) (Objective-C) notification for when a keyboard connects to the device, or use the [`coalescedKeyboard`](https://developer.apple.com/documentation/gamecontroller/gckeyboard/coalesced) class property. Then get the input values from the keyboard object’s [`keyboardInput`](https://developer.apple.com/documentation/gamecontroller/gckeyboard/keyboardinput) controller profile.
+    ///
+    ///
     /// GCKeyboard is available to an application that links to GameController.framework
     /// There are 2 ways to access keyboard paired to the system:
     /// 1: Querying for the coalescedKeyboard using [GCKeyboard coalescedKeyboard]
@@ -36,8 +58,6 @@ extern_class!(
     ///
     ///
     /// Note: All connected keyboards are coalesced into one keyboard object, so notification about connection/disconnection will only be delivered once.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeyboard?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCKeyboard;

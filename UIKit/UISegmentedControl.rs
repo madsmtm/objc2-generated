@@ -12,26 +12,50 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle?language=objc)
+/// The styles of the segmented control.
+///
+/// ## Overview
+///
+/// You use these constants as values for the [`segmentedControlStyle`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segmentedcontrolstyle) property.
+///
+///
 // NS_ENUM
 #[deprecated = "The segmentedControlStyle property no longer has any effect"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlStyle(pub NSInteger);
 impl UISegmentedControlStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstyleplain?language=objc)
+    /// The large plain style for segmented controls.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is the default.
+    ///
+    ///
     #[doc(alias = "UISegmentedControlStylePlain")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Plain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebordered?language=objc)
+    /// The large bordered style for segmented controls.
     #[doc(alias = "UISegmentedControlStyleBordered")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bordered: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebar?language=objc)
+    /// The small toolbar style for segmented controls.
+    ///
+    /// ## Discussion
+    ///
+    /// Segmented controls in this style can have a tint color (see `tintColor`).
+    ///
+    ///
     #[doc(alias = "UISegmentedControlStyleBar")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bar: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolstyle/uisegmentedcontrolstylebezeled?language=objc)
+    /// The large bezeled style for segmented controls.
+    ///
+    /// ## Discussion
+    ///
+    /// Segmented controls in this style can have a tint color (see `tintColor`).
+    ///
+    ///
     #[doc(alias = "UISegmentedControlStyleBezeled")]
     #[deprecated = "The segmentedControlStyle property no longer has any effect"]
     pub const Bezeled: Self = Self(3);
@@ -45,28 +69,58 @@ unsafe impl RefEncode for UISegmentedControlStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/nosegment?language=objc)
+/// A segment index value indicating that there’s no selected segment.
+///
+/// ## Discussion
+///
+/// See [`selectedSegmentIndex`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/selectedsegmentindex) for more information.
+///
+///
 pub const UISegmentedControlNoSegment: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment?language=objc)
+/// Constants for specifying a segment in a control.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlSegment(pub NSInteger);
 impl UISegmentedControlSegment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/any?language=objc)
+    /// Specifies any segment.
     #[doc(alias = "UISegmentedControlSegmentAny")]
     pub const Any: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/left?language=objc)
+    /// The capped, leftmost segment.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies only when [`numberOfSegments`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/numberofsegments) is greater than 1.
+    ///
+    ///
     #[doc(alias = "UISegmentedControlSegmentLeft")]
     pub const Left: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/center?language=objc)
+    /// Any segment between the left and rightmost segments.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies only when [`numberOfSegments`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/numberofsegments) is greater than 2.
+    ///
+    ///
     #[doc(alias = "UISegmentedControlSegmentCenter")]
     pub const Center: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/right?language=objc)
+    /// The capped, rightmost segment.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies only when [`numberOfSegments`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/numberofsegments) is greater than 1.
+    ///
+    ///
     #[doc(alias = "UISegmentedControlSegmentRight")]
     pub const Right: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment/alone?language=objc)
+    /// The standalone segment, capped on both ends.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies only when [`numberOfSegments`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/numberofsegments) is 1.
+    ///
+    ///
     #[doc(alias = "UISegmentedControlSegmentAlone")]
     pub const Alone: Self = Self(4);
 }
@@ -80,7 +134,33 @@ unsafe impl RefEncode for UISegmentedControlSegment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol?language=objc)
+    /// A horizontal control that consists of multiple segments, each segment functioning as a discrete button.
+    ///
+    /// ## Overview
+    ///
+    /// A segmented control can display a title (an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object) or an image ([`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object). The [`UISegmentedControl`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol) object automatically resizes segments to fit proportionally within their superview unless they have a specific width set. When you add and remove segments, you can request that the action be animated with sliding and fading effects.
+    ///
+    /// You register the target-action methods for a segmented control using the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) constant as shown below.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["segmentedControl.addTarget(self, action: \"action:\", forControlEvents: .valueChanged)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[segmentedControl addTarget:self", "                     action:@selector(action:)", "           forControlEvents:UIControlEventValueChanged];"], metadata: None }] }] })
+    /// How you configure a segmented control can affect its display behavior:
+    ///
+    /// - If you set a segmented control to have a momentary style, a segment doesn’t show itself as selected (blue background) when the user touches it. The disclosure button is always momentary and doesn’t affect the actual selection.
+    ///
+    /// - In versions of iOS prior to 3.0, if a segmented control has only two segments, then it behaves like a switch — tapping the currently-selected segment causes the other segment to be selected. In iOS 3.0 and later, tapping the currently-selected segment doesn’t cause the other segment to be selected.
+    ///
+    /// ### Customize appearance
+    ///
+    /// You can customize the appearance of segmented controls using the methods listed in [Customizing appearance](https://developer.apple.com/documentation/uikit/uisegmentedcontrol#customizing-appearance). You can customize the appearance of all segmented controls using the appearance proxy (for example, `[UISegmentedControl appearance]`), or just of a single control.
+    ///
+    /// When customizing appearance, in general, you should specify a value for the normal state of a property to be used by other states which don’t have a custom value set. Similarly, when a property is dependent on the bar metrics (on the iPhone in landscape orientation, bars have a different height from standard), you should make sure you specify a value for [`UIBarMetricsDefault`](https://developer.apple.com/documentation/uikit/uibarmetrics/default).
+    ///
+    /// In the case of the segmented control, appearance properties for [`UIBarMetricsLandscapePhone`](https://developer.apple.com/documentation/uikit/uibarmetrics/landscapephone) are only respected for segmented controls in the smaller navigation and toolbars that are used in landscape orientation on the iPhone.
+    ///
+    /// To provide complete customization, you need to provide divider images for different state combinations, using [`setDividerImage:forLeftSegmentState:rightSegmentState:barMetrics:`](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/setdividerimage(_:forleftsegmentstate:rightsegmentstate:barmetrics:)):
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Image between two unselected segments.", "mySegmentedControl.setDividerImage(myImage, forLeftSegmentState: UIControlState.Normal,", "                                   rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)", " ", "// Image between segment selected on the left and unselected on the right.", "mySegmentedControl.setDividerImage(myImage, forLeftSegmentState: UIControlState.Selected,", "                                   rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)", " ", "// Image between segment selected on the right and unselected on the left.", "mySegmentedControl.setDividerImage(myImage, forLeftSegmentState: UIControlState.Normal,", "                                   rightSegmentState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Image between two unselected segments.", "[mySegmentedControl setDividerImage:image1 forLeftSegmentState:UIControlStateNormal", "                  rightSegmentState:UIControlStateNormal barMetrics:barMetrics];", "// Image between segment selected on the left and unselected on the right.", "[mySegmentedControl setDividerImage:image1 forLeftSegmentState:UIControlStateSelected", "                  rightSegmentState:UIControlStateNormal barMetrics:barMetrics];", "// Image between segment selected on the right and unselected on the right.", "[mySegmentedControl setDividerImage:image1 forLeftSegmentState:UIControlStateNormal", "                  rightSegmentState:UIControlStateSelected barMetrics:barMetrics];"], metadata: None }] }] })
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

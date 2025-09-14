@@ -12,19 +12,37 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum?language=objc)
+/// Constants for the table view styles.
+///
+/// ## Overview
+///
+/// You set the table style when you initialize the table view (see [`initWithFrame:style:`](https://developer.apple.com/documentation/uikit/uitableview/init(frame:style:))). You can’t modify the style thereafter.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewStyle(pub NSInteger);
 impl UITableViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/plain?language=objc)
+    /// A plain table view.
+    ///
+    /// ## Discussion
+    ///
+    /// Section headers and footers are displayed as inline separators and float when the table view is scrolled.
+    ///
+    ///
     #[doc(alias = "UITableViewStylePlain")]
     pub const Plain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/grouped?language=objc)
+    /// A table view where sections have distinct groups of rows.
+    ///
+    /// ## Discussion
+    ///
+    /// Section headers and footers don’t float when the table view scrolls.
+    ///
+    ///
     #[doc(alias = "UITableViewStyleGrouped")]
     pub const Grouped: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum/insetgrouped?language=objc)
+    /// A table view where the grouped sections are inset with rounded corners.
     #[doc(alias = "UITableViewStyleInsetGrouped")]
     pub const InsetGrouped: Self = Self(2);
 }
@@ -37,22 +55,34 @@ unsafe impl RefEncode for UITableViewStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition?language=objc)
+/// The position in the table view (top, middle, bottom) to scroll a specified row to.
+///
+/// ## Overview
+///
+/// You set the scroll position through a parameter of the [`selectRowAtIndexPath:animated:scrollPosition:`](https://developer.apple.com/documentation/uikit/uitableview/selectrow(at:animated:scrollposition:)), [`scrollToNearestSelectedRowAtScrollPosition:animated:`](https://developer.apple.com/documentation/uikit/uitableview/scrolltonearestselectedrow(at:animated:)), [`cellForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableview/cellforrow(at:)), and [`indexPathForSelectedRow`](https://developer.apple.com/documentation/uikit/uitableview/indexpathforselectedrow) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewScrollPosition(pub NSInteger);
 impl UITableViewScrollPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/none?language=objc)
+    /// The table view scrolls the row of interest to be fully visible with a minimum of movement.
+    ///
+    /// ## Discussion
+    ///
+    /// If the row is already fully visible, no scrolling occurs. For example, if the row is above the visible area, the behavior is identical to that specified by [`UITableViewScrollPositionTop`](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/top). This is the default.
+    ///
+    ///
     #[doc(alias = "UITableViewScrollPositionNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/top?language=objc)
+    /// The table view scrolls the row of interest to the top of the visible table view.
     #[doc(alias = "UITableViewScrollPositionTop")]
     pub const Top: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/middle?language=objc)
+    /// The table view scrolls the row of interest to the middle of the visible table view.
     #[doc(alias = "UITableViewScrollPositionMiddle")]
     pub const Middle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition/bottom?language=objc)
+    /// The table view scrolls the row of interest to the bottom of the visible table view.
     #[doc(alias = "UITableViewScrollPositionBottom")]
     pub const Bottom: Self = Self(3);
 }
@@ -65,34 +95,40 @@ unsafe impl RefEncode for UITableViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation?language=objc)
+/// The type of animation to use when inserting or deleting rows.
+///
+/// ## Overview
+///
+/// You specify one of these constants as a parameter of the [`insertRowsAtIndexPaths:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/insertrows(at:with:)), [`insertSections:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/insertsections(_:with:)), [`deleteRowsAtIndexPaths:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/deleterows(at:with:)),[`deleteSections:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/deletesections(_:with:)), [`reloadRowsAtIndexPaths:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/reloadrows(at:with:)), and [`reloadSections:withRowAnimation:`](https://developer.apple.com/documentation/uikit/uitableview/reloadsections(_:with:)) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowAnimation(pub NSInteger);
 impl UITableViewRowAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/fade?language=objc)
+    /// The inserted or deleted row or rows fade into or out of the table view.
     #[doc(alias = "UITableViewRowAnimationFade")]
     pub const Fade: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/right?language=objc)
+    /// The inserted row or rows slide in from the right; the deleted row or rows slide out to the right.
     #[doc(alias = "UITableViewRowAnimationRight")]
     pub const Right: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/left?language=objc)
+    /// The inserted row or rows slide in from the left; the deleted row or rows slide out to the left.
     #[doc(alias = "UITableViewRowAnimationLeft")]
     pub const Left: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/top?language=objc)
+    /// The inserted row or rows slide in from the top; the deleted row or rows slide out toward the top.
     #[doc(alias = "UITableViewRowAnimationTop")]
     pub const Top: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/bottom?language=objc)
+    /// The inserted row or rows slide in from the bottom; the deleted row or rows slide out toward the bottom.
     #[doc(alias = "UITableViewRowAnimationBottom")]
     pub const Bottom: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/none?language=objc)
+    /// The inserted or deleted rows use the default animations.
     #[doc(alias = "UITableViewRowAnimationNone")]
     pub const None: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/middle?language=objc)
+    /// The table view attempts to keep the old and new cells centered in the space they did or will occupy.
     #[doc(alias = "UITableViewRowAnimationMiddle")]
     pub const Middle: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation/automatic?language=objc)
+    /// The table view chooses an appropriate animation style for you.
     #[doc(alias = "UITableViewRowAnimationAutomatic")]
     pub const Automatic: Self = Self(100);
 }
@@ -105,23 +141,20 @@ unsafe impl RefEncode for UITableViewRowAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that determine which types of items in a table view tightly hug their content.
 /// A setting for which items in the table view should tightly hug their content
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewContentHuggingElements(pub NSInteger);
 bitflags::bitflags! {
     impl UITableViewContentHuggingElements: NSInteger {
+/// A mode where none of the items in the table view tightly hug their content.
 /// A content hugging mode where none of the items in the table view tightly hug their content
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements/uitableviewcontenthuggingelementsnone?language=objc)
         #[doc(alias = "UITableViewContentHuggingElementsNone")]
         const None = 0;
+/// A mode where section headers in the table view tightly hug their content.
 /// A content hugging mode where section headers in the table view tightly hug their content
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements/sectionheaders?language=objc)
         #[doc(alias = "UITableViewContentHuggingElementsSectionHeaders")]
         const SectionHeaders = 1<<0;
     }
@@ -136,32 +169,44 @@ unsafe impl RefEncode for UITableViewContentHuggingElements {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/indexsearch?language=objc)
+    /// A constant for adding the magnifying glass icon to the section index of a table view.
+    ///
+    /// ## Discussion
+    ///
+    /// If the data source includes this constant string in the array of strings it returns in [`sectionIndexTitlesForTableView:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/sectionindextitles(for:)), the section index displays a magnifying glass icon at the corresponding index location. This location should generally be the first title in the index.
+    ///
+    ///
     pub static UITableViewIndexSearch: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/automaticdimension?language=objc)
+    /// A constant representing the default value for a given dimension.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this value from your table view’s delegate methods when you want the table view to choose a default value for the given dimension. For example, if you return this constant from [`tableView:heightForHeaderInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:heightforheaderinsection:)) or [`tableView:heightForFooterInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:heightforfooterinsection:)), the table view uses a height that fits the value returned from [`tableView:titleForHeaderInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:titleforheaderinsection:)) or [`tableView:titleForFooterInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:titleforfooterinsection:)), if the title is not `nil`.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UITableViewAutomaticDimension: CGFloat;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum?language=objc)
+/// Constants that specify the appearance of action buttons.
 // NS_ENUM
 #[deprecated = "Use UIContextualAction and related APIs instead."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowActionStyle(pub NSInteger);
 impl UITableViewRowActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/default?language=objc)
+    /// Apply the default style to the button.
     #[doc(alias = "UITableViewRowActionStyleDefault")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/destructive?language=objc)
+    /// Equal to the default style.
     #[doc(alias = "UITableViewRowActionStyleDestructive")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Destructive: Self = Self(UITableViewRowActionStyle::Default.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum/normal?language=objc)
+    /// Apply a style that reflects standard non-destructive actions.
     #[doc(alias = "UITableViewRowActionStyleNormal")]
     #[deprecated = "Use UIContextualAction and related APIs instead."]
     pub const Normal: Self = Self(1);
@@ -176,7 +221,15 @@ unsafe impl RefEncode for UITableViewRowActionStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction?language=objc)
+    /// A single action to present when the user swipes horizontally in a table row.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UITableViewRowAction`](https://developer.apple.com/documentation/uikit/uitableviewrowaction) object to define a single, custom action for a table row. Users swipe horizontally in a table view to reveal the actions associated with a row. Each row-action object contains the text display, the action to perform, and any specific formatting to apply to that action.
+    ///
+    /// To add custom actions to your table view’s rows, implement the [`tableView:editActionsForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:editactionsforrowat:)) method in your table view’s delegate object. In that method, create and return the actions for the indicated row. The table displays your action buttons and executes the appropriate handler block when the user taps one of them.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -273,7 +326,13 @@ impl UITableViewRowAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewfocusupdatecontext?language=objc)
+    /// A context object that provides information relevant to a specific focus update from one view to another.
+    ///
+    /// ## Overview
+    ///
+    /// A focus update context provides extra information that’s only relevant to focus updates involving table views. Instances of this class are ephemeral and are usually discarded after the update is finished.
+    ///
+    ///
     #[unsafe(super(UIFocusUpdateContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -314,7 +373,29 @@ impl UITableViewFocusUpdateContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdelegate?language=objc)
+    /// Methods for managing selections, configuring section headers and footers, deleting and reordering cells, and performing other actions in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of this protocol to manage the following features:
+    ///
+    /// - Create and manage custom header and footer views.
+    ///
+    /// - Specify custom heights for rows, headers, and footers.
+    ///
+    /// - Provide height estimates for better scrolling support.
+    ///
+    /// - Indent row content.
+    ///
+    /// - Respond to row selections.
+    ///
+    /// - Respond to swipes and other actions in table rows.
+    ///
+    /// - Support editing the table’s content.
+    ///
+    /// The table view specifies rows and sections using [`IndexPath`](https://developer.apple.com/documentation/foundation/indexpath). For information about how to interpret row and section indexes, see [Specify the location of rows and sections](https://developer.apple.com/documentation/uikit/uitableviewdatasource#specify-the-location-of-rows-and-sections).
+    ///
+    ///
     #[cfg(feature = "UIScrollView")]
     pub unsafe trait UITableViewDelegate:
         NSObjectProtocol + UIScrollViewDelegate + MainThreadOnly
@@ -1047,20 +1128,38 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selectiondidchangenotification?language=objc)
+    /// A notification that posts when the selected row in the posting table view changes.
+    ///
+    /// ## Discussion
+    ///
+    /// There’s no `userInfo` dictionary associated with this notification.
+    ///
+    ///
     pub static UITableViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum?language=objc)
+/// Constants that indicate how to interpret the separator inset value of a table view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewSeparatorInsetReference(pub NSInteger);
 impl UITableViewSeparatorInsetReference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum/fromcelledges?language=objc)
+    /// An inset value that’s relative to the edge of the cell.
+    ///
+    /// ## Discussion
+    ///
+    /// When this style is active, setting the left and right insets to `0.0` would result in a separator to extend from the entire distance between the left and right edges of the cell. Setting the insets to other values would inset the separator by the specified amount.
+    ///
+    ///
     #[doc(alias = "UITableViewSeparatorInsetFromCellEdges")]
     pub const FromCellEdges: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum/fromautomaticinsets?language=objc)
+    /// An inset value that indicates the starting position is based on the default separator insets.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this style, the values in the [`separatorInset`](https://developer.apple.com/documentation/uikit/uitableview/separatorinset) property are interpreted as offsets from the default insets provided by the table view. The table view normally uses its layout margins as the default cell inset value. However, these insets may be modified by other factors, such as the when the [`cellLayoutMarginsFollowReadableWidth`](https://developer.apple.com/documentation/uikit/uitableview/celllayoutmarginsfollowreadablewidth) property is set to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[doc(alias = "UITableViewSeparatorInsetFromAutomaticInsets")]
     pub const FromAutomaticInsets: Self = Self(1);
 }
@@ -1073,26 +1172,47 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum?language=objc)
+/// Constants that describe modes for invalidating the size of self-sizing table view cells.
+///
+/// ## Overview
+///
+/// Use these constants with the [`selfSizingInvalidation`](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.property) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewSelfSizingInvalidation(pub NSInteger);
 impl UITableViewSelfSizingInvalidation {
-    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
+    /// A mode that disables self-sizing invalidation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/disabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, no sizing updates occur after calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uitableviewcell/contentview).
+    ///
+    ///
+    /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
     #[doc(alias = "UITableViewSelfSizingInvalidationDisabled")]
     pub const Disabled: Self = Self(0);
-    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
+    /// A mode that enables manual self-sizing invalidation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/enabled?language=objc)
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uitableviewcell/contentview) causes the cell to resize if necessary.
+    ///
+    ///
+    /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary.
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabled")]
     pub const Enabled: Self = Self(1);
+    /// A mode that enables automatic self-sizing invalidation after Auto Layout changes.
+    ///
+    /// ## Discussion
+    ///
+    /// If you use this self-sizing invalidation mode, calling [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()) on a self-sizing cell or its [`contentView`](https://developer.apple.com/documentation/uikit/uitableviewcell/contentview) causes the cell to resize if necessary. Additionally, any Auto Layout change within the [`contentView`](https://developer.apple.com/documentation/uikit/uitableviewcell/contentview) of a self-sizing cell automatically calls [`invalidateIntrinsicContentSize`](https://developer.apple.com/documentation/uikit/uiview/invalidateintrinsiccontentsize()).
+    ///
+    ///
     /// Calling -invalidateIntrinsicContentSize on a self-sizing cell or its contentView will cause it to be resized if necessary, and
     /// any Auto Layout changes within the contentView of a self-sizing cell will automatically trigger -invalidateIntrinsicContentSize.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum/enabledincludingconstraints?language=objc)
     #[doc(alias = "UITableViewSelfSizingInvalidationEnabledIncludingConstraints")]
     pub const EnabledIncludingConstraints: Self = Self(2);
 }
@@ -1106,7 +1226,31 @@ unsafe impl RefEncode for UITableViewSelfSizingInvalidation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview?language=objc)
+    /// A view that presents data using rows in a single column.
+    ///
+    /// ## Overview
+    ///
+    /// Table views in iOS display rows of vertically scrolling content in a single column. Each row in the table contains one piece of your app’s content. For example, the Contacts app displays the name of each contact in a separate row, and the main page of the Settings app displays the available groups of settings. You can configure a table to display a single long list of rows, or you can group related rows into sections to make navigating the content easier.
+    ///
+    /// Tables are common in apps with data that’s highly structured or organized hierarchically. Apps that contain hierarchical data often use tables in conjunction with a navigation view controller, which facilitates navigation between different levels of the hierarchy. For example, the Settings app uses tables and a navigation controller to organize the system settings.
+    ///
+    /// [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) manages the basic appearance of the table, but your app provides the cells ([`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) objects) that display the actual content. The standard cell configurations display a simple combination of text and images, but you can define custom cells that display any content you want. You can also supply header and footer views to provide additional information for groups of cells.
+    ///
+    /// ### Add a table view to your interface
+    ///
+    /// To add a table view to your interface, drag a table view controller ([`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller)) object to your storyboard. Xcode creates a new scene that includes both the view controller and a table view, ready for you to configure and use.
+    ///
+    /// Table views are data-driven, normally getting their data from a data source object that you provide. The data source object manages your app’s data and is responsible for creating and configuring the table’s cells. If the content of your table never changes, you can configure that content in your storyboard file instead.
+    ///
+    /// For information about how to specify your table’s data, see [Filling a table with data](https://developer.apple.com/documentation/uikit/filling-a-table-with-data).
+    ///
+    /// ### Save and restore the table’s current state
+    ///
+    /// Table views support UIKit app restoration. To save and restore the table’s data, assign a nonempty value to the table view’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property. When you save its parent view controller, the table view automatically saves the index paths for the currently selected and visible rows. If the table’s data source object adopts the [`UIDataSourceModelAssociation`](https://developer.apple.com/documentation/uikit/uidatasourcemodelassociation) protocol, the table stores the unique IDs that you provide for those items instead of their index paths.
+    ///
+    /// For information about how to save and restore your app’s state information, see [Preserving your app’s UI across launches](https://developer.apple.com/documentation/uikit/preserving-your-app-s-ui-across-launches).
+    ///
+    ///
     #[unsafe(super(UIScrollView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2059,7 +2203,59 @@ extern_conformance!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdatasource?language=objc)
+    /// The methods that an object adopts to manage data and provide cells for a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Table views manage only the presentation of their data; they don’t manage the data itself. To manage the data, you provide the table with a data source object — an object that implements the [`UITableViewDataSource`](https://developer.apple.com/documentation/uikit/uitableviewdatasource) protocol. A data source object responds to data-related requests from the table. It also manages the table’s data directly, or coordinates with other parts of your app to manage that data. Other responsibilities of the data source object include:
+    ///
+    /// - Reporting the number of sections and rows in the table.
+    ///
+    /// - Providing cells for each row of the table.
+    ///
+    /// - Providing titles for section headers and footers.
+    ///
+    /// - Configuring the table’s index, if any.
+    ///
+    /// - Responding to user- or table-initiated updates that require changes to the underlying data.
+    ///
+    /// Only two methods of this protocol are required, and they’re shown in the following example code.
+    ///
+    /// ```swift
+    /// // Return the number of rows for the table.     
+    /// override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    ///    return 0
+    /// }
+    ///
+    /// // Provide a cell object for each row.
+    /// override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    ///    // Fetch a cell of the appropriate type.
+    ///    let cell = tableView.dequeueReusableCell(withIdentifier: "cellTypeIdentifier", for: indexPath)
+    ///    
+    ///    // Configure the cell’s contents.
+    ///    cell.textLabel!.text = "Cell text"
+    ///        
+    ///    return cell
+    /// }
+    /// ```
+    ///
+    /// Use other methods of this protocol to enable specific features for your table. For example, you must implement the [`tableView:commitEditingStyle:forRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:commit:forrowat:)) method to enable the swipe-to-delete feature for rows.
+    ///
+    /// For information about how to create and configure your table’s cells using your data source object, see [Filling a table with data](https://developer.apple.com/documentation/uikit/filling-a-table-with-data).
+    ///
+    /// ### Specify the location of rows and sections
+    ///
+    /// Table views communicate the location of cells to you using the [`row`](https://developer.apple.com/documentation/foundation/nsindexpath/row) and [`section`](https://developer.apple.com/documentation/foundation/nsindexpath/section) properties of [`NSIndexPath`](https://developer.apple.com/documentation/foundation/nsindexpath) objects. Row and section indexes are zero based, so the first section is at index `0`, the second at index `1`, and so on. Similarly, the first row of each section is at index `0`, which means you need both the [`section`](https://developer.apple.com/documentation/foundation/nsindexpath/section) and [`row`](https://developer.apple.com/documentation/foundation/nsindexpath/row) values to identify a row uniquely. If your table has no sections, you need only the [`row`](https://developer.apple.com/documentation/foundation/nsindexpath/row) value.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cd357d81f8438245d6e576631649ff6b/media-3148902~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/9b202d53b6f805deaaabbaed86a978cc/media-3148902%402x.png 2x" />
+    ///     <img alt="Illustration that shows a table with multiple sections. The first section has an index of 0 and no row value. The nine rows in the first section have indexes between 0 and 8. The second section has an index of 1 and no row value. Its first row starts at index 0 again." src="https://docs-assets.developer.apple.com/published/cd357d81f8438245d6e576631649ff6b/media-3148902~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     pub unsafe trait UITableViewDataSource: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[unsafe(method(tableView:numberOfRowsInSection:))]
@@ -2180,7 +2376,45 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching?language=objc)
+    /// A protocol that provides advance warning of the data requirements for a table view, allowing you to start potentially long-running data operations early.
+    ///
+    /// ## Overview
+    ///
+    /// You use a prefetch data source object in conjunction with your table view’s data source to begin loading data for cells before the [`tableView:cellForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:cellforrowat:)) data source method is called. The following steps are required to support a prefetch data source to your table view:
+    ///
+    /// - Create the table view and its regular data source.
+    ///
+    /// - Create an object that adopts the [`UITableViewDataSourcePrefetching`](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching) protocol, and assign it to the [`prefetchDataSource`](https://developer.apple.com/documentation/uikit/uitableview/prefetchdatasource) property on the table view.
+    ///
+    /// - Initiate asynchronous loading of the data required for the cells at the specified index paths in your implementation of [`tableView:prefetchRowsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/tableview(_:prefetchrowsat:)).
+    ///
+    /// - Prepare the cell for display using the prefetched data in your [`tableView:cellForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:cellforrowat:)) data source method.
+    ///
+    /// - Cancel pending data load operations when the table view informs you that the data is no longer required in the [`tableView:cancelPrefetchingForRowsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/tableview(_:cancelprefetchingforrowsat:)) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The prefetch method isn’t necessarily called for every cell in the table view. For details about a suggested approach to loading data, see [Load data asynchronously](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching#load-data-asynchronously).
+    ///
+    ///
+    ///
+    /// </div>
+    /// When configuring the table view object, assign your prefetch data source to its [`prefetchDataSource`](https://developer.apple.com/documentation/uikit/uitableview/prefetchdatasource) property. For more information about how a table view works, see [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview).
+    ///
+    /// ### Load data asynchronously
+    ///
+    /// The [`tableView:prefetchRowsAtIndexPaths:`](https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/tableview(_:prefetchrowsat:)) method isn’t necessarily called for every cell in the table view. Your implementation of [`tableView:cellForRowAtIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:cellforrowat:)) must therefore be able to cope with the following potential situations:
+    ///
+    /// - Data has been loaded via the prefetch request, and is ready to be displayed.
+    ///
+    /// - Data is currently being prefetched, but isn’t yet available.
+    ///
+    /// - Data hasn’t yet been requested.
+    ///
+    /// One approach that handles all of these situations is to use [`NSOperation`](https://developer.apple.com/documentation/foundation/operation) to load the data for each row. You create the [`NSOperation`](https://developer.apple.com/documentation/foundation/operation) object and store it in the prefetch method. The data source method can then either retrieve the operation and the result, or create it if it doesn’t exist. For further information about how you can use asynchronous programming models to achieve this desired behavior, see [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091).
+    ///
+    ///
     pub unsafe trait UITableViewDataSourcePrefetching:
         NSObjectProtocol + MainThreadOnly
     {
@@ -2206,7 +2440,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdragdelegate?language=objc)
+    /// The interface for initiating drags from a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in the object that you use to initiate drags from your table view. The only required method of this protocol is the [`tableView:itemsForBeginningDragSession:atIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdragdelegate/tableview(_:itemsforbeginning:at:)) method, but you can implement other methods as needed to customize the drag behavior of your table view.
+    ///
+    /// Assign your custom delegate object to the [`dragDelegate`](https://developer.apple.com/documentation/uikit/uitableview/dragdelegate) property of your table view.
+    ///
+    ///
     pub unsafe trait UITableViewDragDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIDragItem",
@@ -2322,7 +2564,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropdelegate?language=objc)
+    /// The interface for handling drops in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol in the object that you use to incorporate dropped data into your table view. The only required method of this protocol is the [`tableView:performDropWithCoordinator:`](https://developer.apple.com/documentation/uikit/uitableviewdropdelegate/tableview(_:performdropwith:)) method, but you can implement other methods as needed to customize the drop behavior of your table view.
+    ///
+    /// Assign your custom delegate object to the [`dropDelegate`](https://developer.apple.com/documentation/uikit/uitableview/dropdelegate) property of your table view.
+    ///
+    ///
     pub unsafe trait UITableViewDropDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         #[unsafe(method(tableView:performDropWithCoordinator:))]
@@ -2428,22 +2678,22 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum?language=objc)
+/// Constants indicating how you intend to handle a drop.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewDropIntent(pub NSInteger);
 impl UITableViewDropIntent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/unspecified?language=objc)
+    /// No drop proposal was specified.
     #[doc(alias = "UITableViewDropIntentUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/insertatdestinationindexpath?language=objc)
+    /// Insert the dropped content at the specified index path.
     #[doc(alias = "UITableViewDropIntentInsertAtDestinationIndexPath")]
     pub const InsertAtDestinationIndexPath: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/insertintodestinationindexpath?language=objc)
+    /// Incorporate the dropped content into the row at the specified index path.
     #[doc(alias = "UITableViewDropIntentInsertIntoDestinationIndexPath")]
     pub const InsertIntoDestinationIndexPath: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum/automatic?language=objc)
+    /// Incorporate the content in an appropriate way based on the drop location.
     #[doc(alias = "UITableViewDropIntentAutomatic")]
     pub const Automatic: Self = Self(3);
 }
@@ -2457,7 +2707,13 @@ unsafe impl RefEncode for UITableViewDropIntent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal?language=objc)
+    /// Your proposed solution for handling a drop in a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Create instances of this class in the [`tableView:dropSessionDidUpdate:withDestinationIndexPath:`](https://developer.apple.com/documentation/uikit/uitableviewdropdelegate/tableview(_:dropsessiondidupdate:withdestinationindexpath:)) method of your drop delegate object. You create drop proposals to let the table view know how you intend to handle a drop at the currently specified location. The table view uses that information to provide appropriate visual feedback to the user.
+    ///
+    ///
     #[unsafe(super(UIDropProposal, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2519,7 +2775,13 @@ impl UITableViewDropProposal {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator?language=objc)
+    /// An interface for coordinating your custom drop-related actions with the table view.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class yourself. When a drop occurs in the table view, UIKit creates an instance of this class and passes it to your [`tableView:performDropWithCoordinator:`](https://developer.apple.com/documentation/uikit/uitableviewdropdelegate/tableview(_:performdropwith:)) method. Use the object to let the table view know how you want to animate the dropped items into position.
+    ///
+    ///
     pub unsafe trait UITableViewDropCoordinator: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
@@ -2588,7 +2850,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewplaceholder?language=objc)
+    /// An object that contains information about a placeholder cell being inserted into a table.
+    ///
+    /// ## Overview
+    ///
+    /// During a drop operation, create a [`UITableViewDropPlaceholder`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder) object (instead of this one) to insert placeholders into your table.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2653,7 +2921,27 @@ impl UITableViewPlaceholder {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder?language=objc)
+    /// A placeholder cell that supports customizing the drop preview parameters.
+    ///
+    /// ## Overview
+    ///
+    /// When you want to insert a placeholder cell into your table, create a [`UITableViewDropPlaceholder`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder) object and pass it to the [`dropItem:toPlaceholder:`](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator/drop(_:to:)-3znax) method of your [`UITableViewDropCoordinator`](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator). You use a placeholder cell to display a temporary interface while you load the cell’s contents asynchronously. For example, your placeholder cell might display a progress indicator or a message that the cell content isn’t yet available. The placeholder object contains the reuse identifier of the temporary cell you want to display in your table. It can also include a custom preview to use during the drop.
+    ///
+    /// You must register the cells you use with your placeholders in advance. In your storyboard file, add a table view cell object to your table, configure its appearance, set its class to [`UITableViewCell`](https://developer.apple.com/documentation/uikit/uitableviewcell) (or an appropriate subclass), and assign a reuse identifier to it. When you create your [`UITableViewDropPlaceholder`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholder) object, pass the cell’s reuse identifier to [`initWithInsertionIndexPath:reuseIdentifier:rowHeight:`](https://developer.apple.com/documentation/uikit/uitableviewplaceholder/init(insertionindexpath:reuseidentifier:rowheight:)). The table view uses the information in your placeholder object to insert the cell into the table.
+    ///
+    /// Set the [`cellUpdateHandler`](https://developer.apple.com/documentation/uikit/uitableviewplaceholder/cellupdatehandler) to a block of code that configures the cell as a placeholder for the incoming data.
+    ///
+    /// For more information, see [Supporting drag and drop in table views](https://developer.apple.com/documentation/uikit/supporting-drag-and-drop-in-table-views).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Placeholder cells are meant to be a temporary part of your table view. Always replace them with actual cells as soon as possible, or cancel the drop to remove them from the table. Use the methods of a [`UITableViewDropPlaceholderContext`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext) object to remove placeholders from your table.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UITableViewPlaceholder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -2733,7 +3021,13 @@ impl UITableViewDropPlaceholder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropitem?language=objc)
+    /// The data associated with an item being dropped into the table view.
+    ///
+    /// ## Overview
+    ///
+    /// When handling a drop, you get instances of this class from the [`items`](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator/items) property of the [`UITableViewDropCoordinator`](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator) object. Use them to retrieve the data for the items being dragged and to plan any animations related to dropping the items. You don’t create instances of this class yourself.
+    ///
+    ///
     pub unsafe trait UITableViewDropItem: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[unsafe(method(dragItem))]
@@ -2752,7 +3046,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext?language=objc)
+    /// An object for tracking a placeholder cell that you added to your table during a drop operation.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class yourself. Instead, call [`dropItem:toPlaceholder:`](https://developer.apple.com/documentation/uikit/uitableviewdropcoordinator/drop(_:to:)-3znax) from your drop coordinator object. That method inserts a placeholder cell into the table and returns a [`UITableViewDropPlaceholderContext`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext) object for managing that placeholder.
+    ///
+    /// When you’re ready to swap a placeholder cell for a cell with the actual data, call the [`commitInsertionWithDataSourceUpdates:`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext/commitinsertion(datasourceupdates:)) method of the context object. To remove the placeholder cell without providing a replacement, call [`deletePlaceholder`](https://developer.apple.com/documentation/uikit/uitableviewdropplaceholdercontext/deleteplaceholder()) instead.
+    ///
+    ///
     #[cfg(feature = "UIDragInteraction")]
     pub unsafe trait UITableViewDropPlaceholderContext:
         UIDragAnimating + MainThreadOnly

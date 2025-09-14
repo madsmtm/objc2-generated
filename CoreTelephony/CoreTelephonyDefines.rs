@@ -5,14 +5,26 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/kcterrordomainnoerror?language=objc)
+/// The domain value indicating there is no error.
 pub const kCTErrorDomainNoError: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/kcterrordomainposix?language=objc)
+/// The domain value for errors from POSIX.
+///
+/// ## Discussion
+///
+/// POSIX error codes are listed in `sys/errno.h`.
+///
+///
 pub const kCTErrorDomainPOSIX: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/kcterrordomainmach?language=objc)
+/// The domain value for errors reported by Mach.
+///
+/// ## Discussion
+///
+/// Mach error codes are listed in `mach/error.h`.
+///
+///
 pub const kCTErrorDomainMach: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cterror?language=objc)
+/// A type representing a Core Telephony error.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CTError {

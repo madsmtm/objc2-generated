@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollerdelegate?language=objc)
+    /// The interface for a popover presentation delegate, which lets you customize the behavior of a popover-based presentation.
+    ///
+    /// ## Overview
+    ///
+    /// A popover presentation controller notifies your delegate at appropriate points during the presentation process. You can use the delegate methods to customize this process and respond to changes dynamically.
+    ///
+    /// After defining an object that adopts this protocol, assign that object to the [`delegate`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller/delegate) property of a [`UIPopoverPresentationController`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller) object. You must present a view controller using the [`UIModalPresentationPopover`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/popover) style before you can obtain such an object. For more information about popover presentation controllers, see [`UIPopoverPresentationController`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller).
+    ///
+    ///
     #[cfg(feature = "UIPresentationController")]
     pub unsafe trait UIPopoverPresentationControllerDelegate:
         UIAdaptivePresentationControllerDelegate + MainThreadOnly
@@ -62,7 +70,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontroller?language=objc)
+    /// An object that manages the display of content in a popover.
+    ///
+    /// ## Overview
+    ///
+    /// From the time a popover is presented until the time it’s dismissed, UIKit uses an instance of this class to manage the presentation behavior. You use instances of this class as-is to configure aspects of the popover appearance and behavior for view controllers whose presentation style is set to [`UIModalPresentationPopover`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/popover).
+    ///
+    /// In nearly all cases, you use this class as-is and don’t create instances of it directly. UIKit creates an instance of this class automatically when you present a view controller using the [`UIModalPresentationPopover`](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle/popover) style. You can retrieve that instance from the presented view controller’s [`popoverPresentationController`](https://developer.apple.com/documentation/uikit/uiviewcontroller/popoverpresentationcontroller) property and use it to configure the popover behavior.
+    ///
+    /// If you don’t want to configure a popover immediately after presenting a view controller, you can use a delegate object to configure the popover instead. During the presentation process, the popover presentation controller calls various methods of its delegate—an object that conforms to the [`UIPopoverPresentationControllerDelegate`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollerdelegate) protocol—to ask for information and to inform it about the state of the presentation. Your delegate object can use those methods to configure the popover and adjust its behavior as needed. For information about how to implement a delegate for a popover presentation controller, see [`UIPopoverPresentationControllerDelegate`](https://developer.apple.com/documentation/uikit/uipopoverpresentationcontrollerdelegate).
+    ///
+    /// For information about how to display a view controller using a popover presentation controller, see [Displaying transient content in a popover](https://developer.apple.com/documentation/uikit/displaying-transient-content-in-a-popover).
+    ///
+    ///
     #[unsafe(super(UIPresentationController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

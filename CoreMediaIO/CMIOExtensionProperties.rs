@@ -8,87 +8,128 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A structure that defines the properties that providers, devices, and streams support.
 /// CMIOExtensionProperty string constants
 ///
 /// The CMIOExtensionProperty string constants indicates a property key.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty?language=objc)
 // NS_TYPED_ENUM
 pub type CMIOExtensionProperty = NSString;
 
 extern "C" {
+    /// A property key for the provider name.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a string with a read-only attribute.
+    ///
+    ///
     /// The key for the provider property name.
     ///
     /// The property state for CMIOExtensionPropertyProviderName is a string with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/providername?language=objc)
     pub static CMIOExtensionPropertyProviderName: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the provider manufacturer.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a string with a read-only attribute.
+    ///
+    ///
     /// The key for the provider property manufacturer.
     ///
     /// The property state for CMIOExtensionPropertyProviderManufacturer is a string with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/providermanufacturer?language=objc)
     pub static CMIOExtensionPropertyProviderManufacturer: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the device model.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a string with a read-only attribute.
+    ///
+    ///
     /// The key for the device property model.
     ///
     /// The property state for CMIOExtensionPropertyDeviceModel is a string with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicemodel?language=objc)
     pub static CMIOExtensionPropertyDeviceModel: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for a Boolean value that indicates whether the device is in a suspended state.
+    ///
+    /// ## Discussion
+    ///
+    /// An example of when a device may be in a suspended state is when a user closes their laptop. While suspended, the device continues to respond to requests as if it were active, but the stream doesn’t provide any data.
+    ///
+    /// The property state for this property is a number that represents a Boolean value.
+    ///
+    ///
     /// The key for the device property IsSuspended, this key indicates if the device is currently suspended.
     ///
     /// For example, the user might close the clamshell of the device. While suspended the device still responds
     /// to all requests just as if it were active, but the stream(s) will not provide any data.
     /// The property state for CMIOExtensionPropertyDeviceIsSuspended is a number as boolean with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/deviceissuspended?language=objc)
     pub static CMIOExtensionPropertyDeviceIsSuspended: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the device transport type.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number value that corresponds to an audio transport type (`kIOAudioDeviceTransportType`) that the IOKit framework defines.
+    ///
+    ///
     /// The key for the device property transport type.
     ///
     /// The property state for CMIOExtensionPropertyDeviceTransportType is a number whose value correspond to the audio transport type ( kIOAudioDeviceTransportType... ) defined in
     /// <IOKit
     /// /audio/IOAudioTypes.h> and with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicetransporttype?language=objc)
     pub static CMIOExtensionPropertyDeviceTransportType: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the UID of the linked Core Audio device.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a string with a read-only attribute.
+    ///
+    ///
     /// The key for the device property linked CoreAudio device UID.
     ///
     /// The property state for CMIOExtensionPropertyDeviceLinkedCoreAudioDeviceUID is a string with a readonly attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicelinkedcoreaudiodeviceuid?language=objc)
     pub static CMIOExtensionPropertyDeviceLinkedCoreAudioDeviceUID: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for a Boolean value that indicates whether the device can be a default input device.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number that represents a Boolean value.
+    ///
+    ///
     /// The key for the device property that specifies if a device can be the default input device.
     ///
     /// The property state for CMIOExtensionPropertyDeviceCanBeDefaultInputDevice is a number representing a boolean value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicecanbedefaultinputdevice?language=objc)
     pub static CMIOExtensionPropertyDeviceCanBeDefaultInputDevice: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for a Boolean value that indicates whether the device can be a default output device.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number that represents a Boolean value.
+    ///
+    ///
     /// The key for the device property that specifies if a device can be the default output device.
     ///
     /// The property state for CMIOExtensionPropertyDeviceCanBeDefaultOutputDevice is a number representing a boolean value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicecanbedefaultoutputdevice?language=objc)
     pub static CMIOExtensionPropertyDeviceCanBeDefaultOutputDevice: &'static CMIOExtensionProperty;
 }
 
@@ -96,73 +137,110 @@ extern "C" {
     /// The key for the readonly device property indicating the number of frames of latency in the CMIOExtensionDevice.
     ///
     /// The property state for CMIOExtensionPropertyDeviceLatency is a number containing the number of frames of latency in the CMIOExtensionDevice. Note that input and output latency may differ. Further, the CMIOExtensionDevice's CMIOExtensionStreams may have additional latency so they should be queried as well. If both the device and the stream say they have latency, then the total latency for the stream is the device latency summed with the stream latency. This property translates to the kCMIODevicePropertyLatency property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicelatency?language=objc)
     pub static CMIOExtensionPropertyDeviceLatency: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the index of the active stream format.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number.
+    ///
+    ///
     /// The key for the stream property active format index.
     ///
     /// The property state for CMIOExtensionPropertyStreamActiveFormatIndex is a number.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamactiveformatindex?language=objc)
     pub static CMIOExtensionPropertyStreamActiveFormatIndex: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the frame duration.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a dictionary that represents a doc://com.apple.documentation/documentation/coremedia/cmtime-u58 value that matches the frame duration of the active stream format.
+    ///
+    ///
     /// The key for the stream property frame duration.
     ///
     /// The property state for CMIOExtensionPropertyStreamFrameDuration needs to be a dictionary representing a CMTime struct that is consistent with the frame duration specification provided by the current active format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamframeduration?language=objc)
     pub static CMIOExtensionPropertyStreamFrameDuration: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the maximum frame duration.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a dictionary representation of a doc://com.apple.documentation/documentation/coremedia/cmtime-u58 structure.
+    ///
+    ///
     /// The key for the stream property maximum frame duration.
     ///
     /// The property state for CMIOExtensionPropertyStreamMaxFrameDuration needs to be a dictionary representing a CMTime struct.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streammaxframeduration?language=objc)
     pub static CMIOExtensionPropertyStreamMaxFrameDuration: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the sink buffer queue size.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number. The property value matches the value of the [`kCMIOStreamPropertyOutputBufferQueueSize`](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferqueuesize) property.
+    ///
+    ///
     /// The key for the sink stream property buffer queue size.
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkBufferQueueSize is a number. This property translates to the kCMIOStreamPropertyOutputBufferQueueSize property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbufferqueuesize?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBufferQueueSize: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the number of buffers required for startup.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number. The property value matches the value of the [`kCMIOStreamPropertyOutputBuffersRequiredForStartup`](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbuffersrequiredforstartup) property.
+    ///
+    ///
     /// The key for the sink stream property for number of buffers required for startup.
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkBuffersRequiredForStartup is a number. This property translates to the kCMIOStreamPropertyOutputBuffersRequiredForStartup property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbuffersrequiredforstartup?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBuffersRequiredForStartup:
         &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for the buffer underrun count.
+    ///
+    /// ## Discussion
+    ///
+    /// The system updates this value every time you don’t service a stream’s buffer fast enough.
+    ///
+    /// The property state for property is a number with a read-only attribute. The value of this property matches the value of the [`kCMIOStreamPropertyOutputBufferUnderrunCount`](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyoutputbufferunderruncount) property.
+    ///
+    ///
     /// The key for the sink stream property buffer underrun count.
     ///
     /// A number that is incremented every time a stream's buffers are not being serviced fast enough.
     /// The property state for CMIOExtensionPropertyStreamSinkBufferUnderrunCount is a number with a readonly attribute. This property translates to the kCMIOStreamPropertyOutputBufferUnderrunCount property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbufferunderruncount?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBufferUnderrunCount: &'static CMIOExtensionProperty;
 }
 
 extern "C" {
+    /// A property key for a Boolean value that indicates whether the stream has more data.
+    ///
+    /// ## Discussion
+    ///
+    /// The property state for this property is a number that represents a Boolean value: `1` indicates the stream is at its end, and `0` indicates that more data exists.
+    ///
+    /// The value of this property matches the [`kCMIOStreamPropertyEndOfData`](https://developer.apple.com/documentation/coremediaio/kcmiostreampropertyendofdata) property.
+    ///
+    ///
     /// The key for the sink stream property end of data.
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkEndOfData is a number, 1 means that the stream has reached the end and a value of 0 means that more data is (or will be) available. This property translates to the kCMIOStreamPropertyEndOfData property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkendofdata?language=objc)
     pub static CMIOExtensionPropertyStreamSinkEndOfData: &'static CMIOExtensionProperty;
 }
 
@@ -170,15 +248,18 @@ extern "C" {
     /// The key for the readonly stream property indicating the number of frames of latency in the CMIOExtensionStream.
     ///
     /// The property state for CMIOExtensionPropertyStreamLatency is a number containing the number of frames of latency in the CMIOExtensionStream. Note that the owning CMIOExtensionDevice may have additional latency so it should be queried as well. If both the device and the stream say they have latency, then the total latency for the stream is the device latency summed with the stream latency. This property translates to the kCMIOStreamPropertyLatency property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamlatency?language=objc)
     pub static CMIOExtensionPropertyStreamLatency: &'static CMIOExtensionProperty;
 }
 
 extern_class!(
-    /// A CMIOExtensionPropertyAttributes describes attributes of a property's value.
+    /// An object that describes the attributes of a property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertyattributes?language=objc)
+    /// ## Overview
+    ///
+    /// Use a property attributes object to describe attributes such as the minimum and maximum values, discrete values, and read-only values.
+    ///
+    ///
+    /// A CMIOExtensionPropertyAttributes describes attributes of a property's value.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionPropertyAttributes<ObjectType: ?Sized = AnyObject>;
@@ -317,9 +398,14 @@ impl<ObjectType: Message> CMIOExtensionPropertyAttributes<ObjectType> {
 }
 
 extern_class!(
-    /// A CMIOExtensionPropertyState describes a property state.
+    /// An object that describes the state of a property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystate?language=objc)
+    /// ## Overview
+    ///
+    /// Create a property state object by specifying the type of data it stores, which must be a [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber), [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), or [`NSData`](https://developer.apple.com/documentation/foundation/nsdata). You can optionally specify attributes that restrict the range of values a property allows.
+    ///
+    ///
+    /// A CMIOExtensionPropertyState describes a property state.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionPropertyState<ObjectType: ?Sized = AnyObject>;
@@ -446,9 +532,8 @@ impl<ObjectType: Message> CMIOExtensionPropertyState<ObjectType> {
 }
 
 extern_class!(
+    /// An object that describes the parameters to create a custom clock on the host side.
     /// A CMIOExtensionStreamCustomClockProperties describes the parameters used to create a custom clock on the host side (as opposed to the stream using hosttime or a linked Core Audio clock.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamcustomclockconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionStreamCustomClockConfiguration;
@@ -564,9 +649,8 @@ impl CMIOExtensionStreamCustomClockConfiguration {
 }
 
 extern_class!(
+    /// An object that describes the format of a media stream.
     /// A CMIOExtensionStreamFormat describes a stream format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamformat?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionStreamFormat;
@@ -685,7 +769,7 @@ impl CMIOExtensionStreamFormat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionscheduledoutput?language=objc)
+    /// An object that represents scheduled output.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionScheduledOutput;
@@ -763,7 +847,7 @@ impl CMIOExtensionScheduledOutput {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionclient?language=objc)
+    /// An object that represents a client of the extension.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionClient;

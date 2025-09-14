@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// An object that represents a single instance of a game activity for the current game.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity?language=objc)
+    /// An object that represents a single instance of a game activity for the current game.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKGameActivity;

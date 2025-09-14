@@ -14,12 +14,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output that records audio and provides access to audio sample buffers as they are recorded.
     /// AVCaptureAudioDataOutput is a concrete subclass of AVCaptureOutput that can be used to process uncompressed or compressed samples from the audio being captured.
     ///
     ///
     /// Instances of AVCaptureAudioDataOutput produce audio sample buffers suitable for processing using other media APIs. Applications can access the sample buffers with the captureOutput:didOutputSampleBuffer:fromConnection: delegate method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -160,9 +159,16 @@ impl AVCaptureAudioDataOutput {
 }
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVCaptureAudioDataOutput to receive captured audio sample buffers.
+    /// Methods for receiving audio sample data from an audio capture.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutputsamplebufferdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// This protocol defines an interface for delegates of an [`AVCaptureAudioDataOutput`](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput) object to receive captured audio sample buffers.
+    ///
+    /// The delegate of an [`AVCaptureAudioDataOutput`](https://developer.apple.com/documentation/avfoundation/avcaptureaudiodataoutput) object must adopt this protocol. The method in this protocol is optional.
+    ///
+    ///
+    /// Defines an interface for delegates of AVCaptureAudioDataOutput to receive captured audio sample buffers.
     pub unsafe trait AVCaptureAudioDataOutputSampleBufferDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",

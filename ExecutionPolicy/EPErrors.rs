@@ -6,20 +6,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperrordomain?language=objc)
     pub static EPErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EPError(pub NSInteger);
 impl EPError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror-swift.struct/code/generic?language=objc)
     #[doc(alias = "EPErrorGeneric")]
     pub const Generic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror-swift.struct/code/notadevelopertool?language=objc)
     #[doc(alias = "EPErrorNotADeveloperTool")]
     pub const NotADeveloperTool: Self = Self(2);
 }

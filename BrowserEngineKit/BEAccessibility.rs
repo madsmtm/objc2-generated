@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate?language=objc)
+/// An enumeration that indicates whether an element is pressed.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEAccessibilityPressedState(pub NSInteger);
 impl BEAccessibilityPressedState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/undefined?language=objc)
+    /// The element is in an undefined state.
     #[doc(alias = "BEAccessibilityPressedStateUndefined")]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/false?language=objc)
+    /// The element isn’t pressed.
     #[doc(alias = "BEAccessibilityPressedStateFalse")]
     pub const False: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/true?language=objc)
+    /// The element is pressed.
     #[doc(alias = "BEAccessibilityPressedStateTrue")]
     pub const True: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate/mixed?language=objc)
+    /// The element is in a mixed state.
     #[doc(alias = "BEAccessibilityPressedStateMixed")]
     pub const Mixed: Self = Self(3);
 }
@@ -35,50 +35,56 @@ unsafe impl RefEncode for BEAccessibilityPressedState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype?language=objc)
+/// An enumeration that indicates the type of container in which an element is located.
+///
+/// ## Overview
+///
+/// Set a value from this enumeration for an element’s [`browserAccessibilityContainerType`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/browseraccessibilitycontainertype) property to indicate the type of container in which the element is located. For example, set [`BEAccessibilityContainerTypeTable`](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/table) as the `browserAccessibilityContainerType` for an element within a table cell.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEAccessibilityContainerType(pub NSUInteger);
 bitflags::bitflags! {
     impl BEAccessibilityContainerType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/beaccessibilitycontainertypenone?language=objc)
+/// The element isn’t in a container.
         #[doc(alias = "BEAccessibilityContainerTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/landmark?language=objc)
+/// A website accessibility landmark contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeLandmark")]
         const Landmark = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/table?language=objc)
+/// A table contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeTable")]
         const Table = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/list?language=objc)
+/// A list contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeList")]
         const List = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/fieldset?language=objc)
+/// An HTML fieldset element contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeFieldset")]
         const Fieldset = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/dialog?language=objc)
+/// A dialog contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeDialog")]
         const Dialog = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/tree?language=objc)
+/// A tree contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeTree")]
         const Tree = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/frame?language=objc)
+/// A frame contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeFrame")]
         const Frame = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/article?language=objc)
+/// An HTML article element contains the alert.
         #[doc(alias = "BEAccessibilityContainerTypeArticle")]
         const Article = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/semanticgroup?language=objc)
+/// A semantic group contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeSemanticGroup")]
         const SemanticGroup = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/scrollarea?language=objc)
+/// A scroll area contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeScrollArea")]
         const ScrollArea = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/alert?language=objc)
+/// An alert contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeAlert")]
         const Alert = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype/descriptionlist?language=objc)
+/// A description list contains the element.
         #[doc(alias = "BEAccessibilityContainerTypeDescriptionList")]
         const DescriptionList = 1<<11;
     }

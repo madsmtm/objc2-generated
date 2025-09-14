@@ -7,22 +7,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options offered by the accessory picker.
 /// Picker Options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASPickerDisplaySettingsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASPickerDisplaySettingsOptions: NSUInteger {
+/// An option to pass discovered accessories to the app for more custom filtering, before they’re displayed in the picker for selection.
+///
+/// ## Discussion
+///
+/// When your picker uses this option, your [`ASAccessorySession`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession) receives events of type [`ASAccessoryEventTypeAccessoryDiscovered`](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryeventtype/accessorydiscovered). Handle this event by examining the discovered accessory. To include it in the picker, create a new [`ASDiscoveredDisplayItem`](https://developer.apple.com/documentation/accessorysetupkit/asdiscovereddisplayitem) for it and call [`updatePickerShowingDiscoveredDisplayItems:completionHandler:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/updatepicker(showing:completionhandler:)).
+///
+///
 /// An option to pass discovered accessories to the app for more custom filtering, before they're displayed in the picker for selection.
 ///
 /// When your picker uses this option, your ``ASAccessorySession-class`` receives events of type ``ASAccessoryEventType/accessoryDiscovered``.
 /// Handle this event by examining the discovered accessory.
 /// To include it in the picker, create a new ``ASDiscoveredDisplayItem`` for it and call ``ASAccessorySession/updatePicker(showing:completionHandler:)``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct/filterdiscoveryresults?language=objc)
         #[doc(alias = "ASPickerDisplaySettingsOptionFilterDiscoveryResults")]
         const FilterDiscoveryResults = 1<<0;
     }
@@ -36,51 +40,51 @@ unsafe impl RefEncode for ASPickerDisplaySettingsOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The type used for the accessory picker’s discovery timeout value.
 /// The type used for the accessory picker's discovery timeout value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type ASPickerDisplaySettingsDiscoveryTimeout = NSTimeInterval;
 
 extern "C" {
     /// A picker discovery timeout value that times out after about about 60 seconds.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/short?language=objc)
+    /// A picker discovery timeout value that times out after about about 60 seconds.
     pub static ASPickerDisplaySettingsDiscoveryTimeoutShort:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
 extern "C" {
     /// A picker discovery timeout value that times out after about two minutes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/medium?language=objc)
+    /// A picker discovery timeout value that times out after about two minutes.
     pub static ASPickerDisplaySettingsDiscoveryTimeoutMedium:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
 extern "C" {
     /// A picker discovery timeout value that times out after about five minutes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/long?language=objc)
+    /// A picker discovery timeout value that times out after about five minutes.
     pub static ASPickerDisplaySettingsDiscoveryTimeoutLong: ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
 extern "C" {
     /// A picker discovery that only times out when the app tells it to.
     ///
+    /// ## Discussion
+    ///
+    /// Use this timeout value if you set the picker display option [`ASPickerDisplaySettingsOptionFilterDiscoveryResults`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct/filterdiscoveryresults) and need unlimited time for filtering. After performing manual discovery, perform the manual timeout by calling the [`ASAccessorySession`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession) method [`finishPickerDiscovery:`](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysession/finishpickerdiscovery(completionhandler:)). This process shows a timeout message if your filtering added no accessories to the picker, or returns silently if you updated the picker.
+    ///
+    ///
+    /// A picker discovery that only times out when the app tells it to.
+    ///
     /// Use this timeout value if you set the picker display option ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` and need unlimited time for filtering.
     /// After performing manual discovery, perform the manual timeout by calling the ``ASAccessorySession`` method ``ASAccessorySession/finishPickerDiscovery(completionHandler:)``.
     /// This process shows a timeout message if your filtering added no accessories to the picker, or returns silently if you updated the picker.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/unbounded?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutUnbounded:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
 extern_class!(
     /// A type that contains settings to customize the display of the accessory picker
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings?language=objc)
+    /// A type that contains settings to customize the display of the accessory picker
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPickerDisplaySettings;

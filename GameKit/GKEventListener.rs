@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengelistener?language=objc)
+    /// An object that responds to challenge events.
+    ///
+    /// ## Overview
+    ///
+    /// Your game can ignore a challenge, start up in a specific state so the local player can respond to a challenge, or notify the challenger when the local player completes a challenge.
+    ///
+    /// Don’t implement [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener) directly; instead use [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener). The [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol inherits methods from [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener), [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener), [`GKSavedGameListener`](https://developer.apple.com/documentation/gamekit/gksavedgamelistener), and [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) in order to handle multiple events.
+    ///
+    ///
     #[deprecated]
     pub unsafe trait GKChallengeListener: NSObjectProtocol {
         #[cfg(all(

@@ -6,53 +6,119 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option?language=objc)
+/// Keys for the options dictionary used when creating a physics shape.
+///
+/// ## Discussion
+///
+/// When SceneKit creates a shape from a hierarchy of nodes containing multiple geometries, the [`SCNPhysicsShapeKeepAsCompoundKey`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/keepascompound) option takes precedence over the [`SCNPhysicsShapeTypeKey`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/type) option.
+///
+/// For example, if you have a node hierarchy containing several geometries, setting the the [`SCNPhysicsShapeTypeKey`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/type) option to [`SCNPhysicsShapeTypeBoundingBox`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/boundingbox) and the [`SCNPhysicsShapeKeepAsCompoundKey`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/keepascompound) option to [`true`](https://developer.apple.com/documentation/swift/true) creates a shape that is a combination of several boxes. This approach can provide better simulation performance than converting the entire node hierarchy to a single concave polyhedron shape.
+///
+///
 // NS_TYPED_ENUM
 pub type SCNPhysicsShapeOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/type?language=objc)
+    /// An option for selecting the level of detail at which to create shapes from geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is one of the constants listed in `Shape Types`. The default type is [`SCNPhysicsShapeTypeConvexHull`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/convexhull).
+    ///
+    ///
     pub static SCNPhysicsShapeTypeKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/keepascompound?language=objc)
+    /// An option for selecting whether to create a group of independent shapes or combine them into a single shape.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`true`](https://developer.apple.com/documentation/swift/true), specifying that SceneKit convert separate geometries into separate shapes and join the resulting shapes. If [`false`](https://developer.apple.com/documentation/swift/false), SceneKit creates a single shape approximating the combined form of the geometries.
+    ///
+    ///
     pub static SCNPhysicsShapeKeepAsCompoundKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/scale?language=objc)
+    /// An option for selecting the scale factor of the shape relative to the local coordinate space of the node containing it.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object containing an [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3) structure, whose components describe the scale factor in each of the x-, y- and z-axis directions. The default value is the vector `{1.0, 1.0, 1.0}`, specifying no change of scale.
+    ///
+    /// SceneKit’s physics simulation ignores the [`scale`](https://developer.apple.com/documentation/scenekit/scnnode/scale) property of nodes containing physics bodies when simulating collisions. Instead, use this option to provide a scale factor when creating custom physics shapes. (If you create a physics body for a node without specifying a custom shape, SceneKit uses the node’s [`scale`](https://developer.apple.com/documentation/scenekit/scnnode/scale) property to infer this scale factor at creation time.)
+    ///
+    ///
     pub static SCNPhysicsShapeScaleKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/collisionmargin?language=objc)
     pub static SCNPhysicsShapeOptionCollisionMargin: &'static SCNPhysicsShapeOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype?language=objc)
+/// Values for the [`SCNPhysicsShapeTypeKey`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/type) key specifying the level of detail that SceneKit uses when creating a physics shape based on a geometry.
 // NS_TYPED_ENUM
 pub type SCNPhysicsShapeType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/boundingbox?language=objc)
+    /// The physics shape is the smallest box containing the geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// This option provides the lowest level of detail and the fastest simulation performance. Use it for generally box-shaped physics bodies or when constructing a compound physics shape.
+    ///
+    ///
     pub static SCNPhysicsShapeTypeBoundingBox: &'static SCNPhysicsShapeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/convexhull?language=objc)
+    /// The physics shape is a convex polyhedron roughly enclosing the geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// This option provides a moderate level of detail and simulation performance. Use it for rounded or irregularly shaped physics bodies.
+    ///
+    ///
     pub static SCNPhysicsShapeTypeConvexHull: &'static SCNPhysicsShapeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/concavepolyhedron?language=objc)
+    /// The physics shape is a concave polyhedron closely following the surface of the geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// This option provides the highest level of detail, at a high cost to simulation performance. Use it only for irregularly shaped bodies where precise collision behavior is crucial to your app’s design.
+    ///
+    /// This shape type may only be used for static physics bodies (that is, those whose [`type`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/type) property is [`SCNPhysicsBodyTypeStatic`](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype/static)).
+    ///
+    ///
     pub static SCNPhysicsShapeTypeConcavePolyhedron: &'static SCNPhysicsShapeType;
 }
 
 extern_class!(
-    /// SCNPhysicsShape represents the shape of a physics body.
+    /// An abstraction of a physics body’s solid volume for tuning collision detection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape?language=objc)
+    /// ## Overview
+    ///
+    /// When SceneKit performs contact detection and other simulations for the [`SCNPhysicsBody`](https://developer.apple.com/documentation/scenekit/scnphysicsbody) objects in your scene, it uses physics shapes instead of the rendered geometry of visible objects. This approach both improves simulation performance and allows you to more easily design your gameplay around scene elements the player can interact with.
+    ///
+    /// ### Simple Versus Complex Shapes
+    ///
+    /// When you allow SceneKit to automatically create a physics shape, it uses the simplest possible shape roughly matching the geometry of the node the physics body is attached to. This approach maximizes simulation performance but can lead to unrealistic physics behavior for some objects.
+    ///
+    /// You can make the simulation behave more realistically by defining physics shapes that more closely follow the visible geometry in your scene. This approach comes at a cost to performance, so you want to limit the amount of detail in your physics shapes. Use the highest levels of detail only on bodies for which precise collision detection is important for your app.
+    ///
+    /// If you create a physics shape using one of the basic geometry classes ([`SCNBox`](https://developer.apple.com/documentation/scenekit/scnbox), [`SCNSphere`](https://developer.apple.com/documentation/scenekit/scnsphere), [`SCNPyramid`](https://developer.apple.com/documentation/scenekit/scnpyramid), [`SCNCone`](https://developer.apple.com/documentation/scenekit/scncone), [`SCNCylinder`](https://developer.apple.com/documentation/scenekit/scncylinder), or [`SCNCapsule`](https://developer.apple.com/documentation/scenekit/scncapsule)), SceneKit uses an idealized form of that geometry for the physics shape instead of using the geometry’s vertex data to simulate collisions. For example, if you create a physics shape from an [`SCNSphere`](https://developer.apple.com/documentation/scenekit/scnsphere) object, SceneKit simulates collisions for any object that passes within the sphere’s radius.
+    ///
+    /// Because the idealized forms of simple geometries are computationally much simpler than the vertex data needed for displaying them, using basic geometries for physics shapes (or compound shapes created from basic geometries with the [`shapeWithShapes:transforms:`](https://developer.apple.com/documentation/scenekit/scnphysicsshape/init(shapes:transforms:)) method) often provides the best balance between simulation accuracy and performance.
+    ///
+    /// ### Changing a Physics Body’s Shape
+    ///
+    /// Physics shapes are immutable, but you can change the shape associated with a physics body by creating a new [`SCNPhysicsShape`](https://developer.apple.com/documentation/scenekit/scnphysicsshape) instance and assigning it to the body’s [`physicsShape`](https://developer.apple.com/documentation/scenekit/scnphysicsbody/physicsshape) property.
+    ///
+    ///
+    /// SCNPhysicsShape represents the shape of a physics body.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNPhysicsShape;

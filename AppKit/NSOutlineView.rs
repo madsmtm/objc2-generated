@@ -9,11 +9,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewdroponitemindex?language=objc)
+/// May be used as a valid child index of a drop target item.
+///
+/// ## Discussion
+///
+/// In this case, the drop will happen directly on the target item.
+///
+///
 pub const NSOutlineViewDropOnItemIndex: c_int = -1;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview?language=objc)
+    /// A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
+    ///
+    /// ## Overview
+    ///
+    /// Like a table view, an outline view does not store its own data, instead it retrieves data values as needed from a data source to which it has a weak reference (see [Delegates and Data Sources](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/DelegatesandDataSources/DelegatesandDataSources.html#//apple_ref/doc/uid/TP40010810-CH11)). See [`NSOutlineViewDataSource`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource), which declares the methods that an `NSOutlineView` object uses to access the contents of its data source object.
+    ///
+    /// An outline view has the following features:
+    ///
+    /// - A user can expand and collapse rows, edit values, and resize and rearrange columns.
+    ///
+    /// - Each item in the outline view must be unique. In order for the collapsed state to remain consistent between reloads the item’s pointer must remain the same and the item must maintain [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) sameness.
+    ///
+    /// - The view gets data from a data source (see [`NSOutlineViewDataSource`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource)).
+    ///
+    /// - The view retrieves only the data that needs to be displayed.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It is possible that your data source methods for populating the outline view may be called before [`awakeFromNib`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/awakefromnib()) if the data source is specified in Interface Builder. You should defend against this by having the data source’s [`outlineView:numberOfChildrenOfItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:numberofchildrenofitem:)) method return `0` for the number of items when the data source has not yet been configured. In [`awakeFromNib`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/awakefromnib()), when the data source is initialized you should always call [`reloadData`](https://developer.apple.com/documentation/appkit/nstableview/reloaddata()).
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information about using NSOutlineView in your app, see [Navigating Hierarchical Data Using Outline and Split Views](https://developer.apple.com/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views).
+    ///
+    /// ### Subclassing
+    ///
+    /// Subclassing `NSOutlineView` is not recommended. Customization can be accomplished in your data source class implementation (conforming to [`NSOutlineViewDataSource`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource)) or your delegate class implementation (conforming to [`NSOutlineViewDelegate`](https://developer.apple.com/documentation/appkit/nsoutlineviewdelegate)).
+    ///
+    ///
     #[unsafe(super(NSTableView, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -562,7 +598,29 @@ impl NSOutlineView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource?language=objc)
+    /// A set of methods that an outline view calls to retrieve data and information about it from the data source delegate, and—optionally—to update data values.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSOutlineView`](https://developer.apple.com/documentation/appkit/nsoutlineview) objects support a data source delegate in addition to the regular delegate object.
+    ///
+    /// All the methods in the [`NSOutlineViewDataSource`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource) protocol are marked as `@optional`. While this is true, there are cases were you must implement some methods to achieve required functionality, specifically when working with conventional data sources rather than data that is provided by Cocoa bindings.
+    ///
+    /// ### Required and Optional Methods Using Programmatic Conventions and Cocoa Bindings
+    ///
+    /// If you are using conventional data sources for content you must implement the basic methods that provide the outline view with data: [`outlineView:child:ofItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:child:ofitem:)), [`outlineView:isItemExpandable:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:isitemexpandable:)), [`outlineView:numberOfChildrenOfItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:numberofchildrenofitem:)), and [`outlineView:objectValueForTableColumn:byItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:objectvaluefor:byitem:)). Applications that acquire their data using Cocoa bindings do not need to implement these methods.
+    ///
+    /// Similarly, when using conventional data sources , if you want to allow the user to edit values, you must implement [`outlineView:setObjectValue:forTableColumn:byItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:setobjectvalue:for:byitem:)). When these methods are invoked by the outline view, `nil` as the `item` refers to the “root” item. `NSOutlineView` requires that each item in the outline view be unique. In order for the collapsed state of an outline view to remain consistent between reloads you must always return the same object for an item. When using Cocoa bindings to provide outline view content, there is no requirement to implement this method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Some of the methods in this `protocol`, such as [`outlineView:child:ofItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:child:ofitem:)) and [`outlineView:numberOfChildrenOfItem:`](https://developer.apple.com/documentation/appkit/nsoutlineviewdatasource/outlineview(_:numberofchildrenofitem:)) along with other methods that return data, are called very frequently, so they must be efficient.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSOutlineViewDataSource: NSObjectProtocol {
         #[cfg(all(
             feature = "NSControl",
@@ -873,7 +931,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSOutlineView`](https://developer.apple.com/documentation/appkit/nsoutlineview) objects.
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSOutlineViewDelegate:
         NSControlTextEditingDelegate + MainThreadOnly
@@ -1419,53 +1477,107 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/disclosurebuttonidentifier?language=objc)
+    /// The normal triangle disclosure button.
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/showhidebuttonidentifier?language=objc)
+    /// The Show/Hide button.
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/selectiondidchangenotification?language=objc)
+    /// Posted after the outline view’s selection changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the outline view whose selection changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSOutlineViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/columndidmovenotification?language=objc)
+    /// Posted whenever a column is moved by user action in an `NSOutlineView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSOutlineView` object in which a column moved. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldColumn\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the integer value of the column’s original index" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSNewColumn\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the integer value of the column’s present index" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewColumnDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/columndidresizenotification?language=objc)
+    /// Posted whenever a column is resized in an `NSOutlineView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSOutlineView` object in which a column was resized. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSTableColumn\"" }] }], [Paragraph { inline_content: [Text { text: "The column that was resized." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldWidth\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object containing the column’s original width" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewColumnDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/selectionischangingnotification?language=objc)
+    /// Posted as the outline view’s selection changes (while the mouse button is still down).
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the outline view whose selection is changing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSOutlineViewSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemwillexpandnotification?language=objc)
+    /// Posted before an item is expanded (after the user clicks the arrow but before the item is collapsed).
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the outline view that contains an item about to be expanded. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSObject\"" }] }], [Paragraph { inline_content: [Text { text: "The item that is to be expanded (an " }, CodeVoice { code: "id" }, Text { text: ")" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewItemWillExpandNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemdidexpandnotification?language=objc)
+    /// Posted whenever an item is expanded in an `NSOutlineView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSOutlineView` object in which an item was expanded. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSObject\"" }] }], [Paragraph { inline_content: [Text { text: "The item that was expanded (an " }, CodeVoice { code: "id" }, Text { text: ")" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewItemDidExpandNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemwillcollapsenotification?language=objc)
+    /// Posted before an item is collapsed (after the user clicks the arrow but before the item is collapsed).
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSOutlineView` object that contains the item about to be collapsed. A collapsed item’s children will lose their status as being selected. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSObject\"" }] }], [Paragraph { inline_content: [Text { text: "The item about to be collapsed (an id)" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemdidcollapsenotification?language=objc)
+    /// Posted whenever an item is collapsed in an `NSOutlineView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the `NSOutlineView` object in which an item was collapsed. A collapsed item’s children lose their status as being selected. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSObject\"" }] }], [Paragraph { inline_content: [Text { text: "The item that was collapsed (an id)" }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName;
 }

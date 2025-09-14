@@ -5,8 +5,11 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// A generic handler for callbacks containing a single error parameter.
+/// A completion block that provides an error.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerrorblock?language=objc)
+/// Parameters:
+/// - error: The error the block returns.
+///
+/// A generic handler for callbacks containing a single error parameter.
 #[cfg(feature = "block2")]
 pub type HMErrorBlock = *mut block2::DynBlock<dyn Fn(*mut NSError)>;

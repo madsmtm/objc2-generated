@@ -5,7 +5,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFrameRateRange {
@@ -30,12 +29,10 @@ unsafe impl RefEncode for CAFrameRateRange {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterange/default?language=objc)
     pub static CAFrameRateRangeDefault: CAFrameRateRange;
 }
 
 impl CAFrameRateRange {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangemake?language=objc)
     #[doc(alias = "CAFrameRateRangeMake")]
     #[inline]
     pub fn new(minimum: c_float, maximum: c_float, preferred: c_float) -> CAFrameRateRange {
@@ -49,7 +46,6 @@ impl CAFrameRateRange {
         unsafe { CAFrameRateRangeMake(minimum, maximum, preferred) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangeisequaltorange?language=objc)
     #[doc(alias = "CAFrameRateRangeIsEqualToRange")]
     #[inline]
     pub fn is_equal_to_range(self, other: CAFrameRateRange) -> bool {

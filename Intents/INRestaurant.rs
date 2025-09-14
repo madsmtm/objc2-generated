@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurant?language=objc)
+    /// A restaurant for which your app can make and manage reservations.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRestaurant`](https://developer.apple.com/documentation/intents/inrestaurant) object contains identifying information for a restaurant. You must work with Apple to integrate your restaurant-specific information into the back-end database. Later, when the user selects a restaurant and tries to book a reservation, Apple packages the information you provided into a restaurant object and delivers it to your Intents extension. You use that information to look up the restaurant on your own server and retrieve any necessary information about it.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRestaurant;

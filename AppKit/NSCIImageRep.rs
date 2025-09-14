@@ -13,7 +13,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsciimagerep?language=objc)
+    /// An object that can render an image from a Core Image object.
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]

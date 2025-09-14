@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Traits describing the type of image you want.
 /// Option bits for imageURLForTraits: and setImageURL:forTraits:.
 ///
 /// In Objective C, use the bitwise OR (|) operator to combine
@@ -15,24 +16,46 @@ use crate::*;
 /// <
 /// <
 /// 48 and higher).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVContentItemImageTrait(pub NSUInteger);
 bitflags::bitflags! {
     impl TVContentItemImageTrait: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestylelight?language=objc)
+/// An image meant for a light user interface.
+///
+/// ## Discussion
+///
+/// Specify this constant, or the [`TVContentItemImageTraitUserInterfaceStyleDark`](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestyledark) constant, but not both.
+///
+///
         #[doc(alias = "TVContentItemImageTraitUserInterfaceStyleLight")]
         const UserInterfaceStyleLight = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestyledark?language=objc)
+/// An image meant for a dark user interface.
+///
+/// ## Discussion
+///
+/// Specify this constant, or the [`TVContentItemImageTraitUserInterfaceStyleLight`](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/userinterfacestylelight) constant, but not both.
+///
+///
         #[doc(alias = "TVContentItemImageTraitUserInterfaceStyleDark")]
         const UserInterfaceStyleDark = 2<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale1x?language=objc)
+/// An image meant for a regular display.
+///
+/// ## Discussion
+///
+/// Specify this constant, or the [`TVContentItemImageTraitScreenScale2x`](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale2x) constant, but not both.
+///
+///
         #[doc(alias = "TVContentItemImageTraitScreenScale1x")]
         const ScreenScale1x = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale2x?language=objc)
+/// An image meant for a Retina display.
+///
+/// ## Discussion
+///
+/// Specify this constant, or the [`TVContentItemImageTraitScreenScale1x`](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait/screenscale1x) constant, but not both.
+///
+///
         #[doc(alias = "TVContentItemImageTraitScreenScale2x")]
         const ScreenScale2x = 2<<12;
     }
@@ -46,33 +69,32 @@ unsafe impl RefEncode for TVContentItemImageTrait {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumerated type that identifies the shape in which the content item should be displayed.
 /// Values for the imageShape property.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVContentItemImageShape(pub NSInteger);
 impl TVContentItemImageShape {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/none?language=objc)
+    /// The content has no particular shape.
     #[doc(alias = "TVContentItemImageShapeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/poster?language=objc)
+    /// The content has a width:height ratio of `2:3`.
     #[doc(alias = "TVContentItemImageShapePoster")]
     pub const Poster: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/square?language=objc)
+    /// The content has a width:height ratio of `1:1`.
     #[doc(alias = "TVContentItemImageShapeSquare")]
     pub const Square: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/sdtv?language=objc)
+    /// The content is standard-definition television content with a width:height ratio of `4:3`.
     #[doc(alias = "TVContentItemImageShapeSDTV")]
     pub const SDTV: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/hdtv?language=objc)
+    /// The content is high-definition television content with a width:height ratio of `16:9`.
     #[doc(alias = "TVContentItemImageShapeHDTV")]
     pub const HDTV: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/wide?language=objc)
+    /// The content has a width:height ratio of `8:3`.
     #[doc(alias = "TVContentItemImageShapeWide")]
     pub const Wide: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape/extrawide?language=objc)
+    /// The content has a width:height ratio of `80:27`.
     #[doc(alias = "TVContentItemImageShapeExtraWide")]
     pub const ExtraWide: Self = Self(6);
 }
@@ -86,13 +108,20 @@ unsafe impl RefEncode for TVContentItemImageShape {
 }
 
 extern_class!(
+    /// An object that describes either a piece of content or a container for other content items.
+    ///
+    /// ## Overview
+    ///
+    /// The exact details of what a content item is are dependent on your app. For example, a content item might be a piece of media or it might provide access to news or other content available to your app.
+    ///
+    /// To create a description of a piece of content, create a content identifier object and then use this object to initialize a new [`TVContentItem`](https://developer.apple.com/documentation/tvservices/tvcontentitem) object. Then, set any other properties that are appropriate for the object you are creating. Most of the properties are optional, and many properties apply only to certain kinds of content. Inspect an existing [`TVContentItem`](https://developer.apple.com/documentation/tvservices/tvcontentitem) object to retrieve the media and playback properties, such as the duration of the content or when the content was last played.
+    ///
+    ///
     /// An object describing a piece or group of content.
     ///
     /// Most properties are optional, and indeed some properties
     /// will not apply to all individual items or groups or types
     /// of content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "TVContentItem has been replaced by TVTopShelfItem"]

@@ -6,16 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationunsupportedreason?language=objc)
+/// Reasons describing why the destination is not supported.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddMediaMediaDestinationUnsupportedReason(pub NSInteger);
 impl INAddMediaMediaDestinationUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationunsupportedreason/playlistnamenotfound?language=objc)
+    /// The app was unable to find a playlist with that name.
     #[doc(alias = "INAddMediaMediaDestinationUnsupportedReasonPlaylistNameNotFound")]
     pub const PlaylistNameNotFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationunsupportedreason/playlistnoteditable?language=objc)
+    /// The user can’t modify the destination playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// Provide this error explanation when the user tries to add a media item to a playlist they can’t change, such as another user’s shared playlist or a playlist your service publishes.
+    ///
+    ///
     #[doc(alias = "INAddMediaMediaDestinationUnsupportedReasonPlaylistNotEditable")]
     pub const PlaylistNotEditable: Self = Self(2);
 }
@@ -29,7 +35,15 @@ unsafe impl RefEncode for INAddMediaMediaDestinationUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddmediamediadestinationresolutionresult?language=objc)
+    /// A resolution result for the types of destinations when adding media.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INAddMediaMediaDestinationResolutionResult`](https://developer.apple.com/documentation/intents/inaddmediamediadestinationresolutionresult) object when resolving parameters containing an [`INMediaDestinationResolutionResult`](https://developer.apple.com/documentation/intents/inmediadestinationresolutionresult) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INMediaDestinationResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

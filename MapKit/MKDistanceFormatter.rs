@@ -9,22 +9,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum?language=objc)
+/// Constants that reflect the type of units to use in the string.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnits(pub NSUInteger);
 impl MKDistanceFormatterUnits {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/default?language=objc)
+    /// The format uses the locale information to determine which units to use.
+    ///
+    /// ## Discussion
+    ///
+    /// Some locales mix metric and imperial units so don’t assume this means one or the other.
+    ///
+    ///
     #[doc(alias = "MKDistanceFormatterUnitsDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/metric?language=objc)
+    /// The format uses metric units.
     #[doc(alias = "MKDistanceFormatterUnitsMetric")]
     pub const Metric: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/imperial?language=objc)
+    /// The format uses imperial units.
     #[doc(alias = "MKDistanceFormatterUnitsImperial")]
     pub const Imperial: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/units-swift.enum/imperialwithyards?language=objc)
+    /// The format uses imperial units that include measurements in yards.
     #[doc(alias = "MKDistanceFormatterUnitsImperialWithYards")]
     pub const ImperialWithYards: Self = Self(3);
 }
@@ -37,19 +43,31 @@ unsafe impl RefEncode for MKDistanceFormatterUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle?language=objc)
+/// Constants that indicate the format style to use for strings.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnitStyle(pub NSUInteger);
 impl MKDistanceFormatterUnitStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/default?language=objc)
+    /// Bases the determination to abbreviate on the current locale and user language settings.
     #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/abbreviated?language=objc)
+    /// Abbreviates units.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, if the units are metric the map displays “km” instead of “kilometer.”
+    ///
+    ///
     #[doc(alias = "MKDistanceFormatterUnitStyleAbbreviated")]
     pub const Abbreviated: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter/distanceunitstyle/full?language=objc)
+    /// Spells out units in full.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, your map displays “kilometer” instead of the abbreviation “km.”
+    ///
+    ///
     #[doc(alias = "MKDistanceFormatterUnitStyleFull")]
     pub const Full: Self = Self(2);
 }
@@ -63,7 +81,13 @@ unsafe impl RefEncode for MKDistanceFormatterUnitStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatter?language=objc)
+    /// A utility object that converts between a geographic distance and a string-based expression of that distance.
+    ///
+    /// ## Overview
+    ///
+    /// Use a distance formatter to display distances to the user or to parse user-specified text to obtain a numerical value for a distance. When formatting strings containing distances, a distance formatter object takes into account the user’s locale and language settings. You can also specify a custom locale or custom units for any distances that you format.
+    ///
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDistanceFormatter;

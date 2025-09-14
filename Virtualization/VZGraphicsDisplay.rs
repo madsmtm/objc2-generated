@@ -10,6 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a graphics display in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate a `VZGraphicsDisplay` directly. Graphics displays are first configured on a [`VZGraphicsDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzgraphicsdeviceconfiguration) subclass. When you create a [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) from the configuration, the displays are available through the [`displays`](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice/displays) property of the configuration’s [`VZGraphicsDevice`](https://developer.apple.com/documentation/virtualization/vzgraphicsdevice).
+    ///
+    ///
     /// Class representing a graphics display in a virtual machine.
     ///
     /// VZGraphicsDisplay should not be instantiated directly.
@@ -22,8 +29,6 @@ extern_class!(
     /// See: VZMacGraphicsDisplayConfiguration
     ///
     /// See: VZVirtioGraphicsScanoutConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplay?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDisplay;
@@ -112,9 +117,14 @@ impl VZGraphicsDisplay {
 }
 
 extern_protocol!(
-    /// VZGraphicsDisplayObserver observes a VZGraphicsDisplay for state changes.
+    /// A protocol you implement to observe state changes in graphic displays.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplayobserver?language=objc)
+    /// ## Overview
+    ///
+    /// Implement the methods in this protocol to observe and react to display reconfiguration.
+    ///
+    ///
+    /// VZGraphicsDisplayObserver observes a VZGraphicsDisplay for state changes.
     pub unsafe trait VZGraphicsDisplayObserver: NSObjectProtocol {
         /// A reconfiguration operation has begun.
         ///

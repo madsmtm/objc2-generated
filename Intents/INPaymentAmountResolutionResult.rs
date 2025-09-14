@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentamountresolutionresult?language=objc)
+    /// A resolution result for the amount to pay for a bill.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPaymentAmountResolutionResult`](https://developer.apple.com/documentation/intents/inpaymentamountresolutionresult) object is what you return when resolving parameters containing an [`INPaymentAmount`](https://developer.apple.com/documentation/intents/inpaymentamount) object. Use the creation method that best reflects your ability to resolve the parameter successfully. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

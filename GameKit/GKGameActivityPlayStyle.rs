@@ -5,20 +5,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 /// Play Style of the game activity. It can be either Asynchronous or Synchronous.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle?language=objc)
+/// Play Style of the game activity. It can be either Asynchronous or Synchronous.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKGameActivityPlayStyle(pub NSInteger);
 impl GKGameActivityPlayStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/unspecified?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/synchronous?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleSynchronous")]
     pub const Synchronous: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivityplaystyle/asynchronous?language=objc)
     #[doc(alias = "GKGameActivityPlayStyleAsynchronous")]
     pub const Asynchronous: Self = Self(2);
 }

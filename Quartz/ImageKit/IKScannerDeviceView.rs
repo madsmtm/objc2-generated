@@ -11,9 +11,8 @@ use objc2_image_capture_core::*;
 use crate::*;
 
 extern_protocol!(
+    /// The `IKScannerDeviceViewDelegate` protocol defines the delegate protocol that the [`IKScannerDeviceView`](https://developer.apple.com/documentation/quartz/ikscannerdeviceview) delegate must conform to.
     /// A delegate of IKScannerDeviceView must conform to IKScannerDeviceViewDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdelegate?language=objc)
     pub unsafe trait IKScannerDeviceViewDelegate {
         /// This message is sent for each image that gets scanned.
         ///
@@ -95,16 +94,16 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewtransfermode?language=objc)
+/// These constants determine how the scanner data is returned to the delegate. They are used by the [`transferMode`](https://developer.apple.com/documentation/quartz/ikscannerdeviceview/transfermode) property.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKScannerDeviceViewTransferMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewtransfermode/filebased?language=objc)
+    /// The scanned content will be saved to the specified download directory.
     #[doc(alias = "IKScannerDeviceViewTransferModeFileBased")]
     #[default]
     FileBased = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewtransfermode/memorybased?language=objc)
+    /// The scanned data is returned to the delegate as a `NSData` object.
     #[doc(alias = "IKScannerDeviceViewTransferModeMemoryBased")]
     MemoryBased = 1,
 }
@@ -117,19 +116,18 @@ unsafe impl RefEncode for IKScannerDeviceViewTransferMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode?language=objc)
+/// These constants specify the display mode the scanner view will use. They are used by the [`mode`](https://developer.apple.com/documentation/quartz/ikscannerdeviceview/mode) property.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKScannerDeviceViewDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/none?language=objc)
     #[doc(alias = "IKScannerDeviceViewDisplayModeNone")]
     None = -1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/simple?language=objc)
+    /// The view will display in simple mode.
     #[doc(alias = "IKScannerDeviceViewDisplayModeSimple")]
     #[default]
     Simple = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdisplaymode/advanced?language=objc)
+    /// The view will display in advanced mode.
     #[doc(alias = "IKScannerDeviceViewDisplayModeAdvanced")]
     Advanced = 1,
 }
@@ -143,9 +141,8 @@ unsafe impl RefEncode for IKScannerDeviceViewDisplayMode {
 }
 
 extern_class!(
+    /// The `IKScannerDeviceView` class displays a view that allows scanning. It can be customized by specifying the display mode. The delegate receives the scanned data and must implement the [`IKScannerDeviceViewDelegate`](https://developer.apple.com/documentation/quartz/ikscannerdeviceviewdelegate) protocol.
     /// IKScannerDeviceView displays a UI to work with Image Capture supported scanners.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikscannerdeviceview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKScannerDeviceView;

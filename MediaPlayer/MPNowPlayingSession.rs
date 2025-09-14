@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpadtimerange?language=objc)
+    /// An object that represents a time range where an ad break exists in the current player.
+    ///
+    /// ## Overview
+    ///
+    /// This value must be in bounds of the duration of the current player item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPAdTimeRange;
@@ -64,7 +70,21 @@ impl MPAdTimeRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsession?language=objc)
+    /// An object that manages Now Playing information and remote commands for multiple players.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) object can have only one Now Playing session. An [`AVPlayerViewController`](https://developer.apple.com/documentation/avkit/avplayerviewcontroller) manages its own player and Now Playing session, so you can’t add your own Now Playing session.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you create an `MPNowPlayingSession` object, don’t attempt to use it with the `AVPlayer` that an `AVPlayerViewController` presents. Create your own `AVPlayer` instance with custom playback controls to use with your Now Playing session.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPNowPlayingSession;
@@ -175,7 +195,7 @@ impl MPNowPlayingSession {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingsessiondelegate?language=objc)
+    /// A protocol that defines the delegate interface for a Now Playing session.
     pub unsafe trait MPNowPlayingSessionDelegate: NSObjectProtocol {
         /// Tells the delegate that the session has changed its active status.
         #[optional]

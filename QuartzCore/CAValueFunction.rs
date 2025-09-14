@@ -6,12 +6,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname?language=objc)
 // NS_TYPED_ENUM
 pub type CAValueFunctionName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunction?language=objc)
+    /// An object that provides a flexible method of defining animated transformations.
+    ///
+    /// ## Overview
+    ///
+    /// You can use a value function to specify the individual components of an animated transform.
+    ///
+    /// For example, to create a basic animation that rotates a layer from 0° to 180° around its z-axis, you would create a [`CABasicAnimation`](https://developer.apple.com/documentation/quartzcore/cabasicanimation) object with a [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) of `0`, a [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) of [`pi`](https://developer.apple.com/documentation/swift/float/pi), and a [`valueFunction`](https://developer.apple.com/documentation/quartzcore/capropertyanimation/valuefunction) of a [`CAValueFunction`](https://developer.apple.com/documentation/quartzcore/cavaluefunction) with a function name of [`kCAValueFunctionRotateZ`](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/rotatez).
+    ///
+    /// The following code shows how you would create such a rotation and apply it to a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) named `rotatingLayer`.
+    ///
+    /// ```swift
+    /// let rotateAnimation = CABasicAnimation()
+    /// rotateAnimation.valueFunction = CAValueFunction(name: kCAValueFunctionRotateZ)
+    /// rotateAnimation.fromValue = 0
+    /// rotateAnimation.toValue = Float.pi
+    /// rotateAnimation.duration = 3
+    /// rotatingLayer.add(rotateAnimation,
+    ///                   forKey: "transform")
+    /// ```
+    ///
+    /// The value functions [`kCAValueFunctionScale`](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/scale) and [`kCAValueFunctionTranslate`](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/translate) require 3 values, for the individual `x`, `y` and `z` components. When working with these value functions, you specify the animation’s [`fromValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/fromvalue) and [`toValue`](https://developer.apple.com/documentation/quartzcore/cabasicanimation/tovalue) as arrays.
+    ///
+    /// The following code shows how you could animate a layer’s scale from `0` to `1` using a value function.
+    ///
+    /// ```swift
+    /// let scaleAnimation = CABasicAnimation()
+    /// scaleAnimation.valueFunction = CAValueFunction(name: kCAValueFunctionScale)
+    /// scaleAnimation.fromValue = [0, 0, 0]
+    /// scaleAnimation.toValue = [1, 1, 1]
+    /// scaleAnimation.duration = 3
+    /// scalingLayer.add(scaleAnimation,
+    ///                  forKey: "transform")
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAValueFunction;
@@ -62,58 +95,57 @@ impl DefaultRetained for CAValueFunction {
 }
 
 extern "C" {
+    /// A value function that rotates by the input value, in radians, around the x-axis. This value function expects a single input value.
     /// Value function names. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/rotatex?language=objc)
     pub static kCAValueFunctionRotateX: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/rotatey?language=objc)
+    /// A value function that rotates by the input value, in radians, around the y-axis. This value function expects a single input value.
     pub static kCAValueFunctionRotateY: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/rotatez?language=objc)
+    /// A value function that rotates by the input value, in radians, around the z-axis. This value function expects a single input value.
     pub static kCAValueFunctionRotateZ: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/scale?language=objc)
+    /// A value function scales by the input value along all three axis. Animations using this value transform function must provide animation values in an `NSArray` of three `NSNumber` instances that specify the (x, y, z) scale values.
     pub static kCAValueFunctionScale: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/scalex?language=objc)
+    /// A value function scales by the input value along the x-axis. Animations referencing this value transform function must provide a single animation value.
     pub static kCAValueFunctionScaleX: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/scaley?language=objc)
+    /// A value function scales by the input value along the y-axis. Animations referencing this value function must provide a single animation value.
     pub static kCAValueFunctionScaleY: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/scalez?language=objc)
+    /// A value function that scales by the input value along the z-axis. Animations referencing this value function must provide a single animation value.
     pub static kCAValueFunctionScaleZ: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/translate?language=objc)
+    /// A value function that translates by the input values along all three axis. Animations using this value transform function must provide animation values in an `NSArray` of three `NSNumber` instances that specify the (x, y, z) translate values.
     pub static kCAValueFunctionTranslate: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/translatex?language=objc)
+    /// A value function translates by the input value along the x-axis. Animations referencing this value function must provide a single input value.
     pub static kCAValueFunctionTranslateX: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/translatey?language=objc)
+    /// A value function translates by the input value along the y-axis. Animations referencing this value function must provide a single input value.
     pub static kCAValueFunctionTranslateY: &'static CAValueFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cavaluefunctionname/translatez?language=objc)
+    /// A value function translates by the input value along the z-axis. Animations referencing this value function must provide a single input value.
     pub static kCAValueFunctionTranslateZ: &'static CAValueFunctionName;
 }

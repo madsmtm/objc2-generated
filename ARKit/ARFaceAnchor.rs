@@ -8,6 +8,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Identifiers for specific facial features, for use with coefficients describing the relative movements of those features.
+///
+/// ## Discussion
+///
+/// The [`blendShapes`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapes) dictionary provided by an [`ARFaceAnchor`](https://developer.apple.com/documentation/arkit/arfaceanchor) object describes the facial expression of a detected face in terms of the movements of specific facial features. For each key in the dictionary, the corresponding value is a floating point number indicating the current position of that feature relative to its neutral configuration, ranging from `0.0` (neutral) to `1.0` (maximum movement).
+///
+/// ARKit provides many blend shape coefficients, resulting in a detailed model of a facial expression; however, you can use as many or as few of the coefficients as you desire to create a visual effect. For example, you might animate a simple cartoon character using only the [`ARBlendShapeLocationJawOpen`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen), [`ARBlendShapeLocationEyeBlinkLeft`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkleft), and [`ARBlendShapeLocationEyeBlinkRight`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkright) coefficients. A professional 3D artist could create a detailed character model rigged for realistic animation using a larger set, or the entire set, of coefficients.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  In the naming of blend shape coefficients, the left and right directions are relative to the face. That is, the [`ARBlendShapeLocationEyeBlinkRight`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkright) coefficient refers to the face’s right eye. ARKit views running a face-tracking session mirror the camera image, so the face’s right eye appears on the right side in the view.
+///
+///
+///
+/// </div>
+///
 /// Blend shape locations of a face geometry.
 ///
 /// Each location defines an area of the face that can be displaced with a provided coefficient.
@@ -17,329 +34,1090 @@ use crate::*;
 /// the captured image will appear closed and reported as blend shape activation  by ARKit.
 ///
 /// See: -[ARFrame capturedImage]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type ARBlendShapeLocation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browdownleft?language=objc)
+    /// The coefficient describing downward movement of the outer portion of the left eyebrow.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/379a82400ae92bc0424d09adaf0bbf14/media-2930090~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/5feff2496ffef93dc8ffd9c52307d421/media-2930090%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/5feff2496ffef93dc8ffd9c52307d421/media-2930090%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browdownright?language=objc)
+    /// The coefficient describing downward movement of the outer portion of the right eyebrow.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/76a4beb93c6216a97d75ee590669dd58/media-2930092~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/c00ee1a90196709708915bfe5feea648/media-2930092%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c00ee1a90196709708915bfe5feea648/media-2930092%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browinnerup?language=objc)
+    /// The coefficient describing upward movement of the inner portion of both eyebrows.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2f2c3b506c576995e6cbe1f89d93b874/media-2929223~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d124c94a357c86c3e74a4f018ad2ada0/media-2929223%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/d124c94a357c86c3e74a4f018ad2ada0/media-2929223%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowInnerUp: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browouterupleft?language=objc)
+    /// The coefficient describing upward movement of the outer portion of the left eyebrow.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e92357f292ae9b10fcca6008e5e6146c/media-2930089~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/356e8e48fee9625a1f508add3cbc8dfa/media-2930089%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e92357f292ae9b10fcca6008e5e6146c/media-2930089~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowOuterUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browouterupright?language=objc)
+    /// The coefficient describing upward movement of the outer portion of the right eyebrow.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7e073b8313e7b1111cac8a851709089d/media-2930091~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/879b2466c215387dd86819013f6cdbd9/media-2930091%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/879b2466c215387dd86819013f6cdbd9/media-2930091%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowOuterUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheekpuff?language=objc)
+    /// The coefficient describing outward movement of both cheeks.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2b2e3f4655e9d05034942d765602960e/media-2930094~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/65717ae694f728b2a55d962662d5769e/media-2930094%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/65717ae694f728b2a55d962662d5769e/media-2930094%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekPuff: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheeksquintleft?language=objc)
+    /// The coefficient describing upward movement of the cheek around and below the left eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/616bbc448a5b07a8f950e509e51b3135/media-2930093~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/35a264bfabd8a3694893a08c28aabe5b/media-2930093%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/616bbc448a5b07a8f950e509e51b3135/media-2930093~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekSquintLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheeksquintright?language=objc)
+    /// The coefficient describing upward movement of the cheek around and below the right eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4d60d72b1354392d597d4fef0320615a/media-2930095~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/66785c34480ce4c9a23faf2e04747e93/media-2930095%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/66785c34480ce4c9a23faf2e04747e93/media-2930095%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekSquintRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkleft?language=objc)
+    /// The coefficient describing closure of the eyelids over the left eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/511db1782f0197e9b05a59145877266a/media-2930022~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b10079f21f237130de55098fb8de7a13/media-2930022%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/b10079f21f237130de55098fb8de7a13/media-2930022%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeBlinkLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkright?language=objc)
+    /// The coefficient describing closure of the eyelids over the right eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/9071f213ab7ac4f108cb7f28c01097d8/media-2930023~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d1eaa2eb5a7b7c561057ed60cd7e1990/media-2930023%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/d1eaa2eb5a7b7c561057ed60cd7e1990/media-2930023%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeBlinkRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookdownleft?language=objc)
+    /// The coefficient describing movement of the left eyelids consistent with a downward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/524a7c6effd119648ffe3e8c0fe1263e/media-2929204~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/841883282591be3dc5fcc8994086f739/media-2929204%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/841883282591be3dc5fcc8994086f739/media-2929204%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookdownright?language=objc)
+    /// The coefficient describing movement of the right eyelids consistent with a downward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f899ba359baf08607266741eca197e16/media-2929212~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/5fdfdb5159bcce50065f1b2f2630be68/media-2929212%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f899ba359baf08607266741eca197e16/media-2929212~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookinleft?language=objc)
+    /// The coefficient describing movement of the left eyelids consistent with a rightward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f8b36e0a958c7b1937bcf485b4dd03a2/media-2929205~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bcd5263f64259055a0b95e5309daa61d/media-2929205%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f8b36e0a958c7b1937bcf485b4dd03a2/media-2929205~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookInLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookinright?language=objc)
+    /// The coefficient describing movement of the right eyelids consistent with a leftward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/aee6b86ee2ac9d5e9a9f4829fe797757/media-2929208~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/eb4ca7f231935f33f73724ee26351e8f/media-2929208%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/eb4ca7f231935f33f73724ee26351e8f/media-2929208%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookInRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookoutleft?language=objc)
+    /// The coefficient describing movement of the left eyelids consistent with a leftward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e1a5e09b862eb2d41735c29cc5b09d9c/media-2929206~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/dae99f0203fd63ec477fd23957637244/media-2929206%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e1a5e09b862eb2d41735c29cc5b09d9c/media-2929206~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookOutLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookoutright?language=objc)
+    /// The coefficient describing movement of the right eyelids consistent with a rightward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/51835f3c29b97953cf92bff71b86b6e2/media-2929210~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/55c74fe6b13ce69a3190fbf254355d3d/media-2929210%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/55c74fe6b13ce69a3190fbf254355d3d/media-2929210%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookOutRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookupleft?language=objc)
+    /// The coefficient describing movement of the left eyelids consistent with an upward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/31016b05425e035239d73d6dabe57bc1/media-2929200~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/81d7563d952c28db296800150575409a/media-2929200%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/81d7563d952c28db296800150575409a/media-2929200%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookupright?language=objc)
+    /// The coefficient describing movement of the right eyelids consistent with an upward gaze.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e5883373443df90766671536dfff19f6/media-2929213~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8b8b374954d1be372f7535eaf283fcd0/media-2929213%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e5883373443df90766671536dfff19f6/media-2929213~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyesquintleft?language=objc)
+    /// The coefficient describing contraction of the face around the left eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/28671f0a7bead3d5f1cb4d04c7b00cba/media-2929201~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/6d4b6f4e85a6fb03d4c822ddd4a0cab9/media-2929201%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/6d4b6f4e85a6fb03d4c822ddd4a0cab9/media-2929201%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeSquintLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyesquintright?language=objc)
+    /// The coefficient describing contraction of the face around the right eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6243b1d28c235e788c5c6558a44e8712/media-2929209~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/dbf9ef4b8ff3d33d8db963c447b38c35/media-2929209%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/dbf9ef4b8ff3d33d8db963c447b38c35/media-2929209%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeSquintRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyewideleft?language=objc)
+    /// The coefficient describing a widening of the eyelids around the left eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d39af35f5ff134bcb8fdb6c1510faf0d/media-2929207~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/87ae86438bcc0b2610ab22138ae40668/media-2929207%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/d39af35f5ff134bcb8fdb6c1510faf0d/media-2929207~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeWideLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyewideright?language=objc)
+    /// The coefficient describing a widening of the eyelids around the right eye.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d6175ed03996e56e3094b7b11117f63a/media-2929214~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/13a79b8fe2350e4cd43e5099b66e790a/media-2929214%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/d6175ed03996e56e3094b7b11117f63a/media-2929214~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeWideRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawforward?language=objc)
+    /// The coefficient describing forward movement of the lower jaw.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/af00e07b404d97bccd6cc4cfeff269c7/media-2930046~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/cfc0fa5b4baac25e419420436ee31705/media-2930046%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/cfc0fa5b4baac25e419420436ee31705/media-2930046%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawForward: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawleft?language=objc)
+    /// The coefficient describing leftward movement of the lower jaw.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/21d573ca69fdc9585e656ce1956641b7/media-2930047~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/100a8f49dd84543a3949ab9e14c133ce/media-2930047%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/21d573ca69fdc9585e656ce1956641b7/media-2930047~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen?language=objc)
+    /// The coefficient describing an opening of the lower jaw.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3a6fb2514b4e04036744700d61ed4d62/media-2930044~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/dc2783ff64cd74e92daa7d950e28a6de/media-2930044%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/dc2783ff64cd74e92daa7d950e28a6de/media-2930044%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawOpen: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawright?language=objc)
+    /// The coefficient describing rightward movement of the lower jaw.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7f5cee9a6556a10ca1be3948355c2ecc/media-2930043~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/0deae2d8282bd2f2d9440b949045dde8/media-2930043%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/7f5cee9a6556a10ca1be3948355c2ecc/media-2930043~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose?language=objc)
+    /// The coefficient describing closure of the lips _independent of jaw position_.
+    ///
+    /// ## Discussion
+    ///
+    /// This coefficient describes a closing of the lips without relation to the position of the jaw (the [`ARBlendShapeLocationJawOpen`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen) coefficient), so some values of the [`ARBlendShapeLocationMouthClose`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose) coefficient can produce unrealistic facial expressions unless other coefficients are also set to realistic values.
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in three states:
+    ///
+    /// 1. A neutral face (all [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficient values at `0.0`, including both [`ARBlendShapeLocationJawOpen`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen) and [`ARBlendShapeLocationMouthClose`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose))
+    ///
+    /// 2. Setting only the [`ARBlendShapeLocationJawOpen`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen) coefficient to `1.0`, while keeping all other coefficient values (including [`ARBlendShapeLocationMouthClose`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose)) at `0.0`
+    ///
+    /// 3. Setting both the [`ARBlendShapeLocationJawOpen`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen) and [`ARBlendShapeLocationMouthClose`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose) coefficients to `1.0`, while keeping all other coefficient values at `0.0`
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f0da54a85f634c79e71c02dc081ef20c/media-2930045~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/6c619637abe04b4af93ba25b4f13a950/media-2930045%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f0da54a85f634c79e71c02dc081ef20c/media-2930045~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthClose: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthdimpleleft?language=objc)
+    /// The coefficient describing backward movement of the left corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3da6638c2124371fe3c70a11e1ea3eee/media-2930081~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3aead0c8e5654128bf57d7263eed15ee/media-2930081%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/3da6638c2124371fe3c70a11e1ea3eee/media-2930081~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthDimpleLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthdimpleright?language=objc)
+    /// The coefficient describing backward movement of the right corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/9e0aff7a8dc1352488515a76fdea3e8d/media-2930078~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1aed3464918fdcfc305a52899c49712e/media-2930078%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/9e0aff7a8dc1352488515a76fdea3e8d/media-2930078~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthDimpleRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfrownleft?language=objc)
+    /// The coefficient describing downward movement of the left corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ad8637559f4da9a6c777cd29b8428e8b/media-2930072~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7184503f83b3b89f719debc886c7711c/media-2930072%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ad8637559f4da9a6c777cd29b8428e8b/media-2930072~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFrownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfrownright?language=objc)
+    /// The coefficient describing downward movement of the right corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4900b1746b460a11f4f9020b9f30f8ad/media-2930067~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1bd4fc5b968fa0fbc9fa895ccdc32fde/media-2930067%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/4900b1746b460a11f4f9020b9f30f8ad/media-2930067~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFrownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfunnel?language=objc)
+    /// The coefficient describing contraction of both lips into an open shape.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c82e746e50954578c1ed52cc10297098/media-2930073~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/12b6bc86e2a90f4ade7c069ac69d5842/media-2930073%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c82e746e50954578c1ed52cc10297098/media-2930073~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFunnel: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthleft?language=objc)
+    /// The coefficient describing leftward movement of both lips together.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6405f4baf9150ac648ce67003c78948d/media-2930066~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e6fbc01a3a640483d8b59d18e67b0752/media-2930066%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e6fbc01a3a640483d8b59d18e67b0752/media-2930066%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthlowerdownleft?language=objc)
+    /// The coefficient describing downward movement of the lower lip on the left side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ea3d9db8fc477d77beeb84dc08ce94a1/media-2930087~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/233357679cf3a4d96fb81822e757236b/media-2930087%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ea3d9db8fc477d77beeb84dc08ce94a1/media-2930087~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLowerDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthlowerdownright?language=objc)
+    /// The coefficient describing downward movement of the lower lip on the right side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/febc2e2d6ff0c4554bd88b1ab6553816/media-2930083~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/618dba5201ebd5cf83c2344783672692/media-2930083%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/febc2e2d6ff0c4554bd88b1ab6553816/media-2930083~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLowerDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpressleft?language=objc)
+    /// The coefficient describing upward compression of the lower lip on the left side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2b8b2c1dd592bf49ff95a9e3e9218b4b/media-2930085~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/cd497a01aebd2f98c3effab83b8c8a6c/media-2930085%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/cd497a01aebd2f98c3effab83b8c8a6c/media-2930085%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPressLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpressright?language=objc)
+    /// The coefficient describing upward compression of the lower lip on the right side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6c6ac01ab434919b5af79c9696a80c53/media-2930084~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a7b046a2d8db6faff6e85ac7117a23a1/media-2930084%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/a7b046a2d8db6faff6e85ac7117a23a1/media-2930084%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPressRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpucker?language=objc)
+    /// The coefficient describing contraction and compression of both closed lips.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ba1758375e546c9cdd98280aa9a75c29/media-2930070~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a0f8ffd20bc148bba761a2f4dde31636/media-2930070%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ba1758375e546c9cdd98280aa9a75c29/media-2930070~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPucker: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthright?language=objc)
+    /// The coefficient describing rightward movement of both lips together.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c52114d3e7340826be572440cb88b027/media-2930069~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/989a4d0ac0ef6c060e7a92a5b2254af4/media-2930069%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/c52114d3e7340826be572440cb88b027/media-2930069~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthrolllower?language=objc)
+    /// The coefficient describing movement of the lower lip toward the inside of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ec77a9649a97e24e6af2b309189c86d9/media-2930075~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/702c478bbc51211346778c9accf3c666/media-2930075%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ec77a9649a97e24e6af2b309189c86d9/media-2930075~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRollLower: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthrollupper?language=objc)
+    /// The coefficient describing movement of the upper lip toward the inside of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3a4c625610939c380d434b2f18d61ae0/media-2930080~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ecd158ec408a416b343d8a2891dfbc04/media-2930080%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/ecd158ec408a416b343d8a2891dfbc04/media-2930080%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRollUpper: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthshruglower?language=objc)
+    /// The coefficient describing outward movement of the lower lip.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/a29d5644317ece73bd3f05a45770f994/media-2930076~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/1bca6ce0f6151fb856caacc48cff655d/media-2930076%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/a29d5644317ece73bd3f05a45770f994/media-2930076~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthShrugLower: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthshrugupper?language=objc)
+    /// The coefficient describing outward movement of the upper lip.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/7d0cea3933bc37681ac6a04a82717587/media-2930077~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d6b71a57ccb0e6149bb001f32dd8f090/media-2930077%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/d6b71a57ccb0e6149bb001f32dd8f090/media-2930077%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthShrugUpper: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthsmileleft?language=objc)
+    /// The coefficient describing upward movement of the left corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/e3599d43e40f145a14f6455e47b75243/media-2930071~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e4d051c981a62a48441f468145d0b545/media-2930071%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e4d051c981a62a48441f468145d0b545/media-2930071%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthSmileLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthsmileright?language=objc)
+    /// The coefficient describing upward movement of the right corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/774001b8237c891d955047249689d221/media-2930068~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/a6eff185634f00bce36063bb3b87abe0/media-2930068%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/a6eff185634f00bce36063bb3b87abe0/media-2930068%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthSmileRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthstretchleft?language=objc)
+    /// The coefficient describing leftward movement of the left corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/49926cfb61733a2e5cdcf6b33325afef/media-2930079~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/611a3f830b8d77faf6226b65a66b91f7/media-2930079%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/611a3f830b8d77faf6226b65a66b91f7/media-2930079%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthStretchLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthstretchright?language=objc)
+    /// The coefficient describing rightward movement of the left corner of the mouth.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cc18c774a4225048c89bdee540ecdb9a/media-2930082~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/7327441ce1746af1d1a9c39494da4297/media-2930082%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/cc18c774a4225048c89bdee540ecdb9a/media-2930082~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthStretchRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthupperupleft?language=objc)
+    /// The coefficient describing upward movement of the upper lip on the left side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4c376e43bf11ddf20941bd4fdb9e2994/media-2930088~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e047266999d0de22f23372001724acbd/media-2930088%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/e047266999d0de22f23372001724acbd/media-2930088%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthUpperUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthupperupright?language=objc)
+    /// The coefficient describing upward movement of the upper lip on the right side.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/388efab5bb9f05211d126872ab563c8c/media-2930086~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f2a84a1756581a3f2923d8b457cfa1f7/media-2930086%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f2a84a1756581a3f2923d8b457cfa1f7/media-2930086%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthUpperUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/nosesneerleft?language=objc)
+    /// The coefficient describing a raising of the left side of the nose around the nostril.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8f02910e690210956a567fb348b0d69d/media-2929216~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f1ac17b96d1f463583968325ccec9adf/media-2929216%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/f1ac17b96d1f463583968325ccec9adf/media-2929216%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationNoseSneerLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/nosesneerright?language=objc)
+    /// The coefficient describing a raising of the right side of the nose around the nostril.
+    ///
+    /// ## Discussion
+    ///
+    /// The figure below shows a face geometry (see [`ARSCNFaceGeometry`](https://developer.apple.com/documentation/arkit/arscnfacegeometry)) in two states, demonstrating values of `0.0` and `1.0` for this coefficient. In both states, the values for all other [`ARBlendShapeLocation`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation) coefficients are set to `0.0`.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/0f4638638183fc1c9801ea2d681e31f2/media-2929219~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/acc573a88e2fe295592a02db22ae40cb/media-2929219%402x.png 2x" />
+    ///     <img alt="" src="https://docs-assets.developer.apple.com/published/acc573a88e2fe295592a02db22ae40cb/media-2929219%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationNoseSneerRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/tongueout?language=objc)
+    /// The coefficient describing extension of the tongue.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of `0.0` indicates that the tongue is fully inside the mouth; a value of `1.0` indicates that the tongue is as far out of the mouth as ARKit tracks.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationTongueOut: &'static ARBlendShapeLocation;
 }
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// An anchor representing a face and its geometry.
+    /// An anchor for a unique face that is visible in the front-facing camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor?language=objc)
+    /// ## Overview
+    ///
+    /// The session automatically adds to its list of anchors an ARFaceAnchor object when it detects a unique face in the front camera feed.
+    ///
+    /// When you track faces using [`ARFaceTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arfacetrackingconfiguration), ARKit can track multiple faces simultaneously.
+    ///
+    /// Alternatively, you can enable face tracking with a world tracking configuration by setting .
+    ///
+    /// ### Tracking Face Position and Orientation
+    ///
+    /// The inherited [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property describes the face’s current position and orientation in world coordinates; that is, in a coordinate space relative to that specified by the [`worldAlignment`](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.property) property of the session configuration. Use this transform matrix to position virtual content you want to “attach” to the face in your AR scene.
+    ///
+    /// This transform matrix creates a face coordinates system for positioning other elements relative to the face. Units of face coordinate space are in meters, with the origin centered behind the face as indicated in the figure below.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8537ff371fa2f3bc8bf24465a98938c4/media-3001545~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8537ff371fa2f3bc8bf24465a98938c4/media-3001545%402x.png 2x" />
+    ///     <img alt="Figure indicating the x/y/z coordinate system origin for face anchors, centered behind the face." src="https://docs-assets.developer.apple.com/published/8537ff371fa2f3bc8bf24465a98938c4/media-3001545~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The coordinate system is right-handed—the positive x direction points to the viewer’s right (that is, the face’s own left), the positive y direction points up (relative to the face itself, not to the world), and the positive z direction points outward from the face (toward the viewer).
+    ///
+    /// ### Using Face Topology
+    ///
+    /// The [`geometry`](https://developer.apple.com/documentation/arkit/arfaceanchor/geometry) property provides an [`ARFaceGeometry`](https://developer.apple.com/documentation/arkit/arfacegeometry) object representing detailed topology for the face, which conforms a generic face model to match the dimensions, shape, and current expression of the detected face.
+    ///
+    /// You can use this model as the basis for overlaying content that follows the shape of the user’s face—for example, to apply virtual makeup or tattoos. You can also use this model to create _occlusion geometry_—a 3D model that doesn’t render any visible content (allowing the camera image to show through), but that obstructs the camera’s view of other virtual content in the scene.
+    ///
+    /// ### Tracking Facial Expressions
+    ///
+    /// The [`blendShapes`](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapes) property provides a high-level model of the current facial expression, described via a series of many named coefficients that represent the movement of specific facial features relative to their neutral configurations. You can use blend shape coefficients to animate 2D or 3D content, such as a character or avatar, in ways that follow the user’s facial expressions.
+    ///
+    ///
+    /// An anchor representing a face and its geometry.
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

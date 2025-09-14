@@ -6,21 +6,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// This enumerated type is used to represent the classification for the user's walking steadiness.
+/// A classification of a score based on the steadiness of the user’s gait.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification?language=objc)
+/// ## Overview
+///
+/// Walking Steadiness classifications measures the ability of the user to move with a steady, even gait. You can use the [`HKAppleWalkingSteadinessClassificationForQuantity`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassificationforquantity), [`HKAppleWalkingSteadinessMaximumQuantityForClassification`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessmaximumquantityforclassification), and [`HKAppleWalkingSteadinessMinimumQuantityForClassification`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessminimumquantityforclassification) methods to convert between Walking Steadiness scores and the [`HKAppleWalkingSteadinessClassificationLow`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/low), [`HKAppleWalkingSteadinessClassificationVeryLow`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/verylow), or [`HKAppleWalkingSteadinessClassificationOK`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/ok) classifications.
+///
+///
+/// This enumerated type is used to represent the classification for the user's walking steadiness.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKAppleWalkingSteadinessClassification(pub NSInteger);
 impl HKAppleWalkingSteadinessClassification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/ok?language=objc)
+    /// A classification indicating that the stability of the user’s gait is within the normal range.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationOK")]
     pub const OK: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/low?language=objc)
+    /// A classification indicating that the stability of the user’s gate is below normal.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationLow")]
     pub const Low: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassification/verylow?language=objc)
+    /// A classification indicating that the stability of the user’s gate is considerably below normal.
     #[doc(alias = "HKAppleWalkingSteadinessClassificationVeryLow")]
     pub const VeryLow: Self = Self(3);
 }
@@ -34,6 +39,27 @@ unsafe impl RefEncode for HKAppleWalkingSteadinessClassification {
 }
 
 impl HKAppleWalkingSteadinessClassification {
+    /// Provides a classification for a score that measures the steadiness of the user’s gait.
+    ///
+    /// Parameters:
+    /// - value: An [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) instance that contains a percentage value between `0.0` and `1.0`. Use the [`HKUnit`](https://developer.apple.com/documentation/healthkit/hkunit) class’s [`percent()`](https://developer.apple.com/documentation/healthkit/hkunit/percent()) method to define the units for these values.
+    ///
+    /// - classificationOut: A [`HKAppleWalkingSteadinessClassificationForQuantity`](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassificationforquantity) reference, which the method sets if the classification is successful.
+    ///
+    /// - errorOut: A [`NSError`](https://developer.apple.com/documentation/foundation/nserror) reference, which the method sets if it can’t convert the `value` parameter into a classification. You can pass `nil` if you don’t want to receive error information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the method successfully classified the value. If an error occurred, it returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to get the Walking Steadiness classification for an [`appleWalkingSteadiness`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/applewalkingsteadiness) sample.
+    ///
+    ///
     /// Determines the Apple Walking Steadiness classification for the provided Apple Walking Steadiness value.
     ///
     /// Parameter `value`: Apple Walking Steadiness quantity with expected value between 0% and 100%.
@@ -48,8 +74,6 @@ impl HKAppleWalkingSteadinessClassification {
     ///
     /// - `classification_out` must be a valid pointer.
     /// - `error_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessclassificationforquantity?language=objc)
     #[doc(alias = "HKAppleWalkingSteadinessClassificationForQuantity")]
     #[cfg(feature = "HKQuantity")]
     #[inline]
@@ -72,11 +96,20 @@ impl HKAppleWalkingSteadinessClassification {
     }
 }
 
+/// Returns the minimum score for the steadiness of the user’s gait based on the provided classification.
+///
+/// Parameters:
+/// - classification: The classification to look up.
+///
+///
+/// ## Discussion
+///
+/// Call this method to look up the minimum Walking Steadiness value for a given classification. It returns an [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) instance that contains a percentage value between `0.0` and `1.0`.
+///
+///
 /// Retrieves the minimum quantity in percent unit for an Apple Walking Steadiness classification.
 ///
 /// Parameter `classification`: Apple Walking Steadiness classification for desired minimum value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessminimumquantityforclassification?language=objc)
 #[cfg(feature = "HKQuantity")]
 #[inline]
 pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassification(
@@ -92,11 +125,20 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMinimumQuantityForClassi
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns the maximum score for the steadiness of the user’s gait based on the provided classification.
+///
+/// Parameters:
+/// - classification: The classification to look up.
+///
+///
+/// ## Discussion
+///
+/// Call this method to look up the maximum Walking Steadiness value for a given classification. It returns an [`HKQuantity`](https://developer.apple.com/documentation/healthkit/hkquantity) instance that contains a percentage value between `0.0` and `1.0`.
+///
+///
 /// Retrieves the maximum quantity in percent unit for an Apple Walking Steadiness classification.
 ///
 /// Parameter `classification`: Apple Walking Steadiness classification for desired maximum value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkapplewalkingsteadinessmaximumquantityforclassification?language=objc)
 #[cfg(feature = "HKQuantity")]
 #[inline]
 pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassification(

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nscustommigrationstage?language=objc)
+    /// An object that enables you to participate in the migration between two versions of the same model.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`NSCustomMigrationStage`](https://developer.apple.com/documentation/coredata/nscustommigrationstage) when you have two versions of a model that Core Data can’t automatically migrate. Custom migration stages enable you to participate in the migration process by assigning handlers that the stage invokes before and after it runs. The handlers provide an opportunity to prepare the persistent store’s data for the upcoming changes before the stage runs, and perform any cleanup tasks afterward.
+    ///
+    /// For example, to support a migration that changes an optional attribute to be nonoptional, you might assign a handler to the stage’s [`willMigrateHandler`](https://developer.apple.com/documentation/coredata/nscustommigrationstage/willmigratehandler-5wead) property that sets any `nil` instances of that attribute to a default value, thereby ensuring the migration succeeds. To access the store you’re migrating, use the [`container`](https://developer.apple.com/documentation/coredata/nsstagedmigrationmanager/container) property of the migration manager that Core Data provides to every handler.
+    ///
+    ///
     #[unsafe(super(NSMigrationStage, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSMigrationStage")]

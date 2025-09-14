@@ -7,17 +7,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/directionshandler?language=objc)
+/// The block to use for processing the requested route information.
+///
+/// Parameters:
+/// - response: The `response` parameter contains the route information for the request. If an error occurs or the framework can’t determine a route, this parameter is `nil`.
+///
+/// - error: The `error` parameter contains information about any errors that occur. If no errors occur, this parameter is `nil`.
+///
+///
+/// ## Discussion
+///
+/// The implementation of your block needs to check for a value in the `error` parameter and, if that parameter is `nil`, incorporate the route information from the `response` parameter.
+///
+///
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
 pub type MKDirectionsHandler =
     *mut block2::DynBlock<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/etahandler?language=objc)
+/// The block to use for processing travel-time information.
+///
+/// Parameters:
+/// - response: The `response` parameter contains the travel-time response. If an error occurs or the framework can’t determine the travel time, this parameter is `nil`.
+///
+/// - error: The `error` parameter contains information about any errors that occur. If no errors occur, this parameter is `nil`.
+///
+///
+/// ## Discussion
+///
+/// The implementation of your block needs to check for a value in the `error` parameter and, if that parameter is `nil`, incorporate the travel-time information from the `response` parameter.
+///
+///
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
 pub type MKETAHandler = *mut block2::DynBlock<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections?language=objc)
+    /// A utility object that computes directions and travel-time information based on the route information you provide.
+    ///
+    /// ## Overview
+    ///
+    /// You use an `MKDirections` object to ask the Apple servers to provide walking or driving directions for a route, which you specify using an [`MKDirectionsRequest`](https://developer.apple.com/documentation/mapkit/mkdirections/request) object. After making a request, MapKit delivers the results asynchronously to the completion handler that you provide. You can also get the estimated travel time for the route.
+    ///
+    /// Each `MKDirections` object handles a single request for directions, although you can cancel and restart that request as needed. You can create multiple instances of this class and process different route requests at the same time, but make requests only when you plan to present the corresponding route information to the user. Apps may receive an [`MKErrorLoadingThrottled`](https://developer.apple.com/documentation/mapkit/mkerror/code/loadingthrottled) error if the device makes too many requests in too short a time period.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirections;

@@ -13,11 +13,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that encapsulates the properties for an individual web extension action.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides access to action properties, such as pop-up, icon, or title, with tab-specific values.
+    ///
+    ///
     /// A ``WKWebExtensionAction`` object encapsulates the properties for an individual web extension action.
     ///
     /// Provides access to action properties such as popup, icon, and title, with tab-specific values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/action?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

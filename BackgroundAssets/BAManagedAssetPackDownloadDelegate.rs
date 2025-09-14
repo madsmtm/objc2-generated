@@ -9,8 +9,7 @@ use crate::*;
 
 extern_protocol!(
     /// An object that handles status updates when downloading an asset pack.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagedassetpackdownloaddelegate?language=objc)
+    /// An object that handles status updates when downloading an asset pack.
     pub unsafe trait BAManagedAssetPackDownloadDelegate:
         NSObjectProtocol + Send + Sync
     {

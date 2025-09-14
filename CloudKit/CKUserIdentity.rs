@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckuseridentity?language=objc)
+    /// The identity of a user.
+    ///
+    /// ## Overview
+    ///
+    /// A user identity provides identifiable data about an iCloud user, including their name, user record ID, and an email address or phone number. CloudKit retrieves this information from the user’s iCloud account. A user must give their consent to be discoverable before CloudKit can provide this data to your app. For more information, see [`requestApplicationPermission:completionHandler:`](https://developer.apple.com/documentation/cloudkit/ckcontainer/requestapplicationpermission(_:completionhandler:)).
+    ///
+    /// You don’t create instances of this class. Instead, CloudKit provides them in certain contexts. A share’s owner has a user identity, as does each of its participants. When creating participants, CloudKit tries to find iCloud accounts it can use to populate their identities. If CloudKit doesn’t find an account, it sets the identity’s [`hasiCloudAccount`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/hasicloudaccount) property to [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// You can also discover the identities of your app’s users by executing one of the user discovery operations: [`CKDiscoverAllUserIdentitiesOperation`](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation) and [`CKDiscoverUserIdentitiesOperation`](https://developer.apple.com/documentation/cloudkit/ckdiscoveruseridentitiesoperation). Identities that CloudKit discovers using [`CKDiscoverAllUserIdentitiesOperation`](https://developer.apple.com/documentation/cloudkit/ckdiscoveralluseridentitiesoperation) correspond to entries in the device’s Contacts database. These identities contain the identifiers of their Contact records, which you can use to fetch those records from the Contacts database. For more information, see [`contactIdentifiers`](https://developer.apple.com/documentation/cloudkit/ckuseridentity/contactidentifiers).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKUserIdentity;

@@ -12,349 +12,326 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion?language=objc)
+/// Constants for determining which version of AppKit is available.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAppKitVersion = c_double;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/current?language=objc)
+    /// The most recent version of AppKit.
     pub static NSAppKitVersionNumber: NSAppKitVersion;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_0?language=objc)
+/// The AppKit framework included in OS X v10.0.
 pub static NSAppKitVersionNumber10_0: NSAppKitVersion = 577 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_1?language=objc)
+/// The AppKit framework included in OS X v10.1.
 pub static NSAppKitVersionNumber10_1: NSAppKitVersion = 620 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_2?language=objc)
+/// The AppKit framework included in OS X v10.2.
 pub static NSAppKitVersionNumber10_2: NSAppKitVersion = 663 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_2_3?language=objc)
+/// The AppKit framework included in OS X v10.2.3.
 pub static NSAppKitVersionNumber10_2_3: NSAppKitVersion = 663.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3?language=objc)
+/// The AppKit framework included in OS X v10.3.
 pub static NSAppKitVersionNumber10_3: NSAppKitVersion = 743 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_2?language=objc)
+/// The AppKit framework included in OS X v10.3.2.
 pub static NSAppKitVersionNumber10_3_2: NSAppKitVersion = 743.14 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_3?language=objc)
+/// The AppKit framework included in OS X v10.3.3.
 pub static NSAppKitVersionNumber10_3_3: NSAppKitVersion = 743.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_5?language=objc)
+/// The AppKit framework included in OS X v10.3.5.
 pub static NSAppKitVersionNumber10_3_5: NSAppKitVersion = 743.24 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_7?language=objc)
+/// The AppKit framework included in OS X v10.3.7.
 pub static NSAppKitVersionNumber10_3_7: NSAppKitVersion = 743.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_9?language=objc)
+/// The AppKit framework included in OS X v10.3.9.
 pub static NSAppKitVersionNumber10_3_9: NSAppKitVersion = 743.36 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4?language=objc)
+/// The AppKit framework included in OS X v10.4.
 pub static NSAppKitVersionNumber10_4: NSAppKitVersion = 824 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_1?language=objc)
+/// The AppKit framework included in OS X v10.4.1.
 pub static NSAppKitVersionNumber10_4_1: NSAppKitVersion = 824.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_3?language=objc)
+/// The AppKit framework included in OS X v10.4.3.
 pub static NSAppKitVersionNumber10_4_3: NSAppKitVersion = 824.23 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_4?language=objc)
+/// The AppKit framework included in OS X v10.4.4.
 pub static NSAppKitVersionNumber10_4_4: NSAppKitVersion = 824.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_7?language=objc)
+/// The AppKit framework included in OS X v10.4.7.
 pub static NSAppKitVersionNumber10_4_7: NSAppKitVersion = 824.41 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5?language=objc)
+/// The AppKit framework included in OS X v10.5.
 pub static NSAppKitVersionNumber10_5: NSAppKitVersion = 949 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5_2?language=objc)
+/// The AppKit framework included in OS X v10.5.2.
 pub static NSAppKitVersionNumber10_5_2: NSAppKitVersion = 949.27 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5_3?language=objc)
+/// The AppKit framework included in OS X v10.5.3.
 pub static NSAppKitVersionNumber10_5_3: NSAppKitVersion = 949.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_6?language=objc)
+/// The AppKit framework included in OS X v10.6.
 pub static NSAppKitVersionNumber10_6: NSAppKitVersion = 1038 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7?language=objc)
+/// The AppKit framework included in OS X v10.7.
 pub static NSAppKitVersionNumber10_7: NSAppKitVersion = 1138 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_2?language=objc)
+/// The AppKit framework included in OS X v10.7.2.
 pub static NSAppKitVersionNumber10_7_2: NSAppKitVersion = 1138.23 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_3?language=objc)
+/// The AppKit framework included in OS X v10.7.3.
 pub static NSAppKitVersionNumber10_7_3: NSAppKitVersion = 1138.32 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_4?language=objc)
+/// The AppKit framework included in OS X v10.7.4.
 pub static NSAppKitVersionNumber10_7_4: NSAppKitVersion = 1138.47 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_8?language=objc)
+/// The AppKit framework included in OS X v10.8.
 pub static NSAppKitVersionNumber10_8: NSAppKitVersion = 1187 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_9?language=objc)
 pub static NSAppKitVersionNumber10_9: NSAppKitVersion = 1265 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10?language=objc)
 pub static NSAppKitVersionNumber10_10: NSAppKitVersion = 1343 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_2?language=objc)
 pub static NSAppKitVersionNumber10_10_2: NSAppKitVersion = 1344 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_3?language=objc)
 pub static NSAppKitVersionNumber10_10_3: NSAppKitVersion = 1347 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_4?language=objc)
 pub static NSAppKitVersionNumber10_10_4: NSAppKitVersion = 1348 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_5?language=objc)
 pub static NSAppKitVersionNumber10_10_5: NSAppKitVersion = 1348 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_max?language=objc)
 pub static NSAppKitVersionNumber10_10_Max: NSAppKitVersion = 1349 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11?language=objc)
 pub static NSAppKitVersionNumber10_11: NSAppKitVersion = 1404 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_1?language=objc)
 pub static NSAppKitVersionNumber10_11_1: NSAppKitVersion = 1404.13 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_2?language=objc)
 pub static NSAppKitVersionNumber10_11_2: NSAppKitVersion = 1404.34 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_3?language=objc)
 pub static NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12?language=objc)
 pub static NSAppKitVersionNumber10_12: NSAppKitVersion = 1504 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12_1?language=objc)
 pub static NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12_2?language=objc)
 pub static NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13?language=objc)
 pub static NSAppKitVersionNumber10_13: NSAppKitVersion = 1561 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_1?language=objc)
 pub static NSAppKitVersionNumber10_13_1: NSAppKitVersion = 1561.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_2?language=objc)
 pub static NSAppKitVersionNumber10_13_2: NSAppKitVersion = 1561.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_4?language=objc)
 pub static NSAppKitVersionNumber10_13_4: NSAppKitVersion = 1561.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14?language=objc)
 pub static NSAppKitVersionNumber10_14: NSAppKitVersion = 1671 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_1?language=objc)
 pub static NSAppKitVersionNumber10_14_1: NSAppKitVersion = 1671.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_2?language=objc)
 pub static NSAppKitVersionNumber10_14_2: NSAppKitVersion = 1671.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_3?language=objc)
 pub static NSAppKitVersionNumber10_14_3: NSAppKitVersion = 1671.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_4?language=objc)
 pub static NSAppKitVersionNumber10_14_4: NSAppKitVersion = 1671.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_5?language=objc)
 pub static NSAppKitVersionNumber10_14_5: NSAppKitVersion = 1671.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15?language=objc)
 pub static NSAppKitVersionNumber10_15: NSAppKitVersion = 1894 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_1?language=objc)
 pub static NSAppKitVersionNumber10_15_1: NSAppKitVersion = 1894.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_2?language=objc)
 pub static NSAppKitVersionNumber10_15_2: NSAppKitVersion = 1894.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_3?language=objc)
 pub static NSAppKitVersionNumber10_15_3: NSAppKitVersion = 1894.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_4?language=objc)
 pub static NSAppKitVersionNumber10_15_4: NSAppKitVersion = 1894.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_5?language=objc)
 pub static NSAppKitVersionNumber10_15_5: NSAppKitVersion = 1894.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_6?language=objc)
 pub static NSAppKitVersionNumber10_15_6: NSAppKitVersion = 1894.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_0?language=objc)
 pub static NSAppKitVersionNumber11_0: NSAppKitVersion = 2022 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_1?language=objc)
 pub static NSAppKitVersionNumber11_1: NSAppKitVersion = 2022.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_2?language=objc)
 pub static NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_3?language=objc)
 pub static NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_4?language=objc)
 pub static NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_5?language=objc)
 pub static NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_0?language=objc)
 pub static NSAppKitVersionNumber12_0: NSAppKitVersion = 2113 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_1?language=objc)
 pub static NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_2?language=objc)
 pub static NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_3?language=objc)
 pub static NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_4?language=objc)
 pub static NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_5?language=objc)
 pub static NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_0?language=objc)
 pub static NSAppKitVersionNumber13_0: NSAppKitVersion = 2299 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_1?language=objc)
 pub static NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_2?language=objc)
 pub static NSAppKitVersionNumber13_2: NSAppKitVersion = 2299.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_3?language=objc)
 pub static NSAppKitVersionNumber13_3: NSAppKitVersion = 2299.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_4?language=objc)
 pub static NSAppKitVersionNumber13_4: NSAppKitVersion = 2299.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_5?language=objc)
 pub static NSAppKitVersionNumber13_5: NSAppKitVersion = 2299.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_6?language=objc)
 pub static NSAppKitVersionNumber13_6: NSAppKitVersion = 2299.7 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos14_0?language=objc)
 pub static NSAppKitVersionNumber14_0: NSAppKitVersion = 2487 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos14_1?language=objc)
 pub static NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2 as _;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalpanelrunloopmode?language=objc)
+    /// The mode set when waiting for input from a modal panel, such as a save or open panel.
     pub static NSModalPanelRunLoopMode: &'static NSRunLoopMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventtrackingrunloopmode?language=objc)
+    /// The mode set when tracking events modally, such as a mouse-dragging loop.
     pub static NSEventTrackingRunLoopMode: &'static NSRunLoopMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse?language=objc)
+/// A set of button return values for modal dialogs.
+///
+/// ## Discussion
+///
+/// The response value that a button returns can depend on which method is used to present the dialog. See [`alertWithMessageText:defaultButton:alternateButton:otherButton:informativeTextWithFormat:`](https://developer.apple.com/documentation/appkit/nsalert/alertwithmessagetext:defaultbutton:alternatebutton:otherbutton:informativetextwithformat:), [`runModal`](https://developer.apple.com/documentation/appkit/nsalert/runmodal()), and [`addButtonWithTitle:`](https://developer.apple.com/documentation/appkit/nsalert/addbutton(withtitle:)) for examples.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSModalResponse = NSInteger;
 
-/// Also used as the default response for sheets
+/// Modal session was broken with [`stopModal`](https://developer.apple.com/documentation/appkit/nsapplication/stopmodal()).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/stop?language=objc)
+/// ## Discussion
+///
+/// This constant is also used as the default response for sheet.
+///
+///
+/// Also used as the default response for sheets
 pub static NSModalResponseStop: NSModalResponse = -1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/abort?language=objc)
+/// Modal session was broken with [`abortModal`](https://developer.apple.com/documentation/appkit/nsapplication/abortmodal()).
 pub static NSModalResponseAbort: NSModalResponse = -1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/continue?language=objc)
+/// Modal session is continuing (returned by [`runModalSession:`](https://developer.apple.com/documentation/appkit/nsapplication/runmodalsession(_:)) only).
 pub static NSModalResponseContinue: NSModalResponse = -1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/updatewindowsrunloopordering?language=objc)
+/// Run-loop message priority for handling window updates.
+///
+/// ## Discussion
+///
+/// This constant is used by the [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) method [`performSelector:target:argument:order:modes:`](https://developer.apple.com/documentation/foundation/runloop/perform(_:target:argument:order:modes:)).
+///
+///
 pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
+/// Constants that control the presentation of the app, typically for fullscreen apps such as games or kiosks.
+///
+/// ## Overview
+///
+/// There are restrictions on the combination of presentation options that can be set simultaneously:
+///
+/// - [`NSApplicationPresentationAutoHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidedock) and [`NSApplicationPresentationHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock) are mutually exclusive: You may specify one or the other, but not both.
+///
+/// - [`NSApplicationPresentationAutoHideMenuBar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidemenubar) and [`NSApplicationPresentationHideMenuBar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidemenubar) are mutually exclusive: You may specify one or the other, but not both.
+///
+/// - If you specify [`NSApplicationPresentationHideMenuBar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidemenubar), it must be accompanied by [`NSApplicationPresentationHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock).
+///
+/// - If you specify [`NSApplicationPresentationAutoHideMenuBar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidemenubar), it must be accompanied by either [`NSApplicationPresentationHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock) or [`NSApplicationPresentationAutoHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidedock).
+///
+/// - If you specify any of [`NSApplicationPresentationDisableProcessSwitching`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableprocessswitching), [`NSApplicationPresentationDisableForceQuit`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableforcequit), [`NSApplicationPresentationDisableSessionTermination`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablesessiontermination), or [`NSApplicationPresentationDisableMenuBarTransparency`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablemenubartransparency), it must be accompanied by either [`NSApplicationPresentationHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock) or [`NSApplicationPresentationAutoHideDock`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidedock).
+///
+/// - [`NSApplicationPresentationAutoHideToolbar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidetoolbar) may be used only when both [`NSApplicationPresentationFullScreen`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/fullscreen) and [`NSApplicationPresentationAutoHideMenuBar`](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidemenubar) are also set.
+///
+/// When [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) receives a parameter value that does not conform to these requirements, it raises an [`NSInvalidArgumentException`](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidargumentexception).
+///
+///
 /// Flags that comprise an application's
 /// `presentationOptions.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationPresentationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions/nsapplicationpresentationdefault?language=objc)
+/// This is the default presentation mode.
+///
+/// ## Discussion
+///
+/// In the default presentation mode, the dock icon and menu bar are displayed, process switching, force quit, session termination, and the “Hide” menu option are all enabled, and the menu bar transparency is normal.
+///
+///
         #[doc(alias = "NSApplicationPresentationDefault")]
         const Default = 0;
+/// The dock is normally hidden, but automatically appears when moused near.
 /// Dock appears when moused to.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidedock?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideDock")]
         const AutoHideDock = 1<<0;
+/// The dock is entirely hidden and disabled.
 /// Dock is entirely unavailable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidedock?language=objc)
         #[doc(alias = "NSApplicationPresentationHideDock")]
         const HideDock = 1<<1;
+/// The menu bar is normally hidden, but automatically appears when moused near.
 /// Menu Bar appears when moused to.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidemenubar?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideMenuBar")]
         const AutoHideMenuBar = 1<<2;
+/// The menu bar is entirely hidden and disabled.
 /// Menu Bar is entirely unavailable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/hidemenubar?language=objc)
         #[doc(alias = "NSApplicationPresentationHideMenuBar")]
         const HideMenuBar = 1<<3;
+/// All Apple Menu items are disabled.
 /// All Apple menu items are disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableapplemenu?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableAppleMenu")]
         const DisableAppleMenu = 1<<4;
+/// The process switching user interface (Command + Tab to cycle through apps) is disabled.
 /// Cmd+Tab UI is disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableprocessswitching?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableProcessSwitching")]
         const DisableProcessSwitching = 1<<5;
+/// The force quit panel (displayed by pressing Command + Option + Esc) is disabled
 /// Cmd+Opt+Esc panel is disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disableforcequit?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableForceQuit")]
         const DisableForceQuit = 1<<6;
+/// The panel that shows the Restart, Shut Down, and Log Out options that are displayed as a result of pushing the power key is disabled.
 /// PowerKey panel and Restart/Shut Down/Log Out disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablesessiontermination?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableSessionTermination")]
         const DisableSessionTermination = 1<<7;
+/// The app’s “Hide” menu item is disabled.
 /// Application "Hide" menu item is disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablehideapplication?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableHideApplication")]
         const DisableHideApplication = 1<<8;
+/// The menu bar transparency appearance is disabled.
 /// Menu Bar's transparent appearance is disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablemenubartransparency?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableMenuBarTransparency")]
         const DisableMenuBarTransparency = 1<<9;
+/// The app is in fullscreen mode.
 /// Application is in fullscreen mode.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/fullscreen?language=objc)
         #[doc(alias = "NSApplicationPresentationFullScreen")]
         const FullScreen = 1<<10;
+/// When in fullscreen mode the window toolbar is detached from window and hides and shows with autoHidden menuBar.
 /// Fullscreen window toolbar is detached from window and hides/shows on rollover.
 /// May be used only when both
 /// `NSApplicationPresentationFullScreen`is also set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/autohidetoolbar?language=objc)
         #[doc(alias = "NSApplicationPresentationAutoHideToolbar")]
         const AutoHideToolbar = 1<<11;
+/// The behavior that allows the user to shake the mouse to locate the cursor is disabled.
 /// "Shake mouse pointer to locate" is disabled for this application.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct/disablecursorlocationassistance?language=objc)
         #[doc(alias = "NSApplicationPresentationDisableCursorLocationAssistance")]
         const DisableCursorLocationAssistance = 1<<12;
     }
@@ -368,16 +345,21 @@ unsafe impl RefEncode for NSApplicationPresentationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/occlusionstate-swift.struct?language=objc)
+/// This constant indicates whether at least part of any window owned by this app is visible.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationOcclusionState: NSUInteger {
-/// If set, at least part of any window owned by this application is visible. If not set, all parts of all windows owned by this application are completely occluded. The menu bar does not count as a window owned by this application, so if only the menu bar is showing then the application is considered not visible. Status items, however, have windows owned by your application. If the status item is present in the menu bar, your application will be considered visible as long as the menu bar is visible.
+/// If set, at least part of any window owned by this app is visible.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/occlusionstate-swift.struct/visible?language=objc)
+/// ## Discussion
+///
+/// If not set, all parts of all windows owned by this app are completely occluded. The menu bar does not count as a window owned by this app, so if only the menu bar is showing then the app is considered not visible. Status items, however, have windows owned by your app. If the status item is present in the menu bar, your app will be considered visible as long as the menu bar is visible.
+///
+///
+/// If set, at least part of any window owned by this application is visible. If not set, all parts of all windows owned by this application are completely occluded. The menu bar does not count as a window owned by this application, so if only the menu bar is showing then the application is considered not visible. Status items, however, have windows owned by your application. If the status item is present in the menu bar, your application will be considered visible as long as the menu bar is visible.
         #[doc(alias = "NSApplicationOcclusionStateVisible")]
         const Visible = 1<<1;
     }
@@ -391,16 +373,15 @@ unsafe impl RefEncode for NSApplicationOcclusionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/windowlistoptions?language=objc)
+/// This constant indicates a window ordering.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowListOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSWindowListOptions: NSInteger {
+/// The app’s onscreen windows in front-to-back order. By default, [`windows`](https://developer.apple.com/documentation/appkit/nsapplication/windows) is used.
 /// Onscreen application windows in front to back order. By default, -[NSApp windows] is used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/windowlistoptions/orderedfronttoback?language=objc)
         #[doc(alias = "NSWindowListOrderedFrontToBack")]
         const OrderedFrontToBack = 1<<0;
     }
@@ -425,21 +406,32 @@ unsafe impl RefEncode for _NSModalSession {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_NSModalSession", &[]));
 }
 
+/// Variables of type `NSModalSession` point to information used by the system between `NSApplication`’s [`beginModalSessionForWindow:`](https://developer.apple.com/documentation/appkit/nsapplication/beginmodalsession(for:)) and [`endModalSession:`](https://developer.apple.com/documentation/appkit/nsapplication/endmodalsession(_:)) messages.
 /// Information used by the system during modal sessions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalsession?language=objc)
 pub type NSModalSession = *mut _NSModalSession;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype?language=objc)
+/// These constants specify the level of severity of a user attention request and are used by [`cancelUserAttentionRequest:`](https://developer.apple.com/documentation/appkit/nsapplication/canceluserattentionrequest(_:)) and [`requestUserAttention:`](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattention(_:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRequestUserAttentionType(pub NSUInteger);
 impl NSRequestUserAttentionType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/criticalrequest?language=objc)
+    /// The user attention request is a critical request.
+    ///
+    /// ## Discussion
+    ///
+    /// The dock icon will bounce until either the app becomes active or the request is canceled.
+    ///
+    ///
     #[doc(alias = "NSCriticalRequest")]
     pub const CriticalRequest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype/informationalrequest?language=objc)
+    /// The user attention request is an informational request.
+    ///
+    /// ## Discussion
+    ///
+    /// The dock icon will bounce for one second. The request, though, remains active until either the app becomes active or the request is canceled.
+    ///
+    ///
     #[doc(alias = "NSInformationalRequest")]
     pub const InformationalRequest: Self = Self(10);
 }
@@ -452,19 +444,25 @@ unsafe impl RefEncode for NSRequestUserAttentionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply?language=objc)
+/// Constants that indicate whether a copy or print operation was successful, was canceled, or failed.
+///
+/// ## Overview
+///
+/// These constants are used by the [`replyToOpenOrPrint:`](https://developer.apple.com/documentation/appkit/nsapplication/reply(toopenorprint:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationDelegateReply(pub NSUInteger);
 impl NSApplicationDelegateReply {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/success?language=objc)
+    /// Indicates the operation succeeded.
     #[doc(alias = "NSApplicationDelegateReplySuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/cancel?language=objc)
+    /// Indicates the user cancelled the operation.
     #[doc(alias = "NSApplicationDelegateReplyCancel")]
     pub const Cancel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply/failure?language=objc)
+    /// Indicates an error occurred processing the operation.
     #[doc(alias = "NSApplicationDelegateReplyFailure")]
     pub const Failure: Self = Self(2);
 }
@@ -478,7 +476,75 @@ unsafe impl RefEncode for NSApplicationDelegateReply {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication?language=objc)
+    /// An object that manages an app’s main event loop and resources used by all of that app’s objects.
+    ///
+    /// ## Overview
+    ///
+    /// Every app uses a single instance of [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) to control the main event loop, keep track of the app’s windows and menus, distribute events to the appropriate objects (that’s, itself or one of its windows), set up autorelease pools, and receive notification of app-level events. An [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object has a delegate (an object that you assign) that’s notified when the app starts or terminates, is hidden or activated, should open a file selected by the user, and so forth. By setting the delegate and implementing the delegate methods, you customize the behavior of your app without having to subclass [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication). In your app’s `main()` function, create the [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) instance by calling the [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) class method. After creating the application object, the `main()` function should load your app’s main nib file and then start the event loop by sending the application object a [`run`](https://developer.apple.com/documentation/appkit/nsapplication/run()) message. If you create an Application project in Xcode, this `main()` function is created for you. The `main()` function Xcode creates begins by calling a function named `NSApplicationMain()`, which is functionally similar to the following:
+    ///
+    /// ```objc
+    /// void NSApplicationMain(int argc, char *argv[]) {
+    ///     [NSApplication sharedApplication];
+    ///     [NSBundle loadNibNamed:@"myMain" owner:NSApp];
+    ///     [NSApp run];
+    /// }
+    /// ```
+    ///
+    /// The [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) class method initializes the display environment and connects your program to the window server and the display server. The [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object maintains a list of all the [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) objects the app uses, so it can retrieve any of the app’s [`NSView`](https://developer.apple.com/documentation/appkit/nsview) objects. The [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) method also initializes the global variable `NSApp`, which you use to retrieve the [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) instance. [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) only performs the initialization once. If you invoke it more than once, it returns the application object it created previously.
+    ///
+    /// The shared [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object performs the important task of receiving events from the window server and distributing them to the proper [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) objects. `NSApp` translates an event into an [`NSEvent`](https://developer.apple.com/documentation/appkit/nsevent) object, then forwards the event object to the affected [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object. All keyboard and mouse events go directly to the [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object associated with the event. The only exception to this rule is if the Command key is pressed when a key-down event occurs; in this case, every [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object has an opportunity to respond to the event. When a window object receives an [`NSEvent`](https://developer.apple.com/documentation/appkit/nsevent) object from `NSApp`, it distributes it to the objects in its view hierarchy.
+    ///
+    /// [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) is also responsible for dispatching certain Apple events received by the app. For example, macOS sends Apple events to your app at various times, such as when the app is launched or reopened. [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) installs Apple event handlers to handle these events by sending a message to the appropriate object. You can also use the [`NSAppleEventManager`](https://developer.apple.com/documentation/foundation/nsappleeventmanager) class to register your own Apple event handlers. The [`applicationWillFinishLaunching:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationwillfinishlaunching(_:)) method is generally the best place to do so. For more information on how events are handled and how you can modify the default behavior, including information on working with Apple events in scriptable apps, see [How Cocoa Applications Handle Apple Events](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_handle_AEs/SAppsHandleAEs.html#//apple_ref/doc/uid/20001239) in [Cocoa Scripting Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html#//apple_ref/doc/uid/TP40002164).
+    ///
+    /// The [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) class sets up `@autorelease` block during initialization and inside the event loop—specifically, within its initialization (or [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared)) and [`run`](https://developer.apple.com/documentation/appkit/nsapplication/run()) methods. Similarly, the methods AppKit adds to [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) employ `@autorelease` blocks during the loading of nib files. These `@autorelease` blocks aren’t accessible outside the scope of the respective [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) and [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) methods. Typically, an app creates objects either while the event loop is running or by loading objects from nib files, so this lack of access usually isn’t a problem. However, if you do need to use Cocoa classes within the `main()` function itself (other than to load nib files or to instantiate [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication)), you should create an `@autorelease` block to contain the code using the classes.
+    ///
+    /// ### The delegate and notifications
+    ///
+    /// You can assign a delegate to your [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object. The delegate responds to certain messages on behalf of the object. Some of these messages, such as [`application:openFile:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/application(_:openfile:)), ask the delegate to perform an action. Another message, [`applicationShouldTerminate:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationshouldterminate(_:)), lets the delegate determine whether the app should be allowed to quit. The [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) class sends these messages directly to its delegate.
+    ///
+    /// [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) also posts notifications to the app’s default notification center. Any object may register to receive one or more of the notifications posted by [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) by sending the message [`addObserver:selector:name:object:`](https://developer.apple.com/documentation/foundation/notificationcenter/addobserver(_:selector:name:object:)) to the default notification center (an instance of the `NSNotificationCenter` class). The delegate of [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) is automatically registered to receive these notifications if it implements certain delegate methods. For example, [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) posts notifications when it’s about to be done launching the app and when it’s done launching the app ([`NSApplicationWillFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification) and [`NSApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification)). The delegate has an opportunity to respond to these notifications by implementing the methods [`applicationWillFinishLaunching:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationwillfinishlaunching(_:)) and [`applicationDidFinishLaunching:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationdidfinishlaunching(_:)). If the delegate wants to be informed of both events, it implements both methods. If it needs to know only when the app is finished launching, it implements only [`applicationDidFinishLaunching:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationdidfinishlaunching(_:)).
+    ///
+    /// ### System services
+    ///
+    /// `NSApplication` interacts with the system services architecture to provide services to your app through the Services menu.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You rarely should find a real need to create a custom `NSApplication` subclass. Unlike some object-oriented libraries, Cocoa doesn’t require you to subclass `NSApplication` to customize app behavior. Instead it gives you many other ways to customize an app. This section discusses both some of the possible reasons to subclass `NSApplication` and some of the reasons _not_ to subclass `NSApplication`.
+    ///
+    /// To use a custom subclass of `NSApplication`, send [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) to your subclass rather than directly to `NSApplication`. If you create your app in Xcode, you can accomplish this by setting your custom app class to be the principal class. In Xcode, double-click the app target in the Groups and Files list to open the Info window for the target. Then display the Properties pane of the window and replace “NSApplication” in the Principal Class field with the name of your custom class. The `NSApplicationMain` function sends [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared) to the principal class to obtain the global app instance (`NSApp`)—which in this case will be an instance of your custom subclass of `NSApplication`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Many AppKit classes rely on the `NSApplication` class and may not work properly until this class is fully initialized. As a result, you should not, for example, attempt to invoke methods of other AppKit classes from an initialization method of an `NSApplication` subclass.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Methods to override
+    ///
+    /// Generally, you subclass `NSApplication` to provide your own special responses to messages that are routinely sent to the global app object (`NSApp`). `NSApplication` doesn’t have primitive methods in the sense of methods that you must override in your subclass. Here are four methods that are possible candidates for overriding:
+    ///
+    /// - Override [`run`](https://developer.apple.com/documentation/appkit/nsapplication/run()) if you want the app to manage the main event loop differently than it does by default. (This a critical and complex task, however, that you should only attempt with good reason).
+    ///
+    /// - Override [`sendEvent:`](https://developer.apple.com/documentation/appkit/nsapplication/sendevent(_:)) if you want to change how events are dispatched or perform some special event processing.
+    ///
+    /// - Override [`requestUserAttention:`](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattention(_:)) if you want to modify how your app attracts the attention of the user (for example, offering an alternative to the bouncing app icon in the Dock).
+    ///
+    /// - Override [`targetForAction:`](https://developer.apple.com/documentation/appkit/nsapplication/target(foraction:)) to substitute another object for the target of an action message.
+    ///
+    /// #### Special considerations
+    ///
+    /// The global app object uses `@autorelease` blocks in its [`run`](https://developer.apple.com/documentation/appkit/nsapplication/run()) method; if you override this method, you’ll need to create your own `@autorelease` blocks.
+    ///
+    /// Do not override [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). The default implementation, which is essential to app behavior, is too complex to duplicate on your own.
+    ///
+    /// #### Alternatives to subclassing
+    ///
+    /// `NSApplication` defines numerous [Delegation](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html#//apple_ref/doc/uid/TP40008195-CH14) methods that offer opportunities for modifying specific aspects of app behavior. Instead of making a custom subclass of `NSApplication`, your app delegate may be able to implement one or more of these methods to accomplish your design goals. In general, a better design than subclassing `NSApplication` is to put the code that expresses your app’s special behavior into one or more custom objects called controllers. Methods defined in your controllers can be invoked from a small dispatcher object without being closely tied to the global app object.
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSResponder")]
@@ -1085,21 +1151,25 @@ impl NSApplication {
     );
 }
 
+/// Constants that determine whether an app should terminate.
 /// Return values for `-applicationShouldTerminate:`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationTerminateReply(pub NSUInteger);
 impl NSApplicationTerminateReply {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatecancel?language=objc)
+    /// The app should not be terminated.
     #[doc(alias = "NSTerminateCancel")]
     pub const TerminateCancel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatenow?language=objc)
+    /// It is OK to proceed with termination.
     #[doc(alias = "NSTerminateNow")]
     pub const TerminateNow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply/terminatelater?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// It may be OK to proceed with termination later. Returning this value causes Cocoa to run the run loop in the [`NSModalPanelRunLoopMode`](https://developer.apple.com/documentation/appkit/nsmodalpanelrunloopmode) until your app subsequently calls [`replyToApplicationShouldTerminate:`](https://developer.apple.com/documentation/appkit/nsapplication/reply(toapplicationshouldterminate:)) with the value [`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false). This return value is for delegates that need to provide document modal alerts (sheets) in order to decide whether to quit.
+    ///
+    ///
     #[doc(alias = "NSTerminateLater")]
     pub const TerminateLater: Self = Self(2);
 }
@@ -1112,24 +1182,28 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate the outcome of a print request.
 /// Return values for `-application:printFiles:withSettings:showPrintPanels:`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationPrintReply(pub NSUInteger);
 impl NSApplicationPrintReply {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingcancelled?language=objc)
+    /// Printing was cancelled.
     #[doc(alias = "NSPrintingCancelled")]
     pub const PrintingCancelled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingsuccess?language=objc)
+    /// Printing was successful.
     #[doc(alias = "NSPrintingSuccess")]
     pub const PrintingSuccess: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingreplylater?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The result of printing cannot be returned immediately, for example, if printing will cause the presentation of a sheet. If your method returns `NSPrintingReplyLater` it must always invoke [`replyToOpenOrPrint:`](https://developer.apple.com/documentation/appkit/nsapplication/reply(toopenorprint:)) when the entire print operation has been completed, successfully or not.
+    ///
+    ///
     #[doc(alias = "NSPrintingReplyLater")]
     pub const PrintingReplyLater: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply/printingfailure?language=objc)
+    /// Printing failed.
     #[doc(alias = "NSPrintingFailure")]
     pub const PrintingFailure: Self = Self(3);
 }
@@ -1143,7 +1217,7 @@ unsafe impl RefEncode for NSApplicationPrintReply {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdelegate?language=objc)
+    /// A set of methods that manage your app’s life cycle and its interaction with common system services.
     pub unsafe trait NSApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSResponder")]
         /// Allowable return values are:
@@ -1570,7 +1644,13 @@ impl NSApplication {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsservicesmenurequestor?language=objc)
+    /// A set of methods that support interaction with items users can share through a sharing service.
+    ///
+    /// ## Overview
+    ///
+    /// This informal protocol consists of two methods, [`writeSelectionToPasteboard:types:`](https://developer.apple.com/documentation/appkit/nsservicesmenurequestor/writeselection(to:types:)) and [`readSelectionFromPasteboard:`](https://developer.apple.com/documentation/appkit/nsservicesmenurequestor/readselection(from:)). The first method provides data to a remote service, and the second receives any data the remote service might send back. Both respond to messages that are generated when the user chooses a command from the Services menu.
+    ///
+    ///
     pub unsafe trait NSServicesMenuRequestor: NSObjectProtocol {
         #[cfg(feature = "NSPasteboard")]
         #[optional]
@@ -1609,47 +1689,71 @@ impl NSApplication {
     );
 }
 
+/// Keys to include in the options dictionary when displaying an About panel.
 /// Optional keys in `-orderFrontStandardAboutPanelWithOptions:`
 /// `optionsDictionary.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAboutPanelOptionKey = NSString;
 
 extern "C" {
-    /// NSAttributedString displayed in the info area of the panel. If not specified, contents obtained from "Credits.rtf" (.rtfd, .html) in [NSBundle mainBundle]; if not available, blank. Note that  in applications built against the 10.14 SDK or earlier, the credits are shown in light appearance even when the application is running in dark appearance, except when the credits are specified as an attributed string, or come from a file are the text is just pure black. In applications built against the 10.15 SDK or newer, credits will be shown in dark appearance, using the "adaptive color mapping" setting in NSTextView.
+    /// The credits string to display in the About panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/credits?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) displayed in the info area of the panel. If not specified, AppKit then looks for a file named “Credits.html”, “Credits.rtf”, and “Credits.rtfd”, in that order, in the bundle returned by the [`NSBundle`](https://developer.apple.com/documentation/foundation/bundle) class method main. The first file found is used. If none is found, the info area is left blank.
+    ///
+    ///
+    /// NSAttributedString displayed in the info area of the panel. If not specified, contents obtained from "Credits.rtf" (.rtfd, .html) in [NSBundle mainBundle]; if not available, blank. Note that  in applications built against the 10.14 SDK or earlier, the credits are shown in light appearance even when the application is running in dark appearance, except when the credits are specified as an attributed string, or come from a file are the text is just pure black. In applications built against the 10.15 SDK or newer, credits will be shown in dark appearance, using the "adaptive color mapping" setting in NSTextView.
     pub static NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// NSString displayed in place of the default app name. If not specified, uses the value of CFBundleName (localizable). Fallback is [[NSProcessInfo processInfo] processName].
+    /// The name of the application to display in the About panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationname?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing the app’s name. If you do not specify this key, AppKit uses the value of the `CFBundleName` key from the app’s `Info.plist` file. If neither is found, AppKit uses the name of the app’s process.
+    ///
+    ///
+    /// NSString displayed in place of the default app name. If not specified, uses the value of CFBundleName (localizable). Fallback is [[NSProcessInfo processInfo] processName].
     pub static NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
+    /// The icon to display for the app in the About panel.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSImage`](https://developer.apple.com/documentation/appkit/nsimage) object. If you do not specify an image, AppKit looks for an image with the name `NSApplicationIcon`. If neither is available, this method uses the generic app icon.
+    ///
+    ///
     /// NSImage displayed in place of NSApplicationIcon. If not specified, use [NSImage imageNamed:
     /// "
     /// NSApplicationIcon"]; if not available, generic icon.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationicon?language=objc)
     pub static NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// NSString containing the build version number of the application ("58.4", "1.2d3"); displayed as "Version 58.4" or "Version 1.0 (58.4) depending on the presence of ApplicationVersion. If not specified, obtain from the CFBundleVersion key in infoDictionary; if not specified or empty string, leave blank.
+    /// The version number to display in the About panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/version?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object with the build version number of the app, such as `58.4`. AppKit displays this string as `(v58.4)`. If not specified, AppKit obtains the version number from the CFBundleVersion key of the app’s Info.plist file. If no version information is found, AppKit does not display version information.
+    ///
+    ///
+    /// NSString containing the build version number of the application ("58.4", "1.2d3"); displayed as "Version 58.4" or "Version 1.0 (58.4) depending on the presence of ApplicationVersion. If not specified, obtain from the CFBundleVersion key in infoDictionary; if not specified or empty string, leave blank.
     pub static NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
-    /// NSString displayed as the marketing version  ("1.0", "Mac OS X", "3", "WebObjects 3.5", ...), before the build version. If not specified, obtain from CFBundleShortVersionString key in infoDictionary. Prefixed with word "Version" if it looks like a number.
+    /// The version information to display in the About panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationversion?language=objc)
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object with the app version (“Version 1.0”). If not specified, AppKit obtains the version string from the `CFBundleShortVersionString` key in the app’s `Info.plist` file. If neither is available, AppKit uses the build version, printed as `Version x.x`.
+    ///
+    ///
+    /// NSString displayed as the marketing version  ("1.0", "Mac OS X", "3", "WebObjects 3.5", ...), before the build version. If not specified, obtain from CFBundleShortVersionString key in infoDictionary. Prefixed with word "Version" if it looks like a number.
     pub static NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey;
 }
 
@@ -1705,26 +1809,25 @@ impl NSApplication {
     );
 }
 
+/// These constants determine whether apps launched by remote notifications display a badge.
 /// Soft deprecated.
 /// Please use `NSApplication`'s `-registerForRemoteNotifications` along with `-requestAuthorizationWithOptions:` from the `UserNotifications.framework` to specify allowable notification types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRemoteNotificationType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype/nsremotenotificationtypenone?language=objc)
+/// The app shouldn’t display a badge.
         #[doc(alias = "NSRemoteNotificationTypeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/badge?language=objc)
+/// The app should display a badge.
         #[doc(alias = "NSRemoteNotificationTypeBadge")]
         const Badge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/sound?language=objc)
+/// The app should play a sound.
         #[doc(alias = "NSRemoteNotificationTypeSound")]
         const Sound = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype/alert?language=objc)
+/// The app should display an alert.
         #[doc(alias = "NSRemoteNotificationTypeAlert")]
         const Alert = 1<<2;
     }
@@ -1769,13 +1872,34 @@ impl NSApplication {
 
 #[cfg(feature = "NSResponder")]
 impl NSApplication {
+    /// Called by the main function to create and run the application.
+    ///
+    /// Parameters:
+    /// - argc: The number of arguments in the `argv` parameter.
+    ///
+    /// - argv: An array of pointers containing the arguments passed to the application at startup.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// This method never returns a result code. Instead, it calls the `exit` function to exit the application and terminate the process. If you want to determine why the application exited, you should look at the result code from the `exit` function instead.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates the application, loads the main nib file from the application’s main bundle, and runs the application. You must call this function from the main thread of your application, and you typically call it only once from your application’s `main` function. Your `main` function is usually generated automatically by Xcode.
+    ///
+    /// ### Special Considerations
+    ///
+    /// `NSApplicationMain` itself ignores the `argc` and `argv` arguments. Instead, Cocoa gets its arguments indirectly through `_NSGetArgv`, `_NSGetArgc`, and `_NSGetEnviron` (see <crt_externs.h>).
+    ///
+    ///
     /// An Application's startup function.
     ///
     /// # Safety
     ///
     /// `argv` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationmain?language=objc)
     #[doc(alias = "NSApplicationMain")]
     #[inline]
     pub(crate) unsafe fn __main(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int {
@@ -1785,10 +1909,21 @@ impl NSApplication {
         unsafe { NSApplicationMain(argc, argv) }
     }
 
+    /// Startup function to call when running Cocoa code from a Carbon application.
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object was successfully initialized and can now be used from your Carbon application or [`false`](https://developer.apple.com/documentation/swift/false) if there was an error during initialization.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You typically call this function before calling other Cocoa code in a plug-in loaded into a primarily Carbon application. If the shared [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) object isn’t already initialized, this function initializes it and sets up the necessary event handlers for Cocoa.
+    ///
+    ///
     /// `NSApplicationLoad`should be called when loading a Cocoa bundle in a Carbon app in order to initialize
     /// `NSApplication`and other Cocoa objects.  Redundant calls are ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationload?language=objc)
     #[doc(alias = "NSApplicationLoad")]
     #[inline]
     pub fn load() -> bool {
@@ -1799,10 +1934,15 @@ impl NSApplication {
     }
 }
 
+/// Specifies whether a Services menu item is currently enabled.
+///
+/// ## Discussion
+///
+/// Deprecated. This function simply returns [`true`](https://developer.apple.com/documentation/swift/true).
+///
+///
 /// `NSShowsServicesMenuItem()`always returns
 /// `YES.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowsservicesmenuitem(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     extern "C-unwind" {
@@ -1811,9 +1951,14 @@ pub extern "C-unwind" fn NSShowsServicesMenuItem(item_name: &NSString) -> bool {
     unsafe { NSShowsServicesMenuItem(item_name) }.as_bool()
 }
 
-/// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
+/// Specifies whether an item should be included in Services menus.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssetshowsservicesmenuitem(_:_:)?language=objc)
+/// ## Discussion
+///
+/// Deprecated. This function simply returns 0.
+///
+///
+/// `NSSetShowsServicesMenuItem()`has no effect, and always returns 0.
 #[inline]
 pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
     item_name: &NSString,
@@ -1825,10 +1970,17 @@ pub extern "C-unwind" fn NSSetShowsServicesMenuItem(
     unsafe { NSSetShowsServicesMenuItem(item_name, Bool::new(enabled)) }
 }
 
+/// Causes the services information for the system to be updated.
+///
+/// ## Discussion
+///
+/// Used by a service-providing application to reregister the services it is willing to provide. To do this, you create a bundle with the extension “`.service`” and place it in the application’s path or `~/Library/Services`. The content of the bundle is identical to a normal service bundle. You then call this function.
+///
+/// It is only necessary to call this function if your program adds dynamic services to the system.
+///
+///
 /// `NSUpdateDynamicServices()`causes the services information for the system to be updated.
 /// This will only be necessary if your program adds dynamic services to the system (i.e. services not found in mach-o segments of executables).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsupdatedynamicservices()?language=objc)
 #[inline]
 pub extern "C-unwind" fn NSUpdateDynamicServices() {
     extern "C-unwind" {
@@ -1837,7 +1989,25 @@ pub extern "C-unwind" fn NSUpdateDynamicServices() {
     unsafe { NSUpdateDynamicServices() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperformservice(_:_:)?language=objc)
+/// Programmatically invokes a Services menu service.
+///
+/// Parameters:
+/// - itemName: Specifies a Services menu item, in any language. If the requested service is from a submenu of the Services menu, the value must contain a slash (for example, “Mail/Selection”).
+///
+/// - pboard: The pasteboard containing the data required by the service. This data must be present for the service to succeed. On output, this pasteboard contains the data returned by the service provider.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the service was successfully performed or [`false`](https://developer.apple.com/documentation/swift/false) if it was not.
+///
+///
+///
+/// ## Discussion
+///
+/// Use this function to programmatically invoke a service found in the application’s Services menu.
+///
+///
 #[cfg(feature = "NSPasteboard")]
 #[inline]
 pub extern "C-unwind" fn NSPerformService(
@@ -1850,21 +2020,45 @@ pub extern "C-unwind" fn NSPerformService(
     unsafe { NSPerformService(item_name, pboard) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsserviceprovidername?language=objc)
 pub type NSServiceProviderName = NSString;
 
 extern "C-unwind" {
+    /// Registers a service provider.
+    ///
+    /// Parameters:
+    /// - provider: The object providing the service you want to register.
+    ///
+    /// - name: The unique name to associate with the service. This string is used to advertise the service to interested clients.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to register custom services not directly related to your application.
+    ///
+    /// You should not use this function to register the services provided by your application. For your application’s services, you should use the [`servicesProvider`](https://developer.apple.com/documentation/appkit/nsapplication/servicesprovider) method of [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication), passing a non-`nil` argument.
+    ///
+    ///
     /// Apps should use -setServicesProvider.
     ///
     /// # Safety
     ///
     /// `provider` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregisterservicesprovider(_:_:)?language=objc)
     pub fn NSRegisterServicesProvider(provider: Option<&AnyObject>, name: &NSServiceProviderName);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunregisterservicesprovider(_:)?language=objc)
+/// Unregisters a service provider.
+///
+/// Parameters:
+/// - name: The name of the service you want to unregister.
+///
+///
+/// ## Discussion
+///
+/// Use this function to unregister custom services not directly related to your application.
+///
+/// You should not use this function to unregister the services provided by your application. For your application’s services, you should use the [`servicesProvider`](https://developer.apple.com/documentation/appkit/nsapplication/servicesprovider) method of [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication), passing a `nil` argument.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderName) {
     extern "C-unwind" {
@@ -1874,135 +2068,263 @@ pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderNa
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didbecomeactivenotification?language=objc)
+    /// Posted immediately after the app becomes active.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didhidenotification?language=objc)
+    /// Posted at the end of the [`hide:`](https://developer.apple.com/documentation/appkit/nsapplication/hide(_:)) method to indicate that the app is now hidden.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification?language=objc)
+    /// Posted at the end of the [`finishLaunching`](https://developer.apple.com/documentation/appkit/nsapplication/finishlaunching()) method to indicate that the app has completed launching and is ready to run.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). See [NSApplicationDidFinishLaunching User Info Keys](https://developer.apple.com/documentation/appkit/nsapplicationdidfinishlaunching-user-info-keys) for the possible `userInfo` keys and values. The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didresignactivenotification?language=objc)
+    /// Posted immediately after the app gives up its active status to another app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didunhidenotification?language=objc)
+    /// Posted at the end of the [`unhideWithoutActivation`](https://developer.apple.com/documentation/appkit/nsapplication/unhidewithoutactivation()) method to indicate that the app is now visible.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidUnhideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didupdatenotification?language=objc)
+    /// Posted at the end of the [`updateWindows`](https://developer.apple.com/documentation/appkit/nsapplication/updatewindows()) method to indicate that the app has finished updating its windows.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willbecomeactivenotification?language=objc)
+    /// Posted immediately before the app becomes active.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willhidenotification?language=objc)
+    /// Posted at the start of the [`hide:`](https://developer.apple.com/documentation/appkit/nsapplication/hide(_:)) method to indicate that the app is about to be hidden.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification?language=objc)
+    /// Posted at the start of the [`finishLaunching`](https://developer.apple.com/documentation/appkit/nsapplication/finishlaunching()) method to indicate that the app has completed its initialization process and is about to finish launching.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willresignactivenotification?language=objc)
+    /// Posted immediately before the app gives up its active status to another app.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willunhidenotification?language=objc)
+    /// Posted at the start of the [`unhideWithoutActivation`](https://developer.apple.com/documentation/appkit/nsapplication/unhidewithoutactivation()) method to indicate that the app is about to become visible.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillUnhideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willupdatenotification?language=objc)
+    /// Posted at the start of the [`updateWindows`](https://developer.apple.com/documentation/appkit/nsapplication/updatewindows()) method to indicate that the app is about to update its windows.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.  The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationWillUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willterminatenotification?language=objc)
+    /// Sends a notification to terminate the app.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification on the main actor in response to the [`terminate:`](https://developer.apple.com/documentation/appkit/nsapplication/terminate(_:)) method, and only posted if the delegate method [`applicationShouldTerminate:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationshouldterminate(_:)) returns [`true`](https://developer.apple.com/documentation/swift/true). The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This notification isn’t sent during sudden termination of an app. For more information about sudden termination, see the section  [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo) of [`NSProcessInfo`](https://developer.apple.com/documentation/foundation/processinfo).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSApplicationWillTerminateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didchangescreenparametersnotification?language=objc)
+    /// Posted when the configuration of the displays attached to the computer is changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The configuration change can be made either programmatically or when the user changes settings in the Displays control panel. The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprotecteddatawillbecomeunavailablenotification?language=objc)
     pub static NSApplicationProtectedDataWillBecomeUnavailableNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprotecteddatadidbecomeavailablenotification?language=objc)
     pub static NSApplicationProtectedDataDidBecomeAvailableNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationshouldbeginsuppressinghighdynamicrangecontentnotification?language=objc)
     pub static NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationshouldendsuppressinghighdynamicrangecontentnotification?language=objc)
     pub static NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification.  Its value is an NSNumber containing a bool.  It will be NO if the app was launched to open or print a file, to perform a Service, if the app had saved state that will be restored, or if the app launch was in some other sense not a "default" launch.  Otherwise its value will be YES.
+    /// A Boolean value that indicates if the app launch is a default launch.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/launchisdefaultuserinfokey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean value. The value is [`false`](https://developer.apple.com/documentation/swift/false) if the app was launched to open or print a file, to perform a Service action, if the app had saved state that will be restored, or if the app launch was in some other sense not a default launch. Otherwise its value will be [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
+    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification.  Its value is an NSNumber containing a bool.  It will be NO if the app was launched to open or print a file, to perform a Service, if the app had saved state that will be restored, or if the app launch was in some other sense not a "default" launch.  Otherwise its value will be YES.
     pub static NSApplicationLaunchIsDefaultLaunchKey: &'static NSString;
 }
 
 extern "C" {
-    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification. It will be present if your application was launched because a user activated a notification in the Notification Center. Its value is an NSUserNotification object.
+    /// A key that indicates your app was launched because a user activated a notification in the Notification Center.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/launchusernotificationuserinfokey?language=objc)
+    /// ## Discussion
+    ///
+    /// The [`NSApplicationLaunchUserNotificationKey`](https://developer.apple.com/documentation/appkit/nsapplication/launchusernotificationuserinfokey) key is an [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification) object that is present in the [`userInfo`](https://developer.apple.com/documentation/foundation/nsnotification/userinfo) dictionary of the [`NSApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification) notification if your app was launched because a user activated a notification in the Notification Center. To access the notification payload in the [`userInfo`](https://developer.apple.com/documentation/foundation/nsnotification/userinfo) dictionary, you can use code like this:
+    ///
+    /// ```objc
+    /// NSUserNotification *userNotification = [[myNotification userInfo]
+    ///     objectForKey:NSApplicationLaunchUserNotificationKey];
+    ///     if (userNotification) {
+    ///         // The app was launched by a user selection from Notification Center.
+    ///     }
+    /// ```
+    ///
+    ///
+    /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification. It will be present if your application was launched because a user activated a notification in the Notification Center. Its value is an NSUserNotification object.
     pub static NSApplicationLaunchUserNotificationKey: &'static NSString;
 }
 
 extern "C" {
-    /// NSApplicationLaunchRemoteNotificationKey is unimplemented.  Please use NSApplicationLaunchUserNotificationKey to get the NSUserNotification object.  The NSUserNotification object has an isRemote property to indicate whether this application was launched as a result of a remote notification
+    /// Use this key to access the JSON push-notification payload from the user info dictionary of the `didFinishLaunchingNotification` notification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchremotenotificationkey?language=objc)
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Deprecated
+    /// Use [`launchUserNotificationUserInfoKey`](https://developer.apple.com/documentation/appkit/nsapplication/launchusernotificationuserinfokey) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`didFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification) notification is passed into the delegate method [`applicationDidFinishLaunching(_:)`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/applicationdidfinishlaunching(_:)) declared by the [`NSApplicationDelegate`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate) protocol to handle this notification. For information about the payload dictionary, see [Local and Remote Notification Programming Guide](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html#//apple_ref/doc/uid/TP40008194).
+    ///
+    ///
+    /// NSApplicationLaunchRemoteNotificationKey is unimplemented.  Please use NSApplicationLaunchUserNotificationKey to get the NSUserNotification object.  The NSUserNotification object has an isRemote property to indicate whether this application was launched as a result of a remote notification
     #[deprecated]
     pub static NSApplicationLaunchRemoteNotificationKey: &'static NSString;
 }
 
 extern "C" {
-    /// Upon receiving this notification, you can query the NSApplication for its occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
+    /// Posted when the app’s occlusion state changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didchangeocclusionstatenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The system posts this notification on the main actor.  Upon receiving this notification, you can query the app for its occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power by halting any expensive calculations that the user can’t see.
+    ///
+    ///
+    /// Upon receiving this notification, you can query the NSApplication for its occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
     pub static NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrunstoppedresponse?language=objc)
+/// Modal session was broken with [`stopModal`](https://developer.apple.com/documentation/appkit/nsapplication/stopmodal()).
 #[deprecated = "Use NSModalResponseStop instead"]
 pub const NSRunStoppedResponse: c_int = -1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrunabortedresponse?language=objc)
+/// Modal session was broken with [`abortModal`](https://developer.apple.com/documentation/appkit/nsapplication/abortmodal()).
 #[deprecated = "Use NSModalResponseAbort instead"]
 pub const NSRunAbortedResponse: c_int = -1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruncontinuesresponse?language=objc)
+/// Modal session is continuing (returned by [`runModalSession:`](https://developer.apple.com/documentation/appkit/nsapplication/runmodalsession(_:)) only).
 #[deprecated = "Use NSModalResponseContinue instead"]
 pub const NSRunContinuesResponse: c_int = -1002;
 

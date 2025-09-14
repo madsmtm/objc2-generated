@@ -4,37 +4,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder?language=objc)
+/// Constants indicating the sort order for the found media items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaSortOrder(pub NSInteger);
 impl INMediaSortOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/unknown?language=objc)
+    /// The sort order is unknown.
     #[doc(alias = "INMediaSortOrderUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/newest?language=objc)
+    /// The app sorts the media items from newest to oldest.
     #[doc(alias = "INMediaSortOrderNewest")]
     pub const Newest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/oldest?language=objc)
+    /// The app sorts the media items from oldest to newest.
     #[doc(alias = "INMediaSortOrderOldest")]
     pub const Oldest: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/best?language=objc)
+    /// The app sorts the media items from best to worst.
+    ///
+    /// ## Discussion
+    ///
+    /// The app displays the sorted media items with those items matching the highest number of search fields first.
+    ///
+    ///
     #[doc(alias = "INMediaSortOrderBest")]
     pub const Best: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/worst?language=objc)
+    /// The app sorts the media items from worst to best.
+    ///
+    /// ## Discussion
+    ///
+    /// The app displays the sorted media items with those items matching the lowest number of search fields first.
+    ///
+    ///
     #[doc(alias = "INMediaSortOrderWorst")]
     pub const Worst: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/popular?language=objc)
+    /// The app sorts the media items from the most to least popular.
     #[doc(alias = "INMediaSortOrderPopular")]
     pub const Popular: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/unpopular?language=objc)
+    /// The app sorts the media items from the least to most popular.
     #[doc(alias = "INMediaSortOrderUnpopular")]
     pub const Unpopular: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/trending?language=objc)
+    /// The app sorts the media items with those trending the most first.
     #[doc(alias = "INMediaSortOrderTrending")]
     pub const Trending: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder/recommended?language=objc)
+    /// The app sorts the media items with those it recommends first.
     #[doc(alias = "INMediaSortOrderRecommended")]
     pub const Recommended: Self = Self(8);
 }

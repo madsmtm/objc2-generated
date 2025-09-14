@@ -7,10 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerrordomain?language=objc)
+    /// The domain for Core ML errors.
     pub static MLModelErrorDomain: &'static NSString;
 }
 
+/// Information about a Core ML model error.
 /// MLModelError defines the set of MLModel related error codes.
 ///
 /// The framework communicates the error code to the application through NSError's code property. The
@@ -18,20 +19,30 @@ extern "C" {
 /// diagnose the problem.
 ///
 /// See also NSError's localizedDescription property, which often contains more detailed information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLModelError(pub NSInteger);
 impl MLModelError {
+    /// An error code for runtime issues that don’t apply to the other error codes.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when it encounters an internal problem.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an generic error.
     ///
     /// The typical cause for this error is an unexpected framework level problem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/generic?language=objc)
     #[doc(alias = "MLModelErrorGeneric")]
     pub const Generic: Self = Self(0);
+    /// An error code for problems related to model features.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when an app sends an input feature a value that’s of an incorrect type.
+    ///
+    ///
     /// Core ML throws/returns this error when the model client, typically an application, sends
     /// the wrong feature type to a model's input.
     ///
@@ -39,19 +50,29 @@ impl MLModelError {
     ///
     /// For example, a prediction method will throw/return the error when the caller passes an image
     /// to a model's input that expects an `MLMultiArray`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/featuretype?language=objc)
     #[doc(alias = "MLModelErrorFeatureType")]
     pub const FeatureType: Self = Self(1);
+    /// An error code for problems related to the system’s input or output.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the file system encounters an error.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters some I/O problem, most
     /// likely a file I/O problem.
     ///
     /// For example, a model loading will throw/return the error when the caller requests a
     /// non-existing model URL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/io?language=objc)
     #[doc(alias = "MLModelErrorIO")]
     pub const IO: Self = Self(3);
+    /// An error code for problems related to custom layers.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the custom layer has a programming mistake. For example, a model’s prediction method fails with this error code if Core ML can’t find the custom layer’s implementation.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an error in the custom
     /// layer subsystem.
     ///
@@ -59,10 +80,15 @@ impl MLModelError {
     ///
     /// For example, a prediction method will throw/return the error when it fails to find the custom
     /// layer implementation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/customlayer?language=objc)
     #[doc(alias = "MLModelErrorCustomLayer")]
     pub const CustomLayer: Self = Self(4);
+    /// An error code for problems related to custom models.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the custom model has a programming mistake. For example, a custom model’s prediction method fails with this error code if Core ML can’t find the custom model’s implementation.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an error in the custom
     /// model subsystem.
     ///
@@ -70,34 +96,56 @@ impl MLModelError {
     ///
     /// For example, a prediction method will throw/return the error when it fails to find the custom
     /// model implementation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/custommodel?language=objc)
     #[doc(alias = "MLModelErrorCustomModel")]
     pub const CustomModel: Self = Self(5);
+    /// An error code for problems related to on-device model updates.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the update process encounters a problem at runtime, such as an [`MLMultiArray`](https://developer.apple.com/documentation/coreml/mlmultiarray) input with an incorrect shape.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an error while performing
     /// the on-device model update.
     ///
     /// For example, the framework will throw/return the error when it fails to save the updated model.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/update?language=objc)
     #[doc(alias = "MLModelErrorUpdate")]
     pub const Update: Self = Self(6);
+    /// An error code for problems related to model parameters.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when an app queries the model for a parameter it doesn’t support.
+    ///
+    ///
     /// Core ML throws/returns this error when the model client, typically an application, queries
     /// an unsupported model parameter (see MLParameterKey).
     ///
     /// The typical cause for this error is a programming mistake.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/parameters?language=objc)
     #[doc(alias = "MLModelErrorParameters")]
     pub const Parameters: Self = Self(7);
+    /// An error code for problems related to retrieving a model’s decryption key.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the device doesn’t have access to the network.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework fails to download the model decryption
     /// key.
     ///
     /// The typical cause for this error is a network connection issue to the key server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/modeldecryptionkeyfetch?language=objc)
     #[doc(alias = "MLModelErrorModelDecryptionKeyFetch")]
     pub const ModelDecryptionKeyFetch: Self = Self(8);
+    /// An error code for problems related to decrypting models.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the framework can’t decrypt a model.
+    ///
+    /// The framework can’t decrypt encrypted models in macOS if System Integrity Protection (SIP) is disabled.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an error in the model
     /// decryption subsystem.
     ///
@@ -106,22 +154,24 @@ impl MLModelError {
     ///
     /// For example, a model loading method will throw/return the error when it uses incorrect model
     /// decryption key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/modeldecryption?language=objc)
     #[doc(alias = "MLModelErrorModelDecryption")]
     pub const ModelDecryption: Self = Self(9);
+    /// An error code for problems related to retrieving a model collection from the deployment system.
+    ///
+    /// ## Discussion
+    ///
+    /// Core ML typically throws (Swift) or returns (Objective-C) this error when the device doesn’t have access to the network.
+    ///
+    ///
     /// Core ML throws/returns this error when the framework encounters an error in the model
     /// collection deployment subsystem.
     ///
     /// The typical cause for this error is the network connectability issue to the model deployment
     /// server.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/modelcollection?language=objc)
     #[doc(alias = "MLModelErrorModelCollection")]
     pub const ModelCollection: Self = Self(10);
+    /// An error code for problems related to canceling the prediction before it completes.
     /// Core ML throws/returns this error when the prediction is cancelled prior to completing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code/predictioncancelled?language=objc)
     #[doc(alias = "MLModelErrorPredictionCancelled")]
     pub const PredictionCancelled: Self = Self(11);
 }

@@ -10,7 +10,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath?language=objc)
+/// A mutable graphics path: a mathematical description of shapes or lines to be drawn in a graphics context.
+///
+/// ## Overview
+///
+/// Neither `CGPath` nor [`CGMutablePathRef`](https://developer.apple.com/documentation/coregraphics/cgmutablepath) define functions to draw a path. To draw a Core Graphics path to a graphics context, you add the path to the graphics context by calling [`CGContextAddPath`](https://developer.apple.com/documentation/coregraphics/cgcontext/addpath(_:)) and then call one of the context’s drawing functions—see [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext).
+///
+/// Each figure in the graphics path is constructed with a connected set of lines and Bézier curves, called a _subpath_. A subpath has an ordered set of _path elements_ that represent single steps in the construction of the subpath. (For example, a line segment from one corner of a rectangle to another corner is a path element. Every subpath includes a _starting point_, which is the first point in the subpath. The path also maintains a _current point_, which is the last point in the last subpath.
+///
+/// To append a new subpath onto a mutable path, your application typically calls [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint) to set the subpath’s starting point and initial current point, followed by a series of “add” calls (such as [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint)) to add line segments and curves to the subpath. As segments or curves are added to the subpath, the subpath’s current point is updated to point to the end of the last segment or curve to be added. The lines and curves of a subpath are always connected, but they are not required to form a closed set of lines. Your application explicitly closes a subpath by calling [`CGPathCloseSubpath`](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()). Closing the subpath adds a line segment that terminates at the subpath’s starting point, and also changes how those lines are rendered—for more information see [Paths](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/dq_paths/dq_paths.html#//apple_ref/doc/uid/TP30001066-CH211) in [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+///
+///
 #[doc(alias = "CGMutablePathRef")]
 #[repr(C)]
 pub struct CGMutablePath {
@@ -26,7 +36,15 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPath"> for CGMutablePath {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath?language=objc)
+/// An immutable graphics path: a mathematical description of shapes or lines to be drawn in a graphics context.
+///
+/// ## Overview
+///
+/// Neither `CGPath` nor [`CGMutablePathRef`](https://developer.apple.com/documentation/coregraphics/cgmutablepath) define functions to draw a path. To draw a Core Graphics path to a graphics context, you add the path to the graphics context by calling [`CGContextAddPath`](https://developer.apple.com/documentation/coregraphics/cgcontext/addpath(_:)) and then call one of the context’s drawing functions—see [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext).
+///
+/// Each figure in the graphics path is constructed with a connected set of lines and Bézier curves, called a _subpath_. A subpath has an ordered set of _path elements_ that represent single steps in the construction of the subpath. (For example, a line segment from one corner of a rectangle to another corner is a path element. Every subpath includes a _starting point_, which is the first point in the subpath. The path also maintains a _current point_, which is the last point in the last subpath.
+///
+///
 #[doc(alias = "CGPathRef")]
 #[repr(C)]
 pub struct CGPath {
@@ -42,19 +60,30 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGPath"> for CGPath {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin?language=objc)
+/// Junction types for stroked lines.
+///
+/// ## Overview
+///
+/// A line join specifies how [`CGContextStrokePath`](https://developer.apple.com/documentation/coregraphics/cgcontext/strokepath()) draws the junction between connected line segments. To set the line join style in a graphics context, you use the function [`CGContextSetLineJoin`](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinejoin(_:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineJoin(pub i32);
 impl CGLineJoin {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/miter?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A join with a sharp (angled) corner. Core Graphics draws the outer sides of the lines beyond the endpoint of the path, until they meet. If the length of the miter divided by the line width is greater than the miter limit, a bevel join is used instead. This is the default. To set the miter limit, see [`CGContextSetMiterLimit`](https://developer.apple.com/documentation/coregraphics/cgcontext/setmiterlimit(_:)).
+    ///
+    ///
     #[doc(alias = "kCGLineJoinMiter")]
     pub const Miter: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/round?language=objc)
+    /// A join with a rounded end. Core Graphics draws the line to extend beyond the endpoint of the path. The line ends with a semicircular arc with a radius of 1/2 the line’s width, centered on the endpoint.
     #[doc(alias = "kCGLineJoinRound")]
     pub const Round: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin/bevel?language=objc)
+    /// A join with a squared-off end. Core Graphics draws the line to extend beyond the endpoint of the path, for a distance of 1/2 the line’s width.
     #[doc(alias = "kCGLineJoinBevel")]
     pub const Bevel: Self = Self(2);
 }
@@ -69,19 +98,25 @@ unsafe impl RefEncode for CGLineJoin {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap?language=objc)
+/// Styles for rendering the endpoint of a stroked line.
+///
+/// ## Overview
+///
+/// A line cap specifies the method used by [`CGContextStrokePath`](https://developer.apple.com/documentation/coregraphics/cgcontext/strokepath()) to draw the endpoint of the line. To change the line cap style in a graphics context, you use the function [`CGContextSetLineCap`](https://developer.apple.com/documentation/coregraphics/cgcontext/setlinecap(_:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineCap(pub i32);
 impl CGLineCap {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/butt?language=objc)
+    /// A line with a squared-off end. Core Graphics draws the line to extend only to the exact endpoint of the path. This is the default.
     #[doc(alias = "kCGLineCapButt")]
     pub const Butt: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/round?language=objc)
+    /// A line with a rounded end. Core Graphics draws the line to extend beyond the endpoint of the path. The line ends with a semicircular arc with a radius of 1/2 the line’s width, centered on the endpoint.
     #[doc(alias = "kCGLineCapRound")]
     pub const Round: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap/square?language=objc)
+    /// A line with a squared-off end. Core Graphics extends the line beyond the endpoint of the path for a distance equal to half the line width.
     #[doc(alias = "kCGLineCapSquare")]
     pub const Square: Self = Self(2);
 }
@@ -97,7 +132,13 @@ unsafe impl RefEncode for CGLineCap {
 }
 
 unsafe impl ConcreteType for CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for Core Graphics paths.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the opaque type [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+    ///
+    ///
     #[doc(alias = "CGPathGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -109,7 +150,13 @@ unsafe impl ConcreteType for CGPath {
 }
 
 impl CGMutablePath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath/init()?language=objc)
+    /// Creates a mutable graphics path.
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable path. You are responsible for releasing this object.
+    ///
+    ///
     #[doc(alias = "CGPathCreateMutable")]
     #[inline]
     pub fn new() -> CFRetained<CGMutablePath> {
@@ -124,7 +171,17 @@ impl CGMutablePath {
 }
 
 impl CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/copy()?language=objc)
+    /// Creates an immutable copy of a graphics path.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable copy of the specified path. You are responsible for releasing this object.
+    ///
+    ///
     #[doc(alias = "CGPathCreateCopy")]
     #[inline]
     pub fn new_copy(path: Option<&CGPath>) -> Option<CFRetained<CGPath>> {
@@ -135,7 +192,19 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/copy(using:)?language=objc)
+    /// Creates an immutable copy of a graphics path transformed by a transformation matrix.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to all elements of the new path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable copy of the path. You are responsible for releasing this object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -158,7 +227,23 @@ impl CGPath {
 }
 
 impl CGMutablePath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/mutablecopy()?language=objc)
+    /// Creates a mutable copy of an existing graphics path.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, mutable, copy of the specified path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can modify a mutable graphics path by calling the various path geometry functions, such as [`CGPathAddArc`](https://developer.apple.com/documentation/coregraphics/cgpathaddarc), [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint), and [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint).
+    ///
+    ///
     #[doc(alias = "CGPathCreateMutableCopy")]
     #[inline]
     pub fn new_copy(path: Option<&CGPath>) -> Option<CFRetained<CGMutablePath>> {
@@ -169,7 +254,19 @@ impl CGMutablePath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/mutablecopy(using:)?language=objc)
+    /// Creates a mutable copy of a graphics path transformed by a transformation matrix.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to all elements of the new path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, mutable copy of the specified path transformed by the transform parameter. You are responsible for releasing this object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -192,7 +289,27 @@ impl CGMutablePath {
 }
 
 impl CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(rect:transform:)?language=objc)
+    /// Create an immutable path of a rectangle.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle to add.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the rectangle before it is added to the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that creates a path of an rectangle. Using this convenience function is more efficient than creating a mutable path and adding an rectangle to it.
+    ///
+    /// Calling this function is equivalent to using [`CGRectGetMinX`](https://developer.apple.com/documentation/coregraphics/cgrectgetminx(_:)) and related functions to find the corners of the rectangle, then using the [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint), [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint), and [`CGPathCloseSubpath`](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()) functions to draw the rectangle.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -215,7 +332,29 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(ellipsein:transform:)?language=objc)
+    /// Create an immutable path of an ellipse.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle that bounds the ellipse.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the ellipse before it is added to the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that creates a path of an ellipse. Using this convenience function is more efficient than creating a mutable path and adding an ellipse to it.
+    ///
+    /// The ellipse is approximated by a sequence of Bézier curves. Its center is the midpoint of the rectangle defined by the `rect` parameter. If the rectangle is square, then the ellipse is circular with a radius equal to one-half the width (or height) of the rectangle. If the `rect` parameter specifies a rectangular shape, then the major and minor axes of the ellipse are defined by the width and height of the rectangle.
+    ///
+    /// The ellipse forms a complete subpath of the path—that is, the ellipse drawing starts with a move-to operation and ends with a close-subpath operation, with all moves oriented in the clockwise direction. If you supply an affine transform, then the constructed Bézier curves that define the ellipse are transformed before they are added to the path.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -238,7 +377,31 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/init(roundedrect:cornerwidth:cornerheight:transform:)?language=objc)
+    /// Create an immutable path of a rounded rectangle.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle to add.
+    ///
+    /// - cornerWidth: The width of the rounded corner sections.
+    ///
+    /// - cornerHeight: The height of the rounded corner sections.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the rectangle before it is added to the path.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that creates a path of an rounded rectangle. Using this convenience function is more efficient than creating a mutable path and adding an rectangle to it.
+    ///
+    /// Each corner of the rounded rectangle is one-quarter of an ellipse with axes equal to the `cornerWidth` and `cornerHeight` parameters. The rounded rectangle forms a complete subpath and is oriented in the clockwise direction.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -268,7 +431,27 @@ impl CGPath {
 }
 
 impl CGMutablePath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddroundedrect?language=objc)
+    /// Appends a rounded rectangle to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the rectangle before adding it to the path.
+    ///
+    /// - rect: The rectangle to add.
+    ///
+    /// - cornerWidth: The width of the rounded corner sections.
+    ///
+    /// - cornerHeight: The height of the rounded corner sections.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds a path of an rounded rectangle.
+    ///
+    /// Each corner of the rounded rectangle is one-quarter of an ellipse with axes equal to the `cornerWidth` and `cornerHeight` parameters. The rounded rectangle forms a complete subpath and is oriented in the clockwise direction.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -296,7 +479,33 @@ impl CGMutablePath {
 }
 
 impl CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybydashingpath?language=objc)
+    /// Creates a dashed copy of another path.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to elements of the converted path before adding them to the new path.
+    ///
+    /// - phase: A value that specifies how far into the dash pattern the line starts, in units of the user space. For example, passing a value of `3` means the line is drawn with the dash pattern starting at three units from its beginning. Passing a value of `0` draws a line starting with the beginning of a dash pattern.
+    ///
+    /// - lengths: An array of values that specify the lengths of the painted segments and unpainted segments, respectively, of the dash pattern—or `NULL` for no dash pattern.
+    ///
+    /// For example, passing an array with the values `[2,3]` sets a dash pattern that alternates between a 2-user-space-unit-long painted segment and a 3-user-space-unit-long unpainted segment. Passing the values `[1,3,4,2]` sets the pattern to a 1-unit painted segment, a 3-unit unpainted segment, a 4-unit painted segment, and a 2-unit unpainted segment.
+    ///
+    /// - count: If the `lengths` parameter specifies an array, pass the number of elements in the array. Otherwise, pass `0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The new path is created so that filling the new path draws the same pixels as stroking the original path with the specified dash parameters.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -324,7 +533,35 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybystrokingpath?language=objc)
+    /// Creates a stroked copy of another path.
+    ///
+    /// Parameters:
+    /// - path: The path to copy.
+    ///
+    /// - transform: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to elements of the converted path before adding them to the new path.
+    ///
+    /// - lineWidth: The line width to use, in user space units. The value must be greater than `0`.
+    ///
+    /// - lineCap: A line cap style constant—[`CGLineCap.butt`](https://developer.apple.com/documentation/coregraphics/cglinecap/butt) (the default), [`CGLineCap.round`](https://developer.apple.com/documentation/coregraphics/cglinecap/round), or [`CGLineCap.square`](https://developer.apple.com/documentation/coregraphics/cglinecap/square).
+    ///
+    /// - lineJoin: A line join value—[`CGLineJoin.miter`](https://developer.apple.com/documentation/coregraphics/cglinejoin/miter) (the default), [`CGLineJoin.round`](https://developer.apple.com/documentation/coregraphics/cglinejoin/round), or [`CGLineJoin.bevel`](https://developer.apple.com/documentation/coregraphics/cglinejoin/bevel).
+    ///
+    /// - miterLimit: The miter limit to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new, immutable path. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The new path is created so that filling the new path draws the same pixels as stroking the original path.
+    ///
+    /// If the line join style is set to `kCGLineJoinMiter`, Core Graphics uses the miter limit to determine whether the lines should be joined with a bevel instead of a miter. Core Graphics divides the length of the miter by the line width. If the result is greater than the miter limit, Core Graphics converts the style to a bevel.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -362,7 +599,19 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathequaltopath?language=objc)
+    /// Indicates whether two graphics paths are equivalent.
+    ///
+    /// Parameters:
+    /// - path1: The first path being compared.
+    ///
+    /// - path2: The second path being compared.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether or not the two specified paths contain the same sequence of path elements. If the paths are not the same, returns [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "CGPathEqualToPath")]
     #[inline]
     pub fn equal_to_path(path1: Option<&CGPath>, path2: Option<&CGPath>) -> bool {
@@ -374,13 +623,28 @@ impl CGPath {
 }
 
 impl CGMutablePath {
+    /// Starts a new subpath at a specified location in a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the point before changing the path.
+    ///
+    /// - x: The x-coordinate of the new location.
+    ///
+    /// - y: The y-coordinate of the new location.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function ends the subpath already in progress (if any) and starts a new subpath, initializing the starting point and the current point to the specified location (x,y) after an optional transformation.
+    ///
+    ///
     /// * Path construction functions. **
     ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint?language=objc)
     #[doc(alias = "CGPathMoveToPoint")]
     #[inline]
     pub unsafe fn move_to_point(
@@ -400,7 +664,23 @@ impl CGMutablePath {
         unsafe { CGPathMoveToPoint(path, m, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint?language=objc)
+    /// Appends a line segment to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change. The path must not be empty.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the line before it is added to the path.
+    ///
+    /// - x: The x-coordinate of the end point of the line.
+    ///
+    /// - y: The y-coordinate of the end point of the line.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before returning, this function updates the current point to the specified location `(x,y)`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -424,7 +704,27 @@ impl CGMutablePath {
         unsafe { CGPathAddLineToPoint(path, m, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddquadcurvetopoint?language=objc)
+    /// Appends a quadratic Bézier curve to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change. The path must not be empty.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the curve before adding it to the path.
+    ///
+    /// - cpx: The x-coordinate of the control point.
+    ///
+    /// - cpy: The y-coordinate of the control point.
+    ///
+    /// - x: The x-coordinate of the end point of the curve.
+    ///
+    /// - y: The y-coordinate of the end point of the curve.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Before returning, this function updates the current point to the specified location `(x, y)`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -452,7 +752,31 @@ impl CGMutablePath {
         unsafe { CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddcurvetopoint?language=objc)
+    /// Appends a cubic Bézier curve to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change. The path must not be empty.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the curve before it is added to the path.
+    ///
+    /// - cp1x: The x-coordinate of the first control point.
+    ///
+    /// - cp1y: The y-coordinate of the first control point.
+    ///
+    /// - cp2x: The x-coordinate of the second control point.
+    ///
+    /// - cp2y: The y-coordinate of the second control point.
+    ///
+    /// - x: The x-coordinate of the end point of the curve.
+    ///
+    /// - y: The y-coordinate of the end point of the curve.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Appends a cubic Bézier curve from the current point in a path to the specified location using two control points, after an optional transformation. Before returning, this function updates the current point to the specified location `(x,y`).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -484,7 +808,19 @@ impl CGMutablePath {
         unsafe { CGPathAddCurveToPoint(path, m, cp1x, cp1y, cp2x, cp2y, x, y) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()?language=objc)
+    /// Closes and completes a subpath in a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The path to change.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Appends a line from the current point to the starting point of the current subpath and ends the subpath.
+    ///
+    /// After closing the subpath, your application can begin a new subpath without first calling [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint). In this case, a new subpath is implicitly created with a starting and current point equal to the previous subpath’s starting point.
+    ///
+    ///
     #[doc(alias = "CGPathCloseSubpath")]
     #[inline]
     pub fn close_subpath(path: Option<&CGMutablePath>) {
@@ -494,13 +830,26 @@ impl CGMutablePath {
         unsafe { CGPathCloseSubpath(path) }
     }
 
+    /// Appends a rectangle to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the rectangle before adding it to the path.
+    ///
+    /// - rect: The rectangle to add.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds a rectangle to a path. Calling this function is equivalent to using [`CGRectGetMinX(_:)`](https://developer.apple.com/documentation/coregraphics/cgrectgetminx(_:)) and related functions to find the corners of the rectangle, then using the [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint), [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint), and [`closeSubpath()`](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()) functions to add each line segment of the rectangle.
+    ///
+    ///
     /// * Path construction convenience functions. **
     ///
     /// # Safety
     ///
     /// `m` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrect?language=objc)
     #[doc(alias = "CGPathAddRect")]
     #[inline]
     pub unsafe fn add_rect(
@@ -518,7 +867,23 @@ impl CGMutablePath {
         unsafe { CGPathAddRect(path, m, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrects?language=objc)
+    /// Appends an array of rectangles to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change.
+    ///
+    /// - m: An affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the rectangles before adding them to the path.
+    ///
+    /// - rects: The array of new rectangles to add.
+    ///
+    /// - count: The number of elements in the array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds an array of rectangles to a path. This function is equivalent to repeatedly calling the [`CGPathAddRect`](https://developer.apple.com/documentation/coregraphics/cgpathaddrect) function to append the sequence of rectangles.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -543,7 +908,23 @@ impl CGMutablePath {
         unsafe { CGPathAddRects(path, m, rects, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddlines?language=objc)
+    /// Appends an array of new line segments to a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the lines before adding them to the path.
+    ///
+    /// - points: An array of points that specifies the line segments to add.
+    ///
+    /// - count: The number of elements in the array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function that adds a sequence of connected line segments to a path. This function is equivalent to calling the [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint) function to move to the starting point of the first line segment, then repeatedly calling the [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint) to append the sequence of line segments.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -568,7 +949,23 @@ impl CGMutablePath {
         unsafe { CGPathAddLines(path, m, points, count) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddellipseinrect?language=objc)
+    /// Adds to a path an ellipse that fits inside a rectangle.
+    ///
+    /// Parameters:
+    /// - path: The path to modify.
+    ///
+    /// - m: An affine transform to apply to the ellipse, or `NULL` if you don’t want to transform the ellipse.
+    ///
+    /// - rect: A rectangle to enclose the ellipse.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The ellipse is approximated by a sequence of Bézier curves. Its center is the midpoint of the rectangle defined by the `rect` parameter. If the rectangle is square, then the ellipse is circular with a radius equal to one-half the width (or height) of the rectangle. If the `rect` parameter specifies a rectangular shape, then the major and minor axes of the ellipse are defined by the width and height of the rectangle.
+    ///
+    /// The ellipse forms a complete subpath of the path—that is, the ellipse drawing starts with a move-to operation and ends with a close-subpath operation, with all moves oriented in the clockwise direction. If you supply an affine transform, then the constructed Bézier curves that define the ellipse are transformed before they are added to the path.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -590,7 +987,29 @@ impl CGMutablePath {
         unsafe { CGPathAddEllipseInRect(path, m, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddrelativearc?language=objc)
+    /// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
+    ///
+    /// Parameters:
+    /// - path: The mutable graphics path to change.
+    ///
+    /// - matrix: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the arc before it is added to the path.
+    ///
+    /// - x: The x-coordinate of the center point of the arc.
+    ///
+    /// - y: The y-coordinate of the center point of the arc.
+    ///
+    /// - radius: The radius of the arc.
+    ///
+    /// - startAngle: The angle (in radians) that determines the starting point of the arc, measured from the x-axis in the current user space.
+    ///
+    /// - delta: The distance the arc should travel (in radians). A positive value indicates a counter-clockwise arc in the current user space.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The angle to the second endpoint of the arc is calculated by adding the delta to the start angle.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -620,7 +1039,37 @@ impl CGMutablePath {
         unsafe { CGPathAddRelativeArc(path, matrix, x, y, radius, start_angle, delta) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddarc?language=objc)
+    /// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
+    ///
+    /// Parameters:
+    /// - path: The mutable graphics path to change.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the arc before it is added to the path.
+    ///
+    /// - x: The x-coordinate of the center point of the arc.
+    ///
+    /// - y: The y-coordinate of the center point of the arc.
+    ///
+    /// - radius: The radius of the arc.
+    ///
+    /// - startAngle: The angle (in radians) that determines the starting point of the arc, measured from the x-axis in the current user space.
+    ///
+    /// - endAngle: The angle (in radians) that determines the ending point of the arc, measured from the x-axis in the current user space.
+    ///
+    /// - clockwise: A Boolean value that specifies whether or not to draw the arc in the clockwise direction, before applying the transformation matrix.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An arc is a segment of a circle with radius r centered at a point `(x,y)`. When you call this function, you provide the center point, radius, and two angles in radians. Core Graphics uses this information to determine the end points of the arc, and then approximates the new arc using a sequence of cubic Bézier curves. The `clockwise` parameter determines the direction in which the arc is created. The actual direction may change depending on the coordinate system transformation applied to the path.
+    ///
+    /// A transformation may be applied to the Bézier curves before they are added to the path. If no transform is needed, the second argument should be `NULL`.
+    ///
+    /// If the specified path already contains a subpath, Core Graphics implicitly adds a line connecting the subpath’s current point to the beginning of the arc. If the path is empty, Core Graphics creates a new subpath with a starting point set to the starting point of the arc.
+    ///
+    /// The ending point of the arc becomes the new current point of the path.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -652,7 +1101,35 @@ impl CGMutablePath {
         unsafe { CGPathAddArc(path, m, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddarctopoint?language=objc)
+    /// Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
+    ///
+    /// Parameters:
+    /// - path: The mutable path to change. The path must not be empty.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to the arc before it is added to the path.
+    ///
+    /// - x1: The x-coordinate of the user space for the end point of the first tangent line. The first tangent line is drawn from the current point to `(x1,y1)`.
+    ///
+    /// - y1: The y-coordinate of the user space for the end point of the first tangent line. The first tangent line is drawn from the current point to `(x1,y1)`.
+    ///
+    /// - x2: The x-coordinate of the user space for the end point of the second tangent line. The second tangent line is drawn from `(x1,y1)` to `(x2,y2)`.
+    ///
+    /// - y2: The y-coordinate of the user space for the end point of the second tangent line. The second tangent line is drawn from `(x1,y1)` to `(x2,y2)`.
+    ///
+    /// - radius: The radius of the arc, in user space coordinates.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses a sequence of cubic Bézier curves to create an arc that is tangent to the line from the current point to (x1,y1) and to the line from (x1,y1) to (x2,y2). The start and end points of the arc are located on the first and second tangent lines, respectively. The start and end points of the arc are also the “tangent points” of the lines.
+    ///
+    /// If the current point and the first tangent point of the arc (the starting point) are not equal, Core Graphics appends a straight line segment from the current point to the first tangent point.
+    ///
+    /// The ending point of the arc becomes the new current point of the path.
+    ///
+    /// For another way to draw an arc in a path, see [`CGPathAddArc`](https://developer.apple.com/documentation/coregraphics/cgpathaddarc).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -682,7 +1159,21 @@ impl CGMutablePath {
         unsafe { CGPathAddArcToPoint(path, m, x1, y1, x2, y2, radius) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathaddpath?language=objc)
+    /// Appends a path to onto a mutable graphics path.
+    ///
+    /// Parameters:
+    /// - path1: The mutable path to change.
+    ///
+    /// - m: A pointer to an affine transformation matrix, or `NULL` if no transformation is needed. If specified, Core Graphics applies the transformation to `path2` before it is added to `path1`.
+    ///
+    /// - path2: The path to add.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the source path is non-empty, then its path elements are appended in order onto the mutable path. After the call completes, the start point and current point of the path are those of the last subpath in `path2`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -706,9 +1197,24 @@ impl CGMutablePath {
 }
 
 impl CGPath {
-    /// * Path information functions. **
+    /// Indicates whether or not a graphics path is empty.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/isempty?language=objc)
+    /// Parameters:
+    /// - path: The path to evaluate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the specified path is empty.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An empty path contains no elements.
+    ///
+    ///
+    /// * Path information functions. **
     #[doc(alias = "CGPathIsEmpty")]
     #[inline]
     pub fn is_empty(path: Option<&CGPath>) -> bool {
@@ -718,7 +1224,19 @@ impl CGPath {
         unsafe { CGPathIsEmpty(path) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/isrect(_:)?language=objc)
+    /// Indicates whether or not a graphics path represents a rectangle.
+    ///
+    /// Parameters:
+    /// - path: The path to evaluate.
+    ///
+    /// - rect: On input, a pointer to an uninitialized rectangle. If the specified path represents a rectangle, on return contains a copy of the rectangle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that indicates whether the specified path represents a rectangle. If the path represents a rectangle, returns [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -732,7 +1250,23 @@ impl CGPath {
         unsafe { CGPathIsRect(path, rect) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/currentpoint?language=objc)
+    /// Returns the current point in a graphics path.
+    ///
+    /// Parameters:
+    /// - path: The path to evaluate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current point in the specified path.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the path is empty—that is, if it has no elements—this function returns [`CGPointZero`](https://developer.apple.com/documentation/coregraphics/cgpointzero) (see [CGGeometry](https://developer.apple.com/documentation/coregraphics/cggeometry)). To determine whether a path is empty, use [`CGPathIsEmpty`](https://developer.apple.com/documentation/coregraphics/cgpath/isempty).
+    ///
+    ///
     #[doc(alias = "CGPathGetCurrentPoint")]
     #[inline]
     pub fn current_point(path: Option<&CGPath>) -> CGPoint {
@@ -742,7 +1276,23 @@ impl CGPath {
         unsafe { CGPathGetCurrentPoint(path) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/boundingbox?language=objc)
+    /// Returns the bounding box containing all points in a graphics path.
+    ///
+    /// Parameters:
+    /// - path: The graphics path to evaluate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the bounding box of the specified path.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The bounding box is the smallest rectangle completely enclosing all points in the path, including control points for Bézier and quadratic curves. If the path is empty, this value is [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
     #[doc(alias = "CGPathGetBoundingBox")]
     #[inline]
     pub fn bounding_box(path: Option<&CGPath>) -> CGRect {
@@ -752,7 +1302,23 @@ impl CGPath {
         unsafe { CGPathGetBoundingBox(path) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/boundingboxofpath?language=objc)
+    /// Returns the bounding box of a graphics path.
+    ///
+    /// Parameters:
+    /// - path: The graphics path to evaluate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle that represents the path bounding box of the specified path.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The path bounding box is the smallest rectangle completely enclosing all points in the path but not including control points for Bézier and quadratic curves. If the path is empty, this value is [`CGRectNull`](https://developer.apple.com/documentation/coregraphics/cgrectnull).
+    ///
+    ///
     #[doc(alias = "CGPathGetPathBoundingBox")]
     #[inline]
     pub fn path_bounding_box(path: Option<&CGPath>) -> CGRect {
@@ -762,7 +1328,29 @@ impl CGPath {
         unsafe { CGPathGetPathBoundingBox(path) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcontainspoint?language=objc)
+    /// Checks whether a point is contained in a graphics path.
+    ///
+    /// Parameters:
+    /// - path: The path to evaluate the point against.
+    ///
+    /// - m: An affine transform. If `m` is not `NULL` then the point is transformed by this affine transform prior to determining whether the path contains the point.
+    ///
+    /// - point: The point to check.
+    ///
+    /// - eoFill: A Boolean value that, if [`true`](https://developer.apple.com/documentation/swift/true), specifies to use the even-odd fill rule to evaluate the painted region of the path. If [`false`](https://developer.apple.com/documentation/swift/false), the winding fill rule is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns [`true`](https://developer.apple.com/documentation/swift/true) if the point is contained in the path; [`false`](https://developer.apple.com/documentation/swift/false) otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A point is contained in a path if it would be inside the painted region when the path is filled.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -787,25 +1375,55 @@ impl CGPath {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype?language=objc)
+/// The type of element found in a path.
+///
+/// ## Overview
+///
+/// For more information about paths, see [`CGPathRef`](https://developer.apple.com/documentation/coregraphics/cgpath).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathElementType(pub i32);
 impl CGPathElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/movetopoint?language=objc)
+    /// The path element that starts a new subpath.
+    ///
+    /// ## Discussion
+    ///
+    /// The element holds a single point for the destination. See the function [`CGPathMoveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathmovetopoint).
+    ///
+    ///
     #[doc(alias = "kCGPathElementMoveToPoint")]
     pub const MoveToPoint: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addlinetopoint?language=objc)
+    /// The path element that adds a line from the current point to a new point.
+    ///
+    /// ## Discussion
+    ///
+    /// The element holds a single point for the destination. See the function [`CGPathAddLineToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddlinetopoint).
+    ///
+    ///
     #[doc(alias = "kCGPathElementAddLineToPoint")]
     pub const AddLineToPoint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addquadcurvetopoint?language=objc)
+    /// The path element that adds a quadratic curve from the current point to the specified point.
+    ///
+    /// ## Discussion
+    ///
+    /// The element holds a control point and a destination point. See the function [`CGPathAddQuadCurveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddquadcurvetopoint).
+    ///
+    ///
     #[doc(alias = "kCGPathElementAddQuadCurveToPoint")]
     pub const AddQuadCurveToPoint: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/addcurvetopoint?language=objc)
+    /// The path element that adds a cubic curve from the current point to the specified point.
+    ///
+    /// ## Discussion
+    ///
+    /// The element holds two control points and a destination point. See the function [`CGPathAddCurveToPoint`](https://developer.apple.com/documentation/coregraphics/cgpathaddcurvetopoint).
+    ///
+    ///
     #[doc(alias = "kCGPathElementAddCurveToPoint")]
     pub const AddCurveToPoint: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype/closesubpath?language=objc)
+    /// The path element that closes and completes a subpath. The element does not contain any points. See the function [`CGPathCloseSubpath`](https://developer.apple.com/documentation/coregraphics/cgmutablepath/closesubpath()).
     #[doc(alias = "kCGPathElementCloseSubpath")]
     pub const CloseSubpath: Self = Self(4);
 }
@@ -820,7 +1438,7 @@ unsafe impl RefEncode for CGPathElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelement?language=objc)
+/// A data structure that provides information about a path element.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGPathElement {
@@ -841,12 +1459,32 @@ unsafe impl RefEncode for CGPathElement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplierfunction?language=objc)
+/// Defines a callback function that can view an element in a graphics path.
+///
+/// ## Discussion
+///
+/// See also [`CGPathApply`](https://developer.apple.com/documentation/coregraphics/cgpath/apply(info:function:)).
+///
+///
 pub type CGPathApplierFunction =
     Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGPathElement>)>;
 
 impl CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/apply(info:function:)?language=objc)
+    /// For each element in a graphics path, calls a custom applier function.
+    ///
+    /// Parameters:
+    /// - path: The path to which the function will be applied.
+    ///
+    /// - info: A pointer to the user data that Core Graphics will pass to the function being applied, or `NULL`.
+    ///
+    /// - function: A pointer to the function to apply. See [`CGPathApplierFunction`](https://developer.apple.com/documentation/coregraphics/cgpathapplierfunction) for more information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For each element in the specified path, Core Graphics calls the applier function, which can examine (but not modify) the element.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -866,13 +1504,10 @@ impl CGPath {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CGPathApplyBlock = *mut block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
 
 impl CGPath {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpath/applywithblock(_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// `block` must be a valid pointer.
@@ -886,7 +1521,6 @@ impl CGPath {
         unsafe { CGPathApplyWithBlock(self, block) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybynormalizing?language=objc)
     #[doc(alias = "CGPathCreateCopyByNormalizing")]
     #[inline]
     pub fn new_copy_by_normalizing(
@@ -903,7 +1537,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyunioningpath?language=objc)
     #[doc(alias = "CGPathCreateCopyByUnioningPath")]
     #[inline]
     pub fn new_copy_by_unioning_path(
@@ -922,7 +1555,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyintersectingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyByIntersectingPath")]
     #[inline]
     pub fn new_copy_by_intersecting_path(
@@ -942,7 +1574,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybysubtractingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyBySubtractingPath")]
     #[inline]
     pub fn new_copy_by_subtracting_path(
@@ -961,7 +1592,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybysymmetricdifferenceofpath?language=objc)
     #[doc(alias = "CGPathCreateCopyBySymmetricDifferenceOfPath")]
     #[inline]
     pub fn new_copy_by_symmetric_difference_of_path(
@@ -982,7 +1612,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopyoflinebysubtractingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyOfLineBySubtractingPath")]
     #[inline]
     pub fn new_copy_of_line_by_subtracting_path(
@@ -1002,7 +1631,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopyoflinebyintersectingpath?language=objc)
     #[doc(alias = "CGPathCreateCopyOfLineByIntersectingPath")]
     #[inline]
     pub fn new_copy_of_line_by_intersecting_path(
@@ -1023,7 +1651,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreateseparatecomponents?language=objc)
     #[doc(alias = "CGPathCreateSeparateComponents")]
     #[inline]
     pub fn new_separate_components(
@@ -1040,7 +1667,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathcreatecopybyflattening?language=objc)
     #[doc(alias = "CGPathCreateCopyByFlattening")]
     #[inline]
     pub fn new_copy_by_flattening(
@@ -1057,7 +1683,6 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathintersectspath?language=objc)
     #[doc(alias = "CGPathIntersectsPath")]
     #[inline]
     pub fn intersects_path(

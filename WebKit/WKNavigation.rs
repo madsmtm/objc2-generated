@@ -6,13 +6,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that tracks the loading progress of a webpage.
+    ///
+    /// ## Overview
+    ///
+    /// A [`WKNavigation`](https://developer.apple.com/documentation/webkit/wknavigation) object uniquely identifies a load request for a webpage. When you ask a web view to load content or navigate to a page, the web view returns a [`WKNavigation`](https://developer.apple.com/documentation/webkit/wknavigation) object that identifies your request. As the load operation progresses, the web view reports progress of that operation to various methods of its navigation delegate, passing them the matching [`WKNavigation`](https://developer.apple.com/documentation/webkit/wknavigation) object.
+    ///
+    ///
     /// A WKNavigation object can be used for tracking the loading progress of a webpage.
     ///
     /// A navigation is returned from the web view load methods, and is
     /// also passed to the navigation delegate methods, to uniquely identify a webpage
     /// load from start to finish.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigation?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

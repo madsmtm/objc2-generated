@@ -6,53 +6,52 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The type defined for the constants that specify the kind and subkind of DTD declaration represented by an `NSXMLDTDNode` object. You set the DTD-node kind using the doc:nsxmldtdnode/1806486-setdtdkind method.
 /// The subkind of a DTD node kind.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSXMLDTDNodeKind(pub NSUInteger);
 impl NSXMLDTDNodeKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/general?language=objc)
+    /// Identifies a general entity declaration.
     pub const NSXMLEntityGeneralKind: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/parsed?language=objc)
+    /// Identifies a parsed entity declaration.
     pub const NSXMLEntityParsedKind: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/unparsed?language=objc)
+    /// Identifies an unparsed entity declaration.
     pub const NSXMLEntityUnparsedKind: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/parameter?language=objc)
+    /// Identifies a parameter entity declaration.
     pub const NSXMLEntityParameterKind: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/predefined?language=objc)
+    /// Identifies a predefined entity declaration.
     pub const NSXMLEntityPredefined: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/cdataattribute?language=objc)
+    /// Identifies an attribute-list declaration with a `CDATA` (character data) value type.
     pub const NSXMLAttributeCDATAKind: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idattribute?language=objc)
+    /// Identifies an attribute-list declaration with an `ID` value type (per-document unique element name).
     pub const NSXMLAttributeIDKind: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idrefattribute?language=objc)
+    /// Identifies an attribute-list declaration with an `IDREF` value type (refers to element `ID` type).
     pub const NSXMLAttributeIDRefKind: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/idrefsattribute?language=objc)
+    /// Identifies an attribute-list declaration with an `IDREFS` value type (refers to multiple elements of `ID` type).
     pub const NSXMLAttributeIDRefsKind: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/entityattribute?language=objc)
+    /// Identifies an attribute-list declaration with an `ENTITY` value type (refers to unparsed entity declared in document).
     pub const NSXMLAttributeEntityKind: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/entitiesattribute?language=objc)
+    /// Identifies an attribute-list declaration with an `ENTITIES` value type (refers to multiple unparsed entities declared elsewhere in document).
     pub const NSXMLAttributeEntitiesKind: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/nmtokenattribute?language=objc)
+    /// Identifies an attribute-list declaration with a `NMTOKEN` value type (name token).
     pub const NSXMLAttributeNMTokenKind: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/nmtokensattribute?language=objc)
+    /// Identifies an attribute-list declaration with a `NMTOKENS` value type (multiple name tokens)
     pub const NSXMLAttributeNMTokensKind: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/enumerationattribute?language=objc)
+    /// Identifies an attribute-list declaration with an enumeration value type (list of all possible values).
     pub const NSXMLAttributeEnumerationKind: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/notationattribute?language=objc)
+    /// Identifies an attribute-list declaration with a `NOTATION` value type (name of declared notation).
     pub const NSXMLAttributeNotationKind: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/undefineddeclaration?language=objc)
+    /// Identifies an undefined element declaration.
     pub const NSXMLElementDeclarationUndefinedKind: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/emptydeclaration?language=objc)
+    /// Identifies a declaration (`EMPTY`) of an empty element.
     pub const NSXMLElementDeclarationEmptyKind: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/anydeclaration?language=objc)
+    /// Identifies an `ANY` element declaration.
     pub const NSXMLElementDeclarationAnyKind: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/mixeddeclaration?language=objc)
+    /// Identifies a declaration of an element with mixed content (`(#PCDATA | child)`).
     pub const NSXMLElementDeclarationMixedKind: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/elementdeclaration?language=objc)
+    /// Identifies a declaration of an element with child elements.
     pub const NSXMLElementDeclarationElementKind: Self = Self(20);
 }
 
@@ -65,6 +64,19 @@ unsafe impl RefEncode for NSXMLDTDNodeKind {
 }
 
 extern_class!(
+    /// A representation of element, attribute-list, entity, and notation declarations in a Document Type Definition.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) objects are the sole children of a [`NSXMLDTD`](https://developer.apple.com/documentation/foundation/xmldtd) object (possibly along with comment nodes and processing-instruction nodes). They themselves cannot have any children.
+    ///
+    /// [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) objects can be of four kinds—element, attribute-list, entity, or notation declaration—and can also be of a subkind, as specified by a [`NSXMLDTDNodeKind`](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum) constant. For example, a DTD entity-declaration node could represent an unparsed entity declaration ([`NSXMLEntityUnparsedKind`](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/unparsed)) rather than a parameter entity declaration ([`NSXMLEntityParameterKind`](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum/parameter)). You can use a DTD node’s subkind to help determine how to handle the value of the node.
+    ///
+    /// You can create an [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) object with the [`initWithXMLString:`](https://developer.apple.com/documentation/foundation/xmldtdnode/init(xmlstring:)) method, the [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) class method [`DTDNodeWithXMLString:`](https://developer.apple.com/documentation/foundation/xmlnode/dtdnode(withxmlstring:)), or with the [`NSXMLNode`](https://developer.apple.com/documentation/foundation/xmlnode) initializer [`initWithKind:options:`](https://developer.apple.com/documentation/foundation/xmlnode/init(kind:options:)) (in the latter method supplying the appropriate [`NSXMLNodeKind`](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum) constant).
+    ///
+    /// Setting the object value or string value of an [`NSXMLDTDNode`](https://developer.apple.com/documentation/foundation/xmldtdnode) objects affects different parts of different kinds of declaration. See the related programming topic for more information.
+    ///
+    ///
     /// The nodes that are exclusive to a DTD
     ///
     /// Every DTD node has a name. Object value is defined as follows:
@@ -94,8 +106,6 @@ extern_class!(
     /// - no objectValue
     /// </li>
     /// </ul>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

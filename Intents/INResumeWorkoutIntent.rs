@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintent?language=objc)
+    /// A request to resume a paused workout.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates an [`INResumeWorkoutIntent`](https://developer.apple.com/documentation/intents/inresumeworkoutintent) object when the user asks to resume a currently paused workout. Resuming a workout resumes gathering workout data and counting that data toward the user’s current workout goal. Use this intent object to validate the workout parameters.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INResumeWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling) protocol. Your handler should confirm the request and create an [`INResumeWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inresumeworkoutintentresponse) object that indicates it’s possible to resume the workout. For the successful handling of the intent, SiriKit launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object your app must then use to resume the workout.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -73,11 +86,18 @@ impl INResumeWorkoutIntent {
 }
 
 extern_protocol!(
+    /// The interface that handles requests to resume a workout.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INResumeWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling) protocol to resolve, confirm, and handle requests to resume a paused workout that’s using your app. Adopt this protocol in an object of your Intents extension that’s capable of validating the workout name.
+    ///
+    /// You don’t actually resume the workout from your Intents extension. When your [`handleResumeWorkout:completion:`](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling/handle(intent:completion:)) returns, Siri launches your app and passes it an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that contains the intent object and your response. Your app uses the information in those objects to resume the workout.
+    ///
+    ///
     /// Protocol to declare support for handling an INResumeWorkoutIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintenthandling?language=objc)
     pub unsafe trait INResumeWorkoutIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

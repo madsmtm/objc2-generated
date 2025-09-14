@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemstateappearance?language=objc)
+    /// A data object containing the specific customizations for a bar button item in a particular state.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIBarButtonItemStateAppearance`](https://developer.apple.com/documentation/uikit/uibarbuttonitemstateappearance) object to customize the title and background image of your bar button items. Don’t create [`UIBarButtonItemStateAppearance`](https://developer.apple.com/documentation/uikit/uibarbuttonitemstateappearance) objects yourself. Instead, create a [`UIBarButtonItemAppearance`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance) object and use its properties to fetch the appearance attributes for the button in a particular state. For example, to set the button’s attributes when it’s in the normal state, configure the object in the [`normal`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance/normal) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -92,7 +98,13 @@ impl UIBarButtonItemStateAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance?language=objc)
+    /// An object for customizing the appearance of bar button items.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIBarButtonItemAppearance`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance) object to customize the appearance of a bar button item in each of its possible states. You can customize the appearance differently for different states. For example, you might apply different colors to the button’s title in the [`normal`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance/normal) and [`highlighted`](https://developer.apple.com/documentation/uikit/uibarbuttonitemappearance/highlighted) states.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

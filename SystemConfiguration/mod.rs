@@ -1079,61 +1079,76 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusok?language=objc)
+/// The call was successful.
 pub const kSCStatusOK: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusfailed?language=objc)
+/// A nonspecific failure occurred.
 pub const kSCStatusFailed: c_uint = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusinvalidargument?language=objc)
+/// An invalid argument was specified.
 pub const kSCStatusInvalidArgument: c_uint = 1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusaccesserror?language=objc)
+/// Permission is denied; you must be root to obtain a lock. As a result, the function could not create or access preferences.
 pub const kSCStatusAccessError: c_uint = 1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnokey?language=objc)
+/// No such key.
 pub const kSCStatusNoKey: c_uint = 1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuskeyexists?language=objc)
+///
+/// ## Discussion
+///
+/// The key is already defined.
+///
+///
 pub const kSCStatusKeyExists: c_uint = 1005;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatuslocked?language=objc)
+/// A lock is already held.
 pub const kSCStatusLocked: c_uint = 1006;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusneedlock?language=objc)
+/// A lock is required for this operation.
 pub const kSCStatusNeedLock: c_uint = 1007;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoresession?language=objc)
+/// The configuration daemon session is not active.
 pub const kSCStatusNoStoreSession: c_uint = 2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnostoreserver?language=objc)
+/// The configuration daemon is not available or no longer available.
 pub const kSCStatusNoStoreServer: c_uint = 2002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnotifieractive?language=objc)
+/// Notifier is currently active.
 pub const kSCStatusNotifierActive: c_uint = 2003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoprefssession?language=objc)
+/// The preferences session is not active.
 pub const kSCStatusNoPrefsSession: c_uint = 3001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusprefsbusy?language=objc)
+/// A preferences update is currently in progress.
 pub const kSCStatusPrefsBusy: c_uint = 3002;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnoconfigfile?language=objc)
+/// The configuration file cannot be found.
 pub const kSCStatusNoConfigFile: c_uint = 3003;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusnolink?language=objc)
+/// No such link exists.
 pub const kSCStatusNoLink: c_uint = 3004;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusstale?language=objc)
+/// A write was attempted on a stale version of the object.
 pub const kSCStatusStale: c_uint = 3005;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusmaxlink?language=objc)
+/// The maximum link count is exceeded.
 pub const kSCStatusMaxLink: c_uint = 3006;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusreachabilityunknown?language=objc)
+/// Network reachability cannot be determined.
 pub const kSCStatusReachabilityUnknown: c_uint = 4001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionnoservice?language=objc)
+/// Network service for the connection is not available.
 pub const kSCStatusConnectionNoService: c_uint = 5001;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscstatusconnectionignore?language=objc)
+/// Network connection information is not available at this time.
 pub const kSCStatusConnectionIgnore: c_uint = 5002;
 
 extern "C" {
+    /// A string constant identifying a Core Foundation error domain. See doc://com.apple.documentation/documentation/corefoundation/cferror-ru8 for further information on error domains.
     /// CFError domain associated with errors reported by
     /// the SystemConfiguration.framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kcferrordomainsystemconfiguration?language=objc)
     pub static kCFErrorDomainSystemConfiguration: &'static CFString;
 }
 
+/// Returns an error or status code associated with the most recent function call.
+///
+/// ## Return Value
+///
+/// The most recent status or error code generated as the result of calling a function defined by the System Configuration framework. The code is represented by a Core Foundation `CFErrorRef` opaque type.
+///
+///
+///
+/// ## Discussion
+///
+/// Call the [`CFErrorGetCode`](https://developer.apple.com/documentation/corefoundation/cferrorgetcode(_:)) function on the returned object to get the underlying error-code integer. See [Status and Error Codes](https://developer.apple.com/documentation/systemconfiguration/1518026-status-and-error-codes) for descriptions of these codes. For more on `CFErrorRef` objects, see doc://com.apple.documentation/documentation/corefoundation/cferror-ru8.
+///
+///
 /// Returns the most recent status or error code generated
 /// as the result of calling a System Configuration framework API.
 ///
 /// Returns: Returns the last error encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/sccopylasterror()?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     extern "C-unwind" {
@@ -1144,12 +1159,17 @@ pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns an error or status code associated with the most recent function call.
+///
+/// ## Return Value
+///
+/// The most recent status or error code generated as the result of calling a function defined by the System Configuration framework. See [Status and Error Codes](https://developer.apple.com/documentation/systemconfiguration/1518026-status-and-error-codes) for descriptions of these codes.
+///
+///
 /// Returns the most recent status or error code generated
 /// as the result of calling a System Configuration framework API.
 ///
 /// Returns: Returns the last error encountered.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scerror()?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCError() -> c_int {
     extern "C-unwind" {
@@ -1158,6 +1178,17 @@ pub extern "C-unwind" fn SCError() -> c_int {
     unsafe { SCError() }
 }
 
+/// Returns a string describing the specified status code or error code.
+///
+/// Parameters:
+/// - status: A status or error code described in [Status and Error Codes](https://developer.apple.com/documentation/systemconfiguration/1518026-status-and-error-codes). You typically get this code by calling [`SCError`](https://developer.apple.com/documentation/systemconfiguration/scerror()) or [`SCCopyLastError`](https://developer.apple.com/documentation/systemconfiguration/sccopylasterror()).
+///
+///
+/// ## Return Value
+///
+/// The message string associated with the status or error identified by `status`.
+///
+///
 /// Returns a pointer to the message string
 /// associated with the specified status or error
 /// number.
@@ -1165,8 +1196,6 @@ pub extern "C-unwind" fn SCError() -> c_int {
 /// Parameter `status`: The status or error number.
 ///
 /// Returns: Returns a pointer to the error message string.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scerrorstring(_:)?language=objc)
 #[inline]
 pub extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
     extern "C-unwind" {

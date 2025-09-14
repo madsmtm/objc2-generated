@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltitudedata?language=objc)
+    /// Data for a recorded change in altitude.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class directly. When you want to receive altimeter changes, create an instance of the [`CMAltimeter`](https://developer.apple.com/documentation/coremotion/cmaltimeter) class and use that object to query for events or to start the delivery of events. The altimeter object creates new instances of this class at appropriate times and delivers them to the handler you specify.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

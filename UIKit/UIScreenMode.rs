@@ -8,7 +8,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenmode?language=objc)
+    /// A possible set of attributes that can apply to a screen object.
+    ///
+    /// ## Overview
+    ///
+    /// A screen mode object encapsulates information about the size of the screen’s underlying display buffer and the aspect ratio it uses for individual pixels. Most developers should never need to use the information provided by this class and should simply use the bounds provided by the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object for their drawing space. The bounds of screen and window objects automatically take the pixel aspect ratio and underlying drawing hardware into consideration. However, developers that work with pixel-level information more directly may use the information in the current screen mode object to tailor their code for the target screen.
+    ///
+    /// You don’t create instances of this class directly. Instead, you get the screen modes supported by a given screen from the corresponding [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIScreenMode;

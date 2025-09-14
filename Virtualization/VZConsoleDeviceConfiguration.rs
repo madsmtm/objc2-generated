@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a console device configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate VZConsoleDeviceConfiguration directly, instead use one of its subclasses like [`VZVirtioConsoleDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledeviceconfiguration) instead.
+    ///
+    ///
     /// Base class for a console device configuration.
     ///
     /// VZConsoleDeviceConfiguration should not be instantiated directly.
@@ -14,8 +21,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioConsoleDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzconsoledeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZConsoleDeviceConfiguration;

@@ -9,11 +9,10 @@ use crate::*;
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecAccessControl {
+    /// Returns the unique identifier of the opaque type to which a keychain item access control object belongs.
     /// Returns the type identifier of SecAccessControl instances.
     ///
     /// Returns: The CFTypeID of SecAccessControl instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolgettypeid()?language=objc)
     #[doc(alias = "SecAccessControlGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -24,6 +23,13 @@ unsafe impl ConcreteType for SecAccessControl {
     }
 }
 
+/// Access control constants that dictate how a keychain item may be used.
+///
+/// ## Overview
+///
+/// Use these flags with the [`SecAccessControlCreateWithFlags`](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)) function, or as the value associated with the [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol) key in a keychain item’s attribute dictionary, to control keychain item accessibility.
+///
+///
 /// User presence policy using biometry or Passcode. Biometry does not have to be available or enrolled. Item is still
 /// accessible by Touch ID even if fingers are added or removed. Item is still accessible by Face ID if user is re-enrolled.
 ///
@@ -63,51 +69,100 @@ unsafe impl ConcreteType for SecAccessControl {
 ///
 /// Security: Application provided password for data encryption key generation. This is not a constraint but additional item
 /// encryption mechanism.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecAccessControlCreateFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl SecAccessControlCreateFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/userpresence?language=objc)
+/// Constraint to access an item with either biometry or passcode.
+///
+/// ## Discussion
+///
+/// Biometry doesn’t have to be available or enrolled. The item is still accessible by Touch ID even if fingers are added or removed, or by Face ID if the user is re-enrolled.
+///
+/// This option is equivalent to specifying [`kSecAccessControlBiometryAny`](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometryany), [`kSecAccessControlOr`](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/or), and [`kSecAccessControlDevicePasscode`](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/devicepasscode).
+///
+///
         #[doc(alias = "kSecAccessControlUserPresence")]
         const UserPresence = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometryany?language=objc)
+/// Constraint to access an item with Touch ID for any enrolled fingers, or Face ID.
+///
+/// ## Discussion
+///
+/// Touch ID must be available and enrolled with at least one finger, or Face ID must be available and enrolled. The item is still accessible by Touch ID if fingers are added or removed, or by Face ID if the user is re-enrolled.
+///
+///
         #[doc(alias = "kSecAccessControlBiometryAny")]
         const BiometryAny = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/touchidany?language=objc)
+/// Constraint to access an item with Touch ID for any enrolled fingers.
+///
+/// ## Discussion
+///
+/// Touch ID must be available and enrolled with at least one finger. The item is still accessible by Touch ID if fingers are added or removed.
+///
+///
         #[doc(alias = "kSecAccessControlTouchIDAny")]
 #[deprecated]
         const TouchIDAny = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/biometrycurrentset?language=objc)
+/// Constraint to access an item with Touch ID for currently enrolled fingers, or from Face ID with the currently enrolled user.
+///
+/// ## Discussion
+///
+/// Touch ID must be available and enrolled with at least one finger, or Face ID available and enrolled. The item is invalidated if fingers are added or removed for Touch ID, or if the user re-enrolls for Face ID.
+///
+///
         #[doc(alias = "kSecAccessControlBiometryCurrentSet")]
         const BiometryCurrentSet = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/touchidcurrentset?language=objc)
+/// Constraint to access an item with Touch ID for currently enrolled fingers.
+///
+/// ## Discussion
+///
+/// Touch ID must be available and enrolled with at least one finger. The item is invalidated if fingers are added or removed.
+///
+///
         #[doc(alias = "kSecAccessControlTouchIDCurrentSet")]
 #[deprecated]
         const TouchIDCurrentSet = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/devicepasscode?language=objc)
+/// Constraint to access an item with a passcode.
         #[doc(alias = "kSecAccessControlDevicePasscode")]
         const DevicePasscode = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/watch?language=objc)
+/// Constraint to access an item with a watch.
+///
+/// ## Discussion
+///
+/// The system attempts to locate a nearby, paired Apple Watch running watchOS 6 or later.
+///
+///
         #[doc(alias = "kSecAccessControlWatch")]
 #[deprecated]
         const Watch = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/companion?language=objc)
         #[doc(alias = "kSecAccessControlCompanion")]
         const Companion = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/or?language=objc)
+/// Indicates that at least one constraint must be satisfied.
         #[doc(alias = "kSecAccessControlOr")]
         const Or = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/and?language=objc)
+/// Indicates that all constraints must be satisfied.
         #[doc(alias = "kSecAccessControlAnd")]
         const And = 1<<15;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/privatekeyusage?language=objc)
+/// Enable a private key to be used in signing a block of data or verifying a signed block.
+///
+/// ## Discussion
+///
+/// This option can be combined with any other access control flags.
+///
+/// You typically use this constraint when you create a key pair and store the private key inside a device’s Secure Enclave (by specifying the [`kSecAttrTokenID`](https://developer.apple.com/documentation/security/ksecattrtokenid) attribute with a value of [`kSecAttrTokenIDSecureEnclave`](https://developer.apple.com/documentation/security/ksecattrtokenidsecureenclave)). This makes the private key available for use in signing and verification tasks that happen inside the Secure Enclave with calls to the [`SecKeyRawSign`](https://developer.apple.com/documentation/security/seckeyrawsign(_:_:_:_:_:_:)) and [`SecKeyRawVerify`](https://developer.apple.com/documentation/security/seckeyrawverify(_:_:_:_:_:_:)) functions. An attempt to use this constraint while generating a key pair outside the Secure Enclave fails. Similarly, an attempt to sign a block with a private key generated without this constraint inside the Secure Enclave fails.
+///
+///
         #[doc(alias = "kSecAccessControlPrivateKeyUsage")]
         const PrivateKeyUsage = 1<<30;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags/applicationpassword?language=objc)
+/// Option to use an application-provided password for data encryption key generation.
+///
+/// ## Discussion
+///
+/// This may be specified in addition to any constraints.
+///
+///
         #[doc(alias = "kSecAccessControlApplicationPassword")]
         const ApplicationPassword = 1<<31;
     }
@@ -125,6 +180,31 @@ unsafe impl RefEncode for SecAccessControlCreateFlags {
 
 #[cfg(feature = "SecBase")]
 impl SecAccessControl {
+    /// Creates a new access control object with the specified protection type and flags.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new [`SecAccessControlRef`](https://developer.apple.com/documentation/security/secaccesscontrol) object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to allocate memory for the new allocator using the default allocator.
+    ///
+    /// - protection: Protection class to be used for the item. Use one of the values that go with the [`kSecAttrAccessible`](https://developer.apple.com/documentation/security/ksecattraccessible) attribute key, namely those listed in [Accessibility Values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values#accessibility-values).
+    ///
+    /// - flags: Flags specifying the allowed operations for the item. See [`SecAccessControlCreateFlags`](https://developer.apple.com/documentation/security/secaccesscontrolcreateflags).
+    ///
+    /// - error: On return, if an error occurred, the reference pointed at by this parameter refers to an error object that indicates the reason for failure. The caller is responsible for releasing the error object. Pass `NULL` for this parameter to ignore the error.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The newly created access control object. In Objective-C, free this item with [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) when you are done with it.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use the result of this function as a value for the [`kSecAttrAccessControl`](https://developer.apple.com/documentation/security/ksecattraccesscontrol) attribute in the [`SecItemAdd`](https://developer.apple.com/documentation/security/secitemadd(_:_:)), [`SecItemUpdate`](https://developer.apple.com/documentation/security/secitemupdate(_:_:)), or [`SecKeyGeneratePair`](https://developer.apple.com/documentation/security/seckeygeneratepair(_:_:_:)) functions.
+    ///
+    /// Accessing keychain items or performing operations on keys that are protected by access control objects may block execution on the main thread. Perform these actions in the background, or use them in combination with the [`kSecUseAuthenticationContext`](https://developer.apple.com/documentation/security/ksecuseauthenticationcontext) and [`kSecUseAuthenticationUI`](https://developer.apple.com/documentation/security/ksecuseauthenticationui) attributes to manage user interactions.
+    ///
+    ///
     /// Creates new access control object based on protection type and additional flags.
     ///
     /// Created access control object should be used as a value for kSecAttrAccessControl attribute in SecItemAdd,
@@ -148,8 +228,6 @@ impl SecAccessControl {
     ///
     /// - `protection` should be of the correct type.
     /// - `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaccesscontrolcreatewithflags(_:_:_:_:)?language=objc)
     #[doc(alias = "SecAccessControlCreateWithFlags")]
     #[cfg(feature = "SecBase")]
     #[inline]

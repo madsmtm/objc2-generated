@@ -10,6 +10,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The block that receives copies of the output of an audio node.
+///
+/// Parameters:
+/// - buffer: A buffer of audio the system captures from the output of an audio node`.`
+///
+/// - when: The time the system captures the buffer.
+///
+///
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  The framework may invoke this callback on a thread other than the main thread.
+///
+///
+///
+/// </div>
+///
 /// A block that receives copies of the output of an AVAudioNode.
 ///
 /// Parameter `buffer`: a buffer of audio captured from the output of an AVAudioNode
@@ -17,13 +36,22 @@ use crate::*;
 /// Parameter `when`: the time at which the buffer was captured
 ///
 /// CAUTION: This callback may be invoked on a thread other than the main thread.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodetapblock?language=objc)
 #[cfg(all(feature = "AVAudioBuffer", feature = "AVAudioTime", feature = "block2"))]
 pub type AVAudioNodeTapBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<AVAudioPCMBuffer>, NonNull<AVAudioTime>)>;
 
 extern_class!(
+    /// An object you use for audio generation, processing, or an I/O block.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVAudioEngine`](https://developer.apple.com/documentation/avfaudio/avaudioengine) object contains instances of audio nodes that you attach, and this base class provides common functionality. Instances of this class don’t provide useful functionality until you attach them to an engine.
+    ///
+    /// Nodes have input and output busses that serve as connection points. For example, an effect has one input bus and one output bus, and a mixer has multiple input busses and one output bus.
+    ///
+    /// A bus contains a format the framework expresses in terms of sample rate and channel count. Formats must match exactly when making connections between nodes, excluding [`AVAudioMixerNode`](https://developer.apple.com/documentation/avfaudio/avaudiomixernode) and [`AVAudioOutputNode`](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode).
+    ///
+    ///
     /// Base class for an audio generation, processing, or I/O block.
     ///
     /// `AVAudioEngine` objects contain instances of various AVAudioNode subclasses. This
@@ -38,8 +66,6 @@ extern_class!(
     /// (e.g. `AVAudioMixerNode` and `AVAudioOutputNode`).
     ///
     /// Nodes do not currently provide useful functionality until attached to an engine.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioNode;

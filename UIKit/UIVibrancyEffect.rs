@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffect?language=objc)
+    /// An object that amplifies and adjusts the color of the content layered behind a visual effect view.
+    ///
+    /// ## Overview
+    ///
+    /// A vibrancy effect is intended to be used as a subview of or layered on top of a [`UIVisualEffectView`](https://developer.apple.com/documentation/uikit/uivisualeffectview) that has been configured with a [`UIBlurEffect`](https://developer.apple.com/documentation/uikit/uiblureffect). The use of a vibrancy effect can help the content placed inside the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview) become more vivid.
+    ///
+    /// The vibrancy effect is color-dependent. Any subviews that you add to the [`contentView`](https://developer.apple.com/documentation/uikit/uivisualeffectview/contentview) must implement the [`tintColorDidChange`](https://developer.apple.com/documentation/uikit/uiview/tintcolordidchange()) method and update themselves accordingly. [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) objects with images that have a rendering mode of [`UIImageRenderingModeAlwaysTemplate`](https://developer.apple.com/documentation/uikit/uiimage/renderingmode-swift.enum/alwaystemplate) as well as [`UILabel`](https://developer.apple.com/documentation/uikit/uilabel) objects update automatically.
+    ///
+    ///
     #[unsafe(super(UIVisualEffect, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -64,34 +72,34 @@ impl UIVibrancyEffect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle?language=objc)
+/// Constants for the vibrancy styles.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIVibrancyEffectStyle(pub NSInteger);
 impl UIVibrancyEffectStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/label?language=objc)
+    /// A style for labels containing primary content.
     #[doc(alias = "UIVibrancyEffectStyleLabel")]
     pub const Label: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/secondarylabel?language=objc)
+    /// A style for labels containing secondary content.
     #[doc(alias = "UIVibrancyEffectStyleSecondaryLabel")]
     pub const SecondaryLabel: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/tertiarylabel?language=objc)
+    /// A style for labels containing tertiary content.
     #[doc(alias = "UIVibrancyEffectStyleTertiaryLabel")]
     pub const TertiaryLabel: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/quaternarylabel?language=objc)
+    /// A style for labels containing quaternary content.
     #[doc(alias = "UIVibrancyEffectStyleQuaternaryLabel")]
     pub const QuaternaryLabel: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/fill?language=objc)
+    /// A style for views with large filled areas containing primary content.
     #[doc(alias = "UIVibrancyEffectStyleFill")]
     pub const Fill: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/secondaryfill?language=objc)
+    /// A style for views with large filled areas containing secondary content.
     #[doc(alias = "UIVibrancyEffectStyleSecondaryFill")]
     pub const SecondaryFill: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/tertiaryfill?language=objc)
+    /// A style for views with large filled areas containing tertiary content.
     #[doc(alias = "UIVibrancyEffectStyleTertiaryFill")]
     pub const TertiaryFill: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uivibrancyeffectstyle/separator?language=objc)
+    /// A style for separator lines.
     #[doc(alias = "UIVibrancyEffectStyleSeparator")]
     pub const Separator: Self = Self(7);
 }

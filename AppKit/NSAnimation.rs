@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve?language=objc)
+/// These constants describe the curve of an animation—that is, the relative speed of an animation from start to finish.
+///
+/// ## Overview
+///
+/// You initialize an `NSAnimation` object using one of these constants with [`initWithDuration:animationCurve:`](https://developer.apple.com/documentation/appkit/nsanimation/init(duration:animationcurve:)) and you can set it thereafter with the [`animationCurve`](https://developer.apple.com/documentation/appkit/nsanimation/animationcurve) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationCurve(pub NSUInteger);
 impl NSAnimationCurve {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easeinout?language=objc)
+    /// Describes an S-curve in which the animation slowly speeds up and then slows down near the end of the animation. This constant is the default.
     #[doc(alias = "NSAnimationEaseInOut")]
     pub const EaseInOut: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easein?language=objc)
+    /// Describes an animation that slows down as it reaches the end.
     #[doc(alias = "NSAnimationEaseIn")]
     pub const EaseIn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/easeout?language=objc)
+    /// Describes an animation that slowly speeds up from the start.
     #[doc(alias = "NSAnimationEaseOut")]
     pub const EaseOut: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve/linear?language=objc)
+    /// Describes an animation in which there is no change in frame rate.
     #[doc(alias = "NSAnimationLinear")]
     pub const Linear: Self = Self(3);
 }
@@ -35,19 +41,37 @@ unsafe impl RefEncode for NSAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode?language=objc)
+/// These constants indicate the blocking mode of an `NSAnimation` object when it is running.
+///
+/// ## Overview
+///
+/// You specify one of these constants in the [`animationBlockingMode`](https://developer.apple.com/documentation/appkit/nsanimation/animationblockingmode) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationBlockingMode(pub NSUInteger);
 impl NSAnimationBlockingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/blocking?language=objc)
+    /// Requests the animation to run in the main thread in a custom run-loop mode that blocks user input.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default.
+    ///
+    ///
     #[doc(alias = "NSAnimationBlocking")]
     pub const Blocking: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/nonblocking?language=objc)
+    /// Requests the animation to run in a standard or specified run-loop mode that allows user input.
     #[doc(alias = "NSAnimationNonblocking")]
     pub const Nonblocking: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode/nonblockingthreaded?language=objc)
+    /// Requests the animation to run in a separate thread that is spawned by the `NSAnimation` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The secondary thread has its own run loop.
+    ///
+    ///
     #[doc(alias = "NSAnimationNonblockingThreaded")]
     pub const NonblockingThreaded: Self = Self(2);
 }
@@ -60,21 +84,58 @@ unsafe impl RefEncode for NSAnimationBlockingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progress?language=objc)
+/// The animation progress, as a floating-point number between `0.0` and `1.0`.
+///
+/// ## Discussion
+///
+/// An animation progress value is returned in the `userInfo` dictionary of an [`NSAnimationProgressMarkNotification`](https://developer.apple.com/documentation/appkit/nsanimation/progressmarknotification) notification.
+///
+///
 pub type NSAnimationProgress = c_float;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progressmarknotification?language=objc)
+    /// Posted when the current progress of a running animation reaches one of its progress marks.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is a running `NSAnimation` object. The `userInfo` dictionary contains the current progress mark, accessed via the key `NSAnimationProgressMark`.
+    ///
+    ///
     pub static NSAnimationProgressMarkNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progressmarkuserinfokey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Contains the value of an [`NSAnimationProgress`](https://developer.apple.com/documentation/appkit/nsanimation/progress) as an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) instance that indicates the current animation progress. The value will be between `0.0` and `1.0`.
+    ///
+    ///
     pub static NSAnimationProgressMark: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation?language=objc)
+    /// An object that manages the timing and progress of animations in the user interface.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSAnimation`](https://developer.apple.com/documentation/appkit/nsanimation) also lets you link together multiple animations so that when one animation ends another one starts. It does not provide any drawing support for animation and does not directly deal with views, targets, or actions.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For simple tasks requiring a timing mechanism, consider using [`NSTimer`](https://developer.apple.com/documentation/foundation/timer).
+    ///
+    ///
+    ///
+    /// </div>
+    /// [`NSAnimation`](https://developer.apple.com/documentation/appkit/nsanimation) objects have several characteristics, including duration, frame rate, and animation curve, which describes the relative speed of the animation over its course. You can set progress marks in an animation, each of which specifies a percentage of the animation completed; when an animation reaches a progress mark, it notifies its delegate and posts a notification to any observers. Animations execute in one of three blocking modes: blocking, non-blocking on the main thread, and non-blocking on a separate thread. The non-blocking modes permit the handling of user events while the animation is running.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// The usual usage pattern for `NSAnimation` is to make a subclass that overrides (at least) the [`currentProgress`](https://developer.apple.com/documentation/appkit/nsanimation/currentprogress) property to invoke the superclass implementation and then perform whatever animation action is needed. The method implementation might use the [`currentValue`](https://developer.apple.com/documentation/appkit/nsanimation/currentvalue) property and then use that value to update some drawing; as a consequence of getting the current value, the method [`animation:valueForProgress:`](https://developer.apple.com/documentation/appkit/nsanimationdelegate/animation(_:valueforprogress:)) is sent to the delegate (if there is a delegate that implements the method). For more information on subclassing `NSAnimation`, see [Animation Programming Guide for Cocoa](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/AnimationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003592).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAnimation;
@@ -261,7 +322,7 @@ impl DefaultRetained for NSAnimation {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationdelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSAnimation`](https://developer.apple.com/documentation/appkit/nsanimation) objects.
     pub unsafe trait NSAnimationDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(animationShouldStart:))]
@@ -298,46 +359,78 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key?language=objc)
+/// The following string constants are keys for the dictionaries in the array passed into [`initWithViewAnimations:`](https://developer.apple.com/documentation/appkit/nsviewanimation/init(viewanimations:)) and [`viewAnimations`](https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations).
 // NS_TYPED_ENUM
 pub type NSViewAnimationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/target?language=objc)
+    /// The target of the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The target can be either an [`NSView`](https://developer.apple.com/documentation/appkit/nsview) object or an [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow) object. This property is required.
+    ///
+    ///
     pub static NSViewAnimationTargetKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/startframe?language=objc)
+    /// The size and location of the window or view at the start of the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The size and location are specified by an [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structure encoded in an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object. This property is optional. If it is not specified, `NSViewAnimation` uses the frame of the window or view at the start of the animation.
+    ///
+    ///
     pub static NSViewAnimationStartFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/endframe?language=objc)
+    /// The size and location of the window or view at the end of the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The size and location are specified by an [`NSRect`](https://developer.apple.com/documentation/foundation/nsrect) structure encoded in an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object. This property is optional. If it is not specified, `NSViewAnimation` uses the frame of the window or view at the start of the animation. If the target is a view and the end frame is empty, the view is hidden at the end.
+    ///
+    ///
     pub static NSViewAnimationEndFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/effect?language=objc)
+    /// An effect to apply to the animation.
+    ///
+    /// ## Discussion
+    ///
+    /// Takes a string constant specifying fade-in or fade-out effects for the target: `NSViewAnimationFadeInEffect` and `NSViewAnimationFadeOutEffect`. If the target is a view and the effect is to fade out, the view is hidden at the end. If the effect is to fade in an initially hidden view and the end frame is non-empty, the view is unhidden at the end. If the target is a window, the window is ordered in or out as appropriate to the effect. This property is optional.
+    ///
+    ///
     pub static NSViewAnimationEffectKey: &'static NSViewAnimationKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname?language=objc)
+/// The following constants specify the animation effect to apply and are used as values for the animation effect property of the animation view. See the description of [`NSViewAnimationEffectKey`](https://developer.apple.com/documentation/appkit/nsviewanimation/key/effect) for usage details.
 // NS_TYPED_ENUM
 pub type NSViewAnimationEffectName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname/fadein?language=objc)
+    /// Specifies a fade-in type of effect.
     pub static NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname/fadeout?language=objc)
+    /// Specifies a fade-out type of effect.
     pub static NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation?language=objc)
+    /// An animation of an app’s views, limited to changes in frame location and size, and to fade-in and fade-out effects.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSViewAnimation`](https://developer.apple.com/documentation/appkit/nsviewanimation) object takes an array of dictionaries from which it determines the objects to animate and the effects to apply to them. Each dictionary must have a target object and, optionally, properties that specify beginning and ending frame and whether to fade in or fade out. (See [`NSViewAnimationKey`](https://developer.apple.com/documentation/appkit/nsviewanimation/key) for further information.) Animations with [`NSViewAnimation`](https://developer.apple.com/documentation/appkit/nsviewanimation) are, by default, in non-blocking mode over a duration of 0.5 seconds using the ease in-out animation curve. But you can configure the animation to have any duration, curve, frame rate, and blocking mode. You may also set progress marks, assign a delegate, and implement delegation methods in order to animate view and windows concurrent with the ones specified as targets in the view-animation dictionary.
+    ///
+    /// Invoking the [`NSAnimation`](https://developer.apple.com/documentation/appkit/nsanimation) [`stopAnimation`](https://developer.apple.com/documentation/appkit/nsanimation/stop()) method on a running [`NSViewAnimation`](https://developer.apple.com/documentation/appkit/nsviewanimation) object moves the animation to the end frame.
+    ///
+    ///
     #[unsafe(super(NSAnimation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSViewAnimation;
@@ -436,11 +529,20 @@ impl DefaultRetained for NSViewAnimation {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatablepropertykey?language=objc)
 pub type NSAnimatablePropertyKey = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatablepropertycontainer?language=objc)
+    /// A set of methods that defines a way to add animation to an existing class with a minimum of API impact.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSAnimatablePropertyContainer`](https://developer.apple.com/documentation/appkit/nsanimatablepropertycontainer) protocol returns a proxy object for the receiver that can be used to initiate implied animation of property changes. An object’s animator proxy should be treated as if it was the object itself, and may be passed to any code that accepts the object as a parameter. Sending of key-value-coding compliant “set” messages to the proxy will trigger animation for automatically animated properties of its target object.
+    ///
+    /// An object’s automatically animated properties are those for which [`NSAnimatablePropertyContainer`](https://developer.apple.com/documentation/appkit/nsanimatablepropertycontainer) finds and returns a [`CAAnimation`](https://developer.apple.com/documentation/quartzcore/caanimation) object instead of `nil`, often because [`animator`](https://developer.apple.com/documentation/appkit/nsanimatablepropertycontainer/animator()) specifies a default animation for the key.
+    ///
+    /// It’s perfectly valid to set a new value for a property for which an animation that is currently in progress; this simply sets a new target value for that property, with animation to the new target proceeding from whatever current value the property has reached. An in-flight property animation can be stopped by setting a new value for the property bracketed by an [`NSAnimationContext`](https://developer.apple.com/documentation/appkit/nsanimationcontext) with 0.0 as the duration.
+    ///
+    ///
     pub unsafe trait NSAnimatablePropertyContainer {
         #[unsafe(method(animator))]
         #[unsafe(method_family = none)]
@@ -475,11 +577,21 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationtriggerorderin?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that references the transition animation used when a view becomes visible, either as a result of being inserted into the visible view hierarchy or as a result of the view no longer being set as hidden .
+    ///
+    ///
     pub static NSAnimationTriggerOrderIn: &'static NSAnimatablePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationtriggerorderout?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The key that references the transition animation used when a view is no longer visible, either as a result of being removed from the visible view hierarchy or as a result of the view set as hidden.
+    ///
+    ///
     pub static NSAnimationTriggerOrderOut: &'static NSAnimatablePropertyKey;
 }

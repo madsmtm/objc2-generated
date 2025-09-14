@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritem?language=objc)
+    /// A bar item that, along with its delegate, provides a list of objects eligible for sharing.
     #[unsafe(super(NSTouchBarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSTouchBarItem")]
@@ -117,7 +117,7 @@ impl NSSharingServicePickerTouchBarItem {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepickertouchbaritemdelegate?language=objc)
+    /// A protocol that a sharing service picker item delegate uses to provide a list of items eligible for sharing.
     #[cfg(feature = "NSSharingService")]
     pub unsafe trait NSSharingServicePickerTouchBarItemDelegate:
         NSSharingServicePickerDelegate + MainThreadOnly

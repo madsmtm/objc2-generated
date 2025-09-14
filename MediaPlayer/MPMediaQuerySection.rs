@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaquerysection?language=objc)
+    /// A range of media items or media item collections from within a media query.
+    ///
+    /// ## Overview
+    ///
+    /// You can use sections when displaying a query’s items or collections in your app’s user interface. You obtain an array of media query sections by using the [`itemSections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/itemsections) or [`collectionSections`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery/collectionsections) properties of a media query (an instance of the [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery) class). The property values of a media query section are read-only.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaQuerySection;

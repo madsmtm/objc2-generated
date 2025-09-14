@@ -15,7 +15,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skvideonode?language=objc)
+    /// A graphical element that plays video content.
+    ///
+    /// ## Overview
+    ///
+    /// This class renders a video at a given size and location in your scene with no exposed player controls.
+    ///
+    ///
     #[unsafe(super(SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "SKNode", feature = "objc2-app-kit"))]

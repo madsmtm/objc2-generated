@@ -4,22 +4,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype?language=objc)
+/// Constants indicating the type of date-based search to perform.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDateSearchType(pub NSInteger);
 impl INDateSearchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype/unknown?language=objc)
+    /// An unknown search type.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, don’t consider date values as part of your search criteria.
+    ///
+    ///
     #[doc(alias = "INDateSearchTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype/byduedate?language=objc)
+    /// A search type that requires matching the due date of a reminder to the specified value.
     #[doc(alias = "INDateSearchTypeByDueDate")]
     pub const ByDueDate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype/bymodifieddate?language=objc)
+    /// A search type that requires matching the modification date of a note.
     #[doc(alias = "INDateSearchTypeByModifiedDate")]
     pub const ByModifiedDate: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indatesearchtype/bycreateddate?language=objc)
+    /// A search type that requires matching the creation date of a note.
     #[doc(alias = "INDateSearchTypeByCreatedDate")]
     pub const ByCreatedDate: Self = Self(3);
 }

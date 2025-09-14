@@ -6,14 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A representation of either a source or destination connection point in the audio engine.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of this class are immutable.
+    ///
+    ///
     /// A representation of either a source or destination connection point in AVAudioEngine.
     ///
     /// AVAudioConnectionPoint describes either a source or destination connection point (node, bus)
     /// in AVAudioEngine's graph.
     ///
     /// Instances of this class are immutable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconnectionpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioConnectionPoint;

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyassertioncredential?language=objc)
+    /// A passkey assertion credential.
+    ///
+    /// ## Overview
+    ///
+    /// Create a passkey assertion credential to provide a response to a passkey authentication challenge from your credential provider extension. Call [`completeAssertionRequestWithSelectedPasskeyCredential:completionHandler:`](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderextensioncontext/completeassertionrequest(using:completionhandler:)), passing your passkey assertion credential.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyAssertionCredential;

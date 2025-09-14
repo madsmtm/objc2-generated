@@ -23,75 +23,169 @@ unsafe impl RefEncode for OpaqueExtAudioFile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueExtAudioFile", &[]));
 }
 
+/// An opaque structure representing an extended audio file object.
 /// An extended audio file object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileref?language=objc)
 pub type ExtAudioFileRef = *mut OpaqueExtAudioFile;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilepackettableinfooverride?language=objc)
 pub type ExtAudioFilePacketTableInfoOverride = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofilepackettableinfooverride_usefilevalue?language=objc)
 pub const kExtAudioFilePacketTableInfoOverride_UseFileValue: ExtAudioFilePacketTableInfoOverride =
     -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofilepackettableinfooverride_usefilevalueifvalid?language=objc)
 pub const kExtAudioFilePacketTableInfoOverride_UseFileValueIfValid:
     ExtAudioFilePacketTableInfoOverride = -2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilepropertyid?language=objc)
+/// An audio file object property identifier.
 pub type ExtAudioFilePropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filedataformat?language=objc)
+/// A file’s data format.
+///
+/// ## Discussion
+///
+/// A file’s data format. Value is a read-only [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) struct.
+///
+///
 pub const kExtAudioFileProperty_FileDataFormat: ExtAudioFilePropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filechannellayout?language=objc)
+/// A file’s channel layout.
+///
+/// ## Discussion
+///
+/// A file’s channel layout. Value is a read/write [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout) struct.
+///
+/// ## Discussion
+///
+/// When writing, the channel layout is written to the file, if the format specified in the `kExtAudioFileProperty_FileDataFormat` property supports the layout. If the format does not support the layout, the channel layout is still interpreted as the destination layout when performing conversion from the client channel layout, if any.
+///
+/// When reading, the specified layout overrides the one read from the file, if one is present in the file.
+///
+/// You must set this property before setting the application audio data format or application channel layout in the extended audio file object.
+///
+///
 pub const kExtAudioFileProperty_FileChannelLayout: ExtAudioFilePropertyID = 0x66636c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientdataformat?language=objc)
+/// The audio stream format for your application.
+///
+/// ## Discussion
+///
+/// The audio stream format for your application. Value is a read/write [`AudioStreamBasicDescription`](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription) struct.
+///
+/// ## Discussion
+///
+/// The format must be linear PCM (specified by the `kAudioFormatLinearPCM` constant from the `CoreAudioTypes.h` header file). You must set this property to allow encoding or decoding of a non-PCM file data format. You can set this property on PCM files to specify the data format to use in your read and write calls.
+///
+///
 pub const kExtAudioFileProperty_ClientDataFormat: ExtAudioFilePropertyID = 0x63666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientchannellayout?language=objc)
+/// The audio channel layout for your application.
+///
+/// ## Discussion
+///
+/// The audio channel layout for your application. Value is a read/write [`AudioChannelLayout`](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout) struct.
+///
+/// ## Discussion
+///
+/// This property’s value specifies the channel layout of the buffers in an `AudioBufferList` list that you pass to the [`ExtAudioFileRead`](https://developer.apple.com/documentation/audiotoolbox/extaudiofileread(_:_:_:)) and [`ExtAudioFileWrite`](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewrite(_:_:_:)) functions. This layout may be different from the file’s channel layout, in which case the extended audio file object’s underlying audio converter performs remapping. This property must be set after setting the `kExtAudioFileProperty_ClientDataFormat` property, and the number of channels in the two layouts must match.
+///
+///
 pub const kExtAudioFileProperty_ClientChannelLayout: ExtAudioFilePropertyID = 0x63636c6f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_codecmanufacturer?language=objc)
+/// The manufacturer of the codec to be used by the extended audio file object. Value is a read/write `UInt32`.
+///
+/// ## Discussion
+///
+/// You must specify this property before setting the [`kExtAudioFileProperty_ClientDataFormat`](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientdataformat) property, which in turn triggers the creation of the codec. Use this property in iOS to choose between a hardware or software encoder, by specifying [`kAppleHardwareAudioCodecManufacturer`](https://developer.apple.com/documentation/audiotoolbox/kapplehardwareaudiocodecmanufacturer) or [`kAppleSoftwareAudioCodecManufacturer`](https://developer.apple.com/documentation/audiotoolbox/kapplesoftwareaudiocodecmanufacturer).
+///
+///
 pub const kExtAudioFileProperty_CodecManufacturer: ExtAudioFilePropertyID = 0x636d616e;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audioconverter?language=objc)
+/// The audio converter object associated with the extended audio file object, if a converter is associated.
+///
+/// ## Discussion
+///
+/// The value is a read-only [`AudioConverterRef`](https://developer.apple.com/documentation/audiotoolbox/audioconverterref) object.
+///
+/// ## Discussion
+///
+/// If you alter any properties of the converter—the bit rate, for instance—you must then set the `kExtAudioFileProperty_ConverterConfig` property. When you do so, using a `NULL` configuration is sufficient. Setting that property ensure that the output file’s data format is consistent with the format being produced by the converter.
+///
+///
 pub const kExtAudioFileProperty_AudioConverter: ExtAudioFilePropertyID = 0x61636e76;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_audiofile?language=objc)
+/// The audio file object associated with the extended audio file object.
+///
+/// ## Discussion
+///
+/// The value is a read-only [`AudioFileID`](https://developer.apple.com/documentation/audiotoolbox/audiofileid) object.
+///
+///
 pub const kExtAudioFileProperty_AudioFile: ExtAudioFilePropertyID = 0x6166696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filemaxpacketsize?language=objc)
+/// The file data format’s maximum packet size, in bytes. Value is a read-only `UInt32`.
 pub const kExtAudioFileProperty_FileMaxPacketSize: ExtAudioFilePropertyID = 0x666d7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_clientmaxpacketsize?language=objc)
+/// Your application audio data format’s maximum packet size, in bytes. Value is a read-only `UInt32`.
 pub const kExtAudioFileProperty_ClientMaxPacketSize: ExtAudioFilePropertyID = 0x636d7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_filelengthframes?language=objc)
+/// The associated audio file’s length in sample frames. Value is an `SInt64`. For a PCM file, the value is read/write. For a non-PCM file, the value is read-only.
 pub const kExtAudioFileProperty_FileLengthFrames: ExtAudioFilePropertyID = 0x2366726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_converterconfig?language=objc)
+/// The configuration of the extended audio file object’s associated audio converter, as specified by the `kAudioConverterPropertySettings` property. Value is a read/write `CFArray` object.
+///
+/// ## Discussion
+///
+/// Set this property’s value to `NULL` to force resynchronization of the converter’s output format with the file’s data format.
+///
+///
 pub const kExtAudioFileProperty_ConverterConfig: ExtAudioFilePropertyID = 0x61636366;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffersizebytes?language=objc)
+/// The size of the buffer that the extended audio file object’s associated audio converter uses to read or write the associated audio file. Value is a read/write `UInt32`.
+///
+/// ## Discussion
+///
+/// This property has a value only when there is an underlying audio converter object present.
+///
+///
 pub const kExtAudioFileProperty_IOBufferSizeBytes: ExtAudioFilePropertyID = 0x696f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_iobuffer?language=objc)
+/// An audio data buffer. Value is a read/write `void*` value.
+///
+/// ## Discussion
+///
+/// This property’s value points to the memory that the extended audio file object uses for disk I/O when converting between the application and file data formats. You may want your application to share this memory among multiple extended audio file objects. If so, you can set this property to point to a buffer you specify—pass a pointer to a pointer when calling the `ExtAudioFileSetProperty` function. After setting this property, your application must then set the `kExtAudioFileProperty_IOBufferSizeBytes` property.
+///
+///
 pub const kExtAudioFileProperty_IOBuffer: ExtAudioFilePropertyID = 0x696f6266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileproperty_packettable?language=objc)
+/// This property can be used to override the priming and remainder information in an audio file, and also to retrieve the current priming and remainder frames information for an extended audio file object. If the underlying file type does not provide packet table information, attempting to get the value of this property returns an error.
+///
+/// ## Discussion
+///
+/// By setting this property with a nonnegative number (which may be the value `0`), you override the corresponding settings for the values contained in the file. If you use a value of `-1` for either the priming or remainder frames, the extended audio file object uses the corresponding value stored in the file.
+///
+/// Retrieving the value of this property always retrieves the value the extended audio file object is using, whether derived from the file or from your override.
+///
+/// To determine the value in the file, use the [`kAudioFilePropertyPacketTableInfo`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettableinfo) property as described in [Audio File Services](https://developer.apple.com/documentation/audiotoolbox/audio-file-services).
+///
+/// When the property is set, only the remaining and priming values are used. Set the `mNumberValidFrames` field of the [`AudioFilePacketTableInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilepackettableinfo) struct to zero. For example, a file encoded using AAC may have 2112 samples of priming at the start of the file and a remainder of 823 samples at the end. When an extended audio file object returns decoded samples to you, it trims off the  at the start of the file, and trims off the  at the end. It gets these numbers initially from the file. A common use case for overriding this would be to set the priming and remainder samples to `0`. In this example, you would retrieve an additional 2112 samples of silence from the start of the file and 823 samples of silence at the end of the file (silence, because the encoders use silence to pad out these priming and remainder samples).
+///
+///
 pub const kExtAudioFileProperty_PacketTable: ExtAudioFilePropertyID = 0x78707469;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidproperty?language=objc)
 pub const kExtAudioFileError_InvalidProperty: OSStatus = -66561;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidpropertysize?language=objc)
 pub const kExtAudioFileError_InvalidPropertySize: OSStatus = -66562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_nonpcmclientformat?language=objc)
 pub const kExtAudioFileError_NonPCMClientFormat: OSStatus = -66563;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidchannelmap?language=objc)
+/// The number of channels does not match the specified format.
 pub const kExtAudioFileError_InvalidChannelMap: OSStatus = -66564;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidoperationorder?language=objc)
 pub const kExtAudioFileError_InvalidOperationOrder: OSStatus = -66565;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invaliddataformat?language=objc)
 pub const kExtAudioFileError_InvalidDataFormat: OSStatus = -66566;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_maxpacketsizeunknown?language=objc)
 pub const kExtAudioFileError_MaxPacketSizeUnknown: OSStatus = -66567;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_invalidseek?language=objc)
+/// An attempt to write, or an offset, is out of bounds.
 pub const kExtAudioFileError_InvalidSeek: OSStatus = -66568;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_asyncwritetoolarge?language=objc)
 pub const kExtAudioFileError_AsyncWriteTooLarge: OSStatus = -66569;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kextaudiofileerror_asyncwritebufferoverflow?language=objc)
+/// An asynchronous write operation could not be completed in time.
 pub const kExtAudioFileError_AsyncWriteBufferOverflow: OSStatus = -66570;
 
 extern "C-unwind" {
+    /// Opens an existing audio file for reading, and associates it with a new extended audio file object.
+    ///
+    /// Parameters:
+    /// - inURL: The audio file to read.
+    ///
+    /// - outExtAudioFile: On output, a newly allocated extended audio file object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Opens an audio file specified by a CFURLRef.
     ///
     /// Parameter `inURL`: The audio file to read.
@@ -106,8 +200,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_ext_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileopenurl(_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn ExtAudioFileOpenURL(
         in_url: &CFURL,
@@ -115,6 +207,27 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Wraps an audio file object in an extended audio file object.
+///
+/// Parameters:
+/// - inFileID: The audio file object to wrap.
+///
+/// - inForWriting: Use `true` if you intend to write to the audio file, `false` otherwise.
+///
+/// - outExtAudioFile: On output, a newly allocated extended audio file object.
+///
+///
+/// ## Return Value
+///
+/// A result code.
+///
+///
+///
+/// ## Discussion
+///
+/// Allocates a new extended audio file object that wraps an existing audio file object. Your application is responsible for keeping the audio file object open until the extended audio file object is disposed.
+///
+///
 /// Wrap an AudioFileID in an ExtAudioFileRef.
 ///
 /// Parameter `inFileID`: The AudioFileID to wrap.
@@ -136,8 +249,6 @@ extern "C-unwind" {
 ///
 /// - `in_file_id` must be a valid pointer.
 /// - `out_ext_audio_file` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewrapaudiofileid(_:_:_:)?language=objc)
 #[cfg(feature = "AudioFile")]
 #[inline]
 pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
@@ -156,6 +267,33 @@ pub unsafe extern "C-unwind" fn ExtAudioFileWrapAudioFileID(
 }
 
 extern "C-unwind" {
+    /// Creates a new audio file and associates it with a new extended audio file object.
+    ///
+    /// Parameters:
+    /// - inURL: The URL of the new audio file.
+    ///
+    /// - inFileType: The type of file to create, specified as a constant from the [`AudioFileTypeID`](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeid) enumeration.
+    ///
+    /// - inStreamDesc: The format of the audio data to be written to the file.
+    ///
+    /// - inChannelLayout: The channel layout of the audio data. If non-null, this must be consistent with the number of channels specified by the `inStreamDesc` parameter.
+    ///
+    /// - inFlags: Flags for creating or opening the file. If the [`kAudioFileFlags_EraseFile`](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/erasefile) flag is set, it erases an existing file. If the flag is not set, the function fails fails if the URL points to an existing file.
+    ///
+    /// - outExtAudioFile: On output, a newly allocated extended audio file object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the file to be created is in a compressed format, you may set the sample rate in the `inStreamDesc` parameter to `0`. In all cases, the extended file object’s encoding converter may produce audio at a different sample rate than the source. The file will be created with the audio format produced by the encoder.
+    ///
+    ///
     /// Create a new audio file.
     ///
     /// Parameter `inURL`: The URL of the new audio file.
@@ -188,8 +326,6 @@ extern "C-unwind" {
     /// - `in_stream_desc` must be a valid pointer.
     /// - `in_channel_layout` must be a valid pointer or null.
     /// - `out_ext_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilecreatewithurl(_:_:_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AudioFile",
         feature = "objc2-core-audio-types",
@@ -206,6 +342,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of an extended audio file object and closes the associated file.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object to close.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Close the file and dispose the object.
     ///
     /// Parameter `inExtAudioFile`: The extended audio file object.
@@ -218,12 +365,33 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ext_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofiledispose(_:)?language=objc)
     pub fn ExtAudioFileDispose(in_ext_audio_file: ExtAudioFileRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Performs a synchronous, sequential read operation on an audio file.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object that represents the file you want to read.
+    ///
+    /// - ioNumberFrames: On input, the number of frames to read from the file. On output, the number of frames actually read. Fewer frames may be read than were requested. For example, the supplied buffers may not be large enough to accommodate the requested data. If `0` frames are returned, end-of-file was reached.
+    ///
+    /// - ioData: One or more buffers into which the audio data is read.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the extended audio file object has an application data format, then the object’s converter converts the file data to the application format.
+    ///
+    /// This function works only on a single thread. If you want your application to read an audio file on multiple threads, use Audio File Services instead.
+    ///
+    ///
     /// Perform a synchronous sequential read.
     ///
     ///
@@ -253,8 +421,6 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_number_frames` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileread(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileRead(
         in_ext_audio_file: ExtAudioFileRef,
@@ -264,6 +430,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Performs a synchronous, sequential write operation on an audio file.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object that represents the file to write to.
+    ///
+    /// - inNumberFrames: The number of frames to write.
+    ///
+    /// - ioData: The buffer(s) from which audio data is written to the file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the extended audio file object has an application data format, then the object’s converter converts the data in the `ioData` parameter to the file data format.
+    ///
+    ///
     /// Perform a synchronous sequential write.
     ///
     ///
@@ -284,8 +471,6 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewrite(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWrite(
         in_ext_audio_file: ExtAudioFileRef,
@@ -295,6 +480,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Perform an asynchronous, sequential write operation on an audio file.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object that represents the file you want to write to.
+    ///
+    /// - inNumberFrames: The number of frames to write.
+    ///
+    /// - ioData: The buffer(s) from which audio data is written to the file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Writes the provided buffer list to an internal ring buffer and notifies an internal thread to perform the write at a later time. The first time this function is called, allocations may be performed. You can call this function with `0` frames and a `NULL` buffer in a non-time-critical context to initialize the asynchronous mechanism. Once initialized, subsequent calls are very efficient and do not take locks. This technique may be used to write to a file from a realtime thread.
+    ///
+    /// Your application must not mix synchronous and asynchronous writes to the same file.
+    ///
+    /// Pending writes are not guaranteed to be flushed to disk until the [`ExtAudioFileDispose`](https://developer.apple.com/documentation/audiotoolbox/extaudiofiledispose(_:)) function is called.
+    ///
+    /// Errors may occur after this call has returned. Such errors may be returned from subsequent calls to this function.
+    ///
+    ///
     /// Perform an asynchronous sequential write.
     ///
     ///
@@ -326,8 +538,6 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilewriteasync(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn ExtAudioFileWriteAsync(
         in_ext_audio_file: ExtAudioFileRef,
@@ -337,6 +547,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Seeks to a specified frame in a file.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object that represents the file you are working with.
+    ///
+    /// - inFrameOffset: The desired seek position, in sample frames, relative to the beginning of the file. Seek position is specified in the sample rate and frame count of the file’s audio data format—not your application’s audio data format.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sets the file’s read position to the specified sample frame number. A subsequent call to the [`ExtAudioFileRead`](https://developer.apple.com/documentation/audiotoolbox/extaudiofileread(_:_:_:)) function returns samples from precisely this location, even if it is located in the middle of a packet.
+    ///
+    /// Ensure that the file you are seeking in is open for reading only. This function’s behavior with files open for writing is undefined.
+    ///
+    ///
     /// Seek to a specific frame position.
     ///
     ///
@@ -358,12 +589,23 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_ext_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofileseek(_:_:)?language=objc)
     pub fn ExtAudioFileSeek(in_ext_audio_file: ExtAudioFileRef, in_frame_offset: i64) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets an audio file’s read/write position.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object that represents the file you are working with.
+    ///
+    /// - outFrameOffset: On output, the file’s current read/write position in sample frames. Read/write position is specified in the sample rate and frame count of the file’s audio data format—not your application’s audio data format.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Return the file's read/write position.
     ///
     ///
@@ -378,8 +620,6 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `out_frame_offset` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofiletell(_:_:)?language=objc)
     pub fn ExtAudioFileTell(
         in_ext_audio_file: ExtAudioFileRef,
         out_frame_offset: NonNull<i64>,
@@ -387,6 +627,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets information about an extended audio file object property.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object to get property information from.
+    ///
+    /// - inPropertyID: The property you want information about.
+    ///
+    /// - outSize: On output, the size of the property value in bytes. Can be `NULL` on output.
+    ///
+    /// - outWritable: On output, a Boolean value indicating whether the property value is writable (`true` means writable). Can be `NULL` on output.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Get information about a property
     ///
     ///
@@ -405,8 +662,6 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilegetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileGetPropertyInfo(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -416,6 +671,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a property value from an extended audio file object.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object to get a property value from.
+    ///
+    /// - inPropertyID: The property whose value you want.
+    ///
+    /// - ioPropertyDataSize: On input, the size of the memory pointed to by the `outPropertyData` parameter. On output, the size of the property value.
+    ///
+    /// - outPropertyData: On output, the property value you wanted to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Get a property value.
     ///
     ///
@@ -435,8 +715,6 @@ extern "C-unwind" {
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilegetproperty(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileGetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,
@@ -446,6 +724,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a property value for an extended audio file object.
+    ///
+    /// Parameters:
+    /// - inExtAudioFile: The extended audio file object to set a property value on.
+    ///
+    /// - inPropertyID: The property whose value you want to set.
+    ///
+    /// - inPropertyDataSize: The size of the property value, in bytes.
+    ///
+    /// - inPropertyData: The value you want to apply to the specified property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Set a property value.
     ///
     ///
@@ -463,8 +758,6 @@ extern "C-unwind" {
     ///
     /// - `in_ext_audio_file` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extaudiofilesetproperty(_:_:_:_:)?language=objc)
     pub fn ExtAudioFileSetProperty(
         in_ext_audio_file: ExtAudioFileRef,
         in_property_id: ExtAudioFilePropertyID,

@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class that represents a message conversation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext?language=objc)
+    /// A class that represents a message conversation.
     #[unsafe(super(UIConversationContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationContext")]

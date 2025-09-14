@@ -12,6 +12,7 @@ use objc2_core_media::*;
 
 use crate::*;
 
+/// An object that stores a large number of sample buffers, as produced by a multipass compression session.
 /// A VTFrameSilo stores a large number of sample buffers, as produced by a multi-pass compression session.
 ///
 /// The sample buffers are ordered by decode timestamp.
@@ -22,8 +23,6 @@ use crate::*;
 /// Call VTFrameSiloCallFunctionForEachSampleBuffer or VTFrameSiloCallBlockForEachSampleBuffer to retrieve sample buffers.
 /// The VTFrameSilo may write sample buffers and data to the backing file between addition and retrieval;
 /// do not expect to get identical object pointers back.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilo?language=objc)
 #[doc(alias = "VTFrameSiloRef")]
 #[repr(C)]
 pub struct VTFrameSilo {
@@ -40,7 +39,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTFrameSilo {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilogettypeid()?language=objc)
+    /// Retrieves the Core Foundation type identifier for the frame silo object.
+    ///
+    /// ## Return Value
+    ///
+    /// The `CFTypeID` of the frame silo object.
+    ///
+    ///
     #[doc(alias = "VTFrameSiloGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -52,6 +57,27 @@ unsafe impl ConcreteType for VTFrameSilo {
 }
 
 impl VTFrameSilo {
+    /// Creates a frame silo object using a temporary file.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the frame silo.  Pass `NULL` to use the default allocator.
+    ///
+    /// - fileURL: The URL of the backing file for the `VTFrameSilo` object. If you pass `NULL` for `fileURL`, VideoToolbox will pick a unique temporary file name.
+    ///
+    /// - timeRange: The valid time range for the frame silo. Must be valid for progress reporting.
+    ///
+    /// - options: Reserved, pass `NULL`.
+    ///
+    /// - frameSiloOut: Points to a [`VTFrameSiloRef`](https://developer.apple.com/documentation/videotoolbox/vtframesilo) to receive the newly created object. Call `CFRelease` to release your retain on the created VTFrameSilo object when you are done with it.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the returned frame silo object to gather frames produced by multipass encoding.
+    ///
+    /// Call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release the frame silo object when you are done with it.
+    ///
+    ///
     /// Creates a VTFrameSilo object using a temporary file.
     ///
     /// The returned VTFrameSilo object may be used to gather frames produced by multi-pass encoding.
@@ -71,8 +97,6 @@ impl VTFrameSilo {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `frame_silo_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocreate(allocator:fileurl:timerange:options:framesiloout:)?language=objc)
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -95,6 +119,27 @@ impl VTFrameSilo {
         unsafe { VTFrameSiloCreate(allocator, file_url, time_range, options, frame_silo_out) }
     }
 
+    /// Adds a sample buffer to a frame silo object.
+    ///
+    /// Parameters:
+    /// - silo: The frame silo object.
+    ///
+    /// - sampleBuffer: The sample buffer to add to the frame silo.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kVTFrameSiloInvalidTimeRangeErr` if an attempt is made to add a sample buffer with an inappropriate decode timestamp.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Within each pass, sample buffers must have strictly increasing decode timestamps. Passes after the first pass begin with a call to [`VTFrameSiloSetTimeRangesForNextPass`](https://developer.apple.com/documentation/videotoolbox/vtframesilosettimerangesfornextpass(_:timerangecount:timerangearray:)).
+    ///
+    /// After a call to [`VTFrameSiloSetTimeRangesForNextPass`](https://developer.apple.com/documentation/videotoolbox/vtframesilosettimerangesfornextpass(_:timerangecount:timerangearray:)), sample buffer decode timestamps must also be within the stated time ranges. Note that time ranges are considered to contain their start times but not their end times.
+    ///
+    ///
     /// Adds a sample buffer to a VTFrameSilo object.
     ///
     /// Within each pass, sample buffers must have strictly increasing decode timestamps.
@@ -104,8 +149,6 @@ impl VTFrameSilo {
     /// Note that CMTimeRanges are considered to contain their start times but not their end times.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeStampErr if an attempt is made to add a sample buffer with an inappropriate decode timestamp.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesiloaddsamplebuffer(_:samplebuffer:)?language=objc)
     #[doc(alias = "VTFrameSiloAddSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -119,6 +162,35 @@ impl VTFrameSilo {
         unsafe { VTFrameSiloAddSampleBuffer(self, sample_buffer) }
     }
 
+    /// Begins a new pass of samples to be added to a frame silo object.
+    ///
+    /// Parameters:
+    /// - silo: The frame silo object.
+    ///
+    /// - timeRangeCount: The count of time ranges in `timeRangeArray`.
+    ///
+    /// - timeRangeArray: The array of `CMTimeRange` structs.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kVTFrameSiloInvalidTimeRangeErr` if any time ranges are non-numeric, overlap, or are not in ascending order.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Previously added sample buffers with decode timestamps within the time ranges are deleted from the frame silo object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It’s not necessary to call this function before adding sample buffers for the first pass.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Begins a new pass of samples to be added to a VTFrameSilo object.
     ///
     /// Previously-added sample buffers with decode timestamps within the time ranges will be deleted from the VTFrameSilo.
@@ -129,8 +201,6 @@ impl VTFrameSilo {
     /// # Safety
     ///
     /// `time_range_array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilosettimerangesfornextpass(_:timerangecount:timerangearray:)?language=objc)
     #[doc(alias = "VTFrameSiloSetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -151,6 +221,25 @@ impl VTFrameSilo {
 
     /// Gets the progress of the current pass.
     ///
+    /// Parameters:
+    /// - silo: The frame silo object.
+    ///
+    /// - progressOut: Upon return, contains the progress of the current pass.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kVTFrameSiloInvalidTimeRangeErr` if any time ranges are non-numeric, overlap or are not in ascending order.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
+    ///
+    ///
+    /// Gets the progress of the current pass.
+    ///
     /// Calculates the current progress based on the most recent sample buffer added and the current pass time ranges.
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
@@ -158,8 +247,6 @@ impl VTFrameSilo {
     /// # Safety
     ///
     /// `progress_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilogetprogressofcurrentpass(_:progressout:)?language=objc)
     #[doc(alias = "VTFrameSiloGetProgressOfCurrentPass")]
     #[inline]
     pub unsafe fn progress_of_current_pass(&self, progress_out: NonNull<f32>) -> OSStatus {
@@ -172,6 +259,29 @@ impl VTFrameSilo {
         unsafe { VTFrameSiloGetProgressOfCurrentPass(self, progress_out) }
     }
 
+    /// Retrieves sample buffers from a frame silo object.
+    ///
+    /// Parameters:
+    /// - silo: The frame silo object.
+    ///
+    /// - timeRange: The decode time range of the sample buffers to retrieve. Pass `kCMTimeRangeInvalid` to retrieve all sample buffers from the `VTFrameSilo.`
+    ///
+    /// - refcon: A reference value.
+    ///
+    /// - callback: A function to be called, in decode order, with each sample buffer that was added. To abort iteration early, return a nonzero status. The `VTFrameSilo` object may write sample buffers and data to the backing file between addition and retrieval;  do not expect to get identical object pointers back.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kVTFrameSiloInvalidTimeRangeErr` if any time ranges are non-numeric, overlap, or are not in ascending order. Returns any nonzero status returned by the callback function.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You call this function to retrieve sample buffers at the end of a multipass compression session.
+    ///
+    ///
     /// Retrieves sample buffers from a VTFrameSilo object.
     ///
     /// You call this function to retrieve sample buffers at the end of a multi-pass compression session.
@@ -191,8 +301,6 @@ impl VTFrameSilo {
     ///
     /// - `refcon` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocallfunctionforeachsamplebuffer(_:in:refcon:callback:)?language=objc)
     #[doc(alias = "VTFrameSiloCallFunctionForEachSampleBuffer")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -216,6 +324,27 @@ impl VTFrameSilo {
         unsafe { VTFrameSiloCallFunctionForEachSampleBuffer(self, time_range, refcon, callback) }
     }
 
+    /// Retrieves sample buffers from a frame silo object.
+    ///
+    /// Parameters:
+    /// - silo: The frame silo object.
+    ///
+    /// - timeRange: The decode time range of sample buffers to retrieve. Pass `kCMTimeRangeInvalid` to retrieve all sample buffers from the `VTFrameSilo`.
+    ///
+    /// - handler: A block to be called, in decode order, with each sample buffer that was added. To abort iteration early, return a nonzero status. The `VTFrameSilo` object may write sample buffers and data to the backing file between addition and retrieval;  do not expect to get identical object pointers back.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `kVTFrameSiloInvalidTimeRangeErr` if any time ranges are non-numeric, overlap, or are not in ascending order. Returns any nonzero status returned by the handler block.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You call this function to retrieve sample buffers at the end of a multipass compression session.
+    ///
+    ///
     /// Retrieves sample buffers from a VTFrameSilo object.
     ///
     /// You call this function to retrieve sample buffers at the end of a multi-pass compression session.
@@ -230,8 +359,6 @@ impl VTFrameSilo {
     ///
     /// Returns: Returns kVTFrameSiloInvalidTimeRangeErr if any time ranges are non-numeric, overlap or are not in ascending order.
     /// Returns any nonzero status returned by the handler block.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframesilocallblockforeachsamplebuffer(_:in:handler:)?language=objc)
     #[doc(alias = "VTFrameSiloCallBlockForEachSampleBuffer")]
     #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
     #[inline]

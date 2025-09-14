@@ -9,61 +9,121 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey?language=objc)
+/// These strings are used as keys to the dictionary returned from the delegate’s [`ruleEditor:predicatePartsForCriterion:withDisplayValue:inRow:`](https://developer.apple.com/documentation/appkit/nsruleeditordelegate/ruleeditor(_:predicatepartsforcriterion:withdisplayvalue:inrow:)) optional method. To construct a valid predicate, the union of the dictionaries for each item in the row must contain the required parts.
 // NS_TYPED_ENUM
 pub type NSRuleEditorPredicatePartKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/leftexpression?language=objc)
+    /// The corresponding value is an `NSExpression` object representing the left expression in the predicate.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is required for a non-`nil` comparison predicate.
+    ///
+    ///
     pub static NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/rightexpression?language=objc)
+    /// The corresponding value is an `NSExpression` object representing the right expression in the predicate.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is required for a non-`nil` comparison predicate.
+    ///
+    ///
     pub static NSRuleEditorPredicateRightExpression: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/comparisonmodifier?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a `NSComparisonPredicateModifier` constant the of the predicate.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is optional. If not specified, [`NSDirectPredicateModifier`](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier/direct) is assumed.
+    ///
+    ///
     pub static NSRuleEditorPredicateComparisonModifier: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/options?language=objc)
+    /// The corresponding value is an `NSNumber` object representing an `NSComparisonPredicateOptions` bitfield.
+    ///
+    /// ## Discussion
+    ///
+    /// If no value is specified, `0` (no options) is assumed.
+    ///
+    ///
     pub static NSRuleEditorPredicateOptions: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/operatortype?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a `NSPredicateOperatorType` constant.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is required for a non-`nil` comparison predicate.
+    ///
+    ///
     pub static NSRuleEditorPredicateOperatorType: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/customselector?language=objc)
+    /// The corresponding value is an `NSString` object representing a custom selector.
+    ///
+    /// ## Discussion
+    ///
+    /// If specified, this overrides the operator type, options, and comparison modifier.
+    ///
+    ///
     pub static NSRuleEditorPredicateCustomSelector: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/compoundtype?language=objc)
+    /// The corresponding value is an `NSNumber` object representing a `NSCompoundPredicateType` constant.
+    ///
+    /// ## Discussion
+    ///
+    /// If specified, the other keys are ignored and the predicate for the row will be an [`NSCompoundPredicate`](https://developer.apple.com/documentation/foundation/nscompoundpredicate) predicate whose subpredicates are the predicates of the subrows of the given row.
+    ///
+    ///
     pub static NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum?language=objc)
+/// Specifies a type for nesting modes.
+///
+/// ## Overview
+///
+/// See `Nesting Modes` for possible values.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorNestingMode(pub NSUInteger);
 impl NSRuleEditorNestingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/single?language=objc)
+    /// Only a single row is allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// Plus/minus buttons are not shown.
+    ///
+    ///
     #[doc(alias = "NSRuleEditorNestingModeSingle")]
     pub const Single: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/list?language=objc)
+    /// Allows a single list, with no nesting and no compound rows.
     #[doc(alias = "NSRuleEditorNestingModeList")]
     pub const List: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/compound?language=objc)
+    /// Unlimited nesting and compound rows.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default.
+    ///
+    ///
     #[doc(alias = "NSRuleEditorNestingModeCompound")]
     pub const Compound: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum/simple?language=objc)
+    /// One compound row at the top with subrows beneath it, and no further nesting allowed.
     #[doc(alias = "NSRuleEditorNestingModeSimple")]
     pub const Simple: Self = Self(3);
 }
@@ -76,16 +136,22 @@ unsafe impl RefEncode for NSRuleEditorNestingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype?language=objc)
+/// Specifies a type for row types.
+///
+/// ## Overview
+///
+/// See `Row Types` for possible values.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorRowType(pub NSUInteger);
 impl NSRuleEditorRowType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype/simple?language=objc)
+    /// Specifies a simple row.
     #[doc(alias = "NSRuleEditorRowTypeSimple")]
     pub const Simple: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype/compound?language=objc)
+    /// Specifies a compound row.
     #[doc(alias = "NSRuleEditorRowTypeCompound")]
     pub const Compound: Self = Self(1);
 }
@@ -99,7 +165,31 @@ unsafe impl RefEncode for NSRuleEditorRowType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor?language=objc)
+    /// An interface for configuring a rule-based list of options.
+    ///
+    /// ## Overview
+    ///
+    /// A rule editor lets the user visually create and configure a list of options that are expressed as a predicate (as described in [Predicate Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Predicates/AdditionalChapters/Introduction.html#//apple_ref/doc/uid/TP40001789)). Each row displayed by the rule editor represents a particular path down a tree of choices. The rule editor’s delegate provides the tree of choices to be displayed. The rule editor presents those choices to the user as a row of popup buttons, static text fields, and custom views.
+    ///
+    /// `NSRuleEditor` exposes one binding, `rows`. You can bind `rows` to an ordered collection (such as an instance of `NSMutableArray`). Each object in the collection should have the following properties:
+    ///
+    /// - @“rowType”: An integer representing the type of the row (`NSRuleEditorRowType`).
+    ///
+    /// - @“subrows”: An ordered to-many relation (such as an instance of `NSMutableArray`) containing the directly nested subrows for the given row.
+    ///
+    /// - @“displayValues”: An ordered to-many relation containing the display values for the row.
+    ///
+    /// - @“criteria”: An ordered to-many relation containing the criteria for the row.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// If you override [`viewDidMoveToWindow`](https://developer.apple.com/documentation/appkit/nsview/viewdidmovetowindow()) in a subclass of [`NSRuleEditor`](https://developer.apple.com/documentation/appkit/nsruleeditor), you must invoke super’s implementation.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -454,7 +544,7 @@ impl NSRuleEditor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditordelegate?language=objc)
+    /// The `NSRuleEditorDelegate` protocol defines the optional methods implemented by delegates of [`NSRuleEditor`](https://developer.apple.com/documentation/appkit/nsruleeditor) objects.
     pub unsafe trait NSRuleEditorDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         /// # Safety
@@ -520,6 +610,12 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowsdidchangenotification?language=objc)
+    /// This notification is posted to the default notification center whenever the view’s rows change.
+    ///
+    /// ## Discussion
+    ///
+    /// The object is the rule editor; there is no `userInfo` object.
+    ///
+    ///
     pub static NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName;
 }

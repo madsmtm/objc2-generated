@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A diagnostic subclass that encapsulates app launch diagnostic reports.
     /// An MXDiagnostic subclass that encapsulates app launch diagnostic reports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxapplaunchdiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]

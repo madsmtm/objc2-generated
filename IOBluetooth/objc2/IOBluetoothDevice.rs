@@ -9,7 +9,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdeviceasynccallbacks?language=objc)
     pub unsafe trait IOBluetoothDeviceAsyncCallbacks {
         #[cfg(feature = "IOBluetoothObject")]
         /// # Safety
@@ -52,12 +51,17 @@ extern_protocol!(
 extern_class!(
     /// An instance of IOBluetoothDevice represents a single remote Bluetooth device.
     ///
+    /// ## Overview
+    ///
+    /// An IOBluetoothDevice object may exist independent of the existence of a baseband connection with the target device. Using this object, a client can request creation and destruction of baseband connections, and request the opening of L2CAP and RFCOMM channels on the remote device. Many of the other APIs in the IOBluetooth framework will return this object, or it’s C counterpart (IOBluetoothDeviceRef).
+    ///
+    ///
+    /// An instance of IOBluetoothDevice represents a single remote Bluetooth device.
+    ///
     /// An IOBluetoothDevice object may exist independent of the existence of a baseband connection
     /// with the target device.  Using this object, a client can request creation and destruction of baseband
     /// connections, and request the opening of L2CAP and RFCOMM channels on the remote device.  Many of the other
     /// APIs in the IOBluetooth framework will return this object, or it's C counterpart (IOBluetoothDeviceRef).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevice?language=objc)
     #[unsafe(super(IOBluetoothObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOBluetoothObject")]

@@ -5,51 +5,57 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerror?language=objc)
+/// Defines motion errors.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CMError(pub c_uint);
 impl CMError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornull?language=objc)
+    /// No error occurred.
     #[doc(alias = "CMErrorNULL")]
     pub const NULL: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrordevicerequiresmovement?language=objc)
+    /// The device must move for a sampling of motion data to occur.
     #[doc(alias = "CMErrorDeviceRequiresMovement")]
     pub const DeviceRequiresMovement: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrortruenorthnotavailable?language=objc)
+    /// True north isn’t available on this device.
+    ///
+    /// ## Discussion
+    ///
+    /// This error usually indicates that the device’s location isn’t yet available.
+    ///
+    ///
     #[doc(alias = "CMErrorTrueNorthNotAvailable")]
     pub const TrueNorthNotAvailable: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorunknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CMErrorUnknown")]
     pub const Unknown: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotavailable?language=objc)
+    /// Motion activity support isn’t available on the current device.
     #[doc(alias = "CMErrorMotionActivityNotAvailable")]
     pub const MotionActivityNotAvailable: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotauthorized?language=objc)
+    /// The app isn’t currently authorized to use motion activity support.
     #[doc(alias = "CMErrorMotionActivityNotAuthorized")]
     pub const MotionActivityNotAuthorized: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrormotionactivitynotentitled?language=objc)
+    /// The app is missing an entitlement for the requested activity.
     #[doc(alias = "CMErrorMotionActivityNotEntitled")]
     pub const MotionActivityNotEntitled: Self = Self(106);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorinvalidparameter?language=objc)
+    /// The specified parameter is invalid.
     #[doc(alias = "CMErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(107);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorinvalidaction?language=objc)
+    /// The specified action is invalid.
     #[doc(alias = "CMErrorInvalidAction")]
     pub const InvalidAction: Self = Self(108);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotavailable?language=objc)
+    /// The requested service isn’t available on this device.
     #[doc(alias = "CMErrorNotAvailable")]
     pub const NotAvailable: Self = Self(109);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotentitled?language=objc)
+    /// The app is missing a required entitlement.
     #[doc(alias = "CMErrorNotEntitled")]
     pub const NotEntitled: Self = Self(110);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornotauthorized?language=objc)
+    /// The app isn’t authorized to use the Core Motion framework.
     #[doc(alias = "CMErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(111);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrornildata?language=objc)
+    /// Core Motion didn’t return any data.
     #[doc(alias = "CMErrorNilData")]
     pub const NilData: Self = Self(112);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmerrorsize?language=objc)
+    /// The data is the incorrect size.
     #[doc(alias = "CMErrorSize")]
     pub const Size: Self = Self(113);
 }

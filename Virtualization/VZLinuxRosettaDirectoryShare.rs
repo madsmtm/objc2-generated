@@ -7,27 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the availability and installation status of Rosetta.
 /// Availability of Rosetta support for Linux binaries.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZLinuxRosettaAvailability(pub NSInteger);
 impl VZLinuxRosettaAvailability {
-    /// Rosetta support for Linux binaries is not available on the host system.
+    /// The current hardware or software configuration doesn’t support Rosetta.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/notsupported?language=objc)
+    /// ## Discussion
+    ///
+    /// This error can occur if the host’s version of macOS doesn’t support Rosetta, such as macOS 12 or earlier, or if the underlying Mac computer doesn’t support Rosetta, such as an Intel-based Mac computer.
+    ///
+    ///
+    /// Rosetta support for Linux binaries is not available on the host system.
     #[doc(alias = "VZLinuxRosettaAvailabilityNotSupported")]
     pub const NotSupported: Self = Self(0);
+    /// Rosetta isn’t installed.
     /// Rosetta support for Linux binaries is not installed on the host system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/notinstalled?language=objc)
     #[doc(alias = "VZLinuxRosettaAvailabilityNotInstalled")]
     pub const NotInstalled: Self = Self(1);
+    /// Rosetta is available on the host system.
     /// Rosetta support for Linux is installed on the host system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettaavailability/installed?language=objc)
     #[doc(alias = "VZLinuxRosettaAvailabilityInstalled")]
     pub const Installed: Self = Self(2);
 }
@@ -41,6 +43,32 @@ unsafe impl RefEncode for VZLinuxRosettaAvailability {
 }
 
 extern_class!(
+    /// The Linux directory share for Rosetta.
+    ///
+    /// ## Overview
+    ///
+    /// This directory share exposes the Rosetta directory from the host file system to the guest. The example below shows the process of creating a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration), and then associating the Rosetta directory share with the VM configuration.
+    ///
+    /// ```swift
+    /// let tag = "EXAMPLE_TAG"  
+    /// let configuration = VZVirtualMachineConfiguration()
+    /// do {
+    ///     try let validationError = VZVirtioFileSystemDeviceConfiguration.validateTag(tag)
+    ///     let rosettaDirectoryShare = try VZLinuxRosettaDirectoryShare()
+    ///     let fileSystemDevice = VZVirtioFileSystemDeviceConfiguration(tag: tag)
+    ///     fileSystemDevice.share = rosettaDirectoryShare
+    ///
+    ///     configuration.directorySharingDevices = [ fileSystemDevice ]
+    /// } catch VZError.invalidVirtualMachineConfiguration {
+    ///     // Rosetta is unavailable.
+    /// }
+    /// ```
+    ///
+    /// For complete instructions on installing Rosetta see [Running Intel Binaries in Linux VMs with Rosetta](https://developer.apple.com/documentation/virtualization/running-intel-binaries-in-linux-vms-with-rosetta), which includes additional information about checking for Rosetta availability, mounting the directory share, and registering the Rosetta runtime binary to run Intel binaries in a guest VM.
+    ///
+    /// For information on using a custom kernel to enhance Rosetta performance, see [Accelerating the performance of Rosetta](https://developer.apple.com/documentation/virtualization/accelerating-the-performance-of-rosetta).
+    ///
+    ///
     /// Directory share to enable Rosetta support for Linux binaries.
     ///
     /// This directory share exposes Rosetta within a shared directory in the guest. Linux can use it to translate x86_64 binaries.
@@ -48,8 +76,6 @@ extern_class!(
     /// See: VZDirectorySharingDeviceConfiguration
     ///
     /// See: VZSharedDirectory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxrosettadirectoryshare?language=objc)
     #[unsafe(super(VZDirectoryShare, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZDirectoryShare")]

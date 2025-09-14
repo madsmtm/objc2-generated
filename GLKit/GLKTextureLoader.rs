@@ -20,46 +20,76 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloaderapplypremultiplication?language=objc)
+    /// Whether image data should be premultiplied before being loaded into the sharegroup.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a boolean value. If [`false`](https://developer.apple.com/documentation/swift/false), the data is loaded into the sharegroup without being modified. If [`true`](https://developer.apple.com/documentation/swift/true), the red, green and blue components of each pixel are multiplied by the alpha value. If the key is not specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false). Never specify [`true`](https://developer.apple.com/documentation/swift/true) for a texture that is in a compressed format.
+    ///
+    ///
     pub static GLKTextureLoaderApplyPremultiplication: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadergeneratemipmaps?language=objc)
+    /// Whether or not to create mipmaps for a texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a boolean value. If [`false`](https://developer.apple.com/documentation/swift/false), only the texture is loaded. If [`true`](https://developer.apple.com/documentation/swift/true), a full set of mipmap levels are generated for the texture when the texture is created. The `GL_TEXTURE_MIN_FILTER` parameter for the texture is changed to `GL_LINEAR_MIPMAP_LINEAR` when mipmaps are generated. If the key is not specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static GLKTextureLoaderGenerateMipmaps: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloaderoriginbottomleft?language=objc)
+    /// Whether or not to vertically flip image data to match OpenGL’s coordinate system.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a boolean value. If [`false`](https://developer.apple.com/documentation/swift/false), the image data is not flipped. If [`true`](https://developer.apple.com/documentation/swift/true), the image data is flipped before being loaded. If the key is not specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static GLKTextureLoaderOriginBottomLeft: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadergrayscaleasalpha?language=objc)
+    /// Whether or not to treat greyscale image data as alpha information.
+    ///
+    /// ## Discussion
+    ///
+    /// This key specifies whether the image data in a grayscale image should be treated as alpha information. The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a boolean value. If [`false`](https://developer.apple.com/documentation/swift/false), the image data is treated as luminance data. If [`true`](https://developer.apple.com/documentation/swift/true), the image data is treated as alpha data. The default value is [`false`](https://developer.apple.com/documentation/swift/false). This key is ignored if the source image is not a grayscale image.
+    ///
+    ///
     pub static GLKTextureLoaderGrayscaleAsAlpha: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadersrgb?language=objc)
+    /// Whether or not to treat texture image data as sRGB data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a boolean value. If [`false`](https://developer.apple.com/documentation/swift/false), the image data is treated as linear pixel data. If [`true`](https://developer.apple.com/documentation/swift/true), the image data is treated as sRGB pixel data. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static GLKTextureLoaderSRGB: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererrordomain?language=objc)
+    /// The error domain used by GLKit when returning texture loading errors.
     pub static GLKTextureLoaderErrorDomain: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererrorkey?language=objc)
+    /// A key used to retrieve an error string from an error object userinfo dictionary.
     pub static GLKTextureLoaderErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloaderglerrorkey?language=objc)
+    /// A key used to retrieve additional information from an error object’s userinfo dictionary.
     pub static GLKTextureLoaderGLErrorKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code?language=objc)
+/// Values to be returned when a texture loader encounters an error.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -69,64 +99,63 @@ pub struct GLKTextureLoaderError(pub GLuint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureLoaderError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/fileorurlnotfound?language=objc)
+    /// A file could not be found at the path provided.
     #[doc(alias = "GLKTextureLoaderErrorFileOrURLNotFound")]
     pub const FileOrURLNotFound: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalidnsdata?language=objc)
+    /// The data provided is not in a recognized image format.
     #[doc(alias = "GLKTextureLoaderErrorInvalidNSData")]
     pub const InvalidNSData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalidcgimage?language=objc)
+    /// The image provided was invalid.
     #[doc(alias = "GLKTextureLoaderErrorInvalidCGImage")]
     pub const InvalidCGImage: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unknownpathtype?language=objc)
+    /// The path type was unrecognized.
     #[doc(alias = "GLKTextureLoaderErrorUnknownPathType")]
     pub const UnknownPathType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unknownfiletype?language=objc)
+    /// The file was in an unrecognized format.
     #[doc(alias = "GLKTextureLoaderErrorUnknownFileType")]
     pub const UnknownFileType: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/pvratlasunsupported?language=objc)
+    /// Cube maps may not be compressed in PVRTC format.
     #[doc(alias = "GLKTextureLoaderErrorPVRAtlasUnsupported")]
     pub const PVRAtlasUnsupported: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/cubemapinvalidnumfiles?language=objc)
+    /// The incorrect number of files were specified for the cube map.
     #[doc(alias = "GLKTextureLoaderErrorCubeMapInvalidNumFiles")]
     pub const CubeMapInvalidNumFiles: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/compressedtextureupload?language=objc)
+    /// A compressed texture could not be uploaded.
     #[doc(alias = "GLKTextureLoaderErrorCompressedTextureUpload")]
     pub const CompressedTextureUpload: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/uncompressedtextureupload?language=objc)
+    /// An uncompressed texture could not be uploaded.
     #[doc(alias = "GLKTextureLoaderErrorUncompressedTextureUpload")]
     pub const UncompressedTextureUpload: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedcubemapdimensions?language=objc)
+    /// The cube map’s dimensions are incorrect.
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedCubeMapDimensions")]
     pub const UnsupportedCubeMapDimensions: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedbitdepth?language=objc)
+    /// The data in the source image has an unsupported bit depth.
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedBitDepth")]
     pub const UnsupportedBitDepth: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedpvrformat?language=objc)
+    /// The data in the PVRTC compressed format is in an unsupported format.
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedPVRFormat")]
     pub const UnsupportedPVRFormat: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/datapreprocessingfailure?language=objc)
+    /// The data could not be preprocessed correctly.
     #[doc(alias = "GLKTextureLoaderErrorDataPreprocessingFailure")]
     pub const DataPreprocessingFailure: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/mipmapunsupported?language=objc)
+    /// The texture source data does not allow mipmaps to be generated.
     #[doc(alias = "GLKTextureLoaderErrorMipmapUnsupported")]
     pub const MipmapUnsupported: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedorientation?language=objc)
+    /// The texture source data is stored with an unsupported origin position.
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedOrientation")]
     pub const UnsupportedOrientation: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/reorientationfailure?language=objc)
+    /// The texture source data does not allow the image to be reoriented.
     #[doc(alias = "GLKTextureLoaderErrorReorientationFailure")]
     pub const ReorientationFailure: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/alphapremultiplicationfailure?language=objc)
+    /// The texture source data does not allow the alpha to be premultiplied.
     #[doc(alias = "GLKTextureLoaderErrorAlphaPremultiplicationFailure")]
     pub const AlphaPremultiplicationFailure: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/invalideaglcontext?language=objc)
+    /// The EAGL context was not a valid context.
     #[doc(alias = "GLKTextureLoaderErrorInvalidEAGLContext")]
     pub const InvalidEAGLContext: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/incompatibleformatsrgb?language=objc)
+    /// The decoded data was in an incompatible format for an sRGB texture.
     #[doc(alias = "GLKTextureLoaderErrorIncompatibleFormatSRGB")]
     pub const IncompatibleFormatSRGB: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code/unsupportedtexturetarget?language=objc)
     #[doc(alias = "GLKTextureLoaderErrorUnsupportedTextureTarget")]
     pub const UnsupportedTextureTarget: Self = Self(19);
 }
@@ -143,7 +172,7 @@ unsafe impl RefEncode for GLKTextureLoaderError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate?language=objc)
+/// Values that describe the alpha information stored in a source image’s pixel data.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -153,13 +182,13 @@ pub struct GLKTextureInfoAlphaState(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureInfoAlphaState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/none?language=objc)
+    /// Indicates that the texture has no alpha information.
     #[doc(alias = "GLKTextureInfoAlphaStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/nonpremultiplied?language=objc)
+    /// Indicates that the color values in the texture were not premultiplied by the alpha value.
     #[doc(alias = "GLKTextureInfoAlphaStateNonPremultiplied")]
     pub const NonPremultiplied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoalphastate/premultiplied?language=objc)
+    /// Indicates that the color values in the texture have already been premultiplied by the alpha value.
     #[doc(alias = "GLKTextureInfoAlphaStatePremultiplied")]
     pub const Premultiplied: Self = Self(2);
 }
@@ -176,7 +205,13 @@ unsafe impl RefEncode for GLKTextureInfoAlphaState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin?language=objc)
+/// The location of the origin in the original source image.
+///
+/// ## Overview
+///
+/// The origin’s position has no effect on how the texture is loaded into the context. If you need to flip the image before loading it, your app must explicitly add the GLKTextureOriginBottomLeft key to the options dictionary provided when loading the texture.
+///
+///
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -186,13 +221,13 @@ pub struct GLKTextureInfoOrigin(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKTextureInfoOrigin {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/unknown?language=objc)
+    /// The origin of the texture is not supported.
     #[doc(alias = "GLKTextureInfoOriginUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/topleft?language=objc)
+    /// The origin of the texture is in the top-left corner.
     #[doc(alias = "GLKTextureInfoOriginTopLeft")]
     pub const TopLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfoorigin/bottomleft?language=objc)
+    /// The origin of the texture is in the bottom-left corner.
     #[doc(alias = "GLKTextureInfoOriginBottomLeft")]
     pub const BottomLeft: Self = Self(2);
 }
@@ -210,7 +245,13 @@ unsafe impl RefEncode for GLKTextureInfoOrigin {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureinfo?language=objc)
+    /// Information about OpenGL textures created by the [`GLKTextureLoader`](https://developer.apple.com/documentation/glkit/glktextureloader) class.
+    ///
+    /// ## Overview
+    ///
+    /// When your app loads textures using the [`GLKTextureLoader`](https://developer.apple.com/documentation/glkit/glktextureloader) class, the texture loader returns information about the textures using [`GLKTextureInfo`](https://developer.apple.com/documentation/glkit/glktextureinfo) objects. Your app never creates [`GLKTextureInfo`](https://developer.apple.com/documentation/glkit/glktextureinfo) objects directly.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKTextureInfo;
@@ -303,13 +344,55 @@ impl GLKTextureInfo {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadercallback?language=objc)
+/// Signature for the block executed after an asynchronous texture loading operation completes.
+///
+/// ## Discussion
+///
+/// The block parameters are defined as follows:
+///
+/// - _textureInfo_: A texture info object that describes the loaded texture or `nil` if an error occurred.
+///
+/// - _error_: If the operation was successful, this value is nil; otherwise, this parameter holds an object that describes the problem that occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type GLKTextureLoaderCallback =
     *mut block2::DynBlock<dyn Fn(*mut GLKTextureInfo, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloader?language=objc)
+    /// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKTextureLoader`](https://developer.apple.com/documentation/glkit/glktextureloader) class can load two-dimensional or cubemap textures in most image formats supported by the Image I/O framework. In iOS, it can also load textures compressed in the PVRTC format. It can load the data synchronously or asynchronously.
+    ///
+    /// To load textures synchronously, make a context with the desired sharegroup the current context, and then call one or more of the class methods. The returned texture info object includes details about the loaded texture.
+    ///
+    /// To load textures asynchronously, your initialization code allocates and initializes a new [`GLKTextureLoader`](https://developer.apple.com/documentation/glkit/glktextureloader) object using the sharegroup object that should be the destination for new textures. Then, to load a texture, your app calls one of the texture loader’s instance methods, passing in a completion handler block to be called when the texture has been loaded.
+    ///
+    /// The following OpenGL properties are set for a newly created, non-mipmapped texture:
+    ///
+    /// - `GL_TEXTURE_MIN_FILTER`:`GL_LINEAR`
+    ///
+    /// - `GL_TEXTURE_MAG_FILTER`:`GL_LINEAR`
+    ///
+    /// - `GL_TEXTURE_WRAP_S`:`GL_CLAMP_TO_EDGE`
+    ///
+    /// - `GL_TEXTURE_WRAP_T`:`GL_CLAMP_TO_EDGE`
+    ///
+    /// The following OpenGL properties are set for a newly created, mipmapped texture:
+    ///
+    /// - `GL_TEXTURE_MIN_FILTER`:`GL_LINEAR_MIPMAP_LINEAR`
+    ///
+    /// - `GL_TEXTURE_MAG_FILTER`:`GL_LINEAR`
+    ///
+    /// - `GL_TEXTURE_WRAP_S`:`GL_CLAMP_TO_EDGE`
+    ///
+    /// - `GL_TEXTURE_WRAP_T`:`GL_CLAMP_TO_EDGE`
+    ///
+    /// The `GLKTextureLoader` and `GLKTextureInfo` classes do not manage the OpenGL texture for you. Once the texture is returned to your app, you are responsible for it. This means that after your app is finished using an OpenGL texture, it must explicitly deallocate it by calling the `glDeleteTextures` function.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GLKTextureLoader;

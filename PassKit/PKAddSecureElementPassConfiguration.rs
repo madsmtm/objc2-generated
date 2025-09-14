@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpassmetadatapreview?language=objc)
+    /// A preview object that contains information representing the pass you add to Wallet.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to preview an object with all of the information you need to present a pass during provision.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAddPassMetadataPreview;
@@ -69,7 +75,13 @@ impl PKAddPassMetadataPreview {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpassconfiguration?language=objc)
+    /// An object that describes the configuration of a secure element payment pass.
+    ///
+    /// ## Overview
+    ///
+    /// This class supports identity document configuration.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKAddSecureElementPassConfiguration;

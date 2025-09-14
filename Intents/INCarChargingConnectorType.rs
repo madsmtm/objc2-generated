@@ -4,57 +4,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype?language=objc)
+/// Constants that describe the available charging connector types.
 // NS_TYPED_ENUM
 pub type INCarChargingConnectorType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/j1772?language=objc)
+    /// The J1772 charging connector type.
     pub static INCarChargingConnectorTypeJ1772: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/ccs1?language=objc)
+    /// The CCS1 charging connector type.
     pub static INCarChargingConnectorTypeCCS1: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/ccs2?language=objc)
+    /// The CCS2 charging connector type.
     pub static INCarChargingConnectorTypeCCS2: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/chademo?language=objc)
+    /// The CHAdeMO charging connector type.
     pub static INCarChargingConnectorTypeCHAdeMO: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/gbtac?language=objc)
+    /// The GB/T AC charging connector type for alternating current.
     pub static INCarChargingConnectorTypeGBTAC: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/gbtdc?language=objc)
+    /// The GB/T DC charging connector type for direct current.
     pub static INCarChargingConnectorTypeGBTDC: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/tesla?language=objc)
+    /// The charging connector type for Tesla electric vehicles.
     #[deprecated = "INCarChargingConnectorTypeTesla is deprecated. Please adopt INCarChargingConnectorTypeNACSDC instead"]
     pub static INCarChargingConnectorTypeTesla: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/mennekes?language=objc)
+    /// The Mennekes charging connector type.
     pub static INCarChargingConnectorTypeMennekes: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/nacsdc?language=objc)
     pub static INCarChargingConnectorTypeNACSDC: Option<&'static INCarChargingConnectorType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incar/chargingconnectortype/nacsac?language=objc)
     pub static INCarChargingConnectorTypeNACSAC: Option<&'static INCarChargingConnectorType>;
 }

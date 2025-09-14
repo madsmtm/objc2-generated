@@ -9,11 +9,10 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A range in the guest virtual machine’s physical memory address space.
 /// A struct for a guest physical memory range
 /// Field: physicalAddress The starting physical address of the range
 /// Field: physicalLength The length of the range
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgphysicalmemoryrange_s?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PGPhysicalMemoryRange_s {
@@ -32,21 +31,39 @@ unsafe impl RefEncode for PGPhysicalMemoryRange_s {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+///
+/// ## Discussion
+///
+/// A struct for a guest physical memory range
+///
+///
 /// A struct for a guest physical memory range
 /// Field: physicalAddress The starting physical address of the range
 /// Field: physicalLength The length of the range
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgphysicalmemoryrange_t?language=objc)
 pub type PGPhysicalMemoryRange_t = PGPhysicalMemoryRange_s;
 
+/// The block signature for a routine that raises interrupts in the guest environment.
+///
+/// Parameters:
+/// - vector  : The MSI vector to raise the interrupt on.
+///
 /// A block that is invoked to raise an interrupt to the guest.
 ///
 /// Parameter `vector`: The MSI vector to raise an interrupt on.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgraiseinterrupt?language=objc)
 #[cfg(feature = "block2")]
 pub type PGRaiseInterrupt = *mut block2::DynBlock<dyn Fn(u32)>;
 
+/// The block signature for a routine that handles trace requests.
+///
+/// Parameters:
+/// - dirty  : The range of memory that the guest changed.
+///
+///
+/// ## Discussion
+///
+/// The returned range may be larger than the range that the guest wrote into. For example, if you can only determine which memory the guest accessed at virtual memory page boundaries, you’d report that the entire page changed. Where possible, coalesce writes over a period of time into a single activity notification.
+///
+///
 /// A block that will be invoked by the device client code when a trace handler fires.  The device client code should watch the memory identified
 /// by each installed trace range and notify the device when the memory has been changed.  The client is encouraged to coalesce the handling of these notifications
 /// over the course of several milliseconds.  This functionality is used to provide a low overhead framebuffer implementation that is used by the device before the guest
@@ -56,13 +73,11 @@ pub type PGRaiseInterrupt = *mut block2::DynBlock<dyn Fn(u32)>;
 ///
 /// The returned range may be larger than the range that was actually written, for example, if the client can only determine at page granularity the memory that was
 /// affected by guest writes, then it may report a larger region.  Clients are also encouraged to coalesce writes over a period of time into a single notification of activity.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgtracerangehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PGTraceRangeHandler = *mut block2::DynBlock<dyn Fn(NonNull<PGPhysicalMemoryRange_t>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdevicedescriptor?language=objc)
+    /// A description of the paravirtualized graphics device to create.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PGDeviceDescriptor;
@@ -146,9 +161,8 @@ impl PGDeviceDescriptor {
 }
 
 extern_protocol!(
+    /// A paravirtualized GPU device object.
     /// The PGDevice protocol represents a paravirtualized GPU device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdevice?language=objc)
     pub unsafe trait PGDevice: NSObjectProtocol {
         /// Perform an MMIO read from the device.
         ///
@@ -260,11 +274,20 @@ extern_protocol!(
     }
 );
 
+/// Creates a new paravirtualized graphics device.
+///
+/// Parameters:
+/// - descriptor: The configuration to use for the new device.
+///
+///
+/// ## Return Value
+///
+/// A new paravirtualized graphics device.
+///
+///
 /// Create a new PGDevice implementation object based on the provided descriptor.
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgnewdevicewithdescriptor(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
@@ -278,11 +301,19 @@ pub unsafe extern "C-unwind" fn PGNewDeviceWithDescriptor(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+///
+/// Parameters:
+/// - descriptor: The device descriptor for the new device.
+///
+///
+/// ## Discussion
+///
+/// Create a new PGDevice implementation object based on the provided descriptor.
+///
+///
 /// Create a new PGDevice implementation object based on the provided descriptor.
 ///
 /// Parameter `descriptor`: The device descriptor for the new device.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgcreatedevicewithdescriptor(_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGCreateDeviceWithDescriptor(
     descriptor: &PGDeviceDescriptor,
@@ -300,40 +331,36 @@ extern "C-unwind" {
     /// Returns the maximum number of PGDisplay ports that a PGDevice can be configured with.
     ///
     /// Note: See PGDeviceDescriptor's displayPortCount property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgmaxdisplayportcount()?language=objc)
     pub fn PGMaxDisplayPortCount() -> u32;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrordomain?language=objc)
+    /// The error domain for suspend-resume actions.
     pub static PGResumeErrorDomain: &'static NSErrorDomain;
 }
 
+/// Error codes for suspend-resume actions.
 /// Resume error codes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PGResumeErrorCode(pub NSUInteger);
 impl PGResumeErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/internalfault?language=objc)
+    /// An internal error occurred.
     #[doc(alias = "PGResumeErrorCodeInternalFault")]
     pub const InternalFault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidsuspendstateversion?language=objc)
+    /// The suspend state version is incompatible with this framework version.
     #[doc(alias = "PGResumeErrorCodeInvalidSuspendStateVersion")]
     pub const InvalidSuspendStateVersion: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidcontent?language=objc)
+    /// The content of the suspend state or the guest memory isn’t valid.
     #[doc(alias = "PGResumeErrorCodeInvalidContent")]
     pub const InvalidContent: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invalidguestversion?language=objc)
+    /// The guest version is incompatible with this framework version.
     #[doc(alias = "PGResumeErrorCodeInvalidGuestVersion")]
     pub const InvalidGuestVersion: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/incompatibledevice?language=objc)
+    /// The resume device is missing capabilities that the suspended device provided.
     #[doc(alias = "PGResumeErrorCodeIncompatibleDevice")]
     pub const IncompatibleDevice: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode/invaliddisplayportcount?language=objc)
     #[doc(alias = "PGResumeErrorCodeInvalidDisplayPortCount")]
     pub const InvalidDisplayPortCount: Self = Self(5);
 }
@@ -346,13 +373,24 @@ unsafe impl RefEncode for PGResumeErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Copies the URL of the ROM image to use on the guest graphics device.
+///
+/// ## Return Value
+///
+/// The URL of the ROM file to load.
+///
+///
+///
+/// ## Discussion
+///
+/// The URL points to a local file of a flat ROM image. After loading the file, pad the data size to a power of two and fill the extra bytes with zeroes. Map the resulting data into the guest, setting the PCI ROM base address register to point to the data.
+///
+///
 /// Copy the URL of the option ROM to be used by the device.  The URL will be a local file path to a flat ROM image.  The client code should
 /// pad the ROM image out to a power of 2 size with a zero-filled trailer and present the resulting bytes as read only memory to the PCI option ROM BAR for
 /// the device.
 ///
 /// Returns: The URL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgcopyoptionromurl()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn PGCopyOptionROMURL() -> Retained<NSURL> {
     extern "C-unwind" {

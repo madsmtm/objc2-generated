@@ -7,13 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A type alias defining a closure that provides an activation configuration for the activation action.
+///
+/// Parameters:
+/// - action: The [`UIWindowSceneActivationAction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction) requesting a configuration.
+///
+///
+/// ## Return Value
+///
+/// An activation configuration you can use to request a window scene.
+///
+///
 /// Return a
 /// `UIWindowSceneActivationConfiguration`
 ///
 /// Parameter `action`: The
 /// `UIWindowSceneActivationAction`requesting a configuration.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction/configurationprovider?language=objc)
 #[cfg(all(
     feature = "UIAction",
     feature = "UIMenuElement",
@@ -25,10 +34,15 @@ pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::DynBl
 >;
 
 extern_class!(
+    /// A menu element that requests a window scene.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIWindowSceneActivationAction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction) object to facilitate activating a new window scene from a menu item. You initialize the action with a closure that the system executes when a user selects the item. The closure should return a [`UIWindowSceneActivationConfiguration`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationconfiguration) object. You can specify an alternate action to display on iPhone and apps that don’t support multiple windows.
+    ///
+    ///
     /// An action that facilitates activating a
     /// `UIWindowScene`when performed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction?language=objc)
     #[unsafe(super(UIAction, UIMenuElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]

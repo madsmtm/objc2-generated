@@ -7,25 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum?language=objc)
+/// The NSTokenStyle constants define how tokens are displayed and editable in the `NSTokenFieldCell`. These values are used by [`tokenStyle`](https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenstyle) and the delegate method [`tokenFieldCell:styleForRepresentedObject:`](https://developer.apple.com/documentation/appkit/nstokenfieldcelldelegate/tokenfieldcell(_:styleforrepresentedobject:)).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTokenStyle(pub NSUInteger);
 impl NSTokenStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/default?language=objc)
     #[doc(alias = "NSTokenStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/none?language=objc)
     #[doc(alias = "NSTokenStyleNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/rounded?language=objc)
     #[doc(alias = "NSTokenStyleRounded")]
     pub const Rounded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/squared?language=objc)
     #[doc(alias = "NSTokenStyleSquared")]
     pub const Squared: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.enum/plainsquared?language=objc)
     #[doc(alias = "NSTokenStylePlainSquared")]
     pub const PlainSquared: Self = Self(4);
 }
@@ -39,7 +34,13 @@ unsafe impl RefEncode for NSTokenStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfieldcell?language=objc)
+    /// A text field cell subclass that enables tokenized editing of an array of objects.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTokenFieldCell`](https://developer.apple.com/documentation/appkit/nstokenfieldcell) is a subclass of [`NSTextFieldCell`](https://developer.apple.com/documentation/appkit/nstextfieldcell) that provides tokenized editing of an array of objects similar to the address field in the Mail app. The objects may be strings or objects that can be represented as strings. A single token field cell can be presented in an [`NSTokenField`](https://developer.apple.com/documentation/appkit/nstokenfield) control.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -231,7 +232,7 @@ impl NSTokenFieldCell {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstokenfieldcelldelegate?language=objc)
+    /// A set of optional methods implemented by delegates of [`NSTokenFieldCell`](https://developer.apple.com/documentation/appkit/nstokenfieldcell) objects to work with tokenized strings.
     pub unsafe trait NSTokenFieldCellDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSActionCell",
@@ -420,14 +421,14 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefaulttokenstyle?language=objc)
+/// Style best used for keyword type tokens.
 #[deprecated]
 pub static NSDefaultTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Default.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsplaintexttokenstyle?language=objc)
+/// Style to use for data you want represented as plain-text and without any token background.
 #[deprecated]
 pub static NSPlainTextTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::None.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsroundedtokenstyle?language=objc)
+/// Style best used for address type tokens.
 #[deprecated]
 pub static NSRoundedTokenStyle: NSTokenStyle = NSTokenStyle(NSTokenStyle::Rounded.0);

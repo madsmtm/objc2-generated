@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that summarizes the average presence of a feature.
     /// A pooling layer
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolinglayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

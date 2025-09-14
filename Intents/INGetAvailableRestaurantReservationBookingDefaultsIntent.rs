@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent?language=objc)
+    /// A request for the default values to use when fetching potential reservation options.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetAvailableRestaurantReservationBookingDefaultsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent) object asks you to provide the set of default options to use when fetching possible reservation times for the specified restaurant. Because restaurants may have different requirements for booking reservations, this intent lets you provide a set of reasonable default values that reflect any restaurant-specific requirements or user tendencies. For example, you use this intent to return the minimum or maximum party size supported by the restaurant.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetAvailableRestaurantReservationBookingDefaultsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling) protocol. Your handler should resolve and confirm any parameters and create an [`INGetAvailableRestaurantReservationBookingDefaultsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintentresponse) object with the found results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -81,7 +94,15 @@ impl INGetAvailableRestaurantReservationBookingDefaultsIntent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling?language=objc)
+    /// The handler interface for providing default values to the system when pre-fetching an initial set of possible reservation times.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetAvailableRestaurantReservationBookingDefaultsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintenthandling) protocol to resolve, confirm, and handle requests for default values for the system to use when pre-fetching reservation times. The system delivers an [`INGetAvailableRestaurantReservationBookingDefaultsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingdefaultsintent) object to your handler before it asks your Intents extension for any initial reservation times. Use this intent object to provide a set of reasonable default values that are likely to yield good results when doing an initial search for available reservation times. For example, the default date provided by your handler should represent a date and time when the restaurant is open and has available tables.
+    ///
+    /// Maps does not require you to resolve or confirm the contents of a get available restaurant reservation booking defaults intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     pub unsafe trait INGetAvailableRestaurantReservationBookingDefaultsIntentHandling:
         NSObjectProtocol
     {

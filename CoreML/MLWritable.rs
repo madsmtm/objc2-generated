@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlwritable?language=objc)
+    /// A set of methods that saves a machine learning type to the file system.
+    ///
+    /// ## Overview
+    ///
+    /// You use [`MLWritable`](https://developer.apple.com/documentation/coreml/mlwritable) to save any [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) instance that adopts the protocol to the file system.
+    ///
+    ///
     pub unsafe trait MLWritable: NSObjectProtocol {
         #[unsafe(method(writeToURL:error:_))]
         #[unsafe(method_family = none)]

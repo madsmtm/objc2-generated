@@ -12,7 +12,13 @@ use objc2_map_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekstructuredlocation?language=objc)
+    /// `A` class that specifies a geofence to activate the alarm of a calendar item.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`locationWithTitle:`](https://developer.apple.com/documentation/eventkit/ekstructuredlocation/init(title:)) to create a new structured location, then set it to the [`structuredLocation`](https://developer.apple.com/documentation/eventkit/ekalarm/structuredlocation) property of an [`EKAlarm`](https://developer.apple.com/documentation/eventkit/ekalarm) object.
+    ///
+    ///
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

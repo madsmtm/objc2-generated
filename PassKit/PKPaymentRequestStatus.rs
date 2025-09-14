@@ -8,7 +8,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationresult?language=objc)
+    /// An object that reports the status code and errors for a payment authorization request.
+    ///
+    /// ## Overview
+    ///
+    /// If the Apple Pay sheet contains errors, you provide a [`PKPaymentAuthorizationStatusFailure`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/failure) status to [`PKPaymentAuthorizationResult`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationresult), and include the errors in the errors array. If there are no errors, you provide a [`PKPaymentAuthorizationStatusSuccess`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus/success) status and leave the error array empty.
+    ///
+    /// The following code example shows a failure result with two errors in the postal code and street fields.
+    ///
+    /// A result that reports two errors:
+    ///
+    /// ```swift
+    /// // Error in postal code field.
+    /// let shippingInvalidZip =
+    /// PKPaymentRequest.paymentShippingAddressInvalidError(withKey:CNPostalAddressPostalCodeKey,
+    ///                                                     localizedDescription: "Invalid ZIP code")
+    /// // Error in street address field.
+    /// let shippingInvalidStreet = PKPaymentRequest.paymentShippingAddressInvalidError(withKey:CNPostalAddressStreetKey,
+    ///                                                     localizedDescription: "Missing street name")
+    /// // Result with failure status and errors.
+    /// let result = PKPaymentAuthorizationResult(status: .failure,
+    ///                                           errors: [shippingInvalidZip, shippingInvalidStreet])
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentAuthorizationResult;
@@ -76,7 +99,7 @@ impl PKPaymentAuthorizationResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestupdate?language=objc)
+    /// The base class for updating the payment request after the user makes changes on the payment sheet.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestUpdate;
@@ -214,7 +237,15 @@ impl PKPaymentRequestUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestshippingcontactupdate?language=objc)
+    /// An object that updates the payment request after the shipping contact information changes.
+    ///
+    /// ## Overview
+    ///
+    /// This is the handler for [`paymentAuthorizationController:didSelectShippingContact:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didselectshippingcontact:handler:)) and [`paymentAuthorizationViewController:didSelectShippingContact:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselectshippingcontact:handler:)).
+    ///
+    /// Use this object to update the available shipping methods and, if the user has selected a shipping method, the current shipping cost.
+    ///
+    ///
     #[unsafe(super(PKPaymentRequestUpdate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestShippingContactUpdate;
@@ -289,7 +320,13 @@ impl PKPaymentRequestShippingContactUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestshippingmethodupdate?language=objc)
+    /// An object that updates the payment request after the shipping method changed.
+    ///
+    /// ## Overview
+    ///
+    /// This is the handler for [`paymentAuthorizationController:didSelectShippingMethod:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didselectshippingmethod:handler:)) and [`paymentAuthorizationViewController:didSelectShippingMethod:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:handler:)-5r0i7).
+    ///
+    ///
     #[unsafe(super(PKPaymentRequestUpdate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestShippingMethodUpdate;
@@ -330,7 +367,13 @@ impl PKPaymentRequestShippingMethodUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestpaymentmethodupdate?language=objc)
+    /// An object that updates the payment request after the payment method changes.
+    ///
+    /// ## Overview
+    ///
+    /// This is the handler for [`paymentAuthorizationController:didSelectPaymentMethod:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didselectpaymentmethod:handler:)) and [`paymentAuthorizationViewController:didSelectPaymentMethod:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didselect:handler:)-3bex6). Update the summary items to reflect the change in payment method.
+    ///
+    ///
     #[unsafe(super(PKPaymentRequestUpdate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestPaymentMethodUpdate;
@@ -391,7 +434,13 @@ impl PKPaymentRequestPaymentMethodUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestmerchantsessionupdate?language=objc)
+    /// An object that updates a payment request with a merchant validation.
+    ///
+    /// ## Overview
+    ///
+    /// This is the handler for [`paymentAuthorizationController:didRequestMerchantSessionUpdate:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didrequestmerchantsessionupdate:)) and [`paymentAuthorizationViewController:didRequestMerchantSessionUpdate:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didrequestmerchantsessionupdate:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestMerchantSessionUpdate;
@@ -450,7 +499,23 @@ impl PKPaymentRequestMerchantSessionUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentrequestcouponcodeupdate?language=objc)
+    /// An object that updates the payment request after the coupon code changes.
+    ///
+    /// ## Overview
+    ///
+    /// This is the handler for [`paymentAuthorizationController:didChangeCouponCode:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationcontrollerdelegate/paymentauthorizationcontroller(_:didchangecouponcode:handler:)) and [`paymentAuthorizationViewController:didChangeCouponCode:handler:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontroller(_:didchangecouponcode:handler:)).
+    ///
+    /// Use this object to update the summary items to reflect the change in the coupon code.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A coupon code error doesn’t block payment authorization.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(PKPaymentRequestUpdate, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentRequestCouponCodeUpdate;
@@ -512,7 +577,13 @@ impl PKPaymentRequestCouponCodeUpdate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentorderdetails?language=objc)
+    /// Optional metadata with payment order details for the placed order.
+    ///
+    /// ## Overview
+    ///
+    /// The device only retreives metadata if the status is `PKPaymentAuthorizationStatusSuccess`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentOrderDetails;

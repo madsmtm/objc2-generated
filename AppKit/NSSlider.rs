@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslider?language=objc)
+    /// A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.
+    ///
+    /// ## Overview
+    ///
+    /// A slider is a UI element that displays a range of values in the app. Sliders can be vertical or horizontal bars or circular dials. An indicator, or knob, notes the current setting. The user can move the knob in the slider’s bar—or rotate the knob in a circular slider—to change the setting.
+    ///
+    /// The `NSSlider` class uses the [`NSSliderCell`](https://developer.apple.com/documentation/appkit/nsslidercell) class to implement its user interface.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]

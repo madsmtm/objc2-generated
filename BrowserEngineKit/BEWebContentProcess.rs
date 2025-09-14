@@ -11,11 +11,16 @@ use crate::*;
 extern_class!(
     /// An object that represents a running web content extension process.
     ///
+    /// ## Overview
+    ///
+    /// A web browser app may launch multiple web content extension processes, and each instance of this object represents a separate process.
+    ///
+    ///
+    /// An object that represents a running web content extension process.
+    ///
     /// The system guarantees that the extension process has launched by the time the initializer methods return.
     /// If the extension process exits, the system calls ``interruptionHandler``. There can multiple web content process
     /// per  host browser. Each time this type is initialized, a new extension process will be launched.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bewebcontentprocess?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEWebContentProcess;

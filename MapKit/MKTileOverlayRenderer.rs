@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mktileoverlayrenderer?language=objc)
+    /// The renderer for a tile overlay that handles the drawing of bitmap images on the map surface.
+    ///
+    /// ## Overview
+    ///
+    /// You create instances of this class when tile overlays become visible on the map view. A renderer works closely with its associated tile overlay object to coordinate the loading and drawing of tiles at appropriate times.
+    ///
+    /// For information about how to specify the tiles to display on the map, see [`MKTileOverlay`](https://developer.apple.com/documentation/mapkit/mktileoverlay).
+    ///
+    ///
     #[unsafe(super(MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MKOverlayRenderer")]

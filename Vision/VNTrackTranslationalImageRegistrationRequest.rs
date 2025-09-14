@@ -9,11 +9,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request, as a stateful request you track over time, that determines the affine transform necessary to align the content of two images.
+    ///
+    /// ## Overview
+    ///
+    /// This request is similar to [`VNTranslationalImageRegistrationRequest`](https://developer.apple.com/documentation/vision/vntranslationalimageregistrationrequest). However, as a [`VNStatefulRequest`](https://developer.apple.com/documentation/vision/vnstatefulrequest), it automatically computes the registration against the previous frame.
+    ///
+    ///
     /// An image registration request that will produce a translational transformation which will morph one image to another.
     ///
     /// Because this is a stateful request, it must be performed on at least two images in order to produce an observation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -99,5 +104,5 @@ impl VNTrackTranslationalImageRegistrationRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntracktranslationalimageregistrationrequestrevision1?language=objc)
+/// A value that indicates the first revision for a translational image-registration request.
 pub static VNTrackTranslationalImageRegistrationRequestRevision1: NSUInteger = 1;

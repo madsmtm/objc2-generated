@@ -11,45 +11,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for the data size and type of texel channel values, used by the [`channelEncoding`](https://developer.apple.com/documentation/modelio/mdltexture/channelencoding) property.
 /// The enoding of texel channel elements
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MDLTextureChannelEncoding(pub NSInteger);
 impl MDLTextureChannelEncoding {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint8-swift.enum.case?language=objc)
+    /// Each channel value per texel is an 8-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUInt8")]
     pub const UInt8: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint8-swift.type.property?language=objc)
+    /// Each channel value per texel is an 8-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUint8")]
     pub const Uint8: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint16-swift.enum.case?language=objc)
+    /// Each channel value per texel is a 16-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUInt16")]
     pub const UInt16: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint16-swift.type.property?language=objc)
+    /// Each channel value per texel is a 16-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUint16")]
     pub const Uint16: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint24-swift.enum.case?language=objc)
+    /// Each channel value per texel is a 24-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUInt24")]
     pub const UInt24: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint24-swift.type.property?language=objc)
+    /// Each channel value per texel is a 24-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUint24")]
     pub const Uint24: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint32-swift.enum.case?language=objc)
+    /// Each channel value per texel is a 32-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUInt32")]
     pub const UInt32: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/uint32-swift.type.property?language=objc)
+    /// Each channel value per texel is a 32-bit unsigned integer.
     #[doc(alias = "MDLTextureChannelEncodingUint32")]
     pub const Uint32: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float16?language=objc)
+    /// Each channel value per texel is a 16-bit floating-point value.
     #[doc(alias = "MDLTextureChannelEncodingFloat16")]
     pub const Float16: Self = Self(0x102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float16sr?language=objc)
     #[doc(alias = "MDLTextureChannelEncodingFloat16SR")]
     pub const Float16SR: Self = Self(0x302);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturechannelencoding/float32?language=objc)
+    /// Each channel value per texel is a 32-bit floating-point value.
     #[doc(alias = "MDLTextureChannelEncodingFloat32")]
     pub const Float32: Self = Self(0x104);
 }
@@ -63,6 +61,13 @@ unsafe impl RefEncode for MDLTextureChannelEncoding {
 }
 
 extern_class!(
+    /// A source of texel data to be used in rendering material surface appearances.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) class or one of its subclasses to identify, load, or create texture data, and then associate textures with materials using the [`MDLTextureSampler`](https://developer.apple.com/documentation/modelio/mdltexturesampler) and [`MDLMaterialProperty`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty) classes. When you load 3D objects from an asset file (in a format that supports texturing) with the [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) class, Model I/O automatically creates texture objects and material objects and associates them with the [`MDLSubmesh`](https://developer.apple.com/documentation/modelio/mdlsubmesh) objects in the asset.
+    ///
+    ///
     /// MDLTexture
     /// a description of texels provided by a texture object.
     ///
@@ -91,8 +96,6 @@ extern_class!(
     /// The texture encodes a cube map. If YES, then the layout of the cube
     /// map is deduced as a vertical strip if dimension.y is six times
     /// dimension.x. Other layouts are possible in the future.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexture?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTexture;
@@ -276,14 +279,19 @@ impl MDLTexture {
 }
 
 extern_class!(
+    /// A lightweight reference to a URL from which to load texture data.
+    ///
+    /// ## Overview
+    ///
+    /// Unlike the superclass [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture), the [`MDLURLTexture`](https://developer.apple.com/documentation/modelio/mdlurltexture) class loads texel data from the file at that URL only when that data is first referenced, and then caches it for future use.
+    ///
+    ///
     /// MDLURLTexture
     /// a texture provider initialized with a URL or file path.
     ///
     /// if any of the properties of the texture, such as data, are referenced,
     /// then the texture may be loaded, otherwise, the MDLURLTexture is merely
     /// a lightweight reference to something that could be loaded
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlurltexture?language=objc)
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLURLTexture;
@@ -389,14 +397,19 @@ impl MDLURLTexture {
 }
 
 extern_class!(
+    /// A generator of texel data that creates a checkerboard pattern with two specified colors.
+    ///
+    /// ## Overview
+    ///
+    /// Like other procedural [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) subclasses, the [`MDLCheckerboardTexture`](https://developer.apple.com/documentation/modelio/mdlcheckerboardtexture) class generates texel data only when that data is first referenced, and then caches it for future use.
+    ///
+    ///
     /// MDLCheckerboardTexture
     /// A two color checkboard with a certain number of divisions
     ///
     ///
     /// the texture will be created if data is referenced, otherwise, this
     /// object is merely a description
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcheckerboardtexture?language=objc)
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLCheckerboardTexture;
@@ -514,6 +527,13 @@ impl MDLCheckerboardTexture {
 }
 
 extern_class!(
+    /// A generator of texel data that creates cube textures using a physically realistic simulation of the sunlit sky.
+    ///
+    /// ## Overview
+    ///
+    /// The sky textures generated by this class can can be useful as environment maps or light probes in rendering. Like other procedural [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) subclasses, the [`MDLSkyCubeTexture`](https://developer.apple.com/documentation/modelio/mdlskycubetexture) class generates texel data only when that data is first referenced, and then caches it for future use.
+    ///
+    ///
     /// MDLSkyCubeTexture
     /// A physically realistic sky as a cube texture
     ///
@@ -561,8 +581,6 @@ extern_class!(
     ///
     /// the texture will be created if data is referenced, otherwise, this
     /// object is merely a description. All parameters have legal values between zero and one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlskycubetexture?language=objc)
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLSkyCubeTexture;
@@ -764,7 +782,13 @@ impl MDLSkyCubeTexture {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlcolorswatchtexture?language=objc)
+    /// A generator of texel data that creates a gradient between two specified colors.
+    ///
+    /// ## Overview
+    ///
+    /// A MDLColorSwatchTexture object procedurally generates texel data by creating a gradient between two colors. Like other procedural [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) subclasses, the [`MDLColorSwatchTexture`](https://developer.apple.com/documentation/modelio/mdlcolorswatchtexture) class generates texel data only when that data is first referenced, and caches it for future use.
+    ///
+    ///
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLColorSwatchTexture;
@@ -851,13 +875,18 @@ impl MDLColorSwatchTexture {
 }
 
 extern_class!(
+    /// A generator of texel data that creates a field of random noise.
+    ///
+    /// ## Overview
+    ///
+    /// Like other procedural [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) subclasses, the [`MDLNoiseTexture`](https://developer.apple.com/documentation/modelio/mdlnoisetexture) class generates texel data only when that data is first referenced, and then caches it for future use.
+    ///
+    ///
     /// MDLNoiseTexture
     /// a noise texture containing vector or scalar noise
     ///
     /// the texture will be created if data is referenced, otherwise, this
     /// object is merely a description
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnoisetexture?language=objc)
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLNoiseTexture;
@@ -944,7 +973,19 @@ impl MDLNoiseTexture {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlnormalmaptexture?language=objc)
+    /// A generator of texel data that computes a normal map from a supplied texture.
+    ///
+    /// ## Overview
+    ///
+    /// This class examines the shapes of contrasting areas in an input texture to generate a normal map that produces an embossed appearance when rendered with lighting. The figure below shows the normal map generated from an example texture and the effect of using this normal map with lighting in a typical renderer.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/22a2beff91f68ff49c4351d0d667f98d/media-1965618%402x.png)
+    ///
+    ///
+    /// Like other procedural [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) subclasses, the [`MDLNormalMapTexture`](https://developer.apple.com/documentation/modelio/mdlnormalmaptexture) class generates texel data only when that data is first referenced, and caches it for future use.
+    ///
+    ///
     #[unsafe(super(MDLTexture, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLNormalMapTexture;

@@ -4,15 +4,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An identifier that represents the versions of the framework’s sound classifier.
 /// Identifiers denoting particular recognized sound classifiers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassifieridentifier?language=objc)
 // NS_TYPED_ENUM
 pub type SNClassifierIdentifier = NSString;
 
 extern "C" {
+    /// Version 1 of the sound classifier.
     /// Denotes the first edition of the Apple-provided sound classifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassifieridentifier/version1?language=objc)
     pub static SNClassifierIdentifierVersion1: Option<&'static SNClassifierIdentifier>;
 }

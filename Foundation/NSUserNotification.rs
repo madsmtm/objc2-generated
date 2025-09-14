@@ -6,29 +6,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum?language=objc)
+/// These constants describe how the user notification was activated.
 // NS_ENUM
 #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserNotificationActivationType(pub NSInteger);
 impl NSUserNotificationActivationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/none?language=objc)
+    /// The user did not interact with the notification alert.
     #[doc(alias = "NSUserNotificationActivationTypeNone")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/contentsclicked?language=objc)
+    /// The user clicked on the contents of the notification alert.
     #[doc(alias = "NSUserNotificationActivationTypeContentsClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ContentsClicked: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/actionbuttonclicked?language=objc)
+    /// The user clicked on the action button of the notification alert.
     #[doc(alias = "NSUserNotificationActivationTypeActionButtonClicked")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub const ActionButtonClicked: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/replied?language=objc)
+    /// The user replied to the notification.
     #[doc(alias = "NSUserNotificationActivationTypeReplied")]
     pub const Replied: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum/additionalactionclicked?language=objc)
+    /// The user clicked on the additional action button of the notification alert.
     #[doc(alias = "NSUserNotificationActivationTypeAdditionalActionClicked")]
     pub const AdditionalActionClicked: Self = Self(4);
 }
@@ -42,7 +42,17 @@ unsafe impl RefEncode for NSUserNotificationActivationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification?language=objc)
+    /// A notification that can be scheduled for display in the notification center.
+    ///
+    /// ## Overview
+    ///
+    /// When the system delivers a notification, information about when the notification was actually presented to the user (if at all) and other details are provided in the notification object. User applications can create [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification) objects and register them with the [`NSUserNotificationCenter`](https://developer.apple.com/documentation/foundation/nsusernotificationcenter) object to notify the user when an application requires attention.
+    ///
+    /// ### Threading Information
+    ///
+    /// The [`NSUserNotificationCenter`](https://developer.apple.com/documentation/foundation/nsusernotificationcenter) class and the `NSUserNotification` class are both thread safe.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -338,7 +348,13 @@ impl DefaultRetained for NSUserNotification {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationaction?language=objc)
+    /// An action that the user can take in response to receiving a notification.
+    ///
+    /// ## Overview
+    ///
+    /// User notifications can specify one or more actions to show to the user by using the [`additionalActivationAction`](https://developer.apple.com/documentation/foundation/nsusernotification/additionalactivationaction) or [`additionalActions`](https://developer.apple.com/documentation/foundation/nsusernotification/additionalactions) properties. [`NSUserNotificationAction`](https://developer.apple.com/documentation/foundation/nsusernotificationaction) objects contain the localized title shown to the user and an identifier used to differentiate between presented actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -405,14 +421,48 @@ impl DefaultRetained for NSUserNotificationAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationdefaultsoundname?language=objc)
+    /// The default notification sound.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
     pub static NSUserNotificationDefaultSoundName: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenter?language=objc)
+    /// An object that delivers notifications from apps to the user.
+    ///
+    /// ## Overview
+    ///
+    /// When a user notification’s delivery date has been reached, or it’s manually delivered, the notification center may display the notification to the user. The user notification center reserves the right to decide if a delivered user notification is presented to the user. For example, it may suppress the notification if the application is already frontmost (the delegate can override this action). The application can check the result of this decision by examining the [`presented`](https://developer.apple.com/documentation/foundation/nsusernotification/ispresented) property of a delivered user notification.
+    ///
+    /// [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification) instances the `NSUserNotificationCenter` are tracking will be in one of two states: scheduled or delivered. A scheduled user notification has a [`deliveryDate`](https://developer.apple.com/documentation/foundation/nsusernotification/deliverydate). On that delivery date, the notification will move from being scheduled to being delivered. Note that the user notification may be displayed later than the delivery date depending on many factors.
+    ///
+    /// A delivered user notification has an [`actualDeliveryDate`](https://developer.apple.com/documentation/foundation/nsusernotification/actualdeliverydate). That’s the date when it moved from being scheduled to delivered, or when it was manually delivered using the [`deliverNotification:`](https://developer.apple.com/documentation/foundation/nsusernotificationcenter/deliver(_:)) method.
+    ///
+    /// The application and the user notification center are both ultimately subject to the user’s preferences. If the user decides to hide all alerts from your application, the `presented` property will still behave as above, but the user won’t see any animation or hear any sound.
+    ///
+    /// The [`NSUserNotificationCenterDelegate`](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate) provides more information about the delivered user notification and allows forcing the display of a user notification even if the application is frontmost.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It the user wakes more than 15 minutes after a scheduled notification is scheduled to fire, it’s discarded. If the notification repeats with an interval less than 15 minutes, then it expires in 1 minute. Expired notifications are just discarded, unless they repeat, in which case, they stay in the scheduled list and just fire again later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Many of the NSUserNotificationCenter class’s methods involve talking to a server process, so calling them repeatedly can have a negative effect on performance.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Threading Information
+    ///
+    /// The `NSUserNotificationCenter` class and the [`NSUserNotification`](https://developer.apple.com/documentation/foundation/nsusernotification) class are both thread safe.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
@@ -525,7 +575,7 @@ impl DefaultRetained for NSUserNotificationCenter {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationcenterdelegate?language=objc)
+    /// An interface that enables customizing the behavior of the default notification center.
     pub unsafe trait NSUserNotificationCenterDelegate: NSObjectProtocol {
         #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
         #[optional]

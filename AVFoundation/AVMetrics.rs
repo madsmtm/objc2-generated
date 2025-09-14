@@ -12,16 +12,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A type for objects that publish metric events to the event stream.
     /// This protocol needs to be implemented by interfaces intending to publish metric events to the event stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreampublisher?language=objc)
     pub unsafe trait AVMetricEventStreamPublisher {}
 );
 
 extern_protocol!(
+    /// A type for objects that receive metric events.
     /// This protocol needs to be implemented by the subscriber delegate to receive subscribed metric events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstreamsubscriber?language=objc)
     pub unsafe trait AVMetricEventStreamSubscriber {
         /// Delegate callback to receive metric events.
         ///
@@ -38,9 +36,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// AVMetricEventStream allows clients to add publishers and then subscribe to specific metric event classes from those publishers. Publishers are AVFoundation instances implementing AVMetricEventStreamPublisher. The interface allows clients to receive metric events via a subscriber delegate which implements AVMetricEventStreamSubscriber.
+    /// An object that allows clients to add publishers and then subscribe to specific metric event classes from those publishers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriceventstream?language=objc)
+    /// ## Overview
+    ///
+    /// Publishers are [`AVFoundation`](https://developer.apple.com/documentation/avfoundation) types that adopt [`AVMetricEventStreamPublisher`](https://developer.apple.com/documentation/avfoundation/avmetriceventstreampublisher). The protocol allows clients to receive metric events with a subscriber delegate which adopts the [`AVMetricEventStreamSubscriber`](https://developer.apple.com/documentation/avfoundation/avmetriceventstreamsubscriber) protocol.
+    ///
+    ///
+    /// AVMetricEventStream allows clients to add publishers and then subscribe to specific metric event classes from those publishers. Publishers are AVFoundation instances implementing AVMetricEventStreamPublisher. The interface allows clients to receive metric events via a subscriber delegate which implements AVMetricEventStreamSubscriber.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricEventStream;
@@ -120,11 +123,10 @@ impl AVMetricEventStream {
 }
 
 extern_class!(
+    /// A base class that represents a metric event.
     /// An abstract base class representing metric events.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricEvent;
@@ -175,11 +177,10 @@ impl AVMetricEvent {
 }
 
 extern_class!(
+    /// An object that represents a metric event when an error occurs.
     /// Represents a metric event when an error occurred.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricerrorevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricErrorEvent;
@@ -224,11 +225,10 @@ impl AVMetricErrorEvent {
 }
 
 extern_class!(
+    /// An event that represents a media resource request.
     /// Represents a metric event associated with media resource requests.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricmediaresourcerequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricMediaResourceRequestEvent;
@@ -314,11 +314,10 @@ impl AVMetricMediaResourceRequestEvent {
 }
 
 extern_class!(
+    /// An event that represents a live streaming playlist resource request.
     /// Represents a metric event associated with a HLS playlist resource request.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsplaylistrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricHLSPlaylistRequestEvent;
@@ -376,11 +375,10 @@ impl AVMetricHLSPlaylistRequestEvent {
 }
 
 extern_class!(
+    /// An event that represents a live streaming media segment resource request.
     /// Represents a metric event associated with a HLS media segment resource request.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetrichlsmediasegmentrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricHLSMediaSegmentRequestEvent;
@@ -453,11 +451,10 @@ impl AVMetricHLSMediaSegmentRequestEvent {
 }
 
 extern_class!(
+    /// An event that represents a live streaming content key resource request.
     /// Represents a metric event associated with a HLS content key resource request.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetriccontentkeyrequestevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricContentKeyRequestEvent;
@@ -516,11 +513,10 @@ impl AVMetricContentKeyRequestEvent {
 }
 
 extern_class!(
+    /// An event that represents when playback is likely to continue without stalling.
     /// Represents a metric event when playback was likely to play through without stalling.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemlikelytokeepupevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemLikelyToKeepUpEvent;
@@ -573,11 +569,10 @@ impl AVMetricPlayerItemLikelyToKeepUpEvent {
 }
 
 extern_class!(
+    /// An event that represents the initial state for whether playback is likely to continue without stalling.
     /// Represents a metric event when playback was first likely to play through without stalling.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeriteminitiallikelytokeepupevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemLikelyToKeepUpEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemInitialLikelyToKeepUpEvent;
@@ -633,11 +628,10 @@ impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
 }
 
 extern_class!(
+    /// An event that represents when the playback rate changes.
     /// Represents a metric event when playback rate change occurred.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemratechangeevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemRateChangeEvent;
@@ -688,11 +682,10 @@ impl AVMetricPlayerItemRateChangeEvent {
 }
 
 extern_class!(
+    /// An event that represents when playback stalls.
     /// Represents a metric event when playback stalled.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemstallevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemStallEvent;
@@ -727,11 +720,10 @@ impl AVMetricPlayerItemStallEvent {
 }
 
 extern_class!(
+    /// An event that represents when a playback seek occurs.
     /// Represents a metric event when playback seeked.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemSeekEvent;
@@ -766,11 +758,10 @@ impl AVMetricPlayerItemSeekEvent {
 }
 
 extern_class!(
+    /// An event that represents when the playback seek completes.
     /// Represents a metric event when playback seek completed.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemseekdidcompleteevent?language=objc)
     #[unsafe(super(AVMetricPlayerItemRateChangeEvent, AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemSeekDidCompleteEvent;
@@ -810,7 +801,6 @@ impl AVMetricPlayerItemSeekDidCompleteEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricmediarendition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricMediaRendition;
@@ -857,11 +847,10 @@ impl AVMetricMediaRendition {
 }
 
 extern_class!(
+    /// An event that represents when the player completes a variant switch.
     /// Represents a metric event when variant switch was completed.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemVariantSwitchEvent;
@@ -941,11 +930,10 @@ impl AVMetricPlayerItemVariantSwitchEvent {
 }
 
 extern_class!(
+    /// An event that represents when the player attempts a variant switch.
     /// Represents a metric event when variant switch was attempted.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemvariantswitchstartevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemVariantSwitchStartEvent;
@@ -1014,11 +1002,10 @@ impl AVMetricPlayerItemVariantSwitchStartEvent {
 }
 
 extern_class!(
+    /// An event that represents the combined metrics for the entire playback session.
     /// Represents a summary metric event with aggregated metrics for the entire playback session.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricplayeritemplaybacksummaryevent?language=objc)
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricPlayerItemPlaybackSummaryEvent;
@@ -1105,9 +1092,14 @@ impl AVMetricPlayerItemPlaybackSummaryEvent {
 extern_class!(
     /// Represents a summary metric event with aggregated metrics for the entire download task.
     ///
+    /// ## Overview
+    ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetricdownloadsummaryevent?language=objc)
+    ///
+    /// Represents a summary metric event with aggregated metrics for the entire download task.
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(AVMetricEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMetricDownloadSummaryEvent;

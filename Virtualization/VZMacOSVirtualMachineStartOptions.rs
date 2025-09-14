@@ -7,9 +7,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A class that describes start options for macOS VMs.
     /// Options controlling startup behavior of a virtual machine using VZMacOSBootLoader.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosvirtualmachinestartoptions?language=objc)
     #[unsafe(super(VZVirtualMachineStartOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtualMachineStartOptions")]

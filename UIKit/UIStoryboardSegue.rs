@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardsegue?language=objc)
+    /// An object that prepares for and performs the visual transition between two view controllers.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIStoryboardSegue`](https://developer.apple.com/documentation/uikit/uistoryboardsegue) class supports the standard visual transitions available in UIKit. You can also subclass to define custom transitions between the view controllers in your storyboard file.
+    ///
+    /// Segue objects contain information about the view controllers involved in a transition. When a segue is triggered, but before the visual transition occurs, the storyboard runtime calls the current view controller’s [`prepareForSegue:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/prepare(for:sender:)) method so that it can pass any needed data to the view controller that’s about to be displayed.
+    ///
+    /// You don’t create segue objects directly. Instead, the storyboard runtime creates them when it must perform a segue between two view controllers. You can still initiate a segue programmatically using the [`performSegueWithIdentifier:sender:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/performsegue(withidentifier:sender:)) method of [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) if you want. You might do so to initiate a segue from a source that was added programmatically and therefore not available in Interface Builder.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You can subclass [`UIStoryboardSegue`](https://developer.apple.com/documentation/uikit/uistoryboardsegue) in situations where you want to provide a custom transition between view controllers in your application. To use your custom segue, create a segue line between the appropriate view controllers in Interface Builder and set its type to Custom in the inspector; you must also specify the class name of the segue to use in the inspector.
+    ///
+    /// When the storyboard runtime detects a custom segue, it creates a new instance of your class, configures it with the view controller objects, asks the view controller source to prepare for the segue, and then performs the segue.
+    ///
+    /// #### Methods to override
+    ///
+    /// For custom segues, the main method you need to override is the [`perform`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/perform()) method. The storyboard runtime calls this method when it’s time to perform the visual transition from the view controller in [`sourceViewController`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/source) to the view controller in [`destinationViewController`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/destination). If you need to initialize any variables in your custom segue subclass, you can also override the [`initWithIdentifier:source:destination:`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/init(identifier:source:destination:)) method and initialize them in your custom implementation.
+    ///
+    /// #### Alternatives to subclassing
+    ///
+    /// If your segue doesn’t need to store additional information or provide anything other than a [`perform`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/perform()) method, consider using the [`segueWithIdentifier:source:destination:performHandler:`](https://developer.apple.com/documentation/uikit/uistoryboardsegue/init(identifier:source:destination:performhandler:)) method instead.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -88,10 +112,15 @@ impl UIStoryboardSegue {
 }
 
 extern_class!(
+    /// An encapsulation of information about an unwind segue.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. UIKit creates an unwind segue source object in response to the triggering of an unwind segue. It passes the source object to other view controller methods that determine the destination of the unwind segue. The information in an unwind segue source object includes the view controller being dismissed by the segue and the action method responsible for the dismissal.
+    ///
+    ///
     /// Encapsulates the source of a prospective unwind segue.
     /// You do not create instances of this class directly. Instead, UIKit creates an instance of this class and sends -allowedChildViewControllersForUnwindingFromSource: to each ancestor of the sourceViewController until it finds a view controller which returns YES from -canPerformUnwindSegueAction:fromViewController:sender:.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardunwindseguesource?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

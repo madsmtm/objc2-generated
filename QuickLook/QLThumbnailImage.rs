@@ -9,6 +9,33 @@ use crate::*;
 
 #[cfg(feature = "QLThumbnail")]
 impl QLThumbnail {
+    /// Creates a thumbnail image for the specified file.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to create the thumbnail image.
+    ///
+    /// - url: The URL of the file to create a thumbnail image for.
+    ///
+    /// - maxThumbnailSize: The maximum desired size of the thumbnail image.
+    ///
+    /// - options: A dictionary of options that affect the creation of the thumbnail image. You can use [`kQLThumbnailOptionIconModeKey`](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey) and [`kQLThumbnailOptionScaleFactorKey`](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey) as options.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The thumbnail image, or `NULL` if Quick Look doesn’t support this file type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function doesn’t supplant the use of Icon Services by apps to get generic file icons and custom icons stored in the metadata fork of files.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread-safe, so you can call it from any thread. However, because it’s synchronous, you should generally call it in a background thread.
+    ///
+    ///
     /// Creates a thumbnail for the designated file. Returns NULL if Quick Look does not support this file type.
     ///
     /// Parameter `allocator`: The allocator to use to create the image.
@@ -31,8 +58,6 @@ impl QLThumbnail {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailimagecreate(_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailImageCreate")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing to generate thumbnails for files."]
@@ -57,16 +82,26 @@ impl QLThumbnail {
 }
 
 extern "C" {
-    /// If kCFBooleanTrue, QL will produce an icon (ie a thumbnail and all the icon decor, like shadows, curled corner, etc.).
+    /// The Quick Look generator produces the thumbnail as an icon with decor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). If you use the default, the Quick Look feature creates a thumbnail image with no icon decor. To create the thumbnail as an icon, set the value to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue). The icon’s image includes all the typical icon decor, such as shadows and a curled corner.
+    ///
+    ///
+    /// If kCFBooleanTrue, QL will produce an icon (ie a thumbnail and all the icon decor, like shadows, curled corner, etc.).
     pub static kQLThumbnailOptionIconModeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// This is the user scale factor (as a CFNumber). If absent, default value is 1.0
+    /// The scale factor for the thumbnail.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The scale factor is a `float` value that’s encapsulated in a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object. If this option is absent, the default value is `1.0`.
+    ///
+    ///
+    /// This is the user scale factor (as a CFNumber). If absent, default value is 1.0
     pub static kQLThumbnailOptionScaleFactorKey: Option<&'static CFString>;
 }
 

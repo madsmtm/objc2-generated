@@ -8,35 +8,36 @@ use crate::*;
 
 extern "C" {
     /// The framework attribution error domain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerrordomain?language=objc)
+    /// The framework attribution error domain.
     pub static AAAttributionErrorDomain: &'static NSErrorDomain;
 }
 
+/// The error code that the parent class issues.
 /// The error codes that may be returned by AAAttribution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AAAttributionErrorCode(pub NSInteger);
 impl AAAttributionErrorCode {
+    /// The server is unable to provide a token because the internet isn’t available.
+    ///
+    /// ## Discussion
+    ///
+    /// To receive an attribution token, you must have unimpeded internet access. Make sure you’re not using a simulator when generating a token.
+    ///
+    ///
     /// attributionTokenWithError: is unable to provide a token because the internet isn’t available.
     ///
     /// To receive an attribution token, you must have unimpeded internet access. Make sure
     /// you’re not using a simulator when generating a token.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/networkerror?language=objc)
     #[doc(alias = "AAAttributionErrorCodeNetworkError")]
     pub const NetworkError: Self = Self(1);
+    /// The server is unable to provide a token because of an internal error.
     /// attributionTokenWithError: is unable to provide a token because of an internal error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/internalerror?language=objc)
     #[doc(alias = "AAAttributionErrorCodeInternalError")]
     pub const InternalError: Self = Self(2);
+    /// The server is unable to provide a token because of an unsupported operating system.
     /// attributionTokenWithError: is unable to provide a token because of an unsupported operating system.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattributionerror/code/platformnotsupported?language=objc)
     #[doc(alias = "AAAttributionErrorCodePlatformNotSupported")]
     pub const PlatformNotSupported: Self = Self(3);
 }
@@ -51,8 +52,7 @@ unsafe impl RefEncode for AAAttributionErrorCode {
 
 extern_class!(
     /// The parent class that the framework uses to request a token.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/adservices/aaattribution?language=objc)
+    /// The parent class that the framework uses to request a token.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AAAttribution;

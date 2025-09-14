@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incallrecordresolutionresult?language=objc)
+    /// A resolution result for the details of a call.
+    ///
+    /// ## Overview
+    ///
+    /// You return an `INCallRecordResolutionResult` object when resolving parameters containing an [`INCallRecord`](https://developer.apple.com/documentation/intents/incallrecord) value. The `resolvedCallRecord` can be different than the original `INCallRecord`. This flexibility allows app extensions to apply business logic constraints.
+    ///
+    /// Use [`notRequired`](https://developer.apple.com/documentation/intents/inintentresolutionresult/notrequired()) to continue with a `nil` value. For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

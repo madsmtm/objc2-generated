@@ -7,43 +7,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Each of the different states of a right
+/// The possible states for a right during authorization.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum?language=objc)
+/// ## Overview
+///
+/// You can use key-value observation and the [`Combine`](https://developer.apple.com/documentation/combine) framework to observe the authorization state of an [`LARight`](https://developer.apple.com/documentation/localauthentication/laright) instance:
+///
+/// ```swift
+/// let right = LARight()
+/// let cancellable = right
+///     .publisher(for: \.state)
+///     .sink { _ in
+///         print("Right updated to \(right.state)")
+///     }
+///
+/// try await right.authorize(localizedReason: "Access sandcastle competition designs")
+/// ```
+///
+///
+/// Each of the different states of a right
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LARightState(pub NSInteger);
 impl LARightState {
+    /// The authorization is in an unknown state.
     /// Right has not been evaluated yet.
     ///
     /// This is the initial state of
     /// `LARight`and changes when
     /// `authorize`method is called.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/unknown?language=objc)
     #[doc(alias = "LARightStateUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The authorization is in progress but not completed.
     /// Requirements are currently being evaluated.
     ///
     /// This happens after calling
     /// `authorize`method but before the user has granted the right.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/authorizing?language=objc)
     #[doc(alias = "LARightStateAuthorizing")]
     pub const Authorizing: Self = Self(1);
+    /// The authorization completed successfully.
     /// Authorization was granted
     ///
     /// This can be achieved by succesful authorization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/authorized?language=objc)
     #[doc(alias = "LARightStateAuthorized")]
     pub const Authorized: Self = Self(2);
+    /// The authorization failed.
     /// Authorization was rejected.
     ///
     /// This can be caused by several reasons. For example requirements were not satisified or user rejects to authorize.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum/notauthorized?language=objc)
     #[doc(alias = "LARightStateNotAuthorized")]
     pub const NotAuthorized: Self = Self(3);
 }
@@ -57,9 +69,26 @@ unsafe impl RefEncode for LARightState {
 }
 
 extern_class!(
-    /// Groups a set of requirements that need to be satisfied in order to grant access to certain resource or operation
+    /// A grouped set of requirements that gate access to a resource or operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright?language=objc)
+    /// ## Overview
+    ///
+    /// Use [`LARight`](https://developer.apple.com/documentation/localauthentication/laright) instances to protect access to portions of your app that may contain sensitive information. By default, [`LARight`](https://developer.apple.com/documentation/localauthentication/laright) instances require people to authenticate with Face ID, Touch ID, Apple Watch, or the device passcode. The following creates an [`LARight`](https://developer.apple.com/documentation/localauthentication/laright) with the default authentication requirements:
+    ///
+    /// ```swift
+    /// let loginRight = LARight()
+    ///     
+    /// func login() async throws {
+    ///     try await loginRight.authorize(localizedReason: "Access sandcastle competition designs")
+    /// }
+    ///
+    /// func logout() async {
+    ///     await loginRight.deauthorize()
+    /// }
+    /// ```
+    ///
+    ///
+    /// Groups a set of requirements that need to be satisfied in order to grant access to certain resource or operation
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LARight;

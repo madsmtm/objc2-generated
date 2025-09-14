@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/configuration-swift.class?language=objc)
+    /// A configuration object that contains the traits that the system uses when selecting the current image variant.
+    ///
+    /// ## Overview
+    ///
+    /// Images may contain multiple variants to account for environmental factors, such as whether the interface is light or dark. The image configuration object lets you override the current environment and render an image with specific attributes. For example, you might want to render a specific version of your image to your interface.
+    ///
+    /// [`UIImageConfiguration`](https://developer.apple.com/documentation/uikit/uiimage/configuration-swift.class) objects are immutable and you don’t create them directly. Instead, get an existing image configuration object from a [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) or [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object. To add attributes to your configuration object, use the [`configurationByApplyingConfiguration:`](https://developer.apple.com/documentation/uikit/uiimage/configuration-swift.class/applying(_:)) method to create a new object that merges the existing object’s values with new values you supply. Assign the new object to the [`preferredSymbolConfiguration`](https://developer.apple.com/documentation/uikit/uiimageview/preferredsymbolconfiguration) property of the [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object you use to display the image. If you draw the image directly, use the [`imageWithConfiguration:`](https://developer.apple.com/documentation/uikit/uiimage/withconfiguration(_:)) method to create a new image that contains the new attributes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageConfiguration;

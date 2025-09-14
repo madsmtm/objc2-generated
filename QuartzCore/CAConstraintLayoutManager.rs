@@ -9,34 +9,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute?language=objc)
+/// The constraint attribute type.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAConstraintAttribute(pub c_int);
 impl CAConstraintAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/minx?language=objc)
+    /// The left edge of a layer’s frame.
     #[doc(alias = "kCAConstraintMinX")]
     pub const MinX: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/midx?language=objc)
+    /// The horizontal location of the center of a layer’s frame.
     #[doc(alias = "kCAConstraintMidX")]
     pub const MidX: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/maxx?language=objc)
+    /// The right edge of a layer’s frame.
     #[doc(alias = "kCAConstraintMaxX")]
     pub const MaxX: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/width?language=objc)
+    /// The width of a layer.
     #[doc(alias = "kCAConstraintWidth")]
     pub const Width: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/miny?language=objc)
+    /// The bottom edge of a layer’s frame.
     #[doc(alias = "kCAConstraintMinY")]
     pub const MinY: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/midy?language=objc)
+    /// The vertical location of the center of a layer’s frame.
     #[doc(alias = "kCAConstraintMidY")]
     pub const MidY: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/maxy?language=objc)
+    /// The top edge of a layer’s frame.
     #[doc(alias = "kCAConstraintMaxY")]
     pub const MaxY: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/height?language=objc)
+    /// The height of a layer.
     #[doc(alias = "kCAConstraintHeight")]
     pub const Height: Self = Self(7);
 }
@@ -73,9 +73,70 @@ impl CALayer {
 }
 
 extern_class!(
-    /// The constraint-based layout manager. *
+    /// An object that provides a constraint-based layout manager.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraintlayoutmanager?language=objc)
+    /// ## Overview
+    ///
+    /// You use the shared instance of this object by assigning it to the [`layoutManager`](https://developer.apple.com/documentation/quartzcore/calayer/layoutmanager) property of any layer objects to which you have added constraints. During a layout update, Core Animation uses the layout manager to update the size and position of the sublayers based on the registered set of constraints.
+    ///
+    /// Constraints let you define a set of geometric relationships between a layer and its sibling layers or between a layer and its superlayer. These relationships are expressed using constraint objects, which are instances of the [`CAConstraint`](https://developer.apple.com/documentation/quartzcore/caconstraint) class. When creating constraints, you can reference a layer by name using that object’s [`name`](https://developer.apple.com/documentation/quartzcore/calayer/name) property. You can also use the special name `superlayer` to refer to the layer’s superlayer.
+    ///
+    /// The following example shows how you can use [`CAConstraintLayoutManager`](https://developer.apple.com/documentation/quartzcore/caconstraintlayoutmanager) to create a layer containing two constrained sublayers: `leftLayer` and `rightLayer`. A series of [`CAConstraint`](https://developer.apple.com/documentation/quartzcore/caconstraint) objects are created so that the sublayers match their superlayer’s height and are half of its width. `leftConstraint` matches the [`kCAConstraintMinX`](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/minx) attribute and `rightConstraint` matches the [`kCAConstraintMaxX`](https://developer.apple.com/documentation/quartzcore/caconstraintattribute/maxx) attribute.
+    ///
+    /// The end result is that the two sublayers are always laid out so that `leftLayer` fills the left half of `layer` and `rightLayer` fills the right half of layer.
+    ///
+    /// ```swift
+    /// let layer = CALayer()
+    /// let heightConstraint = CAConstraint(attribute: .height,
+    ///                                     relativeTo: "superlayer",
+    ///                                     attribute: .height)
+    ///     
+    /// let widthConstraint = CAConstraint(attribute: .width,
+    ///                                    relativeTo: "superlayer",
+    ///                                    attribute: .width,
+    ///                                    scale: 0.5,
+    ///                                    offset: 0)
+    ///      
+    /// let leftConstraint = CAConstraint(attribute: .minX,
+    ///                                   relativeTo: "superlayer",
+    ///                                   attribute: .minX)
+    ///      
+    /// let rightConstraint = CAConstraint(attribute: .maxX,
+    ///                                    relativeTo: "superlayer",
+    ///                                    attribute: .maxX)
+    ///     
+    /// let bottomConstraint = CAConstraint(attribute: .minY,
+    ///                                     relativeTo: "superlayer",
+    ///                                     attribute: .minY)   
+    ///      
+    /// let leftLayer = CALayer()
+    /// leftLayer.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+    /// layer.addSublayer(leftLayer)
+    /// leftLayer.constraints = [heightConstraint, widthConstraint,
+    ///                          leftConstraint, bottomConstraint]
+    /// leftLayer.backgroundColor = NSColor.red.cgColor
+    ///   
+    /// let rightLayer = CALayer()
+    /// layer.addSublayer(rightLayer)
+    /// rightLayer.constraints = [heightConstraint, widthConstraint,
+    ///                           rightConstraint, bottomConstraint]
+    /// rightLayer.backgroundColor = NSColor.blue.cgColor
+    ///     
+    /// layer.layoutManager = CAConstraintLayoutManager()
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It is possible to specify a set of constraints that will cause layout to fail. For example, layout may fail if your constraints contain a circular dependency. When that happens, the behavior of the layout manager is undefined.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This class is not meant to be subclassed.
+    ///
+    ///
+    /// The constraint-based layout manager. *
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraintLayoutManager;
@@ -119,9 +180,29 @@ impl DefaultRetained for CAConstraintLayoutManager {
 }
 
 extern_class!(
-    /// The class representing a single layout constraint. *
+    /// A representation of a single layout constraint between two layers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caconstraint?language=objc)
+    /// ## Overview
+    ///
+    /// Each [`CAConstraint`](https://developer.apple.com/documentation/quartzcore/caconstraint) instance encapsulates one geometry relationship between two layers on the same axis.
+    ///
+    /// Sibling layers are referenced by name, using the name property of each layer. The special name `superlayer` is used to refer to the layer’s superlayer.
+    ///
+    /// For example, to specify that a layer should be horizontally centered in its superview you would use the following:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let theConstraint = CAConstraint(attribute: .midX,", "                                 relativeTo: \"superlayer\",", "                                 attribute: .midX)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["theConstraint=[CAConstraint constraintWithAttribute:kCAConstraintMidX", "                                         relativeTo:@\"superlayer\"", "                                         attribute:kCAConstraintMidX];"], metadata: None }] }] })
+    /// A minimum of two relationships must be specified per axis. If you specify constraints for the left and right edges of a layer, the width will vary. If you specify constraints for the left edge and the width, the right edge of the layer will move relative to the superlayer’s frame. Often you’ll specify only a single edge constraint, the layer’s size in the same axis will be used as the second relationship.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It is possible to create constraints that result in circular references to the same attributes. In cases where the layout is unable to be computed the behavior is undefined.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// The class representing a single layout constraint. *
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAConstraint;

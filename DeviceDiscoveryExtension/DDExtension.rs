@@ -7,9 +7,14 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Manages a session between the extension and host.
+    /// An object that relays device discovery events from the extension to the system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddiscoverysession?language=objc)
+    /// ## Overview
+    ///
+    /// The system passes the extension an instance of this class when it attempts to discover a device. Device discovery starts when an app displays [`AVRoutePickerView`](https://developer.apple.com/documentation/avkit/avroutepickerview) and the system calls the extension’s `startDiscovery(session:)` implementation.
+    ///
+    ///
+    /// Manages a session between the extension and host.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDDiscoverySession;

@@ -16,7 +16,13 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopengllayer?language=objc)
+    /// A subclass of `CAOpenGLLayer` that is suitable for rendering OpenGL into layers.
+    ///
+    /// ## Overview
+    ///
+    /// Unlike [`CAOpenGLLayer`](https://developer.apple.com/documentation/quartzcore/caopengllayer), [`NSOpenGLLayer`](https://developer.apple.com/documentation/appkit/nsopengllayer) uses AppKit types.
+    ///
+    ///
     #[unsafe(super(CAOpenGLLayer, CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-quartz-core")]

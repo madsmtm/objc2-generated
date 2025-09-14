@@ -7,25 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus?language=objc)
+/// Values that indicate the loaded status of a property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVKeyValueStatus(pub NSInteger);
 impl AVKeyValueStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/unknown?language=objc)
+    /// The property value’s status is unknown.
     #[doc(alias = "AVKeyValueStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loading?language=objc)
+    /// The system is loading the property value.
     #[doc(alias = "AVKeyValueStatusLoading")]
     pub const Loading: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/loaded?language=objc)
+    /// The property value is ready to use.
     #[doc(alias = "AVKeyValueStatusLoaded")]
     pub const Loaded: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/failed?language=objc)
+    /// The system is unable to load the property value.
     #[doc(alias = "AVKeyValueStatusFailed")]
     pub const Failed: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avkeyvaluestatus/cancelled?language=objc)
+    /// You canceled loading a property value.
     #[doc(alias = "AVKeyValueStatusCancelled")]
     pub const Cancelled: Self = Self(4);
 }
@@ -39,6 +39,15 @@ unsafe impl RefEncode for AVKeyValueStatus {
 }
 
 extern_protocol!(
+    /// A protocol that defines the interface to load media data asynchronously.
+    ///
+    /// ## Overview
+    ///
+    /// Loading media data takes an amount of time that depends on factors including the media’s size, location, device capabilities, network conditions, and so on. To optimize performance, [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) defers loading its media data until you query its properties or perform an operation that requires it. This means that performing these actions from a synchronous context would block the calling thread for an unknown amount of time, which would result in a poor user experience, and may even cause your app to crash. For this reason, you must load media data asynchronously.
+    ///
+    /// Call the asynchronous [`load(_:isolation:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/load(_:isolation:)) method to retrieve the values of media properties, or determine the loaded status of a property by calling the [`status(of:)`](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading/status(of:)) method. See [Loading media data asynchronously](https://developer.apple.com/documentation/avfoundation/loading-media-data-asynchronously) for more information.
+    ///
+    ///
     /// The AVAsynchronousKeyValueLoading protocol defines methods that let clients use an AVAsset or AVAssetTrack object without blocking a thread. Using methods in the protocol, one can find out the current status of a key (for example, whether the corresponding value has been loaded); and ask the object to load values asynchronously, informing the client when the operation has completed.
     ///
     ///
@@ -48,8 +57,6 @@ extern_protocol!(
     /// 2. If a value has not been loaded yet, you can ask for to load one or more values and be notified when they become available using loadValuesAsynchronouslyForKeys:completionHandler:.
     ///
     /// Even for use cases that may typically support ready access to some keys (such as for assets initialized with URLs for files in the local filesystem), slow I/O may require AVAsset to block before returning their values. Although blocking may be acceptable for macOS API clients in cases where assets are being prepared on background threads or in operation queues, in all cases in which blocking should be avoided you should use loadValuesAsynchronouslyForKeys:completionHandler:. For clients of platforms other than macOS, blocking to obtain the value of a key synchronously is never recommended under any circumstances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avasynchronouskeyvalueloading?language=objc)
     pub unsafe trait AVAsynchronousKeyValueLoading {
         #[cfg(feature = "block2")]
         /// Directs the target to load the values of any of the specified keys that are not already loaded.

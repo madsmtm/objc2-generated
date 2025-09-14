@@ -7,6 +7,20 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// Add this interaction to a container view of views that overlay the edge of a scroll view. Any descendants of this view that should affect the shape of the edge effect, such as labels, images, glass views, and controls, will automatically do so.
+    ///
+    /// ## Overview
+    ///
+    /// In the following example, an interaction is added to a container view of buttons that overlay the bottom edge of a scroll view.
+    ///
+    /// ```text
+    /// let interaction = UIScrollEdgeElementContainerInteraction()
+    /// interaction.scrollView = scrollView
+    /// interaction.edge = .bottom
+    /// buttonContainer.addInteraction(interaction)
+    /// ```
+    ///
+    ///
     /// Add this interaction to a container view of views that overlay the edge of a scroll view.
     /// Any descendants of this view that should affect the shape of the edge effect, such as labels, images, glass views, and controls, will automatically do so.
     ///
@@ -16,8 +30,6 @@ extern_class!(
     /// interaction.scrollView = scrollView
     /// interaction.edge = .bottom
     /// buttonContainer.addInteraction(interaction)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeelementcontainerinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -7,24 +7,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetUserCurrentRestaurantReservationBookingsIntentResponseCode(pub NSInteger);
 impl INGetUserCurrentRestaurantReservationBookingsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app was successful in fetching the user’s reservations, even if the fetch returned no results. Include all of the reservations that match the search criteria in the [`userCurrentBookings`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponse/usercurrentbookings) property of your response object.
+    ///
+    ///
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/failure?language=objc)
+    /// You were unable to fetch the user’s reservations.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from performing the fetch operation.
+    ///
+    ///
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/failurerequestunsatisfiable?language=objc)
+    /// The intent object contained conflicting information.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if the intent object contained a specific reservation identifier and restaurant, but that the reservation’s restaurant did not match the specified restaurant.
+    ///
+    ///
     #[doc(
         alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeFailureRequestUnsatisfiable"
     )]
     pub const FailureRequestUnsatisfiable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponsecode/unspecified?language=objc)
+    /// The request did not contain enough information for you to proceed.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the information in the intent object was insufficient for you to perform the fetch operation.
+    ///
+    ///
     #[doc(alias = "INGetUserCurrentRestaurantReservationBookingsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(3);
 }
@@ -38,7 +62,15 @@ unsafe impl RefEncode for INGetUserCurrentRestaurantReservationBookingsIntentRes
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponse?language=objc)
+    /// Your app’s response to a get user current restaurant reservation bookings intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetUserCurrentRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponse) object contains the current reservations associated with the user and matching the search criteria in the corresponding [`INGetUserCurrentRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent) object. You create instances of this class when confirming or handling an intent object of that type.
+    ///
+    /// You create an [`INGetUserCurrentRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponse) object in the [`confirmGetUserCurrentRestaurantReservationBookings:completion:`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling/confirm(getusercurrentrestaurantreservationbookings:completion:)) and [`handleGetUserCurrentRestaurantReservationBookings:completion:`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling/handle(getusercurrentrestaurantreservationbookings:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INGetUserCurrentRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

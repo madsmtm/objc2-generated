@@ -14,22 +14,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode?language=objc)
+/// The modes that determine how the scene’s area is mapped to the view that presents it.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKSceneScaleMode(pub NSInteger);
 impl SKSceneScaleMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/fill?language=objc)
+    /// Each axis of the scene is scaled independently so that each axis in the scene exactly maps to the length of that axis in the view.
     #[doc(alias = "SKSceneScaleModeFill")]
     pub const Fill: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/aspectfill?language=objc)
+    /// The scaling factor of each dimension is calculated and the larger of the two is chosen. Each axis of the scene is scaled by the same scaling factor. This guarantees that the entire area of the view is filled but may cause parts of the scene to be cropped.
     #[doc(alias = "SKSceneScaleModeAspectFill")]
     pub const AspectFill: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/aspectfit?language=objc)
+    /// The scaling factor of each dimension is calculated and the smaller of the two is chosen. Each axis of the scene is scaled by the same scaling factor. This guarantees that the entire scene is visible but may require letterboxing in the view.
     #[doc(alias = "SKSceneScaleModeAspectFit")]
     pub const AspectFit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenescalemode/resizefill?language=objc)
+    /// The scene is not scaled to match the view. Instead, the scene is automatically resized so that its dimensions always match those of the view.
     #[doc(alias = "SKSceneScaleModeResizeFill")]
     pub const ResizeFill: Self = Self(3);
 }
@@ -43,7 +43,27 @@ unsafe impl RefEncode for SKSceneScaleMode {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscenedelegate?language=objc)
+    /// Methods that, when implemented, allow any class to participate in the SpriteKit render loop callbacks.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SKSceneDelegate`](https://developer.apple.com/documentation/spritekit/skscenedelegate) protocol is used to implement a delegate to be called whenever the scene is being animated. Typically, you supply a delegate when you want to use a scene without requiring the scene to be subclassed. The methods in this protocol all correspond to methods implemented by the [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) class. If the delegate implements a particular method, that method is called instead of the corresponding method on the scene object.
+    ///
+    /// When processing a scene, SpriteKit runs a loop that processes and renders the scene. The [`SKSceneDelegate`](https://developer.apple.com/documentation/spritekit/skscenedelegate) methods allows you to add logic at any step of the loop.
+    ///
+    ///
+    /// ![Frame processing in a scene](https://docs-assets.developer.apple.com/published/be1a33d8b82e5a33a9f3873c756bb121/media-2527821%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If your view has a [`SKViewDelegate`](https://developer.apple.com/documentation/spritekit/skviewdelegate) and its [`view:shouldRenderAtTime:`](https://developer.apple.com/documentation/spritekit/skviewdelegate/view(_:shouldrenderattime:)) method returns [`false`](https://developer.apple.com/documentation/swift/false), the update is skipped and none of the scene delegate methods are called.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait SKSceneDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "SKEffectNode",
@@ -103,12 +123,19 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that organizes all of the active SpriteKit content.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKScene`](https://developer.apple.com/documentation/spritekit/skscene) object represents a scene of content in SpriteKit. A scene is the root node in a tree of SpriteKit nodes ([`SKNode`](https://developer.apple.com/documentation/spritekit/sknode)). These nodes provide content that the scene animates and renders for display. To display a scene, you present it from an [`SKView`](https://developer.apple.com/documentation/spritekit/skview), [`SKRenderer`](https://developer.apple.com/documentation/spritekit/skrenderer), or [`WKInterfaceSKScene`](https://developer.apple.com/documentation/watchkit/wkinterfaceskscene).
+    ///
+    /// `SKScene` is a subclass of [`SKEffectNode`](https://developer.apple.com/documentation/spritekit/skeffectnode) and enables certain effects to apply to the entire scene. Though applying effects to an entire scene can be an expensive operation, creativity, and ingenuity may help you find some interesting ways to use effects.
+    ///
+    ///
     /// A scene is the root node of your content. It is used to display SpriteKit content on an SKView.
     ///
     ///
     /// See: SKView
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skscene?language=objc)
     #[unsafe(super(SKEffectNode, SKNode, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

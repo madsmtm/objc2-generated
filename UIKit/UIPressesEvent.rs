@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipressesevent?language=objc)
+    /// An event that describes the state of a set of physical buttons that are available to the device, such as those on an associated remote or game controller.
     #[unsafe(super(UIEvent, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

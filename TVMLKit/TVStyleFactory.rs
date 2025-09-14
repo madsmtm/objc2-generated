@@ -7,42 +7,41 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype?language=objc)
+/// Describes the different style types for an element.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct TVViewElementStyleType(pub NSInteger);
 impl TVViewElementStyleType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/integer?language=objc)
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) value.
     #[doc(alias = "TVViewElementStyleTypeInteger")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Integer: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/double?language=objc)
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) value.
     #[doc(alias = "TVViewElementStyleTypeDouble")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Double: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/point?language=objc)
+    /// A [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) value.
     #[doc(alias = "TVViewElementStyleTypePoint")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Point: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/string?language=objc)
+    /// A [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) value.
     #[doc(alias = "TVViewElementStyleTypeString")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const String: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/color?language=objc)
+    /// A [`TVColor`](https://developer.apple.com/documentation/tvmlkit/tvcolor) value.
     #[doc(alias = "TVViewElementStyleTypeColor")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Color: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/url?language=objc)
+    /// A [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) value.
     #[doc(alias = "TVViewElementStyleTypeURL")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const URL: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/transform?language=objc)
     #[doc(alias = "TVViewElementStyleTypeTransform")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Transform: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvviewelementstyletype/edgeinsets?language=objc)
+    /// An [`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets) value.
     #[doc(alias = "TVViewElementStyleTypeEdgeInsets")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const EdgeInsets: Self = Self(8);
@@ -57,9 +56,8 @@ unsafe impl RefEncode for TVViewElementStyleType {
 }
 
 extern_class!(
+    /// An object used to register custom style properties.
     /// Factory to register new styles to define custom style data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvstylefactory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

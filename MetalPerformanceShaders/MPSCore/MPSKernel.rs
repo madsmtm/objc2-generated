@@ -9,6 +9,36 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A standard interface for Metal Performance Shaders kernels.
+    ///
+    /// ## Overview
+    ///
+    /// You should not use the [`MPSKernel`](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel) class directly. Instead, a number of subclasses are available that define specific high-performance data-parallel operations.
+    ///
+    /// The basic sequence for applying a kernel to an image is as follows:
+    ///
+    /// 1. Initialize a kernel corresponding to the operation you wish to perform:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let sobel = MPSImageSobel(device: mtlDevice)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["MPSImageSobel *sobel = [[MPSImageSobel alloc] initWithDevice: mtlDevice];"], metadata: None }] }] })
+    /// 2. Encode the kernel into a command buffer.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["sobel.offset = ...", "sobel.clipRect = ...", "sobel.options = ...", "sobel.encode(commandBuffer: commandBuffer,", "             sourceTexture: inputImage,", "             destinationTexture: resultImage)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["sobel.offset = ...;", "sobel.clipRect = ...;", "sobel.options = ...;", "[sobel encodeToCommandBuffer: commandBuffer sourceTexture: inputImage destinationTexture: resultImage;", " ", "if(returnVal < 0)", "    MyShowError(returnVal);"], metadata: None }] }] })
+    /// Encoding the kernel merely encodes the operation into a command buffer. It does not modify any pixels, yet. All kernel state has been copied to the command buffer. Kernels may be reused. If the texture was previously operated on by another command encoder (e.g. a render command encoder), you should call the [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) method on the other encoder before encoding the filter.
+    ///
+    /// Some kernels work in place, even in situations where Metal might not normally allow in-place operation on textures. If in-place operation is desired, you may attempt to call the [`encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/encode(commandbuffer:inplacetexture:fallbackcopyallocator:)) method. If the operation cannot be completed in place, then [`false`](https://developer.apple.com/documentation/swift/false) will be returned and you will have to create a new result texture and try again. To make an in-place image filter reliable, pass a fallback [`MPSCopyAllocator`](https://developer.apple.com/documentation/metalperformanceshaders/mpscopyallocator) block to the method to create a new texture to write to in the event that a filter cannot operate in place.
+    ///
+    /// You may repeat step 2 to encode more kernels, as desired. 3. After encoding any additional work to the command buffer using other encoders, submit the command buffer to your command queue, using:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["commandBuffer.commit()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[commandBuffer commit];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It should be self evident that step 2 may not be thread safe. That is, you can not have multiple threads manipulating the same properties on the same kernel object at the same time and achieve coherent output. In common usage, the kernel properties don’t often need to be changed from their default values, but if you need to apply the same filter to multiple images on multiple threads with cropping/tiling, make additional kernel objects per thread (they are cheap). You can use multiple kernel objects on multiple threads, as long as only one thread is operating on any particular kernel object at a time.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSKernel class is the base class for all MPS objects.  It defines a standard interface for
@@ -71,8 +101,6 @@ extern_class!(
     /// <MPSDeviceProvider
     /// > protocol.  To accomplish this, subclass or extend your unarchiver
     /// to add this method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskernel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSKernel;

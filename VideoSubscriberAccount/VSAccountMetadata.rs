@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A collection of information about a subscriber's account.
+    /// A collection of information for a subscriber’s account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadata?language=objc)
+    /// ## Overview
+    ///
+    /// The [`VSAccountMetadata`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadata) object contains the information you requested in the [`VSAccountMetadataRequest`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadatarequest) object that you passed to the [`enqueueAccountMetadataRequest:completionHandler:`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmanager/enqueue(_:completionhandler:)) method. If the call succeeds, the system sends the [`VSAccountMetadata`](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountmetadata) object to your app’s completion handler for your app to process.
+    ///
+    ///
+    /// A collection of information about a subscriber's account.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAccountMetadata;

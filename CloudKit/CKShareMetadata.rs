@@ -7,7 +7,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/metadata?language=objc)
+    /// An object that describes a shared record’s metadata.
+    ///
+    /// ## Overview
+    ///
+    /// A share’s metadata is an intermediary object that provides access to the share, its owner, and, for a shared record hierarchy, its root record. Metadata also includes details about the current user’s participation in the share.
+    ///
+    /// You don’t create metadata. CloudKit provides it to your app when the user taps or clicks a share’s [`URL`](https://developer.apple.com/documentation/cloudkit/ckshare/url), such as in an email or a message. The method CloudKit calls varies by platform and app configuration, and includes the following:
+    ///
+    /// - For a scene-based iOS app in a running or suspended state, CloudKit calls the [`windowScene:userDidAcceptCloudKitShareWithMetadata:`](https://developer.apple.com/documentation/uikit/uiwindowscenedelegate/windowscene(_:userdidacceptcloudkitsharewith:)) method on your window scene delegate.
+    ///
+    /// - For a scene-based iOS app that’s not running, the system launches your app in response to the tap or click, and calls the [`scene:willConnectToSession:options:`](https://developer.apple.com/documentation/uikit/uiscenedelegate/scene(_:willconnectto:options:)) method on your scene delegate. The `connectionOptions` parameter contains the metadata. Use its [`cloudKitShareMetadata`](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions/cloudkitsharemetadata) property to access it.
+    ///
+    /// - For an iOS app that doesn’t use scenes, CloudKit calls your app delegate’s [`application:userDidAcceptCloudKitShareWithMetadata:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:userdidacceptcloudkitsharewith:)) method.
+    ///
+    /// - For a macOS app, CloudKit calls your app delegate’s [`application:userDidAcceptCloudKitShareWithMetadata:`](https://developer.apple.com/documentation/appkit/nsapplicationdelegate/application(_:userdidacceptcloudkitsharewith:)) method.
+    ///
+    /// - For a watchOS app, CloudKit calls the [`userDidAcceptCloudKitShareWithMetadata:`](https://developer.apple.com/documentation/watchkit/wkextensiondelegate/userdidacceptcloudkitshare(with:)) method on your watch extension delegate.
+    ///
+    /// Respond by checking the [`participantStatus`](https://developer.apple.com/documentation/cloudkit/ckshare/metadata/participantstatus) of the provided metadata. If the status is `pending`, use [`CKAcceptSharesOperation`](https://developer.apple.com/documentation/cloudkit/ckacceptsharesoperation) to accept participation in the share. You can also fetch metadata independent of this flow using [`CKFetchShareMetadataOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation).
+    ///
+    /// For a shared record hierarchy, the [`hierarchicalRootRecordID`](https://developer.apple.com/documentation/cloudkit/ckshare/metadata/hierarchicalrootrecordid) property contains the ID of the share’s root record. When using [`CKFetchShareMetadataOperation`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation) to fetch metadata, you can include the entire root record by setting the operation’s [`shouldFetchRootRecord`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/shouldfetchrootrecord) property to [`true`](https://developer.apple.com/documentation/swift/true). CloudKit then populates the [`rootRecord`](https://developer.apple.com/documentation/cloudkit/ckshare/metadata/rootrecord) property before it returns the metadata. You can further customize this behavior using the operation’s [`rootRecordDesiredKeys`](https://developer.apple.com/documentation/cloudkit/ckfetchsharemetadataoperation/rootrecorddesiredkeys-3xrex) property to specify which fields to return. This functionality isn’t applicable for a shared record zone because, unlike a shared record hierarchy, it doesn’t have a nominated root record.
+    ///
+    /// The participant properties provide the current user’s acceptance status, permissions, and role. Use these values to determine what functionality to provide to the user. For example, only display editing controls for accepted participants with `readWrite` permissions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKShareMetadata;

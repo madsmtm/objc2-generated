@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintent?language=objc)
+    /// A request for the current status of a previously booked ride.
+    ///
+    /// ## Overview
+    ///
+    /// When there’s a request for the status of a booked ride, SiriKit sends an [`INGetRideStatusIntent`](https://developer.apple.com/documentation/intents/ingetridestatusintent) object to your handler object. Upon receiving this intent, fetch the ride status and return it in your response object. The intent object has no additional parameters.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling) protocol. Your handler should confirm the request and create an [`INGetRideStatusIntentResponse`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponse) object with the status of the ride.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    /// Apps can optionally ask the user to unlock the device before handling this intent. To require unlocking of the device, include the name of this class in the `IntentsRestrictedWhileLocked` key of your Intents extension’s `Info.plist` file.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -60,11 +75,28 @@ impl INGetRideStatusIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for fetching the status of the user’s current ride.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling) protocol to confirm and handle requests to get the status of the user’s currently booked ride. Adopt this protocol in an object of your Intents extension that is capable of retrieving the ride details from your service.
+    ///
+    /// SiriKit may deliver an [`INGetRideStatusIntent`](https://developer.apple.com/documentation/intents/ingetridestatusintent) object to your handler object at any time, including when the user asks explicitly for the status of that ride. The specified intent object contains no additional information. Your app must know which ride is currently active. Use the methods of this protocol to handle the request and provide an appropriate response.
+    ///
+    /// Maps does not require you to confirm the contents of a get ride status intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    /// ### Updating the Ride Status Periodically
+    ///
+    /// After returning your response, SiriKit may call the [`startSendingUpdatesForGetRideStatus:toObserver:`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling/startsendingupdates(for:to:)) method to ask for further updates as the ride status changes. Implement that method and use it to begin the delivery of regular updates. Continue providing updates until SiriKit calls the [`stopSendingUpdatesForGetRideStatus:`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling/stopsendingupdates(for:)) method.
+    ///
+    /// After it starts observing the status of a ride, SiriKit keeps your Intents extension alive so that it can provide frequent updates. Always deliver an update at least once every 20 seconds; otherwise, provide updates with the same frequency that you use for updating your own app. Always provide updates when the ride phase or completion status changes. For example, provide an update when your vehicle is approaching the pickup location or arrives at it. SiriKit uses the updates to refresh any map interfaces displaying the location of your vehicle to the user.
+    ///
+    /// Use the methods of the observer object to deliver your updates back to SiriKit. For more information about providing updates to the observer, see [`INGetRideStatusIntentResponseObserver`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponseobserver).
+    ///
+    ///
     /// Protocol to declare support for handling an INGetRideStatusIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling?language=objc)
     pub unsafe trait INGetRideStatusIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INGetRideStatusIntentResponse",
@@ -134,7 +166,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentresponseobserver?language=objc)
+    /// An interface for providing updated status for an active ride.
+    ///
+    /// ## Overview
+    ///
+    /// The [`INGetRideStatusIntentResponseObserver`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponseobserver) protocol defines methods that provide SiriKit with an updated status for an active ride request. You do not implement the methods of this protocol in your own objects. Instead, the system provides an object that adopts this protocol. You call its [`getRideStatusResponseDidUpdate:`](https://developer.apple.com/documentation/intents/ingetridestatusintentresponseobserver/didupdate(getridestatus:)) method to deliver updated information about the status of a booked ride.
+    ///
+    /// When the system initiates a request for status updates, it passes an object that adopts this protocol to the [`startSendingUpdatesForGetRideStatus:toObserver:`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling/startsendingupdates(for:to:)) method of your ride status handler object—your custom object that adopts the [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling) protocol. Your handler must store a reference to this object and use it to deliver regular updates about the status of the ride.
+    ///
+    /// For more information about providing status updates for a ride, see [`INGetRideStatusIntentHandling`](https://developer.apple.com/documentation/intents/ingetridestatusintenthandling).
+    ///
+    ///
     pub unsafe trait INGetRideStatusIntentResponseObserver: NSObjectProtocol {
         #[cfg(all(
             feature = "INGetRideStatusIntentResponse",

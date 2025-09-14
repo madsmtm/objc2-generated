@@ -10,7 +10,13 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionkerberosmapping?language=objc)
+    /// A set of Kerberos mappings that the system login process uses.
+    ///
+    /// ## Overview
+    ///
+    /// This class contains a set of mappings for the sign-on token when importing the Kerberos ticket.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionKerberosMapping;
@@ -128,19 +134,15 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionFederationType(pub NSInteger);
 impl ASAuthorizationProviderExtensionFederationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/none?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/wstrust?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeWSTrust")]
     pub const WSTrust: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum/dynamicwstrust?language=objc)
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeDynamicWSTrust")]
     pub const DynamicWSTrust: Self = Self(2);
 }
@@ -153,26 +155,20 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionusersecureenclavekeybiometricpolicy/asauthorizationproviderextensionusersecureenclavekeybiometricpolicynone?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/touchidorwatchcurrentset?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchCurrentSet")]
         const TouchIDOrWatchCurrentSet = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/touchidorwatchany?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyTouchIDOrWatchAny")]
         const TouchIDOrWatchAny = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/reuseduringunlock?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyReuseDuringUnlock")]
         const ReuseDuringUnlock = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct/passwordfallback?language=objc)
         #[doc(alias = "ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicyPasswordFallback")]
         const PasswordFallback = 1<<3;
     }
@@ -186,70 +182,67 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionUserSecureEnclaveKeyBi
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderExtensionEncryptionAlgorithm = NSNumber;
 
 extern "C" {
+    /// A encryption algorithm that uses NIST P-256 elliptic curve key agreement, ConcatKDF key derivation with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     /// A encryption algorithm that uses NIST P-256 elliptic curve key agreement, ConcatKDF key derivation
     /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/ecdhe_a256gcm?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// A cipher suite for HPKE that uses NIST P-256 elliptic curve key agreement, SHA-2 key derivation with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     /// A cipher suite for HPKE that uses NIST P-256 elliptic curve key agreement, SHA-2 key derivation
     /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_p256_sha256_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// A cipher suite that you use for HPKE using NIST P-384 elliptic curve key agreement, SHA-2 key derivation with a 384-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     /// A cipher suite that you use for HPKE using NIST P-384 elliptic curve key agreement, SHA-2 key derivation
     /// with a 384-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_p384_sha384_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
 extern "C" {
+    /// A cipher suite for HPKE that uses X25519 elliptic curve key agreement, SHA-2 key derivation with a 256-bit digest, and the ChaCha20 stream cipher with the Poly1305 message authentication code.
     /// A cipher suite for HPKE that uses X25519 elliptic curve key agreement, SHA-2 key derivation
     /// with a 256-bit digest, and the ChaCha20 stream cipher with the Poly1305 message authentication code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_curve25519_sha256_chachapoly?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationProviderExtensionSigningAlgorithm = NSNumber;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/es256?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES256:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/es384?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES384:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/ed25519?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmEd25519:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration?language=objc)
+    /// An interface for configuring platform single sign-on.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides login configuration information for platform single sign-on.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationProviderExtensionLoginConfiguration;

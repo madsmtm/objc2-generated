@@ -6,11 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestexpressiontype?language=objc)
+/// This constant specifies the fetch request expression type.
 pub static NSFetchRequestExpressionType: NSExpressionType = NSExpressionType(50);
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsfetchrequestexpression?language=objc)
+    /// An expression that evaluates the result of a fetch request on a managed object context.
+    ///
+    /// ## Overview
+    ///
+    /// `NSFetchRequestExpression` inherits from [`NSExpression`](https://developer.apple.com/documentation/foundation/nsexpression), which provides most of the basic behavior. The first argument must be an expression which evaluates to an `NSFetchRequest` object, and the second must be an expression which evaluates to an `NSManagedObjectContext` object. If you simply want the count for the request, the `countOnly` argument should be [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[unsafe(super(NSExpression, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFetchRequestExpression;

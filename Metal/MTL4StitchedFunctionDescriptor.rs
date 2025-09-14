@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Groups together properties that describe a shader function suitable for stitching.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4stitchedfunctiondescriptor?language=objc)
+    /// Groups together properties that describe a shader function suitable for stitching.
     #[unsafe(super(MTL4FunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4FunctionDescriptor")]

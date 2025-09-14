@@ -6,39 +6,58 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Equivalent to [`NSPointerFunctionsStrongMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory).
 /// **************    Class    ***************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablestrongmemory?language=objc)
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::StrongMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablezeroingweakmemory?language=objc)
+/// Equivalent to [`NSPointerFunctionsZeroingWeakMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions/nspointerfunctionszeroingweakmemory).
 #[cfg(feature = "NSPointerFunctions")]
 #[deprecated = "GC no longer supported"]
 pub static NSMapTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablecopyin?language=objc)
+/// Equivalent to [`NSPointerFunctionsCopyIn`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/copyin).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableCopyIn: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::CopyIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableobjectpointerpersonality?language=objc)
+/// Equivalent to [`NSPointerFunctionsObjectPointerPersonality`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpointerpersonality).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableObjectPointerPersonality: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ObjectPointerPersonality.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableweakmemory?language=objc)
+/// Equivalent to [`NSPointerFunctionsWeakMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/weakmemory).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSMapTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptableoptions?language=objc)
+/// Constants used as components in a bitfield to specify the behavior of elements (keys and values) in an `NSMapTable` object.
 pub type NSMapTableOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptable?language=objc)
+    /// A collection similar to a dictionary, but with a broader range of available memory semantics.
+    ///
+    /// ## Overview
+    ///
+    /// The map table is modeled after [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) with the following differences:
+    ///
+    /// - Keys and/or values are optionally held “weakly” such that entries are removed when one of the objects is reclaimed.
+    ///
+    /// - Its keys or values may be copied on input or may use pointer identity for equality and hashing.
+    ///
+    /// - It can contain arbitrary pointers (its contents are not constrained to being objects).
+    ///
+    /// You can configure an [`NSMapTable`](https://developer.apple.com/documentation/foundation/nsmaptable) instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as [`setObject:forKey:`](https://developer.apple.com/documentation/foundation/nsmaptable/setobject(_:forkey:))) will not work for non-object pointers without type-casting.
+    ///
+    /// When configuring map tables, note that only the options listed in [`NSMapTableOptions`](https://developer.apple.com/documentation/foundation/nsmaptableoptions) guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other [`NSPointerFunctions`](https://developer.apple.com/documentation/foundation/nspointerfunctions) options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the map table may not work correctly, or may not even be initialized correctly.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSMapTable` is not suitable for subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMapTable<KeyType: ?Sized = AnyObject, ObjectType: ?Sized = AnyObject>;
@@ -240,9 +259,14 @@ impl<KeyType: Message, ObjectType: Message> DefaultRetained for NSMapTable<KeyTy
     }
 }
 
-/// **************    void * Map table operations    ***************
+/// Allows successive elements of a map table to be returned each time this structure is passed to [`NSNextMapEnumeratorPair`](https://developer.apple.com/documentation/foundation/nsnextmapenumeratorpair(_:_:_:)).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapenumerator?language=objc)
+/// ## Overview
+///
+/// The fields of `NSMapEnumerator` are private.
+///
+///
+/// **************    void * Map table operations    ***************
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapEnumerator {
@@ -267,7 +291,17 @@ unsafe impl RefEncode for NSMapEnumerator {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsresetmaptable(_:)?language=objc)
+    /// Deletes the elements of the specified map table.
+    ///
+    /// Parameters:
+    /// - table: A reference to a map table structure.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Releases each key and value but doesn’t deallocate `table`. This method is useful for preserving the capacity of `table`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -275,7 +309,13 @@ extern "C-unwind" {
     pub fn NSResetMapTable(table: &NSMapTable);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparemaptables(_:_:)?language=objc)
+/// Compares the elements of two map tables for equality.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the keys and corresponding values of `table1` and `table2` are the same, and the two tables are the same size, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 ///
 /// # Safety
 ///
@@ -292,7 +332,21 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
     unsafe { NSCompareMapTables(table1, table2) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopymaptablewithzone(_:_:)?language=objc)
+/// Performs a shallow copy of the specified map table.
+///
+/// ## Return Value
+///
+/// A pointer to a new copy of `table`, created in `zone` and containing pointers to the keys and values of `table`.
+///
+///
+///
+/// ## Discussion
+///
+/// If `zone` is `NULL`, the new table is created in the default zone.
+///
+/// The new table adopts the callback functions of `table` and calls the `hash` and `retain` callback functions as appropriate when inserting elements into the new table.
+///
+///
 ///
 /// # Safety
 ///
@@ -312,7 +366,19 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapmember(_:_:_:_:)?language=objc)
+/// Indicates whether a given table contains a given key.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `table` contains a key equal to `key`, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// If `table` contains a key equal to `key`, `originalKey` is set to `key`, and `value` is set to the value that `table` maps to `key`.
+///
+///
 ///
 /// # Safety
 ///
@@ -339,7 +405,13 @@ pub unsafe extern "C-unwind" fn NSMapMember(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapget(_:_:)?language=objc)
+    /// Returns a map table value for the specified key.
+    ///
+    /// ## Return Value
+    ///
+    /// The value that `table` maps to `key`, or `NULL` if `table` doesn’t contain `key`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -349,7 +421,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsert(_:_:_:)?language=objc)
+    /// Inserts a key-value pair into the specified table.
+    ///
+    /// ## Discussion
+    ///
+    /// Inserts `key` and `value` into `table`. If `key` matches a key already in `table`, `value` is retained and the previous value is released, using the `retain` and `release` callback functions that were specified when the table was created. Raises `NSInvalidArgumentException` if `key` is equal to the `notAKeyMarker` field of the table’s [`NSMapTableKeyCallBacks`](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks) structure.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -360,7 +438,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsertknownabsent(_:_:_:)?language=objc)
+    /// Inserts a key-value pair into the specified table if the pair had not been previously added.
+    ///
+    /// ## Discussion
+    ///
+    /// Inserts `key` (which must not be `notAKeyMarker`) and `value` into `table`. Unlike `NSMapInsert`, this function raises `NSInvalidArgumentException` if `table` already includes a key that matches `key`.
+    ///
+    /// `key` is compared with `notAKeyMarker` using pointer comparison; if `key` is identical to `notAKeyMarker`, raises `NSInvalidArgumentException`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -371,7 +457,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapinsertifabsent(_:_:_:)?language=objc)
+    /// Inserts a key-value pair into the specified table.
+    ///
+    /// ## Return Value
+    ///
+    /// If `key` matches a key already in `table`, the preexisting value; otherwise, `key` and `value` are added to `table` and returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Raises `NSInvalidArgumentException` if `key` is equal to the `notAKeyMarker` field of the table’s `NSMapTableKeyCallBacks` structure.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -386,7 +484,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmapremove(_:_:)?language=objc)
+    /// Removes a key and corresponding value from the specified table.
+    ///
+    /// ## Discussion
+    ///
+    /// If `key` matches a key already in `table`, this function releases the preexisting key and its corresponding value.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -396,7 +500,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumeratemaptable(_:)?language=objc)
+    /// Creates an enumerator for the specified map table.
+    ///
+    /// Parameters:
+    /// - table: A reference to a map table structure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `NSMapEnumerator` structure that will cause successive key-value pairs of `table` to be visited each time this enumerator is passed to `NSNextMapEnumeratorPair`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -404,7 +518,13 @@ extern "C-unwind" {
     pub fn NSEnumerateMapTable(table: &NSMapTable) -> NSMapEnumerator;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnextmapenumeratorpair(_:_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether the next map-table pair in the enumeration are set.
+///
+/// ## Return Value
+///
+/// [`false`](https://developer.apple.com/documentation/swift/false) if `enumerator` has already iterated over all the elements in the table that `enumerator` is associated with; otherwise, sets `key` and `value` to match the next key-value pair in the table and returns [`true`](https://developer.apple.com/documentation/swift/true).
+///
+///
 ///
 /// # Safety
 ///
@@ -428,7 +548,13 @@ pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsendmaptableenumeration(_:)?language=objc)
+    /// Used when finished with an enumerator.
+    ///
+    /// ## Discussion
+    ///
+    /// This function should be called when you have finished using the enumeration struct `enumerator`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -437,7 +563,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscountmaptable(_:)?language=objc)
+    /// Returns the number of elements in a map table.
+    ///
+    /// Parameters:
+    /// - table: A reference to a map table structure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of key-value pairs currently in `table`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -447,7 +583,23 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfrommaptable(_:)?language=objc)
+    /// Returns a string describing the map table’s contents.
+    ///
+    /// Parameters:
+    /// - table: A reference to a map table structure.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string describing the map table’s contents.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function iterates over the key-value pairs of `table` and for each one appends the string “a = b;\n”, where a and b are the key and value strings returned by the corresponding `describe` callback functions. If `NULL` was specified for the callback function, a and b are the key and value pointers, expressed as hexadecimal numbers.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -465,7 +617,13 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallmaptablekeys(_:)?language=objc)
+/// Returns all of the keys in the specified map table.
+///
+/// ## Return Value
+///
+/// An array object containing all the keys in `table`. This function should be called only when `table` keys are objects, not when they’re any other type of pointer.
+///
+///
 ///
 /// # Safety
 ///
@@ -481,7 +639,13 @@ pub unsafe extern "C-unwind" fn NSAllMapTableKeys(table: &NSMapTable) -> Retaine
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallmaptablevalues(_:)?language=objc)
+/// Returns all of the values in the specified table.
+///
+/// ## Return Value
+///
+/// An array object containing all the values in `table`. This function should be called only when `table` values are objects, not when they’re any other type of pointer.
+///
+///
 ///
 /// # Safety
 ///
@@ -497,9 +661,16 @@ pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retai
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// **************     Legacy     **************************************
+/// The function pointers used to configure behavior of `NSMapTable` with respect to key elements within a map table.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks?language=objc)
+/// ## Overview
+///
+/// All functions must know the types of things in the map table to be able to operate on them. Sets of predefined call backs are described in [`NSMapTable`](https://developer.apple.com/documentation/foundation/nsmaptable).
+///
+/// Two predefined values to use for `notAKeyMarker` are [`NSNotAnIntMapKey`](https://developer.apple.com/documentation/foundation/nsnotanintmapkey) and [`NSNotAPointerMapKey`](https://developer.apple.com/documentation/foundation/nsnotapointermapkey).
+///
+///
+/// **************     Legacy     **************************************
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -534,7 +705,13 @@ unsafe impl RefEncode for NSMapTableKeyCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmaptablevaluecallbacks?language=objc)
+/// The function pointers used to configure behavior of `NSMapTable` with respect to value elements within a map table.
+///
+/// ## Overview
+///
+/// All functions must know the types of things in the map table to be able to operate on them. Sets of predefined call backs are described in [`NSMapTable`](https://developer.apple.com/documentation/foundation/nsmaptable).
+///
+///
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -565,7 +742,19 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatemaptablewithzone(_:_:_:_:)?language=objc)
+/// Creates a new map table in the specified zone.
+///
+/// ## Return Value
+///
+/// A new map table in allocated in `zone`. If `zone` is `NULL`, the hash table is created in the default zone.
+///
+///
+///
+/// ## Discussion
+///
+/// The table’s size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small map table is created. The [`NSMapTableKeyCallBacks`](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks) arguments are structures that are very similar to the callback structure used by [`NSCreateHashTable`](https://developer.apple.com/documentation/foundation/nscreatehashtable(_:_:)); in fact, they have the same defaults as documented for that function.
+///
+///
 ///
 /// # Safety
 ///
@@ -600,7 +789,13 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatemaptable(_:_:_:)?language=objc)
+/// Creates a new map table in the default zone.
+///
+/// ## Discussion
+///
+/// Creates and returns a pointer to an `NSMapTable` structure in the default zone; the table’s size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small map table is created. The [`NSMapTableKeyCallBacks`](https://developer.apple.com/documentation/foundation/nsmaptablekeycallbacks) arguments are structures that are very similar to the callback structure used by [`NSCreateHashTable`](https://developer.apple.com/documentation/foundation/nscreatehashtable(_:_:))—they have the same defaults as documented for that function.
+///
+///
 ///
 /// # Safety
 ///
@@ -633,84 +828,82 @@ pub unsafe extern "C-unwind" fn NSCreateMapTable(
 }
 
 extern "C" {
+    /// For keys that are pointer-sized quantities or smaller (for example, `int`, `long`, or `unichar`).
     /// **************    Common map table key callbacks    ***************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapkeycallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointermapkeycallbacks?language=objc)
+    /// For keys that are pointers not freed.
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointerornullmapkeycallbacks?language=objc)
+    /// For keys that are pointers not freed, or `NULL`.
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerOrNullMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjectmapkeycallbacks?language=objc)
+    /// For sets of objects, but without retaining/releasing.
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectmapkeycallbacks?language=objc)
+    /// For keys that are objects.
     #[cfg(feature = "NSString")]
     pub static NSObjectMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointermapkeycallbacks?language=objc)
+    /// For keys that are pointers, with transfer of ownership upon insertion.
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapkeycallbacks?language=objc)
+    /// For keys that are pointer-sized quantities or smaller (for example, `int`, `long`, or `unichar`).
     #[cfg(feature = "NSString")]
     #[deprecated = "Not supported"]
     pub static NSIntMapKeyCallBacks: NSMapTableKeyCallBacks;
 }
 
 extern "C" {
+    /// For values that are pointer-sized quantities, (for example, `int`, `long`, or `unichar`).
     /// **************    Common map table value callbacks    ***************
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegermapvaluecallbacks?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIntegerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointermapvaluecallbacks?language=objc)
+    /// For values that are not owned pointers.
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjectmapvaluecallbacks?language=objc)
+    /// For values that are objects.
     #[cfg(feature = "NSString")]
     pub static NSObjectMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjectmapvaluecallbacks?language=objc)
+    /// For sets of objects, but without retaining/releasing.
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointermapvaluecallbacks?language=objc)
+    /// For values that are owned pointers.
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerMapValueCallBacks: NSMapTableValueCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintmapvaluecallbacks?language=objc)
+    /// For values that are pointer-sized quantities, (for example, `int`, `long`, or `unichar`).
     #[cfg(feature = "NSString")]
     #[deprecated = "Not supported"]
     pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;

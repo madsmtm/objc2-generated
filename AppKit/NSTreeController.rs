@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstreecontroller?language=objc)
+    /// A bindings-compatible controller that manages a tree of objects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSTreeController`](https://developer.apple.com/documentation/appkit/nstreecontroller) class provides selection and sort management. Its primary purpose is to act as the controller when binding [`NSOutlineView`](https://developer.apple.com/documentation/appkit/nsoutlineview) and [`NSBrowser`](https://developer.apple.com/documentation/appkit/nsbrowser) instances to a hierarchical collection of objects. The root content object of the tree can be a single object, or an array of objects.
+    ///
+    /// An [`NSTreeController`](https://developer.apple.com/documentation/appkit/nstreecontroller) object requires that you describe how the tree of objects is traversed by specifying the key-path for child objects specified by [`childrenKeyPath`](https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath). All child objects for the tree must be key-value coding compliant for the same child key path. If necessary, you should add properties to your model classes that map the child key name to the appropriate class-specific property name.
+    ///
+    /// Child objects can implement a count method (specified to the tree controller using [`countKeyPath`](https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath)) that, if provided, returns the number of child objects available. Your model objects are expected to update the value of the count key path in a key-value observing compliant method. Optionally, you can also provide a leaf key path using [`leafKeyPath`](https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath) that specifies a key in your model object that returns [`true`](https://developer.apple.com/documentation/swift/true) if the object is a leaf node, and [`false`](https://developer.apple.com/documentation/swift/false) if it is not. Changes to the leaf node value of the child object should be made in a key-value observing compliant manner. Providing the leaf node key path can improve performance, because it prevents the [`NSTreeController`](https://developer.apple.com/documentation/appkit/nstreecontroller) from having to examine the child object to determine if it is a leaf node.
+    ///
+    /// For more information about using NSTreeController in your app, see [Navigating Hierarchical Data Using Outline and Split Views](https://developer.apple.com/documentation/appkit/navigating-hierarchical-data-using-outline-and-split-views).
+    ///
+    ///
     #[unsafe(super(NSObjectController, NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

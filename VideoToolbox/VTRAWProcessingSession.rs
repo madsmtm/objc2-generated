@@ -14,12 +14,19 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// An object that processes frames in camera native formats such as RAW or Bayer.
+///
+/// ## Overview
+///
+/// A RAW processing session supports processing of frames that have been output from decoders in camera native formats, such as RAW or Bayer formats.
+///
+/// The session reference is a reference-counted CF object.
+///
+///
 /// A reference to a Video Toolbox RAW Processing Session.
 ///
 /// A RAW processing session supports processing of frames that have been output from decoders in camera native formats, for example RAW or bayer formats.
 /// The session reference is a reference-counted CF object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsession?language=objc)
 #[doc(alias = "VTRAWProcessingSessionRef")]
 #[repr(C)]
 pub struct VTRAWProcessingSession {
@@ -35,18 +42,40 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTRAWProcessingSession"> for VTRAWProcessingSession {}
 );
 
+/// A function the system calls when processing parameters change.
+///
+/// Parameters:
+/// - newParameters: An array containing the new parameter details.  This follows the same form as the array returned from [`VTRAWProcessingSessionCopyProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters).
+///
+///
+/// ## Discussion
+///
+/// The system invokes this callback when available parameters or parameter values change without an explicit call to [`VTRAWProcessingSessionSetProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters). This is intended to allow the client to update any UI driven by these parameters.
+///
+///
 /// Block invoked when processing parameters change.
 ///
 /// This block is called when available parameters or parameter values change without an explicit call to VTRAWProcessingSessionSetProcessingParameters.
 /// This is intended to allow the client to update any UI driven by these parameters.
 ///
 /// Parameter `newParameters`: A CFArrayRef contaiing the new parameter details.  This follows the same form as the array returned from VTRAWProcessingSessionCopyProcessingParameters.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingparameterchangehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VTRAWProcessingParameterChangeHandler = *mut block2::DynBlock<dyn Fn(*const CFArray)>;
 
 impl VTRAWProcessingSession {
+    /// Creates a RAW video frame processing session.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session. Pass `NULL` to use the default allocator.
+    ///
+    /// - formatDescription: The [`CMVideoFormatDescription`](https://developer.apple.com/documentation/coremedia/cmvideoformatdescription) corresponding to the original media samples, containing sequence-level processing parameters.
+    ///
+    /// - outputPixelBufferAttributes: A CoreVideo pixel buffer attributes dictionary describing the client’s requirements for pixel buffers for output frames. Pass `NULL` to receive the RAW processor’s native output format.
+    ///
+    /// - processingSessionOptions: A dictionary of creation-time options for the [VTRAWProcessingSession](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsession-api-collection).
+    ///
+    /// - processingSessionOut: Points to a variable to receive the new RAW processing session. When you are done with the session, call [`VTRAWProcessingSessionInvalidate`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioninvalidate) to tear it down and then `CFRelease` to release your object reference.
+    ///
     /// Creates a RAW video frame processing session.
     ///
     /// .
@@ -71,8 +100,6 @@ impl VTRAWProcessingSession {
     /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncreate?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -105,13 +132,20 @@ impl VTRAWProcessingSession {
 
     /// Tears down a RAW processing session.
     ///
+    /// ## Discussion
+    ///
+    /// When you are done with a RAW processing session you created, call this function to tear it down and then `CFRelease` to release your object reference. When a  session’s retain count reaches zero, it is automatically invalidated, but since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
+    ///
+    /// Calling this function ensures a deterministic, orderly teardown.
+    ///
+    ///
+    /// Tears down a RAW processing session.
+    ///
     /// When you are done with a decompression session you created, call VTRAWProcessingSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     /// When a  session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTRAWProcessingSessionInvalidate ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioninvalidate?language=objc)
     #[doc(alias = "VTRAWProcessingSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -123,9 +157,8 @@ impl VTRAWProcessingSession {
 }
 
 unsafe impl ConcreteType for VTRAWProcessingSession {
+    /// Returns the type identifier for a RAW processing session.
     /// Returns the CFTypeID for RAW processing sessions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessiongettypeid?language=objc)
     #[doc(alias = "VTRAWProcessingSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -137,6 +170,20 @@ unsafe impl ConcreteType for VTRAWProcessingSession {
 }
 
 impl VTRAWProcessingSession {
+    ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    /// - parameterChangeHandler: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it. Setting this to NULL removes the current handler.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Provides a block which will be called when the VTRAWProcessingPlugin changes the set of processing parameters..
+    ///
+    /// This block will be called the VTRAWProcessingPlugin either changes the set of available processing parameters, or changes the current value of parameters. The VTRAWProcessingPlugin may change parameters based on metadata associated with input frames, or in response to other parameters configured by VTRAWProcessingSessionSetProcessingParameters. This optional and does not need to be configured if the client is not driving UI based on these parameters, or otherwise does not need this.
+    ///
+    ///
     /// Provides a block which will be called when the VTRAWProcessingPlugin changes the set of processing parameters..
     ///
     /// This block will be called the VTRAWProcessingPlugin either changes the set of available processing parameters, or changes the current value of parameters.
@@ -151,8 +198,6 @@ impl VTRAWProcessingSession {
     /// # Safety
     ///
     /// `parameter_change_handler` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetparameterchangedhandler?language=objc)
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -169,7 +214,13 @@ impl VTRAWProcessingSession {
         unsafe { VTRAWProcessingSessionSetParameterChangedHandler(self, parameter_change_handler) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetparameterchangedhander?language=objc)
+    /// Provides a block which will be called when the session changes the set of processing parameters.
+    ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    /// - parameterChangeHandler: A [`VTRAWProcessingParameterChangeHandler`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingparameterchangehandler) block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it. Setting this to `NULL` removes the current handler.
+    ///
     ///
     /// # Safety
     ///
@@ -192,6 +243,13 @@ impl VTRAWProcessingSession {
     }
 }
 
+/// A block the system calls when frame processing is complete.
+///
+/// ## Discussion
+///
+/// On successful processing, will return a CVPixelBuffer conforming to the session’s outputPixelBufferAttributes if any were provided.
+///
+///
 /// Block invoked when frame processing is complete.
 ///
 /// On successful processing, will return a CVPixelBuffer conforming to the session's outputPixelBufferAttributes if any were provided.
@@ -200,12 +258,29 @@ impl VTRAWProcessingSession {
 ///
 /// Parameter `processedPixelBuffer`: A CVPixelBuffer containing the processed video frame if processing request was successful;
 /// otherwise, NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
 pub type VTRAWProcessingOutputHandler = *mut block2::DynBlock<dyn Fn(OSStatus, *mut CVPixelBuffer)>;
 
 impl VTRAWProcessingSession {
+    /// Submits RAW frames for format-specific processing using sequence and frame level parameters.
+    ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    /// - inputPixelBuffer: A pixel buffer that contains an input video frame to process.
+    ///
+    /// - frameOptions: Contains key/value pairs specifying additional properties for processing this frame. No keys currently. Pass `NULL`.
+    ///
+    /// - outputHandler: A [`VTRAWProcessingOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingoutputhandler) block which will be called once when processing is complete.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Processed frames may or may not be output before the function returns. The client should not modify the input pixel data after making this call. The RAW Processor will retain the input pixel buffer as long as necessary.
+    ///
+    /// For any RAW processor, there is a finite number of frames that can be  presented to [`VTRAWProcessingSessionProcessFrame`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionprocessframe) before the function will block until the output callback is invoked.
+    ///
+    ///
     /// Call this function to submit RAW frames for format-specific processing using sequence and frame level parameters.
     ///
     /// Processed frames may or may not be output before the function returns,
@@ -230,8 +305,6 @@ impl VTRAWProcessingSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionprocessframe?language=objc)
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -261,12 +334,21 @@ impl VTRAWProcessingSession {
 
     /// Forces the RAW Processor to complete processing frames.
     ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this after calling a set of [`VTRAWProcessingSessionProcessFrame`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionprocessframe) calls to ensure that all frames have been processed. Before [`VTRAWProcessingSessionCompleteFrames`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncompleteframes) returns, the output handler will be invoked for all pending frames.
+    ///
+    ///
+    /// Forces the RAW Processor to complete processing frames.
+    ///
     /// Call this after calling a set of VTRAWProcessingSessionProcessFrame calls to ensure that all frames have been processed.
     /// Before VTRAWProcessingSessionCompleteFrames returns, the output handler will be invoked for all pending frames.
     ///
     /// Parameter `session`: The RAW processing session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncompleteframes?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCompleteFrames")]
     #[inline]
     pub unsafe fn complete_frames(&self) -> OSStatus {
@@ -276,6 +358,23 @@ impl VTRAWProcessingSession {
         unsafe { VTRAWProcessingSessionCompleteFrames(self) }
     }
 
+    /// Copies an array of dictionaries describing the parameters provided by the RAW Processor for frame processing.
+    ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    /// - outParameterArray: Pointer for receiving the RAW Processing parameter array.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method returns an array of dictionaries - one for each parameter that can be controlled in the RAW processing operation.
+    ///
+    /// The dictionary for each parameter will contain a set of keys whose values provide a name, value type, value range, and current value for each parameter. See [RAW processing parameters](https://developer.apple.com/documentation/videotoolbox/raw-processing-parameters) for more information.
+    ///
+    /// The returned values can be used to construct dynamic UI presenting RAW Processing controls allowing the various knobs for this specific RAW Processor to be viewed and manipulated.
+    ///
+    ///
     /// Copies an array of dictionaries describing the parameters provided by the RAW Processor for frame processing
     ///
     /// This will return an array of dictionaries, one dictionary for each parameter that can be controlled in the RAW Processing operation.
@@ -292,8 +391,6 @@ impl VTRAWProcessingSession {
     /// # Safety
     ///
     /// `out_parameter_array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters?language=objc)
     #[doc(alias = "VTRAWProcessingSessionCopyProcessingParameters")]
     #[inline]
     pub unsafe fn copy_processing_parameters(
@@ -309,6 +406,29 @@ impl VTRAWProcessingSession {
         unsafe { VTRAWProcessingSessionCopyProcessingParameters(self, out_parameter_array) }
     }
 
+    /// Sets a collection of RAW Processing parameters.
+    ///
+    /// Parameters:
+    /// - session: The RAW processing session.
+    ///
+    /// - processingParameters: A dictionary of keys and values setting parameters reported by [`VTRAWProcessingSessionCopyProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An error if any of the provided parameters are invalid, disabled, or outside of the declared valid range. None of the provided parameters will be set on the processor if an error is returned.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This call sets a collection of RAW Processing parameters on the RAW Processor.  These are set as a dictionary where the keys match [`kVTRAWProcessingParameter_Key`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_key) values that were returned in [`VTRAWProcessingSessionCopyProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters) and where values conform to the type and range defined in the `kVTRAWProcessingParameter` dictionary for each parameter.
+    ///
+    /// Not all parameters from the array need to be set at any given time.  Changing the parameters doesn’t change processing on frames already submitted for processing, it will only impact frames where [`VTRAWProcessingSessionProcessFrame`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionprocessframe) is called after [`VTRAWProcessingSessionSetProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters) returns.
+    ///
+    /// If any parameters specified are not in the array reported by [`VTRAWProcessingSessionCopyProcessingParameters`](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessioncopyprocessingparameters), or are the wrong type or out of range, [`kVTParameterErr`](https://developer.apple.com/documentation/videotoolbox/kvtparametererr) will be returned.  Valid key-value pairs in the dictionary will still be applied.
+    ///
+    ///
     /// Sets a collection of RAW Processing parameters
     ///
     /// This call will set a collection of RAW Processing parameters on the RAW Processor.  These are set as a dictionary where the keys match
@@ -333,8 +453,6 @@ impl VTRAWProcessingSession {
     ///
     /// - `processing_parameters` generic must be of the correct type.
     /// - `processing_parameters` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingsessionsetprocessingparameters?language=objc)
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(
@@ -352,138 +470,177 @@ impl VTRAWProcessingSession {
 }
 
 extern "C" {
+    /// The value corresponding to this key must match the identifier for one of the permitted processing parameters.
     /// The value corresponding to this key is the string used when specifying this parameter when calling VTRAWProcessingSessionSetProcessingParameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_key?language=objc)
     pub static kVTRAWProcessingParameter_Key: &'static CFString;
 }
 
 extern "C" {
     /// The value corresponding to this key is a localized string  which can be displayed in UI representing this parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_name?language=objc)
+    /// The value corresponding to this key is a localized string  which can be displayed in UI representing this parameter.
     pub static kVTRAWProcessingParameter_Name: &'static CFString;
 }
 
 extern "C" {
     /// The value corresponding to this key is a localized string with a description of the parameter suitable for display in a tooltip or other descriptive UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_description?language=objc)
+    /// The value corresponding to this key is a localized string with a description of the parameter suitable for display in a tooltip or other descriptive UI.
     pub static kVTRAWProcessingParameter_Description: &'static CFString;
 }
 
 extern "C" {
     /// The value corresponding to this key is Boolean indicating whether the parameter is enabled and can be modified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_enabled?language=objc)
+    /// The value corresponding to this key is Boolean indicating whether the parameter is enabled and can be modified.
     pub static kVTRAWProcessingParameter_Enabled: &'static CFString;
 }
 
 extern "C" {
-    /// The value corresponding to this key is the type of the parameter - a Boolean, Integer, Float, List, or SubGroup.
+    /// The value corresponding to this key is the type of the parameter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_valuetype?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key must be one of the following:
+    ///
+    /// - [`kVTRAWProcessingParameterValueType_Boolean`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_boolean)
+    ///
+    /// - [`kVTRAWProcessingParameterValueType_Integer`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_integer)
+    ///
+    /// - [`kVTRAWProcessingParameterValueType_Float`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_float)
+    ///
+    /// - [`kVTRAWProcessingParameterValueType_List`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_list)
+    ///
+    /// - [`kVTRAWProcessingParameterValueType_SubGroup`](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_subgroup)
+    ///
+    ///
+    /// The value corresponding to this key is the type of the parameter - a Boolean, Integer, Float, List, or SubGroup.
     pub static kVTRAWProcessingParameter_ValueType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_boolean?language=objc)
+    /// The value corresponding to this key is a string that indicates a Boolean parameter type.
     pub static kVTRAWProcessingParameterValueType_Boolean: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_integer?language=objc)
+    /// The value corresponding to this key is a string that indicates an integer parameter type.
     pub static kVTRAWProcessingParameterValueType_Integer: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_float?language=objc)
+    /// The value corresponding to this key is a string that indicates a floating-point parameter type.
     pub static kVTRAWProcessingParameterValueType_Float: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_list?language=objc)
+    /// The value corresponding to this key is a string that indicates a list parameter type.
     pub static kVTRAWProcessingParameterValueType_List: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparametervaluetype_subgroup?language=objc)
+    /// The value corresponding to this key is a string that indicates a subgroup parameter type.
     pub static kVTRAWProcessingParameterValueType_SubGroup: &'static CFString;
 }
 
 extern "C" {
+    /// The value corresponding to this key is an array of dictionaries describing each element in the list.
     /// The value corresponding to this key is a CFArray of CFDictionaries describing each element in the list..
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_listarray?language=objc)
     pub static kVTRAWProcessingParameter_ListArray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameterlistelement_label?language=objc)
+    /// The value corresponding to this key is a human-readable label for the element, suitable for displaying in a list of options.
     pub static kVTRAWProcessingParameterListElement_Label: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameterlistelement_description?language=objc)
+    /// The value corresponding to this key is a human-readable description for the element, suitable for displaying in a tooltip or other descriptive UI.
     pub static kVTRAWProcessingParameterListElement_Description: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameterlistelement_listelementid?language=objc)
+    /// The value corresponding to this key is a number indicating the index of a list element parameter in a list in the processing parameters dictionary.
     pub static kVTRAWProcessingParameterListElement_ListElementID: &'static CFString;
 }
 
 extern "C" {
+    /// The value corresponding to this key is an array of dictionaries representing the individual sub-parameters in this group.
     /// The value corresponding to this key is a CFArray of CFDictionaries representing the individual sub-parameters in this group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_subgroup?language=objc)
     pub static kVTRAWProcessingParameter_SubGroup: &'static CFString;
 }
 
 extern "C" {
-    /// The value corresponding to this key is the maximum value allowed for this parameter when calling VTRAWProcessingSessionSetProcessingParameters.
+    /// The value corresponding to this key is the maximum value allowed for this parameter.
+    ///
+    /// ## Discussion
+    ///
     /// This parameter is optional and not required for parameters where it is not appropriate (such as Boolean or List types).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_maximumvalue?language=objc)
+    ///
+    /// The value corresponding to this key is the maximum value allowed for this parameter when calling VTRAWProcessingSessionSetProcessingParameters.
+    /// This parameter is optional and not required for parameters where it is not appropriate (such as Boolean or List types).
     pub static kVTRAWProcessingParameter_MaximumValue: &'static CFString;
 }
 
 extern "C" {
-    /// The value corresponding to this key is the minimum value allowed for this parameter when calling VTRAWProcessingSessionSetProcessingParameters.
+    /// The value corresponding to this key is the minimum value allowed for this parameter.
+    ///
+    /// ## Discussion
+    ///
     /// This parameter is optional and not required for parameters where it is not appropriate (such as Boolean or List types).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_minimumvalue?language=objc)
+    ///
+    /// The value corresponding to this key is the minimum value allowed for this parameter when calling VTRAWProcessingSessionSetProcessingParameters.
+    /// This parameter is optional and not required for parameters where it is not appropriate (such as Boolean or List types).
     pub static kVTRAWProcessingParameter_MinimumValue: &'static CFString;
 }
 
 extern "C" {
     /// The value corresponding to this key is the initial value for this parameter as defined by the container and metadata provided at creation time.
+    ///
+    /// ## Discussion
+    ///
     /// For List types, this is the ListElementID for the List element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_initialvalue?language=objc)
+    ///
+    /// The value corresponding to this key is the initial value for this parameter as defined by the container and metadata provided at creation time.
+    /// For List types, this is the ListElementID for the List element.
     pub static kVTRAWProcessingParameter_InitialValue: &'static CFString;
 }
 
 extern "C" {
     /// The value corresponding to this key is a neutral setting for the processor.
+    ///
+    /// ## Discussion
+    ///
     /// For List types, this is the ListElementID for the List element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_neutralvalue?language=objc)
+    ///
+    /// The value corresponding to this key is a neutral setting for the processor.
+    /// For List types, this is the ListElementID for the List element.
     pub static kVTRAWProcessingParameter_NeutralValue: &'static CFString;
 }
 
 extern "C" {
-    /// The value corresponding to this key is the "As Shot" value for this parameter as originally captured by the camera.
+    /// The value corresponding to this key is the “As Shot” value for this parameter as originally captured by the camera.
+    ///
+    /// ## Discussion
+    ///
     /// For List types, this is the ListElementID for the List element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_cameravalue?language=objc)
+    ///
+    /// The value corresponding to this key is the "As Shot" value for this parameter as originally captured by the camera.
+    /// For List types, this is the ListElementID for the List element.
     pub static kVTRAWProcessingParameter_CameraValue: &'static CFString;
 }
 
 extern "C" {
-    /// The value corresponding to this key is the currently configured value for this parameter.  For List types, this is the ListElementID for the List element.
+    /// The value corresponding to this key is the currently configured value for this parameter.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtrawprocessingparameter_currentvalue?language=objc)
+    /// ## Discussion
+    ///
+    /// For List types, this is the ListElementID for the List element.
+    ///
+    ///
+    /// The value corresponding to this key is the currently configured value for this parameter.  For List types, this is the ListElementID for the List element.
     pub static kVTRAWProcessingParameter_CurrentValue: &'static CFString;
 }
 

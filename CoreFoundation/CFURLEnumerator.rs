@@ -9,7 +9,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumerator?language=objc)
+/// A reference to a `CFURLEnumerator` object.
 #[doc(alias = "CFURLEnumeratorRef")]
 #[repr(C)]
 pub struct CFURLEnumerator {
@@ -26,7 +26,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFURLEnumerator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgettypeid()?language=objc)
+    /// Returns the opaque type identifier for the CFURLEnumerator opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The `CFURLEnumerator` opaque type identifier.
+    ///
+    ///
     #[doc(alias = "CFURLEnumeratorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -37,35 +43,60 @@ unsafe impl ConcreteType for CFURLEnumerator {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions?language=objc)
+/// Options for controlling enumerator behavior.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLEnumeratorOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLEnumeratorOptions: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/kcfurlenumeratordefaultbehavior?language=objc)
+/// The enumerator performs its default behavior.
         #[doc(alias = "kCFURLEnumeratorDefaultBehavior")]
         const DefaultBehavior = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively?language=objc)
+/// The enumerator recurses into each subdirectory enumerated.
+///
+/// ## Discussion
+///
+/// This option applies only to directory enumerators.
+///
+/// You can enumerate the directories that a recursive enumerator encounters in pre-order fashion, post-order fashion, or both, by providing a combination of the [`kCFURLEnumeratorIncludeDirectoriesPreOrder`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespreorder) and [`kCFURLEnumeratorIncludeDirectoriesPostOrder`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespostorder) options. If you provide neither option, the recursive enumerator behaves as if it was provided the [`kCFURLEnumeratorIncludeDirectoriesPreOrder`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespreorder) option.
+///
+///
         #[doc(alias = "kCFURLEnumeratorDescendRecursively")]
         const DescendRecursively = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/skipinvisibles?language=objc)
+/// The enumerator skips “hidden” or “invisible” objects.
         #[doc(alias = "kCFURLEnumeratorSkipInvisibles")]
         const SkipInvisibles = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generatefilereferenceurls?language=objc)
+/// The enumerator generates file reference URLs instead of file path URLs.
+///
+/// ## Discussion
+///
+/// This option applies only to volume enumerators.
+///
+///
         #[doc(alias = "kCFURLEnumeratorGenerateFileReferenceURLs")]
         const GenerateFileReferenceURLs = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/skippackagecontents?language=objc)
+/// The enumerator skips package directory contents.
+///
+/// ## Discussion
+///
+/// This option applies only to directory enumerators.
+///
+///
         #[doc(alias = "kCFURLEnumeratorSkipPackageContents")]
         const SkipPackageContents = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespreorder?language=objc)
+/// If provided along with the [`kCFURLEnumeratorDescendRecursively`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively) option, the recursive enumerator returns a directory’s URL before returning the URLs of the directory’s descendents.
         #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPreOrder")]
         const IncludeDirectoriesPreOrder = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/includedirectoriespostorder?language=objc)
+/// If provided along with the [`kCFURLEnumeratorDescendRecursively`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively) option, the recursive enumerator returns a directory’s URL after returning the URLs of the directory’s descendents.
+///
+/// ## Discussion
+///
+/// A recursive post-order enumerator returns [`kCFURLEnumeratorDirectoryPostOrderSuccess`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/directorypostordersuccess) when it returns a directory’s URL after returning the directory’s descendents.
+///
+///
         #[doc(alias = "kCFURLEnumeratorIncludeDirectoriesPostOrder")]
         const IncludeDirectoriesPostOrder = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generaterelativepathurls?language=objc)
         #[doc(alias = "kCFURLEnumeratorGenerateRelativePathURLs")]
         const GenerateRelativePathURLs = 1<<6;
     }
@@ -82,7 +113,37 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 }
 
 impl CFURLEnumerator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorcreatefordirectoryurl(_:_:_:_:)?language=objc)
+    /// Creates and returns a directory enumerator with provided enumerator behavior options and properties to be prefetched.
+    ///
+    /// Parameters:
+    /// - alloc: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - directoryURL: The URL of the directory to enumerate.
+    ///
+    /// - option: A bit array of enumerator behavior options.
+    ///
+    /// - propertyKeys: An array of file property keys to prefetch for each enumerated URL. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created directory enumerator.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Directory enumerators do not descend into subdirectories of `directoryURL` by default. To create a recursive enumerator, include the [`kCFURLEnumeratorDescendRecursively`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively) option in `options`.
+    ///
+    /// Specifying prefetch properties allows the enumerator to optimize device access by using bulk operations. However, you should not prefetch properties that are not needed, because doing so may degrade performance.
+    ///
+    /// The created directory enumerator generates URLs with the same type as `directoryURL`. If `directoryURL` is a file reference URL, then enumerated URLs are file reference URLs. If `directoryURL` is a file path URL, then enumerated URLs are file path URLs.
+    ///
+    /// In some areas of the file system hierarchy, file reference URLs cannot be generated. The enumerator always generates file path URLs for these areas.
+    ///
+    /// This function ignores the [`kCFURLEnumeratorGenerateFileReferenceURLs`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generatefilereferenceurls) option.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -113,7 +174,31 @@ impl CFURLEnumerator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorcreateformountedvolumes(_:_:_:)?language=objc)
+    /// Creates and returns a volume enumerator with provided enumerator behavior options and properties to be prefetched.
+    ///
+    /// Parameters:
+    /// - alloc: The memory allocator to use. If `NULL`, the default allocator is used.
+    ///
+    /// - option: A bit array of enumerator behavior options.
+    ///
+    /// - propertyKeys: An array of file property keys to prefetch for each enumerated URL. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The created volume enumerator.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Volume enumerators generate file path URLs by default. To generate file reference URLs instead, include the [`kCFURLEnumeratorGenerateFileReferenceURLs`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/generatefilereferenceurls) option in `options`.
+    ///
+    /// Specifying prefetch properties allows the enumerator to optimize device access by using bulk operations. However, you should not prefetch properties that are not needed, because doing so may degrade performance.
+    ///
+    /// This function ignores the [`kCFURLEnumeratorDescendRecursively`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively) and [`kCFURLEnumeratorSkipPackageContents`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/skippackagecontents) options.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -140,22 +225,22 @@ impl CFURLEnumerator {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult?language=objc)
+/// Result codes from the [`CFURLEnumeratorGetNextURL`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)) function.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLEnumeratorResult(pub CFIndex);
 impl CFURLEnumeratorResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/success?language=objc)
+    /// The enumerator was advanced successfully and returned a valid URL.
     #[doc(alias = "kCFURLEnumeratorSuccess")]
     pub const Success: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/end?language=objc)
+    /// The enumeration is complete.
     #[doc(alias = "kCFURLEnumeratorEnd")]
     pub const End: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/error?language=objc)
+    /// An error occurred during enumeration. The `error` parameter of the function is populated with error information.
     #[doc(alias = "kCFURLEnumeratorError")]
     pub const Error: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/directorypostordersuccess?language=objc)
+    /// The recursive post-order enumerator returned the URL for a directory after having returned the URLs for all of the directory’s descendents.
     #[doc(alias = "kCFURLEnumeratorDirectoryPostOrderSuccess")]
     pub const DirectoryPostOrderSuccess: Self = Self(4);
 }
@@ -171,7 +256,37 @@ unsafe impl RefEncode for CFURLEnumeratorResult {
 }
 
 impl CFURLEnumerator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)?language=objc)
+    /// Advances an enumerator to the next URL.
+    ///
+    /// Parameters:
+    /// - enumerator: The enumerator.
+    ///
+    /// - url: Contains the next URL if this function returns [`kCFURLEnumeratorSuccess`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/success).
+    ///
+    /// - error: Contains error information if this function returns [`kCFURLEnumeratorError`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/error). Error information is retained and must be released. Can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The result of advancing the enumerator.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns [`kCFURLEnumeratorEnd`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/end), the enumeration has finished.
+    ///
+    /// A return value of [`kCFURLEnumeratorError`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/error) does not imply that the enumeration has finished.
+    ///
+    /// If this function returns [`kCFURLEnumeratorError`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorresult/error), the user info dictionary of `error` is populated with the following entries (when possible):
+    ///
+    /// - The [`kCFErrorUnderlyingErrorKey`](https://developer.apple.com/documentation/corefoundation/kcferrorunderlyingerrorkey) entry is populated with the underlying error if the underlying error is not in the [`kCFErrorDomainCocoa`](https://developer.apple.com/documentation/corefoundation/kcferrordomaincocoa) domain.
+    ///
+    /// - The [`NSURLErrorKey`](https://developer.apple.com/documentation/foundation/nsurlerrorkey) entry is populated with the URL that caused the error, as a [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl) object.
+    ///
+    /// - The [`NSFilePathErrorKey`](https://developer.apple.com/documentation/foundation/nsfilepatherrorkey) entry is populated with the file path that caused the error, as a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -195,7 +310,23 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetNextURL(self, url, error) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorskipdescendents(_:)?language=objc)
+    /// Tells a recursive enumerator not to descend into the directory at the URL that was returned by the most recent call to the [`CFURLEnumeratorGetNextURL`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)) function.
+    ///
+    /// Parameters:
+    /// - enumerator: The enumerator.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A call to this function is ignored in the following cases:
+    ///
+    /// - The [`CFURLEnumeratorGetNextURL`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)) function has never been called with this enumerator.
+    ///
+    /// - The last URL returned by the [`CFURLEnumeratorGetNextURL`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetnexturl(_:_:_:)) function is not a directory.
+    ///
+    /// - The enumerator is not a directory enumerator that was created with the [`kCFURLEnumeratorDescendRecursively`](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions/descendrecursively) option.
+    ///
+    ///
     #[doc(alias = "CFURLEnumeratorSkipDescendents")]
     #[inline]
     pub fn skip_descendents(&self) {
@@ -205,7 +336,23 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorSkipDescendents(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetdescendentlevel(_:)?language=objc)
+    /// Returns the number of levels a recursive directory enumerator has descended.
+    ///
+    /// Parameters:
+    /// - enumerator: The directory enumerator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current descendent level of the enumerator.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The children of the starting directory are at level 1. Each time a recursive enumerator descends into a subdirectory, it adds 1 to the descendent level. It subtracts 1 from its level when it finishes a subdirectory and continues enumerating the parent directory.
+    ///
+    ///
     #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
     #[inline]
     pub fn descendent_level(&self) -> CFIndex {
@@ -215,7 +362,23 @@ impl CFURLEnumerator {
         unsafe { CFURLEnumeratorGetDescendentLevel(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratorgetsourcedidchange(_:)?language=objc)
+    /// This function is unimplemented, so it performs no operation.
+    ///
+    /// Parameters:
+    /// - enumerator: The enumerator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Returns `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the File System Events API to detect changes to the file system. See [File System Events Programming Guide](https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/FSEvents_ProgGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005289) for more information.
+    ///
+    ///
     #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     #[deprecated = "Use File System Events API instead"]
     #[inline]

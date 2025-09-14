@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextinputdelegate?language=objc)
+    /// A delegate protocol that a browser text view uses to notify the text system of changes.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t conform to `BETextInputDelegate` in your classes, or implement its methods. The operating system creates objects that conform to this protocol and sets them as the [`asyncInputDelegate`](https://developer.apple.com/documentation/browserenginekit/betextinput/asyncinputdelegate) on your browser’s custom text views.
+    ///
+    ///
     pub unsafe trait BETextInputDelegate {
         #[cfg(all(feature = "BEKeyEntryContext", feature = "BETextInput"))]
         /// Defers the key event to the system and returns whether the key event was handled.

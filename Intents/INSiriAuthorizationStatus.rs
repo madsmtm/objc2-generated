@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus?language=objc)
+/// Constants indicating the authorization status of your Intents extension.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSiriAuthorizationStatus(pub NSInteger);
 impl INSiriAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/notdetermined?language=objc)
+    /// Not yet determined. An authorization request has not yet been made or the user has not yet made a choice regarding the status of the app. Call the [`requestSiriAuthorization:`](https://developer.apple.com/documentation/intents/inpreferences/requestsiriauthorization(_:)) method to request authorization from the user.
     #[doc(alias = "INSiriAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/restricted?language=objc)
+    /// Restricted. The app is not authorized to use Siri services. This status could be the result of active restrictions on Siri services rather than on the user denying access.
     #[doc(alias = "INSiriAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/denied?language=objc)
+    /// Not authorized. The user explicitly denied authorization for this app.
     #[doc(alias = "INSiriAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insiriauthorizationstatus/authorized?language=objc)
+    /// Authorized. Siri is enabled and your app is authorized to interact with it.
     #[doc(alias = "INSiriAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }

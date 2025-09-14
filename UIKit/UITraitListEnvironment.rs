@@ -5,49 +5,41 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that indicate the style of the containing list in a collection view or table view.
 /// Specifies a list appearance that encompasses both UICollectionView
 /// &
 /// UITableView lists.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListEnvironment(pub NSInteger);
 impl UIListEnvironment {
+    /// A constant that indicates the absence of information about a containing list.
     /// Indicates the absence of any information about whether or not the trait collection is from a view in a list environment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/unspecified?language=objc)
     #[doc(alias = "UIListEnvironmentUnspecified")]
     pub const Unspecified: Self = Self(0);
+    /// A constant that indicates there isn’t a containing list.
     /// There is no containing list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/none?language=objc)
     #[doc(alias = "UIListEnvironmentNone")]
     pub const None: Self = Self(1);
+    /// A constant that indicates the containing list is a plain-style list.
     /// Contained within a plain-style list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/plain?language=objc)
     #[doc(alias = "UIListEnvironmentPlain")]
     pub const Plain: Self = Self(2);
+    /// A constant that indicates the containing list is a grouped-style list.
     /// Contained within a grouped-style list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/grouped?language=objc)
     #[doc(alias = "UIListEnvironmentGrouped")]
     pub const Grouped: Self = Self(3);
+    /// A constant that indicates the containing list is an inset-grouped-style list.
     /// Contained within a inset-grouped-style list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/insetgrouped?language=objc)
     #[doc(alias = "UIListEnvironmentInsetGrouped")]
     pub const InsetGrouped: Self = Self(4);
+    /// A constant that indicates the containing list is a sidebar-style list.
     /// Contained within a sidebar-style list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/sidebar?language=objc)
     #[doc(alias = "UIListEnvironmentSidebar")]
     pub const Sidebar: Self = Self(5);
+    /// A constant that indicates the containing list is a sidebar-plain-style list.
     /// Contained within a sidebar-plain-style list.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistenvironment/sidebarplain?language=objc)
     #[doc(alias = "UIListEnvironmentSidebarPlain")]
     pub const SidebarPlain: Self = Self(6);
 }
@@ -63,8 +55,6 @@ unsafe impl RefEncode for UIListEnvironment {
 extern_class!(
     /// A trait that specifies the UIListEnvironment, if any, that a view is in. It is set on views inside UITableViews and list sections in UICollectionViews.
     /// Defaults to UIListEnvironmentUnspecified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlistenvironment-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

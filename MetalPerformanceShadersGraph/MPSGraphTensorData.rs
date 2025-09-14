@@ -12,9 +12,14 @@ use crate::*;
 extern_class!(
     /// The representation of a compute data type.
     ///
+    /// ## Overview
+    ///
     /// Pass data to a graph using a tensor data, a reference will be taken to your data and used just in time when the graph is run.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensordata?language=objc)
+    ///
+    /// The representation of a compute data type.
+    ///
+    /// Pass data to a graph using a tensor data, a reference will be taken to your data and used just in time when the graph is run.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

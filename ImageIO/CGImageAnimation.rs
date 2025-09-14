@@ -10,25 +10,20 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus?language=objc)
+/// Constants that indicate the result of animating an image sequence.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGImageAnimationStatus(pub OSStatus);
 impl CGImageAnimationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/parametererror?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_ParameterError")]
     pub const ParameterError: Self = Self(-22140);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/corruptinputimage?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_CorruptInputImage")]
     pub const CorruptInputImage: Self = Self(-22141);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/unsupportedformat?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_UnsupportedFormat")]
     pub const UnsupportedFormat: Self = Self(-22142);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/incompleteinputimage?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_IncompleteInputImage")]
     pub const IncompleteInputImage: Self = Self(-22143);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimageanimationstatus/allocationfailure?language=objc)
     #[doc(alias = "kCGImageAnimationStatus_AllocationFailure")]
     pub const AllocationFailure: Self = Self(-22144);
 }
@@ -44,26 +39,81 @@ unsafe impl RefEncode for CGImageAnimationStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationstartindex?language=objc)
+    /// A property that specifies the index of the first frame of an animation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that contains an unsigned integer. To override the start index value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    ///
     pub static kCGImageAnimationStartIndex: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationdelaytime?language=objc)
+    /// The number of seconds to wait before displaying the next image in an animated sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) with a floating-point value. To override the delay time value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    ///
     pub static kCGImageAnimationDelayTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimageanimationloopcount?language=objc)
+    /// The number of times to repeat the animated sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this property is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that contains an unsigned integer. To override the loop count value in the image file, include this property in the options dictionary when animating an image.
+    ///
+    /// You may specify [`kCFNumberPositiveInfinity`](https://developer.apple.com/documentation/corefoundation/kcfnumberpositiveinfinity) for this property to animate the images continuously.
+    ///
+    ///
     pub static kCGImageAnimationLoopCount: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourceanimationblock?language=objc)
+/// The block to execute for each frame of an image animation.
+///
+/// Parameters:
+/// - index: The index of the image in the file.
+///
+/// - image: The image to display.
+///
+/// - stop: A Boolean flag set to `false` on input. To stop the animation, set the value of this parameter to `true`.
+///
+///
+/// ## Discussion
+///
+/// During the animation of an image, the system calls this block for each successive frame of the animation. Use this block to display the new image in your app’s interface, and to update any additional details.
+///
+///
 #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
 pub type CGImageSourceAnimationBlock =
     *mut block2::DynBlock<dyn Fn(usize, NonNull<CGImage>, NonNull<bool>)>;
 
 extern "C-unwind" {
+    /// Animate the sequence of images in the Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file at the specified URL.
+    ///
+    /// Parameters:
+    /// - url: The URL of the image file.
+    ///
+    /// - options: Additional playback options. Include the [`kCGImageAnimationDelayTime`](https://developer.apple.com/documentation/imageio/kcgimageanimationdelaytime) or [`kCGImageAnimationLoopCount`](https://developer.apple.com/documentation/imageio/kcgimageanimationloopcount) keys to override the timing information in the image file. Include the [`kCGImageAnimationStartIndex`](https://developer.apple.com/documentation/imageio/kcgimageanimationstartindex) key to specify the index of the first image in the animation.
+    ///
+    /// - block: The animation block to execute for each image frame. The system executes this block on the main queue, and at the intervals indicated by the image’s delay time metadata. Use this block to display the provided image in your interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A status code indicating the success or failure of the animation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function executes the provided `block` for each frame of the animation. By default, the function uses the timing information contained in the image’s metadata. This information includes the number of seconds between individual frames, and the number of times to loop the animation. For example, the function uses the [`kCGImagePropertyGIFDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifdelaytime) and [`kCGImagePropertyGIFLoopCount`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifloopcount) tags from a GIF file’s metadata. To override the default timing information, provide the appropriate keys in the `options` dictionary.
+    ///
+    ///
     /// Animate the sequence of images contained in the file at `url`. Currently supported image
     /// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
     /// options; see the list of keys above for more information. The block is called on the main queue
@@ -75,8 +125,6 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cganimateimageaturlwithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageAtURLWithBlock(
         url: &CFURL,
@@ -86,6 +134,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Animate the sequence of images using data from a Graphics Interchange Format (GIF) or Animated Portable Network Graphics (APNG) file file.
+    ///
+    /// Parameters:
+    /// - data: The image data to animate.
+    ///
+    /// - options: Additional playback options. Include the [`kCGImageAnimationDelayTime`](https://developer.apple.com/documentation/imageio/kcgimageanimationdelaytime) or [`kCGImageAnimationLoopCount`](https://developer.apple.com/documentation/imageio/kcgimageanimationloopcount) keys to override the timing information in the image file. Include the [`kCGImageAnimationStartIndex`](https://developer.apple.com/documentation/imageio/kcgimageanimationstartindex) key to specify the index of the first image in the animation.
+    ///
+    /// - block: The animation block to execute for each image frame. The system executes this block on the main queue, and at the intervals indicated by the image’s delay time metadata. Use this block to display the provided image in your interface.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A status code indicating the success or failure of the animation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function executes the provided `block` for each frame of the animation. By default, the function uses the timing information contained in the image’s metadata. This information includes the number of seconds between individual frames, and the number of times to loop the animation. For example, the function uses the [`kCGImagePropertyGIFDelayTime`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifdelaytime) and [`kCGImagePropertyGIFLoopCount`](https://developer.apple.com/documentation/imageio/kcgimagepropertygifloopcount) tags from a GIF image’s metadata. To override the default timing information, provide the appropriate keys in the `options` dictionary.
+    ///
+    ///
     /// Animate the sequence of images contained in `data`. Currently supported image
     /// formats are GIF and APNG. The `options` dictionary may be used to request additional playback
     /// options; see the list of keys above for more information. The block is called on the main queue
@@ -97,8 +166,6 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cganimateimagedatawithblock(_:_:_:)?language=objc)
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageDataWithBlock(
         data: &CFData,

@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteconfigurationsupporting?language=objc)
+    /// The interface for text-oriented responder objects to participate in the unified paste and drop system in iOS.
     #[cfg(feature = "UIPasteConfigurationSupporting")]
     pub unsafe trait UITextPasteConfigurationSupporting:
         UIPasteConfigurationSupporting + MainThreadOnly

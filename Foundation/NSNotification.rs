@@ -6,15 +6,42 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct?language=objc)
+/// A structure that defines the name of a notification.
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSNotificationName = NSString;
 
 extern_class!(
-    /// **************    Notifications    ***************
+    /// A container for information broadcast through a notification center to all registered observers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification?language=objc)
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`Notification`](https://developer.apple.com/documentation/foundation/notification); use [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// A notification contains a name, an object, and an optional dictionary, and is broadcast to by instances of  [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) or [`NSDistributedNotificationCenter`](https://developer.apple.com/documentation/foundation/distributednotificationcenter). The name is a tag identifying the notification. The object is any object that the poster of the notification wants to send to observers of that notification (typically, the object posting the notification). The dictionary stores other related objects, if any. [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) objects are immutable.
+    ///
+    /// You don’t usually create your own notifications directly, but instead call the [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) methods [`postNotificationName:object:`](https://developer.apple.com/documentation/foundation/notificationcenter/post(name:object:)) and [`postNotificationName:object:userInfo:`](https://developer.apple.com/documentation/foundation/notificationcenter/post(name:object:userinfo:)).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Notification`](https://developer.apple.com/documentation/foundation/notification) structure, which bridges to the [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Object Comparison
+    ///
+    /// The objects of a notification are compared using pointer equality for local notifications. Distributed notifications use strings as their objects, and those strings are compared using [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)), because pointer equality doesn’t make sense across process boundaries.
+    ///
+    /// ### Creating Subclasses
+    ///
+    /// You can subclass [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) to contain information in addition to the notification name, object, and dictionary. This extra data must be agreed upon between notifiers and observers.
+    ///
+    /// [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) is a class cluster with no instance variables. As such, you must subclass [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) and override the primitive methods [`name`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.property), [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object), and [`userInfo`](https://developer.apple.com/documentation/foundation/nsnotification/userinfo). You can choose any designated initializer you like, but be sure that your initializer does not call [`init`](https://developer.apple.com/documentation/foundation/nsnotification/init) on `super` ([`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) is not meant to be instantiated directly, and its `init` method raises an exception).
+    ///
+    ///
+    /// **************    Notifications    ***************
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotification;
@@ -112,9 +139,24 @@ impl NSNotification {
 }
 
 extern_class!(
-    /// **************    Notification Center    ***************
+    /// A notification dispatch mechanism that enables the broadcast of information to registered observers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationcenter?language=objc)
+    /// ## Overview
+    ///
+    /// Callers register with a notification center to receive one or both of the following:
+    ///
+    /// - [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) objects, when working in Objective-C or with frameworks that only support [`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification). Objects register with a notification center to receive notifications ([`NSNotification`](https://developer.apple.com/documentation/foundation/nsnotification) objects) using the [`addObserver:selector:name:object:`](https://developer.apple.com/documentation/foundation/notificationcenter/addobserver(_:selector:name:object:)) or [`addObserverForName:object:queue:usingBlock:`](https://developer.apple.com/documentation/foundation/notificationcenter/addobserver(forname:object:queue:using:)) methods, specifying a notification name and optionally a source object. When a caller adds itself as an observer, it specifies which notifications it should receive.
+    ///
+    /// - [`NotificationCenter.MainActorMessage`](https://developer.apple.com/documentation/foundation/notificationcenter/mainactormessage) and [`NotificationCenter.AsyncMessage`](https://developer.apple.com/documentation/foundation/notificationcenter/asyncmessage) instances for use with Swift code, providing strong typing, appropriate actor isolation, and a more idiomatic Swift experience. Callers register with the notification center using the various flavors of the `addObserver(of:for:using:)` method, specifying either a message type or a convenience [`NotificationCenter.MessageIdentifier`](https://developer.apple.com/documentation/foundation/notificationcenter/messageidentifier) to identify the notification messages to receive. See [Notification center messages](https://developer.apple.com/documentation/foundation/notification-center-messages) for more information about this API.
+    ///
+    /// Callers may add observers for many different notifications, or even the same notification name or message type as produced by different source objects.
+    ///
+    /// Each running app has a [`defaultCenter`](https://developer.apple.com/documentation/foundation/notificationcenter/default) notification center, and you can create new notification centers to organize communications in particular contexts.
+    ///
+    /// A notification center can deliver notifications only within a single program. On macOS, if you want to post a notification to other processes or receive notifications from other processes, use [`NSDistributedNotificationCenter`](https://developer.apple.com/documentation/foundation/distributednotificationcenter) instead.
+    ///
+    ///
+    /// **************    Notification Center    ***************
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationCenter;

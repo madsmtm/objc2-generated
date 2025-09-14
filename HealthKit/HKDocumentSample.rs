@@ -7,9 +7,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An abstract class representing a health document.
+    /// An abstract class that represents a health document in the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdocumentsample?language=objc)
+    /// ## Overview
+    ///
+    /// You should never instantiate an `HKDocumentSample` object directly. Instead, you always work with a concrete subclass. In iOS 10 and watchOS 3, the only concrete class is the [`HKCDADocumentSample`](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample) class.
+    ///
+    /// Document samples are immutable: You set the sample’s properties when you create it, and they cannot change.
+    ///
+    /// ### Extend Document Samples
+    ///
+    /// Like many HealthKit classes, you should not create any custom subclasses of the `HKDocumentSample` class. You can extend the `HKDocumentSample` class and its subclasses by adding custom metadata keys and values to the metadata dictionary when the object is instantiated.
+    ///
+    ///
+    /// An abstract class representing a health document.
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

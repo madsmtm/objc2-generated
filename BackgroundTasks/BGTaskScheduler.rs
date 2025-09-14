@@ -11,19 +11,30 @@ use crate::*;
 
 extern "C" {
     /// The background tasks error domain as a string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/errordomain?language=objc)
+    /// The background tasks error domain as a string.
     pub static BGTaskSchedulerErrorDomain: &'static NSErrorDomain;
 }
 
 /// An enumeration of the task scheduling errors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code?language=objc)
+/// An enumeration of the task scheduling errors.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct BGTaskSchedulerErrorCode(pub NSInteger);
 impl BGTaskSchedulerErrorCode {
+    /// A task scheduling error that indicates the app or extension can’t schedule background work.
+    ///
+    /// ## Discussion
+    ///
+    /// This error usually occurs for one of three reasons:
+    ///
+    /// - A person disabled background refresh in settings.
+    ///
+    /// - The app runs on Simulator which doesn’t support background processing.
+    ///
+    /// - The extension either didn’t set [`RequestsOpenAccess`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsextension/nsextensionattributes/requestsopenaccess) to `YES` in [The Info.plist File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22), or a person didn’t grant open access.
+    ///
+    ///
     /// A task scheduling error indicating that the app or extension can’t schedule background work.
     ///
     /// This error usually occurs for one of following reasons:
@@ -35,17 +46,31 @@ impl BGTaskSchedulerErrorCode {
     /// ://com.apple.documentation/documentation/bundleresources/information_property_list/nsextension/nsextensionattributes/requestsopenaccess>
     /// to `YES` in [The Info.plist File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22), or the user hasn’t granted open access.
     /// - The extension type isn’t able to schedule background tasks.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/unavailable?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeUnavailable")]
     pub const Unavailable: Self = Self(1);
-    /// A task scheduling error indicating that there are too many pending tasks of the type requested.
+    /// A task scheduling error that indicates there are too many pending tasks of the type requested.
+    ///
+    /// ## Discussion
     ///
     /// Try canceling some existing task requests and then resubmit the request that failed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/toomanypendingtaskrequests?language=objc)
+    ///
+    /// A task scheduling error indicating that there are too many pending tasks of the type requested.
+    ///
+    /// Try canceling some existing task requests and then resubmit the request that failed.
     #[doc(alias = "BGTaskSchedulerErrorCodeTooManyPendingTaskRequests")]
     pub const TooManyPendingTaskRequests: Self = Self(2);
+    /// A task scheduling error that indicates the app isn’t permitted to launch the task.
+    ///
+    /// ## Discussion
+    ///
+    /// There are two causes for this error:
+    ///
+    /// - The app didn’t set the appropriate mode in the [`UIBackgroundModes`](https://developer.apple.com/documentation/bundleresources/information-property-list/uibackgroundmodes) array.
+    ///
+    /// - The task identifier of the submitted task wasn’t in the [`BGTaskSchedulerPermittedIdentifiers`](https://developer.apple.com/documentation/bundleresources/information-property-list/bgtaskschedulerpermittedidentifiers) array in [The Info.plist File](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22).
+    ///
+    ///
     /// A task scheduling error indicating the app isn’t permitted to schedule the task.
     ///
     /// There are four causes for this error:
@@ -60,17 +85,22 @@ impl BGTaskSchedulerErrorCode {
     /// array in [the Info.plist](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW22).
     /// - The task requested additional ``BGContinuedProcessingTaskRequestResources`` that are unavailable.
     /// - The user has explicitly denied background launches for your app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/notpermitted?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeNotPermitted")]
     pub const NotPermitted: Self = Self(3);
+    /// A task scheduling error that indicates a task request didn’t run immediately due to system conditions.
+    ///
+    /// ## Discussion
+    ///
+    /// The framework throws this error when a [`BGContinuedProcessingTaskRequest`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest) that your app submits with [`strategy`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/strategy) set to  [`BGContinuedProcessingTaskRequestSubmissionStrategyFail`](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequest/submissionstrategy/fail) isn’t able to begin right away due to runtime conditions.
+    ///
+    /// If the task that fails submission is of high importance and your app has other tasks submitted, you can try canceling the other task requests and resubmit the failed request.
+    ///
+    ///
     /// A ``BGContinuedProcessingTaskRequest`` was not allowed to immediately run due to system conditions.
     ///
     /// This will only be returned when using the ``BGContinuedProcessingTaskRequestSubmissionStrategyFail`` when
     /// submitting a ``BGContinuedProcessingTaskRequest``. Task requests that are successfully ran will not be
     /// associated with any error code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code/immediaterunineligible?language=objc)
     #[doc(alias = "BGTaskSchedulerErrorCodeImmediateRunIneligible")]
     pub const ImmediateRunIneligible: Self = Self(4);
 }
@@ -84,14 +114,23 @@ unsafe impl RefEncode for BGTaskSchedulerErrorCode {
 }
 
 extern_class!(
+    /// A class for scheduling tasks that add background support to your app’s most critical work.
+    ///
+    /// ## Overview
+    ///
+    /// Background tasks give your app a way to run code even when the app is suspended:
+    ///
+    /// - To register, schedule, and run tasks in the background, see [Using background tasks to update your app](https://developer.apple.com/documentation/uikit/using-background-tasks-to-update-your-app).
+    ///
+    /// - To submit work in the foreground that can finish even if the app moves to the background, see [Performing long-running tasks on iOS and iPadOS](https://developer.apple.com/documentation/backgroundtasks/performing-long-running-tasks-on-ios-and-ipados).
+    ///
+    ///
     /// A class for scheduling task requests that launch your app in the background.
     ///
     /// Background tasks give your app a way to run code while the app is suspended.
     /// To learn how to register, schedule, and run a background task, see
     /// <doc
     /// ://com.apple.documentation/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background/using_background_tasks_to_update_your_app>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BGTaskScheduler;

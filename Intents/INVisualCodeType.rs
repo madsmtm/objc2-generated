@@ -4,36 +4,36 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype?language=objc)
+/// Constants indicating the purpose of the visual code.
 // NS_ENUM
 #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INVisualCodeType(pub NSInteger);
 impl INVisualCodeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/unknown?language=objc)
+    /// An unknown type of visual code.
     #[doc(alias = "INVisualCodeTypeUnknown")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/contact?language=objc)
+    /// A visual code providing the user’s contact information.
     #[doc(alias = "INVisualCodeTypeContact")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const Contact: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/requestpayment?language=objc)
+    /// A visual code for requesting a payment.
     #[doc(alias = "INVisualCodeTypeRequestPayment")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const RequestPayment: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/sendpayment?language=objc)
+    /// A visual code for making a payment.
     #[doc(alias = "INVisualCodeTypeSendPayment")]
     #[deprecated = "INVisualCodeType is deprecated. There is no replacement."]
     pub const SendPayment: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/transit?language=objc)
+    /// A visual code for public transit.
     #[doc(alias = "INVisualCodeTypeTransit")]
     pub const Transit: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/bus?language=objc)
+    /// A visual code for bus transportation.
     #[doc(alias = "INVisualCodeTypeBus")]
     pub const Bus: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/invisualcodetype/subway?language=objc)
+    /// A visual code for subway transportation.
     #[doc(alias = "INVisualCodeTypeSubway")]
     pub const Subway: Self = Self(6);
 }

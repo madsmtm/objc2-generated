@@ -6,34 +6,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason?language=objc)
+/// Reasons the app can’t play the media item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INPlayMediaMediaItemUnsupportedReason(pub NSInteger);
 impl INPlayMediaMediaItemUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/loginrequired?language=objc)
+    /// The user must log in to the app.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonLoginRequired")]
     pub const LoginRequired: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/subscriptionrequired?language=objc)
+    /// The user must have a subscription to the app’s service.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonSubscriptionRequired")]
     pub const SubscriptionRequired: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/unsupportedmediatype?language=objc)
+    /// The media’s type is not supported.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonUnsupportedMediaType")]
     pub const UnsupportedMediaType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/explicitcontentsettings?language=objc)
+    /// The content settings don’t allow the user to play the media item.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonExplicitContentSettings")]
     pub const ExplicitContentSettings: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/cellulardatasettings?language=objc)
+    /// The cellular data settings don’t allow the user to play the media item.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonCellularDataSettings")]
     pub const CellularDataSettings: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/restrictedcontent?language=objc)
+    /// The media item is restricted content.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this reason for geographic region restrictions, or when none of the other, more specific reasons apply.
+    ///
+    ///
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonRestrictedContent")]
     pub const RestrictedContent: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/serviceunavailable?language=objc)
+    /// The app can’t add the item because its media service isn’t available.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonServiceUnavailable")]
     pub const ServiceUnavailable: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemunsupportedreason/regionrestriction?language=objc)
+    /// The media isn’t available in the user’s geographic location.
     #[doc(alias = "INPlayMediaMediaItemUnsupportedReasonRegionRestriction")]
     pub const RegionRestriction: Self = Self(8);
 }
@@ -47,7 +53,15 @@ unsafe impl RefEncode for INPlayMediaMediaItemUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaymediamediaitemresolutionresult?language=objc)
+    /// A resolution result for the media item to play.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INPlayMediaMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inplaymediamediaitemresolutionresult) object when resolving parameters containing an [`INMediaItemResolutionResult`](https://developer.apple.com/documentation/intents/inmediaitemresolutionresult) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INMediaItemResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

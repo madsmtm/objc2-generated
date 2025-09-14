@@ -7,14 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A configuration object that provides a way to reclaim memory from the guest system.
+    ///
+    /// ## Overview
+    ///
+    /// Create a `VZVirtioTraditionalMemoryBalloonDeviceConfiguration` object when you want the ability to reclaim memory from the guest operating system. After creating this object, add it to the [`memoryBalloonDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/memoryballoondevices) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object. In response, the virtual machine provides a [`VZVirtioTraditionalMemoryBalloonDevice`](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondevice) object, which you use to initiate memory-related requests with the guest system. Access that object from the [`memoryBalloonDevices`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices) property of [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Create only one `VZVirtioTraditionalMemoryBalloonDeviceConfiguration` object for your virtual machine.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Configuration of the Virtio traditional memory balloon device.
     ///
     /// This configuration creates a Virtio traditional memory balloon device which allows for managing guest memory.
     /// Only one Virtio traditional memory balloon device can be used per virtual machine.
     ///
     /// See: VZVirtioTraditionalMemoryBalloonDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiotraditionalmemoryballoondeviceconfiguration?language=objc)
     #[unsafe(super(VZMemoryBalloonDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZMemoryBalloonDeviceConfiguration")]

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpastedelegate?language=objc)
+    /// The interface for handling pasting and dropping of text, using item providers.
     pub unsafe trait UITextPasteDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "UIPasteConfigurationSupporting",
@@ -79,7 +79,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextpasteitem?language=objc)
+    /// The interface for obtaining information about, and interacting with, a text item for pasting or dropping.
     pub unsafe trait UITextPasteItem: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(itemProvider))]
         #[unsafe(method_family = none)]

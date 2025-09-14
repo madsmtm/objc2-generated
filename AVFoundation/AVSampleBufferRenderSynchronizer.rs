@@ -12,19 +12,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The synchronizer’s rendering rate changed.
     /// A notification that fires whenever the value of the "rate" property changes.
     ///
     /// The rate can change as a result of setting the rate property, either by directly setting the property or calling -setRate:time:. The rate can also change at any time, without any action by the client of the render synchronizer. For example, on iOS if the app's playback is interrupted (e.g. by a phone call or another non-mixable app starting playback), the rate will automatically be set to zero. This notification will be sent in all of those cases.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/ratedidchangenotification?language=objc)
     pub static AVSampleBufferRenderSynchronizerRateDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern_class!(
-    /// AVSampleBufferRenderSynchronizer can synchronize multiple objects conforming to AVQueuedSampleBufferRendering to a single timebase.
+    /// An object used to synchronize multiple queued sample buffers to a single timeline.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer?language=objc)
+    /// ## Overview
+    ///
+    /// This class synchronizes multiple objects that conform to [`AVQueuedSampleBufferRendering`](https://developer.apple.com/documentation/avfoundation/avqueuedsamplebufferrendering) to a single timeline.
+    ///
+    ///
+    /// AVSampleBufferRenderSynchronizer can synchronize multiple objects conforming to AVQueuedSampleBufferRendering to a single timebase.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSampleBufferRenderSynchronizer;

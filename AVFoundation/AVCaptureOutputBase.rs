@@ -10,6 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract superclass for objects that provide media output destinations for a capture session.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides an abstract interface to connect capture output destinations, such as files and streams, to a capture session.
+    ///
+    /// A capture output can have multiple connections, one for each stream of media that it receives from a capture input. A capture output doesn’t have any connections when you create it. When you add it to a capture session, the session automatically forms connections between compatible inputs and outputs.
+    ///
+    ///
     /// AVCaptureOutput is an abstract class that defines an interface for an output destination of an AVCaptureSession.
     ///
     ///
@@ -18,8 +27,6 @@ extern_class!(
     /// An AVCaptureOutput can have multiple connections represented by AVCaptureConnection objects, one for each stream of media that it receives from an AVCaptureInput. An AVCaptureOutput does not have any connections when it is first created. When an output is added to an AVCaptureSession, connections are created that map media data from that session's inputs to its outputs.
     ///
     /// Concrete AVCaptureOutput instances can be added to an AVCaptureSession using the -[AVCaptureSession addOutput:] and -[AVCaptureSession addOutputWithNoConnections:] methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureOutput;
@@ -148,6 +155,7 @@ impl AVCaptureOutput {
     );
 }
 
+/// Constants that define reasons for why the system dropped a frame.
 /// Constants indicating the reason a capture data output dropped data.
 ///
 ///
@@ -158,23 +166,39 @@ impl AVCaptureOutput {
 /// Data was dropped because its pool of buffers ran dry. This is usually indicative that the client is holding onto data objects too long.
 ///
 /// Data was dropped because the device providing the data experienced a discontinuity, and an unknown number of data objects have been lost. This condition is typically caused by the system being too busy.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureOutputDataDroppedReason(pub NSInteger);
 impl AVCaptureOutputDataDroppedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/none?language=objc)
+    /// The system didn’t drop data.
     #[doc(alias = "AVCaptureOutputDataDroppedReasonNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/latedata?language=objc)
+    /// The system dropped data because you’ve configured capture output to drop data when delegate queue is in a blocked state, and there’s data to deliver.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`alwaysDiscardsLateVideoFrames`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput/alwaysdiscardslatevideoframes) property of [`AVCaptureVideoDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturevideodataoutput) or the [`alwaysDiscardsLateDepthData`](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput/alwaysdiscardslatedepthdata) property of [`AVCaptureDepthDataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturedepthdataoutput) to choose whether the capture output discards data.
+    ///
+    ///
     #[doc(alias = "AVCaptureOutputDataDroppedReasonLateData")]
     pub const LateData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/outofbuffers?language=objc)
+    /// The system dropped data because the capture output exhausted its internal pool of memory buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// This situation typically indicates that your delegate object is holding on to captured data buffers for too long. If you need to perform extended processing of captured data, copy that data into buffers whose lifetimes you manage instead of relying on buffers vended by the capture output.
+    ///
+    ///
     #[doc(alias = "AVCaptureOutputDataDroppedReasonOutOfBuffers")]
     pub const OutOfBuffers: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason/discontinuity?language=objc)
+    /// The system dropped data because the device providing data experienced a discontinuity, and the output lost an unknown number of data objects.
+    ///
+    /// ## Discussion
+    ///
+    /// A discontinuity is a situation where the capture system can’t ensure that minimal time passes between the capture of data buffers. This kind of situation can arise when the system as a whole is too busy to handle the data.
+    ///
+    ///
     #[doc(alias = "AVCaptureOutputDataDroppedReasonDiscontinuity")]
     pub const Discontinuity: Self = Self(3);
 }

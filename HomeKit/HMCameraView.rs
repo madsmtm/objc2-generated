@@ -15,9 +15,8 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// The view into which a video stream or an image snapshot is rendered.
     /// This view can render a camera source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcameraview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

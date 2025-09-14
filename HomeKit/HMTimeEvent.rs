@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract superclass for time-based events.
     /// This class is used to represent a generic time event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmtimeevent?language=objc)
     #[unsafe(super(HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]

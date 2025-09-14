@@ -22,118 +22,174 @@ unsafe impl RefEncode for OpaqueAudioConverter {
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioConverter", &[]));
 }
 
+/// A reference to an audio converter object.
 /// A reference to an AudioConverter object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterref?language=objc)
 pub type AudioConverterRef = *mut OpaqueAudioConverter;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterpropertyid?language=objc)
+/// An audio converter property identifier.
 pub type AudioConverterPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimuminputbuffersize?language=objc)
+/// A `UInt32` value that indicates the size, in bytes, of the smallest buffer of input data that can be supplied via the audio converter input callback or as the input to the [`AudioConverterConvertBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)) function.
 pub const kAudioConverterPropertyMinimumInputBufferSize: AudioConverterPropertyID = 0x6d696273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyminimumoutputbuffersize?language=objc)
+/// A `UInt32` value that indicates the size, in bytes, of the smallest buffer of output data that can be supplied to AudioConverterFillComplexBuffer or as the output to AudioConverterConvertBuffer
 pub const kAudioConverterPropertyMinimumOutputBufferSize: AudioConverterPropertyID = 0x6d6f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximuminputpacketsize?language=objc)
+/// A `UInt32` value that indicates the size, in bytes, of the largest single packet of data in the input format. This is mostly useful for variable bit rate compressed data (decoders).
 pub const kAudioConverterPropertyMaximumInputPacketSize: AudioConverterPropertyID = 0x78697073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximumoutputpacketsize?language=objc)
+/// A `UInt32` value that indicates the size, in bytes, of the largest single packet of data in the output format. This is mostly useful for variable bit rate compressed data (encoders).
 pub const kAudioConverterPropertyMaximumOutputPacketSize: AudioConverterPropertyID = 0x786f7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateinputbuffersize?language=objc)
+/// A `UInt32` value that on input holds a size, in bytes, that is desired for the output data. On output, it holds the size, in bytes, of the input buffer required to generate that much output data. Note that some converters cannot do this calculation.
 pub const kAudioConverterPropertyCalculateInputBufferSize: AudioConverterPropertyID = 0x63696273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertycalculateoutputbuffersize?language=objc)
+/// A `UInt32` value that on input holds a size, in bytes, that is desired for the input data. On output, it holds the size, in bytes, of the output buffer required to hold the output data to be generated. Some converters cannot do this calculation.
 pub const kAudioConverterPropertyCalculateOutputBufferSize: AudioConverterPropertyID = 0x636f6273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyinputcodecparameters?language=objc)
+/// The value of this property varies from format to format and is considered private to the format. It is treated as a buffer of untyped data.
 pub const kAudioConverterPropertyInputCodecParameters: AudioConverterPropertyID = 0x69636470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyoutputcodecparameters?language=objc)
+/// The value of this property varies from format to format and is considered private to the format. It is treated as a buffer of untyped data.
 pub const kAudioConverterPropertyOutputCodecParameters: AudioConverterPropertyID = 0x6f636470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity?language=objc)
+/// The sample rate conversion algorithm.
+///
+/// ## Discussion
+///
+/// The sample rate conversion algorithm, specified using a constant from [Sample Rate Conversion Complexity Identifiers](https://developer.apple.com/documentation/audiotoolbox/1559923-sample-rate-conversion-complexit).
+///
+///
 pub const kAudioConverterSampleRateConverterComplexity: AudioConverterPropertyID = 0x73726361;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterquality?language=objc)
+/// The rendering quality of the sample rate converter.
+///
+/// ## Discussion
+///
+/// The rendering quality of the sample rate converter, specified using a constant from [Sample Rate Conversion Quality Identifiers](https://developer.apple.com/documentation/audiotoolbox/1559924-sample-rate-conversion-quality-i). See also [`kAudioConverterSampleRateConverterComplexity`](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity).
+///
+///
 pub const kAudioConverterSampleRateConverterQuality: AudioConverterPropertyID = 0x73726371;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverterinitialphase?language=objc)
+/// A `Float64` value equal to `0.0`.
 pub const kAudioConverterSampleRateConverterInitialPhase: AudioConverterPropertyID = 0x73726370;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercodecquality?language=objc)
+/// The rendering quality of a codec. A `UInt32` value.
 pub const kAudioConverterCodecQuality: AudioConverterPropertyID = 0x63647175;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimemethod?language=objc)
+/// The priming method, usually for sample-rate conversion.
+///
+/// ## Discussion
+///
+/// See [`AudioConverterPrimeInfo`](https://developer.apple.com/documentation/audiotoolbox/audioconverterprimeinfo) and [Converter Priming Constants](https://developer.apple.com/documentation/audiotoolbox/1559927-converter-priming-constants).
+///
+///
 pub const kAudioConverterPrimeMethod: AudioConverterPropertyID = 0x70726d6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimeinfo?language=objc)
+/// An [`AudioConverterPrimeInfo`](https://developer.apple.com/documentation/audiotoolbox/audioconverterprimeinfo) structure.
 pub const kAudioConverterPrimeInfo: AudioConverterPropertyID = 0x7072696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterchannelmap?language=objc)
+/// An array of `SInt32` values that specify an input-to-output channel mapping.
+///
+/// ## Discussion
+///
+/// The size of the array is the number of output channels. Each element specifies, using a 0-based index, which input channel’s data is routed to that output channel. A value of `-1` indicates that no input channel is to be routed to that output channel.
+///
+/// The default behavior is as follows. Given that `In` = the number of input channels and `Out` = the number of output channels. When `In` > `Out`, the first `Out` inputs are routed to the first `Out` outputs, and the remaining inputs are discarded.  When `Out` > `In`, the first `In` inputs are routed to the first `Out` outputs, and the remaining outputs are zeroed.
+///
+///
 pub const kAudioConverterChannelMap: AudioConverterPropertyID = 0x63686d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterdecompressionmagiccookie?language=objc)
+/// A `void*` value that points to memory set up by the caller. This property is required by some audio data formats in order to decompress the input data.
 pub const kAudioConverterDecompressionMagicCookie: AudioConverterPropertyID = 0x646d6763;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercompressionmagiccookie?language=objc)
+/// A `void*` value that points to memory set up by the caller. This property is returned by the converter so that your application may store it along with the output data. This property can then be passed back to the converter for decompression at a later time.
 pub const kAudioConverterCompressionMagicCookie: AudioConverterPropertyID = 0x636d6763;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodebitrate?language=objc)
+/// A `UInt32` value containing the number of bits per second to aim for when encoding data. Some decoders also allow you to query this property to discover the bit rate.
 pub const kAudioConverterEncodeBitRate: AudioConverterPropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterencodeadjustablesamplerate?language=objc)
+/// A `Float64` value that specifies an output sample rate.
+///
+/// ## Discussion
+///
+/// For encoding audio converters a) with a specified output sample rate of `0` and b) that are capable of performing sample rate conversion on the input data, this property provides a way to set output sample rate.
+///
+///
 pub const kAudioConverterEncodeAdjustableSampleRate: AudioConverterPropertyID = 0x616a7372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterinputchannellayout?language=objc)
+/// An `AudioChannelLayout` structure that specifies an audio converter’s input channel layout.
 pub const kAudioConverterInputChannelLayout: AudioConverterPropertyID = 0x69636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteroutputchannellayout?language=objc)
+/// An `AudioChannelLayout` structure that specifies an audio converter’s output channel layout.
 pub const kAudioConverterOutputChannelLayout: AudioConverterPropertyID = 0x6f636c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodebitrates?language=objc)
+/// An array of `AudioValueRange` structures that describes applicable bit rates based on current settings.
 pub const kAudioConverterApplicableEncodeBitRates: AudioConverterPropertyID = 0x61656272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodebitrates?language=objc)
+/// An array of `AudioValueRange` structures that describes the available bit rates based on the input format. You can determine the available bit rates using Audio Format Services.
 pub const kAudioConverterAvailableEncodeBitRates: AudioConverterPropertyID = 0x76656272;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterapplicableencodesamplerates?language=objc)
+/// An array of `AudioValueRange` structures that describes applicable sample rates based on current settings.
 pub const kAudioConverterApplicableEncodeSampleRates: AudioConverterPropertyID = 0x61657372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodesamplerates?language=objc)
+/// An array of `AudioValueRange` structures that describes the available sample rates based on the input format. You can determine the available sample rates using Audio Format Services.
 pub const kAudioConverterAvailableEncodeSampleRates: AudioConverterPropertyID = 0x76657372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverteravailableencodechannellayouttags?language=objc)
+/// An array of `AudioChannelLayoutTag` values for the format and number of channels specified in the encoder’s input format.
 pub const kAudioConverterAvailableEncodeChannelLayoutTags: AudioConverterPropertyID = 0x6165636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentoutputstreamdescription?language=objc)
+/// The current, completely specified output `AudioStreamBasicDescription` structure.
 pub const kAudioConverterCurrentOutputStreamDescription: AudioConverterPropertyID = 0x61636f64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertercurrentinputstreamdescription?language=objc)
+/// The current, completely specified input `AudioStreamBasicDescription` structure.
 pub const kAudioConverterCurrentInputStreamDescription: AudioConverterPropertyID = 0x61636964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertysettings?language=objc)
+/// An array (of type `CFArray`) of property settings for converters.
 pub const kAudioConverterPropertySettings: AudioConverterPropertyID = 0x61637073;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertybitdepthhint?language=objc)
+/// A `UInt32` value that designates the source bit depth to preserve.
+///
+/// ## Discussion
+///
+/// This is a hint used by some encoders, such as the Apple lossless encoder. The converter usually tries to preserve as many bits as possible. A lossless encoder does poorly if more bits are supplied than are desired in the output.
+///
+///
 pub const kAudioConverterPropertyBitDepthHint: AudioConverterPropertyID = 0x61636264;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyformatlist?language=objc)
+/// An array of `AudioFormatListItem` structures that describes the set of data formats produced by the encoder end of an audio converter.
+///
+/// ## Discussion
+///
+/// If the `ioPropertyDataSize` parameter of the [`AudioConverterGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audioconvertergetproperty(_:_:_:_:)) function indicates that the size of the data in the `outPropertyData` parameter is `sizeof (AudioFormatListItem)`, then only the best format is returned. This property may be used, for example, to discover all the data formats produced by the AAC High Efficiency version 2 encoder (specified by the `kAudioFormatMPEG4AAC_HE_V2` constant).
+///
+///
 pub const kAudioConverterPropertyFormatList: AudioConverterPropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyperformdownmix?language=objc)
 pub const kAudioConverterPropertyPerformDownmix: AudioConverterPropertyID = 0x646d6978;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertychannelmixmap?language=objc)
 pub const kAudioConverterPropertyChannelMixMap: AudioConverterPropertyID = 0x6d6d6170;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertydithering?language=objc)
 pub const kAudioConverterPropertyDithering: AudioConverterPropertyID = 0x64697468;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyditherbitdepth?language=objc)
 pub const kAudioConverterPropertyDitherBitDepth: AudioConverterPropertyID = 0x64626974;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_tpdf?language=objc)
 pub const kDitherAlgorithm_TPDF: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kditheralgorithm_noiseshaping?language=objc)
 pub const kDitherAlgorithm_NoiseShaping: u32 = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_max?language=objc)
+/// Specifies maximum sample-rate conversion quality.
 pub const kAudioConverterQuality_Max: u32 = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_high?language=objc)
+/// Specifies high sample rate conversion quality.
 pub const kAudioConverterQuality_High: u32 = 0x60;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_medium?language=objc)
+/// Specifies medium sample rate conversion quality.
 pub const kAudioConverterQuality_Medium: u32 = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_low?language=objc)
+/// Specifies low sample rate conversion quality.
 pub const kAudioConverterQuality_Low: u32 = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterquality_min?language=objc)
+/// Specifies minimum sample rate conversion quality.
 pub const kAudioConverterQuality_Min: u32 = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_linear?language=objc)
+/// Specifies linear interpolation for sample rate conversion. This provides the lowest quality and is, computationally, the least expensive option.
 pub const kAudioConverterSampleRateConverterComplexity_Linear: u32 = 0x6c696e65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_normal?language=objc)
+/// Specifies the normal-complexity sample rate conversion algorithm. This is the default value.
 pub const kAudioConverterSampleRateConverterComplexity_Normal: u32 = 0x6e6f726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_mastering?language=objc)
+/// Specifies a mastering-quality sample rate conversion algorithm. This provides the highest quality and is, computationally, the most expensive option.
 pub const kAudioConverterSampleRateConverterComplexity_Mastering: u32 = 0x62617473;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity_minimumphase?language=objc)
 pub const kAudioConverterSampleRateConverterComplexity_MinimumPhase: u32 = 0x6d696e70;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_pre?language=objc)
+/// Prime with `leading` + `trailing` input frames.
 pub const kConverterPrimeMethod_Pre: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_normal?language=objc)
+/// Prime with `trailing` frames only, for zero latency. Leading frames are assumed to be silence.
 pub const kConverterPrimeMethod_Normal: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kconverterprimemethod_none?language=objc)
+/// Acts in “latency” mode. Leading and trailing frames are both assumed to be silence.
 pub const kConverterPrimeMethod_None: u32 = 2;
 
+/// Specifies priming information for an audio converter.
+///
+/// ## Overview
+///
+/// Some audio data format conversions, particularly those involving sample-rate conversion, yield higher quality output when leading or trailing frames are available to the converter. The appropriate number of these so-called _priming frames_ depends on the input audio data format.
+///
+/// You specify leading or trailing frames in the `leadingFrames` and `trailingFrames` fields of an `AudioConverterPrimeInfo` structure. You then configure your audio converter by calling the [`AudioConverterSetProperty`](https://developer.apple.com/documentation/audiotoolbox/audioconvertersetproperty(_:_:_:_:)) function for the [`kAudioConverterPrimeInfo`](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimeinfo) property, specifying this structure as the property value. You also indicate to the converter which priming option to use by setting the [`kAudioConverterPrimeMethod`](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterprimemethod) property.
+///
+/// When you configure an audio converter by specifying leading or trailing frames, you alter the behavior of the [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function. The very first call to that function, or the first call after calling [`AudioConverterReset`](https://developer.apple.com/documentation/audiotoolbox/audioconverterreset(_:)), results in a request for additional input frames when the converter object invokes your [`AudioConverterComplexInputDataProc`](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataproc) callback. The number of priming frames requested depends on the priming option you specify, as shown in below.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Priming option" }] }], [Paragraph { inline_content: [Text { text: "Number of priming frames (approximate)" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kConverterPrimeMethod_Pre" }] }], [Paragraph { inline_content: [CodeVoice { code: "leadingFrames" }, Text { text: " + " }, CodeVoice { code: "trailingFrames" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kConverterPrimeMethod_Normal" }] }], [Paragraph { inline_content: [CodeVoice { code: "trailingFrames" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "kConverterPrimeMethod_None" }] }], [Paragraph { inline_content: [CodeVoice { code: "0" }] }]]], alignments: None, metadata: None })
+/// The default priming option is that specified by the `kConverterPrimeMethod_Normal` constant. This option requires no preseeking of the input stream. It generates `trailingFrames` of latency at output.
+///
+/// The `kConverterPrimeMethod_Pre` priming option results in a first invocation of your callback that asks for approximately `leadingFrames` + `trailingFrames` priming frames. Latency at output will correspond, approximately, to this duration.
+///
+/// The `kConverterPrimeMethod_None` priming constant is especially useful in real-time applications that process live input. This option minimizes output latency, but is appropriate only for formats that do not require priming frames.
+///
+/// In a digital audio workstation, the `kConverterPrimeMethod_Pre` option may be preferable for real-time applications. This is because your application may be able to provide priming frames by preloading them from disk or memory, avoiding latency while still supporting audio formats that require priming.
+///
+///
 /// Specifies priming information.
 ///
 /// When using AudioConverterFillComplexBuffer() (either a single call or a series of calls), some
@@ -185,8 +241,6 @@ pub const kConverterPrimeMethod_None: u32 = 2;
 /// kConverterPrimeMethod_None. If no more frames of input are available in the input stream
 /// (because, for example, the desired end frame is at the end of an audio file), then zero
 /// (silent) trailing frames will be synthesized for the client.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterprimeinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioConverterPrimeInfo {
@@ -213,15 +267,12 @@ unsafe impl RefEncode for AudioConverterPrimeInfo {
 /// (e.g. linear PCM, a-law, etc.) with the same sample rate and frames per packet.
 /// - AudioConverterFillBuffer cannot be used.
 /// - AudioConverterFillComplexBuffer cannot be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioConverterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioConverterOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverteroptions/unbuffered?language=objc)
         #[doc(alias = "kAudioConverterOption_Unbuffered")]
         const Unbuffered = 1<<16;
     }
@@ -235,25 +286,16 @@ unsafe impl RefEncode for AudioConverterOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_formatnotsupported?language=objc)
 pub const kAudioConverterErr_FormatNotSupported: OSStatus = 0x666d743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_operationnotsupported?language=objc)
 pub const kAudioConverterErr_OperationNotSupported: OSStatus = 0x6F703F3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_propertynotsupported?language=objc)
 pub const kAudioConverterErr_PropertyNotSupported: OSStatus = 0x70726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_invalidinputsize?language=objc)
 pub const kAudioConverterErr_InvalidInputSize: OSStatus = 0x696e737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_invalidoutputsize?language=objc)
+/// The byte size is not an integer multiple of the frame size.
 pub const kAudioConverterErr_InvalidOutputSize: OSStatus = 0x6f74737a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_unspecifiederror?language=objc)
 pub const kAudioConverterErr_UnspecifiedError: OSStatus = 0x77686174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_badpropertysizeerror?language=objc)
 pub const kAudioConverterErr_BadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_requirespacketdescriptionserror?language=objc)
 pub const kAudioConverterErr_RequiresPacketDescriptionsError: OSStatus = 0x21706b64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_inputsamplerateoutofrange?language=objc)
 pub const kAudioConverterErr_InputSampleRateOutOfRange: OSStatus = 0x21697372;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertererr_outputsamplerateoutofrange?language=objc)
 pub const kAudioConverterErr_OutputSampleRateOutOfRange: OSStatus = 0x216f7372;
 
 extern "C-unwind" {
@@ -275,8 +317,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `io_reserved` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterprepare(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn AudioConverterPrepare(
         in_flags: u32,
@@ -286,6 +326,43 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new audio converter object based on specified audio formats.
+    ///
+    /// Parameters:
+    /// - inSourceFormat: The format of the source audio to be converted.
+    ///
+    /// - inDestinationFormat: The destination format to which the audio is to be converted.
+    ///
+    /// - outAudioConverter: On return, a new audio converter object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a pair of linear PCM formats, the following conversions are supported:
+    ///
+    /// - Addition and removal of channels, when the input and output format `mChannelsPerFrame` fields do not match. Channels may also be reordered and removed using the `kAudioConverterChannelMap` property.
+    ///
+    /// - Sample rate conversion.
+    ///
+    /// - Interleaving and deinterleaving, when the input and output format `(mFormatFlags & kAudioFormatFlagIsNonInterleaved)` values do not match.
+    ///
+    /// - Conversion between any pair of the following formats:
+    ///
+    /// - 8-bit integer, signed or unsigned.
+    ///
+    /// - 16-, 24-, or 32-bit integer, big- or little-endian. Other integral bit depths, if high-aligned and nonpacked, are also supported
+    ///
+    /// - 32- and 64-bit floating point, big- or little-endian.
+    ///
+    /// Encoding and decoding between linear PCM and compressed formats is supported. Functions in Audio Format Services (`AudioToolbox/AudioFormat.h`) return information about the formats supported on a system. When using a codec, you can use any supported PCM format. The converter object performs any necessary additional conversion between your PCM format and the one created or consumed by the codec.
+    ///
+    ///
     /// Create a new AudioConverter.
     ///
     ///
@@ -348,8 +425,6 @@ extern "C-unwind" {
     /// - `in_source_format` must be a valid pointer.
     /// - `in_destination_format` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternew(_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNew(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -359,6 +434,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a new audio converter object using a specified codec.
+    ///
+    /// Parameters:
+    /// - inSourceFormat: The format of the source audio to be converted.
+    ///
+    /// - inDestinationFormat: The destination format to which the audio is to be converted.
+    ///
+    /// - inNumberClassDescriptions: The number of class descriptions supplied in the `inClassDescriptions` parameter.
+    ///
+    /// - inClassDescriptions: A list of `AudioClassDescription` objects that specify the codec to use.
+    ///
+    /// - outAudioConverter: On return, a new audio converter object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is identical to [`AudioConverterNew`](https://developer.apple.com/documentation/audiotoolbox/audioconverternew(_:_:_:)) function, except that your application may explicitly choose which codec to instantiate if there is more than one choice.
+    ///
+    ///
     /// Create a new AudioConverter using specific codecs.
     ///
     ///
@@ -383,8 +483,6 @@ extern "C-unwind" {
     /// - `in_destination_format` must be a valid pointer.
     /// - `in_class_descriptions` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternewspecific(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewSpecific(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -417,8 +515,6 @@ extern "C-unwind" {
     /// - `in_source_format` must be a valid pointer.
     /// - `in_destination_format` must be a valid pointer.
     /// - `out_audio_converter` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverternewwithoptions(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterNewWithOptions(
         in_source_format: NonNull<AudioStreamBasicDescription>,
@@ -429,6 +525,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disposes of an audio converter object.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter object to dispose of.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Destroy an AudioConverter.
     ///
     ///
@@ -439,12 +550,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_converter` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterdispose(_:)?language=objc)
     pub fn AudioConverterDispose(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Resets an audio converter object, clearing and flushing its buffers.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter object to reset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function after a discontinuity in the source audio stream being provided to the converter.
+    ///
+    ///
     /// Reset an AudioConverter
     ///
     ///
@@ -459,12 +585,27 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_converter` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterreset(_:)?language=objc)
     pub fn AudioConverterReset(in_audio_converter: AudioConverterRef) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets information about an audio converter property.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to get property information from.
+    ///
+    /// - inPropertyID: The property you want information about.
+    ///
+    /// - outSize: On output, the size of the property value in bytes. Can be `NULL` on output.
+    ///
+    /// - outWritable: On output, a Boolean value indicating whether the property value is writable (`true`) or not (`false`). Can be `NULL` on output.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
     /// Returns information about an AudioConverter property.
     ///
     ///
@@ -483,8 +624,6 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertergetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioConverterGetPropertyInfo(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -494,6 +633,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an audio converter property value.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to get a property value from.
+    ///
+    /// - inPropertyID: The property whose value you want.
+    ///
+    /// - ioPropertyDataSize: On input, the size of the memory pointed to by the `outPropertyData` parameter. On output, the size of the property value.
+    ///
+    /// - outPropertyData: On output, the property value you wanted to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Returns an AudioConverter property value.
     ///
     ///
@@ -513,8 +677,6 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertergetproperty(_:_:_:_:)?language=objc)
     pub fn AudioConverterGetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -524,6 +686,39 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the value of an audio converter object property.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to set a property value on.
+    ///
+    /// - inPropertyID: The property whose value you want to set.
+    ///
+    /// - inPropertyDataSize: The size, in bytes, of the property value.
+    ///
+    /// - inPropertyData: The value you want to apply to the specified property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can employ the property mechanism, for example, to split a monaural input to both channels of a stereo output. You would do this as follows:
+    ///
+    /// ```objc
+    ///  SInt32 channelMap[2] = {0, 0}; // array size should match the number of output channels
+    ///  AudioConverterSetProperty (
+    ///     theConverter,
+    ///     kAudioConverterChannelMap,
+    ///     sizeof(channelMap),
+    ///     channelMap
+    /// );
+    /// ```
+    ///
+    ///
     /// Sets an AudioConverter property value.
     ///
     ///
@@ -541,8 +736,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertersetproperty(_:_:_:_:)?language=objc)
     pub fn AudioConverterSetProperty(
         in_audio_converter: AudioConverterRef,
         in_property_id: AudioConverterPropertyID,
@@ -552,6 +745,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts audio data from one linear PCM format to another.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to use for format conversion.
+    ///
+    /// - inInputDataSize: The size, in bytes, of the audio data input buffer.
+    ///
+    /// - inInputData: The audio data to convert.
+    ///
+    /// - ioOutputDataSize: On input, the size, in bytes, of the buffer available for the converted data. On output, the number of bytes written to the output buffer (pointed to by the `outOutputData` parameter).
+    ///
+    /// - outOutputData: On output, the converted audio data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is for the special case of converting from one linear PCM format to another. This function cannot perform sample rate conversions and cannot be used for conversion to or from most compressed formats. To perform these types of conversion, use [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) instead.
+    ///
+    ///
     /// Converts data from an input buffer to an output buffer.
     ///
     ///
@@ -581,8 +799,6 @@ extern "C-unwind" {
     /// - `in_input_data` must be a valid pointer.
     /// - `io_output_data_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterconvertbuffer(_:_:_:_:_:)?language=objc)
     pub fn AudioConverterConvertBuffer(
         in_audio_converter: AudioConverterRef,
         in_input_data_size: u32,
@@ -592,6 +808,35 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Supplies input data to the [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function.
+///
+/// Parameters:
+/// - inAudioConverter: The audio converter object that invoked this callback to obtain new data to convert.
+///
+/// - ioNumberDataPackets: On input, the minimum number of packets of input audio data the converter needs for its current conversion cycle. On output, the number of packets of audio data provided for conversion, or `0` if there is no more data to convert.
+///
+/// - ioData: On output, point the fields of the `AudioBufferList` structure, passed by this parameter, to the audio data you are providing to be converted.
+///
+/// - outDataPacketDescription: If not `NULL` on input,  the audio converter expects this callback to provide an array of `AudioStreamPacketDescription` structures on output, one for each packet of audio data you are providing in the `ioData` parameter.
+///
+/// - inUserData: On input, the custom application data you provided to the [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function.
+///
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyAudioConverterComplexInputDataProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback supplies input audio data to the [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function.
+///
+/// The audio converter object requests a minimum number of packets in the `ioNumberDataPackets` parameter. Your callback may provide one or more packets. If the number you provide is less than the minimum requested, the converter will invoke your callback again in the near future.
+///
+/// You write your callback to manipulate the fields of the `AudioBufferList` structure, in the `ioData` parameter, to point to one or more buffers of audio data. You use a single buffer for interleaved PCM data, or multiple buffers for non-interleaved PCM data. Your callback is responsible for not freeing or altering the buffer(s) until invoked again.
+///
+/// If your callback returns an error, it must return zero packets of data. Upon receiving zero packets, the `AudioConverterFillComplexBuffer` function delivers any pending output, stops producing further output, and returns the error code. You can use this mechanism when an input callback has temporarily run out of data but has not yet reached the end of the input audio stream.
+///
+///
 /// Callback function for supplying input data to AudioConverterFillComplexBuffer.
 ///
 ///
@@ -648,8 +893,6 @@ extern "C-unwind" {
 /// output has already been produced to its caller, along with the error code. This
 /// mechanism can be used when an input proc has temporarily run out of data, but
 /// has not yet reached end of stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataproc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioConverterComplexInputDataProc = Option<
     unsafe extern "C-unwind" fn(
@@ -661,11 +904,17 @@ pub type AudioConverterComplexInputDataProc = Option<
     ) -> OSStatus,
 >;
 
+///
+/// ## Discussion
+///
 /// Realtime-safe variant of AudioConverterComplexInputDataProc.
 ///
 /// See the discussions of AudioConverterComplexInputDataProc and AudioConverterFillComplexBuffer.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataprocrealtimesafe?language=objc)
+///
+/// Realtime-safe variant of AudioConverterComplexInputDataProc.
+///
+/// See the discussions of AudioConverterComplexInputDataProc and AudioConverterFillComplexBuffer.
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
     unsafe extern "C-unwind" fn(
@@ -678,6 +927,33 @@ pub type AudioConverterComplexInputDataProcRealtimeSafe = Option<
 >;
 
 extern "C-unwind" {
+    /// Converts audio data supplied by a callback function, supporting non-interleaved and packetized formats.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to use for format conversion.
+    ///
+    /// - inInputDataProc: A callback function that supplies audio data to convert. This callback is invoked repeatedly as the converter is ready for new input data.
+    ///
+    /// - inInputDataProcUserData: Custom data for use by your application when receiving a callback invocation.
+    ///
+    /// - ioOutputDataPacketSize: On input, the size of the output buffer (in the `outOutputData` parameter), expressed in number packets in the audio converter’s output format. On output, the number of packets of converted data that were written to the output buffer.
+    ///
+    /// - outOutputData: On output, the converted audio data.
+    ///
+    /// - outPacketDescription: On input, must point to a block of memory capable of holding the number of packet descriptions specified in the `ioOutputDataPacketSize` parameter. (See _Audio Format Services Reference_ for functions that let you determine whether an audio format uses packet descriptions). If not `NULL` on output and if the audio converter’s output format uses packet descriptions, then this parameter contains an array of packet descriptions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function for all audio data format conversions except for the special case of converting from one linear PCM format to another with no sample rate conversion.
+    ///
+    ///
     /// Converts data supplied by an input callback function, supporting non-interleaved
     /// and packetized formats.
     ///
@@ -721,8 +997,6 @@ extern "C-unwind" {
     /// - `io_output_data_packet_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_description` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -735,6 +1009,16 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// ## Discussion
+    ///
+    /// Identical to AudioConverterFillComplexBuffer, with the addition of a realtime-safety guarantee.
+    ///
+    /// Conversions involving only PCM formats – interleaving, deinterleaving, channel count changes, sample rate conversions – are realtime-safe. Such conversions may use this API in order to obtain compiler checks involving the `CA_REALTIME_API` attributes.
+    ///
+    /// At runtime, this function returns `kAudioConverterErr_OperationNotSupported` if the conversion requires non-realtime-safe functionality.
+    ///
+    ///
     /// Identical to AudioConverterFillComplexBuffer, with the addition of a realtime-safety
     /// guarantee.
     ///
@@ -753,8 +1037,6 @@ extern "C-unwind" {
     /// - `io_output_data_packet_size` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_description` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbufferrealtimesafe(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBufferRealtimeSafe(
         in_audio_converter: AudioConverterRef,
@@ -767,6 +1049,36 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to use for format conversion.
+    ///
+    /// - inInputDataProc: A callback function that supplies audio data to convert. This callback is invoked repeatedly as the converter is ready for new input data.
+    ///
+    /// - inInputDataProcUserData: Custom data for use by your application when receiving a callback invocation.
+    ///
+    /// - ioOutputDataPacketSize: On input, the size of the output buffer (in the `outOutputData` parameter), expressed in number packets in the audio converter’s output format.  On output, the number of packets of converted data that were written to the output buffer.
+    ///
+    /// - outOutputData: The converted output data is written to this buffer. On entry, the buffers’ `mDataByteSize` fields (which must all be the same) reflect buffer capacity.  On exit, `mDataByteSize` is set to the number of bytes written.
+    ///
+    /// - outPacketDescriptions: If not `NULL`, and if the audio converter’s output format uses packet descriptions, this must point to a block of memory capable of holding the number of packet descriptions specified in the `ioOutputDataPacketSize` parameter.  (See _Audio Format Services Reference_ for functions that let you determine whether an audio format uses packet descriptions). If not `NULL` on output and if the audio converter’s output format uses packet descriptions, then this parameter contains an array of packet descriptions.
+    ///
+    /// - outPacketDependencies: Should point to a memory block capable of holding the number of packet dependency description structures specified in the `ioOutputDataPacketSize` parameter.  Must not be `NULL`.  This array will be filled out only by encoders that produce a format which has a non-zero value for `kAudioFormatProperty_FormatEmploysDependentPackets`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts audio data supplied by a callback function, supporting non-interleaved and packetized formats, and also supporting packet dependency descriptions.
+    ///
+    /// For output formats that use packet dependency descriptions, this must be used instead of AudioConverterFillComplexBuffer, which will return an error for such formats.
+    ///
+    ///
     /// Converts audio data supplied by a callback function, supporting non-interleaved and
     /// packetized formats, and also supporting packet dependency descriptions.
     ///
@@ -818,8 +1130,6 @@ extern "C-unwind" {
     /// - `out_output_data` must be a valid pointer.
     /// - `out_packet_descriptions` must be a valid pointer or null.
     /// - `out_packet_dependencies` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbufferwithpacketdependencies(_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterFillComplexBufferWithPacketDependencies(
         in_audio_converter: AudioConverterRef,
@@ -833,6 +1143,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Converts audio data from one linear PCM format to another, where both use the same sample rate.
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to use for the format conversion.
+    ///
+    /// - inNumberPCMFrames: The number of linear PCM frames to convert.
+    ///
+    /// - inInputData: The source audio buffer list.
+    ///
+    /// - outOutputData: The destination audio buffer list.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is appropriate for linear PCM-to-linear PCM audio data format conversion where there is no sample rate conversion.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function fails for conversions where there is a variation between the input and output data buffer sizes. This includes sample rate conversions and conversions involving most compressed formats. In these cases, instead use the [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Converts PCM data from an input buffer list to an output buffer list.
     ///
     ///
@@ -858,8 +1199,6 @@ extern "C-unwind" {
     /// - `in_audio_converter` must be a valid pointer.
     /// - `in_input_data` must be a valid pointer.
     /// - `out_output_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterconvertcomplexbuffer(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioConverterConvertComplexBuffer(
         in_audio_converter: AudioConverterRef,
@@ -869,11 +1208,28 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertymaximuminputbuffersize?language=objc)
+/// Deprecated. The audio converter input callback may be passed any number of packets of data. If fewer are packets are returned than required, then the input proc is called again. If more packets are passed than required, they remain in the client’s buffer and are consumed as needed.
 pub const kAudioConverterPropertyMaximumInputBufferSize: AudioConverterPropertyID = 0x78696273;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconverteralgorithm?language=objc)
+/// A value that indicates the sample rate conversion algorithm.
+///
+/// ## Discussion
+///
+/// This value is deprecated. Use [`kAudioConverterSampleRateConverterComplexity`](https://developer.apple.com/documentation/audiotoolbox/kaudioconvertersamplerateconvertercomplexity) instead.
+///
+///
 pub const kAudioConverterSampleRateConverterAlgorithm: AudioConverterPropertyID = 0x73726369;
 
+/// Deprecated. Use [`AudioConverterFillComplexBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) instead.
+///
+/// ## Discussion
+///
+/// If you named your callback function `MyAudioConverterInputDataProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This deprecated callback supplies input data to the [`AudioConverterFillBuffer`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillbuffer) function. Use [`AudioConverterComplexInputDataProc`](https://developer.apple.com/documentation/audiotoolbox/audioconvertercomplexinputdataproc) instead.
+///
+///
 /// Callback function for supplying input data to AudioConverterFillBuffer.
 ///
 ///
@@ -905,8 +1261,6 @@ pub const kAudioConverterSampleRateConverterAlgorithm: AudioConverterPropertyID 
 /// has already been produced to its caller, along with the error code. This
 /// mechanism can be used when an input proc has temporarily run out of data, but
 /// has not yet reached end of stream.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterinputdataproc?language=objc)
 pub type AudioConverterInputDataProc = Option<
     unsafe extern "C-unwind" fn(
         AudioConverterRef,
@@ -917,7 +1271,34 @@ pub type AudioConverterInputDataProc = Option<
 >;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillbuffer?language=objc)
+    ///
+    /// Parameters:
+    /// - inAudioConverter: The audio converter to use for format conversion.
+    ///
+    /// - inInputDataProc: A callback function that supplies audio data to convert. This callback is invoked repeatedly as the converter is ready for new input data.
+    ///
+    /// - inInputDataProcUserData: Custom data for use by your application when receiving a callback invocation.
+    ///
+    /// - ioOutputDataSize: On input, the size, in bytes, of the buffer available for the converted data. On output, the number of bytes written to the output buffer (pointed to by the `outOutputData` parameter).
+    ///
+    /// - outOutputData: On output, the converted audio data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A  result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Converts audio data supplied by a callback function.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is deprecated. Use the [`AudioConverterFillComplexBuffer(_:_:_:_:_:_:)`](https://developer.apple.com/documentation/audiotoolbox/audioconverterfillcomplexbuffer(_:_:_:_:_:_:)) function instead.
+    ///
+    ///
     ///
     /// # Safety
     ///

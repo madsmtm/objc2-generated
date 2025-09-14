@@ -7,43 +7,65 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct?language=objc)
+/// A type that represents an action identifier.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActionIdentifier = NSString;
 
 extern "C" {
+    /// Identifies the action that pastes the current contents of the pasteboard into your app’s interface.
     /// Default action identifiers for paste variants
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/paste?language=objc)
     pub static UIActionPaste: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandmatchstyle?language=objc)
+    /// Identifies the action that pastes the current contents of the pasteboard into your app’s interface using the text style of the target.
     pub static UIActionPasteAndMatchStyle: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandgo?language=objc)
+    /// Identifies the action that pastes the current contents of the pasteboard into your app’s interface and navigates to the entity it references.
     pub static UIActionPasteAndGo: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandsearch?language=objc)
+    /// Identifies the action that pastes the current contents of the pasteboard into your app’s interface and performs a search.
     pub static UIActionPasteAndSearch: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/newfrompasteboard?language=objc)
     pub static UIActionNewFromPasteboard: &'static UIActionIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionhandler?language=objc)
+/// A type that defines the closure for an action handler.
+///
+/// Parameters:
+/// - action: The action selected by the user.
+///
 #[cfg(all(feature = "UIMenuElement", feature = "block2"))]
 pub type UIActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIAction>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction?language=objc)
+    /// A menu element that performs its action in a closure.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIAction`](https://developer.apple.com/documentation/uikit/uiaction) object when you want a menu element that performs its action in a closure. The following example adds an action-based menu to the File menu:
+    ///
+    /// ```swift
+    /// // Create a closure-based action to use as a menu element.
+    /// let refreshAction = UIAction(title: "Refresh") { (action) in
+    ///     print("Refresh the data.")
+    /// }
+    ///
+    /// // Use the .displayInline option to avoid displaying the menu as a submenu,
+    /// // and to separate it from the other menu elements using a line separator.
+    /// let refreshMenuItem = UIMenu(title: "", options: .displayInline, children: [refreshAction])
+    ///
+    /// // Insert the menu into the File menu before the Close menu.
+    /// builder.insertSibling(refreshMenuItem, beforeMenu: .close)
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIMenuElement, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

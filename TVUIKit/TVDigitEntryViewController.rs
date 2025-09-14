@@ -9,7 +9,17 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvdigitentryviewcontroller?language=objc)
+    /// A view controller that enables the user to enter digits, like a passcode, in your app.
+    ///
+    /// ## Overview
+    ///
+    /// Use the `TVDigitEntryViewController` class to manage a digit entry view. The digit entry view is automatically presented by the view controller and consists of boxes that display digits and a digit keyboard.
+    ///
+    ///
+    /// ![A fullscreen image with five grey boxes in the middle of the screen and a row of numbers from 1 to 0 below the boxes.](https://docs-assets.developer.apple.com/published/0f7a5ceac1464ee65ff1cc5ebe7341fb/media-3016866%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVDigitEntryViewController;

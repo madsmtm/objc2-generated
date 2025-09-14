@@ -7,28 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode?language=objc)
+/// Constants that represent the status of a response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INListCarsIntentResponseCode(pub NSInteger);
 impl INListCarsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates the absence of a genuine response code.
+    ///
+    /// ## Discussion
+    ///
+    /// You shouldn’t use this response code directly, and doing so results in an error.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/ready?language=objc)
+    /// A response code that indicates you’re ready to provide a list of the user’s electric vehicles.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the confirmation phase of intent handling to affirm you’re ready and able to act on the intent. The system generates an error if you use this code during the handling phase.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/inprogress?language=objc)
+    /// A response code that indicates you’re in the process of retrieving a list of the user’s electric vehicles, but they are not yet available.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase of intent handling if the request is likely to take more than a few seconds to complete.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/success?language=objc)
+    /// A response code that indicates you’re able to provide a list of the user’s electric vehicles.
+    ///
+    /// ## Discussion
+    ///
+    /// Only use this code when you’re able to successfully provide a list of the user’s electric vehicles.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/failure?language=objc)
+    /// A response code that indicates you’re unable to retrieve a list of the user’s electric vehicles.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for transient and unrecoverable errors that prevent you from retrieving a list of the user’s electric vehicles.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the system must launch your app before you can provide a list of the user’s electric vehicles.
+    ///
+    /// ## Discussion
+    ///
+    /// The system launches the host app when you specify this code. Use this response code when there is a failure that the host app can resolve. Don’t use this code for general errors, or to force a user into the host app even when the extension can handle the intent.
+    ///
+    ///
     #[doc(alias = "INListCarsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +78,17 @@ unsafe impl RefEncode for INListCarsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistcarsintentresponse?language=objc)
+    /// Your app’s response to a request to list the user’s electric vehicles.
+    ///
+    /// ## Overview
+    ///
+    /// Use an `INListCarsIntentResponse` to specify the result of a request from Maps for a list of the user’s electric vehicles. You create instances of this class when confirming or handling a List Cars intent. Use this object to confirm the request is valid and return a list of the user’s cars, or to report any errors that occur. Each entry in the [`cars`](https://developer.apple.com/documentation/intents/inlistcarsintentresponse/cars) array provides information about one of the user’s electric vehicles, including its unique car identifier and model information, such as name and year.
+    ///
+    /// When creating a response that requires the system to launch your host app, always provide a relevant [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object. This ensures your host app has the context it needs to handle the operation.
+    ///
+    /// You create an `INListCarsIntentResponse` in the [`confirmListCars:completion:`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling/confirm(intent:completion:)) and [`handleListCars:completion:`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INListCarsIntentHandling`](https://developer.apple.com/documentation/intents/inlistcarsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

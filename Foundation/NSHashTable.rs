@@ -6,37 +6,65 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablestrongmemory?language=objc)
+/// Equal to [`NSPointerFunctionsStrongMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/strongmemory).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableStrongMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::StrongMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablezeroingweakmemory?language=objc)
+/// This option has been deprecated. Instead use the `NSHashTableWeakMemory` option. Equal to [`NSPointerFunctionsZeroingWeakMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctionsoptions/nspointerfunctionszeroingweakmemory).
+///
+/// ## Discussion
+///
+/// Note that `NSHashTableWeakMemory` is not entirely equivalent to and compatible with the previous option’s behavior: objects must be weak-reference-safe under manual and automatic reference counting; not all objects are.
+///
+///
 #[cfg(feature = "NSPointerFunctions")]
 #[deprecated = "GC no longer supported"]
 pub static NSHashTableZeroingWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ZeroingWeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecopyin?language=objc)
+/// Equal to [`NSPointerFunctionsCopyIn`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/copyin).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableCopyIn: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::CopyIn.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableobjectpointerpersonality?language=objc)
+/// Equal to [`NSPointerFunctionsObjectPointerPersonality`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/objectpointerpersonality).
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableObjectPointerPersonality: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::ObjectPointerPersonality.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableweakmemory?language=objc)
+/// Equal to [`NSPointerFunctionsWeakMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/weakmemory). Uses weak read and write barriers appropriate for ARC or GC. Using [`NSPointerFunctionsWeakMemory`](https://developer.apple.com/documentation/foundation/nspointerfunctions/options/weakmemory) object references will turn to `NULL` on last release.
 #[cfg(feature = "NSPointerFunctions")]
 pub static NSHashTableWeakMemory: NSPointerFunctionsOptions =
     NSPointerFunctionsOptions(NSPointerFunctionsOptions::WeakMemory.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtableoptions?language=objc)
+/// Components in a bit-field to specify the behavior of elements in an [`NSHashTable`](https://developer.apple.com/documentation/foundation/nshashtable) object.
 pub type NSHashTableOptions = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtable?language=objc)
+    /// A collection similar to a set, but with broader range of available memory semantics.
+    ///
+    /// ## Overview
+    ///
+    /// The hash table is modeled after [`NSSet`](https://developer.apple.com/documentation/foundation/nsset) with the following differences:
+    ///
+    /// - It can hold weak references to its members.
+    ///
+    /// - Its members may be copied on input or may use pointer identity for equality and hashing.
+    ///
+    /// - It can contain arbitrary pointers (its members are not constrained to being objects).
+    ///
+    /// You can configure an [`NSHashTable`](https://developer.apple.com/documentation/foundation/nshashtable) instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as [`addObject:`](https://developer.apple.com/documentation/foundation/nshashtable/add(_:))) will not work for non-object pointers without type-casting.
+    ///
+    /// Because of its options, `NSHashTable` is not a set because it can behave differently (for example, if pointer equality is specified two `isEqual:` strings will both be entered).
+    ///
+    /// When configuring hash tables, note that only the options listed in [`NSHashTableOptions`](https://developer.apple.com/documentation/foundation/nshashtableoptions) guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other [`NSPointerFunctions`](https://developer.apple.com/documentation/foundation/nspointerfunctions) options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// `NSHashTable` is not suitable for subclassing.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHashTable<ObjectType: ?Sized = AnyObject>;
@@ -218,9 +246,14 @@ impl<ObjectType: Message> DefaultRetained for NSHashTable<ObjectType> {
     }
 }
 
-/// **************    (void *) Hash table operations    ***************
+/// Allows successive elements of a hash table to be returned each time this structure is passed to [`NSNextHashEnumeratorItem`](https://developer.apple.com/documentation/foundation/nsnexthashenumeratoritem(_:)).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashenumerator?language=objc)
+/// ## Overview
+///
+/// The fields of `NSHashEnumerator` are private.
+///
+///
+/// **************    (void *) Hash table operations    ***************
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSHashEnumerator {
@@ -245,7 +278,13 @@ unsafe impl RefEncode for NSHashEnumerator {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfreehashtable(_:)?language=objc)
+    /// Deletes the specified hash table.
+    ///
+    /// ## Discussion
+    ///
+    /// Releases each element of the specified hash table and frees the table itself.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -254,7 +293,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsresethashtable(_:)?language=objc)
+    /// Deletes the elements of the specified hash table.
+    ///
+    /// ## Discussion
+    ///
+    /// Releases each element but doesn’t deallocate `table`. This function is useful for preserving the capacity of `table`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -262,7 +307,13 @@ extern "C-unwind" {
     pub fn NSResetHashTable(table: &NSHashTable);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparehashtables(_:_:)?language=objc)
+/// Returns a Boolean value that indicates whether the elements of two hash tables are equal.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the two hash tables are equal—that is, if each element of `table1` is in `table2` and the two tables are the same size, otherwise [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
 ///
 /// # Safety
 ///
@@ -279,7 +330,21 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
     unsafe { NSCompareHashTables(table1, table2) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscopyhashtablewithzone(_:_:)?language=objc)
+/// Performs a shallow copy of the specified hash table.
+///
+/// ## Return Value
+///
+/// A pointer to a new copy of `table`, created in `zone` and containing pointers to the data elements of `table`.
+///
+///
+///
+/// ## Discussion
+///
+/// If `zone` is `NULL`, the new table is created in the default zone.
+///
+/// The new table adopts the callback functions of `table` and calls the `hash` and `retain` callback functions as appropriate when inserting elements into the new table.
+///
+///
 ///
 /// # Safety
 ///
@@ -299,7 +364,13 @@ pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashget(_:_:)?language=objc)
+/// Returns an element of the hash table.
+///
+/// ## Return Value
+///
+/// The pointer in the table that matches `pointer` (as defined by the `isEqual` callback function). If there is no matching element, returns `NULL`.
+///
+///
 ///
 /// # Safety
 ///
@@ -318,7 +389,13 @@ pub unsafe extern "C-unwind" fn NSHashGet(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsert(_:_:)?language=objc)
+    /// Adds an element to the specified hash table.
+    ///
+    /// ## Discussion
+    ///
+    /// Inserts `pointer`, which must not be `NULL`, into `table`. If `pointer` matches an item already in the table, the previous pointer is released using the `release` callback function that was specified when the table was created.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -328,7 +405,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsertknownabsent(_:_:)?language=objc)
+    /// Adds an element to the specified hash table.
+    ///
+    /// ## Discussion
+    ///
+    /// Inserts `pointer`, which must not be `NULL`, into `table`. Unlike `NSHashInsert`, this function raises `NSInvalidArgumentException` if `table` already includes an element that matches `pointer`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -338,7 +421,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashinsertifabsent(_:_:)?language=objc)
+    /// Adds an element to the specified hash table only if the table does not already contain the element.
+    ///
+    /// ## Return Value
+    ///
+    /// If `pointer` matches an item already in `table`, returns the preexisting pointer; otherwise, `pointer` is added to the `table` and returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must not specify `NULL` for `pointer`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -348,7 +443,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashremove(_:_:)?language=objc)
+    /// Removes an element from the specified hash table.
+    ///
+    /// ## Discussion
+    ///
+    /// If `pointer` matches an item already in `table`, this function releases the preexisting item.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -358,7 +459,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumeratehashtable(_:)?language=objc)
+    /// Creates an enumerator for the specified hash table.
+    ///
+    /// ## Return Value
+    ///
+    /// An NSHashEnumerator structure that will cause successive elements of `table` to be returned each time this enumerator is passed to `NSNextHashEnumeratorItem`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -367,7 +474,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnexthashenumeratoritem(_:)?language=objc)
+    /// Returns the next hash-table element in the enumeration.
+    ///
+    /// ## Return Value
+    ///
+    /// The next element in the table that `enumerator` is associated with, or `NULL` if `enumerator` has already iterated over all the elements.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -376,7 +489,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsendhashtableenumeration(_:)?language=objc)
+    /// Used when finished with an enumerator.
+    ///
+    /// ## Discussion
+    ///
+    /// This function should be called when you have finished using the enumeration struct `enumerator`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -385,7 +504,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscounthashtable(_:)?language=objc)
+    /// Returns the number of elements in a hash table.
+    ///
+    /// ## Return Value
+    ///
+    /// The number of elements currently in `table`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -395,7 +520,19 @@ extern "C-unwind" {
 
 #[cfg(feature = "NSString")]
 impl NSString {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringfromhashtable(_:)?language=objc)
+    /// Returns a string describing the hash table’s contents.
+    ///
+    /// ## Return Value
+    ///
+    /// A string describing `table`’s contents.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function iterates over the elements of `table`, and for each one appends the string returned by the `describe` callback function. If `NULL` was specified for the callback function, the hexadecimal value of each pointer is added to the string.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -413,7 +550,19 @@ impl NSString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsallhashtableobjects(_:)?language=objc)
+/// Returns all of the elements in the specified hash table.
+///
+/// ## Return Value
+///
+/// An array object containing all the elements of `table`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function should be called only when the table elements are objects, not when they’re any other data type.
+///
+///
 ///
 /// # Safety
 ///
@@ -429,9 +578,14 @@ pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Re
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// **************    Legacy    ***************
+/// Defines a structure that contains the function pointers used to configure behavior of `NSHashTable` with respect to elements within a hash table.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshashtablecallbacks?language=objc)
+/// ## Overview
+///
+/// All functions must know the types of things in the hash table to be able to operate on them. Sets of predefined call backs are described in [`NSHashTable`](https://developer.apple.com/documentation/foundation/nshashtable).
+///
+///
+/// **************    Legacy    ***************
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -477,7 +631,19 @@ unsafe impl RefEncode for NSHashTableCallBacks {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatehashtablewithzone(_:_:_:)?language=objc)
+/// Creates a new hash table in a given zone.
+///
+/// ## Return Value
+///
+/// A pointer to a new hash table created in the specified zone. If `zone` is `NULL`, the hash table is created in the default zone.
+///
+///
+///
+/// ## Discussion
+///
+/// The table’s size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small hash table is created. The [`NSHashTableCallBacks`](https://developer.apple.com/documentation/foundation/nshashtablecallbacks) structure `callBacks` has five pointers to functions, with the following defaults: pointer hashing, if `hash` is `NULL`; pointer equality, if `isEqual` is `NULL`; no callback upon adding an element, if `retain` is `NULL`; no callback upon removing an element, if `release` is `NULL`; and a function returning a pointer’s hexadecimal value as a string, if `describe` is `NULL`. The hashing function must be defined such that if two data elements are equal, as defined by the comparison function, the values produced by hashing on these elements must also be equal. Also, data elements must remain invariant if the value of the hashing function depends on them; for example, if the hashing function operates directly on the characters of a string, that string can’t change.
+///
+///
 ///
 /// # Safety
 ///
@@ -506,7 +672,19 @@ pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscreatehashtable(_:_:)?language=objc)
+/// Creates and returns a new hash table.
+///
+/// ## Return Value
+///
+/// A pointer to an NSHashTable created in the default zone.
+///
+///
+///
+/// ## Discussion
+///
+/// The table’s size is dependent on (but generally not equal to) `capacity`. If `capacity` is 0, a small hash table is created. The [`NSHashTableCallBacks`](https://developer.apple.com/documentation/foundation/nshashtablecallbacks) structure `callBacks` has five pointers to functions, with the following defaults: pointer hashing, if `hash` is `NULL`; pointer equality, if `isEqual` is `NULL`; no callback upon adding an element, if `retain` is `NULL`; no callback upon removing an element, if `release` is `NULL`; and a function returning a pointer’s hexadecimal value as a string, if `describe` is `NULL`. The hashing function must be defined such that if two data elements are equal, as defined by the comparison function, the values produced by hashing on these elements must also be equal. Also, data elements must remain invariant if the value of the hashing function depends on them; for example, if the hashing function operates directly on the characters of a string, that string can’t change.
+///
+///
 ///
 /// # Safety
 ///
@@ -533,49 +711,49 @@ pub unsafe extern "C-unwind" fn NSCreateHashTable(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsintegerhashcallbacks?language=objc)
+    /// For sets of `NSInteger`-sized quantities or smaller (for example, `int`, `long`, or `unichar`).
     #[cfg(feature = "NSString")]
     pub static NSIntegerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonownedpointerhashcallbacks?language=objc)
+    /// For sets of pointers, hashed by address.
     #[cfg(feature = "NSString")]
     pub static NSNonOwnedPointerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnonretainedobjecthashcallbacks?language=objc)
+    /// For sets of objects, but without retaining/releasing.
     #[cfg(feature = "NSString")]
     pub static NSNonRetainedObjectHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsobjecthashcallbacks?language=objc)
+    /// For sets of objects (similar to `NSSet`).
     #[cfg(feature = "NSString")]
     pub static NSObjectHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedobjectidentityhashcallbacks?language=objc)
+    /// For sets of objects, with transfer of ownership upon insertion, using pointer equality.
     #[cfg(feature = "NSString")]
     pub static NSOwnedObjectIdentityHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsownedpointerhashcallbacks?language=objc)
+    /// For sets of pointers, with transfer of ownership upon insertion.
     #[cfg(feature = "NSString")]
     pub static NSOwnedPointerHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspointertostructhashcallbacks?language=objc)
+    /// For sets of pointers to structs, when the first field of the struct is `int`-sized.
     #[cfg(feature = "NSString")]
     pub static NSPointerToStructHashCallBacks: NSHashTableCallBacks;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinthashcallbacks?language=objc)
+    /// For sets of pointer-sized quantities or smaller (for example, `int`, `long`, or `unichar`).
     #[cfg(feature = "NSString")]
     #[deprecated = "Not supported"]
     pub static NSIntHashCallBacks: NSHashTableCallBacks;

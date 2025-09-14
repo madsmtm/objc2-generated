@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowser?language=objc)
+    /// Searches (by service type) for services offered by nearby devices using infrastructure Wi-Fi, peer-to-peer Wi-Fi, and Bluetooth (in iOS) or Ethernet (in macOS and tvOS), and provides the ability to easily invite those devices to a Multipeer Connectivity session (`MCSession`).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MCNearbyServiceBrowser;
@@ -89,7 +89,13 @@ impl MCNearbyServiceBrowser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowserdelegate?language=objc)
+    /// The `MCNearbyServiceBrowserDelegate` protocol defines methods that a `MCNearbyServiceBrowser` object’s delegate can implement to handle browser-related events.
+    ///
+    /// ## Overview
+    ///
+    /// No assumption should be made about which queue the delegate methods are called on. It is the receiver’s responsibility to ensure that any `UIKit` updates are called on the main thread.
+    ///
+    ///
     pub unsafe trait MCNearbyServiceBrowserDelegate: NSObjectProtocol {
         #[cfg(feature = "MCPeerID")]
         #[unsafe(method(browser:foundPeer:withDiscoveryInfo:))]

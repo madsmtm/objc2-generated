@@ -9,37 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextCursorAccessoryPlacement(pub NSInteger);
 impl NSTextCursorAccessoryPlacement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/unspecified?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/backward?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementBackward")]
     pub const Backward: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/forward?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementForward")]
     pub const Forward: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/invisible?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementInvisible")]
     pub const Invisible: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/center?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementCenter")]
     pub const Center: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/offscreenleft?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenLeft")]
     pub const OffscreenLeft: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/offscreentop?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenTop")]
     pub const OffscreenTop: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/offscreenright?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenRight")]
     pub const OffscreenRight: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcursoraccessoryplacement/offscreenbottom?language=objc)
     #[doc(alias = "NSTextCursorAccessoryPlacementOffscreenBottom")]
     pub const OffscreenBottom: Self = Self(8);
 }
@@ -53,7 +43,21 @@ unsafe impl RefEncode for NSTextCursorAccessoryPlacement {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputclient?language=objc)
+    /// A set of methods that text views need to implement to interact properly with the text input management system.
+    ///
+    /// ## Overview
+    ///
+    /// To create another text view class, you can either subclass [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview), or subclass [`NSView`](https://developer.apple.com/documentation/appkit/nsview) and implement the [`NSTextInputClient`](https://developer.apple.com/documentation/appkit/nstextinputclient) protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Methods specific to the [`NSTextInputClient`](https://developer.apple.com/documentation/appkit/nstextinputclient) protocol are intended for dealing with text input and generally aren’t suitable for other purposes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSTextInputClient {
         /// # Safety
         ///

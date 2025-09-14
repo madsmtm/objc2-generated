@@ -9,12 +9,21 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel that computes the minimum and maximum pixel values for a given region of an image.
+    ///
+    /// ## Overview
+    ///
+    /// The minimum and maximum values are written to the destination image at the following pixel locations:
+    ///
+    /// - Minimum value is written at pixel location `(0, 0)`
+    ///
+    /// - Maximum value is written at pixel location `(1, 0)`
+    ///
+    ///
     /// The MPSImageStatisticsMinAndMax computes the minimum and maximum pixel values for a given region of an image.
     /// The min and max values are written to the destination image at the following pixel locations:
     /// - min value is written at pixel location (0, 0)
     /// - max value is written at pixel location (1, 0)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsminandmax?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -146,12 +155,21 @@ impl MPSImageStatisticsMinAndMax {
 }
 
 extern_class!(
+    /// A kernel that computes the mean and variance for a given region of an image.
+    ///
+    /// ## Overview
+    ///
+    /// The mean and variance values are written to the destination image at the following pixel locations:
+    ///
+    /// - Mean value is written at pixel location `(0, 0)`
+    ///
+    /// - Variance value is written at pixel location `(1, 0)`
+    ///
+    ///
     /// The MPSImageStatisticsMeanAndVariance computes the mean and variance for a given region of an image.
     /// The mean and variance values are written to the destination image at the following pixel locations:
     /// - mean value is written at pixel location (0, 0)
     /// - variance value is written at pixel location (1, 0)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmeanandvariance?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -283,9 +301,8 @@ impl MPSImageStatisticsMeanAndVariance {
 }
 
 extern_class!(
+    /// A kernel that computes the mean for a given region of an image.
     /// The MPSImageStatisticsMean computes the mean for a given region of an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagestatisticsmean?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

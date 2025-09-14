@@ -6,34 +6,76 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetMessageAttributeIntentResponseCode(pub NSInteger);
 impl INSetMessageAttributeIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/unspecified?language=objc)
+    /// An unknown response code.
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/ready?language=objc)
+    /// The app is ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the confirmation phase to indicate that you have access to your message service and are able to modify the specified messages.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/inprogress?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when are able to modify the messages successfully.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failure?language=objc)
+    /// You are unable to modify the messages.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent your app from modifying the messages.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to modify the messages.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up an account with your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failuremessagenotfound?language=objc)
+    /// One or more of the specified messages were not found.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you could not find one or more of the specified messages.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureMessageNotFound")]
     pub const FailureMessageNotFound: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponsecode/failuremessageattributenotset?language=objc)
+    /// The message attributes couldn’t be modified.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you were unable to modify the attributes of one or more messages.
+    ///
+    ///
     #[doc(alias = "INSetMessageAttributeIntentResponseCodeFailureMessageAttributeNotSet")]
     pub const FailureMessageAttributeNotSet: Self = Self(7);
 }
@@ -47,7 +89,15 @@ unsafe impl RefEncode for INSetMessageAttributeIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse?language=objc)
+    /// Your app’s response to a set message attribute intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSetMessageAttributeIntentResponse`](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse) object contains the status of modifying the specified messages. You create instances of this class when confirming or handling a set message attribute intent.
+    ///
+    /// You create an [`INSetMessageAttributeIntentResponse`](https://developer.apple.com/documentation/intents/insetmessageattributeintentresponse) object in the [`confirmSetMessageAttribute:completion:`](https://developer.apple.com/documentation/intents/insetmessageattributeintenthandling/confirm(intent:completion:)) and [`handleSetMessageAttribute:completion:`](https://developer.apple.com/documentation/intents/insetmessageattributeintenthandling/handle(intent:completion:)) methods of your set message attribute handler object. For more information about implementing your handler object, see [`INSetMessageAttributeIntentHandling`](https://developer.apple.com/documentation/intents/insetmessageattributeintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

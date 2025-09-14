@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowrestoration?language=objc)
+    /// A set of methods that restoration classes must implement to handle the recreation of windows.
+    ///
+    /// ## Overview
+    ///
+    /// At launch time, the application object retrieves the restoration class and uses its [`restoreWindowWithIdentifier:state:completionHandler:`](https://developer.apple.com/documentation/appkit/nswindowrestoration/restorewindow(withidentifier:state:completionhandler:)) method to obtain a new window whose type matches the type that was preserved previously. Classes that adopt this protocol can use the provided information to create (or obtain a reference to) the window in the new application. As part of creating the window, the class should also create any related objects, such as window controllers, normally used to manage the window.
+    ///
+    ///
     pub unsafe trait NSWindowRestoration: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(
             feature = "NSResponder",
@@ -65,7 +71,15 @@ impl NSApplication {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didfinishrestoringwindowsnotification?language=objc)
+    /// Posted when the app has finished restoring windows.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification is posted on the main actor when the app is finished restoring windows, that is, when all the completion handlers from [`restoreWindowWithIdentifier:state:completionHandler:`](https://developer.apple.com/documentation/appkit/nswindowrestoration/restorewindow(withidentifier:state:completionhandler:)) have been called. This is always posted after [`NSApplicationWillFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification), but may be posted before or after [`NSApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification), depending on whether clients copy the completion handlers and invoke them later. If there were no windows to restore, then this notification is still posted at the corresponding point in app launch (between [`NSApplicationWillFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification) and [`NSApplicationDidFinishLaunchingNotification`](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification)).
+    ///
+    /// The notification object is [`sharedApplication`](https://developer.apple.com/documentation/appkit/nsapplication/shared). This notification doesn’t contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName;
 }
 

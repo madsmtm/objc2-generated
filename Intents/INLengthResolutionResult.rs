@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlengthresolutionresult?language=objc)
+    /// A resolution result for a length associated with an intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INLengthResolutionResult`](https://developer.apple.com/documentation/intents/inlengthresolutionresult) object is what you return when resolving length related parameters of an intent object. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

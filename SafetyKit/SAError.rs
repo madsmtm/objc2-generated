@@ -7,26 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerrordomain?language=objc)
+    /// The domain for error objects that SafetyKit produces.
     pub static SAErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code?language=objc)
+/// Codes for identifying errors in SafetyKit.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SAErrorCode(pub NSInteger);
 impl SAErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/notauthorized?language=objc)
+    /// The app isn’t authorized to perform the requested operation.
     #[doc(alias = "SAErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/notallowed?language=objc)
+    /// The system restricts the feature on this iPhone at the current time.
     #[doc(alias = "SAErrorNotAllowed")]
     pub const NotAllowed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/invalidargument?language=objc)
+    /// The passed argument is invalid.
     #[doc(alias = "SAErrorInvalidArgument")]
     pub const InvalidArgument: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code/operationfailed?language=objc)
+    /// The requested operation failed; retrying may succeed.
     #[doc(alias = "SAErrorOperationFailed")]
     pub const OperationFailed: Self = Self(4);
 }

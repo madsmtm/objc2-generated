@@ -7,19 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKVehicleConnectionErrorCode(pub NSInteger);
 impl PKVehicleConnectionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionerrorcode/unknown?language=objc)
     #[doc(alias = "PKVehicleConnectionErrorCodeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionerrorcode/sessionunabletostart?language=objc)
     #[doc(alias = "PKVehicleConnectionErrorCodeSessionUnableToStart")]
     pub const SessionUnableToStart: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionerrorcode/sessionnotactive?language=objc)
     #[doc(alias = "PKVehicleConnectionErrorCodeSessionNotActive")]
     pub const SessionNotActive: Self = Self(2);
 }
@@ -32,22 +28,17 @@ unsafe impl RefEncode for PKVehicleConnectionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKVehicleConnectionSessionConnectionState(pub NSInteger);
 impl PKVehicleConnectionSessionConnectionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate/disconnected?language=objc)
     #[doc(alias = "PKVehicleConnectionSessionConnectionStateDisconnected")]
     pub const Disconnected: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate/connected?language=objc)
     #[doc(alias = "PKVehicleConnectionSessionConnectionStateConnected")]
     pub const Connected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate/connecting?language=objc)
     #[doc(alias = "PKVehicleConnectionSessionConnectionStateConnecting")]
     pub const Connecting: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate/failedtoconnect?language=objc)
     #[doc(alias = "PKVehicleConnectionSessionConnectionStateFailedToConnect")]
     pub const FailedToConnect: Self = Self(3);
 }
@@ -61,7 +52,6 @@ unsafe impl RefEncode for PKVehicleConnectionSessionConnectionState {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectiondelegate?language=objc)
     pub unsafe trait PKVehicleConnectionDelegate: NSObjectProtocol {
         #[unsafe(method(sessionDidChangeConnectionState:))]
         #[unsafe(method_family = none)]
@@ -77,7 +67,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKVehicleConnectionSession;

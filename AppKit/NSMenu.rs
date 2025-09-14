@@ -9,26 +9,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Specifies the style of a menu.
 /// When set as a value on `NSMenu.presentationStyle`, determines how
 /// the given menu is presented.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuPresentationStyle(pub NSInteger);
 impl NSMenuPresentationStyle {
+    /// The default presentation style for a menu.
+    ///
+    /// ## Discussion
+    ///
+    /// When you select this style of menu the system presents the menu as either a popup or context menu based on the context.
+    ///
+    /// This is the default presentation style for a menu.
+    ///
+    ///
     /// The default presentation style. Typically means the menu will
     /// be presented as either a popup or pulldown menu, based on the
     /// context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum/regular?language=objc)
     #[doc(alias = "NSMenuPresentationStyleRegular")]
     pub const Regular: Self = Self(0);
+    /// A menu presentation style where items to display align horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// You can turn any menu into a palette menu by setting the menu’s presentation style to `.palette`. For each menu item, set its image. For template images, AppKit automatically adds the appropriate selection tint. Alternatively you can set the [`offStateImage`](https://developer.apple.com/documentation/appkit/nsmenuitem/offstateimage) and the [`onStateImage`](https://developer.apple.com/documentation/appkit/nsmenuitem/onstateimage). Use the `onStateImage` to indicate selection.
+    ///
+    /// The following example creates a presentation style menu that displays a list of sport images. When a menu item selects, the system automatically tints the image.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/21c356aaf796657a7dcbe1a9dfe26cf3/media-4304532~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8563e34565a1851e905ce287868a8bb1/media-4304532%402x.png 2x" />
+    ///     <img alt="A palette style menu that expands to the right from a selected sports menu item listing a series of sport images horizonally. The second item in the list is tinted indicating selection." src="https://docs-assets.developer.apple.com/published/8563e34565a1851e905ce287868a8bb1/media-4304532%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let parentMenu = NSMenu()", "", "// Create a menu.", "let paletteMenu = NSMenu()", "let symbols = [\"figure.barre\", \"figure.american.football\", \"figure.soccer\", \"figure.fishing\", \"figure.roll\"]", "for symbol in symbols {", "    let item = NSMenuItem(title: symbol, action: nil, keyEquivalent: \"\")", "    item.image = NSImage(systemSymbolName: symbol, accessibilityDescription: symbol)", "    paletteMenu.addItem(item)", "}", "", "// Set the presentation style of the menu to palette.", "paletteMenu.presentationStyle = .palette", "", "// Create a menu item for the palette.", "let paletteMenuItem = NSMenuItem()", "paletteMenuItem.submenu = paletteMenu", "", "// Create a menu and corresponding menu item to contain the palette menu item.", "let menu = NSMenu(title: \"Sports\")", "menu.addItem(.sectionHeader(title: \"Sports Menu\"))", "menu.addItem(paletteMenuItem)", "", "let menuItem = NSMenuItem()", "menuItem.title = \"Sports\"", "menuItem.submenu = menu", "", "// Add the menu containing the palette to the parent menu.", "parentMenu.addItem(menuItem)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSMenu *parentMenu = [[NSMenu alloc] init];", "", "// Create a menu.", "NSMenu *paletteMenu = [[NSMenu alloc] init];", "NSArray *symbols = @[@\"figure.barre\", @\"figure.american.football\", @\"figure.soccer\", @\"figure.fishing\", @\"figure.roll\"];", "int index;", "for(NSInteger index = 0; index < symbols.count; index++) {", "    NSString *symbol = symbols[index];", "    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:symbol action:nil keyEquivalent:@\"\"];", "    item.image = [NSImage imageWithSystemSymbolName:symbol accessibilityDescription:@\"\"];", "    [paletteMenu addItem:item];", "}", "", "// Set the presentation style of the menu to palette.", "paletteMenu.presentationStyle = NSMenuPresentationStylePalette;", "", "// Create a menu item for the palette.", "NSMenuItem *paletteMenuItem = [[NSMenuItem alloc] init];", "paletteMenuItem.submenu = paletteMenu;", "", "// Create a menu and corresponding menu item to contain the palette menu item.", "NSMenu *menu = [[NSMenu alloc] initWithTitle:@\"Sports\"];", "[menu addItem:[NSMenuItem sectionHeaderWithTitle:@\"Sports Menu\"]];", "[menu addItem:paletteMenuItem];", "", "NSMenuItem *menuItem = [[NSMenuItem alloc] init];", "menuItem.title = @\"Sports\";", "menuItem.submenu = menu;", "", "// Add the menu containing the palette to the parent menu.", "[parentMenu addItem:menuItem];"], metadata: None }] }] })
+    ///
     /// The menu marked as palette is to be displayed in place of the
     /// menu item presenting it, with its items aligned horizontally.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum/palette?language=objc)
     #[doc(alias = "NSMenuPresentationStylePalette")]
     pub const Palette: Self = Self(1);
 }
@@ -41,37 +63,51 @@ unsafe impl RefEncode for NSMenuPresentationStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Describes how the menu manages selection states of the menu items that belong to the same selection group.
+///
+/// ## Overview
+///
+/// This doesn’t apply to menu items that have distinct target-action values.
+///
+///
 /// When set as a value on `NSMenu.selectionMode`, determines how the
 /// menu manages selection states of the menu items that belong to
 /// the same selection group.
 ///
 /// This does not apply to menu items that have distinct
 /// target/action values.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuSelectionMode(pub NSInteger);
 impl NSMenuSelectionMode {
+    /// A selection mode where the menu determines the appropriate selection mode based on the context and its constants.
     /// The menu will determine the appropriate selection mode based
     /// on the context and its contents.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/automatic?language=objc)
     #[doc(alias = "NSMenuSelectionModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A selection mode where someone can select at most one menu item in the same selection group at the same time.
+    ///
+    /// ## Discussion
+    ///
+    /// A change in selection deselects any previously selected item.
+    ///
+    ///
     /// The user will be allowed to select at most one menu item in
     /// the same selection group at a time. A change in selection
     /// will deselect any previously selected item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/selectone?language=objc)
     #[doc(alias = "NSMenuSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(1);
+    /// A selection mode where someone can select multiple items in the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// A change in selection doesn’t automatically deselect any previously selected item in the same selection group.
+    ///
+    ///
     /// The user can select multiple items in the menu. A change in
     /// selection will not automatically deselect any previously
     /// selected item in the same selection group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum/selectany?language=objc)
     #[doc(alias = "NSMenuSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(2);
 }
@@ -85,7 +121,7 @@ unsafe impl RefEncode for NSMenuSelectionMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu?language=objc)
+    /// An object that manages an app’s menus.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -587,7 +623,6 @@ impl NSMenu {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemvalidation?language=objc)
     pub unsafe trait NSMenuItemValidation: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSMenuItem")]
         #[unsafe(method(validateMenuItem:))]
@@ -597,7 +632,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudelegate?language=objc)
+    /// The optional methods implemented by delegates of [`NSMenu`](https://developer.apple.com/documentation/appkit/nsmenu) objects to manage menu display and handle some events.
     pub unsafe trait NSMenuDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(menuNeedsUpdate:))]
@@ -649,29 +684,29 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties?language=objc)
+/// These constants are used as a bitmask for specifying a set of menu or menu item properties, and are contained by the [`propertiesToUpdate`](https://developer.apple.com/documentation/appkit/nsmenu/propertiestoupdate) property.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMenuProperties: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemtitle?language=objc)
+/// The menu item’s title.
         #[doc(alias = "NSMenuPropertyItemTitle")]
         const ItemTitle = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemattributedtitle?language=objc)
+/// The menu item’s attributed string title.
         #[doc(alias = "NSMenuPropertyItemAttributedTitle")]
         const ItemAttributedTitle = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemkeyequivalent?language=objc)
+/// The menu item’s key equivalent.
         #[doc(alias = "NSMenuPropertyItemKeyEquivalent")]
         const ItemKeyEquivalent = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemimage?language=objc)
+/// The menu image.
         #[doc(alias = "NSMenuPropertyItemImage")]
         const ItemImage = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemenabled?language=objc)
+/// Whether the menu item is enabled or disabled.
         #[doc(alias = "NSMenuPropertyItemEnabled")]
         const ItemEnabled = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties/propertyitemaccessibilitydescription?language=objc)
+/// The menu item’s accessibility description.
         #[doc(alias = "NSMenuPropertyItemAccessibilityDescription")]
         const ItemAccessibilityDescription = 1<<5;
     }
@@ -695,37 +730,96 @@ impl NSMenu {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/willsendactionnotification?language=objc)
+    /// Posted just before the application dispatches a menu item’s action method to the menu item’s target.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the instance of `NSMenu` containing the chosen menu item. The `userInfo` dictionary contains the following information.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"MenuItem\"" }] }], [Paragraph { inline_content: [Text { text: "The menu item that was chosen." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSMenuWillSendActionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didsendactionnotification?language=objc)
+    /// Posted just after the application dispatches a menu item’s action method to the menu item’s target.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the instance of `NSMenu` containing the chosen menu item. The `userInfo` dictionary contains the following information.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"MenuItem\"" }] }], [Paragraph { inline_content: [Text { text: "The menu item that was chosen." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSMenuDidSendActionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didadditemnotification?language=objc)
+    /// Posted after a menu item is added to the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the instance of `NSMenu` that just added the new menu item. The `userInfo` dictionary contains the following information.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSMenuItemIndex\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing the integer index of the menu item that was added." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSMenuDidAddItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didremoveitemnotification?language=objc)
+    /// Posted after a menu item is removed from the menu.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the instance of `NSMenu` that just removed the menu item. The `userInfo` dictionary contains the following information.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSMenuItemIndex\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing the integer index of the menu item that was removed. Note that this index may no longer be valid and in any event no longer points to the menu item that was removed." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSMenuDidRemoveItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didchangeitemnotification?language=objc)
+    /// Posted after a menu item in the menu changes appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// Changes include enabling/disabling, changes in state, and changes to title. The notification object is the instance of `NSMenu` with the menu item that changed. The `userInfo` dictionary contains the following information.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSMenuItemIndex\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing the integer index of the menu item that changed." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSMenuDidChangeItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didbegintrackingnotification?language=objc)
+    /// Posted when menu tracking begins.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the main menu bar (`[NSApp mainMenu]`) or the root menu of a popup button. This notification does not contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This notification is available in versions 10.3 and 10.4 of macOS, however it is not publicly declared so you must declare the name constant as an `extern`, for example:
+    ///
+    /// ```objc
+    /// extern NSString *NSMenuDidBeginTrackingNotification;
+    /// ```
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSMenuDidBeginTrackingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didendtrackingnotification?language=objc)
+    /// Posted when menu tracking ends, even if no action is sent.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the main menu bar (`[NSApp mainMenu]`) or the root menu of a popup button. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSMenuDidEndTrackingNotification: &'static NSNotificationName;
 }
 

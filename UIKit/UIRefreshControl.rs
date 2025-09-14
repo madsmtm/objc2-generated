@@ -13,7 +13,53 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirefreshcontrol?language=objc)
+    /// A standard control that can initiate the refreshing of a scroll view’s contents.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIRefreshControl`](https://developer.apple.com/documentation/uikit/uirefreshcontrol) object is a standard control that you attach to any [`UIScrollView`](https://developer.apple.com/documentation/uikit/uiscrollview) object, including table views and collection views. Add this control to scrollable views to give your users a standard way to refresh their contents. When the user drags the top of the scrollable content area downward, the scroll view reveals the refresh control, begins animating its progress indicator, and notifies your app. You use that notification to update your content and dismiss the refresh control.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/18f71bce6d4a3045d9086ee475cc1289/ui-refresh-control~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8396f6cce8b74af3a773153249e753e3/ui-refresh-control%402x.png 2x" />
+    ///     <img alt="Illustration showing a refresh control. The control displays an animated progress indicator at the top of a scroll view's content area." src="https://docs-assets.developer.apple.com/published/8396f6cce8b74af3a773153249e753e3/ui-refresh-control%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// The refresh control lets you know when to update your content using the target-action mechanism of [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol). Upon activation, the refresh control calls the action method you provided at configuration time. When adding your action method, configure it to listen for the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) event, as shown in the following example code. Use your action method to update your content, and call the refresh control’s [`endRefreshing`](https://developer.apple.com/documentation/uikit/uirefreshcontrol/endrefreshing()) method when you’re done.
+    ///
+    /// ```swift
+    /// func configureRefreshControl () {
+    ///    // Add the refresh control to your UIScrollView object.
+    ///    myScrollingView.refreshControl = UIRefreshControl()
+    ///    myScrollingView.refreshControl?.addTarget(self, action:
+    ///                                       #selector(handleRefreshControl),
+    ///                                       for: .valueChanged)
+    /// }
+    ///     
+    /// @objc func handleRefreshControl() {
+    ///    // Update your content…
+    ///
+    ///    // Dismiss the refresh control.
+    ///    DispatchQueue.main.async {
+    ///       self.myScrollingView.refreshControl?.endRefreshing()
+    ///    }
+    /// }
+    ///
+    /// ```
+    ///
+    /// If you’re using a [`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller), assign its [`refreshControl`](https://developer.apple.com/documentation/uikit/uitableviewcontroller/refreshcontrol) property to an instance of [`UIRefreshControl`](https://developer.apple.com/documentation/uikit/uirefreshcontrol). Then associate a target and action method for the [`UIControlEventValueChanged`](https://developer.apple.com/documentation/uikit/uicontrol/event/valuechanged) event to manage the refresh behavior of the associated table view.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`UIRefreshControl`](https://developer.apple.com/documentation/uikit/uirefreshcontrol) isn’t available when the user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac). However, you can update your app to provide similar functionality in the Mac idiom. For example, replace the control with a Refresh menu item by creating a [`UIKeyCommand`](https://developer.apple.com/documentation/uikit/uikeycommand) object with the title “Refresh” and the keyboard shortcut Command-R. Then add the command to your app’s menu system. For more information, see [Adding menus and shortcuts to the menu bar and user interface](https://developer.apple.com/documentation/uikit/adding-menus-and-shortcuts-to-the-menu-bar-and-user-interface).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

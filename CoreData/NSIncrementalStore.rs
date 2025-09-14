@@ -8,7 +8,47 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsincrementalstore?language=objc)
+    /// An abstract superclass defining the API through which Core Data communicates with a store.
+    ///
+    /// ## Overview
+    ///
+    /// You use this interface to create persistent stores that load and save data incrementally, allowing for the management of large and/or shared datasets.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// #### Methods to Override
+    ///
+    /// In a subclass of `NSIncrementalStore`, you _must_ override the following methods to provide behavior appropriate for your store:
+    ///
+    /// - [`loadMetadata:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/loadmetadata())
+    ///
+    /// - [`executeRequest:withContext:error:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/execute(_:with:))
+    ///
+    /// - [`newValuesForObjectWithID:withContext:error:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/newvaluesforobject(with:with:))
+    ///
+    /// - [`newValueForRelationship:forObjectWithID:withContext:error:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/newvalue(forrelationship:forobjectwith:with:))
+    ///
+    /// - [`obtainPermanentIDsForObjects:error:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/obtainpermanentids(for:))
+    ///
+    /// You can also optionally override the following methods:
+    ///
+    /// - [`identifierForNewStoreAtURL:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/identifierfornewstore(at:))
+    ///
+    /// - [`managedObjectContextDidRegisterObjectsWithIDs:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/managedobjectcontextdidregisterobjects(with:))
+    ///
+    /// - [`managedObjectContextDidUnregisterObjectsWithIDs:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/managedobjectcontextdidunregisterobjects(with:))
+    ///
+    /// There is no need to override the methods that you must otherwise override for a subclass of [`NSPersistentStore`](https://developer.apple.com/documentation/coredata/nspersistentstore).
+    ///
+    /// #### Methods that Should Not Be Overridden
+    ///
+    /// In a subclass of `NSIncrementalStore`, you should not override the following methods:
+    ///
+    /// - [`newObjectIDForEntity:referenceObject:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/newobjectid(for:referenceobject:))
+    ///
+    /// - [`referenceObjectForObjectID:`](https://developer.apple.com/documentation/coredata/nsincrementalstore/referenceobject(for:))
+    ///
+    ///
     #[unsafe(super(NSPersistentStore, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStore")]

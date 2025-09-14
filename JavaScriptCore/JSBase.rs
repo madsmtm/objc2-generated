@@ -21,7 +21,13 @@ unsafe impl RefEncode for OpaqueJSContextGroup {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSContextGroup", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref?language=objc)
+/// A group that associates JavaScript contexts with one another.
+///
+/// ## Discussion
+///
+/// Contexts in the same group may share and exchange JavaScript objects.
+///
+///
 pub type JSContextGroupRef = *const OpaqueJSContextGroup;
 
 #[repr(C)]
@@ -36,7 +42,13 @@ unsafe impl RefEncode for OpaqueJSContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSContext", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextref?language=objc)
+/// A JavaScript execution context.
+///
+/// ## Discussion
+///
+/// This holds the global object and other execution state.
+///
+///
 pub type JSContextRef = *const OpaqueJSContext;
 
 #[repr(C)]
@@ -51,7 +63,13 @@ unsafe impl RefEncode for OpaqueJSString {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSString", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringref?language=objc)
+/// A UTF-16 character buffer.
+///
+/// ## Discussion
+///
+/// This is the fundamental string representation in JavaScript.
+///
+///
 pub type JSStringRef = *mut OpaqueJSString;
 
 #[repr(C)]
@@ -66,7 +84,13 @@ unsafe impl RefEncode for OpaqueJSClass {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSClass", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassref?language=objc)
+/// A JavaScript class.
+///
+/// ## Discussion
+///
+/// Use this type with [`JSObjectMake`](https://developer.apple.com/documentation/javascriptcore/jsobjectmake(_:_:_:)) to construct objects with custom behavior.
+///
+///
 pub type JSClassRef = *mut OpaqueJSClass;
 
 #[repr(C)]
@@ -82,7 +106,7 @@ unsafe impl RefEncode for OpaqueJSPropertyNameArray {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSPropertyNameArray", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref?language=objc)
+/// An array of JavaScript property names.
 pub type JSPropertyNameArrayRef = *mut OpaqueJSPropertyNameArray;
 
 #[repr(C)]
@@ -98,10 +122,16 @@ unsafe impl RefEncode for OpaqueJSPropertyNameAccumulator {
         Encoding::Pointer(&Encoding::Struct("OpaqueJSPropertyNameAccumulator", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatorref?language=objc)
+/// An ordered set of the names of a JavaScript object’s properties.
 pub type JSPropertyNameAccumulatorRef = *mut OpaqueJSPropertyNameAccumulator;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraybytesdeallocator?language=objc)
+/// A function that deallocates bytes that pass to a typed array constructor.
+///
+/// Parameters:
+/// - bytes: A pointer to the bytes that originally pass to the typed array constructor.
+///
+/// - deallocatorContext  : A pointer to additional information to use when freeing the bytes.
+///
 pub type JSTypedArrayBytesDeallocator =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
@@ -117,10 +147,37 @@ unsafe impl RefEncode for OpaqueJSValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueJSValue", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueref?language=objc)
+/// A JavaScript value.
+///
+/// ## Discussion
+///
+/// This is the base type for all JavaScript values, and polymorphic functions on them.
+///
+///
 pub type JSValueRef = *const OpaqueJSValue;
 
 extern "C-unwind" {
+    /// Evaluates a string of JavaScript.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - script: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the script to evaluate.
+    ///
+    /// - thisObject: The object to use as `this` or `NULL` to use the global object as `this`.
+    ///
+    /// - sourceURL: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains a URL for the script’s source file. The system only uses this when reporting exceptions. Pass `NULL` to omit source file information in exceptions.
+    ///
+    /// - startingLineNumber: An integer value that specifies the script’s starting line number in the file at `sourceURL`. The system only uses this when reporting exceptions.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value that results from evaluating `script`, or `NULL` if the system throws an exception.
+    ///
+    ///
     /// Evaluates a string of JavaScript.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -144,8 +201,6 @@ extern "C-unwind" {
     /// - `this_object` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsevaluatescript(_:_:_:_:_:_:)?language=objc)
     pub fn JSEvaluateScript(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -157,6 +212,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Checks for syntax errors in a string of JavaScript.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - script: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the script to check for syntax errors.
+    ///
+    /// - sourceURL: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains a URL for the script’s source file. The system only uses this when reporting exceptions. Pass `NULL` to omit source file information in exceptions.
+    ///
+    /// - startingLineNumber: An integer value that specifies the script’s starting line number in the file at `sourceURL`. The system only uses this when reporting exceptions.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store a syntax error exception in, if any. Pass `NULL` to ignore any syntax error exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the script is syntactically correct; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Checks for syntax errors in a string of JavaScript.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -177,8 +251,6 @@ extern "C-unwind" {
     /// - `script` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscheckscriptsyntax(_:_:_:_:_:)?language=objc)
     pub fn JSCheckScriptSyntax(
         ctx: JSContextRef,
         script: JSStringRef,
@@ -189,6 +261,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Performs a JavaScript garbage collection.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t collect JavaScript values that are on the machine stack, are in a register, are receiving protection from [`JSValueProtect`](https://developer.apple.com/documentation/javascriptcore/jsvalueprotect(_:_:)), are the global object of an execution context, or are reachable from any such value.
+    ///
+    /// During JavaScript execution, you don’t have to call this function because the JavaScript engine collects garbage as necessary. The system automatically destroys JavaScript values within a context group when the last reference to the context group releases.
+    ///
+    ///
     /// Performs a JavaScript garbage collection.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -205,7 +290,5 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `ctx` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsgarbagecollect(_:)?language=objc)
     pub fn JSGarbageCollect(ctx: JSContextRef);
 }

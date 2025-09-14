@@ -10,13 +10,18 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An anchor for another user in multiuser augmented reality experiences.
+    ///
+    /// ## Overview
+    ///
+    /// When you set [`collaborationEnabled`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/iscollaborationenabled) to true, ARKit calls [`session:didAddAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didadd:)) with an [`ARParticipantAnchor`](https://developer.apple.com/documentation/arkit/arparticipantanchor) for every user it detects in your physical environment, providing you with their world position.
+    ///
+    ///
     /// This anchor represents the physical position and orientation of another participant in the collaborative session.
     ///
     ///
     /// The participant anchors are automatically added to the ARSession and are updated with each frame.
     /// The participant can be identified by `sessionIdentifier` property of the anchor.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arparticipantanchor?language=objc)
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

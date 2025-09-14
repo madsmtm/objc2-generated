@@ -9,12 +9,17 @@ use crate::*;
 extern_class!(
     /// Represents a registered notification.
     ///
+    /// ## Overview
+    ///
+    /// When registering for various notifications in the system, an IOBluetoothUserNotification object is returned. To unregister from the notification, call -unregister on the IOBluetoothUserNotification object. Once -unregister is called, the object will no longer be valid.
+    ///
+    ///
+    /// Represents a registered notification.
+    ///
     /// When registering for various notifications in the system, an IOBluetoothUserNotification
     /// object is returned.  To unregister from the notification, call -unregister on the
     /// IOBluetoothUserNotification object.  Once -unregister is called, the object will no
     /// longer be valid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOBluetoothUserNotification;

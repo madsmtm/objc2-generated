@@ -9,37 +9,52 @@ use crate::*;
 
 /// A value that indicates a location in a directory from which to enumerate.
 ///
-/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
+/// ## Overview
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookie?language=objc)
+/// Your implementation of [`enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/operations/enumeratedirectory(_:startingat:verifier:attributes:packer:replyhandler:)) defines the semantics of this value; it’s opaque to FSKit.
+///
+/// A value that indicates a location in a directory from which to enumerate.
+///
+/// Your implementation of [`enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/operations/enumeratedirectory(_:startingat:verifier:attributes:packer:replyhandler:)) defines the semantics of this value; it’s opaque to FSKit.
+///
+///
+/// A value that indicates a location in a directory from which to enumerate.
+///
+/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FSDirectoryCookie = u64;
 
 extern "C" {
     /// The constant initial value for the directory-enumeration cookie.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookie/initial?language=objc)
+    /// The constant initial value for the directory-enumeration cookie.
     pub static FSDirectoryCookieInitial: FSDirectoryCookie;
 }
 
 /// A tool to detect whether the directory contents changed since the last call to enumerate a directory.
 ///
-/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
+/// ## Overview
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryverifier?language=objc)
+/// Your implementation of [`enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/operations/enumeratedirectory(_:startingat:verifier:attributes:packer:replyhandler:)) defines the semantics of this value; it’s opaque to FSKit.
+///
+/// A tool to detect whether the directory contents changed since the last call to enumerate a directory.
+///
+/// Your implementation of [`enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/operations/enumeratedirectory(_:startingat:verifier:attributes:packer:replyhandler:)) defines the semantics of this value; it’s opaque to FSKit.
+///
+///
+/// A tool to detect whether the directory contents changed since the last call to enumerate a directory.
+///
+/// Your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)`` defines the semantics of this value; it's opaque to FSKit.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type FSDirectoryVerifier = u64;
 
 extern "C" {
     /// The constant initial value for the directory-enumeration verifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryverifier/initial?language=objc)
+    /// The constant initial value for the directory-enumeration verifier.
     pub static FSDirectoryVerifierInitial: FSDirectoryVerifier;
 }
 
 /// Options that affect the behavior of deactivate methods.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdeactivateoptions?language=objc)
+/// Options that affect the behavior of deactivate methods.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -47,8 +62,7 @@ pub struct FSDeactivateOptions(pub NSInteger);
 bitflags::bitflags! {
     impl FSDeactivateOptions: NSInteger {
 /// An option to force deactivation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdeactivateoptions/force?language=objc)
+/// An option to force deactivation.
         #[doc(alias = "FSDeactivateOptionsForce")]
         const Force = 1<<0;
     }
@@ -64,27 +78,29 @@ unsafe impl RefEncode for FSDeactivateOptions {
 
 /// Behavior flags for use with synchronization calls.
 ///
+/// ## Overview
+///
 /// These values are based on flags defined in `mount.h`. Since there are system-defined flags that are valid in the kernel but not in FSKit, this type defines its members as options rather than use an enumeration.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags?language=objc)
+///
+/// Behavior flags for use with synchronization calls.
+///
+/// These values are based on flags defined in `mount.h`. Since there are system-defined flags that are valid in the kernel but not in FSKit, this type defines its members as options rather than use an enumeration.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FSSyncFlags(pub NSInteger);
 impl FSSyncFlags {
     /// A flag for synchronized I/O with file-integrity completion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/wait?language=objc)
+    /// A flag for synchronized I/O with file-integrity completion.
     #[doc(alias = "FSSyncFlagsWait")]
     pub const Wait: Self = Self(1);
+    /// A flag for synchronized I/O that starts I/O but doesn’t wait for it.
     /// A flag for synchronized I/O that starts I/O but doesn't wait for it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/nowait?language=objc)
     #[doc(alias = "FSSyncFlagsNoWait")]
     pub const NoWait: Self = Self(2);
     /// A flag for synchronized I/O with data-integrity completion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssyncflags/dwait?language=objc)
+    /// A flag for synchronized I/O with data-integrity completion.
     #[doc(alias = "FSSyncFlagsDWait")]
     pub const DWait: Self = Self(4);
 }
@@ -100,14 +116,29 @@ unsafe impl RefEncode for FSSyncFlags {
 extern_class!(
     /// A type that identifies a volume.
     ///
+    /// ## Overview
+    ///
+    /// For most volumes, the volume identifier is the UUID identifying the volume.
+    ///
+    /// Network file systems may access the same underlying volume using different authentication credentials. To handle this situation, add qualifying data to identify the specific container, as discussed in the superclass, [`FSEntityIdentifier`](https://developer.apple.com/documentation/fskit/fsentityidentifier).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Don’t subclass this class.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A type that identifies a volume.
+    ///
     /// For most volumes, the volume identifier is the UUID identifying the volume.
     ///
     /// Network file systems may access the same underlying volume using different authentication credentials.
     /// To handle this situation, add qualifying data to identify the specific container, as discussed in the superclass, ``FSEntityIdentifier``.
     ///
     /// > Important: Don't subclass this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/identifier?language=objc)
     #[unsafe(super(FSEntityIdentifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FSEntityIdentifier")]
@@ -200,12 +231,19 @@ impl FSVolumeIdentifier {
 extern_class!(
     /// An object used to provide items during a directory enumeration.
     ///
+    /// ## Overview
+    ///
+    /// You use this type in your implementation of [`enumerateDirectory:startingAtCookie:verifier:providingAttributes:usingPacker:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/operations/enumeratedirectory(_:startingat:verifier:attributes:packer:replyhandler:)).
+    ///
+    /// Packing allows your implementation to provide information FSKit needs, including each item’s name, type, and identifier (such as an inode number). Some directory enumerations require other attributes, as indicated by the [`FSItemGetAttributesRequest`](https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest) sent to the enumerate method.
+    ///
+    ///
+    /// An object used to provide items during a directory enumeration.
+    ///
     /// You use this type in your implementation of ``FSVolume/Operations/enumerateDirectory(_:startingAt:verifier:attributes:packer:replyHandler:)``.
     ///
     /// Packing allows your implementation to provide information FSKit needs, including each item's name, type, and identifier (such as an inode number).
     /// Some directory enumerations require other attributes, as indicated by the ``FSItemGetAttributesRequest`` sent to the enumerate method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryentrypacker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSDirectoryEntryPacker;
@@ -257,27 +295,29 @@ impl FSDirectoryEntryPacker {
 
 /// An enumeration of case-sensitivity support types.
 ///
+/// ## Overview
+///
 /// A case-sensitive volume is a volume that treats upper and lower case characters in file and directory names as being distinct from each other. For example, `FILE.TXT` and `file.TXT` are different names in a case-sensitive volume, and the same name in a case-insensitive volume.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat?language=objc)
+///
+/// An enumeration of case-sensitivity support types.
+///
+/// A case-sensitive volume is a volume that treats upper and lower case characters in file and directory names as being distinct from each other. For example, `FILE.TXT` and `file.TXT` are different names in a case-sensitive volume, and the same name in a case-insensitive volume.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSVolumeCaseFormat(pub NSInteger);
 impl FSVolumeCaseFormat {
     /// The volume is case sensitive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/sensitive?language=objc)
+    /// The volume is case sensitive.
     #[doc(alias = "FSVolumeCaseFormatSensitive")]
     pub const Sensitive: Self = Self(0);
+    /// The volume isn’t case sensitive.
     /// The volume isn't case sensitive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/insensitive?language=objc)
     #[doc(alias = "FSVolumeCaseFormatInsensitive")]
     pub const Insensitive: Self = Self(1);
+    /// The volume isn’t case sensitive, but supports preserving the case of file and directory names.
     /// The volume isn't case sensitive, but supports preserving the case of file and directory names.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat/insensitivecasepreserving?language=objc)
     #[doc(alias = "FSVolumeCaseFormatInsensitiveCasePreserving")]
     pub const InsensitiveCasePreserving: Self = Self(2);
 }
@@ -292,8 +332,7 @@ unsafe impl RefEncode for FSVolumeCaseFormat {
 
 extern_class!(
     /// A type that represents capabillities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities?language=objc)
+    /// A type that represents capabillities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSVolumeSupportedCapabilities;
@@ -561,6 +600,17 @@ impl FSVolumeSupportedCapabilities {
 extern_class!(
     /// A directory structure for files and folders.
     ///
+    /// ## Overview
+    ///
+    /// A file system, depending on its type, provides one or more volumes to clients. The [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem) by definition provides only one volume, while an [`FSFileSystem`](https://developer.apple.com/documentation/fskit/fsfilesystem) supports multiple volumes.
+    ///
+    /// You implement a volume for your file system type by subclassing this class, and also conforming to the [`FSVolumeOperations`](https://developer.apple.com/documentation/fskit/fsvolume/operations) and [`FSVolumePathConfOperations`](https://developer.apple.com/documentation/fskit/fsvolume/pathconfoperations) protocols. This protocol defines the minimum set of operations supported by a volume, such as mounting, activating, creating and removing items, and more.
+    ///
+    /// Your volume can provide additional functionality by conforming to other volume operations protocols. These protocols add support for operations like open and close, read and write, extended attribute (Xattr) manipulation, and more.
+    ///
+    ///
+    /// A directory structure for files and folders.
+    ///
     /// A file system, depending on its type, provides one or more volumes to clients.
     /// The ``FSUnaryFileSystem`` by definition provides only one volume, while an ``FSFileSystem`` supports multiple volumes.
     ///
@@ -569,8 +619,6 @@ extern_class!(
     ///
     /// Your volume can provide additional functionality by conforming to other volume operations protocols.
     /// These protocols add support for operations like open and close, read and write, extended attribute (Xattr) manipulation, and more.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSVolume;
@@ -633,13 +681,22 @@ impl FSVolume {
 extern_protocol!(
     /// Properties implemented by volumes that support providing the values of system limits or options.
     ///
+    /// ## Overview
+    ///
     /// This protocol gathers properties related to the `pathconf` and `fpathconf` system calls.
     ///
     /// For a file, the value of a property applies to just that file; for a directory, the value applies to all items in the directory.
     ///
     /// Properties that represent limits and have a numeric type use `-1` to represent no limit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/pathconfoperations?language=objc)
+    ///
+    /// Properties implemented by volumes that support providing the values of system limits or options.
+    ///
+    /// This protocol gathers properties related to the `pathconf` and `fpathconf` system calls.
+    ///
+    /// For a file, the value of a property applies to just that file; for a directory, the value applies to all items in the directory.
+    ///
+    /// Properties that represent limits and have a numeric type use `-1` to represent no limit.
     pub unsafe trait FSVolumePathConfOperations: NSObjectProtocol {
         /// A property that represents the maximum number of hard links to the object.
         #[unsafe(method(maximumLinkCount))]
@@ -718,6 +775,23 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A type used to report a volume’s statistics.
+    ///
+    /// ## Overview
+    ///
+    /// The names of this type’s properties match those in the `statfs` structure in `statfs(2)`, which reports these values for an FSKit file system. All numeric properties default to `0`. Override these values, unless a given property has no meaningful value to provide.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// Available space, free space, total space, and used space have properties to express their values either as a number of blocks or a number of bytes. Your module may supply both of these values by setting both the relevant block or byte property. Alternatively, a module may set only one of the two properties. When you do this, FSKit calculates the matching value based on [`blockSize`](https://developer.apple.com/documentation/fskit/fsstatfsresult/blocksize).
+    ///
+    ///
+    ///
+    /// </div>
+    /// For the read-only [`fileSystemTypeName`](https://developer.apple.com/documentation/fskit/fsstatfsresult/filesystemtypename), set this value with the designated initializer.
+    ///
+    ///
     /// A type used to report a volume's statistics.
     ///
     /// The names of this type's properties match those in the `statfs` structure in `statfs(2)`, which reports these values for an FSKit file system.
@@ -730,8 +804,6 @@ extern_class!(
     /// When you do this, FSKit calculates the matching value based on ``blockSize``.
     ///
     /// For the read-only ``fileSystemTypeName``, set this value with the designated initializer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsstatfsresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSStatFSResult;
@@ -923,12 +995,25 @@ impl FSStatFSResult {
 extern_protocol!(
     /// Methods that all volumes implement to provide required capabilities.
     ///
+    /// ## Overview
+    ///
+    /// Conform to this protocol in your subclass of [`FSVolume`](https://developer.apple.com/documentation/fskit/fsvolume). To provide additional capabilities, conform to the other `FSVolume` operations protocols, like [`FSVolumeOpenCloseOperations`](https://developer.apple.com/documentation/fskit/fsvolume/opencloseoperations) and [`FSVolumeReadWriteOperations`](https://developer.apple.com/documentation/fskit/fsvolume/readwriteoperations).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// This protocol extends [`FSVolumePathConfOperations`](https://developer.apple.com/documentation/fskit/fsvolume/pathconfoperations), so your volume implementation must also conform to that protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Methods that all volumes implement to provide required capabilities.
+    ///
     /// Conform to this protocol in your subclass of ``FSVolume``.
     /// To provide additional capabilities, conform to the other `FSVolume` operations protocols, like ``FSVolumeOpenCloseOperations`` and ``FSVolumeReadWriteOperations``.
     ///
     /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/operations?language=objc)
     pub unsafe trait FSVolumeOperations:
         NSObjectProtocol + FSVolumePathConfOperations
     {
@@ -1339,31 +1424,26 @@ extern_protocol!(
 );
 
 /// Flags to specify the policy when setting extended file attributes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy?language=objc)
+/// Flags to specify the policy when setting extended file attributes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSSetXattrPolicy(pub NSUInteger);
 impl FSSetXattrPolicy {
     /// Set the value, regardless of previous state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/alwaysset?language=objc)
+    /// Set the value, regardless of previous state.
     #[doc(alias = "FSSetXattrPolicyAlwaysSet")]
     pub const AlwaysSet: Self = Self(0);
     /// Set the value, but fail if the extended attribute already exists.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/mustcreate?language=objc)
+    /// Set the value, but fail if the extended attribute already exists.
     #[doc(alias = "FSSetXattrPolicyMustCreate")]
     pub const MustCreate: Self = Self(1);
+    /// Set the value, but fail if the extended attribute doesn’t already exist.
     /// Set the value, but fail if the extended attribute doesn't already exist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/mustreplace?language=objc)
     #[doc(alias = "FSSetXattrPolicyMustReplace")]
     pub const MustReplace: Self = Self(2);
+    /// Delete the value, failing if the extended attribute doesn’t exist.
     /// Delete the value, failing if the extended attribute doesn't exist.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy/delete?language=objc)
     #[doc(alias = "FSSetXattrPolicyDelete")]
     pub const Delete: Self = Self(3);
 }
@@ -1378,8 +1458,7 @@ unsafe impl RefEncode for FSSetXattrPolicy {
 
 extern_protocol!(
     /// Methods and properties implemented by volumes that natively or partially support extended attributes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/xattroperations?language=objc)
+    /// Methods and properties implemented by volumes that natively or partially support extended attributes.
     pub unsafe trait FSVolumeXattrOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1466,8 +1545,7 @@ extern_protocol!(
 );
 
 /// Defined modes for opening a file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes?language=objc)
+/// Defined modes for opening a file.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1476,16 +1554,26 @@ bitflags::bitflags! {
     impl FSVolumeOpenModes: NSUInteger {
 /// The read mode.
 ///
+/// ## Discussion
+///
 /// This mode is equivalent to POSIX `FREAD`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes/read?language=objc)
+///
+/// The read mode.
+///
+/// This mode is equivalent to POSIX `FREAD`.
         #[doc(alias = "FSVolumeOpenModesRead")]
         const Read = 1;
 /// The write mode.
 ///
+/// ## Discussion
+///
 /// This mode is equivalent to POSIX `FRWITE`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes/write?language=objc)
+///
+/// The write mode.
+///
+/// This mode is equivalent to POSIX `FRWITE`.
         #[doc(alias = "FSVolumeOpenModesWrite")]
         const Write = 2;
     }
@@ -1502,14 +1590,21 @@ unsafe impl RefEncode for FSVolumeOpenModes {
 extern_protocol!(
     /// Methods and properties implemented by volumes that want to receive open and close calls for each item.
     ///
+    /// ## Overview
+    ///
+    /// When a file system volume conforms to this protocol, the kernel layer issues an open call to indicate desired access, and a close call to indicate what access to retain. A file is fully closed when the kernel layer issues a close call with no retained open nodes. When a file system receives the close call, it removes all access to the item. When all memory mappings to the item release, the kernel layer issues a final close.
+    ///
+    /// If a file system volume doesn’t conform to this protocol, the kernel layer can skip making such calls to the volume.
+    ///
+    ///
+    /// Methods and properties implemented by volumes that want to receive open and close calls for each item.
+    ///
     /// When a file system volume conforms to this protocol, the kernel layer issues an open call to indicate desired access, and a close call to indicate what access to retain.
     /// A file is fully closed when the kernel layer issues a close call with no retained open nodes.
     /// When a file system receives the close call, it removes all access to the item.
     /// When all memory mappings to the item release, the kernel layer issues a final close.
     ///
     /// If a file system volume doesn't conform to this protocol, the kernel layer can skip making such calls to the volume.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/opencloseoperations?language=objc)
     pub unsafe trait FSVolumeOpenCloseOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1563,12 +1658,17 @@ extern_protocol!(
 extern_protocol!(
     /// Methods implemented for read and write operations that deliver data to and from the extension.
     ///
+    /// ## Overview
+    ///
+    /// Most volumes conform to either this protocol or [`FSVolumeKernelOffloadedIOOperations`](https://developer.apple.com/documentation/fskit/fsvolumekerneloffloadediooperations). You can conform to both if you need to provide kernel-offloaded I/O only for certain files. In that case, files with the [`FSItemAttributeInhibitKernelOffloadedIO`](https://developer.apple.com/documentation/fskit/fsitem/attribute/inhibitkerneloffloadedio) attribute set use this protocol, and those without it use [`FSVolumeKernelOffloadedIOOperations`](https://developer.apple.com/documentation/fskit/fsvolumekerneloffloadediooperations). A volume that doesn’t conform to either protocol can’t support any I/O operation.
+    ///
+    ///
+    /// Methods implemented for read and write operations that deliver data to and from the extension.
+    ///
     /// Most volumes conform to either this protocol or ``FSVolumeKernelOffloadedIOOperations``.
     /// You can conform to both if you need to provide kernel-offloaded I/O only for certain files.
     /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use this protocol, and those without it use ``FSVolumeKernelOffloadedIOOperations``.
     /// A volume that doesn't conform to either protocol can't support any I/O operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/readwriteoperations?language=objc)
     pub unsafe trait FSVolumeReadWriteOperations: NSObjectProtocol {
         #[cfg(all(
             feature = "FSItem",
@@ -1625,8 +1725,7 @@ extern_protocol!(
 );
 
 /// A bitmask of access rights.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask?language=objc)
+/// A bitmask of access rights.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1634,88 +1733,71 @@ pub struct FSAccessMask(pub NSUInteger);
 bitflags::bitflags! {
     impl FSAccessMask: NSUInteger {
 /// The file system allows reading data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readdata?language=objc)
+/// The file system allows reading data.
         #[doc(alias = "FSAccessReadData")]
         const ReadData = 1<<1;
 /// The file system allows listing directory contents.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/listdirectory?language=objc)
+/// The file system allows listing directory contents.
         #[doc(alias = "FSAccessListDirectory")]
         const ListDirectory = FSAccessMask::ReadData.0;
 /// The file system allows writing data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writedata?language=objc)
+/// The file system allows writing data.
         #[doc(alias = "FSAccessWriteData")]
         const WriteData = 1<<2;
 /// The file system allows adding files.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/addfile?language=objc)
+/// The file system allows adding files.
         #[doc(alias = "FSAccessAddFile")]
         const AddFile = FSAccessMask::WriteData.0;
 /// The file system allows file executuion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/execute?language=objc)
+/// The file system allows file executuion.
         #[doc(alias = "FSAccessExecute")]
         const Execute = 1<<3;
 /// The file system allows searching files.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/search?language=objc)
+/// The file system allows searching files.
         #[doc(alias = "FSAccessSearch")]
         const Search = FSAccessMask::Execute.0;
 /// The file system allows deleting a file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/delete?language=objc)
+/// The file system allows deleting a file.
         #[doc(alias = "FSAccessDelete")]
         const Delete = 1<<4;
 /// The file system allows appending data to a file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/appenddata?language=objc)
+/// The file system allows appending data to a file.
         #[doc(alias = "FSAccessAppendData")]
         const AppendData = 1<<5;
 /// The file system allows adding subdirectories.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/addsubdirectory?language=objc)
+/// The file system allows adding subdirectories.
         #[doc(alias = "FSAccessAddSubdirectory")]
         const AddSubdirectory = FSAccessMask::AppendData.0;
 /// The file system allows deleting subdirectories.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/deletechild?language=objc)
+/// The file system allows deleting subdirectories.
         #[doc(alias = "FSAccessDeleteChild")]
         const DeleteChild = 1<<6;
 /// The file system allows reading file attributes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readattributes?language=objc)
+/// The file system allows reading file attributes.
         #[doc(alias = "FSAccessReadAttributes")]
         const ReadAttributes = 1<<7;
 /// The file system allows writing file attributes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writeattributes?language=objc)
+/// The file system allows writing file attributes.
         #[doc(alias = "FSAccessWriteAttributes")]
         const WriteAttributes = 1<<8;
 /// The file system allows reading extended file attributes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readxattr?language=objc)
+/// The file system allows reading extended file attributes.
         #[doc(alias = "FSAccessReadXattr")]
         const ReadXattr = 1<<9;
 /// The file system allows writing extended file attributes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writexattr?language=objc)
+/// The file system allows writing extended file attributes.
         #[doc(alias = "FSAccessWriteXattr")]
         const WriteXattr = 1<<10;
+/// The file system allows reading a file’s security descriptors.
 /// The file system allows reading a file's security descriptors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/readsecurity?language=objc)
         #[doc(alias = "FSAccessReadSecurity")]
         const ReadSecurity = 1<<11;
+/// The file system allows writing a file’s security descriptors.
 /// The file system allows writing a file's security descriptors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/writesecurity?language=objc)
         #[doc(alias = "FSAccessWriteSecurity")]
         const WriteSecurity = 1<<12;
 /// The file system allows taking ownership of a file.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask/takeownership?language=objc)
+/// The file system allows taking ownership of a file.
         #[doc(alias = "FSAccessTakeOwnership")]
         const TakeOwnership = 1<<13;
     }
@@ -1731,8 +1813,7 @@ unsafe impl RefEncode for FSAccessMask {
 
 extern_protocol!(
     /// Methods and properties implemented by volumes that want to enforce access check operations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accesscheckoperations?language=objc)
+    /// Methods and properties implemented by volumes that want to enforce access check operations.
     pub unsafe trait FSVolumeAccessCheckOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1769,8 +1850,7 @@ extern_protocol!(
 
 extern_protocol!(
     /// Methods and properties implemented by volumes that support renaming the volume.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/renameoperations?language=objc)
+    /// Methods and properties implemented by volumes that support renaming the volume.
     pub unsafe trait FSVolumeRenameOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1804,8 +1884,7 @@ extern_protocol!(
 );
 
 /// Behavior flags for preallocation operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags?language=objc)
+/// Behavior flags for preallocation operations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1813,28 +1892,36 @@ pub struct FSPreallocateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSPreallocateFlags: NSUInteger {
 /// Allocates contiguous space.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/contiguous?language=objc)
+/// Allocates contiguous space.
         #[doc(alias = "FSPreallocateFlagsContiguous")]
         const Contiguous = 0x00000002;
 /// Allocates all requested space or no space at all.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/all?language=objc)
+/// Allocates all requested space or no space at all.
         #[doc(alias = "FSPreallocateFlagsAll")]
         const All = 0x00000004;
-/// Allocates space that isn't freed when deleting the descriptor.
+/// Allocates space that isn’t freed when deleting the descriptor.
+///
+/// ## Discussion
 ///
 /// This space remains allocated even after calling `close(2)`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/persist?language=objc)
+///
+/// Allocates space that isn't freed when deleting the descriptor.
+///
+/// This space remains allocated even after calling `close(2)`.
         #[doc(alias = "FSPreallocateFlagsPersist")]
         const Persist = 0x00000008;
 /// Allocates space from the physical end of file.
 ///
+/// ## Discussion
+///
+/// When implementing this behavior, ignore any offset in the preallocate call. This flag is currently set for all [`preallocateSpaceForItem:atOffset:length:flags:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/preallocateoperations/preallocatespace(for:at:length:flags:replyhandler:)) calls.
+///
+///
+/// Allocates space from the physical end of file.
+///
 /// When implementing this behavior, ignore any offset in the preallocate call.
 /// This flag is currently set for all ``FSVolume/PreallocateOperations/preallocateSpace(for:at:length:flags:replyHandler:)`` calls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags/fromeof?language=objc)
         #[doc(alias = "FSPreallocateFlagsFromEOF")]
         const FromEOF = 0x00000010;
     }
@@ -1851,14 +1938,21 @@ unsafe impl RefEncode for FSPreallocateFlags {
 extern_protocol!(
     /// Methods and properties implemented by volumes that want to offer preallocation functions.
     ///
+    /// ## Overview
+    ///
+    /// A preallocation operation allocates space for a file without writing to it yet. A file system may use reallocation to avoid performing space allocation while in the midst of I/O; this strategy improves performance. Also, if the expected I/O pattern is many small writes, preallocating contiguous chunks may prevent fragmenting the file system. This process can improve performance later.
+    ///
+    /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
+    ///
+    ///
+    /// Methods and properties implemented by volumes that want to offer preallocation functions.
+    ///
     /// A preallocation operation allocates space for a file without writing to it yet.
     /// A file system may use reallocation to avoid performing space allocation while in the midst of I/O; this strategy improves performance.
     /// Also, if the expected I/O pattern is many small writes, preallocating contiguous chunks may prevent fragmenting the file system.
     /// This process can improve performance later.
     ///
     /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateoperations?language=objc)
     pub unsafe trait FSVolumePreallocateOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1899,13 +1993,26 @@ extern_protocol!(
 
 /// Options to specify the item deactivation policy.
 ///
+/// ## Overview
+///
+/// Callers may want to set a deactivation policy because [`deactivateItem:replyHandler:`](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivation/deactivateitem(_:replyhandler:)) processing blocks the kernel. Setting a deactivation policy allows the file system to take action at a definitive point in the item’s life cycle. These options allow the file system to instruct the FSKit kernel of which circumstances require the expense of a round-trip call to the module.
+///
+/// <div class="warning">
+///
+/// ### Note
+/// To avoid performing deactivation calls, Objective-C developers use the value `FSItemDeactivationNever`. In Swift, use an empty option set (`[]`).
+///
+///
+///
+/// </div>
+///
+/// Options to specify the item deactivation policy.
+///
 /// Callers may want to set a deactivation policy because ``FSVolume/ItemDeactivation/deactivateItem(_:replyHandler:)`` processing blocks the kernel.
 /// Setting a deactivation policy allows the file system to take action at a definitive point in the item's life cycle.
 /// These options allow the file system to instruct the FSKit kernel of which circumstances require the expense of a round-trip call to the module.
 ///
 /// > Note: To avoid performing deactivation calls, Objective-C developers use the value `FSItemDeactivationNever`. In Swift, use an empty option set (`[]`).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1914,29 +2021,43 @@ bitflags::bitflags! {
     impl FSItemDeactivationOptions: NSUInteger {
 /// An option to never perform deactivation.
 ///
-/// With this deactivation option, FSKit never issues `deactivateItem` calls, even though the volume conforms to ``FSVolume/ItemDeactivation``.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemdeactivationoptions/fsitemdeactivationnever?language=objc)
+/// With this deactivation option, FSKit never issues `deactivateItem` calls, even though the volume conforms to [`FSVolume.ItemDeactivation`](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivation).
+///
+///
+/// An option to never perform deactivation.
+///
+/// With this deactivation option, FSKit never issues `deactivateItem` calls, even though the volume conforms to ``FSVolume/ItemDeactivation``.
         #[doc(alias = "FSItemDeactivationNever")]
         const Never = 0;
 /// An option to always perform deactivation calls.
 ///
-/// Use this option if the file system needs `deactivateItem` calls in circumstances beyond those covered by ``forRemovedItems`` and ``forPreallocatedItems``.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/always?language=objc)
+/// Use this option if the file system needs `deactivateItem` calls in circumstances beyond those covered by [`FSItemDeactivationForRemovedItems`](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forremoveditems) and [`FSItemDeactivationForPreallocatedItems`](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forpreallocateditems).
+///
+///
+/// An option to always perform deactivation calls.
+///
+/// Use this option if the file system needs `deactivateItem` calls in circumstances beyond those covered by ``forRemovedItems`` and ``forPreallocatedItems``.
         #[doc(alias = "FSItemDeactivationAlways")]
         const Always = NSUIntegerMax as _;
 /// An option to process deactivation for open-unlinked items at the moment of last close.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forremoveditems?language=objc)
+/// An option to process deactivation for open-unlinked items at the moment of last close.
         #[doc(alias = "FSItemDeactivationForRemovedItems")]
         const ForRemovedItems = 1<<0;
 /// An option to process deactivation for for files with preallocated space.
 ///
+/// ## Discussion
+///
+/// This option facilitates a sort of trim-on-close behavior. It is only meaningful for volumes that conform to [`FSVolumePreallocateOperations`](https://developer.apple.com/documentation/fskit/fsvolume/preallocateoperations).
+///
+///
+/// An option to process deactivation for for files with preallocated space.
+///
 /// This option facilitates a sort of trim-on-close behavior.
 /// It is only meaningful for volumes that conform to ``FSVolume/PreallocateOperations``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions/forpreallocateditems?language=objc)
         #[doc(alias = "FSItemDeactivationForPreallocatedItems")]
         const ForPreallocatedItems = 1<<1;
     }
@@ -1952,8 +2073,7 @@ unsafe impl RefEncode for FSItemDeactivationOptions {
 
 extern_protocol!(
     /// Methods and properties implemented by volumes that support deactivating items.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivation?language=objc)
+    /// Methods and properties implemented by volumes that support deactivating items.
     pub unsafe trait FSVolumeItemDeactivation: NSObjectProtocol {
         /// A property that tells FSKit to which types of items the deactivation applies, if any.
         ///

@@ -6,19 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate?language=objc)
+/// The possible states of the cellular data policy.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularDataRestrictedState(pub NSUInteger);
 impl CTCellularDataRestrictedState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/restrictedstateunknown?language=objc)
+    /// A state whose access to cellular data is unknown.
     #[doc(alias = "kCTCellularDataRestrictedStateUnknown")]
     pub const RestrictedStateUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/restricted?language=objc)
+    /// A state that denies access to cellular data.
     #[doc(alias = "kCTCellularDataRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/notrestricted?language=objc)
+    /// A state that allows access to cellular data.
     #[doc(alias = "kCTCellularDataNotRestricted")]
     pub const NotRestricted: Self = Self(2);
 }
@@ -31,13 +31,19 @@ unsafe impl RefEncode for CTCellularDataRestrictedState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cellulardatarestrictiondidupdatenotifier?language=objc)
+/// A block to provide updates on the app’s cellular data restriction state.
 #[cfg(feature = "block2")]
 pub type CellularDataRestrictionDidUpdateNotifier =
     *mut block2::DynBlock<dyn Fn(CTCellularDataRestrictedState)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardata?language=objc)
+    /// An object indicating whether the app can access cellular data.
+    ///
+    /// ## Overview
+    ///
+    /// This property represents all access to cellular data. If the [`restrictedState`](https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate) is [`kCTCellularDataRestricted`](https://developer.apple.com/documentation/coretelephony/ctcellulardatarestrictedstate/restricted), the app cannot use the cellular network.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTCellularData;

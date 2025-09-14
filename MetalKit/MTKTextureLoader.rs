@@ -17,143 +17,229 @@ use objc2_model_io::*;
 
 use crate::*;
 
+/// Errors returned by the texture loader.
 /// MTKTextureLoaderErrors
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/error?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderError = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/error/domain?language=objc)
+    /// The error domain used by `MetalKit` when returning texture loading errors.
     pub static MTKTextureLoaderErrorDomain: &'static MTKTextureLoaderError;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/error/key?language=objc)
+    /// The key used to retrieve an error string from an error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
     pub static MTKTextureLoaderErrorKey: &'static MTKTextureLoaderError;
 }
 
+/// Keys and values used to specify loading options.
 /// MTKTextureLoaderOptions
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option?language=objc)
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderOption = NSString;
 
 extern "C" {
+    /// A key used to specify whether the texture loader should allocate memory for mipmaps in the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a boolean value.
+    ///
+    /// This option applies only if the texture being loaded does not contain mipmap data. When loading such a texture, if the value is [`false`](https://developer.apple.com/documentation/swift/false), only the texture is loaded and its mipmap contents are undefined. If the value is [`true`](https://developer.apple.com/documentation/swift/true), a full set of mipmap levels are allocated for the texture when the texture is loaded, and it is your responsibility to generate the mipmap contents. If this key is not specified and the image being loaded contains data for mipmaps, the mipmap memory is allocated and the image data is loaded.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This option only allocates mipmap memory for the texture. To generate the actual mipmaps for the texture, use the [`MTKTextureLoaderOptionGenerateMipmaps`](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/generatemipmaps) option and set it to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to allocate memory for mipmaps when creating the texture
     ///
     /// If the boolean value specified with this string is true, the resulting Metal texture will have been created with mipmaps whose contents are undefined. It is the responsibility of the caller to fill out the contents of the mipmap data unless MTLTextureLoaderOptionGenerateMipmaps is specified. If the file being loaded contains data for mipmaps (such as in a PVR or KTX file) this option does not need to be specified. In those cases the mipmap memory will be allocated and the image data loaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/allocatemipmaps?language=objc)
     pub static MTKTextureLoaderOptionAllocateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// A key used to specify whether the texture loader should generate mipmaps for the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a boolean value.
+    ///
+    /// If the value is [`true`](https://developer.apple.com/documentation/swift/true), the resulting texture will be created with mipmaps. If the file being loaded contains data for mipmaps (such as in a PVR or KTX file), specifying this option will overwrite the existing mipmap data in the loaded texture.
+    ///
+    /// This option can be used only if the pixel format of the texture is filterable and color-renderable; see the [Pixel Format Capabilities](https://developer.apple.com/metal/capabilities/) for more information.
+    ///
+    /// This option also implies that [`MTKTextureLoaderOptionAllocateMipmaps`](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/allocatemipmaps) is [`true`](https://developer.apple.com/documentation/swift/true). Specifying this option causes the [`MTKTextureLoader`](https://developer.apple.com/documentation/metalkit/mtktextureloader) object to submit work to the GPU on your behalf.
+    ///
+    ///
     /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to generate mipmaps when creating the texture
     ///
     /// If the boolean value specified with this string is true, the resulting Metal texture will be created with mipmaps. If the file being loaded contains data for mipmaps (such as in a PVR or KTX file), specifying this option will overwrite the existing mipmap data in the loaded texture. This option can only be used if the pixel format of the texture is color filterable and color renderable. This option implies MTKTextureLoaderOptionAllocateMipmaps. Specifying this option will cause the MTKTextureLoader to submit work to the GPU on behalf of the caller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/generatemipmaps?language=objc)
     pub static MTKTextureLoaderOptionGenerateMipmaps: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// A key used to specify whether the texture data is stored as sRGB image data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a boolean value.
+    ///
+    /// If the value is [`false`](https://developer.apple.com/documentation/swift/false), the image data is treated as linear pixel data. If the value is [`true`](https://developer.apple.com/documentation/swift/true), the image data is treated as sRGB pixel data. If this key is not specified and the image being loaded has been gamma-corrected, the image data uses the specified sRGB information.
+    ///
+    ///
     /// Identifier to be used in an options NSDictionary with a boolean NSNumber specifying whether to create the texture with an sRGB (gamma corrected) pixel format
     ///
     /// If the boolean value specified with this string is true, the texture will be created with an sRGB pixel format regardless of whether the image file specifies that the data has already been gamma corrected. Likewise, if false, the texture will be created with a non-sRGB pixel format regardless of whether the image file specifies that the data has been gamma corrected. To use the sRGB information specified in the file, do not specify this in the options dictionary.
     ///
     /// Warning: When deploying to OS's prior to macOS 10.15 / iOS 13.0, this option is ignored for loading KTX textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/srgb?language=objc)
     pub static MTKTextureLoaderOptionSRGB: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// A key used to specify the intended usage of the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage) value.
+    ///
+    /// If this key is not specified, the default value is determined by the default [`usage`](https://developer.apple.com/documentation/metal/mtltexturedescriptor/usage) value of the [`MTLTextureDescriptor`](https://developer.apple.com/documentation/metal/mtltexturedescriptor) class. When you create a texture, determine the specific ways in which it will be used, and set the texture usage to contain just those options. Do not set usage options that you don’t intend to use. Metal uses these flags to determine how the texture is allocated and configured; setting them correctly can significantly improve your app’s performance..
+    ///
+    ///
     /// Identifier to be used with an NSNumber specifying the MTLTextureUsage flags
     ///
     /// The resulting Metal texture will be created with the MTLTextureUsage flags indicated by the NSNumber associated with this string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/textureusage?language=objc)
     pub static MTKTextureLoaderOptionTextureUsage: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// A key used to specify the CPU cache mode for the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a [`MTLCPUCacheMode`](https://developer.apple.com/documentation/metal/mtlcpucachemode) value.
+    ///
+    /// If this key is not specified, the default value is the value associated with [`MTLCPUCacheModeDefaultCache`](https://developer.apple.com/documentation/metal/mtlcpucachemode/defaultcache).
+    ///
+    ///
     /// Identifier to be used with an NSNumber specifying the MTLCPUCacheMode
     ///
     /// The resulting Metal texture will be created with the MTLCPUCacheMode indicated by the NSNumber associated with this string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/texturecpucachemode?language=objc)
     pub static MTKTextureLoaderOptionTextureCPUCacheMode: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// A key used to specify the storage mode for the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a [`MTLStorageMode`](https://developer.apple.com/documentation/metal/mtlstoragemode) value.
+    ///
+    /// If this option is omitted, the texture is created with the default storage mode for Metal textures: [`MTLStorageModeShared`](https://developer.apple.com/documentation/metal/mtlstoragemode/shared) on iOS and tvOS, and [`MTLStorageModeManaged`](https://developer.apple.com/documentation/metal/mtlstoragemode/managed) in macOS. Specifying the [`MTLStorageModePrivate`](https://developer.apple.com/documentation/metal/mtlstoragemode/private) option causes the [`MTKTextureLoader`](https://developer.apple.com/documentation/metalkit/mtktextureloader) object to submit work to the GPU on your behalf.
+    ///
+    ///
     /// Identifier to be used with an NSNumber specifying the MTLStorageMode
     ///
     /// The resulting Metal texture will be created with the MTLStorageMode indicated by the NSNumber associated with this string. If this option is omitted, the texture will be created with the default storage mode for Metal textures: MTLStorageModeShared on iOS, and MTLStorageModeManaged on OS X. Specifying this option with MTLTextureStorageModePrivate cause the MTKTextureLoader to submit work to the GPU on behalf of the caller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/texturestoragemode?language=objc)
     pub static MTKTextureLoaderOptionTextureStorageMode: &'static MTKTextureLoaderOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/cubelayout?language=objc)
+/// Options for specifying how cube texture data is arranged in the source image.
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderCubeLayout = NSString;
 
 extern "C" {
+    /// A key used to specify how cube texture data is arranged in the source image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is one of the values listed for [`MTKTextureLoaderCubeLayout`](https://developer.apple.com/documentation/metalkit/mtktextureloader/cubelayout). If this option is omitted, the texture loader does not create a cube texture.
+    ///
+    /// This option cannot be used with PVR files, KTX files, or [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) objects, which support cube textures directly.
+    ///
+    ///
     /// Identifier to be used in an options NSDictionary with an MTKTextureLoaderCubeLayout NSString specifying whether to create a cubemap from a 2D image
     ///
     /// The NSString value specified with this string must be one option of MTKTextureLoaderCubeLayout. If this option is omitted, the texture loader will not create cubemaps from 2D textures. This option cannot be used with PVR files, KTX files, or MDLTextures, which support cube textures directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/cubelayout?language=objc)
     pub static MTKTextureLoaderOptionCubeLayout: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
+    /// Specifies that the source 2D image is a vertical arrangement of six cube faces.
+    ///
+    /// ## Discussion
+    ///
+    /// The texture loader creates a cube texture from six faces arranged vertically within a single 2D image. The image height must be six times the image width, with faces arranged in the following order from top to bottom: +X, -X, +Y, -Y, +Z, -Z.
+    ///
+    ///
     /// Identifier specifying that the texture loader will create a cube texture from six faces arranged vertically within a single 2D image
     ///
     /// A texture cube will be created from six faces arranged vertically within a single 2D image. The image height must be six times the image width, with faces arranged in the following order from top to bottom: +X, -X, +Y, -Y, +Z, -Z.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/cubelayout/vertical?language=objc)
     pub static MTKTextureLoaderCubeLayoutVertical: &'static MTKTextureLoaderCubeLayout;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/origin?language=objc)
+/// Options for specifying when to flip the pixel coordinates of the texture.
 // NS_TYPED_ENUM
 pub type MTKTextureLoaderOrigin = NSString;
 
 extern "C" {
+    /// A key used to specify when to flip the pixel coordinates of the texture.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is one of the values listed for [`MTKTextureLoaderOrigin`](https://developer.apple.com/documentation/metalkit/mtktextureloader/origin). If you omit this option, the texture loader doesn’t flip loaded textures.
+    ///
+    /// This option cannot be used with block-compressed texture formats, and can be used only with 2D, 2D array, and cube map textures. Each mipmap level and slice of a texture are flipped.
+    ///
+    ///
     /// Identifier to be used in an options NSDictionary with an MTKTextureLoaderOrigin NSString specifying whether to flip textures vertically
     ///
     /// The NSString value specified with this string must be one option of MTKTextureLoaderOrigin. If this option is omitted, the texture loader will not flip loaded textures. This option cannot be used with block-compressed texture formats, and can only be used with 2D, 2D array, and cube map textures. Each mipmap level and slice of a texture will be flipped.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/origin?language=objc)
     pub static MTKTextureLoaderOptionOrigin: &'static MTKTextureLoaderOption;
 }
 
 extern "C" {
-    /// Identifier specifying that the texture loader should flip textures whose origin is in the bottom-left corner
+    /// An option for specifying images that should be flipped only to put their origin in the top-left corner.
+    ///
+    /// ## Discussion
     ///
     /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the bottom-left corner of the texture.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/origin/topleft?language=objc)
+    ///
+    /// Identifier specifying that the texture loader should flip textures whose origin is in the bottom-left corner
+    ///
+    /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the bottom-left corner of the texture.
     pub static MTKTextureLoaderOriginTopLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
-    /// Identifier specifying that the texture loader should flip textures whose origin is in the top-left corner
+    /// An option for specifying images that should be flipped only to put their origin in the bottom-left corner.
+    ///
+    /// ## Discussion
     ///
     /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the top-left corner of the texture.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/origin/bottomleft?language=objc)
+    ///
+    /// Identifier specifying that the texture loader should flip textures whose origin is in the top-left corner
+    ///
+    /// The texture will be flipped vertically if metadata in the file being loaded indicates that the source data starts with the top-left corner of the texture.
     pub static MTKTextureLoaderOriginBottomLeft: &'static MTKTextureLoaderOrigin;
 }
 
 extern "C" {
+    /// An option that specifies that images should always be flipped.
+    ///
+    /// ## Discussion
+    ///
+    /// The texture will be flipped vertically regardless of any metadata in the file indicating the placement of the origin in the source data.
+    ///
+    ///
     /// Identifier specifying that the texture loader should always flip textures
     ///
     /// The texture will be flipped vertically regardless of any metadata in the file indicating the placement of the origin in the source data
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/origin/flippedvertically?language=objc)
     pub static MTKTextureLoaderOriginFlippedVertically: &'static MTKTextureLoaderOrigin;
 }
 
@@ -161,25 +247,57 @@ extern "C" {
     /// Identifier specifying that the texture should be loaded as an array texture when possible.
     ///
     /// Type is an NSNumber with a boolean value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/option/loadasarray?language=objc)
     pub static MTKTextureLoaderOptionLoadAsArray: &'static MTKTextureLoaderOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/callback?language=objc)
+/// The signature for the block executed after an asynchronous loading operation for a single texture has completed.
+///
+/// ## Discussion
+///
+/// The block parameters are defined as follows:
+///
+/// - texture: A [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object, or `nil` if an error occurred.
+///
+/// - error: If the operation was successful, this value is `nil`; otherwise, this parameter holds an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object that describes the problem that occurred.
+///
+///
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderCallback =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader/arraycallback?language=objc)
+/// The signature for the block executed after an asynchronous loading operation for multiple textures has completed.
+///
+/// ## Discussion
+///
+/// The block parameters are defined as follows:
+///
+/// - textures: An array of [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects whose order corresponds to the requested textures. If an error occurs when loading a texture, an [`NSNull`](https://developer.apple.com/documentation/foundation/nsnull) object occupies its place in the array.
+///
+/// - error: If all texture loading operations were successful, this value is `nil`; otherwise, this parameter holds an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object that describes the first problem that occurred. (Which element in the input array the error corresponds to is undefined.)
+///
+///
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderArrayCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
-    /// Load Metal textures from files with the device specified at initialization
+    /// An object that creates textures from existing data in common image formats.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloader?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`MTKTextureLoader`](https://developer.apple.com/documentation/metalkit/mtktextureloader) class to create a Metal texture from existing image data.
+    ///
+    /// This class supports common file formats, like PNG, JPEG, and TIFF. It also loads image data from KTX and PVR files, asset catalogs, Core Graphics images, and other sources. It infers the output texture format and pixel format from the image data.
+    ///
+    /// You create textures synchronously or asynchronously using [`MTKTextureLoader`](https://developer.apple.com/documentation/metalkit/mtktextureloader) methods that return [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances. Pass options to these methods that customize the image-loading and texture-creation process.
+    ///
+    /// First create an [`MTKTextureLoader`](https://developer.apple.com/documentation/metalkit/mtktextureloader) instance, passing the device that it uses to create textures. Then use one of the texture loader’s methods to create a texture. The code example below synchronously creates a texture from data at a URL, using the default options:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func loadTextureUsingMetalKit(url: URL, device: MTLDevice) throws -> MTLTexture {", "    let loader = MTKTextureLoader(device: device)", "    ", "    return try loader.newTexture(URL: url, options: nil)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (id<MTLTexture>)loadTextureUsingMetalKit: (NSURL *) url device: (id<MTLDevice>) device {", "    NSError *error;", "    MTKTextureLoader *loader = [[MTKTextureLoader alloc] initWithDevice: device];", "    ", "    id<MTLTexture> texture = [loader newTextureWithContentsOfURL:url options:nil error:&error];", "    ", "    if(!texture)", "    {", "        NSLog(@\"Error creating the texture from %@: %@\", url.absoluteString, error.localizedDescription);", "        return nil;", "    }", "    return texture;", "}"], metadata: None }] }] })
+    /// If you use custom data formats, or change the image data at runtime, use [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) methods instead. For more information, see [Creating and sampling textures](https://developer.apple.com/documentation/metal/creating-and-sampling-textures).
+    ///
+    ///
+    /// Load Metal textures from files with the device specified at initialization
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTKTextureLoader;

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrestaurantguestdisplaypreferences?language=objc)
+    /// Options about how to display guest information from system interfaces.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRestaurantGuestDisplayPreferences`](https://developer.apple.com/documentation/intents/inrestaurantguestdisplaypreferences) object contains configuration options used by any reservation-related interfaces that present guest information. Create an instance of this class and assign it to the [`guestDisplayPreferences`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse/guestdisplaypreferences) property of your [`INGetRestaurantGuestIntentResponse`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse) object when handling a request for information about the person making a reservation. Use the properties of this class to specify what information you want displayed for a user and whether you can change that information prior to completing a reservation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INRestaurantGuestDisplayPreferences;

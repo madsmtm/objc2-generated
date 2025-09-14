@@ -8,11 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface you use to provide a custom highlight UI behind the selected text.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`UITextSelectionHighlightView`](https://developer.apple.com/documentation/uikit/uitextselectionhighlightview) protocol in a custom view you use to draw the highlight behind text in one of your text views. Use your custom view in conjunction with a [`UITextSelectionDisplayInteraction`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction) object to apply your custom selection UI to one of your text views. This protocol provides the rectangles for your view to fill with the highlight color and appearance. Use [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) objects or your view’s [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method to draw these rectangles.
+    ///
+    /// After adopting this protocol in your custom view, assign your view to the [`highlightView`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction/highlightview) property of the interaction object you attached to your text view.
+    ///
+    ///
     /// A view that displays a tinted highlight behind rendered text to indicate selection.
     ///
     /// When a selection is ranged (i.e., length is > 0), a highlight view is shown to indicate the selected text range.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhighlightview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHighlightView:
         UICoordinateSpace + MainThreadOnly

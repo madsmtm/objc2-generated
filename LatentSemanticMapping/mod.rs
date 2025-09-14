@@ -30,22 +30,27 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoutofstate?language=objc)
+/// An error code that indicates you can’t issue the call in the current map state.
 pub const kLSMMapOutOfState: c_int = -6640;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapnosuchcategory?language=objc)
+/// An error code that indicates an invalid category.
 pub const kLSMMapNoSuchCategory: c_int = -6641;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapwriteerror?language=objc)
+/// An error code that indicates a map writing error.
 pub const kLSMMapWriteError: c_int = -6642;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadpath?language=objc)
+/// An error code that indicates the specified URL doesn’t exist.
 pub const kLSMMapBadPath: c_int = -6643;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapbadcluster?language=objc)
+/// An error code that indicates the specified clusters are invalid.
 pub const kLSMMapBadCluster: c_int = -6644;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapoverflow?language=objc)
+/// An error code that indicates you can’t add more data to the map.
 pub const kLSMMapOverflow: c_int = -6645;
 
-/// An opaque Core Foundation type representing an LSM map (mutable).
+/// A map between a set of categories and related text.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmap?language=objc)
+/// ## Overview
+///
+/// An [`LSMMapRef`](https://developer.apple.com/documentation/latentsemanticmapping/lsmmap) is a mutable, opaque Core Foundation type that represents a map.
+///
+///
+/// An opaque Core Foundation type representing an LSM map (mutable).
 #[doc(alias = "LSMMapRef")]
 #[repr(C)]
 pub struct LSMMap {
@@ -62,9 +67,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for LSMMap {
+    /// Returns the Core Foundation type identifier for Latent Semantic Mapping maps.
     /// Returns the Core Foundation type identifier for LSM maps.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapgettypeid()?language=objc)
     #[doc(alias = "LSMMapGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -75,9 +79,14 @@ unsafe impl ConcreteType for LSMMap {
     }
 }
 
-/// An opaque Core Foundation type representing an input text (mutable).
+/// An input text.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtext?language=objc)
+/// ## Overview
+///
+/// An [`LSMTextRef`](https://developer.apple.com/documentation/latentsemanticmapping/lsmtext) is a mutable, opaque Core Foundation type that represents an input text.
+///
+///
+/// An opaque Core Foundation type representing an input text (mutable).
 #[doc(alias = "LSMTextRef")]
 #[repr(C)]
 pub struct LSMText {
@@ -94,9 +103,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for LSMText {
+    /// Returns the Core Foundation type identifier for Latent Semantic Mapping texts.
     /// Returns the Core Foundation type identifier for LSM texts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtextgettypeid()?language=objc)
     #[doc(alias = "LSMTextGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -107,9 +115,14 @@ unsafe impl ConcreteType for LSMText {
     }
 }
 
-/// An opaque Core Foundation type representing the result of a lookup (immutable).
+/// A result of a lookup in a map.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresult?language=objc)
+/// ## Overview
+///
+/// An [`LSMResultRef`](https://developer.apple.com/documentation/latentsemanticmapping/lsmresult) is an immutable, opaque Core Foundation type that represents the result of a lookup.
+///
+///
+/// An opaque Core Foundation type representing the result of a lookup (immutable).
 #[doc(alias = "LSMResultRef")]
 #[repr(C)]
 pub struct LSMResult {
@@ -126,9 +139,8 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for LSMResult {
+    /// Returns the Core Foundation type identifier for Latent Semantic Mapping results.
     /// Returns the Core Foundation type identifier for LSM results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultgettypeid()?language=objc)
     #[doc(alias = "LSMResultGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -139,15 +151,19 @@ unsafe impl ConcreteType for LSMResult {
     }
 }
 
+/// An integral type that represents a category.
 /// An integral type representing a category.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmcategory?language=objc)
 pub type LSMCategory = u32;
 
 impl LSMMap {
-    /// Creates a new LSM map. Call CFRelease to dispose.
+    /// Creates a new Latent Semantic Mapping map.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapcreate(_:_:)?language=objc)
+    /// ## Discussion
+    ///
+    /// Call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to dispose of the map.
+    ///
+    ///
+    /// Creates a new LSM map. Call CFRelease to dispose.
     #[doc(alias = "LSMMapCreate")]
     #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>, flags: CFOptionFlags) -> CFRetained<LSMMap> {
@@ -164,14 +180,27 @@ impl LSMMap {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmappairs?language=objc)
+/// An option that specifies to use pairs in addition to single words.
 pub const kLSMMapPairs: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaptriplets?language=objc)
+/// An option that specifies to use triplets and pairs in addition to single words.
 pub const kLSMMapTriplets: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaphashtext?language=objc)
+/// An option that specifies to transform the text so it’s not human-readable.
+///
+/// ## Discussion
+///
+/// If you specify this option when storing the map, this option hashes the map if it hasn’t been hashed yet.
+///
+///
 pub const kLSMMapHashText: c_uint = 256;
 
 impl LSMMap {
+    /// Sets a dictionary of properties for the map.
+    ///
+    /// ## Discussion
+    ///
+    /// Latent Semantic Mapping makes its own copy of the properties, so you don’t need to retain them past this call.
+    ///
+    ///
     /// Set a dictionary of properties for the map. LSM makes its own copy
     /// of the properties, there's no need to retain them past this call.
     ///
@@ -179,8 +208,6 @@ impl LSMMap {
     ///
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapsetproperties(_:_:)?language=objc)
     #[doc(alias = "LSMMapSetProperties")]
     #[inline]
     pub unsafe fn set_properties(&self, properties: &CFDictionary) {
@@ -190,10 +217,15 @@ impl LSMMap {
         unsafe { LSMMapSetProperties(self, properties) }
     }
 
+    /// Gets a dictionary of properties for the map.
+    ///
+    /// ## Discussion
+    ///
+    /// Latent Semantic Mapping retains ownership of this dictionary; don’t release it.
+    ///
+    ///
     /// Get a dictionary of properties for the map. LSM retains ownership of
     /// this dictionary, do not release it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapgetproperties(_:)?language=objc)
     #[doc(alias = "LSMMapGetProperties")]
     #[inline]
     pub unsafe fn properties(&self) -> CFRetained<CFDictionary> {
@@ -206,11 +238,16 @@ impl LSMMap {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Puts the map into training mode, preparing it for the addition of more categories or texts.
+    ///
+    /// ## Discussion
+    ///
+    /// This function is somewhat computationally expensive, as it requires substantial data structure reorganization.
+    ///
+    ///
     /// Puts the map into training mode, preparing it for the addition of more
     /// categories and/or texts. This function will be somewhat expensive, as it
     /// requires substantial data structure reorganization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapstarttraining(_:)?language=objc)
     #[doc(alias = "LSMMapStartTraining")]
     #[inline]
     pub unsafe fn start_training(&self) -> OSStatus {
@@ -221,8 +258,7 @@ impl LSMMap {
     }
 
     /// Adds another category and returns its category identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapaddcategory(_:)?language=objc)
+    /// Adds another category and returns its category identifier.
     #[doc(alias = "LSMMapAddCategory")]
     #[inline]
     pub unsafe fn add_category(&self) -> LSMCategory {
@@ -233,8 +269,7 @@ impl LSMMap {
     }
 
     /// Returns the number of categories in the map.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapgetcategorycount(_:)?language=objc)
+    /// Returns the number of categories in the map.
     #[doc(alias = "LSMMapGetCategoryCount")]
     #[inline]
     pub unsafe fn category_count(&self) -> CFIndex {
@@ -244,11 +279,16 @@ impl LSMMap {
         unsafe { LSMMapGetCategoryCount(self) }
     }
 
+    /// Specifies which words to omit from all classification efforts.
+    ///
+    /// ## Discussion
+    ///
+    /// You must call this function before creating any other texts. The `textref` is no longer needed after this call.
+    ///
+    ///
     /// The specified words will be omitted from all classification efforts.
     /// Needs to be called before any other texts are created.
     /// The textref is no longer needed after this call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapsetstopwords(_:_:)?language=objc)
     #[doc(alias = "LSMMapSetStopWords")]
     #[inline]
     pub unsafe fn set_stop_words(&self, textref: &LSMText) -> OSStatus {
@@ -258,10 +298,15 @@ impl LSMMap {
         unsafe { LSMMapSetStopWords(self, textref) }
     }
 
+    /// Adds a training text to the specified category.
+    ///
+    /// ## Discussion
+    ///
+    /// The `textref` is no longer needed after this call.
+    ///
+    ///
     /// Adds a training text to the given category.
     /// The textref is no longer needed after this call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapaddtext(_:_:_:)?language=objc)
     #[doc(alias = "LSMMapAddText")]
     #[inline]
     pub unsafe fn add_text(&self, textref: &LSMText, category: LSMCategory) -> OSStatus {
@@ -272,11 +317,16 @@ impl LSMMap {
         unsafe { LSMMapAddText(self, textref, category) }
     }
 
+    /// Adds a training text to the specified category with a weight other than 1.
+    ///
+    /// ## Discussion
+    ///
+    /// The weight may be negative, but global counts are pinned to `0`. The `textref` is no longer needed after this call.
+    ///
+    ///
     /// Adds a training text to the given category with a weight different from 1.
     /// The weight may be negative, but global counts will be pinned to 0.
     /// The textref is no longer needed after this call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapaddtextwithweight(_:_:_:_:)?language=objc)
     #[doc(alias = "LSMMapAddTextWithWeight")]
     #[inline]
     pub unsafe fn add_text_with_weight(
@@ -296,11 +346,16 @@ impl LSMMap {
         unsafe { LSMMapAddTextWithWeight(self, textref, category, weight) }
     }
 
+    /// Compiles the map into executable form and puts it into mapping mode, preparing it for the classification of texts.
+    ///
+    /// ## Discussion
+    ///
+    /// This function is computationally expensive.
+    ///
+    ///
     /// Compiles the map into executable form and puts it into mapping mode,
     /// preparing it for the classification of texts. This function is
     /// computationally expensive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapcompile(_:)?language=objc)
     #[doc(alias = "LSMMapCompile")]
     #[inline]
     pub unsafe fn compile(&self) -> OSStatus {
@@ -310,6 +365,13 @@ impl LSMMap {
         unsafe { LSMMapCompile(self) }
     }
 
+    /// Computes a set of clusters that group similar categories or words.
+    ///
+    /// ## Discussion
+    ///
+    /// If `subset` is non-`NULL`, this function only performs clustering on the categories or words in `subset`.
+    ///
+    ///
     /// Compute a set of clusters grouping similar categories or words.
     /// If subset is non-NULL, only perform clustering on the categories
     /// or words listed.
@@ -317,8 +379,6 @@ impl LSMMap {
     /// # Safety
     ///
     /// `subset` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapcreateclusters(_:_:_:_:_:)?language=objc)
     #[doc(alias = "LSMMapCreateClusters")]
     #[inline]
     pub unsafe fn new_clusters(
@@ -342,25 +402,24 @@ impl LSMMap {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustercategories?language=objc)
+/// An option that specifies to cluster categories.
 pub const kLSMClusterCategories: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterwords?language=objc)
+/// An option that specifies to cluster words.
 pub const kLSMClusterWords: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclustertokens?language=objc)
+/// An option that specifies to cluster binary tokens.
 pub const kLSMClusterTokens: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusterkmeans?language=objc)
+/// An option that specifies to cluster using a k-means algorithm.
 pub const kLSMClusterKMeans: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmclusteragglomerative?language=objc)
+/// An option that specifies to cluster using an agglomerative algorithm.
 pub const kLSMClusterAgglomerative: c_uint = 4;
 
 impl LSMMap {
+    /// Groups categories or words (tokens) into the specified sets of clusters.
     /// Group categories or words (tokens) into the specified sets of clusters.
     ///
     /// # Safety
     ///
     /// `clusters` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapapplyclusters(_:_:)?language=objc)
     #[doc(alias = "LSMMapApplyClusters")]
     #[inline]
     pub unsafe fn apply_clusters(&self, clusters: &CFArray) -> OSStatus {
@@ -372,10 +431,9 @@ impl LSMMap {
 }
 
 impl LSMResult {
+    /// Returns the categories or words that best match when a text is mapped into a map, in decreasing order of likelihood.
     /// Returns, in decreasing order of likelihood, the categories or words
     /// that best match when a text is mapped into a map.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultcreate(_:_:_:_:_:)?language=objc)
     #[doc(alias = "LSMResultCreate")]
     #[inline]
     pub unsafe fn new(
@@ -401,13 +459,12 @@ impl LSMResult {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmresultbestwords?language=objc)
+/// Finds the words, rather than categories, that best match.
 pub const kLSMResultBestWords: c_uint = 1;
 
 impl LSMResult {
     /// Returns the number of results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultgetcount(_:)?language=objc)
+    /// Returns the number of results.
     #[doc(alias = "LSMResultGetCount")]
     #[inline]
     pub unsafe fn count(&self) -> CFIndex {
@@ -417,9 +474,8 @@ impl LSMResult {
         unsafe { LSMResultGetCount(self) }
     }
 
+    /// Returns the category of the specified result.
     /// Returns the category of the n-th best (zero based) result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultgetcategory(_:_:)?language=objc)
     #[doc(alias = "LSMResultGetCategory")]
     #[inline]
     pub unsafe fn category(&self, n: CFIndex) -> LSMCategory {
@@ -429,11 +485,16 @@ impl LSMResult {
         unsafe { LSMResultGetCategory(self, n) }
     }
 
+    /// Returns the likelihood of the specified result.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`nan`](https://developer.apple.com/documentation/kernel/1557310-nan) score typically indicates that the category doesn’t contain any token.
+    ///
+    ///
     /// Returns the likelihood of the n-th best (zero based) result.
     /// A nan score often indicates that the category does not contain
     /// any token.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultgetscore(_:_:)?language=objc)
     #[doc(alias = "LSMResultGetScore")]
     #[inline]
     pub unsafe fn score(&self, n: CFIndex) -> c_float {
@@ -443,9 +504,8 @@ impl LSMResult {
         unsafe { LSMResultGetScore(self, n) }
     }
 
+    /// Returns the word for the n-th best (zero-based) result.
     /// Returns the word for the n-th best (zero based) result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultcopyword(_:_:)?language=objc)
     #[doc(alias = "LSMResultCopyWord")]
     #[inline]
     pub unsafe fn word(&self, n: CFIndex) -> Option<CFRetained<CFString>> {
@@ -456,9 +516,8 @@ impl LSMResult {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the token for the n-th best (zero-based) result.
     /// Returns the token for the n-th best (zero based) result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultcopytoken(_:_:)?language=objc)
     #[doc(alias = "LSMResultCopyToken")]
     #[inline]
     pub unsafe fn token(&self, n: CFIndex) -> Option<CFRetained<CFData>> {
@@ -469,9 +528,8 @@ impl LSMResult {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the cluster of words for the n-th best (zero-based) result.
     /// Returns the cluster of words for the n-th best (zero based) result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultcopywordcluster(_:_:)?language=objc)
     #[doc(alias = "LSMResultCopyWordCluster")]
     #[inline]
     pub unsafe fn word_cluster(&self, n: CFIndex) -> Option<CFRetained<CFArray>> {
@@ -483,9 +541,8 @@ impl LSMResult {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the cluster of tokens for the n-th best (zero-based) result.
     /// Returns the cluster of tokens for the n-th best (zero based) result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmresultcopytokencluster(_:_:)?language=objc)
     #[doc(alias = "LSMResultCopyTokenCluster")]
     #[inline]
     pub unsafe fn token_cluster(&self, n: CFIndex) -> Option<CFRetained<CFArray>> {
@@ -501,9 +558,8 @@ impl LSMResult {
 }
 
 impl LSMMap {
+    /// Compiles the map, if necessary, and stores it into the specified file.
     /// Compiles the map if necessary and then stores it into the given file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapwritetourl(_:_:_:)?language=objc)
     #[doc(alias = "LSMMapWriteToURL")]
     #[inline]
     pub unsafe fn write_to_url(&self, file: &CFURL, flags: CFOptionFlags) -> OSStatus {
@@ -513,9 +569,8 @@ impl LSMMap {
         unsafe { LSMMapWriteToURL(self, file, flags) }
     }
 
+    /// Loads a map from the specified file.
     /// Loads a map from a given file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapcreatefromurl(_:_:_:)?language=objc)
     #[doc(alias = "LSMMapCreateFromURL")]
     #[inline]
     pub unsafe fn from_url(
@@ -535,15 +590,22 @@ impl LSMMap {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmapdiscardcounts?language=objc)
+/// An option that specifies not to keep counts.
+///
+/// ## Discussion
+///
+/// If you specify this option when loading the map, you must reload the map without this option before calling [`LSMMapStartTraining`](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapstarttraining(_:)).
+///
+/// If you specify this option when storing the map, the stored map can’t be retrained at all. This option can save a lot of memory or disk space.
+///
+///
 pub const kLSMMapDiscardCounts: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmmaploadmutable?language=objc)
+/// An option that specifies to load the map as mutable in training state.
 pub const kLSMMapLoadMutable: c_uint = 2;
 
 impl LSMMap {
+    /// Writes information about a map or text to a stream in text form.
     /// Writes information about a map and/or text to a stream in text form
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmmapwritetostream(_:_:_:_:)?language=objc)
     #[doc(alias = "LSMMapWriteToStream")]
     #[inline]
     pub unsafe fn write_to_stream(
@@ -566,8 +628,7 @@ impl LSMMap {
 
 impl LSMText {
     /// Creates a new text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtextcreate(_:_:)?language=objc)
+    /// Creates a new text.
     #[doc(alias = "LSMTextCreate")]
     #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>, mapref: &LSMMap) -> CFRetained<LSMText> {
@@ -583,10 +644,15 @@ impl LSMText {
         unsafe { CFRetained::from_raw(ret) }
     }
 
+    /// Adds a word to the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The order of words is significant if the map uses pairs or triplets, and the count of words is always significant.
+    ///
+    ///
     /// Adds a word to the text. The order of words is significant if the map
     /// uses pairs or triplets, and the count of words is always significant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtextaddword(_:_:)?language=objc)
     #[doc(alias = "LSMTextAddWord")]
     #[inline]
     pub unsafe fn add_word(&self, word: &CFString) -> OSStatus {
@@ -596,10 +662,9 @@ impl LSMText {
         unsafe { LSMTextAddWord(self, word) }
     }
 
+    /// Breaks a string into words using the specified locale, and adds the words to the text.
     /// Breaks a string into words using the locale provided and adds the words
     /// to the text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtextaddwords(_:_:_:_:)?language=objc)
     #[doc(alias = "LSMTextAddWords")]
     #[inline]
     pub unsafe fn add_words(
@@ -620,19 +685,24 @@ impl LSMText {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreservecase?language=objc)
+/// An option that specifies the parser shouldn’t change any words to lowercase.
 pub const kLSMTextPreserveCase: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextpreserveacronyms?language=objc)
+/// An option that specifies the parser shouldn’t map all-uppercase words to lowercase.
 pub const kLSMTextPreserveAcronyms: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/klsmtextapplyspamheuristics?language=objc)
+/// An option that specifies the parser should attempt to find words in hostile text.
 pub const kLSMTextApplySpamHeuristics: c_uint = 4;
 
 impl LSMText {
+    /// Adds an arbitrary binary token to the text.
+    ///
+    /// ## Discussion
+    ///
+    /// The order of tokens is significant if the map uses pairs or triplets, and the count of tokens is always significant.
+    ///
+    ///
     /// Adds an arbitrary binary token to the text. The order of tokens is
     /// significant if the map uses pairs or triplets, and the count of
     /// tokens is always significant.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/latentsemanticmapping/lsmtextaddtoken(_:_:)?language=objc)
     #[doc(alias = "LSMTextAddToken")]
     #[inline]
     pub unsafe fn add_token(&self, token: &CFData) -> OSStatus {

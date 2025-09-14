@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a diagnostic report for an app crash.
     /// An MXDiagnostic subclass that encapsulates crash reports.
     ///
     /// See "Analyzing a Crash Report" for more information on crash diagnostics.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcrashdiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]

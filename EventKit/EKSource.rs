@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksource?language=objc)
+    /// An abstract superclass that represents the account a calendar belongs to.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class; instead, you retrieve `EKSource` objects from an [`EKEventStore`](https://developer.apple.com/documentation/eventkit/ekeventstore) object. Use the sources property to get all the `EKSource` objects for an event store, and use the methods in this class to access properties of the source object.
+    ///
+    ///
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

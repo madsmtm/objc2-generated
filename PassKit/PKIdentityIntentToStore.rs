@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents your intention to store an identity element or values derived from an identity element.
     /// Indicates your intention to store an identity element. This covers not only
     /// the element value, but also information derived from the element value such
     /// as signatures or digests.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/passkit/pkidentityintenttostore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKIdentityIntentToStore;

@@ -10,13 +10,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An extensible enumerator for [`PHProjectType`](https://developer.apple.com/documentation/photosui/phprojecttype) that’s presented to users in the project picker.
+    ///
+    /// ## Overview
+    ///
+    /// This object represents one project type choice presented in the project picker when a user is creating a project through project extensions. The [`PHProjectTypeDescriptionDataSource`](https://developer.apple.com/documentation/photosui/phprojecttypedescriptiondatasource) object returns this descriptor from [`typeDescriptionDataSourceForCategory:invalidator:`](https://developer.apple.com/documentation/photosui/phprojectextensioncontroller/typedescriptiondatasource(for:invalidator:)).
+    ///
+    ///
     /// A PHProjectTypeDescription object represents one project type choice in the project picker that is presented
     /// to a user when creating a project via a project extension.
     /// These objects are returned from the PHProjectTypeDescriptionDataSource object returned from
     /// -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:].
     /// The info includes a type, localized title, localized (attributed) description, image and optional subtype descriptions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypedescription?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHProjectTypeDescription;

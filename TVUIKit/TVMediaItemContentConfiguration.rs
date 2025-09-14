@@ -12,22 +12,22 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform?language=objc)
+/// Constants that specify the transform to apply to the text.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVMediaItemContentTextTransform(pub NSInteger);
 impl TVMediaItemContentTextTransform {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformnone?language=objc)
+    /// An option with no transform.
     #[doc(alias = "TVMediaItemContentTextTransformNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformuppercase?language=objc)
+    /// A transform for displaying the text in all uppercase characters.
     #[doc(alias = "TVMediaItemContentTextTransformUppercase")]
     pub const Uppercase: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformlowercase?language=objc)
+    /// A transform for displaying the text in all lowercase characters.
     #[doc(alias = "TVMediaItemContentTextTransformLowercase")]
     pub const Lowercase: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttexttransform/tvmediaitemcontenttexttransformcapitalized?language=objc)
+    /// A transform for displaying the text with the first character capitalized.
     #[doc(alias = "TVMediaItemContentTextTransformCapitalized")]
     pub const Capitalized: Self = Self(3);
 }
@@ -41,7 +41,7 @@ unsafe impl RefEncode for TVMediaItemContentTextTransform {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontentconfiguration-c.class?language=objc)
+    /// A content configuration for a media item view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -182,7 +182,28 @@ impl TVMediaItemContentConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontentview?language=objc)
+    /// A view that represents media content, such as movies and TV shows.
+    ///
+    /// ## Overview
+    ///
+    /// The following code illustrates how to update the configuration for a wide media item:
+    ///
+    /// ```swift
+    /// override func updateConfiguration(using state: UICellConfigurationState) {
+    ///     var configuration = TVMediaItemContentConfiguration.wideCell().updatedConfiguration(for: state)
+    ///
+    ///     configuration.image = coverArtImage
+    ///     configuration.text = // The title of the media content.
+    ///     configuration.secondaryText = "S1, E1"
+    ///     configuration.playbackProgress = 0.4
+    ///     configuration.badgeText = "Live"
+    ///     configuration.badgeProperties = TVMediaItemContentConfiguration.BadgeProperties.liveContent()
+    ///
+    ///     self.contentConfiguration = configuration
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVMediaItemContentView;
@@ -298,7 +319,7 @@ impl TVMediaItemContentView {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontenttextproperties?language=objc)
+    /// Properties that affect the media item content configuration’s text.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVMediaItemContentTextProperties;
@@ -371,7 +392,7 @@ impl TVMediaItemContentTextProperties {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmediaitemcontentbadgeproperties?language=objc)
+    /// Properties that affect the media item content badge.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVMediaItemContentBadgeProperties;

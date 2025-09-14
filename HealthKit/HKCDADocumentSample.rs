@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A sample object representing a CDA document.
+    /// A Clinical Document Architecture (CDA) sample that stores a single document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample?language=objc)
+    /// ## Overview
+    ///
+    /// The sample’s `document` property contains an [`HKCDADocument`](https://developer.apple.com/documentation/healthkit/hkcdadocument) object, representing the underlying XML document.
+    ///
+    /// The [`HKCDADocumentSample`](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample) class is a concrete subclass of the [`HKDocumentSample`](https://developer.apple.com/documentation/healthkit/hkdocumentsample) class. Document samples are immutable. HealthKit assigns the document’s properties when the sample is created. They cannot change. If you need to update a document in HealthKit, create a new document sample with the updated CDA document.
+    ///
+    ///
+    /// A sample object representing a CDA document.
     #[unsafe(super(HKDocumentSample, HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -141,7 +148,19 @@ impl HKCDADocumentSample {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcdadocument?language=objc)
+    /// An object representing a Clinical Document Architecture (CDA) document in HealthKit.
+    ///
+    /// ## Overview
+    ///
+    /// CDA documents use XML to encode clinical documents so that they can be easily exchanged. For more information on the CDA document format, see the [Clinical Document Architecture, R2](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=7) standard.
+    ///
+    /// Do not instantiate `HKCDADocument` objects directly. Instead, create a new [`HKCDADocumentSample`](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample) object by calling the  [`CDADocumentSampleWithData:startDate:endDate:metadata:validationError:`](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/init(data:start:end:metadata:)) method, and passing the CDA’s XML data. HealthKit creates a `HKCDADocument` object for the XML, and assigns it to the sample’s [`document`](https://developer.apple.com/documentation/healthkit/hkcdadocumentsample/document) property.
+    ///
+    /// `HKCDADocument` objects are immutable. When you create a new document sample, HealthKit parses the title, patient name, author name, and custodian name from the XML to populates the document object’s properties. These properties cannot be changed.
+    ///
+    /// Like many HealthKit classes, the [`HKCDADocument`](https://developer.apple.com/documentation/healthkit/hkcdadocument) class should not be subclassed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKCDADocument;
@@ -207,30 +226,29 @@ impl HKCDADocument {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdatitle?language=objc)
+    /// The key path for accessing the document’s title inside a predicate format string.
     pub static HKPredicateKeyPathCDATitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdapatientname?language=objc)
+    /// The key path for accessing the patient’s name inside a predicate format string.
     pub static HKPredicateKeyPathCDAPatientName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdaauthorname?language=objc)
+    /// The key path for accessing the author’s name inside a predicate format string.
     pub static HKPredicateKeyPathCDAAuthorName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathcdacustodianname?language=objc)
+    /// The key path for accessing the custodian’s name inside a predicate format string.
     pub static HKPredicateKeyPathCDACustodianName: &'static NSString;
 }
 
 extern "C" {
+    /// A key for accessing validation error information from an error object’s user information dictionary.
     /// This may be used with the validationError parameter of
     /// CDADocumentSampleWithData:startDate:endDate:device:metadata:validationError: to obtain a detailed
     /// description of the validation errors encountered when creating a CDA document.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdetailedcdavalidationerrorkey?language=objc)
     pub static HKDetailedCDAValidationErrorKey: &'static NSString;
 }

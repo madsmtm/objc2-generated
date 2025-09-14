@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocking?language=objc)
+    /// The elementary methods adopted by classes that define lock objects.
+    ///
+    /// ## Overview
+    ///
+    /// A lock object is used to coordinate the actions of multiple threads of execution within a single application. By using a lock object, an application can protect critical sections of code from being executed simultaneously by separate threads, thus protecting shared data and other shared resources from corruption.
+    ///
+    ///
     pub unsafe trait NSLocking {
         #[unsafe(method(lock))]
         #[unsafe(method_family = none)]
@@ -20,7 +26,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslock?language=objc)
+    /// An object that coordinates the operation of multiple threads of execution within the same application.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSLock`](https://developer.apple.com/documentation/foundation/nslock) object can be used to mediate access to an application’s global data or to protect a critical section of code, allowing it to run atomically.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    ///  The [`NSLock`](https://developer.apple.com/documentation/foundation/nslock) class uses POSIX threads to implement its locking behavior. When sending an unlock message to an [`NSLock`](https://developer.apple.com/documentation/foundation/nslock) object, you must be sure that message is sent from the same thread that sent the initial lock message. Unlocking a lock from a different thread can result in undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You should not use this class to implement a recursive lock. Calling the `lock` method twice on the same thread will lock up your thread permanently. Use the [`NSRecursiveLock`](https://developer.apple.com/documentation/foundation/nsrecursivelock) class to implement recursive locks instead.
+    ///
+    /// Unlocking a lock that is not locked is considered a programmer error and should be fixed in your code. The [`NSLock`](https://developer.apple.com/documentation/foundation/nslock) class reports such errors by printing an error message to the console when they occur.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSLock;
@@ -85,7 +109,13 @@ impl DefaultRetained for NSLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsconditionlock?language=objc)
+    /// A lock that can be associated with specific, user-defined conditions.
+    ///
+    /// ## Overview
+    ///
+    /// Using an [`NSConditionLock`](https://developer.apple.com/documentation/foundation/nsconditionlock) object, you can ensure that a thread can acquire a lock only if a certain condition is met. Once it has acquired the lock and executed the critical section of code, the thread can relinquish the lock and set the associated condition to something new. The conditions themselves are arbitrary: you define them as needed for your application.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSConditionLock;
@@ -175,7 +205,13 @@ impl NSConditionLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrecursivelock?language=objc)
+    /// A lock that may be acquired multiple times by the same thread without causing a deadlock.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSRecursiveLock`](https://developer.apple.com/documentation/foundation/nsrecursivelock) defines a lock that may be acquired multiple times by the same thread without causing a deadlock, a situation where a thread is permanently blocked waiting for itself to relinquish a lock. While the locking thread has one or more locks, all other threads are prevented from accessing the code protected by the lock.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRecursiveLock;
@@ -233,7 +269,47 @@ impl NSRecursiveLock {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscondition?language=objc)
+    /// A condition variable whose semantics follow those used for POSIX-style conditions.
+    ///
+    /// ## Overview
+    ///
+    /// A condition object acts as both a lock and a checkpoint in a given thread. The lock protects your code while it tests the condition and performs the task triggered by the condition. The checkpoint behavior requires that the condition be true before the thread proceeds with its task. While the condition is not true, the thread blocks. It remains blocked until another thread signals the condition object.
+    ///
+    /// The semantics for using an [`NSCondition`](https://developer.apple.com/documentation/foundation/nscondition) object are as follows:
+    ///
+    /// 1. Lock the condition object.
+    ///
+    /// 2. Test a boolean predicate. (This predicate is a boolean flag or other variable in your code that indicates whether it is safe to perform the task protected by the condition.)
+    ///
+    /// 3. If the boolean predicate is false, call the condition object’s [`wait`](https://developer.apple.com/documentation/foundation/nscondition/wait()) or [`waitUntilDate:`](https://developer.apple.com/documentation/foundation/nscondition/wait(until:)) method to block the thread. Upon returning from these methods, go to step 2 to retest your boolean predicate. (Continue waiting and retesting the predicate until it is true.)
+    ///
+    /// 4. If the boolean predicate is true, perform the task.
+    ///
+    /// 5. Optionally update any predicates (or signal any conditions) affected by your task.
+    ///
+    /// 6. When your task is done, unlock the condition object.
+    ///
+    /// The pseudocode for performing the preceding steps would therefore look something like the following:
+    ///
+    /// ```objc
+    /// lock the condition
+    /// while (!(boolean_predicate)) {
+    ///     wait on condition
+    /// }
+    /// do protected work
+    /// (optionally, signal or broadcast the condition again or change a predicate value)
+    /// unlock the condition
+    /// ```
+    ///
+    /// Whenever you use a condition object, the first step is to lock the condition. Locking the condition ensures that your predicate and task code are protected from interference by other threads using the same condition. Once you have completed your task, you can set other predicates or signal other conditions based on the needs of your code. You should always set predicates and signal conditions while holding the condition object’s lock.
+    ///
+    /// When a thread waits on a condition, the condition object unlocks its lock and blocks the thread. When the condition is signaled, the system wakes up the thread. The condition object then reacquires its lock before returning from the [`wait`](https://developer.apple.com/documentation/foundation/nscondition/wait()) or [`waitUntilDate:`](https://developer.apple.com/documentation/foundation/nscondition/wait(until:)) method. Thus, from the point of view of the thread, it is as if it always held the lock.
+    ///
+    /// A boolean predicate is an important part of the semantics of using conditions because of the way signaling works. Signaling a condition does not guarantee that the condition itself is true. There are timing issues involved in signaling that may cause false signals to appear. Using a predicate ensures that these spurious signals do not cause you to perform work before it is safe to do so. The predicate itself is simply a flag or other variable in your code that you test in order to acquire a Boolean result.
+    ///
+    /// For more information on how to use conditions, see Using POSIX Thread Locks in [Threading Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCondition;

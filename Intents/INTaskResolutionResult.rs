@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskresolutionresult?language=objc)
+    /// A resolution result for a single task within a task list.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INTaskResolutionResult`](https://developer.apple.com/documentation/intents/intaskresolutionresult) object when resolving parameters containing an [`INTask`](https://developer.apple.com/documentation/intents/intask) object. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

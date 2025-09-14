@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider?language=objc)
+    /// An object that provides a promise for the pasteboard.
+    ///
+    /// ## Overview
+    ///
+    /// A file promise is a possible future file of a specified type.  When you’re working with drag and drop, use promises to indicate intent for future action.  Avoid loading or performing any actions on the file until the promise completes.
+    ///
+    /// Use the [`NSFilePromiseProvider`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider) class when creating file promises. Instantiate one [`NSFilePromiseProvider`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider) for each file promised. Set the [`fileType`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/filetype) and [`delegate`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider/delegate) properties before writing any [`NSFilePromiseProvider`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider) to the pasteboard. The file type must be a Uniform Type Identifier (UTI) that ultimately conforms to `kUTTypeData` or `kUTTypeDirectory`. The [`NSFilePromiseProviderDelegate`](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate) will write the promised file to the destination directory.
+    ///
+    /// Optionally, you may attach a `userInfo` object of your choosing to the [`NSFilePromiseProvider`](https://developer.apple.com/documentation/appkit/nsfilepromiseprovider) to determine which promise is being referenced when promising multiple files under the same [`NSFilePromiseProviderDelegate`](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFilePromiseProvider;
@@ -96,7 +106,7 @@ impl DefaultRetained for NSFilePromiseProvider {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromiseproviderdelegate?language=objc)
+    /// A set of methods that provides the name of the promised file and writes the file to the destination directory when the file promise is fulfilled.
     pub unsafe trait NSFilePromiseProviderDelegate: NSObjectProtocol {
         #[unsafe(method(filePromiseProvider:fileNameForType:))]
         #[unsafe(method_family = none)]

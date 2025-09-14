@@ -10,26 +10,22 @@ use objc2_metal_performance_shaders::*;
 use crate::*;
 
 /// The distributions supported by random operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution?language=objc)
+/// The distributions supported by random operations.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphRandomDistribution(pub u64);
 impl MPSGraphRandomDistribution {
     /// The uniform distribution, with samples drawn uniformly from [min, max) for float types, and [min, max] for integer types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/uniform?language=objc)
+    /// The uniform distribution, with samples drawn uniformly from [min, max) for float types, and [min, max] for integer types.
     #[doc(alias = "MPSGraphRandomDistributionUniform")]
     pub const Uniform: Self = Self(0);
     /// The normal distribution defined by mean and standard deviation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/normal?language=objc)
+    /// The normal distribution defined by mean and standard deviation.
     #[doc(alias = "MPSGraphRandomDistributionNormal")]
     pub const Normal: Self = Self(1);
     /// The normal distribution defined by mean and standard deviation, truncated to the range [min, max)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution/truncatednormal?language=objc)
+    /// The normal distribution defined by mean and standard deviation, truncated to the range [min, max)
     #[doc(alias = "MPSGraphRandomDistributionTruncatedNormal")]
     pub const TruncatedNormal: Self = Self(2);
 }
@@ -43,21 +39,18 @@ unsafe impl RefEncode for MPSGraphRandomDistribution {
 }
 
 /// The sampling method to use when generating values in the normal distribution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod?language=objc)
+/// The sampling method to use when generating values in the normal distribution.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphRandomNormalSamplingMethod(pub u64);
 impl MPSGraphRandomNormalSamplingMethod {
     /// Use inverse erf to convert uniform values to values in the normal distribution
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod/invcdf?language=objc)
+    /// Use inverse erf to convert uniform values to values in the normal distribution
     #[doc(alias = "MPSGraphRandomNormalSamplingInvCDF")]
     pub const InvCDF: Self = Self(0);
     /// Use Box Muller transform to convert uniform values to values in the normal distribution. For bounded distributions this is a rejection sampling method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod/boxmuller?language=objc)
+    /// Use Box Muller transform to convert uniform values to values in the normal distribution. For bounded distributions this is a rejection sampling method.
     #[doc(alias = "MPSGraphRandomNormalSamplingBoxMuller")]
     pub const BoxMuller: Self = Self(1);
 }
@@ -72,8 +65,7 @@ unsafe impl RefEncode for MPSGraphRandomNormalSamplingMethod {
 
 extern_class!(
     /// A class that describes the random operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomopdescriptor?language=objc)
+    /// A class that describes the random operation.
     #[unsafe(super(MPSGraphObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPSGraphCore")]

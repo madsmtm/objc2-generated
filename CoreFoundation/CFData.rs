@@ -9,7 +9,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdata?language=objc)
+///
+/// ## Overview
+///
+/// CFData and its derived mutable type, [`CFMutableDataRef`](https://developer.apple.com/documentation/corefoundation/cfmutabledata), provide support for data objects, object-oriented wrappers for byte buffers. Data objects let simple allocated buffers (that is, data with no embedded pointers) take on the behavior of Core Foundation objects. CFData creates static data objects, and CFMutableData creates dynamic data objects. Data objects are typically used for raw data storage.
+///
+/// You use the [`CFDataCreate`](https://developer.apple.com/documentation/corefoundation/cfdatacreate(_:_:_:)) and [`CFDataCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfdatacreatecopy(_:_:)) functions to create static data objects. These functions make a new copy of the supplied data. To create a data object that uses the supplied buffer instead of making a separate copy, use the [`CFDataCreateWithBytesNoCopy`](https://developer.apple.com/documentation/corefoundation/cfdatacreatewithbytesnocopy(_:_:_:_:)) function. You use the [`CFDataGetBytes`](https://developer.apple.com/documentation/corefoundation/cfdatagetbytes(_:_:_:)) function to retrieve the bytes and the [`CFDataGetLength`](https://developer.apple.com/documentation/corefoundation/cfdatagetlength(_:)) function to get the length of the bytes.
+///
+/// CFData is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSData`](https://developer.apple.com/documentation/foundation/nsdata). What this means is that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. In other words, in a method where you see an `NSData *` parameter, you can pass in a `CFDataRef`, and in a function where you see a `CFDataRef` parameter, you can pass in an `NSData` instance. This also applies to concrete subclasses of `NSData`. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSData`.
 #[doc(alias = "CFDataRef")]
@@ -27,7 +36,26 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFData"> for CFData {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutabledata?language=objc)
+///
+/// ## Overview
+///
+/// CFMutableData manages dynamic binary data. The basic interface for managing binary data is provided by [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). CFMutableData adds functions to modify the contents of a binary data object.
+///
+/// You create a mutable data object using either the [`CFDataCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutable(_:_:)) or [`CFDataCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutablecopy(_:_:_:)) function.
+///
+/// Bytes are added to a data object with the [`CFDataAppendBytes`](https://developer.apple.com/documentation/corefoundation/cfdataappendbytes(_:_:_:)) function. Bytes are removed from a data object with the [`CFDataDeleteBytes`](https://developer.apple.com/documentation/corefoundation/cfdatadeletebytes(_:_:)) function.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Many of the CFMutableData functions take a [`CFIndex`](https://developer.apple.com/documentation/corefoundation/cfindex) `length` or `capacity` argument. You must not pass a negative number for such values—this may introduce a security risk.
+///
+///
+///
+/// </div>
+/// CFMutableData is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableData`](https://developer.apple.com/documentation/foundation/nsmutabledata). What this means is that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. In other words, in a method where you see an `NSMutableData *` parameter, you can pass in a `CFMutableDataRef`, and in a function where you see a `CFMutableDataRef` parameter, you can pass in an `NSMutableData` instance. This also applies to concrete subclasses of `NSMutableData`. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSMutableData`.
 #[doc(alias = "CFMutableDataRef")]
@@ -46,7 +74,19 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagettypeid()?language=objc)
+    /// Returns the type identifier for the CFData opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFData opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableData objects have the same type identifier as CFData objects.
+    ///
+    ///
     #[doc(alias = "CFDataGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -58,7 +98,27 @@ unsafe impl ConcreteType for CFData {
 }
 
 impl CFData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreate(_:_:_:)?language=objc)
+    /// Creates an immutable CFData object using data copied from a specified byte buffer.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bytes: A pointer to the byte buffer that contains the raw data to be copied into `theData`.
+    ///
+    /// - length: The number of bytes in the buffer (`bytes`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFData object, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You must supply a count of the bytes in the buffer. This function always copies the bytes in the provided buffer into internal storage.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -82,7 +142,29 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatewithbytesnocopy(_:_:_:_:)?language=objc)
+    /// Creates an immutable CFData object from an external (client-owned) byte buffer.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - bytes: A pointer to the byte buffer to be used as the backing store of the CFData object.
+    ///
+    /// - length: The number of bytes in the buffer `bytes`.
+    ///
+    /// - bytesDeallocator: The allocator to use to deallocate the external buffer when the CFData object is deallocated. If the default allocator is suitable for this purpose, pass `NULL` or kCFAllocatorDefault. If you do not want the created CFData object to deallocate the buffer (that is, you assume responsibility for freeing it yourself), pass kCFAllocatorNull.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFData object, or `NULL` if there was a problem creating the object. On a `NULL` return, the `bytes` buffer is left intact. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an immutable CFData object from a buffer of unstructured bytes. Unless the situation warrants otherwise, the created object does not copy the external buffer to internal storage but instead uses the buffer as its backing store. However, you should never count on the object using the external buffer since it could copy the buffer to internal storage or might even dump the buffer altogether and use alternative means for storing the bytes.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -110,7 +192,27 @@ impl CFData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatecopy(_:_:)?language=objc)
+    /// Creates an immutable copy of a CFData object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theData: The CFData object to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An immutable copy of `theData`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting object has the same byte contents as the original object, but it is always immutable. If the specified allocator and the allocator of the original object are the same, and the string is already immutable, this function may simply increment the retain count without making a true copy. To the caller, however, the resulting object is a true immutable copy, except the operation was more efficient.
+    ///
+    /// Use this function when you need to pass a CFData object into another function by value (not reference).
+    ///
+    ///
     #[doc(alias = "CFDataCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -129,7 +231,27 @@ impl CFData {
 }
 
 impl CFMutableData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutable(_:_:)?language=objc)
+    /// Creates an empty CFMutableData object.
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator object to be used to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of bytes that the CFData object can contain. The CFData object starts empty and can grow to contain this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. The value must not be negative.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFMutableData object or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates an empty (that is, content-less) CFMutableData object. You can add raw data to this object with the [`CFDataAppendBytes`](https://developer.apple.com/documentation/corefoundation/cfdataappendbytes(_:_:_:)) function, and thereafter you can replace and delete characters with the appropriate CFMutableData functions. If the `capacity` parameter is greater than `0`, any attempt to add characters beyond this limit can result in undefined behavior.
+    ///
+    ///
     #[doc(alias = "CFDataCreateMutable")]
     #[inline]
     pub fn new(
@@ -146,7 +268,23 @@ impl CFMutableData {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatacreatemutablecopy(_:_:_:)?language=objc)
+    /// Creates a CFMutableData object by copying another CFData object.
+    ///
+    /// Parameters:
+    /// - allocator: The CFAllocator object to be used to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of bytes that the CFData object can contain. The CFData object starts with the same length as the original object, and can grow to contain this number of bytes.
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. If non-`0`, `capacity` must be greater than or equal to the length of `theData`.
+    ///
+    /// - theData: The CFData object to be copied.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFMutableData object that has the same contents as the original object. Returns `NULL` if there was a problem copying the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -172,7 +310,17 @@ impl CFMutableData {
 }
 
 impl CFData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetlength(_:)?language=objc)
+    /// Returns the number of bytes contained by a CFData object.
+    ///
+    /// Parameters:
+    /// - theData: The CFData object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An index that specifies the number of bytes in `theData`.
+    ///
+    ///
     #[doc(alias = "CFDataGetLength")]
     #[inline]
     pub fn length(&self) -> CFIndex {
@@ -182,7 +330,23 @@ impl CFData {
         unsafe { CFDataGetLength(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetbyteptr(_:)?language=objc)
+    /// Returns a read-only pointer to the bytes of a CFData object.
+    ///
+    /// Parameters:
+    /// - theData: The CFData object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A read-only pointer to the bytes associated with `theData`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is guaranteed to return a pointer to a CFData object’s internal bytes. CFData, unlike CFString, does not hide its internal storage.
+    ///
+    ///
     #[doc(alias = "CFDataGetBytePtr")]
     #[inline]
     pub fn byte_ptr(&self) -> *const u8 {
@@ -194,7 +358,23 @@ impl CFData {
 }
 
 impl CFMutableData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetmutablebyteptr(_:)?language=objc)
+    /// Returns a pointer to a mutable byte buffer of a CFMutableData object.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the bytes associated with `theData`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the length of `theData`‘s data is not zero, this function is guaranteed to return a pointer to a CFMutableData object’s internal bytes. If the length of `theData`’s data _is_ zero, this function may or may not return `NULL` dependent upon many factors related to how the object was created (moreover, in this case the function result might change between different releases and on different platforms).
+    ///
+    ///
     #[doc(alias = "CFDataGetMutableBytePtr")]
     #[inline]
     pub fn mutable_byte_ptr(the_data: Option<&CFMutableData>) -> *mut u8 {
@@ -206,7 +386,15 @@ impl CFMutableData {
 }
 
 impl CFData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatagetbytes(_:_:_:)?language=objc)
+    /// Copies the byte contents of a CFData object to an external buffer.
+    ///
+    /// Parameters:
+    /// - theData: The CFData object to examine.
+    ///
+    /// - range: The range of bytes in `theData` to get. To get all of the contents, pass `CFRangeMake(0,CFDataGetLength(theData))`.
+    ///
+    /// - buffer: A pointer to the byte buffer of length `range.length` that is allocated on the stack or heap. On return, the buffer contains the requested range of bytes.
+    ///
     ///
     /// # Safety
     ///
@@ -222,7 +410,19 @@ impl CFData {
 }
 
 impl CFMutableData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasetlength(_:_:)?language=objc)
+    /// Resets the length of a CFMutableData object’s internal byte buffer.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    /// - length: The new size of `theData`’s byte buffer.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function resets the length of a CFMutableData object’s underlying byte buffer to a new size. If that size is less than the current size, it truncates the excess bytes. If that size is greater than the current size, it zero-fills the extension to the byte buffer.
+    ///
+    ///
     #[doc(alias = "CFDataSetLength")]
     #[inline]
     pub fn set_length(the_data: Option<&CFMutableData>, length: CFIndex) {
@@ -232,7 +432,19 @@ impl CFMutableData {
         unsafe { CFDataSetLength(the_data, length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataincreaselength(_:_:)?language=objc)
+    /// Increases the length of a CFMutableData object’s internal byte buffer, zero-filling the extension to the buffer.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    /// - extraLength: The number of bytes by which to increase the byte buffer.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function increases the length of a CFMutableData object’s underlying byte buffer to a new size, initializing the new bytes to `0`.
+    ///
+    ///
     #[doc(alias = "CFDataIncreaseLength")]
     #[inline]
     pub fn increase_length(the_data: Option<&CFMutableData>, extra_length: CFIndex) {
@@ -242,7 +454,15 @@ impl CFMutableData {
         unsafe { CFDataIncreaseLength(the_data, extra_length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdataappendbytes(_:_:_:)?language=objc)
+    /// Appends the bytes from a byte buffer to the contents of a CFData object.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    /// - bytes: A pointer to the buffer of bytes to be added to `theData`.
+    ///
+    /// - length: The number of bytes in the byte buffer `bytes`.
+    ///
     ///
     /// # Safety
     ///
@@ -265,7 +485,17 @@ impl CFMutableData {
         unsafe { CFDataAppendBytes(the_data, bytes, length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatareplacebytes(_:_:_:_:)?language=objc)
+    /// Replaces those bytes in a CFMutableData object that fall within a specified range with other bytes.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    /// - range: The range of bytes (that is, the starting byte and the number of bytes from that point) to delete from `theData`’s byte buffer.
+    ///
+    /// - newBytes: A pointer to the buffer containing the replacement bytes.
+    ///
+    /// - newLength: The number of bytes in the byte buffer `newBytes`.
+    ///
     ///
     /// # Safety
     ///
@@ -290,7 +520,13 @@ impl CFMutableData {
         unsafe { CFDataReplaceBytes(the_data, range, new_bytes, new_length) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatadeletebytes(_:_:)?language=objc)
+    /// Deletes the bytes in a CFMutableData object within a specified range.
+    ///
+    /// Parameters:
+    /// - theData: A CFMutableData object. If you pass an immutable CFData object, the behavior is not defined.
+    ///
+    /// - range: The range of bytes (that is, the starting byte and the number of bytes from that point) to delete from `theData`’s byte buffer.
+    ///
     #[doc(alias = "CFDataDeleteBytes")]
     #[inline]
     pub fn delete_bytes(the_data: Option<&CFMutableData>, range: CFRange) {
@@ -301,17 +537,27 @@ impl CFMutableData {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags?language=objc)
+/// A [`CFOptionFlags`](https://developer.apple.com/documentation/corefoundation/cfoptionflags) type for specifying options for searching.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFDataSearchFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFDataSearchFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags/backwards?language=objc)
+///
+/// ## Discussion
+///
+/// Performs searching from the end of the range toward the beginning.
+///
+///
         #[doc(alias = "kCFDataSearchBackwards")]
         const Backwards = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags/anchored?language=objc)
+///
+/// ## Discussion
+///
+/// Performs searching only on bytes at the beginning or, if `kCFDataSearchBackwards` is also specified, at the end of the search range. No match at the beginning or end means nothing is found, even if a matching sequence of bytes occurs elsewhere in the data object.
+///
+///
         #[doc(alias = "kCFDataSearchAnchored")]
         const Anchored = 1<<1;
     }
@@ -328,7 +574,23 @@ unsafe impl RefEncode for CFDataSearchFlags {
 }
 
 impl CFData {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatafind(_:_:_:_:)?language=objc)
+    /// Finds and returns the range within a data object of the first occurrence of the given data, within a given range, subject to any given options.
+    ///
+    /// Parameters:
+    /// - theData: The data object within which to search.
+    ///
+    /// - dataToFind: The data to find. Must not be `NULL`.
+    ///
+    /// - searchRange: The range within `theData` to be searched.
+    ///
+    /// - compareOptions: A bit mask specifying search options. The [`CFDataSearchFlags`](https://developer.apple.com/documentation/corefoundation/cfdatasearchflags) options can be specified singly or combined with the C bitwise `OR` operator
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range representing the location and length of `dataToFind` within `searchRange`, modulo the options in `compareOptions`. The range returned is relative to the start of the searched data, not the passed-in search range. Returns [`kCFNotFound`](https://developer.apple.com/documentation/corefoundation/kcfnotfound) if `dataToFind` is not found.
+    ///
+    ///
     ///
     /// # Safety
     ///

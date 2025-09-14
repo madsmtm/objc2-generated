@@ -15,8 +15,6 @@ extern_class!(
     ///
     /// MPSNDArrayGather* gather = [[MPSNDArrayGather alloc] initWithDevice: device];
     /// MPSNDArrayGatherGradientState* state = [gather resultStateForSourceArrays:...];
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradientstate?language=objc)
     #[unsafe(super(MPSNDArrayGradientState, MPSState, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -199,8 +197,6 @@ extern_class!(
     /// = i
     /// <
     /// number of indices
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygather?language=objc)
     #[unsafe(super(
         MPSNDArrayBinaryKernel,
         MPSNDArrayMultiaryKernel,
@@ -370,8 +366,6 @@ extern_class!(
     ///
     ///
     /// Applies the gradient operation corresponding to a forward gather operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraygathergradient?language=objc)
     #[unsafe(super(
         MPSNDArrayBinaryPrimaryGradientKernel,
         MPSNDArrayMultiaryGradientKernel,

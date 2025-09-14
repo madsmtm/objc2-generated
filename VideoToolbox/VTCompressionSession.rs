@@ -14,6 +14,13 @@ use objc2_core_video::*;
 
 use crate::*;
 
+/// A reference to a VideoToolbox compression session.
+///
+/// ## Overview
+///
+/// A compression session supports the compression of a sequence of video frames. The session is a reference-counted CoreFoundation (CF) object.
+///
+///
 /// A reference to a Video Toolbox Compression Session.
 ///
 /// A compression session supports the compression of a sequence of video frames.
@@ -24,8 +31,6 @@ use crate::*;
 /// To force completion of some or all pending frames, call VTCompressionSessionCompleteFrames.
 /// When you are done with the session, you should call VTCompressionSessionInvalidate
 /// to tear it down and CFRelease to release your object reference.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsession?language=objc)
 #[doc(alias = "VTCompressionSessionRef")]
 #[repr(C)]
 pub struct VTCompressionSession {
@@ -41,6 +46,29 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueVTCompressionSession"> for VTCompressionSession {}
 );
 
+/// A callback for the system to invoke when it’s finished compressing a frame.
+///
+/// Parameters:
+/// - outputCallbackRefCon: The callback’s reference value.
+///
+/// - sourceFrameRefCon: The frame’s reference value, copied from the `sourceFrameRefCon` argument to [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)).
+///
+/// - status: `noErr` if compression was successful; an error code if compression wasn’t successful.
+///
+/// - infoFlags: Contains information about the encode operation.
+///
+/// The [`kVTEncodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) bit may be set if the encode ran asynchronously.
+///
+/// The [`kVTEncodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) bit may be set if the frame was dropped.
+///
+/// - sampleBuffer: Contains the compressed frame if compression was successful and the frame wasn’t dropped; otherwise, `NULL`.
+///
+///
+/// ## Discussion
+///
+/// When you create a compression session, you pass in a callback function to be called for compressed frames.  This function is called in decode order (which is not necessarily the same as display order).
+///
+///
 /// Prototype for callback invoked when frame compression is complete.
 ///
 /// When you create a compression session, you pass in a callback function to be called
@@ -60,8 +88,6 @@ cf_objc2_type!(
 ///
 /// Parameter `sampleBuffer`: Contains the compressed frame, if compression was successful and the frame was not dropped;
 /// otherwise, NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputcallback?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
 pub type VTCompressionOutputCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -74,18 +100,58 @@ pub type VTCompressionOutputCallback = Option<
 >;
 
 extern "C" {
+    /// A key that indicates a particular video encoder to use.
+    ///
+    /// ## Discussion
+    ///
+    /// To specify a particular video encoder when creating a compression session, pass an encoder specification doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum containing this key and the encoder ID as its value. You can get the encoder ID string from the `kVTVideoEncoderList_EncoderID` entry in the array returned by [`VTCopyVideoEncoderList`](https://developer.apple.com/documentation/videotoolbox/vtcopyvideoencoderlist(_:_:)).
+    ///
+    ///
     /// Specifies a particular video encoder by its ID string.
     ///
     /// To specify a particular video encoder when creating a compression session, pass an
     /// encoderSpecification CFDictionary containing this key and the EncoderID as its value.
     /// The EncoderID CFString may be obtained from the kVTVideoEncoderList_EncoderID entry in
     /// the array returned by VTCopyVideoEncoderList.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideoencoderspecification_encoderid?language=objc)
     pub static kVTVideoEncoderSpecification_EncoderID: &'static CFString;
 }
 
 impl VTCompressionSession {
+    /// Creates an object that compresses video frames.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session. Pass `NULL` to use the default allocator.
+    ///
+    /// - width: The pixel width of video frames.
+    ///
+    /// - height: The pixel height of video frames.
+    ///
+    /// - codecType: The codec type.
+    ///
+    /// - encoderSpecification: A video encoder to use. Pass `NULL` to let VideoToolbox choose an encoder.
+    ///
+    /// - sourceImageBufferAttributes: Required attributes for source pixel buffers, used when creating a pixel buffer pool for source frames. If you don’t want VideoToolbox to create one for you, pass `NULL`.
+    ///
+    /// Using pixel buffers not allocated by VideoToolbox increases the chance that you’ll have to copy image data.
+    ///
+    /// - compressedDataAllocator: An allocator for the compressed data. Pass `NULL` to use the default allocator.
+    ///
+    /// In MacOS 10.12 and later, using a `compressedDataAllocator` may trigger an extra buffer copy.
+    ///
+    /// - outputCallback: The callback to invoke with compressed frames. The system may call this function asynchronously, on a different thread from the one that calls [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)).
+    ///
+    /// Pass `NULL` only if you’ll be calling [`VTCompressionSessionEncodeFrameWithOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:infoflagsout:outputhandler:)) for encoding frames.
+    ///
+    /// - outputCallbackRefCon: Client-defined reference value for the output callback.
+    ///
+    /// - compressionSessionOut: A pointer to a variable to receive the new compression session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The session outputs compressed frames through the output callback.
+    ///
+    ///
     /// Creates a session for compressing video frames.
     ///
     /// Compressed frames will be emitted through calls to outputCallback.
@@ -127,8 +193,6 @@ impl VTCompressionSession {
     /// - `output_callback` must be implemented correctly.
     /// - `output_callback_ref_con` must be a valid pointer or null.
     /// - `compression_session_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)?language=objc)
     #[doc(alias = "VTCompressionSessionCreate")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -176,13 +240,30 @@ impl VTCompressionSession {
 
     /// Tears down a compression session.
     ///
+    /// Parameters:
+    /// - session: The compression session to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you finish using a compression session you created, call `VTCompressionSessionInvalidate` to tear it down, and then call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release its memory.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A compression session is automatically invalidated when its retain count reaches zero, but because sessions may be retained by multiple parties, it’s hard to predict when this will happen.  Calling `VTCompressionSessionInvalidate` ensures a deterministic, orderly teardown.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Tears down a compression session.
+    ///
     /// When you are done with a compression session you created, call VTCompressionSessionInvalidate
     /// to tear it down and then CFRelease to release your object reference.
     /// When a compression session's retain count reaches zero, it is automatically invalidated, but
     /// since sessions may be retained by multiple parties, it can be hard to predict when this will happen.
     /// Calling VTCompressionSessionInvalidate ensures a deterministic, orderly teardown.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioninvalidate(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionInvalidate")]
     #[inline]
     pub unsafe fn invalidate(&self) {
@@ -194,9 +275,14 @@ impl VTCompressionSession {
 }
 
 unsafe impl ConcreteType for VTCompressionSession {
-    /// Returns the CFTypeID for compression sessions.
+    /// Retrieves the Core Foundation type identifier for the compression session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) of the compression session object.
+    ///
+    ///
+    /// Returns the CFTypeID for compression sessions.
     #[doc(alias = "VTCompressionSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -208,6 +294,31 @@ unsafe impl ConcreteType for VTCompressionSession {
 }
 
 impl VTCompressionSession {
+    /// Returns a pool that provides ideal source pixel buffers for a compression session.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A configured pixel buffer pool.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The compression session creates this pixel buffer pool based on the compressor’s pixel buffer attributes and any pixel buffer attributes passed in to [`VTCompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncreate(allocator:width:height:codectype:encoderspecification:imagebufferattributes:compresseddataallocator:outputcallback:refcon:compressionsessionout:)).  If the source pixel buffer attributes and the compressor pixel buffer attributes cannot be reconciled, the pool is based on the source pixel buffer attributes, and VideoToolbox converts each [`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer) internally.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Clients can call this function once and retain the resulting pool, but the call is cheap enough that it’s ok to call it once per frame.  If a change of session properties causes the compressor’s pixel buffer attributes to change, it’s possible that this function might return a different pool.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns a pool that can provide ideal source pixel buffers for a compression session.
     ///
     /// The compression session creates this pixel buffer pool based on
@@ -224,8 +335,6 @@ impl VTCompressionSession {
     /// to call it once per frame.  If a change of session properties causes
     /// the compressor's pixel buffer attributes to change, it's possible that
     /// VTCompressionSessionGetPixelBufferPool might return a different pool.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongetpixelbufferpool(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionGetPixelBufferPool")]
     #[cfg(feature = "objc2-core-video")]
     #[inline]
@@ -239,6 +348,19 @@ impl VTCompressionSession {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Enables the encoder to perform any necessary resource allocation before the encoder begins encoding frames (optional).
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function isn’t called, any necessary resources are allocated on the first [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)) call.
+    ///
+    /// Subsequent calls to this function have no effect.
+    ///
+    ///
     /// You can optionally call this function to provide the encoder with an opportunity to perform
     /// any necessary resource allocation before it begins encoding frames.
     ///
@@ -248,8 +370,6 @@ impl VTCompressionSession {
     /// Extra calls to this function will have no effect.
     ///
     /// Parameter `session`: The compression session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionpreparetoencodeframes(_:)?language=objc)
     #[doc(alias = "VTCompressionSessionPrepareToEncodeFrames")]
     #[inline]
     pub unsafe fn prepare_to_encode_frames(&self) -> OSStatus {
@@ -261,6 +381,35 @@ impl VTCompressionSession {
         unsafe { VTCompressionSessionPrepareToEncodeFrames(self) }
     }
 
+    /// Presents frames to the compression session.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - imageBuffer: A Core Video image buffer ([`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer)) containing a video frame to be compressed. The buffer must have a nonzero reference count.
+    ///
+    /// - presentationTimeStamp: The presentation timestamp for this frame, to be attached to the sample buffer. Each presentation timestamp passed to a session must be greater than the previous one.
+    ///
+    /// - duration: The presentation duration for this frame, to be attached to the sample buffer. If you do not have duration information, pass [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid).
+    ///
+    /// - frameProperties: Key/value pairs specifying additional properties for encoding this frame. Note that some session properties may also be changed between frames. Such changes affect subsequently encoded frames.
+    ///
+    /// - sourceFrameRefcon: Your reference value for the frame, which will be passed to the output callback function.
+    ///
+    /// - infoFlagsOut: A pointer to a `VTEncodeInfoFlags` to receive information about the encode operation.
+    ///
+    /// The [`kVTEncodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) bit may be set if the encode is (or was) running asynchronously.
+    ///
+    /// The [`kVTEncodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) bit may be set if the frame was dropped (synchronously).
+    ///
+    /// Pass `NULL` if you do not want to receive this information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Encoded frames may or may not be output before the function returns. The client should not modify the pixel data after making this call. The session and/or encoder retains the image buffer as long as necessary.
+    ///
+    ///
     /// Call this function to present frames to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -296,8 +445,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
     #[cfg(all(
         feature = "VTErrors",
@@ -339,6 +486,25 @@ impl VTCompressionSession {
     }
 }
 
+/// A callback for the system to invoke when it’s finished compressing a frame.
+///
+/// Parameters:
+/// - status: `noErr` if compression was successful; an error code if compression was not successful.
+///
+/// - infoFlags: Contains information about the encode operation.
+///
+/// The [`kVTEncodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) bit may be set if the encode ran asynchronously.
+///
+/// The [`kVTEncodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) bit may be set if the frame was dropped.
+///
+/// - sampleBuffer: Contains the compressed frame if compression was successful and the frame was not dropped; otherwise, `NULL`.
+///
+///
+/// ## Discussion
+///
+/// When you encode a frame, you pass in a callback block to be called for that compressed frame.  This block is called in decode order (which is not necessarily the same as display order).
+///
+///
 /// Prototype for block invoked when frame compression is complete.
 ///
 /// When you encode a frame, you pass in a callback block to be called
@@ -353,13 +519,48 @@ impl VTCompressionSession {
 ///
 /// Parameter `sampleBuffer`: Contains the compressed frame, if compression was successful and the frame was not dropped;
 /// otherwise, NULL.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputhandler?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
 pub type VTCompressionOutputHandler =
     *mut block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
 
 impl VTCompressionSession {
+    /// Presents frames to the compression session and invokes the output callback when compression is complete.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - imageBuffer: A Core Video image buffer ([`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer)) containing a video frame to be compressed. The buffer must have a nonzero reference count.
+    ///
+    /// - presentationTimeStamp: The presentation timestamp for this frame, to be attached to the sample buffer. Each presentation timestamp passed to a session must be greater than the previous one.
+    ///
+    /// - duration: The presentation duration for this frame, to be attached to the sample buffer. If you do not have duration information, pass [`kCMTimeInvalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid).
+    ///
+    /// - frameProperties: Key/value pairs specifying additional properties for encoding this frame. Note that some session properties may also be changed between frames. Such changes affect subsequently encoded frames.
+    ///
+    /// - infoFlagsOut: A pointer to a `VTEncodeInfoFlags` to receive information about the encode operation.
+    ///
+    /// The [`kVTEncodeInfo_Asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) bit may be set if the encode is (or was) running asynchronously.
+    ///
+    /// The [`kVTEncodeInfo_FrameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) bit may be set if the frame was dropped (synchronously).
+    ///
+    /// Pass `NULL` if you do not want to receive this information.
+    ///
+    /// - outputHandler: The block to be called when encoding the frame is completed. This block may be called asynchronously, on a different thread from the one that calls `VTCompressionSessionEncodeFrameWithOutputHandler`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Encoded frames may or may not be output before the function returns. The client should not modify the pixel data after making this call. The session and/or encoder retains the image buffer as long as necessary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This function cannot be called with a session created with a [`VTCompressionOutputCallback`](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputcallback).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Call this function to present frames to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -397,8 +598,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:infoflagsout:outputhandler:)?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -440,14 +639,27 @@ impl VTCompressionSession {
         }
     }
 
+    /// Forces the compression session to complete the encoding of frames.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - completeUntilPresentationTimeStamp: The timestamp at which to complete frame encoding.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `completeUntilPresentationTimeStamp` is numeric, frames with presentation timestamps up to and including this timestamp are emitted before the function returns.
+    ///
+    /// If `completeUntilPresentationTimeStamp` is non-numeric, all pending frames are emitted before the function returns.
+    ///
+    ///
     /// Forces the compression session to complete encoding frames.
     ///
     /// If completeUntilPresentationTimeStamp is numeric, frames with presentation timestamps
     /// up to and including this timestamp will be emitted before the function returns.
     /// If completeUntilPresentationTimeStamp is non-numeric, all pending frames
     /// will be emitted before the function returns.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessioncompleteframes(_:untilpresentationtimestamp:)?language=objc)
     #[doc(alias = "VTCompressionSessionCompleteFrames")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -465,11 +677,22 @@ impl VTCompressionSession {
     }
 }
 
+/// Returns a Boolean value that indicates whether the system supports MV-HEVC encoding.
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the system supports MV-HEVC encoding; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// A return value of [`true`](https://developer.apple.com/documentation/swift/true) doesn’t guarantee that encoding resources are available at all times.
+///
+///
 /// Indicates whether the current system supports stereo MV-HEVC encode.
 ///
 /// This call returning true does not guarantee that encode resources will be available at all times.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtisstereomvhevcencodesupported()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCEncodeSupported() -> bool {
     extern "C-unwind" {
@@ -480,6 +703,49 @@ pub unsafe extern "C-unwind" fn VTIsStereoMVHEVCEncodeSupported() -> bool {
 }
 
 impl VTCompressionSession {
+    /// Passes a multi-image frame to a compression session for encoding.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - taggedBufferGroup: A [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) that contains the multiple images for a video frame to compress.
+    ///
+    /// - presentationTimeStamp: The presentation timestamp for this frame to attach to the sample buffer. Each presentation timestamp that you pass to a session must be greater than the previous one.
+    ///
+    /// - duration: The presentation duration for this frame to attach to the sample buffer. If you don’t have duration information, pass [`invalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid).
+    ///
+    /// - frameProperties: A dictionary that specifies additional properties for encoding this frame. Some session properties may also change between frames, which affect subsequently encoded frames.
+    ///
+    /// - sourceFrameRefcon: Your reference value for the frame, which the system passes to the output callback function.
+    ///
+    /// - infoFlagsOut: Points to a [`VTEncodeInfoFlags`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags) value to receive information about the encode operation.
+    ///
+    /// The system sets the [`asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) flag if the encode runs asynchronously.
+    ///
+    /// The system sets the [`frameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) flag if the encoding process dropped a frame (synchronously).
+    ///
+    /// Pass `NULL` if you don’t want to receive this information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t guarantee that encoded frames be output before the function returns. The session and encoder retain the image buffer as long as necessary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t modify the pixel data after making this call.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Call this function to present a multi-image frame to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -514,8 +780,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodemultiimageframe?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
     #[cfg(all(feature = "VTErrors", feature = "objc2-core-media"))]
     #[inline]
@@ -552,6 +816,53 @@ impl VTCompressionSession {
         }
     }
 
+    /// Passes a multi-image frame to a compression session for encoding and provides a callback to handle the output.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - taggedBufferGroup: A [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) that contains the multiple images for a video frame to compress.
+    ///
+    /// - presentationTimeStamp: The presentation timestamp for this frame to attach to the sample buffer. Each presentation timestamp that you pass to a session must be greater than the previous one.
+    ///
+    /// - duration: The presentation duration for this frame to attach to the sample buffer. Pass a value of [`invalid`](https://developer.apple.com/documentation/coremedia/cmtime/invalid) if you don’t have duration information.
+    ///
+    /// - frameProperties: A dictionary that specifies additional properties for encoding this frame. Some session properties may also change between frames, which affect subsequently encoded frames.
+    ///
+    /// - infoFlagsOut: Points to a [`VTEncodeInfoFlags`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags) value to receive information about the encode operation.
+    ///
+    /// The system sets the [`asynchronous`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/asynchronous) flag if the encode runs asynchronously.
+    ///
+    /// The system sets the [`frameDropped`](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags/framedropped) flag if the encoding process dropped a frame (synchronously).
+    ///
+    /// Pass `NULL` if you don’t want to receive this information.
+    ///
+    /// - outputHandler: A callback the system invokes when it completes encoding a frame.
+    ///
+    /// The system may invoke this callback asynchronously, on a different thread from the one that calls [`VTCompressionSessionEncodeMultiImageFrameWithOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodemultiimageframewithoutputhandler).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An `OSStatus` value that indicates the result of the operation.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system doesn’t guarantee that encoded frames be output before the function returns. The session and encoder retain the image buffer as long as necessary.
+    ///
+    /// You can’t call this function on a session created with a [`VTCompressionOutputCallback`](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputcallback).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t modify the pixel data after making this call.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Call this function to present a multi-image frame to the compression session.
     /// Encoded frames may or may not be output before the function returns.
     ///
@@ -588,8 +899,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodemultiimageframewithoutputhandler?language=objc)
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
@@ -627,14 +936,14 @@ impl VTCompressionSession {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionoptionflags?language=objc)
+/// Flags to pass to a compression session.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTCompressionSessionOptionFlags(pub u32);
 bitflags::bitflags! {
     impl VTCompressionSessionOptionFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionoptionflags/beginfinalpass?language=objc)
+/// A flag that indicates the last pass in a multi-pass compression session.
         #[doc(alias = "kVTCompressionSessionBeginFinalPass")]
         const BeginFinalPass = 1<<0;
     }
@@ -651,6 +960,23 @@ unsafe impl RefEncode for VTCompressionSessionOptionFlags {
 }
 
 impl VTCompressionSession {
+    /// Marks the start of a specific compression pass.
+    ///
+    /// Parameters:
+    /// - session: A compression session.
+    ///
+    /// - beginPassFlags: Pass [`kVTCompressionSessionBeginFinalPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionoptionflags/beginfinalpass) to inform the encoder that the pass must be the final pass.
+    ///
+    /// - reserved: A reserved value.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// During multipass encoding, this function must be called before [`VTCompressionSessionEncodeFrame`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionencodeframe(_:imagebuffer:presentationtimestamp:duration:frameproperties:sourceframerefcon:infoflagsout:)).
+    ///
+    /// It’s an error to call this function when multipass encoding is not enabled by setting [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage).
+    ///
+    ///
     /// Call to announce the start of a specific compression pass.
     ///
     /// During multi-pass encoding, this function must be called before VTCompressionSessionEncodeFrame.
@@ -661,8 +987,6 @@ impl VTCompressionSession {
     /// # Safety
     ///
     /// `reserved` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionbeginpass(_:flags:_:)?language=objc)
     #[doc(alias = "VTCompressionSessionBeginPass")]
     #[inline]
     pub unsafe fn begin_pass(
@@ -680,6 +1004,23 @@ impl VTCompressionSession {
         unsafe { VTCompressionSessionBeginPass(self, begin_pass_flags, reserved) }
     }
 
+    /// Marks the end of a compression pass.
+    ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - furtherPassesRequestedOut: A pointer to a Boolean that is set to [`true`](https://developer.apple.com/documentation/swift/true) if the video encoder requests to perform another pass, [`false`](https://developer.apple.com/documentation/swift/false) otherwise. You may pass `NULL` to indicate that the client is certain to use this as the final pass, in which case the video encoder can skip that evaluation step.
+    ///
+    /// - reserved: Reserved for future use and not currently used. Pass `NULL` for this argument.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can take a long time, because the video encoder may perform significant processing between passes. You indicate with the `furtherPassesRequestedOut` argument whether the video encoder is requesting another pass.  There is no particular limit on the number of passes the video encoder may request, but the client is free to disregard this request and use the last-emitted set of frames.
+    ///
+    /// It’s an error to call this function when multi-pass encoding has not been enabled by setting [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage).
+    ///
+    ///
     /// Call to announce the end of a pass.
     ///
     /// VTCompressionSessionEndPass can take a long time, since the video encoder may perform significant processing between passes.
@@ -693,8 +1034,6 @@ impl VTCompressionSession {
     ///
     /// - `further_passes_requested_out` must be a valid pointer or null.
     /// - `reserved` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)?language=objc)
     #[doc(alias = "VTCompressionSessionEndPass")]
     #[inline]
     pub unsafe fn end_pass(
@@ -714,6 +1053,23 @@ impl VTCompressionSession {
 
     /// Retrieves the time ranges for the next pass.
     ///
+    /// Parameters:
+    /// - session: The compression session.
+    ///
+    /// - timeRangeCountOut: A pointer to the item count ([`CMItemCount`](https://developer.apple.com/documentation/coremedia/cmitemcount)) to receive the number of `CMTimeRanges`.
+    ///
+    /// - timeRangeArrayOut: A pointer to a C array of `CMTimeRanges`. The storage for this array belongs to the compression session and should not be modified.The pointer is valid until the next call to [`VTCompressionSessionEndPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)), or until the compression session is invalidated or finalized.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If [`VTCompressionSessionEndPass`](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessionendpass(_:furtherpassesrequestedout:_:)) sets `furtherPassesRequestedOut` to [`true`](https://developer.apple.com/documentation/swift/true), call this function to find out the time ranges for the next pass.  Source frames outside these time ranges should be skipped. Each time range includes any frame at its start time and does not include any frame at its end time.
+    ///
+    /// It’s an error to call this function when multipass encoding has not been enabled by setting [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage), or when `VTCompressionSessionEndPass` did not set f`urtherPassesRequestedOut` to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
+    /// Retrieves the time ranges for the next pass.
+    ///
     /// If VTCompressionSessionEndPass sets *furtherPassesRequestedOut to true, call VTCompressionSessionGetTimeRangesForNextPass to find out the time ranges for the next pass.  Source frames outside these time ranges should be skipped.
     /// Each time range is considered to include any frame at its start time and not to include any frame at its end time.
     /// It is an error to call this function when multi-pass encoding has not been enabled by setting kVTCompressionPropertyKey_MultiPassStorage, or when VTCompressionSessionEndPass did not set *furtherPassesRequestedOut to true.
@@ -728,8 +1084,6 @@ impl VTCompressionSession {
     ///
     /// - `time_range_count_out` must be a valid pointer.
     /// - `time_range_array_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionsessiongettimerangesfornextpass(_:timerangecountout:timerangearrayout:)?language=objc)
     #[doc(alias = "VTCompressionSessionGetTimeRangesForNextPass")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]

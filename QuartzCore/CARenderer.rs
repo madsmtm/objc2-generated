@@ -14,7 +14,13 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/carenderer?language=objc)
+    /// A layer that allows an application to render a layer tree into a Core OpenGL context.
+    ///
+    /// ## Overview
+    ///
+    /// For real-time output you should use an instance of [`NSView`](https://developer.apple.com/documentation/appkit/nsview) to host the layer-tree.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CARenderer;
@@ -137,12 +143,9 @@ impl DefaultRetained for CARenderer {
 
 extern "C" {
     /// Options for the renderer options dictionary. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcarenderercolorspace?language=objc)
     pub static kCARendererColorSpace: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcarenderermetalcommandqueue?language=objc)
     pub static kCARendererMetalCommandQueue: &'static NSString;
 }

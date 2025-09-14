@@ -13,7 +13,15 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailableview?language=objc)
+    /// A view that indicates there’s no content to display.
+    ///
+    /// ## Overview
+    ///
+    /// Use a content-unavailable view to indicate that your app can’t display content. For example, content may not be available if a search returns no results or your app is loading data over the network.
+    ///
+    /// In many cases, you won’t need to create a view of this type directly. Set a [`UIContentUnavailableConfiguration`](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-swift.struct) as the view controller’s [`contentUnavailableConfiguration`](https://developer.apple.com/documentation/uikit/uiviewcontroller/contentunavailableconfiguration-4b95e), and the view controller manages the layout of the content-unavailable view.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

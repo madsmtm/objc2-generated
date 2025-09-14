@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract base class for triggering actions based on a set of conditions.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines the basic behavior of triggers, but does not itself specify any criteria for firing a trigger. Use instances of subclasses of [`HMTrigger`](https://developer.apple.com/documentation/homekit/hmtrigger) to set up concrete triggers for actions.
+    ///
+    ///
     /// Represents a trigger event.
     ///
     ///
     /// This class describes a trigger which is an event that can
     /// be used to execute one or more action sets when the event fires.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmtrigger?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMTrigger;

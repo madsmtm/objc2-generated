@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextcontainer?language=objc)
+    /// A region where text layout occurs.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager) uses [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) to determine where to break lines, lay out portions of text, and so on. An [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer) object typically defines rectangular regions, but you can define exclusion paths inside the text container to create regions where text doesn’t flow. You can also subclass to create text containers with nonrectangular regions, such as circular regions, regions with holes in them, or regions that flow alongside graphics.
+    ///
+    /// You can access instances of the [`NSTextContainer`](https://developer.apple.com/documentation/uikit/nstextcontainer), [`NSLayoutManager`](https://developer.apple.com/documentation/uikit/nslayoutmanager), and [`NSTextStorage`](https://developer.apple.com/documentation/uikit/nstextstorage) classes from threads other than the main thread as long as the app guarantees access from only one thread at a time.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextContainer;

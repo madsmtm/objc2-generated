@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skregion?language=objc)
+    /// The definition of an arbitrary area.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKRegion`](https://developer.apple.com/documentation/spritekit/skregion) object defines a mathematical shape and is typically used to determine whether a particular point lies inside this area. For example, regions are used to define the area that a physics field can affect. Regions are defined using paths and mathematical shapes and can also be combined using constructive solid geometry.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKRegion;

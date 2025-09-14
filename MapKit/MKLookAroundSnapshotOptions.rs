@@ -9,7 +9,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/options?language=objc)
+    /// Values you use to customize LookAround snapshots.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSnapshotOptions;

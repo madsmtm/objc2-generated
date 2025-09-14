@@ -4,17 +4,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapabilityoptions?language=objc)
+/// Constants indicating the capabilities of the call.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCallCapabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INCallCapabilityOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapabilityoptions/audiocall?language=objc)
+/// An audio-only call.
         #[doc(alias = "INCallCapabilityOptionAudioCall")]
         const AudioCall = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incallcapabilityoptions/videocall?language=objc)
+/// A video call.
         #[doc(alias = "INCallCapabilityOptionVideoCall")]
         const VideoCall = 1<<1;
     }

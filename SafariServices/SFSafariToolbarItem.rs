@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sfsafaritoolbaritem?language=objc)
+    /// A proxy for a Safari app extension toolbar item in a Safari window.
+    ///
+    /// ## Overview
+    ///
+    /// Your app extension only uses this object when it wants to explicitly set the toolbar item state. Typically, other state changes occur automatically. Safari calls [`validateToolbarItemInWindow:validationHandler:`](https://developer.apple.com/documentation/safariservices/sfsafariextensionhandling/validatetoolbaritem(in:validationhandler:)) on your app extension handler when changes, such as navigation to a webpage, could affect the state of the toolbar item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSafariToolbarItem;

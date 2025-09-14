@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationrequest?language=objc)
+    /// A request to modify an account’s authentication properties.
+    ///
+    /// ## Overview
+    ///
+    /// To initiate an account authentication modification request from your app, use either [`ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationupgradepasswordtostrongpasswordrequest) or [`ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationreplacepasswordwithsigninwithapplerequest).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAccountAuthenticationModificationRequest;

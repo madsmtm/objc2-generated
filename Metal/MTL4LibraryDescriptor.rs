@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Serves as the base descriptor for creating a Metal library.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4librarydescriptor?language=objc)
+    /// Serves as the base descriptor for creating a Metal library.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4LibraryDescriptor;

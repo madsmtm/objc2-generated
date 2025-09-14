@@ -11,96 +11,96 @@ use objc2_javascript_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackevent?language=objc)
+/// Extend this structure to send your custom playback events to the JavaScript environment.
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVPlaybackEvent = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype?language=objc)
+/// A value indicating whether the media is audio or video.
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackeventproperty?language=objc)
+/// Extend this structure to create your own custom playback event properties.
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVPlaybackEventProperty = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype/video?language=objc)
+    /// The media item incorporates video.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeVideo: &'static TVMediaItemType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype/audio?language=objc)
+    /// The media item is audio only.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeAudio: &'static TVMediaItemType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct?language=objc)
+/// A value identifying the media’s content rating domain.
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemContentRatingDomain = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/movie?language=objc)
+    /// The media item’s rating uses the movie domain.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMovie: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/tvshow?language=objc)
+    /// The media item’s rating uses the TV show domain.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainTVShow: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/music?language=objc)
+    /// The media item’s rating uses the music domain.
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMusic: &'static TVMediaItemContentRatingDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate?language=objc)
+/// The possible states of a player.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaybackState(pub NSInteger);
 impl TVPlaybackState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/undefined?language=objc)
+    /// The playback state of the player is undefined.
     #[doc(alias = "TVPlaybackStateUndefined")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Undefined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/begin?language=objc)
+    /// The player is beginning playback.
     #[doc(alias = "TVPlaybackStateBegin")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Begin: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/loading?language=objc)
+    /// The player is loading a media item.
     #[doc(alias = "TVPlaybackStateLoading")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Loading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/playing?language=objc)
+    /// The player is currently playing.
     #[doc(alias = "TVPlaybackStatePlaying")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Playing: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/paused?language=objc)
+    /// The player paused playback.
     #[doc(alias = "TVPlaybackStatePaused")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Paused: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/scanning?language=objc)
+    /// The player is quickly scanning forwards or backwards.
     #[doc(alias = "TVPlaybackStateScanning")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Scanning: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/fastforwarding?language=objc)
+    /// The player is fast-forwarding.
     #[doc(alias = "TVPlaybackStateFastForwarding")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const FastForwarding: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/rewinding?language=objc)
+    /// The player is rewinding.
     #[doc(alias = "TVPlaybackStateRewinding")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Rewinding: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackstate/end?language=objc)
+    /// The player ended playback.
     #[doc(alias = "TVPlaybackStateEnd")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const End: Self = Self(8);
@@ -114,22 +114,22 @@ unsafe impl RefEncode for TVPlaybackState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum?language=objc)
+/// The modes that indicate how or whether media items can be replayed.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistRepeatMode(pub NSInteger);
 impl TVPlaylistRepeatMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/none?language=objc)
+    /// Replay none of the media items in the playlist.
     #[doc(alias = "TVPlaylistRepeatModeNone")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/all?language=objc)
+    /// Replay all of the media items in the playlist.
     #[doc(alias = "TVPlaylistRepeatModeAll")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const All: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum/one?language=objc)
+    /// Replay the currently playing media item.
     #[doc(alias = "TVPlaylistRepeatModeOne")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const One: Self = Self(2);
@@ -143,22 +143,22 @@ unsafe impl RefEncode for TVPlaylistRepeatMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum?language=objc)
+/// The actions that cause media playback to end.
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistEndAction(pub NSInteger);
 impl TVPlaylistEndAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/stop?language=objc)
+    /// The player has stopped playback
     #[doc(alias = "TVPlaylistEndActionStop")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Stop: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/pause?language=objc)
+    /// The player has paused playback.
     #[doc(alias = "TVPlaylistEndActionPause")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const Pause: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum/waitformoreitems?language=objc)
+    /// The player is waiting for more media items.
     #[doc(alias = "TVPlaylistEndActionWaitForMoreItems")]
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub const WaitForMoreItems: Self = Self(2);
@@ -173,10 +173,15 @@ unsafe impl RefEncode for TVPlaylistEndAction {
 }
 
 extern_protocol!(
+    /// A protocol used for sending and receiving information across the JavaScript bridge.
+    ///
+    /// ## Overview
+    ///
+    /// You must conform to this protocol in order to pass custom events.
+    ///
+    ///
     /// An event user info marshaling protocol for sending and receiving
     /// info to and from JS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackeventmarshaling?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub unsafe trait TVPlaybackEventMarshaling: NSObjectProtocol {
         #[deprecated = "Please use SwiftUI or UIKit"]
@@ -196,10 +201,9 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// The user information used in a custom playback event.
     /// Event object that encapsulates its identity and user info for
     /// custom events.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaybackcustomeventuserinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -260,9 +264,14 @@ impl TVPlaybackCustomEventUserInfo {
 }
 
 extern_class!(
-    /// /////////////////////////////////////////////////////////////////////////////
+    /// A collection of media items associated with the Apple TV JavaScript player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist?language=objc)
+    /// ## Overview
+    ///
+    /// A `TVPlaylist` object contains read-only information about a playlist associated with the JavaScript player. You can use this information with your own custom [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) objects exposed through a [`TVPlayer`](https://developer.apple.com/documentation/tvmlkit/tvplayer) object. For example, you can retrieve album information from the JavaScript player and play the track through a `TVPlayer` object.
+    ///
+    ///
+    /// /////////////////////////////////////////////////////////////////////////////
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -311,9 +320,14 @@ impl TVPlaylist {
 }
 
 extern_class!(
-    /// /////////////////////////////////////////////////////////////////////////////
+    /// A single audio or video item associated with the Apple TV JavaScript player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem?language=objc)
+    /// ## Overview
+    ///
+    /// A `TVMediaItem` object contains read-only information about a media item associated with the JavaScript player. You can use this information with your own custom [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) objects exposed through a [`TVPlayer`](https://developer.apple.com/documentation/tvmlkit/tvplayer) object. For example, you can retrieve audio track information from the JavaScript player and play the track through a [`TVPlayer`](https://developer.apple.com/documentation/tvmlkit/tvplayer) object.
+    ///
+    ///
+    /// /////////////////////////////////////////////////////////////////////////////
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -409,9 +423,8 @@ impl TVMediaItem {
 }
 
 extern_class!(
+    /// An object that defines a time range in a media item.
     /// /////////////////////////////////////////////////////////////////////////////
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/timerange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -455,9 +468,8 @@ impl TVTimeRange {
 }
 
 extern_class!(
+    /// A container for groups of highlights for a media item.
     /// /////////////////////////////////////////////////////////////////////////////
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/highlightgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -496,9 +508,8 @@ impl TVHighlightGroup {
 }
 
 extern_class!(
+    /// An object that describes a media item highlight.
     /// /////////////////////////////////////////////////////////////////////////////
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/highlight?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -547,9 +558,14 @@ impl TVHighlight {
 }
 
 extern_class!(
-    /// /////////////////////////////////////////////////////////////////////////////
+    /// A customizable native media player used to control playback from the JavaScript player used in an Apple TV client-server app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplayer?language=objc)
+    /// ## Overview
+    ///
+    /// You create a new `TVPlayer` object using your custom [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) object. You can then play media items that are associated with the JavaScript media player using the new player. For example, you can add gestures, overlays, and other custom features to your TV player.
+    ///
+    ///
+    /// /////////////////////////////////////////////////////////////////////////////
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

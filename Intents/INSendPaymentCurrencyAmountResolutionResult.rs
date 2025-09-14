@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountunsupportedreason?language=objc)
+/// Constants indicating the reason for being unable to resolve the currency amount.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INSendPaymentCurrencyAmountUnsupportedReason(pub NSInteger);
 impl INSendPaymentCurrencyAmountUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountunsupportedreason/paymentsamountbelowminimum?language=objc)
+    /// The payment amount is below the minimum transfer amount established by your app.
     #[doc(alias = "INSendPaymentCurrencyAmountUnsupportedReasonPaymentsAmountBelowMinimum")]
     pub const PaymentsAmountBelowMinimum: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountunsupportedreason/paymentsamountabovemaximum?language=objc)
+    /// The payment amount exceeds the maximum transfer amount allowed by your app for the user.
     #[doc(alias = "INSendPaymentCurrencyAmountUnsupportedReasonPaymentsAmountAboveMaximum")]
     pub const PaymentsAmountAboveMaximum: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountunsupportedreason/paymentscurrencyunsupported?language=objc)
+    /// The payment currency is not supported by your app.
     #[doc(alias = "INSendPaymentCurrencyAmountUnsupportedReasonPaymentsCurrencyUnsupported")]
     pub const PaymentsCurrencyUnsupported: Self = Self(3);
 }
@@ -32,7 +32,15 @@ unsafe impl RefEncode for INSendPaymentCurrencyAmountUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountresolutionresult?language=objc)
+    /// A resolution result for the currency amount to send to another user.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSendPaymentCurrencyAmountResolutionResult`](https://developer.apple.com/documentation/intents/insendpaymentcurrencyamountresolutionresult) object is what you return when resolving parameters containing an [`INCurrencyAmount`](https://developer.apple.com/documentation/intents/incurrencyamount) value. Use the creation method that best reflects your ability to resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INCurrencyAmountResolutionResult`](https://developer.apple.com/documentation/intents/incurrencyamountresolutionresult) and [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INCurrencyAmountResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

@@ -7,6 +7,33 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A layer that computes the uncentered cross-correlation values between the spacial planes of each feature channel of a tensor.
+    ///
+    /// ## Overview
+    ///
+    /// For example, if the input tensor batch function is:
+    ///
+    /// `x = x[b, y, x, c]`
+    ///
+    /// The computation performed by this layer is:
+    ///
+    /// `y = y[b, 1, f, c] = alpha * sum_{x, y} x[b, y, x, f] * x[b, y, x, c]`
+    ///
+    /// Interpret this operation as computing all combinations of fully connected layers between the different spatial planes of the input tensor.
+    ///
+    /// The layer performs this operation independently for each tensor in a batch. Then the layer stores these results in the feature channel and x-coordinate indices of the output batch.
+    ///
+    /// Legend:
+    ///
+    /// - `b`: The batch index.
+    ///
+    /// - `y` and `x`: The spatial coordinates.
+    ///
+    /// - `c`: The feature channel index.
+    ///
+    /// - `alpha`: The scaling factor.
+    ///
+    ///
     /// A gram matrix layer
     ///
     /// The MLComputeGramMatrix  specifies a layer which computes the uncentered cross-correlation
@@ -21,8 +48,6 @@ extern_class!(
     /// 'x'-coordinate indices of the output batch.
     ///
     /// The operation is performed independently for each tensor in a batch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgrammatrixlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

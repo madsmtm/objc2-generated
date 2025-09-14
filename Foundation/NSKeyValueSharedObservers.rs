@@ -9,8 +9,6 @@ use crate::*;
 extern_class!(
     /// A collection of key-value observations which may be registered with multiple
     /// observable objects. Create using ``-[NSKeyValueSharedObservers snapshot]``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobserverssnapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObserversSnapshot;
@@ -35,8 +33,6 @@ impl NSKeyValueSharedObserversSnapshot {
 extern_class!(
     /// A collection of key-value observations which may be registered with multiple
     /// observable objects
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluesharedobservers?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSKeyValueSharedObservers;

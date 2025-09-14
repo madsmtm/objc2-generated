@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle?language=objc)
+/// The presentation styles that determine how a view shows an item provider’s data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPreferredPresentationStyle(pub NSInteger);
 impl UIPreferredPresentationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleunspecified?language=objc)
+    /// A presentation style indicating that no preferred style is specified.
     #[doc(alias = "UIPreferredPresentationStyleUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleinline?language=objc)
+    /// A presentation style indicating that the item provider data should be presented inline.
     #[doc(alias = "UIPreferredPresentationStyleInline")]
     pub const Inline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreferredpresentationstyle/uipreferredpresentationstyleattachment?language=objc)
+    /// A presentation style indicating that the item provider data should be presented as an attachment.
     #[doc(alias = "UIPreferredPresentationStyleAttachment")]
     pub const Attachment: Self = Self(2);
 }
@@ -84,7 +84,6 @@ impl private_NSItemProviderUIKitAdditions::Sealed for NSItemProvider {}
 unsafe impl NSItemProviderUIKitAdditions for NSItemProvider {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderpresentationsizeproviding?language=objc)
     pub unsafe trait UIItemProviderPresentationSizeProviding:
         NSObjectProtocol + MainThreadOnly
     {
@@ -96,7 +95,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationproviding?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationProviding {
         /// # Safety
         ///
@@ -120,7 +118,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiitemproviderreadingaugmentationdesignating?language=objc)
     pub unsafe trait UIItemProviderReadingAugmentationDesignating:
         NSItemProviderReading
     {

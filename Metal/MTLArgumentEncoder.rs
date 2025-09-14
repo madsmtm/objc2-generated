@@ -7,13 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributestridestatic?language=objc)
 pub static MTLAttributeStrideStatic: NSUInteger = NSUIntegerMax as _;
 
 extern_protocol!(
-    /// MTLArgumentEncoder encodes buffer, texture, sampler, and constant data into a buffer.
+    /// An interface you can use to encode argument data into an argument buffer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentencoder?language=objc)
+    /// ## Overview
+    ///
+    /// An [`MTLArgumentEncoder`](https://developer.apple.com/documentation/metal/mtlargumentencoder) instance encodes buffers, textures, samplers, and inlined constant data into an argument buffer. An [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instance represents the argument buffer that you set as the encoding destination by calling the [`setArgumentBuffer:offset:`](https://developer.apple.com/documentation/metal/mtlargumentencoder/setargumentbuffer(_:offset:)) method.
+    ///
+    /// The recommended way to declare an argument buffer is to define its structure in your Metal shading language code. You can assign the argument buffer to a function’s specific buffer index. To create an encoder for this type of argument buffer, call one of the following [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) methods:
+    ///
+    /// - [`newArgumentEncoderWithBufferIndex:`](https://developer.apple.com/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:))
+    ///
+    /// - [`newArgumentEncoderWithBufferIndex:reflection:`](https://developer.apple.com/documentation/metal/mtlfunction/makeargumentencoder(bufferindex:reflection:))
+    ///
+    /// If you construct your shaders dynamically at runtime, you can still construct argument buffers as parameters for the shader. Define each argument separately and then add it to an array of [`MTLArgumentDescriptor`](https://developer.apple.com/documentation/metal/mtlargumentdescriptor) instances. To create an encoder for this type of argument buffer, call the [`newArgumentEncoderWithArguments:`](https://developer.apple.com/documentation/metal/mtldevice/makeargumentencoder(arguments:)) method of the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A runtime validation error occurs if you create a `MTLArgumentEncoder` instance using structures that don’t reference any other resources and don’t provide any `[[id()]]` annotation on any of their members.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// MTLArgumentEncoder encodes buffer, texture, sampler, and constant data into a buffer.
     pub unsafe trait MTLArgumentEncoder: NSObjectProtocol {
         #[cfg(feature = "MTLDevice")]
         /// The device this argument encoder was created against.

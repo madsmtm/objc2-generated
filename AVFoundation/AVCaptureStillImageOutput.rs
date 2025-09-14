@@ -10,12 +10,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output for capturing still photos.
     /// AVCaptureStillImageOutput is a concrete subclass of AVCaptureOutput that can be used to capture high-quality still images with accompanying metadata.
     ///
     ///
     /// Instances of AVCaptureStillImageOutput can be used to capture, on demand, high quality snapshots from a realtime capture source. Clients can request a still image for the current time using the captureStillImageAsynchronouslyFromConnection:completionHandler: method. Clients can also configure still image outputs to produce still images in specific image formats.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -211,12 +210,23 @@ impl AVCaptureStillImageOutput {
 }
 
 extern_class!(
+    /// The abstract superclass for bracketed photo capture settings.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The `AVCaptureBracketedStillImageSettings` class must not be instantiated directly. You should create instances of the `AVCaptureManualExposureBracketedStillImageSettings` and `AVCaptureAutoExposureBracketedStillImageSettings` classes as appropriate.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVCaptureBracketedStillImageSettings is an abstract base class that defines an interface for settings pertaining to a bracketed capture.
     ///
     ///
     /// AVCaptureBracketedStillImageSettings may not be instantiated directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturebracketedstillimagesettings?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureBracketedStillImageSettings;
@@ -239,12 +249,21 @@ impl AVCaptureBracketedStillImageSettings {
 }
 
 extern_class!(
+    /// A configuration for defining bracketed photo captures in terms of specific exposure and ISO values.
+    ///
+    /// ## Overview
+    ///
+    /// The `AVCaptureManualExposureBracketedStillImageSettings` class is a concrete subclass of the `AVCaptureBracketedStillImageSettings` class used when bracketing exposure duration and ISO.
+    ///
+    /// An `AVCaptureManualExposureBracketedStillImageSettings` instance defines exposure duration and ISO settings that should be applied to one image in a bracket. An array of `AVCaptureManualExposureBracketedStillImageSettings` objects is passed to `captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:` to specify the bracketing.
+    ///
+    /// You can query the minimum and maximum duration and ISO properties of the [`AVCaptureDevice`](https://developer.apple.com/documentation/avfoundation/avcapturedevice) instance supplying data to an [`AVCaptureStillImageOutput`](https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput) instance. If you wish to leave [`exposureDuration`](https://developer.apple.com/documentation/avfoundation/avcapturemanualexposurebracketedstillimagesettings/exposureduration) unchanged for this bracketed still image, you pass the value `AVCaptureExposureDurationCurrent` when creating the instance. To keep the ISO unchanged, you pass `AVCaptureISOCurrent` when creating the instance.
+    ///
+    ///
     /// AVCaptureManualExposureBracketedStillImageSettings is a concrete subclass of AVCaptureBracketedStillImageSettings to be used when bracketing exposure duration and ISO.
     ///
     ///
     /// An AVCaptureManualExposureBracketedStillImageSettings instance defines the exposure duration and ISO settings that should be applied to one image in a bracket. An array of settings objects is passed to -[AVCaptureStillImageOutput captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:]. Min and max duration and ISO values are queryable properties of the AVCaptureDevice supplying data to an AVCaptureStillImageOutput instance. If you wish to leave exposureDuration unchanged for this bracketed still image, you may pass the special value AVCaptureExposureDurationCurrent. To keep ISO unchanged, you may pass AVCaptureISOCurrent (see AVCaptureDevice.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemanualexposurebracketedstillimagesettings?language=objc)
     #[unsafe(super(AVCaptureBracketedStillImageSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureManualExposureBracketedStillImageSettings;
@@ -299,12 +318,19 @@ impl AVCaptureManualExposureBracketedStillImageSettings {
 }
 
 extern_class!(
+    /// A configuration for defining bracketed photo captures in terms of bias relative to automatic exposure.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVCaptureAutoExposureBracketedStillImageSettings`](https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings) instance defines the exposure target bias setting that should be applied to one image in a bracket. An array of `AVCaptureAutoExposureBracketedStillImageSettings` objects is passed to `captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:` to specify the bracketing.
+    ///
+    /// The minimum and maximum exposure target bias are properties of the [`AVCaptureDevice`](https://developer.apple.com/documentation/avfoundation/avcapturedevice) instance supplying data to an [`AVCaptureStillImageOutput`](https://developer.apple.com/documentation/avfoundation/avcapturestillimageoutput) instance. If you wish to leave [`exposureTargetBias`](https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings/exposuretargetbias) unchanged for this bracketed still image, you may pass the value `AVCaptureExposureTargetBiasCurrent`.
+    ///
+    ///
     /// AVCaptureAutoExposureBracketedStillImageSettings is a concrete subclass of AVCaptureBracketedStillImageSettings to be used when bracketing exposure target bias.
     ///
     ///
     /// An AVCaptureAutoExposureBracketedStillImageSettings instance defines the exposure target bias setting that should be applied to one image in a bracket. An array of settings objects is passed to -[AVCaptureStillImageOutput captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:]. Min and max exposure target bias are queryable properties of the AVCaptureDevice supplying data to an AVCaptureStillImageOutput instance. If you wish to leave exposureTargetBias unchanged for this bracketed still image, you may pass the special value AVCaptureExposureTargetBiasCurrent (see AVCaptureDevice.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautoexposurebracketedstillimagesettings?language=objc)
     #[unsafe(super(AVCaptureBracketedStillImageSettings, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureAutoExposureBracketedStillImageSettings;

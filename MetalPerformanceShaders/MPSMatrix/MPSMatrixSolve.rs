@@ -9,6 +9,21 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel for computing the solution of a linear system of equations using a triangular coefficient matrix.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel finds the solution matrix to the system _op(A) * X = alpha * B_ or _X * op(A) = alpha * B_, where:
+    ///
+    /// - A is either an upper or lower triangular matrix
+    ///
+    /// - _op(A)_ is either _Aᵀ_ or _A_
+    ///
+    /// - _X_ is the resulting matrix of solutions
+    ///
+    /// - _B_ is the array of right hand sides for which the equations are to be solved
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -25,8 +40,6 @@ extern_class!(
     /// or A.  B is the array of right hand sides for which the
     /// equations are to be solved.  X is the resulting matrix of
     /// solutions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvetriangular?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -241,6 +254,19 @@ impl MPSMatrixSolveTriangular {
 }
 
 extern_class!(
+    /// A kernel for computing the solution of a linear system of equations using an LU factorization.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel finds the solution matrix to the system _op(A) * X = B_, where:
+    ///
+    /// - _op(A)_ is _Aᵀ_ or _A_
+    ///
+    /// - _X_ is the resulting matrix of solutions
+    ///
+    /// - _B_ is the array of right hand sides for which the equations are to be solved
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -255,8 +281,6 @@ extern_class!(
     ///
     /// Where op(A) is A**T or A.  B is the array of right hand sides for which
     /// the equations are to be solved.  X is the resulting matrix of solutions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvelu?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -446,6 +470,19 @@ impl MPSMatrixSolveLU {
 }
 
 extern_class!(
+    /// A kernel for computing the solution of a linear system of equations using a Cholesky factorization.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel finds the solution matrix to the system _AX=B_, where:
+    ///
+    /// - _A_ is a symmetric positive-definite matrix
+    ///
+    /// - _X_ is the resulting matrix of solutions
+    ///
+    /// - _B_ is the array of right-hand-sides for which the equations are to be solved
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -461,8 +498,6 @@ extern_class!(
     /// Where A is symmetric positive definite.  B is the array of
     /// right hand sides for which the equations are to be solved.
     /// X is the resulting matrix of solutions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsolvecholesky?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

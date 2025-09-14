@@ -7,10 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that analyzes an image for aesthetically pleasing attributes.
     /// Analyzes an image for aesthetically pleasing attributes and returns a VNImageAestheticsScoresObservation.
     /// This observation calculates an overall aeshetically pleasing score for the image and checks for utility images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -82,5 +81,5 @@ impl VNCalculateImageAestheticsScoresRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vncalculateimageaestheticsscoresrequestrevision1?language=objc)
+/// A value that indicates the first revision for an aesthetics scores request.
 pub static VNCalculateImageAestheticsScoresRequestRevision1: NSUInteger = 1;

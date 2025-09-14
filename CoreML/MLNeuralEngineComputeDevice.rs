@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a Neural Engine compute device.
     /// Represents a NeuralEngine compute device for inference of machine learning models.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlneuralenginecomputedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLNeuralEngineComputeDevice;

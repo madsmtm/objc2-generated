@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool?language=objc)
+/// A reference to a pixel buffer pool object.
+///
+/// ## Overview
+///
+/// CVPixelBufferPool is a utility object for managing a recyclable set of [`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer) objects.
+///
+///
 #[doc(alias = "CVPixelBufferPoolRef")]
 #[repr(C)]
 pub struct CVPixelBufferPool {
@@ -27,17 +33,35 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolminimumbuffercountkey?language=objc)
+    /// The minimum number of buffers allowed in the pixel buffer pool.
+    ///
+    /// ## Discussion
+    ///
+    /// This value for this key is of type [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber).
+    ///
+    ///
     pub static kCVPixelBufferPoolMinimumBufferCountKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolmaximumbufferagekey?language=objc)
+    /// The key you use to set the maximum allowable age for a buffer in the pixel buffer pool.
+    ///
+    /// ## Discussion
+    ///
+    /// This value for this key is of type [`CFAbsoluteTime`](https://developer.apple.com/documentation/corefoundation/cfabsolutetime).
+    ///
+    ///
     pub static kCVPixelBufferPoolMaximumBufferAgeKey: &'static CFString;
 }
 
 unsafe impl ConcreteType for CVPixelBufferPool {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgettypeid()?language=objc)
+    /// Returns the Core Foundation type identifier of the pixel buffer pool type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for this pixel buffer.
+    ///
+    ///
     #[doc(alias = "CVPixelBufferPoolGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -49,6 +73,29 @@ unsafe impl ConcreteType for CVPixelBufferPool {
 }
 
 impl CVPixelBufferPool {
+    /// Creates a pixel buffer pool using the allocator and attributes that you specify.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - poolAttributes: A Core Foundation dictionary that contains the attributes for the pixel buffer pool. See the Constants topic group below for possible values.
+    ///
+    /// - pixelBufferAttributes: An optional dictionary that contains the attributes to use to create new pixel buffers within the pool. See [Pixel Buffer Attribute Keys](https://developer.apple.com/documentation/corevideo/pixel-buffer-attribute-keys) for possible values.
+    ///
+    /// - poolOut: On output, the newly created pixel buffer pool.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`CVPixelBufferPoolRelease`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolrelease) to release ownership of the `poolOut` object when you’re done with it.
+    ///
+    ///
     /// Creates a new Pixel Buffer pool.
     ///
     /// Parameter `allocator`: The CFAllocatorRef to use for allocating this buffer pool.  May be NULL.
@@ -66,8 +113,6 @@ impl CVPixelBufferPool {
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
@@ -95,13 +140,22 @@ impl CVPixelBufferPool {
         }
     }
 
+    /// The pool attributes dictionary for a pixel buffer pool.
+    ///
+    /// Parameters:
+    /// - pool: The pixel buffer pool that contains the attributes to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Foundation dictionary containing the pool attributes, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the function fails.
+    ///
+    ///
     /// Returns the pool attributes dictionary for a CVPixelBufferPool
     ///
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgetattributes(_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
     #[inline]
     pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -114,6 +168,23 @@ impl CVPixelBufferPool {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// The attributes of pixel buffers which the system creates using the pool you specify.
+    ///
+    /// Parameters:
+    /// - pool: The pixel buffer pool that contains the attributes to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Foundation dictionary containing the pool attributes, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the function fails.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to obtain information about the pixel buffers which the system creates using the pool you specify, before the system creates those pixel buffers.
+    ///
+    ///
     /// Returns the attributes of pixel buffers that will be created from this pool.
     ///
     /// This function is provided for those cases where you may need to know some information about the buffers that
@@ -122,8 +193,6 @@ impl CVPixelBufferPool {
     /// Parameter `pool`: The CVPixelBufferPoolRef to retrieve the attributes from
     ///
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolgetpixelbufferattributes(_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
     #[inline]
     pub fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -136,6 +205,27 @@ impl CVPixelBufferPool {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Creates a pixel buffer from a pixel buffer pool, using the allocator that you specify.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the pixel buffer. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - pixelBufferPool: The pixel buffer pool for creating the new pixel buffer.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new pixel buffer using the pixel buffer attributes specified during pool creation. This buffer has default attachments as specified in the `pixelBufferAttributes` parameter of [`CVPixelBufferPoolCreate`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreate(_:_:_:_:)), using either the [`kCVBufferPropagatedAttachmentsKey`](https://developer.apple.com/documentation/corevideo/kcvbufferpropagatedattachmentskey) or [`kCVBufferNonPropagatedAttachmentsKey`](https://developer.apple.com/documentation/corevideo/kcvbuffernonpropagatedattachmentskey) attributes.
+    ///
+    ///
     /// Creates a new PixelBuffer object from the pool.
     ///
     /// The function creates a new (attachment-free) CVPixelBuffer using the pixel buffer attributes specifed during pool creation.
@@ -151,8 +241,6 @@ impl CVPixelBufferPool {
     /// # Safety
     ///
     /// `pixel_buffer_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbuffer(_:_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolCreatePixelBuffer")]
     #[cfg(all(
         feature = "CVBuffer",
@@ -178,7 +266,29 @@ impl CVPixelBufferPool {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)?language=objc)
+    /// Creates a new pixel buffer with auxiliary attributes from the pool.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use for creating the buffer pool. Pass [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the default allocator. See [Predefined Allocators](https://developer.apple.com/documentation/corefoundation/predefined-allocators) for additional values you can use.
+    ///
+    /// - pixelBufferPool: The pixel buffer pool for creating the new pixel buffer.
+    ///
+    /// - auxAttributes: An optional dictionary of auxiliary attributes that describes the allocation request. See the Constants topic group below for possible values.
+    ///
+    /// - pixelBufferOut: On output, the newly created pixel buffer.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Video result code. See [Result Codes](https://developer.apple.com/documentation/corevideo/result-codes) for possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a new [`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer) object using the pixel buffer attributes specified during pool creation and the attributes specified in the `auxAttributes` parameter.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -219,20 +329,33 @@ impl CVPixelBufferPool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey?language=objc)
+    /// The key you use to set the auxiliary attributes dictionary.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this key to set `auxAttributes` in [`CVPixelBufferPoolCreatePixelBufferWithAuxAttributes`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)).
+    ///
+    /// The value for this key specifies that the system shouldn’t allocate a new pixel buffer if the pool already holds at least the specified number of allocated pixel buffers. This key doesn’t prevent the system from recycling allocated buffers. If this key causes [`CVPixelBufferPoolCreatePixelBufferWithAuxAttributes`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)) to fail, it returns the [`kCVReturnWouldExceedAllocationThreshold`](https://developer.apple.com/documentation/corevideo/kcvreturnwouldexceedallocationthreshold) result code.
+    ///
+    ///
     pub static kCVPixelBufferPoolAllocationThresholdKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolfreebuffernotification?language=objc)
+    /// A notification that the system posts if a buffer becomes available after it fails to create a pixel buffer with auxiliary attributes because it exceeded the threshold you specified.
+    ///
+    /// ## Discussion
+    ///
+    /// The system posts this notification if a buffer becomes available after the [`CVPixelBufferPoolCreatePixelBufferWithAuxAttributes`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)) function fails because the system exceeds the threshold you set for the [`kCVPixelBufferPoolAllocationThresholdKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey) key. The system won’t post this notification if you don’t set a value for the [`kCVPixelBufferPoolAllocationThresholdKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolallocationthresholdkey) key for the `auxAttributes` parameter of the [`CVPixelBufferPoolCreatePixelBufferWithAuxAttributes`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolcreatepixelbufferwithauxattributes(_:_:_:_:)) function.
+    ///
+    ///
     pub static kCVPixelBufferPoolFreeBufferNotification: &'static CFString;
 }
 
+/// The flags to pass to flush the pool.
 /// Flags to pass to CVPixelBufferPoolFlush()
 ///
 /// This flag will cause CVPixelBufferPoolFlush to flush all unused buffers regardless of age.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "CVBase")]
 #[repr(transparent)]
@@ -241,7 +364,7 @@ pub struct CVPixelBufferPoolFlushFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {
     impl CVPixelBufferPoolFlushFlags: CVOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags/excessbuffers?language=objc)
+/// The value to pass to flush all unused buffers regardless of age.
         #[doc(alias = "kCVPixelBufferPoolFlushExcessBuffers")]
         const ExcessBuffers = 1;
     }
@@ -258,6 +381,13 @@ unsafe impl RefEncode for CVPixelBufferPoolFlushFlags {
 }
 
 impl CVPixelBufferPool {
+    /// Frees pixel buffers from the pool based on the options that you specify.
+    ///
+    /// Parameters:
+    /// - pool: The pixel buffer pool to free.
+    ///
+    /// - options: Set to [`kCVPixelBufferPoolFlushExcessBuffers`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags/excessbuffers) to free all unused buffers regardless of their age. Pass an empty set to free only all aged-out buffers, or set it to [`kCVPixelBufferPoolFlushExcessBuffers`](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflushflags/excessbuffers) to free all unused buffers regardless of age.
+    ///
     /// Frees as many buffers from the pool as possible.
     ///
     /// By default, this function will free all aged out buffers.  Setting the
@@ -268,8 +398,6 @@ impl CVPixelBufferPool {
     ///
     /// Parameter `options`: Set to kCVPixelBufferPoolFlushExcessBuffers to free all unused buffers
     /// regardless of their age.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvpixelbufferpoolflush(_:_:)?language=objc)
     #[doc(alias = "CVPixelBufferPoolFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]

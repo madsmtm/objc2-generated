@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// Receive Wi-Fi event notifications.
+    /// The interface a Wi-Fi client object uses to notify its delegate about Wi-Fi events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// An object that adopts the `CWEventDelegate` protocol and that is assigned as the delegate of a [`CWWiFiClient`](https://developer.apple.com/documentation/corewlan/cwwificlient) object receives notifications of changes on a Wi-Fi interface. Use the [`startMonitoringEventWithType:error:`](https://developer.apple.com/documentation/corewlan/cwwificlient/startmonitoringevent(with:)) method to indicate to the client the event types for which you want to receive notifications. Use the [`stopMonitoringEventWithType:error:`](https://developer.apple.com/documentation/corewlan/cwwificlient/stopmonitoringevent(with:)) method to stop receiving a particular notification type, or the [`stopMonitoringAllEventsAndReturnError:`](https://developer.apple.com/documentation/corewlan/cwwificlient/stopmonitoringallevents()) method to stop receiving all notifications.
+    ///
+    ///
+    /// Receive Wi-Fi event notifications.
     pub unsafe trait CWEventDelegate {
         /// Invoked if the connection to the Wi-Fi subsystem is temporarily interrupted.
         ///
@@ -154,6 +159,15 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A wrapper around the entire Wi-Fi subsystem that you use to access interfaces and set up event notifications.
+    ///
+    /// ## Overview
+    ///
+    /// Wi-Fi client objects are heavy. Therefore, it’s more efficient to use a single, long-running client instance, rather than creating several short-lived instances. For convenience, you can use the singleton instance returned by the [`sharedWiFiClient`](https://developer.apple.com/documentation/corewlan/cwwificlient/shared()) class method.
+    ///
+    /// Instead of instantiating [`CWInterface`](https://developer.apple.com/documentation/corewlan/cwinterface) objects directly, use the ones provided by the instance methods of this class. For example, the [`interface`](https://developer.apple.com/documentation/corewlan/cwwificlient/interface()) method returns the default Wi-Fi interface.
+    ///
+    ///
     /// The interface to the Wi-Fi subsystem on OS X.
     ///
     ///
@@ -165,8 +179,6 @@ extern_class!(
     ///
     /// The CWWiFiClient object should be used to instantiate CWInterface objects rather than using a CWInterface
     /// initializer directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwwificlient?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWWiFiClient;

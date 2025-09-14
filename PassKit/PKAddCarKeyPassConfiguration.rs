@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddcarkeypassconfiguration?language=objc)
+    /// A specialized configuration object that PassKit uses when it creates a digital car key.
     #[unsafe(super(PKAddSecureElementPassConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKAddSecureElementPassConfiguration")]

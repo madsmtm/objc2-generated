@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionweekofyear?language=objc)
+    /// An object that tracks a specific week a person selects from a calendar view.
+    ///
+    /// ## Overview
+    ///
+    /// Use the [`UICalendarSelectionWeekOfYear`](https://developer.apple.com/documentation/uikit/uicalendarselectionweekofyear) selection behavior to allow selecting dates in a calendar view by week. The following code example shows how to configure a calendar view’s selection behavior to use week-of-year selection:
+    ///
+    /// ```swift
+    /// // Create a calendar view.
+    /// let calendarView = UICalendarView()
+    /// calendarView.calendar = Calendar(identifier: .gregorian)
+    ///
+    /// // Set the selection behavior.
+    /// let selection = UICalendarSelectionWeekOfYear(delegate: self)
+    /// calendarView.selectionBehavior = selection
+    ///
+    /// // Set the 11th week in the year 2024.
+    /// selection.selectedWeekOfYear = DateComponents(
+    ///     calendar: Calendar(identifier: .gregorian),
+    ///     weekOfYear: 11,
+    ///     yearForWeekOfYear: 2024)
+    /// ```
+    ///
+    ///
     #[unsafe(super(UICalendarSelection, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -77,7 +99,7 @@ impl UICalendarSelectionWeekOfYear {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionweekofyeardelegate?language=objc)
+    /// A set of methods you implement to provide selectable weeks and handle changes to the week selection in a calendar view.
     pub unsafe trait UICalendarSelectionWeekOfYearDelegate:
         NSObjectProtocol + MainThreadOnly
     {

@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont?language=objc)
+    /// An object that provides access to the font’s characteristics.
+    ///
+    /// ## Overview
+    ///
+    /// Use `UIFont` to access your font’s characteristics within your app. It also provides the system with access to the glyph information, used during layout. Font objects are immutable, so it’s safe to use them from multiple threads in your app.
+    ///
+    /// In Objective-C, don’t create font objects using the `alloc` and `init` methods. Instead, use class methods of [`UIFont`](https://developer.apple.com/documentation/uikit/uifont), such as [`preferredFontForTextStyle:`](https://developer.apple.com/documentation/uikit/uifont/preferredfont(fortextstyle:)), to look up and retrieve the desired font object. These methods check for an existing font object with the specified characteristics and return it if it exists. Otherwise, they create a new font object based on the desired font characteristics.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIFont;

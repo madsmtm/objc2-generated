@@ -7,14 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.typealias?language=objc)
+/// The name assigned to a color list.
 pub type NSColorListName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/name?language=objc)
+/// The name of a color.
 pub type NSColorName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist?language=objc)
+    /// An ordered list of color objects, identified by keys.
+    ///
+    /// ## Overview
+    ///
+    /// A color list manages a list of [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) objects, each of which has an associated name. The [`NSColorPanel`](https://developer.apple.com/documentation/appkit/nscolorpanel) list mode color picker uses instances of [`NSColorList`](https://developer.apple.com/documentation/appkit/nscolorlist) to represent any lists of colors that come with the system, as well as any lists the user creates. An app can use a color list to manage document-specific color lists.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSColorList;
@@ -121,6 +127,12 @@ impl DefaultRetained for NSColorList {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist/didchangenotification?language=objc)
+    /// Posted whenever a color list changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the [`NSColorList`](https://developer.apple.com/documentation/appkit/nscolorlist) object that changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSColorListDidChangeNotification: &'static NSNotificationName;
 }

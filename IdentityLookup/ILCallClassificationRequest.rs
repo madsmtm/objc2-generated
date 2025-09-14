@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilcallclassificationrequest?language=objc)
+    /// A classification request for phone calls.
     #[unsafe(super(ILClassificationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ILClassificationRequest")]

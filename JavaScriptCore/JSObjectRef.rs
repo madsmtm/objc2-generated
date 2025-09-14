@@ -6,30 +6,65 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributenone?language=objc)
+/// An attribute that specifies that a property has no special attributes.
 pub const kJSPropertyAttributeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributereadonly?language=objc)
+/// An attribute that specifies that a property is read-only.
 pub const kJSPropertyAttributeReadOnly: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontenum?language=objc)
+/// An attribute that specifies that property enumerators and JavaScript for-in loops don’t enumerate a property.
 pub const kJSPropertyAttributeDontEnum: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontdelete?language=objc)
+/// An attribute that specifies that the delete operation fails on a property.
 pub const kJSPropertyAttributeDontDelete: c_uint = 1 << 3;
 
-/// A set of JSPropertyAttributes. Combine multiple attributes by logically ORing them together.
+/// A set of JavaScript property attributes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertyattributes?language=objc)
+/// ## Discussion
+///
+/// Combine multiple attributes by performing the logical OR operation.
+///
+///
+/// A set of JSPropertyAttributes. Combine multiple attributes by logically ORing them together.
 pub type JSPropertyAttributes = c_uint;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenone?language=objc)
+/// An attribute that specifies that a class has no special attributes.
 pub const kJSClassAttributeNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenoautomaticprototype?language=objc)
+/// An attribute that specifies that a class doesn’t automatically generate a shared prototype for its instance objects.
+///
+/// ## Discussion
+///
+/// Use [`kJSClassAttributeNoAutomaticPrototype`](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenoautomaticprototype) with [`JSObjectSetPrototype`](https://developer.apple.com/documentation/javascriptcore/jsobjectsetprototype(_:_:_:)) to manage prototypes manually.
+///
+///
 pub const kJSClassAttributeNoAutomaticPrototype: c_uint = 1 << 1;
 
-/// A set of JSClassAttributes. Combine multiple attributes by logically ORing them together.
+/// A set of JavaScript class attributes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassattributes?language=objc)
+/// ## Discussion
+///
+/// Combine multiple attributes by performing the logical OR operation.
+///
+///
+/// A set of JSClassAttributes. Combine multiple attributes by logically ORing them together.
 pub type JSClassAttributes = c_uint;
 
+/// The callback type for first creating an object.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to create.
+///
+///
+/// ## Discussion
+///
+/// If you name your function `Initialize`, you declare it like this:
+///
+/// ```c
+/// void Initialize(JSContextRef ctx, JSObjectRef object);
+/// ```
+///
+/// Unlike the other object callbacks, the system calls the initialize callback on the least-derived class (the parent class) first, and the most-derived class last.
+///
+///
 /// The callback invoked when an object is first created.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -42,12 +77,31 @@ pub type JSClassAttributes = c_uint;
 ///
 /// Unlike the other object callbacks, the initialize callback is called on the least
 /// derived class (the parent class) first, and the most derived class last.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectinitializecallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectInitializeCallback =
     Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef)>;
 
+/// The callback type for finalizing an object (preparing it for garbage collection).
+///
+/// Parameters:
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to finalize.
+///
+///
+/// ## Discussion
+///
+/// You can finalize an object on any thread.
+///
+/// If you name your function `Finalize`, you declare it like this:
+///
+/// ```c
+/// void Finalize(JSObjectRef object);
+/// ```
+///
+/// The system calls the finalize callback on the most-derived class first, and the least-derived class (the parent class) last.
+///
+/// You must not call any function that may cause a garbage collection or an allocation of a garbage collected object from within a [`JSObjectFinalizeCallback`](https://developer.apple.com/documentation/javascriptcore/jsobjectfinalizecallback). This includes all functions that have a [`JSContextRef`](https://developer.apple.com/documentation/javascriptcore/jscontextref) parameter.
+///
+///
 /// The callback invoked when an object is finalized (prepared for garbage collection). An object may be finalized on any thread.
 ///
 /// Parameter `object`: The JSObject being finalized.
@@ -62,11 +116,40 @@ pub type JSObjectInitializeCallback =
 /// You must not call any function that may cause a garbage collection or an allocation
 /// of a garbage collected object from within a JSObjectFinalizeCallback. This includes
 /// all functions that have a JSContextRef parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectfinalizecallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectFinalizeCallback = Option<unsafe extern "C-unwind" fn(JSObjectRef)>;
 
+/// The callback type for determining whether an object has a property.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to search for the property.
+///
+/// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the name of the property to find.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `object` has the property; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `HasProperty`, you declare it like this:
+///
+/// ```c
+/// bool HasProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName);
+/// ```
+///
+/// If this function returns [`false`](https://developer.apple.com/documentation/swift/false), the [`hasProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/hasproperty) request forwards to the object’s statically declared properties, then its parent class chain (which includes the default object class), and then its prototype chain.
+///
+/// This callback enables optimization in cases where you only need to know a property’s existence, not its value, and computing its value is expensive.
+///
+/// If this callback is `NULL`, the system uses the [`getProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getproperty) callback to service [`hasProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/hasproperty) requests.
+///
+///
 /// The callback invoked when determining whether an object has a property.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -86,12 +169,39 @@ pub type JSObjectFinalizeCallback = Option<unsafe extern "C-unwind" fn(JSObjectR
 /// This callback enables optimization in cases where only a property's existence needs to be known, not its value, and computing its value would be expensive.
 ///
 /// If this callback is NULL, the getProperty callback will be used to service hasProperty requests.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthaspropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectHasPropertyCallback =
     Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef) -> bool>;
 
+/// The callback type for getting a property’s value.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to search for the property.
+///
+/// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the name of the property to get.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// The property’s value if the object has the property; otherwise, `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `GetProperty`, you declare it like this:
+///
+/// ```c
+/// JSValueRef GetProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception);
+/// ```
+///
+/// If this function returns `NULL`, the get request forwards to the object’s statically declared properties, then its parent class chain (which includes the default object class), and then its prototype chain.
+///
+///
 /// The callback invoked when getting a property's value.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -109,8 +219,6 @@ pub type JSObjectHasPropertyCallback =
 /// JSValueRef GetProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception);
 ///
 /// If this function returns NULL, the get request forwards to object's statically declared properties, then its parent class chain (which includes the default object class), then its prototype chain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectGetPropertyCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -121,6 +229,37 @@ pub type JSObjectGetPropertyCallback = Option<
     ) -> JSValueRef,
 >;
 
+/// The callback type for setting a property’s value.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to set the property’s value on.
+///
+/// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the name of the property to set.
+///
+/// - value: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to use as the property’s value.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if setting the property succeeds; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `SetProperty`, you declare it like this:
+///
+/// ```c
+/// bool SetProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef value, JSValueRef* exception);
+/// ```
+///
+/// If this function returns false, the set request forwards to the object’s statically declared properties, and then its parent class chain (which includes the default object class).
+///
+///
 /// The callback invoked when setting a property's value.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -140,8 +279,6 @@ pub type JSObjectGetPropertyCallback = Option<
 /// bool SetProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef value, JSValueRef* exception);
 ///
 /// If this function returns false, the set request forwards to object's statically declared properties, then its parent class chain (which includes the default object class).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectSetPropertyCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -153,6 +290,35 @@ pub type JSObjectSetPropertyCallback = Option<
     ) -> bool,
 >;
 
+/// The callback type for deleting a property.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to delete the property in.
+///
+/// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the name of the property to delete.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the deletion of `propertyName` succeeds; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `DeleteProperty`, you declare it like this:
+///
+/// ```c
+/// bool DeleteProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception);
+/// ```
+///
+/// If this function returns [`false`](https://developer.apple.com/documentation/swift/false), the delete request forwards to the object’s statically declared properties, and then its parent class chain (which includes the default object class).
+///
+///
 /// The callback invoked when deleting a property.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -170,13 +336,34 @@ pub type JSObjectSetPropertyCallback = Option<
 /// bool DeleteProperty(JSContextRef ctx, JSObjectRef object, JSStringRef propertyName, JSValueRef* exception);
 ///
 /// If this function returns false, the delete request forwards to object's statically declared properties, then its parent class chain (which includes the default object class).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeletepropertycallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectDeletePropertyCallback = Option<
     unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSStringRef, *mut JSValueRef) -> bool,
 >;
 
+/// The callback type for collecting the names of an object’s properties.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property names to collect.
+///
+/// - accumulator: A JavaScript property name accumulator to accumulate the names of the object’s properties in.
+///
+///
+/// ## Discussion
+///
+/// If you name your function `GetPropertyNames`, you declare it like this:
+///
+/// ```c
+/// void GetPropertyNames(JSContextRef ctx, JSObjectRef object, JSPropertyNameAccumulatorRef propertyNames);
+/// ```
+///
+/// [`JSObjectCopyPropertyNames`](https://developer.apple.com/documentation/javascriptcore/jsobjectcopypropertynames(_:_:)) and JavaScript `for-in` loops use property name accumulators.
+///
+/// Use [`JSPropertyNameAccumulatorAddName`](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatoraddname(_:_:)) to add property names to `accumulator`. A class’s [`getPropertyNames`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getpropertynames) callback only needs to provide the names of properties that the class vends through a custom [`getProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getproperty) or [`setProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/setproperty) callback. The system adds other properties independently, including statically declared properties, properties that other classes vend, and properties that belong to the object’s prototype.
+///
+///
 /// The callback invoked when collecting the names of an object's properties.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -192,12 +379,45 @@ pub type JSObjectDeletePropertyCallback = Option<
 /// Property name accumulators are used by JSObjectCopyPropertyNames and JavaScript for...in loops.
 ///
 /// Use JSPropertyNameAccumulatorAddName to add property names to accumulator. A class's getPropertyNames callback only needs to provide the names of properties that the class vends through a custom getProperty or setProperty callback. Other properties, including statically declared properties, properties vended by other classes, and properties belonging to object's prototype, are added independently.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertynamescallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectGetPropertyNamesCallback =
     Option<unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSPropertyNameAccumulatorRef)>;
 
+/// The callback type for calling an object as a function.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - function: A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is the function to call.
+///
+/// - thisObject: A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is the `this` variable in the function’s scope.
+///
+/// - argumentCount: An integer count of the number of arguments in `arguments`.
+///
+/// - arguments: A `JSValue` array of the arguments to pass to the function.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that is the function’s return value.
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `CallAsFunction`, you declare it like this:
+///
+/// ```c
+/// JSValueRef CallAsFunction(JSContextRef ctx, JSObjectRef function, JSObjectRef thisObject, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception);
+/// ```
+///
+/// If the JavaScript expression `myObject.myFunction()` invokes your callback, it sets `function` to `myFunction`, and `thisObject` to `myObject`.
+///
+/// If this callback is `NULL`, calling your object as a function throws an exception.
+///
+///
 /// The callback invoked when an object is called as a function.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -221,8 +441,6 @@ pub type JSObjectGetPropertyNamesCallback =
 /// If your callback were invoked by the JavaScript expression 'myObject.myFunction()', function would be set to myFunction, and thisObject would be set to myObject.
 ///
 /// If this callback is NULL, calling your object as a function will throw an exception.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasfunctioncallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectCallAsFunctionCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -235,6 +453,39 @@ pub type JSObjectCallAsFunctionCallback = Option<
     ) -> JSValueRef,
 >;
 
+/// The callback type for using an object as a constructor.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - constructor: A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is the constructor to call.
+///
+/// - argumentCount: An integer count of the number of arguments in `arguments`.
+///
+/// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of the arguments to pass to the function.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is the constructor’s return value.
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `CallAsConstructor`, you declare it like this:
+///
+/// ```c
+/// JSObjectRef CallAsConstructor(JSContextRef ctx, JSObjectRef constructor, size_t argumentCount, const JSValueRef arguments[], JSValueRef* exception);
+/// ```
+///
+/// If the JavaScript expression `new myConstructor()` invokes your callback, it sets `constructor` to `myConstructor`.
+///
+/// If this callback is `NULL`, using your object as a constructor in a `new` expression throws an exception.
+///
+///
 /// The callback invoked when an object is used as a constructor in a 'new' expression.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -256,8 +507,6 @@ pub type JSObjectCallAsFunctionCallback = Option<
 /// If your callback were invoked by the JavaScript expression 'new myConstructor()', constructor would be set to myConstructor.
 ///
 /// If this callback is NULL, using your object as a constructor in a 'new' expression will throw an exception.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasconstructorcallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectCallAsConstructorCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -269,6 +518,39 @@ pub type JSObjectCallAsConstructorCallback = Option<
     ) -> JSObjectRef,
 >;
 
+/// The callback type for checking whether an object is an instance of a particular type.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - constructor: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is the target of the `instanceof` expression.
+///
+/// - possibleInstance: The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to test to determine if it’s an instance of `constructor`.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if `possibleInstance` is an instance of `constructor` according to the JavaScript `instanceof` expression; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `HasInstance`, you declare it like this:
+///
+/// ```c
+/// bool HasInstance(JSContextRef ctx, JSObjectRef constructor, JSValueRef possibleInstance, JSValueRef* exception);
+/// ```
+///
+/// If the JavaScript expression `someValue instanceof myObject` invokes your callback, it sets `constructor` to `myObject`, and `possibleInstance` to `someValue`.
+///
+/// If this callback is `NULL`, `instanceof` expressions that target your object return [`false`](https://developer.apple.com/documentation/swift/false).
+///
+/// Standard JavaScript practice calls for objects that implement the [`callAsConstructor`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/callasconstructor) callback to implement the [`hasInstance`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/hasinstance) callback, as well.
+///
+///
 /// hasInstance The callback invoked when an object is used as the target of an 'instanceof' expression.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -290,13 +572,42 @@ pub type JSObjectCallAsConstructorCallback = Option<
 /// If this callback is NULL, 'instanceof' expressions that target your object will return false.
 ///
 /// Standard JavaScript practice calls for objects that implement the callAsConstructor callback to implement the hasInstance callback as well.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthasinstancecallback?language=objc)
 #[cfg(feature = "JSBase")]
 pub type JSObjectHasInstanceCallback = Option<
     unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSValueRef, *mut JSValueRef) -> bool,
 >;
 
+/// The callback type for converting an object to a particular JavaScript type.
+///
+/// Parameters:
+/// - ctx: The execution context to use.
+///
+/// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to convert.
+///
+/// - type: A [`JSType`](https://developer.apple.com/documentation/javascriptcore/jstype) that specifies the JavaScript type to convert to.
+///
+/// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to return an exception in, if any.
+///
+///
+/// ## Return Value
+///
+/// The object’s converted value, or `NULL` if the object doesn’t convert.
+///
+///
+///
+/// ## Discussion
+///
+/// If you name your function `ConvertToType`, you declare it like this:
+///
+/// ```c
+/// JSValueRef ConvertToType(JSContextRef ctx, JSObjectRef object, JSType type, JSValueRef* exception);
+/// ```
+///
+/// If this function returns [`false`](https://developer.apple.com/documentation/swift/false), the conversion request forwards to the object’s parent class chain (which includes the default object class).
+///
+/// The system only invokes this function when converting an object to [`kJSTypeNumber`](https://developer.apple.com/documentation/javascriptcore/kjstypenumber) or [`kJSTypeString`](https://developer.apple.com/documentation/javascriptcore/kjstypestring). An object that converts to [`kJSTypeBoolean`](https://developer.apple.com/documentation/javascriptcore/kjstypeboolean) is `true`. An object that converts to [`kJSTypeObject`](https://developer.apple.com/documentation/javascriptcore/kjstypeobject) is itself.
+///
+///
 /// The callback invoked when converting an object to a particular JavaScript type.
 ///
 /// Parameter `ctx`: The execution context to use.
@@ -316,20 +627,17 @@ pub type JSObjectHasInstanceCallback = Option<
 /// If this function returns false, the conversion request forwards to object's parent class chain (which includes the default object class).
 ///
 /// This function is only invoked when converting an object to number or string. An object converted to boolean is 'true.' An object converted to object is itself.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectconverttotypecallback?language=objc)
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 pub type JSObjectConvertToTypeCallback = Option<
     unsafe extern "C-unwind" fn(JSContextRef, JSObjectRef, JSType, *mut JSValueRef) -> JSValueRef,
 >;
 
+/// A statically declared value property.
 /// This structure describes a statically declared value property.
 /// Field: name A null-terminated UTF8 string containing the property's name.
 /// Field: getProperty A JSObjectGetPropertyCallback to invoke when getting the property's value.
 /// Field: setProperty A JSObjectSetPropertyCallback to invoke when setting the property's value. May be NULL if the ReadOnly attribute is set.
 /// Field: attributes A logically ORed set of JSPropertyAttributes to give to the property.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticvalue?language=objc)
 #[cfg(feature = "JSBase")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -359,12 +667,11 @@ unsafe impl RefEncode for JSStaticValue {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A statically declared function property.
 /// This structure describes a statically declared function property.
 /// Field: name A null-terminated UTF8 string containing the property's name.
 /// Field: callAsFunction A JSObjectCallAsFunctionCallback to invoke when the property is called as a function.
 /// Field: attributes A logically ORed set of JSPropertyAttributes to give to the property.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstaticfunction?language=objc)
 #[cfg(feature = "JSBase")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -392,6 +699,28 @@ unsafe impl RefEncode for JSStaticFunction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that contains properties and callbacks that define a type of object.
+///
+/// ## Overview
+///
+/// All fields other than the [`version`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/version) field are optional. Any pointer may be `NULL`.
+///
+/// The [`staticValues`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/staticvalues) and [`staticFunctions`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/staticfunctions) arrays are the simplest and most efficient means for vending custom properties. Statically declared properties automatically service requests like [`getProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getproperty), [`setProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/setproperty), and [`getPropertyNames`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getpropertynames). Property access callbacks are necessary only to implement unusual properties, like array indexes, which have unknown names at compile time.
+///
+/// If you name your getter function `GetX` and your setter function `SetX`, you declare a [`JSStaticValue`](https://developer.apple.com/documentation/javascriptcore/jsstaticvalue) array that contains `"X"` like this:
+///
+/// ```c
+/// JSStaticValue StaticValueArray[] = {
+///     { "X", GetX, SetX, kJSPropertyAttributeNone },
+///     { 0, 0, 0, 0 }
+/// };
+/// ```
+///
+/// Standard JavaScript practice calls for storing function objects in prototypes so you can share them. The default [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) that [`JSClassCreate`](https://developer.apple.com/documentation/javascriptcore/jsclasscreate(_:)) creates follows this idiom, instantiating objects with a shared, automatically generating prototype that contains the class’s function objects. The [`kJSClassAttributeNoAutomaticPrototype`](https://developer.apple.com/documentation/javascriptcore/kjsclassattributenoautomaticprototype) attribute specifies that a [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) doesn’t automatically generate such a prototype. The resulting [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) instantiates objects with the default object prototype, and gives each instance object its own copy of the class’s function objects.
+///
+/// A `NULL` callback specifies that the default object callback substitutes, except in the case of [`hasProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/hasproperty), where it specifies that [`getProperty`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition/getproperty) substitutes.
+///
+///
 /// This structure contains properties and callbacks that define a type of object. All fields other than the version field are optional. Any pointer may be NULL.
 /// Field: version The version number of this structure. The current version is 0.
 /// Field: attributes A logically ORed set of JSClassAttributes to give to the class.
@@ -425,8 +754,6 @@ unsafe impl RefEncode for JSStaticFunction {
 /// A NULL callback specifies that the default object callback should substitute, except in the case of hasProperty, where it specifies that getProperty should substitute.
 ///
 /// It is not possible to use JS subclassing with objects created from a class definition that sets callAsConstructor by default. Subclassing is supported via the JSObjectMakeConstructor function, however.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition?language=objc)
 #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -483,19 +810,40 @@ unsafe impl RefEncode for JSClassDefinition {
 }
 
 extern "C" {
+    /// A class definition structure of the current version that contains null pointers and has no attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant as a convenience when creating class definitions. For example, to create a class definition with only a finalize method.
+    ///
+    /// ```objc
+    /// JSClassDefinition definition = kJSClassDefinitionEmpty;
+    /// definition.finalize = Finalize;
+    /// ```
+    ///
+    ///
     /// A JSClassDefinition structure of the current version, filled with NULL pointers and having no attributes.
     ///
     /// Use this constant as a convenience when creating class definitions. For example, to create a class definition with only a finalize method:
     ///
     /// JSClassDefinition definition = kJSClassDefinitionEmpty;
     /// definition.finalize = Finalize;
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/kjsclassdefinitionempty?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub static kJSClassDefinitionEmpty: JSClassDefinition;
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript class.
+    ///
+    /// Parameters:
+    /// - definition: A [`JSClassDefinition`](https://developer.apple.com/documentation/javascriptcore/jsclassdefinition) that defines the class.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) with the specified definition suitable for use with [`JSObjectMake`](https://developer.apple.com/documentation/javascriptcore/jsobjectmake(_:_:_:)). Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a JavaScript class suitable for use with JSObjectMake.
     ///
     /// Parameter `definition`: A JSClassDefinition that defines the class.
@@ -505,13 +853,22 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `definition` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclasscreate(_:)?language=objc)
     #[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
     pub fn JSClassCreate(definition: *const JSClassDefinition) -> JSClassRef;
 }
 
 extern "C-unwind" {
+    /// Retains a JavaScript class.
+    ///
+    /// Parameters:
+    /// - jsClass: The [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) that is the same as `jsClass`.
+    ///
+    ///
     /// Retains a JavaScript class.
     ///
     /// Parameter `jsClass`: The JSClass to retain.
@@ -521,8 +878,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `js_class` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSClassRetain(js_class: JSClassRef) -> JSClassRef;
 }
@@ -530,18 +885,44 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Releases a JavaScript class.
     ///
+    /// Parameters:
+    /// - jsClass: The [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) to release.
+    ///
+    /// Releases a JavaScript class.
+    ///
     /// Parameter `jsClass`: The JSClass to release.
     ///
     /// # Safety
     ///
     /// `js_class` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSClassRelease(js_class: JSClassRef);
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - jsClass: The [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) to assign to the object. Pass `NULL` to use the default object class.
+    ///
+    /// - data: A pointer to set as the object’s private data. Pass `NULL` to specify no private data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the specified class and private data.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default object class doesn’t allocate storage for private data, so you must provide a non-`NULL` `jsClass` to [`JSObjectMake`](https://developer.apple.com/documentation/javascriptcore/jsobjectmake(_:_:_:)) if you want your object to be able to store private data.
+    ///
+    /// The system sets `data` on the created object before calling the initialize methods in its class chain. This enables the initialize methods to retrieve and manipulate data through [`JSObjectGetPrivate`](https://developer.apple.com/documentation/javascriptcore/jsobjectgetprivate(_:)).
+    ///
+    ///
     /// Creates a JavaScript object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -561,13 +942,26 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmake(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMake(ctx: JSContextRef, js_class: JSClassRef, data: *mut c_void) -> JSObjectRef;
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript function with a specified callback as its implementation.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - name: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the function’s name. The system uses this when converting the function to a string. Pass `NULL` to create an anonymous function.
+    ///
+    /// - callAsFunction: The [`JSObjectCallAsFunctionCallback`](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasfunctioncallback) to invoke when calling the function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a function. The object’s prototype is the default function prototype.
+    ///
+    ///
     /// Convenience method for creating a JavaScript function with a given callback as its implementation.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -583,8 +977,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `name` must be a valid pointer.
     /// - `call_as_function` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakefunctionwithcallback(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunctionWithCallback(
         ctx: JSContextRef,
@@ -594,6 +986,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - jsClass: A [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) that is the class your constructor assigns to the objects its constructs. It uses `jsClass` to set the constructor’s `.prototype` property, and to evaluate `instanceof` expressions. Pass `NULL` to use the default object class.
+    ///
+    /// - callAsConstructor: A [`JSObjectCallAsConstructorCallback`](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasconstructorcallback) to invoke when using your constructor in a `new` expression. Pass `NULL` to use the default object constructor.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a constructor. The object’s prototype is the default object prototype.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default object constructor takes no arguments, and constructs an object of class `jsClass` with no private data.
+    ///
+    ///
     /// Convenience method for creating a JavaScript constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -611,8 +1024,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `js_class` must be a valid pointer.
     /// - `call_as_constructor` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeconstructor(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeConstructor(
         ctx: JSContextRef,
@@ -622,6 +1033,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript array object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of data to populate the array with. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is an array.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The behavior of this function doesn’t exactly match the behavior of the built-in array constructor. Specifically, if you supply one argument, this function returns an array with one element.
+    ///
+    ///
     /// Creates a JavaScript Array object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -642,8 +1076,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakearray(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeArray(
         ctx: JSContextRef,
@@ -654,6 +1086,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript date object as though invoking the built-in date constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of arguments to pass to the `Date` constructor. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a date.
+    ///
+    ///
     /// Creates a JavaScript Date object, as if by invoking the built-in Date constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -671,8 +1120,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakedate(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDate(
         ctx: JSContextRef,
@@ -683,6 +1130,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript error object as though invoking the built-in error constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of arguments to pass to the `Error` constructor. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is an error.
+    ///
+    ///
     /// Creates a JavaScript Error object, as if by invoking the built-in Error constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -700,8 +1164,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeerror(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeError(
         ctx: JSContextRef,
@@ -712,6 +1174,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript regular expression object as though invoking the built-in regular expression constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of arguments to pass to the `RegExp` constructor. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a regular expression.
+    ///
+    ///
     /// Creates a JavaScript RegExp object, as if by invoking the built-in RegExp constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -729,8 +1208,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakeregexp(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeRegExp(
         ctx: JSContextRef,
@@ -741,6 +1218,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a JavaScript promise object by invoking the provided executor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - resolve: A pointer to a [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to store the resolve function in for the new promise. Pass `NULL` if you don’t want to store the resolve callback.
+    ///
+    /// - reject: A pointer to a [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to store the reject function in for the new promise. Pass `NULL` if you don’t want to store the reject callback.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that’s a promise, or `NULL` if an exception occurs.
+    ///
+    ///
     /// Creates a JavaScript promise object by invoking the provided executor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -759,8 +1253,6 @@ extern "C-unwind" {
     /// - `resolve` must be a valid pointer.
     /// - `reject` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakedeferredpromise(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeDeferredPromise(
         ctx: JSContextRef,
@@ -771,6 +1263,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a function with a specified script as its body.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - name: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the function’s name. The system uses this when converting the function to a string. Pass `NULL` to create an anonymous function.
+    ///
+    /// - parameterCount: An integer count of the number of parameter names in `parameterNames`.
+    ///
+    /// - parameterNames: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) array that contains the names of the function’s parameters. Pass `NULL` if `parameterCount` is `0`.
+    ///
+    /// - body: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the script to use as the function’s body.
+    ///
+    /// - sourceURL: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains a URL for the script’s source file. The system only uses this when reporting exceptions. Pass `NULL` if you don’t want to include source file information in exceptions.
+    ///
+    /// - startingLineNumber: An integer value that specifies the script’s starting line number in the file at `sourceURL`. The system only uses this when reporting exceptions.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that is a function, or `NULL` if either `body` or `parameterNames` contains a syntax error. The object’s prototype is the default function prototype.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method when you want to execute a script repeatedly to avoid the cost of reparsing the script before each execution.
+    ///
+    ///
     /// Creates a function with a given script as its body.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -801,8 +1324,6 @@ extern "C-unwind" {
     /// - `body` must be a valid pointer.
     /// - `source_url` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectmakefunction(_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectMakeFunction(
         ctx: JSContextRef,
@@ -817,6 +1338,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an object’s prototype.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the prototype you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that is the object’s prototype.
+    ///
+    ///
     /// Gets an object's prototype.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -829,13 +1363,20 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetprototype(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrototype(ctx: JSContextRef, object: JSObjectRef) -> JSValueRef;
 }
 
 extern "C-unwind" {
+    /// Sets an object’s prototype.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the prototype you want to set.
+    ///
+    /// - value: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to set as the object’s prototype.
+    ///
     /// Sets an object's prototype.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -849,13 +1390,24 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetprototype(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrototype(ctx: JSContextRef, object: JSObjectRef, value: JSValueRef);
 }
 
 extern "C-unwind" {
+    /// Tests whether an object has a specified property.
+    ///
+    /// Parameters:
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to test.
+    ///
+    /// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the property’s name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the object has a property with a name that matches `propertyName`; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether an object has a given property.
     ///
     /// Parameter `object`: The JSObject to test.
@@ -869,8 +1421,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthasproperty(_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasProperty(
         ctx: JSContextRef,
@@ -880,6 +1430,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a property from an object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to get.
+    ///
+    /// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the property’s name.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The property’s value, if `object` has the property; otherwise, the undefined value.
+    ///
+    ///
     /// Gets a property from an object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -898,8 +1465,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetProperty(
         ctx: JSContextRef,
@@ -910,6 +1475,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a property on an object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to set.
+    ///
+    /// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the property’s name.
+    ///
+    /// - value: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to use as the property’s value.
+    ///
+    /// - attributes: A set of [`JSPropertyAttributes`](https://developer.apple.com/documentation/javascriptcore/jspropertyattributes) to give to the property.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
     /// Sets a property on an object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -931,8 +1511,6 @@ extern "C-unwind" {
     /// - `property_name` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetproperty(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetProperty(
         ctx: JSContextRef,
@@ -945,6 +1523,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Deletes a property from an object.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to delete.
+    ///
+    /// - propertyName: A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the property’s name.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the delete operation succeeds; otherwise, [`false`](https://developer.apple.com/documentation/swift/false), such as when the property has the [`kJSPropertyAttributeDontDelete`](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontdelete) attribute set.
+    ///
+    ///
     /// Deletes a property from an object.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -963,8 +1558,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeleteproperty(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeleteProperty(
         ctx: JSContextRef,
@@ -975,6 +1568,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Tests whether an object has the specified property using a JavaScript value as the property key.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to test.
+    ///
+    /// - propertyKey: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that contains the property key to use when looking up the property.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the object has a property with a name that matches `propertyKey`; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the same as performing `propertyKey in object` from JavaScript.
+    ///
+    ///
     /// Tests whether an object has a given property using a JSValueRef as the property key.
     ///
     /// Parameter `object`: The JSObject to test.
@@ -993,8 +1609,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjecthaspropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectHasPropertyForKey(
         ctx: JSContextRef,
@@ -1005,6 +1619,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a property from an object using a JavaScript value as the property key.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to get.
+    ///
+    /// - propertyKey: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that contains the property key to use when looking up the property.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The property’s value if `object` has the property key; otherwise, the undefined value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the same as performing `object[propertyKey]` from JavaScript.
+    ///
+    ///
     /// Gets a property from an object using a JSValueRef as the property key.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1025,8 +1662,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyForKey(
         ctx: JSContextRef,
@@ -1037,6 +1672,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a property on an object using a JavaScript value as the property key.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to set.
+    ///
+    /// - propertyKey: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that contains the property key to use when looking up the property.
+    ///
+    /// - value: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to use as the property’s value.
+    ///
+    /// - attributes: A set of [`JSPropertyAttributes`](https://developer.apple.com/documentation/javascriptcore/jspropertyattributes) to give to the property.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the same as performing `object[propertyKey] = value` from JavaScript.
+    ///
+    ///
     /// Sets a property on an object using a JSValueRef as the property key.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1060,8 +1716,6 @@ extern "C-unwind" {
     /// - `property_key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyforkey(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyForKey(
         ctx: JSContextRef,
@@ -1074,6 +1728,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Deletes a property from an object using a JavaScript value as the property key.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to delete.
+    ///
+    /// - propertyKey: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that contains the property key to use when looking up the property.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the delete operation succeeds; otherwise, [`false`](https://developer.apple.com/documentation/swift/false), such as when the property has the [`kJSPropertyAttributeDontDelete`](https://developer.apple.com/documentation/javascriptcore/kjspropertyattributedontdelete) attribute set.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is the same as performing `delete object[propertyKey]` from JavaScript.
+    ///
+    ///
     /// Deletes a property from an object using a JSValueRef as the property key.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1094,8 +1771,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `property_key` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectdeletepropertyforkey(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectDeletePropertyForKey(
         ctx: JSContextRef,
@@ -1106,6 +1781,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a property from an object by numeric index.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to get.
+    ///
+    /// - propertyIndex: An integer value that is the property’s name.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The property’s value, if `object` has the property; otherwise, the undefined value.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling [`JSObjectGetPropertyAtIndex`](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyatindex(_:_:_:_:)) is equivalent to calling [`JSObjectGetProperty`](https://developer.apple.com/documentation/javascriptcore/jsobjectgetproperty(_:_:_:_:)) with a string that contains `propertyIndex`, but [`JSObjectGetPropertyAtIndex`](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyatindex(_:_:_:_:)) provides optimized access to numeric properties.
+    ///
+    ///
     /// Gets a property from an object by numeric index.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1125,8 +1823,6 @@ extern "C-unwind" {
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetpropertyatindex(_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPropertyAtIndex(
         ctx: JSContextRef,
@@ -1137,6 +1833,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a property on an object by numeric index.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the property you want to set.
+    ///
+    /// - propertyIndex: The property’s name as a number.
+    ///
+    /// - value: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to use as the property’s value.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling [`JSObjectSetPropertyAtIndex`](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyatindex(_:_:_:_:_:)) is equivalent to calling [`JSObjectSetProperty`](https://developer.apple.com/documentation/javascriptcore/jsobjectsetproperty(_:_:_:_:_:_:)) with a string that contain `propertyIndex`, but [`JSObjectSetPropertyAtIndex`](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyatindex(_:_:_:_:_:)) provides optimized access to numeric properties.
+    ///
+    ///
     /// Sets a property on an object by numeric index.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1157,8 +1872,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `value` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetpropertyatindex(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPropertyAtIndex(
         ctx: JSContextRef,
@@ -1170,6 +1883,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets an object’s private data.
+    ///
+    /// Parameters:
+    /// - object: A [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the private data you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the object’s private data, if the object has private data; otherwise, `NULL`.
+    ///
+    ///
     /// Gets an object's private data.
     ///
     /// Parameter `object`: A JSObject whose private data you want to get.
@@ -1179,13 +1903,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectgetprivate(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectGetPrivate(object: JSObjectRef) -> *mut c_void;
 }
 
 extern "C-unwind" {
+    /// Sets a pointer to private data on an object.
+    ///
+    /// Parameters:
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) with the private data you want to set.
+    ///
+    /// - data: A pointer to set as the object’s private data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `object` can store private data; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The default object class doesn’t allocate storage for private data. Only objects that have a non-`NULL` [`JSClassRef`](https://developer.apple.com/documentation/javascriptcore/jsclassref) can store private data.
+    ///
+    ///
     /// Sets a pointer to private data on an object.
     ///
     /// Parameter `object`: The JSObject whose private data you want to set.
@@ -1200,13 +1941,24 @@ extern "C-unwind" {
     ///
     /// - `object` must be a valid pointer.
     /// - `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectsetprivate(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectSetPrivate(object: JSObjectRef, data: *mut c_void) -> bool;
 }
 
 extern "C-unwind" {
+    /// Tests whether you can call an object as a function.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if you can call the object as a function; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether an object can be called as a function.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1219,13 +1971,32 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectisfunction(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsFunction(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Calls an object as a function.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to call as a function.
+    ///
+    /// - thisObject: The object to use as `this`, or `NULL` to use the global object as `this`.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of arguments to pass to the function. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) that results from calling `object` as a function, or `NULL` if the system throws an exception or `object` isn’t a function.
+    ///
+    ///
     /// Calls an object as a function.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1249,8 +2020,6 @@ extern "C-unwind" {
     /// - `this_object` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasfunction(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsFunction(
         ctx: JSContextRef,
@@ -1263,6 +2032,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Tests whether you can call an object as a constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if you can call the object as a constructor; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// Tests whether an object can be called as a constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1275,13 +2057,30 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectisconstructor(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectIsConstructor(ctx: JSContextRef, object: JSObjectRef) -> bool;
 }
 
 extern "C-unwind" {
+    /// Calls an object as a constructor.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) to call as a constructor.
+    ///
+    /// - argumentCount: An integer count of the number of arguments in `arguments`.
+    ///
+    /// - arguments: A [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) array of arguments to pass to the constructor. Pass `NULL` if `argumentCount` is `0`.
+    ///
+    /// - exception: A pointer to a [`JSValueRef`](https://developer.apple.com/documentation/javascriptcore/jsvalueref) to store an exception in, if any. Pass `NULL` to discard any exception.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The [`JSObjectRef`](https://developer.apple.com/documentation/javascriptcore/jsobjectref) that results from calling `object` as a constructor, or `NULL` if the system throws an exception or `object` isn’t a constructor.
+    ///
+    ///
     /// Calls an object as a constructor.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1302,8 +2101,6 @@ extern "C-unwind" {
     /// - `object` must be a valid pointer.
     /// - `arguments` must be a valid pointer.
     /// - `exception` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcallasconstructor(_:_:_:_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCallAsConstructor(
         ctx: JSContextRef,
@@ -1315,6 +2112,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the names of an object’s enumerable properties.
+    ///
+    /// Parameters:
+    /// - ctx: The execution context to use.
+    ///
+    /// - object: The object with the property names you want to get.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSPropertyNameArrayRef`](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref) that contains the names of the object’s enumerable properties. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Gets the names of an object's enumerable properties.
     ///
     /// Parameter `ctx`: The execution context to use.
@@ -1327,8 +2137,6 @@ extern "C-unwind" {
     ///
     /// - `ctx` must be a valid pointer.
     /// - `object` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsobjectcopypropertynames(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSObjectCopyPropertyNames(
         ctx: JSContextRef,
@@ -1339,6 +2147,17 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Retains a JavaScript property name array.
     ///
+    /// Parameters:
+    /// - array: The [`JSPropertyNameArrayRef`](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref) to retain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSPropertyNameArrayRef`](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref) that is the same as `array`.
+    ///
+    ///
+    /// Retains a JavaScript property name array.
+    ///
     /// Parameter `array`: The JSPropertyNameArray to retain.
     ///
     /// Returns: A JSPropertyNameArray that is the same as array.
@@ -1346,8 +2165,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayretain(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRetain(array: JSPropertyNameArrayRef) -> JSPropertyNameArrayRef;
 }
@@ -1355,18 +2172,32 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Releases a JavaScript property name array.
     ///
+    /// Parameters:
+    /// - array: The [`JSPropertyNameArrayRef`](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref) to release.
+    ///
+    /// Releases a JavaScript property name array.
+    ///
     /// Parameter `array`: The JSPropetyNameArray to release.
     ///
     /// # Safety
     ///
     /// `array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayrelease(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayRelease(array: JSPropertyNameArrayRef);
 }
 
 extern "C-unwind" {
+    /// Gets a count of the number of items in a JavaScript property name array.
+    ///
+    /// Parameters:
+    /// - array: The array to retrieve the count from.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An integer count of the number of names in `array`.
+    ///
+    ///
     /// Gets a count of the number of items in a JavaScript property name array.
     ///
     /// Parameter `array`: The array from which to retrieve the count.
@@ -1376,13 +2207,24 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearraygetcount(_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetCount(array: JSPropertyNameArrayRef) -> usize;
 }
 
 extern "C-unwind" {
+    /// Gets a property name at a specified index in a JavaScript property name array.
+    ///
+    /// Parameters:
+    /// - array: The array to retrieve the property name from.
+    ///
+    /// - index: The index of the property name to retrieve.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`JSStringRef`](https://developer.apple.com/documentation/javascriptcore/jsstringref) that contains the property name.
+    ///
+    ///
     /// Gets a property name at a given index in a JavaScript property name array.
     ///
     /// Parameter `array`: The array from which to retrieve the property name.
@@ -1394,8 +2236,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `array` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearraygetnameatindex(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameArrayGetNameAtIndex(
         array: JSPropertyNameArrayRef,
@@ -1406,6 +2246,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Adds a property name to a JavaScript property name accumulator.
     ///
+    /// Parameters:
+    /// - accumulator: The accumulator object to add the property name to.
+    ///
+    /// - propertyName: The property name to add.
+    ///
+    /// Adds a property name to a JavaScript property name accumulator.
+    ///
     /// Parameter `accumulator`: The accumulator object to which to add the property name.
     ///
     /// Parameter `propertyName`: The property name to add.
@@ -1414,8 +2261,6 @@ extern "C-unwind" {
     ///
     /// - `accumulator` must be a valid pointer.
     /// - `property_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynameaccumulatoraddname(_:_:)?language=objc)
     #[cfg(feature = "JSBase")]
     pub fn JSPropertyNameAccumulatorAddName(
         accumulator: JSPropertyNameAccumulatorRef,

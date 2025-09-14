@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireferencelibraryviewcontroller?language=objc)
+    /// A view controller that displays a standard interface for looking up the definition of a word or term.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIReferenceLibraryViewController`](https://developer.apple.com/documentation/uikit/uireferencelibraryviewcontroller) object should not be used to display wordlists, create a standalone dictionary app, or republish the content in any form.
+    ///
+    /// You create and initialize a reference library view controller using the [`initWithTerm:`](https://developer.apple.com/documentation/uikit/uireferencelibraryviewcontroller/init(term:)) method. You pass the term to define as the parameter to this method and the definition is displayed. You can present this view controller modally or as part of another interface. On iPad, you can set the reference library view controller as the content view controller of a [`UIPopoverController`](https://developer.apple.com/documentation/uikit/uipopovercontroller) object. Optionally, use the [`dictionaryHasDefinitionForTerm:`](https://developer.apple.com/documentation/uikit/uireferencelibraryviewcontroller/dictionaryhasdefinition(forterm:)) class method to check if a definition is available for a given term before creating an instance—for example, use this method if you want to change the user interface depending on whether a definition is available.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

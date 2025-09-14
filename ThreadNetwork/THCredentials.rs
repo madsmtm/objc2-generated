@@ -10,10 +10,15 @@ use crate::*;
 extern_class!(
     /// A class that contains credentials for a Thread network.
     ///
+    /// ## Overview
+    ///
+    /// A Thread network defines parameters that all connected devices use. [`THCredentials`](https://developer.apple.com/documentation/threadnetwork/thcredentials) provides these parameters.
+    ///
+    ///
+    /// A class that contains credentials for a Thread network.
+    ///
     /// A Thread network defines parameters that all connected devices use.
     /// ``THCredentials`` provides these parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/threadnetwork/thcredentials?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct THCredentials;

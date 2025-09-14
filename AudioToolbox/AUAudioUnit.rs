@@ -11,46 +11,51 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudioobjectid?language=objc)
 pub type AUAudioObjectID = u32;
 
+/// A result code returned from an audio unit’s render function.
 /// A result code returned from an audio unit's render function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitstatus?language=objc)
 pub type AUAudioUnitStatus = OSStatus;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aueventsampletimeimmediate?language=objc)
 #[cfg(feature = "AudioUnitProperties")]
 pub const AUEventSampleTimeImmediate: AUEventSampleTime = -4294967296;
 
 /// A number of audio sample frames.
 ///
+/// ## Discussion
+///
+/// This alias is type `uint32_t` for impedance-matching with the pervasive use of `UInt32` in the Audio Toolbox framework and the C Audio Unit framework APIs, as well as the [`AVAudioFrameCount`](https://developer.apple.com/documentation/avfaudio/avaudioframecount) data type.
+///
+///
+/// A number of audio sample frames.
+///
 /// This is `uint32_t` for impedence-matching with the pervasive use of `UInt32` in AudioToolbox
 /// and C AudioUnit API's, as well as `AVAudioFrameCount`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudioframecount?language=objc)
 pub type AUAudioFrameCount = u32;
 
 /// A number of audio channels.
 ///
+/// ## Discussion
+///
+/// This alias is type `uint32_t` for impedance-matching with the pervasive use of `UInt32` in the Audio Toolbox framework and the C Audio Unit framework APIs, as well as the [`AVAudioChannelCount`](https://developer.apple.com/documentation/avfaudio/avaudiochannelcount) data type.
+///
+///
+/// A number of audio channels.
+///
 /// This is `uint32_t` for impedence-matching with the pervasive use of `UInt32` in AudioToolbox
 /// and C AudioUnit API's, as well as `AVAudioChannelCount`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiochannelcount?language=objc)
 pub type AUAudioChannelCount = u32;
 
 /// Describes whether a bus array is for input or output.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AUAudioUnitBusType(pub NSInteger);
 impl AUAudioUnitBusType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype/input?language=objc)
+    /// An input bus.
     #[doc(alias = "AUAudioUnitBusTypeInput")]
     pub const Input: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbustype/output?language=objc)
+    /// An output bus.
     #[doc(alias = "AUAudioUnitBusTypeOutput")]
     pub const Output: Self = Self(2);
 }
@@ -63,6 +68,27 @@ unsafe impl RefEncode for AUAudioUnitBusType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A block to supply audio input to a render block.
+///
+/// ## Discussion
+///
+/// The caller must supply valid buffers in the input data’s `mBuffers'` `mData` and `mDataByteSize` fields (`mDataByteSize` must be consistent with `frameCount`). This block may provide input in those specified buffers, or it may replace the `mData` pointers with pointers to memory which it owns and guarantees will remain valid until the next render cycle.
+///
+/// The block returns an audio unit status result code. If instead an error is returned, the input data should be assumed to be invalid.
+///
+/// The block takes the following parameters:
+///
+/// - actionFlags: The pointer to the action flags.
+///
+/// - timestamp: The HAL time at which the input data will be rendered. If there is a sample rate conversion or time compression/expansion downstream, the sample time will not be valid.
+///
+/// - frameCount: The number of input sample frames requested.
+///
+/// - inputBusNumber: The index of the input bus being pulled.
+///
+/// - inputData: The input audio data.
+///
+///
 /// Block to supply audio input to AURenderBlock.
 ///
 /// Parameter `actionFlags`: Pointer to action flags.
@@ -83,8 +109,6 @@ unsafe impl RefEncode for AUAudioUnitBusType {
 ///
 /// Returns: An AUAudioUnitStatus result code. If an error is returned, the input data should be assumed
 /// to be invalid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderpullinputblock?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -100,6 +124,29 @@ pub type AURenderPullInputBlock = *mut block2::DynBlock<
     ) -> AUAudioUnitStatus,
 >;
 
+/// A block to render the audio unit.
+///
+/// ## Discussion
+///
+/// All realtime operations are implemented using blocks to avoid Objective-C method dispatching and the possibility of blocking.
+///
+/// The block returns an audio unit status result code. If instead an error is returned, the output data should be assumed to be invalid.
+///
+/// The block takes the following parameters:
+///
+/// - actionFlags: The pointer to the action flags.
+///
+/// - timestamp: The HAL time at which the input data will be rendered. If there is a sample rate conversion or time compression/expansion downstream, the sample time will not have a defined correlation with the `AudioDevice` sample time.
+///
+/// - frameCount: The number of sample frames to render.
+///
+/// - outputBusNumber: The index of the output bus to render.
+///
+/// - outputData: The output bus’s render buffers and flags. The buffer pointers may be null on entry, in which case the block will render into memory it owns and modify the `mData` pointers to point to that memory. The block is responsible for preserving the validity of that memory until it is next called to render, or until the [`deallocateRenderResources`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/deallocaterenderresources()) method is called.
+///
+/// - pullInputBlock: A block that the audio unit will call in order to pull for input data. This value may be `nil` for instrument and audio generator units (which do not have input busses).
+///
+///
 /// Block to render the audio unit.
 ///
 /// All realtime operations are implemented using blocks to avoid ObjC method dispatching and
@@ -129,8 +176,6 @@ pub type AURenderPullInputBlock = *mut block2::DynBlock<
 ///
 /// Returns: An `AUAudioUnitStatus` result code. If an error is returned, the output data should be assumed
 /// to be invalid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderblock?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -147,6 +192,23 @@ pub type AURenderBlock = *mut block2::DynBlock<
     ) -> AUAudioUnitStatus,
 >;
 
+/// A block called when an audio unit renders audio.
+///
+/// ## Discussion
+///
+/// This block is called by the base class’s AURenderBlock block before and after each render cycle. The observer can distinguish between before and after using the [`kAudioUnitRenderAction_PreRender`](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_prerender) and [`kAudioUnitRenderAction_PostRender`](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags/unitrenderaction_postrender)  action flag values.
+///
+/// The block takes the following parameters:
+///
+/// - actionFlags: The pointer to the action flags.
+///
+/// - timestamp: The HAL time at which the input data will be rendered. If there is a sample rate conversion or time compression/expansion downstream, the sample time will not have a defined correlation with the `AudioDevice` sample time.
+///
+/// - frameCount: The number of sample frames to render.
+///
+/// - outputBusNumber: The index of the output bus to render.
+///
+///
 /// Block called when an audio unit renders.
 ///
 /// This block is called by the base class's AURenderBlock before and after each render cycle.
@@ -154,8 +216,6 @@ pub type AURenderBlock = *mut block2::DynBlock<
 /// flags.
 ///
 /// The parameters are identical to those of AURenderBlock.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurenderobserver?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -165,6 +225,23 @@ pub type AURenderObserver = *mut block2::DynBlock<
     dyn Fn(AudioUnitRenderActionFlags, NonNull<AudioTimeStamp>, AUAudioFrameCount, NSInteger),
 >;
 
+/// A block to schedule parameter changes.
+///
+/// ## Discussion
+///
+/// Check the parameter’s flags to determine whether the parameter is rampable.
+///
+/// The block takes the following parameters:
+///
+/// - eventSampleTime: The sample time at which the parameter is to begin changing. When scheduling parameters during the render cycle, this time can be set to the `AUEventSampleTimeImmediate` value plus an optional buffer offset, in which case the event is scheduled at that position in the current render cycle.
+///
+/// - rampDurationSampleFrames: The number of sample frames over which the parameter’s return value is to ramp, or `0` if the parameter change should take effect immediately.
+///
+/// - parameterAddress: The parameter’s address.
+///
+/// - value: The parameter’s new value if the ramp duration is `0`; otherwise, the value at the end of the scheduled ramp.
+///
+///
 /// Block to schedule parameter changes.
 ///
 /// Not all parameters are rampable; check the parameter's flags.
@@ -184,8 +261,6 @@ pub type AURenderObserver = *mut block2::DynBlock<
 ///
 /// Parameter `value`: The parameter's new value if the ramp duration is 0; otherwise, the value at the end
 /// of the scheduled ramp.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduleparameterblock?language=objc)
 #[cfg(all(
     feature = "AUParameters",
     feature = "AudioUnitProperties",
@@ -195,6 +270,21 @@ pub type AUScheduleParameterBlock = *mut block2::DynBlock<
     dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue),
 >;
 
+/// A block to schedule MIDI events.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - eventSampleTime: The sample time at which the MIDI event is to occur. When scheduling parameters during the render cycle, this time can be set to the `AUEventSampleTimeImmediate` value plus an optional buffer offset, in which case the event is scheduled at that position in the current render cycle.
+///
+/// - cable: The virtual cable number.
+///
+/// - length: The number of bytes of MIDI data in the provided event(s).
+///
+/// - midiBytes: One or more valid MIDI 1.0 events, except _sysex_ which must always be sent as the only event in the chunk. Running status is not allowed.
+///
+///
 /// Block to schedule MIDI events.
 ///
 /// Parameter `eventSampleTime`: The sample time (timestamp->mSampleTime) at which the MIDI event is to occur. When
@@ -208,8 +298,6 @@ pub type AUScheduleParameterBlock = *mut block2::DynBlock<
 ///
 /// Parameter `midiBytes`: One or more valid MIDI 1.0 events, except sysex which must always be sent as the only event
 /// in the chunk. Also, running status is not allowed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUScheduleMIDIEventBlock =
     *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
@@ -224,12 +312,33 @@ pub type AUScheduleMIDIEventBlock =
 ///
 /// Parameter `midiBytes`: One or more valid MIDI 1.0 events, except sysex which must always be sent as the only event
 /// in the chunk.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUMIDIOutputEventBlock =
     *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
 
+/// A block through which hosts provide musical tempo, time signature, and beat position.
+///
+/// ## Discussion
+///
+/// If the host app provides this block to an audio unit, via the [`musicalContextBlock`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/musicalcontextblock) property, then the block may be called at the beginning of each render cycle to obtain information about the current render cycle’s musical context. Any of the provided parameters may be null to indicate that the audio unit is not interested in that particular piece of information.
+///
+/// This block returns [`true`](https://developer.apple.com/documentation/swift/true) if the operation was successful and [`false`](https://developer.apple.com/documentation/swift/false) otherwise.
+///
+/// The block takes the following parameters:
+///
+/// - currentTempo: The current tempo, in beats per minute.
+///
+/// - timeSignatureNumerator: The numerator of the current time signature.
+///
+/// - timeSignatureDenominator: The denominator of the current time signature.
+///
+/// - currentBeatPosition: The precise beat position of the beginning of the current buffer being rendered.
+///
+/// - sampleOffsetToNextBeat: The number of samples between the beginning of the buffer being rendered and the next beat. Can be `0`.
+///
+/// - currentMeasureDownbeatPosition: The beat position corresponding to the beginning of the current measure.
+///
+///
 /// Block by which hosts provide musical tempo, time signature, and beat position.
 ///
 /// Parameter `currentTempo`: The current tempo in beats per minute.
@@ -253,8 +362,6 @@ pub type AUMIDIOutputEventBlock =
 ///
 /// Any of the provided parameters may be null to indicate that the audio unit is not interested
 /// in that particular piece of information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AUHostMusicalContextBlock = *mut block2::DynBlock<
     dyn Fn(
@@ -277,8 +384,6 @@ pub type AUHostMusicalContextBlock = *mut block2::DynBlock<
 /// Parameter `profile`: The MIDI-CI profile.
 ///
 /// Parameter `enabled`: YES if the profile was enabled, NO if the profile was disabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidiciprofilechangedblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
 pub type AUMIDICIProfileChangedBlock =
     *mut block2::DynBlock<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
@@ -295,24 +400,22 @@ pub type AUMIDICIProfileChangedBlock =
 /// transport moving.
 ///
 /// True if the host is cycling or looping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUHostTransportStateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl AUHostTransportStateFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/changed?language=objc)
+/// Indicates such state changes as start, stop, or seeking to another position in the timeline. Can be active if there was a change to the state of, or discontinuities in, the audio transport since the [`AUHostTransportStateBlock`](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock) callback was last called.
         #[doc(alias = "AUHostTransportStateChanged")]
         const Changed = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/moving?language=objc)
+/// Indicates that the audio transport is moving.
         #[doc(alias = "AUHostTransportStateMoving")]
         const Moving = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/recording?language=objc)
+/// Indicates that the host is recording, or is prepared to record. Can be active with or without a moving state.
         #[doc(alias = "AUHostTransportStateRecording")]
         const Recording = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateflags/cycling?language=objc)
+/// Indicates that the host is cycling or looping.
         #[doc(alias = "AUHostTransportStateCycling")]
         const Cycling = 8;
     }
@@ -326,6 +429,25 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A block through which hosts provide information about their transport state.
+///
+/// ## Discussion
+///
+/// If the host app provides this block to an audio unit, via the [`transportStateBlock`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/transportstateblock) property, then the block may be called at the beginning of each render cycle to obtain information about the current transport state. Any of the provided parameters may be null to indicate that the audio unit is not interested in that particular piece of information.
+///
+/// This block returns [`true`](https://developer.apple.com/documentation/swift/true) if the transport state was able to be retrieved from the host; it returns [`false`](https://developer.apple.com/documentation/swift/false) otherwise.
+///
+/// The block takes the following parameters:
+///
+/// - transportStateFlags: The current state of the audio transport.
+///
+/// - currentSamplePosition: The current position in the host’s timeline, in samples at the audio unit’s output sample rate.
+///
+/// - cycleStartBeatPosition: If cycling, the starting beat position of the cycle.
+///
+/// - cycleEndBeatPosition: If cycling, the ending beat position of the cycle.
+///
+///
 /// Block by which hosts provide information about their transport state.
 ///
 /// Parameter `transportStateFlags`: The current state of the transport.
@@ -343,14 +465,41 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
 ///
 /// Any of the provided parameters may be null to indicate that the audio unit is not interested
 /// in that particular piece of information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AUHostTransportStateBlock = *mut block2::DynBlock<
     dyn Fn(*mut AUHostTransportStateFlags, *mut c_double, *mut c_double, *mut c_double) -> Bool,
 >;
 
 extern_class!(
+    /// A class that defines a host’s interface to an audio unit.
+    ///
+    /// ## Overview
+    ///
+    /// Hosts can instantiate either version 3 or version 2 audio units with this class, and to some extent control whether an audio unit is instantiated in-process or in a separate extension process.
+    ///
+    /// Version 3 audio units should subclass the [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit) class. Version 3 audio unit components can be registered in the following ways:
+    ///
+    /// - Package the component into an app extension containing an `AudioComponents`  `Info.plist` entry. The principal class must conform to the [`AUAudioUnitFactory`](https://developer.apple.com/documentation/audiotoolbox/auaudiounitfactory) protocol, which will typically instantiate an [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit) subclass.
+    ///
+    /// - Call the [`registerSubclass:asComponentDescription:name:version:`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/registersubclass(_:as:name:version:)) method to associate a component description with an [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit) subclass. Use the convention `<manufacturer name>:<audio unit name>` when naming your audio unit component.
+    ///
+    /// Version 2 audio units should subclass the [`AUAudioUnitV2Bridge`](https://developer.apple.com/documentation/audiotoolbox/auaudiounitv2bridge) class instead. Version 2 audio unit components can be registered in the following ways:
+    ///
+    /// - Package the component into a component bundle containing an `AudioComponents` `Info.plist` entry, referring to an `AudioComponentFactoryFunction` function.
+    ///
+    /// - Call the `AudioComponentRegister` function to associate a component description with an `AudioComponentFactoryFunction` function.
+    ///
+    /// A host does not need to be aware of the concrete [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit) subclass that is being instantiated. The [`initWithComponentDescription:options:error:`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/init(componentdescription:options:)) method ensures that the proper subclass is used.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  When using the [`AUAudioUnit`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit) class with a version 2 audio unit, or the C [`AudioComponent`](https://developer.apple.com/documentation/audiotoolbox/audiocomponent) and `AudioUnit` APIs with a version 3 audio unit, all major pieces of functionality are bridged between the two APIs. When applicable, this document references the version 2 API equivalent of each version 3 method or property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An audio unit instance.
     ///
     /// AUAudioUnit is a host interface to an audio unit. Hosts can instantiate either version 2 or
@@ -381,8 +530,6 @@ extern_class!(
     /// When using AUAudioUnit with a v2 audio unit, or the C AudioComponent and AudioUnit API's
     /// with a v3 audio unit, all major pieces of functionality are bridged between the
     /// two API's. This header describes, for each v3 method or property, the v2 equivalent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounit?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnit;
@@ -1461,6 +1608,23 @@ impl AUAudioUnit {
     );
 }
 
+/// A block to notify the host of an I/O unit that an input is available.
+///
+/// ## Discussion
+///
+/// The block takes the following parameters:
+///
+/// - actionFlags: The pointer to the action flags.
+///
+/// - timestamp: The HAL time at which the input data will be rendered. If there is a sample rate conversion or time compression/expansion downstream, the sample time will not be valid.
+///
+/// - frameCount: The number of sample frames of input available.
+///
+/// - inputBusNumber: The index of the input bus from which input is available.
+///
+/// The input data is obtained by calling the render block of the audio unit. The audio unit is not provided since it is not safe to message an Objective-C object in a real-time context.
+///
+///
 /// Block to notify the client of an I/O unit that input is available.
 ///
 /// Parameter `actionFlags`: Pointer to action flags.
@@ -1475,8 +1639,6 @@ impl AUAudioUnit {
 /// The input data is obtained by calling the render block of the audio unit.
 /// The AUAudioUnit is not provided since it is not safe to message an Objective C
 /// object in a real time context.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auinputhandler?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "block2",
@@ -1654,6 +1816,23 @@ impl AUAudioUnit {
 }
 
 extern_class!(
+    /// A class that defines a container for an audio unit’s input or output busses.
+    ///
+    /// ## Overview
+    ///
+    /// Hosts can observe a bus property across all busses by using KVO on a bus array object, without having to observe it on each individual bus. Some audio units (e.g. mixers) support variable numbers of busses, via subclassing. When the bus count changes, a KVO notification is sent on the audio unit’s [`inputBusses`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/inputbusses) or [`outputBusses`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/outputbusses) property, as appropriate.
+    ///
+    /// This version 3 class is bridged to the version 2 `kAudioUnitProperty_ElementCount` API.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You could add listeners to individual busses, but that means you have to observe bus count changes and add or remove listeners in response. Furthermore, the [`addObserver:toObjectsAtIndexes:forKeyPath:options:context:`](https://developer.apple.com/documentation/foundation/nsarray/addobserver(_:toobjectsat:forkeypath:options:context:)) method is problematic; it does not let the individual objects override the observation request, and so a bus which is proxying a bus in an extension process does not get the message.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Container for an audio unit's input or output busses.
     ///
     /// Hosts can observe a bus property across all busses by using KVO on this object, without
@@ -1670,8 +1849,6 @@ extern_class!(
     /// Subclassers should see also the AUAudioUnitBusImplementation category.
     ///
     /// The bus array is bridged to the v2 property kAudioUnitProperty_ElementCount.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbusarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitBusArray;
@@ -1790,9 +1967,8 @@ impl AUAudioUnitBusArray {
 }
 
 extern_class!(
+    /// A class that defines an input or output connection point on an audio unit.
     /// An input or output connection point on an audio unit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitbus?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitBus;
@@ -1946,10 +2122,17 @@ impl AUAudioUnitBus {
 }
 
 extern_class!(
+    /// A class that describes an interface for custom parameter settings provided by the audio unit developer.
+    ///
+    /// ## Overview
+    ///
+    /// These presets often produce a useful sound or starting point.
+    ///
+    /// For more details on working with Audio Unit presets, see [Audio Units - How to correctly save and restore Audio Unit presets.](https://developer.apple.com/library/archive/technotes/tn2157/_index.html#//apple_ref/doc/uid/DTS40011953) Note that the version 3 [`fullState`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstate) property is bridged to the version 2 `kAudioUnitProperty_ClassInfo` API. Similarly, the version 3 [`fullStateForDocument`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/fullstatefordocument) property is bridged to the version 2 `kAudioUnitProperty_ClassInfoFromDocument` API.
+    ///
+    ///
     /// A collection of parameter settings provided by the audio unit implementor, producing a
     /// useful sound or starting point.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiounitpreset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AUAudioUnitPreset;
@@ -2013,13 +2196,20 @@ impl AUAudioUnitPreset {
 ///
 /// Returns: An NSDictionary with custom data. The allowed classes for key and value types are
 /// NSArray, NSDictionary, NSOrderedSet, NSSet, NSString, NSData, NSNull, NSNumber, NSDate
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CallHostBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
 
 extern_protocol!(
+    /// A specification for a bidirectional communication message channel.
+    ///
+    /// ## Overview
+    ///
+    /// Audio units and their hosts have unique communication needs. For example, for better audio processing they can exchange musical context. An audio unit implements a class that conforms to [`AUMessageChannel`](https://developer.apple.com/documentation/audiotoolbox/aumessagechannel) and returns an instance from [`messageChannelFor:`](https://developer.apple.com/documentation/audiotoolbox/auaudiounit/messagechannel(for:)). A host queries the instance through the channel name.
+    ///
+    /// This protocol offers a method to send messages to an audio unit and a block to send messages to the host.
+    ///
+    ///
     /// The protocol which objects returned from `[AUAudioUnit messageChannelFor:]` have to conform to.
     ///
     /// Audio Units and hosts that have special needs of communication, e.g. to exchange musical context required for better audio processing,
@@ -2027,8 +2217,6 @@ extern_protocol!(
     /// a class conforming to the AUMessageChannel protocol and return an instance via `[AUAudioUnit messageChannelFor:]`. A host can query
     /// the instance via the channel name.
     /// The protocol offers a method to send messages to the AU and a block to send messages to the host.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumessagechannel?language=objc)
     pub unsafe trait AUMessageChannel {
         /// Calls the Audio Unit with custom data message.
         ///

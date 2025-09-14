@@ -9,8 +9,6 @@ use crate::*;
 
 extern_class!(
     /// Text formatting view controller configuration object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextformattingviewcontroller/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITextFormattingViewControllerConfiguration;

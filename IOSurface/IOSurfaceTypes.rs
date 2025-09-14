@@ -6,20 +6,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfaceid?language=objc)
+/// An IOSurface identifier.
 pub type IOSurfaceID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceLockOptions(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceLockOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions/readonly?language=objc)
+///
+/// ## Discussion
+///
+/// If you are not going to modify the data while you hold the lock, you should set this flag to avoid invalidating any existing caches of the buffer contents. This flag should be passed both to the lock and unlock functions. Non-symmentrical usage of this flag will result in undefined behavior.
+///
+///
         #[doc(alias = "kIOSurfaceLockReadOnly")]
         const ReadOnly = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions/avoidsync?language=objc)
+///
+/// ## Discussion
+///
+/// If you want to detect/avoid a potentially expensive paging operation (such as readback from a GPU to system memory) when you lock the buffer, you may include this flag. If locking the buffer requires a readback, the lock will fail with an error return of `kIOReturnCannotLock`.
+///
+///
         #[doc(alias = "kIOSurfaceLockAvoidSync")]
         const AvoidSync = 0x00000002;
     }
@@ -39,23 +48,18 @@ unsafe impl Send for IOSurfaceLockOptions {}
 
 unsafe impl Sync for IOSurfaceLockOptions {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfacePurgeabilityState(pub u32);
 bitflags::bitflags! {
     impl IOSurfacePurgeabilityState: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/kiosurfacepurgeablenonvolatile?language=objc)
         #[doc(alias = "kIOSurfacePurgeableNonVolatile")]
         const PurgeableNonVolatile = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeablevolatile?language=objc)
         #[doc(alias = "kIOSurfacePurgeableVolatile")]
         const PurgeableVolatile = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeableempty?language=objc)
         #[doc(alias = "kIOSurfacePurgeableEmpty")]
         const PurgeableEmpty = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate/purgeablekeepcurrent?language=objc)
         #[doc(alias = "kIOSurfacePurgeableKeepCurrent")]
         const PurgeableKeepCurrent = 3;
     }
@@ -75,32 +79,19 @@ unsafe impl Send for IOSurfacePurgeabilityState {}
 
 unsafe impl Sync for IOSurfacePurgeabilityState {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacedefaultcache?language=objc)
 pub const kIOSurfaceDefaultCache: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfaceinhibitcache?language=objc)
 pub const kIOSurfaceInhibitCache: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacewritethrucache?language=objc)
 pub const kIOSurfaceWriteThruCache: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecopybackcache?language=objc)
 pub const kIOSurfaceCopybackCache: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacewritecombinecache?language=objc)
 pub const kIOSurfaceWriteCombineCache: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacecopybackinnercache?language=objc)
 pub const kIOSurfaceCopybackInnerCache: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapcacheshift?language=objc)
 pub const kIOSurfaceMapCacheShift: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapdefaultcache?language=objc)
 pub const kIOSurfaceMapDefaultCache: c_uint = kIOSurfaceDefaultCache << kIOSurfaceMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapinhibitcache?language=objc)
 pub const kIOSurfaceMapInhibitCache: c_uint = kIOSurfaceInhibitCache << kIOSurfaceMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapwritethrucache?language=objc)
 pub const kIOSurfaceMapWriteThruCache: c_uint = kIOSurfaceWriteThruCache << kIOSurfaceMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapcopybackcache?language=objc)
 pub const kIOSurfaceMapCopybackCache: c_uint = kIOSurfaceCopybackCache << kIOSurfaceMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapwritecombinecache?language=objc)
 pub const kIOSurfaceMapWriteCombineCache: c_uint =
     kIOSurfaceWriteCombineCache << kIOSurfaceMapCacheShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iosurface/kiosurfacemapcopybackinnercache?language=objc)
 pub const kIOSurfaceMapCopybackInnerCache: c_uint =
     kIOSurfaceCopybackInnerCache << kIOSurfaceMapCacheShift;

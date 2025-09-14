@@ -7,31 +7,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode?language=objc)
+/// Codes returned by an intents handler in response to a search request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForMediaIntentResponseCode(pub NSInteger);
 impl INSearchForMediaIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/unspecified?language=objc)
+    /// An unknown state.
     #[doc(alias = "INSearchForMediaIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/ready?language=objc)
+    /// The app is ready to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/continueinapp?language=objc)
+    /// The system should launch your app in the foreground to search for the media.
     #[doc(alias = "INSearchForMediaIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/inprogress?language=objc)
+    /// The app is currently trying to process the search request.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if it may take more than a few seconds to search for the media.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/success?language=objc)
+    /// The app successfully performed the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully searched for the media.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaIntentResponseCodeSuccess")]
     pub const Success: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/failure?language=objc)
+    /// The app is unable to search for the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevent your app from searching for the media.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaIntentResponseCodeFailure")]
     pub const Failure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user needs to launch your app to search for the media.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request with Siri for a reason not covered by any other response code. For example, you might use this code if the user hasn’t set up an account with your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForMediaIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(6);
 }
@@ -45,7 +75,15 @@ unsafe impl RefEncode for INSearchForMediaIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformediaintentresponse?language=objc)
+    /// An intents handler’s response to a search media intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForMediaIntentResponse`](https://developer.apple.com/documentation/intents/insearchformediaintentresponse) object to specify the results after searching for the user-specified media. After performing the search action using the criteria specified in the [`INSearchForMediaIntent`](https://developer.apple.com/documentation/intents/insearchformediaintent) object, create an instance of this class with the results of the action. Siri communicates the status from your response to the user, at appropriate times.
+    ///
+    /// You create an [`INSearchForMediaIntentResponse`](https://developer.apple.com/documentation/intents/insearchformediaintentresponse) object in the [`confirmSearchForMedia:completion:`](https://developer.apple.com/documentation/intents/insearchformediaintenthandling/confirm(intent:completion:)) and [`handleSearchForMedia:completion:`](https://developer.apple.com/documentation/intents/insearchformediaintenthandling/handle(intent:completion:)) methods of your add media handler object. For more information about implementing your handler object, see [`INSearchForMediaIntentHandling`](https://developer.apple.com/documentation/intents/insearchformediaintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

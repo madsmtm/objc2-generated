@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a collection of Virtio console ports.
     /// Virtio Console Port Array
     ///
     /// This array stores a collection of ports configured for use by a VZVirtioConsoleDevice. VZVirtioConsolePort objects may be retrieved by index.
@@ -13,8 +14,6 @@ extern_class!(
     /// See: VZVirtioConsoleDevice
     ///
     /// See: VZVirtioConsolePort
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoleportarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtioConsolePortArray;

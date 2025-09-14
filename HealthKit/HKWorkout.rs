@@ -6,267 +6,464 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type of activity performed during a workout.
 /// Represents a particular type of workout or exercise
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutActivityType(pub NSUInteger);
 impl HKWorkoutActivityType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/americanfootball?language=objc)
+    /// The constant for playing American football.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeAmericanFootball")]
     pub const AmericanFootball: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/archery?language=objc)
+    /// The constant for shooting archery.
     #[doc(alias = "HKWorkoutActivityTypeArchery")]
     pub const Archery: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/australianfootball?language=objc)
+    /// The constant for playing Australian football.
     #[doc(alias = "HKWorkoutActivityTypeAustralianFootball")]
     pub const AustralianFootball: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/badminton?language=objc)
+    /// The constant for playing badminton.
     #[doc(alias = "HKWorkoutActivityTypeBadminton")]
     pub const Badminton: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/baseball?language=objc)
+    /// The constant for playing baseball.
     #[doc(alias = "HKWorkoutActivityTypeBaseball")]
     pub const Baseball: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/basketball?language=objc)
+    /// The constant for playing basketball.
     #[doc(alias = "HKWorkoutActivityTypeBasketball")]
     pub const Basketball: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/bowling?language=objc)
+    /// The constant for bowling.
     #[doc(alias = "HKWorkoutActivityTypeBowling")]
     pub const Bowling: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/boxing?language=objc)
+    /// The constant for boxing.
     #[doc(alias = "HKWorkoutActivityTypeBoxing")]
     pub const Boxing: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/climbing?language=objc)
+    /// The constant for climbing.
     #[doc(alias = "HKWorkoutActivityTypeClimbing")]
     pub const Climbing: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cricket?language=objc)
+    /// The constant for playing cricket.
     #[doc(alias = "HKWorkoutActivityTypeCricket")]
     pub const Cricket: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/crosstraining?language=objc)
+    /// The constant for exercise that includes any mixture of cardio, strength, and/or flexibility training.
     #[doc(alias = "HKWorkoutActivityTypeCrossTraining")]
     pub const CrossTraining: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/curling?language=objc)
+    /// The constant for curling.
     #[doc(alias = "HKWorkoutActivityTypeCurling")]
     pub const Curling: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cycling?language=objc)
+    /// The constant for cycling.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeCycling")]
     pub const Cycling: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/dance?language=objc)
+    /// The constant for dancing.
     #[doc(alias = "HKWorkoutActivityTypeDance")]
     #[deprecated = "Use HKWorkoutActivityTypeSocialDance or HKWorkoutActivityTypeCardioDance"]
     pub const Dance: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/danceinspiredtraining?language=objc)
+    /// The constant for workouts inspired by dance, including Pilates, Barre, and Feldenkrais.
     #[doc(alias = "HKWorkoutActivityTypeDanceInspiredTraining")]
     #[deprecated = "Use HKWorkoutActivityTypeSocialDance, HKWorkoutActivityTypeCardioDance, HKWorkoutActivityTypeBarre or HKWorkoutActivityTypePilates"]
     pub const DanceInspiredTraining: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/elliptical?language=objc)
+    /// The constant for workouts on an elliptical machine.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeElliptical")]
     pub const Elliptical: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/equestriansports?language=objc)
+    /// The constant for activities that involve riding a horse, including polo, horse racing, and horse riding.
     #[doc(alias = "HKWorkoutActivityTypeEquestrianSports")]
     pub const EquestrianSports: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fencing?language=objc)
+    /// The constant for fencing.
     #[doc(alias = "HKWorkoutActivityTypeFencing")]
     pub const Fencing: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fishing?language=objc)
+    /// The constant for fishing.
     #[doc(alias = "HKWorkoutActivityTypeFishing")]
     pub const Fishing: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/functionalstrengthtraining?language=objc)
+    /// The constant for strength training, primarily with free weights and body weight.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeFunctionalStrengthTraining")]
     pub const FunctionalStrengthTraining: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/golf?language=objc)
+    /// The constant for playing golf.
     #[doc(alias = "HKWorkoutActivityTypeGolf")]
     pub const Golf: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/gymnastics?language=objc)
+    /// Performing gymnastics.
     #[doc(alias = "HKWorkoutActivityTypeGymnastics")]
     pub const Gymnastics: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/handball?language=objc)
+    /// The constant for playing handball.
     #[doc(alias = "HKWorkoutActivityTypeHandball")]
     pub const Handball: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hiking?language=objc)
+    /// The constant for hiking.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeHiking")]
     pub const Hiking: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hockey?language=objc)
+    /// The constant for playing hockey, including ice hockey, field hockey, and related sports.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving. Calorie calculations differ between indoor and outdoor workouts for this activity.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeHockey")]
     pub const Hockey: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/hunting?language=objc)
+    /// The constant for hunting.
     #[doc(alias = "HKWorkoutActivityTypeHunting")]
     pub const Hunting: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/lacrosse?language=objc)
+    /// The constant for playing lacrosse.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeLacrosse")]
     pub const Lacrosse: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/martialarts?language=objc)
+    /// The constant for practicing martial arts.
     #[doc(alias = "HKWorkoutActivityTypeMartialArts")]
     pub const MartialArts: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mindandbody?language=objc)
+    /// The constant for performing activities like walking meditation, Gyrotonic exercise, and Qigong.
     #[doc(alias = "HKWorkoutActivityTypeMindAndBody")]
     pub const MindAndBody: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mixedmetaboliccardiotraining?language=objc)
+    /// The constant for performing any mix of cardio-focused exercises.
     #[doc(alias = "HKWorkoutActivityTypeMixedMetabolicCardioTraining")]
     #[deprecated = "Use HKWorkoutActivityTypeMixedCardio or HKWorkoutActivityTypeHighIntensityIntervalTraining"]
     pub const MixedMetabolicCardioTraining: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/paddlesports?language=objc)
+    /// The constant for canoeing, kayaking, paddling an outrigger, paddling a stand-up paddle board, and related sports.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypePaddleSports")]
     pub const PaddleSports: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/play?language=objc)
+    /// The constant for play-based activities like tag, dodgeball, hopscotch, tetherball, and playing on a jungle gym.
     #[doc(alias = "HKWorkoutActivityTypePlay")]
     pub const Play: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/preparationandrecovery?language=objc)
+    /// The constant for warm-up and therapeutic activities like foam rolling and stretching.
     #[doc(alias = "HKWorkoutActivityTypePreparationAndRecovery")]
     pub const PreparationAndRecovery: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/racquetball?language=objc)
+    /// The constant for playing racquetball.
     #[doc(alias = "HKWorkoutActivityTypeRacquetball")]
     pub const Racquetball: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/rowing?language=objc)
+    /// The constant for rowing.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors. Calorie calculations differ between indoor and outdoor workouts for this activity.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeRowing")]
     pub const Rowing: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/rugby?language=objc)
+    /// The constant for playing rugby.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeRugby")]
     pub const Rugby: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/running?language=objc)
+    /// The constant for running and jogging.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeRunning")]
     pub const Running: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/sailing?language=objc)
+    /// The constant for sailing.
     #[doc(alias = "HKWorkoutActivityTypeSailing")]
     pub const Sailing: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/skatingsports?language=objc)
+    /// The constant for skating activities, including ice skating, speed skating, inline skating, and skateboarding.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving. Calorie calculations differ between indoor and outdoor workouts for this activity.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeSkatingSports")]
     pub const SkatingSports: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/snowsports?language=objc)
+    /// The constant for a variety of snow sports, including sledding, snowmobiling, or building a snowman.
     #[doc(alias = "HKWorkoutActivityTypeSnowSports")]
     pub const SnowSports: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/soccer?language=objc)
+    /// The constant for playing soccer.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving. Calorie calculations differ between indoor and outdoor workouts for this activity.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeSoccer")]
     pub const Soccer: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/softball?language=objc)
+    /// The constant for playing softball.
     #[doc(alias = "HKWorkoutActivityTypeSoftball")]
     pub const Softball: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/squash?language=objc)
+    /// The constant for playing squash.
     #[doc(alias = "HKWorkoutActivityTypeSquash")]
     pub const Squash: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/stairclimbing?language=objc)
+    /// The constant for workouts using a stair climbing machine.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeStairClimbing")]
     pub const StairClimbing: Self = Self(44);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/surfingsports?language=objc)
+    /// The constant for a variety of surf sports, including surfing, kite surfing, and wind surfing.
     #[doc(alias = "HKWorkoutActivityTypeSurfingSports")]
     pub const SurfingSports: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimming?language=objc)
+    /// The constant for swimming.
+    ///
+    /// ## Discussion
+    ///
+    /// If your app uses the [`HKWorkoutActivityTypeSwimming`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimming) or [`HKWorkoutActivityTypeOther`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/other) activity type, you must explain how your app calculates workout data when sensor information is not available. For more information, see the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/watchos/interaction/workout/). HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeSwimming")]
     pub const Swimming: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/tabletennis?language=objc)
+    /// The constant for playing table tennis.
     #[doc(alias = "HKWorkoutActivityTypeTableTennis")]
     pub const TableTennis: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/tennis?language=objc)
+    /// The constant for playing tennis.
     #[doc(alias = "HKWorkoutActivityTypeTennis")]
     pub const Tennis: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/trackandfield?language=objc)
+    /// Participating in track and field events, including shot put, javelin, pole vaulting, and related sports.
     #[doc(alias = "HKWorkoutActivityTypeTrackAndField")]
     pub const TrackAndField: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/traditionalstrengthtraining?language=objc)
+    /// The constant for strength training exercises primarily using machines or free weights.
     #[doc(alias = "HKWorkoutActivityTypeTraditionalStrengthTraining")]
     pub const TraditionalStrengthTraining: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/volleyball?language=objc)
+    /// The constant for playing volleyball.
     #[doc(alias = "HKWorkoutActivityTypeVolleyball")]
     pub const Volleyball: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/walking?language=objc)
+    /// The constant for walking.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeWalking")]
     pub const Walking: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/waterfitness?language=objc)
+    /// The constant for aerobic exercise performed in shallow water.
     #[doc(alias = "HKWorkoutActivityTypeWaterFitness")]
     pub const WaterFitness: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/waterpolo?language=objc)
+    /// The constant for playing water polo.
     #[doc(alias = "HKWorkoutActivityTypeWaterPolo")]
     pub const WaterPolo: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/watersports?language=objc)
+    /// The constant for a variety of water sports, including water skiing, wake boarding, and related activities.
     #[doc(alias = "HKWorkoutActivityTypeWaterSports")]
     pub const WaterSports: Self = Self(55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wrestling?language=objc)
+    /// The constant for wrestling.
     #[doc(alias = "HKWorkoutActivityTypeWrestling")]
     pub const Wrestling: Self = Self(56);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/yoga?language=objc)
+    /// The constant for practicing yoga.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeYoga")]
     pub const Yoga: Self = Self(57);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/barre?language=objc)
+    /// The constant for barre workout.
     #[doc(alias = "HKWorkoutActivityTypeBarre")]
     pub const Barre: Self = Self(58);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/coretraining?language=objc)
+    /// The constant for core training.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeCoreTraining")]
     pub const CoreTraining: Self = Self(59);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/crosscountryskiing?language=objc)
+    /// The constant for cross country skiing.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeCrossCountrySkiing")]
     pub const CrossCountrySkiing: Self = Self(60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/downhillskiing?language=objc)
+    /// The constant for downhill skiing.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeDownhillSkiing")]
     pub const DownhillSkiing: Self = Self(61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/flexibility?language=objc)
+    /// The constant for a flexibility workout.
     #[doc(alias = "HKWorkoutActivityTypeFlexibility")]
     pub const Flexibility: Self = Self(62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/highintensityintervaltraining?language=objc)
+    /// The constant for high intensity interval training.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeHighIntensityIntervalTraining")]
     pub const HighIntensityIntervalTraining: Self = Self(63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/jumprope?language=objc)
+    /// The constant for jumping rope.
     #[doc(alias = "HKWorkoutActivityTypeJumpRope")]
     pub const JumpRope: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/kickboxing?language=objc)
+    /// The constant for kickboxing.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeKickboxing")]
     pub const Kickboxing: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/pilates?language=objc)
+    /// The constant for a pilates workout.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypePilates")]
     pub const Pilates: Self = Self(66);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/snowboarding?language=objc)
+    /// The constant for snowboarding.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeSnowboarding")]
     pub const Snowboarding: Self = Self(67);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/stairs?language=objc)
+    /// The constant for running, walking, or other drills using stairs (for example, in a stadium or inside a multilevel building).
     #[doc(alias = "HKWorkoutActivityTypeStairs")]
     pub const Stairs: Self = Self(68);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/steptraining?language=objc)
+    /// The constant for training using a step bench.
     #[doc(alias = "HKWorkoutActivityTypeStepTraining")]
     pub const StepTraining: Self = Self(69);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wheelchairwalkpace?language=objc)
+    /// The constant for a wheelchair workout at walking pace.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeWheelchairWalkPace")]
     pub const WheelchairWalkPace: Self = Self(70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/wheelchairrunpace?language=objc)
+    /// The constant for wheelchair workout at running pace.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeWheelchairRunPace")]
     pub const WheelchairRunPace: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/taichi?language=objc)
+    /// The constant for tai chi.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeTaiChi")]
     pub const TaiChi: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/mixedcardio?language=objc)
+    /// The constant for workouts that mix a variety of cardio exercise machines or modalities.
     #[doc(alias = "HKWorkoutActivityTypeMixedCardio")]
     pub const MixedCardio: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/handcycling?language=objc)
+    /// The constant for hand cycling.
     #[doc(alias = "HKWorkoutActivityTypeHandCycling")]
     pub const HandCycling: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/discsports?language=objc)
+    /// The constant for playing disc sports such as Ultimate and Disc Golf.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit estimates calories for this activity based on the data from Apple Watch’s sensors. This rate is never lower than the brisk walk burn rate when moving.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeDiscSports")]
     pub const DiscSports: Self = Self(75);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/fitnessgaming?language=objc)
+    /// The constant for playing fitness-based video games.
     #[doc(alias = "HKWorkoutActivityTypeFitnessGaming")]
     pub const FitnessGaming: Self = Self(76);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cardiodance?language=objc)
+    /// The constant for cardiovascular dance workouts.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeCardioDance")]
     pub const CardioDance: Self = Self(77);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/socialdance?language=objc)
+    /// The constant for dancing with a partner or partners, such as swing, salsa, or folk dances.
     #[doc(alias = "HKWorkoutActivityTypeSocialDance")]
     pub const SocialDance: Self = Self(78);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/pickleball?language=objc)
+    /// The constant for playing pickleball.
     #[doc(alias = "HKWorkoutActivityTypePickleball")]
     pub const Pickleball: Self = Self(79);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cooldown?language=objc)
+    /// The constant for low intensity stretching and mobility exercises following a more vigorous workout.
+    ///
+    /// ## Discussion
+    ///
+    /// HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeCooldown")]
     pub const Cooldown: Self = Self(80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimbikerun?language=objc)
+    /// The constant for multisport activities like triathlons.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to create workouts that contain the [`HKWorkoutActivityTypeSwimming`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimming), [`HKWorkoutActivityTypeCycling`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/cycling), and [`HKWorkoutActivityTypeRunning`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/running) activities. These activities can happen in any order. For more information, see [`HKWorkoutActivity`](https://developer.apple.com/documentation/healthkit/hkworkoutactivity). HealthKit provides optimized calorie calculations for this activity based on the data from Apple Watch’s sensors.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeSwimBikeRun")]
     pub const SwimBikeRun: Self = Self(82);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/transition?language=objc)
+    /// A constant for the transition time between activities in a multisport workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to create an [`HKWorkoutActivity`](https://developer.apple.com/documentation/healthkit/hkworkoutactivity) instance that represents the transition between sports in a [`HKWorkoutActivityTypeSwimBikeRun`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimbikerun) workout.
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeTransition")]
     pub const Transition: Self = Self(83);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/underwaterdiving?language=objc)
+    /// The constant for underwater diving.
     #[doc(alias = "HKWorkoutActivityTypeUnderwaterDiving")]
     pub const UnderwaterDiving: Self = Self(84);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/other?language=objc)
+    /// The constant for a workout that does not match any of the other workout activity types.
+    ///
+    /// ## Discussion
+    ///
+    /// If your app uses the [`HKWorkoutActivityTypeSwimming`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/swimming) or [`HKWorkoutActivityTypeOther`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype/other) activity type, you must explain how your app calculates workout data when sensor information is not available. For more information, see the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/watchos/interaction/workout/).
+    ///
+    ///
     #[doc(alias = "HKWorkoutActivityTypeOther")]
     pub const Other: Self = Self(3000);
 }
@@ -279,34 +476,78 @@ unsafe impl RefEncode for HKWorkoutActivityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype?language=objc)
+/// Constants that represent events occurring during a workout.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKWorkoutEventType(pub NSInteger);
 impl HKWorkoutEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/pause?language=objc)
+    /// A constant indicating that the workout has paused.
     #[doc(alias = "HKWorkoutEventTypePause")]
     pub const Pause: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/resume?language=objc)
+    /// A constant indicating that the workout has resumed.
     #[doc(alias = "HKWorkoutEventTypeResume")]
     pub const Resume: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/lap?language=objc)
+    /// A constant indicating a lap.
+    ///
+    /// ## Discussion
+    ///
+    /// Lap events partition a workout into segments of equal distance (for example, laps around a track or laps in a pool). The lap’s [`dateInterval`](https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval) property should mark the start and end of the lap. Lap events can’t overlap.
+    ///
+    /// When you receive lap events from the HealthKit store, examine the event’s [`dateInterval`](https://developer.apple.com/documentation/healthkit/hkworkoutevent/dateinterval) property to interpret the lap correctly:
+    ///
+    /// **Zero-duration intervals.** Older lap events (created before iOS 11 and watchOS 4) have a zero-duration date interval that marks the end of the lap. Each lap is assumed to start when the previous lap ends, and laps fill the entire workout completely.****
+    ///
+    /// **Nonzero-duration intervals.** Newer lap events use the date interval to mark the start and the duration of the lap. These events have a nonzero duration, and they do not need to fill the workout; however, you should ideally mark any rest periods between laps using [`HKWorkoutEventTypePause`](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/pause) and [`HKWorkoutEventTypeResume`](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/resume) events.
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypeLap")]
     pub const Lap: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/marker?language=objc)
+    /// A constant indicating a point of interest during a workout session.
+    ///
+    /// ## Discussion
+    ///
+    /// Use markers to indicate arbitrary points during a workout (for example, when the user reaches the top of a hill during a run).
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypeMarker")]
     pub const Marker: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/motionpaused?language=objc)
+    /// A constant indicating that the system has automatically paused a workout session.
+    ///
+    /// ## Discussion
+    ///
+    /// During running workout sessions, Apple Watch can automatically generate motion pause events when the user stops moving. Users can enable or disable this feature using the watch’s Settings > General > Workout > Autopause setting.
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypeMotionPaused")]
     pub const MotionPaused: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/motionresumed?language=objc)
+    /// A constant indicating that the system has automatically resumed a workout session.
+    ///
+    /// ## Discussion
+    ///
+    /// If the system has automatically paused a running workout session, it also generates a motion resumed event when the user starts moving again.
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypeMotionResumed")]
     pub const MotionResumed: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/segment?language=objc)
+    /// A constant indicating a period of time of interest during a workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use segments to highlight important time periods during a workout. For example, you could use different segments to mark when a runner is going up or downhill. Similarly, when swimming, you can use segments to group consecutive laps with the same style of stroke.
+    ///
+    /// Unlike laps, segments can freely overlap.
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypeSegment")]
     pub const Segment: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkouteventtype/pauseorresumerequest?language=objc)
+    /// A constant indicating that the user has requested a pause or resume.
+    ///
+    /// ## Discussion
+    ///
+    /// During a workout session, the user can request a pause or resume by pressing both watch buttons. When you receive this event, pause or resume your app’s current workout session.
+    ///
+    ///
     #[doc(alias = "HKWorkoutEventTypePauseOrResumeRequest")]
     pub const PauseOrResumeRequest: Self = Self(8);
 }
@@ -320,9 +561,18 @@ unsafe impl RefEncode for HKWorkoutEventType {
 }
 
 extern_class!(
-    /// Represents a particular event that occurred during a workout.
+    /// An object representing an important event during a workout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutevent?language=objc)
+    /// ## Overview
+    ///
+    /// You can use workout events to toggle a workout between an active and an inactive state, or to mark points of interest during a workout.
+    ///
+    /// Workouts start in an active state. A pause event switches it to an inactive state; a resume event switches it back to an active state. Adding a pause event when the workout is already inactive, or a resume event when the workout is already active, does not affect the workout’s state. These events are ignored.
+    ///
+    /// The lap, segment, and marker events are used to identify periods of interest during a workout. Use lap events to partition a workout into segments of equal distance. Segment events mark important periods during the workout, while markers identify important points in time.
+    ///
+    ///
+    /// Represents a particular event that occurred during a workout.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKWorkoutEvent;
@@ -435,9 +685,56 @@ impl HKWorkoutEvent {
 }
 
 extern_class!(
-    /// An HKObject subclass representing a workout or activity
+    /// A workout sample that stores information about a single physical activity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkout?language=objc)
+    /// ## Overview
+    ///
+    /// The [`HKWorkout`](https://developer.apple.com/documentation/healthkit/hkworkout) class is a concrete subclass of the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class; however, they behave somewhat differently than other sample types.
+    ///
+    /// - You don’t need a specific type identifier to create the [`HKWorkoutType`](https://developer.apple.com/documentation/healthkit/hkworkouttype) instance. All workouts use the same type identifier.
+    ///
+    /// - You must provide an [`HKWorkoutActivityType`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype) value for each workout. This value defines the type of activity performed during the workout.
+    ///
+    /// - After saving the workout to the HealthKit store, you must associate additional samples with the workout (for example, active energy burned or distance samples). These samples provide fine-grained details. Use the [`addSamples:toWorkout:completion:`](https://developer.apple.com/documentation/healthkit/hkhealthstore/add(_:to:completion:)) method to associate them with the workout.
+    ///
+    ///
+    /// ![An illustration showing how a workout is created and added to the store.](https://docs-assets.developer.apple.com/published/3e2441ede3d4e430ec577a6823e2f76d/media-3570087%402x.png)
+    ///
+    ///
+    /// The workout records a summary of information about a single physical activity (for example, the duration, total distance, and total energy burned). It also acts as a container for other [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) objects. You can associate any number of samples with a workout, adding details over the course of the workout. For example, you may want to break a single run into a number of shorter intervals, and then add samples to track the user’s heart rate, energy burned, distance traveled, and steps taken for each interval. For more information, see [Adding samples to a workout](https://developer.apple.com/documentation/healthkit/adding-samples-to-a-workout).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If a workout has summary information, it also needs a set of associated samples that add up to the summary’s total. See [Adding samples to a workout](https://developer.apple.com/documentation/healthkit/adding-samples-to-a-workout).
+    ///
+    ///
+    ///
+    /// </div>
+    /// HealthKit supports a wide range of activity types. For a complete list, see [`HKWorkoutActivityType`](https://developer.apple.com/documentation/healthkit/hkworkoutactivitytype).
+    ///
+    /// Workouts are mostly immutable. You set their properties when you instantiate the workout, and they can’t change. However, you can continue to add samples to the workouts.
+    ///
+    /// ### Fill the Activity rings
+    ///
+    /// Workouts can contribute to the Move and Exercise rings in the Activity app. To affect the rings, you must associate one or more active energy burned samples with the workout. Additionally:
+    ///
+    /// - In watchOS. Use a workout session to track the user’s activity. When the session has ended, create a workout object and the associated active energy burned samples. For more information, see [`HKWorkoutSession`](https://developer.apple.com/documentation/healthkit/hkworkoutsession).
+    ///
+    /// The system updates the Move ring based on the active energy burned samples. It updates the Exercise ring based on the amount of time the user spent actually exerting themselves during the workout session, as calculated by the watch’s sensors.
+    ///
+    /// - In iOS. No additional work is necessary. Workout objects automatically contribute to both the Move and Exercise rings. The Exercise ring increases by the workout’s total duration, and the Move ring increases by the number of calories in the associated active energy burned samples. HealthKit also increases the Stand ring by one hour for each wall-clock hour that the workout overlaps.
+    ///
+    /// Create and save workouts on the device that makes the most sense for your application—typically the device processing the user’s workout.
+    ///
+    /// ### Extend workouts
+    ///
+    /// Like many HealthKit classes, the `HKWorkout` class should not be subclassed. You may extend workouts by adding metadata with custom keys as appropriate for your app.
+    ///
+    /// For more information, see the methods [`workoutWithActivityType:startDate:endDate:duration:totalEnergyBurned:totalDistance:metadata:`](https://developer.apple.com/documentation/healthkit/hkworkout/init(activitytype:start:end:duration:totalenergyburned:totaldistance:metadata:)) and [`workoutWithActivityType:startDate:endDate:workoutEvents:totalEnergyBurned:totalDistance:metadata:`](https://developer.apple.com/documentation/healthkit/hkworkout/init(activitytype:start:end:workoutevents:totalenergyburned:totaldistance:metadata:)).
+    ///
+    ///
+    /// An HKObject subclass representing a workout or activity
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -827,85 +1124,85 @@ impl HKWorkout {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutduration?language=objc)
+    /// The key path for accessing the workout’s duration.
     pub static HKPredicateKeyPathWorkoutDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotaldistance?language=objc)
+    /// The key path for accessing the workout’s total distance.
     #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for the desired distance type"]
     pub static HKPredicateKeyPathWorkoutTotalDistance: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalenergyburned?language=objc)
+    /// The key path for accessing the workout’s total energy burned.
     #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierActiveEnergyBurned"]
     pub static HKPredicateKeyPathWorkoutTotalEnergyBurned: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttype?language=objc)
+    /// The key path for accessing the workout’s type.
     pub static HKPredicateKeyPathWorkoutType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalswimmingstrokecount?language=objc)
+    /// The key path for accessing the number of strokes during a swimming workout.
     #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierSwimmingStrokeCount"]
     pub static HKPredicateKeyPathWorkoutTotalSwimmingStrokeCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkouttotalflightsclimbed?language=objc)
+    /// The key path for accessing the total number of flights of stairs climbed during the workout.
     #[deprecated = "Use predicateForWorkoutActivitiesWithOperatorType:quantityType:sumQuantity: passing the HKQuantityType for HKQuantityTypeIdentifierFlightsClimbed"]
     pub static HKPredicateKeyPathWorkoutTotalFlightsClimbed: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutsumquantity?language=objc)
+    /// The key path for accessing workouts with a matching sum.
     pub static HKPredicateKeyPathWorkoutSumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutminimumquantity?language=objc)
+    /// The key path for accessing workouts with a matching minimum quantity.
     pub static HKPredicateKeyPathWorkoutMinimumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutmaximumquantity?language=objc)
+    /// The key path for accessing workouts with a matching maximum quantity.
     pub static HKPredicateKeyPathWorkoutMaximumQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutaveragequantity?language=objc)
+    /// The key path for accessing workouts with a matching average quantity.
     pub static HKPredicateKeyPathWorkoutAverageQuantity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathworkoutactivity?language=objc)
+    /// The key path for accessing a specific workout activity.
     pub static HKPredicateKeyPathWorkoutActivity: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifierduration?language=objc)
+    /// A constant for sorting workouts based on their duration.
     pub static HKWorkoutSortIdentifierDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotaldistance?language=objc)
+    /// A constant for sorting workouts based on their total distance.
     pub static HKWorkoutSortIdentifierTotalDistance: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalenergyburned?language=objc)
+    /// A constant for sorting workouts based on the total energy burned.
     pub static HKWorkoutSortIdentifierTotalEnergyBurned: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalswimmingstrokecount?language=objc)
+    /// A constant for sorting workouts based on the number of swimming strokes.
     pub static HKWorkoutSortIdentifierTotalSwimmingStrokeCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutsortidentifiertotalflightsclimbed?language=objc)
+    /// A constant for sorting workouts based on the number of flights of steps climbed.
     pub static HKWorkoutSortIdentifierTotalFlightsClimbed: &'static NSString;
 }

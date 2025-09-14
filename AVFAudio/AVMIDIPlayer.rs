@@ -7,16 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A callback the system invokes when MIDI playback completes.
 /// Generic callback block.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type AVMIDIPlayerCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
-    /// A player for music file formats (MIDI, iMelody).
+    /// An object that plays MIDI data through a system sound module.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayer?language=objc)
+    /// ## Overview
+    ///
+    /// For more information about preparing your app to play audio, see [Configuring your app for media playback](https://developer.apple.com/documentation/avfoundation/configuring-your-app-for-media-playback).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  For more advanced MIDI playback capabilities, like playing MIDI data through an external synthesizer or sampler, use [`AVAudioEngine`](https://developer.apple.com/documentation/avfaudio/avaudioengine) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// A player for music file formats (MIDI, iMelody).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMIDIPlayer;

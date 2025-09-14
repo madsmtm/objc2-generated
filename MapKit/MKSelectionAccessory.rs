@@ -9,7 +9,13 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory?language=objc)
+    /// The type of accessory to display for a selected annotation.
+    ///
+    /// ## Overview
+    ///
+    /// Implement [`mapView:selectionAccessoryForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:selectionaccessoryfor:)) in your map view delegate to specify a selection accessory for annotation content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKSelectionAccessory;
@@ -37,19 +43,33 @@ impl MKSelectionAccessory {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle?language=objc)
+/// The style to use for a map item detail callout presentation.
+///
+/// ## Overview
+///
+/// In Swift, use [`MKMapItemDetailSelectionAccessoryCalloutStyleFull`](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/full) for map views on iPadOS and macOS. Use a sheet presentation to display full detail place information on iOS.
+///
+/// In Objective-C, use [`MKMapItemDetailSelectionAccessoryCalloutStyleFull`](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/full) for map views on iPadOS and macOS. Use a sheet presentation to display full detail place information on iOS.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapItemDetailSelectionAccessoryCalloutStyle(pub NSInteger);
 impl MKMapItemDetailSelectionAccessoryCalloutStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/automatic?language=objc)
+    /// A value that allows the framework to choose an appropriate callout style automatically.
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/full?language=objc)
+    /// A rich, detailed callout style that is suitable for large map views.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this style for map views on iPadOS and macOS. Use the sheet presentation to display full detail place information on iOS.
+    ///
+    ///
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleFull")]
     pub const Full: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle/compact?language=objc)
+    /// A compact, space-saving callout style.
     #[doc(alias = "MKMapItemDetailSelectionAccessoryCalloutStyleCompact")]
     pub const Compact: Self = Self(2);
 }
@@ -63,7 +83,7 @@ unsafe impl RefEncode for MKMapItemDetailSelectionAccessoryCalloutStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle?language=objc)
+    /// The type of map item detail accessory presentation to use.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItemDetailSelectionAccessoryPresentationStyle;

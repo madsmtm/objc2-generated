@@ -7,45 +7,49 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainipc?language=objc)
+    /// A Service Management IPC error domain.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kSMErrorDomainIPC: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainframework?language=objc)
+    /// A Service Management error domain.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kSMErrorDomainFramework: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrordomainlaunchd?language=objc)
+    /// A Service Management `launchd` error domain.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]
     pub static kSMErrorDomainLaunchd: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinternalfailure?language=objc)
+/// An internal failure has occurred.
 pub const kSMErrorInternalFailure: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinvalidsignature?language=objc)
+/// The app’s code signature doesn’t meet the requirements to perform the operation.
 pub const kSMErrorInvalidSignature: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorauthorizationfailure?language=objc)
+/// The authorization requested failed.
+///
+/// ## Discussion
+///
+/// The request requires authorization (such as, adding a job to the [`kSMDomainSystemLaunchd`](https://developer.apple.com/documentation/servicemanagement/ksmdomainsystemlaunchd)), but the `AuthorizationRef` doesn’t contain the required right.
+///
+///
 pub const kSMErrorAuthorizationFailure: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrortoolnotvalid?language=objc)
+/// The specified path doesn’t exist or the helper tool at the specified path isn’t valid.
 pub const kSMErrorToolNotValid: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorjobnotfound?language=objc)
+/// The system can’t find the specified job.
 pub const kSMErrorJobNotFound: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorserviceunavailable?language=objc)
+/// The service necessary to perform this operation is unavailable or is no longer accepting requests.
 pub const kSMErrorServiceUnavailable: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorjobplistnotfound?language=objc)
 pub const kSMErrorJobPlistNotFound: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorjobmustbeenabled?language=objc)
 pub const kSMErrorJobMustBeEnabled: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorinvalidplist?language=objc)
+/// The app’s property list is invalid.
 pub const kSMErrorInvalidPlist: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerrorlaunchdeniedbyuser?language=objc)
+/// The user denied the app’s launch request.
 pub const kSMErrorLaunchDeniedByUser: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmerroralreadyregistered?language=objc)
+/// The application is already registered.
 pub const kSMErrorAlreadyRegistered: c_uint = 12;

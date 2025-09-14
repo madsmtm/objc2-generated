@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstraint?language=objc)
+    /// The lists of shapes or ranges of shapes that constrain a multiarray feature.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLMultiArrayShapeConstraint;

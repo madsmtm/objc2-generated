@@ -10,7 +10,13 @@ use objc2_open_gl::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertymaterial?language=objc)
+    /// Surface appearance properties for use in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`GLKEffectPropertyMaterial`](https://developer.apple.com/documentation/glkit/glkeffectpropertymaterial) class defines properties used to configure the characteristics of the surface being lit. The material properties for an effect interact with light properties on the same effect to determine how that surface is lit within the scene. The behavior of this class matches the material properties and lighting calculations defined in the OpenGL ES 1.1 specification.
+    ///
+    ///
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]

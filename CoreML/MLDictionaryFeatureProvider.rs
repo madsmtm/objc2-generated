@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A concrete convenience class conforming to MLFeatureProvider.
+    /// A convenience wrapper for the given dictionary of data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mldictionaryfeatureprovider?language=objc)
+    /// ## Overview
+    ///
+    /// If your input data is stored in a dictionary, consider this type of [`MLFeatureProvider`](https://developer.apple.com/documentation/coreml/mlfeatureprovider) that is backed by a dictionary. It is a convenience interface, saving you the trouble of iterating through the dictionary to assign all of its values.
+    ///
+    ///
+    /// A concrete convenience class conforming to MLFeatureProvider.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLDictionaryFeatureProvider;

@@ -6,16 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype?language=objc)
+/// The types a contact can be.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactType(pub NSInteger);
 impl CNContactType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype/person?language=objc)
+    /// The contact is a person.
     #[doc(alias = "CNContactTypePerson")]
     pub const Person: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttype/organization?language=objc)
+    /// The contact is an Organization.
     #[doc(alias = "CNContactTypeOrganization")]
     pub const Organization: Self = Self(1);
 }
@@ -28,27 +28,32 @@ unsafe impl RefEncode for CNContactType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Indicates the sorting order for contacts.
+///
+/// ## Overview
+///
+/// The value [`CNContactSortOrderUserDefault`](https://developer.apple.com/documentation/contacts/cncontactsortorder/userdefault) is the user’s preferred sort order.
+///
+///
 /// Sort order for contacts.
 ///
 ///
 /// CNContactSortOrderUserDefault is the user's preferred sort order.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactSortOrder(pub NSInteger);
 impl CNContactSortOrder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/none?language=objc)
+    /// No sorting order.
     #[doc(alias = "CNContactSortOrderNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/userdefault?language=objc)
+    /// The user’s default sorting order.
     #[doc(alias = "CNContactSortOrderUserDefault")]
     pub const UserDefault: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/givenname?language=objc)
+    /// Sorting contacts by given name.
     #[doc(alias = "CNContactSortOrderGivenName")]
     pub const GivenName: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsortorder/familyname?language=objc)
+    /// Sorting contacts by family name.
     #[doc(alias = "CNContactSortOrderFamilyName")]
     pub const FamilyName: Self = Self(3);
 }
@@ -63,8 +68,7 @@ unsafe impl RefEncode for CNContactSortOrder {
 
 extern_protocol!(
     /// This protocol is reserved for Contacts framework usage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnkeydescriptor?language=objc)
+    /// This protocol is reserved for Contacts framework usage.
     pub unsafe trait CNKeyDescriptor: NSObjectProtocol + NSSecureCoding + NSCopying {}
 );
 
@@ -73,14 +77,23 @@ extern_conformance!(
 );
 
 extern_class!(
+    /// An immutable object that stores information about a single contact, such as the contact’s first name, phone numbers, and addresses.
+    ///
+    /// ## Overview
+    ///
+    /// A `CNContact` object stores an immutable copy of a contact’s information, so you cannot change the information in this object directly. Contact objects are thread-safe, so you may access them from any thread of your app.
+    ///
+    /// To modify a contact’s information, call the [`mutableCopy`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/mutablecopy()) method to obtain a [`CNMutableContact`](https://developer.apple.com/documentation/contacts/cnmutablecontact) object with the same information. After modifying the mutable contact, save your changes back to the contacts database using the [`CNContactStore`](https://developer.apple.com/documentation/contacts/cncontactstore) object.
+    ///
+    /// Every contact in the contacts database has a unique ID, which you access using the [`identifier`](https://developer.apple.com/documentation/contacts/cncontact/identifier) property. The mutable and immutable versions of the same contact have the same identifier.
+    ///
+    ///
     /// An immutable value object representing a contact.
     ///
     ///
     /// CNContact is thread safe.
     ///
     /// If using a CNContact instance where you are not certain of the keys that were fetched, use isKeyAvailable: or areKeysAvailable:. If these return NO you need to refetch the contact by the contact identifier with the keys you want to fetch. Accessing a property that was not fetched will throw CNContactPropertyNotFetchedExceptionName.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontact?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContact;
@@ -311,156 +324,338 @@ impl CNContact {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpropertynotfetchedexceptionname?language=objc)
+    /// Exception thrown when an accessed property was not fetched.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPropertyNotFetchedExceptionName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactidentifierkey?language=objc)
+    /// The contact’s unique identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactIdentifierKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnameprefixkey?language=objc)
+    /// The prefix for the contact’s name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactNamePrefixKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactgivennamekey?language=objc)
+    /// The contact’s given name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactGivenNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactmiddlenamekey?language=objc)
+    /// The contact’s middle name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactMiddleNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactfamilynamekey?language=objc)
+    /// The contact’s family name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpreviousfamilynamekey?language=objc)
+    /// The contact’s previous family name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPreviousFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnamesuffixkey?language=objc)
+    /// The contact’s name suffix.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactNameSuffixKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnicknamekey?language=objc)
+    /// The contact’s nickname.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactNicknameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactorganizationnamekey?language=objc)
+    /// The contact’s organization name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactOrganizationNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdepartmentnamekey?language=objc)
+    /// The contact’s department name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactDepartmentNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactjobtitlekey?language=objc)
+    /// The contact’s job title.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactJobTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticgivennamekey?language=objc)
+    /// The phonetic spelling of the contact’s  given name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPhoneticGivenNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticmiddlenamekey?language=objc)
+    /// The phonetic spelling of the contact’s middle name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPhoneticMiddleNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticfamilynamekey?language=objc)
+    /// The phonetic spelling of the contact’s family name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPhoneticFamilyNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphoneticorganizationnamekey?language=objc)
+    /// The phonetic spelling of the contact’s organization name.
     pub static CNContactPhoneticOrganizationNameKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactbirthdaykey?language=objc)
+    /// The birthday of a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactBirthdayKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnongregorianbirthdaykey?language=objc)
+    /// The non-Gregorian birthday of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactNonGregorianBirthdayKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactnotekey?language=objc)
+    /// A note associated with a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    /// To be able to fetch the [`note`](https://developer.apple.com/documentation/contacts/cncontact/note) property in iOS, your app needs the [`com.apple.developer.contacts.notes`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.contacts.notes) entitlement.
+    ///
+    ///
     pub static CNContactNoteKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactimagedatakey?language=objc)
+    /// Image data for a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactImageDataKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactthumbnailimagedatakey?language=objc)
+    /// Thumbnail data for a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactThumbnailImageDataKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactimagedataavailablekey?language=objc)
+    /// Image data availability for a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value. This is a validation check of image data availability.
+    ///
+    ///
     pub static CNContactImageDataAvailableKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacttypekey?language=objc)
+    /// The type of contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactTypeKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactphonenumberskey?language=objc)
+    /// A phone numbers of a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPhoneNumbersKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactemailaddresseskey?language=objc)
+    /// The email addresses of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactEmailAddressesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactpostaladdresseskey?language=objc)
+    /// The postal addresses of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactPostalAddressesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdateskey?language=objc)
+    /// Dates associated with a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactDatesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontacturladdresseskey?language=objc)
+    /// The URL addresses of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactUrlAddressesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactrelationskey?language=objc)
+    /// The relationships of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactRelationsKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactsocialprofileskey?language=objc)
+    /// A social profiles of a contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactSocialProfilesKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactinstantmessageaddresseskey?language=objc)
+    /// The instant message addresses of the contact.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNContactInstantMessageAddressesKey: &'static NSString;
 }

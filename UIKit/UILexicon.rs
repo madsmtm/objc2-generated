@@ -7,7 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilexiconentry?language=objc)
+    /// A read-only term pair, available within a lexicon object, for a custom keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// You can employ a lexicon entry by matching user input against the entry’s [`userInput`](https://developer.apple.com/documentation/uikit/uilexiconentry/userinput) value, and then inserting into the current text input object the corresponding [`documentText`](https://developer.apple.com/documentation/uikit/uilexiconentry/documenttext) value. For example, if the user typed the string “iphone”, the lexicon entry with that exact, case-sensitive string in the [`userInput`](https://developer.apple.com/documentation/uikit/uilexiconentry/userinput) property has the string “iPhone” in the corresponding [`documentText`](https://developer.apple.com/documentation/uikit/uilexiconentry/documenttext) property.
+    ///
+    /// In some cases, the [`documentText`](https://developer.apple.com/documentation/uikit/uilexiconentry/documenttext) string is in a different text script than the [`userInput`](https://developer.apple.com/documentation/uikit/uilexiconentry/userinput) string.
+    ///
+    /// For information on custom keyboards, which are based on the [`UIInputViewController`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller) class, see [Creating a custom keyboard](https://developer.apple.com/documentation/uikit/creating-a-custom-keyboard).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -52,7 +62,21 @@ impl UILexiconEntry {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilexicon?language=objc)
+    /// A read-only array of term pairs, each in a lexicon entry object, for a custom keyboard.
+    ///
+    /// ## Overview
+    ///
+    /// To obtain the lexicon, call the [`requestSupplementaryLexiconWithCompletion:`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller/requestsupplementarylexicon(completion:)) method of the [`UIInputViewController`](https://developer.apple.com/documentation/uikit/uiinputviewcontroller) class. This method can be called only from a custom keyboard app extension. A lexicon contains words from various sources, including:
+    ///
+    /// - Unpaired first names and last names from the user’s Address Book database
+    ///
+    /// - Text shortcuts defined in the Settings > General > Keyboard > Shortcuts list
+    ///
+    /// - A common words dictionary
+    ///
+    /// Apple intends for you to consider the words in a lexicon object as supplementary to an autocorrection/suggestion lexicon of your own design. For information on custom keyboards, see [Custom Keyboard](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/CustomKeyboard.html#//apple_ref/doc/uid/TP40014214-CH16) in [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -13,6 +13,32 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A JavaScript value.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) class to convert basic values, such as numbers and strings, between JavaScript and Objective-C or Swift representations to pass data between native code and JavaScript code. You can also use this class to create JavaScript objects that wrap native objects of custom classes or JavaScript functions with implementations that native methods or blocks provide.
+    ///
+    /// Each [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) instance originates from a [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) object that represents the JavaScript execution environment containing that value. The value holds a strong reference to its [`context`](https://developer.apple.com/documentation/javascriptcore/jsvalue/context) object — as long as it retains any value for a particular [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) instance, that context remains alive. When you invoke an instance method on a [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object, and that method returns another [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) object, the returned value belongs to the same context as the original value.
+    ///
+    /// Each JavaScript value also has an association (indirectly via the [`context`](https://developer.apple.com/documentation/javascriptcore/jsvalue/context) property) with a specific [`JSVirtualMachine`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine) object that represents the underlying set of execution resources for its context. You can pass [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) instances only to methods on [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) and [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) instances on the same virtual machine — attempting to pass a value to a different virtual machine raises an Objective-C exception.
+    ///
+    /// ### Convert Between JavaScript and Native Types
+    ///
+    /// When you use the [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) methods for creating, reading, and converting JavaScript values, JavaScriptCore automatically converts native values to JavaScript values and vice versa, using the rules below.
+    ///
+    /// - [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects or Swift dictionaries and the keys they contain become JavaScript objects with matching named properties and vice versa. JavaScriptCore recursively copies and converts the values for keys.
+    ///
+    /// - [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) objects or Swift arrays become JavaScript arrays and vice versa, with elements that JavaScriptCore recursively copies and converts.
+    ///
+    /// - Objective-C blocks (or Swift closures with the `@convention(block)` attribute) become JavaScript `Function` objects, with parameter and return types that JavaScriptCore converts using the same rules as values. Converting a JavaScript function with a backing from a native block or method returns that block or method; all other JavaScript functions convert as empty dictionaries.
+    ///
+    /// - For all other native object types (and class types or metatypes), JavaScriptCore creates a JavaScript wrapper object with a constructor prototype chain that reflects the native class hierarchy. By default, the JavaScript wrapper for a native object doesn’t make that object’s properties and methods available in JavaScript. To choose properties and methods for export to JavaScript, see [`JSExport`](https://developer.apple.com/documentation/javascriptcore/jsexport).
+    ///
+    /// When you convert an object, method, or block, JavaScriptCore implicitly converts the types and values of object properties and method parameters using the rules below:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Objective-C (and Swift) types" }] }], [Paragraph { inline_content: [Text { text: "JavaScript types" }] }], [Paragraph { inline_content: [Text { text: "Notes" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "nil" }] }], [Paragraph { inline_content: [CodeVoice { code: "undefined" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNull", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "null" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSString", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (Swift " }, Reference { identifier: "doc://com.apple.documentation/documentation/Swift/String", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }], [Paragraph { inline_content: [CodeVoice { code: "String" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and primitive numeric types" }] }], [Paragraph { inline_content: [CodeVoice { code: "Number" }, Text { text: ", " }, CodeVoice { code: "Boolean" }] }], [Paragraph { inline_content: [Text { text: "Conversion is consistent with the following methods: " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(int32:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toInt32()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " for signed integer types " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(uInt32:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toUInt32()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " for unsigned integer types " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(bool:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toBool()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " for Boolean types " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(double:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toBool()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " for all other numeric types" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSDictionary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (Swift " }, Reference { identifier: "doc://com.apple.documentation/documentation/Swift/Dictionary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }], [Paragraph { inline_content: [CodeVoice { code: "Object" }] }], [Paragraph { inline_content: [Text { text: "Recursive conversion." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSArray", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (Swift " }, Reference { identifier: "doc://com.apple.documentation/documentation/Swift/Array", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }], [Paragraph { inline_content: [CodeVoice { code: "Array" }] }], [Paragraph { inline_content: [Text { text: "Recursive conversion." }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSDate", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "Date" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "Objective-C or Swift object (" }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/objc_object", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.documentation/documentation/Swift/AnyObject", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ") " }, Image { identifier: "spacer", metadata: None }, Text { text: " Objective-C or Swift class (" }, Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/Class", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.documentation/documentation/Swift/AnyClass", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ")" }] }], [Paragraph { inline_content: [CodeVoice { code: "Object" }] }], [Paragraph { inline_content: [Text { text: "Converts with " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(object:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toObject()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [Text { text: "Structure types: " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSRange-c.struct", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGRect", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGPoint", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CGSize", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "Object" }] }], [Paragraph { inline_content: [Text { text: "There isn’t support for other structure types." }] }]], [[Paragraph { inline_content: [Text { text: "Objective-C block (Swift closure)" }] }], [Paragraph { inline_content: [CodeVoice { code: "Function" }] }], [Paragraph { inline_content: [Text { text: "Convert explicitly with " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/init(object:in:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " / " }, Reference { identifier: "doc://com.apple.javascriptcore/documentation/JavaScriptCore/JSValue/toObject()", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ". " }, Image { identifier: "spacer", metadata: None }, Text { text: " JavaScript functions don’t convert to native blocks/closures unless they already have a backing from a native block/closure." }] }]]], alignments: None, metadata: None })
+    ///
     /// A JSValue is a reference to a JavaScript value. Every JSValue
     /// originates from a JSContext and holds a strong reference to it.
     /// When a JSValue instance method creates a new JSValue, the new value
@@ -22,8 +48,6 @@ extern_class!(
     /// (available indirectly via the context property). It is an error to pass a
     /// JSValue to a method or property of a JSValue or JSContext originating from a
     /// different JSVirtualMachine. Doing so will raise an Objective-C exception.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -1238,7 +1262,7 @@ impl JSValue {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvalueproperty?language=objc)
+/// A type that identifies a property of a JavaScript value.
 #[cfg(feature = "objc2-foundation")]
 pub type JSValueProperty = NSString;
 
@@ -1519,6 +1543,7 @@ impl JSValue {
 }
 
 extern "C" {
+    /// The Boolean value for this key determines whether the property permits assignment with the JavaScript `=` operator.
     /// Property Descriptor Constants
     ///
     /// These keys may assist in creating a property descriptor for use with the
@@ -1613,38 +1638,36 @@ extern "C" {
     /// .
     /// A generic descriptor may be used to modify the attributes of an existing
     /// data or accessor property, or to create a new data property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorwritablekey?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorWritableKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorenumerablekey?language=objc)
+    /// The Boolean value for this key determines whether the property appears when enumerating the JavaScript object’s properties.
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorEnumerableKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorconfigurablekey?language=objc)
+    /// The Boolean value for this key determines whether the property deleted from its JavaScript object or its descriptor changed.
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorConfigurableKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorvaluekey?language=objc)
+    /// The value for the property on the JavaScript object.
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorValueKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorgetkey?language=objc)
+    /// The JavaScript function to be invoked when reading the property.
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorGetKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertydescriptorsetkey?language=objc)
+    /// The JavaScript function to be invoked when writing to the property.
     #[cfg(feature = "objc2-foundation")]
     pub static JSPropertyDescriptorSetKey: Option<&'static NSString>;
 }

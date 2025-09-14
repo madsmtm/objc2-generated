@@ -12,19 +12,19 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate?language=objc)
+/// Constants indicating the current state of the drag operation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewCellDragState(pub NSInteger);
 impl UICollectionViewCellDragState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/none?language=objc)
+    /// The cell isn’t involved in a drag.
     #[doc(alias = "UICollectionViewCellDragStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/lifting?language=objc)
+    /// The cell is being animated off of the surface of the collection view.
     #[doc(alias = "UICollectionViewCellDragStateLifting")]
     pub const Lifting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell/dragstate/dragging?language=objc)
+    /// The cell is being dragged.
     #[doc(alias = "UICollectionViewCellDragStateDragging")]
     pub const Dragging: Self = Self(2);
 }
@@ -38,7 +38,17 @@ unsafe impl RefEncode for UICollectionViewCellDragState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionreusableview?language=objc)
+    /// A view that defines the behavior for all cells and supplementary views presented by a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// Reusable views are so named because the collection view places them on a reuse queue rather than deleting them when they’re scrolled out of the visible bounds. Such a view can then be retrieved and repurposed for a different set of content.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// This class is intended to be subclassed. Most methods defined by this class have minimal or no implementations. You aren’t required to override any of the methods but can do so in cases where you want to respond to changes in the view’s usage or layout.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -198,7 +208,13 @@ impl UICollectionReusableView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcellconfigurationupdatehandler?language=objc)
+/// The type of block for handling updates to the cell’s configuration using the current state.
+///
+/// Parameters:
+/// - cell: The collection view cell to configure.
+///
+/// - state: The new state to use for updating the cell’s configuration.
+///
 #[cfg(all(
     feature = "UICellConfigurationState",
     feature = "UIResponder",
@@ -210,7 +226,17 @@ pub type UICollectionViewCellConfigurationUpdateHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell?language=objc)
+    /// A single data item when that item is within the collection view’s visible bounds.
+    ///
+    /// ## Overview
+    ///
+    /// You can use [`UICollectionViewCell`](https://developer.apple.com/documentation/uikit/uicollectionviewcell) as-is or subclass it to add additional properties and methods. The layout and presentation of cells is managed by the collection view and its corresponding layout object.
+    ///
+    /// To configure the content and appearance of your cell, you can set its [`contentConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentconfiguration-13e7k) and [`backgroundConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/backgroundconfiguration-rgj4). Alternatively, add the views needed to present the data item’s content as subviews to the view in the [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview) property. Don’t directly add subviews to the cell itself. The cell manages multiple layers of content, of which the content view is only one. In addition to the content view, the cell manages two background views that display the cell in its selected and unselected states.
+    ///
+    /// You typically don’t create instances of this class yourself. Instead, you register your specific cell subclass (or a nib file containing a configured instance of your class) using a cell registration. When you want a new instance of your cell class, call the [`dequeueConfiguredReusableCell(using:for:item:)`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablecell(using:for:item:)) (Swift) or [`dequeueConfiguredReusableCellWithRegistration:forIndexPath:item:`](https://developer.apple.com/documentation/uikit/uicollectionview/dequeueconfiguredreusablecellwithregistration:forindexpath:item:) (Objective-C) method of the collection view object to retrieve one.
+    ///
+    ///
     #[unsafe(super(UICollectionReusableView, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -10,6 +10,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object to initialize a mixer with a given configuration.
+    ///
+    /// ## Overview
+    ///
+    /// A mixer combines multiple layers of audio to a single signal for transmission to the output device. The framework creates a mixer when you provide a mixer definition. Instead of creating an instance of this class, instantiate one of the mixer definition subclasses instead:
+    ///
+    /// - [`PHASEChannelMixerDefinition`](https://developer.apple.com/documentation/phase/phasechannelmixerdefinition): When your app outputs sound through a channel mixer, the framework maintains the channel configuration of the source audio. For example, the left and right channels of a stereo input file play on the left and right speakers, respectively.
+    ///
+    /// - [`PHASEAmbientMixerDefinition`](https://developer.apple.com/documentation/phase/phaseambientmixerdefinition): When your app outputs sound through an ambient mixer, the framework overrides the output channels to give the mixer an orientation, which creates the effect of pointing in a specific direction in 3D space.
+    ///
+    /// - [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition): Audio that your app outputs through a spatial mixer specifies a position and orientation in 3D space. Spatial mixers require the app to define sources that emit audio, and a listener that hears audio. Sound playback changes depending on the relative positions of the listener and sources.
+    ///
+    /// ### Play a Sound Using a Mixer
+    ///
+    /// To play a sound using a mixer, create a mixer definition and pass it to a sound event. The following code creates a [`PHASEChannelMixerDefinition`](https://developer.apple.com/documentation/phase/phasechannelmixerdefinition) and passes it into a node definition the app can invoke to play the channel-based audio file `drumloopSoundAsset`:
+    ///
+    /// ```swift
+    /// // Create a channel mixer definition.
+    /// let stereoMixer = PHASEChannelMixerDefinition(channelLayout:stereoLayout!)
+    ///
+    /// // Pass the mixer to a sound event node definition that plays an audio file.
+    /// let drumloopSamplerNode = PHASESamplerNodeDefinition(soundAssetIdentifier:drumloopSoundAsset.identifier, mixerDefinition:stereoMixer, identifier:"drumloopNode")
+    /// ```
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -17,8 +42,6 @@ extern_class!(
     /// The base class for a mixer definition.
     ///
     /// Mixer definitions control how audio will be rendered to the output in PHASE.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemixerdefinition?language=objc)
     #[unsafe(super(PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -73,6 +96,19 @@ impl PHASEMixerDefinition {
 }
 
 extern_class!(
+    /// An audio-layering object that produces environmental effects and plays sound with a 3D position and orientation.
+    ///
+    /// ## Overview
+    ///
+    /// This class enables the app to define a relationship between a source and listener in six degrees of freedom: orientation (roll, pitch, yaw) and a 3D position (x, y, z).
+    ///
+    /// The framework plays back an audio source with _distance modeling_ (see [`distanceModelParameters`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/distancemodelparameters)), direct path transmission effects and any combination of environmental effects, such as reverb (see [`PHASESpatialPipeline`](https://developer.apple.com/documentation/phase/phasespatialpipeline)), and directivity (see [`listenerDirectivityModelParameters`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition/listenerdirectivitymodelparameters)).
+    ///
+    /// The result enables an app to implement directive point or omnidirectional sound sources — with or without direction, respectively — and volumetric sources with a defined shape.
+    ///
+    /// For a walkthrough of spatial mixing, see [Playing sound from a location in a 3D scene](https://developer.apple.com/documentation/phase/playing-sound-from-a-location-in-a-3d-scene).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -80,8 +116,6 @@ extern_class!(
     /// Spatial mixer definition.
     ///
     /// Spatial mixers render audio with spatialization and environmental effects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition?language=objc)
     #[unsafe(super(PHASEMixerDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -193,6 +227,33 @@ impl PHASESpatialMixerDefinition {
 }
 
 extern_class!(
+    /// An audio-layering object that outputs sound in a particular direction in 3D space.
+    ///
+    /// ## Overview
+    ///
+    /// As an audio-layering object, this class combines multiple audio signals to a single signal for the output device. Play audio with a 3D orientation using this class when you supply a quaternion for the `orientation` argument of the [`initWithChannelLayout:orientation:`](https://developer.apple.com/documentation/phase/phaseambientmixerdefinition/init(channellayout:orientation:)) initializer. For information on orientation the sound, see [Working with Quaternions](https://developer.apple.com/documentation/accelerate/working-with-quaternions).
+    ///
+    /// You also supply the intitializer with a channel layout in either mono, stereo, or surround formats. Surround audio files create the best listening experience due to their extra channel data. The framework renders each channel from the direction of its corresponding speaker in the channel layout. This class ignores low-frequency effect channels that may be present in the layout.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For one-time sounds that require no position or orientation, use [`PHASEChannelMixerDefinition`](https://developer.apple.com/documentation/phase/phasechannelmixerdefinition) instead of this class. If your audio playback needs to react to distance or contain environmental effects, use a spatial mixer; for more information, see [Spatial Mixing](https://developer.apple.com/documentation/phase/spatial-mixing).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Play Sound with a Specific Orientation, Channel Layout, and Listener
+    ///
+    /// To play ambient sound, define an orientation for the mixer and a channel layout for the source audio data. For example, the following code creates a 5.0 surround-sound ambient source from a 5.1 surround-sound asset.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Orient the mixer.", "let orientation: PHASEQuaternion3D = simd_quaternion(1.0, 0.0, 0.0, 0.0)", "", "// Create a channel layout corresponding to the sound asset’s channel layout.", "let surroundLayout = AVAudioChannelLayout(", "    layoutTag: kAudioChannelLayoutTag_MPEG_5_1_A)", "", "// Create the ambient mixer.", "let ambientMixer = PHASEAmbientMixerDefinition(channelLayout: surroundLayout!,", "    orientation: orientation)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Orient the mixer.", "PHASEQuaternion3D orientation = simd_quaternion(1.f, 0.f, 0.f, 0.f);", "", "// Create a channel layout corresponding to the sound asset’s channel layout. ", "AVAudioChannelLayout* surroundLayout =", "    [[AVAudioChannelLayout alloc] initWithLayoutTag:kAudioChannelLayoutTag_MPEG_5_1_A];", "", "// Create the ambient mixer.", "PHASEAmbientMixerDefinition* ambientMixer =", "    [[PHASEAmbientMixerDefinition alloc] initWithChannelLayout:surroundLayout orientation:orientation];"], metadata: None }] }] })
+    /// Ambient mixers require the app to specify a listener, for which you define an orientation by setting the listener’s [`transform`](https://developer.apple.com/documentation/phase/phaseobject/transform). Continuing on the example above, the following code completes a mixer by attaching a listener, and then plays a sound event.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Attach the mixer to a listener.", "let mixerParams = PHASEMixerParameters()", "mixerParams.addAmbientMixerParameters(ambientMixer.uid, listener: listener)", "", "", "// Create a sound event object.    ", "var ambientSoundEvent: PHASESoundEvent!", "do { ambientSoundEvent = try PHASESoundEvent(engine: engine,", "        registeredSoundEventNodeAssetUID: ambientSoundEventAsset.uid,", "        mixerParameters: mixerParams)", "} catch { fatalError(\"Failed to create a sound event.\") }", "", "", "// Play the ambient sound.", "do { try ambientSoundEvent.start() } ", "catch { print(\"Failed to start a sound event.\") }"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Attach the mixer to a listener.", "PHASEMixerParameters* mixerParams = [[PHASEMixerParameters alloc] init];", "[mixerParams addAmbientMixerParameters:ambientMixer.uid", "    listener:_listener];", "", "// Create a sound event object.    ", "PHASESoundEvent* ambientSoundEvent =", "    [[PHASESoundEvent alloc]initWithEngine:_engine", "        registeredSoundEventNodeAssetUID:ambientSoundEventAsset.uid", "        mixerParameters:mixerParams", "        outError:&err];", "", "// Play the ambient sound.", "[ambientSoundEvent startAndReturnError:&err];"], metadata: None }] }] })
+    /// PHASE changes the channel output of ambient-mixer sound dynamically, depending on the respective directions of the mixer and the listener. For example, you can use an ambient mixer in a game to play the environmental sound of birds all around and the sound of traffic on a road in just one audio channel. Depending on the direction the player is facing, the mixer can rotate the audio so that the road always sounds like it’s coming from the same direction, for example, the west.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -205,8 +266,6 @@ extern_class!(
     ///
     /// Note: Ambient mixers do not support distance modeling or directivity modeling.
     /// Clients can however set the orientation at initialization time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseambientmixerdefinition?language=objc)
     #[unsafe(super(PHASEMixerDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -238,6 +297,25 @@ impl PHASEAmbientMixerDefinition {
 }
 
 extern_class!(
+    /// An audio-layering object that routes sound directly to the device’s output.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to play one-time sounds such as menu clicks.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your audio playback requires 3D orienting or positioning, use [`PHASEAmbientMixerDefinition`](https://developer.apple.com/documentation/phase/phaseambientmixerdefinition) or [`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition), respectively. For more information, see [Spatial Mixing](https://developer.apple.com/documentation/phase/spatial-mixing).
+    ///
+    ///
+    ///
+    /// </div>
+    /// This class defines the _channel routing_, which is the strategy the framework uses to send source mono or multichannel assets to the output for playback. The asset’s audio channels route to the output for playback according to the channel layout and runtime output conditions the app designates on an instance of this class.
+    ///
+    /// This class minimizes _up mixing_ and _down mixing_ — that is, source audio channel conversion to a higher or lower number of channels. For example, although a spatial mixer overrides the use of output channels by panning to convey listener position and orientation, the channel mixer maintains source audio channel layout to preserve the listening experience of the source audio.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
@@ -247,8 +325,6 @@ extern_class!(
     /// Channel mixers render audio without spatialization or environmental effects.
     /// Use channel mixers for regular stem-based content that needs be rendered directly to the output device, such as stereo music
     /// or center channel narrative dialogue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasechannelmixerdefinition?language=objc)
     #[unsafe(super(PHASEMixerDefinition, PHASEDefinition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEDefinition")]
@@ -313,13 +389,20 @@ impl PHASEChannelMixerDefinition {
 }
 
 extern_class!(
+    /// An object that combines multiple audio signals into a single signal.
+    ///
+    /// ## Overview
+    ///
+    /// Mixers provide a single point of control over the multiple audio signals they combine. To create a mixer, you provide the framework with a mixer definition; see [`PHASEMixerDefinition`](https://developer.apple.com/documentation/phase/phasemixerdefinition).
+    ///
+    /// Subclasses of this class define unique properties the app sets to control specific features. For example, the spatial mixer ([`PHASESpatialMixerDefinition`](https://developer.apple.com/documentation/phase/phasespatialmixerdefinition)) adds environmental effects into the output audio signal.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A generic object the represents an active mixer in the system
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemixer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEMixer;
@@ -360,13 +443,22 @@ impl PHASEMixer {
 }
 
 extern_class!(
+    /// An object that specifies a mixer for sound events and orients them in 3D space.
+    ///
+    /// ## Overview
+    ///
+    /// This class orients a sound event in 3D space relative to a listener. When you configure an ambient mixer’s orientation and a listener’s orientation, PHASE lowers the volume of the sound event if the two orientations point away from each other, and plays the sound at full volume if they point at each other. To add an instance of this class to a sound event, use the `mixerParameters` argument of a sound event’s [`initWithEngine:assetIdentifier:mixerParameters:error:`](https://developer.apple.com/documentation/phase/phasesoundevent/init(engine:assetidentifier:mixerparameters:)) initializer.
+    ///
+    /// Alternatively, PHASE can adjust a sound event’s loudness based on its distance from the listener in 3D space. By calling this class’s [`addSpatialMixerParametersWithIdentifier:source:listener:`](https://developer.apple.com/documentation/phase/phasemixerparameters/addspatialmixerparameters(identifier:source:listener:)) function, you supply a sound source that defines the location. For more information, see [Spatial Mixing](https://developer.apple.com/documentation/phase/spatial-mixing).
+    ///
+    /// Ambient sound events define only a listener and play with a consistent loudness, regardless of the listener’s position in the scene. To define a listener and select a particular ambient mixer that outputs the sound, call this class’s [`addAmbientMixerParametersWithIdentifier:listener:`](https://developer.apple.com/documentation/phase/phasemixerparameters/addambientmixerparameters(identifier:listener:)) function.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// An object that holds runtime parameters for mixers when creating PHASESoundEvents.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemixerparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEMixerParameters;

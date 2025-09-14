@@ -10,6 +10,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract class that defines the interface for subclassers to interact with the screen saver infrastructure.
+    ///
+    /// ## Overview
+    ///
+    /// [`ScreenSaverView`](https://developer.apple.com/documentation/screensaver/screensaverview) provides the interface for your screen saver, including the content you animate onscreen and an optional configuration sheet. Create your own custom subclass and add it to your screen saver bundle. Use your subclass to create the animations that you want to appear onscreen, and to specify additional animation details.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When someone previews your screen saver in System Preferences, the system instantiates your [`ScreenSaverView`](https://developer.apple.com/documentation/screensaver/screensaverview) subclass.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can draw from your view’s [`drawRect:`](https://developer.apple.com/documentation/screensaver/screensaverview/draw(_:)) method, or you can draw directly from the [`animateOneFrame`](https://developer.apple.com/documentation/screensaver/screensaverview/animateoneframe()) method. If you prefer to use the [`drawRect:`](https://developer.apple.com/documentation/screensaver/screensaverview/draw(_:)) method, use the [`animateOneFrame`](https://developer.apple.com/documentation/screensaver/screensaverview/animateoneframe()) method to call the [`setNeedsDisplayInRect:`](https://developer.apple.com/documentation/appkit/nsview/setneedsdisplay(_:)) method and specify the portions of your view that require updates.
+    ///
+    ///
     /// An abstract class that defines the interface for subclassers to interact
     /// with the screen saver infrastructure.
     ///
@@ -29,8 +46,6 @@ extern_class!(
     /// <doc
     /// ://com.apple.documentation/documentation/appkit/nsview/1483475-setneedsdisplayinrect>
     /// method and specify the portions of your view that require updates.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screensaver/screensaverview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

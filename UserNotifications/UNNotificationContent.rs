@@ -8,26 +8,50 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcontentproviding?language=objc)
+    /// A protocol the system uses to provide context relevant to user notifications.
+    ///
+    /// ## Overview
+    ///
+    /// The system allows only objects in the Apple SDK that conform to `UNNotificationContentProviding`. The system ignores objects outside of the Apple SDK that your app conforms to `UNNotificationContentProviding`.
+    ///
+    ///
     pub unsafe trait UNNotificationContentProviding: NSObjectProtocol {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel?language=objc)
+/// Constants that indicate the importance and delivery timing of a notification.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationInterruptionLevel(pub NSUInteger);
 impl UNNotificationInterruptionLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/passive?language=objc)
+    /// The system adds the notification to the notification list without lighting up the screen or playing a sound.
     #[doc(alias = "UNNotificationInterruptionLevelPassive")]
     pub const Passive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/active?language=objc)
+    /// The system presents the notification immediately, lights up the screen, and can play a sound.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default interruption level. Active notifications won’t break through system notification controls.
+    ///
+    ///
     #[doc(alias = "UNNotificationInterruptionLevelActive")]
     pub const Active: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/timesensitive?language=objc)
+    /// The system presents the notification immediately, lights up the screen, can play a sound, and breaks through system notification controls.
+    ///
+    /// ## Discussion
+    ///
+    /// Time Sensitive notifications are similar to active notifications, but can break through system controls such as Notification Summary and Focus. The user can turn off the ability for time sensitive notification interruptions.
+    ///
+    ///
     #[doc(alias = "UNNotificationInterruptionLevelTimeSensitive")]
     pub const TimeSensitive: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationinterruptionlevel/critical?language=objc)
+    /// The system presents the notification immediately, lights up the screen, and bypasses the mute switch to play a sound.
+    ///
+    /// ## Discussion
+    ///
+    /// This interruption level requires an approved entitlement. The system always presents this notification, even when Do Not Disturb is active. If your app doesn’t assign a sound to this notification, the system uses the default critical alert sound.
+    ///
+    ///
     #[doc(alias = "UNNotificationInterruptionLevelCritical")]
     pub const Critical: Self = Self(3);
 }
@@ -41,7 +65,15 @@ unsafe impl RefEncode for UNNotificationInterruptionLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationcontent?language=objc)
+    /// The uneditable content of a notification.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UNNotificationContent`](https://developer.apple.com/documentation/usernotifications/unnotificationcontent) object contains the data associated with a notification. When your app receives a notification, the associated [`UNNotificationRequest`](https://developer.apple.com/documentation/usernotifications/unnotificationrequest) object contains an object of this type with the content that your app received. Use the content object to get the details of the notification, including the type of notification that the system delivered, any custom data you stored in the [`userInfo`](https://developer.apple.com/documentation/usernotifications/unnotificationcontent/userinfo) dictionary before scheduling the notification, and any attachments.
+    ///
+    /// Don’t create instances of this class directly. For remote notifications, the system derives the contents of this object from the JSON payload that your server sends to the APNS server. For local notifications, create a [`UNMutableNotificationContent`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent) object, and configure the contents of that object instead.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNNotificationContent;
@@ -185,7 +217,30 @@ impl DefaultRetained for UNNotificationContent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent?language=objc)
+    /// The editable content for a notification.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UNMutableNotificationContent`](https://developer.apple.com/documentation/usernotifications/unmutablenotificationcontent) object when you want to specify the payload for a local notification. Specifically, use this object to specify the title and message for an alert, the sound to play, or the value to assign to your app’s badge. You might also provide details about how the system handles the notification. For example, you can specify a custom launch image and a thread identifier for visually grouping related notifications.
+    ///
+    /// After creating your content object, assign it to a [`UNNotificationRequest`](https://developer.apple.com/documentation/usernotifications/unnotificationrequest) object, add a trigger condition, and schedule your notification. The trigger condition defines when the system delivers the notification to the user. Listing 1 shows the scheduling of a local notification that displays an alert and plays a sound after a delay of five seconds. Store the strings for the alert’s title and body in the app’s `Localizable.strings` file.
+    ///
+    /// Listing 1. Creating the content for a local notification
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["// Configure the notification's payload.", "let content = UNMutableNotificationContent()", "content.title = NSString.localizedUserNotificationString(forKey: \"Hello!\", arguments: nil)", "content.body = NSString.localizedUserNotificationString(forKey: \"Hello_message_body\", arguments: nil)", "content.sound = UNNotificationSound.default", " ", "// Deliver the notification in five seconds.", "let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)", "let request = UNNotificationRequest(identifier: \"FiveSecond\", content: content, trigger: trigger) // Schedule the notification.", "let center = UNUserNotificationCenter.current()", "center.add(request) { (error : Error?) in", "     if let theError = error {", "         // Handle any errors", "     }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["// Configure the notification's payload.", "UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];", "content.title = [NSString localizedUserNotificationStringForKey:@\"Hello!\" arguments:nil];", "content.body = [NSString localizedUserNotificationStringForKey:@\"Hello_message_body\" arguments:nil];", "content.sound = [UNNotificationSound defaultSound];", " ", "// Deliver the notification in five seconds.", "UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger", "            triggerWithTimeInterval:5 repeats:NO];", "UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@\"FiveSecond\"", "            content:content trigger:trigger];", " ", "// Schedule the notification.", "UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];", "[center addNotificationRequest:request];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Local notifications always result in user interactions, and the system ignores any interactions for which your app isn’t authorized. For information about how to request authorization for user interactions, see [Asking permission to use notifications](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Localizing the Alert Strings
+    ///
+    /// Localize the strings you display in a notification alert for the current user. Although you can use the [`NSLocalizedString`](https://developer.apple.com/documentation/foundation/nslocalizedstring) macros to load strings from your app’s resource files, a better option is to specify your string using the [`localizedUserNotificationStringForKey:arguments:`](https://developer.apple.com/documentation/foundation/nsstring/localizedusernotificationstring(forkey:arguments:)) method of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). The [`localizedUserNotificationStringForKey:arguments:`](https://developer.apple.com/documentation/foundation/nsstring/localizedusernotificationstring(forkey:arguments:)) method delays the loading of the localized string until the system delivers the notification. If the user changes the language setting before the system delivers a notification, the system updates the alert text to the user’s current language instead of the language in use when the system scheduled the notification.
+    ///
+    ///
     #[unsafe(super(UNNotificationContent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNMutableNotificationContent;

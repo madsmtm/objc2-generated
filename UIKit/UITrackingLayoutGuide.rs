@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrackinglayoutguide?language=objc)
+    /// A layout guide that automatically activates and deactivates layout constraints depending on its proximity to edges.
     #[unsafe(super(UILayoutGuide, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

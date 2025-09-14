@@ -10,9 +10,8 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
+    /// The private portion of an asymmetric key pair.
     /// Managed Private Key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laprivatekey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAPrivateKey;

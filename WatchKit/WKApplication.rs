@@ -16,7 +16,23 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplication?language=objc)
+    /// The centralized point of control and coordination for apps with a single watchOS app target.
+    ///
+    /// ## Overview
+    ///
+    /// In Xcode 13 and earlier, the system divides a watchOS app into two sections:
+    ///
+    /// - WatchKit app: An app bundle that contains your app icon. For storyboard-based apps, it also includes your storyboard and any assets used by the storyboard.
+    ///
+    /// - WatchKit extension: An extension that contains your watchOS app’s code.
+    ///
+    /// In Xcode 14 and later, you can produce watchOS apps with a single watchOS app target for code, assets, extensions, and localizations. These single-target watchOS apps can run on watchOS 7 and later
+    ///
+    /// Single-target watchOS apps have a single app object. While the system creates and manages this object, you can access it to perform app-level tasks such as opening URLs and getting the root interface controller of your app.
+    ///
+    /// As relevant events occur within your WatchKit app, the app object notifies its delegate of those events. Your delegate object can implement the methods it needs to provide an appropriate response to life-cycle events, handle notifications, or handle Handoff–related behaviors. For more information about the methods of the delegate, see [`WKApplicationDelegate`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -112,7 +128,44 @@ impl WKApplication {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate?language=objc)
+    /// A collection of methods that manages the app-level behavior for a single-target watchOS app.
+    ///
+    /// ## Overview
+    ///
+    /// Implement the delegate’s methods to respond to your app’s life-cycle events, such as the activation and deactivation of your app. You can also implement delegate methods to respond to background tasks, Siri intents, workout sessions, or Handoff activity from another devices.
+    ///
+    /// To add an app delegate, define a delegate class that subclasses [`NSObject`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class) and adopts the [`WKApplicationDelegate`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate) protocol.
+    ///
+    /// ```swift
+    /// import WatchKit
+    ///
+    /// class MyWatchAppDelegate: NSObject, WKApplicationDelegate {
+    ///
+    /// }
+    /// ```
+    ///
+    /// Then define an app delegate adaptor in your SwiftUI [`App`](https://developer.apple.com/documentation/swiftui/app) structure.
+    ///
+    /// ```swift
+    /// import SwiftUI
+    ///
+    /// @main
+    /// struct MyWatchApp_Watch_AppApp: App {
+    ///     @WKApplicationDelegateAdaptor var appDelegate: MyWatchAppDelegate
+    ///     var body: some Scene {
+    ///         WindowGroup {
+    ///             NavigationStack {
+    ///                 ContentView()
+    ///             }
+    ///         }
+    ///     }
+    /// }
+    ///
+    /// ```
+    ///
+    /// Finally, implement the delegate methods you want to handle.
+    ///
+    ///
     pub unsafe trait WKApplicationDelegate: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(applicationDidFinishLaunching))]

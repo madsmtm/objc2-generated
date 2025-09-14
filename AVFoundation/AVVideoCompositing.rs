@@ -16,7 +16,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avpixelaspectratio?language=objc)
+/// A structure that defines a pixel aspect ratio for a rendering context.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVPixelAspectRatio {
@@ -33,7 +33,7 @@ unsafe impl RefEncode for AVPixelAspectRatio {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avedgewidths?language=objc)
+/// A structure that defines edge processing region widths.
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -63,13 +63,18 @@ unsafe impl RefEncode for AVEdgeWidths {
 }
 
 extern_class!(
+    /// An object that defines the context in which custom compositors render pixel buffers.
+    ///
+    /// ## Overview
+    ///
+    /// A render context provides size and scaling information and offers a service for efficiently providing pixel buffers from a managed pool of buffers.
+    ///
+    ///
     /// The AVVideoCompositionRenderContext class defines the context within which custom compositors render new output pixels buffers.
     ///
     /// An instance of AVVideoCompositionRenderContext provides size and scaling information and offers a service for efficiently providing pixel buffers from a managed pool of buffers.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionrendercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionRenderContext;
@@ -192,11 +197,10 @@ impl AVVideoCompositionRenderContext {
 }
 
 extern_class!(
+    /// Information about upcoming composition requests, such as composition start time and end time.
     /// An AVVideoCompositionRenderHint instance contains the information necessary for announcing upcoming rendering request time ranges.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionrenderhint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionRenderHint;
@@ -252,6 +256,19 @@ impl AVVideoCompositionRenderHint {
 }
 
 extern_protocol!(
+    /// A protocol that defines the methods custom video compositors must implement.
+    ///
+    /// ## Overview
+    ///
+    /// For each AVFoundation object of class [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem), [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession), [`AVAssetImageGenerator`](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator), or [`AVAssetReaderVideoCompositionOutput`](https://developer.apple.com/documentation/avfoundation/avassetreadervideocompositionoutput) that has a non-`nil` value for its `videoComposition` property, and the value of the [`customVideoCompositorClass`](https://developer.apple.com/documentation/avfoundation/avvideocomposition/customvideocompositorclass) property of the `AVVideoComposition` isn’t `nil`, AVFoundation creates and uses an instance of that custom video compositor class to process the instructions contained in the [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition).
+    ///
+    /// The system creates a custom video compositor instance when you assign `videoComposition` an instance of [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition) that’s associated with a different custom video compositor class than the object was previously using.
+    ///
+    /// When creating instances of custom video compositors, AVFoundation initializes them by calling `init` and then makes them available as the value of the `customVideoCompositor` property of the object. You then can do any additional setup or configuration to the custom compositor.
+    ///
+    /// The AVFoundation object retains the custom video compositor instances for as long as the value of the `videoComposition` property indicates that there’s an instance of the same custom video compositor class. This is true even when the value changes from one instance of AVVideoComposition to another associated instance with the same custom video compositor class.
+    ///
+    ///
     /// Defines properties and methods for custom video compositors
     ///
     /// For each AVFoundation object of class AVPlayerItem, AVAssetExportSession, AVAssetImageGenerator, or AVAssetReaderVideoCompositionOutput that has a non-nil value for its videoComposition property, when the value of the customVideoCompositorClass property of the AVVideoComposition is not Nil, AVFoundation creates and uses an instance of that custom video compositor class to process the instructions contained in the AVVideoComposition. The custom video compositor instance will be created when you invoke -setVideoComposition: with an instance of AVVideoComposition that's associated with a different custom video compositor class than the object was previously using.
@@ -259,8 +276,6 @@ extern_protocol!(
     /// When creating instances of custom video compositors, AVFoundation initializes them by calling -init and then makes them available to you for further set-up or communication, if any is needed, as the value of the customVideoCompositor property of the object on which -setVideoComposition: was invoked.
     ///
     /// Custom video compositor instances will then be retained by the AVFoundation object for as long as the value of its videoComposition property indicates that an instance of the same custom video compositor class should be used, even if the value is changed from one instance of AVVideoComposition to another instance that's associated with the same custom video compositor class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositing?language=objc)
     pub unsafe trait AVVideoCompositing: NSObjectProtocol + Send + Sync {
         /// Indicates the kinds of source frame pixel buffer attributes a video compositor can accept as input.
         ///
@@ -425,11 +440,16 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that contains information a video compositor needs to render an output pixel buffer.
+    ///
+    /// ## Overview
+    ///
+    /// The video compositor must adopt the [`AVVideoCompositing`](https://developer.apple.com/documentation/avfoundation/avvideocompositing) protocol.
+    ///
+    ///
     /// An AVAsynchronousVideoCompositionRequest instance contains the information necessary for a video compositor to render an output pixel buffer. The video compositor must implement the AVVideoCompositing protocol.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avasynchronousvideocompositionrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAsynchronousVideoCompositionRequest;
@@ -621,7 +641,22 @@ impl AVAsynchronousVideoCompositionRequest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avasynchronousciimagefilteringrequest?language=objc)
+    /// An object that supports using Core Image filters to process an individual video frame in a video composition.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class when creating a composition for Core Image filtering with the [`videoCompositionWithAsset:applyingCIFiltersWithHandler:`](https://developer.apple.com/documentation/avfoundation/avvideocomposition/init(asset:applyingcifilterswithhandler:)) method. In that method call, you provide a block to be called by AVFoundation as it processes each frame of video, and the block’s sole parameter is a [`AVAsynchronousCIImageFilteringRequest`](https://developer.apple.com/documentation/avfoundation/avasynchronousciimagefilteringrequest) object. Use that object both to the video frame image to be filtered and allows you to return a filtered image to AVFoundation for display or export. The code listing below shows an example of applying a filter to an asset.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["guard let filter = CIFilter(name: \"CIGaussianBlur\") else { return }", "let composition = AVVideoComposition(asset: asset) { request in", "    // Clamp to avoid blurring transparent pixels at the image edges.", "    let source = request.sourceImage.clampedToExtent()", "    filter.setValue(source, forKey: kCIInputImageKey)", "", "    // Vary filter parameters based on the video timing.", "    let seconds = CMTimeGetSeconds(request.compositionTime)", "    filter.setValue(seconds * 10.0, forKey: kCIInputRadiusKey)", "            ", "    // Crop the blurred output to the bounds of the original image.", "    if let output = filter.outputImage?.cropped(to: request.sourceImage.extent) {", "        request.finish(with: output, context: nil)", "    } else {", "        request.finish(with: AppError.customError)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["CIFilter *filter = [CIFilter filterWithName:@\"CIGaussianBlur\"];", "AVVideoComposition *composition = [AVVideoComposition videoCompositionWithAsset: asset", "    applyingCIFiltersWithHandler:^(AVAsynchronousCIImageFilteringRequest *request){", "        // Clamp to avoid blurring transparent pixels at the image edges", "        CIImage *source = [request.sourceImage imageByClampingToExtent];", "        [filter setValue:source forKey:kCIInputImageKey];", " ", "        // Vary filter parameters based on video timing", "        Float64 seconds = CMTimeGetSeconds(request.compositionTime);", "        [filter setValue:seconds * 10.0 forKey:kCIInputRadiusKey];", " ", "        // Crop the blurred output to the bounds of the original image", "        CIImage *output = [filter.outputImage imageByCroppingToRect:request.sourceImage.extent];", " ", "        // Provide the filter output to the composition", "        [request finishWithImage:output context:nil];", "    }];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  To use the created video composition for playback, create an [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) object from the same asset used as the composition’s source, then assign the composition to the player item’s [`videoComposition`](https://developer.apple.com/documentation/avfoundation/avplayeritem/videocomposition) property. To export the composition to a new movie file, create an [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) object from the same source asset, then assign the composition to the export session’s [`videoComposition`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/videocomposition) property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAsynchronousCIImageFilteringRequest;
@@ -694,9 +729,14 @@ impl AVAsynchronousCIImageFilteringRequest {
 }
 
 extern_protocol!(
-    /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// A protocol that defines the interface for a video composition instruction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstructionprotocol?language=objc)
+    /// ## Overview
+    ///
+    /// A video composition maintains an array of instructions that describe how to compose its content.
+    ///
+    ///
+    /// The AVVideoCompositionInstruction protocol is implemented by objects to represent operations to be performed by a compositor. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[doc(alias = "AVVideoCompositionInstruction")]
     #[name = "AVVideoCompositionInstruction"]
     pub unsafe trait AVVideoCompositionInstructionProtocol:

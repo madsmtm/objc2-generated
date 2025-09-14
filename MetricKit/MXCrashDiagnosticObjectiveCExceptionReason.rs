@@ -7,12 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents the exception reason for an uncaught ObjC exception.
+    ///
+    /// ## Overview
+    ///
+    /// The crash report for an uncaught Objective-C [`NSException`](https://developer.apple.com/documentation/foundation/nsexception) can contain detailed information about the type, name and description of the exception object. Use the properties and methods on [`MXCrashDiagnosticObjectiveCExceptionReason`](https://developer.apple.com/documentation/metrickit/mxcrashdiagnosticobjectivecexceptionreason) to access this information.
+    ///
+    ///
     /// A class that represents Crash exception reason.
     ///
     /// Crash reports that are caused by an uncaught Objective-C NSException can in some cases contain detailed information about the type, name and description of the exception object.
     /// This information is captured in a structured way in a MXCrashDiagnosticObjectiveCExceptionReason object and may have some pieces redacted to avoid exposing sensitive user data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcrashdiagnosticobjectivecexceptionreason?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXCrashDiagnosticObjectiveCExceptionReason;

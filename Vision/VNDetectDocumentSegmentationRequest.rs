@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Performs document detection and segmentation in an image.
+    /// An object that detects rectangular regions that contain text in the input image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequest?language=objc)
+    /// ## Overview
+    ///
+    /// Perform this request to detect a document in an image. The result that the request generates contains the four corner points of a document’s quadrilateral and saliency mask.
+    ///
+    ///
+    /// Performs document detection and segmentation in an image.
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -79,5 +84,5 @@ impl VNDetectDocumentSegmentationRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectdocumentsegmentationrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the document segmentation request.
 pub static VNDetectDocumentSegmentationRequestRevision1: NSUInteger = 1;

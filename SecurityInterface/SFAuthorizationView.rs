@@ -14,21 +14,26 @@ use crate::*;
 
 /// Defines the current state of the authorization view.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewstate?language=objc)
+/// ## Overview
+///
+/// These constants are described in Constants in [`SFAuthorizationView`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview).
+///
+///
+/// Defines the current state of the authorization view.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFAuthorizationViewState(pub c_uint);
 impl SFAuthorizationViewState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationstartupstate?language=objc)
+    /// Indicates that the state is starting up
     #[doc(alias = "SFAuthorizationStartupState")]
     pub const StartupState: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewlockedstate?language=objc)
+    /// Indicates that the state is locked
     #[doc(alias = "SFAuthorizationViewLockedState")]
     pub const ViewLockedState: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewinprogressstate?language=objc)
+    /// Indicates that the state is in progress
     #[doc(alias = "SFAuthorizationViewInProgressState")]
     pub const ViewInProgressState: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationviewunlockedstate?language=objc)
+    /// Indicates that the state is unlocked
     #[doc(alias = "SFAuthorizationViewUnlockedState")]
     pub const ViewUnlockedState: Self = Self(3);
 }
@@ -42,7 +47,25 @@ unsafe impl RefEncode for SFAuthorizationViewState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfauthorizationview?language=objc)
+    /// The class responsible for displaying a lock icon that can be used to indicate that a user interface has restricted access.
+    ///
+    /// ## Overview
+    ///
+    /// The lock appears locked when the user must be authorized and appears open when the user has been authorized. The closed and open lock icons of the authorization view are shown in the following figure.
+    ///
+    ///
+    /// ![Authorization view lock icon](https://docs-assets.developer.apple.com/published/153dfdaab793afc67f163364d0c7cf69/media-1965610.gif)
+    ///
+    ///
+    /// When you add an authorization view as a custom view to a window or dialog box, you must initialize it before it displays correctly. To initialize the view, use the [`setString:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/setstring(_:)) method to create a default rights structure (containing a prompt string) or the [`setAuthorizationRights:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/setauthorizationrights(_:)) method to specify a rights structure. You must also either specify automatic updates ([`setAutoupdate:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/setautoupdate(_:)) or [`setAutoupdate:interval:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/setautoupdate(_:interval:))) or perform a manual update ([`updateStatus:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/updatestatus(_:))) to set the lock icon to its initial state.
+    ///
+    /// You can implement delegate methods that are invoked when the authorization view changes state. You can optionally implement the delegate methods to obtain the state of the authorization object when you are using an authorization view.
+    ///
+    /// When the user clicks a locked authorization view icon, the Security Server displays an authentication dialog (to request a user name and password, for example). When the user provides the requested credentials, the lock icon unlocks and the user is considered preauthorized to perform the functions specified by the authorization rights structure. You can call the [`updateStatus:`](https://developer.apple.com/documentation/securityinterface/sfauthorizationview/updatestatus(_:)) method to determine whether the user has been preauthorized: this method returns [`true`](https://developer.apple.com/documentation/swift/true) if the view is in the unlocked state, otherwise [`false`](https://developer.apple.com/documentation/swift/false). Before committing changes or performing actions that require authorization, you should check the user’s authorization again, even if they are preauthorized.
+    ///
+    /// The default behavior of this view is to preauthorize rights; if this is not possible it unlocks and waits for authorization to be checked when explicitly required.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFAuthorizationView;

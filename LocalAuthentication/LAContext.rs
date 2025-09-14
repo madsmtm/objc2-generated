@@ -9,12 +9,27 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy?language=objc)
+/// The set of available local authentication policies.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct LAPolicy(pub NSInteger);
 impl LAPolicy {
+    /// User authentication with biometry.
+    ///
+    /// ## Discussion
+    ///
+    /// You use the [`LAPolicyDeviceOwnerAuthenticationWithBiometrics`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometrics) policy when calling the [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to authenticate the user with biometrics.
+    ///
+    /// Policy evaluation fails if Touch ID or Face ID is unavailable or not enrolled. Evaluation also fails after too many failed Touch ID attempts. After failed Face ID attempts, the system offers a fallback option, but stops trying to authenticate with Face ID. Both Touch ID and Face ID authentication are disabled system-wide after too many consecutive unsuccessful attempts, even when the attempts span multiple evaluation calls. When this happens, the system requires the user to enter the device passcode to reenable biometry.
+    ///
+    /// During authentication, the system presents the user with an authentication dialog for every attempt to authenticate with Touch ID, or after any failed Face ID attempt. The dialog contains a cancel button with a title that you can customize by setting the [`localizedCancelTitle`](https://developer.apple.com/documentation/localauthentication/lacontext/localizedcanceltitle) property. If the user taps the cancel button, the policy evaluation fails with the [`userCancel`](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/usercancel) error.
+    ///
+    /// The authentication dialog also displays a fallback button after too many unsuccessful Touch ID or Face ID attempts. You can customize the fallback button’s title by setting the [`localizedFallbackTitle`](https://developer.apple.com/documentation/localauthentication/lacontext/localizedfallbacktitle) property. If the user taps the fallback button, the policy evaluation fails with the [`userFallback`](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/userfallback) error. In this case, your app should provide an alternate mechanism for authenticating the user, like asking for a PIN or a password.
+    ///
+    /// To let the system handle the fallback option by asking for the device passcode (in iOS or watchOS) or the user’s password (in macOS), use the [`LAPolicyDeviceOwnerAuthentication`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication) policy instead.
+    ///
+    ///
     /// Device owner will be authenticated using a biometric method (Touch ID).
     ///
     ///
@@ -33,10 +48,21 @@ impl LAPolicy {
     /// either at login window or in the preference sheets or even in application by the means of
     /// LAPolicyDeviceOwnerAuthentication. The system unlock is preferred user experience because
     /// we generaly don't want users to enter their account password at application's request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometrics?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometrics")]
     pub const DeviceOwnerAuthenticationWithBiometrics: Self = Self(1);
+    /// User authentication with biometry, Apple Watch, or the device passcode.
+    ///
+    /// ## Discussion
+    ///
+    /// You use the [`LAPolicyDeviceOwnerAuthentication`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication) policy when calling the [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to authenticate a user in iOS with either biometrics or a passcode, in watchOS with a passcode, or in macOS with Touch ID, Apple Watch, or the user’s password.
+    ///
+    /// If biometry is available, enrolled, and not disabled, the system uses that first. In macOS, the system simultaneously looks for a nearby, paired Apple Watch running watchOS 6 or later, and tries to use that in parallel. When these options aren’t available, the system prompts the user for the device passcode or user’s password.
+    ///
+    /// In iOS, policy evaluation fails with the error [`passcodeNotSet`](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/passcodenotset) if the device passcode isn’t enabled. The system disables passcode authentication after too many unsuccessful attempts, with progressively increasing delays between attempts.
+    ///
+    /// The authentication dialog contains a cancel button with a default title that you can customize using the [`localizedCancelTitle`](https://developer.apple.com/documentation/localauthentication/lacontext/localizedcanceltitle) property, as well as a fallback button that you can customize using [`localizedFallbackTitle`](https://developer.apple.com/documentation/localauthentication/lacontext/localizedfallbacktitle) property. When the user taps the fallback button, the system reverts to asking for the device passcode or user’s password. When the user taps the cancel button, the evaluation fails with the [`userCancel`](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/usercancel) error.
+    ///
+    ///
     /// Device owner will be authenticated by biometry or user password.
     ///
     ///
@@ -46,10 +72,19 @@ impl LAPolicy {
     /// Touch ID authentication dialog behaves similarly as the one used by
     /// LAPolicyDeviceOwnerAuthenticationWithBiometrics. However, the "Use Password.." button does
     /// not end the authentication. Instead, it switches the authentication mechanism to user password.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthentication")]
     pub const DeviceOwnerAuthentication: Self = Self(2);
+    /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
+    ///
+    /// ## Discussion
+    ///
+    /// Companion authentication is required. If no nearby paired companion device can be found, LAErrorCompanionNotAvailable is returned.
+    ///
+    /// ```text
+    ///         Users should follow instructions on the companion device to authenticate.
+    /// ```
+    ///
+    ///
     /// Device owner will be authenticated by a companion device e.g. Watch, Mac, etc.
     ///
     ///
@@ -57,10 +92,23 @@ impl LAPolicy {
     /// LAErrorCompanionNotAvailable is returned.
     ///
     /// Users should follow instructions on the companion device to authenticate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithcompanion?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithCompanion")]
     pub const DeviceOwnerAuthenticationWithCompanion: Self = Self(3);
+    /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
+    ///
+    /// ## Discussion
+    ///
+    /// Companion or biometric authentication is required. If no nearby paired companion device can be found, it behaves as LAPolicyDeviceOwnerAuthenticationWithBiometrics. Similarly, if biometry is unavailable it behaves as LAPolicyDeviceOwnerAuthenticationWithCompanion.
+    ///
+    /// ```text
+    ///         Depending on the companion type and biometry and companion availability,
+    ///         either a user is asked to authenticate with biometry and on a companion device in parallel
+    ///         or the companion authentication takes precedence
+    ///         and a user is asked to authenticate exclusively on the companion device if available.
+    ///         Users should follow instructions on the companion device to authenticate.
+    /// ```
+    ///
+    ///
     /// Device owner will be authenticated by biometry or a companion device e.g. Watch, Mac, etc.
     ///
     ///
@@ -73,16 +121,52 @@ impl LAPolicy {
     /// or the companion authentication takes precedence
     /// and a user is asked to authenticate exclusively on the companion device if available.
     /// Users should follow instructions on the companion device to authenticate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorcompanion?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrCompanion")]
     pub const DeviceOwnerAuthenticationWithBiometricsOrCompanion: Self = Self(4);
+    /// User authentication with wrist detection on watchOS.
+    ///
+    /// ## Discussion
+    ///
+    /// You use the [`LAPolicyDeviceOwnerAuthenticationWithWristDetection`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwristdetection) policy when calling the [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to authenticate a user on watchOS.
+    ///
+    /// Policy evaluation fails if the user hasn’t set or entered the passcode on their watch or if the watch previously detected its removal from the user’s wrist.
+    ///
+    /// The following shows a policy evaluation that uses wrist detection on watchOS 9 and later:
+    ///
+    /// ```swift
+    /// var error: NSError?
+    /// let context = LAContext()
+    /// guard #available(watchOS 9.0, *), context.canEvaluatePolicy(.deviceOwnerWithWristDetection, error: &error) else {
+    ///     // Can't evaluate the policy, either it's unsupported or a passcode isn't set.
+    ///     // See `error` for details and fall back to legacy authentication.
+    /// }
+    ///
+    /// do {
+    ///     try await context.evaluatePolicy(.deviceOwnerWithWristDetection, localizedReason: "Approve a sensitive operation")
+    ///     // The user's watch is on their wrist and they entered the correct passcode.
+    ///     
+    /// } catch {
+    ///     // Watch isn't on the wrist or the user hasn't entered the correct passcode.
+    ///     // See `error` for details and fall back to legacy authentication.
+    /// }
+    /// ```
+    ///
+    ///
     /// Device owner will be authenticated by device passcode. The authentication will also succeed if the wrist detection is enabled,
     /// correct passcode was entered in the past and the watch has been on the wrist ever since.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwristdetection?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWristDetection")]
     pub const DeviceOwnerAuthenticationWithWristDetection: Self = Self(5);
+    /// User authentication with Apple Watch.
+    ///
+    /// ## Discussion
+    ///
+    /// You use the [`LAPolicyDeviceOwnerAuthenticationWithWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch) policy when calling the [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to authenticate the user with Apple Watch. If the evaluation method can’t find a nearby, paired Apple Watch running watchOS 6 or later, it returns the [`watchNotAvailable`](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/watchnotavailable) error.
+    ///
+    /// During authentication, the system presents a dialog that resembles the dialog presented for biometric authentication. The user confirms authentication by double-clicking the watch’s side button.
+    ///
+    /// To allow the user to authenticate either with an Apple Watch or with biometrics, use the [`LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorwatch) policy instead. To allow the user to authenticate with either of these options or a password, use the [`LAPolicyDeviceOwnerAuthentication`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication) policy.
+    ///
+    ///
     /// Device owner will be authenticated by Watch.
     ///
     ///
@@ -91,11 +175,20 @@ impl LAPolicy {
     ///
     /// Watch authentication dialog looks and behaves similarly to the biometric variant. Users can
     /// confirm authentication by double-clicking the side button on their watch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithWatch: Self = Self(3);
+    /// User authentication with either biometry or Apple Watch.
+    ///
+    /// ## Discussion
+    ///
+    /// You use the [`LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorwatch) policy when calling the [`evaluatePolicy:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluatepolicy(_:localizedreason:reply:)) method to authenticate the user with either Apple Watch or biometrics. The authentication mechanisms run in parallel until one or the other succeeds, or until the user cancels the operation.
+    ///
+    /// If the evaluation method can’t find a nearby, paired Apple Watch running watchOS 6 or later, this policy reverts to the behavior of the [`LAPolicyDeviceOwnerAuthenticationWithBiometrics`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometrics) policy. If biometry is unavailable, the policy behaves like the [`LAPolicyDeviceOwnerAuthenticationWithWatch`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithwatch) policy.
+    ///
+    /// To allow the user to authenticate with either of these options or a password, use the [`LAPolicyDeviceOwnerAuthentication`](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthentication) policy instead.
+    ///
+    ///
     /// Device owner will be authenticated by biometry or Watch.
     ///
     ///
@@ -106,8 +199,6 @@ impl LAPolicy {
     /// Watch authentication dialog looks and behaves similarly to biometric variant. When both
     /// mechanisms are available, user is asked to use biometry and watch authentication will run in
     /// parallel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lapolicy/deviceownerauthenticationwithbiometricsorwatch?language=objc)
     #[doc(alias = "LAPolicyDeviceOwnerAuthenticationWithBiometricsOrWatch")]
     #[deprecated]
     pub const DeviceOwnerAuthenticationWithBiometricsOrWatch: Self = Self(4);
@@ -122,18 +213,24 @@ unsafe impl RefEncode for LAPolicy {
 }
 
 extern "C" {
+    /// The maximum allowable reuse duration.
     /// The maximum value for LAContext touchIDAuthenticationAllowableReuseDuration property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/latouchidauthenticationmaximumallowablereuseduration?language=objc)
     pub static LATouchIDAuthenticationMaximumAllowableReuseDuration: NSTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype?language=objc)
+/// The types of credentials to be used for authentication.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LACredentialType(pub NSInteger);
 impl LACredentialType {
+    /// Specifies that a password is provided by the application.
+    ///
+    /// ## Discussion
+    ///
+    /// If not set, the user is prompted for their password when needed. When entered using the provided authentication dialog, the entered text is stored as UTF-8 encoded data.
+    ///
+    ///
     /// Password provided by application
     ///
     ///
@@ -143,8 +240,6 @@ impl LACredentialType {
     /// LocalAuthentication will not show password entry user interface.
     /// When entered from the LocalAuthentication user interface, the password is stored as
     /// UTF-8 encoded string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype/applicationpassword?language=objc)
     #[doc(alias = "LACredentialTypeApplicationPassword")]
     pub const ApplicationPassword: Self = Self(0);
     /// Smart card PIN provided by application
@@ -155,8 +250,6 @@ impl LACredentialType {
     /// LocalAuthentication will not show the smart card PIN user interface.
     /// When entered from the LocalAuthentication user interface, the PIN is stored as
     /// UTF-8 encoded string.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype/smartcardpin?language=objc)
     #[doc(alias = "LACredentialTypeSmartCardPIN")]
     pub const SmartCardPIN: Self = Self(-3);
 }
@@ -169,40 +262,40 @@ unsafe impl RefEncode for LACredentialType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation?language=objc)
+/// Operations to be evaluated for access control.
+///
+/// ## Overview
+///
+/// Use one of these values to specify the operation for which you want to evaluate an access control when calling the [`evaluateAccessControl:operation:localizedReason:reply:`](https://developer.apple.com/documentation/localauthentication/lacontext/evaluateaccesscontrol(_:operation:localizedreason:reply:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LAAccessControlOperation(pub NSInteger);
 impl LAAccessControlOperation {
+    /// Specifies that access control is used for item creation.
     /// Access control will be used for item creation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/createitem?language=objc)
     #[doc(alias = "LAAccessControlOperationCreateItem")]
     pub const CreateItem: Self = Self(0);
+    /// Specifies that access control is used for accessing an existing item.
     /// Access control will be used for accessing existing item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/useitem?language=objc)
     #[doc(alias = "LAAccessControlOperationUseItem")]
     pub const UseItem: Self = Self(1);
+    /// Specifies that access control is used for key creation.
     /// Access control will be used for key creation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/createkey?language=objc)
     #[doc(alias = "LAAccessControlOperationCreateKey")]
     pub const CreateKey: Self = Self(2);
+    /// Specifies that access control is used for accessing an existing key.
     /// Access control will be used for sign operation with existing key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeysign?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeySign")]
     pub const UseKeySign: Self = Self(3);
+    /// Specifies that access control is used for data decryption using existing key.
     /// Access control will be used for data decryption using existing key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeydecrypt?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeyDecrypt")]
     pub const UseKeyDecrypt: Self = Self(4);
+    /// Specifies that access control is used for key exchange.
     /// Access control will be used for key exchange.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation/usekeykeyexchange?language=objc)
     #[doc(alias = "LAAccessControlOperationUseKeyKeyExchange")]
     pub const UseKeyKeyExchange: Self = Self(5);
 }
@@ -216,6 +309,21 @@ unsafe impl RefEncode for LAAccessControlOperation {
 }
 
 extern_class!(
+    /// A mechanism for evaluating authentication policies and access controls.
+    ///
+    /// ## Overview
+    ///
+    /// You use an authentication context to evaluate the user’s identity, either with biometrics like Touch ID or Face ID, or by supplying the device passcode. The context handles user interaction, and also interfaces to the Secure Enclave, the underlying hardware element that manages biometric data. You create and configure the context, and ask it to carry out the authentication. You then receive an asynchronous callback, which provides an indication of authentication success or failure, and an error instance that explains the reason for a failure, if any.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Include the [NSFaceIDUsageDescription](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW75) key in your app’s `Info.plist` file if your app allows biometric authentication. Otherwise, authorization requests may fail.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Class that represents an authentication context.
     ///
     ///
@@ -223,8 +331,6 @@ extern_class!(
     ///
     ///
     /// See: LAPolicy
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct LAContext;

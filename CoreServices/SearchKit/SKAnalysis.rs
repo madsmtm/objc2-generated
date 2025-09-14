@@ -5,47 +5,99 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskmintermlength?language=objc)
+    /// The minimum term length to index. Specified as a CFNumber object. If this optional key is not present, Search Kit indexing defaults to a minimum term length of 1.
     pub static kSKMinTermLength: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksubstitutions?language=objc)
+    /// A dictionary of term substitutions—terms that differ in their character strings but that match during a search. Specified as a CFDictionary object.
     pub static kSKSubstitutions: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskstopwords?language=objc)
+    /// A set of stopwords—words not to index. Specified as a CFSet object. There is no default stopword list. You must supply your own.
     pub static kSKStopWords: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskproximityindexing?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A Boolean flag indicating whether or not Search Kit should use proximity indexing. The flag can be a `0` or `kCFBoolenFalse` value (for false) or a `1` or `kCFBooleanTrue` value (for true). Proximity indexing is available only for inverted indexes—that is, indexes of type [`kSKIndexInverted`](https://developer.apple.com/documentation/coreservices/skindextype/kskindexinverted).
+    ///
+    /// Use proximity indexing to support phrase searching. If this key is not present in an index’s text analysis properties dictionary, Search Kit defaults to not adding proximity information to the index.
+    ///
+    ///
     pub static kSKProximityIndexing: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskmaximumterms?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The maximum number of number unique terms to index in each document. Specified as a CFNumber object.
+    ///
+    /// Search Kit indexes from the beginning of a document. When it has indexed the first n unique terms, it stops.
+    ///
+    /// The default number of maximum terms, which applies if you do not provide a number, is 2000.
+    ///
+    /// To tell Search Kit to index all the terms in each document without limit, specify a value of 0.
+    ///
+    ///
     pub static kSKMaximumTerms: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksktermchars?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Additional valid starting-position “word” characters for indexing and querying. The corresponding value, a CFString object, specifies the additional valid “word” characters that you want to be considered as valid starting characters of terms for indexing and querying. “Word” characters are contrasted with nonword characters, such as spaces.
+    ///
+    /// The value of `kSKStartTermChars`, if this key is present, overrides the value of `kSKTermChars` for the first character of a term.
+    ///
+    /// By default, Search Kit considers alphanumeric characters as valid starting characters for terms, and considers all others (including the underscore character) to be nonword characters.
+    ///
+    ///
     pub static kSKTermChars: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskstarttermchars?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Additional valid starting-position “word” characters for indexing and querying. The corresponding value, a CFString object, specifies the additional valid “word” characters that you want to be considered as valid starting characters of terms for indexing and querying. “Word” characters are contrasted with nonword characters, such as spaces.
+    ///
+    /// The value of `kSKStartTermChars`, if this key is present, overrides the value of `kSKTermChars` for the first character of a term.
+    ///
+    /// By default, Search Kit considers alphanumeric characters as valid starting characters for terms, and considers all others (including the underscore character) to be nonword characters.
+    ///
+    ///
     pub static kSKStartTermChars: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kskendtermchars?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Additional valid last-position “word” characters for indexing and querying. The corresponding value, a CFString object, specifies the additional valid “word” characters that you want to be considered as valid ending characters of terms for indexing and querying. “Word” characters are contrasted with nonword characters, such as spaces.
+    ///
+    /// The value of `kSKEndTermChars`, if this key is present, overrides the value of `kSKTermChars` for the last character of a term.
+    ///
+    /// By default, Search Kit considers alphanumeric characters as valid ending characters for terms, and considers all others (including the underscore character) to be nonword characters.
+    ///
+    ///
     pub static kSKEndTermChars: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksklanguagetypes?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Deprecated—Search Kit ignores this constant.
+    ///
+    /// In releases of macOS previous to version 10.4, each string in this key’s corresponding value specifies a language to use for indexing. Each such string is a two character ISO 639-1 code. For example, `'en'` for English, `'ja'` for Japanese, and so on. If this key is not present, Search Kit uses the macOS preferences system to determine the primary language from the user’s locale.
+    ///
+    ///
     #[deprecated = "No longer supported"]
     pub static kSKLanguageTypes: Option<&'static CFString>;
 }

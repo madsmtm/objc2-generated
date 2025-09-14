@@ -8,9 +8,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Keeps track of where an altitude value came from and informs the user about the expected accuracy.
+/// Options for setting a location anchor’s altitude.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum?language=objc)
+/// ## Discussion
+///
+/// Each altitude source has unique performance and accuracy characteristics.
+///
+///
+/// Keeps track of where an altitude value came from and informs the user about the expected accuracy.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,24 +23,36 @@ use crate::*;
 pub struct ARAltitudeSource(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAltitudeSource {
+    /// Altitude isn’t yet set.
     /// Altitude could not be determined (yet).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/unknown?language=objc)
     #[doc(alias = "ARAltitudeSourceUnknown")]
     pub const Unknown: Self = Self(0);
-    /// ARKit determined altitude based on a coarse digital elevation model. The provided value is too imprecise to be used at close range, but is sufficient to anchor far away content.
+    /// The framework sets the altitude using a coarse digital-elevation model.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/coarse?language=objc)
+    /// ## Discussion
+    ///
+    /// The accuracy of this altitude is noticeably imprecise at close range, but it’s sufficient from far away. Use this option to save computational resources for anchors that are far off in the distance.
+    ///
+    ///
+    /// ARKit determined altitude based on a coarse digital elevation model. The provided value is too imprecise to be used at close range, but is sufficient to anchor far away content.
     #[doc(alias = "ARAltitudeSourceCoarse")]
     pub const Coarse: Self = Self(1);
+    /// The framework sets the altitude using a high-resolution digital-elevation model.
     /// ARKit determined altitude based on a high resolution digital elevation model.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/precise?language=objc)
     #[doc(alias = "ARAltitudeSourcePrecise")]
     pub const Precise: Self = Self(2);
-    /// Altitude was provided by the user.
+    /// The app defines the altitude.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum/userdefined?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit records this altitude source when your app defines a geo anchor’s altitude.
+    ///
+    /// You may acquire altitude by providing a particular scene coordinate to the session using [`getGeoLocationForPoint:completionHandler:`](https://developer.apple.com/documentation/arkit/arsession/getgeolocation(forpoint:completionhandler:)).
+    ///
+    /// For example, your app might set a geo anchor’s altitude by raycasting a surface, then adding an arbitrary `y-`amount to make the anchor more visible from afar.
+    ///
+    ///
+    /// Altitude was provided by the user.
     #[doc(alias = "ARAltitudeSourceUserDefined")]
     pub const UserDefined: Self = Self(3);
 }
@@ -50,9 +67,14 @@ unsafe impl RefEncode for ARAltitudeSource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A value describing geo tracking state.
+/// Values that are possible for the current state of geo-tracking.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum?language=objc)
+/// ## Discussion
+///
+/// For any [`state`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.property) in a frame’s [`geoTrackingStatus`](https://developer.apple.com/documentation/arkit/arframe/geotrackingstatus), ARKit provides a [`stateReason`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.property). A given geo-tracking status may intermix states and reasons, so the reasons are not tied to specific states.
+///
+///
+/// A value describing geo tracking state.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -62,22 +84,54 @@ pub struct ARGeoTrackingState(pub NSInteger);
 impl ARGeoTrackingState {
     /// Geo tracking is not available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/notavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// This state occurs when ARKit doesn’t have the landscape data necessary for visual localization at the user’s location. For more information, see [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing).
+    ///
+    ///
+    /// Geo tracking is not available.
     #[doc(alias = "ARGeoTrackingStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
-    /// Geo tracking is being initialized.
+    /// The session is initializing geo tracking.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/initializing?language=objc)
+    /// ## Discussion
+    ///
+    /// In this state, the session is preparing tracking and an app has the opportunity to onboard users to the experience. The app watches for changes in [`stateReason`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.property) and coaches the user accordingly to expedite initialization.
+    ///
+    ///
+    /// Geo tracking is being initialized.
     #[doc(alias = "ARGeoTrackingStateInitializing")]
     pub const Initializing: Self = Self(1);
-    /// Geo tracking is attempting to localize against a Map.
+    /// Geo tracking is attempting to localize against a map.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing?language=objc)
+    /// ## Discussion
+    ///
+    /// In [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing), the session downloads localization imagery for the user’s geographic location and compares it with captures from the device’s camera. This process is referred to as _visual localization_. When ARKit succeeds in matching this imagery with captures from the camera, the state moves to [`ARGeoTrackingStateLocalized`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localized) and the app is free to create location anchors. For more information about localization imagery, see doc:ARGeoTrackingConfiguration#Refine-the-User's-Position-with-Imagery.
+    ///
+    /// ### Assisting the User with Visual Localization
+    ///
+    /// To establish visual localization, the user must move the camera so it acquires the captures that ARKit needs. To elicit the right user movements in [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing), the app needs to advise the user to:
+    ///
+    /// - Point the camera at buildings and other visual landmarks to help ARKit match the live camera data with its preexisting landscape-data.
+    ///
+    /// - Avoid pointing the device at objects that are too general, like trees. It’s better to focus on distinct visuals, like structures, or signs.
+    ///
+    /// - Avoid pointing the device at real-world objects that are transient, like parked cars, or a construction site.
+    ///
+    /// - Because lighting conditions can affect visual localization, avoid geo tracking at night.
+    ///
+    ///
+    /// Geo tracking is attempting to localize against a Map.
     #[doc(alias = "ARGeoTrackingStateLocalizing")]
     pub const Localizing: Self = Self(2);
     /// Geo tracking is localized.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localized?language=objc)
+    /// ## Discussion
+    ///
+    /// In [`ARGeoTrackingStateLocalized`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localized), ARKit has completed visual localization and the app is free to place location anchors ([`ARGeoAnchor`](https://developer.apple.com/documentation/arkit/argeoanchor)).
+    ///
+    ///
+    /// Geo tracking is localized.
     #[doc(alias = "ARGeoTrackingStateLocalized")]
     pub const Localized: Self = Self(3);
 }
@@ -92,9 +146,14 @@ unsafe impl RefEncode for ARGeoTrackingState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A value describing geo tracking accuracy.
+/// Values that are possible for the current accuracy of geo tracking.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum?language=objc)
+/// ## Discussion
+///
+/// To ensure the best possible user experience, an app must monitor and react to the geo-tracking accuracy. When accuracy is [`ARGeoTrackingAccuracyLow`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/low), the app needs to show content that’s more forgiving if ARKit is off by a small distance. For example, if accuracy is [`ARGeoTrackingAccuracyLow`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/low), rendering a location anchor as a large ball several meters in the air is more appropriate than rendering an arrow that rests its point on a real-world surface. Because a larger ball isn’t meant to mark a precise location, any offset that results from low accuracy will be less noticeable to the user. Apps that need higher-precision location anchors need to wait for [`ARGeoTrackingAccuracyMedium`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/medium) or [`ARGeoTrackingAccuracyHigh`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/high) accuracy before revealing rendered location-anchors, or dismissing user instructions.
+///
+///
+/// A value describing geo tracking accuracy.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -102,24 +161,46 @@ unsafe impl RefEncode for ARGeoTrackingState {
 pub struct ARGeoTrackingAccuracy(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingAccuracy {
-    /// Geo tracking has not localized yet. Accuracy is indeterminate.
+    /// Geo-tracking accuracy is undetermined.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/undetermined?language=objc)
+    /// ## Discussion
+    ///
+    /// This value indicates that because the session has not completed visual localization, geo-tracking accuracy is indeterminate.
+    ///
+    ///
+    /// Geo tracking has not localized yet. Accuracy is indeterminate.
     #[doc(alias = "ARGeoTrackingAccuracyUndetermined")]
     pub const Undetermined: Self = Self(0);
-    /// Localized with low accuracy.
+    /// Geo-tracking accuracy is low.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/low?language=objc)
+    /// ## Discussion
+    ///
+    /// This value indicates that visual localization is complete and geo-tracking accuracy is low.
+    ///
+    /// One technique an app can use to deal with low accuracy is to render location anchors with an asset that’s more forgiving, like a large ball. If an app renders the ball further in the air, any offset that results from low accuracy will be less noticeable, and less critical to the user.
+    ///
+    ///
+    /// Localized with low accuracy.
     #[doc(alias = "ARGeoTrackingAccuracyLow")]
     pub const Low: Self = Self(1);
-    /// Localized with medium accuracy.
+    /// Geo-tracking accuracy is average.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/medium?language=objc)
+    /// ## Discussion
+    ///
+    /// This value indicates that visual localization is complete and geo-tracking accuracy is average.
+    ///
+    ///
+    /// Localized with medium accuracy.
     #[doc(alias = "ARGeoTrackingAccuracyMedium")]
     pub const Medium: Self = Self(2);
-    /// Localized with high accuracy.
+    /// Geo-tracking accuracy is high.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum/high?language=objc)
+    /// ## Discussion
+    ///
+    /// This value indicates that visual localization is complete and geo-tracking accuracy is very good.
+    ///
+    ///
+    /// Localized with high accuracy.
     #[doc(alias = "ARGeoTrackingAccuracyHigh")]
     pub const High: Self = Self(3);
 }
@@ -134,9 +215,14 @@ unsafe impl RefEncode for ARGeoTrackingAccuracy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Reasons for geo tracking failure states.
+/// The reasons for the app’s geotracking status.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum?language=objc)
+/// ## Overview
+///
+/// These possible values of [`stateReason`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.property) provide more information about a geotracking session’s current [`state`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.property).
+///
+///
+/// Reasons for geo tracking failure states.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -146,47 +232,96 @@ pub struct ARGeoTrackingStateReason(pub NSInteger);
 impl ARGeoTrackingStateReason {
     /// No issues reported.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/none?language=objc)
+    /// ## Discussion
+    ///
+    /// This reason indicates that there is no user action currently needed to improve the geo-tracking state.
+    ///
+    ///
+    /// No issues reported.
     #[doc(alias = "ARGeoTrackingStateReasonNone")]
     pub const None: Self = Self(0);
-    /// Geo tracking is not available at the location.
+    /// The location doesn’t provide geotracking.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/notavailableatlocation?language=objc)
+    /// ## Discussion
+    ///
+    /// This reason indicates that ARKit does not have the necessary landscape data to support geo tracking at the user’s current location. See [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)) for more information.
+    ///
+    /// If [`checkAvailabilityWithCompletionHandler:`](https://developer.apple.com/documentation/arkit/argeotrackingconfiguration/checkavailability(completionhandler:)) returns [`true`](https://developer.apple.com/documentation/swift/true) and an app begins a geo-tracking session, ARKit provides this state reason when the user has moved to an unsupported area.
+    ///
+    ///
+    /// Geo tracking is not available at the location.
     #[doc(alias = "ARGeoTrackingStateReasonNotAvailableAtLocation")]
     pub const NotAvailableAtLocation: Self = Self(1);
-    /// Geo tracking needs location permissions from the user.
+    /// The location requires user permission for geotracking.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/needlocationpermissions?language=objc)
+    /// ## Discussion
+    ///
+    /// This reason indicates that the user has not given this app permission to access the user’s location. To enable geo tracking, an app needs to ask the user to enable location sharing for this app in Settings.
+    ///
+    ///
+    /// Geo tracking needs location permissions from the user.
     #[doc(alias = "ARGeoTrackingStateReasonNeedLocationPermissions")]
     pub const NeedLocationPermissions: Self = Self(2);
-    /// World tracking pose is not valid yet.
+    /// The position or motion of the device makes geotracking unstable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/worldtrackingunstable?language=objc)
+    /// ## Discussion
+    ///
+    /// This reason indicates that ARKit’s local-space tracking is functioning at a limited capacity. To retrieve more information about the cause, an app needs to refer to the camera’s [`trackingState`](https://developer.apple.com/documentation/arkit/arcamera/trackingstate-6i3pt). For the possible causes of this state, see [`ARTrackingState`](https://developer.apple.com/documentation/arkit/artrackingstate) and [`ARTrackingStateReason`](https://developer.apple.com/documentation/arkit/artrackingstatereason).
+    ///
+    ///
+    /// World tracking pose is not valid yet.
     #[doc(alias = "ARGeoTrackingStateReasonWorldTrackingUnstable")]
     pub const WorldTrackingUnstable: Self = Self(3);
-    /// Waiting for a location point that meets accuracy threshold before starting geo tracking.
+    /// A state in which the framework performs a check for the user’s GPS position.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/waitingforlocation?language=objc)
+    /// ## Discussion
+    ///
+    /// While in this state, the app needs to wait for the Core Location subsystem to provide the user’s GPS location. Inform the user of the check in progress; for instance, present a message alerting them to the geotracking initialization process.
+    ///
+    ///
+    /// Waiting for a location point that meets accuracy threshold before starting geo tracking.
     #[doc(alias = "ARGeoTrackingStateReasonWaitingForLocation")]
     pub const WaitingForLocation: Self = Self(4);
-    /// Waiting for availability check on first location point to complete.
+    /// A state in which the framework performs a check for geotracking availability at the user’s location.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/waitingforavailabilitycheck?language=objc)
+    /// ## Discussion
+    ///
+    /// While in this state, the app waits for the geotracking subsystem to determine geotracking availability at the user’s GPS location. Inform the user of the check in progress; for instance, present a message alerting them to the geotracking initialization process.
+    ///
+    ///
+    /// Waiting for availability check on first location point to complete.
     #[doc(alias = "ARGeoTrackingStateReasonWaitingForAvailabilityCheck")]
     pub const WaitingForAvailabilityCheck: Self = Self(5);
-    /// Geo tracking data hasn't been downloaded yet.
+    /// A state in which the framework downloads localization imagery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/geodatanotloaded?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit provides this reason in state [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing) when the session is actively attempting to download localization imagery (see doc:ARGeoTrackingConfiguration#Refine-the-User's-Position-with-Imagery).
+    ///
+    /// If this state persists for too long, it may indicate a network issue. If a reasonable amount of time elapses in this state reason, the app may consider requesting that the user check their internet connection.
+    ///
+    ///
+    /// Geo tracking data hasn't been downloaded yet.
     #[doc(alias = "ARGeoTrackingStateReasonGeoDataNotLoaded")]
     pub const GeoDataNotLoaded: Self = Self(6);
-    /// The device is pointed at an angle too far down to use geo tracking.
+    /// The position of the device is too low for geotracking.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/devicepointedtoolow?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit provides the app with this reason when the app is in state [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing) and the device is not capturing enough of the necessary live-camera imagery needed for visual localization because the user is pointing the camera too low. To resolve the issue, the app needs to instruct the user to raise the device and follow the guidance in [Assisting the User with Visual Localization](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing#assisting-the-user-with-visual-localization).
+    ///
+    ///
+    /// The device is pointed at an angle too far down to use geo tracking.
     #[doc(alias = "ARGeoTrackingStateReasonDevicePointedTooLow")]
     pub const DevicePointedTooLow: Self = Self(7);
-    /// Visual localization failed, but no errors were found in the input.
+    /// Localization imagery failed to match the view from the device’s camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum/visuallocalizationfailed?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit provides this reason when visual localization is taking too long. This indicates that the app has met all requirements for geo tracking, except for visual localization. In this situation, the app needs to ask the user to pan the device around the physical environment to acquire more camera-feed imagery. For more information, see [Assisting the User with Visual Localization](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing#assisting-the-user-with-visual-localization).
+    ///
+    ///
+    /// Visual localization failed, but no errors were found in the input.
     #[doc(alias = "ARGeoTrackingStateReasonVisualLocalizationFailed")]
     pub const VisualLocalizationFailed: Self = Self(8);
 }
@@ -203,9 +338,20 @@ unsafe impl RefEncode for ARGeoTrackingStateReason {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Collection of fields to give information on geo tracking status.
+    /// The state, accuracy, and reason that are possible for geo-tracking’s current condition.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus?language=objc)
+    /// ## Overview
+    ///
+    /// Geo tracking requires coordination with the user at various phases of the geo-tracking lifecycle. To elicit the right user actions, an app needs to provide clear instructions to the user based on the current frame’s [`geoTrackingStatus`](https://developer.apple.com/documentation/arkit/arframe/geotrackingstatus):
+    ///
+    /// - Geo-tracking [`state`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.property) most notably regards the important process in which ARKit acquires a better understanding of the user’s geographic location and orientation than is possible with GPS and the compass heading alone. See [`ARGeoTrackingStateLocalizing`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum/localizing) for more information.
+    ///
+    /// - Given a particular [`state`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.property), the app needs to tailor its user messaging according to the [`stateReason`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.property).
+    ///
+    /// - An app may need to monitor [`accuracy`](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.property) closely if it requires high-precision localization.
+    ///
+    ///
+    /// Collection of fields to give information on geo tracking status.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

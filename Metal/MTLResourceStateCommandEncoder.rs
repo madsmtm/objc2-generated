@@ -6,18 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Options for sparse texture mapping.
 /// Type of mapping operation for sparse texture
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSparseTextureMappingMode(pub NSUInteger);
 impl MTLSparseTextureMappingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode/map?language=objc)
+    /// A request to map sparse tiles from the heap to a region in the texture.
     #[doc(alias = "MTLSparseTextureMappingModeMap")]
     pub const Map: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetexturemappingmode/unmap?language=objc)
+    /// A request to remove any mappings for a region in the texture.
     #[doc(alias = "MTLSparseTextureMappingModeUnmap")]
     pub const Unmap: Self = Self(1);
 }
@@ -30,6 +29,7 @@ unsafe impl RefEncode for MTLSparseTextureMappingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The data layout for mapping sparse texture regions when using indirect commands.
 /// Structure describing indirect mapping region. This structure is used to populate a buffer for the method  'MTLResourceStateCommandEncoder updateTextureMapping:indirectBuffer:indirectBufferOffset:'
 ///
 /// The correct data format for the buffer used in 'MTLResourceStateCommandEncoder updateTextureMapping:indirectBuffer:indirectBufferOffset: is the following:
@@ -38,8 +38,6 @@ unsafe impl RefEncode for MTLSparseTextureMappingMode {
 /// uint32_t numMappings;
 /// MTLMapIndirectArguments mappings[numMappings];
 /// }
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmapindirectarguments?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLMapIndirectArguments {
@@ -74,7 +72,15 @@ unsafe impl RefEncode for MTLMapIndirectArguments {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatecommandencoder?language=objc)
+    /// An encoder that encodes commands that modify resource configurations.
+    ///
+    /// ## Overview
+    ///
+    /// Use a resource state command encoder to manage memory mappings for sparse textures.
+    ///
+    /// Your app does not define classes that implement this protocol. To create an [`MTLResourceStateCommandEncoder`](https://developer.apple.com/documentation/metal/mtlresourcestatecommandencoder) instance, call the [`resourceStateCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcommandbuffer/makeresourcestatecommandencoder()) method of the [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) instance into which you want to encode blit commands. Next, call methods on the [`MTLResourceStateCommandEncoder`](https://developer.apple.com/documentation/metal/mtlresourcestatecommandencoder) instance to enqueue state updates. Finally, call [`endEncoding`](https://developer.apple.com/documentation/metal/mtlcommandencoder/endencoding()) to finish the encoding process.
+    ///
+    ///
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLResourceStateCommandEncoder: MTLCommandEncoder {
         #[cfg(all(

@@ -8,7 +8,6 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beautofilltextsuggestion?language=objc)
     #[unsafe(super(BETextSuggestion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "BETextSuggestion")]

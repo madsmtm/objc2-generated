@@ -7,24 +7,37 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathclinicalrecordfhirresourceidentifier?language=objc)
+    /// The key path for accessing the clinical record’s Fast Healthcare Interoperability Resources (FHIR) identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The FHIR resource identifier is only unique for a particular resource type from a given source. To uniquely identify a FHIR resource, you must compare the identifier, the resource type, and the source.
+    ///
+    ///
     pub static HKPredicateKeyPathClinicalRecordFHIRResourceIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathclinicalrecordfhirresourcetype?language=objc)
+    /// The key path for accessing the resource type of a Fast Healthcare Interoperability Resources (FHIR) record.
     pub static HKPredicateKeyPathClinicalRecordFHIRResourceType: &'static NSString;
 }
 
 extern_class!(
+    /// A sample that stores a clinical record.
+    ///
+    /// ## Overview
+    ///
+    /// The clinical record stores information about a single condition, procedure, or result. While the record’s properties expose some high-level information, the  [`FHIRResource`](https://developer.apple.com/documentation/healthkit/hkclinicalrecord/fhirresource) property contains the underlying data from the user’s healthcare institution.
+    ///
+    /// Note that the record inherits the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class’s [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) properties. However, the system does not populate these properties with information from the FHIR data; instead, the [`startDate`](https://developer.apple.com/documentation/healthkit/hksample/startdate) and [`endDate`](https://developer.apple.com/documentation/healthkit/hksample/enddate) reflect the time and date when the system downloaded the FHIR data to the device.
+    ///
+    ///
     /// An HKObject subclass representing a health record.
     ///
     /// The startDate and endDate properties (inherited from HKSample) are set to the date the sample was
     /// added to Health. Unlike other HKObject subclasses, UUID is not a stable identifier
     /// for a given sample. Use a combination of HKSource, FHIRResource.resourceType, and
     /// FHIRResource.identifier instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicalrecord?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

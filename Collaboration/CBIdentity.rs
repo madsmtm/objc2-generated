@@ -13,6 +13,17 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
+    /// A `CBIdentity` object is used for accessing the attributes of an identity stored in an identity authority. You can use an identity object for finding identities, and storing them in an access control list (ACL). If you need to edit these attributes, take advantage of the `CSIdentity` class in Core Services.
+    ///
+    /// ## Overview
+    ///
+    /// You can obtain a `CBIdentity` object from one of the following class factory methods: [`identityWithName:authority:`](https://developer.apple.com/documentation/collaboration/cbidentity/init(name:authority:)), [`identityWithUUIDString:authority:`](https://developer.apple.com/documentation/collaboration/cbidentity/init(uuidstring:authority:)), [`identityWithPersistentReference:`](https://developer.apple.com/documentation/collaboration/cbidentity/init(persistentreference:)), or [`identityWithCSIdentity:`](https://developer.apple.com/documentation/collaboration/cbidentity/identitywithcsidentity:).
+    ///
+    /// A `CBIdentity` object has methods to support for interoperability with the Core Services Identity API. Send [`CSIdentity`](https://developer.apple.com/documentation/collaboration/cbidentity/csidentity) to your `CBIdentity` object to return an opaque object for use in the Core Services Identity API. Similarly, call [`identityWithCSIdentity:`](https://developer.apple.com/documentation/collaboration/cbidentity/identitywithcsidentity:) to use an Core Services Identity opaque object in the Collaboration framework.
+    ///
+    /// There are two subclasses of `CBIdentity`: `CBGroupIdentity` and `CBUserIdentity`. If you are working specifically with a group identity, use `CBGroupIdentity`. Similarly, if you are working with a user identity, use `CBUserIdentity`.
+    ///
+    ///
     /// A `CBIdentity` object is used for accessing the attributes of an
     /// identity stored in an identity authority. You can use an identity object
     /// for finding identities, and storing them in an access control list
@@ -36,8 +47,6 @@ extern_class!(
     /// `CBUserIdentity`. If you are working specifically with a group identity,
     /// use `CBGroupIdentity`. Similarly, if you are working with a user
     /// identity, use `CBUserIdentity`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/collaboration/cbidentity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBIdentity;
@@ -277,12 +286,11 @@ impl CBIdentity {
 }
 
 extern_class!(
+    /// An object of the `CBUserIdentity` class represents a user identity and is used for accessing the attributes of a user identity from an identity authority. The principal attributes of `CBUserIdentity` are a POSIX user identifier (UID), password, and certificate.
     /// An object of the `CBUserIdentity` class represents a user identity and is
     /// used for accessing the attributes of a user identity from an identity
     /// authority. The principal attributes of `CBUserIdentity` are a POSIX user
     /// identifier (UID), password, and certificate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/collaboration/cbuseridentity?language=objc)
     #[unsafe(super(CBIdentity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBUserIdentity;
@@ -390,12 +398,11 @@ impl CBUserIdentity {
 }
 
 extern_class!(
+    /// An object of the `CBGroupIdentity` class represents a group identity and is used for viewing the attributes of group identities from an identity authority. The principal attributes of a `CBGroupIdentity` object are a POSIX group identifier (GID) and a list of members.
     /// An object of the `CBGroupIdentity` class represents a group identity and is
     /// used for viewing the attributes of group identities from an identity
     /// authority. The principal attributes of a `CBGroupIdentity` object are a
     /// POSIX group identifier (GID) and a list of members.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/collaboration/cbgroupidentity?language=objc)
     #[unsafe(super(CBIdentity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CBGroupIdentity;

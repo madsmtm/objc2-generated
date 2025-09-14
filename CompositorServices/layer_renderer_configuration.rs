@@ -17,8 +17,6 @@ extern_class!(
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// function. Use that instance to modify the default configuration settings
     /// for your layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer_configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer_configuration;
@@ -40,6 +38,15 @@ impl CP_OBJECT_cp_layer_renderer_configuration {
     );
 }
 
+/// A type that stores the texture formats, layout information, and other details you use to configure your rendering loop code.
+///
+/// ## Discussion
+///
+/// A [`cp_layer_renderer_configuration_t`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_t) type stores the configuration options for your app’s `cp_layer_t` object. When configuring the content for your app’s immersive space, use this type to specify information about the texture layouts, pixel formats, and rendering options you want. The system uses the provided information to initialize the `cp_layer_t` object. It also uses the information to create the Metal textures and other data structures that you use for each frame of content.
+///
+/// You don’t create this type directly. When implementing the `makeConfiguration` method of your `CompositorConfiguration` type, the system passes a set of default configuration values for you to modify.
+///
+///
 /// An opaque type that stores the settings to apply to a Compositor layer renderer.
 ///
 /// You don’t create this type directly. If your ``CompositorLayer`` uses a custom
@@ -48,11 +55,34 @@ impl CP_OBJECT_cp_layer_renderer_configuration {
 /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
 /// function. Use that instance to modify the default configuration settings
 /// for your layer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_t?language=objc)
 pub type cp_layer_renderer_configuration_t = CP_OBJECT_cp_layer_renderer_configuration;
 
 extern "C-unwind" {
+    /// Returns the pixel format to use for the layer’s color textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pixel format to use for color textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The compositor configures the color textures for each frame using this pixel format value.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Apple Vision Pro uses the P3 color space for pixel color values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Returns the pixel format to use for the layer’s color textures.
     ///
     /// - Parameters:
@@ -64,8 +94,6 @@ extern "C-unwind" {
     ///
     /// The compositor creates the color textures using the pixel format
     /// information you provide.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_color_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_color_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -73,6 +101,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the pixel format for the layer’s color textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - color_format: The pixel format to apply to your layer’s color textures. The value you specify must be one of the values obtained from the [`cp_layer_renderer_capabilities_supported_color_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format) function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer. Fetch the layer’s supported pixel formats using the [`cp_layer_renderer_capabilities_supported_color_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_color_format) function.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Apple Vision Pro uses the P3 color space for pixel color values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Sets the pixel format for the layer’s color textures to the specified
     /// value.
     ///
@@ -86,8 +135,6 @@ extern "C-unwind" {
     /// Use this function to modify the configuration details for your layer. Call the
     /// ``cp_layer_renderer_capabilities_supported_color_format`` function to determine which
     /// pixel formats the layer’s color textures support.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_color_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_color_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -96,6 +143,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the texture usage value to apply to the layer’s color textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal texture usage value to apply to the layer’s color textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Metal optimizes texture-related operations based on the value in this property. The usage value can be a combination of options. For more information, see [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
     /// Returns the texture usage value to apply to the layer’s color textures.
     ///
     /// - Parameters:
@@ -111,8 +175,6 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_color_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_color_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -120,6 +182,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the texture usage for the layer’s color textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - color_usage: The Metal texture usage value to apply to the layer’s color textures.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer. Metal optimizes texture-related operations based on the texture’s usage value. The usage value can be a combination of options. For more information, see [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
     /// Sets the texture usage for the layer’s color textures to the specified
     /// value.
     ///
@@ -136,8 +211,6 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_color_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_color_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -146,6 +219,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the pixel format to apply to the layer’s tracking areas textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type that contains the information. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pixel format to apply to the layer’s tracking areas textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The compositor creates the tracking areas textures using the pixel format information you provide.
+    ///
+    ///
     /// Returns the pixel format to apply to the layer’s tracking areas textures.
     ///
     /// - Parameters:
@@ -157,8 +247,6 @@ extern "C-unwind" {
     ///
     /// The compositor creates the tracking areas textures using the pixel format
     /// information you provide.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_tracking_areas_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_tracking_areas_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -166,6 +254,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the pixel format for the layer’s tracking areas textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - tracking_areas_format: The pixel format to apply to the layer’s tracking areas textures.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer. Call the [`cp_layer_renderer_capabilities_supported_tracking_areas_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_tracking_areas_format) function to determine which pixel formats the layer’s tracking areas textures supports.
+    ///
+    ///
     /// Sets the pixel format for the layer’s tracking areas textures to the specified
     /// value.
     ///
@@ -179,8 +280,6 @@ extern "C-unwind" {
     /// Use this function to modify the configuration details for your layer. Call the
     /// ``cp_layer_renderer_capabilities_supported_tracking_areas_format`` function to determine which
     /// pixel formats the layer’s tracking areas textures supports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_tracking_areas_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_tracking_areas_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -189,6 +288,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the texture usage value to apply to the layer’s tracking areas textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type that contains the information. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal texture usage value to apply to the layer’s tracking areas textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Metal optimizes texture-related operations based on the texture’s usage value. The usage value can be a combination of options. For example, a texture might be readable and writable. For more information, see [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
     /// Returns the texture usage value to apply to the layer’s tracking areas textures.
     ///
     /// - Parameters:
@@ -203,8 +319,6 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_tracking_areas_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_tracking_areas_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -212,6 +326,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the texture usage for the layer’s tracking areas textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - tracking_areas_usage: The usage value to apply to the layer’s tracking areas textures.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer.
+    ///
+    ///
     /// Sets the texture usage for the layer’s tracking areas textures to the specified
     /// value.
     ///
@@ -224,8 +351,6 @@ extern "C-unwind" {
     /// tracking areas textures.
     ///
     /// Use this function to modify the configuration details for your layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_tracking_areas_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_tracking_areas_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -234,6 +359,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the pixel format to use for the layer’s depth textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pixel format to use for depth textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The compositor configures the depth textures for each frame using this pixel format value.
+    ///
+    ///
     /// Returns the pixel format to apply to the layer’s depth textures.
     ///
     /// - Parameters:
@@ -245,8 +387,6 @@ extern "C-unwind" {
     ///
     /// The compositor creates the depth textures using the pixel format
     /// information you provide.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_depth_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_depth_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -254,6 +394,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the pixel format for the layer’s depth textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - depth_format: The pixel format to apply to your layer’s depth textures. The value you specify must be one of the values obtained from the [`cp_layer_renderer_capabilities_supported_depth_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_format) function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer. Fetch the layer’s supported pixel formats using the [`cp_layer_renderer_capabilities_supported_depth_format`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_capabilities_supported_depth_format) function.
+    ///
+    ///
     /// Sets the pixel format for the layer’s depth textures to the specified
     /// value.
     ///
@@ -267,8 +420,6 @@ extern "C-unwind" {
     /// Use this function to modify the configuration details for your layer. Call the
     /// ``cp_layer_renderer_capabilities_supported_depth_format`` function to determine which
     /// pixel formats the layer’s depth textures supports.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_depth_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_depth_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -277,6 +428,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the texture usage value to apply to the layer’s depth textures.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Metal texture usage value to apply to the layer’s depth textures.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Metal optimizes texture-related operations based on the texture’s usage value. The usage value can be a combination of options. For more information, see [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
     /// Returns the texture usage value to apply to the layer’s depth textures.
     ///
     /// - Parameters:
@@ -291,8 +459,6 @@ extern "C-unwind" {
     /// might be readable and writable. For more information, see
     /// <doc
     /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_depth_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_depth_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -300,6 +466,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the texture usage for the layer’s depth textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - depth_usage: The Metal texture usage value to apply to the layer’s depth textures.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to modify the configuration details for your layer. Metal optimizes texture-related operations based on the texture’s usage value. The usage value can be a combination of options. For more information, see [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
     /// Sets the texture usage for the layer’s depth textures to the specified
     /// value.
     ///
@@ -312,8 +491,6 @@ extern "C-unwind" {
     /// textures.
     ///
     /// Use this function to modify the configuration details for your layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_depth_usage?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_depth_usage(
         configuration: &cp_layer_renderer_configuration_t,
@@ -322,6 +499,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether the layer supports variable rasterization rates.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the layer supports variable rasterization rates, or `false` if it doesn’t.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Foveation support lets you reduce the amount of high-resolution drawing you do. With foveation, the system renders content someone looks at directly using a higher resolution than content in the person’s peripheral vision. This behavior lets you render less content without diminishing the quality of what the person sees.
+    ///
+    /// When foveation is enabled, the drawable resource for each frame reduces the size of the texture you use for rendering. The drawable also provides rasterization rate maps that specify the amount of rasterization to apply to different parts of the texture. When rendering your scene, the GPU generates fewer pixels in areas with low rasterization rates, and then scales up those areas before displaying them.
+    ///
+    ///
     /// Returns a Boolean value that indicates whether the layer supports
     /// variable rasterization rates.
     ///
@@ -340,14 +536,25 @@ extern "C-unwind" {
     /// to apply to different parts of the texture. When rendering your scene,
     /// the GPU generates fewer pixels in areas with low rasterization
     /// rates, and then scales up those areas before displaying them onscreen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_foveation_enabled?language=objc)
     pub fn cp_layer_renderer_configuration_get_foveation_enabled(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> bool;
 }
 
 extern "C-unwind" {
+    /// Changes the setting that indicates whether the layer supports variable rasterization rates.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - foveation_enabled: `true` to enable variable rasterization rates in the layer, or `false` to render everything at the same resolution.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Foveation support lets you reduce the amount of high-resolution drawing you do. If you enable foveation, the drawable resource for each frame reduces the size of the texture you use for rendering. The drawable also provides rasterization rate maps that specify the amount of rasterization to apply to different parts of the texture. When rendering your scene, the GPU generates fewer pixels in areas with low rasterization rates, and then scales up those areas before displaying them.
+    ///
+    ///
     /// Changes the setting that indicates whether the layer supports variable
     /// rasterization rates.
     ///
@@ -366,8 +573,6 @@ extern "C-unwind" {
     /// to apply to different parts of the texture. When rendering your scene,
     /// the GPU generates fewer pixels in areas with low rasterization
     /// rates, and then scales up those areas before displaying them onscreen.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_foveation_enabled?language=objc)
     pub fn cp_layer_renderer_configuration_set_foveation_enabled(
         configuration: &cp_layer_renderer_configuration_t,
         foveation_enabled: bool,
@@ -375,6 +580,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether the layer renderer provides rasterization rate maps flipped around the y-axis.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the layer renderer generates both flipped and nonflipped rasterization rate maps, or `false` if it generates only nonflipped rasterization rate maps.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If foveation is disabled, the layer renderer doesn’t generate any rasterization rate maps, regardless of this function’s return value.
+    ///
+    ///
     /// Returns a Boolean value that indicates whether the layer provides
     /// flipped variable rasterization rate maps in addition to the regular maps.
     ///
@@ -395,14 +617,27 @@ extern "C-unwind" {
     ///
     /// When `true` the `cp_drawable_t` will provide flipped variable rasterization rate maps via the
     /// `cp_drawable_get_flipped_rasterization_rate_map` function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps?language=objc)
     pub fn cp_layer_renderer_configuration_get_generate_flipped_rasterization_rate_maps(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> bool;
 }
 
 extern "C-unwind" {
+    /// Changes the layer renderer setting that provides rasterization rate maps flipped around the y-axis.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - generate_flipped_rasterization_rate_maps: `true` if you want the layer renderer to generate nonflipped rasterization rate maps. Specify `false` to generate only nonflipped rasterization rate maps.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If foveation is disabled, the layer renderer doesn’t generate any rasterization rate maps, regardless of the value you pass to this function.
+    ///
+    /// To generate flipped rasterization rate maps, the system must perform extra computational work during your app’s render loop. Enable this support only if your drawing engine requires these extra rate maps and you can afford the extra cost.
+    ///
+    ///
     /// Changes the setting that indicates whether the layer provides
     /// flipped variable rasterization rate maps in addition to the regular maps.
     ///
@@ -423,8 +658,6 @@ extern "C-unwind" {
     ///
     /// When `true` the `cp_drawable_t` will provide flipped variable rasterization rate maps via the
     /// `cp_drawable_get_flipped_rasterization_rate_map` function.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps?language=objc)
     pub fn cp_layer_renderer_configuration_set_generate_flipped_rasterization_rate_maps(
         configuration: &cp_layer_renderer_configuration_t,
         generate_flipped_rasterization_rate_maps: bool,
@@ -432,6 +665,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the texture configuration for the drawable views in the layer.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The layout of the textures in the layer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Layouts define how Compositor Services creates the color and depth textures it passes to your app. A layout might use separate textures for each view, or combine the content from multiple views into a single texture. The layout type also determines which Metal texture type the compositor creates for you. For more information about the supported layouts, see `cp_layer_renderer_layout`.
+    ///
+    ///
     /// Returns the texture configuration for the drawable views in the layer.
     ///
     /// - Parameters:
@@ -446,8 +696,6 @@ extern "C-unwind" {
     /// or combine the content from multiple views into a single texture. The layout
     /// type also determines which Metal texture type the compositor creates for you.
     /// For more information about the supported layouts, see ``cp_layer_renderer_layout``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_layout?language=objc)
     #[cfg(feature = "layer_renderer_layout")]
     pub fn cp_layer_renderer_configuration_get_layout(
         configuration: &cp_layer_renderer_configuration_t,
@@ -455,6 +703,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Changes the layout configuration for the drawable views in the layer.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration details.
+    ///
+    /// - layout: The layout to apply to the layer’s textures.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Layouts define how Compositor Services creates the color and depth textures it passes to your app. A layout might use separate textures for each view, or combine the content from multiple views into a single texture. The layout type also determines which Metal texture type the compositor creates for you. For more information about the supported layouts, see `cp_layer_renderer_layout`.
+    ///
+    ///
     /// Changes the layout configuration for the drawable views in the layer.
     ///
     /// - Parameters:
@@ -470,8 +731,6 @@ extern "C-unwind" {
     /// from multiple views into a single texture. The layout type also determines
     /// which Metal texture type the compositor creates for you. For more
     /// information about the supported layouts, see ``cp_layer_renderer_layout``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_layout?language=objc)
     #[cfg(feature = "layer_renderer_layout")]
     pub fn cp_layer_renderer_configuration_set_layout(
         configuration: &cp_layer_renderer_configuration_t,
@@ -480,6 +739,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the pixel format for the drawable’s render context stencil textures to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - stencil_format: The pixel format to apply to the drawable’s render context stencil textures.
+    ///
     /// Sets the pixel format for the drawable's render context stencil textures to the specified
     /// value.
     ///
@@ -490,8 +756,6 @@ extern "C-unwind" {
     /// method of your configuration provider.
     /// - stencil_format: The pixel format to apply to the drawable's render context stencil
     /// textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_drawable_render_context_stencil_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_set_drawable_render_context_stencil_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -500,6 +764,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the pixel format to use for the stencil texture in drawable’s render context.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type that contains the information. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pixel format to use for the drawable’s render context stencil textures.
+    ///
+    ///
     /// Returns the pixel format to use for the stencil texture in drawable's render context.
     ///
     /// - Parameters:
@@ -508,8 +783,6 @@ extern "C-unwind" {
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// method of your configuration provider.
     /// - Returns: The pixel format to use for the drawable's render context stencil textures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_drawable_render_context_stencil_format?language=objc)
     #[cfg(feature = "objc2-metal")]
     pub fn cp_layer_renderer_configuration_get_drawable_render_context_stencil_format(
         configuration: &cp_layer_renderer_configuration_t,
@@ -517,6 +790,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the raster sample count to use in drawable’s render context.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type that contains the information. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The raster sample count to use for the drawable’s render context.
+    ///
+    ///
     /// Returns the raster sample count to use in drawable's render context.
     ///
     /// - Parameters:
@@ -525,14 +809,19 @@ extern "C-unwind" {
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// method of your configuration provider.
     /// - Returns: The raster sample count to use for the drawable's render context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count?language=objc)
     pub fn cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Sets the raster sample count for the drawable’s render context to the specified value.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - raster_sample_count: The raster sample count to apply to the drawable’s render context.
+    ///
     /// Sets the raster sample count for the drawable's render context to the specified
     /// value.
     ///
@@ -542,8 +831,6 @@ extern "C-unwind" {
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// method of your configuration provider.
     /// - raster_sample_count: The raster sample count to apply to the drawable's render context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count?language=objc)
     pub fn cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count(
         configuration: &cp_layer_renderer_configuration_t,
         raster_sample_count: c_int,
@@ -551,6 +838,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Get max render quality the layer can use when drawing to the drawables.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The max render qualityto use for the drawable’s.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The max render quality is a value between [0, 1]. This determines the max render quality at which drawing can happen.
+    ///
+    /// Setting a higher max render quality will impact the resolution that is allocated for the drawable textures. This memory will count against the app’s memory limit so should only be specified as high as renderer can reasonably achieve frame rate at. During runtime, the render quality can be changed on the layer renderer but will not impact memory usage, see [`cp_layer_renderer_set_render_quality`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_render_quality).
+    ///
+    ///
     /// Get max render quality the layer can use when drawing to the drawables.
     ///
     /// - Parameters:
@@ -567,8 +873,6 @@ extern "C-unwind" {
     /// This memory will count against the app's memory limit so should only be specified as high as renderer
     /// can reasonably achieve frame rate at. During runtime, the render quality can be changed on the
     /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_max_render_quality?language=objc)
     #[cfg(feature = "cp_types")]
     pub fn cp_layer_renderer_configuration_get_max_render_quality(
         configuration: &cp_layer_renderer_configuration_t,
@@ -576,6 +880,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set max render quality the layer can use when drawing to the drawables.
+    ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - render_quality: A value between between [0, 1]. This determines the max render quality at which drawing can happen.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Setting a higher max render quality will impact the resolution that is allocated for the drawable textures. This memory will count against the app’s memory limit so should only be specified as high as renderer can reasonably achieve frame rate at. During runtime, the render quality can be changed on the layer renderer but will not impact memory usage, see [`cp_layer_renderer_set_render_quality`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_render_quality).
+    ///
+    ///
     /// Set max render quality the layer can use when drawing to the drawables.
     ///
     /// - Parameters:
@@ -590,8 +907,6 @@ extern "C-unwind" {
     /// This memory will count against the app's memory limit so should only be specified as high as renderer
     /// can reasonably achieve frame rate at. During runtime, the render quality can be changed on the
     /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_max_render_quality?language=objc)
     #[cfg(feature = "cp_types")]
     pub fn cp_layer_renderer_configuration_set_max_render_quality(
         configuration: &cp_layer_renderer_configuration_t,
@@ -602,14 +917,23 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Get whether the layer can use Metal4 when drawing to the drawables.
     ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Whether the layer supports using Metal4, otherwise defaults to Metal3.
+    ///
+    ///
+    /// Get whether the layer can use Metal4 when drawing to the drawables.
+    ///
     /// - Parameters:
     /// - configuration: The layer configuration type to modify. The system
     /// passes an instance of this type to the
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// method of your configuration provider.
     /// - Returns: Whether the layer supports using Metal4, otherwise defaults to Metal3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_get_supports_mtl4?language=objc)
     pub fn cp_layer_renderer_configuration_get_supports_mtl4(
         configuration: &cp_layer_renderer_configuration_t,
     ) -> bool;
@@ -618,14 +942,19 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Set whether the layer can use Metal4 when drawing to the drawables.
     ///
+    /// Parameters:
+    /// - configuration: The layer configuration type to modify. The system passes an instance of this type to the [`makeConfiguration(capabilities:configuration:)`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration/makeconfiguration(capabilities:configuration:)) method of your configuration provider.
+    ///
+    /// - supports_mtl4: Whether the layer supports using Metal4, otherwise defaults to Metal3.
+    ///
+    /// Set whether the layer can use Metal4 when drawing to the drawables.
+    ///
     /// - Parameters:
     /// - configuration: The layer configuration type to modify. The system
     /// passes an instance of this type to the
     /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
     /// method of your configuration provider.
     /// - supports_mtl4: Whether the layer supports using Metal4, otherwise defaults to Metal3.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_supports_mtl4?language=objc)
     pub fn cp_layer_renderer_configuration_set_supports_mtl4(
         configuration: &cp_layer_renderer_configuration_t,
         supports_mtl4: bool,

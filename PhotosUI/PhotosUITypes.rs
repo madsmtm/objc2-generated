@@ -4,17 +4,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type descriptor of a project extension.
 /// Extensible enumerator for PHProjectType. See PHProjectExtensionController.h for more information.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttype?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PHProjectType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttype/undefined?language=objc)
+    /// An undefined project type.
     pub static PHProjectTypeUndefined: Option<&'static PHProjectType>;
 }
 
+/// A representation of Photos project extension categories.
+///
+/// ## Overview
+///
+/// This structure encapsulates macOS Photos project extension categories. Use this category to designate the types of projects your extension can create, such as books, calendars, cards, and slideshows.
+///
+///
 /// Extensible enumerator for PHProjectCategory.
 /// Add a PHProjectCategory key to the NSExtensionAttributes dictionary of your project extension's Info.plist.
 /// The value for the key should be an array which can contain any of the PHProjectCategory values declared in this framework.
@@ -54,50 +60,47 @@ extern "C" {
 /// >
 /// <
 /// !-- […] -->
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory?language=objc)
 // NS_TYPED_ENUM
 pub type PHProjectCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/book?language=objc)
+    /// The project category for a printed book.
     pub static PHProjectCategoryBook: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/calendar?language=objc)
+    /// The project category for a printed calendar.
     pub static PHProjectCategoryCalendar: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/card?language=objc)
+    /// The project category for a printed card.
     pub static PHProjectCategoryCard: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/prints?language=objc)
+    /// The project category for physical prints.
     pub static PHProjectCategoryPrints: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/slideshow?language=objc)
+    /// The project category for a slideshow.
     pub static PHProjectCategorySlideshow: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/walldecor?language=objc)
+    /// The project category for wall décor.
     pub static PHProjectCategoryWallDecor: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/other?language=objc)
+    /// The project category for a custom extension type.
     pub static PHProjectCategoryOther: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
+    /// An undefined project category.
     /// PHProjectCategoryUndefined is used to indicate that -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:]
     /// should return the data source which provides all project types descriptions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/undefined?language=objc)
     pub static PHProjectCategoryUndefined: Option<&'static PHProjectCategory>;
 }

@@ -10,46 +10,38 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Enumeration of kinds of errors that committing an array of command buffers instances can produce.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code?language=objc)
+/// Enumeration of kinds of errors that committing an array of command buffers instances can produce.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4CommandQueueError(pub NSInteger);
 impl MTL4CommandQueueError {
     /// Indicates the absence of any problems.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/none?language=objc)
+    /// Indicates the absence of any problems.
     #[doc(alias = "MTL4CommandQueueErrorNone")]
     pub const None: Self = Self(0);
     /// Indicates the workload takes longer to execute than the system allows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/timeout?language=objc)
+    /// Indicates the workload takes longer to execute than the system allows.
     #[doc(alias = "MTL4CommandQueueErrorTimeout")]
     pub const Timeout: Self = Self(1);
     /// Indicates a process doesn’t have access to a GPU device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/notpermitted?language=objc)
+    /// Indicates a process doesn’t have access to a GPU device.
     #[doc(alias = "MTL4CommandQueueErrorNotPermitted")]
     pub const NotPermitted: Self = Self(2);
     /// Indicates the GPU doesn’t have sufficient memory to execute a command buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/outofmemory?language=objc)
+    /// Indicates the GPU doesn’t have sufficient memory to execute a command buffer.
     #[doc(alias = "MTL4CommandQueueErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(3);
     /// Indicates the physical removal of the GPU before the command buffer completed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/deviceremoved?language=objc)
+    /// Indicates the physical removal of the GPU before the command buffer completed.
     #[doc(alias = "MTL4CommandQueueErrorDeviceRemoved")]
     pub const DeviceRemoved: Self = Self(4);
     /// Indicates that the system revokes GPU access because it’s responsible for too many timeouts or hangs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/accessrevoked?language=objc)
+    /// Indicates that the system revokes GPU access because it’s responsible for too many timeouts or hangs.
     #[doc(alias = "MTL4CommandQueueErrorAccessRevoked")]
     pub const AccessRevoked: Self = Self(5);
     /// Indicates an internal problem in the Metal framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code/internal?language=objc)
+    /// Indicates an internal problem in the Metal framework.
     #[doc(alias = "MTL4CommandQueueErrorInternal")]
     pub const Internal: Self = Self(6);
 }
@@ -63,19 +55,25 @@ unsafe impl RefEncode for MTL4CommandQueueError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerrordomain?language=objc)
     pub static MTL4CommandQueueErrorDomain: &'static NSErrorDomain;
 }
 
 extern_class!(
     /// Represents options to configure a commit operation on a command queue.
     ///
+    /// ## Overview
+    ///
+    /// You pass these options as a parameter when you call [`commit:count:options:`](https://developer.apple.com/documentation/metal/mtl4commandqueue/commit:count:options:).
+    ///
+    /// - Note Instances of this class are not thread-safe. If your app modifies a shared commit options instance from multiple threads simultaneously, you are responsible for providing external synchronization.
+    ///
+    ///
+    /// Represents options to configure a commit operation on a command queue.
+    ///
     /// You pass these options as a parameter when you call ``MTL4CommandQueue/commit:count:options:``.
     ///
     /// - Note Instances of this class are not thread-safe. If your app modifies a shared commit options instance from
     /// multiple threads simultaneously, you are responsible for providing external synchronization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commitoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CommitOptions;
@@ -123,8 +121,7 @@ impl DefaultRetained for MTL4CommitOptions {
 
 extern_class!(
     /// Groups together parameters for the creation of a new command queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueuedescriptor?language=objc)
+    /// Groups together parameters for the creation of a new command queue.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CommandQueueDescriptor;
@@ -206,11 +203,18 @@ impl DefaultRetained for MTL4CommandQueueDescriptor {
 
 /// Groups together arguments for an operation to update a sparse texture mapping.
 ///
+/// ## Overview
+///
+/// When performing a sparse mapping update, you are responsible for issuing a barrier against stage `MTLStageResourceState`.
+///
+/// You can determine the sparse texture tier by calling [`sparseTextureTier`](https://developer.apple.com/documentation/metal/mtltexture/sparsetexturetier).
+///
+///
+/// Groups together arguments for an operation to update a sparse texture mapping.
+///
 /// When performing a sparse mapping update, you are responsible for issuing a barrier against stage `MTLStageResourceState`.
 ///
 /// You can determine the sparse texture tier by calling ``MTLTexture/sparseTextureTier``.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4updatesparsetexturemappingoperation?language=objc)
 #[cfg(all(feature = "MTLResourceStateCommandEncoder", feature = "MTLTypes"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -261,8 +265,7 @@ unsafe impl RefEncode for MTL4UpdateSparseTextureMappingOperation {
 }
 
 /// Groups together arguments for an operation to copy a sparse texture mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4copysparsetexturemappingoperation?language=objc)
+/// Groups together arguments for an operation to copy a sparse texture mapping.
 #[cfg(feature = "MTLTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -327,8 +330,7 @@ unsafe impl RefEncode for MTL4CopySparseTextureMappingOperation {
 }
 
 /// Groups together arguments for an operation to update a sparse buffer mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4updatesparsebuffermappingoperation?language=objc)
+/// Groups together arguments for an operation to update a sparse buffer mapping.
 #[cfg(feature = "MTLResourceStateCommandEncoder")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -366,8 +368,7 @@ unsafe impl RefEncode for MTL4UpdateSparseBufferMappingOperation {
 }
 
 /// Groups together arguments for an operation to copy a sparse buffer mapping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4copysparsebuffermappingoperation?language=objc)
+/// Groups together arguments for an operation to copy a sparse buffer mapping.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4CopySparseBufferMappingOperation {
@@ -389,10 +390,9 @@ unsafe impl RefEncode for MTL4CopySparseBufferMappingOperation {
 }
 
 extern_protocol!(
+    /// An abstraction representing a command queue that you use commit and synchronize command buffers and to perform other GPU operations.
     /// An abstraction representing a command queue that you use commit and synchronize command buffers and to
     /// perform other GPU operations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueue?language=objc)
     pub unsafe trait MTL4CommandQueue: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// Returns the GPU device that the command queue belongs to.

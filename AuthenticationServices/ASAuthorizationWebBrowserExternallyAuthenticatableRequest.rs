@@ -9,7 +9,7 @@ use objc2_local_authentication::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationwebbrowserexternallyauthenticatablerequest?language=objc)
+    /// An authorization request for which a web browser can retrieve credentials.
     pub unsafe trait ASAuthorizationWebBrowserExternallyAuthenticatableRequest:
         NSObjectProtocol
     {

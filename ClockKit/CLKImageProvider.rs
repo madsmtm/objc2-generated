@@ -10,7 +10,19 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkimageprovider?language=objc)
+    /// An image displayed by a complication.
+    ///
+    /// ## Overview
+    ///
+    /// You create an image provider with at least one image, and you may specify two additional images to use under certain conditions. The specified images are _template images_, with a color applied to them prior to display. The clock face displaying the complication determines how the images are composited together and which tint color is applied.
+    ///
+    /// Every image provider must contain a _one-piece image_, composed of a single template image. In multicolor classic complications, ClockKit applies the color in the [`tintColor`](https://developer.apple.com/documentation/clockkit/clkimageprovider/tintcolor) property to your template image and displays the results in your complication. If you don’t specify a value for the [`tintColor`](https://developer.apple.com/documentation/clockkit/clkimageprovider/tintcolor) property, the image provider applies the tint color associated with the underlying template or white if the template doesn’t specify a color. In tinted graphic complications, ClockKit ignores the [`tintColor`](https://developer.apple.com/documentation/clockkit/clkimageprovider/tintcolor) property, and applies the color associated with the watch face.
+    ///
+    /// In addition to the one-piece image, you may optionally specify two additional images to composite together in order to create a single final image. A two-piece image consists of a foreground image layered on top of a background image. Both images are template images. For classic complications, ClockKit applies the color in the [`tintColor`](https://developer.apple.com/documentation/clockkit/clkimageprovider/tintcolor) property to the background image, falling back to the color in the underlying template or white if the template doesn’t specify a color. For tinted graphic complications, the system determines the color according to the user’s color selection. In classic complications, two-piece images take priority over one-piece images. In tinted graphic complications, the system can choose either the one-piece or two-piece image, based on the complication and watch face.
+    ///
+    /// For information about image sizes to use in different templates, see [Apple Watch Human Interface Guidelines](https://developer.apple.com/watch/human-interface-guidelines/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementprotocol?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary to interact with an assistive app.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides the base behavior for more specific, role-based accessibility protocols. In general, your user interface elements shouldn’t adopt this protocol. They should adopt a more specific, role-based protocol instead. See [Custom Controls](https://developer.apple.com/documentation/appkit/custom-controls).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSAccessibilityElement")]
     #[name = "NSAccessibilityElement"]
     pub unsafe trait NSAccessibilityElementProtocol: NSObjectProtocol {
@@ -33,12 +47,44 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygroup?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary to act as a container for other user interface elements.
+    ///
+    /// ## Overview
+    ///
+    /// Visual users often know that sets of controls go together due to their proximity on the screen. However, you must explicitly define these relationships before assistive apps can use them as well. Use this protocol when you want to logically group a collection of accessibility elements. A view that adopts this protocol indicates that an assistive app should treat its content as a group of controls.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityGroup: NSAccessibilityElementProtocol {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybutton?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a button.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a button—a control that triggers an action when the user clicks it—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityButton: NSAccessibilityElementProtocol {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -51,7 +97,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityswitch?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a switch.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a switch—a control that toggles between an on state and an off state—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilitySwitch: NSAccessibilityButton {
         #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
@@ -70,7 +132,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiobutton?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a radio button.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a radio button—a control for constraining a selection to a single element from several elements—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityRadioButton: NSAccessibilityButton {
         #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
@@ -79,7 +157,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycheckbox?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a checkbox.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a checkbox—a control that toggles between an on state, an off state, and an optional mixed state—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityCheckBox: NSAccessibilityButton {
         #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
@@ -88,7 +182,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictext?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as static text.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want to represent short pieces of text, such as headers or labels. For longer blocks of text, use the [`NSAccessibilityNavigableStaticText`](https://developer.apple.com/documentation/appkit/nsaccessibilitynavigablestatictext) protocol.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityStaticText: NSAccessibilityElementProtocol {
         #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
@@ -110,7 +220,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynavigablestatictext?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as navigable static text.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want to represent larger blocks of text. The protocol allows users to navigate through the text a line at a time or a word at a time using an assistive app. For shorter pieces of text (for example, labels or headers), use the [`NSAccessibilityStaticText`](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictext) protocol instead.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityNavigableStaticText: NSAccessibilityStaticText {
         #[unsafe(method(accessibilityStringForRange:))]
         #[unsafe(method_family = none)]
@@ -131,7 +257,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprogressindicator?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a progress indicator.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a progress indicator—a view that provides visual feedback to the user about the status of an ongoing task—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityProgressIndicator: NSAccessibilityGroup {
         #[unsafe(method(accessibilityValue))]
         #[unsafe(method_family = none)]
@@ -140,7 +282,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystepper?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a stepper.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a stepper—a control with up and down arrow buttons for incrementing or decrementing a value—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityStepper: NSAccessibilityElementProtocol {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -162,7 +320,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityslider?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a slider.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a slider—a control that represents a continuous range of numerical values with a knob that represents the currently selected value—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilitySlider: NSAccessibilityElementProtocol {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -183,7 +357,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityimage?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as an image.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like an image_ _in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityImage: NSAccessibilityElementProtocol {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -192,7 +382,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontainstransientui?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to support dynamic UI changes.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol to support accessibility in a UI that changes dynamically—usually in response to mouse-hover events.
+    ///
+    /// Use this protocol in addition to another role-based protocol. See [Custom Controls](https://developer.apple.com/documentation/appkit/custom-controls).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityContainsTransientUI:
         NSAccessibilityElementProtocol
     {
@@ -211,7 +417,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytable?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a table view.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a table—a view that uses a row-and-column format to display a set of related records and their attributes—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityTable: NSAccessibilityGroup {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -289,17 +511,67 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutline?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as an outline view.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like an outline—a view that uses a row-and-column format to display hierarchical data that can expand and collapse—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Although the [`NSAccessibilityOutline`](https://developer.apple.com/documentation/appkit/nsaccessibilityoutline) protocol doesn’t declare any methods, it does conform to the [`NSAccessibilityTable`](https://developer.apple.com/documentation/appkit/nsaccessibilitytable) protocol. You may need to explicitly implement methods from any of the protocols that [`NSAccessibilityOutline`](https://developer.apple.com/documentation/appkit/nsaccessibilityoutline) conforms to.
+    ///
+    ///
     pub unsafe trait NSAccessibilityOutline: NSAccessibilityTable {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylist?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a list view.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want a user interface element to behave like a list—a view that displays a set of related records in a single-column table—in the accessibility hierarchy.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Although the [`NSAccessibilityList`](https://developer.apple.com/documentation/appkit/nsaccessibilitylist) protocol doesn’t declare any methods, it does conform to the [`NSAccessibilityTable`](https://developer.apple.com/documentation/appkit/nsaccessibilitytable) protocol. You may need to explicitly implement methods from any of the protocols that [`NSAccessibilityList`](https://developer.apple.com/documentation/appkit/nsaccessibilitylist) conforms to.
+    ///
+    ///
     pub unsafe trait NSAccessibilityList: NSAccessibilityTable {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrow?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a row for a table, list, or outline view.
+    ///
+    /// ## Overview
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityRow: NSAccessibilityGroup {
         #[unsafe(method(accessibilityIndex))]
         #[unsafe(method_family = none)]
@@ -313,7 +585,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutarea?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a layout area.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want to create a canvas that contains layout items.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityLayoutArea: NSAccessibilityGroup {
         #[unsafe(method(accessibilityLabel))]
         #[unsafe(method_family = none)]
@@ -334,7 +622,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutitem?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a layout item.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol when you want to create a layout item, a repositionable and resizeable item inside a layout area.
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Explicit Implementation Required
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityLayoutItem: NSAccessibilityGroup {
         #[optional]
         #[unsafe(method(setAccessibilityFrame:))]
@@ -344,7 +648,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityelementloading?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to support loading.
+    ///
+    /// ## Overview
+    ///
+    /// You can further enhance the adopting element by implementing any of the information properties or action methods that the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol declares.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Any class that adopts this protocol must implement all of its methods, and the required methods of any protocol it inherits from. The compiler may require you to override some methods that your ancestors have already implemented. Simply follow the compiler’s warnings, and reimplement these methods as necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSAccessibilityElementLoading: NSObjectProtocol {
         #[cfg(feature = "NSAccessibilityConstants")]
         /// Loads the target element with the given load token.
@@ -385,7 +703,39 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol?language=objc)
+    /// The complete list of properties and methods for accessible elements.
+    ///
+    /// ## Overview
+    ///
+    /// To be accessible, an app must provide information to the assistive app about its user interface and capabilities. There are three ways that apps and assistive apps interact:
+    ///
+    /// - Informational properties. [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) defines a number of properties that provide information about your view or control. If you’re working with a subclass of a standard AppKit view or control, you can either set the desired property or override its getters and setters. By default, overriding only the getter tells the assistive app that it has read-only access to the property. Overriding the setter tells the assistive app that it also has write access to the property.
+    ///
+    /// - Action methods. [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) also defines a number of methods that simulate button presses, mouse clicks, and selections in your view or control. By implementing these methods, you give assistive apps the ability to drive your view or control.
+    ///
+    /// - Notifications. Your view or control may need to let the assistive app know when changes occur. [`NSAccessibilityNotificationName`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification) defines a number of notifications that you can send using the [`NSAccessibilityPostNotification`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)) method. The role-specific protocols don’t include these notifications; however, standard AppKit controls already send appropriate messages for their standard usage patterns. You typically need to send your own notifications only when you’re creating a custom control or when you’re using a standard control in a nonstandard way.
+    ///
+    /// If you’re using standard AppKit user interface elements, much of the work has been done for you. AppKit views and controls adopt the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol by default. In particular, [`NSView`](https://developer.apple.com/documentation/appkit/nsview), [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow), [`NSCell`](https://developer.apple.com/documentation/appkit/nscell), and [`NSDrawer`](https://developer.apple.com/documentation/appkit/nsdrawer) provide a default implementation for all the properties and methods in this protocol. In some cases, you may need to modify these default values to better represent your app, to provide additional context, or to modify the user’s flow through the app.
+    ///
+    /// If you’re using custom view or control subclasses, you need to add the appropriate informational properties, action methods, and notifications. You do this by adopting a role-specific protocol instead of [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol). See [Custom Controls](https://developer.apple.com/documentation/appkit/custom-controls).
+    ///
+    /// If you’re using custom user interface elements that don’t inherit from [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or one of the other accessibility-enabled AppKit classes, subclass the [`NSAccessibilityElement`](https://developer.apple.com/documentation/appkit/nsaccessibilityelement-swift.class) class instead of adopting instead of [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol).
+    ///
+    /// ### Customizing User Interface Elements
+    ///
+    /// Often, you can adjust how an assistive app interacts with your user interface element without creating a custom subclass. If a user interface element inherits from [`NSView`](https://developer.apple.com/documentation/appkit/nsview) or one of the other accessibility-enabled AppKit classes, you can customize it by:
+    ///
+    /// - Setting its accessibility values using any of the setter methods in the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol.
+    ///
+    /// - Overriding any of the properties or methods in the [`NSAccessibility`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol) protocol with a custom implementation.
+    ///
+    /// If you override a getter method, the system lets assistive apps call your getter. This can be particularly useful when managing dynamic properties because you can calculate their current value on demand instead of trying to update the property in response to a change.
+    ///
+    /// If you override a setter method, the system lets assistive apps both read and modify that property.
+    ///
+    /// You can control which accessor methods the assistive app can use by overriding [`isAccessibilitySelectorAllowed:`](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol/isaccessibilityselectorallowed(_:)). Return [`true`](https://developer.apple.com/documentation/swift/true) if the assistive app can call the selector; otherwise, return [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub unsafe trait NSAccessibility: NSObjectProtocol {
         #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]

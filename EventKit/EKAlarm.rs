@@ -8,12 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents an alarm.
+    ///
+    /// ## Overview
+    ///
+    /// An [`EKAlarm`](https://developer.apple.com/documentation/eventkit/ekalarm) object represents an alarm in Event Kit. Use the [`alarmWithAbsoluteDate:`](https://developer.apple.com/documentation/eventkit/ekalarm/init(absolutedate:)) and [`alarmWithRelativeOffset:`](https://developer.apple.com/documentation/eventkit/ekalarm/init(relativeoffset:)) class methods to create an alarm and use the properties to set information about an alarm. In macOS Mountain Lion, you can specify an action to trigger when the alarm fires via the `emailAddress`, `soundName`, or `url` property.
+    ///
+    ///
     /// The EKAlarm class provides an interface for accessing and manipulating calendar event alarms.
     ///
     /// The EKAlarm class represents alarms on an event. An alarm can be relative (e.g. 15 mins before)
     /// or absolute (specific time).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarm?language=objc)
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

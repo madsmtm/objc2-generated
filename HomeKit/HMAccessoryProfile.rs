@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a profile implemented by an accessory.
+    /// A profile that certain accessories implement.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessoryprofile?language=objc)
+    /// ## Overview
+    ///
+    /// This is an abstract superclass for classes such as [`HMCameraProfile`](https://developer.apple.com/documentation/homekit/hmcameraprofile) and [`HMNetworkConfigurationProfile`](https://developer.apple.com/documentation/homekit/hmnetworkconfigurationprofile). Each profile subclass controls specific features for a specific set of accessories.
+    ///
+    ///
+    /// Represents a profile implemented by an accessory.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessoryProfile;

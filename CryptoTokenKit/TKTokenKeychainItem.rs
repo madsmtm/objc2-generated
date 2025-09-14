@@ -10,9 +10,14 @@ use objc2_security::*;
 use crate::*;
 
 extern_class!(
-    /// Base interface for propagation token's items into the keychain.
+    /// An abstract base class for managing a token’s contents as keychain items.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychainitem?language=objc)
+    /// ## Overview
+    ///
+    /// Don’t use this base class directly. Instead, use one of its subclasses, such as [`TKTokenKeychainCertificate`](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychaincertificate) for managing certificates or [`TKTokenKeychainKey`](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychainkey) for managing cryptographic keys.
+    ///
+    ///
+    /// Base interface for propagation token's items into the keychain.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeychainItem;
@@ -94,9 +99,8 @@ impl TKTokenKeychainItem {
 }
 
 extern_class!(
+    /// A token’s certificate as stored in the keychain.
     /// Interface for propagation token's certificates into the keychain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychaincertificate?language=objc)
     #[unsafe(super(TKTokenKeychainItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeychainCertificate;
@@ -160,9 +164,8 @@ impl TKTokenKeychainCertificate {
 }
 
 extern_class!(
+    /// A token’s key as stored in the keychain.
     /// Interface for propagation token's keys into the keychain.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychainkey?language=objc)
     #[unsafe(super(TKTokenKeychainItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeychainKey;
@@ -318,9 +321,8 @@ impl TKTokenKeychainKey {
 }
 
 extern_class!(
+    /// A representation of the state of the keychain for a particular token.
     /// Contains TKTokenKeychainItem instances (keys and certificates) which represent keychain state (i.e. set of items) of specific token.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenkeychaincontents?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenKeychainContents;

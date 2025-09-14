@@ -10,7 +10,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilocalnotification?language=objc)
+    /// A notification that an app can schedule for presentation at a specific date and time.
+    ///
+    /// ## Overview
+    ///
+    /// The operating system is responsible for delivering local notifications at their scheduled times; the app does not have to be running for this to happen. Although local notifications are similar to remote notifications in that they are used for displaying alerts, playing sounds, and badging app icons, they are composed and delivered locally and do not require connection with remote servers.
+    ///
+    /// Local notifications are primarily intended for apps with timer-based behaviors and simple calendar or to-do list apps. An app that is running in the background may also schedule a local notification to inform the user of an incoming message, chat, or update. An app can have only a limited number of scheduled notifications; the system keeps the soonest-firing 64 notifications (with automatically rescheduled notifications counting as a single notification) and discards the rest.
+    ///
+    /// When you create a local notification, you must specify either a specific date or a geographic region as the trigger for delivering the notification. Date-based notifications are delivered at the day and time you specify, and allowances can be made for time zone changes as needed. Region-based notifications are delivered when the user enters or exits the specified region. In both cases, you can specify whether the notifications are one-time events or can be rescheduled and delivered again.
+    ///
+    /// After creating a `UILocalNotification` object, schedule it using either the [`scheduleLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplication/schedulelocalnotification(_:)) or [`presentLocalNotificationNow:`](https://developer.apple.com/documentation/uikit/uiapplication/presentlocalnotificationnow(_:)) method of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class. The [`scheduleLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplication/schedulelocalnotification(_:)) method uses the fire date to schedule delivery; the [`presentLocalNotificationNow:`](https://developer.apple.com/documentation/uikit/uiapplication/presentlocalnotificationnow(_:)) method presents the notification immediately, regardless of the value of `fireDate`. You can cancel one or more local notifications using the [`cancelLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplication/cancellocalnotification(_:)) or [`cancelAllLocalNotifications`](https://developer.apple.com/documentation/uikit/uiapplication/cancelalllocalnotifications()) method of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object.
+    ///
+    /// When the system delivers a local notification, several things can happen, depending on the app state and the type of notification. If the app is not frontmost and visible, the system displays the alert message, badges the app, and plays a sound—whatever is specified in the notification. If the notification is an alert and the user taps the action button (or, if the device is locked, drags open the action slider), the app is woken up or launched. (If the user taps one of the custom actions you specify using the [`category`](https://developer.apple.com/documentation/uikit/uilocalnotification/category) property, the app is woken up or launched into the background.) In its [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) method, the app delegate can obtain the `UILocalNotification` object from the launch options dictionary using the [`UIApplicationLaunchOptionsLocalNotificationKey`](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/localnotification) key. The delegate can inspect the properties of the notification and, if the notification includes custom data in its [`userInfo`](https://developer.apple.com/documentation/uikit/uilocalnotification/userinfo) dictionary, it can access that data and process it accordingly. On the other hand, if the local notification only badges the app icon, and the user in response launches the app, the [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) method is called, but no `UILocalNotification` object is included in the options dictionary. When the user selects a custom action, the app delegate’s [`application:handleActionWithIdentifier:forLocalNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:for:completionhandler:)) method is called to handle the action.
+    ///
+    /// If the app is foremost and visible when the system delivers the notification, the app delegate’s [`application:didReceiveLocalNotification:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didreceive:)) is called to process the notification. Use the information in the provided `UILocalNotification` object to decide what action to take. The system does not display any alerts, badge the app’s icon, or play any sounds when the app is already frontmost.
+    ///
+    /// An app is responsible for managing the badge number displayed on its icon. For example, if a text-messaging app processes all incoming messages after receiving a local notification, it should remove the icon badge by setting the [`applicationIconBadgeNumber`](https://developer.apple.com/documentation/uikit/uiapplication/applicationiconbadgenumber) property of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) object to 0.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -249,7 +267,13 @@ impl UILocalNotification {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilocalnotificationdefaultsoundname?language=objc)
+    /// Identifies the default system sound to play when a notification alert is displayed.
+    ///
+    /// ## Discussion
+    ///
+    /// You assign this value to the [`soundName`](https://developer.apple.com/documentation/uikit/uilocalnotification/soundname) property.
+    ///
+    ///
     #[deprecated = "Use UserNotifications Framework's +[UNNotificationSound defaultSound]"]
     pub static UILocalNotificationDefaultSoundName: &'static NSString;
 }

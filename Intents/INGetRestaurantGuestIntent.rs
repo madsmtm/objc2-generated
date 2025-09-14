@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintent?language=objc)
+    /// A request for information about the guest who is making reservations.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetRestaurantGuestIntent`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintent) object is a request for information about the person whose name should appear on reservations. Maps sends this intent to your Intents extension when it wants information about the person making reservations. Your response contains the identity of the person making the reservation. The response can also contain information about whether your service allows the user to modify the identity of the guest. For example, you can specify whether your service allows one user to book reservations on behalf of another user.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetRestaurantGuestIntentHandling`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling) protocol. Your handler should create an [`INGetRestaurantGuestIntentResponse`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintentresponse) object with information about the guest and your app’s preferences for modifying that guest’s identity.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -60,7 +73,15 @@ impl INGetRestaurantGuestIntent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling?language=objc)
+    /// The handler interface for fetching information about the person making a reservation.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetRestaurantGuestIntentHandling`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintenthandling) protocol to confirm and handle requests to return information about the person making a reservation. The system delivers an [`INGetRestaurantGuestIntent`](https://developer.apple.com/documentation/intents/ingetrestaurantguestintent) object to your handler when the user begins the process of making a reservation. Your handler object should return information about the current user along with preferences about how the system should display that user’s information. Your handler is also responsible for specifying whether the user information displayed by the system is changable before assigning it to the reservation.
+    ///
+    /// Maps does not require you to confirm the contents of a get restaurant guest intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     pub unsafe trait INGetRestaurantGuestIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INGetRestaurantGuestIntentResponse",

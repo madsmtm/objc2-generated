@@ -7,24 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A value that indicates how a grouped toolbar item selects its subitems.
 /// `NSToolbarItemGroup` is a subclass of `NSToolbarItem` which can be used to create sets of `NSToolbarItems` that are always attached to one another and that are added, removed, or reordered as a single unit.
 /// Properties that get set on the parent toolbar item, such as label or view, apply to the entire item.
 /// Otherwise, the individual properties are displayed adjacent to one another.
 /// Subitems will inherit the group's action if no action is defined on the subitem and will validate based on that action when autovalidates is enabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupSelectionMode(pub NSInteger);
 impl NSToolbarItemGroupSelectionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/selectone?language=objc)
+    /// The system displays a highlighted mode on the most recent item selected.
     #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
     pub const SelectOne: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/selectany?language=objc)
+    /// The system toggles a highlight on any item selected.
     #[doc(alias = "NSToolbarItemGroupSelectionModeSelectAny")]
     pub const SelectAny: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum/momentary?language=objc)
+    /// The system temporarily highlights the select group item when the user selects the item.
     #[doc(alias = "NSToolbarItemGroupSelectionModeMomentary")]
     pub const Momentary: Self = Self(2);
 }
@@ -37,19 +36,15 @@ unsafe impl RefEncode for NSToolbarItemGroupSelectionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupControlRepresentation(pub NSInteger);
 impl NSToolbarItemGroupControlRepresentation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/automatic?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/expanded?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationExpanded")]
     pub const Expanded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum/collapsed?language=objc)
     #[doc(alias = "NSToolbarItemGroupControlRepresentationCollapsed")]
     pub const Collapsed: Self = Self(2);
 }
@@ -63,7 +58,47 @@ unsafe impl RefEncode for NSToolbarItemGroupControlRepresentation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup?language=objc)
+    /// A group of subitems in a toolbar item.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSToolbarItemGroup`](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup) represents a collection set of subitems in a toolbar that the system displays based on available space and settings that you specify. The system uses the views and labels of the subitems, but the parent’s attributes take precedence. This differs from other [`NSToolbarItem`](https://developer.apple.com/documentation/appkit/nstoolbaritem) objects because they’re attached — the user drags them together as a single item rather than separately.
+    ///
+    /// If a subitem of the group has an action set on it, the group uses that action instead of its own when the user clicks or taps on that item. The system prefers the subitem’s action if it exists, otherwise it uses the group’s action.
+    ///
+    /// To configure an instance of [`NSToolbarItemGroup`](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup), you first create the individual toolbar subitems:
+    ///
+    /// ```objc
+    /// NSToolbarItem *item1 = [[NSToolbarItem alloc] initWithItemIdentifier:@"Item1"];
+    /// NSToolbarItem *item2 = [[NSToolbarItem alloc] initWithItemIdentifier:@"Item2"];
+    /// [item1 setImage:[NSImage imageNamed:@"LeftArrow"]];
+    /// [item2 setImage:[NSImage imageNamed:@"RightArrow"]];
+    /// [item1 setLabel:@"Prev"];
+    /// [item2 setLabel:@"Next"];
+    /// ```
+    ///
+    /// Then, you put them in a grouped item:
+    ///
+    /// ```objc
+    /// NSToolbarItemGroup *group = [[NSToolbarItemGroup alloc] initWithItemIdentifier:@"GroupItem"];
+    /// [group setSubitems:[NSArray arrayWithObjects:item1, item2, nil]];
+    /// ```
+    ///
+    /// In this configuration, you get two grouped items, and two labels.
+    ///
+    /// If you set a label on the parent item, you get two grouped items with one shared label:
+    ///
+    /// ```objc
+    /// [group setLabel:@"Navigate"];
+    /// ```
+    ///
+    /// If instead you set a view on the parent item, you get two labels with one shared view:
+    ///
+    /// ```objc
+    /// [group setView:someSegmentedControl];
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSToolbarItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSToolbarItem")]

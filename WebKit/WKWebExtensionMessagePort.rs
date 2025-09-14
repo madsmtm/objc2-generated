@@ -8,27 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A string that identifies the error domain.
     /// Indicates a ``WKWebExtensionMessagePort`` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/errordomain?language=objc)
     pub static WKWebExtensionMessagePortErrorDomain: &'static NSErrorDomain;
 }
 
+/// Constants that indicate errors in the [`WKWebExtensionMessagePort`](https://developer.apple.com/documentation/webkit/wkwebextension/messageport) domain.
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionMessagePort`` domain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct WKWebExtensionMessagePortError(pub NSInteger);
 impl WKWebExtensionMessagePortError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/unknown?language=objc)
+    /// Indicates that an unknown error occurred.
     #[doc(alias = "WKWebExtensionMessagePortErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/notconnected?language=objc)
+    /// Indicates that the message port is disconnected.
     #[doc(alias = "WKWebExtensionMessagePortErrorNotConnected")]
     pub const NotConnected: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code/messageinvalid?language=objc)
+    /// Indicates that the message is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// The message must be an object that is JSON-serializable.
+    ///
+    ///
     #[doc(alias = "WKWebExtensionMessagePortErrorMessageInvalid")]
     pub const MessageInvalid: Self = Self(3);
 }
@@ -42,11 +46,16 @@ unsafe impl RefEncode for WKWebExtensionMessagePortError {
 }
 
 extern_class!(
-    /// A ``WKWebExtensionMessagePort`` object manages message-based communication with a web extension.
+    /// An object that manages message-based communication with a web extension.
+    ///
+    /// ## Overview
     ///
     /// Contains properties and methods to handle message exchanges with a web extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport?language=objc)
+    ///
+    /// A ``WKWebExtensionMessagePort`` object manages message-based communication with a web extension.
+    ///
+    /// Contains properties and methods to handle message exchanges with a web extension.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

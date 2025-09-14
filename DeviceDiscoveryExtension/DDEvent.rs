@@ -7,30 +7,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Type of event.
+/// Identifiers for the types of events that occur in the device discovery life cycle.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum?language=objc)
+/// ## Overview
+///
+/// An event (`DDEvent`) `eventType` is of this type.
+///
+///
+/// Type of event.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDEventType(pub NSInteger);
 impl DDEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/unknown?language=objc)
+    /// A value for uninitialized event types.
     #[doc(alias = "DDEventTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// A status that indicates when the extension finds the device of interest.
     /// Unknown event. Placeholder for initializing event types.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicefound?language=objc)
     #[doc(alias = "DDEventTypeDeviceFound")]
     pub const DeviceFound: Self = Self(40);
+    /// A status that indicates when the extension loses a connection to the device of interest.
     /// [DDDeviceEvent] Device found.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicelost?language=objc)
     #[doc(alias = "DDEventTypeDeviceLost")]
     pub const DeviceLost: Self = Self(41);
-    /// [DDDeviceEvent] Device lost.
+    /// A status that indicates when the device of interest changes configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicechanged?language=objc)
+    /// ## Discussion
+    ///
+    /// Report an event of this type to notify the system when information about a discovered device changes, for example, when:
+    ///
+    /// - Adding or losing a communication protocol.
+    ///
+    /// - Updating information about the current media that the device plays.
+    ///
+    ///
+    /// [DDDeviceEvent] Device lost.
     #[doc(alias = "DDEventTypeDeviceChanged")]
     pub const DeviceChanged: Self = Self(42);
 }
@@ -44,9 +56,24 @@ unsafe impl RefEncode for DDEventType {
 }
 
 impl DDEventType {
-    /// Converts an event to a string for logging, etc.
+    /// Returns human-readable text for the specified event identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/ddeventtypetostring(_:)?language=objc)
+    /// Parameters:
+    /// - inValue: An event identifier to convert to text.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A textual value for the specified event type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your extension can use this function for logging.
+    ///
+    ///
+    /// Converts an event to a string for logging, etc.
     #[doc(alias = "DDEventTypeToString")]
     #[inline]
     pub unsafe fn to_string(self) -> Retained<NSString> {
@@ -59,16 +86,46 @@ impl DDEventType {
     }
 }
 
-/// Invoked when an event occurs.
+/// A function that the extension invokes to signal an event.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/ddeventhandler?language=objc)
+/// Parameters:
+/// - inEvent: An event that the extension creates for the event handler.
+///
+///
+/// ## Discussion
+///
+/// A device discovery extension implements a closure of this format and calls it after creating argument events. In the implementation, the extension creates device events (`DDEvent`) and passes them to the system by calling [`reportEvent:`](https://developer.apple.com/documentation/devicediscoveryextension/dddiscoverysession/report(_:)).
+///
+/// For an example event handler, see `Appex.swift` in [Discovering a third-party media-streaming device](https://developer.apple.com/documentation/devicediscoveryextension/discovering-a-third-party-media-streaming-device).
+///
+///
+/// Invoked when an event occurs.
 #[cfg(feature = "block2")]
 pub type DDEventHandler = *mut block2::DynBlock<dyn Fn(NonNull<DDDeviceEvent>)>;
 
 extern_class!(
-    /// Device-related event (e.g. found, lost).
+    /// An object that provides a device or communicates its change in status.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent?language=objc)
+    /// ## Overview
+    ///
+    /// The extension creates and configures an instance of this class to represent a moment of interest in the device discovery life cycle. The event’s `eventType` ([`DDEventType`](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum)) describes a particular status.
+    ///
+    /// For example, when the extension discovers a device of interest, it instantiates an instance of this class with the type [`DDEventTypeDeviceFound`](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceevent/eventtype-swift.enum/devicefound).
+    ///
+    /// ```swift
+    /// var session: DDDiscoverySession?
+    /// ...
+    /// var deviceEvent = DDDeviceEvent(eventType: .deviceFound, device: ddDevice)
+    /// ```
+    ///
+    /// Then, the extension provides the discovered device to the system using [`reportEvent:`](https://developer.apple.com/documentation/devicediscoveryextension/dddiscoverysession/report(_:)) for eventual display in the route picker view ([`AVRoutePickerView`](https://developer.apple.com/documentation/avkit/avroutepickerview)).
+    ///
+    /// ```swift
+    /// session?.report(deviceEvent)
+    /// ```
+    ///
+    ///
+    /// Device-related event (e.g. found, lost).
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct DDDeviceEvent;

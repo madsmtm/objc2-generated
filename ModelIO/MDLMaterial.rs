@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for the semantic use of a material property’s value in rendering a particular surface appearance; used by the [`semantic`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/semantic) property.
 /// MDLMaterialSemantic
 ///
 /// The material semantics are identifiers for material properties
@@ -112,89 +113,243 @@ use crate::*;
 /// translated for which no known semantic applies.
 /// Semantics defined at greater than this value are available to be user defined.
 /// The first value is also used to indicate
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialSemantic(pub NSUInteger);
 impl MDLMaterialSemantic {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/basecolor?language=objc)
+    /// The inherent color of a surface, to be used as a modulator during shading.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `Kd` and `map_Kd` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticBaseColor")]
     pub const BaseColor: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/subsurface?language=objc)
+    /// The degree to which light scatters under the surface of a material.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `subsurface` attribute when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSubsurface")]
     pub const Subsurface: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/metallic?language=objc)
+    /// The degree to which a material appears as a dielectric surface (lower values) or as a metal (higher values).
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `metallic` and `map_metallic` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticMetallic")]
     pub const Metallic: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/specular?language=objc)
+    /// The intensity of specular highlights that appear on the material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `Ks` and `map_Ks` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSpecular")]
     pub const Specular: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/specularexponent?language=objc)
+    /// The exponent to be used in Blinn-Phong approximation of the material’s specular response.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `Ns` and `map_Ns` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSpecularExponent")]
     pub const SpecularExponent: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/speculartint?language=objc)
+    /// The balance of color for specular highlights, between the light color (lower values) and the material’s base color (at higher values).
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `specularTint` and `map_specularTint` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSpecularTint")]
     pub const SpecularTint: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/roughness?language=objc)
+    /// The degree to which a material appears smooth, affecting both diffuse and specular response.
+    ///
+    /// ## Discussion
+    ///
+    /// At lower values, the material appears shiny, with well-defined specular highlights. At higher values, a diffuse material becomes retroreflective, and specular highlights are very spread out.
+    ///
+    /// Model I/O uses this semantic for the `roughness` and `map_roughness` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticRoughness")]
     pub const Roughness: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/anisotropic?language=objc)
+    /// The degree to which specular highlights elongate in the direction of the local tangent basis.
+    ///
+    /// ## Discussion
+    ///
+    /// This semantic has no effect in a mesh that does not contain vertex attribute data providing a tangent basis.
+    ///
+    /// Model I/O uses this semantic for the `anisotropic` and `map_anisotropic` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticAnisotropic")]
     pub const Anisotropic: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/anisotropicrotation?language=objc)
+    /// The angle at which anisotropic effects are rotated relative to the local tangent basis.
+    ///
+    /// ## Discussion
+    ///
+    /// Values for this semantic in the range from `0.0` to `1.0` map to angles from `0.0` to `2 * M_PI`. This semantic has no effect in a mesh that does not contain vertex attribute data providing a tangent basis.
+    ///
+    /// Model I/O uses this semantic for the `anisotropicRotation` and `map_anisotropicRotation` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticAnisotropicRotation")]
     pub const AnisotropicRotation: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/sheen?language=objc)
+    /// The intensity of highlights that appear only at glancing angles on a material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `sheen` and `map_sheen` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSheen")]
     pub const Sheen: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/sheentint?language=objc)
+    /// The balance of color for highlights that appear only at glancing angles, between the light color (lower values) and the material’s base color (at higher values).
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `sheenTint` and `map_sheenTint` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticSheenTint")]
     pub const SheenTint: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/clearcoat?language=objc)
+    /// The intensity of a second specular highlight, similar to the gloss that results from a clear coat on an automotive finish.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `clearCoat` and `map_clearCoat` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticClearcoat")]
     pub const Clearcoat: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/clearcoatgloss?language=objc)
+    /// The spread of a second specular highlight, similar to the gloss that results from a clear coat on an automotive finish.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `clearCoatGloss` and `map_clearCoatGloss` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticClearcoatGloss")]
     pub const ClearcoatGloss: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/emission?language=objc)
+    /// The color emitted as radiance from a material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// A renderer (or other software component processing the material) might not treat the emission channel of a material as a light source illuminating the scene. Instead, an emission channel prevents affected areas of a surface from being darkened by other aspects of lighting and shading.
+    ///
+    /// Model I/O uses this semantic for the `Ka` and `map_Ka` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticEmission")]
     pub const Emission: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/bump?language=objc)
+    /// The degree of perturbation in a material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// The local gradients in a bump map produce variation in the direction of surface normal vectors.
+    ///
+    /// Model I/O uses this semantic for the `bump` and `map_map` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticBump")]
     pub const Bump: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/opacity?language=objc)
+    /// The opacity of a material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `d` and `map_d` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticOpacity")]
     pub const Opacity: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/interfaceindexofrefraction?language=objc)
+    /// The index of refraction for the medium surrounding a material.
+    ///
+    /// ## Discussion
+    ///
+    /// This value corresponds to the `n1` parameter in Schlick’s equation for approximating Fresnel reflection effects. Typically, one assumes a the medium surrounding a material is air or empty space, so a value of 1.0 suffices for most uses of this semantic.
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticInterfaceIndexOfRefraction")]
     pub const InterfaceIndexOfRefraction: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/materialindexofrefraction?language=objc)
+    /// The index of refraction for a material itself.
+    ///
+    /// ## Discussion
+    ///
+    /// This value corresponds to the `n2` parameter in Schlick’s equation for approximating Fresnel reflection effects.
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticMaterialIndexOfRefraction")]
     pub const MaterialIndexOfRefraction: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/objectspacenormal?language=objc)
+    /// The variation in the surface normal vectors in a material, relative to model coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `objectSpaceNormal` and `map_objectSpaceNormal` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticObjectSpaceNormal")]
     pub const ObjectSpaceNormal: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/tangentspacenormal?language=objc)
+    /// The variation in the surface normal vectors in a material, relative to surface tangent coordinate space.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `objectTangentSpaceNormal` and `map_objectTangentSpaceNormal` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticTangentSpaceNormal")]
     pub const TangentSpaceNormal: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/displacement?language=objc)
+    /// The displacement of a material’s surface relative to the surface normal.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `displacement` and `map_displacement` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticDisplacement")]
     pub const Displacement: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/displacementscale?language=objc)
+    /// The scaling factor for displacement of a material’s surface.
+    ///
+    /// ## Discussion
+    ///
+    /// Model I/O uses this semantic for the `objectDisplacementScale` and `map_objectDisplacementScale` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticDisplacementScale")]
     pub const DisplacementScale: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/ambientocclusion?language=objc)
+    /// The attenuation of ambient light due to local geometry variations on a surface.
+    ///
+    /// ## Discussion
+    ///
+    /// Ambient occlusion (AO) describes the accessibility of a point on a surface to the surrounding radiant environment and is typically used to attenuate ambient lighting. A renderer should not use AO data should to affect direct illumination.
+    ///
+    /// Model I/O uses this semantic for the `ao` and `map_ao` attributes when importing from the MTL file format (for assets in the OBJ file format).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticAmbientOcclusion")]
     pub const AmbientOcclusion: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/ambientocclusionscale?language=objc)
+    /// The scaling factor for ambient occlusion shading.
     #[doc(alias = "MDLMaterialSemanticAmbientOcclusionScale")]
     pub const AmbientOcclusionScale: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/none?language=objc)
+    /// The material property’s [`semantic`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/semantic) property has not been initialized.
     #[doc(alias = "MDLMaterialSemanticNone")]
     pub const None: Self = Self(0x8000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic/userdefined?language=objc)
+    /// The meaning of the material property’s value is not one of the standard semantic uses recognized by Model I/O.
+    ///
+    /// ## Discussion
+    ///
+    /// A renderer (or other software component processing the material) may use this material property to produce custom effects. If an asset contains more than one user-defined material property, Model I/O  gives each a unique integer value, starting with this constant’s value (`0x8001`).
+    ///
+    ///
     #[doc(alias = "MDLMaterialSemanticUserDefined")]
     pub const UserDefined: Self = Self(0x8001);
 }
@@ -207,43 +362,108 @@ unsafe impl RefEncode for MDLMaterialSemantic {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype?language=objc)
+/// Options for the data type of a material property, used by the [`type`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/type) property.
+///
+/// ## Overview
+///
+/// Reading a material property’s value using an accessor for a type other than that corresponding to the [`type`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/type) property produces undefined results.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialPropertyType(pub NSUInteger);
 impl MDLMaterialPropertyType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/none?language=objc)
+    /// The material property’s value has not been initialized.
+    ///
+    /// ## Discussion
+    ///
+    /// Set one of the properties listed in Working with a Material Property’s Value to provide a value for the material property. After setting a value, the [`type`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/type) property reflects the data type of that value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/string?language=objc)
+    /// The material’s value is a string.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`stringValue`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/stringvalue) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeString")]
     pub const String: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/url?language=objc)
+    /// The material property’s value is a URL—typically, a URL referencing a texture image.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`URLValue`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/urlvalue) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeURL")]
     pub const URL: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/texture?language=objc)
+    /// The material property’s value is a [`MDLTextureSampler`](https://developer.apple.com/documentation/modelio/mdltexturesampler) object that provides both a texture image and texture rendering parameters.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`textureSamplerValue`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/texturesamplervalue) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeTexture")]
     pub const Texture: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/color?language=objc)
+    /// The material property’s value is a uniform color.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`color`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/color) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeColor")]
     pub const Color: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float?language=objc)
+    /// The material property’s value is a floating-point scalar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`floatValue`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/floatvalue) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeFloat")]
     pub const Float: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float2?language=objc)
+    /// The material property’s value is a 2-component floating-point vector.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`float2Value`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/float2value) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeFloat2")]
     pub const Float2: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float3?language=objc)
+    /// The material property’s value is a 3-component floating-point vector.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`float3Value`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/float3value) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeFloat3")]
     pub const Float3: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/float4?language=objc)
+    /// The material property’s value is a 4-component floating-point vector.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`float4Value`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/float4value) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeFloat4")]
     pub const Float4: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/matrix44?language=objc)
+    /// The material property’s value is a 4 x 4 floating-point matrix.
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`matrix4x4`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/matrix4x4) property to access the material property’s value.
+    ///
+    ///
     #[doc(alias = "MDLMaterialPropertyTypeMatrix44")]
     pub const Matrix44: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype/buffer?language=objc)
     #[doc(alias = "MDLMaterialPropertyTypeBuffer")]
     pub const Buffer: Self = Self(10);
 }
@@ -256,21 +476,32 @@ unsafe impl RefEncode for MDLMaterialPropertyType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Modes for sampling textures at coordinates outside the texture bounds, used by the [`sWrapMode`](https://developer.apple.com/documentation/modelio/mdltexturefilter/swrapmode), [`tWrapMode`](https://developer.apple.com/documentation/modelio/mdltexturefilter/twrapmode), and [`rWrapMode`](https://developer.apple.com/documentation/modelio/mdltexturefilter/rwrapmode) properties.
 /// Texture filtering
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureWrapMode(pub NSUInteger);
 impl MDLMaterialTextureWrapMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/clamp?language=objc)
+    /// Sampling at any texture coordinate outside the `0.0` to `1.0` range returns the texel color from the nearest edge.
     #[doc(alias = "MDLMaterialTextureWrapModeClamp")]
     pub const Clamp: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/repeat?language=objc)
+    /// Sampling at texture coordinates outside the `0.0` to `1.0` range results in a repeated tiling effect.
+    ///
+    /// ## Discussion
+    ///
+    /// This effect disregards the whole part of a texture coordinate. For example, sampling at a coordinate value of `2.7` or `5.7` returns the texel color for the coordinate value of `0.7`. The visual effect of this mode is to repeat the texture image endlessly across a surface rendered with the texture.
+    ///
+    ///
     #[doc(alias = "MDLMaterialTextureWrapModeRepeat")]
     pub const Repeat: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/mirror?language=objc)
+    /// Sampling at texture coordinates outside the `0.0` to `1.0` range results in a mirrored tiling effect.
+    ///
+    /// ## Discussion
+    ///
+    /// This effect is similar to that of the [`MDLMaterialTextureWrapModeRepeat`](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode/repeat) mode, but inverts the range of fractional texture coordinate values whenever the whole part of a texture coordinate value is odd. For example, sampling at a coordinate value of `1.7` or `5.7` returns the texel color for the coordinate value of `0.3` (because `1.0 - 0.7 = 0.3`), and sampling at a coordinate value of `2.7` or `8.7` returns the texel color for the coordinate value of `0.7`. The visual effect of this mode is to repeat the texture image endlessly across a surface rendered with the texture, with every other repetition in a mirrored orientation.
+    ///
+    ///
     #[doc(alias = "MDLMaterialTextureWrapModeMirror")]
     pub const Mirror: Self = Self(2);
 }
@@ -283,16 +514,16 @@ unsafe impl RefEncode for MDLMaterialTextureWrapMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode?language=objc)
+/// Modes for sampling textures at coordinates between texels, used by the [`minFilter`](https://developer.apple.com/documentation/modelio/mdltexturefilter/minfilter) and [`magFilter`](https://developer.apple.com/documentation/modelio/mdltexturefilter/magfilter) properties.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureFilterMode(pub NSUInteger);
 impl MDLMaterialTextureFilterMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode/nearest?language=objc)
+    /// Sampling at texture coordinates between texels should return the value of the nearest texel.
     #[doc(alias = "MDLMaterialTextureFilterModeNearest")]
     pub const Nearest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode/linear?language=objc)
+    /// Sampling at texture coordinates between texels should linearly interpolate between texel values.
     #[doc(alias = "MDLMaterialTextureFilterModeLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -305,16 +536,16 @@ unsafe impl RefEncode for MDLMaterialTextureFilterMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode?language=objc)
+/// Modes for sampling textures at sizes between mipmap levels, used by the [`mipFilter`](https://developer.apple.com/documentation/modelio/mdltexturefilter/mipfilter) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialMipMapFilterMode(pub NSUInteger);
 impl MDLMaterialMipMapFilterMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode/nearest?language=objc)
+    /// Sampling a texture at a size between mipmap levels should return a texel value from the nearest mipmap level.
     #[doc(alias = "MDLMaterialMipMapFilterModeNearest")]
     pub const Nearest: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode/linear?language=objc)
+    /// Sampling a texture at a size between mipmap levels should linearly interpolate between mipmap levels.
     #[doc(alias = "MDLMaterialMipMapFilterModeLinear")]
     pub const Linear: Self = Self(1);
 }
@@ -328,7 +559,13 @@ unsafe impl RefEncode for MDLMaterialMipMapFilterMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturefilter?language=objc)
+    /// A description of filtering modes for a renderer to use when sampling from a texture.
+    ///
+    /// ## Overview
+    ///
+    /// A texture filter, together with a [`MDLTexture`](https://developer.apple.com/documentation/modelio/mdltexture) object and transform information, form a [`MDLTextureSampler`](https://developer.apple.com/documentation/modelio/mdltexturesampler) object, which describes a texture and its rendering parameters for use in rendering one aspect of a [`MDLMaterial`](https://developer.apple.com/documentation/modelio/mdlmaterial) object’s surface appearance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTextureFilter;
@@ -410,7 +647,13 @@ impl MDLTextureFilter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdltexturesampler?language=objc)
+    /// An object that pairs a source of texture data with sampling parameters to be used in rendering the texture.
+    ///
+    /// ## Overview
+    ///
+    /// You use texture samplers as material property values with the [`MDLMaterialProperty`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty) class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLTextureSampler;
@@ -469,10 +712,17 @@ impl MDLTextureSampler {
 }
 
 extern_class!(
+    /// A definition for one specific aspect of the rendering parameters for a material.
+    ///
+    /// ## Overview
+    ///
+    /// The collection of material properties in a [`MDLMaterial`](https://developer.apple.com/documentation/modelio/mdlmaterial) instance defines the intended surface appearance for rendering a 3D object. A material property object’s [`semantic`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/semantic) property identifies which aspect of material rendering it affects, and its value (which can be any of several types) determines how the material property contributes to that aspect of rendering.
+    ///
+    /// When you initialize a material property with a specific value (using one of the initializers listed in [Creating a Material Property](https://developer.apple.com/documentation/modelio/mdlmaterialproperty#creating-a-material-property)) or set the value of an existing material property (using one of the property setters listed in [Working with a Material Property’s Value](https://developer.apple.com/documentation/modelio/mdlmaterialproperty#working-with-a-material-propertys-value)), the [`type`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty/type) property changes to reflect the data type of the stored value. To retrieve the material property’s value, you must use the property accessor appropriate to its type. If you read a material property’s value using an accessor for a different type, the result is undefined.
+    ///
+    ///
     /// If a color is encoded in a floatN property, it is to be interpreted as
     /// a Rec 709 color.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialproperty?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMaterialProperty;
@@ -664,7 +914,6 @@ impl MDLMaterialProperty {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertyconnection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMaterialPropertyConnection;
@@ -714,7 +963,6 @@ impl MDLMaterialPropertyConnection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertynode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMaterialPropertyNode;
@@ -789,8 +1037,6 @@ extern_class!(
     /// inputs and outputs will contain all of the inputs and outputs
     /// external to the graph, which are all the inputs and outputs not
     /// internally connected to something
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertygraph?language=objc)
     #[unsafe(super(MDLMaterialPropertyNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMaterialPropertyGraph;
@@ -858,11 +1104,18 @@ impl MDLMaterialPropertyGraph {
 }
 
 extern_class!(
+    /// A set of material properties that describes a basic shading model for materials, and the superclass for more complex shading models.
+    ///
+    /// ## Overview
+    ///
+    /// The set of material properties that define a material’s response to lighting is also called the _Bidirectional Reflectance Distribution Function_, or BRDF, for surfaces shaded using that [`MDLMaterial`](https://developer.apple.com/documentation/modelio/mdlmaterial) object. The set of properties defined by the [`MDLScatteringFunction`](https://developer.apple.com/documentation/modelio/mdlscatteringfunction) class itself describes a Lambertian shading model with Blinn-Phong specular response; subclasses can define a set of properties for other shading models.
+    ///
+    /// Creating a new scattering function object with the inherited [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method creates a set of material properties with useful default values for this shading model.
+    ///
+    ///
     /// The base scattering function is Lambertian, with a Blinn-Phong specular response.
     /// Specular power for Blinn-Phong can be derived from the roughness property using
     /// an approximation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlscatteringfunction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLScatteringFunction;
@@ -939,7 +1192,15 @@ impl MDLScatteringFunction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlphysicallyplausiblescatteringfunction?language=objc)
+    /// A set of material properties that describes a physically realistic shading model for materials.
+    ///
+    /// ## Overview
+    ///
+    /// The set of material properties that define a material’s response to lighting is also called the _Bidirectional Reflectance Distribution Function_, or BRDF, for surfaces shaded using that MDLMaterial object. The properties defined by this class, along with some properties inherited from the superclass [`MDLScatteringFunction`](https://developer.apple.com/documentation/modelio/mdlscatteringfunction), describe a shading model that more closely simulates real-world lighting physics than traditional shading models. (This shading model is similar to those used in recent game engines and feature films.)
+    ///
+    /// The valid range for each material property in this shading function is `0.0` to `1.0`, inclusive. Creating a new scattering function object with the inherited [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method creates a set of material properties with useful default values for this shading model.
+    ///
+    ///
     #[unsafe(super(MDLScatteringFunction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLPhysicallyPlausibleScatteringFunction;
@@ -1019,19 +1280,15 @@ impl MDLPhysicallyPlausibleScatteringFunction {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialFace(pub NSUInteger);
 impl MDLMaterialFace {
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/front?language=objc)
     #[doc(alias = "MDLMaterialFaceFront")]
     pub const Front: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/back?language=objc)
     #[doc(alias = "MDLMaterialFaceBack")]
     pub const Back: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface/doublesided?language=objc)
     #[doc(alias = "MDLMaterialFaceDoubleSided")]
     pub const DoubleSided: Self = Self(2);
 }
@@ -1045,7 +1302,15 @@ unsafe impl RefEncode for MDLMaterialFace {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterial?language=objc)
+    /// A collection of material properties that together describe the intended surface appearance for rendering a 3D object.
+    ///
+    /// ## Overview
+    ///
+    /// Each material property (a [`MDLMaterialProperty`](https://developer.apple.com/documentation/modelio/mdlmaterialproperty) object) provides one specific aspect of appearance, such as opacity, shininess, or surface detail. Use the [`material`](https://developer.apple.com/documentation/modelio/mdlsubmesh/material) property of a [`MDLSubmesh`](https://developer.apple.com/documentation/modelio/mdlsubmesh) object to associate a material with a 3D object for rendering or to find the material assigned to an object loaded from an asset file.
+    ///
+    /// Sets of certain material properties called _scattering functions_ determine the material’s response to lighting. You can manage these properties together using a material’s [`scatteringFunction`](https://developer.apple.com/documentation/modelio/mdlmaterial/scatteringfunction) property. Creating a material with the inherited [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) initializer is equivalent to using the [`initWithName:scatteringFunction:`](https://developer.apple.com/documentation/modelio/mdlmaterial/init(name:scatteringfunction:)) with a [`MDLScatteringFunction`](https://developer.apple.com/documentation/modelio/mdlscatteringfunction) object whose properties all have default values.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLMaterial;

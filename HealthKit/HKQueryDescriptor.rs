@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquerydescriptor?language=objc)
+    /// A descriptor that specifies a set of samples based on the data type and a predicate.
+    ///
+    /// ## Overview
+    ///
+    /// Use descriptors to create queries that return multiple data types. You can use descriptors when creating [`HKSampleQuery`](https://developer.apple.com/documentation/healthkit/hksamplequery), [`HKAnchoredObjectQuery`](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery), or [`HKObserverQuery`](https://developer.apple.com/documentation/healthkit/hkobserverquery) instances.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQueryDescriptor;

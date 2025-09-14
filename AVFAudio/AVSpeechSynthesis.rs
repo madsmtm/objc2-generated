@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary?language=objc)
+/// Specifies when to pause or stop speech.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechBoundary(pub NSInteger);
 impl AVSpeechBoundary {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary/immediate?language=objc)
+    /// Indicates to pause or stop speech immediately.
     #[doc(alias = "AVSpeechBoundaryImmediate")]
     pub const Immediate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary/word?language=objc)
+    /// Indicates to pause or stop speech after the synthesizer finishes speaking the current word.
     #[doc(alias = "AVSpeechBoundaryWord")]
     pub const Word: Self = Self(1);
 }
@@ -29,19 +29,19 @@ unsafe impl RefEncode for AVSpeechBoundary {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality?language=objc)
+/// The speech quality of a voice.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVSpeechSynthesisVoiceQuality(pub NSInteger);
 impl AVSpeechSynthesisVoiceQuality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/default?language=objc)
+    /// A basic quality voice that’s  available on the device by default.
     #[doc(alias = "AVSpeechSynthesisVoiceQualityDefault")]
     pub const Default: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/enhanced?language=objc)
+    /// An enhanced quality voice that you must download to use.
     #[doc(alias = "AVSpeechSynthesisVoiceQualityEnhanced")]
     pub const Enhanced: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicequality/premium?language=objc)
+    /// A premium quality voice that you must download to use.
     #[doc(alias = "AVSpeechSynthesisVoiceQualityPremium")]
     pub const Premium: Self = Self(3);
 }
@@ -54,19 +54,19 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceQuality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender?language=objc)
+/// The gender for a voice.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisVoiceGender(pub NSInteger);
 impl AVSpeechSynthesisVoiceGender {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/unspecified?language=objc)
+    /// The nonspecific gender option.
     #[doc(alias = "AVSpeechSynthesisVoiceGenderUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/male?language=objc)
+    /// The male voice option.
     #[doc(alias = "AVSpeechSynthesisVoiceGenderMale")]
     pub const Male: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender/female?language=objc)
+    /// The female voice option.
     #[doc(alias = "AVSpeechSynthesisVoiceGenderFemale")]
     pub const Female: Self = Self(2);
 }
@@ -79,27 +79,26 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceGender {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that describe the type of text.
 /// Markers used in the output event callback. Used for providing metadata on synthesized audio.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisMarkerMark(pub NSInteger);
 impl AVSpeechSynthesisMarkerMark {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/phoneme?language=objc)
+    /// A type of text that represents a phoneme.
     #[doc(alias = "AVSpeechSynthesisMarkerMarkPhoneme")]
     pub const Phoneme: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/word?language=objc)
+    /// A type of text that represents a word.
     #[doc(alias = "AVSpeechSynthesisMarkerMarkWord")]
     pub const Word: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/sentence?language=objc)
+    /// A type of text that represents a sentence.
     #[doc(alias = "AVSpeechSynthesisMarkerMarkSentence")]
     pub const Sentence: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/paragraph?language=objc)
+    /// A type of text that represents a paragraph.
     #[doc(alias = "AVSpeechSynthesisMarkerMarkParagraph")]
     pub const Paragraph: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum/bookmark?language=objc)
+    /// A Speech Synthesis Markup Language (SSML) mark tag.
     #[doc(alias = "AVSpeechSynthesisMarkerMarkBookmark")]
     pub const Bookmark: Self = Self(4);
 }
@@ -113,65 +112,95 @@ unsafe impl RefEncode for AVSpeechSynthesisMarkerMark {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechutteranceminimumspeechrate?language=objc)
+    /// The minimum rate the speech synthesizer uses when speaking an utterance.
+    ///
+    /// ## Discussion
+    ///
+    /// The speech rate is a decimal representation.
+    ///
+    ///
     pub static AVSpeechUtteranceMinimumSpeechRate: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechutterancemaximumspeechrate?language=objc)
+    /// The maximum rate the speech synthesizer uses when speaking an utterance.
+    ///
+    /// ## Discussion
+    ///
+    /// The speech rate is a decimal representation.
+    ///
+    ///
     pub static AVSpeechUtteranceMaximumSpeechRate: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechutterancedefaultspeechrate?language=objc)
+    /// The default rate the speech synthesizer uses when speaking an utterance.
+    ///
+    /// ## Discussion
+    ///
+    /// The speech rate is a decimal representation.
+    ///
+    ///
     pub static AVSpeechUtteranceDefaultSpeechRate: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoiceidentifieralex?language=objc)
+    /// The voice that the system identifies as Alex.
+    ///
+    /// ## Discussion
+    ///
+    /// The Alex voice is only available for the `en-US` language code.
+    ///
+    ///
     pub static AVSpeechSynthesisVoiceIdentifierAlex: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisipanotationattribute?language=objc)
+    /// A string that contains International Phonetic Alphabet (IPA) symbols the speech synthesizer uses to control pronunciation of certain words or phrases.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the speech synthesizer uses an `AVSpeechSynthesisIPANotationAttribute` instance to control pronunciation of a proper name.
+    ///
+    ///
     pub static AVSpeechSynthesisIPANotationAttribute: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/buffercallback?language=objc)
+/// A type that defines a callback that receives a buffer of generated speech.
 #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
 pub type AVSpeechSynthesizerBufferCallback = *mut block2::DynBlock<dyn Fn(NonNull<AVAudioBuffer>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/markercallback?language=objc)
+/// A type that defines a callback that receives speech markers.
+///
+/// Parameters:
+/// - markers: An array of speech synthesis markers.
+///
 #[cfg(feature = "block2")]
 pub type AVSpeechSynthesizerMarkerCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum?language=objc)
+/// An enumeration that models the personal voices authorization status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisPersonalVoiceAuthorizationStatus(pub NSUInteger);
 impl AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
+    /// The app hasn’t requested authorization to use personal voices.
     /// The app's authorization status has not yet been determined.
     ///
     /// When your app's status is not determined, calling the requestAuthorization: method prompts the user to grant or deny authorization.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/notdetermined?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The user denied your app’s request to use personal voices.
     /// The user denied your app's request to use personal voices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/denied?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusDenied")]
     pub const Denied: Self = Self(1);
+    /// The device doesn’t support personal voices.
     /// Personal voices are unsupported on this device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/unsupported?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusUnsupported")]
     pub const Unsupported: Self = Self(2);
+    /// The user granted your app’s request to use personal voices.
     /// The user granted your app's request to use personal voices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/authorized?language=objc)
     #[doc(alias = "AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -184,24 +213,42 @@ unsafe impl RefEncode for AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits?language=objc)
+/// Traits that describe a voice.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisVoiceTraits(pub NSUInteger);
 bitflags::bitflags! {
     impl AVSpeechSynthesisVoiceTraits: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicetraits/avspeechsynthesisvoicetraitnone?language=objc)
+/// The trait that indicates a voice is a regular voice.
         #[doc(alias = "AVSpeechSynthesisVoiceTraitNone")]
         const None = 0;
-/// The voice is generally for novelty purposes, for example a character's voice in a game.
+/// The trait that indicates a voice is a novelty voice.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits/isnoveltyvoice?language=objc)
+/// ## Discussion
+///
+/// An example of a novelty voice is a character’s voice in a game.
+///
+///
+/// The voice is generally for novelty purposes, for example a character's voice in a game.
         #[doc(alias = "AVSpeechSynthesisVoiceTraitIsNoveltyVoice")]
         const IsNoveltyVoice = 1<<0;
-/// The voice is was generated by, and belongs to the user. Voices with this trait will only be avilable when AVSpeechSynthesizer.personalVoiceAuthorizationStatus is AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized
+/// The trait that indicates a voice is a personal voice.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits/ispersonalvoice?language=objc)
+/// ## Discussion
+///
+/// A user generates and owns a personal voice.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The system only makes personal voices available when [`personalVoiceAuthorizationStatus`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.type.property) is [`AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum/authorized).
+///
+///
+///
+/// </div>
+///
+/// The voice is was generated by, and belongs to the user. Voices with this trait will only be avilable when AVSpeechSynthesizer.personalVoiceAuthorizationStatus is AVSpeechSynthesisPersonalVoiceAuthorizationStatusAuthorized
         #[doc(alias = "AVSpeechSynthesisVoiceTraitIsPersonalVoice")]
         const IsPersonalVoice = 1<<1;
     }
@@ -216,20 +263,30 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceTraits {
 }
 
 extern "C" {
-    /// Posted when available voices for speech synthesis on the system have changed. For example, if new 3rd party voices are available through a downloaded app, or if a new personal voice is available and the app is authorized to access personal voices.
+    /// A notification that indicates a change in available voices for speech synthesis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/availablevoicesdidchangenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// The system posts this notification when available voices for speech synthesis on the system change. For example, a new personal voice becomes available and the user authorized the app to access personal voices. Or new 3rd party voices become available through an app the user downloads.
+    ///
+    ///
+    /// Posted when available voices for speech synthesis on the system have changed. For example, if new 3rd party voices are available through a downloaded app, or if a new personal voice is available and the app is authorized to access personal voices.
     pub static AVSpeechSynthesisAvailableVoicesDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
+    /// A distinct voice for use in speech synthesis.
+    ///
+    /// ## Overview
+    ///
+    /// The primary factors that distinguish a voice in speech synthesis are language, locale, and quality. Create an instance of `AVSpeechSynthesisVoice` to select a voice that’s appropriate for the text and the language, and set it as the value of the [`voice`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice) property on an [`AVSpeechUtterance`](https://developer.apple.com/documentation/avfaudio/avspeechutterance) instance. The voice may optionally reflect a local variant of the language, such as Australian or South African English. For a complete list of supported languages, see [Languages Supported by VoiceOver](https://support.apple.com/en-us/HT206175).
+    ///
+    ///
     /// AVSpeechSynthesisVoice encapsulates the attributes of the voice used to synthesize speech on the system.
     ///
     ///
     /// Retrieve a voice by specifying the language code your text should be spoken in, or by using voiceWithIdentifier
     /// for a known voice identifier.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisVoice;
@@ -367,12 +424,23 @@ impl AVSpeechSynthesisVoice {
 }
 
 extern_class!(
+    /// An object that encapsulates the text for speech synthesis and parameters that affect the speech.
+    ///
+    /// ## Overview
+    ///
+    /// An `AVSpeechUtterance` is the basic unit of speech synthesis.
+    ///
+    /// To synthesize speech, create an `AVSpeechUtterance` instance with text you want a speech synthesizer to speak. Optionally, change the [`voice`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice), [`pitchMultiplier`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/pitchmultiplier), [`volume`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/volume), [`rate`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/rate), [`preUtteranceDelay`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay), or [`postUtteranceDelay`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/postutterancedelay) parameters for the utterance. Pass the utterance to an instance of [`AVSpeechSynthesizer`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer) to begin speech, or enqueue the utterance to speak later if the synthesizer is already speaking.
+    ///
+    /// Split a body of text into multiple utterances if you want to apply different speech parameters. For example, you can emphasize a sentence by increasing the pitch and decreasing the rate of that utterance relative to others, or you can introduce pauses between sentences by putting each into an utterance with a leading or trailing delay.
+    ///
+    /// Set and use the [`AVSpeechSynthesizerDelegate`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerdelegate) to receive notifications when the synthesizer starts or finishes speaking an utterance. Create an utterance for each meaningful unit in a body of text if you want to receive notifications as its speech progresses.
+    ///
+    ///
     /// AVSpeechUtterance is the atom of speaking a string or pausing the synthesizer.
     ///
     ///
     /// To start speaking, specify the AVSpeechSynthesisVoice and the string to be spoken, then optionally change the rate, pitch or volume if desired.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechutterance?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechUtterance;
@@ -539,12 +607,33 @@ impl AVSpeechUtterance {
 }
 
 extern_class!(
+    /// An object that produces synthesized speech from text utterances and enables monitoring or controlling of ongoing speech.
+    ///
+    /// ## Overview
+    ///
+    /// To speak some text, create an [`AVSpeechUtterance`](https://developer.apple.com/documentation/avfaudio/avspeechutterance) instance that contains the text and pass it to [`speakUtterance:`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/speak(_:)) on a speech synthesizer instance. You can optionally also retrieve an [`AVSpeechSynthesisVoice`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice) and set it on the utterance’s [`voice`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/voice) property to have the speech synthesizer use that voice when speaking the utterance’s text.
+    ///
+    /// The speech synthesizer maintains a queue of utterances that it speaks. If the synthesizer isn’t speaking, calling [`speakUtterance:`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/speak(_:)) begins speaking that utterance either immediately or after pausing for its [`preUtteranceDelay`](https://developer.apple.com/documentation/avfaudio/avspeechutterance/preutterancedelay), if necessary. If the synthesizer is speaking, the synthesizer adds utterances to a queue and speaks them in the order it receives them.
+    ///
+    /// After speech begins, you can use the synthesizer object to pause or stop speech. After pausing, you can resume the speech from its paused point or stop the speech entirely and remove all remaining utterances in the queue.
+    ///
+    /// You can monitor the speech synthesizer by examining its [`speaking`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/isspeaking) and [`paused`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/ispaused) properties, or by setting a delegate that conforms to [`AVSpeechSynthesizerDelegate`](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerdelegate). The delegate receives significant events as they occur during speech synthesis.
+    ///
+    /// An `AVSpeechSynthesizer` also controls the route where the speech plays. For more information, see Directing speech output.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The system doesn’t automatically retain the speech synthesizer, so you need to manually retain it until speech concludes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVSpeechSynthesizer allows speaking of speech utterances with a basic queuing mechanism.
     ///
     ///
     /// Create an instance of AVSpeechSynthesizer to start generating synthesized speech by using AVSpeechUtterance objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesizer;
@@ -699,9 +788,20 @@ impl AVSpeechSynthesizer {
 }
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVSpeechSynthesizer to receive notifications of important speech utterance events.
+    /// A delegate protocol that contains optional methods you can implement to respond to events that occur during speech synthesis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// A speech synthesizer sends messages to its delegate for three categories of events:
+    ///
+    /// - The synthesizer starts or finishes speaking an utterance.
+    ///
+    /// - Speech pauses or resumes.
+    ///
+    /// - The synthesizer produces each individual unit of speech, which is generally a word.
+    ///
+    ///
+    /// Defines an interface for delegates of AVSpeechSynthesizer to receive notifications of important speech utterance events.
     pub unsafe trait AVSpeechSynthesizerDelegate: NSObjectProtocol + Send + Sync {
         #[optional]
         #[unsafe(method(speechSynthesizer:didStartSpeechUtterance:))]
@@ -771,7 +871,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker?language=objc)
+    /// An object that contains information about the synthesized audio.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVSpeechSynthesisMarker;

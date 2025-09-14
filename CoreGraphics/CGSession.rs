@@ -6,15 +6,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyguiconsolesessionchanged?language=objc)
 pub const kCGNotifyGUIConsoleSessionChanged: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.GUIConsoleSessionChanged\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyguisessionuserchanged?language=objc)
 pub const kCGNotifyGUISessionUserChanged: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.GUISessionUserChanged\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsessioncopycurrentdictionary()?language=objc)
+/// Returns information about the caller’s window server session.
+///
+/// ## Return Value
+///
+/// A window server session dictionary, or `NULL` if the caller is not running within a Quartz GUI session or the window server is disabled. You should release the dictionary when you are finished using it. For information about the key-value pairs in this dictionary, see [Window Server Session Properties](https://developer.apple.com/documentation/coregraphics/window-server-session-properties).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGSessionCopyCurrentDictionary() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {

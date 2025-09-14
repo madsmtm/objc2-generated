@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phpersistentobjectchangedetails?language=objc)
+    /// An object that represents the local identifiers that change between requests using a change token.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPersistentObjectChangeDetails;

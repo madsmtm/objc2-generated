@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkgradientpolylinerenderer?language=objc)
+    /// A visual representation of any polyline overlay object with a gradient.
+    ///
+    /// ## Overview
+    ///
+    /// This renderer only applies a stroke to the line; it doesn’t fill it. Set the gradients with [`setColors:atLocations:`](https://developer.apple.com/documentation/mapkit/mkgradientpolylinerenderer/setcolors:atlocations:) and pair colors to locations that MapKit represents as unit distance values along the distance of the polyline. Don’t subclass `MKGradientPolylineRenderer`. Use the class as-is.
+    ///
+    /// The gradient displays itself along the direction of the line.
+    ///
+    ///
     #[unsafe(super(MKPolylineRenderer, MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

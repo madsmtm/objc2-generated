@@ -10,7 +10,19 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor?language=objc)
+/// A set of components that define a color, with a color space specifying how to interpret them.
+///
+/// ## Overview
+///
+/// `CGColor` is the fundamental data type used internally by Core Graphics to represent colors. `CGColor` objects, and the functions that operate on them, provide a fast and convenient way of managing and setting colors directly, especially colors that are reused (such as black for text).
+///
+/// A color object contains a set of components (such as red, green, and blue) that uniquely define a color, and a color space that specifies how those components should be interpreted.
+///
+/// Color objects provide a fast and convenient way to manage and set colors, especially colors that are used repeatedly. Drawing operations use color objects for setting fill and stroke colors, managing alpha, and setting color with a pattern.
+///
+/// [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) is derived from [`CFTypeRef`](https://developer.apple.com/documentation/corefoundation/cftyperef) and inherits the properties that all Core Foundation types have in common.
+///
+///
 #[doc(alias = "CGColorRef")]
 #[repr(C)]
 pub struct CGColor {
@@ -27,7 +39,19 @@ cf_objc2_type!(
 );
 
 impl CGColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(colorspace:components:)?language=objc)
+    /// Creates a color using a list of intensity values (including alpha) and an associated color space.
+    ///
+    /// Parameters:
+    /// - space: A color space for the new color. Core Graphics retains this object; upon return, you may safely release it.
+    ///
+    /// - components: An array of intensity values describing the color. The array should contain _n_+1 values that correspond to the _n_ color components in the specified color space, followed by the alpha component. Each component value should be in the range appropriate for the color space. Values outside this range will be clamped to the nearest correct value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new color. In Objective-C, you’re responsible for releasing this object using [`CGColorRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -49,7 +73,19 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(gray:alpha:)?language=objc)
+    /// Creates a color in the Generic gray color space.
+    ///
+    /// Parameters:
+    /// - gray: A grayscale value (`0.0` - `1.0`).
+    ///
+    /// - alpha: An alpha value (`0.0` - `1.0`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color object.
+    ///
+    ///
     #[doc(alias = "CGColorCreateGenericGray")]
     #[inline]
     pub fn new_generic_gray(gray: CGFloat, alpha: CGFloat) -> CFRetained<CGColor> {
@@ -62,7 +98,23 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(red:green:blue:alpha:)?language=objc)
+    /// Creates a color in the Generic RGB color space.
+    ///
+    /// Parameters:
+    /// - red: A red component value (`0.0` - `1.0`).
+    ///
+    /// - green: A green component value (`0.0` - `1.0`).
+    ///
+    /// - blue: A blue component value (`0.0` - `1.0`).
+    ///
+    /// - alpha: An alpha value (`0.0` - `1.0`).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color object.
+    ///
+    ///
     #[doc(alias = "CGColorCreateGenericRGB")]
     #[inline]
     pub fn new_generic_rgb(
@@ -85,7 +137,25 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(genericcmykcyan:magenta:yellow:black:alpha:)?language=objc)
+    /// Creates a color in the Generic CMYK color space.
+    ///
+    /// Parameters:
+    /// - cyan: A cyan value (`0.0` - `1.0`).
+    ///
+    /// - magenta: A magenta value (`0.0` - `1.0`).
+    ///
+    /// - yellow: A yellow value (`0.0` - `1.0`).
+    ///
+    /// - black: A black value (`0.0` - `1.0`).
+    ///
+    /// - alpha: An alpha value `(0.0 - 1.0)`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color object.
+    ///
+    ///
     #[doc(alias = "CGColorCreateGenericCMYK")]
     #[inline]
     pub fn new_generic_cmyk(
@@ -110,7 +180,13 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(genericgraygamma2_2gray:alpha:)?language=objc)
+    /// Creates a color in the Generic gray color space with a gamma ramp of 2.2.
+    ///
+    /// Parameters:
+    /// - gray: A grayscale value (0.0 - 1.0).
+    ///
+    /// - alpha: An alpha value (0.0 - 1.0).
+    ///
     #[doc(alias = "CGColorCreateGenericGrayGamma2_2")]
     #[inline]
     pub fn new_generic_gray_gamma2_2(gray: CGFloat, alpha: CGFloat) -> CFRetained<CGColor> {
@@ -126,7 +202,23 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(srgbred:green:blue:alpha:)?language=objc)
+    /// Creates a color in the sRGB color space.
+    ///
+    /// Parameters:
+    /// - red: A red component value `(0.0 - 1.0)`.
+    ///
+    /// - green: A green component value `(0.0 - 1.0)`.
+    ///
+    /// - blue: A blue component value `(0.0 - 1.0)`.
+    ///
+    /// - alpha: An alpha value `(0.0 - 1.0)`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color object.
+    ///
+    ///
     #[doc(alias = "CGColorCreateSRGB")]
     #[inline]
     pub fn new_srgb(
@@ -149,7 +241,6 @@ impl CGColor {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(headroom:colorspace:red:green:blue:alpha:)?language=objc)
     #[doc(alias = "CGColorCreateWithContentHeadroom")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -176,7 +267,6 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/contentheadroom?language=objc)
     #[doc(alias = "CGColorGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(color: Option<&CGColor>) -> c_float {
@@ -186,7 +276,23 @@ impl CGColor {
         unsafe { CGColorGetContentHeadroom(color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorgetconstantcolor?language=objc)
+    /// Returns a color object that represents a constant color.
+    ///
+    /// Parameters:
+    /// - colorName: A color name. You can pass any of constants in [Getting System Colors](https://developer.apple.com/documentation/coregraphics/cgcolor#getting-system-colors).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A color object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As this function is not a “Copy” or “Create” function, it does not necessarily return a new reference each time it’s called. As a consequence, you should not release the returned value. However, colors returned from this function can be retained and released in a properly nested fashion, just as any other Core Foundation type can.
+    ///
+    ///
     #[doc(alias = "CGColorGetConstantColor")]
     #[inline]
     pub fn constant_color(color_name: Option<&CFString>) -> Option<CFRetained<CGColor>> {
@@ -197,7 +303,21 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/init(patternspace:pattern:components:)?language=objc)
+    /// Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
+    ///
+    /// Parameters:
+    /// - space: A pattern color space for the new color. Core Graphics retains the color space you pass in. On return, you may safely release it.
+    ///
+    /// - pattern: A pattern for the new color object. Core Graphics retains the pattern you pass in. On return, you may safely release it.
+    ///
+    /// - components: An array of intensity values describing the color. The array should contain `n + 1` values that correspond to the `n` color components in the specified color space, followed by the alpha component. Each component value should be in the range appropriate for the color space. Values outside this range will be clamped to the nearest correct value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new color. In Objective-C, you’re responsible for releasing this object using [`CGColorRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -221,7 +341,17 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/copy()?language=objc)
+    /// Creates a copy of an existing color.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the specified color. In Objective-C, you’re responsible for releasing this object using [`CGColorRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorrelease).
+    ///
+    ///
     #[doc(alias = "CGColorCreateCopy")]
     #[inline]
     pub fn new_copy(color: Option<&CGColor>) -> Option<CFRetained<CGColor>> {
@@ -232,7 +362,19 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/copy(alpha:)?language=objc)
+    /// Creates a copy of an existing color, substituting a new alpha value.
+    ///
+    /// Parameters:
+    /// - color: The color to copy.
+    ///
+    /// - alpha: A value that specifies the desired opacity of the copy. Values outside the range `[0,1]` are clamped to `0` or `1`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the specified color, using the specified alpha value. In Objective-C, you’re responsible for releasing this object using [`CGColorRelease`](https://developer.apple.com/documentation/coregraphics/cgcolorrelease).
+    ///
+    ///
     #[doc(alias = "CGColorCreateCopyWithAlpha")]
     #[inline]
     pub fn new_copy_with_alpha(
@@ -249,7 +391,29 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/converted(to:intent:options:)?language=objc)
+    /// Creates a new color in a different color space that matches the provided color.
+    ///
+    /// ### Parameters
+    ///
+    /// - CGColorSpaceRef: The destination color space.
+    ///
+    /// - to: The destination color space.
+    ///
+    /// - intent: The mechanism to use to match the color when the color is outside the gamut of the new color space.
+    ///
+    /// - color: The color to convert.
+    ///
+    /// - options: A dictionary of options used to convert the color. Currently, you should pass `NULL`.
+    ///
+    /// ### Returns
+    ///
+    /// A new color in the destination color space that matches (or closely approximates) the source color.
+    ///
+    /// ## Discussion
+    ///
+    /// To create the new color, this method creates a `CFColorConverterRef` using the options you specified and applies it to the source color.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -277,7 +441,25 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorequaltocolor?language=objc)
+    /// Indicates whether two colors are equal.
+    ///
+    /// Parameters:
+    /// - color1: The first color to compare.
+    ///
+    /// - color2: The second color to compare.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Boolean value that, if [`true`](https://developer.apple.com/documentation/swift/true), indicates that the specified colors are equal. If the colors are not equal, the value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Two colors are equal if they share the same color space and numerically equal color components.
+    ///
+    ///
     #[doc(alias = "CGColorEqualToColor")]
     #[inline]
     pub fn equal_to_color(color1: Option<&CGColor>, color2: Option<&CGColor>) -> bool {
@@ -287,7 +469,17 @@ impl CGColor {
         unsafe { CGColorEqualToColor(color1, color2) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/numberofcomponents?language=objc)
+    /// Returns the number of color components (including alpha) associated with a color.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of color components (including alpha) associated with the specified color. This number is one more than the number of components of the color space for the color.
+    ///
+    ///
     #[doc(alias = "CGColorGetNumberOfComponents")]
     #[inline]
     pub fn number_of_components(color: Option<&CGColor>) -> usize {
@@ -297,7 +489,17 @@ impl CGColor {
         unsafe { CGColorGetNumberOfComponents(color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorgetcomponents?language=objc)
+    /// Returns the values of the color components (including alpha) associated with a color.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array of intensity values for the color components (including alpha) associated with the specified color. The size of the array is one more than the number of components of the color space for the color.
+    ///
+    ///
     #[doc(alias = "CGColorGetComponents")]
     #[inline]
     pub fn components(color: Option<&CGColor>) -> *const CGFloat {
@@ -307,7 +509,17 @@ impl CGColor {
         unsafe { CGColorGetComponents(color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/alpha?language=objc)
+    /// Returns the value of the alpha component associated with a color.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An alpha intensity value in the range `[0,1]`. The value represents the opacity of the color.
+    ///
+    ///
     #[doc(alias = "CGColorGetAlpha")]
     #[inline]
     pub fn alpha(color: Option<&CGColor>) -> CGFloat {
@@ -317,7 +529,17 @@ impl CGColor {
         unsafe { CGColorGetAlpha(color) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/colorspace?language=objc)
+    /// Returns the color space associated with a color.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The color space for the specified color. You are responsible for retaining and releasing it as needed.
+    ///
+    ///
     #[doc(alias = "CGColorGetColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -329,7 +551,17 @@ impl CGColor {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/pattern?language=objc)
+    /// Returns the pattern associated with a color in a pattern color space.
+    ///
+    /// Parameters:
+    /// - color: A color.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The pattern for the specified color. You are responsible for retaining and releasing the pattern as needed.
+    ///
+    ///
     #[doc(alias = "CGColorGetPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
@@ -343,7 +575,13 @@ impl CGColor {
 }
 
 unsafe impl ConcreteType for CGColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for a color data type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor).
+    ///
+    ///
     #[doc(alias = "CGColorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -355,19 +593,18 @@ unsafe impl ConcreteType for CGColor {
 }
 
 extern "C" {
+    /// The white color in the Generic gray color space.
     /// * Names of colors for use with `CGColorGetConstantColor'. **
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorwhite?language=objc)
     pub static kCGColorWhite: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorblack?language=objc)
+    /// The black color in the Generic gray color space.
     pub static kCGColorBlack: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorclear?language=objc)
+    /// The clear color in the Generic gray color space.
     pub static kCGColorClear: &'static CFString;
 }
 

@@ -11,208 +11,167 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumekindkey?language=objc)
     pub static kDADiskDescriptionVolumeKindKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumemountablekey?language=objc)
     pub static kDADiskDescriptionVolumeMountableKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumenamekey?language=objc)
     pub static kDADiskDescriptionVolumeNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumenetworkkey?language=objc)
     pub static kDADiskDescriptionVolumeNetworkKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumepathkey?language=objc)
     pub static kDADiskDescriptionVolumePathKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumetypekey?language=objc)
     pub static kDADiskDescriptionVolumeTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionvolumeuuidkey?language=objc)
     pub static kDADiskDescriptionVolumeUUIDKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediablocksizekey?language=objc)
     pub static kDADiskDescriptionMediaBlockSizeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediabsdmajorkey?language=objc)
     pub static kDADiskDescriptionMediaBSDMajorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediabsdminorkey?language=objc)
     pub static kDADiskDescriptionMediaBSDMinorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediabsdnamekey?language=objc)
     pub static kDADiskDescriptionMediaBSDNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediabsdunitkey?language=objc)
     pub static kDADiskDescriptionMediaBSDUnitKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediacontentkey?language=objc)
     pub static kDADiskDescriptionMediaContentKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediaejectablekey?language=objc)
     pub static kDADiskDescriptionMediaEjectableKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediaiconkey?language=objc)
     pub static kDADiskDescriptionMediaIconKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediakindkey?language=objc)
     pub static kDADiskDescriptionMediaKindKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmedialeafkey?language=objc)
     pub static kDADiskDescriptionMediaLeafKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmedianamekey?language=objc)
     pub static kDADiskDescriptionMediaNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediapathkey?language=objc)
     pub static kDADiskDescriptionMediaPathKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediaremovablekey?language=objc)
     pub static kDADiskDescriptionMediaRemovableKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediasizekey?language=objc)
     pub static kDADiskDescriptionMediaSizeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediatypekey?language=objc)
     pub static kDADiskDescriptionMediaTypeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediauuidkey?language=objc)
     pub static kDADiskDescriptionMediaUUIDKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediawholekey?language=objc)
     pub static kDADiskDescriptionMediaWholeKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediawritablekey?language=objc)
     pub static kDADiskDescriptionMediaWritableKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediaencryptedkey?language=objc)
     pub static kDADiskDescriptionMediaEncryptedKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmediaencryptiondetailkey?language=objc)
     pub static kDADiskDescriptionMediaEncryptionDetailKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondeviceguidkey?language=objc)
     pub static kDADiskDescriptionDeviceGUIDKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondeviceinternalkey?language=objc)
     pub static kDADiskDescriptionDeviceInternalKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondevicemodelkey?language=objc)
     pub static kDADiskDescriptionDeviceModelKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondevicepathkey?language=objc)
     pub static kDADiskDescriptionDevicePathKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondeviceprotocolkey?language=objc)
     pub static kDADiskDescriptionDeviceProtocolKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondevicerevisionkey?language=objc)
     pub static kDADiskDescriptionDeviceRevisionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondeviceunitkey?language=objc)
     pub static kDADiskDescriptionDeviceUnitKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondevicevendorkey?language=objc)
     pub static kDADiskDescriptionDeviceVendorKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptiondevicetdmlockedkey?language=objc)
     pub static kDADiskDescriptionDeviceTDMLockedKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionbusnamekey?language=objc)
     pub static kDADiskDescriptionBusNameKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionbuspathkey?language=objc)
     pub static kDADiskDescriptionBusPathKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionfskitprefix?language=objc)
     pub static kDADiskDescriptionFSKitPrefix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionrepairrunningkey?language=objc)
     pub static kDADiskDescriptionRepairRunningKey: &'static CFString;
 }
 
 /// Type of a reference to DADisk instances.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadisk?language=objc)
+/// Type of a reference to DADisk instances.
 #[doc(alias = "DADiskRef")]
 #[repr(C)]
 pub struct DADisk {
@@ -230,8 +189,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for DADisk {
     /// Returns the type identifier of all DADisk instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgettypeid()?language=objc)
+    /// Returns the type identifier of all DADisk instances.
     #[doc(alias = "DADiskGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -243,6 +201,27 @@ unsafe impl ConcreteType for DADisk {
 }
 
 impl DADisk {
+    /// Creates a new disk object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator object to be used to allocate memory.
+    ///
+    /// - session: The DASession in which to contact Disk Arbitration.
+    ///
+    /// - name: The BSD device name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a new DADisk.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller of this function receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+    ///
+    ///
     /// Creates a new disk object.
     ///
     /// Parameter `allocator`: The allocator object to be used to allocate memory.
@@ -260,8 +239,6 @@ impl DADisk {
     /// # Safety
     ///
     /// `name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcreatefrombsdname(_:_:_:)?language=objc)
     #[doc(alias = "DADiskCreateFromBSDName")]
     #[cfg(feature = "DASession")]
     #[inline]
@@ -283,6 +260,27 @@ impl DADisk {
 
     /// Creates a new disk object.
     ///
+    /// Parameters:
+    /// - allocator: The allocator object to be used to allocate memory.
+    ///
+    /// - session: The DASession in which to contact Disk Arbitration.
+    ///
+    /// - path: The BSD mount point.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a new DADisk.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller of this function receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+    ///
+    ///
+    /// Creates a new disk object.
+    ///
     /// Parameter `allocator`: The allocator object to be used to allocate memory.
     ///
     /// Parameter `session`: The DASession in which to contact Disk Arbitration.
@@ -294,8 +292,6 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcreatefromvolumepath(_:_:_:)?language=objc)
     #[doc(alias = "DADiskCreateFromVolumePath")]
     #[cfg(feature = "DASession")]
     #[inline]
@@ -317,13 +313,28 @@ impl DADisk {
 
     /// Obtains the BSD device name for the specified disk.
     ///
+    /// Parameters:
+    /// - disk: The DADisk for which to obtain the BSD device name.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The disk’s BSD device name.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The BSD device name can be used with opendev() to open the BSD device.
+    ///
+    ///
+    /// Obtains the BSD device name for the specified disk.
+    ///
     /// Parameter `disk`: The DADisk for which to obtain the BSD device name.
     ///
     /// Returns: The disk's BSD device name.
     ///
     /// The BSD device name can be used with opendev() to open the BSD device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgetbsdname(_:)?language=objc)
     #[doc(alias = "DADiskGetBSDName")]
     #[inline]
     pub unsafe fn bsd_name(&self) -> *const c_char {
@@ -333,6 +344,25 @@ impl DADisk {
         unsafe { DADiskGetBSDName(self) }
     }
 
+    /// Obtains the Disk Arbitration description of the specified disk.
+    ///
+    /// Parameters:
+    /// - disk: The DADisk for which to obtain the Disk Arbitration description.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The disk’s Disk Arbitration description.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function will contact Disk Arbitration to acquire the latest description of the specified disk, unless this function is called on a disk object passed within the context of a registered callback, in which case the description is current as of that callback event.
+    ///
+    /// The caller of this function receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+    ///
+    ///
     /// Obtains the Disk Arbitration description of the specified disk.
     ///
     /// Parameter `disk`: The DADisk for which to obtain the Disk Arbitration description.
@@ -347,8 +377,6 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcopydescription(_:)?language=objc)
     #[doc(alias = "DADiskCopyDescription")]
     #[inline]
     pub unsafe fn description(&self) -> Option<CFRetained<CFDictionary>> {
@@ -361,6 +389,23 @@ impl DADisk {
 
     /// Obtain the associated whole disk object for the specified disk.
     ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The disk’s associated whole disk object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller of this function receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+    ///
+    ///
+    /// Obtain the associated whole disk object for the specified disk.
+    ///
     /// Parameter `disk`: The disk object.
     ///
     /// Returns: The disk's associated whole disk object.
@@ -368,8 +413,6 @@ impl DADisk {
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it
     /// with CFRelease().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskcopywholedisk(_:)?language=objc)
     #[doc(alias = "DADiskCopyWholeDisk")]
     #[inline]
     pub unsafe fn whole_disk(&self) -> Option<CFRetained<DADisk>> {

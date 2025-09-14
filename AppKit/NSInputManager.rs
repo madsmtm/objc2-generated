@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinput?language=objc)
+    /// A set of methods that text views need to implement to interact properly with the text input management system.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`NSTextInput`](https://developer.apple.com/documentation/appkit/nstextinput) protocol is slated for deprecation. Please use the [`NSTextInputClient`](https://developer.apple.com/documentation/appkit/nstextinputclient) protocol instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// `NSTextView` and its abstract superclass `NSText` are the only classes included in Cocoa that implement `NSTextInput`. To create another text view class, you can either subclass `NSTextView` (and not `NSText`, for historical reasons), or subclass `NSView` and implement the `NSTextInput` protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Methods specific to the `NSTextInput` protocol are intended for dealing with text input and generally are not suitable for other purposes.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSTextInput {
         /// # Safety
         ///
@@ -91,7 +113,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinputmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSTextInputContext instead"]

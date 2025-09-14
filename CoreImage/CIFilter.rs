@@ -10,410 +10,436 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// Name of the filter
+    /// The filter name.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltername?language=objc)
+    /// ## Discussion
+    ///
+    /// The filter name, specified as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
+    /// Name of the filter
     pub static kCIAttributeFilterName: &'static NSString;
 }
 
 extern "C" {
+    /// The localized version of the filter name that is displayed in the user interface.
     /// Name of the filter intended for UI display (eg. localized)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilterdisplayname?language=objc)
     pub static kCIAttributeFilterDisplayName: &'static NSString;
 }
 
 extern "C" {
+    /// The localized description of the filter. This description should inform the user what the filter does and be short enough to display in the user interface for the filter. It is not intended to be technically detailed.
     /// Description of the filter intended for UI display (eg. localized)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedescription?language=objc)
     pub static kCIAttributeDescription: &'static NSString;
 }
 
 extern "C" {
-    /// The version of OS X and iOS a filter was first available in.
+    /// The macOS version in which the filter first became available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilteravailable_mac?language=objc)
+    /// ## Discussion
+    ///
+    /// The macOS version in which the filter first became available, specified as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
+    /// The version of OS X and iOS a filter was first available in.
     pub static kCIAttributeFilterAvailable_Mac: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefilteravailable_ios?language=objc)
+    /// The iOS version in which the filter first became available.
+    ///
+    /// ## Discussion
+    ///
+    /// The iOS version in which the filter first became available, specified as an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static kCIAttributeFilterAvailable_iOS: &'static NSString;
 }
 
 extern "C" {
+    /// The localized reference documentation for the filter. The reference should provide developers with technical details.
     /// URL for the reference documentation of the filter. See localizedReferenceDocumentationForFilterName.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributereferencedocumentation?language=objc)
     pub static kCIAttributeReferenceDocumentation: &'static NSString;
 }
 
 extern "C" {
+    /// An array of filter category keys that specifies all the categories in which the filter is a member.
     /// Array of filter category names (see below)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributefiltercategories?language=objc)
     pub static kCIAttributeFilterCategories: &'static NSString;
 }
 
 extern "C" {
+    /// The class name of the filter.
     /// Class name of the filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeclass?language=objc)
     pub static kCIAttributeClass: &'static NSString;
 }
 
 extern "C" {
-    /// The type of the attribute e.g. scalar, time, distance, etc.
+    /// The type of an attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetype?language=objc)
+    /// ## Discussion
+    ///
+    /// One of the attribute types described in [Data Type Attributes](https://developer.apple.com/documentation/coreimage/data-type-attributes).
+    ///
+    ///
+    /// The type of the attribute e.g. scalar, time, distance, etc.
     pub static kCIAttributeType: &'static NSString;
 }
 
 extern "C" {
+    /// The minimum value for a filter parameter, specified as a floating-point value.
     /// Minimum value for the attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemin?language=objc)
     pub static kCIAttributeMin: &'static NSString;
 }
 
 extern "C" {
+    /// The maximum value for a filter parameter, specified as a floating-point value.
     /// Maximum value for the attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributemax?language=objc)
     pub static kCIAttributeMax: &'static NSString;
 }
 
 extern "C" {
+    /// The minimum value, specified as a floating-point value, to use for a slider that controls input values for a filter parameter.
     /// Minimum value for the slider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermin?language=objc)
     pub static kCIAttributeSliderMin: &'static NSString;
 }
 
 extern "C" {
+    /// The maximum value, specified as a floating-point value, to use for a slider that controls input values for a filter parameter.
     /// Maximum value for the slider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeslidermax?language=objc)
     pub static kCIAttributeSliderMax: &'static NSString;
 }
 
 extern "C" {
+    /// The default value, specified as a floating-point value, for a filter parameter.
     /// Default value for the slider.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedefault?language=objc)
     pub static kCIAttributeDefault: &'static NSString;
 }
 
 extern "C" {
+    /// If supplied as a value for a parameter, the parameter has no effect on the input image.
     /// The identity value is the value at which the filter has no effect.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributeidentity?language=objc)
     pub static kCIAttributeIdentity: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the attribute.
     /// The non-localized name of the attribute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributename?language=objc)
     pub static kCIAttributeName: &'static NSString;
 }
 
 extern "C" {
+    /// The localized display name of the attribute.
     /// The localized name of the attribute to be used for display to the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributedisplayname?language=objc)
     pub static kCIAttributeDisplayName: &'static NSString;
 }
 
 extern "C" {
+    /// The set of input parameters to use. The associated value can be [`kCIUISetBasic`](https://developer.apple.com/documentation/coreimage/kciuisetbasic), [`kCIUISetIntermediate`](https://developer.apple.com/documentation/coreimage/kciuisetintermediate), [`kCIUISetAdvanced`](https://developer.apple.com/documentation/coreimage/kciuisetadvanced), or [`kCIUISetDevelopment`](https://developer.apple.com/documentation/coreimage/kciuisetdevelopment).
     /// Key to request the desired set of controls in a filter UIView. The defined values for this key are:
     /// CIUISetBasic, CIUISetIntermediate, CIUISetAdvanced and CIUISetDevelopment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuiparameterset?language=objc)
     pub static kCIUIParameterSet: &'static NSString;
 }
 
 extern "C" {
+    /// Controls that are appropriate for a basic user scenario, that is, the minimum of settings to control the filter.
     /// Constant for requesting controls that are appropriate in a basic user scenario, meaning the bare minimum of settings to control the filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetbasic?language=objc)
     pub static kCIUISetBasic: &'static NSString;
 }
 
 extern "C" {
+    /// Controls that are appropriate for an intermediate user scenario.
     /// Constant for requesting controls that are appropriate in an intermediate user scenario.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetintermediate?language=objc)
     pub static kCIUISetIntermediate: &'static NSString;
 }
 
 extern "C" {
+    /// Controls that are appropriate for an advanced user scenario.
     /// Constant for requesting controls that are appropriate in an advanced user scenario.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetadvanced?language=objc)
     pub static kCIUISetAdvanced: &'static NSString;
 }
 
 extern "C" {
+    /// Controls that should be visible  only for development purposes.
     /// Constant for requesting controls that should only be visible for development purposes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciuisetdevelopment?language=objc)
     pub static kCIUISetDevelopment: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypetime?language=objc)
+    /// A parametric time for transitions, specified as a floating-point value in the range of `0.0` to `1.0`.
     pub static kCIAttributeTypeTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypescalar?language=objc)
+    /// A scalar value.
     pub static kCIAttributeTypeScalar: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypedistance?language=objc)
+    /// A distance.
     pub static kCIAttributeTypeDistance: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeangle?language=objc)
+    /// An angle.
     pub static kCIAttributeTypeAngle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeboolean?language=objc)
+    /// A Boolean value.
     pub static kCIAttributeTypeBoolean: &'static NSString;
 }
 
 extern "C" {
+    /// An integer value.
     /// Indicates that the key uses integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeinteger?language=objc)
     pub static kCIAttributeTypeInteger: &'static NSString;
 }
 
 extern "C" {
+    /// A positive integer value.
     /// Indicates that the key uses non negative integer values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypecount?language=objc)
     pub static kCIAttributeTypeCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeposition?language=objc)
+    /// A two-dimensional location in the working coordinate space. (A 2-element vector type.)
     pub static kCIAttributeTypePosition: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeoffset?language=objc)
+    /// An offset. (A 2-element vector type.)
     pub static kCIAttributeTypeOffset: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeposition3?language=objc)
+    /// A three-dimensional location in the working coordinate space. (A 3-element vector type.)
     pub static kCIAttributeTypePosition3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetyperectangle?language=objc)
+    /// A Core Image vector that specifies the _x_ and _y_ values of the rectangle origin, and the width (_w_) and height (_h_) of the rectangle. The vector takes the form [_x_, _y_, _w_, _h_]. (A 4-element vector type.)
     pub static kCIAttributeTypeRectangle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeopaquecolor?language=objc)
+    /// A Core Image color ([`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor) object) that specifies red, green, and blue component values. Use this key for colors with no alpha component. If the key is not present, Core Image assumes color with alpha.
     pub static kCIAttributeTypeOpaqueColor: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypecolor?language=objc)
+    /// A Core Image color ([`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor) object) that specifies red, green, and blue component values.
     pub static kCIAttributeTypeColor: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypegradient?language=objc)
+    /// An n-by-1 gradient image used to describe a color ramp.
     pub static kCIAttributeTypeGradient: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypeimage?language=objc)
+    /// A [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object.
     pub static kCIAttributeTypeImage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciattributetypetransform?language=objc)
+    /// The transform type of an attribute.
+    ///
+    /// ## Discussion
+    ///
+    /// An [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) is associated with attribute.
+    ///
+    ///
     pub static kCIAttributeTypeTransform: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorydistortioneffect?language=objc)
+    /// A filter that reshapes an image by altering its geometry to create a 3D effect. Using distortion filters, you can displace portions of an image, apply lens effects, make a bulge in an image, and perform other operation to achieve an artistic effect.
     pub static kCICategoryDistortionEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorygeometryadjustment?language=objc)
+    /// A filter  that changes the geometry of an image. Some of these filters are used to warp an image to achieve an artistic effects, but these filters can also be used to correct problems in the source image. For example, you can apply an affine transform to straighten an image that is rotated with respect to the horizon.
     pub static kCICategoryGeometryAdjustment: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorycompositeoperation?language=objc)
+    /// A filter  operates on two image sources, using the color values of one image to operate on the other. Composite filters perform computations such as computing maximum values, minimum values, and multiplying values between input images. You can use compositing filters to add effects to an image, crop an image, and achieve a variety of other effects.
     pub static kCICategoryCompositeOperation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryhalftoneeffect?language=objc)
+    /// A filter  that simulates a variety of halftone screens, to mimic the halftone process used in print media. The output of these filters has the familiar “newspaper” look of the various dot patterns. Filters are typically  named after the pattern created by the virtual halftone screen, such as circular screen or hatched screen.
     pub static kCICategoryHalftoneEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorycoloradjustment?language=objc)
+    /// The category for color adjustment filters.
+    ///
+    /// ## Discussion
+    ///
+    /// A filter  that changes color values. Color adjustment filters are used to eliminate color casts, adjust hue, and correct brightness and contrast. Color adjustment filters do not perform color management; ColorSync performs color management. You can use Quartz 2D to specify the color space associated with an image. For more information, see [Color Management Overview](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/csintro/csintro_intro/csintro_intro.html#//apple_ref/doc/uid/TP30001148) and [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066).
+    ///
+    ///
     pub static kCICategoryColorAdjustment: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorycoloreffect?language=objc)
+    /// A filter  that modifies the color of an image to achieve an artistic effect. Examples of color effect filters include filters that change a color image to a sepia image or a monochrome image or that produces such effects as posterizing.
     pub static kCICategoryColorEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorytransition?language=objc)
+    /// A filter  that provides a bridge between two or more images by applying a motion effect that defines how the pixels of a source image yield to that of the destination image.
     pub static kCICategoryTransition: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorytileeffect?language=objc)
+    /// A filter that typically applies an effect to an image and then create smaller versions of the image (tiles), which are then laid out to create a pattern that’s infinite in extent.
     pub static kCICategoryTileEffect: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorygenerator?language=objc)
+    /// A filter that generates a pattern, such as a solid color, a checkerboard, or a star shine. The generated output is typically used as input to another filter.
     pub static kCICategoryGenerator: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryreduction?language=objc)
+    /// A filter that reduces image data. These filters are used to solve image analysis problems.
     pub static kCICategoryReduction: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorygradient?language=objc)
+    /// A filter that generates a fill whose color varies smoothly. Exactly how color varies depends on the type of gradient—linear, radial, or Gaussian.
     pub static kCICategoryGradient: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorystylize?language=objc)
+    /// A filter  that makes a photographic image look as if it was painted or sketched. These filters are typically used alone or in combination with other filters to achieve artistic effects.
     pub static kCICategoryStylize: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorysharpen?language=objc)
+    /// A filter  that sharpens images, increasing the contrast between the edges in an image. Examples of sharpen filters are unsharp mask and sharpen luminance.
     pub static kCICategorySharpen: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryblur?language=objc)
+    /// A filter  that softens images, decreasing the contrast  between the edges in an image. Examples of blur filters are Gaussian blur and zoom blur.
     pub static kCICategoryBlur: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryvideo?language=objc)
+    /// A filter that works on video images.
     pub static kCICategoryVideo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorystillimage?language=objc)
+    /// A filter  that works on still images.
     pub static kCICategoryStillImage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryinterlaced?language=objc)
+    /// A filter that works on interlaced images.
     pub static kCICategoryInterlaced: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorynonsquarepixels?language=objc)
+    /// A filter that works on non-square pixels.
     pub static kCICategoryNonSquarePixels: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryhighdynamicrange?language=objc)
+    /// A filter that works on high dynamic range pixels.
     pub static kCICategoryHighDynamicRange: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategorybuiltin?language=objc)
+    /// A filter provided by Core Image. This distinguishes built-in filters from plug-in filters.
     pub static kCICategoryBuiltIn: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicategoryfiltergenerator?language=objc)
+    /// A filter created by chaining several filters together and then packaged as a [`CIFilterGenerator`](https://developer.apple.com/documentation/coreimage/cifiltergenerator) object.
     pub static kCICategoryFilterGenerator: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciapplyoptionextent?language=objc)
+    /// The extent of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The size of the produced image. The associated value is a four-element array ([`NSArray`](https://developer.apple.com/documentation/foundation/nsarray)) that specifies the x-value of the rectangle origin, the y-value of the rectangle origin, and the width and height.
+    ///
+    ///
     pub static kCIApplyOptionExtent: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciapplyoptiondefinition?language=objc)
+    /// The domain of definition (DOD) of the produced image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is either a Core Image filter shape or a four-element array ([`NSArray`](https://developer.apple.com/documentation/foundation/nsarray)) that specifies a rectangle.
+    ///
+    ///
     pub static kCIApplyOptionDefinition: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciapplyoptionuserinfo?language=objc)
+    /// Information needed by a callback. The associated value is an object that Core Image will pass to any callbacks invoked for that filter.
     pub static kCIApplyOptionUserInfo: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciapplyoptioncolorspace?language=objc)
+    /// The color space of the produced image.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value must be an RGB [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) object. If not specified, the output of the kernel is in the working color space of the Core Image context used to render the image.
+    ///
+    ///
     pub static kCIApplyOptionColorSpace: &'static NSString;
 }
 
 extern "C" {
+    /// A key for the [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object produced by a filter.
     /// A key to get  the output image of a Core Image filter.
     ///
     /// The value for this key will be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcioutputimagekey?language=objc)
     pub static kCIOutputImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for the [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object to use as a background image.
     /// A key to get or set the background image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbackgroundimagekey?language=objc)
     pub static kCIInputBackgroundImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for the [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object to use as an input image. For filters that also use a background image, this key refers to the foreground image.
     /// A key to get or set the input image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
     /// For filters that also use a background image, this key refers to the foreground image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputimagekey?language=objc)
     pub static kCIInputImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for an image with depth values.
     /// A key to get or set the depth map image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdepthimagekey?language=objc)
     pub static kCIInputDepthImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for an image with disparity values.
     /// A key to get or set the disparity map image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputdisparityimagekey?language=objc)
     pub static kCIInputDisparityImageKey: &'static NSString;
 }
 
@@ -421,275 +447,393 @@ extern "C" {
     /// A key to get or set the scalar amount value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputamountkey?language=objc)
     pub static kCIInputAmountKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the scalar count value of a Core Image filter.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an integer  `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcountkey?language=objc)
+    ///
+    /// A key to get or set the scalar count value of a Core Image filter.
+    ///
+    /// The value for this key needs to be an integer  `NSNumber` instance.
     pub static kCIInputCountKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the scalar threshold value of a Core Image filter.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputthresholdkey?language=objc)
+    ///
+    /// A key to get or set the scalar threshold value of a Core Image filter.
+    ///
+    /// The value for this key needs to be an `NSNumber` instance.
     pub static kCIInputThresholdKey: &'static NSString;
 }
 
 extern "C" {
+    /// Specify a time.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for z scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies a time.
+    ///
+    ///
     /// A key to get or set the scalar time value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputtimekey?language=objc)
     pub static kCIInputTimeKey: &'static NSString;
 }
 
 extern "C" {
+    /// Transformation to apply.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for an [`NSAffineTransform`](https://developer.apple.com/documentation/foundation/nsaffinetransform) object that specifies a transformation to apply.
+    ///
+    ///
     /// A key to get or set the geometric 2x3 matrix transform value of a Core Image filter.
     /// The value for this key needs to be an `NSAffineTransformStruct` or an `NSValue` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputtransformkey?language=objc)
     pub static kCIInputTransformKey: &'static NSString;
 }
 
 extern "C" {
+    /// The amount of scale to apply.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies  the amount of the effect.
+    ///
+    ///
     /// A key to get or set the geometric scale value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputscalekey?language=objc)
     pub static kCIInputScaleKey: &'static NSString;
 }
 
 extern "C" {
+    /// Aspect Ratio.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies a ratio.
+    ///
+    ///
     /// A key to get or set the geometric aspect ratio value of a Core Image filter.
     /// The value for this key needs to be an `NSNumber` instance containing the `horizontal/vertical` scale ratio .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputaspectratiokey?language=objc)
     pub static kCIInputAspectRatioKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) object that specifies the center of the area, as _x_  and  _y_- coordinates, to be filtered.
     /// A key to get or set the center value of a Core Image filter.
     /// The value for this key needs to be a ``CIVector`` instance containing the `x,y` coordinate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcenterkey?language=objc)
     pub static kCIInputCenterKey: &'static NSString;
 }
 
 extern "C" {
+    /// The distance from the center of an effect.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies the distance from the center of an effect.
+    ///
+    ///
     /// A key to get or set the geometric radius value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputradiuskey?language=objc)
     pub static kCIInputRadiusKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the geometric radius value of a Core Image filter.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputradius0key?language=objc)
+    ///
+    /// A key to get or set the geometric radius value of a Core Image filter.
+    ///
+    /// The value for this key needs to be an `NSNumber` instance.
     pub static kCIInputRadius0Key: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the geometric radius value of a Core Image filter.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputradius1key?language=objc)
+    ///
+    /// A key to get or set the geometric radius value of a Core Image filter.
+    ///
+    /// The value for this key needs to be an `NSNumber` instance.
     pub static kCIInputRadius1Key: &'static NSString;
 }
 
 extern "C" {
+    /// The angle.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies an angle.
+    ///
+    ///
     /// A key to get or set the geometric angle value of a Core Image filter.  Typically the angle is in radians.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputanglekey?language=objc)
     pub static kCIInputAngleKey: &'static NSString;
 }
 
 extern "C" {
+    /// The index of refraction to use.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies the index of refraction of the material (such as glass) used in the effect.
+    ///
+    ///
     /// A key to get or set the scalar optical refraction value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputrefractionkey?language=objc)
     pub static kCIInputRefractionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a scalar value that specifies the width of the effect.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies the width of the effect.
+    ///
+    ///
     /// A key to get or set the geometric width value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputwidthkey?language=objc)
     pub static kCIInputWidthKey: &'static NSString;
 }
 
 extern "C" {
+    /// Amount of sharpening to apply.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies the amount of sharpening to apply.
+    ///
+    ///
     /// A key to get or set the scalar sharpness value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputsharpnesskey?language=objc)
     pub static kCIInputSharpnessKey: &'static NSString;
 }
 
 extern "C" {
+    /// An intensity value.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies an intensity value.
+    ///
+    ///
     /// A key to get or set the scalar intensity value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputintensitykey?language=objc)
     pub static kCIInputIntensityKey: &'static NSString;
 }
 
 extern "C" {
+    /// How many F-stops brighter or darker the image should be.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies how many F-stops brighter or darker the image should be.
+    ///
+    ///
     /// A key to get or set the scalar EV value of a Core Image filter that specifies how many F-stops brighter or darker to make the image.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputevkey?language=objc)
     pub static kCIInputEVKey: &'static NSString;
 }
 
 extern "C" {
+    /// The amount to adjust the saturation.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies the amount to adjust the saturation.
+    ///
+    ///
     /// A key to get or set the scalar saturation value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputsaturationkey?language=objc)
     pub static kCIInputSaturationKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor) object that specifies a color value.
     /// A key to get or set the color value of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIColor`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolorkey?language=objc)
     pub static kCIInputColorKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set a color value of a Core Image filter.
     ///
-    /// The value for this key needs to be a ``CIColor`` instance.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolor0key?language=objc)
+    /// The value for this key needs to be a [`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor) instance.
+    ///
+    ///
+    /// A key to get or set a color value of a Core Image filter.
+    ///
+    /// The value for this key needs to be a ``CIColor`` instance.
     pub static kCIInputColor0Key: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set a color value of a Core Image filter.
     ///
-    /// The value for this key needs to be a ``CIColor`` instance.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolor1key?language=objc)
+    /// The value for this key needs to be a [`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor) instance.
+    ///
+    ///
+    /// A key to get or set a color value of a Core Image filter.
+    ///
+    /// The value for this key needs to be a ``CIColor`` instance.
     pub static kCIInputColor1Key: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set a color space value of a Core Image filter.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be a `CGColorSpace` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcolorspacekey?language=objc)
+    ///
+    /// A key to get or set a color space value of a Core Image filter.
+    ///
+    /// The value for this key needs to be a `CGColorSpace` instance.
     pub static kCIInputColorSpaceKey: &'static NSString;
 }
 
 extern "C" {
+    /// Brightness level.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies a brightness level.
+    ///
+    ///
     /// A key to get or set the scalar brightness value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbrightnesskey?language=objc)
     pub static kCIInputBrightnessKey: &'static NSString;
 }
 
 extern "C" {
+    /// A contrast level.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for a scalar value ([`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber)) that specifies a contrast level.
+    ///
+    ///
     /// A key to get or set the scalar contrast value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputcontrastkey?language=objc)
     pub static kCIInputContrastKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should extrapolate a table beyond the defined range.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputextrapolatekey?language=objc)
+    ///
+    /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should extrapolate a table beyond the defined range.
+    ///
+    /// The value for this key needs to be an `NSNumber` instance.
     pub static kCIInputExtrapolateKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should operate in linear or perceptual colors.
     ///
+    /// ## Discussion
+    ///
     /// The value for this key needs to be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputperceptualkey?language=objc)
+    ///
+    /// A key to get or set the boolean behavior of a Core Image filter that specifies if the filter should operate in linear or perceptual colors.
+    ///
+    /// The value for this key needs to be an `NSNumber` instance.
     pub static kCIInputPerceptualKey: &'static NSString;
 }
 
 extern "C" {
+    /// Simple bias value.
+    ///
+    /// ## Discussion
+    ///
+    /// A key for the simple bias value to use along with the exposure adjustment ([`kCIInputEVKey`](https://developer.apple.com/documentation/coreimage/kciinputevkey)). The associated value must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies floating-point value. The value has no effect if the image used for initialization is not RAW.
+    ///
+    ///
     /// A key to get or set the scalar bias value of a Core Image filter.
     ///
     /// The value for this key needs to be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbiaskey?language=objc)
     pub static kCIInputBiasKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the vector bias value of a Core Image filter.
     ///
-    /// The value for this key needs to be a ``CIVector`` instance.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbiasvectorkey?language=objc)
+    /// The value for this key needs to be a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) instance.
+    ///
+    ///
+    /// A key to get or set the vector bias value of a Core Image filter.
+    ///
+    /// The value for this key needs to be a ``CIVector`` instance.
     pub static kCIInputBiasVectorKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) object that describes a weight matrix for use with a convolution filter.
     /// A key to get or set the vector weights value of a convolution Core Image filter.
     ///
     /// The value for this key needs to be a ``CIVector`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputweightskey?language=objc)
     pub static kCIInputWeightsKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object that specifies an environment map with alpha. Typically, this image contains highlight and shadow.
     /// A key to get or set the gradient map image of a Core Image filter that maps luminance to a color with alpha.
     ///
     /// The value for this key needs to be a 1 pixel tall ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputgradientimagekey?language=objc)
     pub static kCIInputGradientImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object to use as a mask.
     /// A key to get or set the mask image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputmaskimagekey?language=objc)
     pub static kCIInputMaskImageKey: &'static NSString;
 }
 
@@ -697,125 +841,221 @@ extern "C" {
     /// A key to get or set the matte image of a Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputmatteimagekey?language=objc)
     pub static kCIInputMatteImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object  that specifies an environment map with alpha values. Typically this image contains highlight and shadow.
     /// A key to get or set the environment map image of a Core Image filter that maps normal directions to a color with alpha.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputshadingimagekey?language=objc)
     pub static kCIInputShadingImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object that is the target image for a transition.
     /// A key to get or set the target image for a transition Core Image filter.
     ///
     /// The value for this key needs to be a ``CIImage`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputtargetimagekey?language=objc)
     pub static kCIInputTargetImageKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the backside image for a transition Core Image filter.
     ///
-    /// The value for this key needs to be a ``CIImage`` instance.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputbacksideimagekey?language=objc)
+    /// The value for this key needs to be a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) instance.
+    ///
+    ///
+    /// A key to get or set the backside image for a transition Core Image filter.
+    ///
+    /// The value for this key needs to be a ``CIImage`` instance.
     pub static kCIInputBacksideImageKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the palette image for a  Core Image filter.
     ///
-    /// The value for this key needs to be a  1 pixel tall ``CIImage`` instance.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputpaletteimagekey?language=objc)
+    /// The value for this key needs to be a  1 pixel tall [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) instance.
+    ///
+    ///
+    /// A key to get or set the palette image for a  Core Image filter.
+    ///
+    /// The value for this key needs to be a  1 pixel tall ``CIImage`` instance.
     pub static kCIInputPaletteImageKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key for a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) object that specifies a rectangle that defines the extent of the effect.
     /// A key to get or set the vector extent value of a Core Image filterthat defines the extent of the effect.
     /// The value for this key needs to be a ``CIVector`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputextentkey?language=objc)
     pub static kCIInputExtentKey: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set the coordinate value of a Core Image filter.
+    /// The value for this key needs to be a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) instance containing the `x,y` coordinate.
+    /// A key to get or set the coordinate value of a Core Image filter.
     /// The value for this key needs to be a ``CIVector`` instance containing the `x,y` coordinate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputpoint0key?language=objc)
     pub static kCIInputPoint0Key: &'static NSString;
 }
 
 extern "C" {
     /// A key to get or set a coordinate value of a Core Image filter.
+    /// The value for this key needs to be a [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) instance containing the `x,y` coordinate.
+    /// A key to get or set a coordinate value of a Core Image filter.
     /// The value for this key needs to be a ``CIVector`` instance containing the `x,y` coordinate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputpoint1key?language=objc)
     pub static kCIInputPoint1Key: &'static NSString;
 }
 
 extern "C" {
+    /// Version Key
+    ///
+    /// ## Discussion
+    ///
+    /// A key for an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that specifies a version number.
+    ///
+    ///
     /// A key to get or set a coordinate value of a Core Image filter.
     /// The value for this key needs to be a ``CIVector`` instance containing the `x,y` coordinate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciinputversionkey?language=objc)
     pub static kCIInputVersionKey: &'static NSString;
 }
 
 /// An enum string type that your code can use to select different System Tone Mapping modes.
 ///
+/// ## Overview
+///
+/// These options are consistent with the analogous options available in Core Graphics, Core Animation, AppKit, UIKit, and SwiftUI, In Core Image, this option can be set on the `CISystemToneMap` filter.
+///
+///
+/// An enum string type that your code can use to select different System Tone Mapping modes.
+///
 /// These options are consistent with the analogous options available in Core Graphics,
 /// Core Animation, AppKit, UIKit, and SwiftUI,
 /// In Core Image, this option can be set on the `CISystemToneMap` filter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIDynamicRangeOption = NSString;
 
 extern "C" {
     /// Use Standard dynamic range.
     ///
+    /// ## Discussion
+    ///
     /// Images with `contentHeadroom` metadata will be tone mapped to a maximum pixel value of 1.0.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/standard?language=objc)
+    ///
+    /// Use Standard dynamic range.
+    ///
+    /// Images with `contentHeadroom` metadata will be tone mapped to a maximum pixel value of 1.0.
     pub static kCIDynamicRangeStandard: &'static CIDynamicRangeOption;
 }
 
 extern "C" {
+    /// Use extended dynamic range, but brightness is modulated to optimize for co-existence with other composited content.
+    ///
+    /// ## Discussion
+    ///
+    /// For best results, images should contain `contentAverageLightLevel` metadata.
+    ///
+    ///
     /// Use extended dynamic range, but brightness is modulated to optimize for
     /// co-existence with other composited content.
     ///
     /// For best results, images should contain `contentAverageLightLevel` metadata.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/constrainedhigh?language=objc)
     pub static kCIDynamicRangeConstrainedHigh: &'static CIDynamicRangeOption;
 }
 
 extern "C" {
     /// Use High dynamic range.
     ///
+    /// ## Discussion
+    ///
+    /// The provides the best HDR quality and needs to be reserved for situations where the user is focused on the media, such as larger views in an image editing/viewing app, or annotating/drawing with HDR colors
+    ///
+    ///
+    /// Use High dynamic range.
+    ///
     /// The provides the best HDR quality and needs to be reserved
     /// for situations where the user is focused on the media, such as larger views in
     /// an image editing/viewing app, or annotating/drawing with HDR colors
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/high?language=objc)
     pub static kCIDynamicRangeHigh: &'static CIDynamicRangeOption;
 }
 
 extern_class!(
+    /// An image processor that produces an image by manipulating one or more input images or by generating new image data.
+    ///
+    /// ## Overview
+    ///
+    /// The `CIFilter` class produces a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The par`CIFilter` swift.class` object are set and retrieved through the use of key-value pairs.
+    ///
+    /// You use the `CIFilter` object in conjunction with other Core Image classes, such as  `CIImage`, [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext), and [`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor), to take advantage of the built-in Core Image filters when processing images, creating filter generators, or writing custom filters.
+    ///
+    /// `CIFilter` objects are mutable, and thus cannot be shared safely among threads. Each thread must create its own `CIFilter` objects, but you can pass a filter’s immutable input and output `CIImage` objects between threads.
+    ///
+    /// To get a quick overview of how to set up and use Core Image filters, see [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185).
+    ///
+    /// ### Create type-safe filters
+    ///
+    /// Core Image provides methods that create type-safe `CIFilter` instances. Use these filters to avoid run-time errors that can occur when relying on Core Image’s string-based API.
+    ///
+    /// To use the type-safe API, import `CoreImage.CIFilterBuiltins`:
+    ///
+    /// ```swift
+    /// #import <CoreImage/CoreImage.h>
+    /// #import <CoreImage/CIFilterBuiltins.h>
+    /// ```
+    ///
+    /// The type-safe approach returns a non-optional filter. Because the returned filter conforms to the relevant protocol—for example, [`CIFalseColor`](https://developer.apple.com/documentation/coreimage/cifalsecolor) in the case of [`falseColorFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class/falsecolor())—the parameters are available as properties. The following creates and applies a false color filter:
+    ///
+    /// ```swift
+    /// - (CIImage *) falseColorImage:(CIImage*) inputImage {
+    ///     CIFilter<CIFalseColor> *falseColorFilter = CIFilter.falseColorFilter;
+    ///     falseColorFilter.color0 = [CIColor colorWithRed:1 green:1 blue:0];
+    ///     falseColorFilter.color1 = [CIColor colorWithRed:0 green:0 blue:1];
+    ///     falseColorFilter.inputImage = inputImage;
+    ///     return falseColorFilter.outputImage;
+    /// }
+    /// ```
+    ///
+    /// The false color filter maps luminance to a color ramp of two colors:
+    ///
+    ///
+    /// ![Two photographs showing a flower. The image on the left shows the original version of the flower. The image on the right shows the false color version of the flower.](https://docs-assets.developer.apple.com/published/31bc2cc68e11100dbfd10afe19552daa/media-4336877%402x.png)
+    ///
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You can subclass `CIFilter` in order to create custom filter effects:
+    ///
+    /// - By chaining together two or more built-in Core Image filters
+    ///
+    /// - By using an image-processing kernel that you write
+    ///
+    /// Regardless of whether your subclass provides its effect by chaining filters or implementing its own kernel, you should:
+    ///
+    /// - Declare any input parameters as properties whose names are prefixed with `input`, such as `inputImage`.
+    ///
+    /// - Override the [`setDefaults`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class/setdefaults()) methods to provide default values for any input parameters you’ve declared.
+    ///
+    /// - Implement an `outputImage` method to create a new `CIImage` with your filter’s effect.
+    ///
+    /// The `CIFilter` class automatically manages input parameters when archiving, copying, and deallocating filters. For this reason, your subclass must obey the following guidelines to ensure proper behavior:
+    ///
+    /// - Store input parameters in instance variables whose names are prefixed with `input`.
+    ///
+    /// Don’t use auto-synthesized instance variables, because their names are automatically prefixed with an underscore. Instead, synthesize the property manually. For example:
+    ///
+    /// `@synthesize inputMyParameter;`
+    ///
+    /// - If using manual reference counting, don’t release input parameter instance variables in your [`dealloc`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571947-dealloc) method implementation. The [`dealloc`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571947-dealloc) implementation in the `CIFilter` class uses [Key-value coding](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/KeyValueCoding.html#//apple_ref/doc/uid/TP40008195-CH25) to automatically set the values of all input parameters to `nil`.
+    ///
+    ///
     /// CIFilter are filter objects for Core Image that encapsulate the filter with its attributes
     ///
     /// The CIFilter class produces a CIImage object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The parameters of a CIFilter object are set and retrieved through the use of key-value pairs. You use the CIFilter object in conjunction with the CIImage, CIContext, CIVector, CIImageAccumulator, and CIColor objects to take advantage of the built-in Core Image filters when processing images. CIFilter objects are also used along with CIKernel, CISampler, and CIFilterShape objects to create custom filters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilter-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilter;
@@ -930,7 +1170,7 @@ impl CIFilter {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilterprotocol?language=objc)
+    /// The properties you use to configure a Core Image filter.
     #[doc(alias = "CIFilter")]
     #[name = "CIFilter"]
     pub unsafe trait CIFilterProtocol {

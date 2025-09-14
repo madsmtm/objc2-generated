@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipasteconfigurationsupporting?language=objc)
+    /// The interface that determines whether a responder object supports paste configuration.
     pub unsafe trait UIPasteConfigurationSupporting:
         NSObjectProtocol + MainThreadOnly
     {

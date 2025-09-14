@@ -6,98 +6,126 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// An MD2 digest.
     /// Specifies an MD2 digest
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd2?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD2: &'static CFString;
 }
 
 extern "C" {
+    /// An MD4 digest.
     /// Specifies an MD4 digest
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd4?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD4: &'static CFString;
 }
 
 extern "C" {
+    /// An MD5 digest.
     /// Specifies an MD5 digest
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestmd5?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestMD5: &'static CFString;
 }
 
 extern "C" {
+    /// An SHA1 digest.
     /// Specifies a SHA1 digest
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestsha1?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestSHA1: &'static CFString;
 }
 
 extern "C" {
+    /// An SHA2 digest.
     /// Specifies a SHA2 digest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestsha2?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestSHA2: &'static CFString;
 }
 
 extern "C" {
+    /// An HMAC using the MD5 digest algorithm.
     /// Specifies an HMAC using the MD5 digest algorithm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacmd5?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACMD5: &'static CFString;
 }
 
 extern "C" {
+    /// An HMAC using the SHA1 digest algorithm.
     /// Specifies an HMAC using the SHA1 digest algorithm.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacsha1?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACSHA1: &'static CFString;
 }
 
 extern "C" {
+    /// An HMAC using one of the SHA2 digest algorithms.
     /// Specifies an HMAC using one of the SHA2 digest algorithms.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmacsha2?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACSHA2: &'static CFString;
 }
 
 extern "C" {
+    /// The digest algorithm.
+    ///
+    /// ## Discussion
+    ///
+    /// Use one of the values listed in [Digest Types](https://developer.apple.com/documentation/security/transform-attributes#digest-types).
+    ///
+    ///
     /// Used with SecTransformGetAttribute to query the attribute type.
     /// Returns one of the strings defined in the previous section.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesttypeattribute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestTypeAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The digest length.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) that contains the digest length.
+    ///
+    ///
     /// Used with SecTransformGetAttribute to query the length attribute.
     /// Returns a CFNumberRef that contains the length in bytes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigestlengthattribute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestLengthAttribute: &'static CFString;
 }
 
 extern "C" {
+    /// The key for HMAC operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object that specifies the key when [`kSecDigestTypeAttribute`](https://developer.apple.com/documentation/security/ksecdigesttypeattribute) attribute is set to one of the HMAC options listed in [Digest Types](https://developer.apple.com/documentation/security/transform-attributes#digest-types). If this value is not set, the transform will assume a zero length key.
+    ///
+    ///
     /// When set and used with one of the HMAC digest types, sets the key
     /// for the HMAC operation.  The data type for this attribute must be
     /// a CFDataRef.  If this value is not set, the transform will assume
     /// a zero length key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecdigesthmackeyattribute?language=objc)
     #[deprecated = "SecTransform is no longer supported"]
     pub static kSecDigestHMACKeyAttribute: &'static CFString;
 }
 
+/// Creates a digest transform object.
+///
+/// Parameters:
+/// - digestType: The type of digest to compute. You may pass `NULL` for this parameter, in which case an appropriate algorithm will be chosen for you. Otherwise, use one of the values listed in `Digest Constants`.
+///
+/// - digestLength: The desired digest length. Note that certain algorithms may only support certain sizes. You may pass `0` for this parameter, in which case an appropriate length will be chosen for you.
+///
+/// - error: A pointer to a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror). This pointer will be set if an error occurred. This value may be `nil` if you do not want an error returned.
+///
+///
+/// ## Return Value
+///
+/// A pointer to a new transform or `NULL` on error. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this object’s memory when you are done with it.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a transform which computes a cryptographic digest.
+///
+///
 /// Creates a digest computation object.
 ///
 /// Parameter `digestType`: The type of digest to compute.  You may pass NULL
@@ -125,8 +153,6 @@ extern "C" {
 ///
 /// - `digest_type` should be of the correct type.
 /// - `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdigesttransformcreate(_:_:_:)?language=objc)
 #[cfg(feature = "SecTransform")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -147,11 +173,16 @@ pub unsafe extern "C-unwind" fn SecDigestTransformCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
+/// Returns the unique identifier of the opaque type to which a digest transform belongs.
+///
+/// ## Return Value
+///
+/// A value that identifies the opaque type of a [`SecTransformRef`](https://developer.apple.com/documentation/security/sectransform) object meant for digests.
+///
+///
 /// Return the CFTypeID of a SecDigestTransform
 ///
 /// Returns: The CFTypeID
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secdigesttransformgettypeid()?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub extern "C-unwind" fn SecDigestTransformGetTypeID() -> CFTypeID {

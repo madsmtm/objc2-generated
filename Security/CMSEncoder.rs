@@ -10,7 +10,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoder?language=objc)
+/// Opaque reference to a CMS encoder object.
+///
+/// ## Overview
+///
+/// This is object is compatible with Core Foundation and uses standard Core Foundation semantics. Dispose of it with the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function.
+///
+///
 #[doc(alias = "CMSEncoderRef")]
 #[repr(C)]
 pub struct CMSEncoder {
@@ -27,7 +33,7 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergettypeid()?language=objc)
+    /// Returns the type identifier for the CMSEncoder opaque type.
     #[doc(alias = "CMSEncoderGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,7 +45,23 @@ unsafe impl ConcreteType for CMSEncoder {
 }
 
 impl CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercreate(_:)?language=objc)
+    /// Creates a CMSEncoder reference.
+    ///
+    /// Parameters:
+    /// - cmsEncoderOut: On return, points to a CMSEncoder reference. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is the first function in a sequence of encoder functions that you call to sign or encrypt a message. The other functions in the sequence require you to pass in the CMSEncoder reference returned by this function. In many cases, you can call the [`CMSEncode`](https://developer.apple.com/documentation/security/cmsencode) function alone instead of this sequence of encoder functions.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -55,17 +77,27 @@ impl CMSEncoder {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kcmsencoderdigestalgorithmsha1?language=objc)
     pub static kCMSEncoderDigestAlgorithmSHA1: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kcmsencoderdigestalgorithmsha256?language=objc)
     pub static kCMSEncoderDigestAlgorithmSHA256: &'static CFString;
 }
 
 impl CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetsigneralgorithm(_:_:)?language=objc)
+    /// Sets the digest algorithm to use for the signer.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function.
+    ///
+    /// - digestAlgorithm: A string representing the digest algorithm to use.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     #[doc(alias = "CMSEncoderSetSignerAlgorithm")]
     #[inline]
     pub unsafe fn set_signer_algorithm(&self, digest_algorithm: &CFString) -> OSStatus {
@@ -78,7 +110,27 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetSignerAlgorithm(self, digest_algorithm) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsigners(_:_:)?language=objc)
+    /// Specifies signers of the message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - signerOrArray: The identity object for the identity of one signer, specified as type `SecIdentityRef`, or a `CFArray` of identity objects of type`SecIdentityRef`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function only if the message is to be signed. You can call this function more than once for the same message.
+    ///
+    /// If you do call this function, you must call it before the first call to the [`CMSEncoderUpdateContent`](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -93,7 +145,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSigners(self, signer_or_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysigners(_:_:)?language=objc)
+    /// Obtains the array of signers specified with the `CMSEncoderAddSigners` function.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function.
+    ///
+    /// - signersOut: On return, points to an array of identity objects of type [`SecIdentityRef`](https://developer.apple.com/documentation/security/secidentity) of the signers of the message. If the [`CMSEncoderAddSigners`](https://developer.apple.com/documentation/security/cmsencoderaddsigners(_:_:)) function has not been called for this message, this function returns a `NULL` array. You must use the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -110,7 +174,29 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySigners(self, signers_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddrecipients(_:_:)?language=objc)
+    /// Specifies a message is to be encrypted and specifies the recipients of the message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - recipientOrArray: Either a single certificate containing a public encryption key for one message recipient, specified as a certificate object (type [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate)), or a set of certificates specified as a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of certificate objects.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Your keychain must contain a certificate that supports encryption for each recipient. You can call this function more than once for the same message.
+    ///
+    /// You can both sign and encrypt the same message; however, you cannot call both this function and the [`CMSEncoderSetHasDetachedContent`](https://developer.apple.com/documentation/security/cmsencodersethasdetachedcontent(_:_:)) function for the same message.
+    ///
+    /// If you do call this function, you must call it before the first call to the [`CMSEncoderUpdateContent`](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -127,7 +213,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddRecipients(self, recipient_or_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyrecipients(_:_:)?language=objc)
+    /// Obtains the array of recipients specified with the `CMSEncoderAddRecipients` function.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function.
+    ///
+    /// - recipientsOut: On return, points to an array of certificate objects of type [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) of the recipients of the message. If the [`CMSEncoderAddRecipients`](https://developer.apple.com/documentation/security/cmsencoderaddrecipients(_:_:)) function has not been called for this message, this function returns a `NULL` array. You must use the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -144,7 +242,29 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopyRecipients(self, recipients_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersethasdetachedcontent(_:_:)?language=objc)
+    /// Specifies whether the signed data is to be separate from the message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function.
+    ///
+    /// - detachedContent: `TRUE` if the message should exclude the data to be signed. Prior to calling this function, the encoder defaults to `FALSE` for this setting, indicating that the message contains the data to be signed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A signed CMS message can optionally be sent separately from the signed data. Set `detachedContent` to `TRUE` to indicate that the signed data is to be kept separate from the message.
+    ///
+    /// Encrypted messages, including those that are also signed, cannot use detached content.
+    ///
+    /// If you do call this function, you must call it before the first call to the [`CMSEncoderUpdateContent`](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)) function.
+    ///
+    ///
     #[doc(alias = "CMSEncoderSetHasDetachedContent")]
     #[inline]
     pub unsafe fn set_has_detached_content(&self, detached_content: bool) -> OSStatus {
@@ -157,7 +277,25 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetHasDetachedContent(self, detached_content as _) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergethasdetachedcontent(_:_:)?language=objc)
+    /// Indicates whether the message is to have detached content.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - detachedContentOut: Returns `TRUE` if the message has detached content.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the value specified in `CMSEncoderSetHasDetachedContent` if that function has been called; otherwise it returns `FALSE`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -174,7 +312,31 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetHasDetachedContent(self, detached_content_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype?language=objc)
+    /// Specifies an object identifier for the encapsulated data of a signed message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - eContentType: The object identifier for the encapsulated data in a signed message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In a signed message, the signed data consists of any type of content (referred to as the _encapsulated content_, because it is encapsulated in the signed data) plus the signature values. You can indicate the content type of the encapsulated data by specifying an object identifier (OID) in the `eContentType` parameter of this function. The default value for the OID (used if this function is not called) is `id-data`. This is the normal encapsulated content type for applications such as S/MIME, which uses it to indicate MIME-encoded content. You can pass any value that is meaningful to your application. Examples of CMS OIDs are listed in [http://www.imc.org/ietf-smime/other-smime-oids.asn](http://www.imc.org/ietf-smime/other-smime-oids.asn).
+    ///
+    /// If you do call this function, you must call it before the first call to the `CMSEncoderUpdateContent` function.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Use [`CMSEncoderSetEncapsulatedContentTypeOID(_:_:)`](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttypeoid(_:_:)) for new development.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -196,7 +358,29 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentType(self, e_content_type) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttypeoid(_:_:)?language=objc)
+    /// Specifies an object identifier for the encapsulated data of a signed message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - eContentTypeOID: The object identifier for the encapsulated data in a signed message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In a signed message, the signed data consists of any type of content (referred to as the _encapsulated content_, because it is encapsulated in the signed data) plus the signature values. You can indicate the content type of the encapsulated data by specifying an object identifier (OID) in the `eContentTypeOID` parameter of this function, in the form of a Core Foundation string—`CFSTR("1.2.840.113549.1.7.1")`, for example.
+    ///
+    /// The default value for the OID (used if this function is not called) is `id-data`. This is the normal encapsulated content type for applications such as S/MIME, which uses it to indicate MIME-encoded content. You can pass any value that is meaningful to your application. Examples of CMS OIDs are listed in [http://www.imc.org/ietf-smime/other-smime-oids.asn](http://www.imc.org/ietf-smime/other-smime-oids.asn).
+    ///
+    /// If you do call this function, you must call it before the first call to the `CMSEncoderUpdateContent` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -216,7 +400,27 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetEncapsulatedContentTypeOID(self, e_content_type_oid) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyencapsulatedcontenttype(_:_:)?language=objc)
+    /// Obtains the object identifier for the encapsulated data of a signed message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - eContentTypeOut: On return, points to the object identifier for the encapsulated data in the signed message.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In a signed message, the signed data consists of any type of data (the _encapsulated content_) plus the signature values. This function returns the object identifier (OID) of the encapsulated content as it was specified with the `CMSEncoderSetEncapsulatedContentType` function.
+    ///
+    /// If the `CMSEncoderSetEncapsulatedContentType` function has not been called for this message, this function returns a  `NULL` pointer.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -236,7 +440,29 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopyEncapsulatedContentType(self, e_content_type_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsupportingcerts(_:_:)?language=objc)
+    /// Adds certificates to a message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - certOrArray: Either a single certificate, specified as a certificate object (type `SecCertificateRef`), or a set of certificates specified as a `CFArray` of certificate objects.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A CMS message can contain arbitrary sets of certificates other than or in addition to those indicating the identity of signers. You can use this function to add such certificates to a message. It is not necessary to call this function for a normal signed message. When you create a signed message, Cryptographic Message Services automatically adds the signer certificates and any intermediate certificates needed to verify the signers.
+    ///
+    /// You can use this function even if you don’t sign or encrypt the message, in order to transport one or more certificates. To do so, call `CMSEncoderCreate` to obtain a `CMSEncoderRef` reference, call `CMSEncoderAddSupportingCerts` one or more times, and then call `CMSEncoderCopyEncodedContent` to complete the message. No additional content need be specified.
+    ///
+    /// If you do add content to the message in addition to the certificates, you must call this function before the first call to the `CMSEncoderUpdateContent` function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -253,7 +479,25 @@ impl CMSEncoder {
         unsafe { CMSEncoderAddSupportingCerts(self, cert_or_array) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysupportingcerts(_:_:)?language=objc)
+    /// Obtains the certificates added to a message with `CMSEncoderAddSupportingCerts`.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - certsOut: On return, points to a CFArray of `SecCertificateRef` objects. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A CMS message can contain arbitrary sets of certificates other than or in addition to those indicating the identity of signers. You can use this function to obtain any such certificates added with the `CMSEncoderAddSupportingCerts` function.  If `CMSEncoderAddSupportingCerts` has not been called, this function returns a `NULL` value for `certsOut`. Note that this function does not return the signing certificates, if any.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -271,35 +515,47 @@ impl CMSEncoder {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes?language=objc)
+/// Optional attributes you can add to a signed message.
+///
+/// ## Overview
+///
+/// Use these flags with the [`CMSEncoderAddSignedAttributes`](https://developer.apple.com/documentation/security/cmsencoderaddsignedattributes(_:_:)) method to cause the encoder to add attributes to a signed message that can be interpreted by the recipient. These attributes are not used for unsigned messages.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSSignedAttributes(pub u32);
 bitflags::bitflags! {
     impl CMSSignedAttributes: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/kcmsattrnone?language=objc)
+/// No attributes.
         #[doc(alias = "kCMSAttrNone")]
         const AttrNone = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimecapabilities?language=objc)
+/// Identify signature, encryption, and digest algorithms supported by the encoder.
+///
+/// ## Discussion
+///
+/// Using this attribute doesn’t change the encoding. See [RFC 2311: S/MIME Version 2 Message Specification](https://tools.ietf.org/html/rfc2311) section 2.5.2 for more information about the capabilities attribute.
+///
+///
         #[doc(alias = "kCMSAttrSmimeCapabilities")]
         const AttrSmimeCapabilities = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimeencryptionkeyprefs?language=objc)
+/// Indicate that the signing certificate included with the message is the preferred one for S/MIME encryption.
         #[doc(alias = "kCMSAttrSmimeEncryptionKeyPrefs")]
         const AttrSmimeEncryptionKeyPrefs = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsmimemsencryptionkeyprefs?language=objc)
+/// Indicate that the signing certificate included with the message is the preferred one for S/MIME encryption, but using an attribute object identifier (OID) preferred by Microsoft.
         #[doc(alias = "kCMSAttrSmimeMSEncryptionKeyPrefs")]
         const AttrSmimeMSEncryptionKeyPrefs = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrsigningtime?language=objc)
+/// Include the signing time.
         #[doc(alias = "kCMSAttrSigningTime")]
         const AttrSigningTime = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrapplecodesigninghashagility?language=objc)
+/// Include Apple codesigning hash agility.
         #[doc(alias = "kCMSAttrAppleCodesigningHashAgility")]
         const AttrAppleCodesigningHashAgility = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrapplecodesigninghashagilityv2?language=objc)
+/// Include Apple codesigning hash agility, version 2.
         #[doc(alias = "kCMSAttrAppleCodesigningHashAgilityV2")]
         const AttrAppleCodesigningHashAgilityV2 = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes/attrappleexpirationtime?language=objc)
+/// Include the expiration time.
         #[doc(alias = "kCMSAttrAppleExpirationTime")]
         const AttrAppleExpirationTime = 0x0040;
     }
@@ -316,7 +572,27 @@ unsafe impl RefEncode for CMSSignedAttributes {
 }
 
 impl CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderaddsignedattributes(_:_:)?language=objc)
+    /// Specifies attributes for a signed message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - signedAttributes: Attribute flags as defined in [`CMSSignedAttributes`](https://developer.apple.com/documentation/security/cmssignedattributes).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Attributes are optional for signed messages. They are not used for other types of CMS messages.  The use of attributes is described in section 2.5 of the S/MIME 3.1 specification.
+    ///
+    /// If you do call this function, you must call it before the first call to the [`CMSEncoderUpdateContent`](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)) function.
+    ///
+    ///
     #[doc(alias = "CMSEncoderAddSignedAttributes")]
     #[inline]
     pub unsafe fn add_signed_attributes(&self, signed_attributes: CMSSignedAttributes) -> OSStatus {
@@ -330,25 +606,30 @@ impl CMSEncoder {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode?language=objc)
+/// Constants that can be set to specify what certificates to include in a signed message.
+///
+/// ## Overview
+///
+/// Use these with the [`CMSEncoderSetCertificateChainMode`](https://developer.apple.com/documentation/security/cmsencodersetcertificatechainmode(_:_:)) function.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSCertificateChainMode(pub u32);
 impl CMSCertificateChainMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/none?language=objc)
+    /// Don’t include any certificates.
     #[doc(alias = "kCMSCertificateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/signeronly?language=objc)
+    /// Only include signer certificates.
     #[doc(alias = "kCMSCertificateSignerOnly")]
     pub const SignerOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chain?language=objc)
+    /// Include the signer certificate chain up to but not including the root certificate.
     #[doc(alias = "kCMSCertificateChain")]
     pub const Chain: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chainwithroot?language=objc)
+    /// Include the entire signer certificate chain, including the root certificate.
     #[doc(alias = "kCMSCertificateChainWithRoot")]
     pub const ChainWithRoot: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode/chainwithrootorfail?language=objc)
     #[doc(alias = "kCMSCertificateChainWithRootOrFail")]
     pub const ChainWithRootOrFail: Self = Self(4);
 }
@@ -364,7 +645,27 @@ unsafe impl RefEncode for CMSCertificateChainMode {
 }
 
 impl CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodersetcertificatechainmode(_:_:)?language=objc)
+    /// Specifies which certificates to include in a signed CMS message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - chainMode: A constant that indicates which certificate or certificates to include in the message. See [`CMSCertificateChainMode`](https://developer.apple.com/documentation/security/cmscertificatechainmode).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is used only for signed messages and is optional. If you don’t call this function, the default, `kCMSCertificateChain`, is used. In this case the message includes the signer certificate plus all certificates needed to verify the signer certificate, up to but not including the root  certificate.
+    ///
+    /// If you do call this function, you must call it before the first call to the `CMSEncoderUpdateContent` function.
+    ///
+    ///
     #[doc(alias = "CMSEncoderSetCertificateChainMode")]
     #[inline]
     pub unsafe fn set_certificate_chain_mode(
@@ -380,7 +681,19 @@ impl CMSEncoder {
         unsafe { CMSEncoderSetCertificateChainMode(self, chain_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodergetcertificatechainmode(_:_:)?language=objc)
+    /// Obtains a constant that indicates which certificates are to be included in a signed CMS message.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - chainModeOut: On return, a constant that indicates which certificate or certificates are to be included in the message. See [`CMSCertificateChainMode`](https://developer.apple.com/documentation/security/cmscertificatechainmode).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -400,7 +713,31 @@ impl CMSEncoder {
         unsafe { CMSEncoderGetCertificateChainMode(self, chain_mode_out) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencoderupdatecontent(_:_:_:)?language=objc)
+    /// Feeds content bytes into the encoder.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - content: The content that you want to add to the message. The content must conform to the type set with the [`CMSEncoderSetEncapsulatedContentType`](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype) function (or type `id-data` if that function has not been called).
+    ///
+    /// - contentLen: The length of the content being added, in bytes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You use this function to add the content that is to be signed or encrypted. If the message is only a container for certificates added with the [`CMSEncoderAddSupportingCerts`](https://developer.apple.com/documentation/security/cmsencoderaddsupportingcerts(_:_:)) function and has no other content, do not call this function. This function can be called multiple times.
+    ///
+    /// After you are finished adding content, call the `CMSEncoderCopyEncodedContent` function to complete the message creation process.
+    ///
+    /// None of the setter functions ([`CMSEncoderSetHasDetachedContent`](https://developer.apple.com/documentation/security/cmsencodersethasdetachedcontent(_:_:)), [`CMSEncoderSetEncapsulatedContentType`](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype), or [`CMSEncoderSetCertificateChainMode`](https://developer.apple.com/documentation/security/cmsencodersetcertificatechainmode(_:_:))) can be called after this function has been called.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -418,7 +755,25 @@ impl CMSEncoder {
         unsafe { CMSEncoderUpdateContent(self, content, content_len) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopyencodedcontent(_:_:)?language=objc)
+    /// Finishes encoding the message and obtains the encoded result.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: The CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - encodedContentOut: On return, points to the encoded message. You must use the `CFRelease` function to free this reference when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is the last function in the sequence of encoding functions you call when creating a signed or encrypted message. In many cases, you can call the `CMSEncode` function alone instead of using the sequence of encoding functions.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -439,7 +794,41 @@ impl CMSEncoder {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencode?language=objc)
+/// Encodes a message and obtains the result in one high-level function call.
+///
+/// Parameters:
+/// - signers: The identity object for the identity of one signer, specified as type `SecIdentityRef`, or a `CFArray` of identity objects of type`SecIdentityRef`. Pass `NULL` for this parameter if you do not want to sign the message.
+///
+/// - recipients: A certificate containing a public encryption key for one message recipient, specified as a certificate object (type `SecCertificateRef`), or a `CFArray` of certificate objects. Pass NULL for this parameter if you do not want to encrypt the message.
+///
+/// - eContentType: The object identifier for the encapsulated data in a signed message. This parameter is optional. If you pass `0`, the value `id-data` is used. (This is the normal encapsulated content type for applications such as S/MIME, which uses it to indicate MIME-encoded content.) You can pass any value that is meaningful to your application.
+///
+/// - detachedContent: Specify `TRUE` if the signed data is to be separate from the message; that is, if the message is_not_ to include the data to be signed. You cannot specify `TRUE` for this parameter for an encrypted message.
+///
+/// - signedAttributes: Attribute flags as defined in [`CMSSignedAttributes`](https://developer.apple.com/documentation/security/cmssignedattributes). Attributes are optional for signed messages and are not used in other types of CMS messages. The use of attributes is described in section 2.5 of the S/MIME 3.1 specification.
+///
+/// - content: The content that you want to add to the message. The content must conform to the type set in the [`CMSEncoderSetEncapsulatedContentType`](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype) parameter (or type `id-data` if that function has not been called).
+///
+/// - contentLen: The length of the content being added, in bytes.
+///
+/// - encodedContentOut: On return, points to the encoded message. You must use the `CFRelease` function to free this reference when you are finished using it.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// If you use this function, you must include content and you must provide valid non-`NULL` input for at least one of the `signers` and `recipients` parameters. You can both encrypt and sign a message; however, you cannot use detached content with an encrypted message. If you want to create a message that contains certificates and no other content, you must use the [`CMSEncoderAddSupportingCerts(_:_:)`](https://developer.apple.com/documentation/security/cmsencoderaddsupportingcerts(_:_:)) function instead of this one. To gain more control over the process of encoding a message, call the sequence of functions beginning with the [`CMSEncoderCreate(_:)`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function instead of this one.
+///
+/// ### Special Considerations
+///
+/// Use [`CMSEncodeContent(_:_:_:_:_:_:_:_:)`](https://developer.apple.com/documentation/security/cmsencodecontent(_:_:_:_:_:_:_:_:)) for new development.
+///
+///
 ///
 /// # Safety
 ///
@@ -487,7 +876,39 @@ pub unsafe extern "C-unwind" fn CMSEncode(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodecontent(_:_:_:_:_:_:_:_:)?language=objc)
+/// Encodes a message and obtains the result in one high-level function call.
+///
+/// Parameters:
+/// - signers: The identity object for the identity of one signer, specified as type `SecIdentityRef`, or a `CFArray` of identity objects of type`SecIdentityRef`. Pass `NULL` for this parameter if you do not want to sign the message.
+///
+/// - recipients: A certificate containing a public encryption key for one message recipient, specified as a certificate object (type `SecCertificateRef`), or a `CFArray` of certificate objects. Pass NULL for this parameter if you do not want to encrypt the message.
+///
+/// - eContentTypeOID: The object identifier for the encapsulated data in a signed message, in the form of a Core Foundation string—`CFSTR("1.2.840.113549.1.7.1")`, for example.
+///
+/// This parameter is optional. If you pass `NULL`, the value `id-data` is used. (This is the normal encapsulated content type for applications such as S/MIME, which uses it to indicate MIME-encoded content.) You can pass any value that is meaningful to your application.
+///
+/// - detachedContent: Specify `TRUE` if the signed data is to be separate from the message; that is, if the message is_not_ to include the data to be signed. You cannot specify `TRUE` for this parameter for an encrypted message.
+///
+/// - signedAttributes: Attribute flags as defined in [`CMSSignedAttributes`](https://developer.apple.com/documentation/security/cmssignedattributes). Attributes are optional for signed messages and are not used in other types of CMS messages. The use of attributes is described in section 2.5 of the S/MIME 3.1 specification.
+///
+/// - content: The content that you want to add to the message. The content must conform to the type set in the [`CMSEncoderSetEncapsulatedContentType`](https://developer.apple.com/documentation/security/cmsencodersetencapsulatedcontenttype) parameter (or type `id-data` if that function has not been called).
+///
+/// - contentLen: The length of the content being added, in bytes.
+///
+/// - encodedContentOut: On return, points to the encoded message. You must use the `CFRelease` function to free this reference when you are finished using it.
+///
+///
+/// ## Return Value
+///
+/// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+///
+///
+///
+/// ## Discussion
+///
+/// If you use this function, you must include content and you must provide valid non-`NULL` input for at least one of the `signers` and `recipients` parameters. You can both encrypt and sign a message; however, you cannot use detached content with an encrypted message. If you want to create a message that contains certificates and no other content, you must use the [`CMSEncoderAddSupportingCerts`](https://developer.apple.com/documentation/security/cmsencoderaddsupportingcerts(_:_:)) function instead of this one. To gain more control over the process of encoding a message, call the sequence of functions beginning with the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function instead of this one.
+///
+///
 ///
 /// # Safety
 ///
@@ -534,7 +955,29 @@ pub unsafe extern "C-unwind" fn CMSEncodeContent(
 }
 
 impl CMSEncoder {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysignertimestamp(_:_:_:)?language=objc)
+    /// Returns the timestamp of a signer of a CMS message, if present.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: A CMSEncoder reference returned by the `CMSEncoderCreate` function.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - timestamp: The address of an absolute time value where the result should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes). Typically, this function returns [`errSecParam`](https://developer.apple.com/documentation/security/errsecparam) if the CMS message was not signed or if `signerIndex` is out of bounds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This timestamp is an authenticated timestamp provided by a time stamping authority.
+    ///
+    /// You must call [`CMSDecoderFinalizeMessage`](https://developer.apple.com/documentation/security/cmsdecoderfinalizemessage(_:)) before you call this function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -556,7 +999,23 @@ impl CMSEncoder {
         unsafe { CMSEncoderCopySignerTimestamp(self, signer_index, timestamp) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/cmsencodercopysignertimestampwithpolicy(_:_:_:_:)?language=objc)
+    /// Returns the timestamp of a signer of a CMS message using a particular policy, if present.
+    ///
+    /// Parameters:
+    /// - cmsEncoder: A CMSEncoder reference returned by the [`CMSEncoderCreate`](https://developer.apple.com/documentation/security/cmsencodercreate(_:)) function.
+    ///
+    /// - timeStampPolicy: A timestamp policy. Specify `NULL` (or use the [`CMSEncoderCopySignerTimestamp`](https://developer.apple.com/documentation/security/cmsencodercopysignertimestamp(_:_:_:)) function instead) to get the default, which is a policy using [`kSecPolicyAppleTimeStamping`](https://developer.apple.com/documentation/security/ksecpolicyappletimestamping). See [Policies](https://developer.apple.com/documentation/security/policies) in [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services) for more about policies.
+    ///
+    /// - signerIndex: A number indicating which signer to examine. Signer index numbers start with 0. Use the [`CMSDecoderGetNumSigners`](https://developer.apple.com/documentation/security/cmsdecodergetnumsigners(_:_:)) function to determine the total number of signers for a message.
+    ///
+    /// - timestamp: The address of an absolute time value where the result should be stored.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
     ///
     /// # Safety
     ///

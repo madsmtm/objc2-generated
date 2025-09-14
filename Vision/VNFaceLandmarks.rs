@@ -9,9 +9,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract superclass for information about a specific face landmark.
     /// VNFaceLandmarkRegion is an immutable object acting as a collection of landmark points for defining a specific region of the face (including potentially all of the landmark points for a face). The VNFaceLandmarkRegion is an abstract base class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion;
@@ -60,9 +59,14 @@ impl VNFaceLandmarkRegion {
 }
 
 extern_class!(
-    /// VNFaceLandmarkRegion2D gives access to the 2D landmark points for the region. The points are stored as vector_float2 and must not be modified.
+    /// 2D geometry information for a specific facial feature.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarkregion2d?language=objc)
+    /// ## Overview
+    ///
+    /// This class represents the set of all facial landmark regions in 2D, exposed as properties.
+    ///
+    ///
+    /// VNFaceLandmarkRegion2D gives access to the 2D landmark points for the region. The points are stored as vector_float2 and must not be modified.
     #[unsafe(super(VNFaceLandmarkRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarkRegion2D;
@@ -161,9 +165,14 @@ impl VNFaceLandmarkRegion2D {
 }
 
 extern_class!(
-    /// VNFaceLandmarks2D is the result of a face landmarks request. It is an abstract base class.
+    /// The abstract superclass for containers of face landmark information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks?language=objc)
+    /// ## Overview
+    ///
+    /// This class represents the set of all detectable facial landmarks and regions, exposed as properties.
+    ///
+    ///
+    /// VNFaceLandmarks2D is the result of a face landmarks request. It is an abstract base class.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks;
@@ -218,9 +227,14 @@ impl VNFaceLandmarks {
 }
 
 extern_class!(
-    /// VNFaceLandmarks2D is the result of a face landmarks 2D request, containing detected facial landmark points organized into VNFaceLandmarkRegion2D regions. The points are accessible as a full list, or as sub-gruops representing pre-defined facial regions.
+    /// A collection of facial features that a request detects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnfacelandmarks2d?language=objc)
+    /// ## Overview
+    ///
+    /// This class represents the set of all detectable 2D face landmarks and regions, exposed as properties. The coordinates of the face landmarks are normalized to the dimensions of the face observation’s [`boundingBox`](https://developer.apple.com/documentation/vision/vndetectedobjectobservation/boundingbox), with the origin at the bounding box’s lower-left corner. Use the [`VNImagePointForFaceLandmarkPoint`](https://developer.apple.com/documentation/vision/vnimagepointforfacelandmarkpoint(_:_:_:_:)) function to convert normalized face landmark points into absolute points within the image’s coordinate system.
+    ///
+    ///
+    /// VNFaceLandmarks2D is the result of a face landmarks 2D request, containing detected facial landmark points organized into VNFaceLandmarkRegion2D regions. The points are accessible as a full list, or as sub-gruops representing pre-defined facial regions.
     #[unsafe(super(VNFaceLandmarks, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNFaceLandmarks2D;

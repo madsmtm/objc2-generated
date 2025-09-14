@@ -9,11 +9,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract request type that builds evidence of a condition over time.
     /// A request that builds evidence over time by being reused on multiple images.
     ///
     /// The request requires the use of CMSampleBuffers with timestamps as input; otherwise, a VNErrorTimeStampNotFound error will be returned. VNStatefulRequest is used as a base class of other requests, so no objects of this class should be created directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnstatefulrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]

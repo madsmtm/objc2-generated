@@ -14,16 +14,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel?language=objc)
+/// Constants that indicate the position of overlays relative to other content.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKOverlayLevel(pub NSInteger);
 impl MKOverlayLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/aboveroads?language=objc)
+    /// Place the overlay above roadways but below map labels, shields, or point-of-interest icons.
+    ///
+    /// ## Discussion
+    ///
+    /// [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) displays graphics in layers. The value [`MKOverlayLevelAboveRoads`](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/aboveroads) places a layer in the map view above roadways but below map labels.
+    ///
+    ///
     #[doc(alias = "MKOverlayLevelAboveRoads")]
     pub const AboveRoads: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/abovelabels?language=objc)
+    /// Place the overlay above map labels, shields, or point-of-interest icons but below annotations and 3D projections of buildings.
+    ///
+    /// ## Discussion
+    ///
+    /// [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) displays graphics in layers. The value [`MKOverlayLevelAboveLabels`](https://developer.apple.com/documentation/mapkit/mkoverlaylevel/abovelabels) places a layer in the map view above roadways and map labels.
+    ///
+    ///
     #[doc(alias = "MKOverlayLevelAboveLabels")]
     pub const AboveLabels: Self = Self(1);
 }
@@ -36,19 +48,25 @@ unsafe impl RefEncode for MKOverlayLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode?language=objc)
+/// The mode to use for tracking the user’s location on the map.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKUserTrackingMode(pub NSInteger);
 impl MKUserTrackingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/none?language=objc)
+    /// The map doesn’t follow the user’s location.
     #[doc(alias = "MKUserTrackingModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/follow?language=objc)
+    /// The map follows the user location.
     #[doc(alias = "MKUserTrackingModeFollow")]
     pub const Follow: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode/followwithheading?language=objc)
+    /// The map follows the user’s location and rotates when the heading changes.
+    ///
+    /// ## Discussion
+    ///
+    /// This mode requires the device to have an available magnetometer. This mode isn’t available for compatible iPad or iPhone apps running in visionOS.
+    ///
+    ///
     #[doc(alias = "MKUserTrackingModeFollowWithHeading")]
     pub const FollowWithHeading: Self = Self(2);
 }
@@ -62,17 +80,83 @@ unsafe impl RefEncode for MKUserTrackingMode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdefaultannotationviewreuseidentifier?language=objc)
+    /// The default reuse identifier for your map’s annotation views.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to register a default annotation view. This map view uses this default annotation view when your map view’s delegate doesn’t implement the [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz) method, or when that method returns `nil`.
+    ///
+    ///
     pub static MKMapViewDefaultAnnotationViewReuseIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdefaultclusterannotationviewreuseidentifier?language=objc)
+    /// The default reuse identifier for the annotation view representing a cluster of annotations.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to register a default annotation view to use for clusters of annotations. The map view uses this cluster annotation view when your map view’s delegate doesn’t implement the [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz) method, or when that method returns `nil`.
+    ///
+    ///
     pub static MKMapViewDefaultClusterAnnotationViewReuseIdentifier: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapview?language=objc)
+    /// An embeddable map interface, similar to the one that the Maps app provides.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class as-is to display map information and to manipulate the map contents from your app. The map view supports several display styles, including the [`MKStandardMapConfiguration`](https://developer.apple.com/documentation/mapkit/mkstandardmapconfiguration) that provides rich 2D and 3D presentations, an [`MKHybridMapConfiguration`](https://developer.apple.com/documentation/mapkit/mkhybridmapconfiguration) that provides a hybrid satellite map presentation, and [`MKImageryMapConfiguration`](https://developer.apple.com/documentation/mapkit/mkimagerymapconfiguration) that provides an imagery-based map presentation. Each of these map configurations support customization properties that refine specific elements of the map’s presentation.
+    ///
+    /// You can center the map on specific coordinates, specify the size of the area you want to display, and annotate the map with custom information. When you initialize a map view, you specify the initial region for that map to display by setting the [`region`](https://developer.apple.com/documentation/mapkit/mkmapview/region) property of the map. MapKit defines a region by a center point and a horizontal and vertical distance, referred to as the _span_. The _span_ defines how much of the map is visible, and is also how you set the zoom level. For example, specifying a large span results in the user seeing a wide geographical area at a low zoom level, whereas specifying a small span results in a more narrow geographical area and a higher zoom level.
+    ///
+    /// In addition to setting the span programmatically, the `MKMapView` class supports many standard interactions for changing the position and zoom level of the map. In particular, map views support flick and pinch gestures for scrolling around the map and zooming in and out. The map view enables support for these gestures by default. You can enable and disable them using the [`scrollEnabled`](https://developer.apple.com/documentation/mapkit/mkmapview/isscrollenabled) and [`zoomEnabled`](https://developer.apple.com/documentation/mapkit/mkmapview/iszoomenabled) properties.
+    ///
+    /// You can also use projected map coordinates instead of regions to specify some values. When you project the curved surface of the globe onto a flat surface, you get a two-dimensional version of a map where longitude lines appear to be parallel. To specify locations and distances, you use the [`MKMapPoint`](https://developer.apple.com/documentation/mapkit/mkmappoint), [`MKMapSize`](https://developer.apple.com/documentation/mapkit/mkmapsize), and [`MKMapRect`](https://developer.apple.com/documentation/mapkit/mkmaprect) data types.
+    ///
+    /// Don’t subclass the `MKMapView` class itself. You can get information about the map view’s behavior by providing a delegate object. The map view calls the methods of your custom delegate to let it know about changes in the map status and to coordinate the display of custom annotations. The delegate object can be any object in your app as long as it conforms to the [`MKMapViewDelegate`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate) protocol. For more information about implementing the delegate object, see [`MKMapViewDelegate`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate).
+    ///
+    /// In macOS 10.14 and later, you can apply a light or dark appearance to your maps by modifying the [`appearance`](https://developer.apple.com/documentation/appkit/nsappearancecustomization/appearance) property of your map view (or one of its ancestor views). Even if you specify a custom appearance, users can use the Maps app to force all maps to adopt a light appearance. Use the map view’s [`effectiveAppearance`](https://developer.apple.com/documentation/appkit/nsappearancecustomization/effectiveappearance) property to determine the actual appearance of your map. For information about how to set view appearances, see [Choosing a Specific Appearance for Your macOS App](https://developer.apple.com/documentation/appkit/choosing-a-specific-appearance-for-your-macos-app).
+    ///
+    /// ### Annotating the map
+    ///
+    /// The `MKMapView` class supports the ability to annotate the map with custom information. Because a map may have large numbers of annotations, map views differentiate between the annotation objects MapKit uses to manage the annotation data and the view objects for presenting that data on the map.
+    ///
+    /// An _annotation object_ is any object that conforms to the [`MKAnnotation`](https://developer.apple.com/documentation/mapkit/mkannotation) protocol. Typically, you implement annotation objects using existing classes in your app’s data model. This allows you to manipulate the annotation data directly, but still make it available to the map view. Each annotation object contains information about the annotation’s location on the map, along with descriptive information that the map can display in a callout.
+    ///
+    /// An _annotation view_,_ _which is an instance of the [`MKAnnotationView`](https://developer.apple.com/documentation/mapkit/mkannotationview) class, handles the presentation of annotation objects on the screen. An annotation view is responsible for presenting the annotation data in a way that makes sense. For example, the Maps app uses a marker icon to denote specific points of interest on a map. The MapKit framework offers the [`MKMarkerAnnotationView`](https://developer.apple.com/documentation/mapkit/mkmarkerannotationview) class for similar annotations in your own apps. You can also create annotation views that cover larger portions of the map.
+    ///
+    /// Because the map view needs annotation views only when they’re onscreen, the `MKMapView` class provides a mechanism for queueing annotation views that aren’t in use. The map view detaches annotation views with a reuse identifier and queues them internally when they move offscreen. This feature improves memory use by keeping only a small number of annotation views in memory at once, and by recycling the views you do have. It also improves scrolling performance by alleviating the need to create new views while the map is scrolling.
+    ///
+    /// When configuring your map interface, be sure to add all of your annotation objects right away. The map view uses the coordinate data in each annotation object to determine when the corresponding annotation view needs to appear onscreen. When an annotation moves onscreen, the map view asks its delegate to create a corresponding annotation view. If your app has different types of annotations, it can define different annotation view classes to represent each type.
+    ///
+    /// ### Adding overlays to the map
+    ///
+    /// You can use overlays to layer content over a wide portion of the map. An _overlay_ object is any object that conforms to the [`MKOverlay`](https://developer.apple.com/documentation/mapkit/mkoverlay) protocol. An overlay object is a data object that contains the points that specify the shape and size of the overlay and its location on the map. Overlays can represent shapes like circles, rectangles, multisegment lines, and simple or complex polygons. You can also define your own custom overlays to represent other shapes.
+    ///
+    /// _Overlay renderer_ objects, which are instances of the [`MKOverlayRenderer`](https://developer.apple.com/documentation/mapkit/mkoverlayrenderer) class, handle the presentation of an overlay. The job of the renderer is to draw the overlay’s content onto the screen when the map view requests it. For example, if you have a simple overlay that represents a bus route, you can use a polyline renderer to draw the line segments that trace the route of the bus. You can also define a custom renderer that draws both the bus route and icons at the location of each bus stop. When specifying overlays, you can add them to specific levels of the map, which tells the map view to render them above or below other types of map content.
+    ///
+    /// When configuring your map interface, you can add overlay objects at any time. The map view uses the data in each overlay object to determine when the corresponding overlay view needs to appear onscreen. When an overlay moves onscreen, the map view asks its delegate to create a corresponding overlay renderer.
+    ///
+    /// ### Adding points of interest to the map
+    ///
+    /// In iOS16 and macOS 13, and later, you can configure the map view to allow people to interact with a wide variety of points of interest (POIs) the map displays. These are instances of the [`MKMapFeatureAnnotation`](https://developer.apple.com/documentation/mapkit/mkmapfeatureannotation) class, and cover a wide variety of elements visible on the map, including:
+    ///
+    /// - Points of interest, such as museums, cafes, parks, and schools.
+    ///
+    /// - Territorial boundaries, such as national borders, state boundaries, and neighborhoods.
+    ///
+    /// - Features on the Earth’s surface, such as mountain ranges, rivers, and ocean basins.
+    ///
+    /// You can control which features a person can interact with by configuring one of the [`MKMapConfiguration`](https://developer.apple.com/documentation/mapkit/mkmapconfiguration) subclasses that defines the map’s presentation. Create an `MKMapConfiguration` with a set of [`MKMapFeatureOptions`](https://developer.apple.com/documentation/mapkit/mkmapfeatureoptions) that describe the categories of POIs the map responds to. To further refine the specific kinds of points of interest the map display presents, use an [`MKPointOfInterestFilter`](https://developer.apple.com/documentation/mapkit/mkpointofinterestfilter).
+    ///
+    /// When a person interacts with a specific POI, the framework calls your delegate object with one of the [`MKMapViewDelegate`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate) protocol methods, depending on whether the person selects or deselects a specific POI. These methods give your app a chance to respond to the selection or deselection of an element. Depending on the kind of element, you can decide whether you want to customize the display characteristics in the case of a POI, or in the case of territories or geographic map features, you can create custom interactions to display information.
+    ///
+    /// ### Adding Look Around views to the map
+    ///
+    /// iOS16 and macOS 13, and later, support the inclusion of a Look Around view within the map view. Look Around allows people to explore the environment at street level. You request a Look Around view by creating an [`MKLookAroundSceneRequest`](https://developer.apple.com/documentation/mapkit/mklookaroundscenerequest) with either an [`MKMapItem`](https://developer.apple.com/documentation/mapkit/mkmapitem) or a [`CLLocationCoordinate2D`](https://developer.apple.com/documentation/corelocation/cllocationcoordinate2d), and if there’s Look Around imagery available for the specified location, the framework returns an [`MKLookAroundScene`](https://developer.apple.com/documentation/mapkit/mklookaroundscene) for you to display using an [`MKLookAroundViewController`](https://developer.apple.com/documentation/mapkit/mklookaroundviewcontroller).
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -828,7 +912,15 @@ impl MKMapView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate?language=objc)
+    /// Optional methods that you use to receive map-related update messages.
+    ///
+    /// ## Overview
+    ///
+    /// Because many map operations require the [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) class to load data asynchronously, the map view calls these methods to notify your app when specific operations complete. The map view also uses these methods to request annotation and overlay views, and to manage interactions with those views.
+    ///
+    /// Before releasing an [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) object that you set a delegate for, remember to set that object’s [`delegate`](https://developer.apple.com/documentation/mapkit/mkmapview/delegate) property to `nil`. MapKit calls all of your delegate methods on the app’s main thread.
+    ///
+    ///
     pub unsafe trait MKMapViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

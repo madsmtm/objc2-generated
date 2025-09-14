@@ -8,101 +8,107 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// NSError domain for Exposure Notification errors.
+    /// The domain for an error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrordomain?language=objc)
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This property is available in iOS 12.5, and in iOS 13.5 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// NSError domain for Exposure Notification errors.
     pub static ENErrorDomain: &'static NSErrorDomain;
 }
 
-/// Error codes used with ENErrorDomain.
+/// Error codes that the exposure notification framework issues.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This enumeration is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Error codes used with ENErrorDomain.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ENErrorCode(pub NSInteger);
 impl ENErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/unknown?language=objc)
+    /// Failure has an unknown cause.
     #[doc(alias = "ENErrorCodeUnknown")]
     pub const Unknown: Self = Self(1);
+    /// The parameter is missing or incorrect.
     /// Underlying failure with an unknown cause.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/badparameter?language=objc)
     #[doc(alias = "ENErrorCodeBadParameter")]
     pub const BadParameter: Self = Self(2);
+    /// Process of calling is not entitled.
     /// Missing or incorrect parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notentitled?language=objc)
     #[doc(alias = "ENErrorCodeNotEntitled")]
     pub const NotEntitled: Self = Self(3);
+    /// The user has denied access to the notification framework.
     /// Calling process doesn't have the correct entitlement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notauthorized?language=objc)
     #[doc(alias = "ENErrorCodeNotAuthorized")]
     pub const NotAuthorized: Self = Self(4);
+    /// Operation is not supported.
     /// User denied this process access to Exposure Notification functionality.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/unsupported?language=objc)
     #[doc(alias = "ENErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(5);
+    /// A call to invalidate before the operation completes normally.
     /// Operation is not supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/invalidated?language=objc)
     #[doc(alias = "ENErrorCodeInvalidated")]
     pub const Invalidated: Self = Self(6);
+    /// Bluetooth is turned off.
     /// Invalidate was called before the operation completed normally.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/bluetoothoff?language=objc)
     #[doc(alias = "ENErrorCodeBluetoothOff")]
     pub const BluetoothOff: Self = Self(7);
+    /// The storage is insufficient to enable notifications.
     /// Bluetooth was turned off the by user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/insufficientstorage?language=objc)
     #[doc(alias = "ENErrorCodeInsufficientStorage")]
     pub const InsufficientStorage: Self = Self(8);
+    /// Notification is not enabled.
     /// Insufficient storage space to enable Exposure Notification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/notenabled?language=objc)
     #[doc(alias = "ENErrorCodeNotEnabled")]
     pub const NotEnabled: Self = Self(9);
+    /// The API use is incorrect.
     /// Exposure Notification has not been enabled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/apimisuse?language=objc)
     #[doc(alias = "ENErrorCodeAPIMisuse")]
     pub const APIMisuse: Self = Self(10);
+    /// A bug in the internal notification framework.
     /// The API was used incorrectly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/internal?language=objc)
     #[doc(alias = "ENErrorCodeInternal")]
     pub const Internal: Self = Self(11);
+    /// The memory is insufficient to perform the operation.
     /// Internal error. This indicates a bug in this framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/insufficientmemory?language=objc)
     #[doc(alias = "ENErrorCodeInsufficientMemory")]
     pub const InsufficientMemory: Self = Self(12);
+    /// API calls are too frequent.
     /// Not enough memory to perform an operation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/ratelimited?language=objc)
     #[doc(alias = "ENErrorCodeRateLimited")]
     pub const RateLimited: Self = Self(13);
+    /// Exposure notification is disabled due to system policies.
     /// API called too frequently. See API for acceptable frequency.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/restricted?language=objc)
     #[doc(alias = "ENErrorCodeRestricted")]
     pub const Restricted: Self = Self(14);
+    /// A file is formated incorrectly.
     /// Exposure Notification is disabled due to system policies.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/badformat?language=objc)
     #[doc(alias = "ENErrorCodeBadFormat")]
     pub const BadFormat: Self = Self(15);
+    /// The user must unlock the device before it can access data.
     /// File or data format problem.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/datainaccessible?language=objc)
     #[doc(alias = "ENErrorCodeDataInaccessible")]
     pub const DataInaccessible: Self = Self(16);
+    /// The system can’t determine whether the user is traveling.
     /// The device must be unlocked before data is accessible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerror/code/travelstatusnotavailable?language=objc)
     #[doc(alias = "ENErrorCodeTravelStatusNotAvailable")]
     pub const TravelStatusNotAvailable: Self = Self(17);
 }
@@ -115,53 +121,64 @@ unsafe impl RefEncode for ENErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Type for returning NSError’s from functions. Avoids long and repetitious method signatures.
 /// Type for returning NSError's from functions. Avoids long and repetitious method signatures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorouttype?language=objc)
 pub type ENErrorOutType = *mut *mut NSError;
 
+/// The signal strength value.
 /// Attenuation of a radio signal. This is the Advertised Transmit Power - Measured RSSI.
 ///
 /// Note: The attenuation value may be misleading because more attenuation doesn’t necessarily mean the device is farther
 /// away. For example, two people could be very close and facing each other with their phones in their back pockets. This
 /// may report higher attenuation (i.e. weaker received signal) even though the individuals are very close together.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuation?language=objc)
 pub type ENAttenuation = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuationmin?language=objc)
+/// The value that is the minimum for attenuation.
 pub const ENAttenuationMin: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enattenuationmax?language=objc)
+/// The value that is the maximum for attenuation.
 pub const ENAttenuationMax: c_uint = 0xFF;
 
-/// Indicates the status of authorization for the app.
+/// A set of cases that indicates the authorization status for the app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This enumeration is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Indicates the status of authorization for the app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENAuthorizationStatus(pub NSInteger);
 impl ENAuthorizationStatus {
+    /// Authorization is not determined.
     /// Authorization status has not yet been determined.
     /// This status means the user has not been prompted yet. Using the API in this state may prompt the user.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/unknown?language=objc)
     #[doc(alias = "ENAuthorizationStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// Authorization is restricted.
+    ///
+    /// ## Discussion
+    ///
+    /// The user cannot change the app’s authorization status. This status may be due to active restrictions, such as parental controls.
+    ///
+    ///
     /// This app is not authorized to use Exposure Notification. The user cannot change this app's authorization status.
     /// This status may be due to active restrictions, such as parental controls being in place.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/restricted?language=objc)
     #[doc(alias = "ENAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
+    /// Authorization is denied.
     /// The user denied authorization for this app.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/notauthorized?language=objc)
     #[doc(alias = "ENAuthorizationStatusNotAuthorized")]
     pub const NotAuthorized: Self = Self(2);
+    /// Authorization is granted.
     /// The user has authorized this app to use Exposure Notification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus/authorized?language=objc)
     #[doc(alias = "ENAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -174,36 +191,43 @@ unsafe impl RefEncode for ENAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// Confidence in calibration data.
+/// The transmitting device’s calibration confidence.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This property is available in iOS 12.5, and in iOS 13.7 and later.
+///
+///
+///
+/// </div>
+///
+/// Confidence in calibration data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENCalibrationConfidence(pub u8);
 impl ENCalibrationConfidence {
+    /// No confidence in the calibration data.
     /// No calibration data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/lowest?language=objc)
     #[doc(alias = "ENCalibrationConfidenceLowest")]
     pub const Lowest: Self = Self(0);
+    /// The average confidence in the calibration data.
     /// Using average calibration over phones of this manufacturer or Android beacons from EN API version
     /// <
     /// 1.5.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/low?language=objc)
     #[doc(alias = "ENCalibrationConfidenceLow")]
     pub const Low: Self = Self(1);
+    /// The medium confidence in the calibration data.
     /// Using single-antenna orientation for a similar phone model or iPhone beacons from EN API version
     /// <
     /// 1.5.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/medium?language=objc)
     #[doc(alias = "ENCalibrationConfidenceMedium")]
     pub const Medium: Self = Self(2);
+    /// The highest confidence in the calibration data.
     /// Determined using significant calibration data for this model.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence/high?language=objc)
     #[doc(alias = "ENCalibrationConfidenceHigh")]
     pub const High: Self = Self(3);
 }
@@ -216,49 +240,77 @@ unsafe impl RefEncode for ENCalibrationConfidence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The value used when days since onset of symptoms is unspecified.
+/// A value used when the number of days since onset of symptoms is unknown.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endayssinceonsetofsymptomsunknown?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This property is available in iOS 12.5, and in iOS 14.0 and later.
+///
+///
+///
+/// </div>
+///
+/// The value used when days since onset of symptoms is unspecified.
 #[deprecated = "Server must provide keys with days_since_onset_of_symptoms set."]
 pub static ENDaysSinceOnsetOfSymptomsUnknown: NSInteger = NSIntegerMax as _;
 
-/// How positive diagnosis was reported.
+/// The type of a report that describes the origin of a diagnosis.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This property is available in iOS 12.5, and in iOS 13.7 and later.
+///
+///
+///
+/// </div>
+///
+/// How positive diagnosis was reported.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENDiagnosisReportType(pub u32);
 impl ENDiagnosisReportType {
+    /// The report is an unknown type or is not available.
     /// Diagnosis type unknown or not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/unknown?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The report comes from a confirmed test.
     /// Confirmed test.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/confirmedtest?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeConfirmedTest")]
     pub const ConfirmedTest: Self = Self(1);
+    /// The report comes from a confirmed clinical diagnosis.
     /// Confirmed clinical diagnosis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/confirmedclinicaldiagnosis?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeConfirmedClinicalDiagnosis")]
     pub const ConfirmedClinicalDiagnosis: Self = Self(2);
+    /// The report comes from the user, without health authority involvement.
     /// User reported positive diagnosis without health authority involvement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/selfreported?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeSelfReported")]
     pub const SelfReported: Self = Self(3);
+    /// The report comes from a person determined positive based on exposure to another person confirmed positive.
+    ///
+    /// ## Discussion
+    ///
+    /// This case is not used.
+    ///
+    ///
     /// Person determined to be positive based on exposure to another person confirmed to be positive. This report type
     /// is reserved for future use and keys with this report type are not matched by iOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/recursive?language=objc)
     #[doc(alias = "ENDiagnosisReportTypeRecursive")]
     pub const Recursive: Self = Self(4);
-    /// Negative test. This is mainly to negate a previous self report or clinical diagnosis that may have been in error.
+    /// The report is a negative test.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype/revoked?language=objc)
+    /// ## Discussion
+    ///
+    /// This case negates a previous self report or clinical diagnosis that may have been in error.
+    ///
+    ///
+    /// Negative test. This is mainly to negate a previous self report or clinical diagnosis that may have been in error.
     #[doc(alias = "ENDiagnosisReportTypeRevoked")]
     pub const Revoked: Self = Self(5);
 }
@@ -271,25 +323,34 @@ unsafe impl RefEncode for ENDiagnosisReportType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// How infectious based on days since onset of symptoms.
+/// The degree to which a person’s symptoms may indicate transmission risk.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness?language=objc)
+/// ## Overview
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This property is available in iOS 12.5, and in iOS 13.7 and later.
+///
+///
+///
+/// </div>
+///
+/// How infectious based on days since onset of symptoms.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENInfectiousness(pub u32);
 impl ENInfectiousness {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/none?language=objc)
+    /// The user is not infectious.
     #[doc(alias = "ENInfectiousnessNone")]
     pub const None: Self = Self(0);
+    /// The user is mildly infectious.
     /// Never returned through the API, but used for configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/standard?language=objc)
     #[doc(alias = "ENInfectiousnessStandard")]
     pub const Standard: Self = Self(1);
+    /// The user is highly infectious.
     /// Never returned through the API, but used for configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/high?language=objc)
     #[doc(alias = "ENInfectiousnessHigh")]
     pub const High: Self = Self(2);
 }
@@ -302,25 +363,31 @@ unsafe impl RefEncode for ENInfectiousness {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype?language=objc)
+/// A set of user-definable types that indicate variants of concern.
+///
+/// ## Overview
+///
+/// A Public Health Authority (PHA) defines the meaning of the types that indicate variants of concern. For example, a PHA could define the meaning of [`ENVariantOfConcernType1`](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type1) as “Vaccine is effective”, and [`ENVariantOfConcernType2`](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type2) as “Highly transmissive.” The PHA could assign the definition of “High severity” to [`ENVariantOfConcernType3`](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type3), and “Vaccine breakthrough” to [`ENVariantOfConcernType4`](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type4).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENVariantOfConcernType(pub u32);
 impl ENVariantOfConcernType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/typeunknown?language=objc)
+    /// The unknown type for a variant of concern.
     #[doc(alias = "ENVariantOfConcernTypeUnknown")]
     pub const TypeUnknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type1?language=objc)
+    /// The first user-definable type for a variant of concern.
     #[doc(alias = "ENVariantOfConcernType1")]
     pub const Type1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type2?language=objc)
+    /// The second user-definable type for a variant of concern.
     #[doc(alias = "ENVariantOfConcernType2")]
     pub const Type2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type3?language=objc)
+    /// The third user-definable type for a variant of concern.
     #[doc(alias = "ENVariantOfConcernType3")]
     pub const Type3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype/type4?language=objc)
+    /// The fourth user-definable type for a variant of concern.
     #[doc(alias = "ENVariantOfConcernType4")]
     pub const Type4: Self = Self(4);
 }
@@ -333,6 +400,15 @@ unsafe impl RefEncode for ENVariantOfConcernType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A number assigned to each 10-minute window shared between all devices participating in the protocol.
+///
+/// ## Discussion
+///
+/// These shared intervals of time derive from timestamps in UNIX Epoch Time.
+///
+/// `ENIntervalNumber(Timestamp) ← Timestamp / (60×10)`
+///
+///
 /// ENIntervalNumber (ENIN)
 ///
 /// A number for each 10 minute window that is shared between all devices participating in the protocol.
@@ -343,58 +419,191 @@ unsafe impl RefEncode for ENVariantOfConcernType {
 /// since 1970-01-01 00:00:00> / ( 60 * 10 )
 ///
 /// It's encoded as an unsigned 32-bit (uint32_t), little endian value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enintervalnumber?language=objc)
 pub type ENIntervalNumber = u32;
 
-/// Represents a risk level, ranging from 0-7.
+/// The user’s estimated risk of exposure.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevel?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Represents a risk level, ranging from 0-7.
 pub type ENRiskLevel = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelmin?language=objc)
+/// The value that is the minimum for risk level.
 pub const ENRiskLevelMin: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelmax?language=objc)
+/// The value that is the maximum for risk level.
 pub const ENRiskLevelMax: c_uint = 7;
 
-/// The value, ranging from 0 to 8, that the app assigns to each Risk Level in each of the Risk Level Parameters.
+/// The value associated with a particular risk level.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvalue?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// The value, ranging from 0 to 8, that the app assigns to each Risk Level in each of the Risk Level Parameters.
 pub type ENRiskLevelValue = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvaluemin?language=objc)
+/// The value that is the minimum for risk level value.
 pub const ENRiskLevelValueMin: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enrisklevelvaluemax?language=objc)
+/// The value that is the maximum for risk level value.
 pub const ENRiskLevelValueMax: c_uint = 8;
 
-/// Represents estimated risk calculated by a scoring algorithm. Range is 0-255. 255 is the highest risk.
+/// A value signifying the risk of an exposure event.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscore?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+/// The risk score incorporates the range and weights of various exposure criteria to produce an estimate of the user’s risk of exposure.
+///
+///
+/// Represents estimated risk calculated by a scoring algorithm. Range is 0-255. 255 is the highest risk.
 pub type ENRiskScore = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscoremin?language=objc)
+/// The value that is the minimum for risk score.
 pub const ENRiskScoreMin: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskscoremax?language=objc)
+/// The value that is the maximum for risk score.
 pub const ENRiskScoreMax: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightdefault?language=objc)
+/// The value that is the default for risk weight.
 pub const ENRiskWeightDefault: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightdefaultv2?language=objc)
+/// This weight is not used.
 pub const ENRiskWeightDefaultV2: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmin?language=objc)
+/// The value that is the minimum for risk weight.
 pub const ENRiskWeightMin: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmax?language=objc)
+/// The value that is the maximum for risk weight.
 pub const ENRiskWeightMax: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enriskweightmaxv2?language=objc)
+/// This weight is not used.
 pub const ENRiskWeightMaxV2: c_uint = 250;
 
-/// Invoked when an operation completes. Error is nil for success or non-nil if an error occurred.
+/// The handler for error conditions.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorhandler?language=objc)
+/// ## Discussion
+///
+/// <div class="warning">
+///
+/// ### Important
+///  This type is available in iOS 12.5, and in iOS 13.5 and later.
+///
+///
+///
+/// </div>
+///
+/// Invoked when an operation completes. Error is nil for success or non-nil if an error occurred.
 #[cfg(feature = "block2")]
 pub type ENErrorHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_class!(
+    /// The object that contains parameters for configuring exposure notification risk scoring behavior.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.5 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The ExposureNotification framework defines an Exposure Risk Value (ERV) to allow Health Authorities to define when to alert a user that they may have been exposed to someone diagnosed with COVID-19. The app uses the ERV to calculate the user’s Meaningful Exposure Minutes (MEMs) value. Health Authorities have flexibility in calculating this value by setting weights and values related to Bluetooth attenuations, infectiousness of the affected individual, and diagnosis report type. They can also determine what threshold will result in a notification.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  While the ERV is measured in MEMs, the system actually calculates and returns a number of seconds, rounded to the nearest minute. For example, if a person has an ERV of 2 MEMs, the app returns a value of 120 (seconds). Convert ERVs to minutes before displaying it to the user by dividing the returned value by 60.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The calculation method described in this document is available starting with iOS 14. To adopt this method of risk assessment, set the `ENAPIVersion` key to the integer value 2 in the app’s `Info.plist` file. For more information on the V1 calculation used in earlier versions of iOS, see [Exposure Risk Value Calculation in ExposureNotification Version 1](https://developer.apple.com/documentation/exposurenotification/exposure-risk-value-calculation-in-exposurenotification-version-1).
+    ///
+    /// The following diagram shows how to calculate an ERV:
+    ///
+    ///
+    /// ![A diagram showing how to calculate the exposure ERV.](https://docs-assets.developer.apple.com/published/106a1342224588f2e601071f22c3d703/media-3670910%402x.png)
+    ///
+    ///
+    /// The class defines three sets of weights that give priority to the components of the ERV: minutes-at-attenuation, infectiousness, and report type.
+    ///
+    /// The weighted minutes-at-attenuation assigns priority to the amount of time that the user is near beacons at different Bluetooth attenuations. Assign values between 0–250 percent to weights that represent Immediate, Near, Medium, and Other distances.
+    ///
+    ///
+    /// ![A diagram showing the weighted minutes-at-attenuation calculation.](https://docs-assets.developer.apple.com/published/9b05a56753ac2d2b2b0f73449edc7282/media-3670915%402x.png)
+    ///
+    ///
+    /// The infectiousness weight modifies the ERV based on the affected userʼs infectiousness level for the day of exposure relative to the day of symptom onset. To set the infectiousness level for when there is no symptom onset date provided, use [`ENDaysSinceOnsetOfSymptomsUnknown`](https://developer.apple.com/documentation/exposurenotification/endayssinceonsetofsymptomsunknown). A user’s infectiousness level can be [`ENInfectiousnessHigh`](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/high), [`ENInfectiousnessStandard`](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/standard), or [`ENInfectiousnessNone`](https://developer.apple.com/documentation/exposurenotification/eninfectiousness/none). Assign both [`infectiousnessHighWeight`](https://developer.apple.com/documentation/exposurenotification/enexposureconfiguration/infectiousnesshighweight) and [`infectiousnessStandardWeight`](https://developer.apple.com/documentation/exposurenotification/enexposureconfiguration/infectiousnessstandardweight) a value between 0 percent and 250 percent.
+    ///
+    ///
+    /// ![A diagram showing a user’s infectiousness over the course of days.](https://docs-assets.developer.apple.com/published/512371c75b087a0bec2dbdf6705b3da7/media-3671401%402x.png)
+    ///
+    ///
+    /// The weighted report type assigns priority to the method of diagnosis. Assign values ranging from 0–250 percent to weights that represent a confirmed test diagnosis, clinical diagnosis, self- reported diagnoisis, and recursive diagnosis.
+    ///
+    ///
+    /// ![A table showing the weighted report types and their ranges.](https://docs-assets.developer.apple.com/published/1a4be158bc5df5633050eef9ef814ec9/media-3670917%402x.png)
+    ///
+    ///
+    /// In addition to setting the weights, you can perform additional filtering by setting [`daysSinceLastExposureThreshold`](https://developer.apple.com/documentation/exposurenotification/enexposureconfiguration/dayssincelastexposurethreshold) to limit the number of days to consider when calculating the risk level.
+    ///
+    /// ### Calculating an Example Exposure Risk Value
+    ///
+    /// The following diagrams illustrate calculating an ERV using a real-world scenario.
+    ///
+    /// The weighted minutes-at-attenuation shows 5 minutes of immediate exposure with a 150 percent weight, 10 minutes of near exposure with a 100 percent weight, 10 minutes of medium exposure with a 50 percent weight, and 5 minutes of other exposure with a 0 percent weight.
+    ///
+    ///
+    /// ![A diagram showing the weighted minutes-at-attention example.](https://docs-assets.developer.apple.com/published/cecff092c23f19855051cdb8aff9522c/media-3670907%402x.png)
+    ///
+    ///
+    /// The weighted infectiousness indicates days –14 to –6 from the current day with no infectiousness, days –5 to –3 with 100 percent of standard infectiousness, days –2 to +5 with 200 percent high infectiousness, days +6 to +10 with 100 percent standard infectiousness, and days +11 to +14 with no infectiousness.
+    ///
+    ///
+    /// ![A diagram showing an example of infectiousness weights over the course of 29 days.](https://docs-assets.developer.apple.com/published/06317e295c02b87ca0fe0a41400aea41/media-3671402%402x.png)
+    ///
+    ///
+    /// Here are the weighted report types for all three tests:
+    ///
+    ///
+    /// ![A table showing the weighted report types in the example.](https://docs-assets.developer.apple.com/published/ddea82a79718bad16aebfbf2828ff5d9/media-3670914%402x.png)
+    ///
+    ///
+    /// The result of the calculation shows an ERV of 45 minutes:
+    ///
+    ///
+    /// ![A diagram showing an example of calculating the ERV.](https://docs-assets.developer.apple.com/published/2aa6cf44c52a213313a371f390c80b59/media-3670911%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To prevent an ERV of 0, set any unused weight to 100 percent.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Configuration parameters for exposure detection.
     ///
     /// Configuration parameters are used to calculate an exposure duration for each exposure using the following formula.
@@ -406,8 +615,6 @@ extern_class!(
     /// ( otherDuration     * otherDurationWeight ) )
     /// infectiousnessWeight )
     /// reportTypeWeight )
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposureconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureConfiguration;
@@ -730,9 +937,20 @@ impl ENExposureConfiguration {
 }
 
 extern_class!(
-    /// Summary of exposure info for a single day.
+    /// The summary of exposure information for a single day.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuredaysummary?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.7 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Summary of exposure info for a single day.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureDaySummary;
@@ -789,9 +1007,20 @@ impl ENExposureDaySummary {
 }
 
 extern_class!(
-    /// Summary of exposure detection.
+    /// A summary of exposures.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuredetectionsummary?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.5 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Summary of exposure detection.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureDetectionSummary;
@@ -870,9 +1099,22 @@ impl ENExposureDetectionSummary {
 }
 
 extern_class!(
-    /// Info about an exposure.
+    /// The incident information related to a potential exposure.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposureinfo?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.5 and later. It isn’t supported for apps with [`ENAPIVersion`](https://developer.apple.com/documentation/bundleresources/information-property-list/enapiversion) set to `2` in the `Info.plist` file. Instead, [`getExposureWindowsFromSummary:completionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/getexposurewindows(summary:completionhandler:)) provides an array of [`ENExposureWindow`](https://developer.apple.com/documentation/exposurenotification/enexposurewindow) objects.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This class carries information about an exposure incident.
+    ///
+    ///
+    /// Info about an exposure.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureInfo;
@@ -961,9 +1203,44 @@ impl ENExposureInfo {
 }
 
 extern_class!(
-    /// Summary for a specific time period or report type.
+    /// The summary of exposures for a specific time period or report type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, iOS 13.7, and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The exposure summary item provides a summary of exposures for a particular day. The framework computes this summary by compiling values for a [`weightedDurationSum`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/weighteddurationsum), a [`maximumScore`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/maximumscore) (the maximum of the exposure risk values), and a [`scoreSum`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/scoresum). This summary of exposures can be for a specific report type ([`confirmedTestSummary`](https://developer.apple.com/documentation/exposurenotification/enexposuredaysummary/confirmedtestsummary)) or a combination across all report types ([`daySummary`](https://developer.apple.com/documentation/exposurenotification/enexposuredaysummary/daysummary)). An instance of [`ENExposureDaySummary`](https://developer.apple.com/documentation/exposurenotification/enexposuredaysummary) contains the exposure summary item.
+    ///
+    /// To illustrate how the framework computes this value, assume Alice encounters Bob, Carol, and Dave on a particular day; each person has weights set by their respective Public Health Authority.
+    ///
+    /// Bob’s minutes-at-attenuation weight is 50, his infectiousness weight is 100%, and his report type weight is 200% (a confirmed test). His exposure risk value is 100 as dictated by his Public Health Authority.
+    ///
+    ///
+    /// ![A diagram showing that Bob’s exposure risk value is a product of his minutes-at-attenuation weight, infectiousness weight, and report type. ](https://docs-assets.developer.apple.com/published/edb87363ba43f32f6cea7ce3c0e77ea9/media-3744329%402x.png)
+    ///
+    ///
+    /// Carol’s minutes-at-attenuation weight is 30, her infectiousness weight is 100%, and her report type weight is 100% (a confirmed clinical diagnosis). Her exposure risk value is 30 as dictated by her Public Health Authority.
+    ///
+    ///
+    /// ![A diagram showing that Carol’s exposure risk value is a product of her minutes-at-attenuation weight, infectiousness weight, and report type. ](https://docs-assets.developer.apple.com/published/996e341da3d94c1f1fd0224030a40e9b/media-3744330%402x.png)
+    ///
+    ///
+    /// Dave’s minutes-at-attenuation weight is 40, his infectiousness weight is 0%, and his report type weight is 80% (a self-diagnosis). His exposure risk value is 0 as dictated by his Public Health Authority.
+    ///
+    ///
+    /// ![A diagram showing that Dave’s exposure risk value is a product of his minutes-at-attenuation weight, infectiousness weight, and report type. ](https://docs-assets.developer.apple.com/published/377c78066bdd32826913eefeea0a53d7/media-3744527%402x.png)
+    ///
+    ///
+    /// Alice’s exposure summary item for that day would be a [`weightedDurationSum`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/weighteddurationsum) of 120 (50 + 30 + 40), a [`maximumScore`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/maximumscore) of 100 (the maximum of the exposure risk values), and a [`scoreSum`](https://developer.apple.com/documentation/exposurenotification/enexposuresummaryitem/scoresum) of 130 (100 + 30).
+    ///
+    ///
+    /// Summary for a specific time period or report type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureSummaryItem;
@@ -1011,9 +1288,22 @@ impl ENExposureSummaryItem {
 }
 
 extern_class!(
-    /// A duration of up to 30 minutes during which beacons from a TEK were observed.
+    /// A set of scan events from observed beacons within a time span.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enexposurewindow?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This property is available in iOS 12.5, and in iOS 13.7 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An exposure window contains information about a potential exposure in a 30–minute interval. The system returns an array of exposure windows through the completion handler when the app invokes [`getExposureWindowsFromSummary:completionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/getexposurewindows(summary:completionhandler:)). Exposure windows are only available when an app specified an `ENAPIVersion` of `2` in the app’s `Info.plist` file.
+    ///
+    ///
+    /// A duration of up to 30 minutes during which beacons from a TEK were observed.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENExposureWindow;
@@ -1071,9 +1361,20 @@ impl ENExposureWindow {
 }
 
 extern_class!(
-    /// Aggregation of attenuations of all of this TEK's beacons received during a scan.
+    /// The aggregation of attenuations of beacons received during a scan.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enscaninstance?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This property is available in iOS 12.5, and in iOS 13.7 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Aggregation of attenuations of all of this TEK's beacons received during a scan.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENScanInstance;
@@ -1116,9 +1417,22 @@ impl ENScanInstance {
 }
 
 extern_class!(
-    /// Key used to generate rolling proximity identifiers.
+    /// The key used to generate rolling proximity identifiers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/entemporaryexposurekey?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is available in iOS 12.5, and in iOS 13.5 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Upon a positive diagnosis, the user is allowed to submit their temporary exposure keys to their Health Authority server as diagnosis keys. Use [`getDiagnosisKeysWithCompletionHandler:`](https://developer.apple.com/documentation/exposurenotification/enmanager/getdiagnosiskeys(completionhandler:)) to obtain the user’s diagnosis keys for submission.
+    ///
+    ///
+    /// Key used to generate rolling proximity identifiers.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ENTemporaryExposureKey;

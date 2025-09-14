@@ -6,651 +6,350 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalltypographicfeaturestype?language=objc)
 pub const kAllTypographicFeaturesType: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kligaturestype?language=objc)
 pub const kLigaturesType: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcursiveconnectiontype?language=objc)
 pub const kCursiveConnectionType: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klettercasetype?language=objc)
 pub const kLetterCaseType: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kverticalsubstitutiontype?language=objc)
 pub const kVerticalSubstitutionType: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klinguisticrearrangementtype?language=objc)
 pub const kLinguisticRearrangementType: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knumberspacingtype?language=objc)
 pub const kNumberSpacingType: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksmartswashtype?language=objc)
 pub const kSmartSwashType: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdiacriticstype?language=objc)
 pub const kDiacriticsType: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kverticalpositiontype?language=objc)
 pub const kVerticalPositionType: c_int = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kfractionstype?language=objc)
 pub const kFractionsType: c_int = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/koverlappingcharacterstype?language=objc)
 pub const kOverlappingCharactersType: c_int = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktypographicextrastype?language=objc)
 pub const kTypographicExtrasType: c_int = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmathematicalextrastype?language=objc)
 pub const kMathematicalExtrasType: c_int = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kornamentsetstype?language=objc)
 pub const kOrnamentSetsType: c_int = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcharacteralternativestype?language=objc)
 pub const kCharacterAlternativesType: c_int = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesigncomplexitytype?language=objc)
 pub const kDesignComplexityType: c_int = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstyleoptionstype?language=objc)
 pub const kStyleOptionsType: c_int = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcharactershapetype?language=objc)
 pub const kCharacterShapeType: c_int = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knumbercasetype?language=objc)
 pub const kNumberCaseType: c_int = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktextspacingtype?language=objc)
 pub const kTextSpacingType: c_int = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktransliterationtype?language=objc)
 pub const kTransliterationType: c_int = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kannotationtype?language=objc)
 pub const kAnnotationType: c_int = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkanaspacingtype?language=objc)
 pub const kKanaSpacingType: c_int = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicspacingtype?language=objc)
 pub const kIdeographicSpacingType: c_int = 26;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kunicodedecompositiontype?language=objc)
 pub const kUnicodeDecompositionType: c_int = 27;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krubykanatype?language=objc)
 pub const kRubyKanaType: c_int = 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolalternativestype?language=objc)
 pub const kCJKSymbolAlternativesType: c_int = 29;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicalternativestype?language=objc)
 pub const kIdeographicAlternativesType: c_int = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkverticalromanplacementtype?language=objc)
 pub const kCJKVerticalRomanPlacementType: c_int = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kitaliccjkromantype?language=objc)
 pub const kItalicCJKRomanType: c_int = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcasesensitivelayouttype?language=objc)
 pub const kCaseSensitiveLayoutType: c_int = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalternatekanatype?language=objc)
 pub const kAlternateKanaType: c_int = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalternativestype?language=objc)
 pub const kStylisticAlternativesType: c_int = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualalternatestype?language=objc)
 pub const kContextualAlternatesType: c_int = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klowercasetype?language=objc)
 pub const kLowerCaseType: c_int = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kuppercasetype?language=objc)
 pub const kUpperCaseType: c_int = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klanguagetagtype?language=objc)
 pub const kLanguageTagType: c_int = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkromanspacingtype?language=objc)
 pub const kCJKRomanSpacingType: c_int = 103;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klastfeaturetype?language=objc)
 pub const kLastFeatureType: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalltypefeaturesonselector?language=objc)
 pub const kAllTypeFeaturesOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalltypefeaturesoffselector?language=objc)
 pub const kAllTypeFeaturesOffSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krequiredligaturesonselector?language=objc)
 pub const kRequiredLigaturesOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krequiredligaturesoffselector?language=objc)
 pub const kRequiredLigaturesOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcommonligaturesonselector?language=objc)
 pub const kCommonLigaturesOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcommonligaturesoffselector?language=objc)
 pub const kCommonLigaturesOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krareligaturesonselector?language=objc)
 pub const kRareLigaturesOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krareligaturesoffselector?language=objc)
 pub const kRareLigaturesOffSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klogosonselector?language=objc)
 pub const kLogosOnSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klogosoffselector?language=objc)
 pub const kLogosOffSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krebuspicturesonselector?language=objc)
 pub const kRebusPicturesOnSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krebuspicturesoffselector?language=objc)
 pub const kRebusPicturesOffSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdiphthongligaturesonselector?language=objc)
 pub const kDiphthongLigaturesOnSelector: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdiphthongligaturesoffselector?language=objc)
 pub const kDiphthongLigaturesOffSelector: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksquaredligaturesonselector?language=objc)
 pub const kSquaredLigaturesOnSelector: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksquaredligaturesoffselector?language=objc)
 pub const kSquaredLigaturesOffSelector: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kabbrevsquaredligaturesonselector?language=objc)
 pub const kAbbrevSquaredLigaturesOnSelector: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kabbrevsquaredligaturesoffselector?language=objc)
 pub const kAbbrevSquaredLigaturesOffSelector: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksymbolligaturesonselector?language=objc)
 pub const kSymbolLigaturesOnSelector: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksymbolligaturesoffselector?language=objc)
 pub const kSymbolLigaturesOffSelector: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualligaturesonselector?language=objc)
 pub const kContextualLigaturesOnSelector: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualligaturesoffselector?language=objc)
 pub const kContextualLigaturesOffSelector: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khistoricalligaturesonselector?language=objc)
 pub const kHistoricalLigaturesOnSelector: c_uint = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khistoricalligaturesoffselector?language=objc)
 pub const kHistoricalLigaturesOffSelector: c_uint = 21;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kunconnectedselector?language=objc)
 pub const kUnconnectedSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpartiallyconnectedselector?language=objc)
 pub const kPartiallyConnectedSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcursiveselector?language=objc)
 pub const kCursiveSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kupperandlowercaseselector?language=objc)
 pub const kUpperAndLowerCaseSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kallcapsselector?language=objc)
 pub const kAllCapsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalllowercaseselector?language=objc)
 pub const kAllLowerCaseSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksmallcapsselector?language=objc)
 pub const kSmallCapsSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinitialcapsselector?language=objc)
 pub const kInitialCapsSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinitialcapsandsmallcapsselector?language=objc)
 pub const kInitialCapsAndSmallCapsSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksubstituteverticalformsonselector?language=objc)
 pub const kSubstituteVerticalFormsOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksubstituteverticalformsoffselector?language=objc)
 pub const kSubstituteVerticalFormsOffSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klinguisticrearrangementonselector?language=objc)
 pub const kLinguisticRearrangementOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klinguisticrearrangementoffselector?language=objc)
 pub const kLinguisticRearrangementOffSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmonospacednumbersselector?language=objc)
 pub const kMonospacedNumbersSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproportionalnumbersselector?language=objc)
 pub const kProportionalNumbersSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kthirdwidthnumbersselector?language=objc)
 pub const kThirdWidthNumbersSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kquarterwidthnumbersselector?language=objc)
 pub const kQuarterWidthNumbersSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kwordinitialswashesonselector?language=objc)
 pub const kWordInitialSwashesOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kwordinitialswashesoffselector?language=objc)
 pub const kWordInitialSwashesOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kwordfinalswashesonselector?language=objc)
 pub const kWordFinalSwashesOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kwordfinalswashesoffselector?language=objc)
 pub const kWordFinalSwashesOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klineinitialswashesonselector?language=objc)
 pub const kLineInitialSwashesOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klineinitialswashesoffselector?language=objc)
 pub const kLineInitialSwashesOffSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klinefinalswashesonselector?language=objc)
 pub const kLineFinalSwashesOnSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klinefinalswashesoffselector?language=objc)
 pub const kLineFinalSwashesOffSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knonfinalswashesonselector?language=objc)
 pub const kNonFinalSwashesOnSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knonfinalswashesoffselector?language=objc)
 pub const kNonFinalSwashesOffSelector: c_uint = 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kshowdiacriticsselector?language=objc)
 pub const kShowDiacriticsSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khidediacriticsselector?language=objc)
 pub const kHideDiacriticsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdecomposediacriticsselector?language=objc)
 pub const kDecomposeDiacriticsSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knormalpositionselector?language=objc)
 pub const kNormalPositionSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksuperiorsselector?language=objc)
 pub const kSuperiorsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinferiorsselector?language=objc)
 pub const kInferiorsSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kordinalsselector?language=objc)
 pub const kOrdinalsSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kscientificinferiorsselector?language=objc)
 pub const kScientificInferiorsSelector: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knofractionsselector?language=objc)
 pub const kNoFractionsSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kverticalfractionsselector?language=objc)
 pub const kVerticalFractionsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdiagonalfractionsselector?language=objc)
 pub const kDiagonalFractionsSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpreventoverlaponselector?language=objc)
 pub const kPreventOverlapOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpreventoverlapoffselector?language=objc)
 pub const kPreventOverlapOffSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphenstoemdashonselector?language=objc)
 pub const kHyphensToEmDashOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphenstoemdashoffselector?language=objc)
 pub const kHyphensToEmDashOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphentoendashonselector?language=objc)
 pub const kHyphenToEnDashOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphentoendashoffselector?language=objc)
 pub const kHyphenToEnDashOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kslashedzeroonselector?language=objc)
 pub const kSlashedZeroOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kslashedzerooffselector?language=objc)
 pub const kSlashedZeroOffSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kforminterrobangonselector?language=objc)
 pub const kFormInterrobangOnSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kforminterrobangoffselector?language=objc)
 pub const kFormInterrobangOffSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksmartquotesonselector?language=objc)
 pub const kSmartQuotesOnSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksmartquotesoffselector?language=objc)
 pub const kSmartQuotesOffSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kperiodstoellipsisonselector?language=objc)
 pub const kPeriodsToEllipsisOnSelector: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kperiodstoellipsisoffselector?language=objc)
 pub const kPeriodsToEllipsisOffSelector: c_uint = 11;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphentominusonselector?language=objc)
 pub const kHyphenToMinusOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khyphentominusoffselector?language=objc)
 pub const kHyphenToMinusOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kasterisktomultiplyonselector?language=objc)
 pub const kAsteriskToMultiplyOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kasterisktomultiplyoffselector?language=objc)
 pub const kAsteriskToMultiplyOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kslashtodivideonselector?language=objc)
 pub const kSlashToDivideOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kslashtodivideoffselector?language=objc)
 pub const kSlashToDivideOffSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinequalityligaturesonselector?language=objc)
 pub const kInequalityLigaturesOnSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinequalityligaturesoffselector?language=objc)
 pub const kInequalityLigaturesOffSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kexponentsonselector?language=objc)
 pub const kExponentsOnSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kexponentsoffselector?language=objc)
 pub const kExponentsOffSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmathematicalgreekonselector?language=objc)
 pub const kMathematicalGreekOnSelector: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmathematicalgreekoffselector?language=objc)
 pub const kMathematicalGreekOffSelector: c_uint = 11;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knoornamentsselector?language=objc)
 pub const kNoOrnamentsSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdingbatsselector?language=objc)
 pub const kDingbatsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpicharactersselector?language=objc)
 pub const kPiCharactersSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kfleuronsselector?language=objc)
 pub const kFleuronsSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdecorativebordersselector?language=objc)
 pub const kDecorativeBordersSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinternationalsymbolsselector?language=objc)
 pub const kInternationalSymbolsSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmathsymbolsselector?language=objc)
 pub const kMathSymbolsSelector: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knoalternatesselector?language=objc)
 pub const kNoAlternatesSelector: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesignlevel1selector?language=objc)
 pub const kDesignLevel1Selector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesignlevel2selector?language=objc)
 pub const kDesignLevel2Selector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesignlevel3selector?language=objc)
 pub const kDesignLevel3Selector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesignlevel4selector?language=objc)
 pub const kDesignLevel4Selector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdesignlevel5selector?language=objc)
 pub const kDesignLevel5Selector: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knostyleoptionsselector?language=objc)
 pub const kNoStyleOptionsSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdisplaytextselector?language=objc)
 pub const kDisplayTextSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kengravedtextselector?language=objc)
 pub const kEngravedTextSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/killuminatedcapsselector?language=objc)
 pub const kIlluminatedCapsSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktitlingcapsselector?language=objc)
 pub const kTitlingCapsSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktallcapsselector?language=objc)
 pub const kTallCapsSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalcharactersselector?language=objc)
 pub const kTraditionalCharactersSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksimplifiedcharactersselector?language=objc)
 pub const kSimplifiedCharactersSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjis1978charactersselector?language=objc)
 pub const kJIS1978CharactersSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjis1983charactersselector?language=objc)
 pub const kJIS1983CharactersSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjis1990charactersselector?language=objc)
 pub const kJIS1990CharactersSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalaltoneselector?language=objc)
 pub const kTraditionalAltOneSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalalttwoselector?language=objc)
 pub const kTraditionalAltTwoSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalaltthreeselector?language=objc)
 pub const kTraditionalAltThreeSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalaltfourselector?language=objc)
 pub const kTraditionalAltFourSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalaltfiveselector?language=objc)
 pub const kTraditionalAltFiveSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kexpertcharactersselector?language=objc)
 pub const kExpertCharactersSelector: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjis2004charactersselector?language=objc)
 pub const kJIS2004CharactersSelector: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khojocharactersselector?language=objc)
 pub const kHojoCharactersSelector: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knlccharactersselector?language=objc)
 pub const kNLCCharactersSelector: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraditionalnamescharactersselector?language=objc)
 pub const kTraditionalNamesCharactersSelector: c_uint = 14;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klowercasenumbersselector?language=objc)
 pub const kLowerCaseNumbersSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kuppercasenumbersselector?language=objc)
 pub const kUpperCaseNumbersSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproportionaltextselector?language=objc)
 pub const kProportionalTextSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmonospacedtextselector?language=objc)
 pub const kMonospacedTextSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khalfwidthtextselector?language=objc)
 pub const kHalfWidthTextSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kthirdwidthtextselector?language=objc)
 pub const kThirdWidthTextSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kquarterwidthtextselector?language=objc)
 pub const kQuarterWidthTextSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kaltproportionaltextselector?language=objc)
 pub const kAltProportionalTextSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalthalfwidthtextselector?language=objc)
 pub const kAltHalfWidthTextSelector: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knotransliterationselector?language=objc)
 pub const kNoTransliterationSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khanjatohangulselector?language=objc)
 pub const kHanjaToHangulSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khiraganatokatakanaselector?language=objc)
 pub const kHiraganaToKatakanaSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkatakanatohiraganaselector?language=objc)
 pub const kKatakanaToHiraganaSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkanatoromanizationselector?language=objc)
 pub const kKanaToRomanizationSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kromanizationtohiraganaselector?language=objc)
 pub const kRomanizationToHiraganaSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kromanizationtokatakanaselector?language=objc)
 pub const kRomanizationToKatakanaSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khanjatohangulaltoneselector?language=objc)
 pub const kHanjaToHangulAltOneSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khanjatohangulalttwoselector?language=objc)
 pub const kHanjaToHangulAltTwoSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khanjatohangulaltthreeselector?language=objc)
 pub const kHanjaToHangulAltThreeSelector: c_uint = 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knoannotationselector?language=objc)
 pub const kNoAnnotationSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kboxannotationselector?language=objc)
 pub const kBoxAnnotationSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kroundedboxannotationselector?language=objc)
 pub const kRoundedBoxAnnotationSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcircleannotationselector?language=objc)
 pub const kCircleAnnotationSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinvertedcircleannotationselector?language=objc)
 pub const kInvertedCircleAnnotationSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kparenthesisannotationselector?language=objc)
 pub const kParenthesisAnnotationSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kperiodannotationselector?language=objc)
 pub const kPeriodAnnotationSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kromannumeralannotationselector?language=objc)
 pub const kRomanNumeralAnnotationSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdiamondannotationselector?language=objc)
 pub const kDiamondAnnotationSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinvertedboxannotationselector?language=objc)
 pub const kInvertedBoxAnnotationSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kinvertedroundedboxannotationselector?language=objc)
 pub const kInvertedRoundedBoxAnnotationSelector: c_uint = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kfullwidthkanaselector?language=objc)
 pub const kFullWidthKanaSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproportionalkanaselector?language=objc)
 pub const kProportionalKanaSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kfullwidthideographsselector?language=objc)
 pub const kFullWidthIdeographsSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproportionalideographsselector?language=objc)
 pub const kProportionalIdeographsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khalfwidthideographsselector?language=objc)
 pub const kHalfWidthIdeographsSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcanonicalcompositiononselector?language=objc)
 pub const kCanonicalCompositionOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcanonicalcompositionoffselector?language=objc)
 pub const kCanonicalCompositionOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcompatibilitycompositiononselector?language=objc)
 pub const kCompatibilityCompositionOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcompatibilitycompositionoffselector?language=objc)
 pub const kCompatibilityCompositionOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktranscodingcompositiononselector?language=objc)
 pub const kTranscodingCompositionOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktranscodingcompositionoffselector?language=objc)
 pub const kTranscodingCompositionOffSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knorubykanaselector?language=objc)
 pub const kNoRubyKanaSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krubykanaselector?language=objc)
 pub const kRubyKanaSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krubykanaonselector?language=objc)
 pub const kRubyKanaOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/krubykanaoffselector?language=objc)
 pub const kRubyKanaOffSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knocjksymbolalternativesselector?language=objc)
 pub const kNoCJKSymbolAlternativesSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolaltoneselector?language=objc)
 pub const kCJKSymbolAltOneSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolalttwoselector?language=objc)
 pub const kCJKSymbolAltTwoSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolaltthreeselector?language=objc)
 pub const kCJKSymbolAltThreeSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolaltfourselector?language=objc)
 pub const kCJKSymbolAltFourSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjksymbolaltfiveselector?language=objc)
 pub const kCJKSymbolAltFiveSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knoideographicalternativesselector?language=objc)
 pub const kNoIdeographicAlternativesSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicaltoneselector?language=objc)
 pub const kIdeographicAltOneSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicalttwoselector?language=objc)
 pub const kIdeographicAltTwoSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicaltthreeselector?language=objc)
 pub const kIdeographicAltThreeSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicaltfourselector?language=objc)
 pub const kIdeographicAltFourSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kideographicaltfiveselector?language=objc)
 pub const kIdeographicAltFiveSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkverticalromancenteredselector?language=objc)
 pub const kCJKVerticalRomanCenteredSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkverticalromanhbaselineselector?language=objc)
 pub const kCJKVerticalRomanHBaselineSelector: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knocjkitalicromanselector?language=objc)
 pub const kNoCJKItalicRomanSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkitalicromanselector?language=objc)
 pub const kCJKItalicRomanSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkitalicromanonselector?language=objc)
 pub const kCJKItalicRomanOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcjkitalicromanoffselector?language=objc)
 pub const kCJKItalicRomanOffSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcasesensitivelayoutonselector?language=objc)
 pub const kCaseSensitiveLayoutOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcasesensitivelayoutoffselector?language=objc)
 pub const kCaseSensitiveLayoutOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcasesensitivespacingonselector?language=objc)
 pub const kCaseSensitiveSpacingOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcasesensitivespacingoffselector?language=objc)
 pub const kCaseSensitiveSpacingOffSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalternatehorizkanaonselector?language=objc)
 pub const kAlternateHorizKanaOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalternatehorizkanaoffselector?language=objc)
 pub const kAlternateHorizKanaOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalternatevertkanaonselector?language=objc)
 pub const kAlternateVertKanaOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kalternatevertkanaoffselector?language=objc)
 pub const kAlternateVertKanaOffSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/knostylisticalternatesselector?language=objc)
 pub const kNoStylisticAlternatesSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltoneonselector?language=objc)
 pub const kStylisticAltOneOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltoneoffselector?language=objc)
 pub const kStylisticAltOneOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwoonselector?language=objc)
 pub const kStylisticAltTwoOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwooffselector?language=objc)
 pub const kStylisticAltTwoOffSelector: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltthreeonselector?language=objc)
 pub const kStylisticAltThreeOnSelector: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltthreeoffselector?language=objc)
 pub const kStylisticAltThreeOffSelector: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfouronselector?language=objc)
 pub const kStylisticAltFourOnSelector: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfouroffselector?language=objc)
 pub const kStylisticAltFourOffSelector: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfiveonselector?language=objc)
 pub const kStylisticAltFiveOnSelector: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfiveoffselector?language=objc)
 pub const kStylisticAltFiveOffSelector: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsixonselector?language=objc)
 pub const kStylisticAltSixOnSelector: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsixoffselector?language=objc)
 pub const kStylisticAltSixOffSelector: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsevenonselector?language=objc)
 pub const kStylisticAltSevenOnSelector: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsevenoffselector?language=objc)
 pub const kStylisticAltSevenOffSelector: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalteightonselector?language=objc)
 pub const kStylisticAltEightOnSelector: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalteightoffselector?language=objc)
 pub const kStylisticAltEightOffSelector: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltnineonselector?language=objc)
 pub const kStylisticAltNineOnSelector: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltnineoffselector?language=objc)
 pub const kStylisticAltNineOffSelector: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttenonselector?language=objc)
 pub const kStylisticAltTenOnSelector: c_uint = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttenoffselector?language=objc)
 pub const kStylisticAltTenOffSelector: c_uint = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltelevenonselector?language=objc)
 pub const kStylisticAltElevenOnSelector: c_uint = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltelevenoffselector?language=objc)
 pub const kStylisticAltElevenOffSelector: c_uint = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwelveonselector?language=objc)
 pub const kStylisticAltTwelveOnSelector: c_uint = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwelveoffselector?language=objc)
 pub const kStylisticAltTwelveOffSelector: c_uint = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltthirteenonselector?language=objc)
 pub const kStylisticAltThirteenOnSelector: c_uint = 26;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltthirteenoffselector?language=objc)
 pub const kStylisticAltThirteenOffSelector: c_uint = 27;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfourteenonselector?language=objc)
 pub const kStylisticAltFourteenOnSelector: c_uint = 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfourteenoffselector?language=objc)
 pub const kStylisticAltFourteenOffSelector: c_uint = 29;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfifteenonselector?language=objc)
 pub const kStylisticAltFifteenOnSelector: c_uint = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltfifteenoffselector?language=objc)
 pub const kStylisticAltFifteenOffSelector: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsixteenonselector?language=objc)
 pub const kStylisticAltSixteenOnSelector: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltsixteenoffselector?language=objc)
 pub const kStylisticAltSixteenOffSelector: c_uint = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltseventeenonselector?language=objc)
 pub const kStylisticAltSeventeenOnSelector: c_uint = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltseventeenoffselector?language=objc)
 pub const kStylisticAltSeventeenOffSelector: c_uint = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalteighteenonselector?language=objc)
 pub const kStylisticAltEighteenOnSelector: c_uint = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalteighteenoffselector?language=objc)
 pub const kStylisticAltEighteenOffSelector: c_uint = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltnineteenonselector?language=objc)
 pub const kStylisticAltNineteenOnSelector: c_uint = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticaltnineteenoffselector?language=objc)
 pub const kStylisticAltNineteenOffSelector: c_uint = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwentyonselector?language=objc)
 pub const kStylisticAltTwentyOnSelector: c_uint = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstylisticalttwentyoffselector?language=objc)
 pub const kStylisticAltTwentyOffSelector: c_uint = 41;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualalternatesonselector?language=objc)
 pub const kContextualAlternatesOnSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualalternatesoffselector?language=objc)
 pub const kContextualAlternatesOffSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kswashalternatesonselector?language=objc)
 pub const kSwashAlternatesOnSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kswashalternatesoffselector?language=objc)
 pub const kSwashAlternatesOffSelector: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualswashalternatesonselector?language=objc)
 pub const kContextualSwashAlternatesOnSelector: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kcontextualswashalternatesoffselector?language=objc)
 pub const kContextualSwashAlternatesOffSelector: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdefaultlowercaseselector?language=objc)
 pub const kDefaultLowerCaseSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klowercasesmallcapsselector?language=objc)
 pub const kLowerCaseSmallCapsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klowercasepetitecapsselector?language=objc)
 pub const kLowerCasePetiteCapsSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdefaultuppercaseselector?language=objc)
 pub const kDefaultUpperCaseSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kuppercasesmallcapsselector?language=objc)
 pub const kUpperCaseSmallCapsSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kuppercasepetitecapsselector?language=objc)
 pub const kUpperCasePetiteCapsSelector: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/khalfwidthcjkromanselector?language=objc)
 pub const kHalfWidthCJKRomanSelector: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproportionalcjkromanselector?language=objc)
 pub const kProportionalCJKRomanSelector: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kdefaultcjkromanselector?language=objc)
 pub const kDefaultCJKRomanSelector: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kfullwidthcjkromanselector?language=objc)
 pub const kFullWidthCJKRomanSelector: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookupsimplearray?language=objc)
 pub const kSFNTLookupSimpleArray: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookupsegmentsingle?language=objc)
 pub const kSFNTLookupSegmentSingle: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookupsegmentarray?language=objc)
 pub const kSFNTLookupSegmentArray: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookupsingletable?language=objc)
 pub const kSFNTLookupSingleTable: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookuptrimmedarray?language=objc)
 pub const kSFNTLookupTrimmedArray: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ksfntlookupvector?language=objc)
 pub const kSFNTLookupVector: c_uint = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptableformat?language=objc)
 pub type SFNTLookupTableFormat = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupvalue?language=objc)
 pub type SFNTLookupValue = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupoffset?language=objc)
 pub type SFNTLookupOffset = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupkind?language=objc)
 pub type SFNTLookupKind = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupbinarysearchheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupBinarySearchHeader {
@@ -680,7 +379,6 @@ unsafe impl RefEncode for SFNTLookupBinarySearchHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuparrayheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupArrayHeader {
@@ -698,7 +396,6 @@ unsafe impl RefEncode for SFNTLookupArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptrimmedarrayheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupTrimmedArrayHeader {
@@ -724,7 +421,6 @@ unsafe impl RefEncode for SFNTLookupTrimmedArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupvectorheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupVectorHeader {
@@ -752,7 +448,6 @@ unsafe impl RefEncode for SFNTLookupVectorHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegment?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSegment {
@@ -774,7 +469,6 @@ unsafe impl RefEncode for SFNTLookupSegment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegmentheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSegmentHeader {
@@ -798,7 +492,6 @@ unsafe impl RefEncode for SFNTLookupSegmentHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingle?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSingle {
@@ -817,7 +510,6 @@ unsafe impl RefEncode for SFNTLookupSingle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingleheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSingleHeader {
@@ -841,7 +533,6 @@ unsafe impl RefEncode for SFNTLookupSingleHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupformatspecificheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union SFNTLookupFormatSpecificHeader {
@@ -871,7 +562,6 @@ unsafe impl RefEncode for SFNTLookupFormatSpecificHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct SFNTLookupTable {
@@ -895,38 +585,24 @@ unsafe impl RefEncode for SFNTLookupTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptableptr?language=objc)
 pub type SFNTLookupTablePtr = *mut SFNTLookupTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptablehandle?language=objc)
 pub type SFNTLookupTableHandle = *mut SFNTLookupTablePtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstclassendoftext?language=objc)
 pub const kSTClassEndOfText: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstclassoutofbounds?language=objc)
 pub const kSTClassOutOfBounds: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstclassdeletedglyph?language=objc)
 pub const kSTClassDeletedGlyph: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstclassendofline?language=objc)
 pub const kSTClassEndOfLine: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstsetmark?language=objc)
 pub const kSTSetMark: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstnoadvance?language=objc)
 pub const kSTNoAdvance: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstmarkend?language=objc)
 pub const kSTMarkEnd: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstligactionmask?language=objc)
 pub const kSTLigActionMask: c_uint = 0x3FFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstrearrverbmask?language=objc)
 pub const kSTRearrVerbMask: c_uint = 0x000F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stclass?language=objc)
 pub type STClass = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentryindex?language=objc)
 pub type STEntryIndex = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STHeader {
@@ -956,7 +632,6 @@ unsafe impl RefEncode for STHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stclasstable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STClassTable {
@@ -978,7 +653,6 @@ unsafe impl RefEncode for STClassTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentryzero?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryZero {
@@ -996,7 +670,6 @@ unsafe impl RefEncode for STEntryZero {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentryone?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryOne {
@@ -1018,7 +691,6 @@ unsafe impl RefEncode for STEntryOne {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentrytwo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryTwo {
@@ -1046,19 +718,14 @@ unsafe impl RefEncode for STEntryTwo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstxhasligaction?language=objc)
 pub const kSTXHasLigAction: c_uint = 0x2000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxclass?language=objc)
 pub type STXClass = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxstateindex?language=objc)
 pub type STXStateIndex = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentryindex?language=objc)
 pub type STXEntryIndex = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXHeader {
@@ -1086,10 +753,8 @@ unsafe impl RefEncode for STXHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxclasstable?language=objc)
 pub type STXClassTable = SFNTLookupTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentryzero?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryZero {
@@ -1110,7 +775,6 @@ unsafe impl RefEncode for STXEntryZero {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentryone?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryOne {
@@ -1132,7 +796,6 @@ unsafe impl RefEncode for STXEntryOne {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentrytwo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryTwo {
@@ -1160,19 +823,13 @@ unsafe impl RefEncode for STXEntryTwo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kstkcrossstreamreset?language=objc)
 pub const kSTKCrossStreamReset: c_uint = 0x2000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klcartag?language=objc)
 pub const kLCARTag: c_uint = 0x6C636172;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klcarcurrentversion?language=objc)
 pub const kLCARCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klcarlinearformat?language=objc)
 pub const kLCARLinearFormat: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/klcarctlpointformat?language=objc)
 pub const kLCARCtlPointFormat: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcaretclassentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LcarCaretClassEntry {
@@ -1193,7 +850,6 @@ unsafe impl RefEncode for LcarCaretClassEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcarettable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct LcarCaretTable {
@@ -1219,59 +875,35 @@ unsafe impl RefEncode for LcarCaretTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcarettableptr?language=objc)
 pub type LcarCaretTablePtr = *mut LcarCaretTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjusttag?language=objc)
 pub const kJUSTTag: c_uint = 0x6A757374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustcurrentversion?language=objc)
 pub const kJUSTCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjuststandardformat?language=objc)
 pub const kJUSTStandardFormat: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustnoglyphcode?language=objc)
 pub const kJUSTnoGlyphcode: c_uint = 0xFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcdecompositionaction?language=objc)
 pub const kJUSTpcDecompositionAction: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcunconditionaladdaction?language=objc)
 pub const kJUSTpcUnconditionalAddAction: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcconditionaladdaction?language=objc)
 pub const kJUSTpcConditionalAddAction: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcglyphstretchaction?language=objc)
 pub const kJUSTpcGlyphStretchAction: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcductilityaction?language=objc)
 pub const kJUSTpcDuctilityAction: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustpcglyphrepeataddaction?language=objc)
 pub const kJUSTpcGlyphRepeatAddAction: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustkashidapriority?language=objc)
 pub const kJUSTKashidaPriority: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustspacepriority?language=objc)
 pub const kJUSTSpacePriority: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustletterpriority?language=objc)
 pub const kJUSTLetterPriority: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustnullpriority?language=objc)
 pub const kJUSTNullPriority: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustprioritycount?language=objc)
 pub const kJUSTPriorityCount: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustoverridepriority?language=objc)
 pub const kJUSTOverridePriority: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustoverridelimits?language=objc)
 pub const kJUSTOverrideLimits: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustoverrideunlimited?language=objc)
 pub const kJUSTOverrideUnlimited: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustunlimited?language=objc)
 pub const kJUSTUnlimited: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kjustprioritymask?language=objc)
 pub const kJUSTPriorityMask: c_uint = 0x0003;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcactiontype?language=objc)
 pub type JustPCActionType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justificationflags?language=objc)
 pub type JustificationFlags = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcdecompositionaction?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCDecompositionAction {
@@ -1301,10 +933,8 @@ unsafe impl RefEncode for JustPCDecompositionAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcunconditionaladdaction?language=objc)
 pub type JustPCUnconditionalAddAction = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcconditionaladdaction?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCConditionalAddAction {
@@ -1326,7 +956,6 @@ unsafe impl RefEncode for JustPCConditionalAddAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcductilityaction?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCDuctilityAction {
@@ -1354,7 +983,6 @@ unsafe impl RefEncode for JustPCDuctilityAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcglyphrepeataddaction?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCGlyphRepeatAddAction {
@@ -1375,7 +1003,6 @@ unsafe impl RefEncode for JustPCGlyphRepeatAddAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcactionsubrecord?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCActionSubrecord {
@@ -1403,7 +1030,6 @@ unsafe impl RefEncode for JustPCActionSubrecord {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcaction?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCAction {
@@ -1424,7 +1050,6 @@ unsafe impl RefEncode for JustPCAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justwidthdeltaentry?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustWidthDeltaEntry {
@@ -1458,7 +1083,6 @@ unsafe impl RefEncode for JustWidthDeltaEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justwidthdeltagroup?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustWidthDeltaGroup {
@@ -1479,7 +1103,6 @@ unsafe impl RefEncode for JustWidthDeltaGroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpostcomptable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct JustPostcompTable {
@@ -1497,7 +1120,6 @@ unsafe impl RefEncode for JustPostcompTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justdirectiontable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct JustDirectionTable {
@@ -1525,7 +1147,6 @@ unsafe impl RefEncode for JustDirectionTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/justtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustTable {
@@ -1553,19 +1174,13 @@ unsafe impl RefEncode for JustTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kopbdtag?language=objc)
 pub const kOPBDTag: c_uint = 0x6F706264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kopbdcurrentversion?language=objc)
 pub const kOPBDCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kopbddistanceformat?language=objc)
 pub const kOPBDDistanceFormat: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kopbdcontrolpointformat?language=objc)
 pub const kOPBDControlPointFormat: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdtableformat?language=objc)
 pub type OpbdTableFormat = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdsidevalues?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct OpbdSideValues {
@@ -1593,7 +1208,6 @@ unsafe impl RefEncode for OpbdSideValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct OpbdTable {
@@ -1619,106 +1233,57 @@ unsafe impl RefEncode for OpbdTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorttag?language=objc)
 pub const kMORTTag: c_int = 0x6D6F7274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrentversion?language=objc)
 pub const kMORTCurrentVersion: c_int = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcoververtical?language=objc)
 pub const kMORTCoverVertical: c_int = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcoverdescending?language=objc)
 pub const kMORTCoverDescending: c_int = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcoverignorevertical?language=objc)
 pub const kMORTCoverIgnoreVertical: c_int = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcovertypemask?language=objc)
 pub const kMORTCoverTypeMask: c_int = 0x000F;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortrearrangementtype?language=objc)
 pub const kMORTRearrangementType: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcontextualtype?language=objc)
 pub const kMORTContextualType: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligaturetype?language=objc)
 pub const kMORTLigatureType: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortswashtype?language=objc)
 pub const kMORTSwashType: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortinsertiontype?language=objc)
 pub const kMORTInsertionType: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortliglastaction?language=objc)
 pub const kMORTLigLastAction: c_int = -2147483648;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligstoreligature?language=objc)
 pub const kMORTLigStoreLigature: c_int = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligformoffsetmask?language=objc)
 pub const kMORTLigFormOffsetMask: c_int = 0x3FFFFFFF;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortligformoffsetshift?language=objc)
 pub const kMORTLigFormOffsetShift: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortranoaction?language=objc)
 pub const kMORTraNoAction: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortraxa?language=objc)
 pub const kMORTraxA: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradx?language=objc)
 pub const kMORTraDx: c_int = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradxa?language=objc)
 pub const kMORTraDxA: c_int = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortraxab?language=objc)
 pub const kMORTraxAB: c_int = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortraxba?language=objc)
 pub const kMORTraxBA: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortracdx?language=objc)
 pub const kMORTraCDx: c_int = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradcx?language=objc)
 pub const kMORTraDCx: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortracdxa?language=objc)
 pub const kMORTraCDxA: c_int = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradcxa?language=objc)
 pub const kMORTraDCxA: c_int = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradxab?language=objc)
 pub const kMORTraDxAB: c_int = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradxba?language=objc)
 pub const kMORTraDxBA: c_int = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortracdxab?language=objc)
 pub const kMORTraCDxAB: c_int = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortracdxba?language=objc)
 pub const kMORTraCDxBA: c_int = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradcxab?language=objc)
 pub const kMORTraDCxAB: c_int = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortradcxba?language=objc)
 pub const kMORTraDCxBA: c_int = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortdoinsertionsbefore?language=objc)
 pub const kMORTDoInsertionsBefore: c_int = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortissplitvowelpiece?language=objc)
 pub const kMORTIsSplitVowelPiece: c_int = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortinsertionscountmask?language=objc)
 pub const kMORTInsertionsCountMask: c_int = 0x3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrinsertkashidalike?language=objc)
 pub const kMORTCurrInsertKashidaLike: c_int = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkinsertkashidalike?language=objc)
 pub const kMORTMarkInsertKashidaLike: c_int = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrinsertbefore?language=objc)
 pub const kMORTCurrInsertBefore: c_int = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkinsertbefore?language=objc)
 pub const kMORTMarkInsertBefore: c_int = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkjusttablecountmask?language=objc)
 pub const kMORTMarkJustTableCountMask: c_int = 0x3F80;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkjusttablecountshift?language=objc)
 pub const kMORTMarkJustTableCountShift: c_int = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrjusttablecountmask?language=objc)
 pub const kMORTCurrJustTableCountMask: c_int = 0x007F;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrjusttablecountshift?language=objc)
 pub const kMORTCurrJustTableCountShift: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrinsertcountmask?language=objc)
 pub const kMORTCurrInsertCountMask: c_int = 0x03E0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortcurrinsertcountshift?language=objc)
 pub const kMORTCurrInsertCountShift: c_int = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkinsertcountmask?language=objc)
 pub const kMORTMarkInsertCountMask: c_int = 0x001F;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmortmarkinsertcountshift?language=objc)
 pub const kMORTMarkInsertCountShift: c_int = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortsubtablemaskflags?language=objc)
 pub type MortSubtableMaskFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortligatureactionentry?language=objc)
 pub type MortLigatureActionEntry = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortrearrangementsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortRearrangementSubtable {
@@ -1736,7 +1301,6 @@ unsafe impl RefEncode for MortRearrangementSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortcontextualsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortContextualSubtable {
@@ -1757,7 +1321,6 @@ unsafe impl RefEncode for MortContextualSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortligaturesubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortLigatureSubtable {
@@ -1785,7 +1348,6 @@ unsafe impl RefEncode for MortLigatureSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortswashsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct MortSwashSubtable {
@@ -1803,7 +1365,6 @@ unsafe impl RefEncode for MortSwashSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortinsertionsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortInsertionSubtable {
@@ -1820,7 +1381,6 @@ unsafe impl RefEncode for MortInsertionSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortspecificsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union MortSpecificSubtable {
@@ -1850,7 +1410,6 @@ unsafe impl RefEncode for MortSpecificSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortsubtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct MortSubtable {
@@ -1878,7 +1437,6 @@ unsafe impl RefEncode for MortSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortfeatureentry?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortFeatureEntry {
@@ -1906,7 +1464,6 @@ unsafe impl RefEncode for MortFeatureEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortchain?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortChain {
@@ -1936,7 +1493,6 @@ unsafe impl RefEncode for MortChain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morttable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortTable {
@@ -1962,22 +1518,14 @@ unsafe impl RefEncode for MortTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxtag?language=objc)
 pub const kMORXTag: c_int = 0x6D6F7278;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcurrentversion?language=objc)
 pub const kMORXCurrentVersion: c_int = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoververtical?language=objc)
 pub const kMORXCoverVertical: c_int = -2147483648;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoverdescending?language=objc)
 pub const kMORXCoverDescending: c_int = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoverignorevertical?language=objc)
 pub const kMORXCoverIgnoreVertical: c_int = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcoverlogicalorder?language=objc)
 pub const kMORXCoverLogicalOrder: c_int = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kmorxcovertypemask?language=objc)
 pub const kMORXCoverTypeMask: c_int = 0x000000FF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxrearrangementsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxRearrangementSubtable {
@@ -1995,7 +1543,6 @@ unsafe impl RefEncode for MorxRearrangementSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxcontextualsubtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxContextualSubtable {
@@ -2016,7 +1563,6 @@ unsafe impl RefEncode for MorxContextualSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxligaturesubtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxLigatureSubtable {
@@ -2044,7 +1590,6 @@ unsafe impl RefEncode for MorxLigatureSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxinsertionsubtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxInsertionSubtable {
@@ -2065,7 +1610,6 @@ unsafe impl RefEncode for MorxInsertionSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxspecificsubtable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union MorxSpecificSubtable {
@@ -2095,7 +1639,6 @@ unsafe impl RefEncode for MorxSpecificSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxsubtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct MorxSubtable {
@@ -2123,7 +1666,6 @@ unsafe impl RefEncode for MorxSubtable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxchain?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxChain {
@@ -2153,7 +1695,6 @@ unsafe impl RefEncode for MorxChain {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxTable {
@@ -2179,78 +1720,43 @@ unsafe impl RefEncode for MorxTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproptag?language=objc)
 pub const kPROPTag: c_uint = 0x70726F70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropcurrentversion?language=objc)
 pub const kPROPCurrentVersion: c_uint = 0x00030000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproppairoffsetshift?language=objc)
 pub const kPROPPairOffsetShift: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproppairoffsetsign?language=objc)
 pub const kPROPPairOffsetSign: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropisfloatermask?language=objc)
 pub const kPROPIsFloaterMask: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropcanhangltmask?language=objc)
 pub const kPROPCanHangLTMask: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropcanhangrbmask?language=objc)
 pub const kPROPCanHangRBMask: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropuserlpairmask?language=objc)
 pub const kPROPUseRLPairMask: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproppairoffsetmask?language=objc)
 pub const kPROPPairOffsetMask: c_uint = 0x0F00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproprightconnectmask?language=objc)
 pub const kPROPRightConnectMask: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropzeroreserved?language=objc)
 pub const kPROPZeroReserved: c_uint = 0x0060;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropdirectionmask?language=objc)
 pub const kPROPDirectionMask: c_uint = 0x001F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropldirectionclass?language=objc)
 pub const kPROPLDirectionClass: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproprdirectionclass?language=objc)
 pub const kPROPRDirectionClass: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropaldirectionclass?language=objc)
 pub const kPROPALDirectionClass: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropendirectionclass?language=objc)
 pub const kPROPENDirectionClass: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropesdirectionclass?language=objc)
 pub const kPROPESDirectionClass: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropetdirectionclass?language=objc)
 pub const kPROPETDirectionClass: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropandirectionclass?language=objc)
 pub const kPROPANDirectionClass: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropcsdirectionclass?language=objc)
 pub const kPROPCSDirectionClass: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproppsdirectionclass?language=objc)
 pub const kPROPPSDirectionClass: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropsdirectionclass?language=objc)
 pub const kPROPSDirectionClass: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropwsdirectionclass?language=objc)
 pub const kPROPWSDirectionClass: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropondirectionclass?language=objc)
 pub const kPROPONDirectionClass: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropsendirectionclass?language=objc)
 pub const kPROPSENDirectionClass: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproplredirectionclass?language=objc)
 pub const kPROPLREDirectionClass: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproplrodirectionclass?language=objc)
 pub const kPROPLRODirectionClass: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproprledirectionclass?language=objc)
 pub const kPROPRLEDirectionClass: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproprlodirectionclass?language=objc)
 pub const kPROPRLODirectionClass: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kproppdfdirectionclass?language=objc)
 pub const kPROPPDFDirectionClass: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropnsmdirectionclass?language=objc)
 pub const kPROPNSMDirectionClass: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropbndirectionclass?language=objc)
 pub const kPROPBNDirectionClass: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kpropnumdirectionclasses?language=objc)
 pub const kPROPNumDirectionClasses: c_uint = 20;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/propcharproperties?language=objc)
 pub type PropCharProperties = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/proptable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct PropTable {
@@ -2278,7 +1784,6 @@ unsafe impl RefEncode for PropTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/proplookupsegment?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PropLookupSegment {
@@ -2300,7 +1805,6 @@ unsafe impl RefEncode for PropLookupSegment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/proplookupsingle?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PropLookupSingle {
@@ -2321,17 +1825,12 @@ unsafe impl RefEncode for PropLookupSingle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktraktag?language=objc)
 pub const kTRAKTag: c_uint = 0x7472616B;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktrakcurrentversion?language=objc)
 pub const kTRAKCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ktrakuniformformat?language=objc)
 pub const kTRAKUniformFormat: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/trakvalue?language=objc)
 pub type TrakValue = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktableentry?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTableEntry {
@@ -2353,7 +1852,6 @@ unsafe impl RefEncode for TrakTableEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktabledata?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTableData {
@@ -2381,7 +1879,6 @@ unsafe impl RefEncode for TrakTableData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTable {
@@ -2409,60 +1906,36 @@ unsafe impl RefEncode for TrakTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerntag?language=objc)
 pub const kKERNTag: c_uint = 0x6B65726E;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerncurrentversion?language=objc)
 pub const kKERNCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernvertical?language=objc)
 pub const kKERNVertical: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernresetcrossstream?language=objc)
 pub const kKERNResetCrossStream: c_uint = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerncrossstream?language=objc)
 pub const kKERNCrossStream: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernvariation?language=objc)
 pub const kKERNVariation: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernunusedbits?language=objc)
 pub const kKERNUnusedBits: c_uint = 0x1F00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernformatmask?language=objc)
 pub const kKERNFormatMask: c_uint = 0x00FF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernorderedlist?language=objc)
 pub const kKERNOrderedList: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernstatetable?language=objc)
 pub const kKERNStateTable: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernsimplearray?language=objc)
 pub const kKERNSimpleArray: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernindexarray?language=objc)
 pub const kKERNIndexArray: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernlinestart?language=objc)
 pub const kKERNLineStart: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernlineendkerning?language=objc)
 pub const kKERNLineEndKerning: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernnocrosskerning?language=objc)
 pub const kKERNNoCrossKerning: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernnotesrequested?language=objc)
 pub const kKERNNotesRequested: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernnostakenote?language=objc)
 pub const kKERNNoStakeNote: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerncrossstreamresetnote?language=objc)
 pub const kKERNCrossStreamResetNote: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkernnotapplied?language=objc)
 pub const kKERNNotApplied: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableformat?language=objc)
 pub type KernTableFormat = u8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableinfo?language=objc)
 pub type KernSubtableInfo = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernkerningvalue?language=objc)
 pub type KernKerningValue = i16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernarrayoffset?language=objc)
 pub type KernArrayOffset = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0header?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernVersion0Header {
@@ -2484,7 +1957,6 @@ unsafe impl RefEncode for KernVersion0Header {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernTableHeader {
@@ -2506,13 +1978,10 @@ unsafe impl RefEncode for KernTableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableheaderptr?language=objc)
 pub type KernTableHeaderPtr = *mut KernTableHeader;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableheaderhandle?language=objc)
 pub type KernTableHeaderHandle = *mut KernTableHeaderPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernkerningpair?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernKerningPair {
@@ -2531,7 +2000,6 @@ unsafe impl RefEncode for KernKerningPair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOrderedListEntry {
@@ -2552,10 +2020,8 @@ unsafe impl RefEncode for KernOrderedListEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistentryptr?language=objc)
 pub type KernOrderedListEntryPtr = *mut KernOrderedListEntry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOrderedListHeader {
@@ -2585,7 +2051,6 @@ unsafe impl RefEncode for KernOrderedListHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernstateheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernStateHeader {
@@ -2607,7 +2072,6 @@ unsafe impl RefEncode for KernStateHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernstateentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernStateEntry {
@@ -2626,7 +2090,6 @@ unsafe impl RefEncode for KernStateEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernoffsettable?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOffsetTable {
@@ -2652,10 +2115,8 @@ unsafe impl RefEncode for KernOffsetTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernoffsettableptr?language=objc)
 pub type KernOffsetTablePtr = *mut KernOffsetTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsimplearrayheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernSimpleArrayHeader {
@@ -2685,7 +2146,6 @@ unsafe impl RefEncode for KernSimpleArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernindexarrayheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernIndexArrayHeader {
@@ -2723,7 +2183,6 @@ unsafe impl RefEncode for KernIndexArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernformatspecificheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union KernFormatSpecificHeader {
@@ -2751,7 +2210,6 @@ unsafe impl RefEncode for KernFormatSpecificHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0subtableheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct KernVersion0SubtableHeader {
@@ -2779,7 +2237,6 @@ unsafe impl RefEncode for KernVersion0SubtableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct KernSubtableHeader {
@@ -2807,77 +2264,45 @@ unsafe impl RefEncode for KernSubtableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsubtableheaderptr?language=objc)
 pub type KernSubtableHeaderPtr = *mut KernSubtableHeader;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxtag?language=objc)
 pub const kKERXTag: c_int = 0x6B657278;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcurrentversion?language=objc)
 pub const kKERXCurrentVersion: c_int = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxvertical?language=objc)
 pub const kKERXVertical: c_int = -2147483648;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxresetcrossstream?language=objc)
 pub const kKERXResetCrossStream: c_int = 0x8000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcrossstream?language=objc)
 pub const kKERXCrossStream: c_int = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxvariation?language=objc)
 pub const kKERXVariation: c_int = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxdescending?language=objc)
 pub const kKERXDescending: c_int = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxunusedbits?language=objc)
 pub const kKERXUnusedBits: c_int = 0x0FFFFF00;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxformatmask?language=objc)
 pub const kKERXFormatMask: c_int = 0x000000FF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxorderedlist?language=objc)
 pub const kKERXOrderedList: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxstatetable?language=objc)
 pub const kKERXStateTable: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxsimplearray?language=objc)
 pub const kKERXSimpleArray: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcontrolpoint?language=objc)
 pub const kKERXControlPoint: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxindexarray?language=objc)
 pub const kKERXIndexArray: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxlinestart?language=objc)
 pub const kKERXLineStart: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxlineendkerning?language=objc)
 pub const kKERXLineEndKerning: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxnocrosskerning?language=objc)
 pub const kKERXNoCrossKerning: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxnotesrequested?language=objc)
 pub const kKERXNotesRequested: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxnostakenote?language=objc)
 pub const kKERXNoStakeNote: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxcrossstreamresetnote?language=objc)
 pub const kKERXCrossStreamResetNote: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxnotapplied?language=objc)
 pub const kKERXNotApplied: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxactiontypemask?language=objc)
 pub const kKERXActionTypeMask: c_uint = 3 << 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxactiontypecontrolpoints?language=objc)
 pub const kKERXActionTypeControlPoints: c_uint = 0 << 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxactiontypeanchorpoints?language=objc)
 pub const kKERXActionTypeAnchorPoints: c_uint = 1 << 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxactiontypecoordinates?language=objc)
 pub const kKERXActionTypeCoordinates: c_uint = 2 << 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxunusedflags?language=objc)
 pub const kKERXUnusedFlags: c_uint = 0x3F000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxactionoffsetmask?language=objc)
 pub const kKERXActionOffsetMask: c_uint = 0x00FFFFFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kkerxvaluesarelong?language=objc)
 pub const kKERXValuesAreLong: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtablecoverage?language=objc)
 pub type KerxSubtableCoverage = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxarrayoffset?language=objc)
 pub type KerxArrayOffset = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxtableheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxTableHeader {
@@ -2899,13 +2324,10 @@ unsafe impl RefEncode for KerxTableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxtableheaderptr?language=objc)
 pub type KerxTableHeaderPtr = *mut KerxTableHeader;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxtableheaderhandle?language=objc)
 pub type KerxTableHeaderHandle = *mut KerxTableHeaderPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxkerningpair?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxKerningPair {
@@ -2924,7 +2346,6 @@ unsafe impl RefEncode for KerxKerningPair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxOrderedListEntry {
@@ -2945,10 +2366,8 @@ unsafe impl RefEncode for KerxOrderedListEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistentryptr?language=objc)
 pub type KerxOrderedListEntryPtr = *mut KerxOrderedListEntry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxOrderedListHeader {
@@ -2978,7 +2397,6 @@ unsafe impl RefEncode for KerxOrderedListHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxstateheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxStateHeader {
@@ -3000,7 +2418,6 @@ unsafe impl RefEncode for KerxStateHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxstateentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxStateEntry {
@@ -3022,7 +2439,6 @@ unsafe impl RefEncode for KerxStateEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointHeader {
@@ -3044,7 +2460,6 @@ unsafe impl RefEncode for KerxControlPointHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointEntry {
@@ -3066,7 +2481,6 @@ unsafe impl RefEncode for KerxControlPointEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointaction?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointAction {
@@ -3087,7 +2501,6 @@ unsafe impl RefEncode for KerxControlPointAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxanchorpointaction?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxAnchorPointAction {
@@ -3106,7 +2519,6 @@ unsafe impl RefEncode for KerxAnchorPointAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcoordinateaction?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxCoordinateAction {
@@ -3134,7 +2546,6 @@ unsafe impl RefEncode for KerxCoordinateAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsimplearrayheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxSimpleArrayHeader {
@@ -3164,7 +2575,6 @@ unsafe impl RefEncode for KerxSimpleArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxindexarrayheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxIndexArrayHeader {
@@ -3198,7 +2608,6 @@ unsafe impl RefEncode for KerxIndexArrayHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxformatspecificheader?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union KerxFormatSpecificHeader {
@@ -3228,7 +2637,6 @@ unsafe impl RefEncode for KerxFormatSpecificHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtableheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct KerxSubtableHeader {
@@ -3256,50 +2664,30 @@ unsafe impl RefEncode for KerxSubtableHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsubtableheaderptr?language=objc)
 pub type KerxSubtableHeaderPtr = *mut KerxSubtableHeader;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslntag?language=objc)
 pub const kBSLNTag: c_uint = 0x62736C6E;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslncurrentversion?language=objc)
 pub const kBSLNCurrentVersion: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslndistanceformatnomap?language=objc)
 pub const kBSLNDistanceFormatNoMap: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslndistanceformatwithmap?language=objc)
 pub const kBSLNDistanceFormatWithMap: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslncontrolpointformatnomap?language=objc)
 pub const kBSLNControlPointFormatNoMap: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslncontrolpointformatwithmap?language=objc)
 pub const kBSLNControlPointFormatWithMap: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnromanbaseline?language=objc)
 pub const kBSLNRomanBaseline: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnideographiccenterbaseline?language=objc)
 pub const kBSLNIdeographicCenterBaseline: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnideographiclowbaseline?language=objc)
 pub const kBSLNIdeographicLowBaseline: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnhangingbaseline?language=objc)
 pub const kBSLNHangingBaseline: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnmathbaseline?language=objc)
 pub const kBSLNMathBaseline: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnideographichighbaseline?language=objc)
 pub const kBSLNIdeographicHighBaseline: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnlastbaseline?language=objc)
 pub const kBSLNLastBaseline: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnnumbaselineclasses?language=objc)
 pub const kBSLNNumBaselineClasses: c_uint = kBSLNLastBaseline + 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnnobaseline?language=objc)
 pub const kBSLNNoBaseline: c_uint = 255;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kbslnnobaselineoverride?language=objc)
 pub const kBSLNNoBaselineOverride: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnbaselineclass?language=objc)
 pub type BslnBaselineClass = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnbaselinerecord?language=objc)
 pub type BslnBaselineRecord = [Fixed; 32];
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat0part?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BslnFormat0Part {
@@ -3316,7 +2704,6 @@ unsafe impl RefEncode for BslnFormat0Part {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat1part?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct BslnFormat1Part {
@@ -3337,7 +2724,6 @@ unsafe impl RefEncode for BslnFormat1Part {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat2part?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BslnFormat2Part {
@@ -3356,7 +2742,6 @@ unsafe impl RefEncode for BslnFormat2Part {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat3part?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct BslnFormat3Part {
@@ -3382,7 +2767,6 @@ unsafe impl RefEncode for BslnFormat3Part {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformatunion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union BslnFormatUnion {
@@ -3410,10 +2794,8 @@ unsafe impl RefEncode for BslnFormatUnion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntableformat?language=objc)
 pub type BslnTableFormat = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct BslnTable {
@@ -3441,10 +2823,8 @@ unsafe impl RefEncode for BslnTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslntableptr?language=objc)
 pub type BslnTablePtr = *mut BslnTable;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/almxheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct ALMXHeader {
@@ -3476,7 +2856,6 @@ unsafe impl RefEncode for ALMXHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/almxglyphentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ALMXGlyphEntry {
@@ -3506,7 +2885,6 @@ unsafe impl RefEncode for ALMXGlyphEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/rotaheader?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy)]
 pub struct ROTAHeader {
@@ -3538,7 +2916,6 @@ unsafe impl RefEncode for ROTAHeader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/rotaglyphentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ROTAGlyphEntry {
@@ -3560,10 +2937,8 @@ unsafe impl RefEncode for ROTAGlyphEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kankrcurrentversion?language=objc)
 pub const kANKRCurrentVersion: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/anchorpoint?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnchorPoint {
@@ -3581,7 +2956,6 @@ unsafe impl RefEncode for AnchorPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/anchorpointtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnchorPointTable {
@@ -3602,7 +2976,6 @@ unsafe impl RefEncode for AnchorPointTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ankrtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnkrTable {
@@ -3630,10 +3003,8 @@ unsafe impl RefEncode for AnkrTable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kltagcurrentversion?language=objc)
 pub const kLTAGCurrentVersion: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ltagstringrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LtagStringRange {
@@ -3652,7 +3023,6 @@ unsafe impl RefEncode for LtagStringRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ltagtable?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LtagTable {

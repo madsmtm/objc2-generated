@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridedriver?language=objc)
+    /// Identifying information about a driver of a ride service.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRideDriver`](https://developer.apple.com/documentation/intents/inridedriver) object encapsulates information about a driver associated with your ride service. This object stores basic information about the driver, including the driver’s name, picture, and phone number. You create an [`INRideDriver`](https://developer.apple.com/documentation/intents/inridedriver) object and assign it to the [`driver`](https://developer.apple.com/documentation/intents/inridestatus/driver) property of a [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object when the user books a ride or when you update the status of an existing ride. SiriKit displays the driver information to the user at appropriate times.
+    ///
+    /// This class is a subclass of [`INPerson`](https://developer.apple.com/documentation/intents/inperson) and contains properties that are relevant only for ride-booking services. For additional driver properties, see [`INPerson`](https://developer.apple.com/documentation/intents/inperson).
+    ///
+    ///
     #[unsafe(super(INPerson, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INPerson")]

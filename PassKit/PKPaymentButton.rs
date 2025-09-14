@@ -13,7 +13,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbutton?language=objc)
+    /// An object that displays a button either to trigger payments through Apple Pay or to prompt the user to set up a card.
+    ///
+    /// ## Overview
+    ///
+    /// After creating a [`PKPaymentButton`](https://developer.apple.com/documentation/passkit/pkpaymentbutton) object, you choose the type and style of button, and the system provides a control with the correct content and appearance. See the [Human Interface Guidelines > Apple Pay](https://developer.apple.com/design/human-interface-guidelines/apple-pay/overview/buttons-and-marks/) for more information.
+    ///
+    /// To trigger a payment through Apple Pay in a WatchKit app, use [`WKInterfacePaymentButton`](https://developer.apple.com/documentation/watchkit/wkinterfacepaymentbutton) instead.
+    ///
+    ///
     #[unsafe(super(NSButton, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

@@ -9,9 +9,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The kinds of alignment — horizontal or vertical — that a plane anchor can have.
 /// A value describing the alignment of a plane anchor.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -19,14 +18,24 @@ use crate::*;
 pub struct ARPlaneAnchorAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneAnchorAlignment {
-    /// A plane that is horizontal with respect to gravity.
+    /// The plane is perpendicular to gravity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum/horizontal?language=objc)
+    /// ## Discussion
+    ///
+    /// The [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property for a horizontal plane anchor includes no rotation about the x- or z-axis. Thus, using this anchor’s transform to place a 3D model asset in your scene results in the model appearing “right side up”.
+    ///
+    ///
+    /// A plane that is horizontal with respect to gravity.
     #[doc(alias = "ARPlaneAnchorAlignmentHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// A plane that is vertical with respect to gravity.
+    /// The plane is parallel to gravity.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum/vertical?language=objc)
+    /// ## Discussion
+    ///
+    /// The [`transform`](https://developer.apple.com/documentation/arkit/aranchor/transform) property for a vertical plane anchor includes a rotation component. That is, the transform matrix represents the result of rotating a horizontal plane to match the orientation of the detected surface.
+    ///
+    ///
+    /// A plane that is vertical with respect to gravity.
     #[doc(alias = "ARPlaneAnchorAlignmentVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -41,9 +50,14 @@ unsafe impl RefEncode for ARPlaneAnchorAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A value describing the classification status of a plane anchor.
+/// Possible states of ARKit’s process for classifying plane anchors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus?language=objc)
+/// ## Overview
+///
+/// You get values of this type from a plane anchor’s [`classificationStatus`](https://developer.apple.com/documentation/arkit/arplaneanchor/classificationstatus) property, describing the state of ARKit’s plane classification process.
+///
+///
+/// A value describing the classification status of a plane anchor.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -51,24 +65,46 @@ unsafe impl RefEncode for ARPlaneAnchorAlignment {
 pub struct ARPlaneClassificationStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassificationStatus {
-    /// Plane classification is currently unavailable.
+    /// ARKit cannot currently provide plane classification information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusnotavailable?language=objc)
+    /// ## Discussion
+    ///
+    /// Plane classification is available only on iPhone XS, iPhone XS Max, and iPhone XR. On other devices, all plane anchors always indicate a classification status of [`ARPlaneClassificationStatusNotAvailable`](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusnotavailable).
+    ///
+    /// A classification status of [`ARPlaneClassificationStatusNotAvailable`](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusnotavailable) can also occur if the plane classification process is temporarily unavilable.
+    ///
+    ///
+    /// Plane classification is currently unavailable.
     #[doc(alias = "ARPlaneClassificationStatusNotAvailable")]
     pub const NotAvailable: Self = Self(0);
-    /// ARKit has not yet determined the classification of this plane.
+    /// ARKit has not yet produced a classification for the plane anchor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusundetermined?language=objc)
+    /// ## Discussion
+    ///
+    /// This status occurs when ARKit is still in the process of plane classification. To be notified when ARKit produces a classification, observe the same plane anchor in a later frame (for example, in the [`session(_:didUpdate:)`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didupdate:)-3qtt8) or [`renderer(_:didUpdate:for:)`](https://developer.apple.com/documentation/arkit/arscnviewdelegate/renderer(_:didupdate:for:)) delegate method).
+    ///
+    ///
+    /// ARKit has not yet determined the classification of this plane.
     #[doc(alias = "ARPlaneClassificationStatusUndetermined")]
     pub const Undetermined: Self = Self(1);
-    /// ARKit is confident the plane is not any of the known classes.
+    /// ARKit has completed its classification process for the plane anchor, but the result is inconclusive.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusunknown?language=objc)
+    /// ## Discussion
+    ///
+    /// ARKit attempts to classify detected planes using a finite set of common categories. However, a detected plane may not be a real object fitting any of those categories, or the plane classification process may not be able to recognize it. In such cases, the plane anchor’s [`classification`](https://developer.apple.com/documentation/arkit/arplaneanchor/classification-2hi2p) is [`ARPlaneClassificationNone`](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationnone) and its [`classificationStatus`](https://developer.apple.com/documentation/arkit/arplaneanchor/classificationstatus) is [`ARPlaneClassificationStatusUnknown`](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusunknown).
+    ///
+    ///
+    /// ARKit is confident the plane is not any of the known classes.
     #[doc(alias = "ARPlaneClassificationStatusUnknown")]
     pub const Unknown: Self = Self(2);
-    /// ARKit has a classification for the plane it is confident in.
+    /// ARKit has completed its classfication process for the plane anchor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassificationstatus/arplaneclassificationstatusknown?language=objc)
+    /// ## Discussion
+    ///
+    /// See the [`classification`](https://developer.apple.com/documentation/arkit/arplaneanchor/classification-2hi2p) property to identify the detected surface.
+    ///
+    ///
+    /// ARKit has a classification for the plane it is confident in.
     #[doc(alias = "ARPlaneClassificationStatusKnown")]
     pub const Known: Self = Self(3);
 }
@@ -83,9 +119,14 @@ unsafe impl RefEncode for ARPlaneClassificationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// A value describing the classification of a plane anchor.
+/// Possible characterizations of real-world surfaces represented by plane anchors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification?language=objc)
+/// ## Overview
+///
+/// You get values of this type from a plane anchor’s [`classification`](https://developer.apple.com/documentation/arkit/arplaneanchor/classification-2hi2p) property, identifying the likely type of real-world surface for a detected plane anchor.
+///
+///
+/// A value describing the classification of a plane anchor.
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -93,44 +134,42 @@ unsafe impl RefEncode for ARPlaneClassificationStatus {
 pub struct ARPlaneClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassification {
-    /// The classification is not any of the known classes.
+    /// No classification is available for the plane anchor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationnone?language=objc)
+    /// ## Discussion
+    ///
+    /// When a plane anchor has no classification, the [`classificationStatus`](https://developer.apple.com/documentation/arkit/arplaneanchor/classificationstatus) property indicates the reason: the classification process might be unavailable or incomplete, or ARKit may not have been able to conclusively identify the plane.
+    ///
+    ///
+    /// The classification is not any of the known classes.
     #[doc(alias = "ARPlaneClassificationNone")]
     pub const None: Self = Self(0);
+    /// The plane anchor represents a real-world wall or similar large vertical surface.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationwall?language=objc)
     #[doc(alias = "ARPlaneClassificationWall")]
     pub const Wall: Self = Self(1);
+    /// The plane anchor represents a real-world floor, ground plane, or similar large horizontal surface.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationfloor?language=objc)
     #[doc(alias = "ARPlaneClassificationFloor")]
     pub const Floor: Self = Self(2);
+    /// The plane anchor represents a real-world ceiling or similar overhead horizontal surface.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationceiling?language=objc)
     #[doc(alias = "ARPlaneClassificationCeiling")]
     pub const Ceiling: Self = Self(3);
+    /// The plane anchor represents a real-world table, desk, bar, or similar flat surface.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationtable?language=objc)
     #[doc(alias = "ARPlaneClassificationTable")]
     pub const Table: Self = Self(4);
+    /// The plane anchor represents a real-world chair, stool, bench or similar flat surface.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationseat?language=objc)
     #[doc(alias = "ARPlaneClassificationSeat")]
     pub const Seat: Self = Self(5);
+    /// The plane anchor fits the description of a real-world window.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationwindow?language=objc)
     #[doc(alias = "ARPlaneClassificationWindow")]
     pub const Window: Self = Self(6);
+    /// The plane anchor represents a real-world door, or similar archway.
     /// The classification is not any of the known classes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneclassification/arplaneclassificationdoor?language=objc)
     #[doc(alias = "ARPlaneClassificationDoor")]
     pub const Door: Self = Self(7);
 }
@@ -147,9 +186,50 @@ unsafe impl RefEncode for ARPlaneClassification {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Represents the extents of a plane.
+    /// The size and y-axis rotation of a detected plane.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneextent?language=objc)
+    /// ## Overview
+    ///
+    /// A plane anchor ([`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor)) describes its size and orientation on the y-axis using the [`planeExtent`](https://developer.apple.com/documentation/arkit/arplaneanchor/planeextent) property of this type.
+    ///
+    /// At runtime, ARKit continually updates the anchor’s width and height as the framework refines its knowledge of the plane’s shape in the environment.
+    ///
+    /// Similarly, as the session runs, the framework may update the plane’s y-rotation to better fit its rectangular area in the environment. In iOS 15 and earlier, the framework rotates the plane anchor according to that angle. In iOS 16, the framework doesn’t rotate the anchor automatically and its transform matrix remains unchanged. Instead, the framework exposes the angle [`rotationOnYAxis`](https://developer.apple.com/documentation/arkit/arplaneextent/rotationonyaxis) that you apply to any plane extent geometry in your app.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Apps that run on iOS 16 with a deployment target less than iOS 16 preserve the prior y-axis rotation behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Size and Rotate an Entity to a Plane’s Extent
+    ///
+    /// The following code defines a RealityKit entity sized to the plane extent’s width and height. The helper function also applies the extent’s suggested y-axis rotation by setting its transform `yaw` value to [`rotationOnYAxis`](https://developer.apple.com/documentation/arkit/arplaneextent/rotationonyaxis).
+    ///
+    /// ```swift
+    /// func createPlane(for planeAnchor: ARPlaneAnchor, material: Material) -> ModelEntity {
+    ///
+    ///     // Get the plane's extent.
+    ///     let extent = planeAnchor.planeExtent
+    ///
+    ///     // Create a model entity sized to the plane's extent.
+    ///     let planeEntity = ModelEntity(mesh: .generatePlane (width: extent.width, depth: extent.height),
+    ///         materials: [material])
+    ///
+    ///     // Orient the entity according to the extent's y-axis rotation.
+    ///     planeEntity.transform = Transform(pitch: 0, yaw: extent.rotationOnYAxis, roll: 0)
+    ///
+    ///     // Center the entity on the plane.
+    ///     planeEntity.transform.translation = planeAnchor.center
+    ///
+    ///     return planeEntity
+    /// }
+    /// ```
+    ///
+    ///
+    /// Represents the extents of a plane.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -231,11 +311,18 @@ impl ARPlaneExtent {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An anchor for a 2D planar surface that ARKit detects in the physical environment.
+    ///
+    /// ## Overview
+    ///
+    /// When you enable [`planeDetection`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.property) in a world tracking session, ARKit notifies your app of all the surfaces it observes using the device’s back camera. ARKit calls your delegate’s [`session:didAddAnchors:`](https://developer.apple.com/documentation/arkit/arsessiondelegate/session(_:didadd:)) with an [`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor) for each unique surface. Each plane anchor provides details about the surface, like its real-world position and shape.
+    ///
+    /// The width and length of a plane (the [`planeExtent`](https://developer.apple.com/documentation/arkit/arplaneanchor/planeextent)) span the xz-plane of an [`ARPlaneAnchor`](https://developer.apple.com/documentation/arkit/arplaneanchor) instance’s local coordinate system. The y-axis of the plane anchor is the plane’s normal vector.
+    ///
+    ///
     /// An anchor representing a planar surface in the world.
     ///
     /// Planes are defined in the X and Z direction, where Y is the surface’s normal.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor?language=objc)
     #[unsafe(super(ARAnchor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "ARAnchor", feature = "objc2"))]

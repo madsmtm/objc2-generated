@@ -7,17 +7,45 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepqueryhandler?language=objc)
+/// A block that reports the number of steps for a query operation.
+///
+/// ## Discussion
+///
+/// This block takes two parameters:
+///
+/// - `numberOfSteps`: The number of steps that occurred between the start and end times specified by the query.
+///
+/// - `error`: An error object indicating that there was a problem gathering the data or `nil` if the number of steps was determined correctly.
+///
+///
 #[cfg(feature = "block2")]
 pub type CMStepQueryHandler = *mut block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepupdatehandler?language=objc)
+/// A block that reports the number of steps recorded since updates began.
+///
+/// ## Discussion
+///
+/// This block takes the following parameters:
+///
+/// - `numberOfSteps`: The total number of steps since the [`startStepCountingUpdatesToQueue:updateOn:withHandler:`](https://developer.apple.com/documentation/coremotion/cmstepcounter/startstepcountingupdates(to:updateon:withhandler:)) method was called.
+///
+/// - `timestamp`: The time at which the current step count was reported.
+///
+/// - `error`: An error object indicating that there was a problem gathering the data or `nil` if the number of steps was determined correctly.
+///
+///
 #[cfg(feature = "block2")]
 pub type CMStepUpdateHandler =
     *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepcounter?language=objc)
+    /// The number of steps the user has taken with the device.
+    ///
+    /// ## Overview
+    ///
+    /// Step information is gathered on devices with the appropriate built-in hardware and stored so that you can run queries to determine the user’s recent physical activity. You use this class to gather both current step data and any historical data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMStepCounter;

@@ -8,38 +8,50 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags?language=objc)
+/// The specification for launching an app.
+///
+/// ## Overview
+///
+/// They are passed in a launch specification structure (`LSLaunchFSRefSpec` to the `LSOpenFromRefSpec` function or `LSLaunchURLSpec` to the `LSOpenFromURLSpec` function), to control the manner in which apps are launched.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LSLaunchFlags(pub OptionBits);
 bitflags::bitflags! {
     impl LSLaunchFlags: OptionBits {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdefaults?language=objc)
+/// Requests launching in the default manner (as if the only flags set were `kLSLaunchNoParams`, `kLSLaunchAsync`, and `kLSLaunchStartClassic`).
         #[doc(alias = "kLSLaunchDefaults")]
         const Defaults = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandprint?language=objc)
+/// Requests that documents opened in the application be printed.
         #[doc(alias = "kLSLaunchAndPrint")]
         const AndPrint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchanddisplayerrors?language=objc)
+/// Requests that launch and open failures be displayed in the UI.
         #[doc(alias = "kLSLaunchAndDisplayErrors")]
         const AndDisplayErrors = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdontaddtorecents?language=objc)
+/// Requests that the application or documents not be added to the Finder’s Recent Items menu.
         #[doc(alias = "kLSLaunchDontAddToRecents")]
         const DontAddToRecents = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchdontswitch?language=objc)
+/// Requests that the application be launched without being brought to the foreground.
         #[doc(alias = "kLSLaunchDontSwitch")]
         const DontSwitch = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchasync?language=objc)
+/// Requests that the application be launched asynchronously.
+///
+/// ## Discussion
+///
+/// The Launch Services function launching it returns control immediately without waiting for it to complete its launch sequence (indicated visually to the user when the application’s icon stops “bouncing” in the Dock).
+///
+///
         #[doc(alias = "kLSLaunchAsync")]
         const Async = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchnewinstance?language=objc)
+/// Requests that a new instance of the application be started, even if one is already running.
         #[doc(alias = "kLSLaunchNewInstance")]
         const NewInstance = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandhide?language=objc)
+/// Requests that the application be hidden as soon as it completes its launch sequence.
         #[doc(alias = "kLSLaunchAndHide")]
         const AndHide = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchflags/klslaunchandhideothers?language=objc)
+/// Requests that other applications be hidden as soon as the opened application completes its launch sequence.
         #[doc(alias = "kLSLaunchAndHideOthers")]
         const AndHideOthers = 0x00200000;
     }
@@ -55,7 +67,13 @@ unsafe impl RefEncode for LSLaunchFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lslaunchurlspec?language=objc)
+/// The specification for launching an app, opening items, or both, along with related information.
+///
+/// ## Overview
+///
+/// This data type defines a URL-based launch specification designating, by URL, an app to launch, items to open, or both. To request that items be opened in a particular app, set `appURL` and `itemURLs` accordingly. To request that each designated item be opened in its own preferred app, set `appURL` to `NULL`.If the item URL’s scheme is `file` (designating either a file or a directory), the selection of the preferred app is based on the designated item’s filename extension, file type, and creator signature; otherwise, it is based on the URL scheme (such as `http`, `ftp`, or `mailto`). To request that a particular app be launched without opening any document, set `appURL` accordingly and set `itemURLs` to `NULL`.
+///
+///
 #[cfg(all(feature = "AE", feature = "AEDataModel"))]
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -87,7 +105,51 @@ unsafe impl RefEncode for LSLaunchURLSpec {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442850-lsopencfurlref?language=objc)
+    /// Opens an item for a URL in the default manner in its preferred app.
+    ///
+    /// Parameters:
+    /// - inURL: A Core Foundation URL reference designating the item to open; see the _CFURL Reference_ in the Core Foundation Reference Documentation for a description of the `CFURLRef` data type.
+    ///
+    /// - outLaunchedURL: A pointer to a Core Foundation URL reference that, on return, will identify the app launched. Pass `NULL` if this information is unimportant.
+    ///
+    /// Despite the absence of the word `Copy` in its name, this function retains the URL reference object on your behalf; you are responsible for releasing this object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The designated item is opened in the default manner, as if it had been opened with the `LSOpenFromURLSpec` function with a launch specification specifying the launch flag `kLSLaunchDefaults`: that is, asynchronously, and with the remaining launch parameters taken from the application’s information property list. For greater control, call `LSOpenFromURLSpec` directly. See [`LSLaunchFlags`](https://developer.apple.com/documentation/coreservices/lslaunchflags) for more information about launch flags.
+    ///
+    /// If the item URL’s scheme is `file` (designating either a file or a directory), the selection of the preferred application is based on the designated item’s filename extension, file type, and creator signature; otherwise, it is based on the URL scheme (such as `http`, `ftp`, or `mailto`). The application is launched or activated, as required, and sent an appropriate Apple event depending on the circumstances:
+    ///
+    /// - If the URL’s scheme is `file` and it designates a document, the document’s preferred application is launched (or activated if it is already running).
+    ///
+    ///   - If the application claims to accept `file` URLs, it is sent a `'GURL'` (“get URL”) Apple event containing the item’s URL.
+    ///
+    /// - If the application does not claim to accept `file` URLs, it is sent an `'odoc'` (“open document”) Apple event identifying the document to open.
+    ///
+    /// - If the URL’s scheme is `file` and it designates an application:
+    ///
+    ///   - If the application is not already running, it is launched and sent an `'oapp'` (“open application”) Apple event.
+    ///
+    /// - If the application is already running, it is activated and sent an `'rapp'` (“reopen application”) Apple event.
+    ///
+    /// - If the URL has a scheme other than `file`, the scheme’s preferred application is launched (or activated if it is already running) and sent a `'GURL'` (“get URL”) Apple event containing the item’s URL.
+    ///
+    /// As of macOS 10.4 and later, [`launchApplication(at:options:configuration:)`](https://developer.apple.com/documentation/appkit/nsworkspace/launchapplication(at:options:configuration:)) is the preferred way of opening a URL.
+    ///
+    /// <a id="1675829"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread-safe since Mac OS version 10.2.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -96,7 +158,61 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441986-lsopenfromurlspec?language=objc)
+    /// Opens one or more items for a URL in the preferred apps or a designated app.
+    ///
+    /// Parameters:
+    /// - inLaunchSpec: A pointer to a URL-based launch specification indicating what to open and how to launch the relevant application or applications; see [`LSLaunchURLSpec`](https://developer.apple.com/documentation/coreservices/lslaunchurlspec) for a description of this structure.
+    ///
+    /// - outLaunchedURL: A pointer to a Core Foundation URL reference that, on return, will identify the application launched; see the _CFURL Reference_ in the Core Foundation Reference Documentation for a description of the `CFURLRef` data type. Pass `NULL` if this information is unimportant. If more than one application is launched, the one identified will be the one corresponding to the first item designated in the launch specification.
+    ///
+    /// Despite the absence of the word `Copy` in its name, this function retains the URL reference object on your behalf; you are responsible for releasing this object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code; see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/launch_services#1661359", kind: "article", title: "Result Codes", url: "/documentation/coreservices/launch_services#1661359", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function affords greater control of how items are opened or applications launched than is possible with the `LSOpenCFURLRef` function. For instance, you can use it to open multiple items in a single call, in either the same or different applications; open documents for printing rather than for simple viewing or editing; or force a document to open in an application other than its own preferred application.
+    ///
+    /// The launch specification supplied for the `inLaunchSpec` parameter may designate an application to launch, items to open, or both. The relevant application or applications are launched or activated, as required, and sent an appropriate Apple event depending on the circumstances:
+    ///
+    /// - If the launch specification designates both items to open and an application with which to open them, the designated application is used to open all of the items. The application is launched (or activated if it is already running) and sent one or more Apple events:
+    ///
+    ///   - If one or more of the item URLs have scheme `file` and designate documents to open, and if the application claims to accept `file` URLs, it is sent a `'GURL'` (“get URL”) Apple event for each such URL.
+    ///
+    /// - If one or more of the item URLs have scheme `file` and designate documents to open, and if the application does not claim to accept `file` URLs, it is sent a single `'odoc'` (“open document”) Apple event containing the list of items to open; if the items are to be printed, the Apple event is `'pdoc'` (“print document”) instead.
+    ///
+    /// - For each item URL with a scheme other than `file`, the application is sent a `'GURL'` (“get URL”) Apple event containing the item’s URL.
+    ///
+    ///   <div class="warning">
+    ///
+    /// ### Note
+    /// When both an application and a list of items are supplied, the designated application is asked to open all of the items, whether or not it claims the ability to do so. Launch Services does not report an error if the application is unable to open one or more of the items; any error processing is the application’s responsibility.
+    ///
+    ///
+    ///
+    /// </div>
+    /// - If the launch specification designates items to open but not an application with which to open them, each item is opened in its own preferred application. Each application is launched or activated and sent one or more Apple events, as described for the preceding case. (If two or more of the items have the same preferred application, the application receives a single `'odoc'` or `'pdoc'` event listing all of the relevant items.)
+    ///
+    /// - If the launch specification designates only an application to launch (or if one or more of the items to open are `file` URLs designating applications):
+    ///
+    ///   - If the application is not already running, it is launched and sent an `'oapp'` (“open application”) Apple event.
+    ///
+    /// - If the application is already running, it is activated and sent an `'rapp'` (“reopen application”) Apple event.
+    ///
+    /// As of macOS 10.4 and later, [`LSOpenURLsWithRole`](https://developer.apple.com/documentation/coreservices/1448184-lsopenurlswithrole) is the preferred way of opening URLs.
+    ///
+    /// <a id="1675842"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread-safe since Mac OS version 10.2.
+    ///
+    ///
     ///
     /// # Safety
     ///

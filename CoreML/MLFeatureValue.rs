@@ -10,12 +10,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A generic wrapper around an underlying value and the value’s type.
+    ///
+    /// ## Overview
+    ///
+    /// A Core ML _feature value_ wraps an underlying value and bundles it with that value’s type, which is one of the types that [`MLFeatureType`](https://developer.apple.com/documentation/coreml/mlfeaturetype) defines. Apps typically access feature values indirectly by using the methods in the wrapper class Xcode automatically generates for Core ML model files.
+    ///
+    /// If your app accesses an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) directly, it must create and consume [`MLFeatureProvider`](https://developer.apple.com/documentation/coreml/mlfeatureprovider) instances. For each prediction, Core ML accepts a feature provider for its inputs, and generates a separate feature provider for its outputs. The input feature provider contains one `MLFeatureValue` instance per input, and the output feature provider contains one per output. See [`MLFeatureDescription`](https://developer.apple.com/documentation/coreml/mlfeaturedescription) for more information about the model input and output features.
+    ///
+    ///
     /// An immutable variant holding a data value of a supported MLFeatureType
     ///
     /// MLFeatureValue does not support type conversion in its accessor properties. It
     /// can also have a missing or undefined value of a well defined type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLFeatureValue;

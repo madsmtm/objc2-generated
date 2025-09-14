@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderextension-zuvm?language=objc)
+    /// An interface for reacting to app life-cycle events and processing concluded asset downloads while your app isn’t running.
     pub unsafe trait BADownloaderExtension: NSObjectProtocol {
         #[cfg(all(
             feature = "BAAppExtensionInfo",

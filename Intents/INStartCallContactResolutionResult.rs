@@ -6,35 +6,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason?language=objc)
+/// Constants indicating the reason the app can’t support starting a call with the contact.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INStartCallContactUnsupportedReason(pub NSInteger);
 impl INStartCallContactUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nocontactfound?language=objc)
+    /// The contact wasn’t found in the app.
     #[doc(alias = "INStartCallContactUnsupportedReasonNoContactFound")]
     pub const NoContactFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/multiplecontactsunsupported?language=objc)
+    /// The app doesn’t support calls with multiple contacts.
     #[doc(alias = "INStartCallContactUnsupportedReasonMultipleContactsUnsupported")]
     pub const MultipleContactsUnsupported: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nohandleforlabel?language=objc)
+    /// The handle for the label wasn’t found.
     #[doc(alias = "INStartCallContactUnsupportedReasonNoHandleForLabel")]
     pub const NoHandleForLabel: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/invalidhandle?language=objc)
+    /// The handle is invalid.
     #[doc(alias = "INStartCallContactUnsupportedReasonInvalidHandle")]
     pub const InvalidHandle: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/unsupportedmmiussd?language=objc)
+    /// An unsupported MMI codewas used.
     #[doc(alias = "INStartCallContactUnsupportedReasonUnsupportedMmiUssd")]
     pub const UnsupportedMmiUssd: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nocallhistoryforredial?language=objc)
+    /// No redial attempt doesn’t have an associated call history.
     #[doc(alias = "INStartCallContactUnsupportedReasonNoCallHistoryForRedial")]
     #[deprecated]
     pub const NoCallHistoryForRedial: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/nousablehandleforredial?language=objc)
+    /// The redial attempt doesn’t have a usable handle.
     #[doc(alias = "INStartCallContactUnsupportedReasonNoUsableHandleForRedial")]
     pub const NoUsableHandleForRedial: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactunsupportedreason/requiringinappauthentication?language=objc)
     #[doc(alias = "INStartCallContactUnsupportedReasonRequiringInAppAuthentication")]
     pub const RequiringInAppAuthentication: Self = Self(8);
 }
@@ -48,7 +47,15 @@ unsafe impl RefEncode for INStartCallContactUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallcontactresolutionresult?language=objc)
+    /// A resolution result for the contact for the call.
+    ///
+    /// ## Overview
+    ///
+    /// You return an `INStartCallContactResolutionResult` object when resolving parameters containing an [`INPerson`](https://developer.apple.com/documentation/intents/inperson) value. Use the creation method that best reflects your ability to resolve the parameter successfully. The resolved value can be different than the original [`INPerson`](https://developer.apple.com/documentation/intents/inperson). This flexibility allows app extensions to apply business logic constraints.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INPersonResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

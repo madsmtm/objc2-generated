@@ -13,6 +13,25 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
+    /// A view for displaying and editing text and search tokens.
+    ///
+    /// ## Overview
+    ///
+    /// Use a search text field to display search criteria represented as text and tokens, and allow the user to edit that criteria. Tokens are discrete representations of nontextual content that your app can create and use to represent filters that limit the search results. Tokens always occur contiguously before any text in the search field.
+    ///
+    /// [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar) hosts a search text field, but you may also use a search text field in other roles, such as the title view of a [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The search field assigns text positions ([`UITextPosition`](https://developer.apple.com/documentation/uikit/uitextposition)) to tokens as well as text so that users can interact with tokens using selection gestures and keyboard input. If the current selection includes any tokens, [`selectedTextRange`](https://developer.apple.com/documentation/uikit/uitextinput/selectedtextrange) includes their positions. Use the search field’s [`textualRange`](https://developer.apple.com/documentation/uikit/uisearchtextfield/textualrange) property to access the range of just the text without the tokens.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Tokens can be programmatically selected by including their position in a range assigned to the [`selectedTextRange`](https://developer.apple.com/documentation/uikit/uitextinput/selectedtextrange) property.
+    ///
+    ///
     /// UISearchTextField is the subclass of UITextField used in UISearchBar, and can also be used elsewhere (e.g. as the titleView of a UINavigationItem).
     ///
     /// In addition to its text, a UISearchField can contain tokens. Tokens are discrete representations of non-textual content. Your app might use tokens to represent filters that are being applied in conjunction with the search field’s text. Tokens are always created by the application, and always occur contiguously before the search field’s text.
@@ -21,8 +40,6 @@ extern_class!(
     /// Note: Because the system drives selection and keyboard behaviors through the UITextInput protocol, and UISearchTextField supports selecting tokens, UISearchTextField assigns UITextPositions to tokens as well as text. If the current selection includes any tokens, their positions are part of the range returned by `UISearchTextField.selectedTextRange`. Use the `textualRange` property to obtain the range of the text field that excludes any tokens.
     ///
     /// Tokens can be programmatically selected by including their position in a range assigned to the `selectedTextRange` property. UISearchTextField does not support placing an insertion point before a token; attempting to do so will select the token instead.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfield?language=objc)
     #[unsafe(super(UITextField, UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -427,9 +444,22 @@ impl UISearchTextField {
 }
 
 extern_class!(
-    /// An individual token in a UISearchTextField.
+    /// Search criteria in a search text field, represented by text and an optional icon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtoken?language=objc)
+    /// ## Overview
+    ///
+    /// Use search tokens to help users understand and edit complex search queries in a [`UISearchTextField`](https://developer.apple.com/documentation/uikit/uisearchtextfield). A token acts like a single character in standard text interactions such as deleting, selecting, or dragging. A search token should always have text and may also have an icon.
+    ///
+    ///
+    /// ![Screenshot of a search window with a red circle and the words “Red Flowers Carnation”. The red dot and “Red Flowers” are in a gray box labeled as a UISearchToken and “Carnation” is labeled as text. ](https://docs-assets.developer.apple.com/published/b20153ea69c598fc17ea2dd6e004c6c5/media-3539104%402x.png)
+    ///
+    ///
+    /// Assign a [`representedObject`](https://developer.apple.com/documentation/uikit/uisearchtoken/representedobject) to each search token that’s meaningful to your app. By attaching this extra data to the token you can reconstruct the full search query using information available in the search field when, for example, your app starts from state restoration or the user starts a search.
+    ///
+    /// See [Using suggested searches with a search controller](https://developer.apple.com/documentation/uikit/using-suggested-searches-with-a-search-controller) to learn how to use search tokens.
+    ///
+    ///
+    /// An individual token in a UISearchTextField.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -481,7 +511,15 @@ impl UISearchToken {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate?language=objc)
+    /// The interface for the delegate of a search field.
+    ///
+    /// ## Overview
+    ///
+    /// A search field asks its delegate for an [`NSItemProvider`](https://developer.apple.com/documentation/foundation/nsitemprovider) when the user starts to copy or move a token. To support these interactions, set the search field’s [`delegate`](https://developer.apple.com/documentation/uikit/uitextfield/delegate) to an instance of [`UISearchTextFieldDelegate`](https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate) that implements [`searchTextField:itemProviderForCopyingToken:`](https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate/searchtextfield(_:itemproviderforcopying:)) and set the search field’s [`allowsCopyingTokens`](https://developer.apple.com/documentation/uikit/uisearchtextfield/allowscopyingtokens) property to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// The search field’s [`pasteDelegate`](https://developer.apple.com/documentation/uikit/uitextpasteconfigurationsupporting/pastedelegate) handles pasting and dropping tokens as well as text.
+    ///
+    ///
     #[cfg(feature = "UITextField")]
     pub unsafe trait UISearchTextFieldDelegate:
         UITextFieldDelegate + MainThreadOnly
@@ -520,11 +558,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that supports pasting tokens.
+    ///
+    /// ## Overview
+    ///
+    /// When implementing [`textPasteConfigurationSupporting:transformPasteItem:`](https://developer.apple.com/documentation/uikit/uitextpastedelegate/textpasteconfigurationsupporting(_:transform:)), your [`UITextPasteDelegate`](https://developer.apple.com/documentation/uikit/uitextpastedelegate) can decide whether to paste the item as text or as a token. If the [`UITextPasteItem`](https://developer.apple.com/documentation/uikit/uitextpasteitem) it receives is a [`UISearchTextFieldPasteItem`](https://developer.apple.com/documentation/uikit/uisearchtextfieldpasteitem), you can call [`setSearchTokenResult:`](https://developer.apple.com/documentation/uikit/uisearchtextfieldpasteitem/setsearchtokenresult(_:)) to prepare a token for pasting instead of text.
+    ///
+    ///
     /// A protocol that refines UITextPasteItem to support pasting of tokens.
     ///
     /// Paste items vended by UISearchTextField conform to this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchtextfieldpasteitem?language=objc)
     #[cfg(feature = "UITextPasteDelegate")]
     pub unsafe trait UISearchTextFieldPasteItem: UITextPasteItem + MainThreadOnly {
         /// Transforms this paste item into a token at the end of the search text field’s token array.

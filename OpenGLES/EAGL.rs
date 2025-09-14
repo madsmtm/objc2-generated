@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_major_version?language=objc)
 pub const EAGL_MAJOR_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_minor_version?language=objc)
 pub const EAGL_MINOR_VERSION: c_uint = 0;
+/// Versions of OpenGL ES that a rendering context provides.
 /// *********************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct EAGLRenderingAPI(pub NSUInteger);
 impl EAGLRenderingAPI {
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles1?language=objc)
+    /// Context supports OpenGL ES 1.x rendering API.
     #[doc(alias = "kEAGLRenderingAPIOpenGLES1")]
     pub const OpenGLES1: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles2?language=objc)
+    /// Context supports OpenGL ES 2.x rendering API.
     #[doc(alias = "kEAGLRenderingAPIOpenGLES2")]
     pub const OpenGLES2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglrenderingapi/opengles3?language=objc)
+    /// Context supports OpenGL ES 3.x rendering API.
     #[doc(alias = "kEAGLRenderingAPIOpenGLES3")]
     pub const OpenGLES3: Self = Self(3);
 }
@@ -39,21 +36,45 @@ unsafe impl RefEncode for EAGLRenderingAPI {
 }
 
 extern "C-unwind" {
+    /// Retrieves the version information for the EAGL implementation.
+    ///
+    /// Parameters:
+    /// - major: On output, the major version of the EAGL implementation.
+    ///
+    /// - minor: On output, the minor version of the EAGL implementation.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `major` and `minor` parameters are not `nil`, they return the major and minor version number of the EAGL implementation, respectively.
+    ///
+    ///
     /// *********************************************************************
     ///
     /// # Safety
     ///
     /// - `major` must be a valid pointer.
     /// - `minor` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglgetversion(_:_:)?language=objc)
     pub fn EAGLGetVersion(major: NonNull<c_uint>, minor: NonNull<c_uint>);
 }
 
 extern_class!(
-    /// *********************************************************************
+    /// An `EAGLSharegroup` object manages OpenGL ES resources associated with one or more `EAGLContext` objects. It is created when an `EAGLContext` object is initialized and disposed of when the last `EAGLContext` object that references it is released. As an opaque object, there is no developer accessible API.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglsharegroup?language=objc)
+    /// ## Overview
+    ///
+    /// Currently, the sharegroup manages textures, buffers, framebuffers, and renderbuffers. It is your application’s responsibility to manage state changes to shared objects when those objects are accessed from multiple contexts in the sharegroup. The results of changing the state of a shared object while it is being used for rendering in another context are undefined. To obtain deterministic results, your application must take explicit steps to ensure that the shared object is not currently being used for rendering while your application modifies it. Further, state changes are not guaranteed to be noticed by another context in the sharegroup until that context rebinds the shared object.
+    ///
+    /// To ensure defined results of state changes to shared objects across contexts in the sharegroup, your application must perform the following tasks, in this order:
+    ///
+    /// 1. Call `glFlush` on the rendering context that issues the state-modifying routines.
+    ///
+    /// 2. Call `glBindTexture` or `glBindBuffer` on the rendering context that depends on the texture or vertex buffer object state changes, respectively.
+    ///
+    /// A shared object is not deleted until it is no longer bound to any context.
+    ///
+    ///
+    /// *********************************************************************
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAGLSharegroup;
@@ -92,9 +113,16 @@ impl EAGLSharegroup {
 }
 
 extern_class!(
-    /// *********************************************************************
+    /// An [`EAGLContext`](https://developer.apple.com/documentation/opengles/eaglcontext) object manages an OpenGL ES _rendering context_—the state information, commands, and resources needed to draw using OpenGL ES. To execute OpenGL ES commands, you need a current rendering context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opengles/eaglcontext?language=objc)
+    /// ## Overview
+    ///
+    /// Drawing resources, such as textures and renderbuffers, are managed for the [`EAGLContext`](https://developer.apple.com/documentation/opengles/eaglcontext) object by an [`EAGLSharegroup`](https://developer.apple.com/documentation/opengles/eaglsharegroup) object associated with the context. When you initialize a new [`EAGLContext`](https://developer.apple.com/documentation/opengles/eaglcontext) object, you can choose to have it create a new sharegroup, or you can use one obtained from a previously created context.
+    ///
+    /// Before drawing to a context, you must bind a complete framebuffer object to the context. For more information on configuring rendering contexts, see [OpenGL ES Programming Guide](https://developer.apple.com/library/archive/documentation/3DDrawing/Conceptual/OpenGLES_ProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008793).
+    ///
+    ///
+    /// *********************************************************************
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAGLContext;

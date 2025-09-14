@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent?language=objc)
+    /// A request for the list of the user’s current reservations.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetUserCurrentRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent) object asks you to retrieve the current restaurant reservations associated with the user. Maps sends this intent to your Intents extension when it needs information about all of the user’s current reservations, or when it needs information about one or more specific reservations. Use the properties of this object to determine which reservations to return.
+    ///
+    /// When searching for reservations, use the [`reservationIdentifier`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/reservationidentifier) properties to fetch only the specified reservation, or use the [`restaurant`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/restaurant) property to fetch pending reservations only at the specified restaurant. If both of those properties are `nil`, retrieve all of the user’s currently pending reservations. After fetching the appropriate set of reservations, use the [`maximumNumberOfResults`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/maximumnumberofresults) and [`earliestBookingDateForResults`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent/earliestbookingdateforresults) properties to limit the set of results you return as part of your response.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetUserCurrentRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling) protocol. Your handler should resolve and confirm any parameters and create an [`INGetUserCurrentRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintentresponse) object using the found results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -123,7 +138,15 @@ impl INGetUserCurrentRestaurantReservationBookingsIntent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling?language=objc)
+    /// The handler interface for fetching and delivering the user’s current reservations.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetUserCurrentRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintenthandling) protocol to resolve, confirm, and handle requests to get the reservations associated with the current user. The system delivers an [`INGetUserCurrentRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetusercurrentrestaurantreservationbookingsintent) object to your handler when it needs the user’s reservations. Use that intent object to determine whether to retrieve all of the user’s reservations or only some of them. Your Intents extension must be able to fetch the user’s reservations from your systems.
+    ///
+    /// Maps does not require you to resolve or confirm the contents of a get user current restaurant reservation bookings intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     pub unsafe trait INGetUserCurrentRestaurantReservationBookingsIntentHandling:
         NSObjectProtocol
     {

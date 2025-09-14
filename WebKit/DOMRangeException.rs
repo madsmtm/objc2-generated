@@ -7,22 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrangeexception?language=objc)
     #[deprecated]
     pub static DOMRangeException: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrangeexceptioncode?language=objc)
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DOMRangeExceptionCode(pub c_uint);
 impl DOMRangeExceptionCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_bad_boundarypoints_err?language=objc)
     #[doc(alias = "DOM_BAD_BOUNDARYPOINTS_ERR")]
     #[deprecated]
     pub const BAD_BOUNDARYPOINTS_ERR: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_invalid_node_type_err?language=objc)
     #[doc(alias = "DOM_INVALID_NODE_TYPE_ERR")]
     #[deprecated]
     pub const INVALID_NODE_TYPE_ERR: Self = Self(2);

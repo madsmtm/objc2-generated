@@ -10,9 +10,14 @@ use crate::*;
 
 pub const kPMDuplexDefault: c_uint = kPMDuplexNone;
 pub const kPMDestinationTypeDefault: c_uint = kPMDestinationPrinter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolorspacemodelcount?language=objc)
 pub const kPMColorSpaceModelCount: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmobject?language=objc)
+/// The base type for all the opaque types used in Core Printing.
+///
+/// ## Discussion
+///
+/// `PMObject` is the base type for opaque types such as `PMPrintSession`, `PMPageFormat`, `PMPrintSettings`, `PMPrinter`, `PMPaper`, `PMPreset`, and `PMServer`. `PMObject` is used in functions such as [`PMRetain`](https://developer.apple.com/documentation/applicationservices/1460190-pmretain) and [`PMRelease`](https://developer.apple.com/documentation/applicationservices/1461402-pmrelease) that operate on any opaque type.
+///
+///
 pub type PMObject = *const c_void;
 
 #[repr(C)]
@@ -28,7 +33,13 @@ unsafe impl RefEncode for OpaquePMPrintSettings {
         Encoding::Pointer(&Encoding::Struct("OpaquePMPrintSettings", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintsettings?language=objc)
+/// An opaque type that stores the settings in the Print dialog.
+///
+/// ## Discussion
+///
+/// Your application uses print settings objects to store information such as the number of copies and the range of pages to print in a printing session. To create a print settings object, you use the function [`PMCreatePrintSettings`](https://developer.apple.com/documentation/applicationservices/1463239-pmcreateprintsettings). A new print settings object is empty and unusable until you call [`PMSessionDefaultPrintSettings`](https://developer.apple.com/documentation/applicationservices/1460138-pmsessiondefaultprintsettings) or [`PMCopyPrintSettings`](https://developer.apple.com/documentation/applicationservices/1462491-pmcopyprintsettings) to initialize the settings. You can also use the functions [`PMSetPrintSettingsExtendedData`](https://developer.apple.com/documentation/applicationservices/core_printing/1805491-pmsetprintsettingsextendeddata) and [`PMGetPrintSettingsExtendedData`](https://developer.apple.com/documentation/applicationservices/core_printing/1805488-pmgetprintsettingsextendeddata) to store and retrieve application-specific data in a print settings object.
+///
+///
 pub type PMPrintSettings = *mut OpaquePMPrintSettings;
 
 #[repr(C)]
@@ -43,7 +54,13 @@ unsafe impl RefEncode for OpaquePMPageFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaquePMPageFormat", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpageformat?language=objc)
+/// An opaque type that stores the settings in the Page Setup dialog.
+///
+/// ## Discussion
+///
+/// Your application uses page format objects to store information such as the paper size, orientation, and scale of pages in a printing session. To create a page format object, you use the function [`PMCreatePageFormat`](https://developer.apple.com/documentation/applicationservices/1459485-pmcreatepageformat). A new page format object is empty and unusable until you call [`PMSessionDefaultPageFormat`](https://developer.apple.com/documentation/applicationservices/1462217-pmsessiondefaultpageformat) or [`PMCopyPageFormat`](https://developer.apple.com/documentation/applicationservices/1464669-pmcopypageformat) to initialize the settings. You can also use the functions [`PMSetPageFormatExtendedData`](https://developer.apple.com/documentation/applicationservices/1463464-pmsetpageformatextendeddata) and [`PMGetPageFormatExtendedData`](https://developer.apple.com/documentation/applicationservices/1464455-pmgetpageformatextendeddata) to store and retrieve application-specific data in a page format object.
+///
+///
 pub type PMPageFormat = *mut OpaquePMPageFormat;
 
 #[repr(C)]
@@ -59,7 +76,15 @@ unsafe impl RefEncode for OpaquePMPrintSession {
         Encoding::Pointer(&Encoding::Struct("OpaquePMPrintSession", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintsession?language=objc)
+/// An opaque type that stores information about a print job.
+///
+/// ## Discussion
+///
+/// A printing session object contains information that’s needed by the page format and print settings objects, such as default page format and print settings values. For this reason, some printing functions can be called only after you have created a printing session object. For example, setting defaults for or validating page format and print settings objects can only be done after you have created a printing session object. Your application creates a printing session object using the function [`PMCreateSession`](https://developer.apple.com/documentation/applicationservices/1463247-pmcreatesession).
+///
+/// You can use a printing session to implement multithreaded printing, and you can create multiple sessions within a single-threaded application. If your application does not use sheets, then your application can open only one dialog at a time. Each printing session can have its own dialog, and settings changed in one dialog are independent of settings in any other dialog.
+///
+///
 pub type PMPrintSession = *mut OpaquePMPrintSession;
 
 #[repr(C)]
@@ -74,7 +99,13 @@ unsafe impl RefEncode for OpaquePMPrinter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaquePMPrinter", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprinter?language=objc)
+/// An opaque type that represents a printer.
+///
+/// ## Discussion
+///
+/// You typically obtain a printer object using the function [`PMSessionGetCurrentPrinter`](https://developer.apple.com/documentation/applicationservices/1458998-pmsessiongetcurrentprinter) or [`PMServerCreatePrinterList`](https://developer.apple.com/documentation/applicationservices/1459953-pmservercreateprinterlist).
+///
+///
 pub type PMPrinter = *mut OpaquePMPrinter;
 
 #[repr(C)]
@@ -89,7 +120,7 @@ unsafe impl RefEncode for OpaquePMServer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaquePMServer", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmserver?language=objc)
+/// An opaque type that identifies a local or remote print server.
 pub type PMServer = *mut OpaquePMServer;
 
 #[repr(C)]
@@ -104,7 +135,13 @@ unsafe impl RefEncode for OpaquePMPreset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaquePMPreset", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpreset?language=objc)
+/// An opaque type that stores information about a named preset available for a print job.
+///
+/// ## Discussion
+///
+/// Your application uses a preset object to identify a named preset in the Print dialog. You typically obtain an instance of this type using the function [`PMPrinterCopyPresets`](https://developer.apple.com/documentation/applicationservices/1459117-pmprintercopypresets).
+///
+///
 pub type PMPreset = *mut OpaquePMPreset;
 
 #[repr(C)]
@@ -119,235 +156,263 @@ unsafe impl RefEncode for OpaquePMPaper {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaquePMPaper", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpaper?language=objc)
+/// An opaque type that stores information about the paper used in a print job.
+///
+/// ## Discussion
+///
+/// Your application uses paper objects to identify standard and custom types of printing paper.
+///
+///
 pub type PMPaper = *mut OpaquePMPaper;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506795-user_cancellation_constant/kpmcancel?language=objc)
+/// Specifies that the user clicked the Cancel button in a Print or Page Setup dialog.
 pub const kPMCancel: c_uint = 0x0080;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdestinationtype?language=objc)
+/// Constants that specify a destination for a print job.
 pub type PMDestinationType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationinvalid?language=objc)
+/// Specifies the destination is invalid.
 pub const kPMDestinationInvalid: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationprinter?language=objc)
+/// Specifies output to a printer.
 pub const kPMDestinationPrinter: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationfile?language=objc)
+/// Specifies output to a file.
 pub const kPMDestinationFile: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationfax?language=objc)
+/// Specifies output to a fax. This destination is currently not supported.
 pub const kPMDestinationFax: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationpreview?language=objc)
+/// Specifies output to print preview.
 pub const kPMDestinationPreview: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationprocesspdf?language=objc)
+/// Specifies output to a PDF workflow option.
 pub const kPMDestinationProcessPDF: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmorientation?language=objc)
+/// Constants that specify page orientation.
 pub type PMOrientation = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmportrait?language=objc)
+/// Specifies portrait (vertical) page orientation. Portrait orientation performs no alteration of the logical page.
 pub const kPMPortrait: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmlandscape?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies landscape (horizontal) orientation. Landscape orientation performs a 90° counterclockwise rotation on the logical page image and sets the Quartz origin to the upper-left corner of the unrotated logical page with positive y-values increasing across and to the right of the unrotated page. This has the effect of rotating the logical page image 90° clockwise. In other words, the image appears on the unrotated page as if it were rotated 90° clockwise.
+///
+///
 pub const kPMLandscape: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmreverseportrait?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies reverse portrait orientation. Reverse portrait orientation performs a 180° rotation on the logical page rectangle and sets the Quartz origin to the upper-right corner of the unrotated logical page with positive y-values increasing downwards. This has the effect of rotating the logical page image 180°. Reverse portrait orientation is supported in macOS 10.5 and later.
+///
+///
 pub const kPMReversePortrait: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmreverselandscape?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies reverse landscape page orientation. Landscape orientation performs a 90° clockwise rotation on the logical page rectangle and sets the Quartz origin to the lower-right corner of the unrotated logical page, with the positive y-values increasing to across and to the left of the unrotated page. This has the effect of rotating the logical page image 90° counterclockwise. In other words, the image appears on the unrotated page as if it were rotated 90° counterclockwise.
+///
+///
 pub const kPMReverseLandscape: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprinterstate?language=objc)
+/// Constants that specify the current state of a print queue.
 pub type PMPrinterState = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinteridle?language=objc)
+/// Specifies the idle state.
 pub const kPMPrinterIdle: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinterprocessing?language=objc)
+/// Specifies the processing state.
 pub const kPMPrinterProcessing: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinterstopped?language=objc)
+/// Specifies the stopped state.
 pub const kPMPrinterStopped: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmcolorspacemodel?language=objc)
 pub type PMColorSpaceModel = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmunknowncolorspacemodel?language=objc)
 pub const kPMUnknownColorSpaceModel: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmgraycolorspacemodel?language=objc)
 pub const kPMGrayColorSpaceModel: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmrgbcolorspacemodel?language=objc)
 pub const kPMRGBColorSpaceModel: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmcmykcolorspacemodel?language=objc)
 pub const kPMCMYKColorSpaceModel: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmdevncolorspacemodel?language=objc)
 pub const kPMDevNColorSpaceModel: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmqualitymode?language=objc)
+/// Constants that specify standard options for print quality.
 pub type PMQualityMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitylowest?language=objc)
+/// Specifies to use the lowest print quality available to the printer.
 pub const kPMQualityLowest: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityinksaver?language=objc)
+/// Specifies to use a mode that saves ink, even if it slows printing.
 pub const kPMQualityInkSaver: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitydraft?language=objc)
+/// Specifies to print at the highest speed, with the amount of ink used as a secondary consideration.
 pub const kPMQualityDraft: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitynormal?language=objc)
+/// Specifies a general usage mode that balances quality and speed.
 pub const kPMQualityNormal: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityphoto?language=objc)
+/// Specifies to optimize the quality of photos on the page, with speed not a concern.
 pub const kPMQualityPhoto: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitybest?language=objc)
+/// Specifies to get the best print quality for all objects and photos on a page.
 pub const kPMQualityBest: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityhighest?language=objc)
+/// Specifies to use the highest print quality available to the printer.
 pub const kPMQualityHighest: c_uint = 0x000F;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpapertype?language=objc)
 pub type PMPaperType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeunknown?language=objc)
 pub const kPMPaperTypeUnknown: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeplain?language=objc)
 pub const kPMPaperTypePlain: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypecoated?language=objc)
 pub const kPMPaperTypeCoated: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypepremium?language=objc)
 pub const kPMPaperTypePremium: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeglossy?language=objc)
 pub const kPMPaperTypeGlossy: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypetransparency?language=objc)
 pub const kPMPaperTypeTransparency: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypetshirt?language=objc)
 pub const kPMPaperTypeTShirt: c_uint = 0x0006;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmscalingalignment?language=objc)
 pub type PMScalingAlignment = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpintopleft?language=objc)
 pub const kPMScalingPinTopLeft: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpintopright?language=objc)
 pub const kPMScalingPinTopRight: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpinbottomleft?language=objc)
 pub const kPMScalingPinBottomLeft: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpinbottomright?language=objc)
 pub const kPMScalingPinBottomRight: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingcenteronpaper?language=objc)
 pub const kPMScalingCenterOnPaper: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingcenteronimgarea?language=objc)
 pub const kPMScalingCenterOnImgArea: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmduplexmode?language=objc)
+/// Constants that specify duplex mode settings.
 pub type PMDuplexMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplexnone?language=objc)
+///
+/// ## Discussion
+///
+/// Print on only one side of the paper.
+///
+///
 pub const kPMDuplexNone: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplexnotumble?language=objc)
+///
+/// ## Discussion
+///
+/// Print on both sides of the paper, with both sides oriented in the same direction (no tumbling). This is equivalent to choosing "long edge binding" in the Print pane.
+///
+///
 pub const kPMDuplexNoTumble: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplextumble?language=objc)
+///
+/// ## Discussion
+///
+/// Print on both sides of the paper, with the output on the second side flipped relative to the first side (tumbling on). This is equivalent to choosing "short edge binding" in the Print pane.
+///
+///
 pub const kPMDuplexTumble: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmsimplextumble?language=objc)
+///
+/// ## Discussion
+///
+/// Print on only one side of the paper, but tumble the images while printing. This mode is not supported at this time.
+///
+///
 pub const kPMSimplexTumble: c_uint = 0x0004;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmlayoutdirection?language=objc)
 pub type PMLayoutDirection = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutleftrighttopbottom?language=objc)
 pub const kPMLayoutLeftRightTopBottom: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutleftrightbottomtop?language=objc)
 pub const kPMLayoutLeftRightBottomTop: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutrightlefttopbottom?language=objc)
 pub const kPMLayoutRightLeftTopBottom: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutrightleftbottomtop?language=objc)
 pub const kPMLayoutRightLeftBottomTop: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayouttopbottomleftright?language=objc)
 pub const kPMLayoutTopBottomLeftRight: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayouttopbottomrightleft?language=objc)
 pub const kPMLayoutTopBottomRightLeft: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutbottomtopleftright?language=objc)
 pub const kPMLayoutBottomTopLeftRight: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutbottomtoprightleft?language=objc)
 pub const kPMLayoutBottomTopRightLeft: c_uint = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmbordertype?language=objc)
 pub type PMBorderType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmbordersinglehairline?language=objc)
 pub const kPMBorderSingleHairline: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmborderdoublehairline?language=objc)
 pub const kPMBorderDoubleHairline: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmbordersinglethickline?language=objc)
 pub const kPMBorderSingleThickline: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmborderdoublethickline?language=objc)
 pub const kPMBorderDoubleThickline: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintdialogoptionflags?language=objc)
 pub type PMPrintDialogOptionFlags = OptionBits;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmhideinlineitems?language=objc)
 pub const kPMHideInlineItems: c_uint = 0 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowdefaultinlineitems?language=objc)
 pub const kPMShowDefaultInlineItems: c_uint = 1 << 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinecopies?language=objc)
 pub const kPMShowInlineCopies: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepagerange?language=objc)
 pub const kPMShowInlinePageRange: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepagerangewithselection?language=objc)
 pub const kPMShowInlinePageRangeWithSelection: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepapersize?language=objc)
 pub const kPMShowInlinePaperSize: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlineorientation?language=objc)
 pub const kPMShowInlineOrientation: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinescale?language=objc)
 pub const kPMShowInlineScale: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowpageattributespde?language=objc)
 pub const kPMShowPageAttributesPDE: c_uint = 1 << 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmppddomain?language=objc)
+/// Constants that specify the domains for PostScript printer description (PPD) files.
 pub type PMPPDDomain = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kallppddomains?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies all available domains.
+///
+///
 pub const kAllPPDDomains: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/ksystemppddomain?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the system domain.
+///
+///
 pub const kSystemPPDDomain: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/klocalppddomain?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the local domain.
+///
+///
 pub const kLocalPPDDomain: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/knetworkppddomain?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the network domain.
+///
+///
 pub const kNetworkPPDDomain: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kuserppddomain?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the user domain.
+///
+///
 pub const kUserPPDDomain: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kcupsppddomain?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the CUPS domain.
+///
+///
 pub const kCUPSPPDDomain: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnoerror?language=objc)
 pub const kPMNoError: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmgeneralerror?language=objc)
+/// An unspecified error occurred.
 pub const kPMGeneralError: c_int = -30870;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmoutofscope?language=objc)
+/// Your application called this function out of sequence with other printing functions.
 pub const kPMOutOfScope: c_int = -30871;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidparameter?language=objc)
 pub const kPMInvalidParameter: c_int = -50;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnodefaultprinter?language=objc)
+/// The user has not specified a default printer.
 pub const kPMNoDefaultPrinter: c_int = -30872;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnotimplemented?language=objc)
+/// The function is not implemented.
 pub const kPMNotImplemented: c_int = -30873;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnosuchentry?language=objc)
+/// There is no entry to match your application’s request.
 pub const kPMNoSuchEntry: c_int = -30874;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidprintsettings?language=objc)
+/// Your application passed an invalid print settings object.
 pub const kPMInvalidPrintSettings: c_int = -30875;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidpageformat?language=objc)
+/// Your application passed an invalid page format object.
 pub const kPMInvalidPageFormat: c_int = -30876;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmvalueoutofrange?language=objc)
+/// Your application passed an out-of-range value.
 pub const kPMValueOutOfRange: c_int = -30877;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidprintsession?language=objc)
+/// Your application passed an invalid printing session object.
 pub const kPMInvalidPrintSession: c_int = -30879;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidprinter?language=objc)
+/// Your application passed an invalid printer object.
 pub const kPMInvalidPrinter: c_int = -30880;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpmobjectinuse?language=objc)
+/// The specified object is in use.
 pub const kPMObjectInUse: c_int = -30881;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidpreset?language=objc)
+/// Your application passed an invalid preset object.
 pub const kPMInvalidPreset: c_int = -30899;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506768-print_all_pages_constant/kpmprintallpages?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that all pages of a document should be printed.
+///
+///
 pub const kPMPrintAllPages: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506830-anonymous/kpmunlocked?language=objc)
 pub const kPMUnlocked: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect?language=objc)
+/// A data structure that describes a rectangle using four double-precision coordinates.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PMRect {
@@ -375,7 +440,6 @@ unsafe impl RefEncode for PMRect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmresolution?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PMResolution {
@@ -396,7 +460,7 @@ unsafe impl RefEncode for PMResolution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/core_printing/pmlanguageinfo?language=objc)
+/// A data structure that contains level, version, and release information for the imaging language used by a printer driver.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct PMLanguageInfo {
@@ -418,21 +482,42 @@ unsafe impl RefEncode for PMLanguageInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpapermargins?language=objc)
+/// A data structure that specifies the unprintable area of a paper object.
+///
+/// ## Discussion
+///
+/// Your application specifies paper margins when calling the function [`PMPaperCreateCustom`](https://developer.apple.com/documentation/applicationservices/1459322-pmpapercreatecustom) to create a custom paper type. You can obtain a paper’s margins with the function [`PMPaperGetMargins`](https://developer.apple.com/documentation/applicationservices/1461994-pmpapergetmargins).
+///
+///
 pub type PMPaperMargins = PMRect;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat?language=objc)
+/// Constants that specify the format of the data representation created with the functions [`PMPageFormatCreateDataRepresentation`](https://developer.apple.com/documentation/applicationservices/1464227-pmpageformatcreatedatarepresenta) and [`PMPrintSettingsCreateDataRepresentation`](https://developer.apple.com/documentation/applicationservices/1464570-pmprintsettingscreatedatareprese).
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PMDataFormat(pub c_uint);
 impl PMDataFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmldefault?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a data format that is compatible with all macOS versions. Data in this format can be used with the `PMUnflattenXXX` functions present in versions of macOS prior to 10.5. This format is a pure XML representation of the data. However, this format is much larger than the more modern data formats described below.
+    ///
+    ///
     #[doc(alias = "kPMDataFormatXMLDefault")]
     pub const XMLDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmlminimal?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies an uncompressed data format that is approximately 3-5 times smaller than `kPMDataFormatXMLDefault`. This data format is only compatible with macOS 10.5 and later. This format is a good choice when you do not need to use the data in versions of macOS prior to 10.5 and you need a pure XML representation of the data.
+    ///
+    ///
     #[doc(alias = "kPMDataFormatXMLMinimal")]
     pub const XMLMinimal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat/kpmdataformatxmlcompressed?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a compressed data format that is approximately 20 times smaller than `kPMDataFormatXMLDefault`. This data format is only compatible with macOS 10.5 and later. This format is a good choice when you do not need to use the data in versions of macOS prior to 10.5 and the minimum data size is important. Note that this format is not a pure XML representation of the data.
+    ///
+    ///
     #[doc(alias = "kPMDataFormatXMLCompressed")]
     pub const XMLCompressed: Self = Self(2);
 }

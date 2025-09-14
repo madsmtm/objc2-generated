@@ -16,7 +16,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutput?language=objc)
+    /// An abstract class that defines the common interface to output media data from a player item.
+    ///
+    /// ## Overview
+    ///
+    /// This class provides basic methods for converting time values to the timebase of the item. It also provides an option to suppress rendering of the output associated with the specific instance of this class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t create instances of this class directly but instead use one of the concrete subclasses that manage specific types of assets.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemOutput;
@@ -112,7 +126,7 @@ impl AVPlayerItemOutput {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemvideooutput?language=objc)
+    /// An object that outputs video frames from a player item.
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemVideoOutput;
@@ -277,11 +291,16 @@ impl AVPlayerItemVideoOutput {
 }
 
 extern_protocol!(
+    /// Methods you can implement to respond to pixel buffer changes.
+    ///
+    /// ## Overview
+    ///
+    /// The methods in this protocol are called by [`AVPlayerItemVideoOutput`](https://developer.apple.com/documentation/avfoundation/avplayeritemvideooutput) objects.
+    ///
+    ///
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput pull sample output acquisition.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpulldelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPullDelegate: NSObjectProtocol + Send + Sync {
         /// A method invoked once, prior to a new sample, if the AVPlayerItemOutput sender was previously messaged requestNotificationOfMediaDataChangeWithAdvanceInterval:.
         ///
@@ -302,13 +321,12 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that vends attributed strings for media with a legible characteristic.
     /// A subclass of AVPlayerItemOutput that can vend media with a legible characteristic as NSAttributedStrings.
     ///
     /// An instance of AVPlayerItemLegibleOutput is typically initialized using the -init method.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemLegibleOutput;
@@ -438,26 +456,35 @@ impl AVPlayerItemLegibleOutput {
     );
 }
 
+/// A text styling resolution.
 /// The type of a text styling resolution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerItemLegibleOutputTextStylingResolution = NSString;
 
 extern "C" {
-    /// Specify this level of text styling resolution to receive attributed strings from an AVPlayerItemLegibleOutput that include the same level of styling information that AVFoundation would use itself to render text within an AVPlayerLayer. The text styling will accommodate user-level Media Accessibility settings.
+    /// The text styling information is the same level of information that AVFoundation uses within a player layer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct/default?language=objc)
+    /// ## Discussion
+    ///
+    /// Specify this level of text styling resolution to receive attributed strings from an `AVPlayerItemLegibleOutput` that include the same level of styling information that AVFoundation would use itself to render text within an [`AVPlayerLayer`](https://developer.apple.com/documentation/avfoundation/avplayerlayer). The text styling will accommodate user-level Media Accessibility settings.
+    ///
+    ///
+    /// Specify this level of text styling resolution to receive attributed strings from an AVPlayerItemLegibleOutput that include the same level of styling information that AVFoundation would use itself to render text within an AVPlayerLayer. The text styling will accommodate user-level Media Accessibility settings.
     pub static AVPlayerItemLegibleOutputTextStylingResolutionDefault:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
 
 extern "C" {
+    /// The level of resolution excludes styling provided by the user-level Media Accessibility settings.
+    ///
+    /// ## Discussion
+    ///
+    /// You typically use this option to override the styling specified in source media. When overriding the styling, you are strongly encouraged to allow your custom styling in turn to be overridden by user preferences for text styling that are available as Media Accessibility settings. See `Media Accessibility Function` for more information.
+    ///
+    ///
     /// Specify this level of text styling resolution to receive only the styling present in the source media and the styling provided via AVPlayerItem.textStyleRules.
     ///
     /// This level of resolution excludes styling provided by the user-level Media Accessibility settings. You would typically use it if you wish to override the styling specified in source media. If you do this, you are strongly encouraged to allow your custom styling in turn to be overriden by user preferences for text styling that are available as Media Accessibility settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct/sourceandrulesonly?language=objc)
     pub static AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
@@ -497,11 +524,16 @@ impl AVPlayerItemLegibleOutput {
 }
 
 extern_protocol!(
+    /// Methods you can implement to provide alternative attributed-string output.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol extends the [`AVPlayerItemOutputPushDelegate`](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate) protocol.
+    ///
+    ///
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to attributed string output.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemLegibleOutputPushDelegate:
         AVPlayerItemOutputPushDelegate + Send + Sync
     {
@@ -537,11 +569,10 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol that defines the methods to implement to respond to changes in the media data sequence.
     /// Defines common delegate methods for objects participating in AVPlayerItemOutput push sample output acquisition.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemOutputPushDelegate: NSObjectProtocol + Send + Sync {
         /// A method invoked when the output is commencing a new sequence of media data.
         ///
@@ -554,14 +585,25 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that vends collections of metadata items that a player item’s tracks carry.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Setting the value of [`suppressesPlayerRendering`](https://developer.apple.com/documentation/avfoundation/avplayeritemoutput/suppressesplayerrendering) on an instance of `AVPlayerItemMetadataOutput` has no effect.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A subclass of AVPlayerItemOutput that vends collections of metadata items carried in metadata tracks.
     ///
     ///
     /// Setting the value of suppressesPlayerRendering on an instance of AVPlayerItemMetadataOutput has no effect.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemMetadataOutput;
@@ -677,9 +719,14 @@ impl AVPlayerItemMetadataOutput {
 }
 
 extern_protocol!(
-    /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to metadata output.
+    /// Methods you can implement to provide additional metadata.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmetadataoutputpushdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// This protocol extends the [`AVPlayerItemOutputPushDelegate`](https://developer.apple.com/documentation/avfoundation/avplayeritemoutputpushdelegate) protocol.
+    ///
+    ///
+    /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to metadata output.
     pub unsafe trait AVPlayerItemMetadataOutputPushDelegate:
         AVPlayerItemOutputPushDelegate + Send + Sync
     {
@@ -710,13 +757,12 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A player item output that vends media with a legible characteristic as rendered pixel buffers.
     /// A subclass of AVPlayerItemOutput that can vend media with a legible characteristic as rendered CVPixelBufferRefs.
     ///
     /// An instance of AVPlayerItemRenderedLegibleOutput is initialized using the -init method.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutput?language=objc)
     #[unsafe(super(AVPlayerItemOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerItemRenderedLegibleOutput;
@@ -854,9 +900,8 @@ impl AVPlayerItemRenderedLegibleOutput {
 }
 
 extern_protocol!(
+    /// A delegate that handles the rendered pixel buffers produced by a rendered legible output object.
     /// Extends AVPlayerItemOutputPushDelegate to provide additional methods specific to pixel buffers output.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrenderedlegibleoutputpushdelegate?language=objc)
     pub unsafe trait AVPlayerItemRenderedLegibleOutputPushDelegate:
         AVPlayerItemOutputPushDelegate
     {

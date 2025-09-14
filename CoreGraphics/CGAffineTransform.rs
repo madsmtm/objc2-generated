@@ -5,11 +5,45 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformidentity?language=objc)
+    /// The identity transform.
     pub static CGAffineTransformIdentity: CGAffineTransform;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmake(_:_:_:_:_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed from values you provide.
+///
+/// Parameters:
+/// - a: The value at position [1,1] in the matrix.
+///
+/// - b: The value at position [1,2] in the matrix.
+///
+/// - c: The value at position [2,1] in the matrix.
+///
+/// - d: The value at position [2,2] in the matrix.
+///
+/// - tx: The value at position [3,1] in the matrix.
+///
+/// - ty: The value at position [3,2] in the matrix.
+///
+///
+/// ## Return Value
+///
+/// A new affine transform matrix constructed from the values you specify.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a `CGAffineTransform` structure that represents a new affine transformation matrix, which you can use (and reuse, if you want) to transform a coordinate system. The matrix takes the following form:
+///
+///
+/// ![A 3 by 3 matrix.](https://docs-assets.developer.apple.com/published/ad5f4a5c94518f9345389eb1608389cf/media-1966718%402x.png)
+///
+///
+/// Because the third column is always `(0,0,1)`, the `CGAffineTransform` data structure returned by this function contains values for only the first two columns.
+///
+/// If you want only to transform an object to be drawn, it is not necessary to construct an affine transform to do so. The most direct way to transform your drawing is by calling the appropriate `CGContext` function to adjust the current transformation matrix. For a list of functions, see [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMake(
     a: CGFloat,
@@ -32,7 +66,39 @@ pub extern "C-unwind" fn CGAffineTransformMake(
     unsafe { CGAffineTransformMake(a, b, c, d, tx, ty) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmaketranslation(_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed from translation values you provide.
+///
+/// Parameters:
+/// - tx: The value by which to move the x-axis of the coordinate system.
+///
+/// - ty: The value by which to move the y-axis of the coordinate system.
+///
+///
+/// ## Return Value
+///
+/// A new affine transform matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a `CGAffineTransform` structure. which you can use (and reuse, if you want) to move a coordinate system. The matrix takes the following form:
+///
+///
+/// ![A 3 by 3 matrix for translation.](https://docs-assets.developer.apple.com/published/d3f20158f45b6884521dea50065da09b/media-1966750%402x.png)
+///
+///
+/// Because the third column is always `(0,0,1)`, the `CGAffineTransform` data structure returned by this function contains values for only the first two columns.
+///
+/// These are the resulting equations used to apply the translation to a point (x,y):
+///
+///
+/// ![Translation equations.](https://docs-assets.developer.apple.com/published/7f47312b5509bb3fe710b89c425126f0/media-1966756%402x.png)
+///
+///
+/// If you want only to move the location where an object is drawn, it is not necessary to construct an affine transform to do so. The most direct way to move your drawing is by calling the function [`CGContextTranslateCTM`](https://developer.apple.com/documentation/coregraphics/cgcontext/translateby(x:y:)).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
     tx: CGFloat,
@@ -44,7 +110,39 @@ pub extern "C-unwind" fn CGAffineTransformMakeTranslation(
     unsafe { CGAffineTransformMakeTranslation(tx, ty) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakescale(_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed from scaling values you provide.
+///
+/// Parameters:
+/// - sx: The factor by which to scale the x-axis of the coordinate system.
+///
+/// - sy: The factor by which to scale the y-axis of the coordinate system.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a `CGAffineTransform` structure, which you can use (and reuse, if you want) to scale a coordinate system. The matrix takes the following form:
+///
+///
+/// ![A 3 by 3 matrix used to scale.](https://docs-assets.developer.apple.com/published/9f887f1de9bbcb61af9992432fb821eb/media-1966736%402x.png)
+///
+///
+/// Because the third column is always `(0,0,1)`, the `CGAffineTransform` data structure returned by this function contains values for only the first two columns.
+///
+/// These are the resulting equations used to scale the coordinates of a point (x,y):
+///
+///
+/// ![Scaling equations.](https://docs-assets.developer.apple.com/published/31382764681648947a31bcd32a01d6e5/media-1966741%402x.png)
+///
+///
+/// If you want only to scale an object to be drawn, it is not necessary to construct an affine transform to do so. The most direct way to scale your drawing is by calling the function [`CGContextScaleCTM`](https://developer.apple.com/documentation/coregraphics/cgcontext/scaleby(x:y:)).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
@@ -53,7 +151,37 @@ pub extern "C-unwind" fn CGAffineTransformMakeScale(sx: CGFloat, sy: CGFloat) ->
     unsafe { CGAffineTransformMakeScale(sx, sy) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakerotation(_:)?language=objc)
+/// Returns an affine transformation matrix constructed from a rotation value you provide.
+///
+/// Parameters:
+/// - angle: The angle, in radians, by which this matrix rotates the coordinate system axes. In iOS, a positive value specifies counterclockwise rotation and a negative value specifies clockwise rotation. In macOS, a positive value specifies clockwise rotation and a negative value specifies counterclockwise rotation.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// This function creates a `CGAffineTransform` structure, which you can use (and reuse, if you want) to rotate a coordinate system. The matrix takes the following form:
+///
+///
+/// ![A 3 by 3 matrix.](https://docs-assets.developer.apple.com/published/208a3d614f01846a4816496780b1a1fb/media-1966725%402x.png)
+///
+///
+/// The actual direction of rotation is dependent on the coordinate system orientation of the target platform, which is different in iOS and macOS. Because the third column is always `(0,0,1)`, the `CGAffineTransform` data structure returned by this function contains values for only the first two columns.
+///
+/// These are the resulting equations used to apply the rotation to a point (x, y):
+///
+///
+/// ![Rotation equations.](https://docs-assets.developer.apple.com/published/6aee9efda1c1ac989f5c0fceb3b21a44/media-1966730%402x.png)
+///
+///
+/// If you want only to rotate an object to be drawn, it is not necessary to construct an affine transform to do so. The most direct way to rotate your drawing is by calling the function [`CGContextRotateCTM`](https://developer.apple.com/documentation/coregraphics/cgcontext/rotate(by:)).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffineTransform {
     extern "C-unwind" {
@@ -62,7 +190,17 @@ pub extern "C-unwind" fn CGAffineTransformMakeRotation(angle: CGFloat) -> CGAffi
     unsafe { CGAffineTransformMakeRotation(angle) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformisidentity(_:)?language=objc)
+/// Checks whether an affine transform is the identity transform.
+///
+/// Parameters:
+/// - t: The affine transform to check.
+///
+///
+/// ## Return Value
+///
+/// Returns `true` if `t` is the identity transform, `false` otherwise.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bool {
     extern "C-unwind" {
@@ -71,7 +209,27 @@ pub extern "C-unwind" fn CGAffineTransformIsIdentity(t: CGAffineTransform) -> bo
     unsafe { CGAffineTransformIsIdentity(t) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformtranslate(_:_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed by translating an existing affine transform.
+///
+/// Parameters:
+/// - t: An existing affine transform.
+///
+/// - tx: The value by which to move x values with the affine transform.
+///
+/// - ty: The value by which to move y values with the affine transform.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// You use this function to create a new affine transform by adding translation values to an existing affine transform. The resulting structure represents a new affine transform, which you can use (and reuse, if you want) to move a coordinate system.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformTranslate(
     t: CGAffineTransform,
@@ -88,7 +246,27 @@ pub extern "C-unwind" fn CGAffineTransformTranslate(
     unsafe { CGAffineTransformTranslate(t, tx, ty) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformscale(_:_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed by scaling an existing affine transform.
+///
+/// Parameters:
+/// - t: An existing affine transform.
+///
+/// - sx: The value by which to scale x values of the affine transform.
+///
+/// - sy: The value by which to scale y values of the affine transform.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// You use this function to create a new affine transformation matrix by adding scaling values to an existing affine transform. The resulting structure represents a new affine transform, which you can use (and reuse, if you want) to scale a coordinate system.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformScale(
     t: CGAffineTransform,
@@ -105,7 +283,27 @@ pub extern "C-unwind" fn CGAffineTransformScale(
     unsafe { CGAffineTransformScale(t, sx, sy) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformrotate(_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed by rotating an existing affine transform.
+///
+/// Parameters:
+/// - t: An existing affine transform.
+///
+/// - angle: The angle, in radians, by which to rotate the affine transform. In iOS, a positive value specifies counterclockwise rotation and a negative value specifies clockwise rotation. In macOS, a positive value specifies clockwise rotation and a negative value specifies counterclockwise rotation.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix.
+///
+///
+///
+/// ## Discussion
+///
+/// You use this function to create a new affine transformation matrix by adding a rotation value to an existing affine transform. The resulting structure represents a new affine transform, which you can use (and reuse, if you want) to rotate a coordinate system.
+///
+/// The actual direction of rotation is dependent on the coordinate system orientation of the target platform, which is different in iOS and macOS.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformRotate(
     t: CGAffineTransform,
@@ -117,7 +315,23 @@ pub extern "C-unwind" fn CGAffineTransformRotate(
     unsafe { CGAffineTransformRotate(t, angle) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransforminvert(_:)?language=objc)
+/// Returns an affine transformation matrix constructed by inverting an existing affine transform.
+///
+/// Parameters:
+/// - t: An existing affine transform.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix. If the affine transform passed in parameter `t` cannot be inverted, the affine transform is returned unchanged.
+///
+///
+///
+/// ## Discussion
+///
+/// Inversion is generally used to provide reverse transformation of points within transformed objects. Given the coordinates (x,y), which have been transformed by a given matrix to new coordinates (x’,y’), transforming the coordinates (x’,y’) by the inverse matrix produces the original coordinates (x,y).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffineTransform {
     extern "C-unwind" {
@@ -126,7 +340,27 @@ pub extern "C-unwind" fn CGAffineTransformInvert(t: CGAffineTransform) -> CGAffi
     unsafe { CGAffineTransformInvert(t) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformconcat(_:_:)?language=objc)
+/// Returns an affine transformation matrix constructed by combining two existing affine transforms.
+///
+/// Parameters:
+/// - t1: The first affine transform.
+///
+/// - t2: The second affine transform. This affine transform is concatenated to the first affine transform.
+///
+///
+/// ## Return Value
+///
+/// A new affine transformation matrix. That is, t’ = t1*t2.
+///
+///
+///
+/// ## Discussion
+///
+/// Concatenation combines two affine transformation matrices by multiplying them together. You might perform several concatenations in order to create a single affine transform that contains the cumulative effects of several transformations.
+///
+/// Note that matrix operations are not commutative—the order in which you concatenate matrices is important. That is, the result of multiplying matrix `t1` by matrix `t2` does not necessarily equal the result of multiplying matrix `t2` by matrix `t1`.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformConcat(
     t1: CGAffineTransform,
@@ -141,7 +375,19 @@ pub extern "C-unwind" fn CGAffineTransformConcat(
     unsafe { CGAffineTransformConcat(t1, t2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformequaltotransform(_:_:)?language=objc)
+/// Checks whether two affine transforms are equal.
+///
+/// Parameters:
+/// - t1: An affine transform.
+///
+/// - t2: An affine transform.
+///
+///
+/// ## Return Value
+///
+/// Returns `true` if `t1` and `t2` are equal, `false` otherwise.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
     t1: CGAffineTransform,
@@ -153,7 +399,19 @@ pub extern "C-unwind" fn CGAffineTransformEqualToTransform(
     unsafe { CGAffineTransformEqualToTransform(t1, t2) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpointapplyaffinetransform(_:_:)?language=objc)
+/// Returns the point resulting from an affine transformation of an existing point.
+///
+/// Parameters:
+/// - point: A point that specifies the x- and y-coordinates to transform.
+///
+/// - t: The affine transform to apply.
+///
+///
+/// ## Return Value
+///
+/// A new point resulting from applying the specified affine transform to the existing point.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGPointApplyAffineTransform(
     point: CGPoint,
@@ -165,7 +423,19 @@ pub extern "C-unwind" fn CGPointApplyAffineTransform(
     unsafe { CGPointApplyAffineTransform(point, t) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsizeapplyaffinetransform(_:_:)?language=objc)
+/// Returns the height and width resulting from a transformation of an existing height and width.
+///
+/// Parameters:
+/// - size: A size that specifies the height and width to transform.
+///
+/// - t: The affine transform to apply.
+///
+///
+/// ## Return Value
+///
+/// A new size resulting from applying the specified affine transform to the existing size.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTransform) -> CGSize {
     extern "C-unwind" {
@@ -174,7 +444,25 @@ pub extern "C-unwind" fn CGSizeApplyAffineTransform(size: CGSize, t: CGAffineTra
     unsafe { CGSizeApplyAffineTransform(size, t) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrectapplyaffinetransform(_:_:)?language=objc)
+/// Applies an affine transform to a rectangle.
+///
+/// Parameters:
+/// - rect: The rectangle whose corner points you want to transform.
+///
+/// - t: The affine transform to apply to the `rect` parameter.
+///
+///
+/// ## Return Value
+///
+/// The transformed rectangle.
+///
+///
+///
+/// ## Discussion
+///
+/// Because affine transforms do not preserve rectangles in general, this function returns the smallest rectangle that contains the transformed corner points of the `rect` parameter. If the affine transform `t` consists solely of scaling and translation operations, then the returned rectangle coincides with the rectangle constructed from the four transformed corners.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTransform) -> CGRect {
     extern "C-unwind" {
@@ -199,8 +487,6 @@ pub extern "C-unwind" fn CGRectApplyAffineTransform(rect: CGRect, t: CGAffineTra
 /// Parameter `transform`: The CGAffineTransform to decompose
 ///
 /// Returns: A decomposed set of geometric operations, the product of which is the CGAffineTransform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformdecompose?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformDecompose(
     transform: CGAffineTransform,
@@ -216,8 +502,6 @@ pub extern "C-unwind" fn CGAffineTransformDecompose(
 /// Parameter `components`: The set of CGAffineTransformComponents to use to create a new CGAffineTransform
 ///
 /// Returns: A new CGAffineTransform built from the provided components
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgaffinetransformmakewithcomponents?language=objc)
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformMakeWithComponents(
     components: CGAffineTransformComponents,

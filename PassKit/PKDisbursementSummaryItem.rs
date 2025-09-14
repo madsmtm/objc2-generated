@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementsummaryitem?language=objc)
+    /// A summary item that represents a disbursement.
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

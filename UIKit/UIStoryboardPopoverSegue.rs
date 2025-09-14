@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboardpopoversegue?language=objc)
+    /// A specific type of segue for presenting content in a popover.
+    ///
+    /// ## Overview
+    ///
+    /// For popover segues, the destination view controller contains the content to be displayed in the popover. This class provides an additional [`popoverController`](https://developer.apple.com/documentation/uikit/uistoryboardpopoversegue/popovercontroller) property so that your custom code has access to the popover controller object. For example, you might want to store the popover controller elsewhere in your code so that you can dismiss the popover programmatically.
+    ///
+    ///
     #[unsafe(super(UIStoryboardSegue, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

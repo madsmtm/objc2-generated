@@ -6,41 +6,47 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct?language=objc)
+/// The data type defined for the constants specified in the `options` parameter of [`initWithRect:options:owner:userInfo:`](https://developer.apple.com/documentation/appkit/nstrackingarea/init(rect:options:owner:userinfo:)). These constants are described below; you can specify multiple constants by performing a bitwise-OR operation with them. In particular, you must supply one or more of the tracking-type constants (that is, [`NSTrackingMouseEnteredAndExited`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mouseenteredandexited), [`NSTrackingMouseMoved`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mousemoved), and [`NSTrackingCursorUpdate`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/cursorupdate)) and one of the active constants (that is, [`NSTrackingActiveWhenFirstResponder`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activewhenfirstresponder), [`NSTrackingActiveInKeyWindow`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinkeywindow), [`NSTrackingActiveInActiveApp`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinactiveapp), and [`NSTrackingActiveAlways`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activealways)). In addition, you may specify any of the behavior constants (that is, [`NSTrackingAssumeInside`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/assumeinside), [`NSTrackingInVisibleRect`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/invisiblerect), and [`NSTrackingEnabledDuringMouseDrag`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/enabledduringmousedrag)).
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTrackingAreaOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTrackingAreaOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mouseenteredandexited?language=objc)
+/// The owner of the tracking area receives [`mouseEntered:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseentered(with:)) when the mouse cursor enters the area and [`mouseExited:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseexited(with:)) events when the mouse leaves the area. This value specifies a type of tracking area.
         #[doc(alias = "NSTrackingMouseEnteredAndExited")]
         const MouseEnteredAndExited = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/mousemoved?language=objc)
+/// The owner of the tracking area receives [`mouseMoved:`](https://developer.apple.com/documentation/appkit/nsresponder/mousemoved(with:)) messages while the mouse cursor is within the area. This value specifies a type of tracking area.
         #[doc(alias = "NSTrackingMouseMoved")]
         const MouseMoved = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/cursorupdate?language=objc)
+/// A tracking option that receives events when the mouse cursor enters and exits the tracking area.
         #[doc(alias = "NSTrackingCursorUpdate")]
         const CursorUpdate = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activewhenfirstresponder?language=objc)
+/// The owner receives messages when the view is the first responder. This value specifies when the tracking area defined by an [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) object is active.
         #[doc(alias = "NSTrackingActiveWhenFirstResponder")]
         const ActiveWhenFirstResponder = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinkeywindow?language=objc)
+/// The owner receives messages when the view is in the key window. This value specifies when the tracking area defined by an [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) object is active.
         #[doc(alias = "NSTrackingActiveInKeyWindow")]
         const ActiveInKeyWindow = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activeinactiveapp?language=objc)
+/// The owner receives messages when the application is active. This value specifies when the tracking area defined by an [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) object is active.
         #[doc(alias = "NSTrackingActiveInActiveApp")]
         const ActiveInActiveApp = 0x40;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/activealways?language=objc)
+/// The owner receives messages regardless of first-responder status, window status, or application status. The [`cursorUpdate:`](https://developer.apple.com/documentation/appkit/nsresponder/cursorupdate(with:)) message is _not_ sent when the [`NSTrackingCursorUpdate`](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/cursorupdate) option is specified along with this constant. This value specifies when the tracking area defined by an [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) object is active.
         #[doc(alias = "NSTrackingActiveAlways")]
         const ActiveAlways = 0x80;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/assumeinside?language=objc)
+/// The first event is generated when the cursor leaves the tracking area, regardless if the cursor is inside the area when the `NSTrackingArea` is added to a view.  If this option is not specified, the first event is generated when the cursor leaves the tracking area if the cursor is initially inside the area, or when the cursor enters the area if the cursor is initially outside it. Generally, you do not want to request this behavior. This value specifies a behavior of the tracking area defined by the [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea).
         #[doc(alias = "NSTrackingAssumeInside")]
         const AssumeInside = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/invisiblerect?language=objc)
+/// Mouse tracking occurs only in the visible rectangle of the view—in other words, that region of the tracking rectangle that is unobscured. Otherwise, the entire tracking area is active regardless of overlapping views. The `NSTrackingArea` object is automatically synchronized with changes in the view’s visible area ([`visibleRect`](https://developer.apple.com/documentation/appkit/nsview/visiblerect)) and the value returned from [`rect`](https://developer.apple.com/documentation/appkit/nstrackingarea/rect) is ignored. This value specifies a behavior of the tracking area defined by the [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea).
         #[doc(alias = "NSTrackingInVisibleRect")]
         const InVisibleRect = 0x200;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea/options-swift.struct/enabledduringmousedrag?language=objc)
+/// The owner receives [`NSMouseEntered`](https://developer.apple.com/documentation/appkit/nsmouseentered) events when the mouse cursor is dragged into the tracking area. If this option is not specified, the owner receives mouse-entered events when the mouse is moved (no buttons pressed) into the tracking area and on [`NSLeftMouseUp`](https://developer.apple.com/documentation/appkit/nsleftmouseup) events after a mouse drag.
+///
+/// ## Discussion
+///
+/// [`NSMouseExited`](https://developer.apple.com/documentation/appkit/nsmouseexited) and [`NSMouseEntered`](https://developer.apple.com/documentation/appkit/nsmouseentered) events are paired so their delivery is indirectly affected. That is, if a `NSMouseEntered` event is generated and the mouse cursor subsequently moves out of the tracking area, a `NSMouseExited` event is generated regardless if the mouse is moved or dragged, independent of this constant. This value specifies a behavior of the tracking area defined by the [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea).
+///
+///
         #[doc(alias = "NSTrackingEnabledDuringMouseDrag")]
         const EnabledDuringMouseDrag = 0x400;
     }
@@ -55,7 +61,29 @@ unsafe impl RefEncode for NSTrackingAreaOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingarea?language=objc)
+    /// A region of a view that generates mouse-tracking and cursor-update events when the pointer is over that region.
+    ///
+    /// ## Overview
+    ///
+    /// When creating a tracking-area object, you specify a rectangle (in the view’s coordinate system), an owning object, and one or more options, along with (optionally) a dictionary of data. After it’s created, you add the tracking-area object to a view using the [`addTrackingArea:`](https://developer.apple.com/documentation/appkit/nsview/addtrackingarea(_:)) method. Depending on the options specified, the owner of the tracking area receives [`mouseEntered:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseentered(with:)), [`mouseExited:`](https://developer.apple.com/documentation/appkit/nsresponder/mouseexited(with:)), [`mouseMoved:`](https://developer.apple.com/documentation/appkit/nsresponder/mousemoved(with:)), and [`cursorUpdate:`](https://developer.apple.com/documentation/appkit/nsresponder/cursorupdate(with:)) messages when the mouse cursor enters, moves within, and leaves the tracking area. Currently the tracking area is restricted to rectangles.
+    ///
+    /// An [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) object belongs to its view rather than to its window. Consequently, you can add and remove tracking rectangles without needing to worry if the view has been added to a window. In addition, this design makes it possible for the AppKit to compute the geometry of tracking areas automatically when a view moves and, in some cases, when a view changes size.
+    ///
+    /// Using [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea), you can configure the scope of activity for mouse tracking. There are four options:
+    ///
+    /// - The tracking area is active only when the view is first responder.
+    ///
+    /// - The tracking area is active when the view is in the key window.
+    ///
+    /// - The tracking area is active when the application is active.
+    ///
+    /// - The tracking area is active always (even when the application is inactive).
+    ///
+    /// Other options for [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) objects include specifying that the tracking area should be synchronized with the visible rectangle of the view ([`visibleRect`](https://developer.apple.com/documentation/appkit/nsview/visiblerect)) and for generating `mouseEntered:` and `mouseExited`: events when the mouse is dragged.
+    ///
+    /// Other [`NSView`](https://developer.apple.com/documentation/appkit/nsview) methods related to [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) objects (in addition to [`addTrackingArea:`](https://developer.apple.com/documentation/appkit/nsview/addtrackingarea(_:))) include [`removeTrackingArea:`](https://developer.apple.com/documentation/appkit/nsview/removetrackingarea(_:)) and [`updateTrackingAreas`](https://developer.apple.com/documentation/appkit/nsview/updatetrackingareas()). Views can override the latter method to recompute and replace their [`NSTrackingArea`](https://developer.apple.com/documentation/appkit/nstrackingarea) objects in certain situations, such as a change in the size of the `visibleRect`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTrackingArea;

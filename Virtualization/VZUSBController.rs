@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a USB controller in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a `VZUSBController` directly. You need to first configure USB controllers on a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) through a subclass of [`VZUSBControllerConfiguration`](https://developer.apple.com/documentation/virtualization/vzusbcontrollerconfiguration). When you create a [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) from the configuration, the USB controllers are available through the [`usbControllers`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine/usbcontrollers) property.
+    ///
+    /// The concrete type of a `VZUSBController` corresponds to the type the configuration uses. For example, a [`VZXHCIControllerConfiguration`](https://developer.apple.com/documentation/virtualization/vzxhcicontrollerconfiguration) leads to a device of type [`VZXHCIController`](https://developer.apple.com/documentation/virtualization/vzxhcicontroller).
+    ///
+    ///
     /// Class representing a USB controller in a virtual machine.
     ///
     /// VZUSBController should not be instantiated directly.
@@ -17,8 +26,6 @@ extern_class!(
     /// For example, a VZXHCIControllerConfiguration leads to a device of type VZXHCIController.
     ///
     /// See: VZUSBControllerConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzusbcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZUSBController;

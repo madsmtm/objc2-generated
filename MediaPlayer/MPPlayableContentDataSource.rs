@@ -8,13 +8,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The data source providing media metadata to external media players so they can build user interfaces displaying your app’s content.
+    ///
+    /// ## Overview
+    ///
+    /// To support external media players, create a class that conforms to the `MPPlayableContentDataSource` protocol. When your app launches, create an instance of this class and assign it to the shared [`dataSource`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/datasource) property. This data source provides media metadata to external media players so that they can build user interfaces displaying your app’s content. It’s best to set this data source as early as possible in your app’s lifecycle, as iOS may start asking for content right away.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class is only used for CarPlay. Using it requires a special entitlement issued by Apple. Apps without the correct entitlement won’t appear on the CarPlay home screen. See [http://www.apple.com/ios/carplay/](http://www.apple.com/ios/carplay/) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// MPPlayableContentDataSource is a protocol that application objects conform to
     /// if they want to support external media players, such as vehicle head units.
     /// Data sources are responsible for providing metadata about your media to these
     /// systems in a meaningful way, so that features like user interfaces and play
     /// queues can be setup automatically.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdatasource?language=objc)
     #[deprecated = "Use CarPlay framework"]
     pub unsafe trait MPPlayableContentDataSource: NSObjectProtocol {
         #[cfg(feature = "block2")]

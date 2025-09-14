@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrelativereferenceresolutionresult?language=objc)
+    /// A resolution result for a choice between the next or previous option.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRelativeReferenceResolutionResult`](https://developer.apple.com/documentation/intents/inrelativereferenceresolutionresult) object is what you return when resolving parameters containing a [`INRelativeReference`](https://developer.apple.com/documentation/intents/inrelativereference) value. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

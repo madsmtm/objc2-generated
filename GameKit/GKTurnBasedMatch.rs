@@ -7,24 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The states of a match from when it’s created to when it ends.
 /// Constants that describe the state of the overall match
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchStatus(pub NSInteger);
 impl GKTurnBasedMatchStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/unknown?language=objc)
+    /// A match that is in an unknown state.
     #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/open?language=objc)
+    /// A match that participants are actively playing.
     #[doc(alias = "GKTurnBasedMatchStatusOpen")]
     pub const Open: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/ended?language=objc)
+    /// A match that finishes.
     #[doc(alias = "GKTurnBasedMatchStatusEnded")]
     pub const Ended: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum/matching?language=objc)
+    /// A match with empty slots that Game Center is actively filling.
     #[doc(alias = "GKTurnBasedMatchStatusMatching")]
     pub const Matching: Self = Self(3);
 }
@@ -37,30 +36,41 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The state the participant is in during the match.
 /// Constants that describe the state of individual participants in the match
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedParticipantStatus(pub NSInteger);
 impl GKTurnBasedParticipantStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/unknown?language=objc)
+    /// The participant is in an unexpected state.
     #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/invited?language=objc)
+    /// The participant is invited to the match, but hasn’t responded to the invitation.
     #[doc(alias = "GKTurnBasedParticipantStatusInvited")]
     pub const Invited: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/declined?language=objc)
+    /// The participant declines the invitation to join the match, automatically terminating the match.
     #[doc(alias = "GKTurnBasedParticipantStatusDeclined")]
     pub const Declined: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/matching?language=objc)
+    /// The participant represents an unfilled position in the match that Game Center promises to fill when needed.
+    ///
+    /// ## Discussion
+    ///
+    /// When you make this participant the next person to take a turn in the match, Game Center fills the position and updates the [`status`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property) and [`playerID`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/playerid) properties.
+    ///
+    ///
     #[doc(alias = "GKTurnBasedParticipantStatusMatching")]
     pub const Matching: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/active?language=objc)
+    /// The participant joins the match and is an active player.
     #[doc(alias = "GKTurnBasedParticipantStatusActive")]
     pub const Active: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum/done?language=objc)
+    /// The participant leaves the match.
+    ///
+    /// ## Discussion
+    ///
+    /// You set the [`matchOutcome`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome) property to state the reason why the participant left.
+    ///
+    ///
     #[doc(alias = "GKTurnBasedParticipantStatusDone")]
     pub const Done: Self = Self(5);
 }
@@ -73,45 +83,50 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The state of a participant when they forfeit a match or when a match ends.
 /// Constants that describe the game result for a given participant who has reached the done state.  The developer is free to use these constants or add additional ones
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchOutcome(pub NSInteger);
 impl GKTurnBasedMatchOutcome {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/none?language=objc)
+    /// The participant doesn’t reach an outcome.
     #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/quit?language=objc)
+    /// The participant forfeits the match.
     #[doc(alias = "GKTurnBasedMatchOutcomeQuit")]
     pub const Quit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/won?language=objc)
+    /// The participant wins the match.
     #[doc(alias = "GKTurnBasedMatchOutcomeWon")]
     pub const Won: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/lost?language=objc)
+    /// The participant loses the match.
     #[doc(alias = "GKTurnBasedMatchOutcomeLost")]
     pub const Lost: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/tied?language=objc)
+    /// The participant ties the match.
     #[doc(alias = "GKTurnBasedMatchOutcomeTied")]
     pub const Tied: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/timeexpired?language=objc)
+    /// The match ends because the time limit expires.
     #[doc(alias = "GKTurnBasedMatchOutcomeTimeExpired")]
     pub const TimeExpired: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/first?language=objc)
+    /// The participant finishes in first place.
     #[doc(alias = "GKTurnBasedMatchOutcomeFirst")]
     pub const First: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/second?language=objc)
+    /// The participant finishes in second place.
     #[doc(alias = "GKTurnBasedMatchOutcomeSecond")]
     pub const Second: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/third?language=objc)
+    /// The participant finishes in third place.
     #[doc(alias = "GKTurnBasedMatchOutcomeThird")]
     pub const Third: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/fourth?language=objc)
+    /// The participant finishes in fourth place.
     #[doc(alias = "GKTurnBasedMatchOutcomeFourth")]
     pub const Fourth: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome/customrange?language=objc)
+    /// The participant reaches a game-specific outcome.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this outcome to represent custom results.
+    ///
+    ///
     #[doc(alias = "GKTurnBasedMatchOutcomeCustomRange")]
     pub const CustomRange: Self = Self(0x00FF0000);
 }
@@ -125,13 +140,26 @@ unsafe impl RefEncode for GKTurnBasedMatchOutcome {
 }
 
 extern_class!(
+    /// A participant in a turn-based match.
+    ///
+    /// ## Overview
+    ///
+    /// A `GKTurnBasedParticipant` represents a player in a turn-based match that Game Center uses to store and forward match data. In your game, use participant objects to show information about opponents during gameplay.
+    ///
+    /// You get `GKTurnBasedParticipant` objects from the [`participants`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants) property of a [`GKTurnBasedMatch`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch) object that GameKit passes to [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocol methods. If a participant represents a filled slot in the match, GameKit sets the [`player`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player) property and the [`status`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.property) accordingly. Get more information about a participant, such as the participant’s name and avatar, through the [`player`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/player) property.
+    ///
+    /// Before you end a match, you must set the [`matchOutcome`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/matchoutcome) property for every participant in the match.
+    ///
+    /// ### Subclassing
+    ///
+    /// You may not subclass this class.
+    ///
+    ///
     /// GKTurnBasedMatch represents an ongoing turn-based game among the matched group of participants
     /// Existing matches can be shown and new matches created using GKTurnBasedMatchmakerViewController
     /// A list of existing matches can be retrieved using +loadMatchesWithCompletionHandler:
     ///
     /// By default turn based events will badge your app.  To opt out of this add GKGameCenterBadgingDisabled  with a boolean value of YES to your info plist
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedParticipant;
@@ -196,7 +224,21 @@ impl GKTurnBasedParticipant {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener?language=objc)
+    /// The protocol that handles turn-based and data-exchange events between participants in a match.
+    ///
+    /// ## Overview
+    ///
+    /// To receive the `GKTurnBasedEventListener` call backs, register your game object with the local player object immediately after initialization.
+    ///
+    /// ```swift
+    /// GKLocalPlayer.local.register(self)
+    /// ```
+    ///
+    /// Adopt the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol to handle a variety of Game Center events instead of the individual [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener), [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener), [`GKSavedGameListener`](https://developer.apple.com/documentation/gamekit/gksavedgamelistener), and [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocols.
+    ///
+    /// Then implement the [`player:receivedTurnEventForMatch:didBecomeActive:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedturneventfor:didbecomeactive:)) and other `GKTurnBasedEventListener` protocol methods to handle turn-based events that occur throughout a match.
+    ///
+    ///
     pub unsafe trait GKTurnBasedEventListener {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// If Game Center initiates a match the developer should create a GKTurnBasedMatch from playersToInvite and present a GKTurnbasedMatchmakerViewController.
@@ -293,17 +335,51 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturntimeoutdefault?language=objc)
+    /// A one-week time limit to take a turn.
     pub static GKTurnTimeoutDefault: NSTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturntimeoutnone?language=objc)
+    /// No timeout to take a turn.
     pub static GKTurnTimeoutNone: NSTimeInterval;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch?language=objc)
+    /// An object that encapsulates the match data for games where players take turns.
+    ///
+    /// ## Overview
+    ///
+    /// A `GKTurnBasedMatch` object represents a match in a turn-based game that Game Center stores and forwards to participants in the match. In a turn-based game, participants take turns to advance gameplay until they reach an outcome. You end the match when all participants reach an outcome or they can no longer continue.
+    ///
+    /// A turn-based match object contains the status of the match, list of participants, the participant whose turn it is, a message about the last turn, and your game-specific data. You can get more details about the participants through the [`GKTurnBasedParticipant`](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant) objects in the [`participants`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/participants) property.
+    ///
+    /// You don’t create turn-based match objects directly. When a match event occurs, GameKit passes the match object to listeners that conform to the [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocol. Retain the match object or its match ID in the protocol methods, so you can get the latest match data later during gameplay.
+    ///
+    /// Using the match object passed to `GKTurnBasedEventListener` protocol methods, you can perform these actions on behalf of the local player:
+    ///
+    /// - Save game data
+    ///
+    /// - End a turn
+    ///
+    /// - Forfeit a match
+    ///
+    /// - End a match
+    ///
+    /// - Send a reminder to the participant whose turn it is
+    ///
+    /// - Exchange data between participants
+    ///
+    /// - Remove a completed match from Game Center
+    ///
+    /// When you end a turn, forfeit a match, or end a match, you update the match data and if gameplay can continue, choose the next participant. If you end a match, you set the individual participant outcomes as well.
+    ///
+    /// If you present a [`GKTurnBasedMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller) object for players to manage their turn-based matches, the player can start a match, accept an invitation, open an existing match, and forfeit a match.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Don’t subclass the [`GKTurnBasedMatch`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch) class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedMatch;
@@ -603,25 +679,25 @@ impl GKTurnBasedMatch {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus?language=objc)
+/// The status of an exchange or reply.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedExchangeStatus(pub i8);
 impl GKTurnBasedExchangeStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/unknown?language=objc)
+    /// The state of the exchange request is unknown.
     #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/active?language=objc)
+    /// GameKit sent the exchange request to recipients but not all recipients replied.
     #[doc(alias = "GKTurnBasedExchangeStatusActive")]
     pub const Active: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/complete?language=objc)
+    /// All recipients of the exchange request replied.
     #[doc(alias = "GKTurnBasedExchangeStatusComplete")]
     pub const Complete: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/resolved?language=objc)
+    /// The current participant saved the exchange request.
     #[doc(alias = "GKTurnBasedExchangeStatusResolved")]
     pub const Resolved: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/canceled?language=objc)
+    /// The sender canceled the exchange request.
     #[doc(alias = "GKTurnBasedExchangeStatusCanceled")]
     pub const Canceled: Self = Self(4);
 }
@@ -635,17 +711,31 @@ unsafe impl RefEncode for GKTurnBasedExchangeStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkexchangetimeoutdefault?language=objc)
+    /// A one-day exchange request timeout.
     pub static GKExchangeTimeoutDefault: NSTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkexchangetimeoutnone?language=objc)
+    /// An exchange request timeout that doesn’t expire.
     pub static GKExchangeTimeoutNone: NSTimeInterval;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange?language=objc)
+    /// Exchange request information that participants send in a turn-based match.
+    ///
+    /// ## Overview
+    ///
+    /// GameKit sends exchange objects to [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocol methods when the local player receives an exchange request or recipients reply to an exchange request. The exchange object encapsulates your custom game data that you want to communicate to other players.
+    ///
+    /// You initiate an exchange request using the `GKTurnBasedMatch` [`sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/sendexchange(to:data:localizablemessagekey:arguments:timeout:completionhandler:)) method. Then GameKit sends the request to the recipients passing the exchange object to the `GKTurnBasedEventListener` [`player:receivedExchangeRequest:forMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedexchangerequest:for:)) protocol method. GameKit sets the status of the exchange object to [`GKTurnBasedExchangeStatusActive`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/active).
+    ///
+    /// After all recipients respond to the request, using the [`replyWithLocalizableMessageKey:arguments:data:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/reply(withlocalizablemessagekey:arguments:data:completionhandler:)) method, or exceed the time out specified in the request, GameKit sends the exchange to the sender and the current participant. GameKit sets the exchange status to [`GKTurnBasedExchangeStatusComplete`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus/complete) and then passes it to the `GKTurnBasedEventListener` [`player:receivedExchangeReplies:forCompletedExchange:forMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedexchangereplies:forcompletedexchange:for:)) method.
+    ///
+    /// Before the current participant ends their turn, save the completed exchanges using the `GKTurnBasedMatch` [`saveMergedMatchData:withResolvedExchanges:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/savemergedmatch(_:withresolvedexchanges:completionhandler:)) method. Get the exchanges from the match object using the [`completedExchanges`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/completedexchanges) property. Alternatively, save exchange data in the [`player:receivedExchangeReplies:forCompletedExchange:forMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedexchangereplies:forcompletedexchange:for:)) protocol method when all recipients reply to specific exchange requests.
+    ///
+    /// To cancel an active or complete exchange, use the [`cancelWithLocalizableMessageKey:arguments:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/cancel(withlocalizablemessagekey:arguments:completionhandler:)) method. GameKit notifies the recipients when the player cancels an exchange, using the `GKTurnBasedEventListener` [`player:receivedExchangeCancellation:forMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedexchangecancellation:for:)) protocol method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchange;
@@ -734,7 +824,13 @@ impl GKTurnBasedExchange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangereply?language=objc)
+    /// Details about a recipient’s response to an exchange request.
+    ///
+    /// ## Overview
+    ///
+    /// When you accept an exchange request using the [`replyWithLocalizableMessageKey:arguments:data:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/reply(withlocalizablemessagekey:arguments:data:completionhandler:)) method, GameKit sends a `GKTurnBasedExchangeReply` object to participants using the [`player:receivedExchangeReplies:forCompletedExchange:forMatch:`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener/player(_:receivedexchangereplies:forcompletedexchange:for:)) protocol method. You can also get responses to exchange requests from the [`GKTurnBasedExchange`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange) object using the [`replies`](https://developer.apple.com/documentation/gamekit/gkturnbasedexchange/replies) parameter.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKTurnBasedExchangeReply;
@@ -778,7 +874,13 @@ impl GKTurnBasedExchangeReply {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandlerdelegate?language=objc)
+    /// The [`GKTurnBasedEventHandlerDelegate`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandlerdelegate) protocol is implemented by an object to receive notifications events for turn-based matches. All methods are called on the main thread.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol has been deprecated in iOS 7, use [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener).
+    ///
+    ///
     #[deprecated]
     pub unsafe trait GKTurnBasedEventHandlerDelegate {
         #[deprecated]
@@ -810,7 +912,25 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler?language=objc)
+    /// The [`GKTurnBasedEventHandler`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler) class is used to respond to important messages related to turn-based matches. To use it, call the [`sharedTurnBasedEventHandler`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/shared()) class method to get the singleton instance and assign an object that implements the [`GKTurnBasedEventHandlerDelegate`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandlerdelegate) protocol to its [`delegate`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventhandler/delegate) property. All methods are called on the main thread.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Your game must initialize a local player before you can use any Game Center classes. If there is no initialized player, your game receives a [`GKErrorNotAuthenticated`](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated) error. For more information, see [Authenticating a player](https://developer.apple.com/documentation/gamekit/authenticating-a-player).
+    ///
+    ///
+    ///
+    /// </div>
+    /// This framework has been deprecated in iOS 7. Use [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// This class may not be subclassed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

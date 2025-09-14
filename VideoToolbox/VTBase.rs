@@ -5,7 +5,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtint32point?language=objc)
+/// A structure that represents a 32-bit integer point value.
+///
+/// ## Overview
+///
+/// Use this structure to represent a point at an (x, y) location.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct VTInt32Point {
@@ -24,7 +30,13 @@ unsafe impl RefEncode for VTInt32Point {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtint32size?language=objc)
+/// A structure that represents a 32-bit integer size value.
+///
+/// ## Overview
+///
+/// Use this structure to represent a size with a particular width and height.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct VTInt32Size {

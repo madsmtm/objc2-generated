@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstore?language=objc)
+    /// The abstract base class for all Core Data persistent stores.
+    ///
+    /// ## Overview
+    ///
+    /// Core Data provides four store types—SQLite, Binary, XML, and In-Memory (the XML store is not available on iOS); these are described in Persistent Store Features. Core Data also provides subclasses of `NSPersistentStore` that you can use to define your own store types: [`NSAtomicStore`](https://developer.apple.com/documentation/coredata/nsatomicstore) and [`NSIncrementalStore`](https://developer.apple.com/documentation/coredata/nsincrementalstore). The Binary and XML stores are examples of atomic stores that inherit functionality from `NSAtomicStore`.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You should not subclass `NSPersistentStore` directly. Core Data only supports subclassing of [`NSAtomicStore`](https://developer.apple.com/documentation/coredata/nsatomicstore) and [`NSIncrementalStore`](https://developer.apple.com/documentation/coredata/nsincrementalstore).
+    ///
+    /// The designated initializer is [`initWithPersistentStoreCoordinator:configurationName:URL:options:`](https://developer.apple.com/documentation/coredata/nspersistentstore/init(persistentstorecoordinator:configurationname:at:options:)). When you implement the initializer, you must ensure you load metadata during initialization and set it using [`metadata`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadata).
+    ///
+    /// You must override these methods:
+    ///
+    /// - [`type`](https://developer.apple.com/documentation/coredata/nspersistentstore/type)
+    ///
+    /// - [`metadata`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadata)
+    ///
+    /// - [`metadataForPersistentStoreWithURL:error:`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadataforpersistentstore(with:))
+    ///
+    /// - [`setMetadata:forPersistentStoreWithURL:error:`](https://developer.apple.com/documentation/coredata/nspersistentstore/setmetadata(_:forpersistentstoreat:))
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentStore;

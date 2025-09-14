@@ -10,16 +10,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname?language=objc)
+/// Values that specify a binding for certain methods.
+///
+/// ## Discussion
+///
+/// The following values are used to specify a binding to [`bind:toObject:withKeyPath:options:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/bind(_:to:withkeypath:options:)), [`infoForBinding:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/infoforbinding(_:)), [`unbind:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/unbind(_:)) and [`valueClassForBinding:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/valueclassforbinding(_:)). See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSBindingName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption?language=objc)
+///
+/// ## Discussion
+///
+/// Values that are used as keys in the options dictionary passed to the [`bind:toObject:withKeyPath:options:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/bind(_:to:withkeypath:options:)) method.
+///
+/// These keys are also used in the dictionary returned as the [`NSOptionsKey`](https://developer.apple.com/documentation/appkit/nsbindinginfokey/options) value of [`infoForBinding:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/infoforbinding(_:)). See the [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+///
+///
 // NS_TYPED_ENUM
 pub type NSBindingOption = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingselectionmarker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBindingSelectionMarker;
@@ -91,24 +103,48 @@ impl NSBindingSelectionMarker {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultiplevaluesmarker?language=objc)
+    /// This marker indicates that a key’s value contains multiple values that differ.
+    ///
+    /// ## Discussion
+    ///
+    /// A binding can be configured to always return this marker for multiple items, even if the values are the same.
+    ///
+    ///
     #[deprecated]
     pub static NSMultipleValuesMarker: &'static AnyObject;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnoselectionmarker?language=objc)
+    /// This marker indicates that the controller’s selection is currently empty.
     #[deprecated]
     pub static NSNoSelectionMarker: &'static AnyObject;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnotapplicablemarker?language=objc)
+    /// This marker indicates that an object is not key-value coding compliant for the requested key.
     #[deprecated]
     pub static NSNotApplicableMarker: &'static AnyObject;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsiscontrollermarker(_:)?language=objc)
+/// Tests whether a given object is special marker object used for indicating the state of a selection in relation to a key.
+///
+/// Parameters:
+/// - object: Specify the object you want to check. This parameter can be `nil`.
+///
+///
+/// ## Return Value
+///
+/// [`true`](https://developer.apple.com/documentation/swift/true) if the object is one of the designated controller markers or [`false`](https://developer.apple.com/documentation/swift/false) if it is not.
+///
+///
+///
+/// ## Discussion
+///
+/// This function helps you to create bindings between user interface elements and controller objects. The Application Kit predefines several special marker objects used as values for indicating selection state; currently these are [`NSMultipleValuesMarker`](https://developer.apple.com/documentation/appkit/nsmultiplevaluesmarker), [`NSNoSelectionMarker`](https://developer.apple.com/documentation/appkit/nsnoselectionmarker), and [`NSNotApplicableMarker`](https://developer.apple.com/documentation/appkit/nsnotapplicablemarker). These markers are typed as `id` and only exist for the purpose of indicating a state; they are never archived and cannot be used as object values in controls. You use this function to test whether a given object value is a marker, in which case it is not directly assignable to the object that is bound. This check is important, especially since additional markers may be added in the future.
+///
+/// See the `NSKeyValueBinding.h` header file for further details.
+///
+///
 ///
 /// # Safety
 ///
@@ -121,22 +157,21 @@ pub unsafe extern "C-unwind" fn NSIsControllerMarker(object: Option<&AnyObject>)
     unsafe { NSIsControllerMarker(object) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey?language=objc)
 // NS_TYPED_ENUM
 pub type NSBindingInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/observedobject?language=objc)
+    /// The object that is the observable controller of the binding.
     pub static NSObservedObjectKey: &'static NSBindingInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/observedkeypath?language=objc)
+    /// An `NSString` object containing the key path of the binding.
     pub static NSObservedKeyPathKey: &'static NSBindingInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/options?language=objc)
+    /// An `NSDictionary` object containing key value pairs as specified in the options dictionary when the binding was created.
     pub static NSOptionsKey: &'static NSBindingInfoKey;
 }
 
@@ -202,7 +237,6 @@ impl private_NSObjectNSKeyValueBindingCreation::Sealed for NSObject {}
 unsafe impl NSObjectNSKeyValueBindingCreation for NSObject {}
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseditor?language=objc)
     pub unsafe trait NSEditor: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(discardEditing))]
         #[unsafe(method_family = none)]
@@ -233,7 +267,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseditorregistration?language=objc)
+    /// A set of methods that controllers can implement to enable an editor view to inform the controller when it has uncommitted changes.
+    ///
+    /// ## Overview
+    ///
+    /// An implementor is responsible for tracking which editors have uncommitted changes, and sending those editors [`commitEditing`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1458190-commitediting) and [`discardEditing`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1458076-discardediting) messages, as appropriate, to force the editor to submit, or discard, their values.
+    ///
+    /// [`NSController`](https://developer.apple.com/documentation/appkit/nscontroller) provides an implementation of this informal protocol. You would implement this protocol if you wanted to provide your own controller class without subclassing [`NSController`](https://developer.apple.com/documentation/appkit/nscontroller).
+    ///
+    ///
     pub unsafe trait NSEditorRegistration: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(objectDidBeginEditing:))]
@@ -248,526 +290,1018 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alignment?language=objc)
+    /// A constant that identifies an alignment binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAlignmentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alternateimage?language=objc)
+    /// A constant that identifies an alternate image binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAlternateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alternatetitle?language=objc)
+    /// A constant that identifies an alternate title binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAlternateTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/animate?language=objc)
+    /// A constant that identifies an animate binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAnimateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/animationdelay?language=objc)
+    /// A constant that identifies an animation delay binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAnimationDelayBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/argument?language=objc)
+    /// A constant that identifies an argument binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSArgumentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/attributedstring?language=objc)
+    /// A constant that identifies an attributed string binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSAttributedStringBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentarray?language=objc)
+    /// A constant that identifies a content array binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentArrayBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentarrayformultipleselection?language=objc)
+    /// A constant that identifies a content array for multiple selection binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentArrayForMultipleSelectionBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/content?language=objc)
+    /// A constant that identifies a content binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentdictionary?language=objc)
+    /// A constant that identifies a content dictionary binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentDictionaryBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentheight?language=objc)
+    /// A constant that identifies a content height binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentHeightBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentobject?language=objc)
+    /// A constant that identifies a content object binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentObjectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentobjects?language=objc)
+    /// A constant that identifies a content objects binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentObjectsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentset?language=objc)
+    /// A constant that identifies a content set binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentSetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentvalues?language=objc)
+    /// A constant that identifies a content values binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentValuesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentwidth?language=objc)
+    /// A constant that identifies a content width binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSContentWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/criticalvalue?language=objc)
+    /// A constant that identifies a critical value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSCriticalValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/data?language=objc)
+    /// A constant that identifies a data binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDataBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/displaypatterntitle?language=objc)
+    /// A constant that identifies a display pattern title binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDisplayPatternTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/displaypatternvalue?language=objc)
+    /// A constant that identifies a display pattern value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDisplayPatternValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/documentedited?language=objc)
+    /// A constant that identifies a document edited binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDocumentEditedBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/doubleclickargument?language=objc)
+    /// A constant that identifies a double-click argument binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDoubleClickArgumentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/doubleclicktarget?language=objc)
+    /// A constant that identifies a double-click target binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSDoubleClickTargetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/editable?language=objc)
+    /// A constant that identifies an editable binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSEditableBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/enabled?language=objc)
+    /// A constant that identifies an enabled binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSEnabledBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/excludedkeys?language=objc)
+    /// A constant that identifies an excluded keys binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSExcludedKeysBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/filterpredicate?language=objc)
+    /// A constant that identifies a filter predicate binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFilterPredicateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/font?language=objc)
+    /// A constant that identifies a font binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontbold?language=objc)
+    /// A constant that identifies a font bold binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontBoldBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontfamilyname?language=objc)
+    /// A constant that identifies a font family name binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontFamilyNameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontitalic?language=objc)
+    /// A constant that identifies a font italic binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontItalicBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontname?language=objc)
+    /// A constant that identifies a font name binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontNameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontsize?language=objc)
+    /// A constant that identifies a font size binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSFontSizeBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/headertitle?language=objc)
+    /// A constant that identifies a header title binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSHeaderTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/hidden?language=objc)
+    /// A constant that identifies a hidden binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSHiddenBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/image?language=objc)
+    /// A constant that identifies an image binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/includedkeys?language=objc)
+    /// A constant that identifies an included keys binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSIncludedKeysBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/initialkey?language=objc)
+    /// A constant that identifies an initial key binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSInitialKeyBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/initialvalue?language=objc)
+    /// A constant that identifies an initial value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSInitialValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/isindeterminate?language=objc)
+    /// A constant that identifies an is indeterminate binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSIsIndeterminateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/label?language=objc)
+    /// A constant that identifies a label binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSLabelBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/localizedkeydictionary?language=objc)
+    /// A constant that identifies a localized key dictionary binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSLocalizedKeyDictionaryBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/managedobjectcontext?language=objc)
+    /// A constant that identifies a managed object context binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSManagedObjectContextBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maximumrecents?language=objc)
+    /// A constant that identifies a maximum recents binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMaximumRecentsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maxvalue?language=objc)
+    /// A constant that identifies a maximum value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMaxValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maxwidth?language=objc)
+    /// A constant that identifies a maximum width binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMaxWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/minvalue?language=objc)
+    /// A constant that identifies a minimum value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMinValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/minwidth?language=objc)
+    /// A constant that identifies a minimum width binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMinWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/mixedstateimage?language=objc)
+    /// A constant that identifies a mixed state image binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSMixedStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/offstateimage?language=objc)
+    /// A constant that identifies an off state image binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSOffStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/onstateimage?language=objc)
+    /// A constant that identifies an on state image binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSOnStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/positioningrect?language=objc)
+    /// A constant that identifies a positioning rectangle binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSPositioningRectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/predicate?language=objc)
+    /// A constant that identifies a predicate binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSPredicateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/recentsearches?language=objc)
+    /// A constant that identifies a recent searches binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSRecentSearchesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/representedfilename?language=objc)
+    /// A constant that identifies a represented filename binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSRepresentedFilenameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/rowheight?language=objc)
+    /// A constant that identifies a row height binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSRowHeightBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedidentifier?language=objc)
+    /// A constant that identifies a selected identifier binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedIdentifierBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedindex?language=objc)
+    /// A constant that identifies a selected index binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedIndexBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedlabel?language=objc)
+    /// A constant that identifies a selected label binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedLabelBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedobject?language=objc)
+    /// A constant that identifies a selected object binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedObjectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedobjects?language=objc)
+    /// A constant that identifies a selected objects binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedObjectsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedtag?language=objc)
+    /// A constant that identifies a selected tag binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedTagBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedvalue?language=objc)
+    /// A constant that identifies a selected value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedvalues?language=objc)
+    /// A constant that identifies a selected values binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectedValuesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectionindexes?language=objc)
+    /// A constant that identifies a selection indexes binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectionIndexesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectionindexpaths?language=objc)
+    /// A constant that identifies a selection index paths binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSelectionIndexPathsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/sortdescriptors?language=objc)
+    /// A constant that identifies a sort descriptors binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSSortDescriptorsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/target?language=objc)
+    /// A constant that identifies a target binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSTargetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/textcolor?language=objc)
+    /// A constant that identifies a text color binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSTextColorBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/title?language=objc)
+    /// A constant that identifies a title binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/tooltip?language=objc)
+    /// A constant that identifies a tool tip binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSToolTipBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/transparent?language=objc)
+    /// A constant that identifies a transparent binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSTransparentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/value?language=objc)
+    /// A constant that identifies a value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/valuepath?language=objc)
+    /// A constant that identifies a value path binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSValuePathBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/valueurl?language=objc)
+    /// A constant that identifies a value URL binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSValueURLBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/visible?language=objc)
+    /// A constant that identifies a visible binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSVisibleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/warningvalue?language=objc)
+    /// A constant that identifies a warning value binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSWarningValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/width?language=objc)
+    /// A constant that identifies a width binding.
+    ///
+    /// ## Discussion
+    ///
+    /// See [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    ///
     pub static NSWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/allowseditingmultiplevaluesselection?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the binding allows editing when the value represents a multiple selection.
     pub static NSAllowsEditingMultipleValuesSelectionBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/allowsnullargument?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the argument bindings allows passing argument values of `nil`.
     pub static NSAllowsNullArgumentBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/alwayspresentsapplicationmodalalerts?language=objc)
+    /// A number containing a Boolean value that determines if validation and error alert panels displayed as a result of this binding are displayed as application modal alerts.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), then the alerts are displayed application model, otherwise they are displayed as sheets.
+    ///
+    ///
     pub static NSAlwaysPresentsApplicationModalAlertsBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetseditable?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the editable state of the user interface item is automatically configured based on the controller’s selection.
     pub static NSConditionallySetsEditableBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetsenabled?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the enabled state of the user interface item is automatically configured based on the controller’s selection.
     pub static NSConditionallySetsEnabledBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetshidden?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the hidden state of the user interface item is automatically configured based on the controller’s selection.
     pub static NSConditionallySetsHiddenBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/continuouslyupdatesvalue?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines whether the value of the binding is updated as edits are made to the user interface item or is updated only when the user interface item resigns as the responder.
     pub static NSContinuouslyUpdatesValueBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/createssortdescriptor?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if a sort descriptor is created for a table column.
+    ///
+    /// ## Discussion
+    ///
+    /// If this value is [`false`](https://developer.apple.com/documentation/swift/false), then the table column does not allow sorting.
+    ///
+    ///
     pub static NSCreatesSortDescriptorBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/deletesobjectsonremove?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if an object is deleted from the managed context immediately upon being removed from a relationship.
     pub static NSDeletesObjectsOnRemoveBindingsOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/displayname?language=objc)
+    /// An `NSString` object containing a human readable string to be displayed for a predicate.
     pub static NSDisplayNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/displaypattern?language=objc)
+    /// An `NSString` object that specifies a format string used to construct the final value of a string.
     pub static NSDisplayPatternBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/contentplacementtag?language=objc)
+    /// A number that specifies the tag id of the popup menu item to replace with the content of the array.
+    ///
+    /// ## Discussion
+    ///
+    /// This value allows you to use a popup menu that contains both static and bindings generated items.
+    ///
+    ///
     pub static NSContentPlacementTagBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/handlescontentascompoundvalue?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the content is treated as a compound value.
     pub static NSHandlesContentAsCompoundValueBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/insertsnullplaceholder?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if an additional item which represents `nil` is inserted into a matrix or pop-up menu before the items in the content array.
     pub static NSInsertsNullPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/invokesseparatelywitharrayobjects?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines whether the specified selector is invoked with the array as the argument or is invoked repeatedly with each array item as an argument.
     pub static NSInvokesSeparatelyWithArrayObjectsBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/multiplevaluesplaceholder?language=objc)
+    /// An object that is used as a placeholder when the key path of the bound controller returns the `NSMultipleValuesMarker` marker for a binding.
     pub static NSMultipleValuesPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/noselectionplaceholder?language=objc)
+    /// An object that is used as a placeholder when the key path of the bound controller returns the `NSNoSelectionMarker` marker for a binding.
     pub static NSNoSelectionPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/notapplicableplaceholder?language=objc)
+    /// An object that is used as a placeholder when the key path of the bound controller returns the `NSNotApplicableMarker` marker for a binding.
     pub static NSNotApplicablePlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/nullplaceholder?language=objc)
+    /// An object that is used as a placeholder when the key path of the bound controller returns `nil` for a binding.
     pub static NSNullPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/raisesfornotapplicablekeys?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies if an exception is raised when the binding is bound to a key that is not applicable—for example when an object is not key-value coding compliant for a key.
     pub static NSRaisesForNotApplicableKeysBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/predicateformat?language=objc)
+    /// An `NSString` object containing the predicate pattern string for the predicate bindings. Use `$value` to refer to the value in the search field.
     pub static NSPredicateFormatBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/selectorname?language=objc)
+    /// An `NSString` object that specifies the method selector invoked by the target binding when the user interface item is clicked.
     pub static NSSelectorNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/selectsallwhensettingcontent?language=objc)
+    /// An `NSNumber` object containing a Boolean value that specifies if all the items in the array controller are selected when the content is set.
     pub static NSSelectsAllWhenSettingContentBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/validatesimmediately?language=objc)
+    /// An `NSNumber` object containing a Boolean value that determines if the contents of the binding are validated immediately.
     pub static NSValidatesImmediatelyBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/valuetransformername?language=objc)
+    /// The value for this key is an identifier of a registered `NSValueTransformer` instance that is applied to the bound value.
     pub static NSValueTransformerNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/valuetransformer?language=objc)
+    /// An `NSValueTransformer` instance that is applied to the bound value.
     pub static NSValueTransformerBindingOption: &'static NSBindingOption;
 }

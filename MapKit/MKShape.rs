@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkshape?language=objc)
+    /// An abstract class that defines the basic properties for all shape-based overlay objects.
+    ///
+    /// ## Overview
+    ///
+    /// You can’t instantiate this class directly; use a subclass instead. Subclasses are responsible for defining the geometry of the shape and providing an appropriate value for the coordinate property they inherit from the [`MKAnnotation`](https://developer.apple.com/documentation/mapkit/mkannotation) protocol.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKShape;

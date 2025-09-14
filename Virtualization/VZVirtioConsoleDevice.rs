@@ -7,6 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// Optional methods that you use to respond when a console port opens or closes in the virtual machine.
     /// Delegate object for VZVirtioConsoleDevice.
     ///
     /// A class conforming to the VZVirtioConsoleDeviceDelegate protocol can provide methods that notify when a console port is opened or closed in the virtual machine.
@@ -14,8 +15,6 @@ extern_protocol!(
     /// See: VZVirtioConsoleDevice
     ///
     /// See: VZVirtioConsolePort
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevicedelegate?language=objc)
     pub unsafe trait VZVirtioConsoleDeviceDelegate: NSObjectProtocol {
         #[cfg(all(feature = "VZConsoleDevice", feature = "VZVirtioConsolePort"))]
         /// Invoked when a guest process has opened a Virtio console port.
@@ -54,13 +53,12 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// A class that represents a Virtio console device in a virtual machine.
     /// Class representing a Virtio console device in a virtual machine.
     ///
     /// VZVirtioConsoleDevice should not be instantiated directly.
     ///
     /// See: VZConsoleDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtioconsoledevice?language=objc)
     #[unsafe(super(VZConsoleDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZConsoleDevice")]

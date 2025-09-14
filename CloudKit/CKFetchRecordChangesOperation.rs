@@ -8,6 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An operation that reports on the changed and deleted records in the specified record zone.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type of operation object to optimize fetch operations for locally managed sets of records. Specifically, use it when you maintain a local cache of your record data and need to synchronize that cache periodically with the server.
+    ///
+    /// To get the most benefit out of a `CKFetchRecordChangesOperation` object, you must maintain a local cache of the records from the specified zone. Each time you fetch changes from that zone, the server provides a token that identifies your request. With each subsequent fetch request, you initialize the operation object with the token from the previous request, and the server returns only the records with changes since that request.
+    ///
+    /// The blocks you assign to process the fetched records execute serially on an internal queue that the operation manages. Your blocks must be capable of executing on a background thread, so any tasks that require access to the main thread must redirect accordingly.
+    ///
+    /// If you assign a completion block to the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property of the operation object, the system calls the completion block after the operation executes and returns its results to you. You can use a completion block to perform housekeeping tasks for the operation, but don’t use it to process the results of the operation. Any completion block you specify should handle the failure of the operation to complete its task, whether due to an error or an explicit cancellation.
+    ///
+    ///
     /// Use CKFetchRecordZoneChangesOperation instead of this class.
     ///
     /// Any serverChangeTokens saved from a CKFetchRecordChangesOperation are usable as a serverRecordZoneChangeToken in CKFetchRecordZoneChangesOperation
@@ -18,8 +31,6 @@ extern_class!(
     /// `CKFetchRecordChangesOperation`is passed in, only the records that have changed since that token will be fetched.
     /// If this is your first fetch or if you wish to re-fetch all records, pass nil for the change token.
     /// Change tokens are opaque tokens and clients should not infer any behavior based on their content
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordchangesoperation?language=objc)
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

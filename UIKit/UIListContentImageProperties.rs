@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontentimageproperties?language=objc)
+    /// Properties that affect the list content configuration’s image.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -263,11 +263,16 @@ impl UIListContentImageProperties {
 }
 
 extern "C" {
+    /// The system standard layout dimension for reserved layout size.
+    ///
+    /// ## Discussion
+    ///
+    /// Setting the [`reservedLayoutSize`](https://developer.apple.com/documentation/uikit/uilistcontentimageproperties/reservedlayoutsize) width or height to this constant results in using the system standard value for a symbol image for that dimension, even when the image is not a symbol image.
+    ///
+    ///
     /// A special constant that can be set to the `reservedLayoutSize` width or height. This
     /// forces the system standard value that a symbol image would use for that dimension,
     /// even when the image is not a symbol image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontentimagestandarddimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIListContentImageStandardDimension: CGFloat;
 }

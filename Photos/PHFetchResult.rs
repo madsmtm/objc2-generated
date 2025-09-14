@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phfetchresult?language=objc)
+    /// An ordered list of assets or collections returned from a Photos fetch method.
+    ///
+    /// ## Overview
+    ///
+    /// When you use class methods on the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset), [`PHCollection`](https://developer.apple.com/documentation/photos/phcollection), [`PHAssetCollection`](https://developer.apple.com/documentation/photos/phassetcollection), and [`PHCollectionList`](https://developer.apple.com/documentation/photos/phcollectionlist) classes to retrieve objects, Photos provides the resulting objects in a fetch result. You access the contents of a fetch result with the same methods and conventions used by the [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) class. Unlike an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object, however, a [`PHFetchResult`](https://developer.apple.com/documentation/photos/phfetchresult) object dynamically loads its contents from the Photos library as needed, providing optimal performance even when handling a large number of results.
+    ///
+    /// A fetch result provides thread-safe access to its contents. After a fetch, the fetch result’s [`count`](https://developer.apple.com/documentation/photos/phfetchresult/count) value is constant, and all objects in the fetch result keep the same [`localIdentifier`](https://developer.apple.com/documentation/photos/phobject/localidentifier) value. (To get updated content for a fetch, register a change observer with the shared [`PHPhotoLibrary`](https://developer.apple.com/documentation/photos/phphotolibrary) object.)
+    ///
+    /// A fetch result caches its contents, keeping a batch of objects around the most recently accessed index. Because objects outside of the batch are no longer cached, accessing these objects results in refetching those objects. This process can result in changes to values previously read from those objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHFetchResult<ObjectType: ?Sized = AnyObject>;

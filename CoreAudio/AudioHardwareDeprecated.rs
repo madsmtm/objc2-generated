@@ -10,42 +10,32 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarerunloopmode?language=objc)
 pub const kAudioHardwareRunLoopMode: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.audio.CoreAudio\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicemastersubdevicekey?language=objc)
 pub const kAudioAggregateDeviceMasterSubDeviceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"master\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyscopeinput?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyScopeInput: AudioObjectPropertyScope = kAudioObjectPropertyScopeInput;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyscopeoutput?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyScopeOutput: AudioObjectPropertyScope =
     kAudioObjectPropertyScopeOutput;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyscopeplaythrough?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyScopePlayThrough: AudioObjectPropertyScope =
     kAudioObjectPropertyScopePlayThrough;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopropertywildcardpropertyid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioPropertyWildcardPropertyID: AudioObjectPropertySelector =
     kAudioObjectPropertySelectorWildcard;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopropertywildcardsection?language=objc)
 pub const kAudioPropertyWildcardSection: c_uchar = 0xFF;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiopropertywildcardchannel?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioPropertyWildcardChannel: AudioObjectPropertyElement =
     kAudioObjectPropertyElementWildcard;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioisubownercontrolclassid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioISubOwnerControlClassID: AudioClassID = 0x61746368;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiolevelcontrolpropertydecibelstoscalartransferfunction?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioLevelControlPropertyDecibelsToScalarTransferFunction: AudioObjectPropertySelector =
     0x6c637466;
@@ -57,59 +47,41 @@ pub const kAudioLevelControlPropertyDecibelsToScalarTransferFunction: AudioObjec
 /// scalar value to an exponent to map it into the decibel range. The constants
 /// in this enum express the exponent used in the name as a quotient. For example,
 /// kAudioLevelControlTranferFunction3Over4 represents the exponent 0.75.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioLevelControlTransferFunction(pub u32);
 impl AudioLevelControlTransferFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunctionlinear?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunctionLinear")]
     pub const TranferFunctionLinear: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction1over3?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction1Over3")]
     pub const TranferFunction1Over3: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction1over2?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction1Over2")]
     pub const TranferFunction1Over2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over4?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over4")]
     pub const TranferFunction3Over4: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over2?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over2")]
     pub const TranferFunction3Over2: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction2over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction2Over1")]
     pub const TranferFunction2Over1: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction3over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction3Over1")]
     pub const TranferFunction3Over1: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction4over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction4Over1")]
     pub const TranferFunction4Over1: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction5over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction5Over1")]
     pub const TranferFunction5Over1: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction6over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction6Over1")]
     pub const TranferFunction6Over1: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction7over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction7Over1")]
     pub const TranferFunction7Over1: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction8over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction8Over1")]
     pub const TranferFunction8Over1: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction9over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction9Over1")]
     pub const TranferFunction9Over1: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction10over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction10Over1")]
     pub const TranferFunction10Over1: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction11over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction11Over1")]
     pub const TranferFunction11Over1: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction/tranferfunction12over1?language=objc)
     #[doc(alias = "kAudioLevelControlTranferFunction12Over1")]
     pub const TranferFunction12Over1: Self = Self(15);
 }
@@ -126,8 +98,6 @@ unsafe impl RefEncode for AudioLevelControlTransferFunction {
 
 /// An AudioHardwarePropertyID is a integer that identifies a specific piece of
 /// information about the AudioSystemObject.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepropertyid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioHardwarePropertyID = AudioObjectPropertySelector;
 
@@ -142,45 +112,33 @@ pub type AudioHardwarePropertyID = AudioObjectPropertySelector;
 /// with the AudioSystemObject.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwarepropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioHardwarePropertyListenerProc =
     Option<unsafe extern "C-unwind" fn(AudioHardwarePropertyID, *mut c_void) -> OSStatus>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyrunloop?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyRunLoop: AudioObjectPropertySelector = 0x726e6c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertydeviceforuid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyDeviceForUID: AudioObjectPropertySelector = 0x64756964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertypluginforbundleid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyPlugInForBundleID: AudioObjectPropertySelector = 0x70696269;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertyprocessismaster?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 pub const kAudioHardwarePropertyProcessIsMaster: AudioObjectPropertySelector = 0x6d617374;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumescalar?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeScalar: AudioObjectPropertySelector = 0x62627673;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumedecibels?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeDecibels: AudioObjectPropertySelector = 0x62627664;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumerangedecibels?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeRangeDecibels: AudioObjectPropertySelector =
     0x62626423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumescalartodecibels?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeScalarToDecibels: AudioObjectPropertySelector =
     0x62763264;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumedecibelstoscalar?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeDecibelsToScalar: AudioObjectPropertySelector =
     0x62643276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiohardwarepropertybootchimevolumedecibelstoscalartransferfunction?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:
     AudioObjectPropertySelector = 0x62767466;
@@ -198,8 +156,6 @@ extern "C-unwind" {
     /// Parameter `inRunLoopSource`: The CFRunLoopSource to add.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareaddrunloopsource?language=objc)
     #[deprecated]
     pub fn AudioHardwareAddRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
 }
@@ -215,8 +171,6 @@ extern "C-unwind" {
     /// Parameter `inRunLoopSource`: The CFRunLoopSource to remove.
     ///
     /// Returns: An OSStatus indicating success or failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareremoverunloopsource?language=objc)
     #[deprecated]
     pub fn AudioHardwareRemoveRunLoopSource(in_run_loop_source: &CFRunLoopSource) -> OSStatus;
 }
@@ -243,8 +197,6 @@ extern "C-unwind" {
     ///
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaregetpropertyinfo?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetPropertyInfo(
@@ -275,8 +227,6 @@ extern "C-unwind" {
     ///
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaregetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareGetProperty(
@@ -306,8 +256,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwaresetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareSetProperty(
@@ -336,8 +284,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareaddpropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareAddPropertyListener(
@@ -364,8 +310,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiohardwareremovepropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioHardwareRemovePropertyListener(
@@ -379,15 +323,11 @@ extern "C-unwind" {
 /// AudioDevice is a subclass of AudioObject. AudioDevices normally contain
 /// AudioStreams and AudioControls, but may contain other things depending on the
 /// kind of AudioDevice (e.g. aggregate devices contain other AudioDevices).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioDeviceID = AudioObjectID;
 
 /// An AudioDevicePropertyID is an integer that identifies a specific piece of
 /// information about the object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicepropertyid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioDevicePropertyID = AudioObjectPropertySelector;
 
@@ -408,8 +348,6 @@ pub type AudioDevicePropertyID = AudioObjectPropertySelector;
 /// with the object.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicepropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioDevicePropertyListenerProc = Option<
     unsafe extern "C-unwind" fn(
@@ -421,103 +359,74 @@ pub type AudioDevicePropertyListenerProc = Option<
     ) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodeviceunknown?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDeviceUnknown: AudioObjectID = kAudioObjectUnknown;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicetransporttypeautoaggregate?language=objc)
 pub const kAudioDeviceTransportTypeAutoAggregate: u32 = 0x66677270;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyvolumedecibelstoscalartransferfunction?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyVolumeDecibelsToScalarTransferFunction: AudioObjectPropertySelector =
     0x76637466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythruvolumedecibelstoscalartransferfunction?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyPlayThruVolumeDecibelsToScalarTransferFunction:
     AudioObjectPropertySelector = 0x6d767466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydrivershouldownisub?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDriverShouldOwniSub: AudioObjectPropertySelector = 0x69737562;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysubvolumedecibelstoscalartransferfunction?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertySubVolumeDecibelsToScalarTransferFunction:
     AudioObjectPropertySelector = 0x73767466;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicename?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDeviceName: AudioObjectPropertySelector = 0x6e616d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicenamecfstring?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDeviceNameCFString: AudioObjectPropertySelector =
     kAudioObjectPropertyName;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicemanufacturer?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDeviceManufacturer: AudioObjectPropertySelector = 0x6d616b72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydevicemanufacturercfstring?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDeviceManufacturerCFString: AudioObjectPropertySelector =
     kAudioObjectPropertyManufacturer;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyregisterbufferlist?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyRegisterBufferList: AudioObjectPropertySelector = 0x72627566;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybuffersize?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyBufferSize: AudioObjectPropertySelector = 0x6273697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertybuffersizerange?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyBufferSizeRange: AudioObjectPropertySelector = 0x62737a23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelname?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelName: AudioObjectPropertySelector = 0x63686e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnamecfstring?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelNameCFString: AudioObjectPropertySelector =
     kAudioObjectPropertyElementName;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelcategoryname?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelCategoryName: AudioObjectPropertySelector = 0x63636e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelcategorynamecfstring?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelCategoryNameCFString: AudioObjectPropertySelector =
     kAudioObjectPropertyElementCategoryName;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnumbername?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelNumberName: AudioObjectPropertySelector = 0x636e6e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnumbernamecfstring?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelNumberNameCFString: AudioObjectPropertySelector =
     kAudioObjectPropertyElementNumberName;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertysupportsmixing?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertySupportsMixing: AudioObjectPropertySelector = 0x6d69783f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamformat?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyStreamFormat: AudioObjectPropertySelector = 0x73666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamformats?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyStreamFormats: AudioObjectPropertySelector = 0x73666d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamformatsupported?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyStreamFormatSupported: AudioObjectPropertySelector = 0x73666d3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertystreamformatmatch?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyStreamFormatMatch: AudioObjectPropertySelector = 0x73666d6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertydatasourcenameforid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyDataSourceNameForID: AudioObjectPropertySelector = 0x7373636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyclocksourcenameforid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyClockSourceNameForID: AudioObjectPropertySelector = 0x6373636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyplaythrudestinationnameforid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyPlayThruDestinationNameForID: AudioObjectPropertySelector =
     0x6d64646e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertychannelnominallinelevelnameforid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyChannelNominalLineLevelNameForID: AudioObjectPropertySelector =
     0x636e6c76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiodevicepropertyhighpassfiltersettingnameforid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioDevicePropertyHighPassFilterSettingNameForID: AudioObjectPropertySelector =
     0x63686970;
@@ -545,8 +454,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceaddioproc?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceAddIOProc(
@@ -569,8 +476,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceremoveioproc?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRemoveIOProc(
@@ -605,8 +510,6 @@ extern "C-unwind" {
     ///
     /// - `in_start_time` must be a valid pointer.
     /// - `out_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceread?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioDeviceRead(
@@ -643,8 +546,6 @@ extern "C-unwind" {
 ///
 /// - `out_size` must be a valid pointer or null.
 /// - `out_writable` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetpropertyinfo?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -703,8 +604,6 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetPropertyInfo(
 ///
 /// - `io_property_data_size` must be a valid pointer.
 /// - `out_property_data` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicegetproperty?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -768,8 +667,6 @@ pub unsafe extern "C-unwind" fn AudioDeviceGetProperty(
 ///
 /// - `in_when` must be a valid pointer or null.
 /// - `in_property_data` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodevicesetproperty?language=objc)
 #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
 #[deprecated]
 #[inline]
@@ -830,8 +727,6 @@ pub unsafe extern "C-unwind" fn AudioDeviceSetProperty(
 ///
 /// - `in_proc` must be implemented correctly.
 /// - `in_client_data` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceaddpropertylistener?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -887,8 +782,6 @@ pub unsafe extern "C-unwind" fn AudioDeviceAddPropertyListener(
 /// # Safety
 ///
 /// `in_proc` must be implemented correctly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceremovepropertylistener?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 #[inline]
@@ -919,7 +812,6 @@ pub unsafe extern "C-unwind" fn AudioDeviceRemovePropertyListener(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioaggregatedevicepropertymastersubdevice?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[deprecated]
 pub const kAudioAggregateDevicePropertyMasterSubDevice: AudioObjectPropertySelector =
@@ -929,8 +821,6 @@ pub const kAudioAggregateDevicePropertyMasterSubDevice: AudioObjectPropertySelec
 /// an audio device.
 ///
 /// AudioStream is a subclass of AudioObject and can contain AudioControls.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioStreamID = AudioObjectID;
 
@@ -949,27 +839,20 @@ pub type AudioStreamID = AudioObjectID;
 /// with the object.
 ///
 /// Returns: The return value is currently unused and should always be 0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreampropertylistenerproc?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub type AudioStreamPropertyListenerProc = Option<
     unsafe extern "C-unwind" fn(AudioStreamID, u32, AudioDevicePropertyID, *mut c_void) -> OSStatus,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreamunknown?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamUnknown: AudioObjectID = kAudioObjectUnknown;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyowningdevice?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamPropertyOwningDevice: AudioObjectPropertySelector = kAudioObjectPropertyOwner;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformats?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamPropertyPhysicalFormats: AudioObjectPropertySelector = 0x70667423;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformatsupported?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamPropertyPhysicalFormatSupported: AudioObjectPropertySelector = 0x7066743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiostreampropertyphysicalformatmatch?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioStreamPropertyPhysicalFormatMatch: AudioObjectPropertySelector = 0x7066746d;
 
@@ -995,8 +878,6 @@ extern "C-unwind" {
     ///
     /// - `out_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamgetpropertyinfo?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetPropertyInfo(
@@ -1032,8 +913,6 @@ extern "C-unwind" {
     ///
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamgetproperty?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamGetProperty(
@@ -1074,8 +953,6 @@ extern "C-unwind" {
     ///
     /// - `in_when` must be a valid pointer or null.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamsetproperty?language=objc)
     #[cfg(all(feature = "AudioHardware", feature = "objc2-core-audio-types"))]
     #[deprecated]
     pub fn AudioStreamSetProperty(
@@ -1111,8 +988,6 @@ extern "C-unwind" {
     ///
     /// - `in_proc` must be implemented correctly.
     /// - `in_client_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamaddpropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamAddPropertyListener(
@@ -1145,8 +1020,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_proc` must be implemented correctly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamremovepropertylistener?language=objc)
     #[cfg(feature = "AudioHardware")]
     #[deprecated]
     pub fn AudioStreamRemovePropertyListener(
@@ -1157,15 +1030,12 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiobootchimevolumecontrolclassid?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioBootChimeVolumeControlClassID: AudioClassID = 0x7072616d;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudiocontrolpropertyvariant?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioControlPropertyVariant: AudioObjectPropertySelector = 0x63766172;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioclocksourcecontrolpropertyitemkind?language=objc)
 #[cfg(feature = "AudioHardware")]
 pub const kAudioClockSourceControlPropertyItemKind: AudioObjectPropertySelector =
     kAudioSelectorControlPropertyItemKind;

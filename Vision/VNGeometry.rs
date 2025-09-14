@@ -12,11 +12,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable object that represents a single 2D point in an image.
     /// VNPoint represents a single, immutable, two-dimensional point in an image.
     ///
     /// It should be noted that VNPoint is not intended as an overall replacement of CGPoint, NSPoint or vec2, but is used by observations that need to present points which may contain additional metadata.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint;
@@ -125,11 +124,10 @@ impl VNPoint {
 }
 
 extern_class!(
+    /// An object that represents a 3D point in an image.
     /// VNPoint3D represents a single, immutable, three-dimensional point in an image.
     ///
     /// It should be noted that VNPoint3D is not intended as an overall replacement of simd float4x4, but is used by observations that need to present points which may contain additional metadata.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnpoint3d?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNPoint3D;
@@ -173,9 +171,8 @@ impl VNPoint3D {
 }
 
 extern_class!(
+    /// An immutable 2D vector represented by its x-axis and y-axis projections.
     /// VNVector is a two-dimensional vector represented its X and Y axis projections. Once created, VNVector objects are immutable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvector?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVector;
@@ -316,9 +313,8 @@ impl VNVector {
 }
 
 extern_class!(
+    /// An immutable 2D circle represented by its center point and radius.
     /// VNCircle is two-dimensional circle represented by the center point 'center' and its radius 'radius'. Once created, VNCircle objects are immutable.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncircle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCircle;
@@ -414,14 +410,13 @@ impl VNCircle {
 }
 
 extern_class!(
+    /// A class that represents a detected contour in an image.
     /// The VNContour class describes a contour provided by a VNContoursObservation.
     ///
     ///
     /// VNContour objects are lightweight objects that act as a façade which allows access to a small slice of the usually much larger block of data owned by a VNContoursObservation that represents all of the contours detected in an image.
     /// While the interface does present the notion of a hierarchy of parent/child contours, the implementation purposefully does not contain any explicit internal bookkeeping for this relationship.  Instead, contours are uniquely identified via their indexPath property.
     /// As a side effect of this choice, repeated calls to methods that would return relational contours (e.g., -childContours or -childContourAtIndex:error:) are NOT guaranteed to return the same VNContour instances over and over again.  If this kind of parent/child object stability is an absolute requirement of the client, then they are responsible for creating the necessary data structures to represent and build that instance-stable hierarchy.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncontour?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNContour;

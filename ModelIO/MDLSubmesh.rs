@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlsubmeshtopology?language=objc)
+    /// A description of how a submesh’s index buffer data is arranged and how that arrangement should be used to produce the submesh’s intended 3D shape.
+    ///
+    /// ## Overview
+    ///
+    /// Model I/O creates topology objects when importing assets containing non-uniform index buffers (that is, index buffers not composed of a single primitive type such as triangles or quads). You can also use topology objects (or load assets from file formats supporting topology information) to describe models for surface subdivision, identifying which edges or vertices remain sharp or become smooth when you use the [`newSubdividedMesh:submeshIndex:subdivisionLevels:`](https://developer.apple.com/documentation/modelio/mdlmesh/newsubdividedmesh(_:submeshindex:subdivisionlevels:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLSubmeshTopology;
@@ -209,9 +215,14 @@ impl MDLSubmeshTopology {
 }
 
 extern_class!(
-    /// A drawable subset of an MDLMesh, with its own material
+    /// A container for index buffer data and material information to be used in rendering all or part of a 3D object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlsubmesh?language=objc)
+    /// ## Overview
+    ///
+    /// Submeshes are contained in [`MDLMesh`](https://developer.apple.com/documentation/modelio/mdlmesh) objects, which provide vertex buffer data that a submesh’s index data refers to. Together, the vertex and index data describe the geometric form of a portion of the mesh, and the submesh’s [`material`](https://developer.apple.com/documentation/modelio/mdlsubmesh/material) property determines its intended surface appearance for rendering.
+    ///
+    ///
+    /// A drawable subset of an MDLMesh, with its own material
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLSubmesh;

@@ -8,6 +8,75 @@ use crate::*;
 extern_protocol!(
     /// An application extension that uses the system implementation to schedule asset-pack downloads automatically.
     ///
+    /// ## Overview
+    ///
+    /// The protocol provides default implementations for all of the inherited [`BADownloaderExtension`](https://developer.apple.com/documentation/backgroundassets/badownloaderextension-zuvm) requirements.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Warning
+    /// Don’t implement any of the inherited [`BADownloaderExtension`](https://developer.apple.com/documentation/backgroundassets/badownloaderextension-zuvm) requirements aside from, optionally, [`backgroundDownload:didReceiveChallenge:completionHandler:`](https://developer.apple.com/documentation/backgroundassets/badownloaderextension-zuvm/backgrounddownload:didreceivechallenge:completionhandler:).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ## Creating an Objective-C Downloader Extension
+    ///
+    /// Xcode’s Background Download extension template generates Swift code when you select either the “Apple-Hosted, Managed” option or the “Self-Hosted, Managed” option, but you can easily switch to Objective-C instead if you prefer. To do so, follow these steps:
+    ///
+    /// 1. Remove `BackgroundDownloadHandler.swift`.
+    ///
+    /// 2. Create `DownloaderExtension.h` with the following contents:
+    ///
+    /// ### Apple Hosting
+    ///
+    /// ```objc
+    /// #import <StoreKit/StoreKit.h>
+    ///
+    /// \@interface DownloaderExtension : NSObject <SKDownloaderExtension>
+    ///
+    /// @end
+    /// ```
+    ///
+    /// ### Self Hosting
+    ///
+    /// ```objc
+    /// #import <BackgroundAssets/BackgroundAssets.h>
+    ///
+    /// \@interface DownloaderExtension : NSObject <BAManagedDownloaderExtension>
+    ///
+    /// @end
+    /// ```
+    ///
+    /// (Remove any backslash characters that may be rendered in the above code snippets.)
+    ///
+    /// 3. Create `DownloaderExtension.m` with the following contents:
+    ///
+    /// ```objc
+    /// #import "DownloaderExtension.h"
+    ///
+    /// @implementation DownloaderExtension
+    ///
+    /// - (BOOL)shouldDownloadAssetPack:(BAAssetPack *)assetPack {
+    ///     // Use this method to filter out asset packs that the system would otherwise download automatically. You can also remove this method entirely if you just want to rely on the default download behavior.
+    ///     return true;
+    /// }
+    ///
+    /// @end
+    /// ```
+    ///
+    /// 4. Add `DownloaderExtension.m` to your extension’s target.
+    ///
+    /// 5. Add the following snippet inside your extension’s `Info.plist`’s `EXAppExtensionAttributes` dictionary:
+    ///
+    /// ```plist
+    /// <key>EXPrincipalClass</key>
+    /// <string>DownloaderExtension</string>
+    /// ```
+    ///
+    ///
+    /// An application extension that uses the system implementation to schedule asset-pack downloads automatically.
+    ///
     /// The protocol provides default implementations for all of the inherited ``BADownloaderExtension-zuvm`` requirements.
     /// - Warning: Don’t implement any of the inherited ``BADownloaderExtension-zuvm`` requirements aside from, optionally, ``BADownloaderExtension-zuvm/backgroundDownload:didReceiveChallenge:completionHandler:``.
     ///
@@ -67,8 +136,6 @@ extern_protocol!(
     /// </string
     /// >
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanageddownloaderextension?language=objc)
     #[cfg(feature = "BADownloaderExtension")]
     pub unsafe trait BAManagedDownloaderExtension: BADownloaderExtension {
         #[cfg(feature = "BAAssetPack")]

@@ -8,11 +8,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// The common properties for an element that has press state input, such as input from a button.
     /// An object conforming to
     /// `GCPressedStateInput`represents the pressed state of
     /// an element, typically a button.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcpressedstateinput?language=objc)
     pub unsafe trait GCPressedStateInput: NSObjectProtocol {
         #[cfg(all(feature = "GCPhysicalInputElement", feature = "block2"))]
         /// Set this block if you want to be notified when the pressed state changes.

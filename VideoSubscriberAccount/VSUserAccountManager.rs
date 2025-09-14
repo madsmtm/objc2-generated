@@ -7,17 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/queryoptions?language=objc)
+/// Constants that represent options you use to fetch a list of user accounts.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSUserAccountQueryOptions(pub NSInteger);
 bitflags::bitflags! {
     impl VSUserAccountQueryOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountqueryoptions/vsuseraccountquerynone?language=objc)
+/// A constant that indicates fetching user accounts from the user’s current device only.
         #[doc(alias = "VSUserAccountQueryNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/queryoptions/alldevices?language=objc)
+/// A constant that indicates fetching user accounts from all the user’s iCloud devices.
         #[doc(alias = "VSUserAccountQueryAllDevices")]
         const AllDevices = 1;
     }
@@ -32,7 +32,13 @@ unsafe impl RefEncode for VSUserAccountQueryOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager?language=objc)
+    /// The object that coordinates your app’s user account actions.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create `VSUserAccountManager` directly; use [`sharedUserAccountManager`](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/shared).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSUserAccountManager;

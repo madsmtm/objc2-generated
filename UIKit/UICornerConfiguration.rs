@@ -9,9 +9,59 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Defines how corner radii are mapped to the corners of a rectangle.
+    /// A configuration that defines how corner radii are mapped to the corners of a rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerconfiguration-c.class?language=objc)
+    /// ## Overview
+    ///
+    /// Create a `UICornerConfiguration` that expresses how you want the corners of your view to appear. Your configuration can apply to corners independently or uniformly, and can form the following types of corners:
+    ///
+    /// - A squared corner
+    ///
+    /// - A rounded corner
+    ///
+    /// - A rounded corner that’s concentric relative to the containing view
+    ///
+    /// - Corners that are rounded to form a capsule
+    ///
+    /// Select a method to create a configuration that describes which corners of your view you want to be uniform and which corners you want to be independent, then provide instances of [`UICornerRadius`](https://developer.apple.com/documentation/uikit/uicornerradius-c.class) as parameters to indicate which type you want each corner to be.
+    ///
+    /// The system uses squared corners by default, so you don’t need to set a configuration to get squared corners.
+    ///
+    /// ### Configure a rounded corner
+    ///
+    /// To configure a rounded corner with a fixed radius, provide [`fixedRadius:`](https://developer.apple.com/documentation/uikit/uicornerradius-c.class/fixedradius:) with a value greater than zero for the radius:
+    ///
+    /// ```objc
+    /// [myView setCornerConfiguration:
+    ///  [UICornerConfiguration configurationWithRadius:
+    ///   [UICornerRadius fixedRadius:12.0]]];
+    /// ```
+    ///
+    /// ### Configure a concentric rounded corner
+    ///
+    /// To configure a rounded corner that’s concentric relative to the containing view, use [`containerConcentricRadius`](https://developer.apple.com/documentation/uikit/uicornerradius-c.class/containerconcentricradius):
+    ///
+    /// ```objc
+    /// [myView setCornerConfiguration:
+    ///  [UICornerConfiguration configurationWithRadius:
+    ///   [UICornerRadius containerConcentricRadius]]];
+    /// ```
+    ///
+    /// Use [`containerConcentricRadiusWithMinimum:`](https://developer.apple.com/documentation/uikit/uicornerradius-c.class/containerconcentricradiuswithminimum:) to indicate a minimum radius for the rounded corner.
+    ///
+    /// ### Configure a corner as a capsule
+    ///
+    /// To configure rounded corners that form a capsule, use [`capsuleConfiguration`](https://developer.apple.com/documentation/uikit/uicornerconfiguration-c.class/capsuleconfiguration):
+    ///
+    /// ```objc
+    /// [myView setCornerConfiguration:
+    ///  [UICornerConfiguration capsuleConfiguration]];
+    /// ```
+    ///
+    /// Use [`capsuleConfigurationWithMaximumRadius:`](https://developer.apple.com/documentation/uikit/uicornerconfiguration-c.class/capsuleconfigurationwithmaximumradius:) to allow your view to break the capsule paradigm and stretch vertically with an edge if the radius necessary to form a capsule exceeds what you provide.
+    ///
+    ///
+    /// Defines how corner radii are mapped to the corners of a rectangle.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICornerConfiguration;

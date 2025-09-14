@@ -4,16 +4,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inticketedeventcategory?language=objc)
+/// Constants that define the type of ticketed event.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTicketedEventCategory(pub NSInteger);
 impl INTicketedEventCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inticketedeventcategory/unknown?language=objc)
+    /// The ticketed event category is unknown.
     #[doc(alias = "INTicketedEventCategoryUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inticketedeventcategory/movie?language=objc)
+    /// The ticketed event is a movie.
     #[doc(alias = "INTicketedEventCategoryMovie")]
     pub const Movie: Self = Self(1);
 }

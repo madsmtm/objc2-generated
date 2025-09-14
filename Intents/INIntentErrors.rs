@@ -6,116 +6,119 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterrordomain?language=objc)
+    /// The error domain for the Intents framework.
     pub static INIntentErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code?language=objc)
+/// Constants for error codes returned by the framework.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INIntentErrorCode(pub NSInteger);
 impl INIntentErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/interactionoperationnotsupported?language=objc)
+    /// The [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object could not be donated or deleted because those capabilities are not supported on the current device.
     #[doc(alias = "INIntentErrorInteractionOperationNotSupported")]
     pub const InteractionOperationNotSupported: Self = Self(1900);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/donatinginteraction?language=objc)
+    /// The INInteraction object could not be donated to the system.
+    ///
+    /// ## Discussion
+    ///
+    /// To determine the low-level cause of the problem, check the value of [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey) in the error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
+    ///
+    ///
     #[doc(alias = "INIntentErrorDonatingInteraction")]
     pub const DonatingInteraction: Self = Self(1901);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/deletingallinteractions?language=objc)
+    /// The system was unable to delete all donated INInteraction objects.
+    ///
+    /// ## Discussion
+    ///
+    /// To determine the low-level cause of the problem, check the value of [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey) in the error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
+    ///
+    ///
     #[doc(alias = "INIntentErrorDeletingAllInteractions")]
     pub const DeletingAllInteractions: Self = Self(1902);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/deletinginteractionwithidentifiers?language=objc)
+    /// The system was unable to delete the specified set of INInteraction objects.
+    ///
+    /// ## Discussion
+    ///
+    /// To determine the low-level cause of the problem, check the value of [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey) in the error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
+    ///
+    ///
     #[doc(alias = "INIntentErrorDeletingInteractionWithIdentifiers")]
     pub const DeletingInteractionWithIdentifiers: Self = Self(1903);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/deletinginteractionwithgroupidentifier?language=objc)
+    /// The system was unable to delete the INInteraction objects using their group identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// To determine the low-level cause of the problem, check the value of [`NSUnderlyingErrorKey`](https://developer.apple.com/documentation/foundation/nsunderlyingerrorkey) in the error object’s [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary.
+    ///
+    ///
     #[doc(alias = "INIntentErrorDeletingInteractionWithGroupIdentifier")]
     pub const DeletingInteractionWithGroupIdentifier: Self = Self(1904);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/intentsupportedbymultipleextension?language=objc)
+    /// An intent was supported by more than one Intents extension in the same app. An app may have multiple Intents extensions, but each one must support a unique set of intents.
     #[doc(alias = "INIntentErrorIntentSupportedByMultipleExtension")]
     pub const IntentSupportedByMultipleExtension: Self = Self(2001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/restrictedintentsnotsupportedbyextension?language=objc)
+    /// An intent was listed in the `IntentsRestrictedWhileLocked` key of the app’s `Info.plist`, but not in the `IntentsSupported` key. All intents in the `IntentsRestrictedWhileLocked` key must also be present in the `IntentsSupported` key.
     #[doc(alias = "INIntentErrorRestrictedIntentsNotSupportedByExtension")]
     pub const RestrictedIntentsNotSupportedByExtension: Self = Self(2002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/nohandlerprovidedforintent?language=objc)
+    /// No object was provided to handle the specified intent. If your extension declares support for an intent in its `Info.plist` file, the [`handlerForIntent:`](https://developer.apple.com/documentation/intents/inintenthandlerproviding/handler(for:)) method of its [`INExtension`](https://developer.apple.com/documentation/intents/inextension) object must provide a corresponding handler object.
     #[doc(alias = "INIntentErrorNoHandlerProvidedForIntent")]
     pub const NoHandlerProvidedForIntent: Self = Self(2003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/invalidintentname?language=objc)
+    /// The extension declared support for a nonexistent intent. Check your extension’s `Info.plist` file to make sure all intent names are spelled correctly.
     #[doc(alias = "INIntentErrorInvalidIntentName")]
     pub const InvalidIntentName: Self = Self(2004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/noappavailable?language=objc)
     #[doc(alias = "INIntentErrorNoAppAvailable")]
     pub const NoAppAvailable: Self = Self(2005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/requesttimedout?language=objc)
+    /// The underlying request timed out.
     #[doc(alias = "INIntentErrorRequestTimedOut")]
     pub const RequestTimedOut: Self = Self(3001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/missinginformation?language=objc)
     #[doc(alias = "INIntentErrorMissingInformation")]
     pub const MissingInformation: Self = Self(3002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/invaliduservocabularyfilelocation?language=objc)
+    /// An invalid location was specified for the user vocabulary file.
     #[doc(alias = "INIntentErrorInvalidUserVocabularyFileLocation")]
     pub const InvalidUserVocabularyFileLocation: Self = Self(4000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/extensionlaunchingtimeout?language=objc)
+    /// The extension failed to launch in a timely manner.
     #[doc(alias = "INIntentErrorExtensionLaunchingTimeout")]
     pub const ExtensionLaunchingTimeout: Self = Self(5000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/extensionbringupfailed?language=objc)
+    /// There was an error while trying to communicate with the extension.
     #[doc(alias = "INIntentErrorExtensionBringUpFailed")]
     pub const ExtensionBringUpFailed: Self = Self(5001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imagegeneric?language=objc)
     #[doc(alias = "INIntentErrorImageGeneric")]
     pub const ImageGeneric: Self = Self(6000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imagenoserviceavailable?language=objc)
     #[doc(alias = "INIntentErrorImageNoServiceAvailable")]
     pub const ImageNoServiceAvailable: Self = Self(6001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imagestoragefailed?language=objc)
     #[doc(alias = "INIntentErrorImageStorageFailed")]
     pub const ImageStorageFailed: Self = Self(6002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageloadingfailed?language=objc)
     #[doc(alias = "INIntentErrorImageLoadingFailed")]
     pub const ImageLoadingFailed: Self = Self(6003);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageretrievalfailed?language=objc)
     #[doc(alias = "INIntentErrorImageRetrievalFailed")]
     pub const ImageRetrievalFailed: Self = Self(6004);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageproxyloop?language=objc)
     #[doc(alias = "INIntentErrorImageProxyLoop")]
     pub const ImageProxyLoop: Self = Self(6005);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageproxyinvalid?language=objc)
     #[doc(alias = "INIntentErrorImageProxyInvalid")]
     pub const ImageProxyInvalid: Self = Self(6006);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageproxytimeout?language=objc)
     #[doc(alias = "INIntentErrorImageProxyTimeout")]
     pub const ImageProxyTimeout: Self = Self(6007);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imageservicefailure?language=objc)
     #[doc(alias = "INIntentErrorImageServiceFailure")]
     pub const ImageServiceFailure: Self = Self(6008);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/imagescalingfailed?language=objc)
     #[doc(alias = "INIntentErrorImageScalingFailed")]
     pub const ImageScalingFailed: Self = Self(6009);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/permissiondenied?language=objc)
     #[doc(alias = "INIntentErrorPermissionDenied")]
     pub const PermissionDenied: Self = Self(6010);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/voiceshortcutcreationfailed?language=objc)
     #[doc(alias = "INIntentErrorVoiceShortcutCreationFailed")]
     pub const VoiceShortcutCreationFailed: Self = Self(7000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/voiceshortcutgetfailed?language=objc)
     #[doc(alias = "INIntentErrorVoiceShortcutGetFailed")]
     pub const VoiceShortcutGetFailed: Self = Self(7001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/voiceshortcutdeletefailed?language=objc)
     #[doc(alias = "INIntentErrorVoiceShortcutDeleteFailed")]
     pub const VoiceShortcutDeleteFailed: Self = Self(7002);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/encodinggeneric?language=objc)
     #[doc(alias = "INIntentErrorEncodingGeneric")]
     pub const EncodingGeneric: Self = Self(8000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/encodingfailed?language=objc)
     #[doc(alias = "INIntentErrorEncodingFailed")]
     pub const EncodingFailed: Self = Self(8001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/decodinggeneric?language=objc)
     #[doc(alias = "INIntentErrorDecodingGeneric")]
     pub const DecodingGeneric: Self = Self(9000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/unabletocreateappintentrepresentation?language=objc)
     #[doc(alias = "INIntentErrorUnableToCreateAppIntentRepresentation")]
     pub const UnableToCreateAppIntentRepresentation: Self = Self(10000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code/noappintent?language=objc)
     #[doc(alias = "INIntentErrorNoAppIntent")]
     pub const NoAppIntent: Self = Self(10001);
 }

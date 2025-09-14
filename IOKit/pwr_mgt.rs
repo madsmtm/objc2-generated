@@ -57,10 +57,20 @@ pub const kIOPMMessageSystemPowerEventOccurred: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x130);
 pub const kIOPMMessageSleepWakeUUIDChange: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x140);
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiopmmessagedriverassertionschanged?language=objc)
+///
+/// ## Discussion
+///
+/// kIOPMMessageDriverAssertionsChanged Sent when kernel PM driver assertions have changed.
+///
+///
 pub const kIOPMMessageDriverAssertionsChanged: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x150);
-/// [Apple's documentation](https://developer.apple.com/documentation/kernel/kiopmmessagedarkwakethermalemergency?language=objc)
+///
+/// ## Discussion
+///
+/// kIOPMMessageDarkWakeThermalEmergency Sent when machine becomes unsustainably warm in DarkWake. Kernel PM might choose to put the machine back to sleep right after.
+///
+///
 pub const kIOPMMessageDarkWakeThermalEmergency: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x160);
 pub const kIOPMPSExternalConnectedKey: &CStr =
@@ -233,27 +243,27 @@ pub const kIOBatteryCycleCountKey: &CStr =
 pub const kIOPMMessageBatteryStatusHasChanged: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x100);
 pub const kIOPMUMessageLegacyAutoWake: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x200);
 pub const kIOPMUMessageLegacyAutoPower: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x210);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautowake?language=objc)
+/// Value for scheduled wake from sleep.
 pub const kIOPMAutoWake: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"wake\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautopoweron?language=objc)
+/// Value for scheduled power on from off state.
 pub const kIOPMAutoPowerOn: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"poweron\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautowakeorpoweron?language=objc)
+/// Value for scheduled wake from sleep, or power on. The system will either wake OR power on, whichever is necessary.
 pub const kIOPMAutoWakeOrPowerOn: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"wakepoweron\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautosleep?language=objc)
+/// Value for scheduled sleep.
 pub const kIOPMAutoSleep: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"sleep\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautoshutdown?language=objc)
+/// Value for scheduled shutdown.
 pub const kIOPMAutoShutdown: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"shutdown\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautorestart?language=objc)
+/// Value for scheduled restart.
 pub const kIOPMAutoRestart: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"restart\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventtimekey?language=objc)
+/// Key for the time of the scheduled power event. Value is a CFDateRef.
 pub const kIOPMPowerEventTimeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"time\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventappnamekey?language=objc)
+/// Key for the CFBundleIdentifier of the app that scheduled the power event. Value is a CFStringRef.
 pub const kIOPMPowerEventAppNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"scheduledby\0") };
 pub const kIOPMPowerEventAppPIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"appPID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventtypekey?language=objc)
+/// Key for the type of power event. Value is a CFStringRef, with the c-string value of one of the "kIOPMAuto" strings.
 pub const kIOPMPowerEventTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"eventtype\0") };
 pub const kPMSetAggressiveness: c_uint = 0;
@@ -276,21 +286,38 @@ pub const kPMSetDisplayState: c_uint = 16;
 pub const kPMRequestIdleSleepRevert: c_uint = 17;
 pub const kPMSetLDMHibernationDisable: c_uint = 18;
 pub const kNumPMMethods: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorynotifyname?language=objc)
+/// The notification by this name fires when system "SystemLoadAdvisory" status changes.
+///
+/// ## Discussion
+///
+/// Pass this string as an argument to register via notify(3). You can query SystemLoadAdvisory state via notify_get_state() when this notification fires - this is more efficient than calling IOGetSystemLoadAdvisory(), and returns an identical combined SystemLoadAdvisory value.
+///
+///
 pub const kIOSystemLoadAdvisoryNotifyName: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powermanagement.SystemLoadAdvisory\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowernotificationkey?language=objc)
+/// Key to register for BSD style notifications on CPU power or thermal change.
 pub const kIOPMCPUPowerNotificationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.power.CPU\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalwarningnotificationkey?language=objc)
+/// Key to register for BSD style notifications on system thermal warnings.
 pub const kIOPMThermalWarningNotificationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.power.thermal_warning\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499944-anonymous/kiopmmaxpowerstates?language=objc)
 pub const kIOPMMaxPowerStates: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499944-anonymous/iopmmaxpowerstates?language=objc)
 pub const IOPMMaxPowerStates: c_uint = kIOPMMaxPowerStates;
 
+/// Bits are used in defining capabilityFlags, inputPowerRequirements, and outputPowerCharacter in the IOPMPowerState structure.
+///
+/// ## Discussion
+///
+/// These bits may be bitwise-OR'd together in the IOPMPowerState capabilityFlags field, the outputPowerCharacter field, and/or the inputPowerRequirement field.
+///
+/// The comments clearly mark whether each flag should be used in the capabilityFlags field, outputPowerCharacter field, and inputPowerRequirement field, or all three.
+///
+/// The value of capabilityFlags, inputPowerRequirement or outputPowerCharacter may be 0. Most drivers implement their 'OFF' state, used when asleep, by defininf each of the 3 fields as 0.
+///
+/// The bits listed below are only the most common bits used to define a device's power states. Your device's IO family may require that your device specify other input or output power flags to interact properly. Consult family-specific documentation to determine if your IOPower plane parents or children require other power flags; they probably don't.
+///
+///
 /// Bits are used in defining capabilityFlags, inputPowerRequirements, and outputPowerCharacter in the IOPMPowerState structure.
 ///
 /// These bits may be bitwise-OR'd together in the IOPMPowerState capabilityFlags field, the outputPowerCharacter field, and/or the inputPowerRequirement field.
@@ -349,63 +376,103 @@ pub const IOPMMaxPowerStates: c_uint = kIOPMMaxPowerStates;
 /// domain. This bit must not be set in the IOPMPowerState structure.
 /// Power Management may pass this bit to initialPowerStateForDomainState()
 /// to map from a global system state to the desired device state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmpowerflags?language=objc)
 pub type IOPMPowerFlags = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmpoweron?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the device is on, requires power, and provides power. Useful as a: Capability, InputPowerRequirement, OutputPowerCharacter
+///
+///
 pub const kIOPMPowerOn: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmdeviceusable?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the device is usable in this state. Useful only as a Capability
+///
+///
 pub const kIOPMDeviceUsable: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmlowpower?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates device is in a low power state. May be bitwis-OR'd together with kIOPMDeviceUsable flag, to indicate the device is still usable.
+///
+/// A device with a capability of kIOPMLowPower may: Require either 0 or kIOPMPowerOn from its power parent Offer either kIOPMLowPower, kIOPMPowerOn, or 0 (no power at all) to its power plane children.
+///
+/// Useful only as a Capability, although USB drivers should consult USB family documentation for other valid circumstances to use the kIOPMLowPower bit.
+///
+///
 pub const kIOPMLowPower: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmpreventidlesleep?language=objc)
+///
+/// ## Discussion
+///
+/// In the capability field of a power state, disallows idle system sleep while the device is in that state.
+///
+/// For example, displays and disks set this capability for their ON power state; since the system may not idle sleep while the display (and thus keyboard or mouse) or the disk is active.
+///
+/// Useful only as a Capability.
+///
+///
 pub const kIOPMPreventIdleSleep: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmsleepcapability?language=objc)
+///
+/// ## Discussion
+///
+/// Used only by certain IOKit Families (USB). Not defined or used by generic Power Management. Read your family documentation to see if you should define a powerstate using these capabilities.
+///
+///
 pub const kIOPMSleepCapability: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrestartcapability?language=objc)
+///
+/// ## Discussion
+///
+/// Used only by certain IOKit Families (USB). Not defined or used by generic Power Management. Read your family documentation to see if you should define a powerstate using these capabilities.
+///
+///
 pub const kIOPMRestartCapability: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmsleep?language=objc)
+///
+/// ## Discussion
+///
+/// Used only by certain IOKit Families (USB). Not defined or used by generic Power Management. Read your family documentation to see if you should define a powerstate using these capabilities.
+///
+///
 pub const kIOPMSleep: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrestart?language=objc)
+///
+/// ## Discussion
+///
+/// Used only by certain IOKit Families (USB). Not defined or used by generic Power Management. Read your family documentation to see if you should define a powerstate using these capabilities.
+///
+///
 pub const kIOPMRestart: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopminitialdevicestate?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the initial power state for the device. If `initialPowerStateForDomainState()` returns a power state with this flag set in the capability field, then the initial power change is performed without calling the driver's `setPowerState()`.
+///
+///
 pub const kIOPMInitialDeviceState: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrootdomainstate?language=objc)
+///
+/// ## Discussion
+///
+/// An indication that the power flags represent the state of the root power domain. This bit must not be set in the IOPMPowerState structure. Power Management may pass this bit to initialPowerStateForDomainState() or powerStateForDomainState() to map from a global system state to the desired device state.
+///
+///
 pub const kIOPMRootDomainState: c_uint = 0x00000200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmclocknormal?language=objc)
 pub const kIOPMClockNormal: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmclockrunning?language=objc)
 pub const kIOPMClockRunning: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmpreventsystemsleep?language=objc)
 pub const kIOPMPreventSystemSleep: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmdoze?language=objc)
 pub const kIOPMDoze: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmchildclamp?language=objc)
 pub const kIOPMChildClamp: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmchildclamp2?language=objc)
 pub const kIOPMChildClamp2: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmnotpowermanaged?language=objc)
 pub const kIOPMNotPowerManaged: c_uint = 0x0800;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmmaxperformance?language=objc)
 pub const kIOPMMaxPerformance: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmpassthrough?language=objc)
 pub const kIOPMPassThrough: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmauxpoweron?language=objc)
 pub const kIOPMAuxPowerOn: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmnotattainable?language=objc)
 pub const kIOPMNotAttainable: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmcontextretained?language=objc)
 pub const kIOPMContextRetained: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmconfigretained?language=objc)
 pub const kIOPMConfigRetained: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmstaticpowervalid?language=objc)
 pub const kIOPMStaticPowerValid: c_uint = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmsoftsleep?language=objc)
 pub const kIOPMSoftSleep: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmcapabilitiesmask?language=objc)
 pub const kIOPMCapabilitiesMask: c_uint = kIOPMPowerOn
     | kIOPMDeviceUsable
     | kIOPMMaxPerformance
@@ -414,107 +481,65 @@ pub const kIOPMCapabilitiesMask: c_uint = kIOPMPowerOn
     | kIOPMSleepCapability
     | kIOPMRestartCapability;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmnotattainable?language=objc)
 pub const IOPMNotAttainable: c_uint = kIOPMNotAttainable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmpoweron?language=objc)
 pub const IOPMPowerOn: c_uint = kIOPMPowerOn;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmclocknormal?language=objc)
 pub const IOPMClockNormal: c_uint = kIOPMClockNormal;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmclockrunning?language=objc)
 pub const IOPMClockRunning: c_uint = kIOPMClockRunning;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmauxpoweron?language=objc)
 pub const IOPMAuxPowerOn: c_uint = kIOPMAuxPowerOn;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmdeviceusable?language=objc)
 pub const IOPMDeviceUsable: c_uint = kIOPMDeviceUsable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmmaxperformance?language=objc)
 pub const IOPMMaxPerformance: c_uint = kIOPMMaxPerformance;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmcontextretained?language=objc)
 pub const IOPMContextRetained: c_uint = kIOPMContextRetained;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmconfigretained?language=objc)
 pub const IOPMConfigRetained: c_uint = kIOPMConfigRetained;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmnotpowermanaged?language=objc)
 pub const IOPMNotPowerManaged: c_uint = kIOPMNotPowerManaged;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmsoftsleep?language=objc)
 pub const IOPMSoftSleep: c_uint = kIOPMSoftSleep;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmnexthigherstate?language=objc)
 pub const kIOPMNextHigherState: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmhigheststate?language=objc)
 pub const kIOPMHighestState: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmnextlowerstate?language=objc)
 pub const kIOPMNextLowerState: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmloweststate?language=objc)
 pub const kIOPMLowestState: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmnexthigherstate?language=objc)
 pub const IOPMNextHigherState: c_uint = kIOPMNextHigherState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmhigheststate?language=objc)
 pub const IOPMHighestState: c_uint = kIOPMHighestState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmnextlowerstate?language=objc)
 pub const IOPMNextLowerState: c_uint = kIOPMNextLowerState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmloweststate?language=objc)
 pub const IOPMLowestState: c_uint = kIOPMLowestState;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499682-anonymous/kiopmbroadcastaggressiveness?language=objc)
 pub const kIOPMBroadcastAggressiveness: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499682-anonymous/kiopmunidledevice?language=objc)
 pub const kIOPMUnidleDevice: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499938-anonymous/kiopmunknown?language=objc)
 pub const kIOPMUnknown: c_uint = 0xFFFF;
 
 /// kIOPMDriverAssertionCPUBit
 /// When set, PM kernel will prefer to leave the CPU and core hardware
 /// running in "Dark Wake" state, instead of sleeping.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertioncpubit?language=objc)
 pub const kIOPMDriverAssertionCPUBit: c_uint = 0x01;
 /// kIOPMDriverAssertionPreventSystemIdleSleepBit
 /// When set, the system should not idle sleep. This does not prevent
 /// demand sleep.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionpreventsystemidlesleepbit?language=objc)
 pub const kIOPMDriverAssertionPreventSystemIdleSleepBit: c_uint = 0x02;
 /// kIOPMDriverAssertionUSBExternalDeviceBit
 /// When set, driver is informing PM that an external USB device is attached.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionusbexternaldevicebit?language=objc)
 pub const kIOPMDriverAssertionUSBExternalDeviceBit: c_uint = 0x04;
 /// kIOPMDriverAssertionBluetoothHIDDevicePairedBit
 /// When set, driver is informing PM that a Bluetooth HID device is paired.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionbluetoothhiddevicepairedbit?language=objc)
 pub const kIOPMDriverAssertionBluetoothHIDDevicePairedBit: c_uint = 0x08;
 /// kIOPMDriverAssertionExternalMediaMountedBit
 /// When set, driver is informing PM that an external media is mounted.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionexternalmediamountedbit?language=objc)
 pub const kIOPMDriverAssertionExternalMediaMountedBit: c_uint = 0x10;
 /// kIOPMDriverAssertionReservedBit5
 /// Reserved for Thunderbolt.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionreservedbit5?language=objc)
 pub const kIOPMDriverAssertionReservedBit5: c_uint = 0x20;
 /// kIOPMDriverAssertionPreventDisplaySleepBit
 /// When set, the display should remain powered on while the system's awake.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionpreventdisplaysleepbit?language=objc)
 pub const kIOPMDriverAssertionPreventDisplaySleepBit: c_uint = 0x40;
 /// kIOPMDriverAssertionReservedBit7
 /// Reserved for storage family.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionreservedbit7?language=objc)
 pub const kIOPMDriverAssertionReservedBit7: c_uint = 0x80;
 /// kIOPMDriverAssertionMagicPacketWakeEnabledBit
 /// When set, driver is informing PM that magic packet wake is enabled.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionmagicpacketwakeenabledbit?language=objc)
 pub const kIOPMDriverAssertionMagicPacketWakeEnabledBit: c_uint = 0x100;
 /// kIOPMDriverAssertionNetworkKeepAliveActiveBit
 /// When set, driver is informing PM that it is holding the network
 /// interface up to do TCPKeepAlive
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionnetworkkeepaliveactivebit?language=objc)
 pub const kIOPMDriverAssertionNetworkKeepAliveActiveBit: c_uint = 0x200;
 /// kIOPMDriverAssertionForceWakeupBit
 /// When set, the system will immediately wake up the CPU after going to sleep.
@@ -523,162 +548,88 @@ pub const kIOPMDriverAssertionForceWakeupBit: c_uint = 0x400;
 /// When set, the system will immediately do a full wakeup after going to sleep.
 pub const kIOPMDriverAssertionForceFullWakeupBit: c_uint = 0x800;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499920-anonymous/kclamshellstatebit?language=objc)
 pub const kClamshellStateBit: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499920-anonymous/kclamshellsleepbit?language=objc)
 pub const kClamshellSleepBit: c_uint = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499872-anonymous/kinflowforciblyenabledbit?language=objc)
 pub const kInflowForciblyEnabledBit: c_uint = 1 << 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmsleepnow?language=objc)
 pub const kIOPMSleepNow: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmallowsleep?language=objc)
 pub const kIOPMAllowSleep: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpreventsleep?language=objc)
 pub const kIOPMPreventSleep: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpowerbutton?language=objc)
 pub const kIOPMPowerButton: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmclamshellclosed?language=objc)
 pub const kIOPMClamshellClosed: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpoweremergency?language=objc)
 pub const kIOPMPowerEmergency: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmdisableclamshell?language=objc)
 pub const kIOPMDisableClamshell: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmenableclamshell?language=objc)
 pub const kIOPMEnableClamshell: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmprocessorspeedchange?language=objc)
 pub const kIOPMProcessorSpeedChange: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmovertemp?language=objc)
 pub const kIOPMOverTemp: c_uint = 1 << 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmclamshellopened?language=objc)
 pub const kIOPMClamshellOpened: c_uint = 1 << 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmdwovertemp?language=objc)
 pub const kIOPMDWOverTemp: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpowerbuttonup?language=objc)
 pub const kIOPMPowerButtonUp: c_uint = 1 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpromodeengaged?language=objc)
 pub const kIOPMProModeEngaged: c_uint = 1 << 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpromodedisengaged?language=objc)
 pub const kIOPMProModeDisengaged: c_uint = 1 << 14;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnoerr?language=objc)
 pub const kIOPMNoErr: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmackimplied?language=objc)
 pub const kIOPMAckImplied: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmwillacklater?language=objc)
 pub const kIOPMWillAckLater: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmbadspecification?language=objc)
 pub const kIOPMBadSpecification: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnosuchstate?language=objc)
 pub const kIOPMNoSuchState: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmcannotraisepower?language=objc)
 pub const kIOPMCannotRaisePower: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmparametererror?language=objc)
 pub const kIOPMParameterError: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnotyetinitialized?language=objc)
 pub const kIOPMNotYetInitialized: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnoerr?language=objc)
 pub const IOPMNoErr: c_uint = kIOPMNoErr;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmackimplied?language=objc)
 pub const IOPMAckImplied: c_uint = kIOPMAckImplied;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmwillacklater?language=objc)
 pub const IOPMWillAckLater: c_uint = kIOPMWillAckLater;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmbadspecification?language=objc)
 pub const IOPMBadSpecification: c_uint = kIOPMBadSpecification;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnosuchstate?language=objc)
 pub const IOPMNoSuchState: c_uint = kIOPMNoSuchState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmcannotraisepower?language=objc)
 pub const IOPMCannotRaisePower: c_uint = kIOPMCannotRaisePower;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmparametererror?language=objc)
 pub const IOPMParameterError: c_uint = kIOPMParameterError;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnotyetinitialized?language=objc)
 pub const IOPMNotYetInitialized: c_uint = kIOPMNotYetInitialized;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499980-anonymous/kiopmpslocationleft?language=objc)
 pub const kIOPMPSLocationLeft: c_uint = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499980-anonymous/kiopmpslocationright?language=objc)
 pub const kIOPMPSLocationRight: c_uint = 1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmundefinedvalue?language=objc)
 pub const kIOPMUndefinedValue: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmpoorvalue?language=objc)
 pub const kIOPMPoorValue: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmfairvalue?language=objc)
 pub const kIOPMFairValue: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmgoodvalue?language=objc)
 pub const kIOPMGoodValue: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodedisconnected?language=objc)
 pub const kIOPSFamilyCodeDisconnected: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodefirewire?language=objc)
 pub const kIOPSFamilyCodeFirewire: c_int = iokit_family_err!(sub_iokit_firewire, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbhost?language=objc)
 pub const kIOPSFamilyCodeUSBHost: c_int = iokit_family_err!(sub_iokit_usb, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbhostsuspended?language=objc)
 pub const kIOPSFamilyCodeUSBHostSuspended: c_int = iokit_family_err!(sub_iokit_usb, 1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbdevice?language=objc)
 pub const kIOPSFamilyCodeUSBDevice: c_int = iokit_family_err!(sub_iokit_usb, 2);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbadapter?language=objc)
 pub const kIOPSFamilyCodeUSBAdapter: c_int = iokit_family_err!(sub_iokit_usb, 3);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingportdedicated?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPortDedicated: c_int = iokit_family_err!(sub_iokit_usb, 4);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingportdownstream?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPortDownstream: c_int = iokit_family_err!(sub_iokit_usb, 5);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingport?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPort: c_int = iokit_family_err!(sub_iokit_usb, 6);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbunknown?language=objc)
 pub const kIOPSFamilyCodeUSBUnknown: c_int = iokit_family_err!(sub_iokit_usb, 7);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbcbrick?language=objc)
 pub const kIOPSFamilyCodeUSBCBrick: c_int = iokit_family_err!(sub_iokit_usb, 8);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbctypec?language=objc)
 pub const kIOPSFamilyCodeUSBCTypeC: c_int = iokit_family_err!(sub_iokit_usb, 9);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbcpd?language=objc)
 pub const kIOPSFamilyCodeUSBCPD: c_int = iokit_family_err!(sub_iokit_usb, 10);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeac?language=objc)
 pub const kIOPSFamilyCodeAC: c_int = iokit_family_err!(sub_iokit_pmu, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal?language=objc)
 pub const kIOPSFamilyCodeExternal: c_int = iokit_family_err!(sub_iokit_pmu, 1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal2?language=objc)
 pub const kIOPSFamilyCodeExternal2: c_int = iokit_family_err!(sub_iokit_pmu, 2);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal3?language=objc)
 pub const kIOPSFamilyCodeExternal3: c_int = iokit_family_err!(sub_iokit_pmu, 3);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal4?language=objc)
 pub const kIOPSFamilyCodeExternal4: c_int = iokit_family_err!(sub_iokit_pmu, 4);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal5?language=objc)
 pub const kIOPSFamilyCodeExternal5: c_int = iokit_family_err!(sub_iokit_pmu, 5);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal6?language=objc)
 pub const kIOPSFamilyCodeExternal6: c_int = iokit_family_err!(sub_iokit_pmu, 6);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal7?language=objc)
 pub const kIOPSFamilyCodeExternal7: c_int = iokit_family_err!(sub_iokit_pmu, 7);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal8?language=objc)
 pub const kIOPSFamilyCodeExternal8: c_int = iokit_family_err!(sub_iokit_pmu, 8);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeunsupportedregion?language=objc)
 pub const kIOPSFamilyCodeUnsupportedRegion: c_int = iokit_family_err!(sub_iokit_pmu, 9);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagnoerrors?language=objc)
 pub const kIOPSAdapterErrorFlagNoErrors: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflaginsufficientavailablepower?language=objc)
 pub const kIOPSAdapterErrorFlagInsufficientAvailablePower: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagforeignobjectdetected?language=objc)
 pub const kIOPSAdapterErrorFlagForeignObjectDetected: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagdeviceneedstoberepositioned?language=objc)
 pub const kIOPSAdapterErrorFlagDeviceNeedsToBeRepositioned: c_uint = 1 << 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelnormal?language=objc)
 pub const kIOPMThermalLevelNormal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermalleveldanger?language=objc)
 pub const kIOPMThermalLevelDanger: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelcritical?language=objc)
 pub const kIOPMThermalLevelCritical: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelwarning?language=objc)
 pub const kIOPMThermalLevelWarning: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermalleveltrap?language=objc)
 pub const kIOPMThermalLevelTrap: c_uint = 110;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelunknown?language=objc)
 pub const kIOPMThermalLevelUnknown: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmcalendarstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOPMCalendarStruct {
@@ -712,61 +663,35 @@ unsafe impl RefEncode for IOPMCalendarStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmgeneralaggressiveness?language=objc)
 pub const kPMGeneralAggressiveness: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestodim?language=objc)
 pub const kPMMinutesToDim: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestospindown?language=objc)
 pub const kPMMinutesToSpinDown: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestosleep?language=objc)
 pub const kPMMinutesToSleep: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmethernetwakeonlansettings?language=objc)
 pub const kPMEthernetWakeOnLANSettings: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmsetprocessorspeed?language=objc)
 pub const kPMSetProcessorSpeed: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmpowersource?language=objc)
 pub const kPMPowerSource: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmmotionsensor?language=objc)
 pub const kPMMotionSensor: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmlastaggressivenesstype?language=objc)
 pub const kPMLastAggressivenessType: c_uint = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499583-anonymous/kiopminternalpower?language=objc)
 pub const kIOPMInternalPower: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499583-anonymous/kiopmexternalpower?language=objc)
 pub const kIOPMExternalPower: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatteryinstalled?language=objc)
 pub const kIOBatteryInstalled: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatterycharge?language=objc)
 pub const kIOBatteryCharge: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatterychargerconnect?language=objc)
 pub const kIOBatteryChargerConnect: c_uint = 1 << 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmacinstalled?language=objc)
 pub const kIOPMACInstalled: c_uint = kIOBatteryChargerConnect;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatterycharging?language=objc)
 pub const kIOPMBatteryCharging: c_uint = kIOBatteryCharge;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatteryinstalled?language=objc)
 pub const kIOPMBatteryInstalled: c_uint = kIOBatteryInstalled;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmupsinstalled?language=objc)
 pub const kIOPMUPSInstalled: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatteryatwarn?language=objc)
 pub const kIOPMBatteryAtWarn: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatterydepleted?language=objc)
 pub const kIOPMBatteryDepleted: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmacnochargecapability?language=objc)
 pub const kIOPMACnoChargeCapability: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmrawlowbattery?language=objc)
 pub const kIOPMRawLowBattery: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmforcelowspeed?language=objc)
 pub const kIOPMForceLowSpeed: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmclosedclamshell?language=objc)
 pub const kIOPMClosedClamshell: c_uint = 1 << 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmclamshellstateonwake?language=objc)
 pub const kIOPMClamshellStateOnWake: c_uint = 1 << 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowerstatechangenotification?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOPowerStateChangeNotification {
@@ -794,9 +719,15 @@ unsafe impl RefEncode for IOPowerStateChangeNotification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/sleepwakenote?language=objc)
 pub type sleepWakeNote = IOPowerStateChangeNotification;
 
+/// A structure describing a system capability change.
+///
+/// ## Discussion
+///
+/// A system capability change is a system level transition from a set of system capabilities to a new set of system capabilities. Power management sends a `kIOMessageSystemCapabilityChange` message and provides this structure as the message data (by reference) to `gIOPriorityPowerStateInterest` clients when system capability changes.
+///
+///
 /// A structure describing a system capability change.
 ///
 /// A system capability change is a system level transition from a set
@@ -847,8 +778,6 @@ pub type sleepWakeNote = IOPowerStateChangeNotification;
 /// Field: fromCapabilities The system capabilities at the start of the transition.
 /// Field: toCapabilities The system capabilities at the end of the transition.
 /// Field: __reserved2 Set to zero.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmsystemcapabilitychangeparameters?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOPMSystemCapabilityChangeParameters {
@@ -882,28 +811,44 @@ unsafe impl RefEncode for IOPMSystemCapabilityChangeParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499721-iopmsystemcapabilitychangeflags/kiopmsystemcapabilitywillchange?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the system capability will change.
+///
+///
 pub const kIOPMSystemCapabilityWillChange: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499721-iopmsystemcapabilitychangeflags/kiopmsystemcapabilitydidchange?language=objc)
+///
+/// ## Discussion
+///
+/// Indicates the system capability has changed.
+///
+///
 pub const kIOPMSystemCapabilityDidChange: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitycpu?language=objc)
 pub const kIOPMSystemCapabilityCPU: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitygraphics?language=objc)
 pub const kIOPMSystemCapabilityGraphics: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilityaudio?language=objc)
 pub const kIOPMSystemCapabilityAudio: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitynetwork?language=objc)
 pub const kIOPMSystemCapabilityNetwork: c_uint = 0x08;
 pub const kIOPMSystemCapabilityAOT: c_uint = 0x10;
 
 /// Finds the Root Power Domain IOService.
 ///
+/// Parameters:
+/// - master_device_port: Pass in `MACH_PORT_NULL` for the primary device port.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns a [`io_connect_t`](https://developer.apple.com/documentation/iokit/io_connect_t) handle on the root domain. Must be released with IOServiceClose() when done.
+///
+///
+/// Finds the Root Power Domain IOService.
+///
 /// Parameter `master_device_port`: Just pass in MACH_PORT_NULL for master device port.
 ///
 /// Returns: Returns a io_connect_t handle on the root domain. Must be released with IOServiceClose() when done.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557133-iopmfindpowermanagement?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOPMFindPowerManagement(
@@ -917,6 +862,22 @@ pub extern "C-unwind" fn IOPMFindPowerManagement(
 
 /// Sets one of the aggressiveness factors in IOKit Power Management.
 ///
+/// Parameters:
+/// - fb: Representation of the Root Power Domain from IOPMFindPowerManagement.
+///
+/// - type: Specifies which aggressiveness factor is being set.
+///
+/// - aggressiveness: New value of the aggressiveness factor.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns kIOReturnSuccess or an error condition if request failed.
+///
+///
+/// Sets one of the aggressiveness factors in IOKit Power Management.
+///
 /// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
 ///
 /// Parameter `type`: Specifies which aggressiveness factor is being set.
@@ -924,8 +885,6 @@ pub extern "C-unwind" fn IOPMFindPowerManagement(
 /// Parameter `aggressiveness`: New value of the aggressiveness factor.
 ///
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557098-iopmsetaggressiveness?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOPMSetAggressiveness(
@@ -946,6 +905,22 @@ pub extern "C-unwind" fn IOPMSetAggressiveness(
 extern "C-unwind" {
     /// Retrieves the current value of one of the aggressiveness factors in IOKit Power Management.
     ///
+    /// Parameters:
+    /// - fb: Representation of the Root Power Domain from IOPMFindPowerManagement.
+    ///
+    /// - type: Specifies which aggressiveness factor is being retrieved.
+    ///
+    /// - aggressiveness: Points to where to store the retrieved value of the aggressiveness factor.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    ///
+    /// Retrieves the current value of one of the aggressiveness factors in IOKit Power Management.
+    ///
     /// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
     ///
     /// Parameter `type`: Specifies which aggressiveness factor is being retrieved.
@@ -957,8 +932,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `aggressiveness` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557117-iopmgetaggressiveness?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOPMGetAggressiveness(
         fb: io_connect_t,
@@ -969,9 +942,15 @@ extern "C-unwind" {
 
 /// Tells whether the system supports full sleep, or just doze
 ///
-/// Returns: Returns true if the system supports sleep, false if some hardware prevents full sleep.
+/// <a id="return_value"></a>
+/// ## Return Value
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557074-iopmsleepenabled?language=objc)
+/// Returns true if the system supports sleep, false if some hardware prevents full sleep.
+///
+///
+/// Tells whether the system supports full sleep, or just doze
+///
+/// Returns: Returns true if the system supports sleep, false if some hardware prevents full sleep.
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOPMSleepEnabled() -> bool {
@@ -984,13 +963,29 @@ pub extern "C-unwind" fn IOPMSleepEnabled() -> bool {
 
 /// Request that the system initiate sleep.
 ///
+/// Parameters:
+/// - fb: Port used to communicate to the kernel, from IOPMFindPowerManagement.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns kIOReturnSuccess or an error condition if request failed.
+///
+///
+///
+/// ## Discussion
+///
+/// For security purposes, caller must be root or the console user.
+///
+///
+/// Request that the system initiate sleep.
+///
 /// For security purposes, caller must be root or the console user.
 ///
 /// Parameter `fb`: Port used to communicate to the kernel,  from IOPMFindPowerManagement.
 ///
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557121-iopmsleepsystem?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
@@ -1001,6 +996,26 @@ pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
 }
 
 extern "C-unwind" {
+    /// Request raw battery data from the system.
+    ///
+    /// Parameters:
+    /// - masterPort: The primary port obtained from [`IOMasterPort`](https://developer.apple.com/documentation/iokit/1514652-iomasterport). Pass `MACH_PORT_NULL`.
+    ///
+    /// - info: A CFArray of CFDictionaries containing raw battery data.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// WARNING! IOPMCoyBatteryInfo is unsupported on ALL Intel CPU based systems. For PPC CPU based systems, it remains not recommended. For almost all purposes, developers should use the richer IOPowerSources API (with change notifications) instead of using IOPMCopyBatteryInfo. Keys to decipher IOPMCopyBatteryInfo's return CFArray exist in IOPM.h.
+    ///
+    ///
     /// Request battery data from the system.
     ///
     /// This API is supported, but not recommended. Developers should prefer to use
@@ -1068,8 +1083,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `info` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557138-iopmcopybatteryinfo?language=objc)
     #[cfg(feature = "libc")]
     pub fn IOPMCopyBatteryInfo(
         master_port: libc::mach_port_t,
@@ -1078,6 +1091,32 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Connects the caller to an IOService for the purpose of receiving power state change notifications for the device controlled by the IOService.
+    ///
+    /// Parameters:
+    /// - refcon: Data returned on power state change notifications and not used by the kernel.
+    ///
+    /// - theDriver: Representation of the IOService, probably from IOServiceGetMatchingService.
+    ///
+    /// - thePortRef: Pointer to a port on which the caller will receive power state change notifications. The port is allocated by the calling application.
+    ///
+    /// - callback: A c-function which is called during the notification.
+    ///
+    /// - notifier: Pointer to a notifier which caller must keep and pass to subsequent call to IODeregisterApp.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a io_connect_t session for the IOService or MACH_PORT_NULL if request failed. Caller must close return value via IOServiceClose() after calling IODeregisterApp on the notifier argument.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// IORegisterApp requires that the IOService of interest implement an IOUserClient. In addition, that IOUserClient must implement the allowPowerChange and cancelPowerChange methods defined in IOPMLibDefs.h. If you're interested in receiving power state notifications from a device without an IOUserClient, try using IOServiceAddInterestNotification with interest type gIOGeneralInterest instead.
+    ///
+    ///
     /// DEPRECATED - An obsolete method for interacting with driver power state changes.
     ///
     /// This function is obsolete and deprecated. To receive notifications of driver power state changes,
@@ -1089,8 +1128,6 @@ extern "C-unwind" {
     /// - `the_port_ref` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `notifier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557102-ioregisterapp?language=objc)
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IORegisterApp(
@@ -1103,6 +1140,42 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Connects the caller to the Root Power Domain IOService for the purpose of receiving sleep & wake notifications for the system. Does not provide system shutdown and restart notifications.
+    ///
+    /// Parameters:
+    /// - refcon: Caller may provide data to receive s an argument to 'callback' on power state changes.
+    ///
+    /// - thePortRef: On return, thePortRef is a pointer to an IONotificationPortRef, which will deliver the power notifications. The port is allocated by this function and must be later released by the caller (after calling [`IODeregisterForSystemPower`](https://developer.apple.com/documentation/iokit/1557132-ioderegisterforsystempower)). The caller should also enable IONotificationPortRef by calling [`IONotificationPortGetRunLoopSource`](https://developer.apple.com/documentation/iokit/1514599-ionotificationportgetrunloopsour), or [`IONotificationPortGetMachPort`](https://developer.apple.com/documentation/iokit/1514875-ionotificationportgetmachport), or [`IONotificationPortSetDispatchQueue`](https://developer.apple.com/documentation/iokit/1514596-ionotificationportsetdispatchque).
+    ///
+    /// - callback: A c-function which is called during the notification.
+    ///
+    /// - notifier: On success, returns a pointer to a unique notifier which caller must keep and pass to a subsequent call to IODeregisterForSystemPower.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns a io_connect_t session for the IOPMrootDomain or MACH_PORT_NULL if request failed. Caller must close return value via IOServiceClose() after calling IODeregisterForSystemPower on the notifier argument.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Provides sleep/wake notifications to applications. Requires that applications acknowledge some, but not all notifications. Register for sleep/wake notifications will deliver these messages over the sleep/wake lifecycle:
+    ///
+    /// - kIOMessageSystemWillSleep is delivered at the point the system is initiating a non-abortable sleep. Callers MUST acknowledge this event by calling [`IOAllowPowerChange`](https://developer.apple.com/documentation/iokit/1557064-ioallowpowerchange). If a caller does not acknowledge the sleep notification, the sleep will continue anyway after a 30 second timeout (resulting in bad user experience). Delivered before any hardware is powered off.
+    ///
+    /// - kIOMessageSystemWillPowerOn is delivered at early wakeup time, before most hardware has been powered on. Be aware that any attempts to access disk, network, the display, etc. may result in errors or blocking your process until those resources become available. Caller must NOT acknowledge kIOMessageSystemWillPowerOn; the caller must simply return from its handler.
+    ///
+    /// - kIOMessageSystemHasPoweredOn is delivered at wakeup completion time, after all device drivers and hardware have handled the wakeup event. Expect this event 1-5 or more seconds after initiating system wakeup. Caller must NOT acknowledge kIOMessageSystemHasPoweredOn; the caller must simply return from its handler.
+    ///
+    /// - kIOMessageCanSystemSleep indicates the system is pondering an idle sleep, but gives apps the chance to veto that sleep attempt. Caller must acknowledge kIOMessageCanSystemSleep by calling [`IOAllowPowerChange`](https://developer.apple.com/documentation/iokit/1557064-ioallowpowerchange) or [`IOCancelPowerChange`](https://developer.apple.com/documentation/iokit/1557115-iocancelpowerchange). Calling IOAllowPowerChange will not veto the sleep; any app that calls IOCancelPowerChange will veto the idle sleep. A kIOMessageCanSystemSleep notification will be followed up to 30 seconds later by a kIOMessageSystemWillSleep message. or a kIOMessageSystemWillNotSleep message.
+    ///
+    /// - kIOMessageSystemWillNotSleep is delivered when some app client has vetoed an idle sleep request. kIOMessageSystemWillNotSleep may follow a kIOMessageCanSystemSleep notification, but will not otherwise be sent. Caller must NOT acknowledge kIOMessageSystemWillNotSleep; the caller must simply return from its handler.
+    ///
+    /// To deregister for sleep/wake notifications, the caller must make two calls, in this order: - Call IODeregisterForSystemPower with the 'notifier' argument returned here. - Then call IONotificationPortDestroy passing the 'thePortRef' argument returned here.
+    ///
+    ///
     /// Connects the caller to the Root Power Domain IOService for the purpose of receiving sleep
     /// &
     /// wake notifications for the system.
@@ -1224,8 +1297,6 @@ extern "C-unwind" {
     /// - `the_port_ref` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     /// - `notifier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557114-ioregisterforsystempower?language=objc)
     #[cfg(feature = "libc")]
     pub fn IORegisterForSystemPower(
         refcon: *mut c_void,
@@ -1238,6 +1309,18 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// Disconnects the caller from an IOService after receiving power state change notifications from the IOService. (Caller must also release IORegisterApp's return io_connect_t and returned IONotificationPortRef for complete clean-up).
     ///
+    /// Parameters:
+    /// - notifier: An object from IORegisterApp.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    ///
+    /// Disconnects the caller from an IOService after receiving power state change notifications from the IOService. (Caller must also release IORegisterApp's return io_connect_t and returned IONotificationPortRef for complete clean-up).
+    ///
     /// Parameter `notifier`: An object from IORegisterApp.
     ///
     /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
@@ -1245,13 +1328,23 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `notifier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557129-ioderegisterapp?language=objc)
     #[cfg(feature = "libc")]
     pub fn IODeregisterApp(notifier: *mut io_object_t) -> IOReturn;
 }
 
 extern "C-unwind" {
+    /// Disconnects the caller from the Root Power Domain IOService after receiving system power state change notifications. (Caller must also destroy the IONotificationPortRef returned from IORegisterForSystemPower.)
+    ///
+    /// Parameters:
+    /// - notifier: The object returned from IORegisterForSystemPower.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess or an error condition if request failed.
+    ///
+    ///
     /// Disconnects the caller from the Root Power Domain IOService after receiving system power state change notifications. (Caller must also destroy the IONotificationPortRef returned from IORegisterForSystemPower.)
     ///
     /// Parameter `notifier`: The object returned from IORegisterForSystemPower.
@@ -1261,12 +1354,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `notifier` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557132-ioderegisterforsystempower?language=objc)
     #[cfg(feature = "libc")]
     pub fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
 }
 
+/// The caller acknowledges notification of a power state change on a device it has registered for notifications for via IORegisterForSystemPower or IORegisterApp.
+///
+/// Parameters:
+/// - kernelPort: Port used to communicate to the kernel, from IORegisterApp or IORegisterForSystemPower.
+///
+/// - notificationID: A copy of the notification ID which came as part of the power state change notification being acknowledged.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns kIOReturnSuccess or an error condition if request failed.
+///
+///
+///
+/// ## Discussion
+///
+/// Must be used when handling kIOMessageCanSystemSleep and kIOMessageSystemWillSleep messages from IOPMrootDomain system power. The caller should not call IOAllowPowerChange in response to any messages except for these two.
+///
+///
 /// The caller acknowledges notification of a power state change on a device it has registered for notifications for via IORegisterForSystemPower or IORegisterApp.
 ///
 /// Must be used when handling kIOMessageCanSystemSleep and kIOMessageSystemWillSleep messages from IOPMrootDomain system power. The caller should not call IOAllowPowerChange in response to any messages
@@ -1277,8 +1388,6 @@ extern "C-unwind" {
 /// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
 ///
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557064-ioallowpowerchange?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOAllowPowerChange(
@@ -1291,6 +1400,28 @@ pub extern "C-unwind" fn IOAllowPowerChange(
     unsafe { IOAllowPowerChange(kernel_port, notification_id) }
 }
 
+/// The caller denies an idle system sleep power state change.
+///
+/// Parameters:
+/// - kernelPort: Port used to communicate to the kernel, from IORegisterApp or IORegisterForSystemPower.
+///
+/// - notificationID: A copy of the notification ID which came as part of the power state change notification being acknowledged.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns kIOReturnSuccess or an error condition if request failed.
+///
+///
+///
+/// ## Discussion
+///
+/// Should only called in response to kIOMessageCanSystemSleep messages from IOPMrootDomain. IOCancelPowerChange has no meaning for responding to kIOMessageSystemWillSleep (which is non-abortable) or any other messages.
+///
+/// When an app responds to a kIOMessageCanSystemSleep message by calling IOCancelPowerChange, the app vetoes the idle sleep request. The system will stay awake. The idle timer will elapse again after a period of inactivity, and the system will send out the same kIOMessageCanSystemSleep message, and interested applications will respond gain.
+///
+///
 /// The caller denies an idle system sleep power state change.
 ///
 /// Should only called in response to kIOMessageCanSystemSleep messages from IOPMrootDomain. IOCancelPowerChange has no meaning for responding to kIOMessageSystemWillSleep (which is non-abortable) or any other messages.
@@ -1306,8 +1437,6 @@ pub extern "C-unwind" fn IOAllowPowerChange(
 /// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
 ///
 /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557115-iocancelpowerchange?language=objc)
 #[cfg(feature = "libc")]
 #[inline]
 pub extern "C-unwind" fn IOCancelPowerChange(
@@ -1321,6 +1450,28 @@ pub extern "C-unwind" fn IOCancelPowerChange(
 }
 
 extern "C-unwind" {
+    /// Schedule the machine to wake from sleep, power on, go to sleep, or shutdown.
+    ///
+    /// Parameters:
+    /// - time_to_wake: Date and time that the system will power on/off.
+    ///
+    /// - my_id: A CFStringRef identifying the calling app by CFBundleIdentifier. May be NULL.
+    ///
+    /// - type: The type of power on you desire, either wake from sleep or power on. Choose from: CFSTR(kIOPMAutoWake) == wake machine, CFSTR(kIOPMAutoPowerOn) == power on machine, CFSTR(kIOPMAutoWakeOrPowerOn) == wake or power on, CFSTR(kIOPMAutoSleep) == sleep machine, CFSTR(kIOPMAutoShutdown) == power off machine, CFSTR(kIOPMAutoRestart) == restart the machine.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, otherwise on failure
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This event will be added to the system's queue of power events and stored persistently on disk. The sleep and shutdown events present a graphical warning and allow a console user to cancel the event. Must be called as root.
+    ///
+    ///
     /// Schedule the machine to wake from sleep, power on, go to sleep, or shutdown.
     ///
     /// This event will be added to the system's queue of power events and stored persistently on disk. The sleep and shutdown events present a graphical warning and allow a console user to cancel the event. Must be called as root.
@@ -1376,8 +1527,6 @@ extern "C-unwind" {
     /// - `time_to_wake` might not allow `None`.
     /// - `my_id` might not allow `None`.
     /// - `type` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557076-iopmschedulepowerevent?language=objc)
     pub fn IOPMSchedulePowerEvent(
         time_to_wake: Option<&CFDate>,
         my_id: Option<&CFString>,
@@ -1386,6 +1535,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Cancel a previously scheduled power event.
+    ///
+    /// Parameters:
+    /// - time_to_wake: Cancel entry with this date and time.
+    ///
+    /// - my_id: Cancel entry with this name.
+    ///
+    /// - type: Type to cancel
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess on success, otherwise on failure
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Arguments mirror those to IOPMSchedulePowerEvent. All arguments must match the original arguments from when the power on was scheduled. Must be called as root.
+    ///
+    ///
     /// Cancel a previously scheduled power event.
     ///
     /// Arguments mirror those to IOPMSchedulePowerEvent. All arguments must match the original arguments from when the power on was scheduled. Must be called as root.
@@ -1403,8 +1574,6 @@ extern "C-unwind" {
     /// - `time_to_wake` might not allow `None`.
     /// - `my_id` might not allow `None`.
     /// - `type` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557116-iopmcancelscheduledpowerevent?language=objc)
     pub fn IOPMCancelScheduledPowerEvent(
         time_to_wake: Option<&CFDate>,
         my_id: Option<&CFString>,
@@ -1414,11 +1583,23 @@ extern "C-unwind" {
 
 /// List all scheduled system power events
 ///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A CFArray of CFDictionaries of power events. The CFArray must be released by the caller. NULL if there are no scheduled events.
+///
+///
+///
+/// ## Discussion
+///
+/// Returns a CFArray of CFDictionaries of power events. Each CFDictionary contains keys for CFSTR(kIOPMPowerEventTimeKey), CFSTR(kIOPMPowerEventAppNameKey), and CFSTR(kIOPMPowerEventTypeKey).
+///
+///
+/// List all scheduled system power events
+///
 /// Returns a CFArray of CFDictionaries of power events. Each CFDictionary  contains keys for CFSTR(kIOPMPowerEventTimeKey), CFSTR(kIOPMPowerEventAppNameKey), and CFSTR(kIOPMPowerEventTypeKey).
 ///
 /// Returns: A CFArray of CFDictionaries of power events. The CFArray must be released by the caller. NULL if there are no scheduled events.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557109-iopmcopyscheduledpowerevents?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -1428,6 +1609,7 @@ pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFA
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+/// Type for AssertionID arguments to [`IOPMAssertionCreateWithProperties`](https://developer.apple.com/documentation/iokit/1557082-iopmassertioncreatewithpropertie) and [`IOPMAssertionRelease`](https://developer.apple.com/documentation/iokit/1557090-iopmassertionrelease)
 /// Type for AssertionID arguments to
 /// <code>
 ///
@@ -1444,13 +1626,23 @@ pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFA
 /// ```
 ///
 /// </code>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmassertionid?language=objc)
 pub type IOPMAssertionID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557135-kiopmnullassertionid/kiopmnullassertionid?language=objc)
+///
+/// ## Discussion
+///
+/// This value represents a non-initialized assertion ID.
+///
+///
 pub const kIOPMNullAssertionID: c_uint = 0;
 
+/// Type for AssertionLevel argument to IOPMAssertionCreate
+///
+/// ## Discussion
+///
+/// Possible values for `IOPMAssertionLevel` are [`kIOPMAssertionLevelOff`](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionleveloff) and [`kIOPMAssertionLevelOn`](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionlevelon)
+///
+///
 /// Type for AssertionLevel argument to IOPMAssertionCreate
 ///
 ///
@@ -1474,28 +1666,19 @@ pub const kIOPMNullAssertionID: c_uint = 0;
 /// ```
 ///
 /// </code>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmassertionlevel?language=objc)
 pub type IOPMAssertionLevel = u32;
 
 /// Level for a disabled assertion, passed as an argument to IOPMAssertionCreate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionleveloff?language=objc)
 pub const kIOPMAssertionLevelOff: c_uint = 0;
 /// Level for an enabled assertion, passed as an argument to IOPMAssertionCreate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionlevelon?language=objc)
 pub const kIOPMAssertionLevelOn: c_uint = 255;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuseractivetype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOPMUserActiveType(pub c_uint);
 impl IOPMUserActiveType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuseractivetype/kiopmuseractivelocal?language=objc)
     #[doc(alias = "kIOPMUserActiveLocal")]
     pub const Local: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuseractivetype/kiopmuseractiveremote?language=objc)
     #[doc(alias = "kIOPMUserActiveRemote")]
     pub const Remote: Self = Self(1);
 }
@@ -1511,6 +1694,37 @@ unsafe impl RefEncode for IOPMUserActiveType {
 }
 
 extern "C-unwind" {
+    ///
+    /// Parameters:
+    /// - AssertionType: An assertion type constant. Caller must specify this argument.
+    ///
+    /// - Name: A CFString value to correspond to key [`kIOPMAssertionNameKey`](https://developer.apple.com/documentation/iokit/kiopmassertionnamekey). Caller must specify this argument.
+    ///
+    /// - Details: A CFString value to correspond to key [`kIOPMAssertionDetailsKey`](https://developer.apple.com/documentation/iokit/kiopmassertiondetailskey). Caller my pass NULL, but it helps power users and administrators identify the reasons for this assertion.
+    ///
+    /// - HumanReadableReason: A CFString value to correspond to key [`kIOPMAssertionHumanReadableReasonKey`](https://developer.apple.com/documentation/iokit/kiopmassertionhumanreadablereasonkey). Caller may pass NULL, but if it's specified macOS may display it to users to describe the active assertions on their system.
+    ///
+    /// - LocalizationBundlePath: A CFString value to correspond to key [`kIOPMAssertionLocalizationBundlePathKey`](https://developer.apple.com/documentation/iokit/kiopmassertionlocalizationbundlepathkey). This bundle path should include a localization for the string `HumanReadableReason` Caller may pass NULL, but this argument is required if caller specifies `HumanReadableReason`
+    ///
+    /// - Timeout: Specifies a timeout for this assertion. Pass 0 for no timeout.
+    ///
+    /// - TimeoutAction: Specifies a timeout action. Caller my pass NULL. If a timeout is specified but a TimeoutAction is not, the default timeout action is `kIOPMAssertionTimeoutActionTurnOff`
+    ///
+    /// - AssertionID: (Output) On successful return, contains a unique reference to a PM assertion.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess, or another IOKit return code on error.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates an IOPMAssertion. This is the preferred API to call to create an assertion. It allows the caller to specify the Name, Details, and HumanReadableReason at creation time. There are other keys that can further describe an assertion, but most developers don't need to use them. Use IOPMAssertionSetProperties or [`IOPMAssertionCreateWithProperties`](https://developer.apple.com/documentation/iokit/1557082-iopmassertioncreatewithpropertie) if you need to specify properties that aren't available here.
+    ///
+    ///
     /// The preferred API to create a power assertion.
     ///
     /// Creates an IOPMAssertion. This is the preferred API to call to create an assertion.
@@ -1621,8 +1835,6 @@ extern "C-unwind" {
     /// - `localization_bundle_path` might not allow `None`.
     /// - `timeout_action` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557078-iopmassertioncreatewithdescripti?language=objc)
     pub fn IOPMAssertionCreateWithDescription(
         assertion_type: Option<&CFString>,
         name: Option<&CFString>,
@@ -1636,6 +1848,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates an IOPMAssertion with more flexibility than [`IOPMAssertionCreateWithDescription`](https://developer.apple.com/documentation/iokit/1557078-iopmassertioncreatewithdescripti).
+    ///
+    /// Parameters:
+    /// - AssertionProperties: Dictionary providing the properties of the assertion that need to be created.
+    ///
+    /// - AssertionID: (Output) On successful return, contains a unique reference to a PM assertion.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Create a new PM assertion - the caller must specify the type of assertion, initial level, and its properties as [`IOPMAssertionDictionaryKeys`](https://developer.apple.com/documentation/iokit/iopmlib_h/iopmassertiondictionarykeys) keys in the `AssertionProperties` dictionary. The following keys are recommend and/or required to be specified in the AssertionProperties dictionary argument.
+    ///
+    /// - REQUIRED: `kIOPMAssertionTypeKey` define the assertion type.
+    ///
+    /// - REQUIRED: `kIOPMAssertionValueKey` define an inital value.
+    ///
+    /// - REQUIRED: `kIOPMAssertionNameKey` Caller must describe the name for the activity that requires the change in behavior provided by the assertion.
+    ///
+    /// - OPTIONAL: `kIOPMAssertionDetailsKey` Caller may describe context-specific data about the assertion.
+    ///
+    /// - OPTIONAL: `kIOPMAssertionHumanReadableReasonKey` Caller may describe the reason for creating the assertion in a localizable CFString. This should be a human readable phrase that describes the actions the calling process is taking while the assertion is held, like "Downloading TV episodes", or "Compiling Projects"
+    ///
+    /// - OPTIONAL: `kIOPMAssertionLocalizationBundlePathKey` Caller may provide its bundle's path, where macOS can localize for GUI display the CFString specified by [`kIOPMAssertionHumanReadableReasonKey`](https://developer.apple.com/documentation/iokit/kiopmassertionhumanreadablereasonkey).
+    ///
+    /// - OPTIONAL: `kIOPMAssertionPlugInIDKey` if the caller is a plugin with a different identity than the process it's loaded in.
+    ///
+    /// - OPTIONAL: `kIOPMAssertionFrameworkIDKey` if the caller is a framework acting on behalf of a process.
+    ///
+    /// - OPTIONAL: The caller may specify a timeout.
+    ///
+    ///
     /// Creates an IOPMAssertion with more flexibility than
     /// <code>
     ///
@@ -1751,8 +1994,6 @@ extern "C-unwind" {
     /// - `assertion_properties` generic must be of the correct type.
     /// - `assertion_properties` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557082-iopmassertioncreatewithpropertie?language=objc)
     pub fn IOPMAssertionCreateWithProperties(
         assertion_properties: Option<&CFDictionary>,
         assertion_id: *mut IOPMAssertionID,
@@ -1760,6 +2001,28 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Declares that the user is active on the system. This causes the display to power on and postpone display sleep up to the user's display sleep Energy Saver settings. If you prefer to hold the display awake for a longer period and you know how long you'd like to hold it, consider taking assertion [`kIOPMAssertionTypePreventUserIdleDisplaySleep`](https://developer.apple.com/documentation/iokit/kiopmassertiontypepreventuseridledisplaysleep) using [`IOPMAssertionCreateWithDescription`](https://developer.apple.com/documentation/iokit/1557078-iopmassertioncreatewithdescripti) API instead.
+    ///
+    /// Parameters:
+    /// - AssertionName: A string that describes the name of the caller and the activity being handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer than 128 characters.
+    ///
+    /// - userType: This parameter specifies if the active user is located locally in front of the system or connected to the system over the network. Various components of the system are maintained at different power levels depending on user location.
+    ///
+    /// - AssertionID: On Success, unique id will be returned in this parameter. Caller may call this function again with the unique id retured previously to report continous user activity. The unique id returned by this function may change on each call depending on how frequently this function call is repeated and the current display sleep timer value. If you make this call more than once, track the returned value for assertionID, and pass it in as an argument on each call.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success, any other return indicates PM could not successfully activate the specified assertion.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// No special privileges are necessary to make this call - any process may call this API. Caller must specify an AssertionName - NULL is not a valid input.
+    ///
+    ///
     /// Declares that the user is active on the system.
     ///
     ///
@@ -1815,8 +2078,6 @@ extern "C-unwind" {
     ///
     /// - `assertion_name` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557127-iopmassertiondeclareuseractivity?language=objc)
     pub fn IOPMAssertionDeclareUserActivity(
         assertion_name: Option<&CFString>,
         user_type: IOPMUserActiveType,
@@ -1926,14 +2187,23 @@ extern "C-unwind" {
     ///
     /// - `assertion_name` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557137-iopmdeclarenetworkclientactivity?language=objc)
     pub fn IOPMDeclareNetworkClientActivity(
         assertion_name: Option<&CFString>,
         assertion_id: *mut IOPMAssertionID,
     ) -> IOReturn;
 }
 
+/// Increments the assertion's retain count.
+///
+/// Parameters:
+/// - theAssertion: The assertion ID to retain.
+///
+///
+/// ## Discussion
+///
+/// Increments the retain count according to CoreFoundation style retain/release semantics. Retain count can be inspected in the assertion's info dictionary at key [`kIOPMAssertionRetainCountKey`](https://developer.apple.com/documentation/iokit/kiopmassertionretaincountkey)
+///
+///
 /// Increments the assertion's retain count.
 ///
 /// Increments the retain count according to CoreFoundation style retain/release semantics.
@@ -1948,8 +2218,6 @@ extern "C-unwind" {
 /// </code>
 ///
 /// Parameter `theAssertion`: The assertion ID to retain.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557071-iopmassertionretain?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
     extern "C-unwind" {
@@ -1958,6 +2226,26 @@ pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
     unsafe { IOPMAssertionRetain(the_assertion) }
 }
 
+/// Decrements the assertion's retain count.
+///
+/// Parameters:
+/// - AssertionID: The assertion_id, returned from IOPMAssertionCreate, to cancel.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns kIOReturnSuccess on success.
+///
+///
+///
+/// ## Discussion
+///
+/// If the retain count becomes zero, then this also frees and deactivates the assertion referred to by `assertionID`
+///
+/// Calls to [`IOPMAssertionCreate`](https://developer.apple.com/documentation/iokit/1557118-iopmassertioncreate) and [`IOPMAssertionRelease`](https://developer.apple.com/documentation/iokit/1557090-iopmassertionrelease) must each be paired with calls to IOPMAssertionRelease.
+///
+///
 /// Decrements the assertion's retain count.
 ///
 ///
@@ -1990,8 +2278,6 @@ pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
 ///
 ///
 /// Returns: Returns kIOReturnSuccess on success.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557090-iopmassertionrelease?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
     extern "C-unwind" {
@@ -2000,6 +2286,24 @@ pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> 
     unsafe { IOPMAssertionRelease(assertion_id) }
 }
 
+/// Copies details about an `IOPMAssertion`
+///
+/// Parameters:
+/// - theAssertion: The assertion ID to copy info about.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A dictionary describing the assertion with keys specified in See [`IOPMAssertionDictionaryKeys`](https://developer.apple.com/documentation/iokit/iopmlib_h/iopmassertiondictionarykeys). It's the caller's responsibility to release this dictionary.
+///
+///
+///
+/// ## Discussion
+///
+/// Returns a dictionary describing an IOPMAssertion's specifications and current state.
+///
+///
 /// Copies details about an
 /// <code>
 /// IOPMAssertion
@@ -2018,8 +2322,6 @@ pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> 
 ///
 /// .
 /// It's the caller's responsibility to release this dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557066-iopmassertioncopyproperties?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOPMAssertionCopyProperties(
     the_assertion: IOPMAssertionID,
@@ -2034,6 +2336,28 @@ pub extern "C-unwind" fn IOPMAssertionCopyProperties(
 }
 
 extern "C-unwind" {
+    /// Sets a property in the assertion.
+    ///
+    /// Parameters:
+    /// - theAssertion: The [`IOPMAssertionID`](https://developer.apple.com/documentation/iokit/iopmassertionid) of the assertion to modify.
+    ///
+    /// - theProperty: The CFString key, from [`IOPMAssertionDictionaryKeys`](https://developer.apple.com/documentation/iokit/iopmlib_h/iopmassertiondictionarykeys) to modify.
+    ///
+    /// - theValue: The property to set. It must be a CFNumber or CFString, as specified by the property key named in whichProperty.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnNotPriviliged if the caller doesn't have permission to modify this assertion. Returns kIOReturnNotFound if PM can't locate this assertion. Returns kIOReturnError upon an unidentified error. Returns kIOReturnSuccess otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Only the process that created an assertion may change its properties.
+    ///
+    ///
     /// Sets a property in the assertion.
     ///
     /// Only the process that created an assertion may change its properties.
@@ -2103,8 +2427,6 @@ extern "C-unwind" {
     /// - `the_property` might not allow `None`.
     /// - `the_value` should be of the correct type.
     /// - `the_value` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557107-iopmassertionsetproperty?language=objc)
     pub fn IOPMAssertionSetProperty(
         the_assertion: IOPMAssertionID,
         the_property: Option<&CFString>,
@@ -2113,6 +2435,24 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns a dictionary listing all assertions, grouped by their owning process.
+    ///
+    /// Parameters:
+    /// - AssertionsByPID: On success, this returns a dictionary of assertions per process. At the top level, keys to the CFDictionary are pids stored as CFNumbers (kCFNumberIntType). The value associated with each CFNumber pid is a CFArray of active assertions. Each entry in the CFArray is an assertion represented as a CFDictionary. See the keys kIOPMAssertionTypeKey and kIOPMAssertionLevelKey. Caller must CFRelease() this dictionary when done.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Notes: One process may have multiple assertions. Several processes may have asserted the same assertion to different levels.
+    ///
+    ///
     /// Returns a dictionary listing all assertions, grouped by their owning process.
     ///
     ///
@@ -2133,12 +2473,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `assertions_by_pid` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557130-iopmcopyassertionsbyprocess?language=objc)
     pub fn IOPMCopyAssertionsByProcess(assertions_by_pid: *mut *const CFDictionary) -> IOReturn;
 }
 
 extern "C-unwind" {
+    /// Returns a list of available assertions and their system-wide levels.
+    ///
+    /// Parameters:
+    /// - AssertionsStatus: On success, this returns a CFDictionary of all assertions currently available. The keys in the dictionary are the assertion types, and the value of each is a CFNumber that represents the aggregate level for that assertion. Caller must CFRelease() this dictionary when done.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The system-wide level is the maximum of all individual assertions' levels.
+    ///
+    ///
     /// Returns a list of available assertions and their system-wide levels.
     ///
     ///
@@ -2155,12 +2511,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `assertions_status` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557072-iopmcopyassertionsstatus?language=objc)
     pub fn IOPMCopyAssertionsStatus(assertions_status: *mut *const CFDictionary) -> IOReturn;
 }
 
 extern "C-unwind" {
+    /// Dynamically requests a system behavior from the power management system.
+    ///
+    /// Parameters:
+    /// - AssertionType: The CFString assertion type to request from the PM system.
+    ///
+    /// - AssertionLevel: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
+    ///
+    /// - AssertionID: On success, a unique id will be returned in this parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success, any other return indicates PM could not successfully activate the specified assertion.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// No special privileges necessary to make this call - any process may activate a power assertion.
+    ///
+    ///
     /// This is a deprecated call to create a power assertion.
     ///
     ///
@@ -2191,8 +2567,6 @@ extern "C-unwind" {
     ///
     /// - `assertion_type` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557118-iopmassertioncreate?language=objc)
     #[deprecated]
     pub fn IOPMAssertionCreate(
         assertion_type: Option<&CFString>,
@@ -2202,6 +2576,30 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Dynamically requests a system behavior from the power management system.
+    ///
+    /// Parameters:
+    /// - AssertionType: The CFString assertion type to request from the PM system.
+    ///
+    /// - AssertionLevel: Pass kIOPMAssertionLevelOn or kIOPMAssertionLevelOff.
+    ///
+    /// - AssertionName: A string that describes the name of the caller and the activity being handled by this assertion (e.g. "Mail Compacting Mailboxes"). Name may be no longer than 128 characters.
+    ///
+    /// - AssertionID: On success, a unique id will be returned in this parameter.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// Returns kIOReturnSuccess on success, any other return indicates PM could not successfully activate the specified assertion.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// No special privileges are necessary to make this call - any process may activate a power assertion. Caller must specify an AssertionName - NULL is not a valid input.
+    ///
+    ///
     /// The simplest API to create a power assertion.
     ///
     ///
@@ -2230,8 +2628,6 @@ extern "C-unwind" {
     /// - `assertion_type` might not allow `None`.
     /// - `assertion_name` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557134-iopmassertioncreatewithname?language=objc)
     pub fn IOPMAssertionCreateWithName(
         assertion_type: Option<&CFString>,
         assertion_level: IOPMAssertionLevel,
@@ -2242,19 +2638,41 @@ extern "C-unwind" {
 
 /// Return type for IOGetSystemLoadAdvisory
 ///
+/// ## Discussion
+///
+/// Value is one of kIOSystemLoadAdvisoryLevelGreat, kIOSystemLoadAdvisoryLevelOK, or kIOSystemLoadAdvisoryLevelBad.
+///
+///
+/// Return type for IOGetSystemLoadAdvisory
+///
 /// Value is one of kIOSystemLoadAdvisoryLevelGreat, kIOSystemLoadAdvisoryLevelOK,
 /// or kIOSystemLoadAdvisoryLevelBad.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iosystemloadadvisorylevel?language=objc)
 pub type IOSystemLoadAdvisoryLevel = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelbad?language=objc)
 pub const kIOSystemLoadAdvisoryLevelBad: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelok?language=objc)
 pub const kIOSystemLoadAdvisoryLevelOK: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelgreat?language=objc)
 pub const kIOSystemLoadAdvisoryLevelGreat: c_uint = 3;
 
+/// Returns a hint about whether now would be a good time to perform time-insensitive work.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// IOSystemLoadAdvisoryLevel - one of: kIOSystemLoadAdvisoryLevelGreat - A Good time to perform time-insensitive work. kIOSystemLoadAdvisoryLevelOK - An OK time to perform time-insensitive work. kIOSystemLoadAdvisoryLevelBad - A Bad time to perform time-insensitive work.
+///
+///
+///
+/// ## Discussion
+///
+/// Based on user and system load, IOGetSystemLoadAdvisory determines "better" and "worse" times to run optional or time-insensitive CPU or disk work.
+///
+/// Applications may use this result to avoid degrading the user experience. If it is a "Bad" or "OK" time to perform work, applications should slow down and perform work less aggressively.
+///
+/// There is no guarantee that the system will ever be in "Great" condition to perform work - all essential work must still be performed even in "Bad", or "OK" times. Completely optional work, such as updating caches, may be postponed indefinitely.
+///
+/// Note: You may more efficiently read the SystemLoadAdvisory level using notify_get_state() instead of IOGetSystemLoadAdvisory. The results are identical. notify_get_state() requires that you pass the token argument received by registering for SystemLoadAdvisory notifications.
+///
+///
 /// Returns a hint about whether now would be a good time to perform time-insensitive
 /// work.
 ///
@@ -2283,8 +2701,6 @@ pub const kIOSystemLoadAdvisoryLevelGreat: c_uint = 3;
 /// <li>
 /// kIOSystemLoadAdvisoryLevelBad - A Bad time to perform time-insensitive work.
 /// </ul>
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557110-iogetsystemloadadvisory?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel {
     extern "C-unwind" {
@@ -2293,6 +2709,20 @@ pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel 
     unsafe { IOGetSystemLoadAdvisory() }
 }
 
+/// Indicates how user activity, battery level, and thermal level each contribute to the overall "SystemLoadAdvisory" level. In the future, this combined level may represent new levels as well.
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Returns a CFDictionaryRef, or NULL on error. Caller must release the returned dictionary.
+///
+///
+///
+/// ## Discussion
+///
+/// See dictionary keys defined above.
+///
+///
 /// Indicates how user activity, battery level, and thermal level each
 /// contribute to the overall "SystemLoadAdvisory" level. In the future,
 /// this combined level may represent new levels as well.
@@ -2301,8 +2731,6 @@ pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel 
 ///
 /// Returns: Returns a CFDictionaryRef, or NULL on error. Caller must release the
 /// returned dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557099-iocopysystemloadadvisorydetailed?language=objc)
 #[inline]
 pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -2313,6 +2741,24 @@ pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained
 }
 
 extern "C-unwind" {
+    /// Copy status of all current CPU power levels.
+    ///
+    /// Parameters:
+    /// - cpuPowerStatus: Upon success, a pointer to a dictionary defining CPU power; otherwise NULL. Pointer will be populated with a newly created dictionary upon successful return. Caller must release dictionary.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if CPU PowerStatus has not been published.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned dictionary may define some of these keys, as defined in IOPM.h: - kIOPMCPUPowerLimitProcessorSpeedKey - kIOPMCPUPowerLimitProcessorCountKey - kIOPMCPUPowerLimitSchedulerTimeKey
+    ///
+    ///
     /// Copy status of all current CPU power levels.
     ///
     /// The returned dictionary may define some of these keys,
@@ -2336,12 +2782,18 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `cpu_power_status` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557079-iopmcopycpupowerstatus?language=objc)
     pub fn IOPMCopyCPUPowerStatus(cpu_power_status: *mut *const CFDictionary) -> IOReturn;
 }
 
 extern "C-unwind" {
+    /// Get thermal warning level of the system.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// kIOReturnSuccess, or other error report. Returns kIOReturnNotFound if thermal warning level has not been published.
+    ///
+    ///
     /// Get thermal warning level of the system.
     ///
     /// Returns: An integer pointer declaring the power warning level of the system.
@@ -2363,7 +2815,5 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `thermal_level` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557103-iopmgetthermalwarninglevel?language=objc)
     pub fn IOPMGetThermalWarningLevel(thermal_level: *mut u32) -> IOReturn;
 }

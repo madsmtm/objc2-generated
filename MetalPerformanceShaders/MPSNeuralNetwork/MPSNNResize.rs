@@ -8,6 +8,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A bilinear resizing filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSNNResizeBilinear filter resizes the source image  using bilinear interpolation to
@@ -15,8 +16,6 @@ extern_class!(
     ///
     /// The number of output feature channels remains the same as the number of input feature
     /// channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnresizebilinear?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -160,6 +159,7 @@ impl MPSNNResizeBilinear {
 }
 
 extern_class!(
+    /// A cropping and bilinear resizing filter.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSNNCropAndResizeBilinear filter resizes the source image  using bilinear interpolation to
@@ -167,8 +167,6 @@ extern_class!(
     ///
     /// The number of output feature channels remains the same as the number of input feature
     /// channels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]

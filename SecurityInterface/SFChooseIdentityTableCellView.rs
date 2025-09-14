@@ -9,7 +9,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfchooseidentitytablecellview?language=objc)
     #[unsafe(super(NSTableCellView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFChooseIdentityTableCellView;

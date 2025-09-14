@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccount?language=objc)
+    /// The information associated with one of the user’s accounts.
+    ///
+    /// ## Overview
+    ///
+    /// An [`ACAccount`](https://developer.apple.com/documentation/accounts/acaccount) object encapsulates information about a user account stored in the Accounts database. You can create and retrieve accounts using an [`ACAccountStore`](https://developer.apple.com/documentation/accounts/acaccountstore) object. The [`ACAccountStore`](https://developer.apple.com/documentation/accounts/acaccountstore) object provides an interface to the persistent Accounts database. For each user, all account objects belong to a single [`ACAccountStore`](https://developer.apple.com/documentation/accounts/acaccountstore) object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]

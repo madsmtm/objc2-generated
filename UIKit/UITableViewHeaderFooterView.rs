@@ -12,7 +12,13 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterviewconfigurationupdatehandler?language=objc)
+/// The type of block for handling updates to the view’s configuration using the current state.
+///
+/// Parameters:
+/// - cell: The header footer view to configure.
+///
+/// - state: The new state to use for updating the header footer view’s configuration.
+///
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIView",
@@ -24,7 +30,17 @@ pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = *mut block2::Dy
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview?language=objc)
+    /// A reusable view that you place at the top or bottom of a table section to display additional information for that section.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`UITableViewHeaderFooterView`](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview) objects to manage the header and footer content of your table’s sections efficiently. A header-footer view is a reusable view that you can subclass or use as is. To configure the content and appearance of a header-footer view, you can set its [`contentConfiguration`](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview/contentconfiguration-6b4eg) and [`backgroundConfiguration`](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview/backgroundconfiguration-52wng).
+    ///
+    /// To promote the reuse of your header-footer views, register them by calling the [`registerClass:forHeaderFooterViewReuseIdentifier:`](https://developer.apple.com/documentation/uikit/uitableview/register(_:forheaderfooterviewreuseidentifier:)-20ybb) or [`registerNib:forHeaderFooterViewReuseIdentifier:`](https://developer.apple.com/documentation/uikit/uitableview/register(_:forheaderfooterviewreuseidentifier:)-1rgvc) method of the table view. In the [`tableView:viewForHeaderInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:viewforheaderinsection:)) or [`tableView:viewForFooterInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdelegate/tableview(_:viewforfooterinsection:)) method of your delegate object, call the table view’s [`dequeueReusableHeaderFooterViewWithIdentifier:`](https://developer.apple.com/documentation/uikit/uitableview/dequeuereusableheaderfooterview(withidentifier:)) method to create your view. That method returns a recycled view (if one is available) or creates a new view using the information you registered.
+    ///
+    /// A simple alternative to creating custom header-footer views is to implement the [`tableView:titleForHeaderInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:titleforheaderinsection:)) and [`tableView:titleForFooterInSection:`](https://developer.apple.com/documentation/uikit/uitableviewdatasource/tableview(_:titleforfooterinsection:)) methods of your data source object. When you implement those methods, the table view creates a standard header or footer view and displays the text you supply.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

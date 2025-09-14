@@ -10,10 +10,15 @@ use crate::*;
 extern_class!(
     /// Groups together properties to configure and create a specialized function by passing it to a factory method.
     ///
+    /// ## Overview
+    ///
+    /// You can pass an instance of this class to any methods that accept a [`MTL4FunctionDescriptor`](https://developer.apple.com/documentation/metal/mtl4functiondescriptor) parameter to provide extra configuration, such as function constants or a name.
+    ///
+    ///
+    /// Groups together properties to configure and create a specialized function by passing it to a factory method.
+    ///
     /// You can pass an instance of this class to any methods that accept a ``MTL4FunctionDescriptor`` parameter to
     /// provide extra configuration, such as function constants or a name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4specializedfunctiondescriptor?language=objc)
     #[unsafe(super(MTL4FunctionDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4FunctionDescriptor")]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair?language=objc)
+    /// A set of methods implemented by arranged objects to give access to information about those objects.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSDictionaryControllerKeyValuePair`](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair) is an informal protocol that is implemented by objects returned by the [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) method arrangedObjects. See [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) for more information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDictionaryControllerKeyValuePair;
@@ -75,7 +81,45 @@ impl NSDictionaryControllerKeyValuePair {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdictionarycontroller?language=objc)
+    /// A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) transforms the contents of a dictionary into an array of key-value pairs that can be bound to user interface items such as the columns of an [`NSTableView`](https://developer.apple.com/documentation/appkit/nstableview).
+    ///
+    /// The content of an [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) instance is specified using the inherited method [`content`](https://developer.apple.com/documentation/appkit/nsobjectcontroller/content) or by binding an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) instance to the [`NSContentDictionaryBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/contentdictionary) binding. New key/value pairs inserted into the dictionary are created using the [`newObject`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/newobject()) method. The initial key name is set to the string returned by [`initialKey`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey) . The initial key name is copied to the newly inserted object, while the object returned by [`initialValue`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialvalue) is simply retained. As new items are inserted the controller enumerates the initial key name, resulting in key names such as “key”, “key1”, “key2”, and so on. This behavior can be customized by overriding [`newObject`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/newobject()).
+    ///
+    /// An [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) instance can be configured to exclude specified keys in a dictionary from being returned by [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects) using the [`excludedKeys`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys) property. Similarly, you can specify an array of key names that are always included in the arranged objects, even if they are not present in the content dictionary, using the [`includedKeys`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys) property.
+    ///
+    /// [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) supports providing localized key names for the keys in the dictionary, allowing a user-friendly representation of the key name to be displayed. The localized key names are specified by a dictionary (using [`localizedKeyDictionary`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary)) or by providing a strings table (using [`localizedKeyDictionary`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary)).
+    ///
+    /// The [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects) method returns an array of objects that implement the [`NSDictionaryControllerKeyValuePair`](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair) informal protocol. User interface controls are bound to the arranged objects array using key paths such as: `arrangedObjects.key` (displays the key name), `arrangedObjects.value` (displays the value for the key), or `arrangedObjects.localizedKey` (displays the localized key name). See [`NSDictionaryControllerKeyValuePair`](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair) for more information.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You must enable the “Validates Immediately” option for the value binding of all controls that edit the key names or values returned by [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects).
+    ///
+    ///
+    ///
+    /// </div>
+    /// [`NSDictionaryController`](https://developer.apple.com/documentation/appkit/nsdictionarycontroller) overrides [`arrangedObjects`](https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects) to return an array of objects that implement the [`NSDictionaryControllerKeyValuePair`](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair) informal protocol. See [`NSDictionaryControllerKeyValuePair`](https://developer.apple.com/documentation/appkit/nsdictionarycontrollerkeyvaluepair) and [Cocoa Bindings Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i) for more information.
+    ///
+    /// The constants listed below are used to specify a binding to [`bind:toObject:withKeyPath:options:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/bind(_:to:withkeypath:options:)), [`infoForBinding:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/infoforbinding(_:)), [`unbind:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/unbind(_:)), and [`valueClassForBinding:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/valueclassforbinding(_:)). See the [Cocoa Bindings Reference](https://developer.apple.com/library/archive/documentation/Cocoa/Reference/CocoaBindingsRef/CocoaBindingsRef.html#//apple_ref/doc/uid/10000189i) for more information.
+    ///
+    /// - [`NSContentDictionaryBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/contentdictionary)
+    ///
+    /// - [`NSIncludedKeysBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/includedkeys)
+    ///
+    /// - [`NSExcludedKeysBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/excludedkeys)
+    ///
+    /// - [`NSLocalizedKeyDictionaryBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/localizedkeydictionary)
+    ///
+    /// - [`NSInitialKeyBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/initialkey)
+    ///
+    /// - [`NSInitialValueBinding`](https://developer.apple.com/documentation/appkit/nsbindingname/initialvalue)
+    ///
+    ///
     #[unsafe(super(NSArrayController, NSObjectController, NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

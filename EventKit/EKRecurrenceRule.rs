@@ -8,6 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that describes the pattern for a recurring event.
+    ///
+    /// ## Overview
+    ///
+    /// After you create a recurrence rule, assign it to an event with the method of [`EKEvent`](https://developer.apple.com/documentation/eventkit/ekevent).
+    ///
+    /// Recurrence rules can have an end, represented by an [`EKRecurrenceEnd`](https://developer.apple.com/documentation/eventkit/ekrecurrenceend) object. The end can be based on a specific date or a maximum number of occurrences.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  It is currently not possible to directly modify an `EKRecurrenceRule` or any of its properties. This functionality is achieved by creating a new `EKRecurrenceRule` and setting an event or reminder to use the newly created rule.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Represents how an event repeats.
     ///
     /// This class describes the recurrence pattern for a repeating event. The recurrence rules that
@@ -17,8 +34,6 @@ extern_class!(
     /// This functionality is achieved by creating a new EKRecurrenceRule, and setting an event to use the new rule.
     /// When a new recurrence rule is set on an EKEvent, that change is not saved until the client
     /// has passed the modified event to EKEventStore's saveEvent: method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencerule?language=objc)
     #[unsafe(super(EKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "EKObject")]

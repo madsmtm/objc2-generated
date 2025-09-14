@@ -9,11 +9,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+///
+/// ## Overview
+///
+/// A CFCharacterSet object represents a set of Unicode compliant characters. CFString uses CFCharacterSet objects to group characters together for searching operations, so that they can find any of a particular set of characters during a search. The two opaque types, CFCharacterSet and [`CFMutableCharacterSetRef`](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset), define the interface for static and dynamic character sets, respectively. The objects you create using these opaque types are referred to as character set objects (and when no confusion will result, merely as character sets).
+///
+/// CFCharacterSet’s principal function, [`CFCharacterSetIsCharacterMember`](https://developer.apple.com/documentation/corefoundation/cfcharactersetischaractermember(_:_:)), provides the basis for all other functions in its interface. You create a character set using one of the `CFCharacterSetCreate...` functions. You may also use any one of the predefined character sets using the [`CFCharacterSetGetPredefined`](https://developer.apple.com/documentation/corefoundation/cfcharactersetgetpredefined(_:)) function.
+///
+/// CFCharacterSet is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSCharacterSet`](https://developer.apple.com/documentation/foundation/nscharacterset). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSCharacterSet *` parameter, you can pass in a `CFCharacterSetRef`, and in a function where you see a `CFCharacterSetRef` parameter, you can pass in an NSCharacterSet instance. This capability also applies to concrete subclasses of NSCharacterSet. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to immutable CFCharacterSets.
 ///
 /// This is toll-free bridged with `NSCharacterSet`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharacterset?language=objc)
 #[doc(alias = "CFCharacterSetRef")]
 #[repr(C)]
 pub struct CFCharacterSet {
@@ -29,11 +37,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFCharacterSet"> for CFCharacterSet {}
 );
 
+///
+/// ## Overview
+///
+/// CFMutableCharacterSet manages dynamic character sets. The basic interface for managing character sets is provided by [`CFCharacterSetRef`](https://developer.apple.com/documentation/corefoundation/cfcharacterset). CFMutableCharacterSet adds functions to modify the contents of a character set.
+///
+/// You create a mutable character set object using either the [`CFCharacterSetCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutable(_:)) or [`CFCharacterSetCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutablecopy(_:_:)) function.
+///
+/// CFMutableCharacterSet is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableCharacterSet`](https://developer.apple.com/documentation/foundation/nsmutablecharacterset). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSMutableCharacterSet *` parameter, you can pass in a `CFMutableCharacterSetRef`, and in a function where you see a `CFMutableCharacterSetRef` parameter, you can pass in an NSMutableCharacterSet instance. This capability also applies to concrete subclasses of NSMutableCharacterSet. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to mutable CFMutableCharacterSets.
 ///
 /// This is toll-free bridged with `NSMutableCharacterSet`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablecharacterset?language=objc)
 #[doc(alias = "CFMutableCharacterSetRef")]
 #[repr(C)]
 pub struct CFMutableCharacterSet {
@@ -49,57 +65,62 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFCharacterSet"> for CFMutableCharacterSet {}
 );
 
-/// Type of the predefined CFCharacterSet selector values.
+/// Defines a predefined character set.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset?language=objc)
+/// ## Overview
+///
+/// See [Predefined CFCharacterSet Selector Values](https://developer.apple.com/documentation/corefoundation/predefined_cfcharacterset_selector_values) for values.
+///
+///
+/// Type of the predefined CFCharacterSet selector values.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFCharacterSetPredefinedSet(pub CFIndex);
 impl CFCharacterSetPredefinedSet {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/control?language=objc)
+    /// Control character set (Unicode General Category Cc and Cf).
     #[doc(alias = "kCFCharacterSetControl")]
     pub const Control: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/whitespace?language=objc)
+    /// Whitespace character set (Unicode General Category Zs and U0009 CHARACTER TABULATION).
     #[doc(alias = "kCFCharacterSetWhitespace")]
     pub const Whitespace: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/whitespaceandnewline?language=objc)
+    /// Whitespace and Newline character set (Unicode General Category Z*, `U000A ~ U000D`, and `U0085`).
     #[doc(alias = "kCFCharacterSetWhitespaceAndNewline")]
     pub const WhitespaceAndNewline: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/decimaldigit?language=objc)
+    /// Decimal digit character set.
     #[doc(alias = "kCFCharacterSetDecimalDigit")]
     pub const DecimalDigit: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/letter?language=objc)
+    /// Letter character set (Unicode General Category L* & M*).
     #[doc(alias = "kCFCharacterSetLetter")]
     pub const Letter: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/lowercaseletter?language=objc)
+    /// Lowercase character set (Unicode General Category Ll).
     #[doc(alias = "kCFCharacterSetLowercaseLetter")]
     pub const LowercaseLetter: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/uppercaseletter?language=objc)
+    /// Uppercase character set (Unicode General Category Lu and Lt).
     #[doc(alias = "kCFCharacterSetUppercaseLetter")]
     pub const UppercaseLetter: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/nonbase?language=objc)
+    /// Non-base character set (Unicode General Category M*).
     #[doc(alias = "kCFCharacterSetNonBase")]
     pub const NonBase: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/decomposable?language=objc)
+    /// Canonically decomposable character set.
     #[doc(alias = "kCFCharacterSetDecomposable")]
     pub const Decomposable: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/alphanumeric?language=objc)
+    /// Alpha Numeric character set (Unicode General Category L*, M*, & N*).
     #[doc(alias = "kCFCharacterSetAlphaNumeric")]
     pub const AlphaNumeric: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/punctuation?language=objc)
+    /// Punctuation character set (Unicode General Category P*).
     #[doc(alias = "kCFCharacterSetPunctuation")]
     pub const Punctuation: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/capitalizedletter?language=objc)
+    /// Titlecase character set (Unicode General Category Lt).
     #[doc(alias = "kCFCharacterSetCapitalizedLetter")]
     pub const CapitalizedLetter: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/symbol?language=objc)
+    /// Symbol character set (Unicode General Category S*).
     #[doc(alias = "kCFCharacterSetSymbol")]
     pub const Symbol: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/newline?language=objc)
+    /// Newline character set (`U000A ~ U000D`, `U0085`, `U2028`, and `U2029`).
     #[doc(alias = "kCFCharacterSetNewline")]
     pub const Newline: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetpredefinedset/illegal?language=objc)
+    /// Illegal character set.
     #[doc(alias = "kCFCharacterSetIllegal")]
     pub const Illegal: Self = Self(12);
 }
@@ -115,9 +136,20 @@ unsafe impl RefEncode for CFCharacterSetPredefinedSet {
 }
 
 unsafe impl ConcreteType for CFCharacterSet {
-    /// Returns the type identifier of all CFCharacterSet instances.
+    /// Returns the type identifier of the CFCharacterSet opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier of the CFCharacterSet opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableCharacterSet objects have the same type identifier as CFCharacterSet objects.
+    ///
+    ///
+    /// Returns the type identifier of all CFCharacterSet instances.
     #[doc(alias = "CFCharacterSetGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -129,6 +161,17 @@ unsafe impl ConcreteType for CFCharacterSet {
 }
 
 impl CFCharacterSet {
+    /// Returns a predefined character set.
+    ///
+    /// Parameters:
+    /// - theSetIdentifier: A predefined character set. See [Predefined CFCharacterSet Selector Values](https://developer.apple.com/documentation/corefoundation/predefined_cfcharacterset_selector_values) for the list of available character sets.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A predefined character set. This instance is owned by Core Foundation.
+    ///
+    ///
     /// Returns a predefined CFCharacterSet instance.
     ///
     /// Parameter `theSetIdentifier`: The CFCharacterSetPredefinedSet selector
@@ -138,8 +181,6 @@ impl CFCharacterSet {
     ///
     /// Returns: A reference to the predefined immutable CFCharacterSet.
     /// This instance is owned by CF.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetgetpredefined(_:)?language=objc)
     #[doc(alias = "CFCharacterSetGetPredefined")]
     #[inline]
     pub fn predefined(
@@ -154,6 +195,19 @@ impl CFCharacterSet {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Creates a new character set with the values from the given range of Unicode characters.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theRange: The Unicode range of characters of the new character set. The function accepts the range in 32-bit in the UTF-32 format. The valid character point range is from 0x00000 to 0x10FFFF.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new character set that contains a contiguous range of Unicode characters. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable character set with the values from the given range.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -174,8 +228,6 @@ impl CFCharacterSet {
     /// # Safety
     ///
     /// `alloc` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithcharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithCharactersInRange")]
     #[inline]
     pub unsafe fn with_characters_in_range(
@@ -192,6 +244,19 @@ impl CFCharacterSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new character set with the values in the given string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theString: A string containing the characters for the new set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new character set containing the characters from `theString`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable character set with the values in the given string.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -211,8 +276,6 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_string` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithcharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithCharactersInString")]
     #[inline]
     pub unsafe fn with_characters_in_string(
@@ -229,6 +292,21 @@ impl CFCharacterSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new immutable character set with the bitmap representation specified by given data.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theData: A CFData object that specifies the bitmap representation of the Unicode character points the for the new character set. The bitmap representation could contain all the Unicode character range starting from BMP to Plane 16. The first 8KiB (8192 bytes) of the data represent the BMP range. The BMP range 8KiB can be followed by zero to sixteen 8KiB bitmaps, each prepended with the plane index byte. For example, the bitmap representing the BMP and Plane 2 has the size of 16385 bytes (8KiB for BMP, 1 byte index, and a 8KiB bitmap for Plane 2). The plane index byte, in this case, contains the integer value two.
+    ///
+    /// If the data contains a Plane index byte outside of the valid Plane range (1 to 16), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new character set containing the indicated characters from `theData`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable character set with the bitmap representtion in the given data.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -259,8 +337,6 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_data` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithbitmaprepresentation(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -280,6 +356,19 @@ impl CFCharacterSet {
 
     /// Creates a new immutable character set that is the invert of the specified character set.
     ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theSet: The character set from which to create an inverted set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new character set that is the invert of `theSet`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates a new immutable character set that is the invert of the specified character set.
+    ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
     /// memory for the array and its storage for values. This
     /// parameter may be NULL in which case the current default
@@ -296,8 +385,6 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreateinvertedset(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
     #[inline]
     pub unsafe fn new_inverted_set(
@@ -314,6 +401,19 @@ impl CFCharacterSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Reports whether or not a character set is a superset of another set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to be checked for the membership of `theOtherSet`.
+    ///
+    /// - theOtherset: The character set to be checked whether or not it is a subset of `theSet`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `theSet` is a superset of `theOtherSet`, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the character set is a superset of the character set specified as the second parameter.
     ///
     /// Parameter `theSet`: The character set to be checked for the membership of theOtherSet.
@@ -325,8 +425,6 @@ impl CFCharacterSet {
     /// # Safety
     ///
     /// `the_otherset` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetissupersetofset(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsSupersetOfSet")]
     #[inline]
     pub unsafe fn is_superset_of_set(&self, the_otherset: Option<&CFCharacterSet>) -> bool {
@@ -340,6 +438,19 @@ impl CFCharacterSet {
         ret != 0
     }
 
+    /// Reports whether or not a character set contains at least one member character in the specified plane.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to examine.
+    ///
+    /// - thePlane: The plane number to be checked for the membership. The valid value range is from 0 to 16. If the value is outside of the valid plane number range, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if at least one member character is in the specified plane, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the character set contains at least one member character in the specified plane.
     ///
     /// Parameter `theSet`: The character set to be checked for the membership.  If this
@@ -348,8 +459,6 @@ impl CFCharacterSet {
     /// Parameter `thePlane`: The plane number to be checked for the membership.
     /// The valid value range is from 0 to 16.  If the value is outside of the valid
     /// plane number range, the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersethasmemberinplane(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetHasMemberInPlane")]
     #[inline]
     pub unsafe fn has_member_in_plane(&self, the_plane: CFIndex) -> bool {
@@ -367,6 +476,17 @@ impl CFCharacterSet {
 impl CFMutableCharacterSet {
     /// Creates a new empty mutable character set.
     ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new empty mutable character set. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates a new empty mutable character set.
+    ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
     /// memory for the array and its storage for values. This
     /// parameter may be NULL in which case the current default
@@ -378,8 +498,6 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `alloc` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutable(_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateMutable")]
     #[inline]
     pub unsafe fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFMutableCharacterSet>> {
@@ -394,6 +512,25 @@ impl CFMutableCharacterSet {
 }
 
 impl CFCharacterSet {
+    /// Creates a new character set with the values from a given character set.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theSet: The character set to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new character set that is a copy of `theSet`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function tries to compact the backing store where applicable.
+    ///
+    ///
     /// Creates a new character set with the values from the given character set.  This function tries to compact the backing store where applicable.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -412,8 +549,6 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -432,6 +567,19 @@ impl CFCharacterSet {
 }
 
 impl CFMutableCharacterSet {
+    /// Creates a new mutable character set with the values from another character set.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theSet: The character set to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable character set containing the same characters as `theSet`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable character set with the values from the given character set.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -450,8 +598,6 @@ impl CFMutableCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatemutablecopy(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -470,6 +616,19 @@ impl CFMutableCharacterSet {
 }
 
 impl CFCharacterSet {
+    /// Reports whether or not a given Unicode character is in a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to examine.
+    ///
+    /// - theChar: The Unicode character for which to test against the character set. Note that this function takes 16-bit Unicode character value; hence, it does not support access to the non-BMP planes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `theSet` contains `theChar`, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the Unicode character is in the character set.
     ///
     /// Parameter `theSet`: The character set to be searched. If this parameter
@@ -481,8 +640,6 @@ impl CFCharacterSet {
     /// non-BMP planes.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetischaractermember(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsCharacterMember")]
     #[inline]
     pub fn is_character_member(&self, the_char: UniChar) -> bool {
@@ -496,6 +653,19 @@ impl CFCharacterSet {
         ret != 0
     }
 
+    /// Reports whether or not a given UTF-32 character is in a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to examine.
+    ///
+    /// - theChar: The UTF-32 character for which to test against the character set.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `theSet` contains `theChar`, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the UTF-32 character is in the character set.
     ///
     /// Parameter `theSet`: The character set to be searched. If this parameter
@@ -505,8 +675,6 @@ impl CFCharacterSet {
     /// character set.
     ///
     /// Returns: true, if the value is in the character set, otherwise false.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetislongcharactermember(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIsLongCharacterMember")]
     #[inline]
     pub fn is_long_character_member(&self, the_char: UTF32Char) -> bool {
@@ -520,6 +688,19 @@ impl CFCharacterSet {
         ret != 0
     }
 
+    /// Creates a new immutable data with the bitmap representation from the given character set.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - theSet: The set from which to create a bitmap representation. Refer to the comments for [`CFCharacterSetCreateWithBitmapRepresentation`](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatewithbitmaprepresentation(_:_:)) for the detailed discussion of the bitmap representation format.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFData object containing a bitmap representation of `theSet`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable data with the bitmap representation from the given character set.
     ///
     /// Parameter `alloc`: The CFAllocator which should be used to allocate
@@ -541,8 +722,6 @@ impl CFCharacterSet {
     ///
     /// - `alloc` might not allow `None`.
     /// - `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetcreatebitmaprepresentation(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -562,6 +741,13 @@ impl CFCharacterSet {
 }
 
 impl CFMutableCharacterSet {
+    /// Adds a given range to a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to modify.
+    ///
+    /// - theRange: The range to add to the character set. The range is specified in 32-bits in UTF-32 format, and must lie within the valid Unicode character range (from `0x00000` to `0x10FFFF`).
+    ///
     /// Adds the given range to the charaacter set.
     ///
     /// Parameter `theSet`: The character set to which the range is to be added.
@@ -577,8 +763,6 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetaddcharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetAddCharactersInRange")]
     #[inline]
     pub unsafe fn add_characters_in_range(
@@ -594,6 +778,13 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetAddCharactersInRange(the_set, the_range) }
     }
 
+    /// Removes a given range of Unicode characters from a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to modify.
+    ///
+    /// - theRange: The range to remove from the character set. The range is specified in 32-bits in UTF-32 format, and must lie within the valid Unicode character range (from `0x00000` to `0x10FFFF`).
+    ///
     /// Removes the given range from the charaacter set.
     ///
     /// Parameter `theSet`: The character set from which the range is to be
@@ -609,8 +800,6 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetremovecharactersinrange(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetRemoveCharactersInRange")]
     #[inline]
     pub unsafe fn remove_characters_in_range(
@@ -626,6 +815,13 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetRemoveCharactersInRange(the_set, the_range) }
     }
 
+    /// Adds the characters in a given string to a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to modify.
+    ///
+    /// - theString: A string containing the characters to add to `theSet`.
+    ///
     /// Adds the characters in the given string to the charaacter set.
     ///
     /// Parameter `theSet`: The character set to which the characters in the
@@ -640,8 +836,6 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_string` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetaddcharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetAddCharactersInString")]
     #[inline]
     pub unsafe fn add_characters_in_string(
@@ -657,6 +851,13 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetAddCharactersInString(the_set, the_string) }
     }
 
+    /// Removes the characters in a given string from a character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to modify.
+    ///
+    /// - theString: A string containing the characters to remove from `theSet`.
+    ///
     /// Removes the characters in the given string from the charaacter set.
     ///
     /// Parameter `theSet`: The character set from which the characters in the
@@ -671,8 +872,6 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_string` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetremovecharactersinstring(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetRemoveCharactersInString")]
     #[inline]
     pub unsafe fn remove_characters_in_string(
@@ -688,6 +887,13 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetRemoveCharactersInString(the_set, the_string) }
     }
 
+    /// Forms the union of two character sets.
+    ///
+    /// Parameters:
+    /// - theSet: The source character set, modified by union with `theOtherSet`.
+    ///
+    /// - theOtherSet: The character set with which the union is formed.
+    ///
     /// Forms the union with the given character set.
     ///
     /// Parameter `theSet`: The destination character set into which the
@@ -703,8 +909,6 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_other_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetunion(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetUnion")]
     #[inline]
     pub unsafe fn union(
@@ -720,6 +924,13 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetUnion(the_set, the_other_set) }
     }
 
+    /// Forms an intersection of two character sets.
+    ///
+    /// Parameters:
+    /// - theSet: The source character set, modified by intersection with `theOtherSet`.
+    ///
+    /// - theOtherSet: The character set with which the intersection is formed.
+    ///
     /// Forms the intersection with the given character set.
     ///
     /// Parameter `theSet`: The destination character set into which the
@@ -735,8 +946,6 @@ impl CFMutableCharacterSet {
     ///
     /// - `the_set` might not allow `None`.
     /// - `the_other_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetintersect(_:_:)?language=objc)
     #[doc(alias = "CFCharacterSetIntersect")]
     #[inline]
     pub unsafe fn intersect(
@@ -752,6 +961,11 @@ impl CFMutableCharacterSet {
         unsafe { CFCharacterSetIntersect(the_set, the_other_set) }
     }
 
+    /// Inverts the content of a given character set.
+    ///
+    /// Parameters:
+    /// - theSet: The character set to invert.
+    ///
     /// Inverts the content of the given character set.
     ///
     /// Parameter `theSet`: The character set to be inverted.
@@ -761,8 +975,6 @@ impl CFMutableCharacterSet {
     /// # Safety
     ///
     /// `the_set` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcharactersetinvert(_:)?language=objc)
     #[doc(alias = "CFCharacterSetInvert")]
     #[inline]
     pub unsafe fn invert(the_set: Option<&CFMutableCharacterSet>) {

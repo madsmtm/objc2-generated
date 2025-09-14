@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedrmetadata?language=objc)
+    /// Metadata describing how extended dynamic range (EDR) values should be tone mapped.
+    ///
+    /// ## Overview
+    ///
+    /// If you need specific tone-mapping behavior, set the [`EDRMetadata`](https://developer.apple.com/documentation/quartzcore/cametallayer/edrmetadata) property of a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer) to point to an instance of this class.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CAEDRMetadata;

@@ -6,21 +6,17 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcguse100nitshlgootf?language=objc)
     pub static kCGUse100nitsHLGOOTF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgusebt1886forcorevideogamma?language=objc)
     pub static kCGUseBT1886ForCoreVideoGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgskipboosttohdr?language=objc)
     pub static kCGSkipBoostToHDR: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcguselegacyhdrecosystem?language=objc)
     pub static kCGUseLegacyHDREcosystem: &'static CFString;
 }

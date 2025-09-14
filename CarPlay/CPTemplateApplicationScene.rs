@@ -9,7 +9,30 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate?language=objc)
+    /// The methods for responding to the life cycle events of your app’s scene.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol defines methods that CarPlay calls when the scene connects and disconnects, as well as methods for responding to certain user actions. Use your implementation to provide the appropriate behavior for when these events occur. For example, creating and setting your root template when CarPlay launches your app and connects its scene.
+    ///
+    /// You don’t create instances of your scene delegate directly. Instead, you specify the name of the class as part of the CarPlay scene configuration you add to your `Info.plist` file—see the example below—or that you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:))  method.
+    ///
+    /// ```plist
+    /// <key>CPTemplateApplicationSceneSessionRoleApplication</key>
+    /// <array>
+    ///     <dict>
+    ///         <key>UISceneClassName</key>
+    ///         <string>CPTemplateApplicationScene</string>
+    ///         <key>UISceneConfigurationName</key>
+    ///         <string>MyCarPlaySceneConfiguration</string>
+    ///         <!-- Specify the name of your scene delegate class. -->
+    ///         <key>UISceneDelegateClassName</key>
+    ///         <string>MyCarPlaySceneDelegate</string>
+    ///     </dict>
+    /// </array>
+    /// ```
+    ///
+    ///
     #[cfg(feature = "objc2-ui-kit")]
     pub unsafe trait CPTemplateApplicationSceneDelegate: UISceneDelegate {
         #[cfg(all(feature = "CPInterfaceController", feature = "CPWindow"))]
@@ -115,7 +138,33 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationscene?language=objc)
+    /// A CarPlay scene that controls your app’s user interface.
+    ///
+    /// ## Overview
+    ///
+    /// A scene manages your app’s user interface, including the window that CarPlay displays from that scene. Only navigation apps have access to that window, and use it for drawing map content. All other categories of apps use the scene’s interface controller exclusively for constructing their user interfaces.
+    ///
+    /// The scene manages the display of the window on the vehicle’s CarPlay screen, and the life cycle of that scene as CarPlay and the user interact with it. The scene notifies its delegate—an object that conforms to [`CPTemplateApplicationSceneDelegate`](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenedelegate)—about various state changes and user actions.
+    ///
+    /// You don’t create scenes directly. Instead, you specify the name of the appropriate scene class as part of the CarPlay scene configuration you add to your `Info.plist` file—see the example below—or that you return from your app delegate’s [`application:configurationForConnectingSceneSession:options:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:configurationforconnecting:options:))  method.
+    ///
+    /// ```plist
+    /// <key>CPTemplateApplicationSceneSessionRoleApplication</key>
+    /// <array>
+    ///     <dict>
+    ///         <!-- Specify the name of the scene class. -->
+    ///         <key>UISceneClassName</key>
+    ///         <string>CPTemplateApplicationScene</string>
+    ///         <key>UISceneConfigurationName</key>
+    ///         <string>MyCarPlaySceneConfiguration</string>
+    ///         <key>UISceneDelegateClassName</key>
+    ///         <string>MyCarPlaySceneDelegate</string>
+    ///     </dict>
+    /// </array>
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIScene, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -191,7 +240,6 @@ impl CPTemplateApplicationScene {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptemplateapplicationscenesessionroleapplication?language=objc)
     #[cfg(feature = "objc2-ui-kit")]
     pub static CPTemplateApplicationSceneSessionRoleApplication: &'static UISceneSessionRole;
 }

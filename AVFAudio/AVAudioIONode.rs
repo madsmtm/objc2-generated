@@ -12,6 +12,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The type that represents a block to render operation calls to get input data when in manual rendering mode.
+///
+/// Parameters:
+/// - inNumberOfFrames: The number of frames the system needs to complete the request.
+///
+///
+/// ## Return Value
+///
+/// An [`AudioBufferList`](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist) that contains the data to render, or `nil` if no data is available.
+///
+///
+///
+/// ## Discussion
+///
+/// Don’t clear or refill the data in the return value until the framework calls the input block again or the rendering finishes. The format of the buffer list must match the format you specify when registering the block.
+///
+///
 /// A block which will be called by AVAudioEngine's render call when operating in the manual
 /// rendering mode, to get input data as needed.
 ///
@@ -33,8 +50,6 @@ use crate::*;
 /// `AVAudioEngineManualRenderingModeRealtime`, this block will be called from a realtime
 /// context. Care should be taken not to make any blocking call (e.g. calling libdispatch,
 /// blocking on a mutex, allocating memory etc.) which may cause an overload at the lower layers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionodeinputblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -44,21 +59,20 @@ pub type AVAudioIONodeInputBlock =
     *mut block2::DynBlock<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
 /// Types of speech activity events.
+/// Types of speech activity events.
 ///
 /// Speech activity has started.
 ///
 /// Speech activity has ended.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingSpeechActivityEvent(pub NSInteger);
 impl AVAudioVoiceProcessingSpeechActivityEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent/started?language=objc)
+    /// Indicates the start of speech activity.
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityStarted")]
     pub const Started: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent/ended?language=objc)
+    /// Indicates the end of speech activity.
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityEnded")]
     pub const Ended: Self = Self(1);
 }
@@ -71,29 +85,28 @@ unsafe impl RefEncode for AVAudioVoiceProcessingSpeechActivityEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that define the supported ducking levels.
 /// Ducking level applied to other (i.e. non-voice) audio by AVAudio voice processing AU.
 ///
 /// DuckingLevelDefault = Default ducking level to other audio for typical voice chat.
 /// DuckingLevelMin = minimum ducking to other audio.
 /// DuckingLevelMid = medium ducking to other audio.
 /// DuckingLevelMax = maximum ducking to other audio.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingLevel(pub NSInteger);
 impl AVAudioVoiceProcessingOtherAudioDuckingLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/default?language=objc)
+    /// The default ducking level for typical voice chat.
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/min?language=objc)
+    /// Applies minimum ducking to other audio.
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMin")]
     pub const Min: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/mid?language=objc)
+    /// Applies medium ducking to other audio.
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMid")]
     pub const Mid: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration/level/max?language=objc)
+    /// Applies maximum ducking to other audio.
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelMax")]
     pub const Max: Self = Self(30);
 }
@@ -106,14 +119,13 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The configuration of ducking non-voice audio.
 /// The configuration of ducking other (i.e. non-voice) audio
 ///
 ///
 /// Enables advanced ducking which ducks other audio based on the presence of voice activity from local and/or remote chat participants.
 ///
 /// Ducking level of other audio
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
@@ -136,6 +148,15 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
 }
 
 extern_class!(
+    /// An object that performs audio input or output in the engine.
+    ///
+    /// ## Overview
+    ///
+    /// When rendering to and from an audio device in macOS, [`AVAudioInputNode`](https://developer.apple.com/documentation/avfaudio/avaudioinputnode) and [`AVAudioOutputNode`](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode) communicate with the system’s default input and output devices. In iOS, they communicate with the devices appropriate to the app’s [`AVAudioSession`](https://developer.apple.com/documentation/avfaudio/avaudiosession) category, configurations, and user actions, such as connecting or disconnecting external devices.
+    ///
+    /// In the manual rendering mode, [`AVAudioInputNode`](https://developer.apple.com/documentation/avfaudio/avaudioinputnode) and [`AVAudioOutputNode`](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode) perform the input and output in the engine in response to the client’s request.
+    ///
+    ///
     /// Base class for a node that performs audio input or output in the engine.
     ///
     /// When the engine is configured to render to/from an audio device, on macOS, AVAudioInputNode
@@ -146,8 +167,6 @@ extern_class!(
     ///
     /// In the manual rendering mode, the AVAudioInputNode and AVAudioOutputNode perform the input
     /// and output in the engine, in response to client's request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioionode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -231,6 +250,31 @@ impl AVAudioIONode {
 }
 
 extern_class!(
+    /// An object that connects to the system’s audio input.
+    ///
+    /// ## Overview
+    ///
+    /// This node connects to the system’s audio input when rendering to or from an audio device. In manual rendering mode, this node supplies input data to the engine.
+    ///
+    /// This audio node has one element. The format of the input scope reflects:
+    ///
+    /// - The audio hardware sample rate and channel count when it connects to hardware.
+    ///
+    /// - The format of the PCM audio data that the node supplies to the engine in manual rendering mode. For more information, see [`setManualRenderingInputPCMFormat:inputBlock:`](https://developer.apple.com/documentation/avfaudio/avaudioinputnode/setmanualrenderinginputpcmformat(_:inputblock:))
+    ///
+    /// When rendering from an audio device, the input node doesn’t support format conversion. In this case, the format of the output scope must be the same as the input and the formats for all nodes connected to the input chain.
+    ///
+    /// In manual rendering mode, the format of the output scope is initially the same as the input, but you may set it to a different format, which converts the node.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class has no methods of its own. It implements the methods that the [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) protocol defines, as well as those of the [`AVAudio3DMixing`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing) protocol, which the [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) protocol adopts. For more information, see [`AVAudioMixing`](https://developer.apple.com/documentation/avfaudio/avaudiomixing) and [`AVAudio3DMixing`](https://developer.apple.com/documentation/avfaudio/avaudio3dmixing).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A node that performs audio input in the engine.
     ///
     /// When the engine is rendering to/from an audio device, this node connects to the system's
@@ -250,8 +294,6 @@ extern_class!(
     ///
     /// In the manual rendering mode, the format of the output scope is initially the same as that
     /// of the input, but you may set it to a different format, in which case the node will convert.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioinputnode?language=objc)
     #[unsafe(super(AVAudioIONode, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]
@@ -404,6 +446,29 @@ impl AVAudioInputNode {
 }
 
 extern_class!(
+    /// An object that connects to the system’s audio output.
+    ///
+    /// ## Overview
+    ///
+    /// This node connects to the system’s audio output when rendering to or from an audio device. This node performs output in response to client’s requests when the engine is in manual rendering mode.
+    ///
+    /// This audio node has one element. The format of the output scope reflects:
+    ///
+    /// - The audio hardware sample rate and channel count when it connects to the hardware.
+    ///
+    /// - The engine’s manual rendering mode output format (see [`manualRenderingFormat`](https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat)).
+    ///
+    /// The format of the input scope is initially the same as that of the output, but you may set it to a different format, in which case the audio node converts.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class has no methods of its own. It overrides methods that its base classes define.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A node that performs audio output in the engine.
     ///
     /// When the engine is rendering to/from an audio device, this node connects to the system's
@@ -419,8 +484,6 @@ extern_class!(
     ///
     /// The format of the input scope is initially the same as that of the
     /// output, but you may set it to a different format, in which case the node will convert.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiooutputnode?language=objc)
     #[unsafe(super(AVAudioIONode, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

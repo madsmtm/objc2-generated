@@ -6,55 +6,73 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msstickerserrordomain?language=objc)
+    /// The error domain for stickers.
     pub static MSStickersErrorDomain: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageserrordomain?language=objc)
+    /// The error domain for iMessage apps.
     pub static MSMessagesErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode?language=objc)
+/// The error codes that the Messages framework generates.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MSMessageErrorCode(pub NSInteger);
 impl MSMessageErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/unknown?language=objc)
+    /// An unexpected or unknown error has occurred.
     #[doc(alias = "MSMessageErrorCodeUnknown")]
     pub const Unknown: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/filenotfound?language=objc)
+    /// The file could not be found.
     #[doc(alias = "MSMessageErrorCodeFileNotFound")]
     pub const FileNotFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/fileunreadable?language=objc)
+    /// The file could not be read.
     #[doc(alias = "MSMessageErrorCodeFileUnreadable")]
     pub const FileUnreadable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/improperfiletype?language=objc)
+    /// The file is not a supported file type.
     #[doc(alias = "MSMessageErrorCodeImproperFileType")]
     pub const ImproperFileType: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/improperfileurl?language=objc)
+    /// The URL does not refer to a local file.
     #[doc(alias = "MSMessageErrorCodeImproperFileURL")]
     pub const ImproperFileURL: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfileattributes?language=objc)
+    /// The system cannot read one or more of the file’s attributes (for example, the file size).
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileAttributes")]
     pub const StickerFileImproperFileAttributes: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfilesize?language=objc)
+    /// The image used to create an [`MSSticker`](https://developer.apple.com/documentation/messages/mssticker) object is larger than 500 KB.
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileSize")]
     pub const StickerFileImproperFileSize: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/stickerfileimproperfileformat?language=objc)
+    /// The image used to create an [`MSSticker`](https://developer.apple.com/documentation/messages/mssticker) object is not one of the supported file types (PNG, APNG, GIF, or JPEG).
     #[doc(alias = "MSMessageErrorCodeStickerFileImproperFileFormat")]
     pub const StickerFileImproperFileFormat: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/urlexceedsmaxsize?language=objc)
+    /// The URL in an [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) object’s [`URL`](https://developer.apple.com/documentation/messages/msmessage/url) property is longer than the maximum allowed length (5,000 characters).
     #[doc(alias = "MSMessageErrorCodeURLExceedsMaxSize")]
     pub const URLExceedsMaxSize: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/sendwithoutrecentinteraction?language=objc)
+    /// A message was sent, but the app has not registered a recent touch interaction from the user.
+    ///
+    /// ## Discussion
+    ///
+    /// An iMessage app can send messages only in response to user interaction with the app. If an app hasn’t recently registered a touch interaction from the user, it can’t send any messages.
+    ///
+    ///
     #[doc(alias = "MSMessageErrorCodeSendWithoutRecentInteraction")]
     pub const SendWithoutRecentInteraction: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/sendwhilenotvisible?language=objc)
+    /// A message was sent while the app was not visible.
+    ///
+    /// ## Discussion
+    ///
+    /// An iMessage app can send messages only in response to user interaction with the app. If an app isn’t currently visible and onscreen, it can’t send any messages.
+    ///
+    ///
     #[doc(alias = "MSMessageErrorCodeSendWhileNotVisible")]
     pub const SendWhileNotVisible: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messages/msmessageerrorcode/apiunavailableinpresentationcontext?language=objc)
+    /// The API is unavailable in the current context.
+    ///
+    /// ## Discussion
+    ///
+    /// Different contexts may support only a subset of the Message framework API. For more information, see the [`MSMessagesAppViewController`](https://developer.apple.com/documentation/messages/msmessagesappviewcontroller) class’s [`presentationContext`](https://developer.apple.com/documentation/messages/msmessagesappviewcontroller/presentationcontext) property and the [`MSMessagesAppPresentationContextMedia`](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext/media) constant.
+    ///
+    ///
     #[doc(alias = "MSMessageErrorCodeAPIUnavailableInPresentationContext")]
     pub const APIUnavailableInPresentationContext: Self = Self(11);
 }

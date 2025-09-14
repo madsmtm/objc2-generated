@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewitem/state?language=objc)
+/// These constants describe the current display state of a tab:
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabState(pub NSUInteger);
 impl NSTabState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewitem/state/selectedtab?language=objc)
+    /// The tab that’s being displayed.
     #[doc(alias = "NSSelectedTab")]
     pub const SelectedTab: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewitem/state/backgroundtab?language=objc)
+    /// A tab that’s not being displayed.
     #[doc(alias = "NSBackgroundTab")]
     pub const BackgroundTab: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewitem/state/pressedtab?language=objc)
+    /// A tab that the user is in the process of clicking. That is, the user has pressed the mouse button while the cursor is over the tab but has not released the mouse button.
     #[doc(alias = "NSPressedTab")]
     pub const PressedTab: Self = Self(2);
 }
@@ -33,7 +33,13 @@ unsafe impl RefEncode for NSTabState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewitem?language=objc)
+    /// An item in a tab view.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSTabViewItem`](https://developer.apple.com/documentation/appkit/nstabviewitem) is a convenient way for presenting information in multiple pages. A tab view is usually distinguished by a row of tabs that give the visual appearance of folder tabs. When the user clicks a tab, the tab view displays a view page provided by your application. A tab view keeps a zero-based array of tab view items, one for each tab in the view.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTabViewItem;

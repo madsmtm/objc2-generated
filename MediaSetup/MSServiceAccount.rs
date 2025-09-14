@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Account details for accessing a streaming media service.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediasetup/msserviceaccount?language=objc)
+    /// Account details for accessing a streaming media service.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSServiceAccount;

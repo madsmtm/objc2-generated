@@ -5,9 +5,8 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The coordinates for the front upper-left corner of a region.
 /// Identify a pixel in an image. MTLOrigin is ususally used as the upper-left corner of a region of a texture.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlorigin?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLOrigin {
@@ -35,9 +34,34 @@ impl MTLOrigin {
     // TODO: pub fn MTLOriginMake(x: NSUInteger,y: NSUInteger,z: NSUInteger,) -> MTLOrigin;
 }
 
-/// A set of dimensions to declare the size of an object, such as an image, texture, threadgroup, or grid.
+/// A type that represents one, two, or three dimensions of a type instance, such as an array or texture.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsize?language=objc)
+/// ## Overview
+///
+/// Metal has many types that represent arrays of discrete elements, such as:
+///
+/// - A texture, which has an array of pixel elements
+///
+/// - A thread grid, which has an array of computational threads
+///
+/// Types and methods that work with these array-like types frequently have an [`MTLSize`](https://developer.apple.com/documentation/metal/mtlsize) property or parameter that refers to the extents of a specific instance of the type, or a region within the instance.
+///
+/// <div class="warning">
+///
+/// ### Important
+/// Treat each size instance as a measure of something in 3D, even if it represents something with only one or two dimensions, by assigning `1` to the irrelevant dimensions.
+///
+///
+///
+/// </div>
+/// The following are some examples for setting a size for an instance that has less than three dimentions:
+///
+/// - For a 2D texture that has a height and width of `5`, set a size’s [`depth`](https://developer.apple.com/documentation/metal/mtlsize/depth) property to `1` so that it represents `[5, 5, 1]`.
+///
+/// - For a 1D array with length `42`, set a size’s [`height`](https://developer.apple.com/documentation/metal/mtlsize/height), [`depth`](https://developer.apple.com/documentation/metal/mtlsize/depth) properties to `1`, so that it represents `[42, 1, 1]`.
+///
+///
+/// A set of dimensions to declare the size of an object, such as an image, texture, threadgroup, or grid.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSize {
@@ -65,9 +89,16 @@ impl MTLSize {
     // TODO: pub fn MTLSizeMake(width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLSize;
 }
 
-/// Identify a region in an image or texture.
+/// The bounds for a subset of an instance’s elements.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlregion?language=objc)
+/// ## Overview
+///
+/// Metal has many instance types that represent arrays of discrete elements. For example, a texture has an array of pixel elements, and a thread grid has an array of computational threads. Use [`MTLRegion`](https://developer.apple.com/documentation/metal/mtlregion) instances to describe subsets of these instances.
+///
+/// The origin is the front upper-left corner of the region, and its extents go towards the back lower-right corner. Conceptually, when using an [`MTLRegion`](https://developer.apple.com/documentation/metal/mtlregion) instance to describe a subset of an instance, treat the instance as a 3D array of elements, even if it has fewer dimensions. For a 2D instance, set the z coordinate of the origin to `0` and the depth to `1`. For a 1D instance, set the y and z coordinates of the origin to `0` and the height and depth to `1`.
+///
+///
+/// Identify a region in an image or texture.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLRegion {
@@ -91,9 +122,16 @@ impl MTLRegion {
     // TODO: pub fn MTLRegionMake3D(x: NSUInteger,y: NSUInteger,z: NSUInteger,width: NSUInteger,height: NSUInteger,depth: NSUInteger,) -> MTLRegion;
 }
 
-/// Identify a sample within a pixel. Origin is top-left with a range [0,1) for both x and y.
+/// A subpixel sample position for use in multisample antialiasing (MSAA).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleposition?language=objc)
+/// ## Overview
+///
+/// Subpixel sample positions are in a 16 x 16 grid across a pixel. Each subsample position’s [`x`](https://developer.apple.com/documentation/metal/mtlsampleposition/x) and [`y`](https://developer.apple.com/documentation/metal/mtlsampleposition/y) values are in 1/16 increments in the floating-point range `[0.0, 15.0/16.0)`. The pixel’s origin point `(0,0)` is at the top-left corner.
+///
+/// See [Positioning samples programmatically](https://developer.apple.com/documentation/metal/positioning-samples-programmatically) for the details on working with subpixels.
+///
+///
+/// Identify a sample within a pixel. Origin is top-left with a range [0,1) for both x and y.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSamplePosition {
@@ -113,10 +151,9 @@ impl MTLSamplePosition {
     // TODO: pub fn MTLSamplePositionMake(x: c_float,y: c_float,) -> MTLSamplePosition;
 }
 
+/// A coordinate in the viewport.
 /// A floating point coordinate in an abstract 2D space.
 /// Refer to location of use for concrete information on the space in which the coordinate exists.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcoordinate2d?language=objc)
 pub type MTLCoordinate2D = MTLSamplePosition;
 
 // TODO: pub fn MTLCoordinate2DMake(x: c_float,y: c_float,) -> MTLCoordinate2D;

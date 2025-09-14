@@ -7,6 +7,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A unique identifier for a VM.
+    ///
+    /// ## Overview
+    ///
+    /// This value uniquely identifies a virtual Mac hardware instance. Two VMs running concurrently shouldn’t use the same identifier.
+    ///
+    /// When serializing the VM to disk, you can preserve the identifier in a binary representation by serializing the data in the `VZMacMachineIdentifier`.[`dataRepresentation`](https://developer.apple.com/documentation/virtualization/vzmachardwaremodel/datarepresentation) property. Conversely, you can recreate the identifier with [`initWithDataRepresentation:`](https://developer.apple.com/documentation/virtualization/vzmacmachineidentifier/init(datarepresentation:)) from the binary representation.
+    ///
+    /// You can compare the contents of two identifiers with [`isEqualTo:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isequal(to:)).
+    ///
+    ///
     /// An identifier to make a virtual machine unique.
     ///
     /// The Mac machine identifier is used by macOS guests to uniquely identify the virtual hardware.
@@ -19,8 +30,6 @@ extern_class!(
     /// The contents of two identifiers can be compared with -[VZMacMachineIdentifier isEqual:].
     ///
     /// See also: VZMacPlatformConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacmachineidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacMachineIdentifier;

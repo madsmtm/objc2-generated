@@ -8,23 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerrordomain?language=objc)
+    /// The domain for a credential identity store error.
     pub static ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code?language=objc)
+/// Constants that represent credential identity store error codes.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityStoreErrorCode(pub NSInteger);
 impl ASCredentialIdentityStoreErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/internalerror?language=objc)
+    /// The operation failed due to an internal error.
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
     pub const InternalError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/storedisabled?language=objc)
+    /// The operation failed because the credential identity store is disabled.
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreDisabled")]
     pub const StoreDisabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code/storebusy?language=objc)
+    /// The operation failed because the credential identity store is busy.
+    ///
+    /// ## Discussion
+    ///
+    /// Attempt the operation again at a later time.
+    ///
+    ///
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeStoreBusy")]
     pub const StoreBusy: Self = Self(2);
 }
@@ -37,23 +43,18 @@ unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl ASCredentialIdentityTypes: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitytypes/ascredentialidentitytypesall?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesAll")]
         const All = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/password?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesPassword")]
         const Password = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/passkey?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesPasskey")]
         const Passkey = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes/onetimecode?language=objc)
         #[doc(alias = "ASCredentialIdentityTypesOneTimeCode")]
         const OneTimeCode = 1<<2;
     }
@@ -68,7 +69,18 @@ unsafe impl RefEncode for ASCredentialIdentityTypes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore?language=objc)
+    /// A container that your extension fills to provide credentials through the QuickType bar.
+    ///
+    /// ## Overview
+    ///
+    /// Make credential identities available to users directly as AutoFill suggestions by adding them to the [`sharedStore`](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/shared) instance of the identity store. You can add identities during configuration in your extension’s override of the [`prepareInterfaceForExtensionConfiguration`](https://developer.apple.com/documentation/authenticationservices/ascredentialproviderviewcontroller/prepareinterfaceforextensionconfiguration()) method. You can also update the shared store from within your extension’s host app.
+    ///
+    /// Be sure to update the shared store whenever your app’s database changes to avoid showing stale identities as AutoFill suggestions. Take advantage of the incremental change methods [`saveCredentialIdentityEntries:completion:`](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/savecredentialidentities(_:completion:)-1bbx6) and [`removeCredentialIdentityEntries:completion:`](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/removecredentialidentities(_:completion:)-67lcw) to avoid rewriting the entire store every time you need to make a change.
+    ///
+    /// When the user disables your extension, the system clears and disables your shared store. So before making updates, check to see that the store’s enabled to avoid unnecessary activity:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let store = ASCredentialIdentityStore.shared", "store.getState { state in", "    if state.isEnabled {", "        // Add, remove, or update identities.", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["ASCredentialIdentityStore *store = [ASCredentialIdentityStore sharedStore];", "[store getCredentialIdentityStoreStateWithCompletion:^(ASCredentialIdentityStoreState * _Nonnull state) {", "    if (state.enabled) {", "        // Add, remove, or update identities.", "    }", "}];"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASCredentialIdentityStore;

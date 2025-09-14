@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype?language=objc)
+/// Constants indicating how the task behaves.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INTaskType(pub NSInteger);
 impl INTaskType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/unknown?language=objc)
+    /// An unknown type of task.
     #[doc(alias = "INTaskTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/notcompletable?language=objc)
+    /// A task that the intent can’t mark as completed.
     #[doc(alias = "INTaskTypeNotCompletable")]
     pub const NotCompletable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intasktype/completable?language=objc)
+    /// A task that the intent can mark as completed.
     #[doc(alias = "INTaskTypeCompletable")]
     pub const Completable: Self = Self(2);
 }

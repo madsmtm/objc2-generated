@@ -9,6 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A type alias defining a closure that provides an activation configuration for the activation interaction.
+///
+/// Parameters:
+/// - interaction: The [`UIWindowSceneActivationInteraction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction) requesting a configuration.
+///
+/// - location: The location in the view of the interaction requesting a configuration.
+///
+///
+/// ## Return Value
+///
+/// An activation configuration you can use to request a window scene.
+///
+///
 /// Return a
 /// `UIWindowSceneActivationConfiguration`
 ///
@@ -16,8 +29,6 @@ use crate::*;
 /// `UIWindowSceneActivationInteraction`requesting a configuration.
 ///
 /// Parameter `location`: Location in the interaction's view for which a configuration is being requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction/configurationprovider?language=objc)
 #[cfg(all(
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2",
@@ -31,10 +42,17 @@ pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::
 >;
 
 extern_class!(
+    /// An interaction that facilitates activating a window scene when a user pinches out on the interaction’s view.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIWindowSceneActivationInteraction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction) object when you want to facilitate requesting scene activation when the user pinches open on a view. You initialize the interaction with a closure that the system executes when the user triggers the interaction. The closure should return a [`UIWindowSceneActivationConfiguration`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationconfiguration) object. You also provide an error-handler closure that the system executes if the scene activation request fails.
+    ///
+    /// To request scene activation from an interaction with a [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) cell, use the [`collectionView:sceneActivationConfigurationForItemAtIndexPath:point:`](https://developer.apple.com/documentation/uikit/uicollectionviewdelegate/collectionview(_:sceneactivationconfigurationforitemat:point:)) method.
+    ///
+    ///
     /// An interaction that facilitates activating a
     /// `UIWindowScene`when the user pinches out on the interaction's view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

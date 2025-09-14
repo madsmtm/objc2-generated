@@ -7,7 +7,64 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventattribution?language=objc)
+    /// An object that contains event attribution information for Web AdAttributionKit.
+    ///
+    /// ## Overview
+    ///
+    /// Apps use event attribution objects to send data to the browser when opening an external website that supports Web AdAttributionKit (formerly known as Private Click Measurement, or PCM). For more information on the proposed PCM web standard, see [Introducing Private Click Measurement](https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/) and [Private Click Measurement Draft Community Group Report](https://privacycg.github.io/private-click-measurement/).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Mac apps built with Mac Catalyst don’t support Web AdAttributionKit.
+    ///
+    ///
+    ///
+    /// </div>
+    /// You can’t subclass [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution).
+    ///
+    /// ### Define an endpoint
+    ///
+    /// In order to use Web AdAttributionKit, your app defines an `Info.plist` key called [`NSAdvertisingAttributionReportEndpoint`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsadvertisingattributionreportendpoint) that contains the URL to which the browser sends event attribution data. When an externally linked website reports that a conversion has occurred, the browser forwards your app’s event attribution data to the endpoint specified in the `Info.plist`. If your app’s `Info.plist` doesn’t contain this key, the browser won’t be able to forward the Web AdAttributionKit data when a conversion occurs.
+    ///
+    /// Send event attribution data to the browser only when your app opens an external link as a result of a user tapping a control that sits below a [`UIEventAttributionView`](https://developer.apple.com/documentation/uikit/uieventattributionview) in the app’s view hierarchy. The event attribution view verifies that the user tapped a control. If that control doesn’t sit below an event attribution view, the system won’t send the Web AdAttributionKit data to the browser when opening the external link.
+    ///
+    /// ### Create an event attribution data object
+    ///
+    /// Here’s how you create a [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution) object:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let adURL = URL(string: \"https://shop.example/tabletStandDeluxe.html\")!", "let eventAttribution =", "    UIEventAttribution(sourceIdentifier: 4,", "                       destinationURL: adURL,", "                       sourceDescription: \"Banner ad for Tablet Stand Deluxe.\",", "                       purchaser: \"Shop Example, Inc.\")"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSURL *adURL = [NSURL URLWithString:@\"https://shop.example/tabletStandDeluxe.html\"];", "UIEventAttribution *eventAttribution = [[UIEventAttribution alloc]", "                                        initWithSourceIdentifier:4", "                                        destinationURL:adURL", "                                        sourceDescription:@\"Banner ad for Tablet Stand Deluxe.\"", "                                        purchaser:@\"Shop Example, Inc.\"];"], metadata: None }] }] })
+    /// ### Send event attribution data to the browser
+    ///
+    /// Once you create a [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution) object, send it to the browser when your app opens a URL as the result of a user tap. If the external website reports a conversion within 7 days, the browser forwards the data from the [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution) object to the specified remote server sometime between 24 and 48 hours after the conversion.
+    ///
+    /// There are two different ways to send event attribution data when your app opens an external link, depending on whether your app uses [`UIScene`](https://developer.apple.com/documentation/uikit/uiscene) or [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) for life cycle management. For more information on application life cycle management, see [Managing your app’s life cycle](https://developer.apple.com/documentation/uikit/managing-your-app-s-life-cycle).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The browser, and not your app, sends the event attribution data to the remote server. If the user’s selected browser doesn’t support Web AdAttributionKit, the event attribution fails even if the external website reports a conversion.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If your app uses [`UIScene`](https://developer.apple.com/documentation/uikit/uiscene)-based life cycle management, create a [`UISceneOpenExternalURLOptions`](https://developer.apple.com/documentation/uikit/uiscene/openexternalurloptions) object, assign the event attribution object you created to its [`UIApplicationOpenExternalURLOptionsEventAttributionKey`](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey/eventattribution) property, and call [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiscene/open(_:options:completionhandler:)):
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let sceneOpenURLOptions = UIScene.OpenExternalURLOptions()", "sceneOpenURLOptions.eventAttribution = eventAttribution", "", "self.view.window?.windowScene?.open(adURL,", "                                    options: sceneOpenURLOptions,", "                                    completionHandler: nil)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UISceneOpenExternalURLOptions *sceneOpenURLOptions = [[UISceneOpenExternalURLOptions alloc] init];", "sceneOpenURLOptions.eventAttribution = eventAttribution;", "[self.view.window.windowScene openURL:adURL", "                                options:sceneOpenURLOptions", "                    completionHandler:^(BOOL success) {", "    if (success == NO) {", "        // Handle error", "    }", "}];"], metadata: None }] }] })
+    /// If your app uses [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication)-based life cycle management, create a dictionary that contains the [`UIApplicationOpenURLOptionsEventAttributionKey`](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/eventattribution) key with the [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution) object you created as its value, and call [`openURL:options:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/open(_:options:completionhandler:)), passing the dictionary using the `options` parameter.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let appOpenURLOptions: [UIApplication.OpenExternalURLOptionsKey : Any] = [", "    .eventAttribution: eventAttribution", "]", "UIApplication.shared.open(adURL,", "                          options: appOpenURLOptions,", "                          completionHandler: nil)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDictionary<NSString *, NSObject *> *appOpenURLOptions = [NSDictionary dictionaryWithObject:eventAttribution forKey:UIApplicationOpenURLOptionsEventAttributionKey];", "", "[[UIApplication sharedApplication] openURL:adURL", "                                   options:appOpenURLOptions", "                         completionHandler:^(BOOL success) {", "    if (success == NO) {", "        // Handle error", "    }", "}];"], metadata: None }] }] })
+    /// ### Send event attribution data to SFSafariViewController
+    ///
+    /// If your app displays a web page in [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller) after a person taps an ad, add a [`UIEventAttributionView`](https://developer.apple.com/documentation/uikit/uieventattributionview) subview to the ad view or control in order to measure taps. When a person taps the ad, follow these steps:
+    ///
+    /// 1. Create an [`SFSafariViewControllerConfiguration`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class) object.
+    ///
+    /// 2. Assign the [`UIEventAttribution`](https://developer.apple.com/documentation/uikit/uieventattribution) object you created to the [`eventAttribution`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class/eventattribution) property of the [`SFSafariViewControllerConfiguration`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/configuration-swift.class) object.
+    ///
+    /// 3. Initialize an [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller) instance with the configuration object, and present it. [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller) validates that a tap on a [`UIEventAttributionView`](https://developer.apple.com/documentation/uikit/uieventattributionview) initiated the navigation to the webpage. If not, it discards the attribution data.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

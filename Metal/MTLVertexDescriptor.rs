@@ -7,174 +7,171 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that specify the organization of function vertex data.
 /// specifies how the vertex attribute data is laid out in memory.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVertexFormat(pub NSUInteger);
 impl MTLVertexFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/invalid?language=objc)
+    /// An invalid vertex format.
     #[doc(alias = "MTLVertexFormatInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar2?language=objc)
+    /// Two unsigned 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar2")]
     pub const UChar2: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar3?language=objc)
+    /// Three unsigned 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar3")]
     pub const UChar3: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar4?language=objc)
+    /// Four unsigned 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar4")]
     pub const UChar4: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char2?language=objc)
+    /// Two signed 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar2")]
     pub const Char2: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char3?language=objc)
+    /// Three signed 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar3")]
     pub const Char3: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char4?language=objc)
+    /// Four signed 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar4")]
     pub const Char4: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar2normalized?language=objc)
+    /// Two unsigned normalized 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar2Normalized")]
     pub const UChar2Normalized: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar3normalized?language=objc)
+    /// Three unsigned normalized 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar3Normalized")]
     pub const UChar3Normalized: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar4normalized?language=objc)
+    /// Four unsigned normalized 8-bit values.
     #[doc(alias = "MTLVertexFormatUChar4Normalized")]
     pub const UChar4Normalized: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char2normalized?language=objc)
+    /// Two signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar2Normalized")]
     pub const Char2Normalized: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char3normalized?language=objc)
+    /// Three signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar3Normalized")]
     pub const Char3Normalized: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char4normalized?language=objc)
+    /// Four signed normalized 8-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatChar4Normalized")]
     pub const Char4Normalized: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort2?language=objc)
+    /// Two unsigned 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort2")]
     pub const UShort2: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort3?language=objc)
+    /// Three unsigned 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort3")]
     pub const UShort3: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort4?language=objc)
+    /// Four unsigned 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort4")]
     pub const UShort4: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short2?language=objc)
+    /// Two signed 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort2")]
     pub const Short2: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short3?language=objc)
+    /// Three signed 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort3")]
     pub const Short3: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short4?language=objc)
+    /// Four signed 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort4")]
     pub const Short4: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort2normalized?language=objc)
+    /// Two unsigned normalized 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort2Normalized")]
     pub const UShort2Normalized: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort3normalized?language=objc)
+    /// Three unsigned normalized 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort3Normalized")]
     pub const UShort3Normalized: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort4normalized?language=objc)
+    /// Four unsigned normalized 16-bit values.
     #[doc(alias = "MTLVertexFormatUShort4Normalized")]
     pub const UShort4Normalized: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short2normalized?language=objc)
+    /// Two signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort2Normalized")]
     pub const Short2Normalized: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short3normalized?language=objc)
+    /// Three signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort3Normalized")]
     pub const Short3Normalized: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short4normalized?language=objc)
+    /// Four signed normalized 16-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatShort4Normalized")]
     pub const Short4Normalized: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/half2?language=objc)
+    /// Two half-precision floating-point values.
     #[doc(alias = "MTLVertexFormatHalf2")]
     pub const Half2: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/half3?language=objc)
+    /// Three half-precision floating-point values.
     #[doc(alias = "MTLVertexFormatHalf3")]
     pub const Half3: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/half4?language=objc)
+    /// Four half-precision floating-point values.
     #[doc(alias = "MTLVertexFormatHalf4")]
     pub const Half4: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/float?language=objc)
+    /// One single-precision floating-point value.
     #[doc(alias = "MTLVertexFormatFloat")]
     pub const Float: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/float2?language=objc)
+    /// Two single-precision floating-point values.
     #[doc(alias = "MTLVertexFormatFloat2")]
     pub const Float2: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/float3?language=objc)
+    /// Three single-precision floating-point values.
     #[doc(alias = "MTLVertexFormatFloat3")]
     pub const Float3: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/float4?language=objc)
+    /// Four single-precision floating-point values.
     #[doc(alias = "MTLVertexFormatFloat4")]
     pub const Float4: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/int?language=objc)
+    /// One signed 32-bit two’s complement value.
     #[doc(alias = "MTLVertexFormatInt")]
     pub const Int: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/int2?language=objc)
+    /// Two signed 32-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatInt2")]
     pub const Int2: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/int3?language=objc)
+    /// Three signed 32-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatInt3")]
     pub const Int3: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/int4?language=objc)
+    /// Four signed 32-bit two’s complement values.
     #[doc(alias = "MTLVertexFormatInt4")]
     pub const Int4: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uint?language=objc)
+    /// One unsigned 32-bit value.
     #[doc(alias = "MTLVertexFormatUInt")]
     pub const UInt: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uint2?language=objc)
+    /// Two unsigned 32-bit values.
     #[doc(alias = "MTLVertexFormatUInt2")]
     pub const UInt2: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uint3?language=objc)
+    /// Three unsigned 32-bit values.
     #[doc(alias = "MTLVertexFormatUInt3")]
     pub const UInt3: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uint4?language=objc)
+    /// Four unsigned 32-bit values.
     #[doc(alias = "MTLVertexFormatUInt4")]
     pub const UInt4: Self = Self(39);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/int1010102normalized?language=objc)
+    /// One packed 32-bit value with four normalized signed two’s complement integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.
     #[doc(alias = "MTLVertexFormatInt1010102Normalized")]
     pub const Int1010102Normalized: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uint1010102normalized?language=objc)
+    /// One packed 32-bit value with four normalized unsigned integer values, arranged as 10 bits, 10 bits, 10 bits, and 2 bits.
     #[doc(alias = "MTLVertexFormatUInt1010102Normalized")]
     pub const UInt1010102Normalized: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar4normalized_bgra?language=objc)
+    /// Four unsigned normalized 8-bit values, arranged as blue, green, red, and alpha components.
     #[doc(alias = "MTLVertexFormatUChar4Normalized_BGRA")]
     pub const UChar4Normalized_BGRA: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/uchar?language=objc)
+    /// One unsigned 8-bit value.
     #[doc(alias = "MTLVertexFormatUChar")]
     pub const UChar: Self = Self(45);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/char?language=objc)
+    /// One signed 8-bit two’s complement value.
     #[doc(alias = "MTLVertexFormatChar")]
     pub const Char: Self = Self(46);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ucharnormalized?language=objc)
+    /// One unsigned normalized 8-bit value.
     #[doc(alias = "MTLVertexFormatUCharNormalized")]
     pub const UCharNormalized: Self = Self(47);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/charnormalized?language=objc)
+    /// One signed normalized 8-bit two’s complement value.
     #[doc(alias = "MTLVertexFormatCharNormalized")]
     pub const CharNormalized: Self = Self(48);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushort?language=objc)
+    /// One unsigned 16-bit value.
     #[doc(alias = "MTLVertexFormatUShort")]
     pub const UShort: Self = Self(49);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/short?language=objc)
+    /// One signed 16-bit two’s complement value.
     #[doc(alias = "MTLVertexFormatShort")]
     pub const Short: Self = Self(50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/ushortnormalized?language=objc)
+    /// One unsigned normalized 16-bit value.
     #[doc(alias = "MTLVertexFormatUShortNormalized")]
     pub const UShortNormalized: Self = Self(51);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/shortnormalized?language=objc)
+    /// One signed normalized 16-bit two’s complement value.
     #[doc(alias = "MTLVertexFormatShortNormalized")]
     pub const ShortNormalized: Self = Self(52);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/half?language=objc)
+    /// One half-precision floating-point value.
     #[doc(alias = "MTLVertexFormatHalf")]
     pub const Half: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/floatrg11b10?language=objc)
     #[doc(alias = "MTLVertexFormatFloatRG11B10")]
     pub const FloatRG11B10: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat/floatrgb9e5?language=objc)
     #[doc(alias = "MTLVertexFormatFloatRGB9E5")]
     pub const FloatRGB9E5: Self = Self(55);
 }
@@ -187,25 +184,25 @@ unsafe impl RefEncode for MTLVertexFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction?language=objc)
+/// The frequency with which the vertex function or post-tessellation vertex function fetches attribute data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVertexStepFunction(pub NSUInteger);
 impl MTLVertexStepFunction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction/constant?language=objc)
+    /// The vertex function fetches attribute data once and uses that data for every vertex.
     #[doc(alias = "MTLVertexStepFunctionConstant")]
     pub const Constant: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction/pervertex?language=objc)
+    /// The vertex function fetches and uses new attribute data for every vertex.
     #[doc(alias = "MTLVertexStepFunctionPerVertex")]
     pub const PerVertex: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction/perinstance?language=objc)
+    /// The vertex function regularly fetches new attribute data for a number of instances that is determined by `stepRate`.
     #[doc(alias = "MTLVertexStepFunctionPerInstance")]
     pub const PerInstance: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction/perpatch?language=objc)
+    /// The post-tessellation vertex function fetches data based on the patch index of the patch.
     #[doc(alias = "MTLVertexStepFunctionPerPatch")]
     pub const PerPatch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction/perpatchcontrolpoint?language=objc)
+    /// The post-tessellation vertex function fetches data based on the control-point indices associated with the patch.
     #[doc(alias = "MTLVertexStepFunctionPerPatchControlPoint")]
     pub const PerPatchControlPoint: Self = Self(4);
 }
@@ -221,12 +218,10 @@ unsafe impl RefEncode for MTLVertexStepFunction {
 /// when a MTLVertexBufferLayoutDescriptor has its stride set to this value,
 /// the stride will be dynamic and must be set explicitly when binding a buffer
 /// to a render command encoder.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbufferlayoutstridedynamic?language=objc)
 pub static MTLBufferLayoutStrideDynamic: NSUInteger = NSUIntegerMax as _;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptor?language=objc)
+    /// An object that configures how a render pipeline fetches data to send to the vertex function.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexBufferLayoutDescriptor;
@@ -300,7 +295,13 @@ impl DefaultRetained for MTLVertexBufferLayoutDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptorarray?language=objc)
+    /// An array of vertex buffer layout descriptor instances.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLVertexBufferLayoutDescriptorArray`](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptorarray) holds an array of vertex buffer layout states. The methods of [`MTLVertexBufferLayoutDescriptorArray`](https://developer.apple.com/documentation/metal/mtlvertexbufferlayoutdescriptorarray) set the vertex buffer layout state in the array or retrieve the state from the array.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexBufferLayoutDescriptorArray;
@@ -356,7 +357,13 @@ impl DefaultRetained for MTLVertexBufferLayoutDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexattributedescriptor?language=objc)
+    /// An object that determines how to store attribute data in memory and map it to the arguments of a vertex function.
+    ///
+    /// ## Overview
+    ///
+    /// A vertex attribute descriptor provides organization information so a vertex shader function can locate and load data into its arguments. The descriptor maps memory locations to attribute locations. It supports access to multiple attributes (such as vertex coordinates, surface normals, and texture coordinates) that are interleaved within the same buffer.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttributeDescriptor;
@@ -434,7 +441,13 @@ impl DefaultRetained for MTLVertexAttributeDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexattributedescriptorarray?language=objc)
+    /// An array of vertex attribute descriptor instances.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLVertexAttributeDescriptorArray`](https://developer.apple.com/documentation/metal/mtlvertexattributedescriptorarray) instance is an array of instances that defines how vertex attribute data is formatted and assigned to an index in the attribute argument table. The methods of [`MTLVertexAttributeDescriptorArray`](https://developer.apple.com/documentation/metal/mtlvertexattributedescriptorarray) set or retrieve the attribute formatting information from the array.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexAttributeDescriptorArray;
@@ -490,7 +503,15 @@ impl DefaultRetained for MTLVertexAttributeDescriptorArray {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexdescriptor?language=objc)
+    /// An instance that describes how to organize and map data to a vertex function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) instance is used to configure how vertex data stored in memory is mapped to attributes in a vertex shader.
+    ///
+    /// A pipeline state is the state of the graphics rendering pipeline, including shaders, blending, multisampling, and visibility testing. For every pipeline state, there can be only one [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) instance. When you configure an [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor) instance to create this pipeline state, you use an [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) instance to establish the vertex layout for the function associated with the pipeline. Create and configure an [`MTLVertexDescriptor`](https://developer.apple.com/documentation/metal/mtlvertexdescriptor) instance, then use this instance to set the [`vertexDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor/vertexdescriptor) property of the [`MTLRenderPipelineDescriptor`](https://developer.apple.com/documentation/metal/mtlrenderpipelinedescriptor) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLVertexDescriptor;

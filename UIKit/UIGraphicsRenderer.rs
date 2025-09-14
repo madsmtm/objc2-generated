@@ -12,7 +12,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat?language=objc)
+    /// A set of drawing attributes that represents the configuration of a graphics renderer context.
+    ///
+    /// ## Overview
+    ///
+    /// Create a [`UIGraphicsRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat) object, or one of its subclasses ([`UIGraphicsImageRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat) and [`UIGraphicsPDFRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat)), and use it to construct a graphics renderer by providing the format object as a parameter in a [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer) subclass intializer.
+    ///
+    /// The graphics renderer uses the format object you provided to configure any context objects ([`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext)) it creates as part of the rendering process.
+    ///
+    /// If you use a graphics renderer initializer that doesn’t require a format argument, the renderer creates a format object using the [`defaultFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat/default()) class method.
+    ///
+    /// The renderer format object contains properties that represent the immutable aspects of the renderer’s configuration. This means that repeated uses of a single graphics renderer object will always use the same format object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRendererFormat;
@@ -69,7 +81,15 @@ impl DefaultRetained for UIGraphicsRendererFormat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext?language=objc)
+    /// The base class for the drawing environments for graphics renderers.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) yourself. Instead, when you use a concrete subclass of [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer), you are provided an instance of the appropriate [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) subclass—either [`UIGraphicsImageRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderercontext) or [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext)—as an argument to a [`UIGraphicsDrawingActions`](https://developer.apple.com/documentation/uikit/uigraphicsdrawingactions) drawing actions block.
+    ///
+    /// [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) objects provide high-level drawing methods in addition to access to the underlying Core Graphics context.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRendererContext;
@@ -138,7 +158,32 @@ impl DefaultRetained for UIGraphicsRendererContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsrenderer?language=objc)
+    /// An abstract base class for creating graphics renderers.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t use [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer) directly. Instead, either use one of the concrete subclasses ([`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer) or [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer)), or create your own subclass.
+    ///
+    /// Graphics renderers provide memory-efficient management of Core Graphics contexts. Core Graphics contexts represent the drawing environment and backing store for 2D Graphics. As you reuse a graphics renderer, it in turn reuses Core Graphics contexts.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You can’t use [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer) directly, but if the concrete subclasses ([`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer) and [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer)) don’t provide the functionality you require, you can create your own subclass.
+    ///
+    /// Consider creating a subclass any time you need to create multiple Core Graphics contexts, each with the same dimensions and attributes, and one of the concrete subclasses ([`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer) or [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer)) doesn’t provide the functionality you require.
+    ///
+    /// To create a subclass of [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer), first import the appropriate submodule or header, as shown in the following code.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["import UIKit.UIGraphicsRendererSubclass"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["#import <UIKit/UIGraphicsRendererSubclass.h>"], metadata: None }] }] })
+    /// A graphics renderer manages a pool of Core Graphics contexts that are reused with repeated uses of the renderer. The renderer creates these [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) objects using the [`contextWithFormat:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/context(with:)) class method, and then wraps each of them in an instance of the class returned by the [`rendererContextClass`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/renderercontextclass()) class method. You must therefore override these two methods in your graphics renderer subclass.
+    ///
+    /// To perform drawing actions on a Core Graphics context, call the [`runDrawingActions:completionActions:error:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/rundrawingactions(_:completionactions:)) method, providing two blocks. Both of these blocks have a [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) argument, providing access to a Core Graphics context.
+    ///
+    /// It is recommended that you create a public method on your renderer subclass that internally wraps the [`runDrawingActions:completionActions:error:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/rundrawingactions(_:completionactions:)) method. This is how the rendering methods operate on the concrete subclasses, for example the [`imageWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/image(actions:)) method on [`UIGraphicsImageRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer).
+    ///
+    /// Each time the [`runDrawingActions:completionActions:error:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/rundrawingactions(_:completionactions:)) method is called, the renderer calls the [`prepareCGContext:withRendererContext:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/prepare(_:with:)) method with the [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) and [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) as arguments. Override the [`prepareCGContext:withRendererContext:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer/prepare(_:with:)) method to apply the [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) configuration to the underlying [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) before the renderer invokes the drawing actions.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIGraphicsRenderer;

@@ -12,9 +12,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A view that provides a specialized user interface for a Cocoa-based panner audio unit.
     /// An AUPannerView object retrieves and instantiates a generic panner view for the given panner unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/aupannerview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

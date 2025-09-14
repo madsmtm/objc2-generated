@@ -5,22 +5,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An event that represents significant time-based events, including sunrise and sunset.
 /// Type corresponding to significant events.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificantevent?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type HMSignificantEvent = NSString;
 
 extern "C" {
+    /// An event that fires at sunrise.
     /// Event corresponding to sunrise
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificantevent/sunrise?language=objc)
     pub static HMSignificantEventSunrise: &'static HMSignificantEvent;
 }
 
 extern "C" {
+    /// An event that fires at sunset.
     /// Event corresponding to sunset
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificantevent/sunset?language=objc)
     pub static HMSignificantEventSunset: &'static HMSignificantEvent;
 }

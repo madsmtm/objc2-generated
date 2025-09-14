@@ -8,8 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Represents a timestamp data entry in a counter heap of type `MTL4CounterHeapTypeTimestamp`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampheapentry?language=objc)
+/// Represents a timestamp data entry in a counter heap of type `MTL4CounterHeapTypeTimestamp`.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4TimestampHeapEntry {
@@ -24,22 +23,19 @@ unsafe impl RefEncode for MTL4TimestampHeapEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Defines the type of a [`MTL4CounterHeap`](https://developer.apple.com/documentation/metal/mtl4counterheap) and the contents of its entries.
 /// Defines the type of a ``MTL4CounterHeap`` and the contents of its entries.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4CounterHeapType(pub NSInteger);
 impl MTL4CounterHeapType {
+    /// Specifies that [`MTL4CounterHeap`](https://developer.apple.com/documentation/metal/mtl4counterheap) entries contain invalid data.
     /// Specifies that ``MTL4CounterHeap`` entries contain invalid data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype/invalid?language=objc)
     #[doc(alias = "MTL4CounterHeapTypeInvalid")]
     pub const Invalid: Self = Self(0);
+    /// Specifies that [`MTL4CounterHeap`](https://developer.apple.com/documentation/metal/mtl4counterheap) entries contain GPU timestamp data.
     /// Specifies that ``MTL4CounterHeap`` entries contain GPU timestamp data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype/timestamp?language=objc)
     #[doc(alias = "MTL4CounterHeapTypeTimestamp")]
     pub const Timestamp: Self = Self(1);
 }
@@ -54,11 +50,16 @@ unsafe impl RefEncode for MTL4CounterHeapType {
 
 /// Provides a hint to the system about the desired accuracy when writing GPU counter timestamps.
 ///
+/// ## Overview
+///
+/// Pass these values to [`writeTimestampWithGranularity:intoHeap:atIndex:`](https://developer.apple.com/documentation/metal/mtl4computecommandencoder/writetimestamp(granularity:counterheap:index:)) and [`writeTimestampWithGranularity:afterStage:intoHeap:atIndex:`](https://developer.apple.com/documentation/metal/mtl4rendercommandencoder/writetimestamp(granularity:after:counterheap:index:)) to control the desired accurracy of the counter sampling operation.
+///
+///
+/// Provides a hint to the system about the desired accuracy when writing GPU counter timestamps.
+///
 /// Pass these values to ``MTL4ComputeCommandEncoder/writeTimestampWithGranularity:intoHeap:atIndex:`` and
 /// ``MTL4RenderCommandEncoder/writeTimestampWithGranularity:afterStage:intoHeap:atIndex:`` to control the
 /// desired accurracy of the counter sampling operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -66,17 +67,27 @@ pub struct MTL4TimestampGranularity(pub NSInteger);
 impl MTL4TimestampGranularity {
     /// A minimally-invasive timestamp which may be less precise.
     ///
+    /// ## Discussion
+    ///
+    /// Using this granularity incurs in the lowest overhead, at the cost of precision. For example, it may sample at command encoder boundaries.
+    ///
+    ///
+    /// A minimally-invasive timestamp which may be less precise.
+    ///
     /// Using this granularity incurs in the lowest overhead, at the cost of precision. For example, it may sample at
     /// command encoder boundaries.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity/relaxed?language=objc)
     #[doc(alias = "MTL4TimestampGranularityRelaxed")]
     pub const Relaxed: Self = Self(0);
     /// A timestamp as precise as possible.
     ///
+    /// ## Discussion
+    ///
     /// Using this granularity may incur in a performance penalty, for example, it may cause splitting of command encoders.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity/precise?language=objc)
+    ///
+    /// A timestamp as precise as possible.
+    ///
+    /// Using this granularity may incur in a performance penalty, for example, it may cause splitting of command encoders.
     #[doc(alias = "MTL4TimestampGranularityPrecise")]
     pub const Precise: Self = Self(1);
 }
@@ -91,8 +102,7 @@ unsafe impl RefEncode for MTL4TimestampGranularity {
 
 extern_class!(
     /// Groups together parameters for configuring a counter heap object at creation time.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheapdescriptor?language=objc)
+    /// Groups together parameters for configuring a counter heap object at creation time.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CounterHeapDescriptor;
@@ -163,9 +173,14 @@ impl DefaultRetained for MTL4CounterHeapDescriptor {
 extern_protocol!(
     /// Represents an opaque, driver-controlled section of memory that can store GPU counter data.
     ///
-    /// The data instances that this type stores correspond to the ``MTL4CounterHeapType`` heap type that you assign at creation time.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheap?language=objc)
+    /// The data instances that this type stores correspond to the [`MTL4CounterHeapType`](https://developer.apple.com/documentation/metal/mtl4counterheaptype) heap type that you assign at creation time.
+    ///
+    ///
+    /// Represents an opaque, driver-controlled section of memory that can store GPU counter data.
+    ///
+    /// The data instances that this type stores correspond to the ``MTL4CounterHeapType`` heap type that you assign at creation time.
     pub unsafe trait MTL4CounterHeap: NSObjectProtocol {
         /// Assigns a label for later inspection or visualization.
         #[unsafe(method(label))]

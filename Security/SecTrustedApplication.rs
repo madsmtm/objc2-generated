@@ -8,11 +8,22 @@ use crate::*;
 
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecTrustedApplication {
+    /// Returns the unique identifier of the opaque type to which a trusted app instance belongs.
+    ///
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns a value that uniquely identifies the opaque type of a [`SecTrustedApplicationRef`](https://developer.apple.com/documentation/security/sectrustedapplication) instance. You can compare this value to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) method on a specific instance. These values might change from release to release or platform to platform.
+    ///
+    ///
     /// Returns the type identifier of SecTrustedApplication instances.
     ///
     /// Returns: The CFTypeID of SecTrustedApplication instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationgettypeid()?language=objc)
     #[doc(alias = "SecTrustedApplicationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -25,6 +36,27 @@ unsafe impl ConcreteType for SecTrustedApplication {
 
 #[cfg(feature = "SecBase")]
 impl SecTrustedApplication {
+    /// Creates a trusted app instance based on the app at the given path in the file system.
+    ///
+    /// Parameters:
+    /// - path: The path to the app to trust. For application bundles, use the path to the bundle directory. Pass `nil` to refer to the calling app.
+    ///
+    /// - app: On return, points to the newly created trusted app instance. Call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release this instance when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to create a trusted app instance, which both identifies an app and provides data that can be used to ensure that the app hasn’t been altered since the instance was created.
+    ///
+    /// You can use the created instance as input to the [`SecAccessCreate`](https://developer.apple.com/documentation/security/secaccesscreate(_:_:_:)) method, which creates an access instance. The access instance, in turn, is used as input to the [`SecKeychainItemSetAccess`](https://developer.apple.com/documentation/security/seckeychainitemsetaccess(_:_:)) function to specify the set of apps that are trusted to access a specific keychain item.
+    ///
+    ///
     /// Creates a trusted application reference based on the trusted application specified by path.
     ///
     /// Parameter `path`: The path to the application or tool to trust. For application bundles, use the
@@ -39,8 +71,6 @@ impl SecTrustedApplication {
     ///
     /// - `path` must be a valid pointer or null.
     /// - `app` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationCreateFromPath")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -58,6 +88,27 @@ impl SecTrustedApplication {
         unsafe { SecTrustedApplicationCreateFromPath(path, app) }
     }
 
+    /// Retrieves the data of a trusted app instance.
+    ///
+    /// Parameters:
+    /// - appRef: A trusted app from which to retrieve data. Use the [`SecTrustedApplicationCreateFromPath`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) method to create a trusted app instance.
+    ///
+    /// - data: On return, points to an opaque data instance. Call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) method to release the data when you are finished using it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The trusted app instance created by the [`SecTrustedApplicationCreateFromPath`](https://developer.apple.com/documentation/security/sectrustedapplicationcreatefrompath(_:_:)) method includes data that uniquely identifies the app, such as a cryptographic hash of the app. The operating system uses this data to verify that the app is unaltered since the trusted app instance was created. When an app requests access to an item in the keychain for which it is designated as a trusted app, the operating system checks this data before granting access.
+    ///
+    /// Use the [`SecTrustedApplicationCopyData`](https://developer.apple.com/documentation/security/sectrustedapplicationcopydata(_:_:)) function to extract this data from the trusted app instance for storage or for transmission over the network. Use the [`SecTrustedApplicationSetData`](https://developer.apple.com/documentation/security/sectrustedapplicationsetdata(_:_:)) function to insert that data back into a trusted app instance. Note that this data is opaque: there’s no way to interpret it.
+    ///
+    ///
     /// Retrieves the data of a given trusted application reference
     ///
     /// Parameter `appRef`: A trusted application reference to retrieve data from
@@ -69,8 +120,6 @@ impl SecTrustedApplication {
     /// # Safety
     ///
     /// `data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationcopydata(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationCopyData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]
@@ -85,6 +134,25 @@ impl SecTrustedApplication {
         unsafe { SecTrustedApplicationCopyData(self, data) }
     }
 
+    /// Sets the data of a given trusted app instance.
+    ///
+    /// Parameters:
+    /// - appRef: A trusted application object.
+    ///
+    /// - data: A reference to the data to set in the trusted application.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Security Framework Result Codes](https://developer.apple.com/documentation/security/security-framework-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you use the [`SecTrustedApplicationCopyData`](https://developer.apple.com/documentation/security/sectrustedapplicationcopydata(_:_:)) method to extract the data from a trusted app instance for storage or transmission, you can use the [`SecTrustedApplicationSetData`](https://developer.apple.com/documentation/security/sectrustedapplicationsetdata(_:_:)) method to insert that data into a new trusted app. Doing so creates an object that identifies the same app as the original trusted app instance.
+    ///
+    ///
     /// Sets the data of a given trusted application reference
     ///
     /// Parameter `appRef`: A trusted application reference.
@@ -92,8 +160,6 @@ impl SecTrustedApplication {
     /// Parameter `data`: A reference to the data to set in the trusted application.
     ///
     /// Returns: A result code.  See "Security Error Codes" (SecBase.h).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustedapplicationsetdata(_:_:)?language=objc)
     #[doc(alias = "SecTrustedApplicationSetData")]
     #[cfg(feature = "SecBase")]
     #[deprecated = "SecKeychain is deprecated"]

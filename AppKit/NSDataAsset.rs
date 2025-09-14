@@ -6,11 +6,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.typealias?language=objc)
+/// The name of a data asset.
 pub type NSDataAssetName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdataasset?language=objc)
+    /// An object from a data set type stored in an asset catalog.
+    ///
+    /// ## Overview
+    ///
+    /// The object’s content is stored as a set of one or more files with associated device attributes. These sets can also be tagged for use as on-demand resources.
+    ///
+    /// ### Initialize data assets
+    ///
+    /// Data assets are initialized from a named data set in an asset catalog. You create data sets during app development. Each data set contains one or more data files. Each file has associated attributes for features of the device, including the minimum amount of memory and the version of Metal. When you initialize the data asset, the system selects the data file that best matches the current device.
+    ///
+    /// For more information on the data set type in an asset catalog, see [Data Set Type](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/DataSetType.html#//apple_ref/doc/uid/TP40015170-CH23) in [Asset Catalog Format Reference](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_ref-Asset_Catalog_Format/index.html#//apple_ref/doc/uid/TP40015170). For information on asset catalogs, see [Managing assets with asset catalogs](https://developer.apple.com/documentation/xcode/managing-assets-with-asset-catalogs).
+    ///
+    /// ### Access the data
+    ///
+    /// You access the data file by using the [`data`](https://developer.apple.com/documentation/appkit/nsdataasset/data) property. Because the property is of type [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) it provides methods for accessing the raw data only as bytes and ranges of bytes.
+    ///
+    /// To access structured data, convert the bytes into the appropriate format. The system can convert some data types for you. One example is XML data using the [`initWithData:`](https://developer.apple.com/documentation/foundation/xmlparser/init(data:)) method of [`NSXMLParser`](https://developer.apple.com/documentation/foundation/xmlparser). Other data types require code for parsing and converting the raw data. You may need to convert larger data files incrementally.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDataAsset;

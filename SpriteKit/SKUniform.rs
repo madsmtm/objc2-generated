@@ -10,37 +10,37 @@ use objc2_gl_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype?language=objc)
+/// An enumerated type to identify the type of a uniform object.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKUniformType(pub NSInteger);
 impl SKUniformType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/none?language=objc)
+    /// Indicates that the uniform variable does not currently hold any data. A uniform object has this type until the first time its value is set.
     #[doc(alias = "SKUniformTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/float?language=objc)
+    /// Indicates that the uniform variable holds a 32-bit floating-point value.
     #[doc(alias = "SKUniformTypeFloat")]
     pub const Float: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector2?language=objc)
+    /// Indicates that the uniform variable holds a vector of two 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatVector2")]
     pub const FloatVector2: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector3?language=objc)
+    /// Indicates that the uniform variable holds a vector of three 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatVector3")]
     pub const FloatVector3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatvector4?language=objc)
+    /// Indicates that the uniform variable holds a vector of four 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatVector4")]
     pub const FloatVector4: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix2?language=objc)
+    /// Indicates that the uniform variable holds a `2 x 2` matrix of four 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatMatrix2")]
     pub const FloatMatrix2: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix3?language=objc)
+    /// Indicates that the uniform variable holds a `3 x 3` matrix of four 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatMatrix3")]
     pub const FloatMatrix3: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/floatmatrix4?language=objc)
+    /// Indicates that the uniform variable holds a `3 x 3` matrix of four 32-bit floating-point values.
     #[doc(alias = "SKUniformTypeFloatMatrix4")]
     pub const FloatMatrix4: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniformtype/texture?language=objc)
+    /// Indicates that the uniform variable holds a reference to a SpriteKit texture.
     #[doc(alias = "SKUniformTypeTexture")]
     pub const Texture: Self = Self(8);
 }
@@ -54,7 +54,13 @@ unsafe impl RefEncode for SKUniformType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skuniform?language=objc)
+    /// A container for uniform shader data.
+    ///
+    /// ## Overview
+    ///
+    /// An [`SKUniform`](https://developer.apple.com/documentation/spritekit/skuniform) object is used to hold uniform data for a custom OpenGL or OpenGL ES shader. The uniform data is accessible from all shaders that include the uniform.To use a uniform variable in your shader, create the [`SKUniform`](https://developer.apple.com/documentation/spritekit/skuniform) object and set its initial value. Once its value is specified, the [`uniformType`](https://developer.apple.com/documentation/spritekit/skuniform/uniformtype) property changes to match the type of the initial value you provided and can never change afterward. To use the uniform object, add it to an [`SKShader`](https://developer.apple.com/documentation/spritekit/skshader) object that needs to access the uniform variable. To update the uniform variable’s value, choose the appropriate property on the uniform object based on the data type it encapsulates.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKUniform;

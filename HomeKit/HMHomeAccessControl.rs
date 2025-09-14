@@ -6,9 +6,8 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// The access privileges of a user associated with a home.
     /// Represents the access control of a user associated with a home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomeaccesscontrol?language=objc)
     #[unsafe(super(HMAccessControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMAccessControl")]

@@ -12,20 +12,34 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
+    /// The maximum size of an image in a list section.
+    ///
+    /// ## Discussion
+    ///
+    /// To properly size your images, use [`carTraitCollection`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/cartraitcollection) to determine the display scale of the car screen.
+    ///
+    ///
     /// The expected maximum size of an image size for your
     /// `CPListSection.`To properly size your images, your app should size them to the display scale of the car screen.
     /// See -[CPInterfaceController carTraitCollection].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaximumlistsectionimagesize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static CPMaximumListSectionImageSize: CGSize;
 }
 
 extern_class!(
+    /// A container that groups your list items into sections.
+    ///
+    /// ## Overview
+    ///
+    /// A section contains zero or more list items. You can configure a section to display a header and a section index title, which CarPlay displays on the trailing edge of the screen. The section header and the section index title are optional.
+    ///
+    /// To create a section, call the [`initWithItems:`](https://developer.apple.com/documentation/carplay/cplistsection/initwithitems:) method and provide an array of list items. Alternatively, use [`initWithItems:header:sectionIndexTitle:`](https://developer.apple.com/documentation/carplay/cplistsection/initwithitems:header:sectionindextitle:) if you want to display a header and a section index title. CarPlay doesn’t support custom list items, so you must use one of the types that the framework provides, such as [`CPListItem`](https://developer.apple.com/documentation/carplay/cplistitem) or [`CPListImageRowItem`](https://developer.apple.com/documentation/carplay/cplistimagerowitem).
+    ///
+    /// At runtime, use [`maximumSectionCount`](https://developer.apple.com/documentation/carplay/cplisttemplate/maximumsectioncount) to determine the maximum number of sections that your list can display. When creating items for your sections, use [`maximumItemCount`](https://developer.apple.com/documentation/carplay/cplisttemplate/maximumitemcount) to establish the maximum number of items across all sections that can appear in your list.
+    ///
+    ///
     /// `CPListSection`models a single section of items appearing in a
     /// `CPListTemplate.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistsection?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPListSection;

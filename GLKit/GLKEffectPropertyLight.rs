@@ -9,7 +9,13 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glklightingtype?language=objc)
+/// A constant that describes how lighting is calculated by an effect.
+///
+/// ## Overview
+///
+/// Typically, per-pixel lighting should be enabled when it provides an improvement in image quality without greatly reducing your application’s performance. Calculating the lighting equation at each fragment greatly increases the number of calculations required to calculate the lighting for a scene. However, calculating lighting only at vertices sometimes produces unusual or inaccurate results, particularly when your application uses spotlights or specular highlighting. For example, when per-pixel lighting is disabled, a narrow spotlight projected at the center of a large triangle may disappear entirely because the vertices that define the triangle all lie outside the area covered by the spotlight. That same triangle, when rendered using per-pixel lighting, would be rendered correctly.
+///
+///
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -19,10 +25,10 @@ pub struct GLKLightingType(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKLightingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glklightingtype/pervertex?language=objc)
+    /// Indicates that the lighting calculations are performed at each vertex in a triangle and then interpolated across the triangle.
     #[doc(alias = "GLKLightingTypePerVertex")]
     pub const PerVertex: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glklightingtype/perpixel?language=objc)
+    /// Indicates that the inputs to the lighting calculation are interpolated across a triangle and the lighting calculations are performed at each fragment.
     #[doc(alias = "GLKLightingTypePerPixel")]
     pub const PerPixel: Self = Self(1);
 }
@@ -40,7 +46,27 @@ unsafe impl RefEncode for GLKLightingType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkeffectpropertylight?language=objc)
+    /// Lighting information for use in GLKit rendering effects.
+    ///
+    /// ## Overview
+    ///
+    /// The lighting model implemented by [`GLKEffectPropertyLight`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight) is identical to the lighting model implemented in OpenGL ES 1.1; each light interacts with any material properties on the effect to determine the intensity and color that particular light contributes to the scene at a fragment.
+    ///
+    /// There are three basic kinds of lights: directional, point and spotlights.
+    ///
+    /// - A directional light is considered to be infinitely far away, and always directs light in the same direction. To create a directional light, set the [`position`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/position) property to a vector whose `x`, `y`, and `z` components specify the direction to the light (that is, the negation of the direction the light is travelling in), and whose `w` component is set to `0.0`.
+    ///
+    /// - A point light is placed at a position within the scene, and emits light in all directions. To create a directional light, set the [`position`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/position) property to a vector whose `x`, `y`, `z` and `w` components specify the homogenous coordinates for the position of the light in the scene. The `w` component is typically set to `1.0` and must not be set to `0.0`.
+    ///
+    /// The intensity of a point light is adjusted using an distance attenuation function. This function is controlled by adjusting the [`constantAttenuation`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/constantattenuation), [`linearAttenuation`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/linearattenuation) or [`quadraticAttenuation`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/quadraticattenuation) properties. The default values for these properties create a light whose intensity is constant over distance.
+    ///
+    /// - A spotlight is placed at a position within the scene, and emits light in a specific direction in a cone. To create a spotlight, set the [`position`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/position) property to a vector whose `x`, `y`, `z` and `w` components specify the homogenous coordinates for the position of the light in the scene. The `w` component must not be set to `0.0`. Then, set the [`spotDirection`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/spotdirection) property to a vector that specifies the direction of the light and the [`spotCutoff`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/spotcutoff) to a value less than `180.0`.
+    ///
+    /// Like a point light, a spotlight’s intensity can be adjusted using the distance attenuation properties. A spotlight’s intensity can also be changed as a function of the spotlight angle by setting the [`spotExponent`](https://developer.apple.com/documentation/glkit/glkeffectpropertylight/spotexponent) property. The default value for a spotlight creates a spotlight whose intensity is not affected by the angle. That is, the spotlight radiates the same amount of light at the center and at the edge of the cone.
+    ///
+    /// Lighting calculations are performed in eye-space coordinates.  The eye-space coordinates for the position and the spot direction are calculated at the precise moment that new position values are specified and may be affected by other properties of the effect. For more information, see [`GLKBaseEffect`](https://developer.apple.com/documentation/glkit/glkbaseeffect).
+    ///
+    ///
     #[unsafe(super(GLKEffectProperty, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GLKEffectProperty")]

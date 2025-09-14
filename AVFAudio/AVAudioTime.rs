@@ -10,6 +10,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you use to represent a moment in time.
+    ///
+    /// ## Overview
+    ///
+    /// The `AVAudioTime` object represents a single moment in time in two ways:
+    ///
+    /// - As host time, using the system’s basic clock with `mach_absolute_time()`
+    ///
+    /// - As audio samples at a particular sample rate
+    ///
+    /// A single `AVAudioTime` instance contains either or both representations, meaning it might represent only a sample time, a host time, or both.
+    ///
+    /// Instances of this class are immutable.
+    ///
+    ///
     /// Represent a moment in time.
     ///
     /// AVAudioTime is used in AVAudioEngine to represent time. Instances are immutable.
@@ -27,8 +42,6 @@ extern_class!(
     /// [c] we do provide conveniences to convert between host ticks and seconds (host time divided by
     /// frequency) so client code wanting to do what should be straightforward time computations can at
     /// least not be cluttered by ugly multiplications and divisions by the host clock frequency.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiotime?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAudioTime;

@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for a graphics display configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate `VZGraphicsDisplayConfiguration` directly. Use one of its subclasses instead.
+    ///
+    ///
     /// Base class for a graphics display configuration.
     ///
     /// VZGraphicsDisplayConfiguration should not be instantiated directly.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZMacGraphicsDisplayConfiguration
     ///
     /// See: VZVirtioGraphicsScanoutConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzgraphicsdisplayconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZGraphicsDisplayConfiguration;

@@ -12,22 +12,47 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode?language=objc)
+/// Options that determine whether a paste button composes an icon, textual label, or both.
+///
+/// ## Overview
+///
+/// The paste button ([`UIPasteControl`](https://developer.apple.com/documentation/uikit/uipastecontrol)) property [`displayMode`](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class/displaymode) is of this type.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPasteControlDisplayMode(pub NSUInteger);
 impl UIPasteControlDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/iconandlabel?language=objc)
+    /// A display mode for a button that composes an icon and a textual label.
+    ///
+    /// ## Discussion
+    ///
+    /// The icon looks like a sheet of paper above a clipboard, and the label’s text reads “Paste”.
+    ///
+    /// The value you set for [`baseForegroundColor`](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class/baseforegroundcolor) colors the icon and text.
+    ///
+    ///
     #[doc(alias = "UIPasteControlDisplayModeIconAndLabel")]
     pub const IconAndLabel: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/icononly?language=objc)
+    /// A display mode for an icon button.
+    ///
+    /// ## Discussion
+    ///
+    /// The icon looks like a sheet of paper above a clipboard. The value you set for [`baseForegroundColor`](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class/baseforegroundcolor) colors the icon.
+    ///
+    ///
     #[doc(alias = "UIPasteControlDisplayModeIconOnly")]
     pub const IconOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/labelonly?language=objc)
+    /// A display mode for a textual label.
+    ///
+    /// ## Discussion
+    ///
+    /// The label’s text reads “Paste”. The value you set for [`baseForegroundColor`](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class/baseforegroundcolor) colors the text.
+    ///
+    ///
     #[doc(alias = "UIPasteControlDisplayModeLabelOnly")]
     pub const LabelOnly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode/arrowandlabel?language=objc)
     #[doc(alias = "UIPasteControlDisplayModeArrowAndLabel")]
     pub const ArrowAndLabel: Self = Self(3);
 }
@@ -41,7 +66,13 @@ unsafe impl RefEncode for UIPasteControlDisplayMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class?language=objc)
+    /// An object that determines a paste button’s color, corner style, icon, and text.
+    ///
+    /// ## Overview
+    ///
+    /// The paste button ([`UIPasteControl`](https://developer.apple.com/documentation/uikit/uipastecontrol)) property [`configuration`](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.property) is of this type.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -142,7 +173,44 @@ impl UIPasteControlConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol?language=objc)
+    /// A button that a person taps to place pasteboard contents in your app.
+    ///
+    /// ## Overview
+    ///
+    /// You can configure the button to appear as an icon, text, or both. The following button represents the icon and text option:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/5a1218a4bb5729bc6e1d520babfbcd23/media-4085675~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/17ad0e1ff539276a2cab12c503f9f0b6/media-4085675%402x.png 2x" />
+    ///     <img alt="A screenshot of a pill-shaped button with an icon of a paper sheet on top of a clipboard, and text that says Paste." src="https://docs-assets.developer.apple.com/published/5a1218a4bb5729bc6e1d520babfbcd23/media-4085675~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// In iOS 16 and later, programmatic pasting raises a user alert that prompts the user for approval before the app gains access to pasteboard contents (`UIPasteboard.general.string`). Use this class to paste without a user prompt.
+    ///
+    /// ### Add a paste button to a text view
+    ///
+    /// The following code displays a paste button and assigns a text view as the recipient of pasteboard contents:
+    ///
+    /// ```swift
+    /// let textView = UITextView(frame: view.bounds)
+    /// view.addSubview(textView)
+    ///
+    /// let configuration = UIPasteControl.Configuration()
+    /// configuration.baseBackgroundColor = .red
+    /// configuration.baseForegroundColor = .magenta
+    /// configuration.cornerStyle = .capsule
+    /// configuration.displayMode = .iconAndLabel
+    ///                     
+    /// let pasteButton = UIPasteControl(configuration: configuration)
+    /// pasteButton.frame = CGRect(x: view.bounds.width/2.0, y: view.bounds.height/2.0, width: 150, height: 60)
+    /// textView.addSubview(pasteButton)
+    ///
+    /// pasteButton.target = textView
+    /// ```
+    ///
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

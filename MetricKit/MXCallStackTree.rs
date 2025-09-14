@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing the call stack for an exception.
     /// A data class that encapsulates call stack trees vended by MetricKit.
     ///
     /// You should use the JSONRepresentation API to generate human readable call stack trees for symbolication off device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxcallstacktree?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXCallStackTree;

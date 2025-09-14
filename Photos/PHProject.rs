@@ -7,7 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phproject?language=objc)
+    /// A representation of a Photos app project extension.
+    ///
+    /// ## Overview
+    ///
+    /// This class represents the project when extended from macOS Photos. Projects can have the following types:
+    ///
+    /// - Book
+    ///
+    /// - Calendar
+    ///
+    /// - Card
+    ///
+    /// - Prints
+    ///
+    /// - Slideshow
+    ///
+    /// - Wall decor
+    ///
+    /// Users create projects by selecting one or more assets, right-clicking the selection, and grouping the assets, much like an album collection. Your app treats the project as a separate entity, represented as a [`PHProject`](https://developer.apple.com/documentation/photos/phproject).
+    ///
+    ///
     #[unsafe(super(PHAssetCollection, PHCollection, PHObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "PHCollection", feature = "PHObject"))]

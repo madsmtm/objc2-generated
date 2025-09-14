@@ -8,9 +8,8 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// Constants that indicate instance transformation types.
 /// Instance transformation type options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -18,8 +17,6 @@ pub struct MPSTransformType(pub NSUInteger);
 impl MPSTransformType {
     /// Instance transformations are represented by a 4x4 column major matrix of 32 bit
     /// floats
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype/float4x4?language=objc)
     #[doc(alias = "MPSTransformTypeFloat4x4")]
     pub const Float4x4: Self = Self(0);
     /// All instances have the identity transformation (no transformation). This can be used
@@ -27,8 +24,6 @@ impl MPSTransformType {
     /// without the cost of transforming instances. For example, geometry can be divided into
     /// static and dynamic polygon acceleration structures which can be rebuilt and refit
     /// independently.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype/identity?language=objc)
     #[doc(alias = "MPSTransformTypeIdentity")]
     pub const Identity: Self = Self(1);
 }
@@ -42,6 +37,7 @@ unsafe impl RefEncode for MPSTransformType {
 }
 
 extern_class!(
+    /// An acceleration structure built over instances of other acceleration structures.
     /// An acceleration structure built over instances of other acceleration structures
     ///
     ///
@@ -151,8 +147,6 @@ extern_class!(
     /// acceleration structure depends on the scene.
     ///
     /// See MPSAccelerationStructure for more information
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsinstanceaccelerationstructure?language=objc)
     #[unsafe(super(MPSAccelerationStructure, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

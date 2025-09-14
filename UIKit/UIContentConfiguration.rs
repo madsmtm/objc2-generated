@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentconfiguration-2raci?language=objc)
+    /// The requirements for an object that provides the configuration for a content view.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides a blueprint for a content-configuration object, which encompasses default styling and content for a content view. The content configuration encapsulates all of the supported properties and behaviors for content view customization. You use the configuration to create the content view.
+    ///
+    ///
     pub unsafe trait UIContentConfiguration:
         NSObjectProtocol + NSCopying + MainThreadOnly
     {
@@ -30,7 +36,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentview-3zu2k?language=objc)
+    /// The requirements for a content view that you create using a configuration.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides a blueprint for a content view object that renders the content and styling that you define with its configuration. The content view’s configuration encapsulates all of the supported properties and behaviors for content view customization. Setting the content view’s [`configuration`](https://developer.apple.com/documentation/uikit/uicontentview-5fh3z/configuration) property applies the new configuration to the view, causing the view to render any updates to its appearance.
+    ///
+    ///
     pub unsafe trait UIContentView: NSObjectProtocol + MainThreadOnly {
         /// Returns the current configuration of the view. Setting this property applies the new configuration to the view.
         #[unsafe(method(configuration))]

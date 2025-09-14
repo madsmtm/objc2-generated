@@ -14,26 +14,22 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Defines possible sources for generating timecode in using a timecode generator.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/sourcetype-swift.enum?language=objc)
+/// Defines possible sources for generating timecode in using a timecode generator.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTimecodeSourceType(pub NSInteger);
 impl AVCaptureTimecodeSourceType {
     /// No internal or external source is adopted. Timecodes are zero-based, sequentially generated frame counts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/sourcetype-swift.enum/framecount?language=objc)
+    /// No internal or external source is adopted. Timecodes are zero-based, sequentially generated frame counts.
     #[doc(alias = "AVCaptureTimecodeSourceTypeFrameCount")]
     pub const FrameCount: Self = Self(0);
     /// Synchronizes timecode to the system clock for real-time applications. Useful for live events or scenarios requiring alignment with the actual time of day.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/sourcetype-swift.enum/realtimeclock?language=objc)
+    /// Synchronizes timecode to the system clock for real-time applications. Useful for live events or scenarios requiring alignment with the actual time of day.
     #[doc(alias = "AVCaptureTimecodeSourceTypeRealTimeClock")]
     pub const RealTimeClock: Self = Self(1);
     /// Synchronizes timecode to an external timecode data stream. Ideal for professional audio and video synchronization with external quarter-frame MIDI or HID timecode hardware.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/sourcetype-swift.enum/external?language=objc)
+    /// Synchronizes timecode to an external timecode data stream. Ideal for professional audio and video synchronization with external quarter-frame MIDI or HID timecode hardware.
     #[doc(alias = "AVCaptureTimecodeSourceTypeExternal")]
     pub const External: Self = Self(2);
 }
@@ -47,51 +43,42 @@ unsafe impl RefEncode for AVCaptureTimecodeSourceType {
 }
 
 /// Constants defining the synchronization status of a timecode generator .
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus?language=objc)
+/// Constants defining the synchronization status of a timecode generator .
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTimecodeGeneratorSynchronizationStatus(pub NSInteger);
 impl AVCaptureTimecodeGeneratorSynchronizationStatus {
     /// The initial state before a source is selected or during error conditions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/unknown?language=objc)
+    /// The initial state before a source is selected or during error conditions.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusUnknown")]
     pub const Unknown: Self = Self(0);
     /// A timecode source has been selected, but synchronization has not yet started.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/sourceselected?language=objc)
+    /// A timecode source has been selected, but synchronization has not yet started.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusSourceSelected")]
     pub const SourceSelected: Self = Self(1);
     /// The timecode generator is actively synchronizing to the selected source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/synchronizing?language=objc)
+    /// The timecode generator is actively synchronizing to the selected source.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusSynchronizing")]
     pub const Synchronizing: Self = Self(2);
     /// The timecode generator is successfully synchronized to the selected source, maintaining active timing alignment.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/synchronized?language=objc)
+    /// The timecode generator is successfully synchronized to the selected source, maintaining active timing alignment.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusSynchronized")]
     pub const Synchronized: Self = Self(3);
     /// The synchronization has timed out.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/timedout?language=objc)
+    /// The synchronization has timed out.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusTimedOut")]
     pub const TimedOut: Self = Self(4);
     /// The timecode generator has failed to establish a connection with a given source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/sourceunavailable?language=objc)
+    /// The timecode generator has failed to establish a connection with a given source.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusSourceUnavailable")]
     pub const SourceUnavailable: Self = Self(5);
     /// The timecode generator is receiving data from the source in an unrecognized format.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/sourceunsupported?language=objc)
+    /// The timecode generator is receiving data from the source in an unrecognized format.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusSourceUnsupported")]
     pub const SourceUnsupported: Self = Self(6);
     /// The timecode generator does not require active synchronization for a given source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus/notrequired?language=objc)
+    /// The timecode generator does not require active synchronization for a given source.
     #[doc(alias = "AVCaptureTimecodeGeneratorSynchronizationStatusNotRequired")]
     pub const NotRequired: Self = Self(7);
 }
@@ -107,9 +94,14 @@ unsafe impl RefEncode for AVCaptureTimecodeGeneratorSynchronizationStatus {
 extern_class!(
     /// Describes a timecode source that a timecode generator can synchronize to.
     ///
+    /// ## Overview
+    ///
     /// `AVCaptureTimecodeSource` provides information about a specific timecode source available for synchronization in `AVCaptureTimecodeGenerator`. It includes metadata such as the source’s name, type, and unique identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/source?language=objc)
+    ///
+    /// Describes a timecode source that a timecode generator can synchronize to.
+    ///
+    /// `AVCaptureTimecodeSource` provides information about a specific timecode source available for synchronization in `AVCaptureTimecodeGenerator`. It includes metadata such as the source’s name, type, and unique identifier.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureTimecodeSource;
@@ -169,9 +161,14 @@ impl AVCaptureTimecodeSource {
 
 /// This structure represents a timecode, adhering to SMPTE standards, which define precise time information and associated timestamps for video or audio synchronization.
 ///
+/// ## Overview
+///
 /// This structure corresponds to the SMPTE 12M-1 Linear Timecode (LTC) format, widely used for professional video and audio synchronization.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode?language=objc)
+///
+/// This structure represents a timecode, adhering to SMPTE standards, which define precise time information and associated timestamps for video or audio synchronization.
+///
+/// This structure corresponds to the SMPTE 12M-1 Linear Timecode (LTC) format, widely used for professional video and audio synchronization.
 #[cfg(feature = "objc2-core-media")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -217,11 +214,22 @@ unsafe impl RefEncode for AVCaptureTimecode {
 impl AVCaptureTimecode {
     /// Creates a sample buffer containing Timecode Media Description metadata for integration with a video track.
     ///
+    /// Parameters:
+    /// - timecode: The [`AVCaptureTimecode`](https://developer.apple.com/documentation/avfoundation/avcapturetimecode) instance providing the timecode details to encode.
+    ///
+    /// - presentationTimeStamp: The presentation time stamp that determines the exact moment in the media timeline where the metadata should be applied. It is embedded in the sample timing info (`CMSampleTimingInfo`) and ensures that the packaged metadata synchronizes accurately with the corresponding video frame.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CMSampleBufferRef` with the encoded Timecode Media Description metadata for video synchronization, or `nil` if sample buffer creation fails.
+    ///
+    ///
+    /// Creates a sample buffer containing Timecode Media Description metadata for integration with a video track.
+    ///
     /// - Parameter timecode: The ``AVCaptureTimecode`` instance providing the timecode details to encode.
     /// - Parameter presentationTimeStamp: The presentation time stamp that determines the exact moment in the media timeline where the metadata should be applied. It is embedded in the sample timing info (``CMSampleTimingInfo``) and ensures that the packaged metadata synchronizes accurately with the corresponding video frame.
     /// - Returns: A ``CMSampleBufferRef`` with the encoded Timecode Media Description metadata for video synchronization, or `nil` if sample buffer creation fails.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/createmetadatasamplebuffer(from:associatedwithpresentationtimestamp:)?language=objc)
     #[doc(alias = "AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp")]
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     #[inline]
@@ -246,13 +254,30 @@ impl AVCaptureTimecode {
 
     /// Creates a sample buffer containing Timecode Media Description metadata for a specified duration.
     ///
+    /// Parameters:
+    /// - timecode: The [`AVCaptureTimecode`](https://developer.apple.com/documentation/avfoundation/avcapturetimecode) instance providing the timecode details for the metadata sample.
+    ///
+    /// - duration: The duration that the metadata sample buffer should represent.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CMSampleBufferRef` with encoded Timecode Media Description metadata for the given duration, or `nil` if sample buffer creation fails.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function for scenarios where timecode metadata needs to span a custom interval (not just a single frame), such as non-frame-accurate workflows or for describing a segment of media with a consistent timecode.
+    ///
+    ///
+    /// Creates a sample buffer containing Timecode Media Description metadata for a specified duration.
+    ///
     /// - Parameter timecode: The ``AVCaptureTimecode`` instance providing the timecode details for the metadata sample.
     /// - Parameter duration: The duration that the metadata sample buffer should represent.
     /// - Returns: A ``CMSampleBufferRef`` with encoded Timecode Media Description metadata for the given duration, or `nil` if sample buffer creation fails.
     ///
     /// Use this function for scenarios where timecode metadata needs to span a custom interval (not just a single frame), such as non-frame-accurate workflows or for describing a segment of media with a consistent timecode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/createmetadatasamplebuffer(from:forduration:)?language=objc)
     #[doc(alias = "AVCaptureTimecodeCreateMetadataSampleBufferForDuration")]
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     #[inline]
@@ -272,11 +297,22 @@ impl AVCaptureTimecode {
 
     /// Generates a new timecode by adding a specified number of frames to the given timecode, handling overflow for seconds, minutes, and hours.
     ///
+    /// Parameters:
+    /// - timecode: The original [`AVCaptureTimecode`](https://developer.apple.com/documentation/avfoundation/avcapturetimecode) to be incremented.
+    ///
+    /// - framesToAdd: The number of frames to add to the timecode.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new [`AVCaptureTimecode`](https://developer.apple.com/documentation/avfoundation/avcapturetimecode) struct with the updated time values after adding the specified frames.
+    ///
+    ///
+    /// Generates a new timecode by adding a specified number of frames to the given timecode, handling overflow for seconds, minutes, and hours.
+    ///
     /// - Parameter timecode: The original ``AVCaptureTimecode`` to be incremented.
     /// - Parameter framesToAdd: The number of frames to add to the timecode.
     /// - Returns: A new ``AVCaptureTimecode`` struct with the updated time values after adding the specified frames.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/advanced(_:by:)?language=objc)
     #[doc(alias = "AVCaptureTimecodeAdvancedByFrames")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -293,8 +329,7 @@ impl AVCaptureTimecode {
 
 extern_protocol!(
     /// A protocol for receiving real-time timecode updates and error notifications from a timecode generator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegeneratordelegate?language=objc)
+    /// A protocol for receiving real-time timecode updates and error notifications from a timecode generator.
     pub unsafe trait AVCaptureTimecodeGeneratorDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-core-media")]
         /// Notifies the delegate when new, unaligned timecodes are parsed from the specified source.
@@ -342,11 +377,18 @@ extern_protocol!(
 extern_class!(
     /// Generates and synchronizes timecode data from various sources for precise video and audio synchronization.
     ///
+    /// ## Overview
+    ///
+    /// The [`AVCaptureTimecodeGenerator`](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator) class supports multiple timecode sources, including frame counting, system clock synchronization, and MIDI timecode input (MTC). Suitable for playback, recording, or other time-sensitive operations where precise timecode metadata is required.
+    ///
+    /// Use the [`startSynchronizationWithTimecodeSource:`](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/startsynchronization(source:)) method to set up the desired timecode source.
+    ///
+    ///
+    /// Generates and synchronizes timecode data from various sources for precise video and audio synchronization.
+    ///
     /// The ``AVCaptureTimecodeGenerator`` class supports multiple timecode sources, including frame counting, system clock synchronization, and MIDI timecode input (MTC). Suitable for playback, recording, or other time-sensitive operations where precise timecode metadata is required.
     ///
     /// Use the ``startSynchronizationWithTimecodeSource:`` method to set up the desired timecode source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureTimecodeGenerator;

@@ -12,9 +12,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a bit rate variant.
     /// An AVAssetVariant represents a bit rate variant. Each asset contains a collection of variants that represent a combination of audio, video, text, closed captions, and subtitles for a particular bit rate. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariant;
@@ -96,11 +95,10 @@ impl AVAssetVariant {
 }
 
 extern_class!(
+    /// An object that defines the video attributes for an asset variant.
     /// Video attributes for an asset variant.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantVideoAttributes;
@@ -154,9 +152,8 @@ impl AVAssetVariantVideoAttributes {
 }
 
 extern_class!(
+    /// Attributes that describe the layout of video content.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/layoutattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantVideoLayoutAttributes;
@@ -207,11 +204,10 @@ impl AVAssetVariantVideoLayoutAttributes {
 }
 
 extern_class!(
+    /// An object that defines the audio attributes for an asset variant.
     /// Audio attributes for an asset variant.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/audioattributes-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantAudioAttributes;
@@ -260,11 +256,10 @@ impl AVAssetVariantAudioAttributes {
 }
 
 extern_class!(
+    /// An object that represents attributes specific to a particular rendition.
     /// Audio rendition attributes for an asset variant.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/audioattributes-swift.class/renditionspecificattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantAudioRenditionSpecificAttributes;
@@ -348,11 +343,10 @@ impl AVAssetVariantAudioRenditionSpecificAttributes {
 }
 
 extern_class!(
+    /// An object that represents an HTTP Live Streaming asset variant.
     /// The qualifier of an asset variant.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariantqualifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantQualifier;

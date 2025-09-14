@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthentication?language=objc)
+/// An opaque reference representing HTTP authentication information.
 #[doc(alias = "CFHTTPAuthenticationRef")]
 #[repr(C)]
 pub struct CFHTTPAuthentication {
@@ -26,19 +26,19 @@ cf_objc2_type!(
     unsafe impl RefEncode<"_CFHTTPAuthentication"> for CFHTTPAuthentication {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication?language=objc)
+/// Authentication error codes that may be returned when trying to apply authentication to a request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFStreamErrorHTTPAuthentication(pub c_int);
 impl CFStreamErrorHTTPAuthentication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/typeunsupported?language=objc)
+    /// Specified authentication type is not supported.
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationTypeUnsupported")]
     pub const TypeUnsupported: Self = Self(-1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/badusername?language=objc)
+    /// User name is in a format that is not suitable for the request. Currently, user names are decoded using `kCFStringEncodingISOLatin1`.
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationBadUserName")]
     pub const BadUserName: Self = Self(-1001);
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfstreamerrorhttpauthentication/badpassword?language=objc)
+    /// Password is in a format that is not suitable for the request. Currently, passwords are decoded using `kCFStringEncodingISOLatin1`.
     #[doc(alias = "kCFStreamErrorHTTPAuthenticationBadPassword")]
     pub const BadPassword: Self = Self(-1002);
 }
@@ -54,22 +54,28 @@ unsafe impl RefEncode for CFStreamErrorHTTPAuthentication {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationusername?language=objc)
+    /// Username to use for authentication.
     pub static kCFHTTPAuthenticationUsername: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationpassword?language=objc)
+    /// Password to use for authentication.
     pub static kCFHTTPAuthenticationPassword: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/kcfhttpauthenticationaccountdomain?language=objc)
+    /// Account domain to use for authentication.
     pub static kCFHTTPAuthenticationAccountDomain: &'static CFString;
 }
 
 unsafe impl ConcreteType for CFHTTPAuthentication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationgettypeid()?language=objc)
+    /// Gets the Core Foundation type identifier for the CFHTTPAuthentication opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for the CFHTTPAuthentication opaque type.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -81,7 +87,43 @@ unsafe impl ConcreteType for CFHTTPAuthentication {
 }
 
 impl CFHTTPAuthentication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcreatefromresponse(_:_:)?language=objc)
+    /// Uses an authentication failure response to create a CFHTTPAuthentication object.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - response: Response indicating an authentication failure; usually a 401 or a 407 response.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// CFHTTPAuthentication object that can be used for adding credentials to future requests. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses a response containing authentication failure information to create a reference to a CFHTTPAuthentication object. You can use the object to add credentials to future requests. You can query the object to get the following information:
+    ///
+    /// - whether it can be used and re-used to authenticate with its corresponding server [[`CFHTTPAuthenticationIsValid`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationisvalid(_:_:))]
+    ///
+    /// - the authentication method that will be used when it is used to perform an authentication [[`CFHTTPAuthenticationCopyMethod`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopymethod(_:))]
+    ///
+    /// - whether it is associated with a particular CFHTTPMessageRef [[`CFHTTPAuthenticationAppliesToRequest`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationappliestorequest(_:_:))
+    ///
+    /// - whether a user name and a password will be required when it is used to perform an authentication [[`CFHTTPAuthenticationRequiresUserNameAndPassword`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresusernameandpassword(_:))]
+    ///
+    /// - whether an account domain will be required when it is used to perform an authentication [[`CFHTTPAuthenticationRequiresAccountDomain`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresaccountdomain(_:))]
+    ///
+    /// - whether authentication requests should be sent one at a time to the corresponding server [[`CFHTTPAuthenticationRequiresOrderedRequests`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresorderedrequests(_:))]
+    ///
+    /// - the namespace (if any) that the domain uses to prompt for a name and password [[`CFHTTPAuthenticationCopyRealm`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopyrealm(_:))]
+    ///
+    /// - the domain URLs the instance applies to [[`CFHTTPAuthenticationCopyDomains`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopydomains(_:))]
+    ///
+    /// When you have determined what information will be needed to perform the authentication and accumulated that information, call [`CFHTTPMessageApplyCredentials`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentials(_:_:_:_:_:)) or [`CFHTTPMessageApplyCredentialDictionary`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentialdictionary(_:_:_:_:)) to perform the authentication.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationCreateFromResponse")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -101,7 +143,29 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationisvalid(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFHTTPAuthentication object is valid.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    /// - error: Pointer to a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) structure, whose fields, if an error has occurred, are set to the error and the error’s domain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `auth` contains enough information to be applied to a request.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns `FALSE`, the CFHTTPAuthentication object may still contain useful information, such as the name of an unsupported authentication method.
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns `TRUE` for `auth`, the object is good for use with functions such as [`CFHTTPMessageApplyCredentials`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentials(_:_:_:_:_:)) and [`CFHTTPMessageApplyCredentialDictionary`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentialdictionary(_:_:_:_:)). If this function returns `FALSE`, `auth` is invalid, and authentications using it will not succeed.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -119,7 +183,25 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationappliestorequest(_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFHTTPAuthentication object is associated with a CFHTTPMessage object.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    /// - request: Request that `auth` is to be tested against.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `auth` is associated with `request`, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this function returns `TRUE`, you can use `auth` to provide authentication information when using `request`.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationAppliesToRequest")]
     #[cfg(feature = "CFHTTPMessage")]
     #[inline]
@@ -134,7 +216,23 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresorderedrequests(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether authentication requests should be made one at a time.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `auth` requires ordered requests, otherwise `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some authentication methods require that future requests must be performed in an ordered manner. If this function returns `TRUE`, clients can improve their chances of authenticating successfully by issuing requests one at a time as responses come back from the server.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationRequiresOrderedRequests")]
     #[inline]
     pub unsafe fn requires_ordered_requests(&self) -> bool {
@@ -148,7 +246,37 @@ impl CFHTTPAuthentication {
 
 #[cfg(feature = "CFHTTPMessage")]
 impl CFHTTPMessage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentials(_:_:_:_:_:)?language=objc)
+    /// Performs the authentication method specified by a `CFHTTPAuthentication` object.
+    ///
+    /// Parameters:
+    /// - request: Request for which the authentication method is to be performed.
+    ///
+    /// - auth: A `CFHTTPAuthentication` object specifying the authentication method to perform.
+    ///
+    /// - username: Username for performing the authentication.
+    ///
+    /// - password: Password for performing the authentication.
+    ///
+    /// - error: If an error occurs, upon return contains a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) object that describes the error and the error’s domain. Pass `NULL` if you don’t want to receive error information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the authentication was successful, otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function performs the authentication method specified by `auth` on behalf of the request specified by `request` using the credentials specified by `username` and `password`. If, in addition to a username and password, you also need to specify an account domain, call [`CFHTTPMessageApplyCredentialDictionary`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentialdictionary(_:_:_:_:)) instead of this function.
+    ///
+    /// This function is appropriate for performing several authentication requests. If you only need to make a single authentication request, consider using [`CFHTTPMessageAddAuthentication`](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageaddauthentication(_:_:_:_:_:_:)) instead.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same `CFHTTPMessage` object at the same time.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -176,7 +304,33 @@ impl CFHTTPMessage {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpmessageapplycredentialdictionary(_:_:_:_:)?language=objc)
+    /// Use a dictionary containing authentication credentials to perform the authentication method specified by a `CFHTTPAuthentication` object.
+    ///
+    /// Parameters:
+    /// - request: The request for which the authentication method is to be performed.
+    ///
+    /// - auth: A `CFHTTPAuthentication` object specifying the authentication method to perform.
+    ///
+    /// - dict: A dictionary containing authentication credentials to be applied to the request. For information on the keys in this dictionary, see [`CFHTTPAuthenticationRef`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthentication).
+    ///
+    /// - error: If an error occurs, upon return contains a [`CFStreamError`](https://developer.apple.com/documentation/corefoundation/cfstreamerror) object that describes the error and the error’s domain. Pass `NULL` if you don’t want to receive error information.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if the authentication was successful, otherwise, `FALSE`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function performs the authentication method specified by `auth` on behalf of the request specified by `request` using the credentials contained in the dictionary specified by `dict`. The dictionary must contain values for the `kCFHTTPAuthenticationUsername` and `kCFHTTPAuthenticationPassword` keys. If [`CFHTTPAuthenticationRequiresAccountDomain`](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresaccountdomain(_:)) returns `TRUE` for `auth`, the dictionary must also contain a value for the `kCFHTTPAuthenticationAccountDomain` key.
+    ///
+    /// ### Special Considerations
+    ///
+    /// This function is thread safe as long as another thread does not alter the same `CFHTTPAuthentication` object at the same time.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -206,7 +360,23 @@ impl CFHTTPMessage {
 }
 
 impl CFHTTPAuthentication {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopyrealm(_:)?language=objc)
+    /// Gets an authentication information’s namespace.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The namespace, if there is one; otherwise `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some authentication methods provide a namespace, and it is usually used to prompt the user for a name and password.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationCopyRealm")]
     #[inline]
     pub unsafe fn realm(&self) -> CFRetained<CFString> {
@@ -221,7 +391,23 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopydomains(_:)?language=objc)
+    /// Returns an array of domain URLs to which a given CFHTTPAuthentication object can be applied.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object that contains the domain URL’s to which `auth` should be applied. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is provided for informational purposes only.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationCopyDomains")]
     #[inline]
     pub unsafe fn domains(&self) -> CFRetained<CFArray> {
@@ -236,7 +422,17 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationcopymethod(_:)?language=objc)
+    /// Gets the strongest authentication method that will be used when a CFHTTPAuthentication object is applied to a request.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string containing the authentication method that will be used `auth` is applied to a request. If more than one authentication method is available, the strongest authentication method is returned. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationCopyMethod")]
     #[inline]
     pub unsafe fn method(&self) -> CFRetained<CFString> {
@@ -251,7 +447,17 @@ impl CFHTTPAuthentication {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresusernameandpassword(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFHTTPAuthentication object uses an authentication method that requires a username and a password.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `auth` requires a username and password when it is applied to a request; otherwise, `FALSE`.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationRequiresUserNameAndPassword")]
     #[inline]
     pub unsafe fn requires_user_name_and_password(&self) -> bool {
@@ -264,7 +470,17 @@ impl CFHTTPAuthentication {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhttpauthenticationrequiresaccountdomain(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFHTTPAuthentication object uses an authentication method that requires an account domain.
+    ///
+    /// Parameters:
+    /// - auth: The CFHTTPAuthentication object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `TRUE` if `auth` uses an authentication method that requires an account domain, otherwise `FALSE`.
+    ///
+    ///
     #[doc(alias = "CFHTTPAuthenticationRequiresAccountDomain")]
     #[inline]
     pub unsafe fn requires_account_domain(&self) -> bool {

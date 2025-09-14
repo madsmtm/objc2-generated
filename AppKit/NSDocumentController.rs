@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocumentcontroller?language=objc)
+    /// An object that manages an app’s documents.
+    ///
+    /// ## Overview
+    ///
+    /// As the first-responder target of New and Open menu commands, [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) creates and opens documents and tracks them throughout a session of the app. When opening documents, a document controller runs and manages the modal Open panel. [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) objects also maintain and manage the mappings of document types, extensions, and [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) subclasses as specified in the [CFBundleDocumentTypes](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/20001431-101685) property loaded from the information property list (`Info.plist`).
+    ///
+    /// You can use various [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) methods to get a list of the current documents, get the current document (which is the document whose window is currently key), get documents based on a given filename or window, and find out about a document’s extension, type, display name, and document class.
+    ///
+    /// In some situations, it’s worthwhile to subclass [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) in non-[`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument)-based apps to get some of its features. For example, the [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) management of the Open Recent menu is useful in apps that don’t use subclasses of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

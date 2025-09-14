@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportcoder?language=objc)
+    /// A coder used to transmit object proxies (and sometimes objects themselves) between connections.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder) is a concrete subclass of [`NSCoder`](https://developer.apple.com/documentation/foundation/nscoder) used in the distributed objects system to transmit object proxies (and sometimes objects themselves) between [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) objects. An [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder) instance is always created and used by an [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) object; you should never need to explicitly create or use one directly yourself.
+    ///
+    ///
     #[unsafe(super(NSCoder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSCoder")]

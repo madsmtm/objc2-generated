@@ -6,208 +6,422 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits?language=objc)
+/// Constants that describe how an accessibility element behaves.
+///
+/// ## Overview
+///
+/// Set these traits to tell an assistive app how an accessibility element behaves or how to treat it.
+///
+///
 // NS_TYPED_ENUM
 pub type UIAccessibilityTraits = u64;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/none?language=objc)
+    /// The accessibility element has no traits.
     pub static UIAccessibilityTraitNone: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/button?language=objc)
+    /// The accessibility element behaves like a button.
     pub static UIAccessibilityTraitButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/link?language=objc)
+    /// The accessibility element behaves like a link.
     pub static UIAccessibilityTraitLink: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/header?language=objc)
+    /// The accessibility element is a header that divides content into sections, such as the title of a navigation bar.
     pub static UIAccessibilityTraitHeader: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/searchfield?language=objc)
+    /// The accessibility element behaves like a search field.
     pub static UIAccessibilityTraitSearchField: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/image?language=objc)
+    /// The accessibility element behaves like an image.
+    ///
+    /// ## Discussion
+    ///
+    /// You can combine this trait with the button or link traits.
+    ///
+    ///
     pub static UIAccessibilityTraitImage: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/selected?language=objc)
+    /// The accessibility element is currently in a selected state.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that represents a selected UI element, such as a selected table row or a selected segment in a segmented control.
+    ///
+    ///
     pub static UIAccessibilityTraitSelected: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/playssound?language=objc)
+    /// The accessibility element plays its own sound when the user activates it.
     pub static UIAccessibilityTraitPlaysSound: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/keyboardkey?language=objc)
+    /// The accessibility element behaves like a keyboard key.
     pub static UIAccessibilityTraitKeyboardKey: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/statictext?language=objc)
+    /// The accessibility element behaves like static text that can’t change.
     pub static UIAccessibilityTraitStaticText: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/summaryelement?language=objc)
+    /// The accessibility element provides summary information when the app starts.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that provides a summary of current conditions, settings, or state, such as the current temperature in the Weather app.
+    ///
+    ///
     pub static UIAccessibilityTraitSummaryElement: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/notenabled?language=objc)
+    /// The accessibility element isn’t in an enabled state and doesn’t respond to user interaction.
     pub static UIAccessibilityTraitNotEnabled: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/updatesfrequently?language=objc)
+    /// The accessibility element frequently updates its label or value.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that updates its label or value too frequently to send update notifications. Include this trait when you want an assistive app to avoid handling continual notifications and, instead, poll for changes when it needs updated information. For example, you might use this trait to characterize the readout of a stopwatch.
+    ///
+    ///
     pub static UIAccessibilityTraitUpdatesFrequently: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/startsmediasession?language=objc)
+    /// The accessibility element starts a media session when the user activates it.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to silence the audio output of an assistive app, such as VoiceOver, during a media session that you don’t want to interrupt. For example, you might use this trait to silence VoiceOver speech while the user is recording audio.
+    ///
+    ///
     pub static UIAccessibilityTraitStartsMediaSession: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/adjustable?language=objc)
+    /// The accessibility element allows continuous adjustment through a range of values.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that users can adjust in a continuous manner, such as a slider or a picker view. If you specify this trait on an accessibility element, you must also implement the [`accessibilityIncrement`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityincrement()) and [`accessibilityDecrement`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilitydecrement()) methods in the `UIAccessibilityAction` protocol.
+    ///
+    ///
     pub static UIAccessibilityTraitAdjustable: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/allowsdirectinteraction?language=objc)
+    /// The accessibility element allows direct touch interaction for VoiceOver users.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that represents an object that users interact with directly, such as a view that represents a piano keyboard.
+    ///
+    ///
     pub static UIAccessibilityTraitAllowsDirectInteraction: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/causespageturn?language=objc)
+    /// The accessibility element causes an automatic page turn when VoiceOver finishes reading the text within it.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that represents a page of content within a set of pages, such as a view that represents a page in a book. When VoiceOver finishes reading the content in the current page, it calls [`accessibilityScroll:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityscroll(_:)) with [`UIAccessibilityScrollDirectionNext`](https://developer.apple.com/documentation/uikit/uiaccessibilityscrolldirection/next) to scroll to the next content page. If VoiceOver detects that the new content doesn’t differ from the previous content, it stops scrolling.
+    ///
+    ///
     pub static UIAccessibilityTraitCausesPageTurn: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/tabbar?language=objc)
+    /// The accessibility element behaves like a tab bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that represents an ordered list of tabs.
+    ///
+    /// If an accessibility element has this trait, return [`false`](https://developer.apple.com/documentation/swift/false) for [`isAccessibilityElement`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/isaccessibilityelement).
+    ///
+    ///
     pub static UIAccessibilityTraitTabBar: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/togglebutton?language=objc)
+    /// The accessibility element behaves like a toggle button.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that represents a button that toggles a value on, off, or mixed status. VoiceOver will describe the options offered by the toggle button.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you want VoiceOver to describe the toggle as a switch button, combine the toggle trait with a button trait.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static UIAccessibilityTraitToggleButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/supportszoom?language=objc)
+    /// The accessibility element supports zooming in and out on its content.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this trait to characterize an accessibility element that supports zoom functionality, like letting a person perform expand and pinch gestures to zoom in and out. If you assign this trait to an element, you also need to implement [`accessibilityZoomInAtPoint:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityzoomin(at:)) and [`accessibilityZoomOutAtPoint:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityzoomout(at:)).
+    ///
+    /// For example, the following code shows how to assign this trait to a custom view that allows zooming in to an image:
+    ///
+    /// ```swift
+    /// class ViewController: UIViewController {
+    ///     let zoomView = ZoomingImageView(frame: .zero)
+    ///     let imageView = UIImageView(image: UIImage(named: "tree"))
+    ///
+    ///     override func viewDidLoad() {
+    ///         super.viewDidLoad()
+    ///
+    ///         zoomView.isAccessibilityElement = true
+    ///         zoomView.accessibilityLabel = "Zooming Image View"
+    ///         zoomView.accessibilityTraits = [.image, .supportsZoom]
+    ///
+    ///         zoomView.addSubview(imageView)
+    ///         view.addSubview(zoomView)
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// This custom view implements the required methods to modify the zoom scale and post an announcement about the new zoom scale.
+    ///
+    /// ```swift
+    /// class ZoomingImageView: UIScrollView {
+    ///     override func accessibilityZoomIn(at point: CGPoint) -> Bool {
+    ///         zoomScale += 1.0
+    ///
+    ///         let zoomQuantity = "\(Int(zoomScale)) x zoom"
+    ///         UIAccessibility.post(notification: .announcement, argument: zoomQuantity)
+    ///         return true
+    ///     }
+    ///
+    ///     override func accessibilityZoomOut(at point: CGPoint) -> Bool {
+    ///         zoomScale -= 1.0
+    ///
+    ///         let zoomQuantity = "\(Int(zoomScale)) x zoom"
+    ///         UIAccessibility.post(notification: .announcement, argument: zoomQuantity)
+    ///         return true
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related sessions from WWDC23
+    ///  Session 10036: [Build accessible apps with SwiftUI and UIKit](https://developer.apple.com/videos/play/wwdc2023/10036/)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static UIAccessibilityTraitSupportsZoom: UIAccessibilityTraits;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification?language=objc)
+/// An accessibility notification that an app can send.
 // NS_TYPED_ENUM
 pub type UIAccessibilityNotifications = u32;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/screenchanged?language=objc)
+    /// A notification that an app posts when a new view appears that occupies a major portion of the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// Post this notification using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function. Optionally, include a parameter that contains the accessibility element for VoiceOver to move to after processing the notification.
+    ///
+    ///
     pub static UIAccessibilityScreenChangedNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/layoutchanged?language=objc)
+    /// A notification that an app posts when the layout of a screen changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Post this notification using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function. Optionally, include a parameter that contains the accessibility element for VoiceOver to move to after processing the notification.
+    ///
+    ///
     pub static UIAccessibilityLayoutChangedNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/announcement?language=objc)
+    /// A notification that an app posts when it needs to convey an announcement to the assistive app.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification includes a parameter that is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains the announcement. An assistive app outputs the announcement string in the parameter.
+    ///
+    /// Use this notification to provide accessibility information about events that don’t update the app’s UI, or that update the UI only briefly.
+    ///
+    /// Post this notification using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function.
+    ///
+    ///
     pub static UIAccessibilityAnnouncementNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/pagescrolled?language=objc)
+    /// A notification that an app posts when a scroll action completes.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification includes a parameter that is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains a description of the new scroll position. An assistive app outputs the description string in the parameter.
+    ///
+    /// Use this notification to provide custom information about the contents of the screen after a user performs a VoiceOver scroll gesture. For example, a tab-based app might provide a string like `Tab 3 of 5`, or an app that displays information in pages might provide a string like `Page 19 of 27`.
+    ///
+    /// When an assistive app repeatedly receives the same scroll position string, it indicates to users that scrolling can’t continue due to a border or boundary.
+    ///
+    /// Post this notification after the [`accessibilityScroll:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/accessibilityscroll(_:)) method using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function.
+    ///
+    ///
     pub static UIAccessibilityPageScrolledNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/pauseassistivetechnology?language=objc)
+    /// A notification that pauses an assistive app’s operations temporarily.
+    ///
+    /// ## Discussion
+    ///
+    /// When posting the notification, specify the assistive app to pause as the parameter. For example, you might want to pause scanning in Switch Control while your app is playing an animation. You must balance this notification by posting a [`UIAccessibilityResumeAssistiveTechnologyNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/resumeassistivetechnology) notification to resume the assistive app’s operations. Post this notification using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function.
+    ///
+    ///
     pub static UIAccessibilityPauseAssistiveTechnologyNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/resumeassistivetechnology?language=objc)
+    /// A notification that resumes an assistive app’s operations temporarily.
+    ///
+    /// ## Discussion
+    ///
+    /// When posting the notification, specify the assistive app to resume as the parameter. You must post this notification to balance out the previous posting of a [`UIAccessibilityPauseAssistiveTechnologyNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/pauseassistivetechnology) notification. Post this notification using the [`UIAccessibilityPostNotification`](https://developer.apple.com/documentation/uikit/uiaccessibility/post(notification:argument:)) function.
+    ///
+    ///
     pub static UIAccessibilityResumeAssistiveTechnologyNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementdidfinishnotification?language=objc)
+    /// A notification that UIKit posts when the system finishes reading an announcement.
+    ///
+    /// ## Discussion
+    ///
+    /// The parameter is a dictionary with two keys, [`UIAccessibilityAnnouncementKeyStringValue`](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementstringvalueuserinfokey) and [`UIAccessibilityAnnouncementKeyWasSuccessful`](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementwassuccessfuluserinfokey). Observe this notification using the default notification center.
+    ///
+    ///
     pub static UIAccessibilityAnnouncementDidFinishNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementstringvalueuserinfokey?language=objc)
+    /// The text of the announcement.
     pub static UIAccessibilityAnnouncementKeyStringValue: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementwassuccessfuluserinfokey?language=objc)
+    /// A Boolean value that indicates whether the announcement is successful.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that the system interprets as a Boolean value.
+    ///
+    ///
     pub static UIAccessibilityAnnouncementKeyWasSuccessful: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/elementfocusednotification?language=objc)
+    /// A notification that UIKit posts when an assistive app focuses on an accessibility element.
+    ///
+    /// ## Discussion
+    ///
+    /// Retrieve the [`UIAccessibilityFocusedElementKey`](https://developer.apple.com/documentation/uikit/uiaccessibility/focusedelementuserinfokey) key from the [`userInfo`](https://developer.apple.com/documentation/foundation/nsnotification/userinfo) dictionary to get the identity of the focused accessibility element.
+    ///
+    ///
     pub static UIAccessibilityElementFocusedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/focusedelementuserinfokey?language=objc)
+    /// The element currently in focus by the assistive app.
     pub static UIAccessibilityFocusedElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/unfocusedelementuserinfokey?language=objc)
+    /// The element previously in focus by the assistive app.
     pub static UIAccessibilityUnfocusedElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyuserinfokey?language=objc)
+    /// The identifier of the assistive app.
     pub static UIAccessibilityAssistiveTechnologyKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier?language=objc)
+/// Identifiers for assistive apps.
+///
+/// ## Overview
+///
+/// Manage pausing and resuming assistive apps with these identifiers.
+///
+///
 // NS_TYPED_ENUM
 pub type UIAccessibilityAssistiveTechnologyIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier/notificationswitchcontrol?language=objc)
+    /// The Switch Control accessibility feature.
+    ///
+    /// ## Discussion
+    ///
+    /// This accessibility feature allows users with mobility impairments to access an app using a single physical button. When the user enables Switch Control, iOS cycles a cursor around the screen from element to element. Users press their switch to operate on the accessibility element beneath the cursor.
+    ///
+    ///
     pub static UIAccessibilityNotificationSwitchControlIdentifier:
         &'static UIAccessibilityAssistiveTechnologyIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier/notificationvoiceover?language=objc)
+    /// The VoiceOver assistive app.
     pub static UIAccessibilityNotificationVoiceOverIdentifier:
         &'static UIAccessibilityAssistiveTechnologyIdentifier;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle?language=objc)
+/// Constants that describe how to navigate an object’s elements with an assistive app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityNavigationStyle(pub NSInteger);
 impl UIAccessibilityNavigationStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/automatic?language=objc)
+    /// The assistive technology automatically determines how the receiver’s elements should be navigated.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value.
+    ///
+    ///
     #[doc(alias = "UIAccessibilityNavigationStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/separate?language=objc)
+    /// The receiver’s elements should be navigated as separate elements.
     #[doc(alias = "UIAccessibilityNavigationStyleSeparate")]
     pub const Separate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle/combined?language=objc)
+    /// The receiver’s elements should be combined and navigated as a single item.
     #[doc(alias = "UIAccessibilityNavigationStyleCombined")]
     pub const Combined: Self = Self(2);
 }
@@ -220,25 +434,37 @@ unsafe impl RefEncode for UIAccessibilityNavigationStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype?language=objc)
+/// Constants that indicate the type of content in a data-based container.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContainerType(pub NSInteger);
 impl UIAccessibilityContainerType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/none?language=objc)
+    /// No additional data.
     #[doc(alias = "UIAccessibilityContainerTypeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/datatable?language=objc)
+    /// A table that contains structured data.
+    ///
+    /// ## Discussion
+    ///
+    /// To use this container type, you must also implement the [`UIAccessibilityContainerDataTable`](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainerdatatable) protocol.
+    ///
+    ///
     #[doc(alias = "UIAccessibilityContainerTypeDataTable")]
     pub const DataTable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/list?language=objc)
+    /// A list of data.
     #[doc(alias = "UIAccessibilityContainerTypeList")]
     pub const List: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/landmark?language=objc)
+    /// Landmark data.
     #[doc(alias = "UIAccessibilityContainerTypeLandmark")]
     pub const Landmark: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype/semanticgroup?language=objc)
+    /// A semantic group of data.
+    ///
+    /// ## Discussion
+    ///
+    /// Assistive technologies might query the accessibility properties set on the container, such as the `accessibilityLabel`, in order to output appropriate information about the semantic group to the user.
+    ///
+    ///
     #[doc(alias = "UIAccessibilityContainerTypeSemanticGroup")]
     pub const SemanticGroup: Self = Self(4);
 }
@@ -251,20 +477,48 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions?language=objc)
+/// Constants that configure how VoiceOver produces audio for direct touch areas.
+///
+/// ## Overview
+///
+/// _Direct touch areas_ are regions of the screen where VoiceOver passes gestures directly to the app instead of interpreting them as VoiceOver commands.
+///
+/// Examples of direct touch areas include:
+///
+/// - A keyboard in a music-creation app
+///
+/// - A player view in a game that produces sounds
+///
+/// - An area where you sign your name in a document
+///
+/// If an element doesn’t use `UIAccessibility.DirectTouchOptions`, VoiceOver speaks the element and immediately starts sending touch events to the app.
+///
+/// Specify `DirectTouchOptions` to customize VoiceOver regions using these two constants:
+///
+/// - Use [`silentOnTouch`](https://developer.apple.com/documentation/swiftui/accessibilitydirecttouchoptions/silentontouch) to ensure VoiceOver is silent when a person touches the direct touch area. In this region, the app produces its own audio feedback without conflicting with VoiceOver audio.
+///
+/// - Use [`requiresActivation`](https://developer.apple.com/documentation/swiftui/accessibilitydirecttouchoptions/requiresactivation) to ensure a person interacts with the user interface element before a touch passes through to the element. This is useful for scenarios where an errant touch may produce undesired input, such as a signature field.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityDirectTouchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityDirectTouchOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydirecttouchoptions/uiaccessibilitydirecttouchoptionnone?language=objc)
+/// Allows a direct touch area to receive touch events with VoiceOver speaking normally.
         #[doc(alias = "UIAccessibilityDirectTouchOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions/silentontouch?language=objc)
+/// Allows a direct touch area to immediately receive touch events without triggering VoiceOver audio.
+///
+/// ## Discussion
+///
+/// You may want a user interface element that, when a person interacts with it, provides audio feedback that would conflict with VoiceOver. In a music creation app, for example, you can designate the keyboard as “silent on touch,” so that VoiceOver doesn’t compete with the keyboard sounds.
+///
+///
         #[doc(alias = "UIAccessibilityDirectTouchOptionSilentOnTouch")]
         const SilentOnTouch = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions/requiresactivation?language=objc)
+/// Inhibits passthrough to the direct touch area until a person double-taps the element.
         #[doc(alias = "UIAccessibilityDirectTouchOptionRequiresActivation")]
         const RequiresActivation = 1<<1;
     }
@@ -278,77 +532,84 @@ unsafe impl RefEncode for UIAccessibilityDirectTouchOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext?language=objc)
+/// Constants that describe a named context that helps identify and classify the type of text inside an element.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIAccessibilityTextualContext = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/wordprocessing?language=objc)
+    /// A constant that indicates the text appears in a word-processing context.
     pub static UIAccessibilityTextualContextWordProcessing: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/narrative?language=objc)
+    /// A constant that indicates the text appears in a narrative speech context.
     pub static UIAccessibilityTextualContextNarrative: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/messaging?language=objc)
+    /// A constant that indicates the text appears in a messaging context.
     pub static UIAccessibilityTextualContextMessaging: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/spreadsheet?language=objc)
+    /// A constant that indicates the text appears in a spreadsheet context.
     pub static UIAccessibilityTextualContextSpreadsheet: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/filesystem?language=objc)
+    /// A constant that indicates the text appears in a file-system context.
     pub static UIAccessibilityTextualContextFileSystem: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/sourcecode?language=objc)
+    /// A constant that indicates the text appears in a source-code context.
     pub static UIAccessibilityTextualContextSourceCode: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/console?language=objc)
+    /// A constant that indicates the text appears in a console context.
     pub static UIAccessibilityTextualContextConsole: &'static UIAccessibilityTextualContext;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority?language=objc)
+/// Constants that specify priorities for accessibility announcements.
+///
+/// ## Overview
+///
+/// Use these constants either with the [`accessibilitySpeechAnnouncementPriority`](https://developer.apple.com/documentation/foundation/attributescopes/accessibilityattributes/accessibilityspeechannouncementpriority) property of [`AttributedString`](https://developer.apple.com/documentation/foundation/attributedstring), or with the [`UIAccessibilitySpeechAttributeAnnouncementPriority`](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributeannouncementpriority) attributed key. For example, the following code shows how to create an announcement with a [`UIAccessibilityPriorityHigh`](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/high) announcement priority:
+///
+/// ```swift
+/// let highPriorityAnnouncement = NSAttributedString(string: "Camera active", attributes:
+/// [NSAttributedString.Key.accessibilitySpeechAnnouncementPriority: UIAccessibilityPriority.high])
+/// ```
+///
+///
 // NS_TYPED_ENUM
 pub type UIAccessibilityPriority = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/high?language=objc)
+    /// A high-priority announcement that interrupts other speech and isn’t interruptible after it starts.
     pub static UIAccessibilityPriorityHigh: &'static UIAccessibilityPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/default?language=objc)
+    /// A default-priority announcement that interrupts existing speech, but is interruptible if a new speech utterance starts.
     pub static UIAccessibilityPriorityDefault: &'static UIAccessibilityPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/low?language=objc)
+    /// A low-priority announcement that the system queues and speaks after other speech utterances are complete.
     pub static UIAccessibilityPriorityLow: &'static UIAccessibilityPriority;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityExpandedStatus(pub NSInteger);
 impl UIAccessibilityExpandedStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/unsupported?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusUnsupported")]
     pub const Unsupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/expanded?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusExpanded")]
     pub const Expanded: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus/collapsed?language=objc)
     #[doc(alias = "UIAccessibilityExpandedStatusCollapsed")]
     pub const Collapsed: Self = Self(2);
 }
@@ -362,52 +623,91 @@ unsafe impl RefEncode for UIAccessibilityExpandedStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributepunctuation?language=objc)
+    /// A key that indicates whether to speak punctuation.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that the system interprets as a Boolean value. When the value is `YES`, the assistive app speaks all punctuation in the text. You might use this for code or other text where the punctuation is relevant.
+    ///
+    ///
     pub static UIAccessibilitySpeechAttributePunctuation: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributelanguage?language=objc)
+    /// A key that indicates the language to use when speaking a string.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains a BCP 47 language code. When applying it to text in a string, the rules for the specified language govern how to pronounce that string.
+    ///
+    ///
     pub static UIAccessibilitySpeechAttributeLanguage: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributepitch?language=objc)
+    /// A key that indicates the pitch to apply to spoken content.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a floating-point value in the range of `0.0` to `2.0`. The value indicates whether to speak the text with a higher or lower pitch than the default. The default value for this attribute is `1.0`, which indicates a normal pitch. Values between `0.0` and `1.0` result in a lower pitch, and values between `1.0` and `2.0` result in a higher pitch.
+    ///
+    ///
     pub static UIAccessibilitySpeechAttributePitch: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributequeueannouncement?language=objc)
+    /// A key that indicates whether to queue an announcement behind existing speech or to interrupt it.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that the system interprets as a Boolean value. When the value is `YES`, the system queues the announcement behind existing speech. When the value is `NO`, the announcement interrupts the existing speech. The default behavior is to interrupt existing speech.
+    ///
+    ///
     #[deprecated]
     pub static UIAccessibilitySpeechAttributeQueueAnnouncement: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributeannouncementpriority?language=objc)
     pub static UIAccessibilitySpeechAttributeAnnouncementPriority: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributeipanotation?language=objc)
+    /// A key that indicates the pronunciation of a specific word or phrase, such as a proper name.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that contains International Phonetic Alphabet (IPA) symbols.
+    ///
+    ///
     pub static UIAccessibilitySpeechAttributeIPANotation: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeechattributespellout?language=objc)
     pub static UIAccessibilitySpeechAttributeSpellOut: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextattributeheadinglevel?language=objc)
+    /// A key for specifying the heading level of the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with a value that is a number in the range of `0` to `6`. Use `0` to indicate the absence of a specific heading level, and use other numbers to indicate the heading level.
+    ///
+    ///
     pub static UIAccessibilityTextAttributeHeadingLevel: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextattributecustom?language=objc)
+    /// A key for specifying custom attributes to apply to the text.
+    ///
+    /// ## Overview
+    ///
+    /// The value of this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of localized [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects, each of which describes a custom annotation style.
+    ///
+    ///
     pub static UIAccessibilityTextAttributeCustom: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextattributecontext?language=objc)
     pub static UIAccessibilityTextAttributeContext: &'static NSAttributedStringKey;
 }

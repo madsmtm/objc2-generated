@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum?language=objc)
+/// Orientations for page-turn transitions.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationOrientation(pub NSInteger);
 impl UIPageViewControllerNavigationOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum/horizontal?language=objc)
+    /// Horizontal orientation, with pages turning left and right.
     #[doc(alias = "UIPageViewControllerNavigationOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum/vertical?language=objc)
+    /// Vertical orientation, with pages turning up and down.
     #[doc(alias = "UIPageViewControllerNavigationOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }
@@ -29,22 +29,52 @@ unsafe impl RefEncode for UIPageViewControllerNavigationOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum?language=objc)
+/// Locations for the spine.
+///
+/// ## Overview
+///
+/// To set the spine location, wrap one of these constants in an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object and set it as the value for the [`UIPageViewControllerOptionSpineLocationKey`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey/spinelocation) key in the options dictionary passed to the [`initWithTransitionStyle:navigationOrientation:options:`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/init(transitionstyle:navigationorientation:options:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerSpineLocation(pub NSInteger);
 impl UIPageViewControllerSpineLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/none?language=objc)
+    /// No spine.
+    ///
+    /// ## Discussion
+    ///
+    /// This spine location is not valid if the transition style is [`UIPageViewControllerTransitionStylePageCurl`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/pagecurl).
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerSpineLocationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/min?language=objc)
+    /// Spine at the left or top edge of the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// One view controller is displayed at a time.
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerSpineLocationMin")]
     pub const Min: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/mid?language=objc)
+    /// Spine in the middle or the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// Two view controllers are displayed at a time.
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerSpineLocationMid")]
     pub const Mid: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/max?language=objc)
+    /// Spine at the right or bottom edge of the screen.
+    ///
+    /// ## Discussion
+    ///
+    /// One view controller is displayed at a time.
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerSpineLocationMax")]
     pub const Max: Self = Self(3);
 }
@@ -57,16 +87,24 @@ unsafe impl RefEncode for UIPageViewControllerSpineLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection?language=objc)
+/// Directions for page-turn transitions.
+///
+/// ## Overview
+///
+/// For horizontal navigation, pages turn from the right side of the screen to the left as you navigate forward.
+///
+/// For vertical navigation, pages turn from the bottom of the screen to the top as you navigate forward.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationDirection(pub NSInteger);
 impl UIPageViewControllerNavigationDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection/forward?language=objc)
+    /// Navigation to the next page.
     #[doc(alias = "UIPageViewControllerNavigationDirectionForward")]
     pub const Forward: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection/reverse?language=objc)
+    /// Navigation to the previous page.
     #[doc(alias = "UIPageViewControllerNavigationDirectionReverse")]
     pub const Reverse: Self = Self(1);
 }
@@ -79,16 +117,28 @@ unsafe impl RefEncode for UIPageViewControllerNavigationDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum?language=objc)
+/// Styles for the page-turn transition.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerTransitionStyle(pub NSInteger);
 impl UIPageViewControllerTransitionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/pagecurl?language=objc)
+    /// Page curl transition style.
+    ///
+    /// ## Discussion
+    ///
+    /// When the page curl transition style is specified, the page view controller displays a page-turning animation when transitioning between view controllers. If a data source is specified, the animation follows the user’s finger during a navigation gesture.
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerTransitionStylePageCurl")]
     pub const PageCurl: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/scroll?language=objc)
+    /// Scrolling transition style.
+    ///
+    /// ## Discussion
+    ///
+    /// When the page scrolling style is specified, the page view controller displays a page-scrolling animation when transitioning between view controllers. If a data source is specified, the animation follows the user’s finger during a navigation gesture.
+    ///
+    ///
     #[doc(alias = "UIPageViewControllerTransitionStyleScroll")]
     pub const Scroll: Self = Self(1);
 }
@@ -101,23 +151,57 @@ unsafe impl RefEncode for UIPageViewControllerTransitionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey?language=objc)
+/// Keys for creating the page view controller.
 // NS_TYPED_ENUM
 pub type UIPageViewControllerOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey/spinelocation?language=objc)
+    /// Location of the spine.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see [`UIPageViewControllerSpineLocation`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum). A spine location is only valid if the transition style is [`UIPageViewControllerTransitionStylePageCurl`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/pagecurl).
+    ///
+    /// If the transition style is [`UIPageViewControllerTransitionStylePageCurl`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/pagecurl), the default value for this property is [`UIPageViewControllerSpineLocationMin`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/min); otherwise, the default is [`UIPageViewControllerSpineLocationNone`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum/none).
+    ///
+    ///
     pub static UIPageViewControllerOptionSpineLocationKey: &'static UIPageViewControllerOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey/interpagespacing?language=objc)
+    /// Space between pages, in points.
+    ///
+    /// ## Discussion
+    ///
+    /// The value should be a [`CGFloat`](https://developer.apple.com/documentation/corefoundation/cgfloat-swift.struct) wrapped in an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). The default value is zero. An inter-page spacing is only valid if the transition style is [`UIPageViewControllerTransitionStyleScroll`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/scroll).
+    ///
+    ///
     pub static UIPageViewControllerOptionInterPageSpacingKey:
         &'static UIPageViewControllerOptionsKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller?language=objc)
+    /// A container view controller that manages navigation between pages of content, where a subview controller manages each page.
+    ///
+    /// ## Overview
+    ///
+    /// Page view controller–navigation can be controlled programmatically by your app or directly by the user using gestures. When navigating from page to page, the page view controller uses the transition that you specify to animate the change.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In tvOS, the [`UIPageViewController`](https://developer.apple.com/documentation/uikit/uipageviewcontroller) class provides only a way to swipe between full-screen content pages. Unlike in iOS, a user cannot interact with or move focus between items on each page.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When defining a page view controller interface, you can provide the content view controllers one at a time (or two at a time, depending upon the spine position and double-sided state) or as-needed using a data source. When providing content view controllers one at a time, you use the [`setViewControllers:direction:animated:completion:`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/setviewcontrollers(_:direction:animated:completion:)) method to set the current content view controllers. To support gesture-based navigation, you must provide your view controllers using a data source object.
+    ///
+    /// The data source for a page view controller is responsible for providing the content view controllers on demand and must conform to the [`UIPageViewControllerDataSource`](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdatasource) protocol. The delegate object—an object that conforms to the [`UIPageViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdelegate) protocol—provides some appearance-related information and receives notifications about gesture-initiated transitions.
+    ///
+    /// This class is generally used as-is, but can also be subclassed.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -301,7 +385,7 @@ impl UIPageViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdelegate?language=objc)
+    /// The delegate of a page view controller must adopt the [`UIPageViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdelegate) protocol. These methods allow the delegate to receive a notification when the device orientation changes and when the user navigates to a new page. For page-curl style transitions, the delegate can provide a different spine location in response to a change in the interface orientation.
     pub unsafe trait UIPageViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -370,7 +454,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdatasource?language=objc)
+    /// The [`UIPageViewControllerDataSource`](https://developer.apple.com/documentation/uikit/uipageviewcontrollerdatasource) protocol is adopted by an object that provides view controllers to the page view controller on an as-needed basis, in response to navigation gestures.
+    ///
+    /// ## Overview
+    ///
+    /// The data source implementation is free to handle this responsibility in any way that is appropriate for your application. In many cases, it should look at the view controller passed to it, determine what content to display, and create the view controllers as they are needed. You may find it helpful to include information such as the page number in the view controller, to simplify the task of determining what content to display.
+    ///
+    /// If both of the methods in Supporting a Page Indicator are implemented and the page view controller’s transition style is [`UIPageViewControllerTransitionStyleScroll`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum/scroll), a page indicator is visible. Both of these methods are called after the [`setViewControllers:direction:animated:completion:`](https://developer.apple.com/documentation/uikit/uipageviewcontroller/setviewcontrollers(_:direction:animated:completion:)) method is called. After gesture-driven navigation, these methods are not called. The index is updated automatically and the number of view controllers is expected to remain constant.
+    ///
+    ///
     pub unsafe trait UIPageViewControllerDataSource:
         NSObjectProtocol + MainThreadOnly
     {

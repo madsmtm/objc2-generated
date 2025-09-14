@@ -10,7 +10,19 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagecomposebarbutton?language=objc)
+    /// A button that activates Siri and initiates the compose message flow.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This button type does not use a handler. Instead, tapping this button activates Siri and initiates the compose message flow.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CPBarButton, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPBarButton")]

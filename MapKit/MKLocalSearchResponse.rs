@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch/response?language=objc)
+    /// The results from a map-based search.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. After initiating a map search using an [`MKLocalSearch`](https://developer.apple.com/documentation/mapkit/mklocalsearch) object, MapKit passes an instance of this class to your completion handler.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLocalSearchResponse;

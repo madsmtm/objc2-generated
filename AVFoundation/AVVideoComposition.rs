@@ -16,31 +16,49 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
+/// A type that defines the policy for handling of per frame HDR metadata.
+///
+/// ## Discussion
+///
+/// Use this type to specify what HDR display metadata to attach to the rendered frame.
+///
+///
 /// Configures policy for per frame HDR display metadata
 ///
 /// Determines what HDR display metadata should be attached to the rendered frame.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVVideoCompositionPerFrameHDRDisplayMetadataPolicy = NSString;
 
 extern "C" {
+    /// A policy that passes HDR metadata through, if present on the composed frame.
     /// Default. Pass the HDR metadata through, if present on the composed frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct/propagate?language=objc)
     pub static AVVideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate:
         &'static AVVideoCompositionPerFrameHDRDisplayMetadataPolicy;
 }
 
 extern "C" {
-    /// AVVideoComposition may generate HDR metadata and attach it to the rendered frame. HDR metadata generation is influenced by the color space of the rendered frame, device, and HDR metadata format platform support. Any previously attached HDR metadata of the same metadata format will be overwritten.
+    /// A video composition may generate HDR metadata and attach it to the rendered frame.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct/generate?language=objc)
+    /// ## Discussion
+    ///
+    /// HDR metadata generation is influenced by the color space of the rendered frame, device, and HDR metadata format platform support. Any previously attached HDR metadata of the same metadata format is overwritten.
+    ///
+    ///
+    /// AVVideoComposition may generate HDR metadata and attach it to the rendered frame. HDR metadata generation is influenced by the color space of the rendered frame, device, and HDR metadata format platform support. Any previously attached HDR metadata of the same metadata format will be overwritten.
     pub static AVVideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate:
         &'static AVVideoCompositionPerFrameHDRDisplayMetadataPolicy;
 }
 
 extern_class!(
+    /// An object that describes how to compose video frames at particular points in time.
+    ///
+    /// ## Overview
+    ///
+    /// If you use the built-in video compositor, the instructions a video composition contain can specify a spatial transformation, an opacity value, and a cropping rectangle for each video source. This values can vary over time by applying linear ramping functions.
+    ///
+    /// You can create a custom video compositor by implementing the [`AVVideoCompositing`](https://developer.apple.com/documentation/avfoundation/avvideocompositing) protocol. The system provides the custom video compositor with pixel buffers for each of its video sources during playback, and can perform arbitrary graphical operations on them to produce visual output.
+    ///
+    ///
     /// An AVVideoComposition object represents an immutable video composition.
     ///
     /// A video composition describes, for any time in the aggregate time range of its instructions, the number and IDs of video tracks that are to be used in order to produce a composed video frame corresponding to that time. When AVFoundation's built-in video compositor is used, the instructions an AVVideoComposition contain can specify a spatial transformation, an opacity value, and a cropping rectangle for each video source, and these can vary over time via simple linear ramping functions.
@@ -48,8 +66,6 @@ extern_class!(
     /// A client can implement their own custom video compositor by implementing the AVVideoCompositing protocol; a custom video compositor is provided with pixel buffers for each of its video sources during playback and other operations and can perform arbitrary graphical operations on them in order to produce visual output.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoComposition;
@@ -389,7 +405,15 @@ impl AVVideoComposition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablevideocomposition?language=objc)
+    /// A mutable video composition subclass.
+    ///
+    /// ## Overview
+    ///
+    /// If you use the built-in video compositor, the instructions a video composition contain can specify a spatial transformation, an opacity value, and a cropping rectangle for each video source. This values can vary over time by applying linear ramping functions.
+    ///
+    /// You can create a custom video compositor by implementing the [`AVVideoCompositing`](https://developer.apple.com/documentation/avfoundation/avvideocompositing) protocol. The system provides the custom video compositor with pixel buffers for each of its video sources during playback, and can perform arbitrary graphical operations on them to produce visual output.
+    ///
+    ///
     #[unsafe(super(AVVideoComposition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableVideoComposition;
@@ -890,11 +914,16 @@ impl AVMutableVideoComposition {
 }
 
 extern_class!(
+    /// An operation that a compositor performs.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition) object maintains an array of [`instructions`](https://developer.apple.com/documentation/avfoundation/avvideocomposition/instructions) to perform its composition.
+    ///
+    ///
     /// An AVVideoCompositionInstruction object represents an operation to be performed by a compositor.
     ///
     /// An AVVideoComposition object maintains an array of instructions to perform its composition. This class is not intended to be subclassed; instead, conform to AVVideoCompositionInstructionProtocol ("AVVideoCompositionInstruction" in Objective-C). Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstruction-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionInstruction;
@@ -1052,7 +1081,13 @@ impl AVVideoCompositionInstruction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositioninstruction?language=objc)
+    /// A mutable video composition instruction subclass.
+    ///
+    /// ## Overview
+    ///
+    /// An [`AVVideoComposition`](https://developer.apple.com/documentation/avfoundation/avvideocomposition) object maintains an array of [`instructions`](https://developer.apple.com/documentation/avfoundation/avvideocomposition/instructions) to perform its composition.
+    ///
+    ///
     #[unsafe(super(AVVideoCompositionInstruction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableVideoCompositionInstruction;
@@ -1243,9 +1278,8 @@ impl AVMutableVideoCompositionInstruction {
 }
 
 extern_class!(
+    /// An object used to modify the transform, cropping, and opacity ramps applied to a given track in a composition.
     /// An AVVideoCompositionLayerInstruction object represents the transform, opacity, and cropping ramps to apply to a given track. Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionlayerinstruction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionLayerInstruction;
@@ -1395,7 +1429,7 @@ impl AVVideoCompositionLayerInstruction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablevideocompositionlayerinstruction?language=objc)
+    /// An object used to modify the transform, cropping, and opacity ramps applied to a given track in a mutable composition.
     #[unsafe(super(AVVideoCompositionLayerInstruction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableVideoCompositionLayerInstruction;
@@ -1609,6 +1643,19 @@ impl AVMutableVideoCompositionLayerInstruction {
 }
 
 extern_class!(
+    /// An object used to incorporate Core Animation into a video composition.
+    ///
+    /// ## Overview
+    ///
+    /// Any animations will be interpreted on the video’s timeline, not real-time, so you should:
+    ///
+    /// 1. Set animations’ [`beginTime`](https://developer.apple.com/documentation/quartzcore/camediatiming/begintime) property to [`AVCoreAnimationBeginTimeAtZero`](https://developer.apple.com/documentation/avfoundation/avcoreanimationbegintimeatzero) rather than `0` (which CoreAnimation replaces with [`CACurrentMediaTime`](https://developer.apple.com/documentation/quartzcore/cacurrentmediatime()));
+    ///
+    /// 2. Set [`removedOnCompletion`](https://developer.apple.com/documentation/quartzcore/caanimation/isremovedoncompletion) to [`false`](https://developer.apple.com/documentation/swift/false) on animations so they are not automatically removed;
+    ///
+    /// 3. Avoid using layers that are associated with [`UIView`](https://developer.apple.com/documentation/uikit/uiview) objects.
+    ///
+    ///
     /// A tool for using Core Animation in a video composition.
     ///
     /// Instances of AVVideoCompositionCoreAnimationTool are for use with offline rendering (AVAssetExportSession and AVAssetReader), not with AVPlayer.
@@ -1621,8 +1668,6 @@ extern_class!(
     /// (c) do not use layers associated with UIViews.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioncoreanimationtool?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionCoreAnimationTool;
@@ -1809,7 +1854,13 @@ impl AVVideoComposition {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionvalidationhandling?language=objc)
+    /// Methods you can implement to indicate whether validation of a video composition should continue after specific errors are found.
+    ///
+    /// ## Overview
+    ///
+    /// You might chose to stop validation after particular errors have been found so as to avoid unnecessary subsequent processing following an eror from which there is no suitable recovery.
+    ///
+    ///
     pub unsafe trait AVVideoCompositionValidationHandling: NSObjectProtocol {
         /// Invoked by an instance of AVVideoComposition when validating an instance of AVVideoComposition, to report a key that has an invalid value.
         ///

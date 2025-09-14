@@ -11,18 +11,31 @@ use objc2_io_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinteresthandler?language=objc)
+/// The callback that handles underlying service-state changes.
+///
+/// Parameters:
+/// - hostObject: The [`IOUSBHostObject`](https://developer.apple.com/documentation/iousbhost/iousbhostobject) of the interest notification.
+///
+/// - messageType: A `messageType` enumeration that `IOKit/IOMessage.h` or the [`IOService`](https://developer.apple.com/documentation/kernel/ioservice) family defines.
+///
+/// - messageArgument: An argument for the message, dependent on the message type. If the message data is larger than `sizeof(void*)`, `messageArgument` contains a pointer to the message data; otherwise, `messageArgument` contains the message data.
+///
+///
+/// ## Discussion
+///
+/// This is the block for the `kIOGeneralInterest` handler, and handles underlying service-state changes, such as termination. See [`IOServiceInterestCallback`](https://developer.apple.com/documentation/iokit/ioserviceinterestcallback) in [`IOKit`](https://developer.apple.com/documentation/iokit) for more details. An internal serial queue separate from the input/output queue services all notifications.
+///
+///
 #[cfg(feature = "block2")]
 pub type IOUSBHostInterestHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<IOUSBHostObject>, u32, *mut c_void)>;
 
 extern_class!(
+    /// This class provides basic functionality for sending device requests and retrieving descriptors.
     /// The Abstract class IOUSBHostDevice and IOUSBHostInterface derive from.
     ///
     /// Defines common methods that are shared between IOUSBHostDevice and IOUSBHostInterface including instance
     /// management.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IOUSBHostObject;

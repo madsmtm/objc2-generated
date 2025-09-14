@@ -9,6 +9,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Prototype of a callback function used to retain a value being added to an array.
+///
+/// Parameters:
+/// - allocator: The array’s allocator.
+///
+/// - value: The value being added to an array.
+///
+///
+/// ## Return Value
+///
+/// The value to store in an array, which is usually the `value` parameter passed to this callback, but may be a different   value if a different value should be stored in an array.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFArrayCreate`](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)) in a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure.
+///
+///
 /// Structure containing the callbacks of a CFArray.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFArray creation functions. This
@@ -28,24 +47,68 @@ use crate::*;
 /// used by the CFCopyDescription() function.
 /// Field: equal The callback used to compare values in the array for
 /// equality for some operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayretaincallback?language=objc)
 pub type CFArrayRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreleasecallback?language=objc)
+/// Prototype of a callback function used to release a value before it’s removed from an array.
+///
+/// Parameters:
+/// - allocator: The array’s allocator.
+///
+/// - value: The value being removed from an array.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFArrayCreate`](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)) in a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure.
+///
+///
 pub type CFArrayReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycopydescriptioncallback?language=objc)
+/// Prototype of a callback function used to get a description of a value in an array.
+///
+/// Parameters:
+/// - value: The value to be described.
+///
+///
+/// ## Return Value
+///
+/// A textual description of `value`. The caller is responsible for releasing this object.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFArrayCreate`](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)) in a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure. This callback is used by the [`CFCopyDescription`](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)) function.
+///
+///
 pub type CFArrayCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayequalcallback?language=objc)
+/// Prototype of a callback function used to determine if two values in an array are equal.
+///
+/// Parameters:
+/// - value1: A value in an array to be compared with `value2` for equality.
+///
+/// - value2: A value in an array to be compared with `value1` for equality.
+///
+///
+/// ## Return Value
+///
+/// `true` if `value1` and `value2` are equal, `false` otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFArrayCreate`](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)) in a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure.
+///
+///
 pub type CFArrayEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks?language=objc)
+/// Structure containing the callbacks of a CFArray.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -77,13 +140,30 @@ unsafe impl RefEncode for CFArrayCallBacks {
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure containing a set of callbacks appropriate for use when the values in a CFArray are all CFType-derived objects. The retain callback is `CFRetain`, the release callback is `CFRelease`, the copy callback is `CFCopyDescription`, and the equal callback is `CFEqual`. Therefore, if you use this constant when creating the collection, items are automatically retained when added to the collection, and released when removed from the collection.
+    ///
+    ///
     /// Predefined CFArrayCallBacks structure containing a set of callbacks
     /// appropriate for use when the values in a CFArray are all CFTypes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypearraycallbacks?language=objc)
     pub static kCFTypeArrayCallBacks: CFArrayCallBacks;
 }
 
+/// Prototype of a callback function that may be applied to every value in an array.
+///
+/// Parameters:
+/// - value: The current value in an array.
+///
+/// - context: The program-defined context parameter given to the applier   function.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to the [`CFArrayApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfarrayapplyfunction(_:_:_:_:)) function, which iterates over the values in an array and applies the behavior defined in the applier function to each value in an array.
+///
+///
 /// Type of the callback function used by the apply functions of
 /// CFArrays.
 ///
@@ -91,15 +171,25 @@ extern "C" {
 ///
 /// Parameter `context`: The user-defined context parameter given to the apply
 /// function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayapplierfunction?language=objc)
 pub type CFArrayApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
+///
+/// ## Overview
+///
+/// CFArray and its derived mutable type, [`CFMutableArrayRef`](https://developer.apple.com/documentation/corefoundation/cfmutablearray), manage ordered collections of values called arrays. CFArray creates static arrays and CFMutableArray creates dynamic arrays.
+///
+/// You create a static array object using either the [`CFArrayCreate`](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)) or [`CFArrayCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfarraycreatecopy(_:_:)) function. These functions return an array containing the values you pass in as arguments. (Note that arrays can’t contain `NULL` pointers; in most cases, though, you can use the [`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull) constant instead.) Values are not copied but retained using the retain callback provided when an array was created. Similarly, when a value is removed from an array, it is released using the release callback.
+///
+/// CFArray’s two primitive functions [`CFArrayGetCount`](https://developer.apple.com/documentation/corefoundation/cfarraygetcount(_:)) and [`CFArrayGetValueAtIndex`](https://developer.apple.com/documentation/corefoundation/cfarraygetvalueatindex(_:_:)) provide the basis for all other functions in its interface. The [`CFArrayGetCount`](https://developer.apple.com/documentation/corefoundation/cfarraygetcount(_:)) function returns the number of elements in an array; [`CFArrayGetValueAtIndex`](https://developer.apple.com/documentation/corefoundation/cfarraygetvalueatindex(_:_:)) gives you access to an array’s elements by index, with index values starting at 0.
+///
+/// A number of CFArray functions allow you to operate over a range of values in an array, for example [`CFArrayApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfarrayapplyfunction(_:_:_:_:)) lets you apply a function to values in an array, and [`CFArrayBSearchValues`](https://developer.apple.com/documentation/corefoundation/cfarraybsearchvalues(_:_:_:_:_:)) searches an array for the value that matches its parameter. Recall that a range is defined as `{start, length}`, therefore to operate over the entire array the range you supply should be `{0, N}` (where `N` is the count of the array).
+///
+/// CFArray is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSArray *` parameter, you can pass in a `CFArrayRef`, and in a function where you see a `CFArrayRef` parameter, you can pass in an NSArray instance. This also applies to concrete subclasses of NSArray. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to immutable CFArrays.
 ///
 /// This is toll-free bridged with `NSArray`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarray?language=objc)
 #[doc(alias = "CFArrayRef")]
 #[repr(C)]
 pub struct CFArray<T: ?Sized = Opaque> {
@@ -134,11 +224,21 @@ impl<T: ?Sized> CFArray<T> {
     }
 }
 
+///
+/// ## Overview
+///
+/// CFMutableArray manages dynamic arrays. The basic interface for managing arrays is provided by [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). CFMutableArray adds functions to modify the contents of an array.
+///
+/// You create a mutable array object using either the [`CFArrayCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutable(_:_:_:)) or [`CFArrayCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutablecopy(_:_:_:)) function.
+///
+/// CFMutableArray provides several functions for changing the contents of an array, for example the [`CFArrayAppendValue`](https://developer.apple.com/documentation/corefoundation/cfarrayappendvalue(_:_:)) and [`CFArrayInsertValueAtIndex`](https://developer.apple.com/documentation/corefoundation/cfarrayinsertvalueatindex(_:_:_:)) functions add values to an array and [`CFArrayRemoveValueAtIndex`](https://developer.apple.com/documentation/corefoundation/cfarrayremovevalueatindex(_:_:)) removes values from an array. You can also reorder the contents of an array using [`CFArrayExchangeValuesAtIndices`](https://developer.apple.com/documentation/corefoundation/cfarrayexchangevaluesatindices(_:_:_:)) and [`CFArraySortValues`](https://developer.apple.com/documentation/corefoundation/cfarraysortvalues(_:_:_:_:)).
+///
+/// CFMutableArray is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableArray`](https://developer.apple.com/documentation/foundation/nsmutablearray). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSMutableArray *` parameter, you can pass in a `CFMutableArrayRef`, and in a function where you see a `CFMutableArrayRef` parameter, you can pass in an NSMutableArray instance. This fact also applies to concrete subclasses of NSMutableArray. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to mutable CFArrays.
 ///
 /// This is toll-free bridged with `NSMutableArray`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutablearray?language=objc)
 #[doc(alias = "CFMutableArrayRef")]
 #[repr(C)]
 pub struct CFMutableArray<T: ?Sized = Opaque> {
@@ -174,9 +274,20 @@ impl<T: ?Sized> CFMutableArray<T> {
 }
 
 unsafe impl ConcreteType for CFArray {
-    /// Returns the type identifier of all CFArray instances.
+    /// Returns the type identifier for the CFArray opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFArray opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableArray objects have the same type identifier as CFArray objects.
+    ///
+    ///
+    /// Returns the type identifier of all CFArray instances.
     #[doc(alias = "CFArrayGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -188,6 +299,27 @@ unsafe impl ConcreteType for CFArray {
 }
 
 impl CFArray {
+    /// Creates a new immutable array with the given values.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new array and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - values: A C array of the pointer-sized values to be in the new array. The values in the new array are ordered in the same order in which they appear in this C array. This value may be `NULL` if `numValues` is `0`. This C array is not changed or freed by this function. If `values` is not a valid pointer to a C array of at least `numValues` elements, the behavior is undefined.
+    ///
+    /// - numValues: The number of values to copy from the values C array into the new array. This number will be the count of the new array—it must not be negative or greater than the number of elements in `values`.
+    ///
+    /// - callBacks: A pointer to a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure initialized with the callbacks for the array to use on each value in the collection. The retain callback is used within this function, for example, to retain all of the new values from the values C array. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in. Otherwise, if any of the fields are not valid pointers to functions of the correct type, or this value is not a valid pointer to a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    /// If the collection contains only CFType objects, then pass a pointer to [`kCFTypeArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypearraycallbacks) (`&kCFTypeArrayCallBacks`) to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new immutable array containing `numValues` from `values`, or `NULL` if there was a problem creating the object. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable array with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -246,8 +378,6 @@ impl CFArray {
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreate")]
     #[inline]
     pub unsafe fn new(
@@ -268,6 +398,25 @@ impl CFArray {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new immutable array with the values from another array.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new array and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theArray: The array to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new CFArray object that contains the same values as `theArray`. Ownership follows [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The pointer values from `theArray` are copied into the new array; the values are also retained by the new array. The count of the new array is the same as `theArray`. The new array uses the same callbacks as `theArray`.
+    ///
+    ///
     /// Creates a new immutable array with the values from the given array.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -292,8 +441,6 @@ impl CFArray {
     /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -312,6 +459,29 @@ impl CFArray {
 }
 
 impl CFMutableArray {
+    /// Creates a new empty mutable array.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new array and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new array. The array starts empty and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. The value must not be negative.
+    ///
+    /// - callBacks: A pointer to a [`CFArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/cfarraycallbacks) structure initialized with the callbacks for the array to use on each value in the array. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple array creations.
+    ///
+    /// If the array contains CFType objects only, then pass [`kCFTypeArrayCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypearraycallbacks) to use the default callback functions.
+    ///
+    /// This parameter may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in.
+    ///
+    /// If any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a `CFArrayCallBacks` structure, the behavior is undefined. If any value put into the array is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable array, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new empty mutable array.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -360,8 +530,6 @@ impl CFMutableArray {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutable(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -380,6 +548,23 @@ impl CFMutableArray {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new mutable array with the values from another array.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new array and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new array. The array starts with the same number of values as `theArray` and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. If non-`0`, `capacity` must be greater than or equal to the count of `theArray`.
+    ///
+    /// - theArray: The array to copy. The pointer values from the array are copied into the new array. However, the values are also retained by the new array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable array that contains the same values as `theArray`. The new array has the same count as the `theArray` and uses the same callbacks. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new mutable array with the values from the given array.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -415,8 +600,6 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -437,14 +620,23 @@ impl CFMutableArray {
 }
 
 impl CFArray {
+    /// Returns the number of values currently in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of values in `theArray`.
+    ///
+    ///
     /// Returns the number of values currently in the array.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a valid
     /// CFArray, the behavior is undefined.
     ///
     /// Returns: The number of values in the array.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetcount(_:)?language=objc)
     #[doc(alias = "CFArrayGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -454,6 +646,21 @@ impl CFArray {
         unsafe { CFArrayGetCount(self) }
     }
 
+    /// Counts the number of times a given value occurs in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    /// - range: The range within `theArray` to search. The range must lie within the bounds of `theArray`). The range may be empty (length `0`).
+    ///
+    /// - value: The value for which to find matches in `theArray`. The equal callback provided when `theArray` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, `==`) is used. If `value`, or any other value in `theArray`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of times `value` occurs in `theArray`, within the specified range.
+    ///
+    ///
     /// Counts the number of times the given value occurs in the array.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -480,8 +687,6 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetcountofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -495,6 +700,21 @@ impl CFArray {
         unsafe { CFArrayGetCountOfValue(self, range, value) }
     }
 
+    /// Reports whether or not a value is in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to search.
+    ///
+    /// - range: The range within `theArray` to search. The range must not exceed the bounds of `theArray`). The range may be empty (length `0`).
+    ///
+    /// - value: The value to match in `theArray`. The equal callback provided when `theArray` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theArray`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true`, if `value` is in the specified range of `theArray`, otherwise `false`.
+    ///
+    ///
     /// Reports whether or not the value is in the array.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -521,8 +741,6 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraycontainsvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, range: CFRange, value: *const c_void) -> bool {
@@ -537,6 +755,19 @@ impl CFArray {
         ret != 0
     }
 
+    /// Retrieves a value at a given index.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    /// - idx: The index of the value to retrieve. If the index is outside the index space of `theArray` (`0` to `N-1` inclusive (where `N` is the count of `theArray`), the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value at the `idx` index in `theArray`. If the return value is a Core Foundation Object, ownership follows [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     /// Retrieves the value at the given index.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a
@@ -552,8 +783,6 @@ impl CFArray {
     /// # Safety
     ///
     /// `the_array` generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetvalueatindex(_:_:)?language=objc)
     #[doc(alias = "CFArrayGetValueAtIndex")]
     #[inline]
     pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const c_void {
@@ -563,6 +792,15 @@ impl CFArray {
         unsafe { CFArrayGetValueAtIndex(self, idx) }
     }
 
+    /// Fills a buffer with values from an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    /// - range: The range of values within `theArray` to retrieve. The range must lie within the bounds of `theArray`. The range may be empty (length `0`), in which case no values are put into the buffer `values`.
+    ///
+    /// - values: A C array of pointer-sized values to be filled with values from `theArray`. The values in the C array are in the same order as they appear in `theArray`. If this value is not a valid pointer to a C array of at least `range.length` pointers, the behavior is undefined. If the values are Core Foundation objects, ownership follows [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
     /// Fills the buffer with values from the array.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a
@@ -586,8 +824,6 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetvalues(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetValues")]
     #[inline]
     pub unsafe fn values(&self, range: CFRange, values: *mut *const c_void) {
@@ -597,6 +833,23 @@ impl CFArray {
         unsafe { CFArrayGetValues(self, range, values) }
     }
 
+    /// Calls a function once for each element in range in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to whose elements to apply the function.
+    ///
+    /// - range: The range of values within `theArray` to which to apply the `applier` function. The range must not exceed the bounds of `theArray`. The range may be empty (length `0`).
+    ///
+    /// - applier: The callback function to call once for each value in the given range in `theArray`. If there are values in the range that the `applier` function does not expect or cannot properly apply to, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the second argument to the `applier` function, but is otherwise unused by this function. If the context is not what is expected by the applier function, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// While this function iterates over a mutable collection, it is unsafe for the `applier` function to change the contents of the collection.
+    ///
+    ///
     /// Calls a function once for each value in the array.
     ///
     /// Parameter `theArray`: The array to be operated upon. If this parameter is not
@@ -628,8 +881,6 @@ impl CFArray {
     /// - `the_array` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayapplyfunction(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(
@@ -649,6 +900,21 @@ impl CFArray {
         unsafe { CFArrayApplyFunction(self, range, applier, context) }
     }
 
+    /// Searches an array forward for a value.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    /// - range: The range within `theArray` to search. The range must lie within the bounds of  `theArray`. The range may be empty (length `0`). The search progresses from the lowest index defined by the range to the highest.
+    ///
+    /// - value: The value for which to find a match in `theArray`. The equal callback provided when `theArray` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theArray`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The lowest index of the matching values in the range, or `-1` if no value in the range matched.
+    ///
+    ///
     /// Searches the array for the value.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -677,8 +943,6 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetfirstindexofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
     #[inline]
     pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -692,6 +956,21 @@ impl CFArray {
         unsafe { CFArrayGetFirstIndexOfValue(self, range, value) }
     }
 
+    /// Searches an array backward for a value.
+    ///
+    /// Parameters:
+    /// - theArray: The array to examine.
+    ///
+    /// - range: The range within `theArray` to search. The range must not exceed the bounds of `theArray`. The range may be empty (length `0`). The search progresses from the highest index defined by the range to the lowest.
+    ///
+    /// - value: The value for which to find a match in `theArray`. The equal callback provided when `theArray` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If value, or any other value in `theArray`, is not understood by the equal callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The highest index of the matching values in the range, or `-1` if no value in the range matched.
+    ///
+    ///
     /// Searches the array for the value.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -720,8 +999,6 @@ impl CFArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraygetlastindexofvalue(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
     #[inline]
     pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
@@ -735,6 +1012,35 @@ impl CFArray {
         unsafe { CFArrayGetLastIndexOfValue(self, range, value) }
     }
 
+    /// Searches an array for a value using a binary search algorithm.
+    ///
+    /// Parameters:
+    /// - theArray: An array, sorted from least to greatest according to the `comparator` function.
+    ///
+    /// - range: The range within `theArray` to search. The range must not exceed the bounds of `theArray`. The range may be empty (length `0`).
+    ///
+    /// - value: The value for which to find a match in `theArray`. If `value`, or any other value in `theArray`, is not understood by the `comparator` callback, the behavior is undefined.
+    ///
+    /// - comparator: The function with the comparator function type signature that is used in the binary search operation to compare values in `theArray` with the given value. If there are values in the range that the `comparator` function does not expect or cannot properly compare, the behavior is undefined.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the third argument to the `comparator` function, but is otherwise unused by this function. If the context is not what is expected by the `comparator` function, the behavior is undefined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The return value is one of the following:
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// - The index of a value that matched, if the target value matches one or more in the range.
+    ///
+    /// - Greater than or equal to the end point of the range, if the value is greater than all the values in the range.
+    ///
+    /// - The index of the value greater than the target value, if the value lies between two of (or less than all of) the values in the range.
+    ///
+    ///
     /// Searches the array for the value using a binary search algorithm.
     ///
     /// Parameter `theArray`: The array to be searched. If this parameter is not a
@@ -781,8 +1087,6 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraybsearchvalues(_:_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayBSearchValues")]
     #[inline]
     pub unsafe fn b_search_values(
@@ -806,6 +1110,19 @@ impl CFArray {
 }
 
 impl CFMutableArray {
+    /// Adds a value to an array giving it the new largest index.
+    ///
+    /// Parameters:
+    /// - theArray: The array to which `value` is to be added. If `theArray` is a limited-capacity array and it is full before this operation, the behavior is undefined.
+    ///
+    /// - value: A CFType object or a pointer value to add to `theArray`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `value` parameter is retained by `theArray` using the retain callback provided when `theArray` was created. If `value` is not of the type expected by the retain callback, the behavior is undefined. The `value` parameter is assigned to the index one larger than the previous largest index and the count of `theArray` is increased by one.
+    ///
+    ///
     /// Adds the value to the array giving it a new largest index.
     ///
     /// Parameter `theArray`: The array to which the value is to be added. If this
@@ -824,8 +1141,6 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayappendvalue(_:_:)?language=objc)
     #[doc(alias = "CFArrayAppendValue")]
     #[inline]
     pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
@@ -835,6 +1150,21 @@ impl CFMutableArray {
         unsafe { CFArrayAppendValue(the_array, value) }
     }
 
+    /// Inserts a value into an array at a given index.
+    ///
+    /// Parameters:
+    /// - theArray: The array into which `value` is inserted. If `theArray` is a fixed-capacity array and it is full before this operation, the behavior is undefined.
+    ///
+    /// - idx: The index at which to insert `value`. The index must be in the range `0` to `N` inclusive, where `N` is the count of `theArray` before the operation. If the index is the same as the count of `theArray`, this function has the same effect as [`CFArrayAppendValue`](https://developer.apple.com/documentation/corefoundation/cfarrayappendvalue(_:_:)).
+    ///
+    /// - value: The value to insert into `theArray`. The value is retained by `theArray` using the retain callback provided when `theArray` was created. If `value` is not of the type expected by the retain callback, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `value` parameter is assigned to the index `idx`, and all values in `theArray` with equal and larger indices have their indices increased by one.
+    ///
+    ///
     /// Adds the value to the array, giving it the given index.
     ///
     /// Parameter `theArray`: The array to which the value is to be added. If this
@@ -859,8 +1189,6 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayinsertvalueatindex(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayInsertValueAtIndex")]
     #[inline]
     pub unsafe fn insert_value_at_index(
@@ -878,6 +1206,15 @@ impl CFMutableArray {
         unsafe { CFArrayInsertValueAtIndex(the_array, idx, value) }
     }
 
+    /// Changes the value at a given index in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array in which the value is to be changed.
+    ///
+    /// - idx: The index at which to set the new value. The value must not lie outside the index space of `theArray` (`0` to `N-1` inclusive, where `N` is the count of the array before the operation).
+    ///
+    /// - value: The value to set in `theArray`. The value is retained by `theArray` using the retain callback provided when `theArray` was created and the previous value at `idx` is released. If the value is not of the type expected by the retain callback, the behavior is undefined. The indices of other values are not affected.
+    ///
     /// Changes the value with the given index in the array.
     ///
     /// Parameter `theArray`: The array in which the value is to be changed. If this
@@ -902,8 +1239,6 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraysetvalueatindex(_:_:_:)?language=objc)
     #[doc(alias = "CFArraySetValueAtIndex")]
     #[inline]
     pub unsafe fn set_value_at_index(
@@ -921,6 +1256,19 @@ impl CFMutableArray {
         unsafe { CFArraySetValueAtIndex(the_array, idx, value) }
     }
 
+    /// Removes the value at a given index from an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array from which the value is removed.
+    ///
+    /// - idx: The index of the value to remove. The index must be in the range 0 to N-1 inclusive, where N is the count of `theArray` before the operation.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// All values in `theArray` with indices larger than `idx` have their indices decreased by one.
+    ///
+    ///
     /// Removes the value with the given index from the array.
     ///
     /// Parameter `theArray`: The array from which the value is to be removed. If
@@ -936,8 +1284,6 @@ impl CFMutableArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayremovevalueatindex(_:_:)?language=objc)
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
     #[inline]
     pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
@@ -947,13 +1293,16 @@ impl CFMutableArray {
         unsafe { CFArrayRemoveValueAtIndex(the_array, idx) }
     }
 
+    /// Removes all the values from an array, making it empty.
+    ///
+    /// Parameters:
+    /// - theArray: The array from which all of the values are removed.
+    ///
     /// Removes all the values from the array, making it empty.
     ///
     /// Parameter `theArray`: The array from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFArray,
     /// the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFArrayRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_array: Option<&CFMutableArray>) {
@@ -963,6 +1312,17 @@ impl CFMutableArray {
         unsafe { CFArrayRemoveAllValues(the_array) }
     }
 
+    /// Replaces a range of values in an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array in which some values are to be replaced. If this parameter is not a valid CFMutableArray object, the behavior is undefined.
+    ///
+    /// - range: The range of values within `theArray` to replace. The range location or end point (defined by the location plus length minus 1) must not lie outside the index space of `theArray` (`0` to `N-1` inclusive, where `N` is the count of `theArray`). The range length must not be negative. The range may be empty (length 0), in which case the new values are merely inserted at the range location.
+    ///
+    /// - newValues: A C array of the pointer-sized values to be placed into `theArray`. The new values in `theArray` are ordered in the same order in which they appear in this C array. This parameter may be `NULL` if the `newCount` parameter is 0. This C array is not changed or freed by this function. If this parameter is not a valid pointer to a C array of at least `newCount` pointers, the behavior is undefined.
+    ///
+    /// - newCount: The number of values to copy from the `newValues` C array into `theArray`. If this parameter is different from the range length, the excess `newCount` values are inserted after the range or the excess range values are deleted. This parameter may be 0, in which case no new values are replaced into `theArray` and the values in the range are simply removed. If this parameter is negative or greater than the number of values actually in the `newValues` C array, the behavior is undefined.
+    ///
     /// Replaces a range of values in the array.
     ///
     /// Parameter `theArray`: The array from which all of the values are to be
@@ -1001,8 +1361,6 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `new_values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayreplacevalues(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArrayReplaceValues")]
     #[inline]
     pub unsafe fn replace_values(
@@ -1022,6 +1380,15 @@ impl CFMutableArray {
         unsafe { CFArrayReplaceValues(the_array, range, new_values, new_count) }
     }
 
+    /// Exchanges the values at two indices of an array.
+    ///
+    /// Parameters:
+    /// - theArray: The array that contains the values to be swapped.
+    ///
+    /// - idx1: The index of the value to swap with the value at `idx2`. The index must not exceed the index space of `theArray` (`0` to `N-1` inclusive, where `N` is the count of `theArray` before the operation).
+    ///
+    /// - idx2: The index of the value to swap with the value at `idx1`. The index must not exceed the index space of `theArray` (`0` to `N-1` inclusive, where `N` is the count of `theArray` before the operation).
+    ///
     /// Exchanges the values at two indices of the array.
     ///
     /// Parameter `theArray`: The array of which the values are to be swapped. If
@@ -1042,8 +1409,6 @@ impl CFMutableArray {
     ///
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayexchangevaluesatindices(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
     #[inline]
     pub unsafe fn exchange_values_at_indices(
@@ -1061,6 +1426,17 @@ impl CFMutableArray {
         unsafe { CFArrayExchangeValuesAtIndices(the_array, idx1, idx2) }
     }
 
+    /// Sorts the values in an array using a given comparison function.
+    ///
+    /// Parameters:
+    /// - theArray: The array whose values are sorted.
+    ///
+    /// - range: The range of values within `theArray` to sort. The range location or end point (defined by the location plus length minus 1) must not lie outside the index space of `theArray` (`0` to `N-1` inclusive, where `N` is the count of `theArray`). The range length must not be negative. The range may be empty (length 0).
+    ///
+    /// - comparator: The function with the comparator function type signature that is used in the sort operation to compare the values in `theArray`. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. If there are values in `theArray` that the `comparator` function does not expect or cannot properly compare, the behavior is undefined. The values in the range are sorted from least to greatest according to this function.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the third parameter to the `comparator` function, but is otherwise unused by this function. If the context is not what is expected by the `comparator` function, the behavior is undefined.
+    ///
     /// Sorts the values in the array using the given comparison function.
     ///
     /// Parameter `theArray`: The array whose values are to be sorted. If this
@@ -1096,8 +1472,6 @@ impl CFMutableArray {
     /// - `the_array` might not allow `None`.
     /// - `comparator` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarraysortvalues(_:_:_:_:)?language=objc)
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
@@ -1117,6 +1491,21 @@ impl CFMutableArray {
         unsafe { CFArraySortValues(the_array, range, comparator, context) }
     }
 
+    /// Adds the values from one array to another array.
+    ///
+    /// Parameters:
+    /// - theArray: The array to which values from `otherArray` are added. If `theArray` is a limited-capacity array, adding `otherRange.length` values from `otherArray` must not cause the capacity limit of `theArray` to be exceeded.
+    ///
+    /// - otherArray: An array providing the values to be added to `theArray`.
+    ///
+    /// - otherRange: The range within `otherArray` from which to add the values to `theArray`. The range must not exceed the index space of `otherArray`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The new values are retained by `theArray` using the retain callback provided when `theArray` was created. If the values are not of the type expected by the retain callback, the behavior is undefined. The values are assigned to the indices one larger than the previous largest index in `theArray`, and beyond, and the count of `theArray` is increased by `otherRange.length`. The values are assigned new indices in `theArray` from smallest to largest index in the order in which they appear in `otherArray`.
+    ///
+    ///
     /// Adds the values from an array to another array.
     ///
     /// Parameter `theArray`: The array to which values from the otherArray are to
@@ -1148,8 +1537,6 @@ impl CFMutableArray {
     /// - `the_array` might not allow `None`.
     /// - `other_array` generic must be of the correct type.
     /// - `other_array` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfarrayappendarray(_:_:_:)?language=objc)
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
     pub unsafe fn append_array(

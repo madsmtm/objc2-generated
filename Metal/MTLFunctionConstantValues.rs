@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues?language=objc)
+    /// A set of constant values that specialize a graphics or compute GPU function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLFunctionConstantValues`](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues) instance sets constant values for function constants. You declare function constants with the `[[ function_constant(index) ]]` attribute in MSL (Metal Shading Language) source code. See the [Metal Shading Language specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) for more information.
+    ///
+    /// With an [`MTLFunctionConstantValues`](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues) instance, you can set each constant value individually with an index or a name, or set multiple constant values with an index range.
+    ///
+    /// You can apply a single [`MTLFunctionConstantValues`](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues) instance to multiple [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instances of any kind, such as a vertex function and a fragment function. When you create a specialized function, subsequent changes to its constant values have no effect. However, you can reset, add, or modify a constant value in your [`MTLFunctionConstantValues`](https://developer.apple.com/documentation/metal/mtlfunctionconstantvalues) instance and reuse it to create another [`MTLFunction`](https://developer.apple.com/documentation/metal/mtlfunction) instance.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  See [Using function specialization to build pipeline variants](https://developer.apple.com/documentation/metal/using-function-specialization-to-build-pipeline-variants) for a sample code project that applies function constant values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFunctionConstantValues;

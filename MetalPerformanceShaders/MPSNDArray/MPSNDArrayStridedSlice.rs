@@ -13,8 +13,6 @@ extern_class!(
     ///
     ///
     /// Extracts a subset of the source array using the specified slice strides.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslice?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryKernel,
         MPSNDArrayMultiaryKernel,
@@ -185,8 +183,6 @@ extern_class!(
     ///
     ///
     /// Perform the gradient operation corresponding to a strided slice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraystridedslicegradient?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryGradientKernel,
         MPSNDArrayMultiaryGradientKernel,

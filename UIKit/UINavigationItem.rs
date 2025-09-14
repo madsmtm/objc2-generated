@@ -7,32 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum?language=objc)
+/// Constants that indicate how to size the title of this item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemLargeTitleDisplayMode(pub NSInteger);
 impl UINavigationItemLargeTitleDisplayMode {
-    /// Automatically use the large out-of-line title based on the state of the previous item in the navigation bar. An item with largeTitleDisplayMode=Automatic will show or hide the large title based on the request of the previous navigation item. If the first item pushed is set to Automatic, then it will show the large title if the navigation bar has prefersLargeTitles=YES.
+    /// Inherit the display mode from the previous navigation item.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/automatic?language=objc)
+    /// ## Discussion
+    ///
+    /// This is the default mode. If the previous item’s title was large, the current item also displays a large title. Similarly, if the previous item’s title was small, the current item displays a small title.
+    ///
+    ///
+    /// Automatically use the large out-of-line title based on the state of the previous item in the navigation bar. An item with largeTitleDisplayMode=Automatic will show or hide the large title based on the request of the previous navigation item. If the first item pushed is set to Automatic, then it will show the large title if the navigation bar has prefersLargeTitles=YES.
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Always display a large title.
     /// Always use a larger title when this item is topmost.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/always?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeAlways")]
     pub const Always: Self = Self(1);
+    /// Never display a large title.
     /// Never use a larger title when this item is topmost.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/never?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeNever")]
     pub const Never: Self = Self(2);
     /// Always use a large title when this item is topmost. If there is a back button present, this will revert to `Always`. Leading
     /// &
     /// center items will move to the overflow menu if present.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum/inline?language=objc)
     #[doc(alias = "UINavigationItemLargeTitleDisplayModeInline")]
     pub const Inline: Self = Self(3);
 }
@@ -45,25 +46,56 @@ unsafe impl RefEncode for UINavigationItemLargeTitleDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum?language=objc)
+/// Constants that describe the display modes of the Back button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemBackButtonDisplayMode(pub NSInteger);
 impl UINavigationItemBackButtonDisplayMode {
-    /// Default mode, uses an appropriate title, followed by a generic title (typically 'Back'), then no title.
+    /// The navigation item attempts to display a specific title, a generic title, or no title for the Back button, depending on the space available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/default?language=objc)
+    /// ## Discussion
+    ///
+    /// When you set the [`backButtonDisplayMode`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.property) property to this value, the navigation item attempts to display these titles for its Back button in the following order:
+    ///
+    /// - [`backButtonTitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttontitle)
+    ///
+    /// - [`title`](https://developer.apple.com/documentation/uikit/uinavigationitem/title)
+    ///
+    /// - A generic title, such as _Back_
+    ///
+    /// - No title
+    ///
+    /// The navigation item selects the most appropriate title for the Back button according to the available space.
+    ///
+    ///
+    /// Default mode, uses an appropriate title, followed by a generic title (typically 'Back'), then no title.
     #[doc(alias = "UINavigationItemBackButtonDisplayModeDefault")]
     pub const Default: Self = Self(0);
-    /// Generic titles only. Ignores .title and .backButtonTitle (but *not* .backBarButtonItem.title).
+    /// The navigation item attempts to display a generic title or no title for the Back button, depending on the space available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/generic?language=objc)
+    /// ## Discussion
+    ///
+    /// When you set the [`backButtonDisplayMode`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.property) property to this value, the navigation item attempts to display these titles for its Back button in the following order:
+    ///
+    /// - A generic title, such as _Back_
+    ///
+    /// - No title
+    ///
+    /// The navigation item selects the most appropriate title for the Back button according to the available space. This display mode ignores the values of the [`title`](https://developer.apple.com/documentation/uikit/uinavigationitem/title) and [`backButtonTitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttontitle) properties.
+    ///
+    ///
+    /// Generic titles only. Ignores .title and .backButtonTitle (but *not* .backBarButtonItem.title).
     #[doc(alias = "UINavigationItemBackButtonDisplayModeGeneric")]
     pub const Generic: Self = Self(1);
-    /// Don't use a title, just the back button indicator image.
+    /// The navigation item displays the Back button indicator instead of a title.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum/minimal?language=objc)
+    /// ## Discussion
+    ///
+    /// When you set the [`backButtonDisplayMode`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.property) property to this value, the Back button doesn’t display a title. Instead, it displays the Back button indicator image.
+    ///
+    ///
+    /// Don't use a title, just the back button indicator image.
     #[doc(alias = "UINavigationItemBackButtonDisplayModeMinimal")]
     pub const Minimal: Self = Self(2);
 }
@@ -76,42 +108,48 @@ unsafe impl RefEncode for UINavigationItemBackButtonDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum?language=objc)
+/// Constants that determine where the search bar appears in the navigation bar.
+///
+/// ## Overview
+///
+/// Use these constants to specify the placement of the search bar that belongs to the navigation item’s search controller ([`searchController`](https://developer.apple.com/documentation/uikit/uinavigationitem/searchcontroller)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemSearchBarPlacement(pub NSInteger);
 impl UINavigationItemSearchBarPlacement {
+    /// A constant that places the search bar according to the current layout.
     /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/automatic?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The navigation bar will place the search bar inline with other content, on the trailing edge. On iPhone, when the navigation bar belongs to a UINavigationController, the search bar may be integrated into the toolbar.
     /// The navigation bar will place the search bar inline with other content, on the trailing edge.
     /// On iPhone, when the navigation bar belongs to a UINavigationController, the search bar may be integrated into the toolbar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integrated?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegrated")]
     pub const Integrated: Self = Self(1);
-    /// The navigation bar will place the search bar vertically stacked with other content.
+    /// A constant that stacks the search bar vertically below the other content in the navigation bar.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/stacked?language=objc)
+    /// ## Discussion
+    ///
+    /// This value reflects the traditional search bar layout available in versions of iOS earlier than iOS 16.
+    ///
+    ///
+    /// The navigation bar will place the search bar vertically stacked with other content.
     #[doc(alias = "UINavigationItemSearchBarPlacementStacked")]
     pub const Stacked: Self = Self(2);
+    /// Placement is the same as Integrated, except that in regular width on iPad, the search bar is centered in the navigation bar. Only respected when used in a view controller that is a descendant of a tab bar controller or when using a navigation item style that requires a leading aligned title
     /// Placement is the same as Integrated, except that in regular width on iPad, the search bar is centered in the navigation bar.
     /// Only respected when used in a view controller that is a descendant of a tab bar controller or when using a navigation item style that requires a leading aligned title
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integratedcentered?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedCentered")]
     pub const IntegratedCentered: Self = Self(3);
     /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/integratedbutton?language=objc)
+    /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
     #[doc(alias = "UINavigationItemSearchBarPlacementIntegratedButton")]
     pub const IntegratedButton: Self = Self(4);
+    /// A constant that places the search bar on the trailing edge of the navigation bar, inline with the other content.
     /// Placement is the same as Integrated, except that the inactive search bar is always shown as a button even when space permits a search field.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum/inline?language=objc)
     #[doc(alias = "UINavigationItemSearchBarPlacementInline")]
     #[deprecated]
     pub const Inline: Self = Self(UINavigationItemSearchBarPlacement::Integrated.0);
@@ -125,25 +163,62 @@ unsafe impl RefEncode for UINavigationItemSearchBarPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle?language=objc)
+/// Constants that determine how the content of the navigation item lays out in the navigation bar.
+///
+/// ## Overview
+///
+/// Navigation styles allow you to customize the behavior and content density of your navigation bar according to your app type.
+///
+/// - Navigator apps like Settings support a traditional navigation model for hierarchical data.
+///
+/// - Browser apps like Safari or Files support browsing through and navigating back and forth between multiple documents or folder structures.
+///
+/// - Editor apps support focused viewing or editing of individual documents.
+///
+/// <div class="warning">
+///
+/// ### Related Sessions from WWDC22
+///  Session 10069: [Meet desktop-class iPad](https://developer.apple.com/wwdc22/10069)
+///
+/// Session 10070: [Build a desktop-class iPad app](https://developer.apple.com/wwdc22/10070)
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemStyle(pub NSInteger);
 impl UINavigationItemStyle {
-    /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
+    /// A style for a traditional navigation-based interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/navigator?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style for apps that support a traditional hierarchical navigation model. With this style, the navigation item’s title appears in the center of the navigation bar, and center items ([`centerItemGroups`](https://developer.apple.com/documentation/uikit/uinavigationitem/centeritemgroups)) appear in the overflow menu.
+    ///
+    ///
+    /// Traditional navigation bar behavior. Center items are placed in the overflow menu.
     #[doc(alias = "UINavigationItemStyleNavigator")]
     pub const Navigator: Self = Self(0);
-    /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
+    /// A style for a browser app interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/browser?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style for apps that support history-based navigation, like web browsers. With this style, the navigation item’s title appears on the leading side of the navigation bar, and center items ([`centerItemGroups`](https://developer.apple.com/documentation/uikit/uinavigationitem/centeritemgroups)) appear in the center of the bar.
+    ///
+    ///
+    /// A style designed for use as a browser. Title is leading aligned, center items are displayed. Typically used with history-based navigation.
     #[doc(alias = "UINavigationItemStyleBrowser")]
     pub const Browser: Self = Self(1);
-    /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
+    /// A style for an editor app interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle/editor?language=objc)
+    /// ## Discussion
+    ///
+    /// Use this style for apps that support viewing or editing of individual documents, like text editors. With this style, the navigation item’s title appears on the leading side of the navigation bar, and center items ([`centerItemGroups`](https://developer.apple.com/documentation/uikit/uinavigationitem/centeritemgroups)) appear in the center of the bar. The back button appears as a chevron without a title or image.
+    ///
+    ///
+    /// A style designed for use as an editor. The back button will always present as chevron-only, title is leading aligned, center items are displayed. Typically used without navigation.
     #[doc(alias = "UINavigationItemStyleEditor")]
     pub const Editor: Self = Self(2);
 }
@@ -157,7 +232,23 @@ unsafe impl RefEncode for UINavigationItemStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate-96g5t?language=objc)
+    /// Methods an object implements to rename a navigation item.
+    ///
+    /// ## Overview
+    ///
+    /// A navigation item ([`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem)) uses this delegate to determine whether a person can change the navigation item’s title and to handle the rename process.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Related Sessions from WWDC22
+    ///  Session 10069: [Meet desktop-class iPad](https://developer.apple.com/wwdc22/10069)
+    ///
+    /// Session 10070: [Build a desktop-class iPad app](https://developer.apple.com/wwdc22/10070)
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait UINavigationItemRenameDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -209,7 +300,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem?language=objc)
+    /// The items that a navigation bar displays when the associated view controller is visible.
+    ///
+    /// ## Overview
+    ///
+    /// When building a navigation interface, each view controller that you push onto the navigation stack must have a [`UINavigationItem`](https://developer.apple.com/documentation/uikit/uinavigationitem) object that contains the buttons and views you want to display in the navigation bar. The managing [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller) object uses the navigation items of the topmost two view controllers to populate the navigation bar with content.
+    ///
+    /// A navigation item always reflects information about its associated view controller. The navigation item must provide a title to display when the view controller is topmost on the navigation stack. The item can also contain additional buttons to display on the right (or trailing) side of the navigation bar. You can specify buttons and views to display on the left (or leading) side of the toolbar using the [`leftBarButtonItems`](https://developer.apple.com/documentation/uikit/uinavigationitem/leftbarbuttonitems) property, but the navigation controller displays those buttons only when space is available.
+    ///
+    /// To convey additional information about the view that a navigation item represents, use the [`subtitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/subtitle) property. For example, in a view controller that displays a list of messages, you could use the `subtitle` to indicate the number of unread messages or the last time the app fetched messages. To apply text styles to a navigation item’s title or subtitle, use the [`attributedTitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/attributedtitle-25fxb), [`attributedSubtitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/attributedsubtitle-wrjk), and [`largeAttributedSubtitle`](https://developer.apple.com/documentation/uikit/uinavigationitem/largeattributedsubtitle-4z2gx) properties.
+    ///
+    /// The [`backBarButtonItem`](https://developer.apple.com/documentation/uikit/uinavigationitem/backbarbuttonitem) property of a navigation item reflects the Back button you want to display when the current view controller is just below the topmost view controller. The Back button doesn’t appear when the current view controller is topmost.
+    ///
+    /// When specifying buttons for a navigation item, you must use [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) objects. If you want to display custom views in the navigation bar, you must wrap those views inside a [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) object before adding them to the navigation item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

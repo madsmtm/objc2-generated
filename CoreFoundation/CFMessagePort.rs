@@ -11,7 +11,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageport?language=objc)
+///
+/// ## Overview
+///
+/// CFMessagePort objects provide a communications channel that can transmit arbitrary data between multiple threads or processes on the local machine.
+///
+/// You create a local message port with [`CFMessagePortCreateLocal`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreatelocal(_:_:_:_:_:)) and make it available to other processes by giving it a name, either when you create it or later with [`CFMessagePortSetName`](https://developer.apple.com/documentation/corefoundation/cfmessageportsetname(_:_:)). Other processes then connect to it using [`CFMessagePortCreateRemote`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreateremote(_:_:)), specifying the name of the port.
+///
+/// To listen for messages, you need to create a run loop source with [`CFMessagePortCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreaterunloopsource(_:_:_:)) and add it to a run loop with [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+///
+/// <div class="warning">
+///
+/// ### Important
+///  If you want to tear down the connection, you must invalidate the port (using [`CFMessagePortInvalidate`](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidate(_:))) before releasing the runloop source and the message port object.
+///
+///
+///
+/// </div>
+/// Your message port’s callback function will be called when a message arrives. To send data, you store the data in a CFData object and call [`CFMessagePortSendRequest`](https://developer.apple.com/documentation/corefoundation/cfmessageportsendrequest(_:_:_:_:_:_:_:)). You can optionally have the function wait for a reply and return the reply in another CFData object.
+///
+/// Message ports only support communication on the local machine. For network communication, you have to use a [`CFSocketRef`](https://developer.apple.com/documentation/corefoundation/cfsocket) object.
+///
+///
 ///
 /// This is toll-free bridged with `NSMessagePort`.
 #[doc(alias = "CFMessagePortRef")]
@@ -29,20 +50,20 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFMessagePort"> for CFMessagePort {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportsuccess?language=objc)
+/// The message was successfully sent and, if a reply was expected, a reply was received.
 pub const kCFMessagePortSuccess: i32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportsendtimeout?language=objc)
+/// The message could not be sent before the send timeout.
 pub const kCFMessagePortSendTimeout: i32 = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportreceivetimeout?language=objc)
+/// No reply was received before the receive timeout.
 pub const kCFMessagePortReceiveTimeout: i32 = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportisinvalid?language=objc)
+/// The message could not be sent because the message port is invalid.
 pub const kCFMessagePortIsInvalid: i32 = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageporttransporterror?language=objc)
+/// An error occurred trying to send the message.
 pub const kCFMessagePortTransportError: i32 = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfmessageportbecameinvaliderror?language=objc)
+/// The message port was invalidated.
 pub const kCFMessagePortBecameInvalidError: i32 = -5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a CFMessagePort object’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -73,7 +94,29 @@ unsafe impl RefEncode for CFMessagePortContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcallback?language=objc)
+/// Callback invoked to process a message received on a CFMessagePort object.
+///
+/// Parameters:
+/// - local: The local message port that received the message.
+///
+/// - msgid: An arbitrary integer value assigned to the message by the sender.
+///
+/// - data: The message data.
+///
+/// - info: The `info` member of the [`CFMessagePortContext`](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext) structure that was used when creating `local`.
+///
+///
+/// ## Return Value
+///
+/// Data to send back to the sender of the message. The system releases the returned CFData object. Return `NULL` if you want an empty reply returned to the sender.
+///
+///
+///
+/// ## Discussion
+///
+/// If you want the message data to persist beyond this callback, you must explicitly create a copy of `data` rather than merely retain it; the contents of `data` will be deallocated after the callback exits.
+///
+///
 #[cfg(feature = "CFData")]
 pub type CFMessagePortCallBack = Option<
     unsafe extern "C-unwind" fn(
@@ -84,12 +127,32 @@ pub type CFMessagePortCallBack = Option<
     ) -> *const CFData,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidationcallback?language=objc)
+/// Callback invoked when a CFMessagePort object is invalidated.
+///
+/// Parameters:
+/// - ms: The message port that has been invalidated.
+///
+/// - info: The `info` member of the [`CFMessagePortContext`](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext) structure that was used when creating `ms`, if `ms` is a local port; `NULL` if `ms` is a remote port.
+///
+///
+/// ## Discussion
+///
+/// Your callback should free any resources allocated for `ms`.
+///
+/// You specify this callback with [`CFMessagePortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmessageportsetinvalidationcallback(_:_:)).
+///
+///
 pub type CFMessagePortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMessagePort, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMessagePort {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgettypeid()?language=objc)
+    /// Returns the type identifier for the CFMessagePort opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFMessagePort opaque type.
+    ///
+    ///
     #[doc(alias = "CFMessagePortGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -101,7 +164,31 @@ unsafe impl ConcreteType for CFMessagePort {
 }
 
 impl CFMessagePort {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreatelocal(_:_:_:_:_:)?language=objc)
+    /// Returns a local CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - name: The name with which to register the port. `name` can be `NULL`.
+    ///
+    /// - callout: The callback function invoked when a message is received on the message port.
+    ///
+    /// - context: A structure holding contextual information for the message port. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call.
+    ///
+    /// - shouldFreeInfo: A flag set by the function to indicate whether the `info` member of `context` should be freed. The flag is set to `true` on failure or if a local port named `name` already exists, `false` otherwise. `shouldFreeInfo` can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFMessagePort object, or `NULL` on failure. If a local port is already named `name`, the function returns that port instead of creating a new object; the `context` and `callout` parameters are ignored in this case. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method is not available on iOS 7 and later—it will return `NULL` and log a sandbox violation in `syslog`. See [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091) for possible replacement technologies.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -135,7 +222,25 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreateremote(_:_:)?language=objc)
+    /// Returns a CFMessagePort object connected to a remote port.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - name: The name of the remote message port to which to connect.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFMessagePort object, or `NULL` on failure. If a message port has already been created for the remote port, the pre-existing object is returned. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This method is not available on iOS 7 and later—it will return `NULL` and log a sandbox violation in `syslog`. See [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091) for possible replacement technologies.
+    ///
+    ///
     #[doc(alias = "CFMessagePortCreateRemote")]
     #[inline]
     pub fn new_remote(
@@ -152,7 +257,17 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportisremote(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFMessagePort object represents a remote port.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `ms` is a remote port, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFMessagePortIsRemote")]
     #[inline]
     pub fn is_remote(&self) -> bool {
@@ -163,7 +278,17 @@ impl CFMessagePort {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetname(_:)?language=objc)
+    /// Returns the name with which a CFMessagePort object is registered.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The registered name of `ms`, `NULL` if unnamed. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFMessagePortGetName")]
     #[inline]
     pub fn name(&self) -> Option<CFRetained<CFString>> {
@@ -174,7 +299,25 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetname(_:_:)?language=objc)
+    /// Sets the name of a local CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - ms: The local message port to examine.
+    ///
+    /// - newName: The new name for `ms`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the name change succeeds, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Other threads and processes can connect to a named message port with [`CFMessagePortCreateRemote`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreateremote(_:_:)).
+    ///
+    ///
     #[doc(alias = "CFMessagePortSetName")]
     #[inline]
     pub fn set_name(&self, new_name: Option<&CFString>) -> bool {
@@ -185,7 +328,19 @@ impl CFMessagePort {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    /// - context: A pointer to the structure into which the context information for `ms` is to be copied. The information being returned is usually the same information you passed to [`CFMessagePortCreateLocal`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreatelocal(_:_:_:_:_:)) when creating `ms`. However, if [`CFMessagePortCreateLocal`](https://developer.apple.com/documentation/corefoundation/cfmessageportcreatelocal(_:_:_:_:_:)) returned a cached object instead of creating a new object, `context` is filled with information from the original message port instead of the information you passed to the function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context version number for message ports is currently `0`. Before calling this function, you need to initialize the `version` member of `context` to `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -199,7 +354,17 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportinvalidate(_:)?language=objc)
+    /// Invalidates a CFMessagePort object, stopping it from receiving or sending any more messages.
+    ///
+    /// Parameters:
+    /// - ms: The message port to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Invalidating a message port prevents the port from ever sending or receiving any more messages; the message port is not deallocated, though. If the port has not already been invalidated, the port’s invalidation callback function is invoked, if one has been set with [`CFMessagePortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmessageportsetinvalidationcallback(_:_:)). The [`CFMessagePortContext`](https://developer.apple.com/documentation/corefoundation/cfmessageportcontext)  `info` information for `ms` is also released, if a release callback was specified in the port’s context structure. Finally, if a run loop source was created for `ms`, the run loop source is also invalidated.
+    ///
+    ///
     #[doc(alias = "CFMessagePortInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -209,7 +374,17 @@ impl CFMessagePort {
         unsafe { CFMessagePortInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFMessagePort object is valid and able to send or receive messages.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `ms` can be used for communication, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFMessagePortIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -220,7 +395,17 @@ impl CFMessagePort {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportgetinvalidationcallback(_:)?language=objc)
+    /// Returns the invalidation callback function for a CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The callback function invoked when `ms` is invalidated. `NULL` if no callback has been set with [`CFMessagePortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmessageportsetinvalidationcallback(_:_:)).
+    ///
+    ///
     #[doc(alias = "CFMessagePortGetInvalidationCallBack")]
     #[inline]
     pub fn invalidation_call_back(&self) -> CFMessagePortInvalidationCallBack {
@@ -232,7 +417,19 @@ impl CFMessagePort {
         unsafe { CFMessagePortGetInvalidationCallBack(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetinvalidationcallback(_:_:)?language=objc)
+    /// Sets the callback function invoked when a CFMessagePort object is invalidated.
+    ///
+    /// Parameters:
+    /// - ms: The message port to examine.
+    ///
+    /// - callout: The callback function to invoke when `ms` is invalidated. Pass `NULL` to remove a callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `ms` is already invalid, `callout` is invoked immediately.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -249,7 +446,29 @@ impl CFMessagePort {
         unsafe { CFMessagePortSetInvalidationCallBack(self, callout) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsendrequest(_:_:_:_:_:_:_:)?language=objc)
+    /// Sends a message to a remote CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - remote: The message port to which `data` should be sent.
+    ///
+    /// - msgid: An arbitrary integer value that you can send with the message.
+    ///
+    /// - data: The data to send to `remote`.
+    ///
+    /// - sendTimeout: The time to wait for `data` to be sent.
+    ///
+    /// - rcvTimeout: The time to wait for a reply to be returned.
+    ///
+    /// - replyMode: The run loop mode in which the function should wait for a reply. If the message is a `oneway` (so no response is expected), then `replyMode` should be `NULL`. If `replyMode` is non-`NULL`, the function runs the run loop waiting for a reply, in that mode. `replyMode` can be any string name of a run loop mode, but it should be one with input sources installed. You should use the `kCFRunLoopDefaultMode` constant unless you have a specific reason to use a different mode.
+    ///
+    /// - returnData: Upon return, contains a CFData object containing the reply data. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Error code indicating success or failure. See [CFMessagePortSendRequest Error Codes](https://developer.apple.com/documentation/corefoundation/1561514-cfmessageportsendrequest-error-c) for the possible return values.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -292,7 +511,31 @@ impl CFMessagePort {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportcreaterunloopsource(_:_:_:)?language=objc)
+    /// Creates a CFRunLoopSource object for a CFMessagePort object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - local: The message port for which to create a run loop source.
+    ///
+    /// - order: A priority index indicating the order in which run loop sources are processed. `order` is currently ignored by CFMessagePort object run loop sources. Pass `0` for this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopSource object for `ms`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop source is not automatically added to a run loop. To add the source to a run loop, use [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// This method is not available on iOS 7 and later—it will return `NULL` and log a sandbox violation in `syslog`. See [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091) for possible replacement technologies.
+    ///
+    ///
     #[doc(alias = "CFMessagePortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]
@@ -312,7 +555,13 @@ impl CFMessagePort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmessageportsetdispatchqueue(_:_:)?language=objc)
+    /// Schedules callbacks for the specified message port on the specified dispatch queue.
+    ///
+    /// Parameters:
+    /// - ms: The message port to schedule.
+    ///
+    /// - queue: The libdispatch queue.
+    ///
     ///
     /// # Safety
     ///

@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum?language=objc)
+/// An enumeration that lists policies for how a web view that’s not in a window handles tasks.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInactiveSchedulingPolicy(pub NSInteger);
 impl WKInactiveSchedulingPolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/suspend?language=objc)
+    /// A policy where a web view that’s not in a window fully suspends tasks.
     #[doc(alias = "WKInactiveSchedulingPolicySuspend")]
     pub const Suspend: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/throttle?language=objc)
+    /// A policy where a web view that’s not in a window limits processing, but does not fully suspend tasks.
     #[doc(alias = "WKInactiveSchedulingPolicyThrottle")]
     pub const Throttle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences/inactiveschedulingpolicy-swift.enum/none?language=objc)
+    /// A policy where a web view that’s not in a window runs tasks normally.
     #[doc(alias = "WKInactiveSchedulingPolicyNone")]
     pub const None: Self = Self(2);
 }
@@ -35,11 +35,16 @@ unsafe impl RefEncode for WKInactiveSchedulingPolicy {
 }
 
 extern_class!(
+    /// An object that encapsulates the standard behaviors to apply to websites.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`WKPreferences`](https://developer.apple.com/documentation/webkit/wkpreferences) object to specify the preferences for your website, including the minimum font size, the JavaScript behavior, and the behavior for handling fraudulent websites. Create this object and assign it to the [`preferences`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration/preferences) property of the [`WKWebViewConfiguration`](https://developer.apple.com/documentation/webkit/wkwebviewconfiguration) object you use to create your web view.
+    ///
+    ///
     /// A WKPreferences object encapsulates the preference settings for a web
     /// view. The preferences object associated with a web view is specified by
     /// its web view configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpreferences?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A recording of all of the values provided by a [`GCMicroGamepad`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad) object.
+    ///
+    /// ## Overview
+    ///
+    /// To create a gamepad snapshot, call the [`saveSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcgamepad/savesnapshot()) method on a [`GCMicroGamepad`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad) object. The [`GCMicroGamepadSnapshot`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot) class is a subclass of the [`GCMicroGamepad`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad) class, so you use the parent class’s properties to read the individual element values. The snapshot is stored in a device independent format. To get the flattened data representation of the snapshot data, read the [`snapshotData`](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot/snapshotdata) property.
+    ///
+    ///
     /// A GCMicroGamepadSnapshot snapshot is a concrete GCMicroGamepad implementation. It can be used directly in an
     /// application to implement controller input replays. It is also returned as the result of polling
     /// a controller.
@@ -19,8 +26,6 @@ extern_class!(
     ///
     ///
     /// See: -[GCMicroGamepad saveSnapshot]
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshot?language=objc)
     #[unsafe(super(GCMicroGamepad, GCPhysicalInputProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GCMicroGamepad", feature = "GCPhysicalInputProfile"))]
@@ -80,14 +85,12 @@ impl GCMicroGamepadSnapshot {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdataversion?language=objc)
 // NS_ENUM
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GCMicroGamepadSnapshotDataVersion(pub NSInteger);
 impl GCMicroGamepadSnapshotDataVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdataversion/version1?language=objc)
     #[doc(alias = "GCMicroGamepadSnapshotDataVersion1")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub const Version1: Self = Self(0x0100);
@@ -102,12 +105,10 @@ unsafe impl RefEncode for GCMicroGamepadSnapshotDataVersion {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccurrentmicrogamepadsnapshotdataversion?language=objc)
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     pub static GCCurrentMicroGamepadSnapshotDataVersion: GCMicroGamepadSnapshotDataVersion;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdata?language=objc)
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCMicroGamepadSnapshotData {
@@ -146,8 +147,6 @@ impl GCMicroGamepadSnapshotData {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatafromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCMicroGamepadSnapshotDataFromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -174,8 +173,6 @@ impl GCMicroGamepadSnapshotData {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcmicrogamepadsnapshotdata(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
@@ -190,7 +187,7 @@ pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapshotData(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatav100?language=objc)
+/// A structure that holds a snapshot of a micro gamepad controller’s input data.
 #[repr(C, packed)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCMicroGamepadSnapShotDataV100 {
@@ -221,6 +218,19 @@ unsafe impl RefEncode for GCMicroGamepadSnapShotDataV100 {
 }
 
 impl GCMicroGamepadSnapShotDataV100 {
+    /// Copies the recorded data from a micro gamepad snapshot into a readable structure.
+    ///
+    /// Parameters:
+    /// - snapshotData: A pointer to memory to fill with the shapshot data.
+    ///
+    /// - data: An [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object that contains recorded data. Often, this is obtained by calling the [`snapshotData`](https://developer.apple.com/documentation/gamecontroller/gcgamepadsnapshot/snapshotdata) method of a  `GCMicroGamepadSnapshot`object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the data could be copied, [`false`](https://developer.apple.com/documentation/swift/false) if `snapshotData` is `nil`, `data` is `nil`, or if the contents of `data` do not contain a compatible snapshot.
+    ///
+    ///
     /// Fills out a v100 snapshot from any compatible NSData source
     ///
     ///
@@ -229,8 +239,6 @@ impl GCMicroGamepadSnapShotDataV100 {
     /// # Safety
     ///
     /// `snapshot_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepadsnapshotdatav100fromnsdata(_:_:)?language=objc)
     #[doc(alias = "GCMicroGamepadSnapShotDataV100FromNSData")]
     #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
     #[inline]
@@ -248,6 +256,23 @@ impl GCMicroGamepadSnapShotDataV100 {
     }
 }
 
+/// Encapsulates the controller data from a micro gamepad structure into a data object.
+///
+/// Parameters:
+/// - snapshotData: A pointer to memory that contains a set of gamepad control values.
+///
+///
+/// ## Return Value
+///
+/// A new [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object that contains the snapshot data, or `nil` if an error occurred.
+///
+///
+///
+/// ## Discussion
+///
+/// If the version and size is not set in the snapshot the data will automatically have a version of `0x100` and a size equal to `sizeof(GCMicroGamepadSnapShotDataV100)`.
+///
+///
 /// Creates an NSData object from a v100 snapshot.
 /// If the version and size is not set in the snapshot the data will automatically have version 0x100 and sizeof(GCMicroGamepadSnapShotDataV100) set as the values implicitly.
 ///
@@ -257,8 +282,6 @@ impl GCMicroGamepadSnapShotDataV100 {
 /// # Safety
 ///
 /// `snapshot_data` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/nsdatafromgcmicrogamepadsnapshotdatav100(_:)?language=objc)
 #[deprecated = "Use the -[GCController controllerWithMicroGamepad] method instead"]
 #[inline]
 pub unsafe extern "C-unwind" fn NSDataFromGCMicroGamepadSnapShotDataV100(

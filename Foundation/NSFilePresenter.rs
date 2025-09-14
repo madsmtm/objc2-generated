@@ -7,7 +7,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilepresenter?language=objc)
+    /// The interface a file coordinator uses to inform an object presenting a file about changes to that file made elsewhere in the system.
+    ///
+    /// ## Overview
+    ///
+    /// Objects that allow the user to view or edit the content of files or directories should adopt the [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) protocol. You use file presenters in conjunction with an [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator) object to coordinate access to a file or directory among the objects of your application and between your application and other processes. When changes to an item occur, the system notifies objects that adopt this protocol and gives them a chance to respond appropriately.
+    ///
+    /// Use the methods of this protocol to respond to actions about to be taken on the presented file or directory. When another object or process uses a file coordinator to begin reading or writing a file or directory, the file coordinator notifies all presented objects interested in the item first. It notifies the presenter objects by invoking one of the methods defined by this protocol on that object. The actual invocation of that method occurs on the operation queue in the [`presentedItemOperationQueue`](https://developer.apple.com/documentation/foundation/nsfilepresenter/presenteditemoperationqueue) property. Your file presenter must provide this queue. If your queue supports the concurrent execution of operations, the methods of your presenter object must be thread-safe and able to run in multiple queues simultaneously.
+    ///
+    /// You can use file presenters to coordinate access to a file or directory among your application’s objects. If another process uses a file coordinator for the same file or directory, your presenter objects are similarly notified whenever the other process makes its changes. Your presenter objects are not notified about changes made directly using low-level read and write calls to the file. Only changes that go through a file coordinator result in notifications.
+    ///
+    /// For information about how to use file presenters with a file coordinator object, see [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator).
+    ///
+    /// ### File Presenters and iOS
+    ///
+    /// If your app enters the background with an active file presenter, any other processes that perform a coordinated read or write on the presented file can deadlock. To prevent this situation, call the coordinator’s [`removeFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/removefilepresenter(_:)) type method to remove the file presenter in the [`applicationDidEnterBackground:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationdidenterbackground(_:)) method or in response to a [`UIApplicationDidEnterBackgroundNotification`](https://developer.apple.com/documentation/uikit/uiapplication/didenterbackgroundnotification) notification. Call [`addFilePresenter:`](https://developer.apple.com/documentation/foundation/nsfilecoordinator/addfilepresenter(_:)) to add the file presenter again in the [`applicationWillEnterForeground:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/applicationwillenterforeground(_:)) method or in response to a [`UIApplicationWillEnterForegroundNotification`](https://developer.apple.com/documentation/uikit/uiapplication/willenterforegroundnotification) notification.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class automatically removes itself when your app goes to the background. It automatically adds itself again when your app returns to the foreground.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSFilePresenter: NSObjectProtocol {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(presentedItemURL))]

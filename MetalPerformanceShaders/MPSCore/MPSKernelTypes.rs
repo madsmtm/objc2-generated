@@ -6,54 +6,38 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecapsvalues?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDeviceCapsValues(pub u32);
 impl MPSDeviceCapsValues {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecapsnull?language=objc)
     #[doc(alias = "MPSDeviceCapsNull")]
     pub const CapsNull: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsreadablearrayoftextures?language=objc)
     #[doc(alias = "MPSDeviceSupportsReadableArrayOfTextures")]
     pub const SupportsReadableArrayOfTextures: Self = Self(1 << 0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportswritablearrayoftextures?language=objc)
     #[doc(alias = "MPSDeviceSupportsWritableArrayOfTextures")]
     pub const SupportsWritableArrayOfTextures: Self = Self(1 << 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsreadwritetextures?language=objc)
     #[doc(alias = "MPSDeviceSupportsReadWriteTextures")]
     pub const SupportsReadWriteTextures: Self = Self(1 << 2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportssimdgroupbarrier?language=objc)
     #[doc(alias = "MPSDeviceSupportsSimdgroupBarrier")]
     pub const SupportsSimdgroupBarrier: Self = Self(1 << 3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsquadshuffle?language=objc)
     #[doc(alias = "MPSDeviceSupportsQuadShuffle")]
     pub const SupportsQuadShuffle: Self = Self(1 << 4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportssimdshuffle?language=objc)
     #[doc(alias = "MPSDeviceSupportsSimdShuffle")]
     pub const SupportsSimdShuffle: Self = Self(1 << 5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportssimdreduction?language=objc)
     #[doc(alias = "MPSDeviceSupportsSimdReduction")]
     pub const SupportsSimdReduction: Self = Self(1 << 6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsfloat32filtering?language=objc)
     #[doc(alias = "MPSDeviceSupportsFloat32Filtering")]
     pub const SupportsFloat32Filtering: Self = Self(1 << 7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsnorm16bicubicfiltering?language=objc)
     #[doc(alias = "MPSDeviceSupportsNorm16BicubicFiltering")]
     pub const SupportsNorm16BicubicFiltering: Self = Self(1 << 8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsfloat16bicubicfiltering?language=objc)
     #[doc(alias = "MPSDeviceSupportsFloat16BicubicFiltering")]
     pub const SupportsFloat16BicubicFiltering: Self = Self(1 << 9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceisappledevice?language=objc)
     #[doc(alias = "MPSDeviceIsAppleDevice")]
     pub const IsAppleDevice: Self = Self(1 << 10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportssimdshuffleandfill?language=objc)
     #[doc(alias = "MPSDeviceSupportsSimdShuffleAndFill")]
     pub const SupportsSimdShuffleAndFill: Self = Self(1 << 11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicesupportsbfloat16arithmetic?language=objc)
     #[doc(alias = "MPSDeviceSupportsBFloat16Arithmetic")]
     pub const SupportsBFloat16Arithmetic: Self = Self(1 << 12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecapslast?language=objc)
     #[doc(alias = "MPSDeviceCapsLast")]
     pub const CapsLast: Self = Self(1 << 13);
 }
@@ -66,33 +50,24 @@ unsafe impl RefEncode for MPSDeviceCapsValues {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecaps?language=objc)
 pub type MPSDeviceCaps = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindex?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCustomKernelIndex(pub c_uint);
 impl MPSCustomKernelIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexdestindex?language=objc)
     #[doc(alias = "MPSCustomKernelIndexDestIndex")]
     pub const DestIndex: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexsrc0index?language=objc)
     #[doc(alias = "MPSCustomKernelIndexSrc0Index")]
     pub const Src0Index: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexsrc1index?language=objc)
     #[doc(alias = "MPSCustomKernelIndexSrc1Index")]
     pub const Src1Index: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexsrc2index?language=objc)
     #[doc(alias = "MPSCustomKernelIndexSrc2Index")]
     pub const Src2Index: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexsrc3index?language=objc)
     #[doc(alias = "MPSCustomKernelIndexSrc3Index")]
     pub const Src3Index: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexsrc4index?language=objc)
     #[doc(alias = "MPSCustomKernelIndexSrc4Index")]
     pub const Src4Index: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindexuserdataindex?language=objc)
     #[doc(alias = "MPSCustomKernelIndexUserDataIndex")]
     pub const UserDataIndex: Self = Self(30);
 }
@@ -105,9 +80,8 @@ unsafe impl RefEncode for MPSCustomKernelIndex {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A description of row and column offsets into a matrix.
 /// Specifies a row and column offset into an MPSMatrix.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixoffset?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSMatrixOffset {
@@ -125,7 +99,7 @@ unsafe impl RefEncode for MPSMatrixOffset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintegerdivisionparams?language=objc)
+/// Parameters that define the parts of a division operation.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntegerDivisionParams {
@@ -151,72 +125,52 @@ unsafe impl RefEncode for MPSIntegerDivisionParams {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype?language=objc)
+/// Options that define a Metal Performance Shaders image type.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSImageType(pub u32);
 impl MPSImageType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype2d?language=objc)
     #[doc(alias = "MPSImageType2d")]
     pub const Type2d: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype2d_array?language=objc)
     #[doc(alias = "MPSImageType2d_array")]
     pub const Type2d_array: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetypearray2d?language=objc)
     #[doc(alias = "MPSImageTypeArray2d")]
     pub const TypeArray2d: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetypearray2d_array?language=objc)
     #[doc(alias = "MPSImageTypeArray2d_array")]
     pub const TypeArray2d_array: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_arraymask?language=objc)
     #[doc(alias = "MPSImageType_ArrayMask")]
     pub const Type_ArrayMask: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_batchmask?language=objc)
     #[doc(alias = "MPSImageType_BatchMask")]
     pub const Type_BatchMask: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_typemask?language=objc)
     #[doc(alias = "MPSImageType_typeMask")]
     pub const Type_typeMask: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_noalpha?language=objc)
     #[doc(alias = "MPSImageType_noAlpha")]
     pub const Type_noAlpha: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatmask?language=objc)
     #[doc(alias = "MPSImageType_texelFormatMask")]
     pub const Type_texelFormatMask: Self = Self(0x38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatshift?language=objc)
     #[doc(alias = "MPSImageType_texelFormatShift")]
     pub const Type_texelFormatShift: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatstandard?language=objc)
     #[doc(alias = "MPSImageType_texelFormatStandard")]
     pub const Type_texelFormatStandard: Self = Self(0 << MPSImageType::Type_texelFormatShift.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatunorm8?language=objc)
     #[doc(alias = "MPSImageType_texelFormatUnorm8")]
     pub const Type_texelFormatUnorm8: Self = Self(1 << MPSImageType::Type_texelFormatShift.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatfloat16?language=objc)
     #[doc(alias = "MPSImageType_texelFormatFloat16")]
     pub const Type_texelFormatFloat16: Self = Self(2 << MPSImageType::Type_texelFormatShift.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_texelformatbfloat16?language=objc)
     #[doc(alias = "MPSImageType_texelFormatBFloat16")]
     pub const Type_texelFormatBFloat16: Self = Self(3 << MPSImageType::Type_texelFormatShift.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_bitcount?language=objc)
     #[doc(alias = "MPSImageType_bitCount")]
     pub const Type_bitCount: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype_mask?language=objc)
     #[doc(alias = "MPSImageType_mask")]
     pub const Type_mask: Self = Self((1 << MPSImageType::Type_bitCount.0) - 1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype2d_noalpha?language=objc)
     #[doc(alias = "MPSImageType2d_noAlpha")]
     pub const Type2d_noAlpha: Self = Self(MPSImageType::Type2d.0 | MPSImageType::Type_noAlpha.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype2d_array_noalpha?language=objc)
     #[doc(alias = "MPSImageType2d_array_noAlpha")]
     pub const Type2d_array_noAlpha: Self =
         Self(MPSImageType::Type2d_array.0 | MPSImageType::Type_noAlpha.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetypearray2d_noalpha?language=objc)
     #[doc(alias = "MPSImageTypeArray2d_noAlpha")]
     pub const TypeArray2d_noAlpha: Self = Self(
         MPSImageType::Type2d.0 | MPSImageType::Type_BatchMask.0 | MPSImageType::Type_noAlpha.0,
     );
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetypearray2d_array_noalpha?language=objc)
     #[doc(alias = "MPSImageTypeArray2d_array_noAlpha")]
     pub const TypeArray2d_array_noAlpha: Self = Self(
         MPSImageType::Type2d_array.0
@@ -234,23 +188,19 @@ unsafe impl RefEncode for MPSImageType {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgetimagetype(_:)?language=objc)
     #[cfg(feature = "MPSImage")]
     pub fn MPSGetImageType(image: &MPSImage) -> MPSImageType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstant?language=objc)
 pub type MPSFunctionConstant = i64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstantinmetal?language=objc)
 pub type MPSFunctionConstantInMetal = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsfunctionconstantnone?language=objc)
 pub static MPSFunctionConstantNone: MPSFunctionConstant = -1;
 
 // TODO: pub fn MPSFindIntegerDivisionParams(divisor: u16,) -> MPSIntegerDivisionParams;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelargumentcount?language=objc)
+/// A structure that contains the number of destination, source, and broadcaset textures used by a custom kernel.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSCustomKernelArgumentCount {

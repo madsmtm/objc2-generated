@@ -182,107 +182,140 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptiondefault?language=objc)
 pub const kDADiskMountOptionDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptionwhole?language=objc)
+/// Mount the volumes tied to the whole disk object.
 pub const kDADiskMountOptionWhole: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskmountoptionnofollow?language=objc)
 pub const kDADiskMountOptionNoFollow: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountoptions?language=objc)
+/// Options for DADiskMount().
 pub type DADiskMountOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskrenameoptiondefault?language=objc)
 pub const kDADiskRenameOptionDefault: c_uint = 0x00000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskrenameoptions?language=objc)
+/// Options for DADiskRename().
 pub type DADiskRenameOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptiondefault?language=objc)
 pub const kDADiskUnmountOptionDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionforce?language=objc)
+/// Unmount the volume even if files are still active.
 pub const kDADiskUnmountOptionForce: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskunmountoptionwhole?language=objc)
+/// Unmount the volumes tied to the whole disk object.
 pub const kDADiskUnmountOptionWhole: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountoptions?language=objc)
+/// Options for DADiskUnmount().
 pub type DADiskUnmountOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskejectoptiondefault?language=objc)
 pub const kDADiskEjectOptionDefault: c_uint = 0x00000000;
 
 pub type DADiskEjectOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskclaimoptiondefault?language=objc)
 pub const kDADiskClaimOptionDefault: c_uint = 0x00000000;
 
 pub type DADiskClaimOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskoptiondefault?language=objc)
 pub const kDADiskOptionDefault: c_uint = 0x00000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskoptions?language=objc)
+/// Options for DADiskGetOptions() and DADiskSetOptions().
 pub type DADiskOptions = u32;
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFDictionary object containing a set of disk description keys and values appropriate for matching unformatted media using DARegister*Callback().
+    ///
+    ///
     /// Predefined CFDictionary object containing a set of disk description keys and values
     /// appropriate for matching unformatted media using DARegister*Callback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmatchmediaunformatted?language=objc)
     pub static kDADiskDescriptionMatchMediaUnformatted: &'static CFDictionary;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFDictionary object containing a set of disk description keys and values appropriate for matching whole media using DARegister*Callback().
+    ///
+    ///
     /// Predefined CFDictionary object containing a set of disk description keys and values
     /// appropriate for matching whole media using DARegister*Callback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmatchmediawhole?language=objc)
     pub static kDADiskDescriptionMatchMediaWhole: &'static CFDictionary;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFDictionary object containing a set of disk description keys and values appropriate for matching mountable volumes using DARegister*Callback().
+    ///
+    ///
     /// Predefined CFDictionary object containing a set of disk description keys and values
     /// appropriate for matching mountable volumes using DARegister*Callback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmatchvolumemountable?language=objc)
     pub static kDADiskDescriptionMatchVolumeMountable: &'static CFDictionary;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFDictionary object containing a set of disk description keys and values appropriate for matching unrecognized volumes using DARegister*Callback().
+    ///
+    ///
     /// Predefined CFDictionary object containing a set of disk description keys and values
     /// appropriate for matching unrecognized volumes using DARegister*Callback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionmatchvolumeunrecognized?language=objc)
     pub static kDADiskDescriptionMatchVolumeUnrecognized: &'static CFDictionary;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFArray object containing a set of disk description keys appropriate for watching volume name changes using DARegisterDiskDescriptionChangedCallback().
+    ///
+    ///
     /// Predefined CFArray object containing a set of disk description keys appropriate for
     /// watching volume name changes using DARegisterDiskDescriptionChangedCallback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionwatchvolumename?language=objc)
     pub static kDADiskDescriptionWatchVolumeName: &'static CFArray;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined CFArray object containing a set of disk description keys appropriate for watching volume mount changes using DARegisterDiskDescriptionChangedCallback().
+    ///
+    ///
     /// Predefined CFArray object containing a set of disk description keys appropriate for
     /// watching volume mount changes using DARegisterDiskDescriptionChangedCallback().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskdescriptionwatchvolumepath?language=objc)
     pub static kDADiskDescriptionWatchVolumePath: &'static CFArray;
 }
 
 /// Type of the callback function used by DARegisterDiskAppearedCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+/// Type of the callback function used by DARegisterDiskAppearedCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskappearedcallback?language=objc)
 #[cfg(feature = "DADisk")]
 pub type DADiskAppearedCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a disk has appeared.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - callback: The callback function to call when a disk has appeared.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a disk has appeared.
     ///
     /// Parameter `session`: The session object.
@@ -299,8 +332,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskappearedcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskAppearedCallback(
         session: &DASession,
@@ -312,18 +343,38 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DARegisterDiskDescriptionChangedCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - keys: A list of changed keys.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+/// Type of the callback function used by DARegisterDiskDescriptionChangedCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `keys`: A list of changed keys.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskdescriptionchangedcallback?language=objc)
 #[cfg(feature = "DADisk")]
 pub type DADiskDescriptionChangedCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, NonNull<CFArray>, *mut c_void)>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a disk description has changed.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - watch: The disk description keys to watch. Pass NULL for all keys.
+    ///
+    /// - callback: The callback function to call when a watched key changes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a disk description has changed.
     ///
     /// Parameter `session`: The session object.
@@ -343,8 +394,6 @@ extern "C-unwind" {
     /// - `watch` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskdescriptionchangedcallback(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDescriptionChangedCallback(
         session: &DASession,
@@ -357,16 +406,32 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DARegisterDiskDisappearedCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+/// Type of the callback function used by DARegisterDiskDisappearedCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskdisappearedcallback?language=objc)
 #[cfg(feature = "DADisk")]
 pub type DADiskDisappearedCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a disk has disappeared.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - callback: The callback function to call when a disk has disappeared.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a disk has disappeared.
     ///
     /// Parameter `session`: The session object.
@@ -383,8 +448,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskdisappearedcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskDisappearedCallback(
         session: &DASession,
@@ -396,6 +459,15 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DADiskMount().
 ///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - dissenter: A dissenter object on failure or NULL on success.
+///
+/// - context: The user-defined context parameter given to the mount function.
+///
+/// Type of the callback function used by DADiskMount().
+///
 /// Parameter `disk`: The disk object.
 ///
 /// Parameter `dissenter`: A dissenter object on failure or NULL on success.
@@ -403,14 +475,25 @@ extern "C-unwind" {
 /// Parameter `context`: The user-defined context parameter given to the mount function.
 ///
 /// If the disk is already mounted, then status code in the dissenter object will be set to kDAReturnBusy
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskMountCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 #[cfg(feature = "DADisk")]
 impl DADisk {
+    /// Mounts the volume at the specified disk object.
+    ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - path: The mount path. Pass NULL for a “standard” mount path.
+    ///
+    /// - options: The mount options.
+    ///
+    /// - callback: The callback function to call once the mount completes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Mounts the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -427,8 +510,6 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmount(_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskMount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -453,6 +534,21 @@ impl DADisk {
 
     /// Mounts the volume at the specified disk object, with the specified mount options.
     ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - path: The mount path. Pass NULL for a “standard” mount path.
+    ///
+    /// - options: The mount options.
+    ///
+    /// - callback: The callback function to call once the mount completes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
+    /// - arguments: The null-terminated list of mount options to pass to /sbin/mount -o.
+    ///
+    /// Mounts the volume at the specified disk object, with the specified mount options.
+    ///
     /// Parameter `disk`: The disk object.
     ///
     /// Parameter `path`: The mount path.  Pass NULL for a "standard" mount path.
@@ -470,8 +566,6 @@ impl DADisk {
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     /// - `arguments` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountwitharguments(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskMountWithArguments")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -499,6 +593,25 @@ impl DADisk {
 
 /// Type of the callback function used by DARegisterDiskMountApprovalCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+///
+/// ## Return Value
+///
+/// A dissenter reference. Pass NULL to approve.
+///
+///
+///
+/// ## Discussion
+///
+/// The caller of this callback receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+///
+///
+/// Type of the callback function used by DARegisterDiskMountApprovalCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
@@ -508,13 +621,22 @@ impl DADisk {
 /// The caller of this callback receives a reference to the returned object.  The
 /// caller also implicitly retains the object and is responsible for releasing it
 /// with CFRelease().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskmountapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskMountApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a volume is to be mounted.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - callback: The callback function to call when a volume is to be mounted.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a volume is to be mounted.
     ///
     /// Parameter `session`: The session object.
@@ -531,8 +653,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskmountapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskMountApprovalCallback(
         session: &DASession,
@@ -544,19 +664,37 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DADiskRename().
 ///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - dissenter: A dissenter object on failure or NULL on success.
+///
+/// - context: The user-defined context parameter given to the rename function.
+///
+/// Type of the callback function used by DADiskRename().
+///
 /// Parameter `disk`: The disk object.
 ///
 /// Parameter `dissenter`: A dissenter object on failure or NULL on success.
 ///
 /// Parameter `context`: The user-defined context parameter given to the rename function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskrenamecallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskRenameCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 #[cfg(feature = "DADisk")]
 impl DADisk {
+    /// Renames the volume at the specified disk object.
+    ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - options: The rename options.
+    ///
+    /// - callback: The callback function to call once the rename completes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Renames the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -571,8 +709,6 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskrename(_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskRename")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -598,19 +734,37 @@ impl DADisk {
 
 /// Type of the callback function used by DADiskUnmount().
 ///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - dissenter: A dissenter object on failure or NULL on success.
+///
+/// - context: The user-defined context parameter given to the unmount function.
+///
+/// Type of the callback function used by DADiskUnmount().
+///
 /// Parameter `disk`: The disk object.
 ///
 /// Parameter `dissenter`: A dissenter object on failure or NULL on success.
 ///
 /// Parameter `context`: The user-defined context parameter given to the unmount function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskUnmountCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 #[cfg(feature = "DADisk")]
 impl DADisk {
+    /// Unmounts the volume at the specified disk object.
+    ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - options: The unmount options.
+    ///
+    /// - callback: The callback function to call once the unmount completes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Unmounts the volume at the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -625,8 +779,6 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmount(_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskUnmount")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -650,6 +802,25 @@ impl DADisk {
 
 /// Type of the callback function used by DARegisterDiskUnmountApprovalCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+///
+/// ## Return Value
+///
+/// A dissenter reference. Pass NULL to approve.
+///
+///
+///
+/// ## Discussion
+///
+/// The caller of this callback receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+///
+///
+/// Type of the callback function used by DARegisterDiskUnmountApprovalCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
@@ -659,13 +830,22 @@ impl DADisk {
 /// The caller of this callback receives a reference to the returned object.  The
 /// caller also implicitly retains the object and is responsible for releasing it
 /// with CFRelease().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunmountapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskUnmountApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a volume is to be unmounted.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - callback: The callback function to call when a volume is to be unmounted.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a volume is to be unmounted.
     ///
     /// Parameter `session`: The session object.
@@ -682,8 +862,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskunmountapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskUnmountApprovalCallback(
         session: &DASession,
@@ -695,19 +873,37 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DADiskEject().
 ///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - dissenter: A dissenter object on failure or NULL on success.
+///
+/// - context: The user-defined context parameter given to the eject function.
+///
+/// Type of the callback function used by DADiskEject().
+///
 /// Parameter `disk`: The disk object.
 ///
 /// Parameter `dissenter`: A dissenter object on failure or NULL on success.
 ///
 /// Parameter `context`: The user-defined context parameter given to the eject function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskejectcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskEjectCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
 #[cfg(feature = "DADisk")]
 impl DADisk {
+    /// Ejects the specified disk object.
+    ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - options: The eject options.
+    ///
+    /// - callback: The callback function to call once the ejection completes.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Ejects the specified disk object.
     ///
     /// Parameter `disk`: The disk object.
@@ -722,8 +918,6 @@ impl DADisk {
     ///
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskeject(_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskEject")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -747,6 +941,25 @@ impl DADisk {
 
 /// Type of the callback function used by DARegisterDiskEjectApprovalCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+///
+/// ## Return Value
+///
+/// A dissenter reference. Pass NULL to approve.
+///
+///
+///
+/// ## Discussion
+///
+/// The caller of this callback receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+///
+///
+/// Type of the callback function used by DARegisterDiskEjectApprovalCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
@@ -756,13 +969,22 @@ impl DADisk {
 /// The caller of this callback receives a reference to the returned object.  The
 /// caller also implicitly retains the object and is responsible for releasing it
 /// with CFRelease().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskejectapprovalcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskEjectApprovalCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a volume is to be ejected.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - callback: The callback function to call when a volume is to be ejected.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a volume is to be ejected.
     ///
     /// Parameter `session`: The session object.
@@ -779,8 +1001,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskejectapprovalcallback(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
     pub fn DARegisterDiskEjectApprovalCallback(
         session: &DASession,
@@ -792,17 +1012,43 @@ extern "C-unwind" {
 
 /// Type of the callback function used by DADiskClaim().
 ///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - dissenter: A dissenter object on failure or NULL on success.
+///
+/// - context: The user-defined context parameter given to the claim function.
+///
+/// Type of the callback function used by DADiskClaim().
+///
 /// Parameter `disk`: The disk object.
 ///
 /// Parameter `dissenter`: A dissenter object on failure or NULL on success.
 ///
 /// Parameter `context`: The user-defined context parameter given to the claim function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaimcallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskClaimCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *const DADissenter, *mut c_void)>;
 
+/// Type of the callback function used by DADiskClaim().
+///
+/// Parameters:
+/// - disk: The disk object.
+///
+/// - context: The user-defined context parameter given to the claim function.
+///
+///
+/// ## Return Value
+///
+/// A dissenter reference. Pass NULL to release claim.
+///
+///
+///
+/// ## Discussion
+///
+/// The caller of this callback receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it with CFRelease().
+///
+///
 /// Type of the callback function used by DADiskClaim().
 ///
 /// Parameter `disk`: The disk object.
@@ -814,14 +1060,27 @@ pub type DADiskClaimCallback =
 /// The caller of this callback receives a reference to the returned object.  The
 /// caller also implicitly retains the object and is responsible for releasing it
 /// with CFRelease().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaimreleasecallback?language=objc)
 #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
 pub type DADiskClaimReleaseCallback =
     Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void) -> *const DADissenter>;
 
 #[cfg(feature = "DADisk")]
 impl DADisk {
+    /// Claims the specified disk object for exclusive use.
+    ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    /// - options: The claim options.
+    ///
+    /// - release: The callback function to call when the claim is to be released.
+    ///
+    /// - releaseContext: The user-defined context parameter to pass to the callback function.
+    ///
+    /// - callback: The callback function to call once the claim completes.
+    ///
+    /// - callbackContext: The user-defined context parameter to pass to the callback function.
+    ///
     /// Claims the specified disk object for exclusive use.
     ///
     /// Parameter `disk`: The disk object.
@@ -842,8 +1101,6 @@ impl DADisk {
     /// - `release_context` must be a valid pointer or null.
     /// - `callback` must be implemented correctly.
     /// - `callback_context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaim(_:_:_:_:_:_:)?language=objc)
     #[doc(alias = "DADiskClaim")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
     #[inline]
@@ -879,11 +1136,20 @@ impl DADisk {
 
     /// Reports whether or not the disk is claimed.
     ///
+    /// Parameters:
+    /// - disk: The disk object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// TRUE if the disk is claimed, otherwise FALSE.
+    ///
+    ///
+    /// Reports whether or not the disk is claimed.
+    ///
     /// Parameter `disk`: The disk object.
     ///
     /// Returns: TRUE if the disk is claimed, otherwise FALSE.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskisclaimed(_:)?language=objc)
     #[doc(alias = "DADiskIsClaimed")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -897,9 +1163,12 @@ impl DADisk {
 
     /// Unclaims the specified disk object.
     ///
-    /// Parameter `disk`: The disk object.
+    /// Parameters:
+    /// - disk: The disk object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskunclaim(_:)?language=objc)
+    /// Unclaims the specified disk object.
+    ///
+    /// Parameter `disk`: The disk object.
     #[doc(alias = "DADiskUnclaim")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -913,6 +1182,19 @@ impl DADisk {
 
 /// Type of the callback function used by DARegisterDiskPeekCallback().
 ///
+/// Parameters:
+/// - disk: A disk object.
+///
+/// - context: The user-defined context parameter given to the registration function.
+///
+///
+/// ## Discussion
+///
+/// The peek callback functions are called in a specific order, from lowest order to highest order. DADiskClaim() could be used here to claim the disk object and DADiskSetOptions() could be used here to set up options on the disk object.
+///
+///
+/// Type of the callback function used by DARegisterDiskPeekCallback().
+///
 /// Parameter `disk`: A disk object.
 ///
 /// Parameter `context`: The user-defined context parameter given to the registration function.
@@ -920,12 +1202,23 @@ impl DADisk {
 /// The peek callback functions are called in a specific order, from lowest order to highest
 /// order.  DADiskClaim() could be used here to claim the disk object and DADiskSetOptions()
 /// could be used here to set up options on the disk object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskpeekcallback?language=objc)
 #[cfg(feature = "DADisk")]
 pub type DADiskPeekCallback = Option<unsafe extern "C-unwind" fn(NonNull<DADisk>, *mut c_void)>;
 
 extern "C-unwind" {
+    /// Registers a callback function to be called whenever a disk has been probed.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - match: The disk description keys to match. Pass NULL for all disk objects.
+    ///
+    /// - order: The callback order, from lowest to highest. Pass 0 for the default.
+    ///
+    /// - callback: The callback function to call when a disk has been probed.
+    ///
+    /// - context: The user-defined context parameter to pass to the callback function.
+    ///
     /// Registers a callback function to be called whenever a disk has been probed.
     ///
     /// Parameter `session`: The session object.
@@ -944,8 +1237,6 @@ extern "C-unwind" {
     /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daregisterdiskpeekcallback(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
     pub fn DARegisterDiskPeekCallback(
         session: &DASession,
@@ -960,11 +1251,20 @@ extern "C-unwind" {
 impl DADisk {
     /// Obtains the options for the specified disk.
     ///
+    /// Parameters:
+    /// - disk: The disk object for which to obtain the options.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The options.
+    ///
+    ///
+    /// Obtains the options for the specified disk.
+    ///
     /// Parameter `disk`: The disk object for which to obtain the options.
     ///
     /// Returns: The options.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskgetoptions(_:)?language=objc)
     #[doc(alias = "DADiskGetOptions")]
     #[cfg(feature = "DADisk")]
     #[inline]
@@ -977,6 +1277,21 @@ impl DADisk {
 
     /// Sets the options for the specified disk.
     ///
+    /// Parameters:
+    /// - disk: The disk object for which to set the options.
+    ///
+    /// - options: The options to set or clear.
+    ///
+    /// - value: Pass TRUE to set options; otherwise pass FALSE to clear options.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    /// Sets the options for the specified disk.
+    ///
     /// Parameter `disk`: The disk object for which to set the options.
     ///
     /// Parameter `options`: The options to set or clear.
@@ -984,8 +1299,6 @@ impl DADisk {
     /// Parameter `value`: Pass TRUE to set options; otherwise pass FALSE to clear options.
     ///
     /// Returns: A result code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadisksetoptions(_:_:_:)?language=objc)
     #[doc(alias = "DADiskSetOptions")]
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
     #[inline]
@@ -1000,6 +1313,15 @@ impl DADisk {
 extern "C-unwind" {
     /// Unregisters a registered callback function.
     ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - callback: The registered callback function.
+    ///
+    /// - context: The user-defined context parameter.
+    ///
+    /// Unregisters a registered callback function.
+    ///
     /// Parameter `session`: The session object.
     ///
     /// Parameter `callback`: The registered callback function.
@@ -1010,8 +1332,6 @@ extern "C-unwind" {
     ///
     /// - `callback` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daunregistercallback(_:_:_:)?language=objc)
     #[cfg(feature = "DASession")]
     pub fn DAUnregisterCallback(
         session: &DASession,
@@ -1021,7 +1341,15 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daunregisterapprovalcallback?language=objc)
+    /// Unregisters a registered callback function.
+    ///
+    /// Parameters:
+    /// - session: The session object.
+    ///
+    /// - callback: The registered callback function.
+    ///
+    /// - context: The user-defined context parameter.
+    ///
     ///
     /// # Safety
     ///

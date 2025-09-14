@@ -14,7 +14,7 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnail?language=objc)
+/// An opaque reference that represents a thumbnail object.
 #[doc(alias = "QLThumbnailRef")]
 #[repr(C)]
 pub struct QLThumbnail {
@@ -31,7 +31,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for QLThumbnail {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgettypeid()?language=objc)
+    /// Returns the type identifier for the thumbnail’s opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the thumbnail’s opaque type.
+    ///
+    ///
     #[doc(alias = "QLThumbnailGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -43,7 +49,23 @@ unsafe impl ConcreteType for QLThumbnail {
 }
 
 impl QLThumbnail {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcreate(_:_:_:_:)?language=objc)
+    /// Returns a thumbnail that’s generated in the background.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to create the thumbnail.
+    ///
+    /// - url: The URL of the document that you want to request a thumbnail for.
+    ///
+    /// - maxThumbnailSize: The maximum size in points for the thumbnail image.
+    ///
+    /// - options: Optional hints for creating a thumbnail image. Available options are [`kQLThumbnailOptionScaleFactorKey`](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey) and [`kQLThumbnailOptionIconModeKey`](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptioniconmodekey).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A generated thumbnail of the file at the provided `url`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -73,7 +95,17 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopydocumenturl(_:)?language=objc)
+    /// Returns the URL of the document that you’re requesting a thumbnail for.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail to compute.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL of the document that you’re requesting a thumbnail for.
+    ///
+    ///
     #[doc(alias = "QLThumbnailCopyDocumentURL")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -85,7 +117,17 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgetmaximumsize(_:)?language=objc)
+    /// Returns the maximum allowed size for the provided thumbnail image.
+    ///
+    /// Parameters:
+    /// - thumbnail: A thumbnail image.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum allowed size, in points, for the thumbnail image.
+    ///
+    ///
     #[doc(alias = "QLThumbnailGetMaximumSize")]
     #[deprecated = "Use QLThumbnailGenerationRequest in QuickLookThumbnailing."]
     #[inline]
@@ -96,7 +138,17 @@ impl QLThumbnail {
         unsafe { QLThumbnailGetMaximumSize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopyoptions(_:)?language=objc)
+    /// Returns the options for the requested thumbnail.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail that you want to obtain options for.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// Options for the provided thumbnail.
+    ///
+    ///
     #[doc(alias = "QLThumbnailCopyOptions")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -108,7 +160,15 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnaildispatchasync(_:_:_:)?language=objc)
+    /// Creates a thumbnail in the background on the provided background queue.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail to compute.
+    ///
+    /// - queue: The queue that’s used to create the thumbnail.
+    ///
+    /// - completion: The completion block that’s called when the thumbnail is created. The completion block is always called, even if the thumbnail computation is canceled.
+    ///
     ///
     /// # Safety
     ///
@@ -134,7 +194,23 @@ impl QLThumbnail {
         unsafe { QLThumbnailDispatchAsync(self, queue, completion) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcopyimage(_:)?language=objc)
+    /// Returns a thumbnail image.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail to compute.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A thumbnail image, or `NULL` if the Quick Look framework can’t create a thumbnail.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you call this function directly without using [`QLThumbnailDispatchAsync`](https://developer.apple.com/documentation/quicklook/qlthumbnaildispatchasync(_:_:_:)), this function blocks the calling thread until it finishes computing the thumbnail.
+    ///
+    ///
     #[doc(alias = "QLThumbnailCopyImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
@@ -147,7 +223,17 @@ impl QLThumbnail {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailgetcontentrect(_:)?language=objc)
+    /// Returns the rectangle of the provided thumbnail image that represents the content of the document.
+    ///
+    /// Parameters:
+    /// - thumbnail: A thumbnail image.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The effective rectangle of the thumbnail image that represents the content of the document. In icon mode, this is the part of the image without all the image decorations.
+    ///
+    ///
     #[doc(alias = "QLThumbnailGetContentRect")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]
@@ -158,7 +244,17 @@ impl QLThumbnail {
         unsafe { QLThumbnailGetContentRect(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailcancel(_:)?language=objc)
+    /// Cancels the computation of the thumbnail.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail to cancel.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you use [`QLThumbnailDispatchAsync`](https://developer.apple.com/documentation/quicklook/qlthumbnaildispatchasync(_:_:_:)) to request the thumbnail, calling this function invokes the completion callback of [`QLThumbnailDispatchAsync`](https://developer.apple.com/documentation/quicklook/qlthumbnaildispatchasync(_:_:_:)). If you use synchronous mode, [`QLThumbnailCopyImage`](https://developer.apple.com/documentation/quicklook/qlthumbnailcopyimage(_:)) returns `NULL` immediately.
+    ///
+    ///
     #[doc(alias = "QLThumbnailCancel")]
     #[deprecated = "Use [QLThumbnailGenerator cancelRequest:] in QuickLookThumbnailing."]
     #[inline]
@@ -169,7 +265,17 @@ impl QLThumbnail {
         unsafe { QLThumbnailCancel(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailiscancelled(_:)?language=objc)
+    /// Returns whether the creation of the thumbnail was canceled.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail to create.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `Boolean` value that indicates whether the creation of the thumbnail was canceled.
+    ///
+    ///
     #[doc(alias = "QLThumbnailIsCancelled")]
     #[deprecated = "Use QuickLookThumbnailing for thumbnails."]
     #[inline]

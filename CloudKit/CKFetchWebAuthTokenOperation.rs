@@ -8,9 +8,59 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This operation will fetch a web auth token given an API token obtained from the CloudKit Dashboard for your container
+    /// An operation that creates an authentication token for use with CloudKit web services.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation?language=objc)
+    /// ## Overview
+    ///
+    /// CloudKit web services provides an HTTP interface to fetch, create, update, and delete records, zones, and subscriptions. Each request you send requires an API token, which you configure in [CloudKit Dashboard](https://icloud.developer.apple.com). You must create an API token for each container in each environment.
+    ///
+    /// If you want to send a request to an endpoint that requires an authenticated user, use this operation to fetch an authentication token. Append the authentication token, along with the API token, to the endpoint’s URL. That request then acts on behalf of the current user. Authentication tokens are short-lived and expire after a single use.
+    ///
+    /// For an example of using a web authentication token with a CloudKit web service, see [Changing Access Controls on User Data](https://developer.apple.com/documentation/cloudkit/changing-access-controls-on-user-data).
+    ///
+    /// This operation executes the handlers you provide on an internal queue it manages. Your handlers must be capable of executing on a background queue. Tasks that need access to the main queue must redirect as appropriate.
+    ///
+    /// The operation calls [`fetchWebAuthTokenCompletionBlock`](https://developer.apple.com/documentation/cloudkit/ckfetchwebauthtokenoperation/fetchwebauthtokencompletionblock) after it executes to provide the fetched token. Use the completion handler to perform housekeeping tasks for the operation. It should also manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because this class inherits from [`NSOperation`](https://developer.apple.com/documentation/foundation/operation), you can also set the [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property. The operation calls both completion handlers if they’re both set.
+    ///
+    ///
+    ///
+    /// </div>
+    /// CloudKit operations have a default QoS of [`NSQualityOfServiceDefault`](https://developer.apple.com/documentation/foundation/qualityofservice/default). Operations with this service level are discretionary. The system schedules their execution at an optimal time according to battery level and network conditions, among other factors. Use the [`qualityOfService`](https://developer.apple.com/documentation/foundation/operation/qualityofservice) property to set a more appropriate QoS for the operation.
+    ///
+    /// The following example shows how to create the operation, configure its callbacks, and execute it in the user’s private database:
+    ///
+    /// ```swift
+    /// func fetchWebAuthToken(for apiToken: String,
+    ///     completion: @escaping (Result<String, Error>) -> Void) {
+    ///     
+    ///     // Create the operation using the API token
+    ///     // that the caller provides to the method.
+    ///     let operation = CKFetchWebAuthTokenOperation(apiToken: apiToken)
+    ///     
+    ///     // If the operation fails, return the error to the caller.
+    ///     // Otherwise, return the fetched authentication token.
+    ///     operation.fetchWebAuthTokenCompletionBlock = { webToken, error in
+    ///         if let error = error {
+    ///             completion(.failure(error))
+    ///         } else {
+    ///             completion(.success(webToken!))
+    ///         }
+    ///     }
+    ///     
+    ///     // Set an appropriate QoS and add the operation to the
+    ///     // private database's queue to execute it.
+    ///     operation.qualityOfService = .utility
+    ///     CKContainer.default().privateCloudDatabase.add(operation)
+    /// }
+    /// ```
+    ///
+    ///
+    /// This operation will fetch a web auth token given an API token obtained from the CloudKit Dashboard for your container
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfactiongoto?language=objc)
+    /// `PDFActionGoTo`, a subclass of `PDFAction`, defines methods for getting and setting the destination of a go-to action.
+    ///
+    /// ## Overview
+    ///
+    /// A `PDFActionGoTo` object represents the action of going to a specific location within the PDF document.
+    ///
+    ///
     #[unsafe(super(PDFAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAction")]

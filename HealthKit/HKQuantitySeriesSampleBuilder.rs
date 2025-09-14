@@ -8,6 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A builder object for incrementally building a sample that contains multiple quantities.
     /// An HKQuantitySeriesSampleBuilder is used to generate HKQuantitySample(s) with multiple
     /// quantities.
     ///
@@ -17,8 +18,6 @@ extern_class!(
     /// of the quantities that make up the series, the series may be finalized by calling
     /// -finishSeriesWithMetadata:completion:. Calling -discard invalidates the series and
     /// discards any data that was previously associated with it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityseriessamplebuilder?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKQuantitySeriesSampleBuilder;

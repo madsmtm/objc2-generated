@@ -10,22 +10,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum?language=objc)
+/// Specifies the corner of the screen to display the access point.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKAccessPointLocation(pub NSInteger);
 impl GKAccessPointLocation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/topleading?language=objc)
+    /// The upper-left corner of the screen.
     #[doc(alias = "GKAccessPointLocationTopLeading")]
     pub const TopLeading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/toptrailing?language=objc)
+    /// The upper-right corner of the screen.
     #[doc(alias = "GKAccessPointLocationTopTrailing")]
     pub const TopTrailing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/bottomleading?language=objc)
+    /// The lower-left corner of the screen.
     #[doc(alias = "GKAccessPointLocationBottomLeading")]
     pub const BottomLeading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.enum/bottomtrailing?language=objc)
+    /// The lower-right corner of the screen.
     #[doc(alias = "GKAccessPointLocationBottomTrailing")]
     pub const BottomTrailing: Self = Self(3);
 }
@@ -39,7 +39,17 @@ unsafe impl RefEncode for GKAccessPointLocation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkaccesspoint?language=objc)
+    /// An object that allows players to view and manage their Game Center information from within your game.
+    ///
+    /// ## Overview
+    ///
+    /// The access point displays a control in a corner of your game that opens a Game Center dashboard when the player taps or clicks it.
+    ///
+    /// Use the [`shared`](https://developer.apple.com/documentation/gamekit/gkaccesspoint/shared) property to get the shared access point object. GameKit attaches the access point to the window you specify in the [`parentWindow`](https://developer.apple.com/documentation/gamekit/gkaccesspoint/parentwindow) property, in the corner you specify using the [`location`](https://developer.apple.com/documentation/gamekit/gkaccesspoint/location-swift.property) property. If you don’t specify a parent window, GameKit infers an appropriate location. For the location of the access point on visionOS, see [Configure the access point on visionOS](https://developer.apple.com/documentation/gamekit/adding-an-access-point-to-your-game#configure-the-access-point-on-visionos).
+    ///
+    /// To display highlights, set the [`showHighlights`](https://developer.apple.com/documentation/gamekit/gkaccesspoint/showhighlights) property to [`true`](https://developer.apple.com/documentation/swift/true). Then set [`active`](https://developer.apple.com/documentation/gamekit/gkaccesspoint/isactive) to [`true`](https://developer.apple.com/documentation/swift/true) to display the access point control.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKAccessPoint;

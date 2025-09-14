@@ -7,22 +7,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind?language=objc)
+/// Constants that specify the kind of change to a document.
+///
+/// ## Overview
+///
+/// You specify one of these constants as a parameter of the [`updateChangeCount:`](https://developer.apple.com/documentation/uikit/uidocument/updatechangecount(_:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentChangeKind(pub NSInteger);
 impl UIDocumentChangeKind {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/done?language=objc)
+    /// A change has been made to the document.
     #[doc(alias = "UIDocumentChangeDone")]
     pub const Done: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/undone?language=objc)
+    /// A change to the document has been undone.
     #[doc(alias = "UIDocumentChangeUndone")]
     pub const Undone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/redone?language=objc)
+    /// An undone change to the document has been redone.
     #[doc(alias = "UIDocumentChangeRedone")]
     pub const Redone: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind/cleared?language=objc)
+    /// The document is cleared of outstanding changes.
     #[doc(alias = "UIDocumentChangeCleared")]
     pub const Cleared: Self = Self(3);
 }
@@ -35,16 +41,22 @@ unsafe impl RefEncode for UIDocumentChangeKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation?language=objc)
+/// Constants that specify the type of save operation.
+///
+/// ## Overview
+///
+/// You specify one of these constants as a parameter in the following methods: [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)), [`writeContents:andAttributes:safelyToURL:forSaveOperation:error:`](https://developer.apple.com/documentation/uikit/uidocument/writecontents(_:andattributes:safelyto:for:)), [`writeContents:toURL:forSaveOperation:originalContentsURL:error:`](https://developer.apple.com/documentation/uikit/uidocument/writecontents(_:to:for:originalcontentsurl:)), [`fileAttributesToWriteToURL:forSaveOperation:error:`](https://developer.apple.com/documentation/uikit/uidocument/fileattributestowrite(to:for:)), [`fileNameExtensionForType:saveOperation:`](https://developer.apple.com/documentation/uikit/uidocument/filenameextension(fortype:saveoperation:)), [`changeCountTokenForSaveOperation:`](https://developer.apple.com/documentation/uikit/uidocument/changecounttoken(for:)), and [`updateChangeCountWithToken:forSaveOperation:`](https://developer.apple.com/documentation/uikit/uidocument/updatechangecount(withtoken:for:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentSaveOperation(pub NSInteger);
 impl UIDocumentSaveOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation/forcreating?language=objc)
+    /// The document is being saved for the first time.
     #[doc(alias = "UIDocumentSaveForCreating")]
     pub const ForCreating: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation/foroverwriting?language=objc)
+    /// The document is being saved by overwriting the current version.
     #[doc(alias = "UIDocumentSaveForOverwriting")]
     pub const ForOverwriting: Self = Self(1);
 }
@@ -57,29 +69,59 @@ unsafe impl RefEncode for UIDocumentSaveOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state?language=objc)
+/// Constants that specify the document state.
+///
+/// ## Overview
+///
+/// A [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) object stores the current state of the document in the [`documentState`](https://developer.apple.com/documentation/uikit/uidocument/documentstate) property. To receive notifications about changes in document state, observe the [`UIDocumentStateChangedNotification`](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification) notification.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDocumentState: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/normal?language=objc)
+/// The document is open, editing is enabled, and there are no conflicts or errors associated with it.
         #[doc(alias = "UIDocumentStateNormal")]
         const Normal = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/closed?language=objc)
+/// There was an error in reading the document.
+///
+/// ## Discussion
+///
+/// The document has either not been successfully opened, or has been since closed. The document properties might not be valid.
+///
+///
         #[doc(alias = "UIDocumentStateClosed")]
         const Closed = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/inconflict?language=objc)
+/// Conflicts exist for the document file located at the file URL.
+///
+/// ## Discussion
+///
+/// You can access these conflicting document versions by calling the [`otherVersionsOfItemAtURL:`](https://developer.apple.com/documentation/foundation/nsfileversion/otherversionsofitem(at:)) class method of the [`NSFileVersion`](https://developer.apple.com/documentation/foundation/nsfileversion) class. This method returns an array of [`NSFileVersion`](https://developer.apple.com/documentation/foundation/nsfileversion) objects. You can then resolve the conflicting versions — for example, programmatically attempt to merge the versions or present the document versions to a person and request them to pick one.
+///
+///
         #[doc(alias = "UIDocumentStateInConflict")]
         const InConflict = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/savingerror?language=objc)
+/// There was an error in saving or reverting the document.
         #[doc(alias = "UIDocumentStateSavingError")]
         const SavingError = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/editingdisabled?language=objc)
+/// The document is busy and it isn’t currently safe for user edits.
+///
+/// ## Discussion
+///
+/// This state is set just before [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) calls the [`disableEditing`](https://developer.apple.com/documentation/uikit/uidocument/disableediting()) method. It calls [`enableEditing`](https://developer.apple.com/documentation/uikit/uidocument/enableediting()) when it becomes safe to edit again. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) also sets this state when an error prevents the reverting of a document.
+///
+///
         #[doc(alias = "UIDocumentStateEditingDisabled")]
         const EditingDisabled = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state/progressavailable?language=objc)
+/// The document is being downloaded or uploaded and progress information is available.
+///
+/// ## Discussion
+///
+/// When this state is set, you can use the [`progress`](https://developer.apple.com/documentation/foundation/progressreporting/progress) property of the document to monitor the current operation.
+///
+///
         #[doc(alias = "UIDocumentStateProgressAvailable")]
         const ProgressAvailable = 1<<4;
     }
@@ -93,37 +135,227 @@ unsafe impl RefEncode for UIDocumentState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/creationintent?language=objc)
+/// An app intent that creates new documents for your app.
+///
+/// ## Overview
+///
+/// UIKit provides a default intent. You can extend this structure to provide additional intents for your app.
+///
+/// ```swift
+/// // Extend the creation intent enumeration to add custom options for document creation.
+/// extension UIDocument.CreationIntent {
+///     static let template = UIDocument.CreationIntent("template")
+/// }
+/// ```
+///
+/// For more information, see [Customizing a document-based app’s launch experience](https://developer.apple.com/documentation/uikit/customizing-a-document-based-app-s-launch-experience).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIDocumentCreationIntent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/creationintent/default?language=objc)
+    /// The default document creation intent.
     pub static UIDocumentCreationIntentDefault: &'static UIDocumentCreationIntent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification?language=objc)
+    /// A notification the document object posts when there’s a change in the state of the document.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling this notification, check the value of the [`documentState`](https://developer.apple.com/documentation/uikit/uidocument/documentstate) property to see what the new state is, and then proceed accordingly. There’s no `userInfo` dictionary.
+    ///
+    ///
     pub static UIDocumentStateChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// A notification that the document posts when copying the file from a readonly location in order to write changes. This notification will be posted on the file presenter queue.
     /// A notification that the document posts when copying the file from a readonly location in order to write changes.
     /// This notification will be posted on the file presenter queue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/didmovetowritablelocationnotification?language=objc)
     pub static UIDocumentDidMoveToWritableLocationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
+    /// The key in a `UIDocumentDidMoveToWritableLocationNotification`’s `userInfo` dictionary that contains the previous readonly file URL.
     /// The key in a `UIDocumentDidMoveToWritableLocationNotification`'s `userInfo` dictionary that contains the previous readonly file URL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/didmovetowritablelocationoldurlkey?language=objc)
     pub static UIDocumentDidMoveToWritableLocationOldURLKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument?language=objc)
+    /// An abstract base class for managing discrete portions of your app’s data.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that make use of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) and its underlying architecture get many benefits for their documents:
+    ///
+    /// - Asynchronous reading and writing of data on a background queue, meaning your app’s responsiveness is unaffected while reading and writing operations take place
+    ///
+    /// - Coordinated reading and writing of document files automatically integrated with cloud services
+    ///
+    /// - Support for discovering conflicts between different versions of a document
+    ///
+    /// - Safe-saving of document data by writing data first to a temporary file and then replacing the current document file with it
+    ///
+    /// - Automatic saving of document data at opportune moments and support for dealing with suspend behaviors
+    ///
+    /// In the Model-View-Controller design pattern, a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) object is a model object or model-controller object — it manages the data of a document or the aggregate model objects that together constitute the document’s data. You typically pair it with a view controller that manages the view presenting the document’s contents. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) provides no direct support for managing document views, but view controllers that subclass [`UIDocumentViewController`](https://developer.apple.com/documentation/uikit/uidocumentviewcontroller) can present a `UIDocument`, and view controllers that subclass [`UIDocumentBrowserViewController`](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller) can organize and display `UIDocument` collections.
+    ///
+    /// Document-based apps include those that can generate multiple documents, each with its own file-system location. A document-based app must create a subclass of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) for its documents.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If you’re using a database to store document data, create a subclass of the [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument) class instead of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument); [`UIManagedDocument`](https://developer.apple.com/documentation/uikit/uimanageddocument) is a subclass of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The primary attribute of a document in the [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) architecture is its file URL. When you initialize an instance of your document subclass by calling [`initWithFileURL:`](https://developer.apple.com/documentation/uikit/uidocument/init(fileurl:)), you must pass a file URL locating the document file in the app sandbox. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) determines the file type (the Uniform Type Identifier associated with the file extension) and the document name (the filename component) from the file URL. You can override the accessor methods of the [`fileType`](https://developer.apple.com/documentation/uikit/uidocument/filetype) and [`localizedName`](https://developer.apple.com/documentation/uikit/uidocument/localizedname) properties to supply different values.
+    ///
+    /// The following outlines the life cycle of a typical document:
+    ///
+    /// 1. You create a new document or open an existing document.
+    ///
+    ///  - To create a new document, allocate and initialize an instance of your subclass and then call [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)) on the instance.
+    ///
+    /// - To open an existing document (selected by the user), allocate and initialize an instance of your subclass and then call [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)) on the instance.
+    ///
+    /// 2. The user edits the document. As the user edits, track changes to the document. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) periodically notes when there are unsaved changes and writes the document data to its file.
+    ///
+    /// 3. The user requests that the document be integrated with cloud services (optional). You must enable the document for cloud storage. You must also resolve any conflicts between different versions of the same document.
+    ///
+    /// 4. The user closes the document. Call [`closeWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/close(completionhandler:)) on the document instance. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) saves the document if there are any unsaved changes.
+    ///
+    /// A typical document-based app calls [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)), [`closeWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/close(completionhandler:)), and [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)) on the main thread. When the read or save operation kicked off by these methods concludes, the system executes the completion-handler block on the same dispatch queue as the system used to invoke the method, allowing you to complete any tasks contingent on the read or save operation. If the operation isn’t successful, the system passes [`false`](https://developer.apple.com/documentation/swift/false) to the completion-handler block.
+    ///
+    /// ### Implement the NSFilePresenter protocol
+    ///
+    /// The [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class adopts the [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) protocol. When another client attempts to read the document of a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument)-based app, the system suspends reading until the system provides the [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) object an opportunity to save any changes made to the document.
+    ///
+    /// Although some implementations do nothing, [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) implements all [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) methods. Specifically, [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument):
+    ///
+    /// - Implements [`relinquishPresentedItemToReader:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/relinquishpresenteditem(toreader:)) to forward the incoming block to [`performAsynchronousFileAccessUsingBlock:`](https://developer.apple.com/documentation/uikit/uidocument/performasynchronousfileaccess(_:))
+    ///
+    /// - Implements [`relinquishPresentedItemToWriter:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/relinquishpresenteditem(towriter:)) to check if the file-modification date changed; if the file is newer than before, it calls [`revertToContentsOfURL:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/revert(tocontentsof:completionhandler:)) with the value of the [`fileURL`](https://developer.apple.com/documentation/uikit/uidocument/fileurl) as the URL parameter
+    ///
+    /// - Implements [`presentedItemDidMoveToURL:`](https://developer.apple.com/documentation/foundation/nsfilepresenter/presenteditemdidmove(to:)) to update the document’s file URL ([`fileURL`](https://developer.apple.com/documentation/uikit/uidocument/fileurl))
+    ///
+    /// In your [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) subclass, if you override a [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) method, you can always invoke the superclass implementation (`super`).
+    ///
+    /// ### Create a subclass
+    ///
+    /// Each document-based app must create a subclass of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) whose instances represent its documents. The subclassing requirements for most apps are simple:
+    ///
+    /// - For writing operations, implement the [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)) method to provide a snapshot of document data. The data must be in the form of an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object (for flat files) or an [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) object (for file packages). Writing operations are usually initiated through the autosave feature.
+    ///
+    /// - For reading operations, implement the [`loadFromContents:ofType:error:`](https://developer.apple.com/documentation/uikit/uidocument/load(fromcontents:oftype:)) method to receive an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) or [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) object and initialize the app’s data structures with it.
+    ///
+    /// - Implement change tracking to enable the autosaving feature. See [Track changes](https://developer.apple.com/documentation/uikit/uidocument#track-changes) for details.
+    ///
+    /// - When cloud services are enabled for a document, resolve conflicts between different versions of a document. See [Resolve conflicts and handle errors](https://developer.apple.com/documentation/uikit/uidocument#resolve-conflicts-and-handle-errors) for details.
+    ///
+    ///   The system typically calls the [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)) and [`loadFromContents:ofType:error:`](https://developer.apple.com/documentation/uikit/uidocument/load(fromcontents:oftype:)) methods on the main queue. More specifically:
+    ///
+    /// - The system calls the [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)) method on the queue that the system called the [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)) method on; writing of data takes place on a background thread.
+    ///
+    /// - The system calls the [`loadFromContents:ofType:error:`](https://developer.apple.com/documentation/uikit/uidocument/load(fromcontents:oftype:)) method on the queue that the system called the [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)) method on.
+    ///
+    /// If you have special requirements for reading and writing document data for which the [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)) and [`loadFromContents:ofType:error:`](https://developer.apple.com/documentation/uikit/uidocument/load(fromcontents:oftype:)) methods won’t suffice, you can override other methods of the [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) class. See [Override input and output methods](https://developer.apple.com/documentation/uikit/uidocument#override-input-and-output-methods) for a discussion of these requirements and methods.
+    ///
+    /// #### Track changes
+    ///
+    /// To enable the autosaving feature of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument), you must notify it when users make changes to a document. [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) periodically checks whether the [`hasUnsavedChanges`](https://developer.apple.com/documentation/uikit/uidocument/hasunsavedchanges) method returns [`true`](https://developer.apple.com/documentation/swift/true); if it does, it initiates the save operation for the document.
+    ///
+    /// There are two primary ways to implement change tracking in your [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) subclass:
+    ///
+    /// - Call the methods of the [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) class to implement undo and redo for the document. You can access the default [`NSUndoManager`](https://developer.apple.com/documentation/foundation/undomanager) object from the [`undoManager`](https://developer.apple.com/documentation/uikit/uidocument/undomanager) property. This is the preferred approach, especially for existing apps that already support undo and redo.
+    ///
+    /// - Call the [`updateChangeCount:`](https://developer.apple.com/documentation/uikit/uidocument/updatechangecount(_:)) method at the appropriate junctures in your code.
+    ///
+    /// #### Resolve conflicts and handle errors
+    ///
+    /// A [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) object has a specific state at any moment in its life cycle. You can check the current state by querying the [`documentState`](https://developer.apple.com/documentation/uikit/uidocument/documentstate) property, and get notified about changes by observing the [`UIDocumentStateChangedNotification`](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification) notification.
+    ///
+    /// If the owner enables a document for iCloud, it’s important to check for conflicting versions and to attempt to resolve conflicts. Listen for the [`UIDocumentStateChangedNotification`](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification) notification and then checking if the document state is [`UIDocumentStateInConflict`](https://developer.apple.com/documentation/uikit/uidocument/state/inconflict). This state indicates that there are conflicting versions of the document, which you can access by calling the [`NSFileVersion`](https://developer.apple.com/documentation/foundation/nsfileversion) class method [`unresolvedConflictVersionsOfItemAtURL:`](https://developer.apple.com/documentation/foundation/nsfileversion/unresolvedconflictversionsofitem(at:)), passing in the document’s file URL. If you can resolve a conflict correctly without user interaction, do so. Otherwise, discretely notify the user that a conflict exists and let them choose how to resolve it. Possible approaches include:
+    ///
+    /// - Display the conflicting versions, from which a user can pick one or both versions to keep.
+    ///
+    /// - Display a merged version and giving the user an option to pick it.
+    ///
+    /// - Display the file modification dates and giving the user the option to choose one or both.
+    ///
+    /// Document state, in addition to indicating an inter-file conflict, can indicate errors. For example, [`UIDocumentStateClosed`](https://developer.apple.com/documentation/uikit/uidocument/state/closed) indicates an error in reading, and [`UIDocumentStateSavingError`](https://developer.apple.com/documentation/uikit/uidocument/state/savingerror) indicates an error in saving or reverting a document. The system notifies your app of reading and writing errors through the `success` parameter passed into the completion handlers of the [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)), [`closeWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/close(completionhandler:)), [`revertToContentsOfURL:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/revert(tocontentsof:completionhandler:)), and [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)) methods.
+    ///
+    /// You can handle errors by calling or implementing the [`handleError:userInteractionPermitted:`](https://developer.apple.com/documentation/uikit/uidocument/handleerror(_:userinteractionpermitted:)) method; the default implementations of the [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)) and [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)) methods call `handleError(_:userInteractionPermitted:)` when a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) object encounters a reading or writing error, respectively. You can handle read, save, and reversion errors by informing the user and, if the situation permits, trying to recover from the error.
+    ///
+    /// Be sure to read the description for the [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)) method for its guidance on handling errors encountered during document saving.
+    ///
+    /// #### Override input and output methods
+    ///
+    /// If you app has special requirements for reading or writing document data, it can override methods of [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) other than [`loadFromContents:ofType:error:`](https://developer.apple.com/documentation/uikit/uidocument/load(fromcontents:oftype:)) and [`contentsForType:error:`](https://developer.apple.com/documentation/uikit/uidocument/contents(fortype:)). These requirements often include the following:
+    ///
+    /// - Incremental reading and writing of large data files
+    ///
+    ///   Override the [`readFromURL:error:`](https://developer.apple.com/documentation/uikit/uidocument/read(from:)) and [`writeContents:toURL:forSaveOperation:originalContentsURL:error:`](https://developer.apple.com/documentation/uikit/uidocument/writecontents(_:to:for:originalcontentsurl:)) methods, respectively.
+    ///
+    /// - Custom representations of document data (that is, not an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) or [`NSFileWrapper`](https://developer.apple.com/documentation/foundation/filewrapper) object)
+    ///
+    ///   Override the [`readFromURL:error:`](https://developer.apple.com/documentation/uikit/uidocument/read(from:)) method when reading document data and the [`writeContents:toURL:forSaveOperation:originalContentsURL:error:`](https://developer.apple.com/documentation/uikit/uidocument/writecontents(_:to:for:originalcontentsurl:)) method when writing document data.
+    ///
+    /// - Performing actions before or after reading or writing data
+    ///
+    ///   Override [`openWithCompletionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/open(completionhandler:)) and [`saveToURL:forSaveOperation:completionHandler:`](https://developer.apple.com/documentation/uikit/uidocument/save(to:for:completionhandler:)).
+    ///
+    /// - A custom approach to safe-saving
+    ///
+    ///   Override the [`writeContents:andAttributes:safelyToURL:forSaveOperation:error:`](https://developer.apple.com/documentation/uikit/uidocument/writecontents(_:andattributes:safelyto:for:)) method.
+    ///
+    /// - Changing the file type of a document before it’s saved
+    ///
+    ///   Override the [`savingFileType`](https://developer.apple.com/documentation/uikit/uidocument/savingfiletype) method to return a file type other than the default ([`fileType`](https://developer.apple.com/documentation/uikit/uidocument/filetype)). An example of this is an RTF document which, after a user adds an image to it, should be saved as an RTFD document.
+    ///
+    /// If you override these methods, be aware that all reading and writing of document data must be done on a background queue and must be coordinated with other attempts to read from and write to the same document file. Because of this, you usually call the superclass implementation (`super`) as part of your override, and if you call other `UIDocument` methods, you usually invoke them in the block passed into a call of the [`performAsynchronousFileAccessUsingBlock:`](https://developer.apple.com/documentation/uikit/uidocument/performasynchronousfileaccess(_:)) method. Read the method descriptions for details.
+    ///
+    /// #### Access document attributes
+    ///
+    /// If you override any of the document-attribute properties (listed under [Accessing document attributes](https://developer.apple.com/documentation/uikit/uidocument#accessing-document-attributes)) by overriding the related accessor methods, be aware that the UIKit framework can call these accessor methods on a background thread. Thus your overriding implementation must be thread safe.
+    ///
+    /// ### Rename documents
+    ///
+    /// `UIDocument` provides support for changing the document’s title. Security considerations require that clients can’t programmatically rename a file on the file system, and that the system confirms that a person intends to rename their file. To satisfy these restrictions, the system, instead of your app, presents a renaming user interface using a process outside your app. The external process renames the underlying file and reports the new location back to the client.
+    ///
+    /// To support this external process, `UIDocument` conforms to [`UINavigationItemRenameDelegate`](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate-96g5t) and handles the rename request internally when a person invokes renaming from the title menu. If you’re using [`UIDocumentViewController`](https://developer.apple.com/documentation/uikit/uidocumentviewcontroller), it automatically configures renaming for you. Otherwise, you manually assign the document as the navigation item’s [`renameDelegate`](https://developer.apple.com/documentation/uikit/uinavigationitem/renamedelegate-o32h).
+    ///
+    /// ```swift
+    /// init(document: MyDocument) {
+    ///     self.document = document
+    ///     super.init(nibName:nil, bundle: nil)
+    ///     self.navigationItem.renameDelegate = document
+    /// }
+    /// ```
+    ///
+    /// The Rename action appears in the title menu as one of the system-suggested actions. When a person taps the Rename action, the system shows an inline text field for changing the navigation item’s `title`. Upon renaming the item, the system changes the file name in storage as though the person renamed the file in another application.
+    ///
+    /// Prior to iOS 17, to enable the system rename user interface, a client view controller adopts the `UINavigationItemRenameDelegate` protocol and assigns itself as the navigation item’s `renameDelegate`. It’s the client’s responsibility to implement callbacks such as [`navigationItem(_:didEndRenamingWith:)`](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate-5j4ws/navigationitem(_:didendrenamingwith:)) (Swift) or [`navigationItem:didEndRenamingWithTitle:`](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate-96g5t/navigationitem:didendrenamingwithtitle:) (Objective-C) to explicitly move the file in storage.
+    ///
+    /// ```swift
+    /// class EditorViewController: UIViewController,
+    ///         UINavigationItemRenameDelegate {
+    ///
+    ///     override func viewDidLoad() {
+    ///         super.viewDidLoad()
+    ///         navigationItem.renameDelegate = self
+    ///     }
+    ///
+    ///     func navigationItem(_ navigationItem: UINavigationItem, didEndRenamingWith: title: String) {
+    ///         // Move the file, update the model, and so on.
+    ///     }
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -384,7 +616,15 @@ extern_conformance!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/useractivityurlkey?language=objc)
+    /// The key that identifies the document associated with a user activity.
+    ///
+    /// ## Discussion
+    ///
+    /// You use this key in the [`userInfo`](https://developer.apple.com/documentation/foundation/nsuseractivity/userinfo) dictionary of an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object. Its value is the URL of the document associated with the user activity.
+    ///
+    /// When the `NSUbiquitousDocumentUserActivityType` key is present in a [`CFBundleDocumentTypes`](https://developer.apple.com/documentation/bundleresources/information-property-list/cfbundledocumenttypes) entry, AppKit automatically creates an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object for documents in iCloud, using the given activity type.
+    ///
+    ///
     pub static NSUserActivityDocumentURLKey: &'static NSString;
 }
 

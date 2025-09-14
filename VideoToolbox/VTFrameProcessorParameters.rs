@@ -10,11 +10,16 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
+    /// The base protocol for input and output processing parameters for a frame processor implementation.
+    ///
+    /// ## Overview
+    ///
+    /// An instance of a class corresponding to this protocol is passed to [`processWithParameters:error:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/processwithparameters:error:) calls and for asynchronous versions of those calls, the same instance is returned in the completion.
+    ///
+    ///
     /// The base protocol for input and output processing parameters for a Video Toolbox frame processor implementation.
     ///
     /// Pass an instance of a class corresponding to this protocol to `processFrameWithParameters` calls. In async versions of those APIs, the completion handler returns the same instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorparameters?language=objc)
     #[cfg(feature = "objc2")]
     pub unsafe trait VTFrameProcessorParameters: NSObjectProtocol {
         #[cfg(feature = "VTFrameProcessorFrame")]

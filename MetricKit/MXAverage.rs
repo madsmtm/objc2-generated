@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A unit of measure for an average.
     /// A class representing metric data that is averaged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxaverage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXAverage<UnitType: ?Sized = AnyObject>;

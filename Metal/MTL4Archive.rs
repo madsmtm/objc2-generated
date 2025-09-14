@@ -10,6 +10,13 @@ use crate::*;
 extern_protocol!(
     /// A read-only container that stores pipeline states from a shader compiler.
     ///
+    /// ## Overview
+    ///
+    /// The pipeline states can have intermediate representation (IR) binaries, GPU- and system-specific binaries, or a combination.
+    ///
+    ///
+    /// A read-only container that stores pipeline states from a shader compiler.
+    ///
     /// The pipeline states can have intermediate representation (IR) binaries,
     /// GPU- and system-specific binaries, or a combination.
     ///
@@ -35,8 +42,6 @@ extern_protocol!(
     /// ### Creating binary functions
     ///
     /// - ``newBinaryFunctionWithDescriptor:functionType:error:``
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4archive?language=objc)
     pub unsafe trait MTL4Archive: NSObjectProtocol + Send + Sync {
         /// A label that you can associate with this archive.
         #[unsafe(method(label))]

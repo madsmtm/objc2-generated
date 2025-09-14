@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype?language=objc)
+/// Constants indicating the meaning of a balance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INBalanceType(pub NSInteger);
 impl INBalanceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/unknown?language=objc)
+    /// An unknown balance type.
     #[doc(alias = "INBalanceTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/money?language=objc)
+    /// A monetary balance involving a known currency.
     #[doc(alias = "INBalanceTypeMoney")]
     pub const Money: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/points?language=objc)
+    /// A balance of points, such as those associated with a reward or bonus program.
     #[doc(alias = "INBalanceTypePoints")]
     pub const Points: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbalancetype/miles?language=objc)
+    /// A balance of miles, such as those associated with a frequent flier program.
     #[doc(alias = "INBalanceTypeMiles")]
     pub const Miles: Self = Self(3);
 }

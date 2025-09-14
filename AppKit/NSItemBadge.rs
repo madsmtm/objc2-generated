@@ -9,10 +9,15 @@ use crate::*;
 extern_class!(
     /// `NSItemBadge` represents a badge that can be attached to an `NSToolbarItem`.
     ///
+    /// ## Overview
+    ///
+    /// This badge provides a way to display small visual indicators, such as counts and text labels, within a toolbar item. Badges can be used to highlight important information, such as unread notifications or status indicators.
+    ///
+    ///
+    /// `NSItemBadge` represents a badge that can be attached to an `NSToolbarItem`.
+    ///
     /// This badge provides a way to display small visual indicators, such as counts and text labels, within a toolbar item. Badges can be used to highlight important information,
     /// such as unread notifications or status indicators.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsitembadge-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemBadge;

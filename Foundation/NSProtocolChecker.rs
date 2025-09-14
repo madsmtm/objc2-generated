@@ -6,7 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprotocolchecker?language=objc)
+    /// An object that restricts the messages that can be sent to another object (referred to as the checker’s delegate).
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSProtocolChecker`](https://developer.apple.com/documentation/foundation/nsprotocolchecker) object can be particularly useful when an object with many methods, only a few of which ought to be remotely accessible, is made available using the distributed objects system.
+    ///
+    /// A protocol checker acts as a kind of proxy; when it receives a message that is in its designated protocol, it forwards the message to its target and consequently appears to be the target object itself. However, when it receives a message not in its protocol, it raises an [`NSInvalidArgumentException`](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidargumentexception) to indicate that the message isn’t allowed, whether or not the target object implements the method.
+    ///
+    /// Typically, an object that is to be distributed (yet must restrict messages) creates an [`NSProtocolChecker`](https://developer.apple.com/documentation/foundation/nsprotocolchecker) for itself and returns the checker rather than returning itself in response to any messages. The object might also register the checker as the root object of an NSConnection.
+    ///
+    /// The object should be careful about vending references to `self`—the protocol checker will convert a return value of `self` to indicate the checker rather than the object for any messages forwarded by the checker, but direct references to the object (bypassing the checker) could be passed around by other objects.
+    ///
+    ///
     #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]

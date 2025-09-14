@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype?language=objc)
+/// The possible types of shape constraints.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MLMultiArrayShapeConstraintType(pub NSInteger);
 impl MLMultiArrayShapeConstraintType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/unspecified?language=objc)
+    /// The constraint type is undefined.
     #[doc(alias = "MLMultiArrayShapeConstraintTypeUnspecified")]
     pub const Unspecified: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/enumerated?language=objc)
+    /// The constraint is an array of allowed shapes.
     #[doc(alias = "MLMultiArrayShapeConstraintTypeEnumerated")]
     pub const Enumerated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmultiarrayshapeconstrainttype/range?language=objc)
+    /// The constraint is a set of ranges allowed for the array shape.
     #[doc(alias = "MLMultiArrayShapeConstraintTypeRange")]
     pub const Range: Self = Self(3);
 }

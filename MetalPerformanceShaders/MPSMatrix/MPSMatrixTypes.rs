@@ -9,11 +9,10 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A kernel that consumes one matrix and produces one matrix.
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSMatrixUnaryKernel consumes one MPSMatrix and produces one MPSMatrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixunarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -183,12 +182,11 @@ impl MPSMatrixUnaryKernel {
 }
 
 extern_class!(
+    /// A kernel that consumes two matrices and produces one matrix.
     /// Dependencies: This depends on Metal.framework
     ///
     /// A MPSMatrixBinaryKernel consumes two MPSMatrix objects and produces
     /// one MPSMatrix object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbinarykernel?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

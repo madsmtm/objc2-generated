@@ -6,34 +6,76 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCancelWorkoutIntentResponseCode(pub NSInteger);
 impl INCancelWorkoutIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INCancelWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/continueinapp?language=objc)
+    /// A response code that indicates your app extension is ready to transfer control to the app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, SiriKit launches your app and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization time. (If you did not provide a user activity object, SiriKit creates one for you). SiriKit adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to cancel the workout.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to start the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from performing the task.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code only when you cannot cancel the workout because of extenuating circumstances. For example, you might use this code if the user must log into your app before canceling workouts and is not currently logged in. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/failurenomatchingworkout?language=objc)
+    /// A response code that indicates you didn’t find the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user specifies a workout name that your app does not recognize.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/handleinapp?language=objc)
+    /// A response code that indicates you want to handle the intent in your app instead.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you want SiriKit to launch your app in the background so that you can handle the intent there. With this code, the user continues to interact with Siri, but your app has an opportunity to end the workout session and update any other workout information.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app extension successfully cancels the workout.
+    ///
+    ///
     #[doc(alias = "INCancelWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }
@@ -47,7 +89,15 @@ unsafe impl RefEncode for INCancelWorkoutIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponse?language=objc)
+    /// Your app’s response to a cancel workout intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INCancelWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/incancelworkoutintentresponse) object to specify whether your app is able to cancel a workout. The response object contains only the status code that indicates whether to launch your app or whether there was a problem.
+    ///
+    /// You create an [`INCancelWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/incancelworkoutintentresponse) object in the [`handleCancelWorkout:completion:`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling/handle(intent:completion:)) and [`confirmCancelWorkout:completion:`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling/confirm(intent:completion:)) methods of your cancel workout handler object. For more information about implementing your handler object, see [`INCancelWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/incancelworkoutintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

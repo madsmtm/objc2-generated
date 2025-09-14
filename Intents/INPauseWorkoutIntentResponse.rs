@@ -6,34 +6,76 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPauseWorkoutIntentResponseCode(pub NSInteger);
 impl INPauseWorkoutIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/unspecified?language=objc)
+    /// A response code that indicates an unknown state.
     #[doc(alias = "INPauseWorkoutIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/ready?language=objc)
+    /// A response code that indicates app readiness.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/continueinapp?language=objc)
+    /// A response code that indicates your app extension is ready to transfer control to the app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon returning this code, SiriKit launches your app and passes it the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object you provided at initialization time. (If you didn’t provide a user activity object, SiriKit creates one for you). SiriKit adds an [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object with the intent and your response to the user activity object before delivering it. Your app should use the information in the user activity object to pause the workout.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/failure?language=objc)
+    /// A response code that indicates you were unable to start the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from performing the task.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// A response code that indicates the user must launch your app to start the workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code only when you can’t pause the workout because of extenuating circumstances. For example, you might use this code if the user must log into your app before pausing workouts and isn’t currently logged in. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/failurenomatchingworkout?language=objc)
+    /// A response code that indicates you didn’t find the specified workout.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user specifies a workout name that your app doesn’t recognize.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeFailureNoMatchingWorkout")]
     pub const FailureNoMatchingWorkout: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/handleinapp?language=objc)
+    /// A response code that indicates you want to handle the intent in your app instead.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you want SiriKit to launch your app in the background so that you can handle the intent there. With this code, the user continues to interact with Siri, but your app has an opportunity to update your workout session or any other workout information.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeHandleInApp")]
     pub const HandleInApp: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponsecode/success?language=objc)
+    /// A response code that indicates your app succeeded.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app successfully pauses the workout.
+    ///
+    ///
     #[doc(alias = "INPauseWorkoutIntentResponseCodeSuccess")]
     pub const Success: Self = Self(7);
 }
@@ -47,7 +89,15 @@ unsafe impl RefEncode for INPauseWorkoutIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponse?language=objc)
+    /// Your app’s response to a pause workout intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INPauseWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponse) object to specify whether your app is able to pause a workout. The response object contains only the status code that indicates whether to launch your app or whether there was a problem.
+    ///
+    /// You create an [`INPauseWorkoutIntentResponse`](https://developer.apple.com/documentation/intents/inpauseworkoutintentresponse) object in the [`handlePauseWorkout:completion:`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling/handle(intent:completion:)) and [`confirmPauseWorkout:completion:`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling/confirm(intent:completion:)) methods of your pause workout handler object. For more information about implementing your handler object, see [`INPauseWorkoutIntentHandling`](https://developer.apple.com/documentation/intents/inpauseworkoutintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationpublickeycredentialregistrationrequest?language=objc)
+    /// An interface that defines properties for a credential registration request.
     pub unsafe trait ASAuthorizationPublicKeyCredentialRegistrationRequest:
         NSObjectProtocol + NSSecureCoding + NSCopying
     {

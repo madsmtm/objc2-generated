@@ -4,478 +4,811 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat?language=objc)
+/// The data formats that describe the organization and characteristics of individual pixels in a texture.
+///
+/// ## Overview
+///
+/// There are three varieties of pixel formats: ordinary, packed, and compressed. For ordinary and packed formats, the name of the pixel format specifies the order of components (such as `R`, `RG`, `RGB`, `RGBA`, `BGRA`), bits per component (such as `8`, `16`, `32`), and data type for the component (such as `Float`, `Sint`, `Snorm`, `Uint`, `Unorm`). If the pixel format name has the `_sRGB` suffix, then reading and writing pixel data applies sRGB gamma compression and decompression. The alpha component of sRGB pixel formats is always treated as a linear value. For compressed formats, the name of the pixel format specifies a compression family (such as `ASTC`, `BC`, `EAC`, `ETC2`, `PVRTC`).
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Pixel format availability and capabilities vary by feature set. See [Pixel Format Capabilities](https://developer.apple.com/metal/Metal-Feature-Set-Tables.pdf) for more information.
+///
+///
+///
+/// </div>
+/// ### Storage characteristics
+///
+/// The number and size of each pixel component determines the storage size of each pixel format. For example, the storage size of [`MTLPixelFormatBGRA8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra8unorm) is 32 bits (four 8-bit components) and the storage size of [`MTLPixelFormatBGR5A1Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/bgr5a1unorm) is 16 bits (three 5-bit components and one 1-bit component).
+///
+/// For normalized signed integer formats (`Snorm`), values in the range `[-1.0, 1.0]` map to `[MIN_INT, MAX_INT]`, where `MIN_INT` is the greatest negative integer and `MAX_INT` is the greatest positive integer for the number of bits in the storage size. Positive values and zero distribute uniformly in the range `[0.0, 1.0]`, and negative integer values greater than `(MIN_INT + 1)` distribute uniformly in the range `(-1.0, 0.0)`.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  For `Snorm` formats, the values `MIN_INT` and `(MIN_INT + 1)` both map to `-1.0`.
+///
+///
+///
+/// </div>
+/// For normalized unsigned integer formats (`Unorm`), values in the range `[0.0, 1.0]` are uniformly mapped to `[0, MAX_UINT]`, where `MAX_UINT` is the greatest unsigned integer for the number of bits in the storage size.
+///
+/// Format data is little-endian (the least-significant byte in the least-significant address). For formats with components that are themselves byte-aligned and more than one byte, the components are also little-endian.
+///
+/// See Table 7.7 in the [Metal Shading Language Specification](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) (PDF) for details on pixel format normalization.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPixelFormat(pub NSUInteger);
 impl MTLPixelFormat {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/invalid?language=objc)
+    /// The default value of the pixel format for the `MTLRenderPipelineState`. You cannot create a texture with this value.
     #[doc(alias = "MTLPixelFormatInvalid")]
     pub const Invalid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/a8unorm?language=objc)
+    /// Ordinary format with one 8-bit normalized unsigned integer component.
     #[doc(alias = "MTLPixelFormatA8Unorm")]
     pub const A8Unorm: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r8unorm?language=objc)
+    /// Ordinary format with one 8-bit normalized unsigned integer component.
     #[doc(alias = "MTLPixelFormatR8Unorm")]
     pub const R8Unorm: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r8unorm_srgb?language=objc)
+    /// Ordinary format with one 8-bit normalized unsigned integer component with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatR8Unorm_sRGB")]
     pub const R8Unorm_sRGB: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r8snorm?language=objc)
+    /// Ordinary format with one 8-bit normalized signed integer component.
     #[doc(alias = "MTLPixelFormatR8Snorm")]
     pub const R8Snorm: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r8uint?language=objc)
+    /// Ordinary format with one 8-bit unsigned integer component.
     #[doc(alias = "MTLPixelFormatR8Uint")]
     pub const R8Uint: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r8sint?language=objc)
+    /// Ordinary format with one 8-bit signed integer component.
     #[doc(alias = "MTLPixelFormatR8Sint")]
     pub const R8Sint: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r16unorm?language=objc)
+    /// Ordinary format with one 16-bit normalized unsigned integer component.
     #[doc(alias = "MTLPixelFormatR16Unorm")]
     pub const R16Unorm: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r16snorm?language=objc)
+    /// Ordinary format with one 16-bit normalized signed integer component.
     #[doc(alias = "MTLPixelFormatR16Snorm")]
     pub const R16Snorm: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r16uint?language=objc)
+    /// Ordinary format with one 16-bit unsigned integer component.
     #[doc(alias = "MTLPixelFormatR16Uint")]
     pub const R16Uint: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r16sint?language=objc)
+    /// Ordinary format with one 16-bit signed integer component.
     #[doc(alias = "MTLPixelFormatR16Sint")]
     pub const R16Sint: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r16float?language=objc)
+    /// Ordinary format with one 16-bit floating-point component.
     #[doc(alias = "MTLPixelFormatR16Float")]
     pub const R16Float: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg8unorm?language=objc)
+    /// Ordinary format with two 8-bit normalized unsigned integer components.
     #[doc(alias = "MTLPixelFormatRG8Unorm")]
     pub const RG8Unorm: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg8unorm_srgb?language=objc)
+    /// Ordinary format with two 8-bit normalized unsigned integer components with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatRG8Unorm_sRGB")]
     pub const RG8Unorm_sRGB: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg8snorm?language=objc)
+    /// Ordinary format with two 8-bit normalized signed integer components.
     #[doc(alias = "MTLPixelFormatRG8Snorm")]
     pub const RG8Snorm: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg8uint?language=objc)
+    /// Ordinary format with two 8-bit unsigned integer components.
     #[doc(alias = "MTLPixelFormatRG8Uint")]
     pub const RG8Uint: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg8sint?language=objc)
+    /// Ordinary format with two 8-bit signed integer components.
     #[doc(alias = "MTLPixelFormatRG8Sint")]
     pub const RG8Sint: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/b5g6r5unorm?language=objc)
+    /// Packed 16-bit format with normalized unsigned integer color components: 5 bits for blue, 6 bits for green, 5 bits for red, packed into 16 bits.
     #[doc(alias = "MTLPixelFormatB5G6R5Unorm")]
     pub const B5G6R5Unorm: Self = Self(40);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/a1bgr5unorm?language=objc)
+    /// Packed 16-bit format with normalized unsigned integer color components: 5 bits each for BGR and 1 for alpha, packed into 16 bits.
     #[doc(alias = "MTLPixelFormatA1BGR5Unorm")]
     pub const A1BGR5Unorm: Self = Self(41);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/abgr4unorm?language=objc)
+    /// Packed 16-bit format with normalized unsigned integer color components: 4 bits each for ABGR, packed into 16 bits.
     #[doc(alias = "MTLPixelFormatABGR4Unorm")]
     pub const ABGR4Unorm: Self = Self(42);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgr5a1unorm?language=objc)
+    /// Packed 16-bit format with normalized unsigned integer color components: 5 bits each for BGR and 1 for alpha, packed into 16 bits.
     #[doc(alias = "MTLPixelFormatBGR5A1Unorm")]
     pub const BGR5A1Unorm: Self = Self(43);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r32uint?language=objc)
+    /// Ordinary format with one 32-bit unsigned integer component.
     #[doc(alias = "MTLPixelFormatR32Uint")]
     pub const R32Uint: Self = Self(53);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r32sint?language=objc)
+    /// Ordinary format with one 32-bit signed integer component.
     #[doc(alias = "MTLPixelFormatR32Sint")]
     pub const R32Sint: Self = Self(54);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/r32float?language=objc)
+    /// Ordinary format with one 32-bit floating-point component.
     #[doc(alias = "MTLPixelFormatR32Float")]
     pub const R32Float: Self = Self(55);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg16unorm?language=objc)
+    /// Ordinary format with two 16-bit normalized unsigned integer components.
     #[doc(alias = "MTLPixelFormatRG16Unorm")]
     pub const RG16Unorm: Self = Self(60);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg16snorm?language=objc)
+    /// Ordinary format with two 16-bit normalized signed integer components.
     #[doc(alias = "MTLPixelFormatRG16Snorm")]
     pub const RG16Snorm: Self = Self(62);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg16uint?language=objc)
+    /// Ordinary format with two 16-bit unsigned integer components.
     #[doc(alias = "MTLPixelFormatRG16Uint")]
     pub const RG16Uint: Self = Self(63);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg16sint?language=objc)
+    /// Ordinary format with two 16-bit signed integer components.
     #[doc(alias = "MTLPixelFormatRG16Sint")]
     pub const RG16Sint: Self = Self(64);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg16float?language=objc)
+    /// Ordinary format with two 16-bit floating-point components.
     #[doc(alias = "MTLPixelFormatRG16Float")]
     pub const RG16Float: Self = Self(65);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8unorm?language=objc)
+    /// Ordinary format with four 8-bit normalized unsigned integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA8Unorm")]
     pub const RGBA8Unorm: Self = Self(70);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8unorm_srgb?language=objc)
+    /// Ordinary format with four 8-bit normalized unsigned integer components in RGBA order with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatRGBA8Unorm_sRGB")]
     pub const RGBA8Unorm_sRGB: Self = Self(71);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8snorm?language=objc)
+    /// Ordinary format with four 8-bit normalized signed integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA8Snorm")]
     pub const RGBA8Snorm: Self = Self(72);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8uint?language=objc)
+    /// Ordinary format with four 8-bit unsigned integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA8Uint")]
     pub const RGBA8Uint: Self = Self(73);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba8sint?language=objc)
+    /// Ordinary format with four 8-bit signed integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA8Sint")]
     pub const RGBA8Sint: Self = Self(74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra8unorm?language=objc)
+    /// Ordinary format with four 8-bit normalized unsigned integer components in BGRA order.
     #[doc(alias = "MTLPixelFormatBGRA8Unorm")]
     pub const BGRA8Unorm: Self = Self(80);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra8unorm_srgb?language=objc)
+    /// Ordinary format with four 8-bit normalized unsigned integer components in BGRA order with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatBGRA8Unorm_sRGB")]
     pub const BGRA8Unorm_sRGB: Self = Self(81);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgb10a2unorm?language=objc)
+    /// A 32-bit packed pixel format with four normalized unsigned integer components: 10-bit red, 10-bit green, 10-bit blue, and 2-bit alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel data is stored in red, green, blue, and alpha order, from least significant bit to most significant bit.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the rgb10a2Unorm pixel format. The red component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the blue component is stored in bits 20 to 29, and the alpha component is stored in bits 30 to 31.](https://docs-assets.developer.apple.com/published/1480c4a8ab5793367e5dc130522ae2d1/media-2952462%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatRGB10A2Unorm")]
     pub const RGB10A2Unorm: Self = Self(90);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgb10a2uint?language=objc)
+    /// A 32-bit packed pixel format with four unsigned integer components: 10-bit red, 10-bit green, 10-bit blue, and 2-bit alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel data is stored in red, green, blue, and alpha order, from least significant bit to most significant bit.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the rgb10a2Uint pixel format. The red component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the blue component is stored in bits 20 to 29, and the alpha component is stored in bits 30 to 31.](https://docs-assets.developer.apple.com/published/1480c4a8ab5793367e5dc130522ae2d1/media-2952463%402x.png)
+    ///
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatRGB10A2Uint")]
     pub const RGB10A2Uint: Self = Self(91);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg11b10float?language=objc)
+    /// 32-bit format with floating-point color components, 11 bits each for red and green and 10 bits for blue.
+    ///
+    /// ## Discussion
+    ///
+    /// The components have no sign bit. The 10-bit float has 5 bits of mantissa and 5 bits of exponent. The 11-bit floats have 6 bits of mantissa and 5 bits of exponent.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatRG11B10Float")]
     pub const RG11B10Float: Self = Self(92);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgb9e5float?language=objc)
+    /// Packed 32-bit format with floating-point color components: 9 bits each for RGB and 5 bits for an exponent shared by RGB, packed into 32 bits.
     #[doc(alias = "MTLPixelFormatRGB9E5Float")]
     pub const RGB9E5Float: Self = Self(93);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgr10a2unorm?language=objc)
+    /// A 32-bit packed pixel format with four normalized unsigned integer components: 10-bit blue, 10-bit green, 10-bit red, and 2-bit alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel data is stored in blue, green, red, and alpha order, from least significant bit to most significant bit.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the bgr10a2Unorm pixel format. The blue component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the red component is stored in bits 20 to 29, and the alpha component is stored in bits 30 to 31.](https://docs-assets.developer.apple.com/published/df2c56f95060e4a4fee5d0139555c97b/media-2952461%402x.png)
+    ///
+    ///
+    /// On devices with a wide color display, use this format instead of [`MTLPixelFormatBGRA8Unorm`](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra8unorm) to reduce banding artifacts in your displayed content.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatBGR10A2Unorm")]
     pub const BGR10A2Unorm: Self = Self(94);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgr10_xr?language=objc)
+    /// A 32-bit extended-range pixel format with three fixed-point components of 10-bit blue, 10-bit green, and 10-bit red.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel components are in blue, green, and red order, from least significant bit to most significant bit. Bits 30 and 31 are padding, and their value is `0`.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the bgr10_xr pixel format. The blue component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the red component is stored in bits 20 to 29, and bits 30 to 31 are used as padding.](https://docs-assets.developer.apple.com/published/8b8b5ef3d46f2f39a29d9230a1a67a11/media-2952459%402x.png)
+    ///
+    ///
+    /// Components are linearly encoded in a transform from `[0,2^10)` to [`-0.752941, 1.25098]`. The formula used in this linear encoding is `shader_float = (xr10_value - 384) / 510.0f`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Each UNorm8-based pixel value has an exact corresponding value in the XR10 pixel range, given by `xr10_value = unorm8_value * 2 + 384`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To display wide color values on devices with wide color displays, set this pixel format on the [`colorPixelFormat`](https://developer.apple.com/documentation/metalkit/mtkview/colorpixelformat) property of an [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) or the [`pixelFormat`](https://developer.apple.com/documentation/quartzcore/cametallayer/pixelformat) property of a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only devices with a wide color display can display color values outside the `[0.0, 1.0]` range; all other devices clamp color values to the `[0.0, 1.0]` range.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "MTLPixelFormatBGR10_XR")]
     pub const BGR10_XR: Self = Self(554);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgr10_xr_srgb?language=objc)
+    /// A 32-bit extended-range pixel format with sRGB conversion and three fixed-point components of 10-bit blue, 10-bit green, and 10-bit red.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel components are stored in blue, green, and red order, from least significant bit to most significant bit. Bits 30 and 31 are padding, and their value is `0`.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the bgr10_xr_srgb pixel format. The blue component is stored in bits 0 to 9, the green component is stored in bits 10 to 19, the red component is stored in bits 20 to 29, and bits 30 to 31 are used as padding.](https://docs-assets.developer.apple.com/published/8b8b5ef3d46f2f39a29d9230a1a67a11/media-2952460%402x.png)
+    ///
+    ///
+    /// The blue, green, and red components are gamma encoded, and their values range from `-0.5271` to `1.66894`, before gamma expansion.
+    ///
+    /// In order to determine a component’s value as a shader float:
+    ///
+    /// - When reading a pixel, first apply the linear encoding `(xr10_value - 384) / 510.0f` and then the sRGB transform.
+    ///
+    /// - When writing a pixel, first apply the sRGB transform and then the linear encoding `shader_float = (xr10_value - 384) / 510.0f`.
+    ///
+    /// To display wide color values on devices with wide color displays, you set this pixel format on the [`colorPixelFormat`](https://developer.apple.com/documentation/metalkit/mtkview/colorpixelformat) property of an [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) or the [`pixelFormat`](https://developer.apple.com/documentation/quartzcore/cametallayer/pixelformat) property of a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer). Also provide an extended sRGB color space.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only devices with a wide color display can display color values outside the `[0.0, 1.0]` range; all other devices clamp color values to the `[0.0, 1.0]` range.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "MTLPixelFormatBGR10_XR_sRGB")]
     pub const BGR10_XR_sRGB: Self = Self(555);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg32uint?language=objc)
+    /// Ordinary format with two 32-bit unsigned integer components.
     #[doc(alias = "MTLPixelFormatRG32Uint")]
     pub const RG32Uint: Self = Self(103);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg32sint?language=objc)
+    /// Ordinary format with two 32-bit signed integer components.
     #[doc(alias = "MTLPixelFormatRG32Sint")]
     pub const RG32Sint: Self = Self(104);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rg32float?language=objc)
+    /// Ordinary format with two 32-bit floating-point components.
     #[doc(alias = "MTLPixelFormatRG32Float")]
     pub const RG32Float: Self = Self(105);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16unorm?language=objc)
+    /// Ordinary format with four 16-bit normalized unsigned integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA16Unorm")]
     pub const RGBA16Unorm: Self = Self(110);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16snorm?language=objc)
+    /// Ordinary format with four 16-bit normalized signed integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA16Snorm")]
     pub const RGBA16Snorm: Self = Self(112);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16uint?language=objc)
+    /// Ordinary format with four 16-bit unsigned integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA16Uint")]
     pub const RGBA16Uint: Self = Self(113);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16sint?language=objc)
+    /// Ordinary format with four 16-bit signed integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA16Sint")]
     pub const RGBA16Sint: Self = Self(114);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba16float?language=objc)
+    /// Ordinary format with four 16-bit floating-point components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA16Float")]
     pub const RGBA16Float: Self = Self(115);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra10_xr?language=objc)
+    /// A 64-bit extended-range pixel format with four fixed-point components of 10-bit blue, 10-bit green, 10-bit red, and 10-bit alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel components are in blue, green, red, and alpha order, from least significant bit to most significant bit (little-endian order). Each component is a 16-bit chunk arranged as follows:
+    ///
+    /// - The 10 most-significant bits (bits 6–15) store the component’s data.
+    ///
+    /// - The 6 least-significant bits (bits 0–5) are padding, and their value is `0`.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the BGRA10_XR pixel format. The blue component is stored in bits 6 to 15, the green component is stored in bits 22 to 31, the red component is stored in bits 38 to 47, and the alpha component is stored in bits 54 to 63. Bits 0 to 5, 16 to 21, 32 to 37, and 48 to 53 are used as padding.](https://docs-assets.developer.apple.com/published/8515221632abee0dd20a5c80b97ae560/media-2952456%402x.png)
+    ///
+    ///
+    /// The blue, green, and red components are linearly encoded in a transform from `[0,2^10)` to [`-0.752941, 1.25098]`. The formula used in this linear encoding is `shader_float = (xr10_value - 384) / 510.0f`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  Each UNorm8-based pixel value has an exact corresponding value in the XR10 pixel range, given by `xr10_value = unorm8_value * 2 + 384`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The alpha component is always clamped to a `[0.0, 1.0]` range in sampling, rendering, and writing operations, despite supporting values outside this range.
+    ///
+    /// To display wide color values on devices with wide color displays, set this pixel format on the [`colorPixelFormat`](https://developer.apple.com/documentation/metalkit/mtkview/colorpixelformat) property of an [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) or the [`pixelFormat`](https://developer.apple.com/documentation/quartzcore/cametallayer/pixelformat) property of a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only devices with a wide color display can display color values outside the `[0.0, 1.0]` range; all other devices clamp color values to the `[0.0, 1.0]` range.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "MTLPixelFormatBGRA10_XR")]
     pub const BGRA10_XR: Self = Self(552);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgra10_xr_srgb?language=objc)
+    /// A 64-bit extended-range pixel format with sRGB conversion and four fixed-point components of 10-bit blue, 10-bit green, 10-bit red, and 10-bit alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// Pixel components are in blue, green, red, and alpha order, from least significant bit to most significant bit. Each component is a 16-bit chunk arranged as follows:
+    ///
+    /// - The 10 most significant bits (9–15) store the component’s data.
+    ///
+    /// - The 6 least significant bits (0–5) bits are padding, and their value is `0`.
+    ///
+    ///
+    /// ![Bit layout diagram showing the pixel data storage arrangement of the bgra10_XR_sRGB pixel format. The blue component is stored in bits 6 to 15, the green component is stored in bits 22 to 31, the red component is stored in bits 38 to 47, and the alpha component is stored in bits 54 to 63. Bits 0 to 5, 16 to 21, 32 to 37, and 48 to 53 are used as padding.](https://docs-assets.developer.apple.com/published/8515221632abee0dd20a5c80b97ae560/media-2952457%402x.png)
+    ///
+    ///
+    /// The blue, green, and red components are gamma encoded, and their values range from `-0.5271` to `1.66894`, before gamma expansion. The alpha component is always clamped to a `[0.0, 1.0]` range in sampling, rendering, and writing operations, despite supporting values outside this range.
+    ///
+    /// In order to determine a component’s value as a shader float:
+    ///
+    /// - When reading a pixel, first apply the linear encoding `(xr10_value - 384) / 510.0f` and then the sRGB transform.
+    ///
+    /// - When writing a pixel, first apply the sRGB transform and then the linear encoding `shader_float = (xr10_value - 384) / 510.0f`.
+    ///
+    /// To display wide color values on devices with wide color displays, you set this pixel format on the [`colorPixelFormat`](https://developer.apple.com/documentation/metalkit/mtkview/colorpixelformat) property of an [`MTKView`](https://developer.apple.com/documentation/metalkit/mtkview) or the [`pixelFormat`](https://developer.apple.com/documentation/quartzcore/cametallayer/pixelformat) property of a [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer). Also provide an extended sRGB color space.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Only devices with a wide color display can display color values outside the `[0.0, 1.0]` range; all other devices clamp color values to the `[0.0, 1.0]` range.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "MTLPixelFormatBGRA10_XR_sRGB")]
     pub const BGRA10_XR_sRGB: Self = Self(553);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32uint?language=objc)
+    /// Ordinary format with four 32-bit unsigned integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA32Uint")]
     pub const RGBA32Uint: Self = Self(123);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32sint?language=objc)
+    /// Ordinary format with four 32-bit signed integer components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA32Sint")]
     pub const RGBA32Sint: Self = Self(124);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/rgba32float?language=objc)
+    /// Ordinary format with four 32-bit floating-point components in RGBA order.
     #[doc(alias = "MTLPixelFormatRGBA32Float")]
     pub const RGBA32Float: Self = Self(125);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc1_rgba?language=objc)
+    /// Compressed format with two 16-bit color components and one 32-bit descriptor component.
     #[doc(alias = "MTLPixelFormatBC1_RGBA")]
     pub const BC1_RGBA: Self = Self(130);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc1_rgba_srgb?language=objc)
+    /// Compressed format with two 16-bit color components and one 32-bit descriptor component, with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatBC1_RGBA_sRGB")]
     pub const BC1_RGBA_sRGB: Self = Self(131);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc2_rgba?language=objc)
+    /// Compressed format with two 64-bit chunks. The first chunk contains two 8-bit alpha components and one 48-bit descriptor component. The second chunk contains two 16-bit color components and one 32-bit descriptor component.
     #[doc(alias = "MTLPixelFormatBC2_RGBA")]
     pub const BC2_RGBA: Self = Self(132);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc2_rgba_srgb?language=objc)
+    /// Compressed format with two 64-bit chunks, with conversion between sRGB and linear space. The first chunk contains two 8-bit alpha components and one 48-bit descriptor component. The second chunk contains two 16-bit color components and one 32-bit descriptor component.
     #[doc(alias = "MTLPixelFormatBC2_RGBA_sRGB")]
     pub const BC2_RGBA_sRGB: Self = Self(133);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc3_rgba?language=objc)
+    /// Compressed format with two 64-bit chunks. The first chunk contains two 8-bit alpha components and one 48-bit descriptor component. The second chunk contains two 16-bit color components and one 32-bit descriptor component.
     #[doc(alias = "MTLPixelFormatBC3_RGBA")]
     pub const BC3_RGBA: Self = Self(134);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc3_rgba_srgb?language=objc)
+    /// Compressed format with two 64-bit chunks, with conversion between sRGB and linear space. The first chunk contains two 8-bit alpha components and one 48-bit descriptor component. The second chunk contains two 16-bit color components and one 32-bit descriptor component.
     #[doc(alias = "MTLPixelFormatBC3_RGBA_sRGB")]
     pub const BC3_RGBA_sRGB: Self = Self(135);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc4_runorm?language=objc)
+    /// Compressed format with one normalized unsigned integer component.
     #[doc(alias = "MTLPixelFormatBC4_RUnorm")]
     pub const BC4_RUnorm: Self = Self(140);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc4_rsnorm?language=objc)
+    /// Compressed format with one normalized signed integer component.
     #[doc(alias = "MTLPixelFormatBC4_RSnorm")]
     pub const BC4_RSnorm: Self = Self(141);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc5_rgunorm?language=objc)
+    /// Compressed format with two normalized unsigned integer components.
     #[doc(alias = "MTLPixelFormatBC5_RGUnorm")]
     pub const BC5_RGUnorm: Self = Self(142);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc5_rgsnorm?language=objc)
+    /// Compressed format with two normalized signed integer components.
     #[doc(alias = "MTLPixelFormatBC5_RGSnorm")]
     pub const BC5_RGSnorm: Self = Self(143);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc6h_rgbfloat?language=objc)
+    /// Compressed format with four floating-point components.
     #[doc(alias = "MTLPixelFormatBC6H_RGBFloat")]
     pub const BC6H_RGBFloat: Self = Self(150);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc6h_rgbufloat?language=objc)
+    /// Compressed format with four unsigned floating-point components.
     #[doc(alias = "MTLPixelFormatBC6H_RGBUfloat")]
     pub const BC6H_RGBUfloat: Self = Self(151);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc7_rgbaunorm?language=objc)
+    /// Compressed format with four normalized unsigned integer components.
     #[doc(alias = "MTLPixelFormatBC7_RGBAUnorm")]
     pub const BC7_RGBAUnorm: Self = Self(152);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bc7_rgbaunorm_srgb?language=objc)
+    /// Compressed format with four normalized unsigned integer components, with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatBC7_RGBAUnorm_sRGB")]
     pub const BC7_RGBAUnorm_sRGB: Self = Self(153);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgb_2bpp?language=objc)
+    /// Compressed format using PVRTC compression and 2bpp for RGB components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_2BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_2BPP: Self = Self(160);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgb_2bpp_srgb?language=objc)
+    /// Compressed format using PVRTC compression and 2bpp for RGB components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_2BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_2BPP_sRGB: Self = Self(161);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgb_4bpp?language=objc)
+    /// Compressed format using PVRTC compression and 4bpp for RGB components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_4BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_4BPP: Self = Self(162);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgb_4bpp_srgb?language=objc)
+    /// Compressed format using PVRTC compression and 4bpp for RGB components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGB_4BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGB_4BPP_sRGB: Self = Self(163);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgba_2bpp?language=objc)
+    /// Compressed format using PVRTC compression and 2bpp for RGBA components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_2BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_2BPP: Self = Self(164);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgba_2bpp_srgb?language=objc)
+    /// Compressed format using PVRTC compression and 2bpp for RGBA components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_2BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_2BPP_sRGB: Self = Self(165);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgba_4bpp?language=objc)
+    /// Compressed format using PVRTC compression and 4bpp for RGBA components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_4BPP")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_4BPP: Self = Self(166);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/pvrtc_rgba_4bpp_srgb?language=objc)
+    /// Compressed format using PVRTC compression and 4bpp for RGBA components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. Subimages are not supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatPVRTC_RGBA_4BPP_sRGB")]
     #[deprecated = "Usage of ASTC/ETC2/BC formats is recommended instead."]
     pub const PVRTC_RGBA_4BPP_sRGB: Self = Self(167);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_r11unorm?language=objc)
+    /// Compressed format using EAC compression with one normalized unsigned integer component.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatEAC_R11Unorm")]
     pub const EAC_R11Unorm: Self = Self(170);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_r11snorm?language=objc)
+    /// Compressed format using EAC compression with one normalized signed integer component.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatEAC_R11Snorm")]
     pub const EAC_R11Snorm: Self = Self(172);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_rg11unorm?language=objc)
+    /// Compressed format using EAC compression with two normalized unsigned integer components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatEAC_RG11Unorm")]
     pub const EAC_RG11Unorm: Self = Self(174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_rg11snorm?language=objc)
+    /// Compressed format using EAC compression with two normalized signed integer components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatEAC_RG11Snorm")]
     pub const EAC_RG11Snorm: Self = Self(176);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_rgba8?language=objc)
+    /// Compressed format using EAC compression with four 8-bit components.
     #[doc(alias = "MTLPixelFormatEAC_RGBA8")]
     pub const EAC_RGBA8: Self = Self(178);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/eac_rgba8_srgb?language=objc)
+    /// Compressed format using EAC compression with four 8-bit components with conversion between sRGB and linear space.
     #[doc(alias = "MTLPixelFormatEAC_RGBA8_sRGB")]
     pub const EAC_RGBA8_sRGB: Self = Self(179);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/etc2_rgb8?language=objc)
+    /// Compressed format using ETC2 compression with three 8-bit components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatETC2_RGB8")]
     pub const ETC2_RGB8: Self = Self(180);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/etc2_rgb8_srgb?language=objc)
+    /// Compressed format using ETC2 compression with three 8-bit components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatETC2_RGB8_sRGB")]
     pub const ETC2_RGB8_sRGB: Self = Self(181);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/etc2_rgb8a1?language=objc)
+    /// Compressed format using ETC2 compression with four 8-bit components.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatETC2_RGB8A1")]
     pub const ETC2_RGB8A1: Self = Self(182);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/etc2_rgb8a1_srgb?language=objc)
+    /// Compressed format using ETC2 compression with four 8-bit components with conversion between sRGB and linear space.
+    ///
+    /// ## Discussion
+    ///
+    /// Only [`MTLTextureType2D`](https://developer.apple.com/documentation/metal/mtltexturetype/type2d), [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray), and [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported.
+    ///
+    ///
     #[doc(alias = "MTLPixelFormatETC2_RGB8A1_sRGB")]
     pub const ETC2_RGB8A1_sRGB: Self = Self(183);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_4x4_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 4, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_4x4_sRGB")]
     pub const ASTC_4x4_sRGB: Self = Self(186);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x4_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 5, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_5x4_sRGB")]
     pub const ASTC_5x4_sRGB: Self = Self(187);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x5_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 5, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_5x5_sRGB")]
     pub const ASTC_5x5_sRGB: Self = Self(188);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x5_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 6, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_6x5_sRGB")]
     pub const ASTC_6x5_sRGB: Self = Self(189);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x6_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 6, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_6x6_sRGB")]
     pub const ASTC_6x6_sRGB: Self = Self(190);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x5_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 8, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_8x5_sRGB")]
     pub const ASTC_8x5_sRGB: Self = Self(192);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x6_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 8, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_8x6_sRGB")]
     pub const ASTC_8x6_sRGB: Self = Self(193);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x8_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 8, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_8x8_sRGB")]
     pub const ASTC_8x8_sRGB: Self = Self(194);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x5_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 10, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_10x5_sRGB")]
     pub const ASTC_10x5_sRGB: Self = Self(195);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x6_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 10, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_10x6_sRGB")]
     pub const ASTC_10x6_sRGB: Self = Self(196);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x8_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 10, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_10x8_sRGB")]
     pub const ASTC_10x8_sRGB: Self = Self(197);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x10_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 10, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_10x10_sRGB")]
     pub const ASTC_10x10_sRGB: Self = Self(198);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x10_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 12, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_12x10_sRGB")]
     pub const ASTC_12x10_sRGB: Self = Self(199);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x12_srgb?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, conversion between sRGB and linear space, a block width of 12, and a block height of 12.
     #[doc(alias = "MTLPixelFormatASTC_12x12_sRGB")]
     pub const ASTC_12x12_sRGB: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_4x4_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 4, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_4x4_LDR")]
     pub const ASTC_4x4_LDR: Self = Self(204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x4_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 5, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_5x4_LDR")]
     pub const ASTC_5x4_LDR: Self = Self(205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x5_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 5, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_5x5_LDR")]
     pub const ASTC_5x5_LDR: Self = Self(206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x5_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 6, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_6x5_LDR")]
     pub const ASTC_6x5_LDR: Self = Self(207);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x6_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 6, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_6x6_LDR")]
     pub const ASTC_6x6_LDR: Self = Self(208);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x5_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 8, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_8x5_LDR")]
     pub const ASTC_8x5_LDR: Self = Self(210);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x6_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 8, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_8x6_LDR")]
     pub const ASTC_8x6_LDR: Self = Self(211);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x8_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 8, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_8x8_LDR")]
     pub const ASTC_8x8_LDR: Self = Self(212);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x5_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 10, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_10x5_LDR")]
     pub const ASTC_10x5_LDR: Self = Self(213);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x6_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 10, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_10x6_LDR")]
     pub const ASTC_10x6_LDR: Self = Self(214);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x8_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 10, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_10x8_LDR")]
     pub const ASTC_10x8_LDR: Self = Self(215);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x10_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 10, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_10x10_LDR")]
     pub const ASTC_10x10_LDR: Self = Self(216);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x10_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 12, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_12x10_LDR")]
     pub const ASTC_12x10_LDR: Self = Self(217);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x12_ldr?language=objc)
+    /// ASTC-compressed format with low-dynamic-range content, a block width of 12, and a block height of 12.
     #[doc(alias = "MTLPixelFormatASTC_12x12_LDR")]
     pub const ASTC_12x12_LDR: Self = Self(218);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_4x4_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic-range content, a block width of 4, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_4x4_HDR")]
     pub const ASTC_4x4_HDR: Self = Self(222);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x4_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 5, and a block height of 4.
     #[doc(alias = "MTLPixelFormatASTC_5x4_HDR")]
     pub const ASTC_5x4_HDR: Self = Self(223);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_5x5_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 5, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_5x5_HDR")]
     pub const ASTC_5x5_HDR: Self = Self(224);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x5_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 6, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_6x5_HDR")]
     pub const ASTC_6x5_HDR: Self = Self(225);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_6x6_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 6, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_6x6_HDR")]
     pub const ASTC_6x6_HDR: Self = Self(226);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x5_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 8, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_8x5_HDR")]
     pub const ASTC_8x5_HDR: Self = Self(228);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x6_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 8, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_8x6_HDR")]
     pub const ASTC_8x6_HDR: Self = Self(229);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_8x8_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 8, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_8x8_HDR")]
     pub const ASTC_8x8_HDR: Self = Self(230);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x5_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 10, and a block height of 5.
     #[doc(alias = "MTLPixelFormatASTC_10x5_HDR")]
     pub const ASTC_10x5_HDR: Self = Self(231);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x6_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 10, and a block height of 6.
     #[doc(alias = "MTLPixelFormatASTC_10x6_HDR")]
     pub const ASTC_10x6_HDR: Self = Self(232);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x8_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 10, and a block height of 8.
     #[doc(alias = "MTLPixelFormatASTC_10x8_HDR")]
     pub const ASTC_10x8_HDR: Self = Self(233);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_10x10_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 10, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_10x10_HDR")]
     pub const ASTC_10x10_HDR: Self = Self(234);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x10_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 12, and a block height of 10.
     #[doc(alias = "MTLPixelFormatASTC_12x10_HDR")]
     pub const ASTC_12x10_HDR: Self = Self(235);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/astc_12x12_hdr?language=objc)
+    /// ASTC-compressed format with high-dynamic range content, a block width of 12, and a block height of 12.
     #[doc(alias = "MTLPixelFormatASTC_12x12_HDR")]
     pub const ASTC_12x12_HDR: Self = Self(236);
+    /// A pixel format where the red and green components are subsampled horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// Two pixels are stored in 32 bits, with shared red and blue values, and unique green values. The component arrangement is the same as it is in YUY2, YUYV, yuvs, and kYUVS pixel formats, except there is no implicit format conversion from a YUV to RGB color space. Only 2D non-mipmapped textures can be created with this pixel format, and the width must be a multiple of 2. Neither [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray) nor [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. This format is a compressed format with a block size of 2x1 in a 32-bit block. During sampling, the address mode must be set to [`MTLSamplerAddressModeClampToEdge`](https://developer.apple.com/documentation/metal/mtlsampleraddressmode/clamptoedge).
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to YUY2, YUYV, yuvs, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_REV_APPLE.   The component order, from lowest addressed byte to highest, is Y0, Cb, Y1, Cr.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/gbgr422?language=objc)
     #[doc(alias = "MTLPixelFormatGBGR422")]
     pub const GBGR422: Self = Self(240);
+    /// A pixel format where the red and green components are subsampled horizontally.
+    ///
+    /// ## Discussion
+    ///
+    /// Two pixels are stored in 32 bits, with shared red and blue values, and unique green values. The component arrangement is the same as it is in UYVY, 2vuy, and k2vuy pixel formats, except there is no implicit format conversion from a YUV to RGB color space. Only 2D non-mipmapped textures can be created with this pixel format, and the width must be a multiple of 2. Neither [`MTLTextureType2DArray`](https://developer.apple.com/documentation/metal/mtltexturetype/type2darray) nor [`MTLTextureTypeCube`](https://developer.apple.com/documentation/metal/mtltexturetype/typecube) textures are supported. This format is a compressed format with a block size of 2x1 in a 32-bit block.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/bgrg422?language=objc)
     #[doc(alias = "MTLPixelFormatBGRG422")]
     pub const BGRG422: Self = Self(241);
+    /// A pixel format for a depth-render target that has a 16-bit normalized, unsigned-integer component.
+    ///
+    /// ## Discussion
+    ///
+    /// If you need to apply depth bias, choose a different depth format. Setting a depth bias with this format, such as with [`setDepthBias:slopeScale:clamp:`](https://developer.apple.com/documentation/metal/mtlrendercommandencoder/setdepthbias(_:slopescale:clamp:)), generates incorrect results for apps that run on a device with an Apple A8 or earlier GPU.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/depth16unorm?language=objc)
     #[doc(alias = "MTLPixelFormatDepth16Unorm")]
     pub const Depth16Unorm: Self = Self(250);
+    /// A pixel format with one 32-bit floating-point component, used for a depth render target.
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/depth32float?language=objc)
     #[doc(alias = "MTLPixelFormatDepth32Float")]
     pub const Depth32Float: Self = Self(252);
+    /// A pixel format with an 8-bit unsigned integer component, used for a stencil render target.
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/stencil8?language=objc)
     #[doc(alias = "MTLPixelFormatStencil8")]
     pub const Stencil8: Self = Self(253);
+    /// A 32-bit combined depth and stencil pixel format with a 24-bit normalized unsigned integer for depth and an 8-bit unsigned integer for stencil.
+    ///
+    /// ## Discussion
+    ///
+    /// To blit either the depth or stencil information to a Metal buffer, call the [`copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:`](https://developer.apple.com/documentation/metal/mtlblitcommandencoder/copy(from:sourceslice:sourcelevel:sourceorigin:sourcesize:to:destinationoffset:destinationbytesperrow:destinationbytesperimage:options:)) method, specifying the blit options for which part you want to copy. You must provide space for 4 bytes per pixel in your destination buffer. When Metal copies the data, it sets the bottom 3 bytes of each pixel to the depth data and sets the top byte to arbitrary data. Ignore any data stored in the top byte of each pixel.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/depth24unorm_stencil8?language=objc)
     #[doc(alias = "MTLPixelFormatDepth24Unorm_Stencil8")]
     pub const Depth24Unorm_Stencil8: Self = Self(255);
+    /// A 40-bit combined depth and stencil pixel format with a 32-bit floating-point value for depth and an 8-bit unsigned integer for stencil.
+    ///
+    /// ## Discussion
+    ///
+    /// When using this format, some Metal device objects allocate 64-bits per pixel.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/depth32float_stencil8?language=objc)
     #[doc(alias = "MTLPixelFormatDepth32Float_Stencil8")]
     pub const Depth32Float_Stencil8: Self = Self(260);
+    /// A stencil pixel format used to read the stencil value from a texture with a combined 32-bit depth and 8-bit stencil value.
+    ///
+    /// ## Discussion
+    ///
+    /// You can’t directly read the stencil value of a texture with the [`MTLPixelFormatDepth32Float_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/depth32float_stencil8) format. To read stencil values from a texture with the [`MTLPixelFormatDepth32Float_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/depth32float_stencil8) format, create a texture view of that texture using the [`MTLPixelFormatX32_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/x32_stencil8) format, and sample the texture view instead.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/x32_stencil8?language=objc)
     #[doc(alias = "MTLPixelFormatX32_Stencil8")]
     pub const X32_Stencil8: Self = Self(261);
+    /// A stencil pixel format used to read the stencil value from a texture with a combined 24-bit depth and 8-bit stencil value.
+    ///
+    /// ## Discussion
+    ///
+    /// You can’t directly read the stencil value of a texture with the [`MTLPixelFormatDepth24Unorm_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/depth24unorm_stencil8) format. To read stencil values from a texture with the [`MTLPixelFormatDepth24Unorm_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/depth24unorm_stencil8) format, create a texture view of that texture using the [`MTLPixelFormatX24_Stencil8`](https://developer.apple.com/documentation/metal/mtlpixelformat/x24_stencil8) format, and sample the texture view instead.
+    ///
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/x24_stencil8?language=objc)
     #[doc(alias = "MTLPixelFormatX24_Stencil8")]
     pub const X24_Stencil8: Self = Self(262);
+    ///
+    /// ## Discussion
+    ///
     /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
     ///
     /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpixelformat/unspecialized?language=objc)
+    ///
+    /// A pixel format where the red and green channels are subsampled horizontally.  Two pixels are stored in 32 bits, with shared red and blue values, and unique green values.
+    ///
+    /// This format is equivalent to UYVY, 2vuy, or GL_RGB_422_APPLE/GL_UNSIGNED_SHORT_8_8_APPLE. The component order, from lowest addressed byte to highest, is Cb, Y0, Cr, Y1.  There is no implicit colorspace conversion from YUV to RGB, the shader will receive (Cr, Y, Cb, 1).  422 textures must have a width that is a multiple of 2, and can only be used for 2D non-mipmap textures.  When sampling, ClampToEdge is the only usable wrap mode.
     #[doc(alias = "MTLPixelFormatUnspecialized")]
     pub const Unspecialized: Self = Self(263);
 }

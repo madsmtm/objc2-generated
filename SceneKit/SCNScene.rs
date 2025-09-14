@@ -12,6 +12,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The signature for the block that SceneKit calls during scene export.
+///
+/// ## Discussion
+///
+/// You specify a block with this signature when calling the [`writeToURL:options:delegate:progressHandler:`](https://developer.apple.com/documentation/scenekit/scnscene/write(to:options:delegate:progresshandler:)) method in order to receive updates on the progress of the export operation. The block takes the following parameters:
+///
+/// - totalProgress: A number between `0.0` and `1.0` that indicates the progress of the export operation, with `0.0` indicating that the operation has just begun and `1.0` indicating the operation has completed.
+///
+/// - error: An error encountered during the export process, or `nil` if no errors have occurred.
+///
+/// - stop: Set `*stop` to [`true`](https://developer.apple.com/documentation/swift/true) inside the block to cancel export.
+///
+///
 /// Signature of a block that will be called repeatedly while the scene is being exported.
 ///
 /// Parameter `totalProgress`: is a floating-point number between 0 and 1. 0 means the loading process has just started and 1 that it is complete.
@@ -19,53 +32,101 @@ use crate::*;
 /// Parameter `error`: Will contain information about the failure if any.
 ///
 /// Parameter `stop`: Set *stop to YES if you want to abort the operation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNSceneExportProgressHandler =
     *mut block2::DynBlock<dyn Fn(c_float, *mut NSError, NonNull<Bool>)>;
 
 extern "C" {
+    /// The final destination `URL` for the exported scene file.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this option if you export a scene to a temporary directory and then move it to a final location. You must specify a final destination URL (an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object) if your scene references external resources, such as image files for textures. SceneKit uses this URL to construct appropriate paths for external resources when writing the scene file.
+    ///
+    ///
     /// Specifies the final destination (as a NSURL) of the scene being exported.
     ///
     /// The destination URL is required if the scene is exported to a temporary directory and then moved to a final destination. This enables the exported document to get correct relative paths to referenced images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportdestinationurl?language=objc)
     pub static SCNSceneExportDestinationURL: &'static NSString;
 }
 
 /// Scene attributes
 ///
 /// These keys can be used with the -[SCNScene attributeForKey:] method.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute?language=objc)
 // NS_TYPED_ENUM
 pub type SCNSceneAttribute = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/starttime?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A floating-point value (in an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object) for the start time of the scene.
+    ///
+    ///
     pub static SCNSceneStartTimeAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/endtime?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// A floating-point value (in an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object) for the end time of the scene.
+    ///
+    ///
     pub static SCNSceneEndTimeAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/framerate?language=objc)
+    /// A floating-point value for the frame rate of the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// This value (in an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object) may be present in scenes loaded from scene files produced using external tools, but has no effect on SceneKit’s rendering of the scene.
+    ///
+    ///
     pub static SCNSceneFrameRateAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/upaxis?language=objc)
+    /// An `SCNVector3` structure specifying the orientation of the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`SCNVector3`](https://developer.apple.com/documentation/scenekit/scnvector3)structure (in an [`NSValue`](https://developer.apple.com/documentation/foundation/nsvalue) object) may be present in scenes loaded from scene files produced using external tools, but has no effect on SceneKit’s processing of the scene. Use this vector when combining elements from different scenes so that they appear in their expected orientation.
+    ///
+    ///
     pub static SCNSceneUpAxisAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern_class!(
-    /// SCNScene is the class that describes a 3d scene. It encapsulates a node hierarchy.
+    /// A container for the node hierarchy and global properties that together form a displayable 3D scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene?language=objc)
+    /// ## Overview
+    ///
+    /// To display 3D content with SceneKit, you create a scene containing a hierarchy of the nodes and attributes that together represent your visual elements. Typically, you build your assets in a 3D visual editor, then assemble them into a scene using Xcode’s SceneKit Scene Editor, ready for SceneKit to render.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/b7e9fe4044d1b8eb0212d58e501af3ae/media-2994226~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/fa182deccf2df19248ac2c8d1e3c08ea/media-2994226%402x.png 2x" />
+    ///     <img alt="At the left, a diagram showing a simple scene composed of the node hierarchy and presentation attributes. At the right, the resulting rendered scene." src="https://docs-assets.developer.apple.com/published/fa182deccf2df19248ac2c8d1e3c08ea/media-2994226%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// To display your scene, you need to load it at runtime, then set it as the scene property of an [`SCNView`](https://developer.apple.com/documentation/scenekit/scnview):
+    ///
+    /// ```swift
+    /// guard let myScene = SCNScene(named: "MyScene")
+    ///     else { fatalError("Unable to load scene file.") }
+    /// scnView.scene = myScene // Your app's SCNView
+    /// ```
+    ///
+    /// ### Creating a Scene
+    ///
+    /// The simplest way to create a scene is through Xcode’s SceneKit Scene Editor. Start by importing one or more assets from a 3D editor, such as Blender. Then you adjust the positions and attributes of the assets, and set global scene properties, such as lighting environment, to compose your scene. The scene editor creates a `.scn` file, which you save to a `.scnassets` folder in the app bundle. When you build your project, Xcode optimizes the scene file for your target platform.
+    ///
+    ///
+    /// SCNScene is the class that describes a 3d scene. It encapsulates a node hierarchy.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNScene;
@@ -381,7 +442,13 @@ impl SCNScene {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportdelegate?language=objc)
+    /// Methods you can implement to participate in the process of exporting a scene to a file.
+    ///
+    /// ## Overview
+    ///
+    /// When you call a [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object’s [`writeToURL:options:delegate:progressHandler:`](https://developer.apple.com/documentation/scenekit/scnscene/write(to:options:delegate:progresshandler:)) method to export the scene’s content to a file, you can optionally specify a delegate object to receive these messages.
+    ///
+    ///
     pub unsafe trait SCNSceneExportDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]

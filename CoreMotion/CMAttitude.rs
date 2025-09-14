@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrotationmatrix?language=objc)
+/// The type of a structure representing a rotation matrix.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMRotationMatrix {
@@ -43,7 +43,20 @@ unsafe impl RefEncode for CMRotationMatrix {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmquaternion?language=objc)
+/// The type for a quaternion representing a measurement of attitude.
+///
+/// ## Overview
+///
+/// A quaternion offers a way to parameterize attitude. If `q` is an instance of `CMQuaternion`, mathematically it represents the following unit quaternion: `q.x*i + q.y*j + q.z*k + q.w`. A unit quaternion represents a rotation of theta radians about the unit vector `{x,y,z}`, and `{q.x, q.y, q.z, q.w}` satisfies the following:
+///
+/// ```objc
+/// q.x = x * sin(theta / 2)
+/// q.y = y * sin(theta / 2)
+/// q.z = z * sin(theta / 2)
+/// q.w = cos(theta / 2)
+/// ```
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMQuaternion {
@@ -69,23 +82,81 @@ unsafe impl RefEncode for CMQuaternion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe?language=objc)
+/// Constants that indicate the frame of reference for attitude-related motion data.
+///
+/// ## Overview
+///
+/// When you start a service that reports the device’s attitude in three-dimensional space, Core Motion establishes a frame of reference for reporting pitch, roll, and yaw values. All subsequent data values specify the device attitude relative to this frame of reference. To get a list of the currently available reference frames for the current device, call the [`availableAttitudeReferenceFrames`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/availableattitudereferenceframes()) class method.
+///
+/// When starting services, it’s your responsibility to specify a reference frame that’s available on the current device. Services that don’t let you specify a reference frame explicitly rely on the value in the [`attitudeReferenceFrame`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/attitudereferenceframe) property of [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMAttitudeReferenceFrame(pub NSUInteger);
 bitflags::bitflags! {
     impl CMAttitudeReferenceFrame: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitraryzvertical?language=objc)
+/// A reference frame where the Z axis is vertical and the X axis points in an arbitrary direction in the horizontal plane.
+///
+/// ## Discussion
+///
+/// When you start the device-motion service, Core Motion sets the frame of reference to the device’s initial orientation. You might use this option when you don’t need to know the device’s attitude relative to true or magnetic north, and only track rotational changes over time.
+///
+/// This option uses fewer sensors to determine the device attitude, and is more power efficient than the [`CMAttitudeReferenceFrameXArbitraryCorrectedZVertical`](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitrarycorrectedzvertical) option.
+///
+/// <div class="warning">
+///
+/// ### Tip
+///  Save the first reported attitude value, and compare it to new values to determine changes since the start of the service.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "CMAttitudeReferenceFrameXArbitraryZVertical")]
         const XArbitraryZVertical = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitrarycorrectedzvertical?language=objc)
+/// A reference frame where the Z axis is vertical and has improved rotation accuracy, and the X axis points in an arbitrary direction in the horizontal plane.
+///
+/// ## Discussion
+///
+/// When you start the device-motion service, Core Motion uses the current device orientation to set the initial frame of reference. You might use this option when you don’t need to know the device’s attitude relative to true or magnetic north, and only track rotational changes over time.
+///
+/// This option uses the magnetometer to improve long-term accuracy for the z axis (yaw) measurements. The device must have a magnetometer and that sensor must be available and calibrated.
+///
+/// This option requires more CPU usage than the [`CMAttitudeReferenceFrameXArbitraryZVertical`](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xarbitraryzvertical) option.
+///
+/// <div class="warning">
+///
+/// ### Tip
+///  Save the first reported attitude value, and compare it to new values to determine changes since the start of the service.
+///
+///
+///
+/// </div>
+///
         #[doc(alias = "CMAttitudeReferenceFrameXArbitraryCorrectedZVertical")]
         const XArbitraryCorrectedZVertical = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xmagneticnorthzvertical?language=objc)
+/// A reference frame where the Z axis is vertical and the X axis points to the magnetic north pole.
+///
+/// ## Discussion
+///
+/// Use this option to determine the attitude of the device relative to magnetic north. For example, you might use this to implement a compass feature in your app. The [`yaw`](https://developer.apple.com/documentation/coremotion/cmattitude/yaw) (Z-axis) value in [`CMAttitude`](https://developer.apple.com/documentation/coremotion/cmattitude) is `0` when the X axis is aligned with magnetic north.
+///
+/// The device must have a magnetometer and that sensor must be available. If the magnetometer isn’t currently calibrated, Core Motion prompts the person to move the device to calibrate it.
+///
+///
         #[doc(alias = "CMAttitudeReferenceFrameXMagneticNorthZVertical")]
         const XMagneticNorthZVertical = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitudereferenceframe/xtruenorthzvertical?language=objc)
+/// A reference frame where the Z axis is vertical and the X axis points to the geographic north pole.
+///
+/// ## Discussion
+///
+/// Use this option to determine the attitude of the device relative to true north. For example, you might use this to implement more precise navigation. The [`yaw`](https://developer.apple.com/documentation/coremotion/cmattitude/yaw) (Z-axis) value in [`CMAttitude`](https://developer.apple.com/documentation/coremotion/cmattitude) is `0` when the X axis is aligned with true north.
+///
+/// The device must have a magnetometer and that sensor must be available. Location services must also be available to calculate the difference between magnetic and true north. If the magnetometer isn’t currently calibrated, Core Motion prompts the person to move the device to calibrate it.
+///
+///
         #[doc(alias = "CMAttitudeReferenceFrameXTrueNorthZVertical")]
         const XTrueNorthZVertical = 1<<3;
     }
@@ -100,7 +171,21 @@ unsafe impl RefEncode for CMAttitudeReferenceFrame {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmattitude?language=objc)
+    /// The device’s orientation relative to a known frame of reference at a point in time.
+    ///
+    /// ## Overview
+    ///
+    /// The `CMAttitude` class offers three different mathematical representations of attitude: a rotation matrix, a quaternion, and Euler angles (roll, pitch, and yaw values). You access `CMAttitude` objects through the attitude property of each [`CMDeviceMotion`](https://developer.apple.com/documentation/coremotion/cmdevicemotion) objects passed to an application. An application starts receiving these device-motion objects as a result of calling the [`startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:to:withhandler:)) method, the [`startDeviceMotionUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(to:withhandler:)) method, the [`startDeviceMotionUpdatesUsingReferenceFrame:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates(using:)) method, or the [`startDeviceMotionUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startdevicemotionupdates()) method of the [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager) class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Core Motion outputs a direction cosine matrix (DCM)—basically a rotation from the last “old” orientation to the new orientation of the device.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMAttitude;

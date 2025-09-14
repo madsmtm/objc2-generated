@@ -8,7 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflow?language=objc)
+    /// An object that lets you use an Automator workflow in your app.
+    ///
+    /// ## Overview
+    ///
+    /// A _workflow_ consists of one or more actions, discrete tasks which together can perform complex automation tasks. Your app can use workflows to package its own features and to take advantage of features provided by other apps. You create actions with Xcode, while you create workflows with the Automator app.
+    ///
+    /// You can load and run a workflow with minimal overhead by using the class method [`runWorkflowAtURL:withInput:error:`](https://developer.apple.com/documentation/automator/amworkflow/run(at:withinput:)). However, in situations where you need greater control, such as the ability to start and stop the workflow, you can use an instance of the [`AMWorkflowController`](https://developer.apple.com/documentation/automator/amworkflowcontroller) class instead. In that case, you must create and initialize both the workflow and the workflow controller objects.
+    ///
+    /// In either case, the workflow runs in a separate process so that any actions it contains are executed in a separate memory space.  That helps to insulate your app from crashes, memory leaks, or exceptions that might occur from running the actions in the workflow.
+    ///
+    /// You can display a workflow with an instance of [`AMWorkflowView`](https://developer.apple.com/documentation/automator/amworkflowview).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AMWorkflow;

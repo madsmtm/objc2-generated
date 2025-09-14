@@ -8,32 +8,68 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationviewcontrollerstoryboardkey?language=objc)
+    /// A reference to the storyboard that contains the view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`UIStoryboard`](https://developer.apple.com/documentation/uikit/uistoryboard) object representing the storyboard from which a view controller was initially obtained. You don’t need to write this key to the coder yourself. Each [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class automatically writes this key to the coder during the state preservation process.
+    ///
+    ///
     pub static UIStateRestorationViewControllerStoryboardKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationbundleversionkey?language=objc)
+    /// The version of your app responsible for creating the restoration archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object that identifies the version of your app (as obtained from the `CFBundleVersion` key of your app’s `Info.plist` file) that was present when the state information was saved. You can use the value of this key to help make choices about how to proceed during state restoration. For example, if the key indicates that the state is associated with an older version of your app, you might want to avoid restoring the previous state altogether or modify the restoration process more significantly.
+    ///
+    ///
     pub static UIApplicationStateRestorationBundleVersionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationuserinterfaceidiomkey?language=objc)
+    /// The user interface idiom that was in effect when your app created the restoration archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing one of the values for the [`UIUserInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom) enum. This value reflects whether the interface that was saved was targeting the iPad or iPhone idiom.
+    ///
+    ///
     pub static UIApplicationStateRestorationUserInterfaceIdiomKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationtimestampkey?language=objc)
+    /// The time your app created the restoration archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object containing the date when the restoration archive was saved. The date is specified using coordinated universal time (UTC).
+    ///
+    ///
     pub static UIApplicationStateRestorationTimestampKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationsystemversionkey?language=objc)
+    /// The version of the system on which your app created the restoration archive.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing the iOS system version that was installed when the archive was saved. The format of this string matches the format of the value in the [`systemVersion`](https://developer.apple.com/documentation/uikit/uidevice/systemversion) property of the [`UIDevice`](https://developer.apple.com/documentation/uikit/uidevice) class.
+    ///
+    ///
     pub static UIApplicationStateRestorationSystemVersionKey: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerrestoration?language=objc)
+    /// The methods that objects adopt so that they can act as a restoration class for view controllers during state restoration.
+    ///
+    /// ## Overview
+    ///
+    /// To use a class that adopts this protocol, you must assign that class to the [`restorationClass`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationclass) property of one of your app’s view controllers. The method in this protocol should be used to create the view controller, if it doesn’t yet exist, or return an existing view controller object, if one does exist.
+    ///
+    ///
     pub unsafe trait UIViewControllerRestoration: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// # Safety
@@ -50,7 +86,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatasourcemodelassociation?language=objc)
+    /// A set of methods that defines an interface for providing persistent references to data objects in your app.
+    ///
+    /// ## Overview
+    ///
+    /// Your data source objects can adopt this protocol to assist a corresponding table or collection view during the state restoration process. Those classes use the methods of this protocol to ensure that the same data objects (and not just the same row indexes) are scrolled into view and selected.
+    ///
+    /// Before you can implement this protocol, your app must be able to identify data objects consistently between app launches. This requires being able to take some identifying marker of the object and convert that marker into a string that can then be saved with the rest of the app state. For example, a Core Data app could convert a managed object’s ID into a URI that it could then convert into a string.
+    ///
+    /// Currently, only the [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview) and [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) classes support this protocol. You’d implement this protocol in any objects you use as the data source for those classes. If you don’t adopt the protocol in your data source, the views don’t attempt to restore the selected and visible rows.
+    ///
+    ///
     pub unsafe trait UIDataSourceModelAssociation: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(modelIdentifierForElementAtIndexPath:inView:))]
@@ -73,7 +119,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistaterestoring?language=objc)
+    /// Methods for adding objects to your state restoration archives.
+    ///
+    /// ## Overview
+    ///
+    /// You can add state restoring objects to an archive directly or by referencing them from another object that’s preserved, such as a view controller. The methods of the protocol let you save enough information about the object to find or recreate it during the next launch cycle.
+    ///
+    /// When adopting this protocol in your custom objects, you must also remember to register those objects using the [`registerObjectForStateRestoration:restorationIdentifier:`](https://developer.apple.com/documentation/uikit/uiapplication/registerobject(forstaterestoration:restorationidentifier:)) method of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class. You don’t need to register views or view controllers explicitly because UIKit registers those objects automatically. View controllers adopt this protocol so that they may be used as the restoration parent of one of your custom objects.
+    ///
+    ///
     pub unsafe trait UIStateRestoring: NSObjectProtocol + MainThreadOnly {
         #[optional]
         #[unsafe(method(restorationParent))]
@@ -109,7 +163,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiobjectrestoration?language=objc)
+    /// The interface that restoration classes use to restore preserved objects.
+    ///
+    /// ## Overview
+    ///
+    /// A restorable object must set its [`objectRestorationClass`](https://developer.apple.com/documentation/uikit/uistaterestoring/objectrestorationclass) property to the class that adopts this protocol. The method in this protocol should be used to return the object if it already exists or create it if needed.
+    ///
+    ///
     pub unsafe trait UIObjectRestoration: MainThreadOnly {
         /// # Safety
         ///

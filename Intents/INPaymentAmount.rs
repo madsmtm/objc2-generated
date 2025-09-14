@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentamount?language=objc)
+    /// The amount of money to apply to a bill payment.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INPaymentAmount`](https://developer.apple.com/documentation/intents/inpaymentamount) object describes the amount of money to pay toward a bill. When handling bill payments, Siri may provide an instance of this class with the amount that the user wants to pay. When handling the intent, you also create instances of the class with the amount of money that you scheduled toward the user’s bill.
+    ///
+    /// When receiving an instance of this class from Siri, the amount type might be specified using only an [`INAmountType`](https://developer.apple.com/documentation/intents/inamounttype) constant, such as [`INAmountTypeMinimumDue`](https://developer.apple.com/documentation/intents/inamounttype/minimumdue) or [`INAmountTypeCurrentBalance`](https://developer.apple.com/documentation/intents/inamounttype/currentbalance). During resolution or when confirming the amount type, you should always supply a value in the [`amount`](https://developer.apple.com/documentation/intents/inpaymentamount/amount) property in addition to the amount type constant. When communicating with the user, Siri always displays the actual amount of money to be applied to a bill.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INPaymentAmount;

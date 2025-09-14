@@ -12,153 +12,157 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_album?language=objc)
+/// An album.
 pub const kAFInfoDictionary_Album: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"album\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_approximatedurationinseconds?language=objc)
+/// An approximate duration in seconds.
 pub const kAFInfoDictionary_ApproximateDurationInSeconds: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"approximate duration in seconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_artist?language=objc)
+/// An artist.
 pub const kAFInfoDictionary_Artist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"artist\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_channellayout?language=objc)
+/// A channel layout.
 pub const kAFInfoDictionary_ChannelLayout: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channel layout\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_comments?language=objc)
+/// Comments.
 pub const kAFInfoDictionary_Comments: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comments\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_composer?language=objc)
+/// A composer.
 pub const kAFInfoDictionary_Composer: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"composer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_copyright?language=objc)
+/// Copyright.
 pub const kAFInfoDictionary_Copyright: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"copyright\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_encodingapplication?language=objc)
+/// An encoding application.
 pub const kAFInfoDictionary_EncodingApplication: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"encoding application\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_genre?language=objc)
+/// A genre.
 pub const kAFInfoDictionary_Genre: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"genre\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_isrc?language=objc)
+/// An International Standard Recording Code.
 pub const kAFInfoDictionary_ISRC: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"ISRC\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_keysignature?language=objc)
+/// A key signature.
 pub const kAFInfoDictionary_KeySignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"key signature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_lyricist?language=objc)
+/// A lyricist.
 pub const kAFInfoDictionary_Lyricist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"lyricist\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_nominalbitrate?language=objc)
+/// A nominal bit rate.
 pub const kAFInfoDictionary_NominalBitRate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"nominal bit rate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_recordeddate?language=objc)
+/// A recorded date.
 pub const kAFInfoDictionary_RecordedDate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"recorded date\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourcebitdepth?language=objc)
+/// The bit depth of the source audio stream.
+///
+/// ## Discussion
+///
+/// See [`kAudioFilePropertySourceBitDepth`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertysourcebitdepth).
+///
+///
 pub const kAFInfoDictionary_SourceBitDepth: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source bit depth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourceencoder?language=objc)
+/// A source encoder.
 pub const kAFInfoDictionary_SourceEncoder: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source encoder\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_subtitle?language=objc)
+/// A subtitle.
 pub const kAFInfoDictionary_SubTitle: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"subtitle\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tempo?language=objc)
+/// A tempo.
 pub const kAFInfoDictionary_Tempo: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"tempo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_timesignature?language=objc)
+/// A time signature.
 pub const kAFInfoDictionary_TimeSignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"time signature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_title?language=objc)
+/// A title.
 pub const kAFInfoDictionary_Title: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"title\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tracknumber?language=objc)
+/// A track number.
 pub const kAFInfoDictionary_TrackNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"track number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_year?language=objc)
+/// A year.
 pub const kAFInfoDictionary_Year: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"year\0") };
+/// Operating system constants that indicate the type of file to be written or a hint about what type of file to expect from data provided.
 /// Identifier for an audio file type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeid?language=objc)
 pub type AudioFileTypeID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifftype?language=objc)
+/// An Audio Interchange File Format (AIFF) file.
 pub const kAudioFileAIFFType: AudioFileTypeID = 0x41494646;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaifctype?language=objc)
+/// An Audio Interchange File Format Compressed (AIFF-C) file.
 pub const kAudioFileAIFCType: AudioFileTypeID = 0x41494643;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewavetype?language=objc)
+/// A Microsoft WAVE file.
 pub const kAudioFileWAVEType: AudioFileTypeID = 0x57415645;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilerf64type?language=objc)
 pub const kAudioFileRF64Type: AudioFileTypeID = 0x52463634;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebw64type?language=objc)
 pub const kAudioFileBW64Type: AudioFileTypeID = 0x42573634;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilewave64type?language=objc)
 pub const kAudioFileWave64Type: AudioFileTypeID = 0x57363466;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilesounddesigner2type?language=objc)
+/// A Sound Designer II file.
 pub const kAudioFileSoundDesigner2Type: AudioFileTypeID = 0x53643266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenexttype?language=objc)
+/// A NeXT or Sun Microsystems file.
 pub const kAudioFileNextType: AudioFileTypeID = 0x4e655854;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp3type?language=objc)
+/// An MPEG Audio Layer 3 (`.mp3`) file.
 pub const kAudioFileMP3Type: AudioFileTypeID = 0x4d504733;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp2type?language=objc)
+/// An MPEG Audio Layer 2 (`.mp2`) file.
 pub const kAudioFileMP2Type: AudioFileTypeID = 0x4d504732;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemp1type?language=objc)
+/// An MPEG Audio Layer 1 (`.mp1`) file.
 pub const kAudioFileMP1Type: AudioFileTypeID = 0x4d504731;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileac3type?language=objc)
+/// An AC-3 file.
 pub const kAudioFileAC3Type: AudioFileTypeID = 0x61632d33;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileaac_adtstype?language=objc)
+/// An Advanced Audio Coding (AAC) Audio Data Transport Stream (ADTS) file.
 pub const kAudioFileAAC_ADTSType: AudioFileTypeID = 0x61647473;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilempeg4type?language=objc)
+/// An MPEG 4 file.
 pub const kAudioFileMPEG4Type: AudioFileTypeID = 0x6d703466;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilem4atype?language=objc)
+/// An M4A file.
 pub const kAudioFileM4AType: AudioFileTypeID = 0x6d346166;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilem4btype?language=objc)
 pub const kAudioFileM4BType: AudioFileTypeID = 0x6d346266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilecaftype?language=objc)
+/// A Core Audio File Format file.
 pub const kAudioFileCAFType: AudioFileTypeID = 0x63616666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofile3gptype?language=objc)
+/// A 3GPP file, suitable for video content on GSM mobile phones.
 pub const kAudioFile3GPType: AudioFileTypeID = 0x33677070;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofile3gp2type?language=objc)
+/// A 3GPP2 file, suitable for video content on CDMA mobile phones.
 pub const kAudioFile3GP2Type: AudioFileTypeID = 0x33677032;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileamrtype?language=objc)
+/// An AMR (Adaptive Multi-Rate) file suitable for compressed speech.
 pub const kAudioFileAMRType: AudioFileTypeID = 0x616d7266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileflactype?language=objc)
 pub const kAudioFileFLACType: AudioFileTypeID = 0x666c6163;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilelatminloastype?language=objc)
 pub const kAudioFileLATMInLOASType: AudioFileTypeID = 0x6c6f6173;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunspecifiederror?language=objc)
+/// An unspecified error has occurred.
 pub const kAudioFileUnspecifiedError: OSStatus = 0x7768743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedfiletypeerror?language=objc)
+/// The file type is not supported.
 pub const kAudioFileUnsupportedFileTypeError: OSStatus = 0x7479703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupporteddataformaterror?language=objc)
+/// The data format is not supported by this file type.
 pub const kAudioFileUnsupportedDataFormatError: OSStatus = 0x666d743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileunsupportedpropertyerror?language=objc)
+/// The property is not supported.
 pub const kAudioFileUnsupportedPropertyError: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilebadpropertysizeerror?language=objc)
+/// The size of the property data was not correct.
 pub const kAudioFileBadPropertySizeError: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepermissionserror?language=objc)
+/// The operation violated the file permissions. For example, an attempt was made to write to a file opened with the `kAudioFileReadPermission` constant.
 pub const kAudioFilePermissionsError: OSStatus = 0x70726d3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotoptimizederror?language=objc)
+/// The chunks following the audio data chunk are preventing the extension of the audio data chunk. To write more data, you must optimize the file.
 pub const kAudioFileNotOptimizedError: OSStatus = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidchunkerror?language=objc)
+/// Either the chunk does not exist in the file or it is not supported by the file.
 pub const kAudioFileInvalidChunkError: OSStatus = 0x63686b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofiledoesnotallow64bitdatasizeerror?language=objc)
+/// The file offset was too large for the file type. The AIFF and WAVE file format types have 32-bit file size limits.
 pub const kAudioFileDoesNotAllow64BitDataSizeError: OSStatus = 0x6f66663f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketoffseterror?language=objc)
+/// A packet offset was past the end of the file, or not at the end of the file when a VBR format was written,  or a corrupt packet size was read when the packet table was built.
 pub const kAudioFileInvalidPacketOffsetError: OSStatus = 0x70636b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidpacketdependencyerror?language=objc)
 pub const kAudioFileInvalidPacketDependencyError: OSStatus = 0x6465703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileinvalidfileerror?language=objc)
+/// The file is malformed, or otherwise not a valid instance of an audio file of its type.
 pub const kAudioFileInvalidFileError: OSStatus = 0x6474613f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileoperationnotsupportederror?language=objc)
+/// The operation cannot be performed.
+///
+/// ## Discussion
+///
+/// For example, setting the [`kAudioFilePropertyAudioDataByteCount`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatabytecount) constant to increase the size of the audio data in a file is not a supported operation. Write the data instead.
+///
+///
 pub const kAudioFileOperationNotSupportedError: OSStatus = 0x6F703F3F;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilenotopenerror?language=objc)
+/// The file is closed.
 pub const kAudioFileNotOpenError: OSStatus = -38;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileendoffileerror?language=objc)
+/// End of file.
 pub const kAudioFileEndOfFileError: OSStatus = -39;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepositionerror?language=objc)
+/// Invalid file position.
 pub const kAudioFilePositionError: OSStatus = -40;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilefilenotfounderror?language=objc)
+/// File not found.
 pub const kAudioFileFileNotFoundError: OSStatus = -43;
 
 /// These are flags that can be used with the CreateURL API call
@@ -169,18 +173,21 @@ pub const kAudioFileFileNotFoundError: OSStatus = -43;
 /// Normally, newly created and optimized files will have padding added in order to page align
 /// the data to 4KB boundaries. This makes reading the data more efficient.
 /// When disk space is a concern, this flag can be set so that the padding will not be added.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/erasefile?language=objc)
+///
+/// ## Discussion
+///
+/// If set, the [`AudioFileCreateWithURL`](https://developer.apple.com/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)) function erases the contents of an existing file. If not set, then the function fails if the file already exists.
+///
+///
         #[doc(alias = "kAudioFileFlags_EraseFile")]
         const EraseFile = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/dontpagealignaudiodata?language=objc)
+/// Typically, the audio data in a file is page aligned. To make reading the file data as fast as possible, you can use page-aligned data to take advantage of optimized code paths in the file system. However, when space is at a premium, you might want to avoid the additional padding required to attain alignment. To do so, set this flag when calling [`AudioFileCreate`](https://developer.apple.com/documentation/audiotoolbox/audiofilecreate) or [`AudioFileCreateWithURL`](https://developer.apple.com/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)).
         #[doc(alias = "kAudioFileFlags_DontPageAlignAudioData")]
         const DontPageAlignAudioData = 2;
     }
@@ -194,19 +201,25 @@ unsafe impl RefEncode for AudioFileFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions?language=objc)
+/// Flags for use when opening an audio file.
+///
+/// ## Overview
+///
+/// Use these flags with the [`AudioFileOpenURL`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenurl(_:_:_:_:)) and [`AudioFileOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofileopen) functions.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AudioFilePermissions(pub i8);
 impl AudioFilePermissions {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/readpermission?language=objc)
+    /// File is read-only.
     #[doc(alias = "kAudioFileReadPermission")]
     pub const ReadPermission: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/writepermission?language=objc)
+    /// File is write-only.
     #[doc(alias = "kAudioFileWritePermission")]
     pub const WritePermission: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions/readwritepermission?language=objc)
+    /// File has read-write permission.
     #[doc(alias = "kAudioFileReadWritePermission")]
     pub const ReadWritePermission: Self = Self(0x03);
 }
@@ -230,28 +243,31 @@ unsafe impl RefEncode for OpaqueAudioFileID {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAudioFileID", &[]));
 }
 
+/// An opaque data type that represents an audio file object.
 /// An opaque reference to an AudioFile object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileid?language=objc)
 pub type AudioFileID = *mut OpaqueAudioFileID;
 
-/// A constant for an AudioFile property.
+/// An audio file property identifier.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepropertyid?language=objc)
+/// ## Discussion
+///
+/// For a list of audio file properties, see [Audio File Properties](https://developer.apple.com/documentation/audiotoolbox/1576499-audio-file-properties).
+///
+///
+/// A constant for an AudioFile property.
 pub type AudioFilePropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_nolooping?language=objc)
+/// The segment is not looped.
 pub const kAudioFileLoopDirection_NoLooping: u32 = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forward?language=objc)
+/// Play the segment forward.
 pub const kAudioFileLoopDirection_Forward: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_forwardandbackward?language=objc)
+/// Play the segment forward and backward.
 pub const kAudioFileLoopDirection_ForwardAndBackward: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileloopdirection_backward?language=objc)
+/// Play the segment backward.
 pub const kAudioFileLoopDirection_Backward: u32 = 3;
 
+/// A data structure for describing SMPTE (Society of Motion Picture and Television Engineers) time.
 /// A struct for describing a SMPTE time.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_smpte_time?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFile_SMPTE_Time {
@@ -279,14 +295,13 @@ unsafe impl RefEncode for AudioFile_SMPTE_Time {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilemarkertype_generic?language=objc)
+/// A generic marker.
 pub const kAudioFileMarkerType_Generic: u32 = 0;
 
+/// Annotates a position in an audio file.
 /// A marker annotates a position in an audio file with additional information.
 ///
 /// (description)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarker?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -321,6 +336,7 @@ unsafe impl RefEncode for AudioFileMarker {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A list of markers associated with an audio file, including their SMPTE time type, the number of markers, and the markers themselves.
 /// A list of AudioFileMarker.
 ///
 /// This defines the SMPTE timing scheme used in the marker list. See CAFFile.h for the values used here.
@@ -328,8 +344,6 @@ unsafe impl RefEncode for AudioFileMarker {
 /// The number of markers in the mMarkers list.
 ///
 /// A list of AudioFileMarker.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarkerlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -360,6 +374,13 @@ unsafe impl RefEncode for AudioFileMarkerList {
 
 // TODO: pub fn NumAudioFileMarkersToNumBytes(in_num_markers: usize,) -> usize;
 
+/// Flags that specify a playback direction for an audio file region structure.
+///
+/// ## Overview
+///
+/// You can set one or more of these flags. For example, if both `kAudioFileRegionFlag_LoopEnable` and `kAudioFileRegionFlag_PlayForward` are set, the region plays as a forward loop. If only  `kAudioFileRegionFlag_PlayForward` is set, the region is played forward once. if both `kAudioFileRegionFlag_PlayForward` and `kAudioFileRegionFlag_PlayBackward` are set, the region plays forward then backward, then forward.
+///
+///
 /// These are flags for an AudioFileRegion that specify a playback direction.
 ///
 /// One or multiple of these flags can be set. For example, if both kAudioFileRegionFlag_LoopEnable and
@@ -371,21 +392,19 @@ unsafe impl RefEncode for AudioFileMarkerList {
 /// If this flag is set, the region will be played forward.
 ///
 /// If this flag is set, the region will be played backward.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileRegionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileRegionFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/loopenable?language=objc)
+/// If set, the region is looped. You must set one or both of the remaining flags must also be set for the region to be looped.
         #[doc(alias = "kAudioFileRegionFlag_LoopEnable")]
         const LoopEnable = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/playforward?language=objc)
+/// If set, the region is played forward.
         #[doc(alias = "kAudioFileRegionFlag_PlayForward")]
         const PlayForward = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags/playbackward?language=objc)
+/// If set, the region is played backward.
         #[doc(alias = "kAudioFileRegionFlag_PlayBackward")]
         const PlayBackward = 4;
     }
@@ -399,6 +418,13 @@ unsafe impl RefEncode for AudioFileRegionFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An audio file region specifies a segment of audio data.
+///
+/// ## Overview
+///
+/// Typically, a region consists of at least two markers designating the beginning and end of the segment. Other markers might define additional meta information such as sync point.
+///
+///
 /// An AudioFileRegion specifies a segment of audio data.
 ///
 /// Generally a region consists of at least two markers marking the beginning and end of the segment.
@@ -413,8 +439,6 @@ unsafe impl RefEncode for AudioFileRegionFlags {
 /// The number of markers in the mMarkers array.
 ///
 /// A variable length array of AudioFileMarkers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregion?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -445,6 +469,13 @@ unsafe impl RefEncode for AudioFileRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A list of the audio file regions in a file.
+///
+/// ## Overview
+///
+/// This structure is used by the [`kAudioFilePropertyRegionList`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyregionlist) property.
+///
+///
 /// A list of the AudioFileRegions in a file.
 ///
 /// This is the struct used by the kAudioFilePropertyRegionList property.
@@ -455,8 +486,6 @@ unsafe impl RefEncode for AudioFileRegion {
 ///
 /// A list of AudioFileRegions. Note that AudioFileMarkers are variable length, so this list cannot
 /// be accessed as an array. Use the NextAudioFileRegion macro for traversing the list instead.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -485,11 +514,16 @@ unsafe impl RefEncode for AudioFileRegionList {
 
 // TODO: pub fn NextAudioFileRegion(in_af_region_ptr: NonNull<AudioFileRegion>,)-> Option<NonNull<AudioFileRegion>>;
 
+/// A structure that specifies frame and packet translations.
+///
+/// ## Overview
+///
+/// A data structure used by the [`kAudioFilePropertyPacketToFrame`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettoframe) and [`kAudioFilePropertyFrameToPacket`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyframetopacket) properties.
+///
+///
 /// used for properties kAudioFilePropertyPacketToFrame and kAudioFilePropertyFrameToPacket
 ///
 /// See description of kAudioFilePropertyPacketToFrame and kAudioFilePropertyFrameToPacket
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioframepackettranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFramePacketTranslation {
@@ -515,15 +549,13 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 ///
 ///
 /// If the set then the result value is an estimate.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioBytePacketTranslationFlags(pub u32);
 bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslationflags/bytepackettranslationflag_isestimate?language=objc)
+/// If set, the result value is an estimate.
         #[doc(alias = "kBytePacketTranslationFlag_IsEstimate")]
         const BytePacketTranslationFlag_IsEstimate = 1;
     }
@@ -537,11 +569,10 @@ unsafe impl RefEncode for AudioBytePacketTranslationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A data structure used by the [`kAudioFilePropertyByteToPacket`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybytetopacket) and [`kAudioFilePropertyPacketToByte`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettobyte) properties.
 /// used for properties kAudioFileByteToPacket and kAudioFilePacketToByte
 ///
 /// See description of kAudioFileByteToPacket and kAudioFilePacketToByte
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioBytePacketTranslation {
@@ -567,6 +598,17 @@ unsafe impl RefEncode for AudioBytePacketTranslation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Contains information about the number of valid frames in a file and where they begin and end.
+///
+/// ## Overview
+///
+/// Some data formats might have packets with contents that are not completely valid, but that represent priming or remainder frames not intended for playback. For example, a file with 100 packets of AAC is nominally 1024 * 100 = 102400 frames of data. However, the first 2112 frames might be priming frames.
+///
+/// A number of remainder frames might be added to pad out to a full packet of 1024 frames. Discard the priming and remainder frames.
+///
+/// The total number of packets in the file times the frames per packet (or counting each packet’s frames individually for a variable frames per packet format) minus `mPrimingFrames`, minus `mRemainderFrames`, should equal `mNumberValidFrames`.
+///
+///
 /// This contains information about the number of valid frames in a file and where they begin and end.
 ///
 /// Some data formats may have packets whose contents are not completely valid, but represent priming or remainder
@@ -576,8 +618,6 @@ unsafe impl RefEncode for AudioBytePacketTranslation {
 /// discarded. The total number of packets in the file times the frames per packet (or counting each packet's frames
 /// individually for a variable frames per packet format) minus mPrimingFrames, minus mRemainderFrames, should
 /// equal mNumberValidFrames.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepackettableinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFilePacketTableInfo {
@@ -600,8 +640,6 @@ unsafe impl RefEncode for AudioFilePacketTableInfo {
 /// used for property kAudioFilePropertyPacketRangeByteCountUpperBound
 ///
 /// See description of kAudioFilePropertyPacketRangeByteCountUpperBound
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketrangebytecounttranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRangeByteCountTranslation {
@@ -624,8 +662,6 @@ unsafe impl RefEncode for AudioPacketRangeByteCountTranslation {
 /// used for property kAudioFilePropertyPacketToRollDistance
 ///
 /// See descriptions of kAudioFilePropertyPacketToRollDistance and kAudioFilePropertyRestrictsRandomAccess
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketrolldistancetranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRollDistanceTranslation {
@@ -647,8 +683,6 @@ unsafe impl RefEncode for AudioPacketRollDistanceTranslation {
 /// used for property kAudioFilePropertyPreviousIndependentPacket and kAudioFilePropertyNextIndependentPacket
 ///
 /// See descriptions of kAudioFilePropertyPreviousIndependentPacket and kAudioFilePropertyNextIndependentPacket
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioindependentpackettranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioIndependentPacketTranslation {
@@ -670,8 +704,6 @@ unsafe impl RefEncode for AudioIndependentPacketTranslation {
 /// used for property kAudioFilePropertyPacketToDependencyInfo
 ///
 /// See descriptions of kAudioFilePropertyPacketToDependencyInfo and kAudioFilePropertyRestrictsRandomAccess
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketdependencyinfotranslation?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketDependencyInfoTranslation {
@@ -692,6 +724,31 @@ unsafe impl RefEncode for AudioPacketDependencyInfoTranslation {
 }
 
 extern "C-unwind" {
+    /// Creates a new audio file, or initializes an existing file, specified by a URL.
+    ///
+    /// Parameters:
+    /// - inFileRef: The fully specified path of the file to create or initialize.
+    ///
+    /// - inFileType: The type of audio file to create.  See [`AudioFileTypeID`](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeid) for constants that can be used.
+    ///
+    /// - inFormat: A pointer to the structure that describes the format of the data.
+    ///
+    /// - inFlags: Relevant flags for creating or opening the file. If [`kAudioFileFlags_EraseFile`](https://developer.apple.com/documentation/audiotoolbox/audiofileflags/erasefile) is set, it erases an existing file. If the flag is not set, the function fails fails if the URL is an existing file.
+    ///
+    /// - outAudioFile: On output, a pointer to a newly created or initialized file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses a `CFURLRef` type rather than the `FSRef` type used by the deprecated [`AudioFileCreate`](https://developer.apple.com/documentation/audiotoolbox/audiofilecreate) function.
+    ///
+    ///
     /// creates a new audio file (or initialises an existing file)
     ///
     /// creates a new (or initialises an existing) audio file specified by the URL.
@@ -717,8 +774,6 @@ extern "C-unwind" {
     ///
     /// - `in_format` must be a valid pointer.
     /// - `out_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-foundation"))]
     pub fn AudioFileCreateWithURL(
         in_file_ref: &CFURL,
@@ -730,6 +785,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Open an existing audio file specified by a URL.
+    ///
+    /// Parameters:
+    /// - inFileRef: The URL of an existing audio file.
+    ///
+    /// - inPermissions: The read-write permissions you want to assign to the file. Use the permission constants in [`AudioFilePermissions`](https://developer.apple.com/documentation/audiotoolbox/audiofilepermissions).
+    ///
+    /// - inFileTypeHint: A hint for the file type of the designated file. For files without filename extensions and with types not easily or uniquely determined from the data (such as ADTS or AC3), use this hint to indicate the file type. Otherwise,  pass `0`. Only use this hint in macOS versions 10.3.1 or greater. In all earlier versions, any attempt to open these files fails.
+    ///
+    /// - outAudioFile: On output, a pointer to the newly opened audio file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Open an existing audio file.
     ///
     /// Open an existing audio file for reading or reading and writing.
@@ -751,8 +823,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileopenurl(_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioFileOpenURL(
         in_file_ref: &CFURL,
@@ -762,6 +832,35 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
+/// Reads audio data when used in conjunction with the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)) functions.)
+///
+/// Parameters:
+/// - inClientData: A pointer to the client data as set in the `inClientData` parameter to [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)).
+///
+/// - inPosition: An offset into the data from which to read.
+///
+/// - requestCount: The number of bytes to read.
+///
+/// - buffer: A pointer to the buffer in which to put the data read.
+///
+/// - actualCount: On output, the callback should set this parameter to a pointer to the number of bytes successfully read.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFile_ReadProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback function is called when Audio File Services needs to read data.
+///
+///
 /// A callback for reading data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
 /// a function that will be called when AudioFile needs to read data.
@@ -777,8 +876,6 @@ extern "C-unwind" {
 /// Parameter `actualCount`: The callback should set this to the number of bytes successfully read.
 ///
 /// Returns: The callback should return noErr on success, or an appropriate error code on failure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_readproc?language=objc)
 pub type AudioFile_ReadProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -789,6 +886,35 @@ pub type AudioFile_ReadProc = Option<
     ) -> OSStatus,
 >;
 
+/// A callback for writing file data when used in conjunction with the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or [`AudioFileCreateWithURL`](https://developer.apple.com/documentation/audiotoolbox/audiofilecreatewithurl(_:_:_:_:_:)) functions.
+///
+/// Parameters:
+/// - inClientData: A pointer to the client data as set in the `inClientData` parameter to [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or[`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)).
+///
+/// - inPosition: An offset into the data from which to read.
+///
+/// - requestCount: The number of bytes to write.
+///
+/// - buffer: A pointer to the buffer containing the data to write.
+///
+/// - actualCount: Upon completion, the callback should set this to a pointer to the number of bytes successfully written.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFile_WriteProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback function is invoked when Audio File Services needs to write data.
+///
+///
 /// A callback for writing data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
 /// a function that will be called when AudioFile needs to write data.
@@ -804,8 +930,6 @@ pub type AudioFile_ReadProc = Option<
 /// Parameter `actualCount`: The callback should set this to the number of bytes successfully written.
 ///
 /// Returns: The callback should return noErr on success, or an appropriate error code on failure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_writeproc?language=objc)
 pub type AudioFile_WriteProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -816,6 +940,27 @@ pub type AudioFile_WriteProc = Option<
     ) -> OSStatus,
 >;
 
+/// Gets file data size.
+///
+/// Parameters:
+/// - inClientData: A pointer to the client data as set in the `inClientData` parameter to the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)) functions.
+///
+///
+/// ## Return Value
+///
+/// The callback should return the size of the data.
+///
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFile_GetSizeProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback gets invoked by an audio file object when it needs to get audio file data size. You pass this callback as a parameter when calling the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) and [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)) functions.
+///
+///
 /// A callback for getting the size of the file data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
 /// a function that will be called when AudioFile needs to determine the size of the file data. This size is for all of the
@@ -824,10 +969,29 @@ pub type AudioFile_WriteProc = Option<
 /// Parameter `inClientData`: A pointer to the client data as set in the inClientData parameter to AudioFileXXXWithCallbacks.
 ///
 /// Returns: The callback should return the size of the data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_getsizeproc?language=objc)
 pub type AudioFile_GetSizeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_void>) -> i64>;
 
+/// Sets file data size.
+///
+/// Parameters:
+/// - inClientData: A pointer to the client data as set in the `inClientData` parameter to the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) or [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)) functions.
+///
+///
+/// ## Return Value
+///
+/// The callback should return the size of the data.
+///
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFile_SetSizeProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// This callback gets invoked by an audio file object when it needs to set audio file data size. You pass this callback as a parameter when calling the [`AudioFileOpenWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)) and [`AudioFileInitializeWithCallbacks`](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)) functions.
+///
+///
 /// A callback for setting the size of the file data. used with AudioFileOpenWithCallbacks or AudioFileInitializeWithCallbacks.
 ///
 /// a function that will be called when AudioFile needs to set the size of the file data. This size is for all of the
@@ -836,12 +1000,37 @@ pub type AudioFile_GetSizeProc = Option<unsafe extern "C-unwind" fn(NonNull<c_vo
 /// Parameter `inClientData`: A pointer to the client data as set in the inClientData parameter to AudioFileXXXWithCallbacks.
 ///
 /// Returns: The callback should return the size of the data.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_setsizeproc?language=objc)
 pub type AudioFile_SetSizeProc =
     Option<unsafe extern "C-unwind" fn(NonNull<c_void>, i64) -> OSStatus>;
 
 extern "C-unwind" {
+    /// Deletes the content of an existing file and assigns callbacks to the audio file object.
+    ///
+    /// Parameters:
+    /// - inClientData: A pointer to a constant passed to your callbacks. Th constant should contain any information you use to manage the state for reading data from the file.
+    ///
+    /// - inReadFunc: A callback function invoked when the audio file object wants to read data.
+    ///
+    /// - inWriteFunc: A callback function invoked when the audio file object wants to write data.
+    ///
+    /// - inGetSizeFunc: A callback function invoked when the audio file object wants to know the size of the file.
+    ///
+    /// - inSetSizeFunc: A callback function invoked when the audio file object wants to set the size of the file.
+    ///
+    /// - inFileType: The type of audio file to initialize
+    ///
+    /// - inFormat: The format for the audio data in the file.
+    ///
+    /// - inFlags: Flags for creating or opening the file. Set to `0`.
+    ///
+    /// - outAudioFile: On output, a pointer to the newly initialized audio file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Wipe clean an existing file. You provide callbacks that the AudioFile API
     /// will use to get the data.
     ///
@@ -877,8 +1066,6 @@ extern "C-unwind" {
     /// - `in_set_size_func` must be implemented correctly.
     /// - `in_format` must be a valid pointer.
     /// - `out_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileinitializewithcallbacks(_:_:_:_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn AudioFileInitializeWithCallbacks(
         in_client_data: NonNull<c_void>,
@@ -894,6 +1081,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Opens an existing file with callbacks you provide.
+    ///
+    /// Parameters:
+    /// - inClientData: A pointer to a constant passed to your callbacks. The constant should contain any information you use to manage the state for reading data from the file.
+    ///
+    /// - inReadFunc: A callback function invoked when the audio file object wants to read data.
+    ///
+    /// - inWriteFunc: A callback function called when the audio file object wants to write data.
+    ///
+    /// - inGetSizeFunc: A callback function called when the audio file object wants to know the file size.
+    ///
+    /// - inSetSizeFunc: A callback function called when the audio file object wants to set the file size.
+    ///
+    /// - inFileTypeHint: A hint about the type of the designated file. For files with no filename extension and without a type easily or uniquely determined from the data (ADTS,AC3), use this hint to indicate the file type. Otherwise, pass `0` for this parameter. The hint is only available in macOS versions 10.3.1 or greater. In versions prior to OS X 10.3.1, opening files such files fails.
+    ///
+    /// - outAudioFile: On output, a pointer to the newly opened file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Open an existing file. You provide callbacks that the AudioFile API
     /// will use to get the data.
     ///
@@ -926,8 +1136,6 @@ extern "C-unwind" {
     /// - `in_get_size_func` must be implemented correctly.
     /// - `in_set_size_func` must be implemented correctly.
     /// - `out_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileopenwithcallbacks(_:_:_:_:_:_:_:)?language=objc)
     pub fn AudioFileOpenWithCallbacks(
         in_client_data: NonNull<c_void>,
         in_read_func: AudioFile_ReadProc,
@@ -940,6 +1148,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Closes an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The file you want to close.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Close an existing audio file.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -949,12 +1168,29 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileclose(_:)?language=objc)
     pub fn AudioFileClose(in_audio_file: AudioFileID) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Consolidates audio data and performs other internal optimizations of the file structure.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file you want to optimize.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function optimizes the file so additional audio information can be appended to the existing data. Typically, this function consolidates the file’s audio data at the end of the file. This improves performance, such as when writing additional data to the file.
+    ///
+    /// Do not use this potentially expensive and time-consuming operation during time-critical operations. Instead, use the [`kAudioFilePropertyIsOptimized`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyisoptimized) property to check the optimization state of a file. You can then optimize when it won’t adversely affect your application.
+    ///
+    ///
     /// Move the audio data to the end of the file and other internal optimizations of the file structure.
     ///
     /// Optimize the file so additional audio data can be appended to
@@ -972,11 +1208,36 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileoptimize(_:)?language=objc)
     pub fn AudioFileOptimize(in_audio_file: AudioFileID) -> OSStatus;
 }
 
+/// Reads bytes of audio data from an audio file.
+///
+/// Parameters:
+/// - inAudioFile: The audio file whose bytes of audio data you want to read.
+///
+/// - inUseCache: Set to `true` if you want to cache the data. You should cache reads and writes if you read or write the same portion of a file multiple times. To request that the data not be cached, if possible, set to `false`. You should not cache reads and writes if you read or write data from a file only once.
+///
+/// - inStartingByte: The byte offset of the audio data you want to be returned.
+///
+/// - ioNumBytes: On input, a pointer to the number of bytes to read. On output, a pointer to the number of bytes actually read.
+///
+/// - outBuffer: A pointer to user-allocated memory large enough for the requested bytes.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// In most cases, you should use [`AudioFileReadPackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpackets(_:_:_:_:_:_:_:)) instead of this function.
+///
+/// This function returns `eofErr` when the read operation encounters the end of the file.  Note that Audio File Services only reads one 32-bit chunk of a file at a time.
+///
+///
 /// Read bytes of audio data from the audio file.
 ///
 ///
@@ -1000,8 +1261,6 @@ extern "C-unwind" {
 /// - `in_audio_file` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadbytes(_:_:_:_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadBytes(
     in_audio_file: AudioFileID,
@@ -1030,6 +1289,31 @@ pub unsafe extern "C-unwind" fn AudioFileReadBytes(
     }
 }
 
+/// Writes bytes of audio data to an audio file.
+///
+/// Parameters:
+/// - inAudioFile: The audio file to which you want to write bytes of data.
+///
+/// - inUseCache: Set to `true` if you want to cache the data. Otherwise, set to `false`.
+///
+/// - inStartingByte: The byte offset where the audio data should be written.
+///
+/// - ioNumBytes: On input, a pointer the number of bytes to write. On output, a pointer to the number of bytes actually written.
+///
+/// - inBuffer: A pointer to a buffer containing the bytes to be written.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// In most cases, you should use [`AudioFileWritePackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)) instead of this function.
+///
+///
 /// Write bytes of audio data to the audio file.
 ///
 /// Parameter `inAudioFile`: an AudioFileID.
@@ -1050,8 +1334,6 @@ pub unsafe extern "C-unwind" fn AudioFileReadBytes(
 /// - `in_audio_file` must be a valid pointer.
 /// - `io_num_bytes` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritebytes(_:_:_:_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
     in_audio_file: AudioFileID,
@@ -1080,6 +1362,45 @@ pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
     }
 }
 
+/// Reads packets of audio data from an audio file.
+///
+/// Parameters:
+/// - inAudioFile: The audio file whose audio packets you want to read.
+///
+/// - inUseCache: Set to `true` to cache the data. Otherwise, set to `false`.
+///
+/// - ioNumBytes: On input, the size of the `outBuffer` parameter, in bytes. On output, the number of bytes actually read.
+///
+/// You will see a difference in the input and output values if the byte size for the number of packets you request in the `ioNumPackets` parameter is smaller than the buffer size you pass in the `outBuffer` parameter. In this case, the output value for this parameter is smaller than its input value.
+///
+/// - outPacketDescriptions: On output, an array of packet descriptions for the packets that were read. The array that you pass in this parameter must be large enough to accommodate descriptions for the number of packets requested in the `ioNumPackets` parameter.
+///
+/// This parameter applies only to variable bit-rate data. If the file being read contains constant bit-rate (CBR) data, such as linear PCM, this parameter does not get filled. Pass `NULL` if the file’s data format is CBR.
+///
+/// - inStartingPacket: The packet index of the first packet you want to read.
+///
+/// - ioNumPackets: On input, the number of packets to read. On output, the number of packets actually read.
+///
+/// - outBuffer: Memory that you allocate to hold the read packets. Determine an appropriate size by multiplying the number of packets requested (in the `ioNumPackets` parameter) by the typical packet size for the audio data in the file. For uncompressed audio formats, a packet is equal to a frame.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// Using this function is memory efficient when reading variable bit-rate (VBR) audio data, whose packet sizes can vary for a given duration of sound.
+///
+/// If the buffer you provide in the `outBuffer` parameter is too small to hold the packets you request in `ioNumPackets`, the output values of `ioNumPackets` and `ioNumBytes` are reduced to reflect the packets that were placed into the buffer. You also see a difference in the input and output values for `ioNumPackets` when this function has reached the end of the file you are reading. In this case, the output value for this parameter is smaller than its input value.
+///
+/// This function is more efficient than [`AudioFileReadPackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpackets(_:_:_:_:_:_:_:)) when reading compressed file formats that do not have packet tables, such as MP3 or ADTS. This function is a good choice for reading either CBR (constant bit-rate) or VBR data if you do not need to read a fixed duration of audio. If you do need to read a fixed duration of audio, whether CBR  or VBR, use [`AudioFileReadPackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpackets(_:_:_:_:_:_:_:)) instead.
+///
+/// Audio File Services reads one 32-bit chunk of a file at a time.
+///
+///
 /// Read packets of audio data from the audio file.
 ///
 /// AudioFileReadPacketData reads as many of the requested number of packets
@@ -1122,8 +1443,6 @@ pub unsafe extern "C-unwind" fn AudioFileWriteBytes(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
@@ -1159,6 +1478,45 @@ pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
     }
 }
 
+/// Reads a fixed duration of audio data from an audio file.
+///
+/// Parameters:
+/// - inAudioFile: The audio file whose audio packets you want to read.
+///
+/// - inUseCache: Set to `true` to cache the data. Otherwise, set to `false`.
+///
+/// - outNumBytes: On output, the number of bytes actually read.
+///
+/// - outPacketDescriptions: On output, an array of packet descriptions for the packets that were read. The array that you pass must be large enough to accommodate descriptions for the number of packets requested in the `ioNumPackets` parameter.
+///
+/// This parameter applies only to variable bit-rate data. If the file being read contains constant bit-rate (CBR) data, such as linear PCM, this parameter does not get filled. Pass `NULL` if the file’s data format is CBR.
+///
+/// - inStartingPacket: The packet index of the first packet you want to read.
+///
+/// - ioNumPackets: On input, the number of packets to read. On output, the number of packets actually read.
+///
+/// You will see a difference in the input and output values when this function has reached the end of the file you are reading. In this case, the output value for this parameter is smaller than its input value.
+///
+/// - outBuffer: Memory that you allocate to hold the read packets. Determine an appropriate size by multiplying the number of packets requested (in the `ioNumPackets` parameter) by the maximum (or upper bound for) packet size of the audio file. For uncompressed audio formats, a packet is equal to a frame.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// If you do not need to read a fixed duration of audio data, but rather want to use your memory buffer most efficiently, use [`AudioFileReadPacketData`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)) instead of this function.
+///
+/// When reading variable bit-rate (VBR) audio data, using this function requires that you allocate more memory than you would for the [`AudioFileReadPacketData`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)) function. See the descriptions for the `outBuffer` parameter in each of these two functions.
+///
+/// In addition, this function is less efficient than [`AudioFileReadPacketData`](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpacketdata(_:_:_:_:_:_:_:)) when reading compressed file formats that do not have packet tables, such as MP3 or ADTS. Use this function only when you need to read a fixed duration of audio data, or when you are reading only uncompressed audio.
+///
+/// Audio File Services reads one 32-bit chunk of a file at a time.
+///
+///
 /// Read packets of audio data from the audio file.
 ///
 /// AudioFileReadPackets is DEPRECATED. Use AudioFileReadPacketData instead.
@@ -1197,8 +1555,6 @@ pub unsafe extern "C-unwind" fn AudioFileReadPacketData(
 /// - `out_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `out_buffer` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilereadpackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[deprecated = "no longer supported"]
 #[inline]
@@ -1235,6 +1591,35 @@ pub unsafe extern "C-unwind" fn AudioFileReadPackets(
     }
 }
 
+/// Writes packets of audio data to an audio data file.
+///
+/// Parameters:
+/// - inAudioFile: The audio file to write to.
+///
+/// - inUseCache: Set to `true` if you want to cache the data. Otherwise, set to `false`.
+///
+/// - inNumBytes: The number of bytes of audio data being written.
+///
+/// - inPacketDescriptions: A pointer to an array of packet descriptions for the audio data. Not all formats require packet descriptions. If no packet descriptions are required, for instance, if you are writing CBR data,  pass `NULL`.
+///
+/// - inStartingPacket: The packet index for the placement of the first provided packet.
+///
+/// - ioNumPackets: On input, a pointer to the number of packets to write. On output, a pointer to the number of packets actually written.
+///
+/// - inBuffer: A pointer to user-allocated memory containing the new audio data to write to the audio data file.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// For all uncompressed formats, this function equates packets with frames.
+///
+///
 /// Write packets of audio data to the audio file.
 ///
 /// For all uncompressed formats, packets == frames.
@@ -1264,8 +1649,6 @@ pub unsafe extern "C-unwind" fn AudioFileReadPackets(
 /// - `in_packet_descriptions` must be a valid pointer or null.
 /// - `io_num_packets` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePackets(
@@ -1301,6 +1684,38 @@ pub unsafe extern "C-unwind" fn AudioFileWritePackets(
     }
 }
 
+///
+/// Parameters:
+/// - inAudioFile: The audio file to write to.
+///
+/// - inUseCache: Set to `true` if you want to cache the data. Otherwise, set to `false`.
+///
+/// - inNumBytes: The number of bytes of audio data being written.
+///
+/// - inPacketDescriptions: A pointer to an array of packet descriptions for the audio data. Not all formats require packet descriptions. If no packet descriptions are required, for instance, if you are writing CBR data,  pass `NULL`.
+///
+/// - inPacketDependencies: A pointer to an array of packet dependencies for the audio data. This must not be `NULL`.  To write packets without dependencies, use [`AudioFileWritePackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)) instead.
+///
+/// - inStartingPacket: The packet index for the placement of the first provided packet.
+///
+/// - ioNumPackets: On input, a pointer to the number of packets to write. On output, a pointer to the number of packets actually written.
+///
+/// - inBuffer: A pointer to user-allocated memory containing the new audio data to write to the audio data file.
+///
+///
+/// ## Return Value
+///
+/// A result code. See Result Codes.
+///
+///
+///
+/// ## Discussion
+///
+/// Write packets of audio data with corresponding packet dependencies to an audio data file.
+///
+/// For all uncompressed formats, `packets == frames`.
+///
+///
 /// Write packets of audio data with corresponding packet dependencies to an audio data file.
 ///
 /// For all uncompressed formats, `packets == frames`.
@@ -1336,8 +1751,6 @@ pub unsafe extern "C-unwind" fn AudioFileWritePackets(
 /// - `in_packet_dependencies` must be a valid pointer.
 /// - `io_num_packets` must be a valid pointer.
 /// - `in_buffer` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepacketswithdependencies(_:_:_:_:_:_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[inline]
 pub unsafe extern "C-unwind" fn AudioFileWritePacketsWithDependencies(
@@ -1377,6 +1790,33 @@ pub unsafe extern "C-unwind" fn AudioFileWritePacketsWithDependencies(
 }
 
 extern "C-unwind" {
+    /// Gets the number of user data items with a specified ID in a file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file whose user data items are to be counted.
+    ///
+    /// - inUserDataID: The four-character code (such as `COMM`) of the user data item.
+    ///
+    /// - outNumberItems: On output, a pointer to the number of user data items of this type in the file.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In this function, _user data_ refers to:
+    ///
+    /// - Chunks in AIFF, CAF, and WAVE files
+    ///
+    /// - Resources in Sound Designer II files
+    ///
+    /// - Other types of information in other files
+    ///
+    ///
     /// Get the number of user data items with a certain ID in the file
     ///
     /// "User Data" refers to chunks in AIFF, CAF and WAVE files, or resources
@@ -1395,8 +1835,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_number_items` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilecountuserdata(_:_:_:)?language=objc)
     pub fn AudioFileCountUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1405,6 +1843,35 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the size of a user data item in an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file whose user data item size you want.
+    ///
+    /// - inUserDataID: The four-character code of the designated user data item.
+    ///
+    /// - inIndex: An index of the user data item with the four-character code specified in `inUserDataID` that you want to query.
+    ///
+    /// - outUserDataSize: On output, if successful, the size of the user data item.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In this function, _user data_ refers to:
+    ///
+    /// - Chunks in AIFF, CAF, and WAVE files
+    ///
+    /// - Resources in Sound Designer II files
+    ///
+    /// - Other types of information in other files
+    ///
+    ///
     /// Get the size of user data in a file
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1421,8 +1888,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdatasize(_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataSize(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1432,6 +1897,87 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the size of a user data item in an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file whose user data item size you want.
+    ///
+    /// - inUserDataID: The four-character code of the designated user data item.
+    ///
+    /// - inIndex: An index of the user data item with the four-character code specified in `inUserDataID` that you want to query.
+    ///
+    /// - outUserDataSize: On output, if successful, the size of the user data item.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In this function, _user data_ refers to:
+    ///
+    /// - Chunks in AIFF, CAF, and WAVE files
+    ///
+    /// - Resources in Sound Designer II files
+    ///
+    /// - Other types of information in other files
+    ///
+    /// Very large user data chunks, such as the Audio Definition Model (ADM) chunks that movie production uses, can exceed the 32-bit size limit or be prohibitively expensive to allocate large enough memory blocks to read them.
+    ///
+    /// The BW64 format is 64-bit and based on WAVE. Parsing the ADM of a BW64 file with metadata becomes an iterative process that doesn’t require large memory buffers. In the following example, `ADMBuilder` is a type that uses the Builder pattern to parse an ADM document from sequentially provided segments:
+    ///
+    /// ```objc
+    /// constexpr size_t CHUNK_BUFFER_SIZE = 16 * 1024;  // Arbitrary, but 16K is the typical page size.
+    ///     AudioFileID inputAudioFile;
+    ///     
+    ///     // Assume that the system successfully opened the audio file.
+    ///     
+    ///     uint64_t chunkSize = 0;
+    ///     auto err = AudioFileGetUserDataSize64(inputAudioFile, 'axml', 0, &chunkSize);
+    ///     
+    ///     if (err != noErr) {
+    ///         if (err == kAudioFileInvalidChunkError) {
+    ///             fprintf(stderr, "The input file doesn't appear to have an ADM document attached.\n");
+    ///             return EXIT_FAILURE;
+    ///         }
+    ///         fprintf(stderr, "AudioFileGetUserDataSize64 returned error: %d.\n", (int)err);
+    ///         return EXIT_FAILURE;
+    ///     }
+    ///     
+    ///     printf("ADM is %" PRIu64 " bytes in size.\n", chunkSize);
+    ///     ADMBuilder admBuilder;
+    ///     std::vector<uint8_t> buffer(CHUNK_BUFFER_SIZE);
+    ///     uint64_t offset = 0;
+    ///     
+    ///     while (offset < chunkSize) {
+    ///         auto readSize = (uint32_t)std::min((uint64_t)CHUNK_BUFFER_SIZE, chunkSize - offset);
+    ///         
+    ///         err = AudioFileGetUserDataAtOffset(inputAudioFile, 'axml', 0, offset, &readSize, buffer.data());        
+    ///         if (err != noErr) {
+    ///             fprintf(stderr, "AudioFileGetUserDataAtOffset returned error: %d.\n", (int)err);
+    ///             return EXIT_FAILURE;
+    ///         }
+    ///         
+    ///         err = admBuilder.parse((const char*)buffer.data(), (int)readSize, offset + readSize >= chunkSize);
+    ///         if (err != noErr) {
+    ///             fprintf(stderr, "ADMBuilder::parse returned error: %d.\n", (int)err);
+    ///             return EXIT_FAILURE;
+    ///         }
+    ///         
+    ///         offset += (uint64_t)readSize;
+    ///     }
+    ///     
+    ///     // Assume that the system reads and uses the audio frames from the file, along
+    ///     // with the parsed ADM document, and the system eventually closes the audio file.
+    ///     
+    ///     return EXIT_SUCCESS;
+    ///
+    /// ```
+    ///
+    ///
     /// Get the 64-bit size of user data in a file
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1448,8 +1994,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_user_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdatasize64(_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataSize64(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1459,6 +2003,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets a chunk from an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file whose chunk you want to get.
+    ///
+    /// - inUserDataID: The four-character code of the designated chunk.
+    ///
+    /// - inIndex: An index that specifies which chunk with the four-character code specified in the `inUserDataID` parameter you want to query.
+    ///
+    /// - ioUserDataSize: On input, a pointer to the size of the buffer that contains the designated chunk. On output, a pointer to the size of bytes that the system copied to the buffer.
+    ///
+    /// - outUserData: A pointer to a buffer in which to copy the chunk data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
     /// Get the data of a chunk in a file.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1478,8 +2041,6 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdata(_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1490,6 +2051,33 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets part of the data from a chunk in an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file whose chunk you want to get data from.
+    ///
+    /// - inUserDataID: The four-character code of the designated chunk.
+    ///
+    /// - inIndex: An index that specifies which chunk with the four-character code specified in the `inUserDataID` parameter you want to query.
+    ///
+    /// - inOffset: An offset from the first byte of the chunk to the first byte to get.
+    ///
+    /// - ioUserDataSize: On input, a pointer to the size of the buffer that contains the designated chunk. On output, a pointer to the size of bytes that the system copied to the buffer.
+    ///
+    /// - outUserData: A pointer to a buffer in which to copy the chunk data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// See [`AudioFileGetUserDataSize64`](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdatasize64(_:_:_:_:)) for an example of using this function to parse the Audio Definition Model (ADM) of a BW64 file, which is 64-bit and based on WAVE.
+    ///
+    ///
     /// Get a part of the data of a chunk in a file.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1511,8 +2099,6 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_user_data_size` must be a valid pointer.
     /// - `out_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetuserdataatoffset(_:_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetUserDataAtOffset(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1524,6 +2110,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets a user data item in an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file that you want to set a user data item in.
+    ///
+    /// - inUserDataID: The four-character code for the user data item.
+    ///
+    /// - inIndex: An index specifying the user data item you want to set. You use this parameter if the file contains more than one user data item with the four-character code specified in the `inUserDataID` parameter.
+    ///
+    /// - inUserDataSize: On input, the size of the data to copy. On output, the size of the bytes copied from the buffer.
+    ///
+    /// - inUserData: A pointer to a buffer from which to copy the user data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
     /// Set the data of a chunk in a file.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1543,8 +2148,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `in_user_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilesetuserdata(_:_:_:_:_:)?language=objc)
     pub fn AudioFileSetUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1555,6 +2158,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a user data item from an audio file.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file that contains the user data item you want to remove.
+    ///
+    /// - inUserDataID: The four-character code such as `COMM` of the user data item.
+    ///
+    /// - inIndex: An index specifying the chunk to remove. Use this parameter if the file contains more than one user data item with the four-character code that you specified in the `inUserDataID` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code if there’s an error (see Result Codes) or `noErr` if the operation succeeds.
+    ///
+    ///
     /// Remove a user chunk in a file.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1568,8 +2186,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileremoveuserdata(_:_:_:)?language=objc)
     pub fn AudioFileRemoveUserData(
         in_audio_file: AudioFileID,
         in_user_data_id: u32,
@@ -1577,82 +2193,130 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyfileformat?language=objc)
+/// The format of the audio data file.
 pub const kAudioFilePropertyFileFormat: AudioFilePropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformat?language=objc)
+/// An audio stream basic description containing the format of the audio data.
 pub const kAudioFilePropertyDataFormat: AudioFilePropertyID = 0x64666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyisoptimized?language=objc)
+/// Indicates whether a designated audio file has been optimized, that is, ready to start having sound data written to it. A value of `0` indicates the file needs to be optimized. A value of `1` indicates the file is currently optimized.
 pub const kAudioFilePropertyIsOptimized: AudioFilePropertyID = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymagiccookiedata?language=objc)
+/// A pointer to memory set up by the caller. Some file types require that a magic cookie be provided before packets can be written to an audio file. Set this property before you call [`AudioFileWriteBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritebytes(_:_:_:_:_:)) or [`AudioFileWritePackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)) if a magic cookie exists.
 pub const kAudioFilePropertyMagicCookieData: AudioFilePropertyID = 0x6d676963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatabytecount?language=objc)
+/// Indicates the number of bytes of audio data in the designated file.
 pub const kAudioFilePropertyAudioDataByteCount: AudioFilePropertyID = 0x62636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiodatapacketcount?language=objc)
+/// Indicates the number of packets of audio data in the designated file.
 pub const kAudioFilePropertyAudioDataPacketCount: AudioFilePropertyID = 0x70636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymaximumpacketsize?language=objc)
+/// Indicates the maximum size of a packet for the data in the designated file.
 pub const kAudioFilePropertyMaximumPacketSize: AudioFilePropertyID = 0x70737a65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataoffset?language=objc)
+/// Indicates the byte offset in the file of the designated audio data.
 pub const kAudioFilePropertyDataOffset: AudioFilePropertyID = 0x646f6666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychannellayout?language=objc)
+/// An audio channel layout structure.
 pub const kAudioFilePropertyChannelLayout: AudioFilePropertyID = 0x636d6170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydefersizeupdates?language=objc)
+/// The default value (`0`) always updates header. If set to `1`, updating the files sizes in the header is not performed every time data is written. Instead, the updating is deferred until the file has been read, optimized, or closed. This process is more efficient, but not as safe. If an application crashes before the size has been updated, the file might not be readable.
 pub const kAudioFilePropertyDeferSizeUpdates: AudioFilePropertyID = 0x64737a75;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertydataformatname?language=objc)
+/// This constant is deprecated in macOS 10.5 and later. Do not use. Instead, use `kAudioFormatProperty_FormatName` (declared in the `AudioFormat.h` header file).
 pub const kAudioFilePropertyDataFormatName: AudioFilePropertyID = 0x666e6d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertymarkerlist?language=objc)
+/// A list of audio file markers defined in the file.
+///
+/// ## Discussion
+///
+/// A list of [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects representing audio file markers defined in the file.
+///
+/// If you access this property, your app is responsible for releasing the [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects.
+///
+/// Use the `NumBytesToNumAudioFileMarkers` and `NumAudioFileMarkersToNumBytes` functions to convert between audio file markers and the equivalent number of bytes.
+///
+///
 pub const kAudioFilePropertyMarkerList: AudioFilePropertyID = 0x6d6b6c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyregionlist?language=objc)
+/// The list of audio file region values defined in the file.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) objects.
+///
+/// Use the `NextAudioFileRegion` function to walk through the region list.
+///
+///
 pub const kAudioFilePropertyRegionList: AudioFilePropertyID = 0x72676c73;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettoframe?language=objc)
+/// Passes an audio frame packet translation structure with the `mPacket` field filled out and returns the `mFrame` field. The `mFrameOffsetInPacket` field is ignored.
 pub const kAudioFilePropertyPacketToFrame: AudioFilePropertyID = 0x706b6672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyframetopacket?language=objc)
+/// Passes an audio frame packet translation structure with the `mFrame` field filled out and returns the `mPacket` and `mFrameOffsetInPacket` fields.
 pub const kAudioFilePropertyFrameToPacket: AudioFilePropertyID = 0x6672706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyrestrictsrandomaccess?language=objc)
 pub const kAudioFilePropertyRestrictsRandomAccess: AudioFilePropertyID = 0x72726170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettorolldistance?language=objc)
 pub const kAudioFilePropertyPacketToRollDistance: AudioFilePropertyID = 0x706b726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypreviousindependentpacket?language=objc)
 pub const kAudioFilePropertyPreviousIndependentPacket: AudioFilePropertyID = 0x70696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertynextindependentpacket?language=objc)
 pub const kAudioFilePropertyNextIndependentPacket: AudioFilePropertyID = 0x6e696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettodependencyinfo?language=objc)
 pub const kAudioFilePropertyPacketToDependencyInfo: AudioFilePropertyID = 0x706b6470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettobyte?language=objc)
+/// Passes an audio byte packet translation structure with the `mPacket` field filled out and returns the `mByte` field. The `mByteOffsetInPacket` field is ignored. If the value in the `mByte` field is an estimate then the `kBytePacketTranslationFlag_IsEstimate` flag is set in the `mFlags` field.
 pub const kAudioFilePropertyPacketToByte: AudioFilePropertyID = 0x706b6279;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybytetopacket?language=objc)
+/// Passes an audio byte packet translation structure with the `mByte` field filled out and returns the `mPacket` and `mByteOffsetInPacket` fields. If the value in the `mByte` field is an estimate then the `kBytePacketTranslationFlag_IsEstimate` flag is set in the `mFlags` field.
 pub const kAudioFilePropertyByteToPacket: AudioFilePropertyID = 0x6279706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertychunkids?language=objc)
+/// An array of  four-character codes for each kind of chunk in the file.
 pub const kAudioFilePropertyChunkIDs: AudioFilePropertyID = 0x63686964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyinfodictionary?language=objc)
+/// A CF Dictionary with information about the data in the file.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object.
+///
+/// In macOS, an audio file component (of type `AudioFileComponent` is free to add keys to the dictionaries they return for this property.
+///
+///
 pub const kAudioFilePropertyInfoDictionary: AudioFilePropertyID = 0x696e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypackettableinfo?language=objc)
+/// Gets or sets an audio file packet table information structure for its supporting file types. When setting the structure, the sum of the values of the `mNumberValidFrames`, `mPrimingFrames` and `mRemainderFrames` fields must be the same as the total number of frames in all packets. If not, a `paramErr` is returned. To ensure this result, get the value of the property and make sure the sum of the three values you set has the same sum as the three values you got.
 pub const kAudioFilePropertyPacketTableInfo: AudioFilePropertyID = 0x706e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyformatlist?language=objc)
+/// To support formats such as AAC SBR in which an encoded data stream can be decoded to multiple destination formats, this property’s value is an array of audio format list item values (declared in `AudioFormat.h`) of those formats. Typically, this is an audio format list item with the same audio stream basic description in the `kAudioFilePropertyDataFormat` property.
 pub const kAudioFilePropertyFormatList: AudioFilePropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketsizeupperbound?language=objc)
+/// The theoretical maximum packet size in the file. This value is obtained without actually scanning the whole file to find the largest packet, as could happen with `kAudioFilePropertyMaximumPacketSize`.
 pub const kAudioFilePropertyPacketSizeUpperBound: AudioFilePropertyID = 0x706b7562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertypacketrangebytecountupperbound?language=objc)
 pub const kAudioFilePropertyPacketRangeByteCountUpperBound: AudioFilePropertyID = 0x70727562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyreserveduration?language=objc)
+/// The duration in seconds of the data expected to be written. Set this property before any data has been written to reserve space in the file header for a packet table and other information to appear before the audio data. Otherwise, the packet table might get written at the end of the file, preventing the file from being streamable.
 pub const kAudioFilePropertyReserveDuration: AudioFilePropertyID = 0x72737276;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyestimatedduration?language=objc)
+/// An estimated duration in seconds. If this duration can be calculated without scanning the entire file, or all the audio data packets have been scanned, the value accurately reflects the duration of the audio data.
 pub const kAudioFilePropertyEstimatedDuration: AudioFilePropertyID = 0x65647572;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertybitrate?language=objc)
+/// The actual bit rate (number of audio data bits in the file divided by the duration of the file) for some file types, and the nominal bit rate (which bit rate the encoder was set to) for others.
 pub const kAudioFilePropertyBitRate: AudioFilePropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tag?language=objc)
+/// A `void*` value pointing to memory set up by your application to contain a fully formatted ID3 tag.
+///
+/// ## Discussion
+///
+/// When setting, this property must be set before calling the [`AudioFileWritePackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)) function. This property is gettable and settable when using ID3 version 2. It is gettable only for version ID3 version 1. A sound file’s ID3 tag itself is not manipulated when getting or setting this property.
+///
+///
 pub const kAudioFilePropertyID3Tag: AudioFilePropertyID = 0x69643374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyid3tagoffset?language=objc)
 pub const kAudioFilePropertyID3TagOffset: AudioFilePropertyID = 0x6964336f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertysourcebitdepth?language=objc)
+/// For compressed data, this property’s value is the bit depth of the source, uncompressed audio stream as an `SInt32` value, if known. The bit depth is expressed as a negative number if the uncompressed source was in a floating point format. For example, a property value of `-32` is used for `float` and a property value of `-64` represents `double`.
 pub const kAudioFilePropertySourceBitDepth: AudioFilePropertyID = 0x73627464;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyalbumartwork?language=objc)
+/// An object containing the image data for the album artwork associated with an audio file.
+///
+/// ## Discussion
+///
+/// A [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object containing an image file associated with the audio file.
+///
+/// The image data is formatted as either JFIF (JPEG) or PNG (PNG). If you access this property, your app is responsible for releasing the [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object.
+///
+///
 pub const kAudioFilePropertyAlbumArtwork: AudioFilePropertyID = 0x61617274;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyaudiotrackcount?language=objc)
 pub const kAudioFilePropertyAudioTrackCount: AudioFilePropertyID = 0x61746374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilepropertyuseaudiotrack?language=objc)
 pub const kAudioFilePropertyUseAudioTrack: AudioFilePropertyID = 0x7561746b;
 
 extern "C-unwind" {
+    /// Gets information about an audio file property, including the size of the property value and whether the value is writable.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file you want to obtain property value information from.
+    ///
+    /// - inPropertyID: The property whose value information you want. See [Audio File Properties](https://developer.apple.com/documentation/audiotoolbox/1576499-audio-file-properties) for possible values.
+    ///
+    /// - outDataSize: On output, the size in bytes of the property value.
+    ///
+    /// - isWritable: On output, equals `1` if the property is writable, or `0` if it is read-only.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Get information about the size of a property of an AudioFile  and whether it can be set.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1671,8 +2335,6 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `out_data_size` must be a valid pointer or null.
     /// - `is_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioFileGetPropertyInfo(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1682,6 +2344,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Gets the value of an audio file property.
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file you want to obtain a property value from.
+    ///
+    /// - inPropertyID: The property whose value you want. See [Audio File Properties](https://developer.apple.com/documentation/audiotoolbox/1576499-audio-file-properties) for possible values.
+    ///
+    /// - ioDataSize: On input, the size of the buffer passed in the `outPropertyData` parameter. On output, the number of bytes written to the buffer. Use the [`AudioFileGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilegetpropertyinfo(_:_:_:_:)) function to obtain the size of the property value.
+    ///
+    /// - outPropertyData: On output, the value of the property specified in the `inPropertyID` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Copies the value for a property of an AudioFile into a buffer.
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1699,8 +2386,6 @@ extern "C-unwind" {
     /// - `in_audio_file` must be a valid pointer.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileGetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1710,6 +2395,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the value of an audio file property
+    ///
+    /// Parameters:
+    /// - inAudioFile: The audio file that you want to set a property value for.
+    ///
+    /// - inPropertyID: The property whose value you want to set. See [Audio File Properties](https://developer.apple.com/documentation/audiotoolbox/1576499-audio-file-properties) for possible values. Use the [`AudioFileGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilegetpropertyinfo(_:_:_:_:)) function to determine whether the property value is writable.
+    ///
+    /// - inDataSize: The size of the value you are passing in the `inPropertyData` parameter.
+    ///
+    /// - inPropertyData: The new value for the property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Sets the value for a property of an AudioFile .
     ///
     /// Parameter `inAudioFile`: an AudioFileID.
@@ -1726,8 +2428,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilesetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileSetProperty(
         in_audio_file: AudioFileID,
         in_property_id: AudioFilePropertyID,
@@ -1736,42 +2436,167 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_readabletypes?language=objc)
+/// An array of `UInt32` values containing the file types (such as AIFF, WAVE, and so forth) that can be opened for reading.
+///
+/// ## Discussion
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_ReadableTypes: AudioFilePropertyID = 0x61667266;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_writabletypes?language=objc)
+/// An array of `UInt32` values containing the file types (such as AIFF, WAVE, and so forth) that can be opened for writing.
+///
+/// ## Discussion
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_WritableTypes: AudioFilePropertyID = 0x61667766;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_filetypename?language=objc)
+/// The name for the file type.
+///
+/// ## Discussion
+///
+/// A [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object containing the name for the file type.
+///
+/// If you access this property, your app is responsible for releasing the [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID containing a file type.
+///
+///
 pub const kAudioFileGlobalInfo_FileTypeName: AudioFilePropertyID = 0x66746e6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availablestreamdescriptionsforformat?language=objc)
+/// An array of audio stream basic description structures, which contain all the formats for a particular file type and format ID.
+///
+/// ## Discussion
+///
+/// The audio stream basic description structures have the following fields filled in: `mFormatID`, `mFormatFlags`, and `mBitsPerChannel` for writing new files. When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type and format ID structure.
+///
+///
 pub const kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat: AudioFilePropertyID =
     0x73646964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availableformatids?language=objc)
+/// An array of format IDs for formats that can be read.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID containing a file type.
+///
+///
 pub const kAudioFileGlobalInfo_AvailableFormatIDs: AudioFilePropertyID = 0x666d6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allextensions?language=objc)
+/// A `CFArray` of `CFStrings` containing all recognized file extensions. You can use this array when creating an `NSOpenPanel` (declared in the AppKit’s `NSOpenPanel.h` header file).
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_AllExtensions: AudioFilePropertyID = 0x616c7874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allhfstypecodes?language=objc)
+/// An array of HFS type codes containing all recognized HFS type codes. For more information on HFS type codes, see Audio Toolbox’s `ExtendedAudioFile.h` header file.
+///
+/// ## Discussion
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_AllHFSTypeCodes: AudioFilePropertyID = 0x61686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allutis?language=objc)
+/// A `CFArray` of `CFString` of all UTIs (Universal Type Identifiers) recognized by Audio File Services.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_AllUTIs: AudioFilePropertyID = 0x61757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_allmimetypes?language=objc)
+/// A `CFArray` of CF strings of all MIME types are recognized by Audio File Services.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property’s value, you must set the `inSpecifier` parameter to `NULL`.
+///
+///
 pub const kAudioFileGlobalInfo_AllMIMETypes: AudioFilePropertyID = 0x616d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_extensionsfortype?language=objc)
+/// A `CFArray` of CF strings containing the recognized file extensions for a specified type.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID containing a file type.
+///
+///
 pub const kAudioFileGlobalInfo_ExtensionsForType: AudioFilePropertyID = 0x66657874;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_hfstypecodesfortype?language=objc)
+/// An array of HFS type codes corresponding to a specified file type. The first type in the array is the preferred one to use.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID.
+///
+///
 pub const kAudioFileGlobalInfo_HFSTypeCodesForType: AudioFilePropertyID = 0x66686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_utisfortype?language=objc)
+/// A `CFArray` of `CFString` of all Universal Type Identifiers recognized by a specified file type.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID.
+///
+///
 pub const kAudioFileGlobalInfo_UTIsForType: AudioFilePropertyID = 0x66757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_mimetypesfortype?language=objc)
+/// A `CFArray` of `CFString` of all MIME types recognized by a specified file type.
+///
+/// ## Discussion
+///
+/// If you access this property, your app is responsible for releasing the [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) object.
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an audio file type ID.
+///
+///
 pub const kAudioFileGlobalInfo_MIMETypesForType: AudioFilePropertyID = 0x666d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesformimetype?language=objc)
+/// An array of all audio file type IDs that support a specified MIME type.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to a `CFStringRef` containing a MIME Type.
+///
+///
 pub const kAudioFileGlobalInfo_TypesForMIMEType: AudioFilePropertyID = 0x746d696d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforuti?language=objc)
+/// An array of all audio file type IDs that support a specified UTI.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to a `CFStringRef` containing a Universal Type Identifier.
+///
+///
 pub const kAudioFileGlobalInfo_TypesForUTI: AudioFilePropertyID = 0x74757469;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforhfstypecode?language=objc)
+/// An array of all audio file type IDs that support a specified `HFSTypeCode`.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to an `HFSTypeCode`.
+///
+///
 pub const kAudioFileGlobalInfo_TypesForHFSTypeCode: AudioFilePropertyID = 0x74686673;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_typesforextension?language=objc)
+/// An array of all audio file type IDs that support a specified filename extension.
+///
+/// ## Discussion
+///
+/// When accessing this property, provide a pointer, in the `inSpecifier` parameter, to a `CFStringRef` containing a filename extension.
+///
+///
 pub const kAudioFileGlobalInfo_TypesForExtension: AudioFilePropertyID = 0x74657874;
 
+/// A specifier for the constant[`kAudioFileGlobalInfo_AvailableStreamDescriptionsForFormat`](https://developer.apple.com/documentation/audiotoolbox/kaudiofileglobalinfo_availablestreamdescriptionsforformat).
+///
+/// ## Overview
+///
+/// This structure specifies a desired audio file type and data format ID so you can obtain a list of stream descriptions of available formats.
+///
+///
 /// This is used as a specifier for kAudioFileGlobalInfo_AvailableStreamDescriptions
 ///
 /// This struct is used to specify a desired audio file type and data format ID  so
@@ -1780,8 +2605,6 @@ pub const kAudioFileGlobalInfo_TypesForExtension: AudioFilePropertyID = 0x746578
 /// a four char code for the file type such as kAudioFileAIFFType, kAudioFileCAFType, etc.
 ///
 /// a four char code for the format ID such as kAudioFormatLinearPCM, kAudioFormatMPEG4AAC, etc.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeandformatid?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFileTypeAndFormatID {
@@ -1801,6 +2624,29 @@ unsafe impl RefEncode for AudioFileTypeAndFormatID {
 }
 
 extern "C-unwind" {
+    /// Gets the size of a global audio file property.
+    ///
+    /// Parameters:
+    /// - inPropertyID: The property whose data size you want to get. For possible values, see [Audio File Global Info Properties](https://developer.apple.com/documentation/audiotoolbox/1576495-audio-file-global-info-propertie).
+    ///
+    /// - inSpecifierSize: The size of the specifier data.
+    ///
+    /// - inSpecifier: A pointer to a _specifier_ (a pointer to a buffer containing some data which is different for each property. The type of the data required is described in the description of each property.)
+    ///
+    /// - outDataSize: A pointer to the size in bytes of the current value of the property. To get the size of the property value,  you need a buffer of this size.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to get information about the capabilities of Audio File Service data types, for example, to determine which file types can take which data formats.
+    ///
+    ///
     /// Get the size of a global property.
     ///
     /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
@@ -1818,8 +2664,6 @@ extern "C-unwind" {
     ///
     /// - `in_specifier` must be a valid pointer or null.
     /// - `out_data_size` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetglobalinfosize(_:_:_:_:)?language=objc)
     pub fn AudioFileGetGlobalInfoSize(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,
@@ -1829,6 +2673,37 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Copies the value of a global property into a buffer.
+    ///
+    /// Parameters:
+    /// - inPropertyID: The property whose value you want to get. For possible values, see [Audio File Global Info Properties](https://developer.apple.com/documentation/audiotoolbox/1576495-audio-file-global-info-propertie).
+    ///
+    /// - inSpecifierSize: The size of the specifier data.
+    ///
+    /// - inSpecifier: A pointer to a _specifier_, which, in this context, is a pointer to a buffer containing some data that is different for each property. The type of the data required is described in the description of each property.
+    ///
+    /// - ioDataSize: On input, a pointer to the size of the buffer specified in the outPropertyData parameter. On output, a pointer to the number of bytes written to the buffer.
+    ///
+    /// - outPropertyData: A pointer to the buffer in which to write the property data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to get information about the capabilities of Audio File Services data types, for example, to determine which file types can take which data formats, what file types are supported, what file type can hold a particular data type, and so forth. This function cannot be used to get information about the properties of particular files. So the properties whose information you are obtaining are global to the Audio File Services programming interface, not properties specific to any file.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Copies the value for a global property into a buffer.
     ///
     /// Parameter `inPropertyID`: an AudioFileGlobalInfo property constant.
@@ -1848,8 +2723,6 @@ extern "C-unwind" {
     /// - `in_specifier` must be a valid pointer or null.
     /// - `io_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilegetglobalinfo(_:_:_:_:_:)?language=objc)
     pub fn AudioFileGetGlobalInfo(
         in_property_id: AudioFilePropertyID,
         in_specifier_size: u32,

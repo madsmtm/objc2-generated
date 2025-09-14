@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inbilltyperesolutionresult?language=objc)
+    /// A resolution result for the types of bills a user might pay.
+    ///
+    /// ## Overview
+    ///
+    /// You create [`INBillTypeResolutionResult`](https://developer.apple.com/documentation/intents/inbilltyperesolutionresult) objects when resolving intent parameters containing a value of type [`INBillType`](https://developer.apple.com/documentation/intents/inbilltype). Use the creation method that best reflects your ability to resolve the parameter. For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

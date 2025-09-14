@@ -6,38 +6,74 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetRadioStationIntentResponseCode(pub NSInteger);
 impl INSetRadioStationIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a resonse code.
     #[doc(alias = "INSetRadioStationIntentResponseCodeUnspecified")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeReady")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the radio station information and initiated the changes, but that you haven’t yet received confirmation of the completed changes.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeInProgress")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully changed the radio station to the new value.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeSuccess")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failure?language=objc)
+    /// You were unable to change the radio station.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from changing the station.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailure")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to change the radio station.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponsecode/failurenotsubscribed?language=objc)
+    /// You were unable to change the radio station because the user doesn’t have a subscription to the corresponding service.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, use this code if the user selects a satellite radio station but doesn’t subscribe to the satellite service.
+    ///
+    ///
     #[doc(alias = "INSetRadioStationIntentResponseCodeFailureNotSubscribed")]
     #[deprecated = "INSetRadioStationIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureNotSubscribed: Self = Self(6);
@@ -52,7 +88,15 @@ unsafe impl RefEncode for INSetRadioStationIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentresponse?language=objc)
+    /// Your app’s response to a set radio station intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSetRadioStationIntentResponse`](https://developer.apple.com/documentation/intents/insetradiostationintentresponse) object contains the status of changing the currently playing radio station. You create instances of this class when confirming or handling a set radio station intent.
+    ///
+    /// You create an [`INSetRadioStationIntentResponse`](https://developer.apple.com/documentation/intents/insetradiostationintentresponse) object in the [`confirmSetRadioStation:completion:`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling/confirm(intent:completion:)) and [`handleSetRadioStation:completion:`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling/handle(intent:completion:)) methods of your set seat settings in car handler object. For more information about implementing your handler object, see [`INSetRadioStationIntentHandling`](https://developer.apple.com/documentation/intents/insetradiostationintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

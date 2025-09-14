@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurecommandencoder?language=objc)
+    /// An object for encoding commands that build or refit acceleration structures.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol yourself; instead you call methods on an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) object to create command encoders. Command encoders are lightweight objects that you re-create every time you need to send commands to the GPU.
+    ///
+    ///
     #[cfg(feature = "MTLCommandEncoder")]
     pub unsafe trait MTLAccelerationStructureCommandEncoder: MTLCommandEncoder {
         #[cfg(all(
@@ -413,7 +419,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptor;
@@ -518,7 +523,6 @@ impl DefaultRetained for MTLAccelerationStructurePassSampleBufferAttachmentDescr
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepasssamplebufferattachmentdescriptorarray?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
@@ -575,8 +579,6 @@ impl DefaultRetained for MTLAccelerationStructurePassSampleBufferAttachmentDescr
 
 extern_class!(
     /// MTLAccelerationStructurePassDescriptor represents a collection of attachments to be used to create a concrete acceleration structure encoder.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLAccelerationStructurePassDescriptor;

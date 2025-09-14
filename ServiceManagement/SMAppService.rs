@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that describe the registration or authorization status of a helper executable.
 /// The values returned by SMAppService:status
 ///
 ///
@@ -25,8 +26,6 @@ use crate::*;
 ///
 ///
 /// An error occurred and no such service could be found
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -34,16 +33,22 @@ use crate::*;
 pub struct SMAppServiceStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl SMAppServiceStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/notregistered?language=objc)
+    /// The service hasn’t registered with the Service Management framework, or the service attempted to reregister after it was already registered.
     #[doc(alias = "SMAppServiceStatusNotRegistered")]
     pub const NotRegistered: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/enabled?language=objc)
+    /// The service has been successfully registered and is eligible to run.
     #[doc(alias = "SMAppServiceStatusEnabled")]
     pub const Enabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/requiresapproval?language=objc)
+    /// The service has been successfully registered, but the user needs to take action in System Preferences.
+    ///
+    /// ## Discussion
+    ///
+    /// The Service Management framework successfully registered this service, but the user needs to take action in System Settings before the service is eligible to run. The framework also returns this status if the user revokes consent for the service to run in System Settings.
+    ///
+    ///
     #[doc(alias = "SMAppServiceStatusRequiresApproval")]
     pub const RequiresApproval: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum/notfound?language=objc)
+    /// An error occurred and the framework couldn’t find this service.
     #[doc(alias = "SMAppServiceStatusNotFound")]
     pub const NotFound: Self = Self(3);
 }
@@ -59,13 +64,25 @@ unsafe impl RefEncode for SMAppServiceStatus {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappserviceerrordomain?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static SMAppServiceErrorDomain: &'static NSString;
 }
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// An object the framework uses to control helper executables that live inside an app’s main bundle.
+    ///
+    /// ## Overview
+    ///
+    /// In macOS 13 and later, use `SMAppService` to register and control `LoginItems`, `LaunchAgents`, and `LaunchDaemons` as helper executables for your app. When converting code from earlier versions of macOS, use an `SMAppService` object and select one of the following methods depending on the type of service your helper executable provides:
+    ///
+    /// - For `SMAppServices` initialized as `LoginItems`, the [`registerAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/register()) and [`unregisterAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/unregister()) APIs provide a replacement for [`SMLoginItemSetEnabled`](https://developer.apple.com/documentation/servicemanagement/smloginitemsetenabled(_:_:)).
+    ///
+    /// - For `SMAppServices` initialized as `LaunchAgents`, the [`registerAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/register()) and [`unregisterAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/unregister()) methods provide a replacement for installing property lists in `~/Library/LaunchAgents` or `/Library/LaunchAgents`.
+    ///
+    /// - For `SMAppServices` initialized as `LaunchDaemons`, the [`registerAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/register()) and [`unregisterAndReturnError:`](https://developer.apple.com/documentation/servicemanagement/smappservice/unregister()) methods provide a replacement for installing property lists in `/Library/LaunchDaemons`.
+    ///
+    ///
     /// An SMAppService is used to control helper executables that live inside of an app's main bundle.
     ///
     ///
@@ -86,8 +103,6 @@ extern_class!(
     /// If an app updates either the plist or the executable for a LaunchAgent or LaunchDaemon, the SMAppService
     /// must be re-registered or it may not launch. It is recommended to also call unregister before
     /// re-registering if the executable has been changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

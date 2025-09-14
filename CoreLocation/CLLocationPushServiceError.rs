@@ -6,29 +6,53 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerrordomain?language=objc)
+    /// The domain for Location Push Service Extension errors.
     pub static CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code?language=objc)
+/// Error codes the location manager returns if starting to monitor for location push notifications fails.
+///
+/// ## Overview
+///
+/// These error codes are returned from [`startMonitoringLocationPushesWithCompletion:`](https://developer.apple.com/documentation/corelocation/cllocationmanager/startmonitoringlocationpushes(completion:))
+///
+///
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLocationPushServiceError(pub NSInteger);
 impl CLLocationPushServiceError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code/unknown?language=objc)
+    /// An error code that indicates the app was unable to start the location push service for an unknown reason.
     #[doc(alias = "CLLocationPushServiceErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code/missingpushextension?language=objc)
+    /// An error code that indicates the app is missing a Location Push Service Extension.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [Creating a location push service extension](https://developer.apple.com/documentation/corelocation/creating-a-location-push-service-extension).
+    ///
+    ///
     #[doc(alias = "CLLocationPushServiceErrorMissingPushExtension")]
     pub const MissingPushExtension: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code/missingpushserverenvironment?language=objc)
+    /// An error code that indicates the app is missing an Apple Push Notification service (APNs) environment entitlement.
+    ///
+    /// ## Discussion
+    ///
+    /// A Location Push Service Extension requires that your app has the APNs environment entitlement. For more information, see [`APS Environment Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/aps-environment).
+    ///
+    ///
     #[doc(alias = "CLLocationPushServiceErrorMissingPushServerEnvironment")]
     pub const MissingPushServerEnvironment: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code/missingentitlement?language=objc)
+    /// An error code that indicates the app is missing the entitlement it needs to use the location push service.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information, see [Creating a location push service extension](https://developer.apple.com/documentation/corelocation/creating-a-location-push-service-extension).
+    ///
+    ///
     #[doc(alias = "CLLocationPushServiceErrorMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code/unsupportedplatform?language=objc)
+    /// An error code that indicates the location push service isn’t available on this platform.
     #[doc(alias = "CLLocationPushServiceErrorUnsupportedPlatform")]
     pub const UnsupportedPlatform: Self = Self(4);
 }

@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that generates an instance mask of noticable objects to separate from the background.
     /// A request that generates an instance mask of salient objects that can be separated from the background.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -79,5 +78,5 @@ impl VNGenerateForegroundInstanceMaskRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequestrevision1?language=objc)
+/// A constant for specifying the first revision of the foreground instance mask request.
 pub static VNGenerateForegroundInstanceMaskRequestRevision1: NSUInteger = 1;

@@ -201,6 +201,7 @@ impl private_NSObjectCIImageProvider::Sealed for NSObject {}
 unsafe impl NSObjectCIImageProvider for NSObject {}
 
 extern "C" {
+    /// A key for the image tiles size. The associated value is an `NSArray` that contains`NSNumber` objects for the dimensions of the image tiles requested from the image provider.
     /// Specifies the tile size that the Provide Image Data method will be called for.
     ///
     /// This key and its value may be passed to:
@@ -215,13 +216,12 @@ extern "C" {
     /// `NSArray` with 2 numbers   |  rectangular tiles of width x height.
     /// ``CIVector`` with 2 values |  rectangular tiles of width x height.
     /// `NSNull`                   |  can be called for any possible origin and size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/providertilesize?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderTileSize: &'static CIImageOption;
 }
 
 extern "C" {
+    /// A key for data needed by the image provider. The associated value is an object that contains the needed data.
     /// A key for any data needed by the image provider object.
     /// The associated value is an object that contains the needed data.
     ///
@@ -230,8 +230,6 @@ extern "C" {
     /// * ``/CIImage/initWithImageProvider:size::format:colorSpace:options:``
     ///
     /// The value object is retained until the image is deallocated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/provideruserinfo?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderUserInfo: &'static CIImageOption;
 }

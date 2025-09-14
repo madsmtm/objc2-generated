@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraganimating?language=objc)
+    /// The interface for providing custom animation alongside the system’s lift, drop, and cancellation animations.
+    ///
+    /// ## Overview
+    ///
+    /// You can use a [`UIDragAnimating`](https://developer.apple.com/documentation/uikit/uidraganimating) object to animate your own changes to the preview displayed during system-provided drag and drop animations.
+    ///
+    ///
     pub unsafe trait UIDragAnimating: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "block2")]
         #[unsafe(method(addAnimations:))]
@@ -25,7 +31,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteraction?language=objc)
+    /// An interaction to enable dragging of items from a view, employing a delegate to provide drag items and to respond to calls from the drag session.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -90,7 +96,7 @@ impl UIDragInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidraginteractiondelegate?language=objc)
+    /// The interface for configuring and controlling a drag interaction.
     pub unsafe trait UIDragInteractionDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UIDragItem", feature = "UIDragSession"))]
         #[unsafe(method(dragInteraction:itemsForBeginningSession:))]

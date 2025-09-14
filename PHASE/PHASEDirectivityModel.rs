@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A data set that projects sound of a certain frequency outward in the shape of a heart.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines one subband in the [`PHASECardioidDirectivityModelParameters`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters) class’s `subbands`. Depending on the specific shape you define with [`pattern`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/pattern) and [`sharpness`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/sharpness), you can attenuate sound focused at [`frequency`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/frequency) to the sides of the listener, while leaving the sound in front of or behind the listener unchanged.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Cardioid directivity model subband parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASECardioidDirectivityModelSubbandParameters;
@@ -78,13 +83,24 @@ impl PHASECardioidDirectivityModelSubbandParameters {
 }
 
 extern_class!(
+    /// A data set that projects sound of a certain frequency outward in the shape of a cone.
+    ///
+    /// ## Overview
+    ///
+    /// This class defines one subband in the [`PHASEConeDirectivityModelParameters`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters) class’s `subbands`. The inner and outer angles you define with [`setInnerAngle:outerAngle:`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/setangles(innerangle:outerangle:)) describe a cone that directs sound of a given [`frequency`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelsubbandparameters/frequency) toward the listener. The cone’s point rests at the 3D position of the sound source. The framework adjusts the volume of the sound according to location of the listener in the 3D scene:
+    ///
+    /// - If the listener positions in an area outside of the subband’s [`outerAngle`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outerangle), the sound emanates from the source at the volume defined by [`outerGain`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outergain).
+    ///
+    /// - If the listener positions inside the area defined by [`innerAngle`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/innerangle), the sound emanates from the source at maximum volume.
+    ///
+    /// - If the listener positions in between the outer and inner angles, the framework blends the volume to a value between [`outerGain`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters/outergain) and the maximum.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Cone directivity model subband parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelsubbandparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEConeDirectivityModelSubbandParameters;
@@ -161,13 +177,18 @@ impl PHASEConeDirectivityModelSubbandParameters {
 }
 
 extern_class!(
+    /// A base class for objects that direct sound.
+    ///
+    /// ## Overview
+    ///
+    /// Several classes derive from this class that implement a unique strategy to direct sound. Rather than create an instance of this class, instantiate a subclass, such as [`PHASECardioidDirectivityModelParameters`](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters) or [`PHASEConeDirectivityModelParameters`](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Directivity model parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasedirectivitymodelparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEDirectivityModelParameters;
@@ -190,13 +211,31 @@ impl PHASEDirectivityModelParameters {
 }
 
 extern_class!(
+    /// An object that directs sound in a heart-shaped curve surrounding a sound source.
+    ///
+    /// ## Overview
+    ///
+    /// This class configures a particular frequency range in the audio spectrum that emits sound in an area defined by a mathematical cardioid. PHASE refers to each frequency segment along the audio spectrum as a _subband_. This class contains an array of `subbands` that each can direct sound in a unique cardioid shape. The framework outputs a blend of a frequency’s adjacent subbands for all frequencies that lie outside of those specified in the `subbands` array.
+    ///
+    /// ### Emit Sound in the Shape of a Cardioid
+    ///
+    /// The following code defines a two-band cardioid model. The first subband resembles a heart-shaped cardioid and the second resembles a hypercardioid.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let simpleCardioid = PHASECardioidDirectivityModelParameters()", "", "// Create a cardioid model.", "var cardioidSegment1 = PHASECardioidDirectivityModelSubbandParameters()", "cardioidSegment1.frequency = 500.0", "cardioidSegment1.pattern = 0.5 // Cardioid shape", "cardioidSegment1.sharpness = 1.0", "", "// Create a hypercardioid model.", "var cardioidSegment2 = PHASECardioidDirectivityModelSubbandParameters()", "cardioidSegment2.frequency = 5000.0", "cardioidSegment2.pattern = 0.75", "cardioidSegment2.sharpness = 1.5", "", "simpleCardioid.subbands.add(cardioidSegment1)", "simpleCardioid.subbands.add(cardioidSegment2)", "", "spatialMixer.sourceDirectivityModelParameters = simpleCardioid"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHASECardioidDirectivityModelParameters* simpleCardioid = [[PHASECardioidDirectivityModelParameters alloc] init];", "", "// Create a cardioid model.", "PHASECardioidDirectivityModelSubbandParameters* cardioidSegment1 = [[PHASECardioidDirectivityModelSubbandParameters alloc] init];", "cardioidSegment1.frequency = 500.f;", "cardioidSegment1.pattern = .5f; ", "cardioidSegment1.sharpness = 1.f;", "", "// Create a hypercardioid model.", "PHASECardioidDirectivityModelSubbandParameters* cardioidSegment2 = [[PHASECardioidDirectivityModelSubbandParameters alloc] init];", "cardioidSegment2.frequency = 5000.f;", "cardioidSegment2.pattern = .75f;", "cardioidSegment2.sharpness = 1.5f;", "", "[simpleCardioid.subbands addObject:cardioidSegment1];", "[simpleCardioid.subbands addObject:cardioidSegment2];", "", "spatialMixer.sourceDirectivityModelParameters = simpleCardioid;"], metadata: None }] }] })
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/92182cdfa4cb0601c3f8f9133cf7af5b/media-3919256~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e32a57ccb081e69f684ce2915ce3ce21/media-3919256%402x.png 2x" />
+    ///     <img alt="Illustration of two different types of cardioids that position in relation to a sphere representing the user. On the left, a cardioid resembles a heart with a sphere resting in the heart’s cusp. On the right, a cardioid resembles the shape of a hypercardioid. A large oval extends outward from one side of the sphere, and a smaller oval extends in the opposite direction, from the backside of the sphere." src="https://docs-assets.developer.apple.com/published/e32a57ccb081e69f684ce2915ce3ce21/media-3919256%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Cardioid directivity model parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecardioiddirectivitymodelparameters?language=objc)
     #[unsafe(super(PHASEDirectivityModelParameters, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASECardioidDirectivityModelParameters;
@@ -238,13 +277,31 @@ impl PHASECardioidDirectivityModelParameters {
 }
 
 extern_class!(
+    /// An object that directs sound in a cone-shaped curve that extends from a sound source.
+    ///
+    /// ## Overview
+    ///
+    /// This class determines that a particular frequency range in the audio spectrum emits sound in an area defined by a mathematical cone. PHASE refers to each frequency segment along the audio spectrum as a _subband_. This class contains an array of `subbands` that each direct sound in a unique cone shape. The framework outputs a blend of a frequency’s adjacent subbands for all frequencies that lie outside of those specified in the `subbands` array.
+    ///
+    /// ### Emit Sound in the Shape of a Cone
+    ///
+    /// The following code defines a cone directivity model with two subbands. The first subband emits sound in a narrow region and the second subband outputs sound in a wider region.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let simpleCone = PHASEConeDirectivityModelParameters()", "", "let coneSegment1 = PHASEConeDirectivityModelSubbandParameters()", "coneSegment1.frequency = 500.0", "coneSegment1.innerAngle = 60.0", "coneSegment1.outerAngle = 80.0", "coneSegment1.outerGain = 0.5", "", "let coneSegment2 = PHASEConeDirectivityModelSubbandParameters()", "coneSegment2.frequency = 5000.0", "coneSegment2.innerAngle = 30.0", "coneSegment2.outerAngle = 40.0", "coneSegment2.outerGain = 0.3", "", "simpleCone.subbands.add(coneSegment1)", "simpleCone.subbands.add(coneSegment2)", "", "spatialMixer.listenerDirectivityModelParameters = simpleCone"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["PHASEConeDirectivityModelParameters* simpleCone = ", "    [[PHASEConeDirectivityModelParameters alloc] init];", "", "PHASEConeDirectivityModelSubbandParameters* coneSegment1 = ", "    [[PHASEConeDirectivityModelSubbandParameters alloc] init];", "coneSegment1.frequency = 5000.f;", "coneSegment1.innerAngle = 30.f;", "coneSegment1.outerAngle = 40.f;", "coneSegment1.outerGain = .3f;", "", "PHASEConeDirectivityModelSubbandParameters* coneSegment2 = ", "    [[PHASEConeDirectivityModelSubbandParameters alloc] init];", "coneSegment2.frequency = 500.f;", "coneSegment2.innerAngle = 60.f;", "coneSegment2.outerAngle = 80.f;", "coneSegment2.outerGain = .5f;", "", "[simpleCone.subbands addObject:coneSegment1];", "[simpleCone.subbands addObject:coneSegment2];", "", "spatialMixer.listenerDirectivityModelParameters = simpleCone;"], metadata: None }] }] })
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/8c5a27d8be895376cf0cf6e74d41e877/media-3887365~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/404f1ffecbdcd82570920028c583e831/media-3887365%402x.png 2x" />
+    ///     <img alt="An illustration of two different cone directivity configurations. On the left, a narrow cone contains a slightly narrower cone. A callout extends from the outer cone’s point that indicates its angle is 40 degrees. A callout extends from the inner cone’s point that indicates its angle is 30 degrees. On the right, a wide cone rests inside a slightly wider cone. A callout extends from the outer cone’s point that indicates its angle is 80 degrees. A callout extends from the inner cone’s point that indicates its angle is 60 degrees. In both configurations, a sphere rests on the cone’s point to indicate the user’s position in relation to the cone. " src="https://docs-assets.developer.apple.com/published/8c5a27d8be895376cf0cf6e74d41e877/media-3887365~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// Cone directivity model parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseconedirectivitymodelparameters?language=objc)
     #[unsafe(super(PHASEDirectivityModelParameters, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEConeDirectivityModelParameters;

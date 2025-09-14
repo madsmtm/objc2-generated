@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragdropsession?language=objc)
+    /// The common interface for querying the state of both drag sessions and drop sessions.
     pub unsafe trait UIDragDropSession: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UIDragItem")]
         #[unsafe(method(items))]
@@ -49,7 +49,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidragsession?language=objc)
+    /// The interface for configuring a drag session.
     pub unsafe trait UIDragSession: UIDragDropSession + MainThreadOnly {
         #[unsafe(method(localContext))]
         #[unsafe(method_family = none)]
@@ -66,16 +66,16 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle?language=objc)
+/// The drop-progress indicator styles for the drop session, used while data is moving from the source to the destination.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDropSessionProgressIndicatorStyle(pub NSUInteger);
 impl UIDropSessionProgressIndicatorStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle/none?language=objc)
+    /// The indicator style for no drop-progress indication.
     #[doc(alias = "UIDropSessionProgressIndicatorStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsessionprogressindicatorstyle/default?language=objc)
+    /// The indicator style for using the system’s default drop-progress indication.
     #[doc(alias = "UIDropSessionProgressIndicatorStyleDefault")]
     pub const Default: Self = Self(1);
 }
@@ -89,7 +89,7 @@ unsafe impl RefEncode for UIDropSessionProgressIndicatorStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropsession?language=objc)
+    /// The interface for querying a drop session about its state and associated drag items.
     pub unsafe trait UIDropSession:
         UIDragDropSession + NSProgressReporting + MainThreadOnly
     {

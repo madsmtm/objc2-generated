@@ -7,13 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nldistancetype?language=objc)
+/// The means of calculating a distance between two locations in a text embedding.
+///
+/// ## Overview
+///
+/// The meaning of an [`NLDistance`](https://developer.apple.com/documentation/naturallanguage/nldistance) is directly related to the [`NLDistanceType`](https://developer.apple.com/documentation/naturallanguage/nldistancetype) you use when you call a method that uses it. For example, if you use the [`neighborsForString:maximumCount:distanceType:`](https://developer.apple.com/documentation/naturallanguage/nlembedding/neighborsforstring:maximumcount:distancetype:) method and use [`NLDistanceTypeCosine`](https://developer.apple.com/documentation/naturallanguage/nldistancetype/cosine) for the `distanceType` parameter, the method calculates the cosine distance and returns it as an [`NLDistance`](https://developer.apple.com/documentation/naturallanguage/nldistance).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLDistanceType(pub NSInteger);
 impl NLDistanceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nldistancetype/cosine?language=objc)
+    /// A method of calculating distance by using cosine similarity.
+    ///
+    /// ## Discussion
+    ///
+    /// The range of a cosine distance is `[0.0, 2.0]`, derived from the expression `1 -` _cosine similarity_.
+    ///
+    ///
     #[doc(alias = "NLDistanceTypeCosine")]
     pub const Cosine: Self = Self(0);
 }
@@ -26,11 +38,27 @@ unsafe impl RefEncode for NLDistanceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nldistance?language=objc)
+/// The distance between two strings in a text embedding.
+///
+/// ## Discussion
+///
+/// The meaning of an [`NLDistance`](https://developer.apple.com/documentation/naturallanguage/nldistance) is directly related to the [`NLDistanceType`](https://developer.apple.com/documentation/naturallanguage/nldistancetype) you use when you call a method that uses it. For example, if you use the [`neighborsForString:maximumCount:distanceType:`](https://developer.apple.com/documentation/naturallanguage/nlembedding/neighborsforstring:maximumcount:distancetype:) method and use [`NLDistanceTypeCosine`](https://developer.apple.com/documentation/naturallanguage/nldistancetype/cosine) for the `distanceType` parameter, the method calculates the cosine distance and returns it as an [`NLDistance`](https://developer.apple.com/documentation/naturallanguage/nldistance).
+///
+///
 pub type NLDistance = c_double;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlembedding?language=objc)
+    /// A map of strings to vectors, which locates neighboring, similar strings.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`NLEmbedding`](https://developer.apple.com/documentation/naturallanguage/nlembedding) to find similar strings based on the proximity of their vectors. The _vocabulary_ is the entire set of strings in an embedding. Each string in the vocabulary has a vector, which is an array of doubles, and each double corresponds to a dimension in the embedding. An [`NLEmbedding`](https://developer.apple.com/documentation/naturallanguage/nlembedding) uses these vectors to determine the distance between two strings, or to find the nearest neighbors of a string in the vocabulary. The higher the similarity of any two strings, the smaller the distance is between them.
+    ///
+    /// [`Natural Language`](https://developer.apple.com/documentation/naturallanguage) provides built-in word embeddings that you can retrieve by using the [`wordEmbeddingForLanguage:`](https://developer.apple.com/documentation/naturallanguage/nlembedding/wordembedding(for:)) method. You can also compile your own custom embedding into an efficient, searchable, on-disk representation. Typically, you compile an embedding by using Create ML’s [`MLWordEmbedding`](https://developer.apple.com/documentation/createml/mlwordembedding) and save it as a file for your Xcode project at development time. Alternatively, you can compile an embedding at runtime by using Natural Language’s [`writeEmbeddingForDictionary:language:revision:toURL:error:`](https://developer.apple.com/documentation/naturallanguage/nlembedding/writeembeddingfordictionary:language:revision:tourl:error:) method.
+    ///
+    /// Your custom embedding can use any kind of string that’s useful to your app, such as phrases, brand names, serial numbers, and so on. For example, you could make an embedding of movie titles. Each movie title could have a vector that places similar movies close together in the embedding.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLEmbedding;

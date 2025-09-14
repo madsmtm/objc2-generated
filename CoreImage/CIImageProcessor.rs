@@ -18,6 +18,78 @@ use crate::*;
 extern_class!(
     /// The abstract class you extend to create custom image processors that can integrate with Core Image workflows.
     ///
+    /// ## Overview
+    ///
+    /// Unlike the [`CIKernel`](https://developer.apple.com/documentation/coreimage/cikernel) class and its other subclasses that allow you to create new image-processing effects with the Core Image Kernel Language, the `CIImageProcessorKernel` class provides direct access to the underlying bitmap image data for a step in the Core Image processing pipeline. As such, you can create subclasses of this class to integrate other image-processing technologies—such as Metal compute shaders, [Metal Performance Shaders](https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html#//apple_ref/doc/uid/TP40016198-SW7), [Accelerate](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/OSX_Technology_Overview/CoreOSLayer/CoreOSLayer.html#//apple_ref/doc/uid/TP40001067-CH9-SW6) [vImage](https://developer.apple.com/library/archive/releasenotes/Performance/RN-vecLib/index.html#//apple_ref/doc/uid/TP40001049-CH2-SW2) operations, or your own CPU-based image-processing routines—with a Core Image filter chain.
+    ///
+    /// Your custom image processing operation is invoked by your subclassed image processor kernel’s [`processWithInputs:arguments:output:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/process(with:arguments:output:)) method. The method can accept zero, one or more inputs: kernels that generate imagery (such as a noise or pattern generator) need no inputs, while kernels that composite source images together require multiple inputs. The `arguments` dictionary allows the caller to pass in additional parameter values (such as the radius of a blur) and the `output` contains the destination for your image processing code to write to.
+    ///
+    /// The following code shows how you can subclass `CIImageProcessorKernel` to apply the Metal Performance Shader [`MPSImageThresholdBinary`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary) kernel to a [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage):
+    ///
+    /// ```objc
+    /// class ThresholdImageProcessorKernel: CIImageProcessorKernel {
+    /// static let device = MTLCreateSystemDefaultDevice()        
+    /// override class func process(with inputs: [CIImageProcessorInput]?, arguments: [String : Any]?, output: CIImageProcessorOutput) throws {                
+    ///     guard            
+    ///         let device = device,            
+    ///         let commandBuffer = output.metalCommandBuffer,            
+    ///         let input = inputs?.first,            
+    ///         let sourceTexture = input.metalTexture,            
+    ///         let destinationTexture = output.metalTexture,            
+    ///         let thresholdValue = arguments?["thresholdValue"] as? Float else  {                
+    ///             return        
+    ///         }                
+    ///     
+    ///     let threshold = MPSImageThresholdBinary(
+    ///         device: device,                                                
+    ///         thresholdValue: thresholdValue,                                               
+    ///         maximumValue: 1.0,                                                
+    ///         linearGrayColorTransform: nil)                
+    ///     
+    ///     threshold.encode(
+    ///         commandBuffer: commandBuffer,                         
+    ///         sourceTexture: sourceTexture,                         
+    ///         destinationTexture: destinationTexture)    
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// To apply to kernel to an image, the calling side invokes the image processor’s [`applyWithExtent:inputs:arguments:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/apply(withextent:inputs:arguments:)) method. The following code generates a new [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) object named `result` which contains a thresholded version of the source image, `inputImage`.
+    ///
+    /// ```objc
+    /// let result = try? ThresholdImageProcessorKernel.apply(
+    ///     withExtent: inputImage.extent,            
+    ///     inputs: [inputImage],            
+    ///     arguments: ["thresholdValue": 0.25])
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Core Image will concatenate filters in a network into as fewer kernels as possible, avoiding the creation of intermediate buffers. However, it is unable to do this with image processor kernels. To get the best performance, you should only use [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) objects when your image processing algorithms can’t be expressed as Core Image Kernel Language.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// The [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) class is abstract; to create a custom image processor, you define a subclass of this class.
+    ///
+    /// You do not directly create instances of a custom [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) subclass. Image processors must not carry or use state specific to any single invocation of the processor, so all methods (and accessors for readonly properties) of an image processor kernel class are class methods.
+    ///
+    /// Your subclass should override at least the [`processWithInputs:arguments:output:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/process(with:arguments:output:)) method to perform its image processing.
+    ///
+    /// If your image processor needs to work with a larger or smaller region of interest in the input image than each corresponding region of the output image (for example, a blur filter, which samples several input pixels for each output pixel), you should also override the [`roiForInput:arguments:outputRect:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/roi(forinput:arguments:outputrect:)) method.
+    ///
+    /// You can also override the [`formatForInputAtIndex:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/formatforinput(at:)) method and [`outputFormat`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/outputformat) property getter to customize the input and output pixel formats for your processor (for example, as part of a multi-step workflow where you extract a single channel from an RGBA image, apply an effect to that channel only, then recombine the channels).
+    ///
+    /// ### Using a Custom Image Processor
+    ///
+    /// To apply your custom image processor class to filter one or more images, call the [`applyWithExtent:inputs:arguments:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/apply(withextent:inputs:arguments:)) class method. (Do not override this method.)
+    ///
+    ///
+    /// The abstract class you extend to create custom image processors that can integrate with Core Image workflows.
+    ///
     /// Unlike the ``CIKernel`` class and its other subclasses that allow you to create new image-processing effects
     /// with the Core Image Kernel Language, the `CIImageProcessorKernel` class provides direct access to the underlying
     /// bitmap image data for a step in the Core Image processing pipeline. As such, you can create subclasses of this
@@ -99,8 +171,6 @@ extern_class!(
     ///
     /// To apply your custom image processor class to create a ``CIImage`` object, call the
     /// ``applyWithExtent:inputs:arguments:error:`` class method. (Do not override this method.)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImageProcessorKernel;
@@ -422,6 +492,17 @@ impl CIImageProcessorKernel {
 }
 
 extern_protocol!(
+    /// A container of image data and information for use in a custom image processor.
+    ///
+    /// ## Overview
+    ///
+    /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type when applying a custom image processor you create with a [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) subclass.
+    ///
+    /// In your image processor class’ [`processWithInputs:arguments:output:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/process(with:arguments:output:)) method, use the provided `CIImageProcessorInput` object to access the image data and supporting information to perform your custom image processing routine. For example, if you process the image using a Metal shader, use the [`metalTexture`](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput/metaltexture) property to bind the image as an input texture. Or, if you process the image using a CPU-based routine, use the [`baseAddress`](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput/baseaddress) property to access pixel data in memory.
+    ///
+    /// To finish setting up or performing your image processing routine, use the provided [`CIImageProcessorOutput`](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput) object to return processed pixel data to Core Image.
+    ///
+    ///
     /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type
     /// when rendering a custom image processor you create with a ``CIImageProcessorKernel`` subclass.
     ///
@@ -441,8 +522,6 @@ extern_protocol!(
     ///
     /// To finish setting up or performing your image processing routine, use the provided ``CIImageProcessorOutput``
     /// object to return processed pixel data to Core Image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput?language=objc)
     pub unsafe trait CIImageProcessorInput {
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangular region of the input image that your Core Image Processor Kernel can use to provide the output.
@@ -517,6 +596,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A container for writing image data and information produced by a custom image processor.
+    ///
+    /// ## Overview
+    ///
+    /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type when applying a custom image processor you create with a [`CIImageProcessorKernel`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel) subclass.
+    ///
+    /// In your image processor class’ [`processWithInputs:arguments:output:error:`](https://developer.apple.com/documentation/coreimage/ciimageprocessorkernel/process(with:arguments:output:)) method, use an appropriate property of the provided `CIImageProcessorOutput` object to return processed pixel data to Core Image. For example, if you process the image using a Metal shader, bind the [`metalTexture`](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput/metaltexture) property as an attachment in a render pass or as an output texture in a compute pass. Or, if you process the image using a CPU-based routine, write processed pixel data to memory using the the [`baseAddress`](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput/baseaddress) pointer. You must provide rendered output to one (and only one) of the properties listed in [Providing Output Image Data](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput#providing-output-image-data).
+    ///
+    /// To access input pixel data in your image processor block, see the [`CIImageProcessorInput`](https://developer.apple.com/documentation/coreimage/ciimageprocessorinput) class.
+    ///
+    ///
     /// Your app does not define classes that adopt this protocol; Core Image provides an object of this type
     /// when rendering a custom image processor you create with a ``CIImageProcessorKernel`` subclass.
     ///
@@ -536,8 +626,6 @@ extern_protocol!(
     ///
     /// > Important: You must provide rendered output using only one of the following properties of the output:
     /// `baseAddress`, `surface`, `pixelBuffer`, `metalTexture`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageprocessoroutput?language=objc)
     pub unsafe trait CIImageProcessorOutput {
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangular region of the output image that your Core Image Processor Kernel must provide.

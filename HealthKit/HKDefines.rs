@@ -7,10 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrordomain?language=objc)
+    /// The domain for all HealthKit errors.
     pub static HKErrorDomain: &'static NSString;
 }
 
+/// Error codes returned by HealthKit.
 /// perform the requested operation.
 ///
 ///
@@ -20,63 +21,111 @@ extern "C" {
 /// required data types.
 ///
 /// query's result could not be meaningfully computed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/unknownerror?language=objc)
     #[doc(alias = "HKUnknownError")]
     pub const UnknownError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode/hknoerror?language=objc)
+    /// No error occurred.
     #[doc(alias = "HKNoError")]
     #[deprecated]
     pub const NoError: Self = Self(HKErrorCode::UnknownError.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorhealthdataunavailable?language=objc)
+    /// HealthKit accessed on an unsupported device, such as an iPad.
+    ///
+    /// ## Discussion
+    ///
+    /// Because iOS apps can run on devices that don’t support HealthKit (for example, on an iPad), always verify that the current device supports HealthKit by calling [`isHealthDataAvailable`](https://developer.apple.com/documentation/healthkit/hkhealthstore/ishealthdataavailable()) before calling any other HealthKit methods. If HealthKit isn’t available on the device, other HealthKit methods fail with an [`errorHealthDataUnavailable`](https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdataunavailable) error.
+    ///
+    ///
     #[doc(alias = "HKErrorHealthDataUnavailable")]
     pub const ErrorHealthDataUnavailable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorhealthdatarestricted?language=objc)
+    /// A Mobile Device Management (MDM) profile restricts the use of HealthKit on this device.
+    ///
+    /// ## Discussion
+    ///
+    /// Because an MDM profile can disable HealthKit on a managed device, always verify that the current device supports HealthKit by calling [`isHealthDataAvailable`](https://developer.apple.com/documentation/healthkit/hkhealthstore/ishealthdataavailable()) before calling any other HealthKit methods. If HealthKit is restricted (for example, in an enterprise environment), the methods fail with an [`errorHealthDataRestricted`](https://developer.apple.com/documentation/healthkit/hkerror/errorhealthdatarestricted) error.
+    ///
+    ///
     #[doc(alias = "HKErrorHealthDataRestricted")]
     pub const ErrorHealthDataRestricted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorinvalidargument?language=objc)
+    /// The app passed an invalid argument to the HealthKit API.
     #[doc(alias = "HKErrorInvalidArgument")]
     pub const ErrorInvalidArgument: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorauthorizationdenied?language=objc)
+    /// The user hasn’t given the app permission to save data.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs only when your app attempts to save data. If your app isn’t authorized to query data, it receives only the data that the app has saved into HealthKit. For more information on setting up HealthKit, see `HealthKit`.
+    ///
+    ///
     #[doc(alias = "HKErrorAuthorizationDenied")]
     pub const ErrorAuthorizationDenied: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorauthorizationnotdetermined?language=objc)
+    /// The app hasn’t yet asked the user for the authorization required to complete the task.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when your app doesn’t request proper authorization before calling any other HealthKit methods. For more information on setting up HealthKit, see `HealthKit`.
+    ///
+    ///
     #[doc(alias = "HKErrorAuthorizationNotDetermined")]
     pub const ErrorAuthorizationNotDetermined: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errordatabaseinaccessible?language=objc)
+    /// The HealthKit data is unavailable because it’s protected and the device is locked.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when your app queries for HealthKit data while the device is locked. You can, however, still save data. This data is saved into a temporary file, which is merged with HealthKit’s data when the user unlocks their device.
+    ///
+    ///
     #[doc(alias = "HKErrorDatabaseInaccessible")]
     pub const ErrorDatabaseInaccessible: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorusercanceled?language=objc)
+    /// The user canceled the operation.
     #[doc(alias = "HKErrorUserCanceled")]
     pub const ErrorUserCanceled: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/erroranotherworkoutsessionstarted?language=objc)
+    /// Another app started a workout session.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs whenever a second workout session is started. Apple Watch only runs one workout session at a time. If the user begins a second workout session in a different app, the original session receives this error message and then ends. The second session then starts.
+    ///
+    ///
     #[doc(alias = "HKErrorAnotherWorkoutSessionStarted")]
     pub const ErrorAnotherWorkoutSessionStarted: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/erroruserexitedworkoutsession?language=objc)
+    /// The user exited your application while a workout session was running.
+    ///
+    /// ## Discussion
+    ///
+    /// Workout sessions end when the app goes into the background.
+    ///
+    ///
     #[doc(alias = "HKErrorUserExitedWorkoutSession")]
     pub const ErrorUserExitedWorkoutSession: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorrequiredauthorizationdenied?language=objc)
+    /// The user hasn’t granted the application authorization to access all the required clinical record types.
+    ///
+    /// ## Discussion
+    ///
+    /// You can specify required clinical record types using the [`NSHealthRequiredReadAuthorizationTypeIdentifiers`](https://developer.apple.com/documentation/bundleresources/information-property-list/nshealthrequiredreadauthorizationtypeidentifiers) `Info.plist` key.
+    ///
+    ///
     #[doc(alias = "HKErrorRequiredAuthorizationDenied")]
     pub const ErrorRequiredAuthorizationDenied: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errornodata?language=objc)
+    /// Data is unavailable for the requested query and predicate.
+    ///
+    /// ## Discussion
+    ///
+    /// This error indicates that no data exists that corresponds to a particular query, so the system can’t calculate the query’s result. [`HKStatisticsQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticsquery) queries return this error when HealthKit can’t return the data needed to calculate the statistics.
+    ///
+    ///
     #[doc(alias = "HKErrorNoData")]
     pub const ErrorNoData: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorworkoutactivitynotallowed?language=objc)
     #[doc(alias = "HKErrorWorkoutActivityNotAllowed")]
     pub const ErrorWorkoutActivityNotAllowed: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errordatasizeexceeded?language=objc)
     #[doc(alias = "HKErrorDataSizeExceeded")]
     pub const ErrorDataSizeExceeded: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errorbackgroundworkoutsessionnotallowed?language=objc)
     #[doc(alias = "HKErrorBackgroundWorkoutSessionNotAllowed")]
     pub const ErrorBackgroundWorkoutSessionNotAllowed: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code/errornotpermissibleforguestusermode?language=objc)
+    /// The app attempted to write HealthKit data while in a Guest User session in visionOS.
     #[doc(alias = "HKErrorNotPermissibleForGuestUserMode")]
     pub const ErrorNotPermissibleForGuestUserMode: Self = Self(15);
 }
@@ -89,22 +138,28 @@ unsafe impl RefEncode for HKErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency?language=objc)
+/// Constants that determine how often the system launches your app in response to changes to HealthKit data.
+///
+/// ## Overview
+///
+/// For more information, see [`HKObserverQuery`](https://developer.apple.com/documentation/healthkit/hkobserverquery).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKUpdateFrequency(pub NSInteger);
 impl HKUpdateFrequency {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/immediate?language=objc)
+    /// The system launches your app every time it detects a change.
     #[doc(alias = "HKUpdateFrequencyImmediate")]
     pub const Immediate: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/hourly?language=objc)
+    /// The system launches your app at most once an hour in response to changes.
     #[doc(alias = "HKUpdateFrequencyHourly")]
     pub const Hourly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/daily?language=objc)
+    /// The system launches your app at most once a day in response to changes.
     #[doc(alias = "HKUpdateFrequencyDaily")]
     pub const Daily: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkupdatefrequency/weekly?language=objc)
+    /// The system launches your app at most once per week in response to changes.
     #[doc(alias = "HKUpdateFrequencyWeekly")]
     pub const Weekly: Self = Self(4);
 }
@@ -117,25 +172,38 @@ unsafe impl RefEncode for HKUpdateFrequency {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants indicating the authorization status for a particular data type.
+///
+/// ## Overview
+///
+/// This status indicates whether  the user has authorized your app to save data of the given type.
+///
+/// To help maintain the privacy of sensitive health data, HealthKit does not tell you when the user denies your app permission to query data. Instead, it simply appears as if HealthKit does not have any data matching your query. Your app will receive only the data that it has written to HealthKit. Data from other sources remains hidden from your app. For more information on privacy in HealthKit, see `HealthKit`.
+///
+///
 /// This enumerated type is used to indicate the currently granted authorization status for a specific
 /// HKObjectType.
 ///
 ///
 /// application may save objects of the specified type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationStatus(pub NSInteger);
 impl HKAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/notdetermined?language=objc)
+    /// The user has not yet chosen to authorize access to the specified data type.
+    ///
+    /// ## Discussion
+    ///
+    /// Make sure your app requests proper authorization before calling any other HealthKit methods. For more information on setting up HealthKit, see `HealthKit`.
+    ///
+    ///
     #[doc(alias = "HKAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/sharingdenied?language=objc)
+    /// The user has explicitly denied your app permission to save data of the specified type.
     #[doc(alias = "HKAuthorizationStatusSharingDenied")]
     pub const SharingDenied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus/sharingauthorized?language=objc)
+    /// The user has explicitly authorized your app to save data of the specified type.
     #[doc(alias = "HKAuthorizationStatusSharingAuthorized")]
     pub const SharingAuthorized: Self = Self(2);
 }
@@ -148,24 +216,23 @@ unsafe impl RefEncode for HKAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that indicate whether your app needs to request authorization from the user.
 /// This enumerated type is used to indicate whether it is necessary to request authorization from the user.
 ///
 ///
 /// an error occurred.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationRequestStatus(pub NSInteger);
 impl HKAuthorizationRequestStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/unknown?language=objc)
+    /// The authorization request status could not be determined because an error occurred.
     #[doc(alias = "HKAuthorizationRequestStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/shouldrequest?language=objc)
+    /// The application has not yet requested authorization for all the specified data types.
     #[doc(alias = "HKAuthorizationRequestStatusShouldRequest")]
     pub const ShouldRequest: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus/unnecessary?language=objc)
+    /// The application has already requested authorization for all the specified data types.
     #[doc(alias = "HKAuthorizationRequestStatusUnnecessary")]
     pub const Unnecessary: Self = Self(2);
 }
@@ -179,8 +246,6 @@ unsafe impl RefEncode for HKAuthorizationRequestStatus {
 }
 
 /// Returns the set of `HKCategoryValueSleepAnalysis` values that are considered to be asleep.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysisasleepvalues?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn HKCategoryValueSleepAnalysisAsleepValues(
 ) -> Retained<NSSet<NSNumber>> {

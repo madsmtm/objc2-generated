@@ -5,29 +5,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Constants that specify the options to use when creating an ordered collection difference.
 /// Options supported by methods that produce difference objects.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSOrderedCollectionDifferenceCalculationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSOrderedCollectionDifferenceCalculationOptions: NSUInteger {
+/// An option that indicates that the difference should omit references to the insertions.
 /// Insertion changes do not store a reference to the inserted object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/omitinsertedobjects?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationOmitInsertedObjects")]
         const OmitInsertedObjects = 1<<0;
+/// An option that indicates that the difference should omit references to the removals.
 /// Insertion changes do not store a reference to the removed object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/omitremovedobjects?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationOmitRemovedObjects")]
         const OmitRemovedObjects = 1<<1;
+/// An option that identifies insertions or removals as moves.
+///
+/// ## Discussion
+///
+/// When you use the option to infer moves, the difference calculation adds an associated index to change objects to indicate the original positions of the objects.
+///
+///
 /// Assume objects that were uniquely removed and inserted were moved.
 /// This is useful when diffing based on identity instead of equality.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifferencecalculationoptions/infermoves?language=objc)
         #[doc(alias = "NSOrderedCollectionDifferenceCalculationInferMoves")]
         const InferMoves = 1<<2;
     }
@@ -42,7 +44,27 @@ unsafe impl RefEncode for NSOrderedCollectionDifferenceCalculationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference?language=objc)
+    /// An object representing the difference between two ordered collections.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`differenceFromArray:`](https://developer.apple.com/documentation/foundation/nsarray/differencefromarray:) or one of its variations to get an instance of [`NSOrderedCollectionDifference`](https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference), which represents the difference between two ordered collections.
+    ///
+    /// For example, the following sample compares two arrays of strings to create a difference that represents the changes:
+    ///
+    /// ```objc
+    /// NSArray *original = @[@"Red", @"Green", @"Blue"];
+    /// NSArray *modified = @[@"Red", @"Blue", @"Green"];
+    ///
+    /// NSOrderedCollectionDifference *diff = [original differenceFromArray:modified];
+    ///
+    /// // diff.hasChanges == TRUE
+    /// // diff.insertions.count == 1
+    /// // diff.removals.count == 1
+    ///
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedCollectionDifference<ObjectType: ?Sized = AnyObject>;

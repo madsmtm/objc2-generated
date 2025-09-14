@@ -9,12 +9,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
+    ///
+    /// ## Overview
+    ///
+    /// Each continuity device instance represents another iOS device that’s nearby. Your app can access the other device’s cameras and microphones with its [`videoDevices`](https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/videodevices) and [`audioSessionInputs`](https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs) properties, respectively.
+    ///
+    ///
     /// An AVContinuityDevice represents a physical iOS device that provides capture devices and audio session ports.
     ///
     ///
     /// Each instance of AVContinuityDevice corresponds to a continuity device, such as an iPhone or iPad. Instances of AVContinuityDevice cannot be created directly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontinuitydevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContinuityDevice;

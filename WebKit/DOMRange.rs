@@ -7,33 +7,24 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_start_to_start?language=objc)
 #[deprecated]
 pub const DOM_START_TO_START: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_start_to_end?language=objc)
 #[deprecated]
 pub const DOM_START_TO_END: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_end_to_end?language=objc)
 #[deprecated]
 pub const DOM_END_TO_END: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_end_to_start?language=objc)
 #[deprecated]
 pub const DOM_END_TO_START: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_node_before?language=objc)
 #[deprecated]
 pub const DOM_NODE_BEFORE: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_node_after?language=objc)
 #[deprecated]
 pub const DOM_NODE_AFTER: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_node_before_and_after?language=objc)
 #[deprecated]
 pub const DOM_NODE_BEFORE_AND_AFTER: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_node_inside?language=objc)
 #[deprecated]
 pub const DOM_NODE_INSIDE: c_uint = 3;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domrange?language=objc)
     #[unsafe(super(DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "DOMObject", feature = "WebScriptObject"))]

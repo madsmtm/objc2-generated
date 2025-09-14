@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that describes a user action in the Top Shelf.
+    /// An action to perform in response to user interactions with an item in the top shelf.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfaction?language=objc)
+    /// ## Overview
+    ///
+    /// A [`TVTopShelfAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfaction) object contains the URL that you want tvOS to open when the user selects an item in the top shelf. Use actions to specify the location of playable content or pages containing additional information.
+    ///
+    /// When configuring a [`TVTopShelfItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem) to display in a carousel interface, the system chooses a title and image for each button on the item based on whether you assigned the action object to the [`playAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/playaction) or [`displayAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/displayaction) property of your item.
+    ///
+    ///
+    /// An object that describes a user action in the Top Shelf.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVTopShelfAction;

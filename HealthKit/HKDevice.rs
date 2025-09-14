@@ -7,79 +7,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The device’s name.
     /// Used with predicateForObjectsWithDeviceProperty to specify a device name.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyname?language=objc)
     pub static HKDevicePropertyKeyName: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s manufacturer.
     /// Used with predicateForObjectsWithDeviceProperty to specify a device manufacturer.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymanufacturer?language=objc)
     pub static HKDevicePropertyKeyManufacturer: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s model.
     /// Used with predicateForObjectsWithDeviceProperty to specify a device model.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeymodel?language=objc)
     pub static HKDevicePropertyKeyModel: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s hardware version.
     /// Used with predicateForObjectsWithDeviceProperty to specify a hardware version.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyhardwareversion?language=objc)
     pub static HKDevicePropertyKeyHardwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s firmware version.
     /// Used with predicateForObjectsWithDeviceProperty to specify a firmware version.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyfirmwareversion?language=objc)
     pub static HKDevicePropertyKeyFirmwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s software version.
     /// Used with predicateForObjectsWithDeviceProperty to specify a software version.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeysoftwareversion?language=objc)
     pub static HKDevicePropertyKeySoftwareVersion: &'static NSString;
 }
 
 extern "C" {
+    /// A unique identifier for the device on the hardware running the app. For more information, see [`localIdentifier`](https://developer.apple.com/documentation/healthkit/hkdevice/localidentifier).
     /// Used with predicateForObjectsWithDeviceProperty to specify a local identifier.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeylocalidentifier?language=objc)
     pub static HKDevicePropertyKeyLocalIdentifier: &'static NSString;
 }
 
 extern "C" {
+    /// The device’s UDI Device Identifier.
     /// Used with predicateForObjectsWithDeviceProperty to specify a UDI device identifier.
     ///
     /// The expected value type is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevicepropertykeyudideviceidentifier?language=objc)
     pub static HKDevicePropertyKeyUDIDeviceIdentifier: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdevice?language=objc)
+    /// A device that generates data for HealthKit.
+    ///
+    /// ## Overview
+    ///
+    /// Devices include Apple Watch, iPhone, and any other health or fitness peripherals that produce the sample data stored in HealthKit. Device objects are immutable: You set the device’s properties when you create the [`HKDevice`](https://developer.apple.com/documentation/healthkit/hkdevice) object, and they cannot change.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKDevice;

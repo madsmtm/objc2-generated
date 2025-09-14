@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintent?language=objc)
+    /// A request to append content to a note.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INAppendToNoteIntent`](https://developer.apple.com/documentation/intents/inappendtonoteintent) object when the user asks to append content to an existing note. The intent object contains the note to modify and the content to add to the note.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INAppendToNoteIntentHandling`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling) protocol. Your handler should confirm the request and create an [`INAppendToNoteIntentResponse`](https://developer.apple.com/documentation/intents/inappendtonoteintentresponse) object with the updated note.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    /// If the resolution for any parameter requires disambiguation or confirmation, the user must unlock the device before you handle the intent. If resolution of the parameters doesn’t require user interaction, you can handle the intent without the user unlocking the device.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -83,11 +98,18 @@ impl INAppendToNoteIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for appending content to a note.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INAppendToNoteIntentHandling`](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling) protocol to resolve, confirm, and handle requests to append content to an existing note. Adopt this protocol in an object of your Intents extension that’s capable of updating the note content in your app or note management service.
+    ///
+    /// Siri delivers an [`INAppendToNoteIntent`](https://developer.apple.com/documentation/intents/inappendtonoteintent) object to your handler when the user asks to create a note using your app. The provided intent object contains information about which note to modify and the content to append. Use the methods of this protocol to resolve the parameters and update the note.
+    ///
+    ///
     /// Protocol to declare support for handling an INAppendToNoteIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inappendtonoteintenthandling?language=objc)
     #[deprecated = "INAppendToNoteIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INAppendToNoteIntentHandling: NSObjectProtocol {
         #[cfg(all(

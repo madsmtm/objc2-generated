@@ -4,46 +4,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology?language=objc)
 // NS_TYPED_ENUM
 pub type AXTechnology = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/voiceover?language=objc)
     pub static AXTechnologyVoiceOver: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/switchcontrol?language=objc)
     pub static AXTechnologySwitchControl: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/voicecontrol?language=objc)
     pub static AXTechnologyVoiceControl: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/fullkeyboardaccess?language=objc)
     pub static AXTechnologyFullKeyboardAccess: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/speakscreen?language=objc)
     pub static AXTechnologySpeakScreen: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/automation?language=objc)
     pub static AXTechnologyAutomation: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/hovertext?language=objc)
     pub static AXTechnologyHoverText: Option<&'static AXTechnology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitytechnology/zoom?language=objc)
     pub static AXTechnologyZoom: Option<&'static AXTechnology>;
 }

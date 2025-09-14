@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that represents a collection of Top Shelf items that can be displayed in a section.
+    /// A group of items that you display together in a sectioned interface in the top shelf.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitemcollection?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`TVTopShelfItemCollection`](https://developer.apple.com/documentation/tvservices/tvtopshelfitemcollection) object to organize related groups of items in a sectioned interface. The system presents the items in your collection together, displaying the [`title`](https://developer.apple.com/documentation/tvservices/tvtopshelfobject/title) of the collection above those items. For example, you might create different collections for new movies, the user’s favorites, and recently watched movies.
+    ///
+    ///
+    /// An object that represents a collection of Top Shelf items that can be displayed in a section.
     #[unsafe(super(TVTopShelfObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]

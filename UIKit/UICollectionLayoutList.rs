@@ -9,25 +9,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance?language=objc)
+/// Constants that describe the appearance of the list.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListAppearance(pub NSInteger);
 impl UICollectionLayoutListAppearance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceplain?language=objc)
+    /// The plain list appearance.
     #[doc(alias = "UICollectionLayoutListAppearancePlain")]
     pub const Plain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancegrouped?language=objc)
+    /// The grouped list appearance.
     #[doc(alias = "UICollectionLayoutListAppearanceGrouped")]
     pub const Grouped: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceinsetgrouped?language=objc)
+    /// The inset grouped list appearance.
     #[doc(alias = "UICollectionLayoutListAppearanceInsetGrouped")]
     pub const InsetGrouped: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebar?language=objc)
+    /// The sidebar list appearance.
     #[doc(alias = "UICollectionLayoutListAppearanceSidebar")]
     pub const Sidebar: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebarplain?language=objc)
+    /// The plain sidebar list appearance.
     #[doc(alias = "UICollectionLayoutListAppearanceSidebarPlain")]
     pub const SidebarPlain: Self = Self(4);
 }
@@ -40,25 +40,40 @@ unsafe impl RefEncode for UICollectionLayoutListAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode?language=objc)
+/// Constants that describe the list’s header mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListHeaderMode(pub NSInteger);
 impl UICollectionLayoutListHeaderMode {
+    /// No headers are shown.
     /// No headers are shown
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodenone?language=objc)
     #[doc(alias = "UICollectionLayoutListHeaderModeNone")]
     pub const None: Self = Self(0);
-    /// Uses supplementary views of kind UICollectionElementKindSectionHeader to show headers
+    /// A header mode that uses supplementary views to show headers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodesupplementary?language=objc)
+    /// ## Discussion
+    ///
+    /// Choose this header mode to use supplementary views with [`elementKindSectionHeader`](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionheader) as the section header.
+    ///
+    /// By default, lists that use the [`UICollectionLayoutListAppearancePlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceplain) and [`UICollectionLayoutListAppearanceSidebarPlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebarplain) list appearances use pinned headers. You must use this header mode if you want to opt into this default pinning behavior.
+    ///
+    ///
+    /// Uses supplementary views of kind UICollectionElementKindSectionHeader to show headers
     #[doc(alias = "UICollectionLayoutListHeaderModeSupplementary")]
     pub const Supplementary: Self = Self(1);
-    /// Styles the first item in a section as a header. This is especially useful when using hierarchical data sources to be able to expand and collapse the header.
+    /// A header mode that styles the first item in a section as a header.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodefirstiteminsection?language=objc)
+    /// ## Discussion
+    ///
+    /// Choose this header mode when you’re using hierarchical data sources if you want to be able to expand and collapse the header.
+    ///
+    /// When you use this header mode, a [`UICollectionViewListCell`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell) object that appears as the first item in the section automatically uses a header appearance. When you configure your data source, make sure to account for the fact that the first item in the section (at index `0`) represents the header, and the actual items in the section start at index `1`.
+    ///
+    /// By default, lists that use the [`UICollectionLayoutListAppearancePlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceplain) and [`UICollectionLayoutListAppearanceSidebarPlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebarplain) list appearances use pinned headers. If you want to opt into this default pinning behavior, use the [`UICollectionLayoutListHeaderModeSupplementary`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode/uicollectionlayoutlistheadermodesupplementary) header mode instead.
+    ///
+    ///
+    /// Styles the first item in a section as a header. This is especially useful when using hierarchical data sources to be able to expand and collapse the header.
     #[doc(alias = "UICollectionLayoutListHeaderModeFirstItemInSection")]
     pub const FirstItemInSection: Self = Self(2);
 }
@@ -71,20 +86,26 @@ unsafe impl RefEncode for UICollectionLayoutListHeaderMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode?language=objc)
+/// Constants that describe the list’s footer mode.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListFooterMode(pub NSInteger);
 impl UICollectionLayoutListFooterMode {
+    /// No footers are shown.
     /// No footers are shown
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode/uicollectionlayoutlistfootermodenone?language=objc)
     #[doc(alias = "UICollectionLayoutListFooterModeNone")]
     pub const None: Self = Self(0);
-    /// Uses supplementary views of kind UICollectionElementKindSectionFooter to show footers
+    /// A footer mode that uses supplementary views to show footers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode/uicollectionlayoutlistfootermodesupplementary?language=objc)
+    /// ## Discussion
+    ///
+    /// Choose this footer mode to use supplementary views with [`elementKindSectionFooter`](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionfooter) as the section footer.
+    ///
+    /// By default, lists that use the [`UICollectionLayoutListAppearancePlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearanceplain) and [`UICollectionLayoutListAppearanceSidebarPlain`](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance/uicollectionlayoutlistappearancesidebarplain) list appearances use pinned footers. You must use this footer mode if you want to opt into this default pinning behavior.
+    ///
+    ///
+    /// Uses supplementary views of kind UICollectionElementKindSectionFooter to show footers
     #[doc(alias = "UICollectionLayoutListFooterModeSupplementary")]
     pub const Supplementary: Self = Self(1);
 }
@@ -97,11 +118,24 @@ unsafe impl RefEncode for UICollectionLayoutListFooterMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistswipeactionsconfigurationprovider?language=objc)
+/// A closure that configures the swipe actions for a cell.
 #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
 pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
     *mut block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) -> *mut UISwipeActionsConfiguration>;
 
+/// A closure that provides granular control over list separator appearance.
+///
+/// Parameters:
+/// - indexPath: The [`NSIndexPath`](https://developer.apple.com/documentation/foundation/nsindexpath) of the cell to configure separators for.
+///
+/// - sectionSeparatorConfiguration: The list section’s separator configuration for the cell at `indexPath`. This configuration contains the values for separator visibility and insets according to the current state of the item.
+///
+///
+/// ## Return Value
+///
+/// The configuration to use for the separators at `indexPath`.
+///
+///
 /// A block that is executed by list sections to provide granular control over separator appearance.
 ///
 ///
@@ -113,8 +147,6 @@ pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
 ///
 /// Returns: The configuration to use for separators at
 /// `itemIndexPath.`
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistitemseparatorhandler?language=objc)
 #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
 pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
     dyn Fn(
@@ -123,19 +155,18 @@ pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
     ) -> NonNull<UIListSeparatorConfiguration>,
 >;
 
+/// Constants that determine which types of items in a collection view tightly hug their content.
 /// A setting for which items in the layout should tightly hug their content
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListContentHuggingElements(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionLayoutListContentHuggingElements: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements/uicollectionlayoutlistcontenthuggingelementsnone?language=objc)
+/// A mode where none of the items in the collection view tightly hug their content.
         #[doc(alias = "UICollectionLayoutListContentHuggingElementsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements/uicollectionlayoutlistcontenthuggingelementssupplementaryheader?language=objc)
+/// A mode where supplementary headers in the collection view tightly hug their content.
         #[doc(alias = "UICollectionLayoutListContentHuggingElementsSupplementaryHeader")]
         const SupplementaryHeader = 1<<0;
     }
@@ -150,9 +181,31 @@ unsafe impl RefEncode for UICollectionLayoutListContentHuggingElements {
 }
 
 extern_class!(
-    /// A list configuration can be used to layout a section inside a UICollectionViewCompositionalLayout as a list.
+    /// A configuration for creating a list layout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration-c.class?language=objc)
+    /// ## Overview
+    ///
+    /// Use this configuration to create a list section for a compositional layout ([`UICollectionViewCompositionalLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout)), or a layout containing only list sections. The following example shows how to create a compositional layout that contains only list sections by applying the same configuration to each section in the list layout:
+    ///
+    /// ```objc
+    /// UICollectionLayoutListConfiguration *configuration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceSidebar];
+    /// UICollectionViewCompositionalLayout *layout = [UICollectionViewCompositionalLayout layoutWithListConfiguration:configuration];
+    /// ```
+    ///
+    /// To implement different list configurations for different sections, use a compositional layout’s section provider to create each section with its own list configuration.
+    ///
+    /// ```objc
+    /// UICollectionViewCompositionalLayout *layout = [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger sectionIndex, id<NSCollectionLayoutEnvironment> layoutEnvironment) {
+    ///     UICollectionLayoutListConfiguration *configuration = [[UICollectionLayoutListConfiguration alloc] initWithAppearance:UICollectionLayoutListAppearanceInsetGrouped];
+    ///     UICollectionLayoutListHeaderMode mode = (sectionIndex == 0) ? UICollectionLayoutListHeaderModeSupplementary : UICollectionLayoutListHeaderModeNone;
+    ///     [configuration setHeaderMode:mode];
+    ///     NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithListConfiguration:configuration layoutEnvironment:layoutEnvironment];
+    ///     return section;
+    /// }];
+    /// ```
+    ///
+    ///
+    /// A list configuration can be used to layout a section inside a UICollectionViewCompositionalLayout as a list.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

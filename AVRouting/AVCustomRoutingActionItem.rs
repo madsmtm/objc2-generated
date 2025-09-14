@@ -10,6 +10,13 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a custom action item to display in a device route picker.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to specify supplemental action items to display in the list of discovered routes. Tapping a custom item dismisses the picker and calls the [`customRoutingController:didSelectItem:`](https://developer.apple.com/documentation/avrouting/avcustomroutingcontrollerdelegate/customroutingcontroller(_:didselect:)) method of [`AVCustomRoutingControllerDelegate`](https://developer.apple.com/documentation/avrouting/avcustomroutingcontrollerdelegate).
+    ///
+    ///
     /// An object that represents a custom action item to display in a device route
     /// picker.
     ///
@@ -18,8 +25,6 @@ extern_class!(
     /// the
     /// ``AVCustomRoutingControllerDelegate/customRoutingController:didSelectItem:``
     /// method of ``AVCustomRoutingControllerDelegate``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingactionitem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomRoutingActionItem;

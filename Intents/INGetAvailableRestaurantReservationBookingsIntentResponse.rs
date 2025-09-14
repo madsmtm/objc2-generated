@@ -7,24 +7,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentcode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INGetAvailableRestaurantReservationBookingsIntentCode(pub NSInteger);
 impl INGetAvailableRestaurantReservationBookingsIntentCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentcode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app successfully returns one or more [`INRestaurantReservationBooking`](https://developer.apple.com/documentation/intents/inrestaurantreservationbooking) objects that fall within the request time boundaries.
+    ///
+    ///
     #[doc(alias = "INGetAvailableRestaurantReservationBookingsIntentCodeSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentcode/failure?language=objc)
+    /// You were unable to provide a list of possible reservation times.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from generating the list of times.
+    ///
+    ///
     #[doc(alias = "INGetAvailableRestaurantReservationBookingsIntentCodeFailure")]
     pub const Failure: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentcode/failurerequestunsatisfiable?language=objc)
+    /// You could not complete the request because the data you received from Maps was invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code to indicate that you could not get the booking times with the provided data. Maps launches your app and passes it to the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object from your response so that you can try to get the information there.
+    ///
+    ///
     #[doc(
         alias = "INGetAvailableRestaurantReservationBookingsIntentCodeFailureRequestUnsatisfiable"
     )]
     pub const FailureRequestUnsatisfiable: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentcode/failurerequestunspecified?language=objc)
+    /// There was a failure in getting the requested booking times and the cause of the failure is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// Maps launches your app and passes it to the [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object from your response so that you can try to get the information there.
+    ///
+    ///
     #[doc(alias = "INGetAvailableRestaurantReservationBookingsIntentCodeFailureRequestUnspecified")]
     pub const FailureRequestUnspecified: Self = Self(3);
 }
@@ -38,7 +62,15 @@ unsafe impl RefEncode for INGetAvailableRestaurantReservationBookingsIntentCode 
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentresponse?language=objc)
+    /// Your app’s response to a get available restaurant reservation bookings intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetAvailableRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentresponse) object contains the reservation booking objects that represent the time slots available for making a reservation at the given restaurant. You create an instance of this class when confirming or handling an [`INGetAvailableRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent) object, which contains the basic details you use to determine your response.
+    ///
+    /// You create an [`INGetAvailableRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentresponse) object in the [`confirmGetAvailableRestaurantReservationBookings:completion:`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling/confirm(getavailablerestaurantreservationbookings:completion:)) and [`handleGetAvailableRestaurantReservationBookings:completion:`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling/handle(getavailablerestaurantreservationbookings:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INGetAvailableRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

@@ -8,27 +8,21 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNRegularizationType(pub NSUInteger);
 impl MPSNNRegularizationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/none?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeNone")]
     pub const None: Self = Self(0);
     /// Apply L1 regularization. L1 norm of weights, will be considered to be added to the loss to be minimized.
     /// the gradient of the regularization loss turns to be 1 scaled with regularizationScale,
     /// so we add that to the incoming gradient of value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/l1?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeL1")]
     pub const L1: Self = Self(1);
     /// Apply L2 regularization. L2 norm of weights, will be considered to be added to the loss to be minimized.
     /// the gradient of the regularization loss turns to be the original value scaled with regularizationScale,
     /// so we add that to the incoming gradient of value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnregularizationtype/l2?language=objc)
     #[doc(alias = "MPSNNRegularizationTypeL2")]
     pub const L2: Self = Self(2);
 }
@@ -42,13 +36,12 @@ unsafe impl RefEncode for MPSNNRegularizationType {
 }
 
 extern_class!(
+    /// An object that specifies properties used by an optimizer kernel.
     /// The MPSNNOptimizerDescriptor base class. Optimizers are generally used to update trainable neural network parameters.
     /// Users are usually expected to call these MPSKernels from the update methods on their Convolution or BatchNormalization data sources.
     ///
     /// Before the gradient is used to update the original value, some preprocessing occurs on each gradient where it is scaled or clipped
     /// If regularization is chosen the appropriate regularization loss gradient is added to the value gradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPSNNOptimizerDescriptor;
@@ -200,13 +193,12 @@ impl MPSNNOptimizerDescriptor {
 }
 
 extern_class!(
+    /// The base class for optimization layers.
     /// The MPSNNOptimizer base class, use one of the child classes, not to be directly used. Optimizers are generally used to update trainable neural network parameters.
     /// Users are usually expected to call these MPSKernels from the update methods on their Convolution or BatchNormalization data sources.
     ///
     /// Before the gradient is used to update the original value, some preprocessing occurs on each gradient where it is scaled or clipped
     /// If regularization is chosen the appropriate regularization loss gradient is added to the value gradient.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizer?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -369,6 +361,7 @@ impl MPSNNOptimizer {
 }
 
 extern_class!(
+    /// An optimization layer that performs a gradient descent with an optional momentum update.
     /// The MPSNNOptimizerStochasticGradientDescent performs a gradient descent with an optional momentum Update
     /// RMSProp is also known as root mean square propagation.
     ///
@@ -383,8 +376,6 @@ extern_class!(
     /// where,
     /// g    is gradient of error wrt variable
     /// m[t] is momentum of gradients it is a state we keep updating every update iteration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerstochasticgradientdescent?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -768,6 +759,7 @@ impl MPSNNOptimizerStochasticGradientDescent {
 }
 
 extern_class!(
+    /// An optimization layer that performs a root mean square propagation update.
     /// The MPSNNOptimizerRMSProp performs an RMSProp Update
     /// RMSProp is also known as root mean square propagation.
     ///
@@ -777,8 +769,6 @@ extern_class!(
     /// where,
     /// g    is gradient of error wrt variable
     /// s[t] is weighted sum of squares of gradients
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizerrmsprop?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -1114,6 +1104,7 @@ impl MPSNNOptimizerRMSProp {
 }
 
 extern_class!(
+    /// An optimization layer that performs an Adam pdate.
     /// The MPSNNOptimizerAdam performs an Adam Update
     ///
     /// Initialization time
@@ -1135,8 +1126,6 @@ extern_class!(
     /// g    is gradient of error wrt variable
     /// v[t] is velocity
     /// m[t] is momentum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnoptimizeradam?language=objc)
     #[unsafe(super(MPSNNOptimizer, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

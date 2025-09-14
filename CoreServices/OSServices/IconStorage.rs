@@ -6,87 +6,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585860-anonymous/kiconservices16pixeldataargb?language=objc)
 pub const kIconServices16PixelDataARGB: c_uint = 0x69633034;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585860-anonymous/kiconservices32pixeldataargb?language=objc)
 pub const kIconServices32PixelDataARGB: c_uint = 0x69633035;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585860-anonymous/kiconservices48pixeldataargb?language=objc)
 pub const kIconServices48PixelDataARGB: c_uint = 0x69633036;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585860-anonymous/kiconservices128pixeldataargb?language=objc)
 pub const kIconServices128PixelDataARGB: c_uint = 0x69633037;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585888-anonymous/kiconservices256pixeldataargb?language=objc)
 pub const kIconServices256PixelDataARGB: c_uint = 0x69633038;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585888-anonymous/kiconservices512pixeldataargb?language=objc)
 pub const kIconServices512PixelDataARGB: c_uint = 0x69633039;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585888-anonymous/kiconservices1024pixeldataargb?language=objc)
 pub const kIconServices1024PixelDataARGB: c_uint = 0x69633130;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585888-anonymous/kthumbnail32bitdata?language=objc)
 pub const kThumbnail32BitData: c_uint = 0x69743332;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585888-anonymous/kthumbnail8bitmask?language=objc)
 pub const kThumbnail8BitMask: c_uint = 0x74386d6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585880-anonymous/khuge1bitmask?language=objc)
 pub const kHuge1BitMask: c_uint = 0x69636823;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585880-anonymous/khuge4bitdata?language=objc)
 pub const kHuge4BitData: c_uint = 0x69636834;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585880-anonymous/khuge8bitdata?language=objc)
 pub const kHuge8BitData: c_uint = 0x69636838;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585880-anonymous/khuge32bitdata?language=objc)
 pub const kHuge32BitData: c_uint = 0x69683332;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585880-anonymous/khuge8bitmask?language=objc)
 pub const kHuge8BitMask: c_uint = 0x68386d6b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/klarge1bitmask?language=objc)
 pub const kLarge1BitMask: c_uint = 0x49434e23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/klarge4bitdata?language=objc)
 pub const kLarge4BitData: c_uint = 0x69636c34;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/klarge8bitdata?language=objc)
 pub const kLarge8BitData: c_uint = 0x69636c38;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/klarge32bitdata?language=objc)
 pub const kLarge32BitData: c_uint = 0x696c3332;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/klarge8bitmask?language=objc)
 pub const kLarge8BitMask: c_uint = 0x6c386d6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/ksmall1bitmask?language=objc)
 pub const kSmall1BitMask: c_uint = 0x69637323;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/ksmall4bitdata?language=objc)
 pub const kSmall4BitData: c_uint = 0x69637334;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/ksmall8bitdata?language=objc)
 pub const kSmall8BitData: c_uint = 0x69637338;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/ksmall32bitdata?language=objc)
 pub const kSmall32BitData: c_uint = 0x69733332;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/ksmall8bitmask?language=objc)
 pub const kSmall8BitMask: c_uint = 0x73386d6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/kmini1bitmask?language=objc)
 pub const kMini1BitMask: c_uint = 0x69636d23;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/kmini4bitdata?language=objc)
 pub const kMini4BitData: c_uint = 0x69636d34;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585886-anonymous/kmini8bitdata?language=objc)
 pub const kMini8BitData: c_uint = 0x69636d38;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/large1bitmask?language=objc)
 pub const large1BitMask: c_uint = kLarge1BitMask;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/large4bitdata?language=objc)
 pub const large4BitData: c_uint = kLarge4BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/large8bitdata?language=objc)
 pub const large8BitData: c_uint = kLarge8BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/small1bitmask?language=objc)
 pub const small1BitMask: c_uint = kSmall1BitMask;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/small4bitdata?language=objc)
 pub const small4BitData: c_uint = kSmall4BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/small8bitdata?language=objc)
 pub const small8BitData: c_uint = kSmall8BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/mini1bitmask?language=objc)
 pub const mini1BitMask: c_uint = kMini1BitMask;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/mini4bitdata?language=objc)
 pub const mini4BitData: c_uint = kMini4BitData;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585877-anonymous/mini8bitdata?language=objc)
 pub const mini8BitData: c_uint = kMini8BitData;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585870-anonymous/kiconfamilytype?language=objc)
 pub const kIconFamilyType: c_uint = 0x69636e73;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyelement?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IconFamilyElement {
@@ -112,7 +74,6 @@ unsafe impl RefEncode for IconFamilyElement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyresource?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IconFamilyResource {
@@ -138,19 +99,12 @@ unsafe impl RefEncode for IconFamilyResource {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyptr?language=objc)
 pub type IconFamilyPtr = *mut IconFamilyResource;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyhandle?language=objc)
 pub type IconFamilyHandle = *mut IconFamilyPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585846-anonymous/ktileiconvariant?language=objc)
 pub const kTileIconVariant: c_uint = 0x74696c65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585846-anonymous/krollovericonvariant?language=objc)
 pub const kRolloverIconVariant: c_uint = 0x6f766572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585846-anonymous/kdropiconvariant?language=objc)
 pub const kDropIconVariant: c_uint = 0x64726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585846-anonymous/kopeniconvariant?language=objc)
 pub const kOpenIconVariant: c_uint = 0x6f70656e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1585846-anonymous/kopendropiconvariant?language=objc)
 pub const kOpenDropIconVariant: c_uint = 0x6f647270;

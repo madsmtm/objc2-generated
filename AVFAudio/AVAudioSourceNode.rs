@@ -7,6 +7,23 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
+/// A block that supplies audio data to an audio source node.
+///
+/// Parameters:
+/// - isSilence: The Boolean value that indicates whether the buffer contains only silence.
+///
+/// - timestamp: The HAL time the audio data renders.
+///
+/// - frameCount: The number of sample frames of audio data the engine requests.
+///
+/// - outputData: The output data.
+///
+///
+/// ## Return Value
+///
+/// An `OSStatus` result code. When returning an error, consider the audio data invalid.
+///
+///
 /// Block to supply audio data to AVAudioSourceNode
 ///
 /// Parameter `isSilence`: The client may use this flag to indicate that the buffer it vends contains only silence.
@@ -29,8 +46,6 @@ use crate::*;
 ///
 /// Returns: An OSStatus result code. If an error is returned, the audio data should be assumed to be
 /// invalid.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosourcenoderenderblock?language=objc)
 #[cfg(all(
     feature = "AVAudioTypes",
     feature = "block2",
@@ -46,14 +61,19 @@ pub type AVAudioSourceNodeRenderBlock = *mut block2::DynBlock<
 >;
 
 extern_class!(
+    /// An object that supplies audio data.
+    ///
+    /// ## Overview
+    ///
+    /// The `AVAudioSourceNode` class allows for supplying audio data for rendering through [`AVAudioSourceNodeRenderBlock`](https://developer.apple.com/documentation/avfaudio/avaudiosourcenoderenderblock). It’s a convenient method for delievering audio data instead of setting the input callback on an audio unit with `kAudioUnitProperty_SetRenderCallback`.
+    ///
+    ///
     /// AVAudioSourceNode wraps a client provided block to supply audio.
     ///
     /// With AVAudioSourceNode the client can supply audio data for rendering through an
     /// AVAudioSourceNodeRenderBlock block.
     /// This is similar to setting the input callback on an Audio Unit with the
     /// kAudioUnitProperty_SetRenderCallback property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosourcenode?language=objc)
     #[unsafe(super(AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAudioNode")]

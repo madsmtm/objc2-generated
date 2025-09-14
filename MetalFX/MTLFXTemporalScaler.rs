@@ -9,7 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor?language=objc)
+    /// A set of properties that configure a temporal scaling effect, and a factory method that creates the effect.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLFXTemporalScalerDescriptor;
@@ -332,11 +332,45 @@ impl MTLFXTemporalScalerDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatablescaler?language=objc)
     pub unsafe trait MTLFXFrameInterpolatableScaler: NSObjectProtocol {}
 );
 
 extern_protocol!(
+    /// An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input textures over time.
+    ///
+    /// ## Overview
+    ///
+    /// The MetalFX temporal scaler increases the size of your input texture to a larger output texture. You can use the scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an [`MTLFXTemporalScaler`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler) instance by following these steps:
+    ///
+    /// 1. Create and configure an [`MTLFXTemporalScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor) instance.
+    ///
+    /// 2. Call the descriptor’s `newTemporalScalerWithDevice:` method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    ///
+    /// 1. Set the temporal scaler’s [`colorTexture`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase/colortexture) property to the input texture.
+    ///
+    /// 2. Set the scaler’s [`inputContentWidth`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase/inputcontentwidth) and [`inputContentHeight`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase/inputcontentheight) properties.
+    ///
+    /// 3. Set the scaler’s [`outputTexture`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase/outputtexture) property to your destination texture.
+    ///
+    /// 4. Encode the upscale commands to a command buffer by calling the temporal scaler’s [`encodeToCommandBuffer:`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler/encode(commandbuffer:)) method.
+    ///
+    /// ## Conforming to texture usage requirements
+    ///
+    /// Temporal scalers expose properties, such as [`colorTextureUsage`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase/colortextureusage), that indicate requirements for your textures to be compatible with it. These properties indicate the minimum set of `MTLTextureUsage` bits that you are responsible for setting in your texture descriptors for this spatial scaler to use them.
+    ///
+    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains the minimum set the scaler requests.
+    ///
+    /// ## Assigning input and output textures
+    ///
+    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures, as well as other properties, and then encode its work to a command buffer.
+    ///
+    /// MetalFX doesn’t track that you assign the same texture instances to each property across different batches of work, the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the [`MTLFXTemporalScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor) descriptor instance that creates the scaler instance.
+    ///
+    ///
     /// An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input
     /// textures over time.
     ///
@@ -372,8 +406,6 @@ extern_protocol!(
     /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
     /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
     /// ``MTLFXTemporalScalerDescriptor`` descriptor instance that creates the scaler instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerbase?language=objc)
     pub unsafe trait MTLFXTemporalScalerBase: MTLFXFrameInterpolatableScaler {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this scaler.
         #[unsafe(method(colorTextureUsage))]
@@ -699,7 +731,29 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler?language=objc)
+    /// An upscaling effect that generates a higher resolution texture in a render pass by analyzing multiple input textures over time.
+    ///
+    /// ## Overview
+    ///
+    /// The MetalFX temporal scaler increases the size of your input texture to a larger output texture. You can use the scaler to upscale every frame of your app’s scene or rendering in real time. With a scaler, you can draw more complicated scenes in less time by intentionally rendering to a lower resolution to save time before upscaling.
+    ///
+    /// Create an [`MTLFXTemporalScaler`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler) instance by following these steps:
+    ///
+    /// 1. Create and configure an [`MTLFXTemporalScalerDescriptor`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor) instance.
+    ///
+    /// 2. Call the descriptor’s [`newTemporalScalerWithDevice:`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscalerdescriptor/maketemporalscaler(device:)) method.
+    ///
+    /// Upscale a rendering by following these steps for every render pass:
+    ///
+    /// 1. Set the temporal scaler’s `MTLFXTemporalScaler/colorTexture` property to the input texture.
+    ///
+    /// 2. Set the scaler’s `MTLFXTemporalScaler/inputContentWidth` and `MTLFXTemporalScaler/inputContentHeight` properties.
+    ///
+    /// 3. Set the scaler’s `MTLFXTemporalScaler/outputTexture` property to your destination texture.
+    ///
+    /// 4. Encode the upscale commands to an [`MTLCommandBuffer`](https://developer.apple.com/documentation/metal/mtlcommandbuffer) by calling the temporal scaler’s [`encodeToCommandBuffer:`](https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler/encode(commandbuffer:)) method.
+    ///
+    ///
     pub unsafe trait MTLFXTemporalScaler: MTLFXTemporalScalerBase {
         /// Encode this spatial scaler work into a command buffer.
         ///

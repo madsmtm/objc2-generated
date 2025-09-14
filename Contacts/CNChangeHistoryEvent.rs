@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryevent?language=objc)
+    /// An object that represents the user adding, updating, or deleting a contact or group.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryEvent;
@@ -59,9 +59,14 @@ impl CNChangeHistoryEvent {
 }
 
 extern_class!(
-    /// Drop all cached information your app has persisted
+    /// An object that indicates the delegate should drop all contacts and groups before handling change events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydropeverythingevent?language=objc)
+    /// ## Overview
+    ///
+    /// The system sends this event to your delegate when the system determines that enough has changed since the last time your app fetched the history changes that an incremental update is no longer possible. Following the drop-everything event, your app receives an add event for each contact and group currently in the database. This allows you to implement full syncs and incremental syncs using the same code.
+    ///
+    ///
+    /// Drop all cached information your app has persisted
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDropEverythingEvent;
@@ -105,9 +110,8 @@ impl CNChangeHistoryDropEverythingEvent {
 }
 
 extern_class!(
+    /// An object that represents a user adding a contact.
     /// A contact was added
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddcontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddContactEvent;
@@ -160,9 +164,8 @@ impl CNChangeHistoryAddContactEvent {
 }
 
 extern_class!(
+    /// An object that represents a user updating a contact.
     /// A contact was updated
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdatecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateContactEvent;
@@ -211,9 +214,8 @@ impl CNChangeHistoryUpdateContactEvent {
 }
 
 extern_class!(
+    /// An object that represents a user deleting a contact.
     /// A contact was removed
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletecontactevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteContactEvent;
@@ -261,9 +263,8 @@ impl CNChangeHistoryDeleteContactEvent {
 }
 
 extern_class!(
+    /// An object that represents a user adding a group.
     /// A group was added
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddGroupEvent;
@@ -316,9 +317,8 @@ impl CNChangeHistoryAddGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents an updated group event.
     /// A group was updated
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryupdategroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryUpdateGroupEvent;
@@ -367,9 +367,8 @@ impl CNChangeHistoryUpdateGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents a user deleting a group.
     /// A group was deleted
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistorydeletegroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryDeleteGroupEvent;
@@ -417,9 +416,8 @@ impl CNChangeHistoryDeleteGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents a user adding a contact to a group.
     /// A contact was added to a group
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddmembertogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddMemberToGroupEvent;
@@ -473,9 +471,8 @@ impl CNChangeHistoryAddMemberToGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents a user removing a contact from a group.
     /// A contact was removed from a group
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovememberfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveMemberFromGroupEvent;
@@ -529,9 +526,8 @@ impl CNChangeHistoryRemoveMemberFromGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents a user adding a subgroup to a group.
     /// A subgroup was added to a group
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryaddsubgrouptogroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryAddSubgroupToGroupEvent;
@@ -585,9 +581,8 @@ impl CNChangeHistoryAddSubgroupToGroupEvent {
 }
 
 extern_class!(
+    /// An object that represents a user removing a subgroup from a group.
     /// A subgroup was removed from a group
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryremovesubgroupfromgroupevent?language=objc)
     #[unsafe(super(CNChangeHistoryEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNChangeHistoryRemoveSubgroupFromGroupEvent;
@@ -641,7 +636,13 @@ impl CNChangeHistoryRemoveSubgroupFromGroupEvent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cnchangehistoryeventvisitor?language=objc)
+    /// An interface for receiving notice of changes to contacts and groups.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol to receive events that describe when a user adds, updates, or deletes contacts or groups outside your app.
+    ///
+    ///
     pub unsafe trait CNChangeHistoryEventVisitor: NSObjectProtocol {
         #[unsafe(method(visitDropEverythingEvent:))]
         #[unsafe(method_family = none)]

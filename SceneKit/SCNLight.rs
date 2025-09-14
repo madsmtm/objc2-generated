@@ -9,68 +9,143 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants specifying the general behavior of a light, used by the [`type`](https://developer.apple.com/documentation/scenekit/scnlight/type) property.
+///
+/// ## Overview
+///
+/// Each of the four scenes in the figure below has the same content illuminated by a single [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) object. The node containing the light source has the same position and orientation in each scene—all differences between the four pictures are due to the light’s [`type`](https://developer.apple.com/documentation/scenekit/scnlight/type) property.
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/eb60d2d59a291b85e0103d60120f7d81/media-2929780%402x.png)
+///
+///
+///
+/// ![](https://docs-assets.developer.apple.com/published/ae5647e6cf3f8abe6ac1f57a449fa23b/media-2929783%402x.png)
+///
+///
+///
 /// Light Types
 ///
 /// Describes the various light types available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype?language=objc)
 // NS_TYPED_ENUM
 pub type SCNLightType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/ambient?language=objc)
+    /// A light that illuminates all objects in the scene from all directions.
+    ///
+    /// ## Discussion
+    ///
+    /// Because the intensity of light from an ambient source is the same everywhere in the scene,  its position and direction have no effect. Attenuation, spotlight angle, and shadow attributes do not apply to ambient lights.
+    ///
+    ///
     pub static SCNLightTypeAmbient: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/omni?language=objc)
+    /// An omnidirectional light, also known as a _point light_.
+    ///
+    /// ## Discussion
+    ///
+    /// Because an omnidirectional light casts equal illumination in all directions, the orientation of the node containing the light has no effect. Spotlight angle and shadow attributes do not apply to directional lights.
+    ///
+    ///
     pub static SCNLightTypeOmni: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/directional?language=objc)
+    /// A light source with a uniform direction and constant intensity.
+    ///
+    /// ## Discussion
+    ///
+    /// Because a directional light illuminates all objects in the scene from the same direction and with the same intensity, so the position of the node containing the light has no effect. Attenuation and spotlight angle attributes do not apply to directional lights.
+    ///
+    ///
     pub static SCNLightTypeDirectional: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/spot?language=objc)
+    /// A light source that illuminates a cone-shaped area.
+    ///
+    /// ## Discussion
+    ///
+    /// The position and orientation of the node containing the light determines the area lit by the spotlight, and all lighting attributes affect its appearance.
+    ///
+    ///
     pub static SCNLightTypeSpot: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/ies?language=objc)
+    /// A light source whose shape, direction, and intensity of illumination is determined by a photometric profile.
+    ///
+    /// ## Discussion
+    ///
+    /// The intensity of a photometric light varies in different directions from the light source, much like the illumination from a real-world light source. The position of the containing node determines the location of the light source, and the orientation of the node determines the relative directions specified by the photometric profile. Spotlight angle attributes do not apply to photometric lights.
+    ///
+    /// For more information about photometric lights, see the [`IESProfileURL`](https://developer.apple.com/documentation/scenekit/scnlight/iesprofileurl) property.
+    ///
+    ///
     pub static SCNLightTypeIES: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/probe?language=objc)
+    /// A sample of the environment around a point in a scene to be used in environment-based lighting.
+    ///
+    /// ## Discussion
+    ///
+    /// A light probe describes a point in a scene in terms of the variations in color and intensity of the illumination it receives from all directions. This information can then be used in shading of materials based on their location in the scene. For example, a white object placed near blue and red walls will appear bluish on surfaces facing the blue wall and reddish on surfaces facing the red wall.
+    ///
+    /// You can place light probes in a scene and generate their lighting contributions using the Xcode scene editor, or import light probes from scene file formats that support them. Lighting-related properties of the [`SCNLight`](https://developer.apple.com/documentation/scenekit/scnlight) class do not apply to light probes; their contribution to scene rendering depends entirely on the light probe content generated in Xcode.
+    ///
+    ///
     pub static SCNLightTypeProbe: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/area?language=objc)
     pub static SCNLightTypeArea: &'static SCNLightType;
 }
 
+/// Options for SceneKit’s rendering of shadows cast by a light, used by the [`shadowMode`](https://developer.apple.com/documentation/scenekit/scnlight/shadowmode) property.
+///
+/// ## Overview
+///
+/// Each shadow mode may have a positive or negative effect on rendering performance, depending on the contents of the scene. Test your app to determine which shadow mode provides the best balance between performance and quality for the scenes you want to render.
+///
+///
 /// The different modes available to compute shadows.
 ///
 /// When the shadow mode is set to SCNShadowModeForward, shadows are computed while computing the lighting. In this mode only the alpha component of the shadow color is used to alter the lighting contribution.
 /// When the shadow mode is set to SCNShadowModeDeferred shadows are applied as a post process. Shadows are blend over the final image and can therefor be of any arbitrary color. However it is most of the time less efficient than SCNShadowModeForward, except when a scene has a lot of overdraw.
 /// When the shadow mode is set to SCNShadowModeModulated the light doesn't illuminate the scene anymore, it only casts shadows. Therefore setting the light color has no effect. In this mode gobos act as a shadow projector: the gobo image is modulated with the shadow receiver's fragments. The typical usage is to use an image of a radial gradient (black to white) that is projected under a character (and use the categoryBitMask of the light and nodes to exclude the character from the shadow receiver).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNShadowMode(pub NSInteger);
 impl SCNShadowMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/forward?language=objc)
+    /// SceneKit renders shadows during lighting computations.
+    ///
+    /// ## Discussion
+    ///
+    /// In this mode, the color components of the light’s [`shadowColor`](https://developer.apple.com/documentation/scenekit/scnlight/shadowcolor) property do not apply. The color’s alpha component determines the intensity of shadows.
+    ///
+    ///
     #[doc(alias = "SCNShadowModeForward")]
     pub const Forward: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/deferred?language=objc)
+    /// SceneKit renders shadows in a postprocessing pass.
+    ///
+    /// ## Discussion
+    ///
+    /// In the mode, SceneKit blends shadows into the final image after the main rendering pass, so shadows can be of any color.
+    ///
+    ///
     #[doc(alias = "SCNShadowModeDeferred")]
     pub const Deferred: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode/modulated?language=objc)
+    /// SceneKit renders shadows by projecting the light’s [`gobo`](https://developer.apple.com/documentation/scenekit/scnlight/gobo) image. The light does not illuminate the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// Typically, you use this mode to create a low-accuracy, high-performance shadow under a game character or similar scene element: Use an image of a radial gradient (black to white) for the light’s [`gobo`](https://developer.apple.com/documentation/scenekit/scnlight/gobo) property, and use [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnlight/categorybitmask) properties to prevent the shadow image from appearing on the character.
+    ///
+    ///
     #[doc(alias = "SCNShadowModeModulated")]
     pub const Modulated: Self = Self(2);
 }
@@ -83,16 +158,13 @@ unsafe impl RefEncode for SCNShadowMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeType(pub NSInteger);
 impl SCNLightProbeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype/irradiance?language=objc)
     #[doc(alias = "SCNLightProbeTypeIrradiance")]
     pub const Irradiance: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype/radiance?language=objc)
     #[doc(alias = "SCNLightProbeTypeRadiance")]
     pub const Radiance: Self = Self(1);
 }
@@ -105,16 +177,13 @@ unsafe impl RefEncode for SCNLightProbeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeUpdateType(pub NSInteger);
 impl SCNLightProbeUpdateType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype/never?language=objc)
     #[doc(alias = "SCNLightProbeUpdateTypeNever")]
     pub const Never: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype/realtime?language=objc)
     #[doc(alias = "SCNLightProbeUpdateTypeRealtime")]
     pub const Realtime: Self = Self(1);
 }
@@ -127,16 +196,13 @@ unsafe impl RefEncode for SCNLightProbeUpdateType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightareatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNLightAreaType(pub NSInteger);
 impl SCNLightAreaType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightareatype/rectangle?language=objc)
     #[doc(alias = "SCNLightAreaTypeRectangle")]
     pub const Rectangle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightareatype/polygon?language=objc)
     #[doc(alias = "SCNLightAreaTypePolygon")]
     pub const Polygon: Self = Self(4);
 }
@@ -150,9 +216,24 @@ unsafe impl RefEncode for SCNLightAreaType {
 }
 
 extern_class!(
-    /// SCNLight represents a light that can be attached to a SCNNode.
+    /// A light source that can be attached to a node to illuminate the scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight?language=objc)
+    /// ## Overview
+    ///
+    /// You illuminate your scene by attaching lights to [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) objects using their [`light`](https://developer.apple.com/documentation/scenekit/scnnode/light) property.
+    ///
+    /// You set a light’s type using its [`type`](https://developer.apple.com/documentation/scenekit/scnlight/type) property. Depending on a light’s type, its position and direction may affect its behavior—you control the light’s position and direction through the node that the light is attached to. The direction of a light, if applicable to its type, is along the negative z-axis of its node’s local coordinate system.
+    ///
+    /// A light’s other properties affect how it illuminates a scene. All lights have a [`color`](https://developer.apple.com/documentation/scenekit/scnlight/color) property, which interacts with [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) objects to produce the pixel colors in a rendered scene. Other properties, such as attenuation, shadowing, and spot angle, can affect the behavior of certain types of lights.
+    ///
+    /// The number and type of lights in a scene is a key factor in SceneKit’s rendering performance. For efficient rendering, follow these tips:
+    ///
+    /// - Use SceneKit lights only for dynamic light sources or lights that affect moving objects. For statically lit portions of your scene, create a light map texture in an external 3D authoring tool (also known as _baked lighting_) and apply it to objects in the scene using the [`multiply`](https://developer.apple.com/documentation/scenekit/scnmaterial/multiply) material property.
+    ///
+    /// - Minimize the number of lights on each element of the scene. You can achieve most common lighting effects using no more than three lights, and you only need a single ambient light source. SceneKit only uses up to eight light sources per node when rendering, ignoring any additional lights. If you set the [`attenuationEndDistance`](https://developer.apple.com/documentation/scenekit/scnlight/attenuationenddistance) property on a spotlight or omnidirectional light to limit its area of effect, SceneKit ignores the light (and its performance cost) when rendering objects outside that area. You can also use the [`categoryBitMask`](https://developer.apple.com/documentation/scenekit/scnlight/categorybitmask) property to choose which nodes are illuminated by a light.
+    ///
+    ///
+    /// SCNLight represents a light that can be attached to a SCNNode.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNLight;

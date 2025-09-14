@@ -6,17 +6,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Returns a Boolean value that indicates whether the flashing lights setting is enabled on the device.
     /// Returns whether the user has enabled the setting to reduce flashing or strobing lights in video content. This setting can also be used to determine if UI in playback controls should be shown.
     ///
     /// Returns: A boolean
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/madimflashinglightsenabled()?language=objc)
     pub fn MADimFlashingLightsEnabled() -> bool;
 }
 
 extern "C" {
+    /// A notification that posts when a person changes the flashing lights setting on the device.
     /// CFNotification sent to local notification center when mitigation for flashing or strobing lights settings are changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/kmadimflashinglightschangednotification?language=objc)
     pub static kMADimFlashingLightsChangedNotification: &'static CFString;
 }

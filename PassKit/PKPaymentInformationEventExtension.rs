@@ -6,18 +6,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkinformationrequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKInformationRequestCompletionBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventMetadataResponse>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksignaturerequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKSignatureRequestCompletionBlock =
     *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventSignatureResponse>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationeventextension?language=objc)
+    /// An abstract superclass for an extension to collect payment information and sign transaction data in a QR code purchase.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before you can add a QR purchase extension you need an entitlement from Apple. For more information on requesting an entitlement, contact apple-pay-inquiries@apple.com.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentInformationEventExtension;
@@ -45,7 +55,18 @@ impl PKPaymentInformationEventExtension {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationrequesthandling?language=objc)
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before you can add a QR code purchase extension you need an entitlement from Apple. For more information on requesting an entitlement, contact apple-pay-inquiries@apple.com.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait PKPaymentInformationRequestHandling {
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
         /// # Safety

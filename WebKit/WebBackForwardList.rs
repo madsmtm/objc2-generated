@@ -8,14 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A `WebBackForwardList` object maintains a list of visited pages used to go back and forward to the most recent page. A `WebBackForwardList` object maintains only the list data—it does not perform actual page loads (in other words, it does not make any client requests). If you need to perform a page load, see the [`loadRequest:`](https://developer.apple.com/documentation/webkit/webframe/load(_:)-47p2s) method in [`WebFrame`](https://developer.apple.com/documentation/webkit/webframe) to find out how to do this.
+    ///
+    /// ## Overview
+    ///
+    /// Items are typically inserted in a back-forward list in the order they are visited. A `WebBackForwardList` object also maintains the notion of the current item (which is always at index `0`), the preceding item (which is at index `-1`), and the following item (which is at index `1`). The [`goBack`](https://developer.apple.com/documentation/webkit/webbackforwardlist/goback()) and [`goForward`](https://developer.apple.com/documentation/webkit/webbackforwardlist/goforward()) methods move the current item backward or forward by one. The [`goToItem:`](https://developer.apple.com/documentation/webkit/webbackforwardlist/go(to:)) method sets the current item to the specified item. All other methods that return [`WebHistoryItem`](https://developer.apple.com/documentation/webkit/webhistoryitem) objects do not change the value of the current item, they just return the requested item or items. You can also limit the number of history items stored in the back-forward list using [`capacity`](https://developer.apple.com/documentation/webkit/webbackforwardlist/capacity).
+    ///
+    /// `WebBackForwardList` objects also control the number of pages cached. You can turn page caching off by setting the page cache size to `0` using the [`pageCacheSize`](https://developer.apple.com/documentation/webkit/webbackforwardlist/pagecachesize()) method, or limit the number of pages cached by passing a value greater than 0.
+    ///
+    ///
     /// WebBackForwardList holds an ordered list of WebHistoryItems that comprises the back and
     /// forward lists.
     ///
     /// Note that the methods which modify instances of this class do not cause
     /// navigation to happen in other layers of the stack;  they are only for maintaining this data
     /// structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webbackforwardlist?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

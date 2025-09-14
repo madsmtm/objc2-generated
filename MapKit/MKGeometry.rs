@@ -11,7 +11,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinatespan?language=objc)
+/// The width and height of a map region.
+///
+/// ## Overview
+///
+/// You use the delta values in this structure to indicate the desired zoom level of the map, with smaller delta values corresponding to a higher zoom level.
+///
+///
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -33,7 +39,7 @@ unsafe impl RefEncode for MKCoordinateSpan {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion?language=objc)
+/// A rectangular geographic region that centers around a specific latitude and longitude.
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -67,7 +73,21 @@ impl MKCoordinateSpan {
 impl MKCoordinateRegion {
     // TODO: pub fn MKCoordinateRegionMake(center_coordinate: CLLocationCoordinate2D,span: MKCoordinateSpan,) -> MKCoordinateRegion;
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion/init(center:latitudinalmeters:longitudinalmeters:)?language=objc)
+    /// Creates a new coordinate region from the specified coordinate and distance values.
+    ///
+    /// Parameters:
+    /// - centerCoordinate: The center point of the new coordinate region.
+    ///
+    /// - latitudinalMeters: The north-to-south span of the region (measured in meters) specified as the distance from the center point to the bounds along the north-to-south axis.
+    ///
+    /// - longitudinalMeters: The east-to-west span of the region (measured in meters) specified as the distance from the center point to the bounds along the east-to-west axis.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A region with the specified values.
+    ///
+    ///
     #[doc(alias = "MKCoordinateRegionMakeWithDistance")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -93,7 +113,17 @@ impl MKCoordinateRegion {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint?language=objc)
+/// A point on a two-dimensional map projection.
+///
+/// ## Overview
+///
+/// If you project the curved surface of the globe onto a flat surface, you get a two-dimensional version of a map where longitude lines appear to be parallel. An `MKMapPoint` data structure represents a point on this two-dimensional map.
+///
+/// The underlying units that MapKit uses to draw the contents of an [`MKMapView`](https://developer.apple.com/documentation/mapkit/mkmapview) define the actual units of a map point, but you don’t need to worry about these units directly. You use map points primarily to simplify computations that are complex to do using coordinate values on a curved surface. By converting to map points, you can perform those calculations on a flat surface, which is generally much simpler, and then convert back as necessary. You can map between coordinate values and map points using the [`MKMapPointForCoordinate`](https://developer.apple.com/documentation/mapkit/mkmappoint/init(_:)) and [`MKCoordinateForMapPoint`](https://developer.apple.com/documentation/mapkit/mkmappoint/coordinate) functions.
+///
+/// When saving map-related data to a file, save coordinate values (latitude and longitude) rather than map points.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapPoint {
@@ -109,7 +139,13 @@ unsafe impl RefEncode for MKMapPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsize?language=objc)
+/// Width and height information on a two-dimensional map projection.
+///
+/// ## Overview
+///
+/// If you project the curved surface of the globe onto a flat surface, what you get is a two-dimensional version of a map where longitude lines appear to be parallel. Such maps are often used to show the entire surface of the globe all at once. An `MKMapSize` data structure represents a horizontal and vertical distance as measured on this two-dimensional map.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapSize {
@@ -125,7 +161,13 @@ unsafe impl RefEncode for MKMapSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect?language=objc)
+/// A rectangular area on a two-dimensional map projection.
+///
+/// ## Overview
+///
+/// If you project the curved surface of the globe onto a flat surface, what you get is a two-dimensional version of a map where longitude lines appear to be parallel. Such maps are often used to show the entire surface of the globe all at once. An `MKMapRect` data structure represents a rectangular area as seen on this two-dimensional map.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapRect {
@@ -142,22 +184,32 @@ unsafe impl RefEncode for MKMapRect {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkzoomscale?language=objc)
+/// A scale factor to use in conjunction with a map.
 #[cfg(feature = "objc2-core-foundation")]
 pub type MKZoomScale = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsize/world?language=objc)
+    /// The width and height, in map points, of the world in a two-dimensional map projection.
     pub static MKMapSizeWorld: MKMapSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/world?language=objc)
+    /// The map rectangle that represents the world in the two-dimensional map projection.
     pub static MKMapRectWorld: MKMapRect;
 }
 
 impl MKMapPoint {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/init(_:)?language=objc)
+    /// Creates the map point data structure that corresponds to the specified coordinate.
+    ///
+    /// Parameters:
+    /// - coordinate: The coordinate containing the latitude and longitude values for the desired point.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The map point value that corresponds to the specified coordinate on a two-dimensional map projection.
+    ///
+    ///
     #[doc(alias = "MKMapPointForCoordinate")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -170,31 +222,97 @@ impl MKMapPoint {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/coordinate?language=objc)
+    /// A 2D coordinate that corresponds to the latitude and longitude of the specified map point.
+    ///
+    /// Parameters:
+    /// - mapPoint: The map point value that corresponds to the desired point on a two-dimensional map projection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The coordinate structure containing the latitude and longitude values for the specified point.
+    ///
+    ///
     #[cfg(feature = "objc2-core-location")]
     pub fn MKCoordinateForMapPoint(map_point: MKMapPoint) -> CLLocationCoordinate2D;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmeterspermappointatlatitude(_:)?language=objc)
+    /// Returns the distance that one map point spans at the specified latitude.
+    ///
+    /// Parameters:
+    /// - latitude: The latitude for which to return the value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The distance (in meters) spanned by a single map point.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The distance between map points decreases as the latitude approaches the poles. This relationship parallels the relationship between longitudinal coordinates at different latitudes.
+    ///
+    ///
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersPerMapPointAtLatitude(latitude: CLLocationDegrees) -> CLLocationDistance;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappointspermeteratlatitude(_:)?language=objc)
+    /// Returns the number of map points that represent one meter at the specified latitude.
+    ///
+    /// Parameters:
+    /// - latitude: The latitude for which to return the value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of map points that span one meter.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number of map points per meter increases as the latitude approaches the poles.
+    ///
+    ///
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMapPointsPerMeterAtLatitude(latitude: CLLocationDegrees) -> c_double;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint/distance(to:)?language=objc)
+    /// Returns the number of meters between two map points.
+    ///
+    /// Parameters:
+    /// - a: The first map point.
+    ///
+    /// - b: The second map point.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of meters between the specified map points.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This distance reflects the actual distance between the two points on the surface of the globe, taking into account the curvature of the Earth.
+    ///
+    ///
     #[cfg(feature = "objc2-core-location")]
     pub fn MKMetersBetweenMapPoints(a: MKMapPoint, b: MKMapPoint) -> CLLocationDistance;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/null?language=objc)
+    /// The null map rectangle.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this constant when you want to specify an invalid map rectangle.
+    ///
+    ///
     pub static MKMapRectNull: MKMapRect;
 }
 
@@ -249,7 +367,25 @@ impl MKMapRect {
 // TODO: pub fn MKStringFromMapRect(rect: MKMapRect,)-> *mut NSString;
 
 impl MKMapRect {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/union(_:)?language=objc)
+    /// Returns a rectangle that represents the union of two rectangles.
+    ///
+    /// Parameters:
+    /// - rect1: The first rectangle.
+    ///
+    /// - rect2: The second rectangle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A rectangle with an area that encompasses the two rectangles and the space between them.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If either rectangle is `null`, this method returns the other rectangle. This method sets the origin point of the returned rectangle to the smaller of the x and y values for the two rectangles. Similarly, the method computes the size and width of the rectangle by taking the maximum x and y values and subtracting the x and y values for the new origin point.
+    ///
+    ///
     #[doc(alias = "MKMapRectUnion")]
     #[inline]
     pub unsafe fn union(self, rect2: MKMapRect) -> MKMapRect {
@@ -259,7 +395,19 @@ impl MKMapRect {
         unsafe { MKMapRectUnion(self, rect2) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/intersection(_:)?language=objc)
+    /// Returns the rectangle that represents the intersection of two rectangles.
+    ///
+    /// Parameters:
+    /// - rect1: The first rectangle.
+    ///
+    /// - rect2: The second rectangle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The rectangle representing the intersection of the two rectangles, or [`MKMapRectNull`](https://developer.apple.com/documentation/mapkit/mkmaprect/null) if there’s no intersection.
+    ///
+    ///
     #[doc(alias = "MKMapRectIntersection")]
     #[inline]
     pub unsafe fn intersection(self, rect2: MKMapRect) -> MKMapRect {
@@ -269,7 +417,21 @@ impl MKMapRect {
         unsafe { MKMapRectIntersection(self, rect2) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/insetby(dx:dy:)?language=objc)
+    /// Returns the specified rectangle with an inset by the specified amounts.
+    ///
+    /// Parameters:
+    /// - rect: The original rectangle.
+    ///
+    /// - dx: The amount (in map points) to subtract from both sides along the x-axis.
+    ///
+    /// - dy: The amount (in map points) to subtract from both sides along the x-axis.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The inset rectangle. If the original rectangle was null, that rectangle is returned instead.
+    ///
+    ///
     #[doc(alias = "MKMapRectInset")]
     #[inline]
     pub unsafe fn inset(self, dx: c_double, dy: c_double) -> MKMapRect {
@@ -279,7 +441,21 @@ impl MKMapRect {
         unsafe { MKMapRectInset(self, dx, dy) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/offsetby(dx:dy:)?language=objc)
+    /// Returns a rectangle with an origin point that shifts by the specified amount.
+    ///
+    /// Parameters:
+    /// - rect: The original rectangle.
+    ///
+    /// - dx: The amount (in map points) to shift the x-coordinate of the origin point.
+    ///
+    /// - dy: The amount (in map points) to shift the x-coordinate of the origin point.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The offset rectangle. If the original rectangle is `null`, that rectangle returns instead.
+    ///
+    ///
     #[doc(alias = "MKMapRectOffset")]
     #[inline]
     pub unsafe fn offset(self, dx: c_double, dy: c_double) -> MKMapRect {
@@ -289,7 +465,19 @@ impl MKMapRect {
         unsafe { MKMapRectOffset(self, dx, dy) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectdivide(_:_:_:_:_:)?language=objc)
+    /// Divides the specified rectangle into two smaller rectangles.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle to divide.
+    ///
+    /// - slice: On input, a pointer to a map rectangle. On output, this parameter contains the portion of `rect` that the method removes.
+    ///
+    /// - remainder: On input, a pointer to a map rectangle. On output, this parameter contains the remaining portion of `rect` that the method doesn’t remove.
+    ///
+    /// - amount: The amount of `rect` to remove along the specified edge. If this value is negative, the system sets it to `0`.
+    ///
+    /// - edge: The edge from which to remove the specified amount.
+    ///
     ///
     /// # Safety
     ///
@@ -317,7 +505,25 @@ impl MKMapRect {
         unsafe { MKMapRectDivide(self, slice, remainder, amount, edge) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/contains(_:)-79tjt?language=objc)
+    /// Returns a Boolean value that indicates whether the specified map point lies within the rectangle.
+    ///
+    /// Parameters:
+    /// - rect: The map rectangle the method is checking.
+    ///
+    /// - point: The point to check.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the rectangle isn’t `null` or empty and the point is inside the rectangle; otherwise, [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For this method, a point is inside the rectangle if its coordinates lie inside the rectangle or on the minimum X or minimum Y edge.
+    ///
+    ///
     #[doc(alias = "MKMapRectContainsPoint")]
     #[inline]
     pub unsafe fn contains_point(self, point: MKMapPoint) -> bool {
@@ -327,7 +533,19 @@ impl MKMapRect {
         unsafe { MKMapRectContainsPoint(self, point) }.as_bool()
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/contains(_:)-1z5oa?language=objc)
+    /// Returns a Boolean value that indicates whether one rectangle contains another.
+    ///
+    /// Parameters:
+    /// - rect1: The containing rectangle.
+    ///
+    /// - rect2: The rectangle that `rect1` might contain.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `rect2` is `null` or lies entirely inside `rect1`; otherwise, returns [`false`](https://developer.apple.com/documentation/swift/false) if `rect1` is `null` or doesn’t completely enclose `rect2`.
+    ///
+    ///
     #[doc(alias = "MKMapRectContainsRect")]
     #[inline]
     pub unsafe fn contains_rect(self, rect2: MKMapRect) -> bool {
@@ -337,7 +555,25 @@ impl MKMapRect {
         unsafe { MKMapRectContainsRect(self, rect2) }.as_bool()
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/intersects(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether two rectangles intersect each other.
+    ///
+    /// Parameters:
+    /// - rect1: The first rectangle.
+    ///
+    /// - rect2: The second rectangle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if `rect1` and `rect2` intersect each other, or [`false`](https://developer.apple.com/documentation/swift/false) if they don’t intersect or either rectangle is `null`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The rectangles aren’t intersecting if the only intersection occurs along an edge. For a true intersection, the rectangles both need to enclose a single rectangular area with a width and height that are both greater than `0`.
+    ///
+    ///
     #[doc(alias = "MKMapRectIntersectsRect")]
     #[inline]
     pub unsafe fn intersects_rect(self, rect2: MKMapRect) -> bool {
@@ -350,7 +586,17 @@ impl MKMapRect {
 
 #[cfg(feature = "objc2-core-location")]
 impl MKCoordinateRegion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion/init(_:)?language=objc)
+    /// Returns the region that corresponds to the specified map rectangle.
+    ///
+    /// Parameters:
+    /// - rect: The map rectangle that corresponds to the desired region on a two-dimensional map projection.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The region structure specifying the latitude, longitude, and span values for the specified rectangle.
+    ///
+    ///
     #[doc(alias = "MKCoordinateRegionForMapRect")]
     #[cfg(feature = "objc2-core-location")]
     #[inline]
@@ -363,7 +609,17 @@ impl MKCoordinateRegion {
 }
 
 impl MKMapRect {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/spans180thmeridian?language=objc)
+    /// A Boolean value that indicates whether the specified map rectangle crosses the 180th meridian.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// [`true`](https://developer.apple.com/documentation/swift/true) if the rectangle spans the 180th meridian or [`false`](https://developer.apple.com/documentation/swift/false) if it is contained wholly within the world map.
+    ///
+    ///
     #[doc(alias = "MKMapRectSpans180thMeridian")]
     #[inline]
     pub unsafe fn spans180th_meridian(self) -> bool {
@@ -373,7 +629,17 @@ impl MKMapRect {
         unsafe { MKMapRectSpans180thMeridian(self) }.as_bool()
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/remainder?language=objc)
+    /// A rectangle that represents the normalized portion of the specified rectangle that lies outside the world map boundaries.
+    ///
+    /// Parameters:
+    /// - rect: The rectangle to check.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For a rectangle that lies on the 180th meridian, this function isolates the portion that lies outside the boundary, wraps it to the opposite side of the map, and returns that rectangle.
+    ///
+    ///
     #[doc(alias = "MKMapRectRemainder")]
     #[inline]
     pub unsafe fn remainder(self) -> MKMapRect {

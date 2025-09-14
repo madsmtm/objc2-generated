@@ -9,6 +9,25 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// Prototype of a callback function used to retain a value being added to a set.
+///
+/// Parameters:
+/// - allocator: The set’s allocator.
+///
+/// - value: The value being added to the set.
+///
+///
+/// ## Return Value
+///
+/// The value to store in the set, which is usually the `value` parameter passed to this callback, but may be a different   value if a different value should be stored in the collection.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) in a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure.
+///
+///
 /// Type of the callback function used by CFSets for retaining values.
 ///
 /// Parameter `allocator`: The allocator of the CFSet.
@@ -18,31 +37,74 @@ use crate::*;
 /// Returns: The value to store in the set, which is usually the value
 /// parameter passed to this callback, but may be a different
 /// value if a different value should be stored in the set.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetretaincallback?language=objc)
 pub type CFSetRetainCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void) -> *const c_void>;
 
+/// Prototype of a callback function used to release a value before it’s removed from a set.
+///
+/// Parameters:
+/// - allocator: The set’s allocator.
+///
+/// - value: The value being removed from the set.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) in a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure.
+///
+///
 /// Type of the callback function used by CFSets for releasing a retain on values.
 ///
 /// Parameter `allocator`: The allocator of the CFSet.
 ///
 /// Parameter `value`: The value to release.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreleasecallback?language=objc)
 pub type CFSetReleaseCallBack =
     Option<unsafe extern "C-unwind" fn(*const CFAllocator, *const c_void)>;
 
+/// Prototype of a callback function used to get a description of a value in a set.
+///
+/// Parameters:
+/// - value: The value to be described.
+///
+///
+/// ## Return Value
+///
+/// A textual description of `value`. The caller is responsible for releasing this object.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) in a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure. This callback is used by the [`CFCopyDescription`](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)) function.
+///
+///
 /// Type of the callback function used by CFSets for describing values.
 ///
 /// Parameter `value`: The value to describe.
 ///
 /// Returns: A description of the specified value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcopydescriptioncallback?language=objc)
 pub type CFSetCopyDescriptionCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void) -> *const CFString>;
 
+/// Prototype of a callback function used to determine if two values in a set are equal.
+///
+/// Parameters:
+/// - value1: A value in the set.
+///
+/// - value2: Another value in the set.
+///
+///
+/// ## Return Value
+///
+/// `true` if `value1` and `value2` are equal, `false` otherwise.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) in a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure.
+///
+///
 /// Type of the callback function used by CFSets for comparing values.
 ///
 /// Parameter `value1`: The first value to compare.
@@ -50,20 +112,34 @@ pub type CFSetCopyDescriptionCallBack =
 /// Parameter `value2`: The second value to compare.
 ///
 /// Returns: True if the values are equal, otherwise false.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetequalcallback?language=objc)
 pub type CFSetEqualCallBack =
     Option<unsafe extern "C-unwind" fn(*const c_void, *const c_void) -> Boolean>;
 
+/// Prototype of a callback function called to compute a hash code for a value. Hash codes are used when values are accessed, added, or removed from a collection.
+///
+/// Parameters:
+/// - value: The value used to compute the hash code.
+///
+///
+/// ## Return Value
+///
+/// An integer that can be used as a table address in a hash table structure.
+///
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) in a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure.
+///
+///
 /// Type of the callback function used by CFSets for hashing values.
 ///
 /// Parameter `value`: The value to hash.
 ///
 /// Returns: The hash of the value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsethashcallback?language=objc)
 pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -> CFHashCode>;
 
+/// This structure contains the callbacks used to retain, release, describe, and compare the values of a CFSet object.
 /// Structure containing the callbacks of a CFSet.
 /// Field: version The version number of the structure type being passed
 /// in as a parameter to the CFSet creation functions. This
@@ -85,8 +161,6 @@ pub type CFSetHashCallBack = Option<unsafe extern "C-unwind" fn(*const c_void) -
 /// equality for some operations.
 /// Field: hash The callback used to compare values in the set for
 /// uniqueness for some operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -120,22 +194,38 @@ unsafe impl RefEncode for CFSetCallBacks {
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Predefined [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure containing a set of callbacks  appropriate for use when the values in a CFSet are all CFType-derived objects. The retain callback is [`CFRetain`](https://developer.apple.com/documentation/corefoundation/cfretain), the release callback is [`CFRelease`](https://developer.apple.com/documentation/corefoundation/cfrelease), the copy callback is [`CFCopyDescription`](https://developer.apple.com/documentation/corefoundation/cfcopydescription(_:)), the equal callback is [`CFEqual`](https://developer.apple.com/documentation/corefoundation/cfequal(_:_:)), and the hash callback is [`CFHash`](https://developer.apple.com/documentation/corefoundation/cfhash(_:)). Therefore, if you use this constant when creating the collection, items are automatically retained when added to the collection, and released when removed from the collection.
+    ///
+    ///
     /// Predefined CFSetCallBacks structure containing a set of callbacks
     /// appropriate for use when the values in a CFSet are all CFTypes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks?language=objc)
     pub static kCFTypeSetCallBacks: CFSetCallBacks;
 }
 
 extern "C" {
+    /// Predefined [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure containing a set of callbacks  appropriate for use when the values in a set are all CFString objects. The retain callback makes an immutable copy of strings added to the set.
     /// Predefined CFSetCallBacks structure containing a set of callbacks
     /// appropriate for use when the values in a CFSet should be copies
     /// of a CFString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcopystringsetcallbacks?language=objc)
     pub static kCFCopyStringSetCallBacks: CFSetCallBacks;
 }
 
+/// Prototype of a callback function that may be applied to every value in a set.
+///
+/// Parameters:
+/// - value: The current value in a set.
+///
+/// - context: The program-defined context parameter given to the apply function.
+///
+///
+/// ## Discussion
+///
+/// This callback is passed to the [`CFSetApplyFunction`](https://developer.apple.com/documentation/corefoundation/cfsetapplyfunction(_:_:_:)) function which iterates over the values in a set and applies the behavior defined in the applier function to each value in a set.
+///
+///
 /// Type of the callback function used by the apply functions of
 /// CFSets.
 ///
@@ -143,15 +233,25 @@ extern "C" {
 ///
 /// Parameter `context`: The user-defined context parameter given to the apply
 /// function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplierfunction?language=objc)
 pub type CFSetApplierFunction = Option<unsafe extern "C-unwind" fn(*const c_void, *mut c_void)>;
 
+///
+/// ## Overview
+///
+/// CFSet and its derived mutable type, [`CFMutableSetRef`](https://developer.apple.com/documentation/corefoundation/cfmutableset), provide support for the mathematical concept of a set. A set, both in its mathematical sense and in the implementation of CFSet, is an unordered collection of distinct elements. CFSet creates static sets and CFMutableSet creates dynamic sets.
+///
+/// Use bags or sets as an alternative to arrays when the order of elements isn’t important and performance in testing whether a value is contained in the collection is a consideration—while arrays are ordered, testing for membership is slower than with bags or sets. Use bags over sets if you want to allow duplicate values in your collections.
+///
+/// You create a static set object using either the [`CFSetCreate`](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)) or [`CFSetCreateCopy`](https://developer.apple.com/documentation/corefoundation/cfsetcreatecopy(_:_:)) function. These functions return a set containing the values you pass in as arguments. (Note that sets can’t contain `NULL` pointers; in most cases, though, you can use the [`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull) constant instead.) Values are not copied but retained using the retain callback provided when the set was created. Similarly, when a value is removed from a set, it is released using the release callback.
+///
+/// CFSet provides functions for querying the values of a set. The [`CFSetGetCount`](https://developer.apple.com/documentation/corefoundation/cfsetgetcount(_:)) returns the number of values in a set, the [`CFSetContainsValue`](https://developer.apple.com/documentation/corefoundation/cfsetcontainsvalue(_:_:)) function checks if a value is in a set, and [`CFSetGetValues`](https://developer.apple.com/documentation/corefoundation/cfsetgetvalues(_:_:)) returns a C array containing all the values in a set.
+///
+/// CFSet is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSSet`](https://developer.apple.com/documentation/foundation/nsset). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSSet *` parameter, you can pass in a `CFSetRef`, and in a function where you see a `CFSetRef` parameter, you can pass in an NSSet instance. This also applies to concrete subclasses of NSSet. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to immutable CFSets.
 ///
 /// This is toll-free bridged with `NSSet`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfset?language=objc)
 #[doc(alias = "CFSetRef")]
 #[repr(C)]
 pub struct CFSet<T: ?Sized = Opaque> {
@@ -186,11 +286,21 @@ impl<T: ?Sized> CFSet<T> {
     }
 }
 
+///
+/// ## Overview
+///
+/// CFMutableSet manages dynamic sets. The basic interface for managing sets is provided by [`CFSetRef`](https://developer.apple.com/documentation/corefoundation/cfset). CFMutableSet adds functions to modify the contents of a set.
+///
+/// You create a mutable set object using either the [`CFSetCreateMutable`](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutable(_:_:_:)) or [`CFSetCreateMutableCopy`](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutablecopy(_:_:_:)) function.
+///
+/// CFMutableSet provides several functions for adding and removing values from a set. The [`CFSetAddValue`](https://developer.apple.com/documentation/corefoundation/cfsetaddvalue(_:_:)) function adds a value to a set and [`CFSetRemoveValue`](https://developer.apple.com/documentation/corefoundation/cfsetremovevalue(_:_:)) removes a value from a set.
+///
+/// CFMutableSet is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSMutableSet`](https://developer.apple.com/documentation/foundation/nsmutableset). What this means is that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. This means that in a method where you see an `NSMutableSet *` parameter, you can pass in a `CFMutableSetRef`, and in a function where you see a `CFMutableSetRef` parameter, you can pass in an NSMutableSet instance. This also applies to concrete subclasses of NSMutableSet. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 /// This is the type of a reference to mutable CFSets.
 ///
 /// This is toll-free bridged with `NSMutableSet`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmutableset?language=objc)
 #[doc(alias = "CFMutableSetRef")]
 #[repr(C)]
 pub struct CFMutableSet<T: ?Sized = Opaque> {
@@ -226,9 +336,20 @@ impl<T: ?Sized> CFMutableSet<T> {
 }
 
 unsafe impl ConcreteType for CFSet {
-    /// Returns the type identifier of all CFSet instances.
+    /// Returns the type identifier for the CFSet type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFSet type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// CFMutableSet has the same type identifier as CFSet.
+    ///
+    ///
+    /// Returns the type identifier of all CFSet instances.
     #[doc(alias = "CFSetGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -240,6 +361,31 @@ unsafe impl ConcreteType for CFSet {
 }
 
 impl CFSet {
+    /// Creates an immutable CFSet object containing supplied values.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new set and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - values: A C array of the pointer-sized values to be in the new set. This parameter may be `NULL` if the `numValues` parameter is 0. The C array is not changed or freed by this function. `values` must be a pointer to a C array of at least `numValues` elements.
+    ///
+    /// - numValues: The number of values to copy from the `values` C array in the new set.
+    ///
+    /// - callBacks: A pointer to a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the collection. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations.
+    ///
+    /// This value may be `NULL`, which is treated as a valid structure of version `0` with all fields `NULL`. If the collection contains only CFType objects, then pass [`kCFTypeSetCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks) to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new immutable set, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    ///
     /// Creates a new immutable set with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -294,8 +440,6 @@ impl CFSet {
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreate(_:_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreate")]
     #[inline]
     pub unsafe fn new(
@@ -316,6 +460,25 @@ impl CFSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates an immutable set containing the values of an existing set.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new set and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - theSet: The set to copy.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new set that contains the same values as `theSet`, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The pointer values from `theSet` are copied into the new set, and the values are retained by the new set. The count of the new set is the same as the count of `theSet`. The new set uses the same callbacks as `theSet`.
+    ///
+    ///
     /// Creates a new immutable set with the values from the given set.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -334,8 +497,6 @@ impl CFSet {
     /// not a valid CFSet, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFSet.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatecopy(_:_:)?language=objc)
     #[doc(alias = "CFSetCreateCopy")]
     #[inline]
     pub fn new_copy(
@@ -354,6 +515,27 @@ impl CFSet {
 }
 
 impl CFMutableSet {
+    /// Creates an empty CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new set and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new set. The set starts empty and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. The value must not be negative.
+    ///
+    /// - callBacks: A pointer to a [`CFSetCallBacks`](https://developer.apple.com/documentation/corefoundation/cfsetcallbacks) structure initialized with the callbacks to use to retain, release, describe, and compare values in the set. A copy of the contents of the callbacks structure is made, so that a pointer to a structure on the stack can be passed in or can be reused for multiple collection creations. This parameter may be `NULL`, which is treated as if a valid structure of version `0` with all fields `NULL` had been passed in.
+    ///
+    /// If any of the fields are not valid pointers to functions of the correct type, or this parameter is not a valid pointer to a `CFSetCallBacks` structure, the behavior is undefined. If any value put into the collection is not one understood by one of the callback functions, the behavior when that callback function is used is undefined.
+    ///
+    /// If the collection contains CFType objects only, then pass [`kCFTypeSetCallBacks`](https://developer.apple.com/documentation/corefoundation/kcftypesetcallbacks) as this parameter to use the default callback functions.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable set, or `NULL` if there was a problem creating the object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new empty mutable set.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -404,8 +586,6 @@ impl CFMutableSet {
     /// - `allocator` might not allow `None`.
     /// - `call_backs` must be a valid pointer.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutable(_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -424,6 +604,23 @@ impl CFMutableSet {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a new mutable set with the values from another set.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new set and its storage for values. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - capacity: The maximum number of values that can be contained by the new set. The set starts with the same number of values as `theSet` and can grow to this number of values (and it can have less).
+    ///
+    /// Pass `0` to specify that the maximum capacity is not limited. If non-`0`, `capacity` must be greater than or equal to the count of `theSet`.
+    ///
+    /// - theSet: The set to copy. The pointer values from `theSet` are copied into the new set. The values are also retained by the new set. The count of the new set is the same as the count of `theSet`. The new set uses the same callbacks as `theSet`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new mutable set that contains the same values as `theSet`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     /// Creates a new immutable set with the values from the given set.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -459,8 +656,6 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - The returned generic must be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcreatemutablecopy(_:_:_:)?language=objc)
     #[doc(alias = "CFSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -481,14 +676,23 @@ impl CFMutableSet {
 }
 
 impl CFSet {
+    /// Returns the number of values currently in a set.
+    ///
+    /// Parameters:
+    /// - theSet: The set to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of values in `theSet`.
+    ///
+    ///
     /// Returns the number of values currently in the set.
     ///
     /// Parameter `theSet`: The set to be queried. If this parameter is not a valid
     /// CFSet, the behavior is undefined.
     ///
     /// Returns: The number of values in the set.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetcount(_:)?language=objc)
     #[doc(alias = "CFSetGetCount")]
     #[inline]
     pub fn count(&self) -> CFIndex {
@@ -498,6 +702,25 @@ impl CFSet {
         unsafe { CFSetGetCount(self) }
     }
 
+    /// Returns the number of values in a set that match a given value.
+    ///
+    /// Parameters:
+    /// - theSet: The set to examine.
+    ///
+    /// - value: The value for which to search in `theSet`. Comparisons are made using the equal callback provided when `theSet` was created. If the equal callback was `NULL`, pointer equality (in C, ==) is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of times `value` occurs in `theSet`. By definition, sets can not contain duplicate values, so returns `1` if `value` is contained in `theSet`, otherwise `0`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses the equal callback. `value` and all elements in the set must be understood by the equal callback.
+    ///
+    ///
     /// Counts the number of times the given value occurs in the set. Since
     /// sets by definition contain only one instance of a value, this function
     /// is synonymous to CFSetContainsValue.
@@ -518,8 +741,6 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetcountofvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetGetCountOfValue")]
     #[inline]
     pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
@@ -529,6 +750,25 @@ impl CFSet {
         unsafe { CFSetGetCountOfValue(self, value) }
     }
 
+    /// Returns a Boolean that indicates whether a set contains a given value.
+    ///
+    /// Parameters:
+    /// - theSet: The set to search.
+    ///
+    /// - value: The value to match in `theSet`. Comparisons are made using the equal callback provided when `theSet` was created. If the equal callback was `NULL`, pointer equality (in C, ==) is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` is contained in `theSet`, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses the equal callback. `value` and all elements in the set must be understood by the equal callback.
+    ///
+    ///
     /// Reports whether or not the value is in the set.
     ///
     /// Parameter `theSet`: The set to be searched. If this parameter is not a
@@ -547,8 +787,6 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetcontainsvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetContainsValue")]
     #[inline]
     pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
@@ -559,6 +797,25 @@ impl CFSet {
         ret != 0
     }
 
+    /// Obtains a specified value from a set.
+    ///
+    /// Parameters:
+    /// - theSet: The set to examine.
+    ///
+    /// - value: The value for which to search in `theSet`. Comparisons are made using the equal callback provided when `theSet` was created. If the equal callback was `NULL`, pointer equality (in C, ==) is used.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A pointer to the requested value, or `NULL` if the value is not in `theSet`. If the value is a Core Foundation object, Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Since this function uses the equal callback, `value` all elements in the set must be understood by the equal callback. Depending on the implementation of the equal callback specified when creating `theSet`, the value returned may not have the same pointer equality as `value`.
+    ///
+    ///
     /// Retrieves a value in the set which hashes the same as the specified value.
     ///
     /// Parameter `theSet`: The set to be queried. If this parameter is not a
@@ -576,8 +833,6 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetGetValue")]
     #[inline]
     pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
@@ -587,6 +842,27 @@ impl CFSet {
         unsafe { CFSetGetValue(self, value) }
     }
 
+    /// Reports whether or not a value is in a set, and if it exists returns the value indirectly.
+    ///
+    /// Parameters:
+    /// - theSet: The set to examine.
+    ///
+    /// - candidate: The value for which to search in `theSet`. Comparisons are made using the equal callback provided when `theSet` was created. If the equal callback was `NULL`, pointer equality (in C, ==) is used.
+    ///
+    /// - value: Upon return contains the matching value if it exists in `theSet`, otherwise `NULL`. If the value is a Core Foundation object, ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `value` exists in `theSet`, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uses the equal callback. `candidate` and all elements in the set must be understood by the equal callback. Depending on the implementation of the equal callback specified when creating `theSet`, the value returned in `value` may not have the same pointer equality as `candidate`.
+    ///
+    ///
     /// Retrieves a value in the set which hashes the same as the specified value,
     /// if present.
     ///
@@ -615,8 +891,6 @@ impl CFSet {
     /// - `the_set` generic must be of the correct type.
     /// - `candidate` must be a valid pointer.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalueifpresent(_:_:_:)?language=objc)
     #[doc(alias = "CFSetGetValueIfPresent")]
     #[inline]
     pub unsafe fn value_if_present(
@@ -635,6 +909,13 @@ impl CFSet {
         ret != 0
     }
 
+    /// Obtains all values in a set.
+    ///
+    /// Parameters:
+    /// - theSet: The set to examine.
+    ///
+    /// - values: A C array of pointer-sized values to be filled with values from `theSet`. The value must be a valid C array of the appropriate type and of a size at least equal to the count of `theSet`). If the values are Core Foundation objects, ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
     /// Fills the buffer with values from the set.
     ///
     /// Parameter `theSet`: The set to be queried. If this parameter is not a
@@ -650,8 +931,6 @@ impl CFSet {
     ///
     /// - `the_set` generic must be of the correct type.
     /// - `values` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetgetvalues(_:_:)?language=objc)
     #[doc(alias = "CFSetGetValues")]
     #[inline]
     pub unsafe fn values(&self, values: *mut *const c_void) {
@@ -661,6 +940,21 @@ impl CFSet {
         unsafe { CFSetGetValues(self, values) }
     }
 
+    /// Calls a function once for each value in a set.
+    ///
+    /// Parameters:
+    /// - theSet: The set to operate upon.
+    ///
+    /// - applier: The callback function to call once for each value in the `theSet`. If this parameter is not a pointer to a function of the correct prototype, the behavior is undefined. The `applier` function must be able to work with all values in `theSet`.
+    ///
+    /// - context: A pointer-sized program-defined value, which is passed as the second parameter to the `applier` function, but is otherwise unused by this function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `theSet` is mutable, it is unsafe for the `applier` function to change the contents of the collection.
+    ///
+    ///
     /// Calls a function once for each value in the set.
     ///
     /// Parameter `theSet`: The set to be operated upon. If this parameter is not
@@ -684,8 +978,6 @@ impl CFSet {
     /// - `the_set` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetapplyfunction(_:_:_:)?language=objc)
     #[doc(alias = "CFSetApplyFunction")]
     #[inline]
     pub unsafe fn apply_function(&self, applier: CFSetApplierFunction, context: *mut c_void) {
@@ -701,6 +993,15 @@ impl CFSet {
 }
 
 impl CFMutableSet {
+    /// Adds a value to a CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - theSet: The set to modify.
+    ///
+    /// - value: A CFType object or a pointer value to add to `theSet` (or the value itself, if it fits into the size of a pointer).
+    ///
+    /// `value` is retained by `theSet` using the retain callback provided when `theSet` was created. If `value` is not of the type expected by the retain callback, the behavior is undefined. If `value` already exists in the collection, this function returns without doing anything.
+    ///
     /// Adds the value to the set if it is not already present.
     ///
     /// Parameter `theSet`: The set to which the value is to be added. If this
@@ -718,8 +1019,6 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetaddvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetAddValue")]
     #[inline]
     pub unsafe fn add_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -729,6 +1028,13 @@ impl CFMutableSet {
         unsafe { CFSetAddValue(the_set, value) }
     }
 
+    /// Replaces a value in a CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - theSet: The set to modify.
+    ///
+    /// - value: The value to replace in `theSet`. If this value does not already exist in `theSet`, the function does nothing. You may pass the value itself instead of a pointer if it is pointer-size or less. The equal callback provided when `theSet` was created is used to compare. If the equal callback was `NULL`, pointer equality (in C, ==) is used. If `value`, or any other value in `theSet`, is not understood by the equal callback, the behavior is undefined.
+    ///
     /// Replaces the value in the set if it is present.
     ///
     /// Parameter `theSet`: The set to which the value is to be replaced. If this
@@ -750,8 +1056,6 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetreplacevalue(_:_:)?language=objc)
     #[doc(alias = "CFSetReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -761,6 +1065,19 @@ impl CFMutableSet {
         unsafe { CFSetReplaceValue(the_set, value) }
     }
 
+    /// Sets a value in a CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - theSet: The set to modify.
+    ///
+    /// - value: The value to be set in `theSet`. If this value already exists in `theSet`, it is replaced. You may pass the value itself instead of a pointer to it if the value is pointer-size or less. If `theSet` is fixed-size and setting the value would increase its size beyond its capacity, the behavior is undefined.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Depending on the implementation of the equal callback specified when creating `theSet`, the value that is replaced by `value` may not have the same pointer equality.
+    ///
+    ///
     /// Replaces the value in the set if it is present, or adds the value to
     /// the set if it is absent.
     ///
@@ -783,8 +1100,6 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetsetvalue(_:_:)?language=objc)
     #[doc(alias = "CFSetSetValue")]
     #[inline]
     pub unsafe fn set_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -794,6 +1109,13 @@ impl CFMutableSet {
         unsafe { CFSetSetValue(the_set, value) }
     }
 
+    /// Removes a value from a CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - theSet: The set to modify.
+    ///
+    /// - value: The value to remove from `theSet`.
+    ///
     /// Removes the specified value from the set.
     ///
     /// Parameter `theSet`: The set from which the value is to be removed.
@@ -811,8 +1133,6 @@ impl CFMutableSet {
     /// - `the_set` generic must be of the correct type.
     /// - `the_set` might not allow `None`.
     /// - `value` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetremovevalue(_:_:)?language=objc)
     #[doc(alias = "CFSetRemoveValue")]
     #[inline]
     pub unsafe fn remove_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
@@ -822,13 +1142,16 @@ impl CFMutableSet {
         unsafe { CFSetRemoveValue(the_set, value) }
     }
 
+    /// Removes all values from a CFMutableSet object.
+    ///
+    /// Parameters:
+    /// - theSet: The set to modify.
+    ///
     /// Removes all the values from the set, making it empty.
     ///
     /// Parameter `theSet`: The set from which all of the values are to be
     /// removed. If this parameter is not a valid mutable CFSet,
     /// the behavior is undefined.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsetremoveallvalues(_:)?language=objc)
     #[doc(alias = "CFSetRemoveAllValues")]
     #[inline]
     pub fn remove_all_values(the_set: Option<&CFMutableSet>) {

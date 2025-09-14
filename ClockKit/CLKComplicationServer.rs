@@ -8,13 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationserveractivecomplicationsdidchangenotification?language=objc)
+    /// Posted when the set of active complications changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is `nil` and there’s no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
     pub static CLKComplicationServerActiveComplicationsDidChangeNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationserver?language=objc)
+    /// An object that manages the active complications for an app.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create instances of this class directly. Instead, use the shared object to fetch information about your active complications and to invalidate or extend the data for a specific complication. You can also use it to get information about the minimum and maximum dates for which you need to provide data to support Time Travel.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

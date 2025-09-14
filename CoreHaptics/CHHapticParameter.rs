@@ -7,6 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An identifier for an event parameter.
+///
+/// ## Discussion
+///
+/// Specify event parameters when creating a haptic or audio event. The combination of parameters determines the event’s character.
+///
+///
 /// Parameters used to modify individual haptic and/or audio events.
 ///
 /// Event parameters are specified as part of the creation of a CHHapticEvent or in an event definition in a haptic pattern.
@@ -57,61 +64,172 @@ use crate::*;
 ///
 /// The high frequency content an audio event.
 /// Range: 0.0 (frequency content reduced the most) to 1.0 (no reduction of frequency content).  Default: 1.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticEventParameterID = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/hapticintensity?language=objc)
+    /// The strength of a haptic event.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter maps to the haptic pattern’s amplitude or strength. Its value ranges from 0.0 (weak) to 1.0 (strong). Think of intensity as the volume of a haptic pattern, indicating how impactful it feels in the user’s hand. The higher the haptic intensity, the stronger the resulting haptic.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/83c666cf861d222f4b5e468676c02530/media-3242667~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/231267e4c61ce4a0cf7f2dcf45e0f9f7/media-3242667%402x.png 2x" />
+    ///     <img alt="Short blue bars show the intensity of a transient haptic event on the left, and long orange bars show a continuous haptic event on the right." src="https://docs-assets.developer.apple.com/published/83c666cf861d222f4b5e468676c02530/media-3242667~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// To change the intensity dynamically, use [`CHHapticDynamicParameterIDHapticIntensityControl`](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticintensitycontrol).
+    ///
+    ///
     pub static CHHapticEventParameterIDHapticIntensity: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/hapticsharpness?language=objc)
+    /// The feel of a haptic event.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify a pattern’s sharpness by setting this value from 0.0 to 1.0. Haptic patterns with low sharpness have a round and organic feel, whereas haptic patterns with high sharpness feel more crisp and precise. The diagram below depicts sharpness of haptic events as a single line to indicate the sensation of persistent feedback against the user’s hand:
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/6e7464b3f56dc2210db6a6fe5d06264c/media-3242668~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/3f9b18cbf32aef4988e7731251dfaf54/media-3242668%402x.png 2x" />
+    ///     <img alt="A diagram showing sharpness of three transient haptic events on the left, and sharpness of three continuous haptic events on the right." src="https://docs-assets.developer.apple.com/published/6e7464b3f56dc2210db6a6fe5d06264c/media-3242668~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// To change the sharpness dynamically, use [`CHHapticDynamicParameterIDHapticSharpnessControl`](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticsharpnesscontrol).
+    ///
+    ///
     pub static CHHapticEventParameterIDHapticSharpness: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/attacktime?language=objc)
+    /// The time at which a haptic pattern’s intensity begins increasing.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter can be an event parameter or a dynamic parameter. An event parameter indicates that the haptic begins increasing in intensity at the set time, where time `0` indicates now, or the current time.
+    ///
+    /// A dynamic value indicates that the time at which ramp-up begins can change. For example, a value of `0` indicates that the attack time is at its default value. Positive values up to `1.0` increase the attack time exponentially, while negative values down to `-1.0` decrease the attack time exponentially. Haptic intensity responds to this parameter.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f0d23c603c37c630c52b76a5edf68b15/media-3235478~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/097c6160fa300890dfc4825ab2ac4326/media-3235478%402x.png 2x" />
+    ///     <img alt="A series of lines showing how a haptic pattern ramps up in intensity for various values of attack." src="https://docs-assets.developer.apple.com/published/f0d23c603c37c630c52b76a5edf68b15/media-3235478~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     pub static CHHapticEventParameterIDAttackTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/decaytime?language=objc)
+    /// The time at which a haptic pattern’s intensity begins decreasing.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter can be an event parameter or a dynamic parameter. A fixed value indicates that the haptic begins decreasing in intensity at the set time, where time `0` indicates now, or the current time.
+    ///
+    /// A dynamic value indicates that the start time of the decrease can change. For example, a value of `0` indicates that the decay time is at its default value. Positive values up to `1.0` increase the decay time exponentially, while negative values down to `-1.0` decrease the decay time exponentially.
+    ///
+    /// Haptic intensity responds to this parameter. For example, the following graphic shows the intensity of a haptic pattern in gray. At the beginning, the haptic pattern’s intensity increases from zero to its final value over a certain amount of time; this duration is called the _attack_. As the haptic pattern reaches its end, the intensity gradually transitions to zero over a certain amount of time; this duration is called the _decay_.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/a536d45d91235ea55191fb5726a97879/media-3199008~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/772b8a678caa044cf704d0316bcfde5f/media-3199008%402x.png 2x" />
+    ///     <img alt="A series of lines showing how a haptic pattern ramps down in intensity for various values of decay." src="https://docs-assets.developer.apple.com/published/a536d45d91235ea55191fb5726a97879/media-3199008~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    ///
     pub static CHHapticEventParameterIDDecayTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/releasetime?language=objc)
+    /// The time at which to begin fading the haptic pattern.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify the release time relative to the current time (`t = 0`), in seconds. It indicates when the pattern’s decay process begins. Its value ranges from `0` to `1`, with a default value of `0`.
+    ///
+    ///
     pub static CHHapticEventParameterIDReleaseTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/sustained?language=objc)
+    /// A Boolean value that indicates whether to sustain a haptic event for its specified duration.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter is an event parameter. It determines whether or not the haptic continues playing at full strength after attack has finished, and before decay begins.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/ac0df37cf130e2dc7a71c434c518e87e/media-3235480~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/04bc2e5f6d5f61b14f7d15792da853b8/media-3235480%402x.png 2x" />
+    ///     <img alt="A graphic showing the effect of sustain: on the left, turning sustain on causes attack and decay to happen outside the haptic pattern, whereas turning sustain off (on the right) causes attan’tand decay to happen within the haptic pattern." src="https://docs-assets.developer.apple.com/published/ac0df37cf130e2dc7a71c434c518e87e/media-3235480~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), the engine sustains the haptic pattern throughout its specified duration, increasing only during its [`CHHapticEventParameterIDAttackTime`](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/attacktime), and decreasing only after its [`CHHapticEventParameterIDDecayTime`](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/decaytime). If [`false`](https://developer.apple.com/documentation/swift/false), the haptic doesn’t stay at full strength between attack and decay, tailing off even before its decay has begun.
+    ///
+    ///
     pub static CHHapticEventParameterIDSustained: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiovolume?language=objc)
+    /// The volume of an audio event.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter value ranges from 0.0 (silent) to 1.0 (maximum volume).
+    ///
+    ///
     pub static CHHapticEventParameterIDAudioVolume: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiopitch?language=objc)
+    /// The pitch of an audio event.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter value ranges from -1.0 (lowest pitch) to 1.0 (highest pitch).
+    ///
+    ///
     pub static CHHapticEventParameterIDAudioPitch: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiopan?language=objc)
+    /// The stereo panning of an audio event.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter value ranges from -1.0 (panned hard left) to 1.0 (panned hard right). The default value is 0.0 (center panned).
+    ///
+    ///
     pub static CHHapticEventParameterIDAudioPan: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiobrightness?language=objc)
+    /// The high-frequency content of an audio event.
+    ///
+    /// ## Discussion
+    ///
+    /// This parameter value ranges from 0.0 (maximum high-frequency reduction) to 1.0 (no high-frequency reduction). The default value is 1.0.
+    ///
+    ///
     pub static CHHapticEventParameterIDAudioBrightness: &'static CHHapticEventParameterID;
 }
 
+/// The identifier that reveals the type of property associated with a dynamic parameter.
 /// Parameters used to dynamically modify all haptic or audio events within a pattern.
 ///
 /// Dynamic parameters are not tied to specific events; each dynamic parameter modifies (modulates) the
@@ -176,84 +294,97 @@ extern "C" {
 /// Adjusts the envelope release time of all active and future Continuous audio events.
 /// Range: -1.0 (event releases shorter) to 1.0 (event releases longer).  Default: 0.0 (no effect).
 /// Not all audio event types respond to this parameter.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticDynamicParameterID = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticintensitycontrol?language=objc)
+    /// A dynamic parameter to change the strength of a haptic pattern.
     pub static CHHapticDynamicParameterIDHapticIntensityControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticsharpnesscontrol?language=objc)
+    /// A dynamic parameter to change the sharpness of a haptic pattern.
     pub static CHHapticDynamicParameterIDHapticSharpnessControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticattacktimecontrol?language=objc)
+    /// A dynamic parameter to change the time when a haptic pattern’s intensity begins increasing.
     pub static CHHapticDynamicParameterIDHapticAttackTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticdecaytimecontrol?language=objc)
+    /// A dynamic parameter to change the time when a haptic pattern’s intensity begins decreasing.
     pub static CHHapticDynamicParameterIDHapticDecayTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticreleasetimecontrol?language=objc)
+    /// A dynamic parameter to change the time at which to begin fading the haptic pattern.
     pub static CHHapticDynamicParameterIDHapticReleaseTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiovolumecontrol?language=objc)
+    /// A dynamic parameter to change the volume or loudness of an audio signal.
     pub static CHHapticDynamicParameterIDAudioVolumeControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiopancontrol?language=objc)
+    /// A dynamic parameter to change the pan of an audio signal.
     pub static CHHapticDynamicParameterIDAudioPanControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiobrightnesscontrol?language=objc)
+    /// A dynamic parameter to change the high-frequency content of an audio signal.
     pub static CHHapticDynamicParameterIDAudioBrightnessControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiopitchcontrol?language=objc)
+    /// A dynamic parameter to change the pitch of an audio signal.
     pub static CHHapticDynamicParameterIDAudioPitchControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audioattacktimecontrol?language=objc)
+    /// A dynamic parameter to change the time when an audio signal’s amplitude begins increasing.
     pub static CHHapticDynamicParameterIDAudioAttackTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiodecaytimecontrol?language=objc)
+    /// A dynamic parameter to change the time when an audio signal’s amplitude begins decreasing.
     pub static CHHapticDynamicParameterIDAudioDecayTimeControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audioreleasetimecontrol?language=objc)
+    /// A dynamic parameter to change the time when an audio signal begins fading.
     pub static CHHapticDynamicParameterIDAudioReleaseTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern_class!(
+    /// A static parameter value that represents a single property of the haptic pattern.
+    ///
+    /// ## Overview
+    ///
+    /// Event parameters specify values for haptics associated with the event. For example, an intensity event parameter determines how intense the haptic feels when it fires. Event parameters are static; they don’t change over the course of the pattern. To change a parameter value after a haptic has started playing, use a [`CHHapticDynamicParameter`](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter) to make an immediate change, or a [`CHHapticParameterCurve`](https://developer.apple.com/documentation/corehaptics/chhapticparametercurve) to transition smoothly.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/aaf543ba08610df3c53e3763d02d11ff/media-3197279~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/d1d479278871beef7f6678c56ea8743b/media-3197279%402x.png 2x" />
+    ///     <img alt="A rising blue line represents how a parameter curve changes the parameter’s value gradually over time, while an orange line shows how dynamic parameters change the parameter’s value immediately." src="https://docs-assets.developer.apple.com/published/d1d479278871beef7f6678c56ea8743b/media-3197279%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When you send a dynamic parameter to the haptic pattern, its value changes immediately, at the specified time. When you send a parameter curve instead, the value changes gradually according to the type of curve you specified.
+    ///
+    ///
     /// A CHHapticEventParameter contains a CHHapticEventParameterID/value pair which helps determine the initial character
     /// of a haptic or audio event.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticEventParameter;
@@ -304,12 +435,19 @@ impl CHHapticEventParameter {
 }
 
 extern_class!(
+    /// A value that you send to a haptic pattern player to alter a property value during playback.
+    ///
+    /// ## Overview
+    ///
+    /// Dynamic parameters change their associated event parameters at specific times. When you send a dynamic parameter to a haptic pattern player, the value associated with the parameter changes abruptly at the specified time, across all events in the pattern. To precipitate a gradual change, use a [`CHHapticParameterCurve`](https://developer.apple.com/documentation/corehaptics/chhapticparametercurve) object.
+    ///
+    /// For haptic intensity and audio volume, the final property value is equal to the original event parameter value multiplied by the dynamic parameter value. For all other parameters, the final property value is equal to the dynamic parameter value added to the original event parameter value. In both cases, the resulting value is limited to the range with minimum and maximum values corresponding to the specified event parameter.
+    ///
+    ///
     /// A CHHapticDynamicParameter contains a CHHapticDynamicParameterID/value pair which will modify (modulate) the ongoing character
     /// of a haptic or audio event.
     ///
     /// CHHapticDynamicParameters have a relative time property to allow specifying the time relationship between parameters in a pattern.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticDynamicParameter;
@@ -378,12 +516,11 @@ impl CHHapticDynamicParameter {
 }
 
 extern_class!(
+    /// A single control point in a parameter curve.
     /// A CHHapticParameterCurveControlPoint contains a time/value pair for a single control point within a CHHapticParameterCurve.
     ///
     /// The relativeTime property specifies the amount of time elapsed since the start of the CHHapticParameterCurve before the
     /// value is reached.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticparametercurve/controlpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticParameterCurveControlPoint;
@@ -442,14 +579,25 @@ impl CHHapticParameterCurveControlPoint {
 }
 
 extern_class!(
+    /// A curve that you send to a haptic pattern player to alter a property value gradually during playback.
+    ///
+    /// ## Overview
+    ///
+    /// Parameter curves serve the same purpose as dynamic parameters in that they alter a property value during playback. Unlike dynamic parameters, which change a property value instantaneously, parameter curves interpolate linearly between parameter values to ensure a smooth transition.
+    ///
+    ///
+    /// ![A rising blue line represents how a parameter curve changes the parameter’s value gradually over time, while an orange line shows how dynamic parameters change the parameter’s value immediately.](https://docs-assets.developer.apple.com/published/d3baad051047d3e1a340b1dbd49ed56c/media-3197275%402x.png)
+    ///
+    ///
+    /// For example, a parameter curven’tr haptic intensity modulates the intensity over time, ensuring a smooth transition between the current intensity and the upcoming one. Parameter curves apply to all events in a pattern; it isn’t possible to apply one to only a single event.
+    ///
+    ///
     /// A CHHapticParameterCurve is a set of CHHapticParameterCurveControlPoints which describe the control (inflection) points
     /// for the parameter values to be applied to the associated pattern.
     ///
     /// The CHHapticParameterCurve generates an interpolated value output which passed through each control point at its
     /// associated relative time.  These times will all be relative to the start time of the CHHapticParameterCurve within the
     /// playing pattern.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticparametercurve?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticParameterCurve;

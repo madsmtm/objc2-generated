@@ -7,13 +7,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An image-analysis request that tracks movement of a previously identified rectangular object across multiple images or video frames.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type of request to track the bounding boxes of rectangles throughout a sequence of images. Vision returns locations for rectangles found in all orientations and sizes.
+    ///
+    ///
     /// VNTrackRectangleRequest tracks a rectangle in a sequence of images.
     ///
     /// The VNTrackRectangleRequest is a special tracker to track rectangular shape objects. The VNTrackRectangleRequest is initialized with a VNRectangleObservation object that contains a rectangle bounding box and four corners locations. VNRectangleObservation can be obtained by running rectangle detector  (VNDetectRectanglesRequest). The VNTrackRectangleRequest is processed using one of the [VNSequenceRequestHandler performRequests:...] methods.
     ///
     /// Note: The rectangular object doesn't have to look like a rectangle when projected into the plane of the image of interest. For example, it may look like trapezoid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequest?language=objc)
     #[unsafe(super(VNTrackingRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
@@ -96,5 +101,16 @@ impl VNTrackRectangleRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackrectanglerequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the rectangling tracking request.
+///
+/// ## Discussion
+///
+/// The revision number is a constant that you pass on a per-request basis to indicate to the Vision framework which version of the rectangle tracker to use for that request. Each OS release in which the framework improves aspects of the algorithm (recognition speed, accuracy, number of languages supported, and so forth), the revision number increments by 1.
+///
+/// By default, recognition requests use the latest—the highest—revision number for the SDK that your app links against. If you don’t recompile your app against a newer SDK, your app binary uses the revision that was the default at the time you last compiled it. If you do recompile, your app uses the default of the new SDK.
+///
+/// If your app must support users on older OS versions that don’t have access to the latest Vision framework, you may want to specify an earlier revision. For example, your algorithm may depend on specific behavior from a Vision request, such as writing your image processing algorithm to assume the size or aspect ratio of bounding boxes from an older revision of the face detector. In such a scenario, you can support earlier versions of the algorithm by specifying lower numbers:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["visionRequest.revision = VNTrackRectangleRequestRevision1"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["visionRequest.revision = VNTrackRectangleRequestRevision1;"], metadata: None }] }] })
+///
 pub static VNTrackRectangleRequestRevision1: NSUInteger = 1;

@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incarsignaloptionsresolutionresult?language=objc)
+    /// A resolution result for the signals the intent is managing on the car.
+    ///
+    /// ## Overview
+    ///
+    /// Return an `INCarSignalOptionsResolutionResult` object when resolving the [`signals`](https://developer.apple.com/documentation/intents/inactivatecarsignalintent/signals) property of a [`INActivateCarSignalIntent`](https://developer.apple.com/documentation/intents/inactivatecarsignalintent) object. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution options, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

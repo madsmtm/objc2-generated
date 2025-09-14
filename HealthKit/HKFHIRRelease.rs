@@ -5,32 +5,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Official releases of the FHIR specification.
+///
+/// ## Overview
+///
+/// Each release can have multiple versions.
+///
+///
 /// FHIR releases are official releases of the FHIR specification.
 ///
 /// FHIR releases are published on https://hl7.org/fhir. There is a one-to-many relationship between FHIR
 /// releases and FHIR versions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease?language=objc)
 // NS_TYPED_ENUM
 pub type HKFHIRRelease = NSString;
 
 extern "C" {
+    /// The Second Draft Standard for Trial Use (DSTU2) release.
     /// The "DSTU2" release: http://hl7.org/fhir/DSTU2/
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/dstu2?language=objc)
     pub static HKFHIRReleaseDSTU2: &'static HKFHIRRelease;
 }
 
 extern "C" {
+    /// The Release 4 (R4) release.
     /// The "R4" release: http://hl7.org/fhir/R4/
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/r4?language=objc)
     pub static HKFHIRReleaseR4: &'static HKFHIRRelease;
 }
 
 extern "C" {
+    /// An unknown release.
     /// An unknown release
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/unknown?language=objc)
     pub static HKFHIRReleaseUnknown: &'static HKFHIRRelease;
 }

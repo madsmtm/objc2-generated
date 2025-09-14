@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcompositiontrack?language=objc)
+    /// A track in a composition that presents media of a uniform type.
+    ///
+    /// ## Overview
+    ///
+    /// This object provides an immutable composition track. The framework also provides a mutable subclass, [`AVMutableCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack).
+    ///
+    ///
     #[unsafe(super(AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrack")]
@@ -96,7 +102,13 @@ impl AVCompositionTrack {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack?language=objc)
+    /// A mutable track in a composition that you use to insert, remove, and scale track segments without affecting their low-level representation.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to define constraints for the temporal arrangement of the track segments. If you set the composition’s track segments, you can test whether they meet the constraints by calling the [`validateTrackSegments:error:`](https://developer.apple.com/documentation/avfoundation/avmutablecompositiontrack/validatesegments(_:)) method.
+    ///
+    ///
     #[unsafe(super(AVCompositionTrack, AVAssetTrack, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAssetTrack")]
@@ -367,11 +379,10 @@ impl AVMutableCompositionTrack {
 }
 
 extern_class!(
+    /// An object that represents a format description and its replacement.
     /// A format description and its replacement.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcompositiontrackformatdescriptionreplacement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCompositionTrackFormatDescriptionReplacement;

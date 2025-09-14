@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpicker?language=objc)
+    /// An abstract superclass that implements the default color picking protocol.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSColorPickingDefault`](https://developer.apple.com/documentation/appkit/nscolorpickingdefault) and [`NSColorPickingCustom`](https://developer.apple.com/documentation/appkit/nscolorpickingcustom) protocols define a way to add color pickers (custom user interfaces for color selection) to the color panel.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

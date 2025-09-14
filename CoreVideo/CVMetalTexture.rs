@@ -10,17 +10,28 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// A reference to a CoreVideo Metal texture-based image buffer.
+///
+/// ## Discussion
+///
+/// To create and manage CoreVideo Metal textures, see [CVMetalTextureCache](https://developer.apple.com/documentation/corevideo/cvmetaltexturecache-q3j).
+///
+///
 /// Metal texture based image buffer
 ///
 /// IMPORTANT NOTE: Clients should retain CVMetalTexture objects until they are done using the images in them.
 /// Retaining a CVMetalTexture is your way to indicate that you're still using the image in the buffer, and that it should not be recycled yet.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexture?language=objc)
 #[doc(alias = "CVMetalTextureRef")]
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 pub type CVMetalTexture = CVImageBuffer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturegettypeid()?language=objc)
+/// Returns the Core Foundation type identifier for a CoreVideo Metal texture-based image buffer.
+///
+/// ## Return Value
+///
+/// The Core Foundation type identifier for the `CVMetalTextureRef` type.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
     extern "C-unwind" {
@@ -29,13 +40,22 @@ pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
     unsafe { CVMetalTextureGetTypeID() }
 }
 
+/// Returns the Metal texture object for the image buffer.
+///
+/// Parameters:
+/// - image: A CoreVideo Metal texture-based image buffer.
+///
+///
+/// ## Return Value
+///
+/// The [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) object corresponding to the image buffer.
+///
+///
 /// Returns the Metal MTLTexture object of the CVMetalTextureRef
 ///
 /// Parameter `image`: Target CVMetalTexture
 ///
 /// Returns: Metal texture
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltexturegettexture(_:)?language=objc)
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -54,13 +74,22 @@ pub extern "C-unwind" fn CVMetalTextureGetTexture(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// Returns a Boolean value indicating whether the texture image is vertically flipped.
+///
+/// Parameters:
+/// - image: A CoreVideo Metal texture-based image buffer.
+///
+///
+/// ## Return Value
+///
+/// If `True`, the texture coordinate `{0,0}` represents the upper left of the texture; if `False`, the texture coordinate `{0,0}` represents the lower left of the texture.
+///
+///
 /// Returns whether the image is flipped vertically or not.
 ///
 /// Parameter `image`: Target CVMetalTexture
 ///
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvmetaltextureisflipped(_:)?language=objc)
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool {
@@ -72,15 +101,18 @@ pub extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool
 }
 
 extern "C" {
-    /// kCVMetalTextureUsage is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureUsage of the created MTLTexture. Values for this can can be read from MTLTexture.h
+    /// The set of options that define how you can use a texture on the GPU.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltextureusage?language=objc)
+    /// ## Discussion
+    ///
+    /// The default value is [`MTLTextureUsageUnknown`](https://developer.apple.com/documentation/metal/mtltextureusage/unknown). Use only values which are valid for [`MTLTextureUsage`](https://developer.apple.com/documentation/metal/mtltextureusage).
+    ///
+    ///
+    /// kCVMetalTextureUsage is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureUsage of the created MTLTexture. Values for this can can be read from MTLTexture.h
     pub static kCVMetalTextureUsage: &'static CFString;
 }
 
 extern "C" {
     /// kCVMetalTextureStorageMode is a property that can be placed on a CVMetalTextureCache to instruct the MTLTextureStorageMode of the created MTLTexture. Values for this can can be read from MTLTexture.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvmetaltexturestoragemode?language=objc)
     pub static kCVMetalTextureStorageMode: &'static CFString;
 }

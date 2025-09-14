@@ -9,7 +9,23 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisnapbehavior?language=objc)
+    /// A spring-like behavior whose initial motion is damped over time so that the object settles at a specific point.
+    ///
+    /// ## Overview
+    ///
+    /// A **dynamic item** is any iOS or custom object that conforms to the [`UIDynamicItem`](https://developer.apple.com/documentation/uikit/uidynamicitem) protocol. The [`UIView`](https://developer.apple.com/documentation/uikit/uiview) and [`UICollectionViewLayoutAttributes`](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutattributes) classes implement this protocol starting in iOS 7.0. You can use a custom object as a dynamic item for such purposes as reacting to rotation or position changes computed by a dynamic animator—an instance of the [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator) class.
+    ///
+    /// To use a snap behavior with a dynamic item, perform these two steps:
+    ///
+    /// 1. Initialize a new snap behavior with the item using the [`initWithItem:snapToPoint:`](https://developer.apple.com/documentation/uikit/uisnapbehavior/init(item:snapto:)) method
+    ///
+    /// 2. Enable the behavior by adding it to an animator using the [`addBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicanimator/addbehavior(_:)) method
+    ///
+    /// The coordinate system that pertains to a snap behavior, and the types of dynamic items you can use with the behavior, depend on how you initialized the associated animator. For details, read the Overview of [`UIDynamicAnimator`](https://developer.apple.com/documentation/uikit/uidynamicanimator).
+    ///
+    /// You can include a snap behavior in a custom, composite behavior by starting with a [`UIDynamicBehavior`](https://developer.apple.com/documentation/uikit/uidynamicbehavior) object and adding a snap behavior with the [`addChildBehavior:`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/addchildbehavior(_:)) method.  If you want to influence a snap behavior at each step of a dynamic animation, implement the inherited [`action`](https://developer.apple.com/documentation/uikit/uidynamicbehavior/action) method.
+    ///
+    ///
     #[unsafe(super(UIDynamicBehavior, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

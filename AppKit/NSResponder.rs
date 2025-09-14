@@ -8,7 +8,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresponder?language=objc)
+    /// An abstract class that forms the basis of event and command processing in AppKit.
+    ///
+    /// ## Overview
+    ///
+    /// The core classes—[`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication), [`NSWindow`](https://developer.apple.com/documentation/appkit/nswindow), and [`NSView`](https://developer.apple.com/documentation/appkit/nsview)—inherit from [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder), as must any class that handles events. The responder model uses three components: event messages, action messages, and the responder chain.
+    ///
+    /// [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) also plays an important role in the presentation of error information. The default implementations of the [`presentError:`](https://developer.apple.com/documentation/appkit/nsresponder/presenterror(_:)) and [`presentError:modalForWindow:delegate:didPresentSelector:contextInfo:`](https://developer.apple.com/documentation/appkit/nsresponder/presenterror(_:modalfor:delegate:didpresent:contextinfo:)) methods send [`willPresentError:`](https://developer.apple.com/documentation/appkit/nsresponder/willpresenterror(_:)) to `self`, thereby giving subclasses the opportunity to customize the localized information presented in error alerts. `NSResponder` then forwards the message to the next responder, passing it the customized [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object. The exact path up the modified responder chain depends on the type of application window:
+    ///
+    /// - Window that the document owns: view > superviews > window > window controller > document object > document controller > the application object
+    ///
+    /// - Window with window controller but no documents: view > superviews > window > window controller > the application object
+    ///
+    /// - Window with no window controllers: view > superviews > window > the application object
+    ///
+    /// [`NSApplication`](https://developer.apple.com/documentation/appkit/nsapplication) displays a document-modal error alert and, if the error object has a recovery attempter, gives it a chance to recover from the error. A recovery attempter is an object that conforms to the [NSErrorRecoveryAttempting](https://developer.apple.com/documentation/foundation/nserrorrecoveryattempting) informal protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In macOS 10.15 and later, [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) and its descendants call the [`dealloc`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571947-dealloc) method on the main thread. This method helps to avoid situations where an asynchronous block unexpectedly deallocates an object on a background queue.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -353,7 +377,13 @@ impl NSResponder {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstandardkeybindingresponding?language=objc)
+    /// Methods that responder subclasses implement to support key binding commands, such as inserting tabs and newlines, or moving the insertion point.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) doesn’t implement any of these methods. [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) implements a subset of them related to text editing. Your responder subclasses can implement any methods that make sense. You can create your own methods as well, but use these if the concepts map to functionality in your app. If your responder subclass is a view that’s key and uses key binding, and the user types a key sequence bound to a command not implemented in your class, nothing happens by default.
+    ///
+    ///
     pub unsafe trait NSStandardKeyBindingResponding:
         NSObjectProtocol + MainThreadOnly
     {

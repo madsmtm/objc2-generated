@@ -10,7 +10,13 @@ use objc2_map_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppointofinteresttemplatedelegate?language=objc)
+    /// The methods to handle a Point of Interest template’s events.
+    ///
+    /// ## Overview
+    ///
+    /// You use the `CPPointOfInterestTemplateDelegate` protocol to respond to a Point of Interest template’s events. The protocol defines methods that CarPlay calls in response to these events, and your implementation provides the appropriate behavior for when the events occur. For example, when the user pans the template’s map and the visible region changes, update the points of interest that the template displays to only those relevant to the new region.
+    ///
+    ///
     pub unsafe trait CPPointOfInterestTemplateDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -42,7 +48,17 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate?language=objc)
+    /// A template that displays a map with selectable points of interest.
+    ///
+    /// ## Overview
+    ///
+    /// The Point of Interest template displays selectable instances of [`CPPointOfInterest`](https://developer.apple.com/documentation/carplay/cppointofinterest) as annotations on the template’s map, and as items in a scrollable picker that the template overlays on the map. When the user selects a point of interest, the template displays a detail card that contains secondary information and optional actions the user can perform. The template manages clustering points of interest, selecting a point of interest, and zooming and panning the map.
+    ///
+    /// To create a Point of Interest template, you call the [`initWithTitle:pointsOfInterest:selectedIndex:`](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate/init(title:pointsofinterest:selectedindex:)) method and provide an array of  `CPPointOfInterest` objects to display in the template’s map. Then call your interface controller’s [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) method to push it onto the navigation hierarchy, or add the template as a tab in your [`CPTabBarTemplate`](https://developer.apple.com/documentation/carplay/cptabbartemplate).
+    ///
+    /// You must create an object that implements the [`CPPointOfInterestTemplateDelegate`](https://developer.apple.com/documentation/carplay/cppointofinteresttemplatedelegate) protocol and set it as the template’s delegate using the [`pointOfInterestDelegate`](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate/pointofinterestdelegate) property. The template informs its delegate about changes to the map’s visible region so you can update the points of interest the map displays.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

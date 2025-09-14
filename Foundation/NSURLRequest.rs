@@ -6,6 +6,13 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// The constants used to specify interaction with the cached responses.
+///
+/// ## Overview
+///
+/// The default policy is [`NSURLRequestUseProtocolCachePolicy`](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/useprotocolcachepolicy).
+///
+///
 /// The NSURLRequestCachePolicy enum defines constants that
 /// can be used to specify the type of interactions that take place with
 /// the caching system when the URL loading system processes a request.
@@ -49,33 +56,113 @@ use crate::*;
 /// the existing cache data may be used provided the origin source
 /// confirms its validity, otherwise the URL is loaded from the
 /// origin source.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/useprotocolcachepolicy?language=objc)
+    /// Use the caching logic defined in the protocol implementation, if any, for a particular URL load request.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default policy for URL load requests.
+    ///
+    /// ### HTTP caching behavior
+    ///
+    /// For the HTTP and HTTPS protocols, [`NSURLRequestUseProtocolCachePolicy`](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/useprotocolcachepolicy) performs the following behavior:
+    ///
+    /// 1. If a cached response does not exist for the request, the URL loading system fetches the data from the originating source.
+    ///
+    /// 2. Otherwise, if the cached response does not indicate that it must be revalidated every time, and if the cached response is not stale (past its expiration date), the URL loading system returns the cached response.
+    ///
+    /// 3. If the cached response is stale or requires revalidation, the URL loading system makes a HEAD request to the originating source to see if the resource has changed. If so, the URL loading system fetches the data from the originating source. Otherwise, it returns the cached response.
+    ///
+    /// This behavior is illustrated in the figure below.
+    ///
+    ///
+    /// ![Flow chart starting with “need to determine whether to return a cached response”, and then considering various factors to determine whether to return a cached response or to fetch it anew.](https://docs-assets.developer.apple.com/published/06f9bcab68cfd601f3ef5cd9ee33db4f/media-2994170%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For the formal definition of these semantics, see [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13).
+    ///
+    ///
+    ///
+    /// </div>
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you are making HTTP or HTTPS byte-range requests, always use the [`NSURLRequestReloadIgnoringLocalCacheData`](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalcachedata) policy instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
     pub const UseProtocolCachePolicy: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalcachedata?language=objc)
+    /// The URL load should be loaded only from the originating source.
+    ///
+    /// ## Discussion
+    ///
+    /// This policy specifies that no existing cache data should be used to satisfy a URL load request.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Always use this policy if you are making HTTP or HTTPS byte-range requests.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLRequestReloadIgnoringLocalCacheData")]
     pub const ReloadIgnoringLocalCacheData: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalandremotecachedata?language=objc)
+    /// Ignore local cache data, and instruct proxies and other intermediates to disregard their caches so far as the protocol allows.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Versions earlier than macOS 10.15, iOS 13, watchOS 6, and tvOS 13 don’t implement this constant.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLRequestReloadIgnoringLocalAndRemoteCacheData")]
     pub const ReloadIgnoringLocalAndRemoteCacheData: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringcachedata?language=objc)
+    /// Replaced by [`NSURLRequestReloadIgnoringLocalCacheData`](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadignoringlocalcachedata).
     #[doc(alias = "NSURLRequestReloadIgnoringCacheData")]
     pub const ReloadIgnoringCacheData: Self =
         Self(NSURLRequestCachePolicy::ReloadIgnoringLocalCacheData.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/returncachedataelseload?language=objc)
+    /// Use existing cache data, regardless or age or expiration date, loading from originating source only if there is no cached data.
     #[doc(alias = "NSURLRequestReturnCacheDataElseLoad")]
     pub const ReturnCacheDataElseLoad: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/returncachedatadontload?language=objc)
+    /// Use existing cache data, regardless or age or expiration date, and fail if no cached data is available.
+    ///
+    /// ## Discussion
+    ///
+    /// If there is no existing data in the cache corresponding to a URL load request, no attempt is made to load the data from the originating source, and the load is considered to have failed. This constant specifies a behavior that is similar to an “offline” mode.
+    ///
+    ///
     #[doc(alias = "NSURLRequestReturnCacheDataDontLoad")]
     pub const ReturnCacheDataDontLoad: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum/reloadrevalidatingcachedata?language=objc)
+    /// Use cache data if the origin source can validate it; otherwise, load from the origin.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Versions earlier than macOS 10.15, iOS 13, watchOS 6, and tvOS 13 don’t implement this constant.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLRequestReloadRevalidatingCacheData")]
     pub const ReloadRevalidatingCacheData: Self = Self(5);
 }
@@ -88,6 +175,15 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that specify how a request uses network resources.
+///
+/// ## Overview
+///
+/// The network service type provides a hint to the operating system about the nature and use of the underlying traffic. This hint enhances the system’s ability to prioritize traffic, determine how quickly it needs to wake up the cellular or Wi-Fi radio, and so on. By providing accurate information, you improve the system’s ability to optimally balance battery life, performance, and other considerations.
+///
+/// Make connections using the [`NSURLNetworkServiceTypeDefault`](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/default) service type.
+///
+///
 /// The NSURLRequestNetworkServiceType enum defines constants that
 /// can be used to specify the service type to associate with this request.  The
 /// service type is used to provide the networking layers a hint of the purpose
@@ -104,39 +200,61 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 ///
 ///
 /// traffic (such as a file download).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/default?language=objc)
+    /// A service type for standard network traffic.
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
     pub const NetworkServiceTypeDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/voip?language=objc)
+    /// A service type for VoIP traffic.
+    ///
+    /// ## Discussion
+    ///
+    /// With the VoIP service type, the kernel continues to listen for incoming traffic while your app is in the background, then wakes up your app whenever new data arrives. Set this _only_ for connections that are communicate with a VoIP service.
+    ///
+    ///
     #[doc(alias = "NSURLNetworkServiceTypeVoIP")]
     #[deprecated = "Use PushKit for VoIP control purposes"]
     pub const NetworkServiceTypeVoIP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/video?language=objc)
+    /// A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
     #[doc(alias = "NSURLNetworkServiceTypeVideo")]
     pub const NetworkServiceTypeVideo: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/background?language=objc)
+    /// A service type for high-delay tolerant, high-loss tolerant, elastic flow, and variable size connections.
+    ///
+    /// ## Discussion
+    ///
+    /// An example of this service type is prefetching content so that it’s available when the user chooses to view it.
+    ///
+    ///
     #[doc(alias = "NSURLNetworkServiceTypeBackground")]
     pub const NetworkServiceTypeBackground: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/voice?language=objc)
+    /// A service type for low-delay tolerant, very low-loss tolerant, inelastic flow, and constant packet rate connections.
     #[doc(alias = "NSURLNetworkServiceTypeVoice")]
     pub const NetworkServiceTypeVoice: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/responsivedata?language=objc)
+    /// A service type for medium-delay tolerant, elastic and inelastic flow, bursty, and long-lived connections.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this service type for interactive situations where the user is anticipating a quick response, like instant messaging or completing a purchase.
+    ///
+    ///
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveData")]
     pub const NetworkServiceTypeResponsiveData: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/avstreaming?language=objc)
+    /// A service type for medium-delay tolerant, low-medium-loss tolerant, elastic flow, constant packet interval, and variable rate and size connections.
     #[doc(alias = "NSURLNetworkServiceTypeAVStreaming")]
     pub const NetworkServiceTypeAVStreaming: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/responsiveav?language=objc)
+    /// A service type for low-delay tolerant, low-to-medium-loss tolerant, elastic flow, variable packet interval, rate, size responsive and time-sensitive connections.
     #[doc(alias = "NSURLNetworkServiceTypeResponsiveAV")]
     pub const NetworkServiceTypeResponsiveAV: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum/callsignaling?language=objc)
+    /// A service for low-loss tolerant, inelastic flow, jitter tolerant, short but bursty rate, and variable size connections.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this for establishing, maintaining, and tearing down a VoIP call.
+    ///
+    ///
     #[doc(alias = "NSURLNetworkServiceTypeCallSignaling")]
     pub const NetworkServiceTypeCallSignaling: Self = Self(11);
 }
@@ -149,6 +267,13 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The entities that can make a network request.
+///
+/// ## Overview
+///
+/// Use one of these values when setting the [`attribution`](https://developer.apple.com/documentation/foundation/urlrequest/attribution-swift.property) parameter of a [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest). If you don’t set a value, the system assumes [`NSURLRequestAttributionDeveloper`](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/developer).
+///
+///
 /// The NSURLRequestAttribution enum is used to indicate whether the
 /// user or developer specified the URL.
 ///
@@ -157,17 +282,29 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 ///
 ///
 /// the user.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestAttribution(pub NSUInteger);
 impl NSURLRequestAttribution {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/developer?language=objc)
+    /// A developer-initiated network request.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value for the [`attribution`](https://developer.apple.com/documentation/foundation/urlrequest/attribution-swift.property) parameter of a URL request that your app makes for any purpose other than when the user explicitly accesses a link. This includes requests that your app makes to get user data. This is the default value.
+    ///
+    /// For cases where the user enters a URL, like in the navigation bar of a web browser, or taps or clicks a URL to load the content it represents, use the [`NSURLRequestAttributionUser`](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/user) value instead.
+    ///
+    ///
     #[doc(alias = "NSURLRequestAttributionDeveloper")]
     pub const Developer: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/user?language=objc)
+    /// The user explicitly directs the app to make a network request.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value for the [`attribution`](https://developer.apple.com/documentation/foundation/urlrequest/attribution-swift.property) parameter of a URL request that satisfies a user request to access an explicit, unmodified URL. In all other cases, use the [`NSURLRequestAttributionDeveloper`](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum/developer) value instead.
+    ///
+    ///
     #[doc(alias = "NSURLRequestAttributionUser")]
     pub const User: Self = Self(1);
 }
@@ -181,6 +318,57 @@ unsafe impl RefEncode for NSURLRequestAttribution {
 }
 
 extern_class!(
+    /// A URL load request that is independent of protocol or URL scheme.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type in Swift when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) encapsulates two essential properties of a load request: the URL to load and the policies used to load it. In addition, for HTTP and HTTPS requests, [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) includes the HTTP method (`GET`, `POST`, and so on) and the HTTP headers. Finally, custom protocols can support custom properties as explained in [Custom protocol properties](https://developer.apple.com/documentation/foundation/nsurlrequest#custom-protocol-properties).
+    ///
+    /// [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) only represents information about the request. Use other classes, such as [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), to send the request to a server. See [Fetching website data into memory](https://developer.apple.com/documentation/foundation/fetching-website-data-into-memory) and [Uploading data to a website](https://developer.apple.com/documentation/foundation/uploading-data-to-a-website) for an introduction to these techniques.
+    ///
+    /// The mutable subclass of [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) is [`NSMutableURLRequest`](https://developer.apple.com/documentation/foundation/nsmutableurlrequest).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) structure, which bridges to the [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) class and its mutable subclass, [`NSMutableURLRequest`](https://developer.apple.com/documentation/foundation/nsmutableurlrequest). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Reserved HTTP headers
+    ///
+    /// The URL Loading System handles various aspects of the HTTP protocol for you (HTTP 1.1 persistent connections, proxies, authentication, and so on). As part of this support, the URL Loading System takes responsibility for certain HTTP headers:
+    ///
+    /// - `Content-Length`
+    ///
+    /// - `Authorization`
+    ///
+    /// - `Connection`
+    ///
+    /// - `Host`
+    ///
+    /// - `Proxy-Authenticate`
+    ///
+    /// - `Proxy-Authorization`
+    ///
+    /// - `WWW-Authenticate`
+    ///
+    /// If you set a value for one of these reserved headers, the system may ignore the value you set, or overwrite it with its own value, or simply not send it. Moreover, the exact behavior may change over time. To avoid confusing problems like this, do not set these headers directly.
+    ///
+    /// The URL Loading System sets the `Content-Length` header based on whether the request body has a known length:
+    ///
+    /// - If so, it uses the identity transfer encoding and sets the `Content-Length` header to that known length. You see this when you set the request body to a data object.
+    ///
+    /// - If not, it uses the chunked transfer encoding and omits the `Content-Length` header. You see this when you set the request body to a stream.
+    ///
+    /// ### Custom protocol properties
+    ///
+    /// If you implement a custom URL protocol by subclassing [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol), and it needs protocol-specific properties, extend [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) with accessor methods for those custom properties. In your accessor methods, call [`propertyForKey:inRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/property(forkey:in:)) and [`setProperty:forKey:inRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/setproperty(_:forkey:in:)) to associate property values with the request.
+    ///
+    ///
     /// An NSURLRequest object represents a URL load request in a
     /// manner independent of protocol and URL scheme.
     ///
@@ -213,8 +401,6 @@ extern_class!(
     /// Objects of this class are used to create NSURLConnection instances,
     /// which can are used to perform the load of a URL, or as input to the
     /// NSURLConnection class method which performs synchronous loads.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLRequest;
@@ -504,6 +690,27 @@ impl DefaultRetained for NSURLRequest {
 }
 
 extern_class!(
+    /// A mutable URL load request that is independent of protocol or URL scheme.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, this object bridges to [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) and you use when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [`NSMutableURLRequest`](https://developer.apple.com/documentation/foundation/nsmutableurlrequest) is a subclass of [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) that allows you to change the request’s properties.
+    ///
+    /// [`NSMutableURLRequest`](https://developer.apple.com/documentation/foundation/nsmutableurlrequest) only represents information about the request. Use other classes, such as [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession), to send the request to a server. See [Fetching website data into memory](https://developer.apple.com/documentation/foundation/fetching-website-data-into-memory) and [Uploading data to a website](https://developer.apple.com/documentation/foundation/uploading-data-to-a-website) for an introduction to these techniques.
+    ///
+    /// Classes that create a network operation based on a request make a deep copy of that request. Thus, changing the request after creating a network operation has no effect on the ongoing operation. For example, if you use [`dataTaskWithRequest:completionHandler:`](https://developer.apple.com/documentation/foundation/urlsession/datatask(with:completionhandler:)-e6xv) to create a data task from a request, and then later change the request, the data task continues using the original request.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) structure, which bridges to the [`NSMutableURLRequest`](https://developer.apple.com/documentation/foundation/nsmutableurlrequest) class and its immutable superclass, [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest). For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An NSMutableURLRequest object represents a mutable URL load
     /// request in a manner independent of protocol and URL scheme.
     ///
@@ -533,8 +740,6 @@ extern_class!(
     /// NSMutableHTTPURLRequest category on NSMutableURLRequest is an
     /// example.
     /// </ul>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableurlrequest?language=objc)
     #[unsafe(super(NSURLRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableURLRequest;

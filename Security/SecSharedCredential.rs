@@ -7,17 +7,55 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A dictionary key whose value is the shared password.
+    ///
+    /// ## Discussion
+    ///
+    /// The dictionary returned by the [`SecRequestSharedWebCredential`](https://developer.apple.com/documentation/security/secrequestsharedwebcredential(_:_:_:)) function includes this key to provide you with the password.
+    ///
+    /// You can also access the server’s URL and the user name from this dictionary. To access the server, use the [`kSecAttrServer`](https://developer.apple.com/documentation/security/ksecattrserver) constant. To access the user name, use the [`kSecAttrAccount`](https://developer.apple.com/documentation/security/ksecattraccount) constant. These constants are part of the [Keychain services](https://developer.apple.com/documentation/security/keychain-services) API, and in particular are listed among the [Item attribute keys and values](https://developer.apple.com/documentation/security/item-attribute-keys-and-values).
+    ///
+    ///
     /// Predefined key constants used to get values in a dictionary
     /// of credentials returned by SecRequestWebCredential.
     ///
     /// shared password. You use this key to get a value of type CFStringRef
     /// that contains a password.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/ksecsharedpassword?language=objc)
     pub static kSecSharedPassword: &'static CFString;
 }
 
 extern "C-unwind" {
+    /// Asynchronously stores (or updates) a shared password for a website.
+    ///
+    /// Parameters:
+    /// - fqdn: The fully qualified domain name of the website requiring the password.
+    ///
+    /// - account: The account name associated with this password.
+    ///
+    /// - password: The password to be stored. Pass `NULL` to remove a shared password if it exists.
+    ///
+    /// - completionHandler: A block invoked when the function has completed.
+    ///
+    /// The block takes one argument:
+    ///
+    /// - `error`: If the shared password was successfully added (or removed), `NULL`; if not successful, a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object that encapsulates the reason why the password could not be added (or removed). The error reference is automatically released after this handler is called, though you may optionally retain it for as long as needed.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function adds a shared password item that will be accessible by Safari and apps that have the specified fully qualified domain name in their [`Associated Domains Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.associated-domains). If a shared password item already exists for the specified website and account, it is updated with the provided password. To remove a password, pass `NULL` for the password parameter.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that is called as soon as the results (if any) are available.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When this function is called, the system tries to get the site association file from the server. If the file is unavailable, the sever returns a 500-599 code.
+    ///
+    ///
     /// Asynchronously store (or update) a shared password for a website.
     ///
     /// Parameter `fqdn`: The fully qualified domain name of the website requiring the password.
@@ -31,8 +69,6 @@ extern "C-unwind" {
     /// This function adds a shared password item which will be accessible by Safari and applications that have the specified fully-qualified domain name in their 'com.apple.developer.associated-domains' entitlement. If a shared password item already exists for the specified website and account, it will be updated with the provided password. To remove a password, pass NULL for the password parameter.
     ///
     /// Note: since a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called once the results (if any) are available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secaddsharedwebcredential(_:_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     pub fn SecAddSharedWebCredential(
         fqdn: &CFString,
@@ -43,6 +79,41 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Asynchronously obtains one or more shared passwords for a website.
+    ///
+    /// Parameters:
+    /// - fqdn: (Optional) The fully qualified domain name of the website for which passwords are being requested. If `NULL` is passed in this argument, the domain name(s) listed in the calling app’s [`Associated Domains Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.associated-domains) are searched implicitly.
+    ///
+    /// - account: (Optional) The account name for which passwords are being requested. The account may be `NULL` to request all of the shared credentials that are available for the site, allowing the caller to discover an existing account.
+    ///
+    /// - completionHandler: A block that is called to deliver the requested credentials.
+    ///
+    /// The block takes two arguments:
+    ///
+    /// - `credentials`: An array containing the requested passwords. If no matching items are found, the credentials array is empty. The credentials reference is automatically released after this handler is called, though you may optionally retain it for as long as needed.
+    ///
+    /// - `error`: If the shared password was successfully added (or removed), `NULL`; if not successful, a [`CFErrorRef`](https://developer.apple.com/documentation/corefoundation/cferror) object that encapsulates the reason why the password could not be added (or removed). The error reference is automatically released after this handler is called, though you may optionally retain it for as long as needed.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function requests one or more shared passwords for a given website, depending on whether the optional account parameter is supplied. To obtain results, the website specified in the `fqdn` parameter must be one that matches an entry in the calling app’s [`Associated Domains Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.associated-domains).
+    ///
+    /// If matching shared password items are found, the credentials provided to the completion handler will be a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) data type containing [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) entries. Each dictionary contains the following pairs:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.security/documentation/Security/kSecAttrServer", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFString", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (the website)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.security/documentation/Security/kSecAttrAccount", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFString", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (the account)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.security/documentation/Security/kSecSharedPassword", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFString", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (the password)" }] }]]], alignments: None, metadata: None })
+    /// If the found item specifies a nonstandard port number (other than 443 for `https`), the following key may also be present:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.security/documentation/Security/kSecAttrPort", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " (the port number)" }] }]]], alignments: None, metadata: None })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Because a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called as soon as the results (if any) are available.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Asynchronously obtain one or more shared passwords for a website.
     ///
     /// Parameter `fqdn`: (Optional) Fully qualified domain name of the website for which passwords are being requested. If NULL is passed in this argument, the domain name(s) listed in the calling application's 'com.apple.developer.associated-domains' entitlement are searched implicitly.
@@ -62,8 +133,6 @@ extern "C-unwind" {
     /// key: kSecAttrPort       value: CFNumberRef (the port number)
     ///
     /// Note: since a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called once the results (if any) are available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secrequestsharedwebcredential(_:_:_:)?language=objc)
     #[cfg(feature = "block2")]
     #[deprecated = "Use ASAuthorizationController to make an ASAuthorizationPasswordRequest (AuthenticationServices framework)"]
     pub fn SecRequestSharedWebCredential(
@@ -75,9 +144,14 @@ extern "C-unwind" {
 
 /// Returns a randomly generated password.
 ///
-/// Returns: CFStringRef password in the form xxx-xxx-xxx-xxx where x is taken from the sets "abcdefghkmnopqrstuvwxy", "ABCDEFGHJKLMNPQRSTUVWXYZ", "3456789" with at least one character from each set being present.
+/// ## Return Value
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccreatesharedwebcredentialpassword()?language=objc)
+/// A password in the form `xxx-xxx-xxx-xxx`, where `x` is taken from the sets `abcdefghkmnopqrstuvwxy`, `ABCDEFGHJKLMNPQRSTUVWXYZ`, and `3456789`, with at least one character from each set being present.
+///
+///
+/// Returns a randomly generated password.
+///
+/// Returns: CFStringRef password in the form xxx-xxx-xxx-xxx where x is taken from the sets "abcdefghkmnopqrstuvwxy", "ABCDEFGHJKLMNPQRSTUVWXYZ", "3456789" with at least one character from each set being present.
 #[inline]
 pub unsafe extern "C-unwind" fn SecCreateSharedWebCredentialPassword(
 ) -> Option<CFRetained<CFString>> {

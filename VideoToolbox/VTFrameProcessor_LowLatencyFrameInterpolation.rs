@@ -12,6 +12,21 @@ use crate::*;
 extern_class!(
     /// Configuration that you use to program Video Toolbox frame processor for low-latency frame interpolation.
     ///
+    /// ## Overview
+    ///
+    /// This configuration can do either purely temporal interpolation (frame-rate conversion) or temporal and spatial interpolation (scaling and frame-rate conversion). This processor requires a source frame and a previous frame. It does temporal scaling, which interpolates frames between the previous frame and the source frame. When performing both temporal and spatial interpolation, the processor can only perform 2x upscaling, and a single frame of temporal interpolation. When performing spatial scaling, the processor produces upscaled intermediate frames and an upscaled `sourceFrame`, but it does not upscale the previous reference frame you provided.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// When calling [`startSessionWithConfiguration:error:`](https://developer.apple.com/documentation/videotoolbox/vtframeprocessor/startsession(configuration:)) to create a `VTLowLatencyFrameInterpolation` session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering pipelines during this call.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// Configuration that you use to program Video Toolbox frame processor for low-latency frame interpolation.
+    ///
     /// This configuration can do either purely temporal interpolation (frame-rate conversion) or temporal and spatial
     /// interpolation (scaling and frame-rate conversion). This processor requires a source frame and a previous frame. It
     /// does temporal scaling, which interpolates frames between the previous frame and the source frame. When performing
@@ -22,8 +37,6 @@ extern_class!(
     /// > Important: When calling ``VTFrameProcessor/startSessionWithConfiguration:error:`` to create a `VTLowLatencyFrameInterpolation`
     /// session, ML model loading may take longer than a frame time. Avoid blocking the UI thread or stalling frame rendering
     /// pipelines during this call.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencyframeinterpolationconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -196,11 +209,18 @@ impl VTLowLatencyFrameInterpolationConfiguration {
 extern_class!(
     /// An object that contains both input and output parameters that the low-latency frame interpolation processor needs.
     ///
+    /// ## Overview
+    ///
     /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
     ///
     /// `VTLowLatencyFrameInterpolationParameters` are frame-level parameters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtlowlatencyframeinterpolationparameters?language=objc)
+    ///
+    /// An object that contains both input and output parameters that the low-latency frame interpolation processor needs.
+    ///
+    /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class.
+    ///
+    /// `VTLowLatencyFrameInterpolationParameters` are frame-level parameters.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

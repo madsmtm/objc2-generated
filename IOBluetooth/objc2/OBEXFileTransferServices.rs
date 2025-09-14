@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexfiletransferservices?language=objc)
+    /// Implements advanced OBEX operations in addition to simple PUT and GET.
+    ///
+    /// ## Overview
+    ///
+    /// All operations are asynchronous and will callback over a respective delegate method if the initial return value is successful. The initial return value usually concerns the state of this object where as the delegate return value reflects the response of the remote device.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OBEXFileTransferServices;
@@ -369,103 +375,125 @@ impl OBEXFileTransferServices {
 }
 
 extern "C" {
+    /// NSNumber integer value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber integer value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressbytestransferredkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressBytesTransferredKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSNumber integer value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber integer value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressbytestotalkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressBytesTotalKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSNumber float value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber float value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresspercentagekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressPercentageKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressprecentagekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressPrecentageKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSNumber double value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber double value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogressestimatedtimekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressEstimatedTimeKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSNumber int value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber int value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresstimeelapsedkey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressTimeElapsedKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSNumber float value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress: and fileTransferServicesGetProgress: delegate methods
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSNumber float value. This key is used with the NSDictionary returned from the fileTransferServicesPutProgress:
     /// and fileTransferServicesGetProgress: delegate methods
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsprogresstransferratekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSProgressTransferRateKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// NSString value. This key is used with the array of NSDictionary’s returned through the delegate method fileTransferServicesGetListingComplete: after calling getFolderListing.
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// NSString value.  This key is used with the array of NSDictionary's returned through the delegate method
     /// fileTransferServicesGetListingComplete: after calling getFolderListing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingnamekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSListingNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// FTSFileType value. This key is used with the array of NSDictionary’s returned through the delegate method fileTransferServicesGetListingComplete: after calling getFolderListing.
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// FTSFileType value.  This key is used with the array of NSDictionary's returned through the delegate method
     /// fileTransferServicesGetListingComplete: after calling getFolderListing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingtypekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSListingTypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// Int value. This key is used with the array of NSDictionary’s returned through the delegate method fileTransferServicesGetListingComplete: after calling getFolderListing.
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Int value.  This key is used with the array of NSDictionary's returned through the delegate method
     /// fileTransferServicesGetListingComplete: after calling getFolderListing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftslistingsizekey?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static kFTSListingSizeKey: Option<&'static CFString>;
 }
 
 /// The type values associated with the kFTSListingTypeKey dictionary value
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/ftsfiletype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FTSFileType(pub c_uint);
 impl FTSFileType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsfiletypefolder?language=objc)
     #[doc(alias = "kFTSFileTypeFolder")]
     pub const Folder: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kftsfiletypefile?language=objc)
     #[doc(alias = "kFTSFileTypeFile")]
     pub const File: Self = Self(2);
 }

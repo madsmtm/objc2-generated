@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An event that is evaluated based on the value of a characteristic.
     /// This class represents an event that is evaluated based on the value of a characteristic
     /// set to a particular value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicevent?language=objc)
     #[unsafe(super(HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]
@@ -159,10 +158,9 @@ impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueTy
 }
 
 extern_class!(
+    /// A mutable event that is evaluated based on the value of a characteristic.
     /// This class represents an event that is evaluated based on the value of a characteristic
     /// set to a particular value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmmutablecharacteristicevent?language=objc)
     #[unsafe(super(HMCharacteristicEvent, HMEvent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMEvent")]

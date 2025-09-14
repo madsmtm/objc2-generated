@@ -9,6 +9,27 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that convolves an image with a given kernel of odd width and height.
+    ///
+    /// ## Overview
+    ///
+    /// Filter width and height can be either 3, 5, 7 or 9. If there are multiple channels in the source image, each channel is processed independently.
+    ///
+    /// A _separable_ convolution filter may perform better when done in two passes. . A convolution filter is separable if the ratio of filter values between all rows is constant over the whole row. For example, this edge detection filter:
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/37c3fd51dec62d6ecc454acaa2cfd116/media-2556905%402x.png)
+    ///
+    ///
+    /// Can instead be separated into the product of two vectors, like so:
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/985a3d9e96dee212006c6fab7be40b80/media-2556912%402x.png)
+    ///
+    ///
+    /// And consequently can be done as two, one-dimensional convolution passes back to back on the same image. In this way, the number of multiplies (ignoring the fact that we could skip zeros here) is reduced from `3*3=9` to `3+3=6`. There are similar savings for addition. For large filters, the savings can be profound.
+    ///
+    ///
     /// The MPSImageConvolution convolves an image with given filter of odd width and height.
     /// The center of the kernel aligns with the MPSImageConvolution.offset. That is, the position
     /// of the top left corner of the area covered by the kernel is given by
@@ -43,8 +64,6 @@ extern_class!(
     /// and consequently can be done as two, one-dimensional convolution passes back to back on the same image.
     /// In this way, the number of multiplies (ignoring the fact that we could skip zeros here) is reduced from
     /// 3*3=9 to 3+3 = 6. There are similar savings for addition. For large filters, the savings can be profound.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconvolution?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -219,6 +238,25 @@ impl MPSImageConvolution {
 }
 
 extern_class!(
+    /// An optimized Laplacian filter, provided for ease of use.
+    ///
+    /// ## Overview
+    ///
+    /// This filter uses an optimized convolution filter with a 3x3 kernel with the following weights:
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/920e9120976a74b0e57c7fcc80e963aa/media-2556916%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The optimized convolution filter used by the [`MPSImageLaplacian`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacian) class could also be created by initializing an [`MPSImageConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconvolution) object with `kernelWidth=3`, `kernelHeight=3`, and the weights specified above.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The MPSImageLaplacian is an optimized variant of the MPSImageConvolution filter provided primarily for ease of use.
     /// This filter uses an optimized convolution filter with a 3 x 3 kernel with the following weights:
     /// [ 0  1  0
@@ -227,8 +265,6 @@ extern_class!(
     ///
     /// The optimized convolution filter used by MPSImageLaplacian can also be used by creating a MPSImageConvolution
     /// object with kernelWidth = 3, kernelHeight = 3 and weights as specified above.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacian?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -367,13 +403,20 @@ impl MPSImageLaplacian {
 }
 
 extern_class!(
+    /// A filter that convolves an image with a given kernel of odd width and height.
+    ///
+    /// ## Overview
+    ///
+    /// The kernel elements all have equal weight, achieving a blur effect (each result is the unweighted average of the surrounding pixels). This allows for much faster algorithms, especially for larger blur radii. The box height and width must be odd numbers.
+    ///
+    /// The box blur is a separable filter and the Metal Performance Shaders framework will act accordingly to give best performance for multi-dimensional blurs.
+    ///
+    ///
     /// The MPSImageBox convolves an image with given filter of odd width and height. The kernel elements
     /// all have equal weight, achieving a blur effect. (Each result is the unweighted average of the
     /// surrounding pixels.) This allows for much faster algorithms, espcially for larger blur radii.
     /// The box height and width must be odd numbers. The box blur is a separable filter. The implementation
     /// is aware of this and will act accordingly to give best performance for multi-dimensional blurs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagebox?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -510,6 +553,31 @@ impl MPSImageBox {
 }
 
 extern_class!(
+    /// A filter that convolves an image with a tent filter.
+    ///
+    /// ## Overview
+    ///
+    /// The kernel elements of the filter form a tent shape with increasing sides, for example:
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/bd0e20af4a43a00dcc34a4da5e09ddfe/media-2556918%402x.png)
+    ///
+    ///
+    /// Like a box filter, this arrangement allows for much faster algorithms, especially for larger blur radii but with a more pleasing appearance.
+    ///
+    /// The tent blur is a separable filter and the Metal Performance Shaders framework will act accordingly to give the best performance for multi-dimensional blurs.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The box filter, while fast, may yield square-ish looking blur effects. However, multiple passes of the box filter tend to smooth out with each additional pass. For example, two 3-wide box blurs produces the same effective convolution as a 5-wide tent blur.
+    ///
+    /// In effect, addition passes tend to approximate a Gaussian line shape.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The box filter, while fast, may yield square-ish looking blur effects. However, multiple
     /// passes of the box filter tend to smooth out with each additional pass. For example, two 3-wide
     /// box blurs produces the same effective convolution as a 5-wide tent blur:
@@ -538,8 +606,6 @@ extern_class!(
     ///
     /// The tent blur is a separable filter. The implementation is aware of this and will act accordingly
     /// to give best performance for multi-dimensional blurs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetent?language=objc)
     #[unsafe(super(MPSImageBox, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -672,6 +738,21 @@ impl MPSImageTent {
 }
 
 extern_class!(
+    /// A filter that convolves an image with a Gaussian blur of a given sigma in both the x and y directions.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The Gaussian blur utilizes a very fast algorithm that typically runs at approximately half the speed of copy speeds. Notably, it is faster than either the tent or box blur except perhaps for very large filter windows. Mathematically, it is an approximate Gaussian. Some non-Gaussian behavior may be detectable with advanced analytical methods such as FFT.
+    ///
+    /// If an analytically clean Gaussian filter is required, use the [`MPSImageConvolution`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconvolution) filter instead with an appropriate set of weights. The [`MPSImageGaussianBlur`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagegaussianblur) filter is intended to be suitable for all common image processing needs demanding ~10 bits of precision or less.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The MPSImageGaussianBlur convolves an image with gaussian of given sigma in both x and y direction.
     ///
     /// The MPSImageGaussianBlur utilizes a very fast algorith that typically runs at approximately
@@ -682,8 +763,6 @@ extern_class!(
     /// filter instead with an appropriate set of weights. The MPSImageGaussianBlur is intended
     /// to be suitable for all common image processing needs demanding ~10 bits of precision or
     /// less.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagegaussianblur?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -818,6 +897,17 @@ impl MPSImageGaussianBlur {
 }
 
 extern_class!(
+    /// A filter that convolves an image with the Sobel operator.
+    ///
+    /// ## Overview
+    ///
+    /// When the color model (e.g. RGB, two-channel, grayscale, etc.) of the source and destination textures match, the filter is applied to each color channel separately. If the destination is single-channel (i.e. monochrome) but the source is multi-channel, the pixel values are converted to grayscale before applying the Sobel operator by using the linear gray color transform vector `v` shown in the code listing below.
+    ///
+    /// ```objc
+    /// Luminance = v[0] * pixel.x + v[1] * pixel.y + v[2] * pixel.z
+    /// ```
+    ///
+    ///
     /// The MPSImageSobel implements the Sobel filter.
     /// When the color model (e.g. RGB, two-channel, grayscale, etc.) of source
     /// and destination textures match, the filter is applied to each channel
@@ -826,8 +916,6 @@ extern_class!(
     /// operator using the linear gray color transform vector (v).
     ///
     /// Luminance = v[0] * pixel.x + v[1] * pixel.y + v[2] * pixel.z;
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagesobel?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1009,8 +1097,6 @@ extern_class!(
     /// A pixel can be connected through any of its 8 neighbors. Any pixel marked
     /// as a true edge is output with a high value, and all others are considered
     /// background and output with a low value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecanny?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1224,6 +1310,7 @@ impl MPSImageCanny {
 }
 
 extern_class!(
+    /// A base class for creating different kinds of pyramid images.
     /// The MPSImagePyramid is a base class for creating different kinds of pyramid images
     ///
     /// Currently supported pyramid-types are:
@@ -1249,8 +1336,6 @@ extern_class!(
     /// ```
     ///
     /// where w_0, h_0 are the zeroth level width and height. ie the image dimensions themselves.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagepyramid?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1419,6 +1504,35 @@ impl MPSImagePyramid {
 }
 
 extern_class!(
+    /// A filter that convolves an image with a Gaussian pyramid.
+    ///
+    /// ## Overview
+    ///
+    /// The Gaussian image pyramid kernel is enqueued as an in-place operation using the [`encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/encode(commandbuffer:inplacetexture:fallbackcopyallocator:)) method. All mip-map levels (after level 1) present in the provided image are filled using the provided filter kernel. The `fallbackCopyAllocator` parameter is not used. The Gaussian image pyramid kernel ignores the [`clipRect`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/cliprect) and [`offset`](https://developer.apple.com/documentation/metalperformanceshaders/mpsunaryimagekernel/offset) properties, and fills the entirety of the mip-map levels. Recall the size of the nth mip-map level as:
+    ///
+    /// - `w_n = max(1, floor(w_0 / 2^n))`
+    ///
+    /// - `h_n = max(1, floor(h_0 / 2^n))`
+    ///
+    /// Where `w_0` and `h_0` are the width and height of the 0th level, respectively (i.e. the image dimensions themselves).
+    ///
+    /// The Gaussian image pyramid is constructed as follows:
+    ///
+    /// - First, the 0th level mip-map of the input image is filtered with the specified convolution kernel. The default convolution filter kernel is `k = ww^T`, where `w = [1/16, 1/4, 3/8, 1/4,  1/16 ]^T`. You may also modify this kernel with a `centerWeight` parameter of `a` resulting in `k = ww^T`, where `w = [(1/4 - a/2), 1/4, a, 1/4, (1/4 - a/2) ]^T`, or you may provide a completely custom kernel.
+    ///
+    /// - Afterwards, the image is down-sampled by removing all odd rows and columns, which defines the next level in the Gaussian image pyramid.
+    ///
+    /// - This procedure is continued until every mip-map level present in the image is filled with all the pyramid levels.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Make sure your chosen texture type is compatible with mip-mapping and also supports texture views (i.e. the texture’s usage includes the [`MTLTextureUsagePixelFormatView`](https://developer.apple.com/documentation/metal/mtltextureusage/pixelformatview) option).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A Gaussian image pyramid is constructed as follows:
     /// The mipmap level zero is the source of the operation and is left untouched and
     /// the subsequent mipmap levels are constructed from it recursively:
@@ -1449,8 +1563,6 @@ extern_class!(
     ///
     /// In case of the Gaussian pyramid the user must run the operation in-place using:
     /// MPSUnaryImageKernel::encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:,where the fallback allocator is ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagegaussianpyramid?language=objc)
     #[unsafe(super(MPSImagePyramid, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1615,6 +1727,7 @@ impl MPSImageGaussianPyramid {
 }
 
 extern_class!(
+    /// A filter that convolves an image with a Laplacian filter.
     /// Laplacian pyramid levels are constructed as difference between the current source level and 2x interpolated version of the
     /// half-resolution source level immediately above it.
     ///
@@ -1659,8 +1772,6 @@ extern_class!(
     /// 3) Values of the offset and clipRect properties are fixed to the defaults provided by MPSUnaryImageKernel
     /// (from which they are inherited), corresponding to no offset applied to the source and unbounded region of interest
     /// in every destination mip-level; all updates to these properties are ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramid?language=objc)
     #[unsafe(super(MPSImagePyramid, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1843,7 +1954,7 @@ impl MPSImageLaplacianPyramid {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramidsubtract?language=objc)
+    /// A filter that convolves an image with a subtractive Laplacian pyramid.
     #[unsafe(super(
         MPSImageLaplacianPyramid,
         MPSImagePyramid,
@@ -2014,7 +2125,7 @@ impl MPSImageLaplacianPyramidSubtract {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacianpyramidadd?language=objc)
+    /// A filter that convolves an image with an additive Laplacian pyramid.
     #[unsafe(super(
         MPSImageLaplacianPyramid,
         MPSImagePyramid,

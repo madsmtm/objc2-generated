@@ -7,21 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_key_location_standard?language=objc)
 #[deprecated]
 pub const DOM_KEY_LOCATION_STANDARD: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_key_location_left?language=objc)
 #[deprecated]
 pub const DOM_KEY_LOCATION_LEFT: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_key_location_right?language=objc)
 #[deprecated]
 pub const DOM_KEY_LOCATION_RIGHT: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/dom_key_location_numpad?language=objc)
 #[deprecated]
 pub const DOM_KEY_LOCATION_NUMPAD: c_uint = 0x03;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domkeyboardevent?language=objc)
     #[unsafe(super(DOMUIEvent, DOMEvent, DOMObject, WebScriptObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

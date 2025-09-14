@@ -10,9 +10,57 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A trait collection encapsulates the system traits of an interface's environment.
+    /// A collection of data that represents the environment for an individual element in your app’s user interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitcollection?language=objc)
+    /// ## Overview
+    ///
+    /// The [`traitCollection`](https://developer.apple.com/documentation/uikit/uitraitenvironment/traitcollection) property of the [`UITraitEnvironment`](https://developer.apple.com/documentation/uikit/uitraitenvironment) protocol contains traits that describe the state of various elements of the iOS user interface, such as size class, display scale, and layout direction. Together, these traits compose the UIKit trait environment.
+    ///
+    /// The following classes adopt [`UITraitEnvironment`](https://developer.apple.com/documentation/uikit/uitraitenvironment): [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen), [`UIWindow`](https://developer.apple.com/documentation/uikit/uiwindow), [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller), [`UIPresentationController`](https://developer.apple.com/documentation/uikit/uipresentationcontroller), and [`UIView`](https://developer.apple.com/documentation/uikit/uiview). To create an adaptive interface, write code to adjust your app’s layout according to changes in these traits. You access specific trait values using the [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) [`horizontalSizeClass`](https://developer.apple.com/documentation/uikit/uitraitcollection/horizontalsizeclass), [`verticalSizeClass`](https://developer.apple.com/documentation/uikit/uitraitcollection/verticalsizeclass), [`displayScale`](https://developer.apple.com/documentation/uikit/uitraitcollection/displayscale), and [`userInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uitraitcollection/userinterfaceidiom) properties. The [`UIUserInterfaceSizeClass`](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass) enumeration defines the values for the horizontal and vertical size class. The display scale is a floating point number. The [`UIUserInterfaceIdiom`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom) enumeration defines the values for the user interface idiom.
+    ///
+    /// To make your view controllers and views responsive to changes in the iOS interface environment, override the [`traitCollectionDidChange:`](https://developer.apple.com/documentation/uikit/uitraitenvironment/traitcollectiondidchange(_:)) method from the trait environment protocol. To customize view controller animations in response to interface environment changes, override the [`willTransitionToTraitCollection:withTransitionCoordinator:`](https://developer.apple.com/documentation/uikit/uicontentcontainer/willtransition(to:with:)) method of the [`UIContentContainer`](https://developer.apple.com/documentation/uikit/uicontentcontainer) protocol.
+    ///
+    /// The following image shows the horizontal (width) and vertical (height) size classes your app can encounter when running full-screen on various devices.
+    ///
+    ///
+    /// ![Examples of size classes on iOS devices. The top figures show the size classes for a 10.5 inch iPad as horizontally and vertically regular. For an iPhone X, the vertical size class in a portrait orientation is regular, but all of the other size classes are compact.](https://docs-assets.developer.apple.com/published/73a767796fad883938133c0fc1df95b4/media-2957521%402x.png)
+    ///
+    ///
+    /// For information about size classes your app encounters in Slide Over and Split View on iPad, read [Slide Over and Split View Quick Start](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/QuickStartForSlideOverAndSplitView.html#//apple_ref/doc/uid/TP40015145-CH13) in [Adopting Multitasking Enhancements on iPad](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/AdoptingMultitaskingOniPad/index.html#//apple_ref/doc/uid/TP40015145).
+    ///
+    /// You can create standalone trait collections to assist in matching against specific environments. The [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) class includes four specialized constructors, as well as a constructor that enables you to combine an array of trait collections, [`traitCollectionWithTraitsFromCollections:`](https://developer.apple.com/documentation/uikit/uitraitcollection/init(traitsfrom:)).
+    ///
+    /// One important use of standalone trait collections is to enable conditional use of images based on the current iOS interface environment. You can associate a trait collection with a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) instance by way of a [`UIImageAsset`](https://developer.apple.com/documentation/uikit/uiimageasset) instance, as described in the overview section of [`UIImageAsset`](https://developer.apple.com/documentation/uikit/uiimageasset). For information on configuring asset catalogs graphically from within the Xcode IDE, see [Managing assets with asset catalogs](https://developer.apple.com/documentation/xcode/managing-assets-with-asset-catalogs).
+    ///
+    /// You can employ a standalone trait collection to enable a two-column split view in landscape orientation on iPhone. See the [`setOverrideTraitCollection:forChildViewController:`](https://developer.apple.com/documentation/uikit/uiviewcontroller/setoverridetraitcollection(_:forchild:)) method of the [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) class.
+    ///
+    /// You can also use a standalone trait collection to customize view appearance with the [`appearanceForTraitCollection:`](https://developer.apple.com/documentation/uikit/uiappearance/appearance(for:)) protocol method, as described in [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance).
+    ///
+    /// ### 3D Touch and trait collections
+    ///
+    /// Starting in iOS 9, you can use this class to check whether the device on which your app is running supports 3D Touch. Read the value of the [`forceTouchCapability`](https://developer.apple.com/documentation/uikit/uitraitcollection/forcetouchcapability) property on the trait collection for any object in your app with a trait environment. For information about trait environments, see [`UITraitEnvironment`](https://developer.apple.com/documentation/uikit/uitraitenvironment). For the possible values of the force touch capability property, see the [`UIForceTouchCapability`](https://developer.apple.com/documentation/uikit/uiforcetouchcapability) enumeration.
+    ///
+    /// Because a user can turn off 3D Touch in Settings, check the value of the [`forceTouchCapability`](https://developer.apple.com/documentation/uikit/uitraitcollection/forcetouchcapability) property in your implementation of the [`traitCollectionDidChange:`](https://developer.apple.com/documentation/uikit/uitraitenvironment/traitcollectiondidchange(_:)) method, and adjust your code paths according to the property’s value.
+    ///
+    /// ### Custom traits
+    ///
+    /// You can create a custom trait using [`UITraitDefinition`](https://developer.apple.com/documentation/uikit/uitraitdefinition-64c15). You read custom traits from [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) using subscript syntax. When you define a custom trait, declare a property for the trait in an extension to [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) so that you can access your custom trait using standard property syntax.
+    ///
+    /// The following example defines a property for a custom trait, and reads the trait value from a trait collection.
+    ///
+    /// ```swift
+    /// // ThemeTrait conforms to UITraitDefinition, with a defaultValue type of Theme.
+    /// extension UITraitCollection {
+    ///     var theme: Theme {
+    ///         self[ThemeTrait.self]
+    ///     }
+    /// }
+    ///
+    /// let viewTheme = view.traitCollection.theme
+    /// ```
+    ///
+    ///
+    /// A trait collection encapsulates the system traits of an interface's environment.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UITraitCollection;
@@ -468,7 +516,13 @@ impl DefaultRetained for UITraitCollection {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutabletraits-8l00o?language=objc)
+    /// A mutable container of traits.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UIMutableTraits`](https://developer.apple.com/documentation/uikit/uimutabletraits-8l00o) protocol provides read-write access to get and set trait values on an underlying container. UIKit uses this protocol to facilitate working with instances of [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection), which are immutable and read-only. The [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) initializer [`traitCollectionWithTraits:`](https://developer.apple.com/documentation/uikit/uitraitcollection/traitcollectionwithtraits:) uses an instance of [`UIMutableTraits`](https://developer.apple.com/documentation/uikit/uimutabletraits-8l00o), which enables you to set a batch of trait values in one method call. [`UITraitOverrides`](https://developer.apple.com/documentation/uikit/uitraitoverrides-c.protocol) conforms to [`UIMutableTraits`](https://developer.apple.com/documentation/uikit/uimutabletraits-8l00o), making it easy to set trait overrides on trait environments such as views and view controllers.
+    ///
+    ///
     pub unsafe trait UIMutableTraits: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UITrait", feature = "objc2-core-foundation"))]
         /// # Safety
@@ -771,7 +825,6 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitmutations?language=objc)
 #[cfg(feature = "block2")]
 pub type UITraitMutations =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
@@ -900,9 +953,16 @@ impl UITraitCollection {
 }
 
 extern_protocol!(
-    /// Trait environments expose a trait collection that describes their environment.
+    /// A set of methods that makes the iOS interface environment available to your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironment?language=objc)
+    /// ## Overview
+    ///
+    /// The iOS interface environment includes traits such as horizontal and vertical size class, display scale, and user interface idiom. To access the trait environment of an object that adopts this protocol, use the [`traitCollection`](https://developer.apple.com/documentation/uikit/uitraitenvironment/traitcollection) property. The protocol also provides an overridable method that the system calls when the interface environment changes. Implement this method as part of creating an adaptive iOS app.
+    ///
+    /// For more about trait collections, see [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection). For the WWDC 2014 presentation on creating adaptive interfaces in iOS, see [Building Adaptive Apps with UIKit](https://developer.apple.com/videos/wwdc/2014/#216).
+    ///
+    ///
+    /// Trait environments expose a trait collection that describes their environment.
     pub unsafe trait UITraitEnvironment: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
@@ -917,21 +977,18 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeregistration?language=objc)
     pub unsafe trait UITraitChangeRegistration:
         NSObjectProtocol + NSCopying + MainThreadOnly
     {
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UITraitChangeHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn UITraitEnvironment>>, NonNull<UITraitCollection>),
 >;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitoverrides-c.protocol?language=objc)
     pub unsafe trait UITraitOverrides: UIMutableTraits + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         /// # Safety
@@ -952,7 +1009,17 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeobservable-7qoet?language=objc)
+    /// A type that calls your code in reaction to changes in the trait environment.
+    ///
+    /// ## Overview
+    ///
+    /// Types that conform to `UITraitChangeObservable` can execute your code in response to changes in their trait collection. When you register for trait changes, the system observes the specified traits, and calls your code when any of the observed traits change value.
+    ///
+    /// Keep your trait registrations focused, and avoid doing work not directly relevant to updated traits. Traits may change more than once before the system updates a view, so avoid expensive work in response to trait changes. For example, use the trait change notification to call [`setNeedsDisplay()`](https://developer.apple.com/documentation/uikit/uiview/setneedsdisplay()), and update your view in [`draw(_:)`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)).
+    ///
+    /// UIKit cleans up registrations at the end of the object lifecycle. Unregister only in the rare situations when you need to dynamically change which traits you observe.
+    ///
+    ///
     pub unsafe trait UITraitChangeObservable: MainThreadOnly {
         #[unsafe(method(unregisterForTraitChanges:))]
         #[unsafe(method_family = none)]

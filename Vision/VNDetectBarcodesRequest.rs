@@ -10,10 +10,15 @@ use crate::*;
 extern_class!(
     /// A request that detects barcodes in an image.
     ///
+    /// ## Overview
+    ///
+    /// This request returns an array of [`VNBarcodeObservation`](https://developer.apple.com/documentation/vision/vnbarcodeobservation) objects, one for each barcode it detects.
+    ///
+    ///
+    /// A request that detects barcodes in an image.
+    ///
     ///
     /// This request will return zero or more VNBarcodeObservation objects objects which describe the barcodes detected in an image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -134,16 +139,16 @@ impl VNDetectBarcodesRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the barcode detection request.
 #[deprecated]
 pub static VNDetectBarcodesRequestRevision1: NSUInteger = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision2?language=objc)
+/// A constant for specifying revision 2 of the barcode detection request.
 #[deprecated]
 pub static VNDetectBarcodesRequestRevision2: NSUInteger = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision3?language=objc)
+/// A constant for specifying revision 3 of the barcode detection request.
 pub static VNDetectBarcodesRequestRevision3: NSUInteger = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetectbarcodesrequestrevision4?language=objc)
+/// A value that indicates the fourth revision for a barcode request.
 pub static VNDetectBarcodesRequestRevision4: NSUInteger = 4;

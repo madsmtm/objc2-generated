@@ -8,8 +8,6 @@ use crate::*;
 
 extern_class!(
     /// An object that describes a sticker someone sends in a message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insticker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INSticker;

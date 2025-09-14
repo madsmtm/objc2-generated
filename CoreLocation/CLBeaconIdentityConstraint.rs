@@ -7,7 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbeaconidentityconstraint?language=objc)
+    /// Identity characteristics that can match one or more beacons.
+    ///
+    /// ## Overview
+    ///
+    /// A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ([`UUID`](https://developer.apple.com/documentation/corelocation/clbeacon/uuid), [`major`](https://developer.apple.com/documentation/corelocation/clbeacon/major), and [`minor`](https://developer.apple.com/documentation/corelocation/clbeacon/minor)) to those in the constraint.
+    ///
+    /// Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
+    ///
+    ///
     #[unsafe(super(CLBeaconIdentityCondition, CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CLBeaconIdentityCondition", feature = "CLCondition"))]

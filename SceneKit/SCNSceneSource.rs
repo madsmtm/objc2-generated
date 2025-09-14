@@ -8,94 +8,138 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The file contributors.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is a dictionary populated with keys documented in the [Contributor Keys](https://developer.apple.com/documentation/scenekit/contributor-keys) group.
+    ///
+    ///
     /// Scene source properties
     ///
     /// File contributors. The values are dictionaries populated with keys documented in the "Contributor dictionary keys" group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetcontributorskey?language=objc)
     pub static SCNSceneSourceAssetContributorsKey: &'static NSString;
 }
 
 extern "C" {
-    /// When the file was created. The value is a NSDate instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetcreateddatekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The date when the file was created. The corresponding value is an `NSDate` instance.
+    ///
+    ///
+    /// When the file was created. The value is a NSDate instance.
     pub static SCNSceneSourceAssetCreatedDateKey: &'static NSString;
 }
 
 extern "C" {
-    /// When the file was last modified. The value is a NSDate instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetmodifieddatekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The date when the file was last modified. The corresponding value is an `NSDate` instance.
+    ///
+    ///
+    /// When the file was last modified. The value is a NSDate instance.
     pub static SCNSceneSourceAssetModifiedDateKey: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// The up-axis for the scene. For example, if the scene is oriented y-up, the corresponding value is the string `"0.0 1.0 0.0"`.
+    ///
+    ///
     /// The up axis of the file. If the file is oriented Y-up, for example, then this is the string
     /// @
     /// "0.0 1.0 0.0"
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetupaxiskey?language=objc)
     pub static SCNSceneSourceAssetUpAxisKey: &'static NSString;
 }
 
 extern "C" {
-    /// The unit used in the file. The value is a dictionary populated with keys documented in the "Unit dictionary keys" group.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetunitkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The unit used in the file. The corresponding value is a dictionary populated with keys documented in the [Unit Dictionary Keys](https://developer.apple.com/documentation/scenekit/unit-dictionary-keys) group.
+    ///
+    ///
+    /// The unit used in the file. The value is a dictionary populated with keys documented in the "Unit dictionary keys" group.
     pub static SCNSceneSourceAssetUnitKey: &'static NSString;
 }
 
 extern "C" {
+    /// The authoring tool that created the scene file.
     /// Contributor dictionary keys
     ///
     /// Authoring tool used to create the file. The corresponding value is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetauthoringtoolkey?language=objc)
     pub static SCNSceneSourceAssetAuthoringToolKey: &'static NSString;
 }
 
 extern "C" {
+    /// The author of the scene file.
     /// The file's author. The corresponding value is an NSString.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetauthorkey?language=objc)
     pub static SCNSceneSourceAssetAuthorKey: &'static NSString;
 }
 
 extern "C" {
+    /// The name of the unit used in the scene file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     /// Unit dictionary keys
     ///
     /// The name (NSString) of the unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetunitnamekey?language=objc)
     pub static SCNSceneSourceAssetUnitNameKey: &'static NSString;
 }
 
 extern "C" {
+    /// The conversion factor from the unit used in the scene file to the SI meter.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object whose floating-point value is the number of SI meters for each unit in the scene file.
+    ///
+    ///
     /// A NSNumber encapsulating a floating-point value indicating how many meters the unit is. For example, if the name is
     /// @
     /// "centimeter", then this will be 0.01.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetunitmeterkey?language=objc)
     pub static SCNSceneSourceAssetUnitMeterKey: &'static NSString;
 }
 
+/// Options for creating scene sources and loading the scenes they contain.
 /// Scene loading options
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption?language=objc)
 // NS_TYPED_ENUM
 pub type SCNSceneSourceLoadingOption = NSString;
 
 extern "C" {
+    /// An option for automatically generating surface normals if they are absent when loading geometry.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// To participate in lighting and shading, a geometry must include surface normal vectors in its vertex data. Some scene files may not contain such data. If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit applies heuristics to generate surface normal data for each geometry it loads from the scene source if such data is absent.
+    ///
+    ///
     /// Enable to try to guess acceptable normals for the vertices if none are given in the file
     ///
     /// Use this with a boolean value encapsulated in a NSNumber. The default value is NO.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/createnormalsifabsent?language=objc)
     pub static SCNSceneSourceCreateNormalsIfAbsentKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option to validate scene files while loading.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit adds a consistency checking step before initializing or loading contents from scene source. This step delays loading to verify that the format of the scene file matches its specification. If validation fails, SceneKit stops loading and returns an error. Use this option if you need to determine that a scene file is intact and valid before using it.
+    ///
+    ///
     /// Pass YES in order to perform the document validation.
     ///
     /// This option can be set in the options dictionary of the SCNScene and SCNSceneSource loading methods.
@@ -103,97 +147,159 @@ extern "C" {
     /// SceneKit will attempt to check the document for consistency.
     /// If the document doesn't pass the consistency check it is then not loaded and an error is returned.
     /// This is slower, but for security reasons it should be set to YES if you are not sure the files you load are valid and have not been tampered with.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/checkconsistency?language=objc)
     pub static SCNSceneSourceCheckConsistencyKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option for automatically merging portions of a scene graph during loading.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit attempts to reduce the complexity of the scene graph loaded from the scene source by merging geometries and combining nodes. Use this option for more efficient rendering when manipulation of the scene graph is not needed (for example, when rendering a quick preview of a scene’s contents).
+    ///
+    ///
     /// Pass YES to flatten the scene graph when possible.
     ///
     /// This option can be set in the options dictionary of the SCNScene and SCNSceneSource loading methods.
     /// The value for this option should be a boolean NSNumber. If its boolean value is YES (the default is NO),
     /// SceneKit will attempt to reduce the scene graph by merging the geometries.
     /// This option is suitable to preview a 3D scene efficiently and when manipulating the scene graph is not needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/flattenscene?language=objc)
     pub static SCNSceneSourceFlattenSceneKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option to limit filesystem and network access for external resources referenced by a scene file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// A scene file may reference external resources, such as image files used as textures in material properties, using relative or absolute URLs, including URLs that identify network resources. If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit does not load external resources from the network or from sensitive directories in the local filesystem.
+    ///
+    ///
     /// Pass YES in order to enable the safe mode.
     ///
     /// This option can be set in the options dictionary of the SCNScene and SCNSceneSource loading methods.
     /// The value for this option should be a boolean NSNumber. If its boolean value is YES (the default is NO),
     /// SceneKit will forbid network accesses, prevent the loading of resources from arbitrary directories, and will not execute
     /// any code present in the loaded files.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/usesafemode?language=objc)
     #[deprecated = "No longer supported"]
     pub static SCNSceneSourceUseSafeModeKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// Locations to use for resolving relative URLs to external resources.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing one or more [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) objects, each of which references a directory.
+    ///
+    /// A scene file may reference external resources, such as image files used as textures in material properties, using relative URL paths. When loading from a scene source, SceneKit first attempts to resolve these references relative to the directory containing the scene file. To search additional directories when loading, provide an array of URLs for this key and SceneKit searches them in order.
+    ///
+    /// When working with a scene source constructed from an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object, you can use this option to provide locations in the filesystem for loading external resources.
+    ///
+    ///
     /// Pass an array of directory URLs where SceneKit should look for resources
     ///
     /// By default, SceneKit will look for the external resources it cannot find in the parent directory of the imported file.
     /// You can add additional directories by setting an array of URLs for this key when calling sceneWithOptions:error:.
     /// This is recommended if you want to construct your scene source from a data object, not from an URL,
     /// and need to load resources whose paths are not absolute.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/assetdirectoryurls?language=objc)
     pub static SCNSceneSourceAssetDirectoryURLsKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option to attempt loading external resources using their URLs as specified in a scene file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// A scene file may reference external resources, such as image files used as textures in material properties, using relative URL paths. When loading from a scene source, SceneKit by default attempts to resolve these references relative to the directory containing the scene file. If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit searches for external resources only within the directories you specify using the [`SCNSceneSourceAssetDirectoryURLsKey`](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/assetdirectoryurls) option.
+    ///
+    ///
     /// Pass YES in order to override assets URLs with the directory URLs passed via SCNSceneSourceAssetDirectoryURLsKey.
     ///
     /// By default, SceneKit will look for the external resources using the paths/urls as described in the imported file.
     /// You can force SceneKit to only search for extern resources within the directories specified by the SCNSceneSourceAssetDirectoryURLsKey key.
     /// This can be useful to load a file and its resources from a specific bundle for instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/overrideasseturls?language=objc)
     pub static SCNSceneSourceOverrideAssetURLsKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option to interpret scene files exactly as specified by the scene file format.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// By default, SceneKit reads additional metadata present in a scene file when loading a scene so that its rendering the scene’s contents is as close as possible to the original intent of the scene file’s author. This information can include options that an artist may select using third-party 3D authoring tools or features of SceneKit not specified by the scene file format. If you set this option’s value to [`true`](https://developer.apple.com/documentation/swift/true), SceneKit ignores information that is not part of the scene file format’s specification.
+    ///
+    ///
     /// Pass YES to interpret the 3D format of the file in a strict way.
     ///
     /// This option defaults to NO. In this case SceneKit will try to read any additional metadata present in the file to
     /// enable additional features and make the rendering as close as possible to the original intent. If you pass YES,
     /// SceneKit will instead only consider features which are part of the file format specification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/strictconformance?language=objc)
     pub static SCNSceneSourceStrictConformanceKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option for whether to automatically scale the scene’s contents.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a floating-point value. The default value is `nil`, specifying no unit conversion.
+    ///
+    /// SceneKit’s physics simulation works best when one unit in the scene’s coordinate space corresponds to one meter in the physics world. When you load elements from scene files, provide a value for this key specifying the number of meters (in the coordinate space of the loaded scene) for each unit in the scene coordinate space of the elements to be loaded.
+    ///
+    /// For example, an artist might design a game character using a scale where one unit is a US foot. To load this model for use in SceneKit’s meter-based coordinate space, specify a value of `0.3048` for this key.
+    ///
+    /// This option has no effect for assets compressed by Xcode. Instead, use Xcode itself to convert units when compressing the assets.
+    ///
+    ///
     /// Pass the units you want the scene to be converted to (in meter).
     ///
     /// Use this with a floating value encapsulated in a NSNumber. The default value is nil which means no conversion done. Passing a non-zero value will convert the scene coordinates so that 1 unit corresponds to N meters. For example pass 0.01 for 1 unit == 1 centimeter, pass 0.3048 for 1 unit == 1 foot...
     /// For better physics simulation it is recommended to use 1 unit equals to 1 meter.
     /// This option has no effect for SCN files or if the asset is already compressed by Xcode (use the compression options instead).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/convertunitstometers?language=objc)
     pub static SCNSceneSourceConvertUnitsToMetersKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option for whether to transform assets loaded from the scene file for use in a coordinate system where the y-axis points up.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Boolean value. The default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    /// SceneKit’s physics simulation works best when the y-axis of scene coordinate space corresponds to the “up” direction of the physics world. Some external 3D authoring tools use coordinate systems where a different axis points up. Specify [`true`](https://developer.apple.com/documentation/swift/true) for this key to automatically transform all scene elements loaded from the file based on the [`SCNSceneSourceAssetUpAxisKey`](https://developer.apple.com/documentation/scenekit/scnscenesourceassetupaxiskey) value stored in the file.
+    ///
+    /// This option has no effect for assets compressed by Xcode. Instead, use Xcode itself to transform coordinate spaces when compressing the assets.
+    ///
+    ///
     /// Pass YES if a scene should be converted to Y up if it currently has a different up axis.
     ///
     /// Use this with a boolean value encapsulated in a NSNumber. The default value is NO.
     /// This option has no effect for SCN files or if the asset is already compressed by Xcode (use the compression options instead).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/converttoyup?language=objc)
     pub static SCNSceneSourceConvertToYUpKey: &'static SCNSceneSourceLoadingOption;
 }
 
 extern "C" {
+    /// An option for controlling the playback of animations in a scene file.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is one of the constants listed in `Animation Import Policies`.
+    ///
+    /// The default value for this key is [`SCNSceneSourceAnimationImportPolicyPlayRepeatedly`](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playrepeatedly). For apps built for 10.9 or earlier, the default value is [`SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase`](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playusingscenetimebase).
+    ///
+    ///
     /// Pass one of the value below to specify what to do with loaded animations.
     ///
     /// See below for the description of each individual key. Defaults to SCNSceneSourceAnimationImportPolicyPlayRepeatedly. On 10.9 and before the behavior is SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase. For compatibility reason if the application was built on 10.9 or before the default behavior is SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/animationimportpolicy?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -201,119 +307,186 @@ extern "C" {
     /// Pass YES to make SceneKit preserve the original topology instead of triangulating at load time. This can be useful to get better results when subdividing a geometry.
     ///
     /// Defaults to YES starting macOS 10.15, iOS 13, tvOS 13 and watchOS 6. Defaults to NO in previous versions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/preserveoriginaltopology?language=objc)
     pub static SCNSceneSourceLoadingOptionPreserveOriginalTopology:
         &'static SCNSceneSourceLoadingOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy?language=objc)
+/// Options for playing animations loaded from a scene file, used with the [`SCNSceneSourceAnimationImportPolicyKey`](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/animationimportpolicy) key in options dictionaries.
 // NS_TYPED_ENUM
 pub type SCNSceneSourceAnimationImportPolicy = NSString;
 
 extern "C" {
-    /// Add animations to the scene and play them once (repeatCount set to 1).
+    /// Animations loaded from the scene file are immediately added to the scene and played once.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/play?language=objc)
+    /// ## Discussion
+    ///
+    /// Using this policy is equivalent to manually loading each animation, setting its [`repeatCount`](https://developer.apple.com/documentation/quartzcore/camediatiming/repeatcount) property to `1`, and adding it to the appropriate element of the scene.
+    ///
+    ///
+    /// Add animations to the scene and play them once (repeatCount set to 1).
     pub static SCNSceneSourceAnimationImportPolicyPlay:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
 
 extern "C" {
-    /// Add animations to the scene and play them repeatedly (repeatCount set to infinity).
+    /// Animations loaded from the scene file are immediately added to the scene and played repeatedly.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playrepeatedly?language=objc)
+    /// ## Discussion
+    ///
+    /// Using this policy is equivalent to manually loading each animation, setting its [`repeatCount`](https://developer.apple.com/documentation/quartzcore/camediatiming/repeatcount) property to `INFINITY`, and adding it to the appropriate element of the scene.
+    ///
+    ///
+    /// Add animations to the scene and play them repeatedly (repeatCount set to infinity).
     pub static SCNSceneSourceAnimationImportPolicyPlayRepeatedly:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
 
 extern "C" {
-    /// Only keep animations in the SCNSceneSource and don't add to the animatable elements of the scene.
+    /// Animations are not loaded from the scene file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/donotplay?language=objc)
+    /// ## Discussion
+    ///
+    /// To play animations stored in the scene file, load them manually using the [`entryWithIdentifier:withClass:`](https://developer.apple.com/documentation/scenekit/scnscenesource/entrywithidentifier:withclass:) method.
+    ///
+    ///
+    /// Only keep animations in the SCNSceneSource and don't add to the animatable elements of the scene.
     pub static SCNSceneSourceAnimationImportPolicyDoNotPlay:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
 
 extern "C" {
-    /// Add animations to the scene and play them using the SCNView/SCNRenderer's scene time (usesSceneTimeBase set to YES)
+    /// Animations loaded from the scene file are immediately added to the scene and played according to the scene’s [`sceneTime`](https://developer.apple.com/documentation/scenekit/scnscenerenderer/scenetime) property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playusingscenetimebase?language=objc)
+    /// ## Discussion
+    ///
+    /// Using this policy is equivalent to manually loading each animation, setting its [`usesSceneTimeBase`](https://developer.apple.com/documentation/quartzcore/caanimation/usesscenetimebase) property to [`true`](https://developer.apple.com/documentation/swift/true), and adding it to the appropriate element of the scene. Use this policy when you want to directly control (or let the user directly control) the progress of animations.
+    ///
+    ///
+    /// Add animations to the scene and play them using the SCNView/SCNRenderer's scene time (usesSceneTimeBase set to YES)
     pub static SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
 
 extern "C" {
+    /// Detailed error information from SceneKit’s scene file loading process.
+    ///
+    /// ## Discussion
+    ///
+    /// If SceneKit reports an error when creating or loading from a scene source, the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary of the returned [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object may contain this key, whose value is an array of dictionaries (each containing one or more of the keys listed in [Scene File Consistency Error Keys](https://developer.apple.com/documentation/scenekit/scene-file-consistency-error-keys)) providing details about the location of the error in the scene file.
+    ///
+    /// If you specify [`true`](https://developer.apple.com/documentation/swift/true) for the [`SCNSceneSourceCheckConsistencyKey`](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/checkconsistency) option when creating or loading from a scene source, SceneKit verifies the scene file against the specification for its file format. Verifying a scene file can result in additional error reports for violations of the file format specification that do not prevent SceneKit from loading the file.
+    ///
+    ///
     /// Key to access the detailed validation errors.
     ///
     /// This key will be present in the user info dictionary of errors created by the various sceneWithOptions: methods.
     /// When present, the value associated with it is an array of detailed errors found by the consistency checker
     /// which represent consistency errors in the 3D file. Some metadata about these detailed errors is available
     /// in their user info dictionary using the other keys (SCNConsistency*) defined in this file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndetailederrorskey?language=objc)
     pub static SCNDetailedErrorsKey: &'static NSString;
 }
 
 extern "C" {
+    /// The identifier of the scene file element where the error occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing an identifier.
+    ///
+    /// If the element in which the error occurred does not have an identifier, the value for this key is the identifier of the closest parent element with an identifier.
+    ///
+    ///
     /// For XML-based formats, the ID of the element where the error occurred.
     ///
     /// When the element does not have an ID, the ID of the closest parent element which has one is returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyelementiderrorkey?language=objc)
     pub static SCNConsistencyElementIDErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// For XML-based formats, the tag name of the element where the error occurred.
+    /// The type of scene file element in which the error occurred.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyelementtypeerrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is a [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object naming a scene file element type.
+    ///
+    ///
+    /// For XML-based formats, the tag name of the element where the error occurred.
     pub static SCNConsistencyElementTypeErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// For text-based formats, the line number where an error occurred.
+    /// The line number in the scene file in which the error occurred.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencylinenumbererrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object.
+    ///
+    ///
+    /// For text-based formats, the line number where an error occurred.
     pub static SCNConsistencyLineNumberErrorKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyinvalidurierror?language=objc)
+/// The scene file contains an invalid URI (or URL).
 pub const SCNConsistencyInvalidURIError: c_uint = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyinvalidcounterror?language=objc)
+/// The scene file contains an invalid number of scenes.
 pub const SCNConsistencyInvalidCountError: c_uint = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyinvalidargumenterror?language=objc)
+/// An element in the scene file contains an invalid option for one of its attributes.
 pub const SCNConsistencyInvalidArgumentError: c_uint = 1002;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencymissingelementerror?language=objc)
+/// A required element in the scene file is missing.
 pub const SCNConsistencyMissingElementError: c_uint = 1003;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencymissingattributeerror?language=objc)
+/// An element in the scene file is missing a required attribute.
 pub const SCNConsistencyMissingAttributeError: c_uint = 1004;
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnconsistencyxmlschemavalidationerror?language=objc)
+/// The format of the scene file does not match its XML schema definition.
 pub const SCNConsistencyXMLSchemaValidationError: c_uint = 1005;
 
+/// Constants identifying phases of SceneKit’s scene loading process, used in a [`SCNSceneSourceStatusHandler`](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler) block.
+///
+/// ## Overview
+///
+/// Use the information provided by these constants to describe the scene loading process in your app’s user interface. Because this enumeration leaves room for more detailed progress reports, you should compare the `status` parameter of a [`SCNSceneSourceStatusHandler`](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler) block against these values for ordering, not for equality, as in the following example handler:
+///
+/// ```objc
+/// SCNSceneSourceStatusHandler myHandler =
+/// ^(float totalProgress, SCNSceneSourceStatus status, NSError *error, BOOL *stop) {
+///     if (status >= SCNSceneSourceStatusProcessing && status < SCNSceneSourceStatusComplete)
+///         myProgressLabel.stringValue = @"Processing";
+/// };
+/// ```
+///
+///
 /// Represents a phase of the loading process.
 ///
 /// Each of these constants (except SCNSceneSourceStatusError) represents a phase of the loading process. "Parsing" means that the document is being deserialized, "validating" that it's being checked for consistency, "processing" that the resulting object is being loaded. New values might be added to this enumeration to make it more detailed; however the values will always be ordered in the same order as the corresponding phases are executed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SCNSceneSourceStatus(pub NSInteger);
 impl SCNSceneSourceStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/error?language=objc)
+    /// An error occurred when SceneKit attempted to load the scene.
+    ///
+    /// ## Discussion
+    ///
+    /// If the `status` parameter of a [`SCNSceneSourceStatusHandler`](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler) block has this value, see the block’s `error` parameter for information about the nature and location of the error. When SceneKit encounters an error during scene loading, it calls the handler block with this status, then after the block completes, the [`sceneWithOptions:statusHandler:`](https://developer.apple.com/documentation/scenekit/scnscenesource/scene(options:statushandler:)) method returns `nil`.
+    ///
+    ///
     #[doc(alias = "SCNSceneSourceStatusError")]
     pub const Error: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/parsing?language=objc)
+    /// SceneKit has begun deserializing the source file.
     #[doc(alias = "SCNSceneSourceStatusParsing")]
     pub const Parsing: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/validating?language=objc)
+    /// SceneKit has begun validating the scene file’s format.
+    ///
+    /// ## Discussion
+    ///
+    /// If you specify [`true`](https://developer.apple.com/documentation/swift/true) for the [`SCNSceneSourceCheckConsistencyKey`](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/checkconsistency) when creating or loading from a scene source, SceneKit verifies the scene file against the specification for its file format and reports any format consistency errors.
+    ///
+    ///
     #[doc(alias = "SCNSceneSourceStatusValidating")]
     pub const Validating: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/processing?language=objc)
+    /// SceneKit has begun generating scene graph objects from the scene file’s contents.
     #[doc(alias = "SCNSceneSourceStatusProcessing")]
     pub const Processing: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus/complete?language=objc)
+    /// SceneKit has successfully finished loading the scene file’s contents.
     #[doc(alias = "SCNSceneSourceStatusComplete")]
     pub const Complete: Self = Self(16);
 }
@@ -326,16 +499,52 @@ unsafe impl RefEncode for SCNSceneSourceStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler?language=objc)
+/// The signature for the block that SceneKit calls periodically to report progress while loading a scene.
+///
+/// ## Discussion
+///
+/// You provide a block with this signature when using the [`sceneWithOptions:statusHandler:`](https://developer.apple.com/documentation/scenekit/scnscenesource/scene(options:statushandler:)) method.
+///
+/// The block takes four parameters:
+///
+/// - totalProgress: A floating-point number between `0.0` and `1.0` indicating the overall progress of loading the scene. A value of `0.0` indicates that the loading process has just begun, and a value of `1.0` indicates that the process has completed.
+///
+/// - status: A constant identifying one of the distinct phases of SceneKit’s loading procedure. See [`SCNSceneSourceStatus`](https://developer.apple.com/documentation/scenekit/scnscenesourcestatus) for possible values.
+///
+/// - error: An error object describing any error that has occurred during scene loading, or `nil` if no errors has been encountered.
+///
+/// - stopLoading: A reference to a Boolean value. Set `*stop` to [`true`](https://developer.apple.com/documentation/swift/true) within the block to abort further processing of the scene source’s contents.
+///
+///
 #[cfg(feature = "block2")]
 pub type SCNSceneSourceStatusHandler =
     *mut block2::DynBlock<dyn Fn(c_float, SCNSceneSourceStatus, *mut NSError, NonNull<Bool>)>;
 
 extern_class!(
+    /// An object that manages the data-reading tasks associated with loading scene contents from a file or data.
+    ///
+    /// ## Overview
+    ///
+    /// You can also use a scene source to examine the contents of a scene file or to selectively extract certain elements of a scene without keeping the entire scene and all the assets it contains.
+    ///
+    /// SceneKit can read scene contents from a file in a supported format, or from an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object holding the contents of such a file. Supported formats include the following:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Format" }] }], [Paragraph { inline_content: [Text { text: "Filename Extension" }] }], [Paragraph { inline_content: [Text { text: "Supported in" }] }]], [[Paragraph { inline_content: [Text { text: "Digital Asset Exchange" }] }], [Paragraph { inline_content: [CodeVoice { code: ".dae" }] }], [Paragraph { inline_content: [Text { text: "macOS 10.8 and later" }] }]], [[Paragraph { inline_content: [Text { text: "Alembic" }] }], [Paragraph { inline_content: [CodeVoice { code: ".abc" }] }], [Paragraph { inline_content: [Text { text: "macOS 10.10 and later" }] }]], [[Paragraph { inline_content: [Text { text: "SceneKit compressed scene" }] }], [Paragraph { inline_content: [CodeVoice { code: ".dae" }, Text { text: " or " }, CodeVoice { code: ".abc" }] }], [Paragraph { inline_content: [Text { text: "macOS 10.10 and later " }, Image { identifier: "spacer", metadata: None }, Text { text: " iOS 8.0 and later" }] }]], [[Paragraph { inline_content: [Text { text: "SceneKit archive" }] }], [Paragraph { inline_content: [CodeVoice { code: ".scn" }] }], [Paragraph { inline_content: [Text { text: "macOS 10.10 and later " }, Image { identifier: "spacer", metadata: None }, Text { text: " iOS 8.0 and later" }] }]]], alignments: None, metadata: None })
+    /// When you include a scene file in DAE or Alembic format in your Xcode project, Xcode automatically converts the file to SceneKit’s compressed scene format for use in the built app. The compressed file retains its original `.dae` or `.abc` extension.
+    ///
+    /// The [`SCNSceneSource`](https://developer.apple.com/documentation/scenekit/scnscenesource) class can also load SceneKit archive files, which you create in the Xcode scene editor or programmatically by using the [`NSKeyedArchiver`](https://developer.apple.com/documentation/foundation/nskeyedarchiver) class to serialize an [`SCNScene`](https://developer.apple.com/documentation/scenekit/scnscene) object and the scene graph it contains.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For best results, place scene files that ship in your app bundle in a folder with the `.scnassets` extension, and place image files referenced as textures from those scenes in an Asset Catalog. Xcode then optimizes the scene and texture resources for best performance on each target device, and prepares your texture resources for delivery features such as App Thinning and On-Demand Resources.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// SCNSceneSource objects, abstract the data-reading task. A scene source can read scene data from a URL or a NSData object.
     /// After creating a SCNSceneSource object for the appropriate source, you can obtain scenes using SCNSceneSource methods.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNSceneSource;

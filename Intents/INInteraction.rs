@@ -7,31 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus?language=objc)
+/// Constants indicating the current state of the interaction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INIntentHandlingStatus(pub NSInteger);
 impl INIntentHandlingStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/unspecified?language=objc)
+    /// The status of the interaction is unknown. This is the default value.
     #[doc(alias = "INIntentHandlingStatusUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/ready?language=objc)
+    /// The intent is ready to be handled, but has not yet been handled.
     #[doc(alias = "INIntentHandlingStatusReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/inprogress?language=objc)
+    /// The Intents extension is in the process of handling the intent.
     #[doc(alias = "INIntentHandlingStatusInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/success?language=objc)
+    /// The Intents extension successfully handled the intent.
     #[doc(alias = "INIntentHandlingStatusSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/failure?language=objc)
+    /// The Intents extension encountered an unrecoverable problem when handling the intent.
     #[doc(alias = "INIntentHandlingStatusFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/deferredtoapplication?language=objc)
+    /// The Intents extension asked its associated app to handle the intent.
     #[doc(alias = "INIntentHandlingStatusDeferredToApplication")]
     pub const DeferredToApplication: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus/userconfirmationrequired?language=objc)
     #[doc(alias = "INIntentHandlingStatusUserConfirmationRequired")]
     pub const UserConfirmationRequired: Self = Self(6);
 }
@@ -44,19 +43,37 @@ unsafe impl RefEncode for INIntentHandlingStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection?language=objc)
+/// Constants indicating whether the app is providing or receiving information.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INInteractionDirection(pub NSInteger);
 impl INInteractionDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/unspecified?language=objc)
+    /// An unspecified direction.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this value for interactions that do not involve information moving onto or off of the device. This is the default value.
+    ///
+    ///
     #[doc(alias = "INInteractionDirectionUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/outgoing?language=objc)
+    /// An interaction in which information is sent from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this value when the interaction involves the user starting a video call from the current device.
+    ///
+    ///
     #[doc(alias = "INInteractionDirectionOutgoing")]
     pub const Outgoing: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection/incoming?language=objc)
+    /// An interaction in which information is received on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Choose this value when the interaction involves a message sent to the user of the device.
+    ///
+    ///
     #[doc(alias = "INInteractionDirectionIncoming")]
     pub const Incoming: Self = Self(2);
 }
@@ -70,7 +87,25 @@ unsafe impl RefEncode for INInteractionDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteraction?language=objc)
+    /// An interaction between the user and your app involving an intent object.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object encapsulates information about a SiriKit request and your app’s response. SiriKit creates interaction objects automatically when it needs your app to respond to a specific intent, either by handling the intent or providing an error explaining why your app couldn’t handle the intent. SiriKit places the interaction in an [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that the system passes to your app at launch time. You can also create instances of this class in your app and donate relevant interactions to the system.
+    ///
+    /// Donating interactions provides contextual information that might be helpful to other apps. Some system apps use donated interactions to improve search results or to anticipate user actions. For example, a ride-booking app could donate an interaction containing the user’s planned ride information. If the user subsequently uses the Maps app to search for restaurants, Maps can show relevant results near the user’s destination.
+    ///
+    /// You choose which of your app’s interactions you want to donate to the system. To donate an interaction, create an instance of this class, filling it with your intent object and response, and call the [`donateInteractionWithCompletion:`](https://developer.apple.com/documentation/intents/ininteraction/donate(completion:)) method. You can also use the methods of this class to delete interactions when they are no longer relevant.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Donate interactions only when the user initiates an interaction in your app. SiriKit already knows about interactions that it sends your app for intent handling.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INInteraction;

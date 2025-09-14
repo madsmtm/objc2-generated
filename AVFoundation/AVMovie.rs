@@ -12,15 +12,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A key that specifies restrictions for a movie to use when it resolves references to external media data.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify a value for this key by passing an appropriate [`AVAssetReferenceRestrictions`](https://developer.apple.com/documentation/avfoundation/avassetreferencerestrictions) value, or the logical combination of multiple values.
+    ///
+    /// Some movies contain references to media data stored outside the movie’s container, such as in another file. This key specifies a policy to use when the movie encounters these references. If a movie contains one or more references of a type that’s forbidden by the reference restrictions, the loading of the movie properties fails. Additionally, you can’t use that movie instance for playback or processing.
+    ///
+    ///
     /// Indicates the restrictions used by the movie when resolving references to external media data. The value of this key is an NSNumber wrapping an AVAssetReferenceRestrictions enum value or the logical combination of multiple such values. See AVAsset.h for the declaration of the AVAssetReferenceRestrictions enum.
     ///
     /// Some movies can contain references to media data stored outside the movie's container, for example in another file. This key can be used to specify a policy to use when these references are encountered. If a movie contains one or more references of a type that is forbidden by the reference restrictions, loading of movie properties will fail. In addition, such a movie cannot be used with other AVFoundation modules, such as AVPlayerItem or AVAssetExportSession.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviereferencerestrictionskey?language=objc)
     pub static AVMovieReferenceRestrictionsKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that specifies a Boolean value that indicates whether the system parses and resolves alias data references in the movie.
+    ///
+    /// ## Discussion
+    ///
+    /// The default value is [`false`](https://developer.apple.com/documentation/swift/false). Most QuickTime movie files contain all of the media data they require, but some contain references to media stored in other files. While AVFoundation and CoreMedia typically use a URL reference for this purpose, older implementations such as QuickTime 7 have commonly used a Macintosh alias instead, as documented in the QuickTime File Format specification. If your app must work with legacy QuickTime movie files containing alias-based references to media data stored in other files, set this value to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// If you provide a value for [`AVMovieReferenceRestrictionsKey`](https://developer.apple.com/documentation/avfoundation/avmoviereferencerestrictionskey), the movie observes these restrictions for resolved alias references just as they’re for URL references.
+    ///
+    ///
     /// Indicates whether alias data references in the movie should be parsed and resolved.
     ///
     /// Default is NO. Although the majority of QuickTime movie files contain all of the media data they require, some contain references to media stored in other files. While AVFoundation and CoreMedia typically employ a URL reference for this purpose, older implementations such as QuickTime 7 have commonly employed a Macintosh alias instead, as documented in the QuickTime File Format specification. If your application must work with legacy QuickTime movie files containing alias-based references to media data stored in other files, the use of this AVMovie initialization option is appropriate. AVMovie and AVMutableMovie do not create movies using alias data references to external media files.
@@ -28,13 +44,17 @@ extern "C" {
     /// If you provide a value for AVMovieReferenceRestrictionsKey, restrictions will be observed for resolved alias references just as they are for URL references.
     ///
     /// For more details about alias resolution, consult documentation of the bookmark-related interfaces of NSURL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovieshouldsupportaliasdatareferenceskey?language=objc)
     pub static AVMovieShouldSupportAliasDataReferencesKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmovie?language=objc)
+    /// An object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.
+    ///
+    /// ## Overview
+    ///
+    /// `AVMovie` supports operations involving the format-specific portions of the QuickTime movie model that [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) doesn’t support. For instance, retrieving the movie header from an existing QuickTime movie file. You can also use `AVMovie` to write a movie header into a new file, thereby creating a reference movie.
+    ///
+    ///
     #[unsafe(super(AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -243,6 +263,7 @@ impl AVMovie {
     );
 }
 
+/// A structure that defines options to control the writing of a movie header to a destination URL.
 /// These options can be passed into writeMovieHeaderToURL:fileType:options:error: to control the writing of a movie header to a destination URL.
 ///
 /// Writing the movie header will remove any existing movie header in the destination file and add a new movie header, preserving any other data in the file. If the destination file was empty, a file type box will be written at the beginning of the file.
@@ -250,18 +271,28 @@ impl AVMovie {
 /// If set, writing the movie header will truncate all existing data in the destination file and write a new movie header, thereby creating a pure reference movie file. A file type box will be written at the beginning of the file.
 ///
 /// You would not want to use the AVMovieWritingTruncateDestinationToMovieHeaderOnly option if you had written sample data to the destination file using (for example) -[AVMutableMovie insertTimeRange:ofAsset:atTime:copySampleData:error:] with copySampleData set to YES, since that data would be lost.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMovieWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVMovieWritingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions/addmovieheadertodestination?language=objc)
+/// The new movie header overwrites any existing movie header.
+///
+/// ## Discussion
+///
+/// Only an existing movie header is overwritten, all other data is preserved. If the destination file is empty, a file type box is created at the beginning of the file.
+///
+///
         #[doc(alias = "AVMovieWritingAddMovieHeaderToDestination")]
         const AddMovieHeaderToDestination = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmoviewritingoptions/truncatedestinationtomovieheaderonly?language=objc)
+/// The movie header overwrites all existing data and creates a pure reference movie file.
+///
+/// ## Discussion
+///
+/// Creates a file type box at the beginning of the destination file.
+///
+///
         #[doc(alias = "AVMovieWritingTruncateDestinationToMovieHeaderOnly")]
         const TruncateDestinationToMovieHeaderOnly = 1<<0;
     }
@@ -471,12 +502,21 @@ impl AVMovie {
 }
 
 extern_class!(
+    /// A mutable object that represents an audiovisual container that conforms to the QuickTime movie file format or a related format like MPEG-4.
+    ///
+    /// ## Overview
+    ///
+    /// This class is a mutable subclass of [`AVMovie`](https://developer.apple.com/documentation/avfoundation/avmovie) that provides methods that support movie editing. For example, you can use a mutable movie to copy media data from one track and paste it into another. You can also use this object to create track references from one track to another (for example, to set one track as a chapter track of another track). To perform editing operations on individual tracks, use the associated classes [`AVMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmovietrack) and [`AVMutableMovieTrack`](https://developer.apple.com/documentation/avfoundation/avmutablemovietrack).
+    ///
+    /// You use movie objects only when operating on format-specific features of a QuickTime or ISO base media file. You typically don’t use these classes to open and play QuickTime movie files or ISO base media files. Instead, you use [`AVURLAsset`](https://developer.apple.com/documentation/avfoundation/avurlasset) and [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem).
+    ///
+    /// When performing media insertions, a movie interleaves media data from tracks in the source asset to optimize the movie file for playback. However, performing a series of media insertions may result in a movie file that’s not optimally interleaved. You can optimize a movie file for playback by exporting it with an [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) object using the export preset [`AVAssetExportPresetPassthrough`](https://developer.apple.com/documentation/avfoundation/avassetexportpresetpassthrough), and setting the [`shouldOptimizeForNetworkUse`](https://developer.apple.com/documentation/avfoundation/avassetexportsession/shouldoptimizefornetworkuse) property value to [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// AVMutableMovie adds to its immutable superclass, AVMovie, several categories of methods for editing QuickTime movie files, e.g. inserting and removing time ranges of media, adding and removing tracks, and modifying the metadata collections stored therein.
     ///
     ///
     /// By default, after creating an AVMutableMovie the defaultMediaDataStorage property will be nil and each associated AVMutableMovieTrack's mediaDataStorage property will be nil. If you want to create an AVMutableMovie from a file and then append sample buffers to any of its tracks, you must first set one of these properties to indicate where the sample data should be written.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablemovie?language=objc)
     #[unsafe(super(AVMovie, AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -1209,11 +1249,10 @@ impl AVMutableMovie {
 }
 
 extern_class!(
+    /// An object that represents the media sample data storage file.
     /// Media sample data storage file.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmediadatastorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMediaDataStorage;
@@ -1264,34 +1303,46 @@ impl AVMediaDataStorage {
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted after the value of @“containsMovieFragments” has already been loaded and the AVFragmentedMovie is added to an AVFragmentedMovieMinder, either when 1) movie fragments are detected in the movie file on disk after it had previously contained none or when 2) no movie fragments are detected in the movie file on disk after it had previously contained one or more.
+    ///
+    ///
     /// Posted after the value of
     /// "
     /// containsMovieFragments" has already been loaded and the AVFragmentedMovie is added to an AVFragmentedMovieMinder, either when 1) movie fragments are detected in the movie file on disk after it had previously contained none or when 2) no movie fragments are detected in the movie file on disk after it had previously contained one or more.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviecontainsmoviefragmentsdidchangenotification?language=objc)
     pub static AVFragmentedMovieContainsMovieFragmentsDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the duration of an AVFragmentedMovie changes while it’s being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of @“duration” has reached AVKeyValueStatusLoaded.
+    ///
+    ///
     /// Posted when the duration of an AVFragmentedMovie changes while it's being minded by an AVFragmentedMovieMinder, but only for changes that occur after the status of the value of
     /// "
     /// duration" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviedurationdidchangenotification?language=objc)
     pub static AVFragmentedMovieDurationDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Posted when the movie file on disk is defragmented while an AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only if the defragmentation occurs after the status of the value of @“canContainMovieFragments” has reached AVKeyValueStatusLoaded.
+    ///
+    ///
     /// Posted when the movie file on disk is defragmented while an AVFragmentedMovie is being minded by an AVFragmentedMovieMinder, but only if the defragmentation occurs after the status of the value of
     /// "
     /// canContainMovieFragments" has reached AVKeyValueStatusLoaded.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmoviewasdefragmentednotification?language=objc)
     pub static AVFragmentedMovieWasDefragmentedNotification: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovie?language=objc)
+    /// An object that represents a fragmented movie file.
     #[unsafe(super(AVMovie, AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -1612,11 +1663,16 @@ impl AVFragmentedMovie {
 }
 
 extern_class!(
+    /// An object that checks whether a fragmented movie appends additional movie fragments.
+    ///
+    /// ## Overview
+    ///
+    /// This class is identical to [`AVFragmentedAssetMinder`](https://developer.apple.com/documentation/avfoundation/avfragmentedassetminder) except that it’s capable of minding only assets of type [`AVFragmentedMovie`](https://developer.apple.com/documentation/avfoundation/avfragmentedmovie).
+    ///
+    ///
     /// A class that periodically checks whether additional movie fragments have been appended to fragmented movie files.
     ///
     /// AVFragmentedMovieMinder is identical to AVFragmentedAssetMinder except that it's capable of minding only assets of class AVFragmentedMovie.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfragmentedmovieminder?language=objc)
     #[unsafe(super(AVFragmentedAssetMinder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]

@@ -9,16 +9,74 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nssystemclockdidchange?language=objc)
+    /// A notification posted whenever the system clock is changed.
+    ///
+    /// ## Discussion
+    ///
+    /// This can be initiated by a call to `settimeofday(_:_:)` or the user changing values in the Date and Time Preference panel.
+    ///
+    /// The notification object is `null`. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemClockDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/timeinterval?language=objc)
+/// A number of seconds.
+///
+/// ## Discussion
+///
+/// A [`NSTimeInterval`](https://developer.apple.com/documentation/foundation/timeinterval) value is always specified in seconds; it yields sub-millisecond precision over a range of 10,000 years.
+///
+/// On its own, a time interval does not specify a unique point in time, or even a span between specific times. Combining a time interval with one or more known reference points yields a [`Date`](https://developer.apple.com/documentation/foundation/date) or [`DateInterval`](https://developer.apple.com/documentation/foundation/dateinterval) value.
+///
+///
 pub type NSTimeInterval = c_double;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdate?language=objc)
+    /// A representation of a specific point in time, independent of any calendar or time zone.
+    ///
+    /// ## Overview
+    ///
+    /// In Swift, use this type when you need reference semantics or other Foundation-specific behavior.
+    ///
+    /// [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001).
+    ///
+    /// The [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects can be used in conjunction with [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) objects to create localized representations of dates and times, as well as with [`NSCalendar`](https://developer.apple.com/documentation/foundation/nscalendar) objects to perform calendar arithmetic.
+    ///
+    /// [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) is _toll-free bridged_ with its Core Foundation counterpart, [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  The Swift overlay to the Foundation framework provides the [`Date`](https://developer.apple.com/documentation/foundation/date) structure, which bridges to the [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) class. For more information about value types, see [Working with Cocoa Frameworks](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WorkingWithCocoaDataTypes.html#//apple_ref/doc/uid/TP40014216-CH6) in [Using Swift with Cocoa and Objective-C (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing Notes
+    ///
+    /// You might subclass [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) in order to make it easier to work with a particular calendrical system, or to work with date and time values with a finer temporal granularity.
+    ///
+    /// #### Methods to Override and Other Requirements
+    ///
+    /// If you want to subclass [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) to obtain behavior different than that provided by the private or public subclasses, you must:
+    ///
+    /// - Declare a suitable instance variable to hold the date and time value (relative to an absolute reference date)
+    ///
+    /// - Override the [`timeIntervalSinceReferenceDate`](https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincereferencedate-swift.property) instance method to provide the correct date and time value based on your instance variable
+    ///
+    /// - Override [`initWithTimeIntervalSinceReferenceDate:`](https://developer.apple.com/documentation/foundation/nsdate/init(timeintervalsincereferencedate:)), one of the designated initializer methods
+    ///
+    /// - If creating a subclass that represents a calendrical system, define methods that partition past and future periods into the units of this calendar
+    ///
+    /// - Implement the methods required by the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) and [NSCoding](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/BuildingCocoaApps/WritingSwiftClassesWithObjective-CBehavior.html#//apple_ref/doc/uid/TP40014216-CH5-ID152) protocols, because [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) adopts these protocols
+    ///
+    /// #### Special Considerations
+    ///
+    /// Your subclass may use a different reference date than the absolute reference date used by [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) (00:00:00 UTC on 1 January 2001). If it does, it must still use the absolute reference date in its implementations of the methods [`timeIntervalSinceReferenceDate`](https://developer.apple.com/documentation/foundation/nsdate/timeintervalsincereferencedate-swift.property) and [`initWithTimeIntervalSinceReferenceDate:`](https://developer.apple.com/documentation/foundation/nsdate/init(timeintervalsincereferencedate:)). That is, the reference date referred to in the titles of these methods is the absolute reference date. If you do not use the absolute reference date in these methods, comparisons between [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects of your subclass and `NSDate` objects of a private subclass will not work.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDate;

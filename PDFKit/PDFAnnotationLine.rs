@@ -11,7 +11,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationline?language=objc)
+    /// A `PDFAnnotationLine` object displays a single line on a page.
+    ///
+    /// ## Overview
+    ///
+    /// The [`lineWidth`](https://developer.apple.com/documentation/pdfkit/pdfborder/linewidth) and [`style`](https://developer.apple.com/documentation/pdfkit/pdfborder/style) properties of the annotation’s associated `PDFBorder` object determines the stroke thickness and style. The [`color`](https://developer.apple.com/documentation/pdfkit/pdfannotation/color) property of the `PDFAnnotation` class determines the stroke color.
+    ///
+    ///
     #[unsafe(super(PDFAnnotation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PDFAnnotation")]

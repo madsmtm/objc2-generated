@@ -13,6 +13,23 @@ use objc2_core_video::*;
 use crate::*;
 
 extern "C-unwind" {
+    /// Creates a Core Graphics bitmap image or image mask using the provided pixel buffer.
+    ///
+    /// Parameters:
+    /// - pixelBuffer: A pixel buffer to use as the image data source for the [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage).
+    ///
+    /// - options: No options are currently supported. Pass `NULL` for this argument.
+    ///
+    /// - imageOut: Pointer to an address to receive the newly created [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This routine creates a [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage) representation of the image data contained in the provided [`CVPixelBufferRef`](https://developer.apple.com/documentation/corevideo/cvpixelbuffer). The source `CVPixelBuffer` may be retained for the lifetime of the `CGImage`. Changes to the `CVPixelBuffer` after making this call (other than releasing it) will have undefined results.
+    ///
+    /// Not all `CVPixelBuffer` pixel formats support conversion into a `CGImage-`compatible pixel format.
+    ///
+    ///
     /// Creates a CGImage using the provided CVPixelBuffer
     ///
     /// Parameter `pixelBuffer`: The pixelBuffer to be used as the image data source for the CGImage.
@@ -34,8 +51,6 @@ extern "C-unwind" {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `image_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcreatecgimagefromcvpixelbuffer(_:options:imageout:)?language=objc)
     #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
     pub fn VTCreateCGImageFromCVPixelBuffer(
         pixel_buffer: &CVPixelBuffer,
@@ -45,19 +60,47 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Registers a video decoder for the specified codec type, if one exists on the current system.
+    ///
+    /// Parameters:
+    /// - codecType: A codec type for which to register a decoder.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to find and register video decoders that aren’t registered by default.
+    ///
+    ///
     /// Requests that a video decoder, if available, be registered for the specified CMVideoCodecType
     ///
     /// Parameter `codecType`: The CMVideoCodecType corresponding the format being requested
     ///
     /// This call will find and register a video decoder for the provided CMVideoCodecType if
     /// such a decoder is available on the system but not registered by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtregistersupplementalvideodecoderifavailable(_:)?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
 }
 
 extern "C-unwind" {
+    /// Returns information about the Media Extension video decoder required to decode the specified format.
+    ///
+    /// Parameters:
+    /// - formatDesc: The format description for the video format for which information is being requested.
+    ///
+    /// - mediaExtensionPropertiesOut: If a [`MediaExtension`](https://developer.apple.com/documentation/mediaextension) video decoder will be used to decode the specified format, this pointer will return a dictionary with a set of properties describing the extension video decoder. The dictionary keys are VTExtensionPropertiesKey values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If the function succeeds and a [`MediaExtension`](https://developer.apple.com/documentation/mediaextension) video decoder will be used to decode this format, the return value will be `noErr`. If the function succeeds but a Media Extension video decoder will not be used to decode this format, the return value will be [`kVTCouldNotFindExtensionErr`](https://developer.apple.com/documentation/videotoolbox/kvtcouldnotfindextensionerr). Otherwise, the return value will be an error code describing the failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a Media Extension video decoder will be used to decode the specified format, this function will return information about the Media Extension that will be used.
+    ///
+    ///
     /// Returns information about the Media Extension video decoder required to decode the specified format.
     ///
     /// If a Media Extension video decoder will be used to decode the specified format, this function will return information about the Media Extension that will be used.
@@ -71,8 +114,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `media_extension_properties_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyvideodecoderextensionproperties?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyVideoDecoderExtensionProperties(
         format_desc: &CMFormatDescription,
@@ -81,6 +122,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns information about the Media Extension RAW processor supporting the specified format.
+    ///
+    /// Parameters:
+    /// - formatDesc: The format description for the video format for which information is being requested.
+    ///
+    /// - mediaExtensionPropertiesOut: If a Media Extension RAW processor  will be used to process the specified format, this pointer will return a dictionary with a set of properties describing the extension RAW processor. The dictionary keys [`VTExtensionPropertiesKey`](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey) values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If the function succeeds and a Media Extension RAW processor will be used to process this format, the return value will be noErr. If the function succeeds but a Media Extension RAW processor will not be used to process this format, the return value will be [`kVTCouldNotFindExtensionErr`](https://developer.apple.com/documentation/videotoolbox/kvtcouldnotfindextensionerr). Otherwise, the return value will be an error code describing the failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If a Media Extension RAW processor will be used to process the specified format, this function will return information about the Media Extension that will be used.
+    ///
+    ///
     /// Returns information about the Media Extension RAW processor supporting the specified format.
     ///
     /// If a Media Extension RAW processor will be used to process the specified format, this function will return information about the Media Extension that will be used.
@@ -94,8 +154,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `media_extension_properties_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcopyrawprocessorextensionproperties?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub fn VTCopyRAWProcessorExtensionProperties(
         format_desc: &CMFormatDescription,
@@ -104,61 +162,90 @@ extern "C-unwind" {
 }
 
 /// A key in a Media Extension extension properties dictionary.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey?language=objc)
+/// A key in a Media Extension extension properties dictionary.
 // NS_TYPED_ENUM
 pub type VTExtensionPropertiesKey = CFString;
 
 extern "C" {
+    /// A dictionary key for the video decoder extension identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFStringRef` value with the extension identifier, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
+    ///
+    ///
     /// A CFDictionary key for the video decoder extension identifier.
     ///
     /// This key points to a CFStringRef value with the extension identifier, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionidentifier?language=objc)
     pub static kVTExtensionProperties_ExtensionIdentifierKey: &'static VTExtensionPropertiesKey;
 }
 
 extern "C" {
+    /// A dictionary key for the localized extension name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFStringRef` value with the localized extension name.
+    ///
+    ///
     /// A CFDictionary key for the localized extension name.
     ///
     /// This key points to a CFStringRef value with the localized extension name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionname?language=objc)
     pub static kVTExtensionProperties_ExtensionNameKey: &'static VTExtensionPropertiesKey;
 }
 
 extern "C" {
+    /// A dictionary key for the extension host application localized name.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFStringRef` value with the localized name of the application hosting the extension.
+    ///
+    ///
     /// A CFDictionary key for the extension host application localized name.
     ///
     /// This key points to a CFStringRef value with the localized name of the application hosting the extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/containingbundlename?language=objc)
     pub static kVTExtensionProperties_ContainingBundleNameKey: &'static VTExtensionPropertiesKey;
 }
 
 extern "C" {
+    /// A dictionary key for the URL of the extension.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFURLRef` value with the URL for the extension.
+    ///
+    ///
     /// A CFDictionary key for the URL of the extension.
     ///
     /// This key points to a CFURLRef value with the URL for the extension.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionurl?language=objc)
     pub static kVTExtensionProperties_ExtensionURLKey: &'static VTExtensionPropertiesKey;
 }
 
 extern "C" {
+    /// A dictionary key for the URL of the extension host application.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFURLRef` value with the URL of the extension host application.
+    ///
+    ///
     /// A CFDictionary key for the URL of the extension host application.
     ///
     /// This key points to a CFURLRef value with the URL of the extension host application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/containingbundleurl?language=objc)
     pub static kVTExtensionProperties_ContainingBundleURLKey: &'static VTExtensionPropertiesKey;
 }
 
 extern "C" {
+    /// A dictionary key for the user readable name string of the codec.
+    ///
+    /// ## Discussion
+    ///
+    /// This key points to a `CFStringRef` with the name of the codec from the supplied format description. This name will be the one listed in the extension CodecInfo array with the key CodecName.
+    ///
+    ///
     /// A CFDictionary key for the user readable name string of the codec.
     ///
     /// This key points to a CFStringRef with the name of the codec from the supplied format description. This name will be the one listed in the extension CodecInfo array with the key CodecName.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_codecnamekey?language=objc)
     pub static kVTExtensionProperties_CodecNameKey: &'static VTExtensionPropertiesKey;
 }

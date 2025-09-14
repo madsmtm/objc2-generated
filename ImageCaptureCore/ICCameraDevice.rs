@@ -10,146 +10,133 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// Indicates that the camera can capture a picture while it is connected, if the client sends a 'requestTakePicture' message to it.
+    /// The capability for the client to request to take a picture while the camera is connected.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecantakepicture?language=objc)
+    /// ## Discussion
+    ///
+    /// When this capability is available, the client can call [`requestTakePicture`](https://developer.apple.com/documentation/imagecapturecore/iccameradevice/requesttakepicture()) to capture a picture.
+    ///
+    ///
+    /// Indicates that the camera can capture a picture while it is connected, if the client sends a 'requestTakePicture' message to it.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanTakePicture: &'static ICDeviceCapability;
 }
 
 extern "C" {
+    /// The capability to capture a picture if the user presses the shutter release on the camera while the camera is connected.
     /// Indicates that the camera can capture a picture while it is connected, if the user presses the shutter release on the camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecantakepictureusingshutterreleaseoncamera?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanTakePictureUsingShutterReleaseOnCamera: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the camera can delete a file at a time while it is connected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecandeleteonefile?language=objc)
+    /// Indicates that the camera can delete a file at a time while it is connected.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanDeleteOneFile: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the camera can delete all files in a single operation while it is connected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecandeleteallfiles?language=objc)
+    /// Indicates that the camera can delete all files in a single operation while it is connected.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanDeleteAllFiles: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the camera can synchronize its date and time with that of the host computer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecansyncclock?language=objc)
+    /// Indicates that the camera can synchronize its date and time with that of the host computer.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanSyncClock: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the host can upload files to the camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecanreceivefile?language=objc)
+    /// Indicates that the host can upload files to the camera.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanReceiveFile: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the camera can accept PTP commands.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecanacceptptpcommands?language=objc)
+    /// Indicates that the camera can accept PTP commands.
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanAcceptPTPCommands: &'static ICDeviceCapability;
 }
 
 extern "C" {
     /// Indicates that the camera supports HEIF transcoding, and can change the presentation of converted assets and original assets on the fly.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicesupportsheif?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceSupportsHEIF: &'static ICDeviceCapability;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icuploadoption?language=objc)
+/// An option for uploading a file to the camera.
 // NS_TYPED_ENUM
 pub type ICUploadOption = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult?language=objc)
+/// The result of a deletion request.
 // NS_TYPED_ENUM
 pub type ICDeleteResult = NSString;
 
 extern "C" {
+    /// The deletion succeeded.
     /// The value for this key should be an NSArray
     /// <ICCameraItem
     /// *>*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/successful?language=objc)
     pub static ICDeleteSuccessful: &'static ICDeleteResult;
 }
 
 extern "C" {
+    /// The deletion was canceled.
     /// The value for this key should be an NSArray
     /// <ICCameraItem
     /// *>*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/canceled?language=objc)
     pub static ICDeleteCanceled: &'static ICDeleteResult;
 }
 
 extern "C" {
+    /// The deletion failed.
     /// The value for this key should be an NSArray
     /// <ICCameraItem
     /// *>*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/failed?language=objc)
     pub static ICDeleteFailed: &'static ICDeleteResult;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror?language=objc)
+/// An error resulting from a deletion request.
 // NS_TYPED_ENUM
 pub type ICDeleteError = NSString;
 
 extern "C" {
+    /// The deletion failed because the file had read-only permissions.
     /// The value for this key should be an ICCameraItem*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/readonly?language=objc)
     pub static ICDeleteErrorReadOnly: &'static ICDeleteError;
 }
 
 extern "C" {
+    /// The deletion failed because the file could not be found.
     /// The value for this key should be an ICCameraItem*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/filemissing?language=objc)
     pub static ICDeleteErrorFileMissing: &'static ICDeleteError;
 }
 
 extern "C" {
+    /// The deletion failed because the device could not be found.
     /// The value for this key should be an ICCameraItem*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/devicemissing?language=objc)
     pub static ICDeleteErrorDeviceMissing: &'static ICDeleteError;
 }
 
 extern "C" {
+    /// The deletion was canceled.
     /// The value for this key should be an ICCameraItem*
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/canceled?language=objc)
     pub static ICDeleteErrorCanceled: &'static ICDeleteError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ICMediaPresentation(pub NSUInteger);
 impl ICMediaPresentation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation/convertedassets?language=objc)
     #[doc(alias = "ICMediaPresentationConvertedAssets")]
     pub const ConvertedAssets: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icmediapresentation/originalassets?language=objc)
     #[doc(alias = "ICMediaPresentationOriginalAssets")]
     pub const OriginalAssets: Self = Self(2);
 }
@@ -163,9 +150,8 @@ unsafe impl RefEncode for ICMediaPresentation {
 }
 
 extern_class!(
+    /// An object that represents a camera.
     /// ICCameraDevice is a concrete subclass of ICDevice class. ICDeviceBrowser creates instances of this class.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevice?language=objc)
     #[unsafe(super(ICDevice, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "ICDevice")]
@@ -484,11 +470,10 @@ impl ICCameraDevice {
 }
 
 extern_protocol!(
+    /// Methods for detecting cameras, getting metadata and thumbnails, handling access and capability changes, and performing other actions on connected cameras.
     /// A delegate of ICCameraDevice must conform to ICCameraDeviceDelegate protocol.
     ///
     /// The ICCameraDeviceDelegate protocol inherits from the ICDeviceDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicedelegate?language=objc)
     #[cfg(feature = "ICDevice")]
     pub unsafe trait ICCameraDeviceDelegate: ICDeviceDelegate {
         #[cfg(feature = "ICCameraItem")]
@@ -666,9 +651,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// Methods for managing camera file downloads.
     /// The object passed in as 'downloadDelegate' in the 'requestDownloadFile:options:downloadDelegate:didDownloadSelector:contextInfo:' message must conform to ICCameraDeviceDownloadDelegate protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicedownloaddelegate?language=objc)
     pub unsafe trait ICCameraDeviceDownloadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "ICCameraFile", feature = "ICCameraItem"))]
         /// This message is sent to the delegate when the requested download operation is complete.

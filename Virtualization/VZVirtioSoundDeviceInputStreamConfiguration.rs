@@ -8,11 +8,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A PCM stream of input audio data, such as from a microphone.
+    ///
+    /// ## Overview
+    ///
+    /// This device represents a PCM stream of audio data. Don’t instantiate `VZVirtioSoundDeviceStreamConfiguration` directly. Instead, use one of its subclasses such as [`VZVirtioSoundDeviceInputStreamConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration) or [`VZVirtioSoundDeviceOutputStreamConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceoutputstreamconfiguration).
+    ///
+    ///
     /// Virtio Sound Device Input Stream Configuration.
     ///
     /// A PCM stream of input audio data, such as from a microphone.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiosounddeviceinputstreamconfiguration?language=objc)
     #[unsafe(super(VZVirtioSoundDeviceStreamConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZVirtioSoundDeviceStreamConfiguration")]

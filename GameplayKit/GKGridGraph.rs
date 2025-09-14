@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgridgraph?language=objc)
+    /// A navigation graph for 2D game worlds where movement is constrained to an integer grid.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to generate a graph containing [`GKGridGraphNode`](https://developer.apple.com/documentation/gameplaykit/gkgridgraphnode) objects representing a specified grid. Then use methods of the superclass [`GKGraph`](https://developer.apple.com/documentation/gameplaykit/gkgraph) to find routes through the graph.
+    ///
+    /// To learn more about graphs and pathfinding, see [Pathfinding](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Pathfinding.html#//apple_ref/doc/uid/TP40015172-CH3) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     #[unsafe(super(GKGraph, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "GKGraph", feature = "GKGraphNode"))]

@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsportnameserver?language=objc)
+    /// An object-oriented interface to the port registration service used by the distributed objects system.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) objects use this interface to contact each other and to distribute objects over the network; you should rarely need to interact directly with an [`NSPortNameServer`](https://developer.apple.com/documentation/foundation/nsportnameserver).
+    ///
+    /// You get an [`NSPortNameServer`](https://developer.apple.com/documentation/foundation/nsportnameserver) object by using the [`systemDefaultPortNameServer`](https://developer.apple.com/documentation/foundation/nsportnameserver/systemdefaultportnameserver) class method—never allocate and initialize an instance directly. With the default server object you can register an [`Port`](https://developer.apple.com/documentation/foundation/port) object under a given name, making it available on the network, and also unregister it so that it can’t be looked up (although other applications that have already looked up the [`Port`](https://developer.apple.com/documentation/foundation/port) object  can still use it until it becomes invalid). See the [`Port`](https://developer.apple.com/documentation/foundation/port) class specification for more information.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -76,7 +84,13 @@ impl DefaultRetained for NSPortNameServer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachbootstrapserver?language=objc)
+    /// A port name server that takes and returns Mach port objects.
+    ///
+    /// ## Overview
+    ///
+    /// Port removal functionality is not supported in [`NSMachBootstrapServer`](https://developer.apple.com/documentation/foundation/nsmachbootstrapserver); if you want to cancel a service, you have to destroy the port (invalidate the [`NSMachPort`](https://developer.apple.com/documentation/foundation/nsmachport) given to [`registerPort:name:`](https://developer.apple.com/documentation/foundation/nsmachbootstrapserver/registerport:name:)).
+    ///
+    ///
     #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -144,7 +158,13 @@ impl DefaultRetained for NSMachBootstrapServer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmessageportnameserver?language=objc)
+    /// A server takes and returns message ports.
+    ///
+    /// ## Overview
+    ///
+    /// This port name server takes and returns instances of [`MessagePort`](https://developer.apple.com/documentation/foundation/messageport). Port removal functionality is not supported in [`NSMessagePortNameServer`](https://developer.apple.com/documentation/foundation/nsmessageportnameserver); if you want to cancel a service, you have to destroy the port (invalidate the [`MessagePort`](https://developer.apple.com/documentation/foundation/messageport) object given to [`registerPort:name:`](https://developer.apple.com/documentation/foundation/nsportnameserver/registerport:name:)).
+    ///
+    ///
     #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]
@@ -201,7 +221,25 @@ impl DefaultRetained for NSMessagePortNameServer {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssocketportnameserver?language=objc)
+    /// A port name server that takes and returns socket ports.
+    ///
+    /// ## Overview
+    ///
+    /// Port removal functionality is supported by the [`removePortForName:`](https://developer.apple.com/documentation/foundation/nssocketportnameserver/removeportforname:) method and should be used to remove invalid socket ports.
+    ///
+    /// Unlike the other port name servers, [`NSSocketPortNameServer`](https://developer.apple.com/documentation/foundation/nssocketportnameserver) can operate over a network. By registering your socket ports, you make them available to other computers on the local network without hard-coding the TCP port numbers. Clients just need to know the name of the port.
+    ///
+    /// [`NSPortNameServer`](https://developer.apple.com/documentation/foundation/nsportnameserver) is implemented using [`NetService`](https://developer.apple.com/documentation/foundation/netservice) and registers ports in the local network domain. The registered name of a port must be unique within the local domain, not just the local host. The name server only supports TCP/IP (either IPv4 or IPv6) sockets.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Prior to OS X 10.2, [`NSSocketPortNameServer`](https://developer.apple.com/documentation/foundation/nssocketportnameserver) was inoperable.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPortNameServer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use NSXPCConnection instead"]

@@ -7,6 +7,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A sample that groups multiple related samples into a single entry.
+    ///
+    /// ## Overview
+    ///
+    /// HealthKit uses correlations to represent both blood pressure and food.
+    ///
+    /// - Blood pressure correlations always include two quantity samples, representing the systolic and diastolic values.
+    ///
+    /// - Food correlations can contain a wide range of dietary information about the food, including information about the fat, protein, carbohydrates, energy, and vitamins consumed.
+    ///
+    /// In general, a food correlation should include at least a [`HKQuantityTypeIdentifierDietaryEnergyConsumed`](https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/dietaryenergyconsumed) sample. You can also add nutritional quantity samples for any other items you want to track. Use the [`HKMetadataKeyFoodType`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyfoodtype) key to indicate the food’s name.
+    ///
+    /// The [`HKCorrelation`](https://developer.apple.com/documentation/healthkit/hkcorrelation) class is a concrete subclass of the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) class. Correlations are immutable: You set the correlation’s properties when the object is first created, and they cannot change.
+    ///
+    /// ### Extend Correlation Samples
+    ///
+    /// Like many HealthKit classes, the `HKCorrelation` class should not be subclassed. You can extend the correlation class by adding metadata with custom keys as appropriate for your app.
+    ///
+    /// For more information, see the [`correlationWithType:startDate:endDate:objects:metadata:`](https://developer.apple.com/documentation/healthkit/hkcorrelation/init(type:start:end:objects:metadata:)) method.
+    ///
+    ///
     /// An HKCorrelation is a collection of correlated objects.
     ///
     /// When multiple readings are taken together, it may be beneficial to correlate them so that they can be
@@ -14,8 +35,6 @@ extern_class!(
     ///
     /// For example, systolic and diastolic blood pressure readings are typically presented together so these
     /// readings should be saved with a correlation of type blood pressure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcorrelation?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]

@@ -8,13 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// NFC session that’s related to NFC smart card slot which was created.
+    ///
+    /// ## Overview
+    ///
+    /// Lifetime of this session object is tied to the NFC smart card slot lifetime and once the NFC slot disappears (eg. after a user cancellation, calling end session, or an NFC timeout) the functions will start to fail and return `TKErrorCodeObjectNotFound` error.
+    ///
+    ///
     /// NFC session that's related to NFC smart card slot which was created.
     ///
     /// Lifetime of this session object is tied to the NFC smart card slot lifetime
     /// and once the NFC slot disappears (eg. after a user cancellation, calling end session, or an NFC timeout)
     /// the functions will start to fail and return `TKErrorCodeObjectNotFound` error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotnfcsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardSlotNFCSession;

@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistorytoken?language=objc)
+    /// A bookmark for keeping track the most recent history that you’ve processed.
+    ///
+    /// ## Overview
+    ///
+    /// You can save a token to disk and fetch history when your app loads based on that token. See [Keep track of the most recent history](https://developer.apple.com/documentation/coredata/consuming-relevant-store-changes#keep-track-of-the-most-recent-history) in [Consuming relevant store changes](https://developer.apple.com/documentation/coredata/consuming-relevant-store-changes).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentHistoryToken;

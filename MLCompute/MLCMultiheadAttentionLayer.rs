@@ -7,6 +7,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
+    ///
+    /// ## Overview
+    ///
+    /// The dimensions of projections are as follows:
+    ///
+    /// - Query: `(1, headCount, keyDimension/headCount, modelDimension)`
+    ///
+    /// - Key: `(1, headCount, keyDimension/headCount, modelDimension)`
+    ///
+    /// - Value: `(1, headCount, valueDimension/headCount, modelDimension)`
+    ///
+    /// - Output: `(1, 1, modelDimension, valueDimension)`
+    ///
+    /// ``
+    ///
+    ///
     /// A multi-head attention layer
     ///
     /// A multi-head "Scaled Dot-Product Attention" layer which attends to one or more entries in the input key-value pairs
@@ -16,8 +33,6 @@ extern_class!(
     /// or none of them can be passed. KeyMask is of Boolean type and AttentionMask can be of Float or Boolean type.
     /// Output is of shape:(N,L,E).
     /// For details refer to: https://pytorch.org/docs/stable/nn.html#multiheadattention
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer?language=objc)
     #[unsafe(super(MLCLayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCLayer")]

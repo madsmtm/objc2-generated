@@ -6,7 +6,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageattachment?language=objc)
+    /// A file to include in a message.
+    ///
+    /// ## Overview
+    ///
+    /// When the type of a message is [`INOutgoingMessageTypeOutgoingMessageAudio`](https://developer.apple.com/documentation/intents/inoutgoingmessagetype/outgoingmessageaudio), the intent includes the audio recording as an [`INSendMessageAttachment`](https://developer.apple.com/documentation/intents/insendmessageattachment).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INSendMessageAttachment;

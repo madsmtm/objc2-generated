@@ -10,7 +10,6 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageoverlayviewprovider?language=objc)
     pub unsafe trait PDFPageOverlayViewProvider: NSObjectProtocol {
         #[cfg(all(feature = "PDFPage", feature = "PDFView", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]

@@ -5,143 +5,140 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartaudiocallintentidentifier?language=objc)
+    /// An [`INStartAudioCallIntent`](https://developer.apple.com/documentation/intents/instartaudiocallintent) object.
     #[deprecated = "INStartAudioCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead"]
     pub static INStartAudioCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartvideocallintentidentifier?language=objc)
+    /// An [`INStartVideoCallIntent`](https://developer.apple.com/documentation/intents/instartvideocallintent) object.
     #[deprecated = "INStartVideoCallIntentIdentifier is deprecated. Please adopt INStartCallIntentIdentifier instead"]
     pub static INStartVideoCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintentidentifier?language=objc)
+    /// An [`INSearchCallHistoryIntent`](https://developer.apple.com/documentation/intents/insearchcallhistoryintent) object.
     pub static INSearchCallHistoryIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartcallintentidentifier?language=objc)
     pub static INStartCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentidentifier?language=objc)
     pub static INAnswerCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inhangupcallintentidentifier?language=objc)
     pub static INHangUpCallIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetaudiosourceincarintentidentifier?language=objc)
+    /// An [`INSetAudioSourceInCarIntent`](https://developer.apple.com/documentation/intents/insetaudiosourceincarintent) object.
     pub static INSetAudioSourceInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintentidentifier?language=objc)
+    /// An [`INSetClimateSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetclimatesettingsincarintent) object.
     pub static INSetClimateSettingsInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentidentifier?language=objc)
+    /// An [`INSetDefrosterSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintent) object.
     pub static INSetDefrosterSettingsInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetseatsettingsincarintentidentifier?language=objc)
+    /// An [`INSetSeatSettingsInCarIntent`](https://developer.apple.com/documentation/intents/insetseatsettingsincarintent) object.
     pub static INSetSeatSettingsInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetprofileincarintentidentifier?language=objc)
+    /// An [`INSetProfileInCarIntent`](https://developer.apple.com/documentation/intents/insetprofileincarintent) object.
     pub static INSetProfileInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insaveprofileincarintentidentifier?language=objc)
+    /// An [`INSaveProfileInCarIntent`](https://developer.apple.com/documentation/intents/insaveprofileincarintent) object.
     pub static INSaveProfileInCarIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartworkoutintentidentifier?language=objc)
+    /// An [`INStartWorkoutIntent`](https://developer.apple.com/documentation/intents/instartworkoutintent) object.
     pub static INStartWorkoutIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpauseworkoutintentidentifier?language=objc)
+    /// An [`INPauseWorkoutIntent`](https://developer.apple.com/documentation/intents/inpauseworkoutintent) object.
     pub static INPauseWorkoutIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inendworkoutintentidentifier?language=objc)
+    /// An [`INEndWorkoutIntent`](https://developer.apple.com/documentation/intents/inendworkoutintent) object.
     pub static INEndWorkoutIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentidentifier?language=objc)
+    /// An [`INCancelWorkoutIntent`](https://developer.apple.com/documentation/intents/incancelworkoutintent) object.
     pub static INCancelWorkoutIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inresumeworkoutintentidentifier?language=objc)
+    /// An [`INResumeWorkoutIntent`](https://developer.apple.com/documentation/intents/inresumeworkoutintent) object.
     pub static INResumeWorkoutIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetradiostationintentidentifier?language=objc)
+    /// An [`INSetRadioStationIntent`](https://developer.apple.com/documentation/intents/insetradiostationintent) object.
     pub static INSetRadioStationIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentidentifier?language=objc)
+    /// An [`INSendMessageIntent`](https://developer.apple.com/documentation/intents/insendmessageintent) object.
     pub static INSendMessageIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchformessagesintentidentifier?language=objc)
+    /// An [`INSearchForMessagesIntent`](https://developer.apple.com/documentation/intents/insearchformessagesintent) object.
     pub static INSearchForMessagesIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetmessageattributeintentidentifier?language=objc)
+    /// An [`INSetMessageAttributeIntent`](https://developer.apple.com/documentation/intents/insetmessageattributeintent) object.
     pub static INSetMessageAttributeIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendpaymentintentidentifier?language=objc)
+    /// An [`INSendPaymentIntent`](https://developer.apple.com/documentation/intents/insendpaymentintent) object.
     pub static INSendPaymentIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintentidentifier?language=objc)
+    /// An [`INRequestPaymentIntent`](https://developer.apple.com/documentation/intents/inrequestpaymentintent) object.
     pub static INRequestPaymentIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchforphotosintentidentifier?language=objc)
+    /// An [`INSearchForPhotosIntent`](https://developer.apple.com/documentation/intents/insearchforphotosintent) object.
     pub static INSearchForPhotosIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/instartphotoplaybackintentidentifier?language=objc)
+    /// An [`INStartPhotoPlaybackIntent`](https://developer.apple.com/documentation/intents/instartphotoplaybackintent) object.
     pub static INStartPhotoPlaybackIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentidentifier?language=objc)
+    /// An [`INListRideOptionsIntent`](https://developer.apple.com/documentation/intents/inlistrideoptionsintent) object.
     pub static INListRideOptionsIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentidentifier?language=objc)
+    /// An [`INRequestRideIntent`](https://developer.apple.com/documentation/intents/inrequestrideintent) object.
     pub static INRequestRideIntentIdentifier: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetridestatusintentidentifier?language=objc)
+    /// An [`INGetRideStatusIntent`](https://developer.apple.com/documentation/intents/ingetridestatusintent) object.
     pub static INGetRideStatusIntentIdentifier: Option<&'static NSString>;
 }

@@ -16,19 +16,39 @@ use objc2_image_io::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion?language=objc)
+/// Options for requesting an image asset with or without adjustments, used by the [`version`](https://developer.apple.com/documentation/photos/phimagerequestoptions/version) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsVersion(pub NSInteger);
 impl PHImageRequestOptionsVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/current?language=objc)
+    /// Request the most recent version of the image asset (the one that reflects all edits).
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting image is the rendered output from all previously made adjustments.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
     pub const Current: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/unadjusted?language=objc)
+    /// Request a version of the image asset without adjustments.
+    ///
+    /// ## Discussion
+    ///
+    /// If the asset has been edited, the resulting image reflects the state of the asset before any edits were performed.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsVersionUnadjusted")]
     pub const Unadjusted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion/original?language=objc)
+    /// Request the original, highest-fidelity version of the image asset.
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting image is originally captured or imported version of the asset, regardless of any edits made.
+    ///
+    /// If the image asset contains data in multiple formats, the resulting image data uses the highest quality format. For example, for an asset containing both RAW and JPEG data, Photos returns the RAW data.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsVersionOriginal")]
     pub const Original: Self = Self(2);
 }
@@ -41,19 +61,41 @@ unsafe impl RefEncode for PHImageRequestOptionsVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode?language=objc)
+/// Options for delivering requested image data, used by the [`deliveryMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/deliverymode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsDeliveryMode(pub NSInteger);
 impl PHImageRequestOptionsDeliveryMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/opportunistic?language=objc)
+    /// Photos automatically provides one or more results in order to balance image quality and responsiveness.
+    ///
+    /// ## Discussion
+    ///
+    /// If the [`synchronous`](https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous) property is `false`, Photos may call the `resultHandler` block (that you specified in the [`requestImageForAsset:targetSize:contentMode:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimage(for:targetsize:contentmode:options:resulthandler:)) method more than once. Photos may call your result handler once to provide a low-quality image suitable for displaying temporarily while it prepares a high-quality image. If low-quality image data is immediately available, this first call may occur before the [`requestImageForAsset:targetSize:contentMode:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimage(for:targetsize:contentmode:options:resulthandler:)) method returns. When the high-quality image is ready, Photos calls your result handler again to provide it.
+    ///
+    /// If the image manager has already cached the requested image, or if the [`synchronous`](https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous) property is `true`, Photos calls your result handler only once.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
     pub const Opportunistic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/highqualityformat?language=objc)
+    /// Photos provides only the highest-quality image available, regardless of how much time it takes to load.
+    ///
+    /// ## Discussion
+    ///
+    /// If the [`synchronous`](https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous) property is `true` or if using the [`requestImageDataForAsset:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimagedataforasset:options:resulthandler:) method, this behavior is the default and only option (that is, specifying other delivery mode options has no effect).
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsDeliveryModeHighQualityFormat")]
     pub const HighQualityFormat: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/fastformat?language=objc)
+    /// Photos provides only a fast-loading image, possibly sacrificing image quality.
+    ///
+    /// ## Discussion
+    ///
+    /// Photos calls your `resultHandler` block once. If a high-quality image cannot be loaded quickly, the result handler provides a low-quality image. Check the [`PHImageResultIsDegradedKey`](https://developer.apple.com/documentation/photos/phimageresultisdegradedkey) key in the info dictionary to determine the quality of image provided to the result handler.
+    ///
+    /// This option is available only if the [`synchronous`](https://developer.apple.com/documentation/photos/phimagerequestoptions/issynchronous) property is `false`.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsDeliveryModeFastFormat")]
     pub const FastFormat: Self = Self(2);
 }
@@ -66,19 +108,39 @@ unsafe impl RefEncode for PHImageRequestOptionsDeliveryMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode?language=objc)
+/// Options for how to resize the requested image to fit a target size, used by the [`resizeMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/resizemode) property.
+///
+/// ## Overview
+///
+/// Specify a `targetSize` parameter when you request an image with the [`requestImageForAsset:targetSize:contentMode:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimage(for:targetsize:contentmode:options:resulthandler:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsResizeMode(pub NSInteger);
 impl PHImageRequestOptionsResizeMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/none?language=objc)
+    /// Photos does not resize the image asset.
     #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/fast?language=objc)
+    /// Photos efficiently resizes the image to a size similar to, or slightly larger than, the target size.
+    ///
+    /// ## Discussion
+    ///
+    /// With this option, Photos can use image subsampling to quickly provide an image at a size roughly matching the target size.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsResizeModeFast")]
     pub const Fast: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode/exact?language=objc)
+    /// Photos resizes the image to match the target size exactly.
+    ///
+    /// ## Discussion
+    ///
+    /// Resizing to exactly match a target size is less efficient than using the fast resizing option. The system doesn’t resize low-quality or degraded images that [`PHImageRequestOptionsDeliveryModeOpportunistic`](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/opportunistic) or [`PHImageRequestOptionsDeliveryModeHighQualityFormat`](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode/highqualityformat) return.
+    ///
+    /// You must choose this enumeration case if you use the [`normalizedCropRect`](https://developer.apple.com/documentation/photos/phimagerequestoptions/normalizedcroprect) property to request a cropped image.
+    ///
+    ///
     #[doc(alias = "PHImageRequestOptionsResizeModeExact")]
     pub const Exact: Self = Self(2);
 }
@@ -91,13 +153,37 @@ unsafe impl RefEncode for PHImageRequestOptionsResizeMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetimageprogresshandler?language=objc)
+/// The signature for a block that Photos calls while downloading asset data from iCloud. Used by the [`progressHandler`](https://developer.apple.com/documentation/photos/phimagerequestoptions/progresshandler) property.
+///
+/// ## Discussion
+///
+/// If you request an image whose data is not on the local device, and you have enabled downloading with the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed) property, Photos calls your block periodically to report progress and to allow you to cancel the download.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Photos calls this block in an arbitrary serial queue. Dispatch to the main thread if your handler needs to update the user interface.
+///
+///
+///
+/// </div>
+/// The block takes the following parameters:
+///
+/// - progress: A floating-point value indicating the progress of the download. A value of `0.0` indicates that the download has just started, and a value of `1.0` indicates the download is complete.
+///
+/// - error: An `NSError` object describing an error that occurred when attempting to download the image, or `nil` if no errors have occurred.
+///
+/// - stop: A pointer to a Boolean value. To cancel the download, set `*stop` to `true` inside the block.
+///
+/// - info: A dictionary providing additional information about the status of the image request. See Image Result Info Keys for possible keys and values. For example, a `true` value for the key [`PHImageResultIsDegradedKey`](https://developer.apple.com/documentation/photos/phimageresultisdegradedkey) indicates that Photos may send the full-quality version of the image later, depending on the value of the image request’s [`deliveryMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/deliverymode) property.
+///
+///
 #[cfg(feature = "block2")]
 pub type PHAssetImageProgressHandler =
     *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptions?language=objc)
+    /// A set of options affecting the delivery of still image representations of Photos assets you request from an image manager.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageRequestOptions;
@@ -220,7 +306,13 @@ impl PHImageRequestOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotorequestoptions?language=objc)
+    /// A set of options affecting the delivery of Live Photo assets you request from an image manager.
+    ///
+    /// ## Overview
+    ///
+    /// A Live Photo is a picture that includes movement and sound from the moments just before and after its capture.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHLivePhotoRequestOptions;
@@ -304,16 +396,28 @@ impl PHLivePhotoRequestOptions {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion?language=objc)
+/// Options for requesting a video asset with or without adjustments, used by the [`version`](https://developer.apple.com/documentation/photos/phvideorequestoptions/version) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsVersion(pub NSInteger);
 impl PHVideoRequestOptionsVersion {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion/current?language=objc)
+    /// Request the most recent version of the video asset, reflecting all edits.
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting video is the rendered output from all previously made adjustments.
+    ///
+    ///
     #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
     pub const Current: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion/original?language=objc)
+    /// Request a version of the video asset without adjustments.
+    ///
+    /// ## Discussion
+    ///
+    /// The resulting video is the originally captured or imported version of the asset, regardless of any edits that have been made.
+    ///
+    ///
     #[doc(alias = "PHVideoRequestOptionsVersionOriginal")]
     pub const Original: Self = Self(1);
 }
@@ -326,22 +430,40 @@ unsafe impl RefEncode for PHVideoRequestOptionsVersion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode?language=objc)
+/// Options for delivering requested video data, used by the [`deliveryMode`](https://developer.apple.com/documentation/photos/phvideorequestoptions/deliverymode) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsDeliveryMode(pub NSInteger);
 impl PHVideoRequestOptionsDeliveryMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/automatic?language=objc)
+    /// Photos automatically determines which quality of video data to provide based on the request and current conditions.
+    ///
+    /// ## Discussion
+    ///
+    /// When you request an [`AVAsset`](https://developer.apple.com/documentation/avfoundation/avasset) or [`AVPlayerItem`](https://developer.apple.com/documentation/avfoundation/avplayeritem) object, Photos typically uses the medium-quality format. When you request an [`AVAssetExportSession`](https://developer.apple.com/documentation/avfoundation/avassetexportsession) object for writing out the asset’s contents, Photos always uses the high-quality format.
+    ///
+    ///
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/highqualityformat?language=objc)
+    /// Photos provides only the highest quality video available.
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeHighQualityFormat")]
     pub const HighQualityFormat: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/mediumqualityformat?language=objc)
+    /// Photos provides a video of moderate quality unless a higher quality version is locally cached.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed) property is `true`, the medium quality option provides a version of the video asset that is suitable for streaming from iCloud and displaying on a device—for example, an MP4 video with 720p resolution. If a higher-quality version is already cached on the device, Photos provides that video instead.
+    ///
+    ///
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeMediumQualityFormat")]
     pub const MediumQualityFormat: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode/fastformat?language=objc)
+    /// Photos provides whatever quality of video can be most quickly loaded.
+    ///
+    /// ## Discussion
+    ///
+    /// When the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed) property is `true`, the fast option provides a version of the video asset suitable for streaming from iCloud over a low-quality connection—for example, an MP4 video with 360p resolution. If a higher-quality version is already cached on the device, Photos provides that video instead.
+    ///
+    ///
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeFastFormat")]
     pub const FastFormat: Self = Self(3);
 }
@@ -354,13 +476,37 @@ unsafe impl RefEncode for PHVideoRequestOptionsDeliveryMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetvideoprogresshandler?language=objc)
+/// The signature for a block that Photos calls while downloading asset data from iCloud. Used by the [`progressHandler`](https://developer.apple.com/documentation/photos/phvideorequestoptions/progresshandler) property.
+///
+/// ## Discussion
+///
+/// If you request a video asset whose data is not on the local device, and you have enabled downloading with the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phvideorequestoptions/isnetworkaccessallowed) property, Photos calls your block periodically to report progress and allow canceling the download.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  Because Photos calls this block in an arbitrary serial queue, it may not execute on the main thread.
+///
+///
+///
+/// </div>
+/// The block takes the following parameters:
+///
+/// - progress: A floating-point value indicating the progress of the download. A value of `0.0` indicates the download has just started, and a value of `1.0` indicates the download is complete.
+///
+/// - error: An `NSError` object describing an error that occurred when attempting to download the video, or `nil` if no errors have occurred.
+///
+/// - stop: A pointer to a Boolean value. To cancel the download, set `*stop` to `true` inside the block.
+///
+/// - info: A dictionary providing additional information about the status of the video request. See Image Result Info Keys for possible keys and values.
+///
+///
 #[cfg(feature = "block2")]
 pub type PHAssetVideoProgressHandler =
     *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptions?language=objc)
+    /// A set of options affecting the delivery of video asset data that you request from an image manager.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHVideoRequestOptions;
@@ -444,45 +590,107 @@ impl PHVideoRequestOptions {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestid?language=objc)
+/// A numeric identifier for an asynchronous image request.
+///
+/// ## Discussion
+///
+/// Pass this identifier to the [`cancelImageRequest:`](https://developer.apple.com/documentation/photos/phimagemanager/cancelimagerequest(_:)) method if you need to cancel a request before it completes.
+///
+///
 pub type PHImageRequestID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phinvalidimagerequestid?language=objc)
+/// A special value provided for asynchronous image requests that cannot be canceled.
 pub static PHInvalidImageRequestID: PHImageRequestID = 0;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagemanagermaximumsize?language=objc)
+    /// A special value for requesting original image data or the largest rendered image available. .
+    ///
+    /// ## Discussion
+    ///
+    /// When you use the [`PHImageManagerMaximumSize`](https://developer.apple.com/documentation/photos/phimagemanagermaximumsize) option, Photos provides the largest image available for the asset without scaling or cropping. (That is, it ignores the [`resizeMode`](https://developer.apple.com/documentation/photos/phimagerequestoptions/resizemode) option.)
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static PHImageManagerMaximumSize: CGSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultisincloudkey?language=objc)
+    /// A key whose value indicates whether photo asset data is stored on the local device or must be downloaded from iCloud.
+    ///
+    /// ## Discussion
+    ///
+    /// This key provides information about an image loading result in the `resultHandler` block for methods listed in Requesting Images. The corresponding value is an `NSNumber` object containing a Boolean value.
+    ///
+    /// If `true`, no image was provided, because the asset data must be downloaded from iCloud. To download the data, submit another request, and specify `true` for the [`networkAccessAllowed`](https://developer.apple.com/documentation/photos/phimagerequestoptions/isnetworkaccessallowed) option.
+    ///
+    ///
     pub static PHImageResultIsInCloudKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultisdegradedkey?language=objc)
+    /// A key whose value indicates whether the result image is a low-quality substitute for the requested image.
+    ///
+    /// ## Discussion
+    ///
+    /// This key provides information about an image loading result in the `resultHandler` block for methods listed in Requesting Images. The corresponding value is an `NSNumber` object containing a Boolean value.If `true`, the `result` parameter of your `resultHandler` block contains a low-quality image because Photos could not yet provide a higher-quality image. Depending on your settings in the [`PHImageRequestOptions`](https://developer.apple.com/documentation/photos/phimagerequestoptions) object that you provided with the request, Photos may call your result handler block again to provide a higher-quality image.
+    ///
+    ///
     pub static PHImageResultIsDegradedKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageresultrequestidkey?language=objc)
+    /// A key whose value is a unique identifier for the image request.
+    ///
+    /// ## Discussion
+    ///
+    /// This key provides information about an image loading result in the `resultHandler` block for methods listed in Requesting Images. The corresponding value is an `NSNumber` object containing an integer value.This identifier matches that returned when making a request. You can use it with the [`cancelImageRequest:`](https://developer.apple.com/documentation/photos/phimagemanager/cancelimagerequest(_:)) method to cancel requests with pending results that are no longer needed.
+    ///
+    ///
     pub static PHImageResultRequestIDKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecancelledkey?language=objc)
+    /// A key whose value indicates whether the image request was canceled.
+    ///
+    /// ## Discussion
+    ///
+    /// This key provides information about an image loading result in the `resultHandler` block for methods listed in Requesting Images. The corresponding value is an `NSNumber` object containing a Boolean value.If you call the [`cancelImageRequest:`](https://developer.apple.com/documentation/photos/phimagemanager/cancelimagerequest(_:)) method to cancel a request, Photos calls your result handler block with the value `true` for this key.
+    ///
+    ///
     pub static PHImageCancelledKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimageerrorkey?language=objc)
+    /// A key whose value is an error that occurred when Photos attempted to load the image.
+    ///
+    /// ## Discussion
+    ///
+    /// This key provides information about an image loading result in the `resultHandler` block for methods listed in Requesting Images. The corresponding value is an `NSError` object.Photos provides an error object for this key if it cannot provide an image for your handler block’s `result` parameter. Examine the error object for information about the cause of the error.
+    ///
+    ///
     pub static PHImageErrorKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagemanager?language=objc)
+    /// An object that facilitates retrieving or generating preview thumbnails and asset data.
+    ///
+    /// ## Overview
+    ///
+    /// Use these methods to fetch full-size photo assets or thumbnail images, or to retrieve AVFoundation objects for playing, exporting, and manipulating video assets.
+    ///
+    /// To load image or video data:
+    ///
+    /// 1. Use the [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) class to fetch the asset you’re interested in.
+    ///
+    /// 2. Call the [`defaultManager`](https://developer.apple.com/documentation/photos/phimagemanager/default()) method to retrieve the shared image manager object.
+    ///
+    /// 3. Use one of the methods listed in the Requesting groups below to load the asset’s image or video data.
+    ///
+    /// The image manager caches the asset images and data it provides, so later requests for the same assets with similar parameters will return results more quickly.
+    ///
+    /// If you need to load image data for many assets together, use the [`PHCachingImageManager`](https://developer.apple.com/documentation/photos/phcachingimagemanager) class to “preheat” the cache by loading images you expect to need soon. For example, when populating a collection view with photo asset thumbnails, you can cache images ahead of the current scroll position.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHImageManager;
@@ -635,7 +843,27 @@ impl PHImageManager {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/photos/phcachingimagemanager?language=objc)
+    /// An object that facilitates retrieving or generating preview thumbnails, optimized for batch preloading large numbers of assets.
+    ///
+    /// ## Overview
+    ///
+    /// For quick performance when you are working with many assets, a caching image manager can prepare asset images in the background in order to eliminate delays when you later request individual images. For example, use a caching image manager when you want to populate a collection view or similar UI with thumbnails of photo or video assets.
+    ///
+    /// Much of the key functionality of the [`PHCachingImageManager`](https://developer.apple.com/documentation/photos/phcachingimagemanager) class is defined by its superclass, [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager). For details, see [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager).
+    ///
+    /// To use a caching image manager:
+    ///
+    /// 1. Create a [`PHCachingImageManager`](https://developer.apple.com/documentation/photos/phcachingimagemanager) instance. (This step replaces using the shared [`PHImageManager`](https://developer.apple.com/documentation/photos/phimagemanager) instance.)
+    ///
+    /// 2. Use [`PHAsset`](https://developer.apple.com/documentation/photos/phasset) class methods to fetch the assets you’re interested in.
+    ///
+    /// 3. To prepare images for those assets, call the [`startCachingImagesForAssets:targetSize:contentMode:options:`](https://developer.apple.com/documentation/photos/phcachingimagemanager/startcachingimages(for:targetsize:contentmode:options:)) method with the target size, content mode, and options you plan to use when later requesting images for each individual asset.
+    ///
+    /// 4. When you need an image for an individual asset, call the [`requestImageForAsset:targetSize:contentMode:options:resultHandler:`](https://developer.apple.com/documentation/photos/phimagemanager/requestimage(for:targetsize:contentmode:options:resulthandler:)) method, and pass the same parameters you used when preparing that asset.
+    ///
+    /// If the image you request is among those already prepared, the [`PHCachingImageManager`](https://developer.apple.com/documentation/photos/phcachingimagemanager) object immediately returns that image. Otherwise, Photos prepares the image on demand and caches it for later use.
+    ///
+    ///
     #[unsafe(super(PHImageManager, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHCachingImageManager;

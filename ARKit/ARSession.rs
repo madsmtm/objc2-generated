@@ -15,13 +15,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for transitioning an AR session’s current state when you change its configuration.
 /// Set of options for running the session.
 ///
 /// These options alter the behavior of calling run on a session.
 /// Providing no options will result in the default behavior of resuming tracking
 /// from the last known position and keeping all existing anchors.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -30,24 +29,52 @@ pub struct ARSessionRunOptions(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
     impl ARSessionRunOptions: NSUInteger {
-/// The session will reset tracking.
+/// An option to reset the device’s position from the session’s previous run.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/resettracking?language=objc)
+/// ## Discussion
+///
+/// By default, when you call the [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method on a session that has run before or is already running, the session resumes device position tracking from its last known state. (For example, an [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) object keeps its apparent position relative to the camera.) When you call the [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method with a configuration of the same type as the session’s current configuration, you can add this option to force device position tracking to return to its initial state.
+///
+/// When you call the [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method with a configuration of a different type than the session’s current configuration, the session always resets tracking (that is, this option is implicitly enabled).
+///
+/// In either case, when you reset tracking, ARKit also removes any existing anchors from the session.
+///
+///
+/// The session will reset tracking.
         #[doc(alias = "ARSessionRunOptionResetTracking")]
         const ResetTracking = 1<<0;
-/// The session will remove existing anchors.
+/// An option to remove any anchor objects associated with the session’s previous run.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/removeexistinganchors?language=objc)
+/// ## Discussion
+///
+/// By default, when you call the [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method on a session that has run before or is already running, the session keeps any [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) objects that you previously added. That is, objects in the AR scene keep their apparent real-world positions relative to the device (unless you enable the [`ARSessionRunOptionResetTracking`](https://developer.apple.com/documentation/arkit/arsession/runoptions/resettracking) option).
+///
+/// Enable the [`ARSessionRunOptionRemoveExistingAnchors`](https://developer.apple.com/documentation/arkit/arsession/runoptions/removeexistinganchors) option if changing session configurations should invalidate the apparent real-world positions of objects in the AR scene. For example, if you’ve added virtual content to the AR scene whose positions are correlated to real-world objects, remove those anchors so you can reevaluate appropriate real-world positions. On the other hand, if the virtual content in your scene needs to track real-world positions only when that content first appears and can move freely thereafter, you can disable this option to keep the anchors.
+///
+///
+/// The session will remove existing anchors.
         #[doc(alias = "ARSessionRunOptionRemoveExistingAnchors")]
         const RemoveExistingAnchors = 1<<1;
-/// The session will stop currently active tracked raycasts.
+/// An option to stop all active tracked raycasts.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/stoptrackedraycasts?language=objc)
+/// ## Discussion
+///
+/// By default, when you call the [`runWithConfiguration:options:`](https://developer.apple.com/documentation/arkit/arsession/run(_:options:)) method on a session that is running or has run before, the session keeps tracking any [`ARTrackedRaycast`](https://developer.apple.com/documentation/arkit/artrackedraycast) objects that you previously added by calling [`trackedRaycast:updateHandler:`](https://developer.apple.com/documentation/arkit/arsession/trackedraycast(_:updatehandler:)).
+///
+/// Use [`ARSessionRunOptionStopTrackedRaycasts`](https://developer.apple.com/documentation/arkit/arsession/runoptions/stoptrackedraycasts) if you want to stop all active tracked raycasts. Alternatively, you can stop individual raycasts by calling [`stopTracking`](https://developer.apple.com/documentation/arkit/artrackedraycast/stoptracking()) on individual raycasts.
+///
+///
+/// The session will stop currently active tracked raycasts.
         #[doc(alias = "ARSessionRunOptionStopTrackedRaycasts")]
         const StopTrackedRaycasts = 1<<2;
-/// The session will reset scene reconstruction.
+/// An option to reset the scene mesh.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions/resetscenereconstruction?language=objc)
+/// ## Discussion
+///
+/// When you reset scene reconstruction, ARKit removes any existing mesh anchors ([`ARMeshAnchor`](https://developer.apple.com/documentation/arkit/armeshanchor)) from the session.
+///
+///
+/// The session will reset scene reconstruction.
         #[doc(alias = "ARSessionRunOptionResetSceneReconstruction")]
         const ResetSceneReconstruction = 1<<3;
     }
@@ -65,9 +92,33 @@ unsafe impl RefEncode for ARSessionRunOptions {
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// The ARSession class configures and runs different Augmented Reality techniques on a device.
+    /// The object that manages the major tasks associated with every AR experience, such as motion tracking, camera passthrough, and image analysis.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession?language=objc)
+    /// ## Overview
+    ///
+    /// An `ARSession` object coordinates the major processes that ARKit performs on your behalf to create an augmented reality experience. These processes include reading data from the device’s motion sensing hardware, controlling the device’s built-in camera, and performing image analysis on captured camera images. The session synthesizes all of these results to establish a correspondence between the real-world space the device inhabits and a virtual space where you model AR content.
+    ///
+    /// ### Create a Session
+    ///
+    /// Every AR experience requires an `ARSession`. If you implement a custom renderer, you instantiate the session yourself.
+    ///
+    /// ```swift
+    /// let session = ARSession()
+    /// session.delegate = self
+    /// ```
+    ///
+    /// If you use one of the standard renderers (like [`ARView`](https://developer.apple.com/documentation/realitykit/arview), [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview), or [`ARSKView`](https://developer.apple.com/documentation/arkit/arskview)), the renderer creates a session object for you. When you want to interact with your app’s session, you access it on your app’s renderer.
+    ///
+    /// ```swift
+    /// let session = myView.session
+    /// ```
+    ///
+    /// ### Run a Session
+    ///
+    /// Running a session requires a configuration. Subclasses of [`ARConfiguration`](https://developer.apple.com/documentation/arkit/arconfiguration) determine how ARKit tracks a device’s position and motion relative to the real world, and thus it determines the kinds of AR experiences you create. For example, [`ARWorldTrackingConfiguration`](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration) enables you to augment the user’s view of the world around them though the device’s back camera.
+    ///
+    ///
+    /// The ARSession class configures and runs different Augmented Reality techniques on a device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -327,7 +378,13 @@ impl ARSession {
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionobserver?language=objc)
+    /// Methods you can implement to respond to changes in the state of an AR session.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol defines optional methods common to the [`ARSessionDelegate`](https://developer.apple.com/documentation/arkit/arsessiondelegate), [`ARSCNViewDelegate`](https://developer.apple.com/documentation/arkit/arscnviewdelegate), and [`ARSKViewDelegate`](https://developer.apple.com/documentation/arkit/arskviewdelegate) protocols. You can implement this protocol’s methods when adopting one of those protocols.
+    ///
+    ///
     #[cfg(feature = "objc2")]
     pub unsafe trait ARSessionObserver: NSObjectProtocol {
         #[cfg(feature = "objc2-foundation")]
@@ -465,7 +522,15 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessiondelegate?language=objc)
+    /// Methods you can implement to receive captured video frame images and tracking state from an AR session.
+    ///
+    /// ## Overview
+    ///
+    /// Implement this protocol if you need to work directly with [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe) objects captured by the session or directly follow changes to the session’s set of tracked [`ARAnchor`](https://developer.apple.com/documentation/arkit/aranchor) objects. Typically, you adopt this protocol when building a custom view for displaying AR content—if you display content with SceneKit or SpriteKit, the [`ARSCNViewDelegate`](https://developer.apple.com/documentation/arkit/arscnviewdelegate) and [`ARSKViewDelegate`](https://developer.apple.com/documentation/arkit/arskviewdelegate) protocols provide similar information and integrate with those technologies.
+    ///
+    /// This protocol extends the [`ARSessionObserver`](https://developer.apple.com/documentation/arkit/arsessionobserver) protocol, so your session delegate can also implement those methods to respond to changes in session status.
+    ///
+    ///
     #[cfg(feature = "objc2")]
     pub unsafe trait ARSessionDelegate: ARSessionObserver {
         #[cfg(feature = "ARFrame")]
@@ -520,9 +585,14 @@ extern_protocol!(
 
 #[cfg(feature = "objc2")]
 extern_protocol!(
-    /// A data source for an ARSession
+    /// An object that provides a session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionproviding?language=objc)
+    /// ## Overview
+    ///
+    /// As an example usage, [`ARCoachingOverlayView`](https://developer.apple.com/documentation/arkit/arcoachingoverlayview) exposes [`sessionProvider`](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/sessionprovider) to access your app’s current session.
+    ///
+    ///
+    /// A data source for an ARSession
     #[cfg(feature = "objc2")]
     pub unsafe trait ARSessionProviding: NSObjectProtocol {
         /// To ensure session changes are detected, Swift classes should mark this property as `

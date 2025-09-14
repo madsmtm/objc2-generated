@@ -9,7 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer-c.typealias?language=objc)
+/// Defines a text transformation that can affect the visual appearance of a string.
+///
+/// ## Discussion
+///
+/// Use a transformer to affect how your attributed text appears on the UI. You provide a closure when initializing the transformer. Your closure accepts a container with the current text attributes and returns a container with the new text attributes.
+///
+/// ```objc
+/// UIConfigurationTextAttributesTransformer transformer;
+/// transformer = ^(NSDictionary<NSAttributedStringKey, id> *incoming) {
+///     NSMutableDictionary<NSAttributedStringKey, id> *outgoing = [incoming mutableCopy];
+///     outgoing[NSForegroundColorAttributeName] = [UIColor blackColor];
+///     outgoing[NSFontAttributeName] = [UIFont boldSystemFontOfSize:20];
+///     return outgoing;
+/// };
+/// ```
+///
+///
 #[cfg(feature = "block2")]
 pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
     dyn Fn(
@@ -17,22 +33,28 @@ pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize?language=objc)
+/// A predefined size for button elements.
+///
+/// ## Overview
+///
+/// You can use this enumeration to choose a predefined size for elements in a button. The value you choose for button size can be effectively overridden by explicitly assigning values for configuration elements like padding, corner style, or title and subtitle font sizes.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationSize(pub NSInteger);
 impl UIButtonConfigurationSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizemedium?language=objc)
+    /// Displays button elements at a standard size.
     #[doc(alias = "UIButtonConfigurationSizeMedium")]
     pub const Medium: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizesmall?language=objc)
+    /// Displays button elements at a small size.
     #[doc(alias = "UIButtonConfigurationSizeSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizemini?language=objc)
+    /// Displays button elements at the smallest size.
     #[doc(alias = "UIButtonConfigurationSizeMini")]
     pub const Mini: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize/uibuttonconfigurationsizelarge?language=objc)
+    /// Displays button elements at a large size.
     #[doc(alias = "UIButtonConfigurationSizeLarge")]
     pub const Large: Self = Self(3);
 }
@@ -45,38 +67,40 @@ unsafe impl RefEncode for UIButtonConfigurationSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment?language=objc)
+/// Specifies how to align a button’s title and subtitle.
+///
+/// ## Overview
+///
+/// If your button displays both [`title`](https://developer.apple.com/documentation/uikit/uibuttonconfiguration/title) and [`subtitle`](https://developer.apple.com/documentation/uikit/uibuttonconfiguration/subtitle), use this enumeration to configure how the text aligns.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationTitleAlignment(pub NSInteger);
 impl UIButtonConfigurationTitleAlignment {
+    /// Aligns the title and subtitle based on other elements in the button configuration, like an image or activity indicator.
     /// Align title
     /// &
     /// subtitle automatically
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentautomatic?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// Aligns the title and subtitle on their leading edges.
     /// Align title
     /// &
     /// subtitle along their leading edges
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentleading?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentLeading")]
     pub const Leading: Self = Self(1);
+    /// Aligns the title and subtitle on their horizontal centers.
     /// Align title
     /// &
     /// subtitle to be centered with respect to each other
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmentcenter?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentCenter")]
     pub const Center: Self = Self(2);
+    /// Aligns the title and subtitle on their trailing edges.
     /// Align title
     /// &
     /// subtitle along their trailing edges
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment/uibuttonconfigurationtitlealignmenttrailing?language=objc)
     #[doc(alias = "UIButtonConfigurationTitleAlignmentTrailing")]
     pub const Trailing: Self = Self(3);
 }
@@ -89,40 +113,40 @@ unsafe impl RefEncode for UIButtonConfigurationTitleAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle?language=objc)
+/// Settings that determine the appearance of the background corner radius.
+///
+/// ## Overview
+///
+/// Use this property to control how the button uses the [`cornerRadius`](https://developer.apple.com/documentation/uikit/uibackgroundconfiguration-c.class/cornerradius) property of the button’s [`background`](https://developer.apple.com/documentation/uikit/uibuttonconfiguration/background).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationCornerStyle(pub NSInteger);
 impl UIButtonConfigurationCornerStyle {
+    /// A style that uses the background corner radius without modification.
     /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylefixed?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleFixed")]
     pub const Fixed: Self = Self(-1);
+    /// A style that adjusts the background corner radius for dynamic type.
     /// The corner radius provided by the background style is adjusted based on dynamic type
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstyledynamic?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleDynamic")]
     pub const Dynamic: Self = Self(0);
+    /// A style that ignores the background corner radius and uses a small system-defined corner radius.
     /// Ignore the corner radius provided by the background style and substitute a small system defined corner radius.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylesmall?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleSmall")]
     pub const Small: Self = Self(1);
+    /// A style that ignores the background corner radius and uses a medium system-defined corner radius.
     /// Ignore the corner radius provided by the background style and substitute a medium system defined corner radius.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylemedium?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleMedium")]
     pub const Medium: Self = Self(2);
+    /// A style that ignores the background corner radius and uses a large system-defined corner radius.
     /// Ignore the corner radius provided by the background style and substitute a large system defined corner radius.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylelarge?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleLarge")]
     pub const Large: Self = Self(3);
+    /// A style that ignores the background corner radius and uses a corner radius that generates a capsule.
     /// Ignore the corner radius provided by the background style and always set the corner radius to generate a capsule.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle/uibuttonconfigurationcornerstylecapsule?language=objc)
     #[doc(alias = "UIButtonConfigurationCornerStyleCapsule")]
     pub const Capsule: Self = Self(4);
 }
@@ -135,30 +159,34 @@ unsafe impl RefEncode for UIButtonConfigurationCornerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle?language=objc)
+/// The button style your app uses when running in macOS.
+///
+/// ## Overview
+///
+/// If you build your app with [Mac Catalyst](https://developer.apple.com/documentation/uikit/mac-catalyst), you can use these styles to configure how your app displays a button when running on a Mac. To opt in to these styles, choose Optimize Interface for Mac in you project’s general settings.
+///
+/// If you’re configuring your button in Interface Builder, you can choose a style from the Mac Style pop-up menu in the Attributes inspector.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationMacIdiomStyle(pub NSInteger);
 impl UIButtonConfigurationMacIdiomStyle {
+    /// The button has a style that matches other content in the button configuration.
     /// Automatically select the style to use
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleautomatic?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// The button has a bordered style.
     /// Always use a bordered style button
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstylebordered?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBordered")]
     pub const Bordered: Self = Self(1);
+    /// The button has a borderless style.
     /// Always use a borderless style button
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleborderless?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBorderless")]
     pub const Borderless: Self = Self(2);
+    /// The button has a tinted, borderless style.
     /// Always use a tinted, borderless style button
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle/uibuttonconfigurationmacidiomstyleborderlesstinted?language=objc)
     #[doc(alias = "UIButtonConfigurationMacIdiomStyleBorderlessTinted")]
     pub const BorderlessTinted: Self = Self(3);
 }
@@ -171,25 +199,34 @@ unsafe impl RefEncode for UIButtonConfigurationMacIdiomStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator?language=objc)
+/// Constants that determine the style of the indicator that appears on a button.
+///
+/// ## Overview
+///
+/// Use these constants to set the value of the [`indicator`](https://developer.apple.com/documentation/uikit/uibuttonconfiguration/indicator) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationIndicator(pub NSInteger);
 impl UIButtonConfigurationIndicator {
-    /// Automatically determine an indicator based on the button's properties.
+    /// A constant that automatically determines an indicator style according to the button’s properties.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatorautomatic?language=objc)
+    /// ## Discussion
+    ///
+    /// With this behavior, the system automatically shows an indicator if the button shows a menu and has single-selection behavior (when its [`isContextMenuInteractionEnabled`](https://developer.apple.com/documentation/uikit/uicontrol/iscontextmenuinteractionenabled), [`showsMenuAsPrimaryAction`](https://developer.apple.com/documentation/uikit/uicontrol/showsmenuasprimaryaction), and [`changesSelectionAsPrimaryAction`](https://developer.apple.com/documentation/uikit/uibutton/changesselectionasprimaryaction) properties are [`true`](https://developer.apple.com/documentation/swift/true)).
+    ///
+    ///
+    /// Automatically determine an indicator based on the button's properties.
     #[doc(alias = "UIButtonConfigurationIndicatorAutomatic")]
     pub const Automatic: Self = Self(0);
+    /// A constant that doesn’t show an indicator.
     /// Don't show any indicator
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatornone?language=objc)
     #[doc(alias = "UIButtonConfigurationIndicatorNone")]
     pub const None: Self = Self(1);
+    /// A constant that shows a popup-style indicator.
     /// Show an indicator appropriate for a popup-style button
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator/uibuttonconfigurationindicatorpopup?language=objc)
     #[doc(alias = "UIButtonConfigurationIndicatorPopup")]
     pub const Popup: Self = Self(2);
 }
@@ -203,7 +240,13 @@ unsafe impl RefEncode for UIButtonConfigurationIndicator {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfiguration?language=objc)
+    /// A configuration that specifies the appearance and behavior of a button and its contents.
+    ///
+    /// ## Overview
+    ///
+    /// You can configure and update a button with a [`UIButtonConfiguration`](https://developer.apple.com/documentation/uikit/uibuttonconfiguration). A button configuration contains all the customization options available with other methods, such as [`setTitle(_:for:)`](https://developer.apple.com/documentation/uikit/uibutton/settitle(_:for:)), and can serve as a replacement for those methods. Alternatively, you can use a configuration in combination with these other methods and adopt new button behaviors and appearance without rewriting your customized [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) code.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

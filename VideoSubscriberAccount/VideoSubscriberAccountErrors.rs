@@ -7,68 +7,99 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The domain for all errors in the framework.
     /// The domain of all errors returned by VideoSubscriberAccount framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserrordomain?language=objc)
     pub static VSErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// A key that can be used to obtain the subscription provider's SAML response string from an error user info dictionary.
+    /// The subscription provider’s SAML error response.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserrorinfokeysamlresponse?language=objc)
+    /// ## Discussion
+    ///
+    /// This key is a string in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary that the system returns with the error.
+    ///
+    ///
+    /// A key that can be used to obtain the subscription provider's SAML response string from an error user info dictionary.
     pub static VSErrorInfoKeySAMLResponse: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// A key that can be used to obtain the subscription provider's SAML status code string from an error user info dictionary.
+    /// The subscription provider’s SAML error-response status code.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserrorinfokeysamlresponsestatus?language=objc)
+    /// ## Discussion
+    ///
+    /// This key is a string in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary that the system returns with the error.
+    ///
+    ///
+    /// A key that can be used to obtain the subscription provider's SAML status code string from an error user info dictionary.
     pub static VSErrorInfoKeySAMLResponseStatus: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// A key that can be used to obtain the account provider's response object from an error user info dictionary.
+    /// The account provider’s error-response object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserrorinfokeyaccountproviderresponse?language=objc)
+    /// ## Discussion
+    ///
+    /// This key is a string in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary that the system returns with the error.
+    ///
+    ///
+    /// A key that can be used to obtain the account provider's response object from an error user info dictionary.
     pub static VSErrorInfoKeyAccountProviderResponse: &'static NSErrorUserInfoKey;
 }
 
 extern "C" {
-    /// A key that can be used to obtain the identifier string of the user's unsupported subscription provider from an error user info dictionary.
+    /// The identifier of the unsupported subscription provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserrorinfokeyunsupportedprovideridentifier?language=objc)
+    /// ## Discussion
+    ///
+    /// This key is a string in the [`userInfo`](https://developer.apple.com/documentation/foundation/nserror/userinfo) dictionary that the system returns with the error.
+    ///
+    ///
+    /// A key that can be used to obtain the identifier string of the user's unsupported subscription provider from an error user info dictionary.
     pub static VSErrorInfoKeyUnsupportedProviderIdentifier: &'static NSErrorUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code?language=objc)
+/// Error codes in the framework error domain.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSErrorCode(pub NSInteger);
 impl VSErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/accessnotgranted?language=objc)
+    /// The user hasn’t granted access to their subscription information.
     #[doc(alias = "VSErrorCodeAccessNotGranted")]
     pub const AccessNotGranted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/unsupportedprovider?language=objc)
+    /// The system doesn’t support the user’s subscription provider.
     #[doc(alias = "VSErrorCodeUnsupportedProvider")]
     pub const UnsupportedProvider: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/usercancelled?language=objc)
+    /// The user canceled the request.
     #[doc(alias = "VSErrorCodeUserCancelled")]
     pub const UserCancelled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/servicetemporarilyunavailable?language=objc)
+    /// The request failed due to a timeout or unreachable host, but a subsequent attempt might succeed.
     #[doc(alias = "VSErrorCodeServiceTemporarilyUnavailable")]
     pub const ServiceTemporarilyUnavailable: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/providerrejected?language=objc)
+    /// The user’s subscription provider didn’t allow the request to proceed.
+    ///
+    /// ## Discussion
+    ///
+    /// This error can occur when the user’s subscription doesn’t include the resource the user requested, or when the system requires the user to authenticate, but the request doesn’t allow interruption.
+    ///
+    ///
     #[doc(alias = "VSErrorCodeProviderRejected")]
     pub const ProviderRejected: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/invalidverificationtoken?language=objc)
+    /// The user’s subscription provider rejected the verification token that the app sent with the request.
     #[doc(alias = "VSErrorCodeInvalidVerificationToken")]
     pub const InvalidVerificationToken: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/rejected?language=objc)
+    /// The system rejected the request.
+    ///
+    /// ## Discussion
+    ///
+    /// Only TV provider apps can use this error code.
+    ///
+    ///
     #[doc(alias = "VSErrorCodeRejected")]
     pub const Rejected: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vserror/code/unsupported?language=objc)
+    /// The provider doesn’t support the feature the user requested in the device’s current region.
     #[doc(alias = "VSErrorCodeUnsupported")]
     pub const Unsupported: Self = Self(7);
 }

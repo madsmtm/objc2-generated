@@ -7,14 +7,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/options?language=objc)
+/// Values that available options for text list items.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextListOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/options/prependenclosingmarker?language=objc)
+/// Specifies that a nested list should include the marker for its enclosing superlist before its own marker.
         #[doc(alias = "NSTextListPrependEnclosingMarker")]
         const PrependEnclosingMarker = 1<<0;
     }
@@ -28,97 +28,145 @@ unsafe impl RefEncode for NSTextListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct?language=objc)
+/// Constants that describe marker symbols you can apply to list elements in text lists.
+///
+/// ## Overview
+///
+/// Select a marker symbol to apply to your list elements in your text list, then set it in [`markerFormat`](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.property). Or, specify a marker symbol when you create a text list with [`initWithMarkerFormat:options:`](https://developer.apple.com/documentation/appkit/nstextlist/init(markerformat:options:)) or [`initWithMarkerFormat:options:startingItemNumber:`](https://developer.apple.com/documentation/appkit/nstextlist/init(markerformat:options:startingitemnumber:)).
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextListMarkerFormat = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/box?language=objc)
+    /// The value that represents a square-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerBox: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/check?language=objc)
+    /// The value that represents a checkmark-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerCheck: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/circle?language=objc)
+    /// The value that represents a circle-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerCircle: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/diamond?language=objc)
+    /// The value that represents a diamond-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerDiamond: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/disc?language=objc)
+    /// The value that represents a disc-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerDisc: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/hyphen?language=objc)
+    /// The value that represents a hyphen-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerHyphen: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/square?language=objc)
+    /// The value that represents a square-shaped marker that you can apply to a text list item.
     pub static NSTextListMarkerSquare: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/lowercasehexadecimal?language=objc)
+    /// The value that represents a lowercase hexadecimal (base 16) numerical marker that you can apply to a text list item.
     pub static NSTextListMarkerLowercaseHexadecimal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/uppercasehexadecimal?language=objc)
+    /// The value that represents an uppercase hexadecimal (base 16) numerical marker that you can apply to a text list item.
     pub static NSTextListMarkerUppercaseHexadecimal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/octal?language=objc)
+    /// The value that represents an octal (base 8) numerical marker that you can apply to a text list item.
     pub static NSTextListMarkerOctal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/lowercasealpha?language=objc)
+    /// The value that represents a lowercase localized alphabetical marker you that can apply to a text list item.
     pub static NSTextListMarkerLowercaseAlpha: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/uppercasealpha?language=objc)
+    /// The value that represents an uppercase localized alphabetical marker that you can apply to a text list item.
     pub static NSTextListMarkerUppercaseAlpha: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/lowercaselatin?language=objc)
+    /// The value that represents a lowercase Latin alphabetical marker that you can apply to a text list item.
+    ///
+    /// ## Discussion
+    ///
+    /// Lowercase Latin alphabetical markers follow the pattern a, b, c, and so on.
+    ///
+    ///
     pub static NSTextListMarkerLowercaseLatin: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/uppercaselatin?language=objc)
+    /// The value that represents an uppercase Latin alphabetical marker that you can apply to a text list item.
+    ///
+    /// ## Discussion
+    ///
+    /// Uppercase Latin alphabetical markers follow the pattern A, B, C, and so on.
+    ///
+    ///
     pub static NSTextListMarkerUppercaseLatin: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/lowercaseroman?language=objc)
+    /// The value that represents a lowercase Roman numeral marker that you can apply to a text list item.
+    ///
+    /// ## Discussion
+    ///
+    /// Lowercase Roman numeral markers follow the pattern i, ii, iii, iv, and so on.
+    ///
+    ///
     pub static NSTextListMarkerLowercaseRoman: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/uppercaseroman?language=objc)
+    /// The value that represents an uppercase Roman numeral marker that you can apply to a text list item.
+    ///
+    /// ## Discussion
+    ///
+    /// Uppercase Roman numeral markers follow the pattern I, II, III, IV, and so on.
+    ///
+    ///
     pub static NSTextListMarkerUppercaseRoman: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist/markerformat-swift.struct/decimal?language=objc)
+    /// The value that represents a decimal annotation marker that you can apply to a text list item.
+    ///
+    /// ## Discussion
+    ///
+    /// Decimal annotation markers follow the pattern 1.0, 1.1, 2.0, and so on.
+    ///
+    ///
     pub static NSTextListMarkerDecimal: &'static NSTextListMarkerFormat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlist?language=objc)
+    /// A section of text that forms a single list.
+    ///
+    /// ## Overview
+    ///
+    /// The visible elements of the list, including list markers, appear in the text as they do for lists created by hand. The list object, however, allows the list to be recognized as such by the text system. This enables automatic creation of markers and spacing. Text lists are used in HTML import and export.
+    ///
+    /// Text lists appear as attributes on paragraphs, as part of the paragraph style. An [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle) may have an array of text lists, representing the nested lists containing the paragraph, in order from outermost to innermost. For example, if list1 contains four paragraphs, the middle two of which are also in the inner list2, then the text lists array for the first and fourth paragraphs is (list1), while the text lists array for the second and third paragraphs is (list1, list2).
+    ///
+    /// The methods implementing this are [`textLists`](https://developer.apple.com/documentation/appkit/nsparagraphstyle/textlists) on [`NSParagraphStyle`](https://developer.apple.com/documentation/appkit/nsparagraphstyle), and [`textLists`](https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle/textlists) on [`NSMutableParagraphStyle`](https://developer.apple.com/documentation/appkit/nsmutableparagraphstyle).
+    ///
+    /// In addition, [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) has convenience methods for lists, such as [`rangeOfTextList:atIndex:`](https://developer.apple.com/documentation/foundation/nsattributedstring/range(of:at:)-6um0x), which determines the range covered by a list, and [`itemNumberInTextList:atIndex:`](https://developer.apple.com/documentation/foundation/nsattributedstring/itemnumber(in:at:)), which determines the ordinal position within a list of a particular item.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextList;

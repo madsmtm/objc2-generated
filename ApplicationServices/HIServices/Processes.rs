@@ -8,27 +8,17 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501096-anonymous/knoprocess?language=objc)
 pub const kNoProcess: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501096-anonymous/ksystemprocess?language=objc)
 pub const kSystemProcess: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501096-anonymous/kcurrentprocess?language=objc)
 pub const kCurrentProcess: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/launchflags?language=objc)
 pub type LaunchFlags = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchcontinue?language=objc)
 pub const launchContinue: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchnofileflags?language=objc)
 pub const launchNoFileFlags: c_uint = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchuseminimum?language=objc)
 pub const launchUseMinimum: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchdontswitch?language=objc)
 pub const launchDontSwitch: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchallow24bit?language=objc)
 pub const launchAllow24Bit: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501055-anonymous/launchinhibitdaemon?language=objc)
 pub const launchInhibitDaemon: c_uint = 0x0080;
 
 #[repr(C, packed(2))]
@@ -60,7 +50,6 @@ unsafe impl RefEncode for AppParameters_theMsgEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/appparameters?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AppParameters {
@@ -86,58 +75,34 @@ unsafe impl RefEncode for AppParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/appparametersptr?language=objc)
 pub type AppParametersPtr = *mut AppParameters;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500996-anonymous/extendedblock?language=objc)
 pub const extendedBlock: c_uint = 0x4C43;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modereserved?language=objc)
 pub const modeReserved: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modecontrolpanel?language=objc)
 pub const modeControlPanel: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modelaunchdontswitch?language=objc)
 pub const modeLaunchDontSwitch: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modedeskaccessory?language=objc)
 pub const modeDeskAccessory: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modemultilaunch?language=objc)
 pub const modeMultiLaunch: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modeneedsuspendresume?language=objc)
 pub const modeNeedSuspendResume: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modecanbackground?language=objc)
 pub const modeCanBackground: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modedoesactivateonfgswitch?language=objc)
 pub const modeDoesActivateOnFGSwitch: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modeonlybackground?language=objc)
 pub const modeOnlyBackground: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modegetfrontclicks?language=objc)
 pub const modeGetFrontClicks: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modegetappdiedmsg?language=objc)
 pub const modeGetAppDiedMsg: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/mode32bitcompatible?language=objc)
 pub const mode32BitCompatible: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modehighleveleventaware?language=objc)
 pub const modeHighLevelEventAware: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modelocalandremotehlevents?language=objc)
 pub const modeLocalAndRemoteHLEvents: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modestationeryaware?language=objc)
 pub const modeStationeryAware: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modeusetexteditservices?language=objc)
 pub const modeUseTextEditServices: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500998-anonymous/modedisplaymanageraware?language=objc)
 pub const modeDisplayManagerAware: c_uint = 0x00000004;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/processapplicationtransformstate?language=objc)
 pub type ProcessApplicationTransformState = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501117-anonymous/kprocesstransformtoforegroundapplication?language=objc)
 pub const kProcessTransformToForegroundApplication: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501117-anonymous/kprocesstransformtobackgroundapplication?language=objc)
 pub const kProcessTransformToBackgroundApplication: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501117-anonymous/kprocesstransformtouielementapplication?language=objc)
 pub const kProcessTransformToUIElementApplication: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/sizeresourcerec?language=objc)
 #[repr(C, packed(2))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SizeResourceRec {
@@ -159,29 +124,18 @@ unsafe impl RefEncode for SizeResourceRec {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/sizeresourcerecptr?language=objc)
 pub type SizeResourceRecPtr = *mut SizeResourceRec;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/sizeresourcerechandle?language=objc)
 pub type SizeResourceRecHandle = *mut SizeResourceRecPtr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitbeforenormaltimemask?language=objc)
 pub const kQuitBeforeNormalTimeMask: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitatnormaltimemask?language=objc)
 pub const kQuitAtNormalTimeMask: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitbeforefbasquitmask?language=objc)
 pub const kQuitBeforeFBAsQuitMask: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitbeforeshellquitsmask?language=objc)
 pub const kQuitBeforeShellQuitsMask: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitbeforeterminatorappquitsmask?language=objc)
 pub const kQuitBeforeTerminatorAppQuitsMask: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitnevermask?language=objc)
 pub const kQuitNeverMask: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitoptionsmask?language=objc)
 pub const kQuitOptionsMask: c_uint = 0x7F;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitnotquitduringinstallmask?language=objc)
 pub const kQuitNotQuitDuringInstallMask: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501086-anonymous/kquitnotquitduringlogoutmask?language=objc)
 pub const kQuitNotQuitDuringLogoutMask: c_uint = 0x0200;
 
 extern "C-unwind" {
@@ -226,8 +180,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501115-getcurrentprocess?language=objc)
     #[deprecated]
     pub fn GetCurrentProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -244,8 +196,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501050-getfrontprocess?language=objc)
     #[deprecated]
     pub fn GetFrontProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
@@ -265,14 +215,10 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501061-getnextprocess?language=objc)
     #[deprecated]
     pub fn GetNextProcess(p_psn: *mut ProcessSerialNumber) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501104-processinformationcopydictionary?language=objc)
-///
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
@@ -305,20 +251,14 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `p_psn` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501042-setfrontprocess?language=objc)
     #[deprecated]
     pub fn SetFrontProcess(p_psn: *const ProcessSerialNumber) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501101-anonymous/ksetfrontprocessfrontwindowonly?language=objc)
 pub const kSetFrontProcessFrontWindowOnly: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501101-anonymous/ksetfrontprocesscausedbyuser?language=objc)
 pub const kSetFrontProcessCausedByUser: c_uint = 1 << 1;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501003-setfrontprocesswithoptions?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_process` must be a valid pointer.
@@ -330,8 +270,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501091-wakeupprocess?language=objc)
-    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.
@@ -340,8 +278,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501087-sameprocess?language=objc)
-    ///
     /// # Safety
     ///
     /// - `psn1` must be a valid pointer.
@@ -356,14 +292,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500985-exittoshell?language=objc)
     #[deprecated]
     pub fn ExitToShell();
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501110-killprocess?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_process` must be a valid pointer.
@@ -372,8 +305,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501067-copyprocessname?language=objc)
-    ///
     /// # Safety
     ///
     /// - `psn` must be a valid pointer.
@@ -384,8 +315,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1500992-getprocesspid?language=objc)
-    ///
     /// # Safety
     ///
     /// - `psn` must be a valid pointer.
@@ -396,8 +325,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501069-getprocessforpid?language=objc)
-    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.
@@ -413,8 +340,6 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501035-isprocessvisible?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber) -> bool {
@@ -425,8 +350,6 @@ pub unsafe extern "C-unwind" fn IsProcessVisible(psn: *const ProcessSerialNumber
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501053-showhideprocess?language=objc)
-///
 /// # Safety
 ///
 /// `psn` must be a valid pointer.
@@ -443,8 +366,6 @@ pub unsafe extern "C-unwind" fn ShowHideProcess(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1462420-transformprocesstype?language=objc)
-    ///
     /// # Safety
     ///
     /// `psn` must be a valid pointer.
@@ -454,42 +375,23 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/initdev?language=objc)
 pub const initDev: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/hitdev?language=objc)
 pub const hitDev: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/closedev?language=objc)
 pub const closeDev: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/nuldev?language=objc)
 pub const nulDev: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/updatedev?language=objc)
 pub const updateDev: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/activdev?language=objc)
 pub const activDev: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/deactivdev?language=objc)
 pub const deactivDev: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/keyevtdev?language=objc)
 pub const keyEvtDev: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/macdev?language=objc)
 pub const macDev: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/undodev?language=objc)
 pub const undoDev: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/cutdev?language=objc)
 pub const cutDev: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/copydev?language=objc)
 pub const copyDev: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/pastedev?language=objc)
 pub const pasteDev: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/cleardev?language=objc)
 pub const clearDev: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501094-anonymous/cursordev?language=objc)
 pub const cursorDev: c_uint = 14;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501044-anonymous/cdevgenerr?language=objc)
 pub const cdevGenErr: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501044-anonymous/cdevmemerr?language=objc)
 pub const cdevMemErr: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501044-anonymous/cdevreserr?language=objc)
 pub const cdevResErr: c_int = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1501044-anonymous/cdevunset?language=objc)
 pub const cdevUnset: c_int = 3;

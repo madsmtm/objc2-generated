@@ -7,7 +7,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectrendercommand?language=objc)
+    /// A render command in an indirect command buffer.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol; you get instances of this type by asking an [`MTLIndirectCommandBuffer`](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer) for them.
+    ///
+    /// Use this instance to reset or encode a command. You must always reset a command before encoding a new command.
+    ///
+    ///
     pub unsafe trait MTLIndirectRenderCommand: NSObjectProtocol {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         #[unsafe(method(setRenderPipelineState:))]
@@ -330,7 +338,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcomputecommand?language=objc)
+    /// A compute command in an indirect command buffer.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol; you get instances of this type by asking an [`MTLIndirectCommandBuffer`](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer) for them.
+    ///
+    /// Use this instance to reset or encode a command. You must always reset a command before encoding a new command.
+    ///
+    ///
     pub unsafe trait MTLIndirectComputeCommand: NSObjectProtocol {
         #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         #[unsafe(method(setComputePipelineState:))]

@@ -10,44 +10,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey?language=objc)
+/// Keys to control a widget’s appearance.
 // NS_TYPED_ENUM
 pub type PDFAppearanceCharacteristicsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/backgroundcolor?language=objc)
+    /// The background color of the widget annotation.
     pub static PDFAppearanceCharacteristicsKeyBackgroundColor:
         &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/bordercolor?language=objc)
+    /// The border color of the widget annotation.
     pub static PDFAppearanceCharacteristicsKeyBorderColor: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/rotation?language=objc)
+    /// The number of degrees, in multiples of 90, that the widget annotation rotates counterclockwise relative to the page.
     pub static PDFAppearanceCharacteristicsKeyRotation: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/caption?language=objc)
+    /// The text that the button widget annotation displays when the user isn’t interacting with it.
     pub static PDFAppearanceCharacteristicsKeyCaption: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/rollovercaption?language=objc)
+    /// The text that the button widget annotation displays when the user hovers the pointer over it.
     pub static PDFAppearanceCharacteristicsKeyRolloverCaption:
         &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/downcaption?language=objc)
+    /// The text that the button widget annotation displays when the user holds down on it.
     pub static PDFAppearanceCharacteristicsKeyDownCaption: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics?language=objc)
+    /// An object that represents appearance characteristics of a widget annotation.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFAppearanceCharacteristics;

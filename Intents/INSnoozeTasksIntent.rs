@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintent?language=objc)
+    /// A request to snooze one or more tasks.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INSnoozeTasksIntent`](https://developer.apple.com/documentation/intents/insnoozetasksintent) object when the user marks one or more tasks for snoozing. The intent object can contain the task information.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSnoozeTasksIntentHandling`](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling) protocol. Your handler should confirm the request and create an [`INSnoozeTasksIntentResponse`](https://developer.apple.com/documentation/intents/insnoozetasksintentresponse) object with the updated task information.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "No" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to snooze tasks in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Ignore my buy milk reminder" }] }], [Paragraph { inline_content: [Text { text: "Snooze that reminder for 10 minutes" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "忽略买牛奶的提醒事项" }] }], [Paragraph { inline_content: [Text { text: "过10分钟后再提醒我这个" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "忽略買牛奶嘅提醒事項" }] }], [Paragraph { inline_content: [Text { text: "延遲提醒事項10分鐘" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "忽略買牛奶的提醒事項" }] }], [Paragraph { inline_content: [Text { text: "延後提醒事項10分鐘" }] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "忽略买牛奶嘅提醒事项" }] }], [Paragraph { inline_content: [Text { text: "延迟提醒事项10分钟" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "تجاهل تذكير شراء الحليب" }] }], [Paragraph { inline_content: [Text { text: "نبهني مرة ثانية بذلك التذكير بعد 10 دقائق" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Ignorer min køb mælk påmindelse" }] }], [Paragraph { inline_content: [Text { text: "Snooze den påmindelse i 10 minutter" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Ignoriere meine Milch kaufen Erinnerung" }] }], [Paragraph { inline_content: [Text { text: "Snooze die Erinnerung für 10 Minuten" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Posponer mi recordatorio comprar leche" }] }], [Paragraph { inline_content: [Text { text: "Pospón ese recordatorio por 10 minutos" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Hiljennä muistutus osta maitoa" }] }], [Paragraph { inline_content: [Text { text: "Hiljennä muistutus kymmeneksi minuutiksi" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Ignore mon rappel pour acheter du lait" }] }], [Paragraph { inline_content: [Text { text: "Rappelle-le moi encore dans 10 minutes" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [Text { text: "תתעלם מהתזכורת לקנות חלב" }] }], [Paragraph { inline_content: [Text { text: "תשהי את התזכורת ב-10 דקות" }] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Ignora il promemoria comprare il latte" }] }], [Paragraph { inline_content: [Text { text: "Posticipa quel promemoria di 10 minuti" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "牛乳を買うというリマインダーを無視して" }] }], [Paragraph { inline_content: [Text { text: "そのリマインダーを10分スヌーズして" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "우유 사기 미리 알림 다시  알려줘" }] }], [Paragraph { inline_content: [Text { text: "이 미리 알림 10분동안 수느즈해줘" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "abaikan peringatan beli susu saya" }] }], [Paragraph { inline_content: [Text { text: "tidurkan peringatan itu untuk 10 minit" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Ignorer min kjøpe melk påminnelse" }] }], [Paragraph { inline_content: [Text { text: "Utsett den påminnelsen i 10 minutter" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Negeer de melk kopen herinnering" }] }], [Paragraph { inline_content: [Text { text: "Sluimer die herinnering voor 10 minuten" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Ignorar meu lembrete para comprar leite" }] }], [Paragraph { inline_content: [Text { text: "Adie aquele lembrete por 10 minutos" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Повтори напоминание купить молоко позже" }] }], [Paragraph { inline_content: [Text { text: "Отложи это напоминание на 10 минут" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "Ignorera min köp mjölk påminnelse" }] }], [Paragraph { inline_content: [Text { text: "Snooza den påminnelsen i 10 minuter" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "เล\u{e37}\u{e48}อนเต\u{e37}อนซ\u{e37}\u{e49}อนม" }] }], [Paragraph { inline_content: [Text { text: "สน\u{e39}ซเต\u{e37}อนความจำอ\u{e31}นน\u{e35}\u{e49}ไป 10 นาท\u{e35}" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [Text { text: "Süt almayı 10 dakika sonra tekrar hatırlat" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -84,11 +102,18 @@ impl INSnoozeTasksIntent {
 }
 
 extern_protocol!(
+    /// The handler interface that snoozes tasks in a task list.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSnoozeTasksIntentHandling`](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling) protocol to resolve, confirm, and handle requests to snooze tasks in a task list. Adopt this protocol in an object of your Intents extension capable of handling the request directly or forwarding the request to your app or task management service.
+    ///
+    /// Siri delivers an [`INSnoozeTasksIntent`](https://developer.apple.com/documentation/intents/insnoozetasksintent) object to your handler when the user asks to snooze tasks in a task list in your app. The provided intent object contains descriptions of the tasks and any triggers to associate with each task. Use the methods of this protocol to resolve the parameters and snooze the tasks.
+    ///
+    ///
     /// Protocol to declare support for handling an INSnoozeTasksIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insnoozetasksintenthandling?language=objc)
     pub unsafe trait INSnoozeTasksIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

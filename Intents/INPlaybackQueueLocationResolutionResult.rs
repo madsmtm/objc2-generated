@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inplaybackqueuelocationresolutionresult?language=objc)
+    /// A resolution result for the requested playback queue location.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INPlaybackQueueLocationResolutionResult`](https://developer.apple.com/documentation/intents/inplaybackqueuelocationresolutionresult) object when resolving parameters containing an [`INPlaybackQueueLocation`](https://developer.apple.com/documentation/intents/inplaybackqueuelocation) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

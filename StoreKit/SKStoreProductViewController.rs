@@ -11,7 +11,51 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller?language=objc)
+    /// A view controller that provides a page where customers can purchase media from the App Store.
+    ///
+    /// ## Overview
+    ///
+    /// To display a store for customers to purchase media from the App Store, follow these steps:
+    ///
+    /// 1. Create an `SKStoreProductViewController` object and set its [`delegate`](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller/delegate).
+    ///
+    /// 2. Indicate a specific product to sell by passing its iTunes item identifier to the [`loadProductWithParameters:completionBlock:`](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller/loadproduct(withparameters:completionblock:)) method.
+    ///
+    /// 3. Present the view controller modally from another view controller in your app. Your delegate dismisses the view controller when the customer completes the purchase.
+    ///
+    /// Present the `SKStoreProductViewController` object immediately when someone triggers an interaction, such as tapping a Buy button. Load the product information before presenting the view controller to ensure a seamless user experience.
+    ///
+    /// This class ignores [`modalPresentationStyle`](https://developer.apple.com/documentation/uikit/uiviewcontroller/modalpresentationstyle) settings, and those settings have no impact on the sheet’s presentation.
+    ///
+    /// To recommend another app without displaying a full product page, and to recommend an App Clip’s corresponding app from within the App Clip, use [`SKOverlay`](https://developer.apple.com/documentation/storekit/skoverlay).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In a compatible iPad or iPhone app running in visionOS, this method displays a minimal sheet to enable an app purchase or to launch the App Store for more information. For an in-line experience that’s consistent across platforms, use [`SKOverlay`](https://developer.apple.com/documentation/storekit/skoverlay) instead.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Prevent exceptions
+    ///
+    /// The `SKStoreProductViewController` class doesn’t support subclassing or embedding, and must be used as-is.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you compile with the iOS 13 SDK, attempting to instantiate a subclass of `SKStoreProductViewController` results in a runtime exception.
+    ///
+    ///
+    ///
+    /// </div>
+    /// This class throws the following runtime exceptions:
+    ///
+    /// - SKUnsupportedClassException: Occurs if the app attempts to instantiate a subclass of `SKStoreProductViewController`.
+    ///
+    /// - SKUnsupportedPresentationException: Occurs if the app attempts to use an unsupported presentation mode for `SKStoreProductViewController`, such as embedding it as a subview controller or attempting to use it in a popover.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -144,7 +188,13 @@ impl SKStoreProductViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductviewcontrollerdelegate?language=objc)
+    /// A protocol to call when the customer dismisses the store screen.
+    ///
+    /// ## Overview
+    ///
+    /// Typically, this protocol is implemented by the view controller in your application that originally displayed the store screen.
+    ///
+    ///
     pub unsafe trait SKStoreProductViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
@@ -159,36 +209,114 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteritunesitemidentifier?language=objc)
+    /// The key representing the iTunes identifier for the item you want the store to display when the view controller is presented.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key, an iTunes item identifier, is an instance of [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber).
+    ///
+    /// To find a product’s iTunes identifier, go to [linkmaker.itunes.apple.com](http://linkmaker.itunes.apple.com/us/) and search for the product, then locate the iTunes identifier in the link URL. For example, the iTunes identifier for the iBooks app is 364709193.
+    ///
+    ///
     pub static SKStoreProductParameterITunesItemIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameterproductidentifier?language=objc)
+    /// The key representing the product identifier for the promoted product you want the store to display at the top of the page.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an instance of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// When your app uses an [`SKStoreProductViewController`](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller) to render an app page for another app, you can optionally choose to highlight an in-app purchase by displaying it at the top of the store page.  Set  [`SKStoreProductParameterProductIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameterproductidentifier) to the identifier of the product you want displayed at the top of the page.
+    ///
+    /// The product indicated by the identifier must be set up as a promoted product in the App Store, otherwise the identifier is ignored. See [Promoting In-App Purchases](https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/StoreKitGuide/PromotingIn-AppPurchases/PromotingIn-AppPurchases.html#//apple_ref/doc/uid/TP40008267-CH11).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Use the same product identifiers as used in the [`productIdentifier`](https://developer.apple.com/documentation/storekit/skproduct/productidentifier) variable in the [`SKProduct`](https://developer.apple.com/documentation/storekit/skproduct) class.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static SKStoreProductParameterProductIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparametercustomproductpageidentifier?language=objc)
+    /// The key that represents the custom product page identifier you want the store to display when you present the view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is a UUID that represents a custom product page. Get this value from the `ppid` parameter of your custom product page’s URL. For example, in the following sample custom product page URL:
+    ///
+    /// `https://apps.apple.com/us/app/example-appname/id1234567890?ppid=eb2b3606-2fef-4aab-a54e-b2e5547c9bc3`
+    ///
+    /// - the custom product page identifier is the string that follows `ppid=`, which is `eb2b3606-2fef-4aab-a54e-b2e5547c9bc3`.
+    ///
+    /// App Store Connect creates the URL when you configure your custom product page. For more information, see [Create custom product pages](https://developer.apple.com/help/app-store-connect/create-custom-product-pages/configure-multiple-product-page-versions/).
+    ///
+    /// For more information about custom product pages, see [Custom product pages on the App Store](https://developer.apple.com/app-store/custom-product-pages/).
+    ///
+    ///
     pub static SKStoreProductParameterCustomProductPageIdentifier: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteraffiliatetoken?language=objc)
+    /// The key representing the affiliate identifier you wish to use for any purchase made through the view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an instance of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// You receive an affiliate identifier when you sign up for the Affiliate Program. The affiliate associated with this view controller is paid a commission for any items purchased using the controller.
+    ///
+    /// Learn more about the Affiliate Program at [https://apple.com/itunes/affiliates](https://apple.com/itunes/affiliates).
+    ///
+    ///
     pub static SKStoreProductParameterAffiliateToken: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparametercampaigntoken?language=objc)
+    /// The key representing an App Analytics campaign.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an instance of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), containing any 40-byte string.
+    ///
+    /// This token allows you to track the effectiveness of your Affiliate Program link and your App Analytics campaign.
+    ///
+    /// For more information about the Affiliate Program, see the Affiliate Program at [https://apple.com/itunes/affiliates](https://apple.com/itunes/affiliates). For more information about App Store Connect Analytics, see [App Store Connect Developer Guide](https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/About.html#//apple_ref/doc/uid/TP40011225).
+    ///
+    ///
     pub static SKStoreProductParameterCampaignToken: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameterprovidertoken?language=objc)
+    /// The key representing the provider token for the developer that created the app specified by the [`SKStoreProductParameterITunesItemIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteritunesitemidentifier) key.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an instance of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    /// Use your own provider token when cross promoting your own apps. This token lets you track the effectiveness of the cross promotion effort separate from any affiliate campaign that shares the same campaign token.
+    ///
+    /// When promoting apps for other developers, use their provider token instead. In this case, the token lets the developer track the effectiveness of your App Analytics campaign for their apps.
+    ///
+    /// The key must be used in combination with your campaign token, [`SKStoreProductParameterCampaignToken`](https://developer.apple.com/documentation/storekit/skstoreproductparametercampaigntoken). For more information, see [App Store Connect Developer Guide](https://developer.apple.com/library/archive/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/About.html#//apple_ref/doc/uid/TP40011225).
+    ///
+    ///
     pub static SKStoreProductParameterProviderToken: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstoreproductparameteradvertisingpartnertoken?language=objc)
+    /// The key representing the advertising partner you wish to use for any purchase made through the view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an instance of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring).
+    ///
+    ///
     pub static SKStoreProductParameterAdvertisingPartnerToken: &'static NSString;
 }

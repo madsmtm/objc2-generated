@@ -10,12 +10,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpgridtemplatemaximumitems?language=objc)
+    /// The maximum number of buttons that a grid template displays.
     pub static CPGridTemplateMaximumItems: NSUInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpgridtemplate?language=objc)
+    /// A template that displays and manages a grid of items.
+    ///
+    /// ## Overview
+    ///
+    /// Use this template to display a grid of items as buttons. When creating the grid template, provide an array of [`CPGridButton`](https://developer.apple.com/documentation/carplay/cpgridbutton) objects. Each button contains a title, an image, and an optional handler that the system invokes after the user taps the button on the CarPlay screen.
+    ///
+    /// When there are more than eight buttons in the array, the template displays only the first eight. When there are more than four buttons, the template balances the display of the buttons betweem two rows.
+    ///
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

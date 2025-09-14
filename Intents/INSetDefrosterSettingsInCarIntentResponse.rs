@@ -6,34 +6,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetDefrosterSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetDefrosterSettingsInCarIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a resonse code.
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeUnspecified")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/ready?language=objc)
+    /// You’re ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeReady")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/inprogress?language=objc)
+    /// You’re in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that you received the climate control settings and initiated the changes, but you haven’t yet received confirmation of the completed changes.
+    ///
+    ///
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeInProgress")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully updated the defroster settings.
+    ///
+    ///
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeSuccess")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/failure?language=objc)
+    /// You were unable to change the defroster settings.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from changing the setting.
+    ///
+    ///
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailure")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to change the defroster setting.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t handle the request through Siri for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSetDefrosterSettingsInCarIntentResponseCodeFailureRequiringAppLaunch")]
     #[deprecated = "INSetDefrosterSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
     pub const FailureRequiringAppLaunch: Self = Self(5);
@@ -48,7 +78,15 @@ unsafe impl RefEncode for INSetDefrosterSettingsInCarIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponse?language=objc)
+    /// Your app’s response to a set defroster settings in car intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INSetDefrosterSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponse) object contains the status of changing the defroster settings in the user’s vehicle. You create instances of this class when confirming or handling a set defroster settings in car intent.
+    ///
+    /// You create an [`INSetDefrosterSettingsInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintentresponse) object in the [`confirmSetDefrosterSettingsInCar:completion:`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling/confirm(intent:completion:)) and [`handleSetDefrosterSettingsInCar:completion:`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling/handle(intent:completion:)) methods of your set defroster settings in car handler object. For more information about implementing your handler object, see [`INSetDefrosterSettingsInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetdefrostersettingsincarintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

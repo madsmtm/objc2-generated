@@ -4,5 +4,4 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audio_unit_version?language=objc)
 pub const AUDIO_UNIT_VERSION: c_uint = 1070;

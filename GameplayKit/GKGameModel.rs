@@ -7,19 +7,35 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The maximum return value allowed for the [`scoreForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/score(for:)) method.
 /// Maximum / minimum values for GKGameModel scoreForPlayer. Values must be within these ranges.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgamemodelmaxscore?language=objc)
 pub static GKGameModelMaxScore: NSInteger = 1 << 24;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgamemodelminscore?language=objc)
+/// The minimum return value allowed for the [`scoreForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/score(for:)) method.
 pub static GKGameModelMinScore: NSInteger = -(1 << 24);
 
 extern_protocol!(
+    /// Implement this protocol to describe a move in your turn-based game so that a strategist object can plan game moves.
+    ///
+    /// ## Overview
+    ///
+    /// You adopt this protocol in a custom class that describes a move in your game. You use that class, along with another custom class implementing the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel) protocol, to describe your gameplay to a [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) object. You can then use the strategist to find optimal moves during gameplay—for example, to create a computer-controlled player, or to offer hints to a human player.
+    ///
+    /// Your implementation of this protocol should add properties or methods that describe a move in terms of your game. For example, in a Tic-Tac-Toe game, a move class might record which of the nine spaces gets marked in that move. In a chess game, a move class might describe the piece being moved, its original location, and its destination.
+    ///
+    /// You then use your move class in three places:
+    ///
+    /// - In the [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method of your game model class, you create instances of your move class representing each of the possible moves for the specified player. GameplayKit calls this method to determine what moves are possible and speculate about the effects of possible moves on the game’s outcome.
+    ///
+    /// - In the [`applyGameModelUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/apply(_:)) method of your game model class, you use the information in the specified move object to update the state of the game model. GameplayKit calls this method when evaluating the effects of possible moves in order to select the best move.
+    ///
+    /// - When you call the strategist’s [`bestMoveForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist/bestmove(for:)) or [`randomMoveForPlayer:fromNumberOfBestMoves:`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist/randommove(for:fromnumberofbestmoves:)) method to find an optimal move, the return value is one of the move objects you created in your [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method. Use the information in that object to perform the move (if creating a computer-controlled player) or indicate the move in your game’s user interface (if offering hints to a human player).
+    ///
+    /// For more information about describing your gameplay model and using a strategist, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A protocol used to encapsulate the data needed to affect an update to a game model.
     /// Typically represents an action or move performed by a player.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate?language=objc)
     pub unsafe trait GKGameModelUpdate: NSObjectProtocol {
         /// Property get/set by GKMinmaxStrategist to sort GKGameModelUpdates.
         #[unsafe(method(value))]
@@ -34,9 +50,28 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// A protocol used to represent an individual player within a game model.
+    /// Implement this protocol to describe a player in your turn-based game so that a strategist object can plan game moves.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer?language=objc)
+    /// ## Overview
+    ///
+    /// You adopt this protocol to describe the gameplay of your turn-based game for use by a [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) object. The strategist uses your player class, along with other custom classes you implement (adopting the [`GKGameModel`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel) and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols) to plan moves in your game.
+    ///
+    /// You use your custom class implementing this protocol in several places:
+    ///
+    /// - In the [`players`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/players) and [`activePlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/activeplayer) properties of your game model class, to describe the set of players in your game and indicate which player’s turn it currently is
+    ///
+    /// - In the [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method of your game model class, to describe the set of moves currently valid for a specified player
+    ///
+    /// - In the [`isWinForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/iswin(for:)), [`isLossForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/isloss(for:)), and [`scoreForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/score(for:)) method of your game model class, to rate the desirability of that particular state of the game model to a specified player
+    ///
+    /// - When calling the [`bestMoveForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist/bestmove(for:)) or [`randomMoveForPlayer:fromNumberOfBestMoves:`](https://developer.apple.com/documentation/gameplaykit/gkminmaxstrategist/randommove(for:fromnumberofbestmoves:)) method to find an optimal move, to indicate the player for whom GameplayKit should plan moves
+    ///
+    /// Your class that implements this protocol can also contain properties and methods relevant to the implementation of your game—for example, an identifying color or name.
+    ///
+    /// For more information about describing your gameplay model and using a strategist, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A protocol used to represent an individual player within a game model.
     pub unsafe trait GKGameModelPlayer: NSObjectProtocol {
         /// Identifier used by GKMinmaxStrategist differentiate players from one another.
         #[unsafe(method(playerId))]
@@ -46,11 +81,28 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// Implement this protocol to describe your gameplay model so that a strategist object can plan game moves.
+    ///
+    /// ## Overview
+    ///
+    /// You adopt this protocol to describe the gameplay of your turn-based game for use by a [`GKStrategist`](https://developer.apple.com/documentation/gameplaykit/gkstrategist) object. The strategist uses your game model class (that is, the class you create to adopt this protocol), along with other custom classes you create (adopting the [`GKGameModelPlayer`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelplayer) and [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocols), to find optimal moves.
+    ///
+    /// GameplayKit relies on your game model class for several parts of its strategy algorithm.
+    ///
+    /// - Identifying possible changes to the game state. Your [`gameModelUpdatesForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/gamemodelupdates(for:)) method and your move class (a custom class implementing the [`GKGameModelUpdate`](https://developer.apple.com/documentation/gameplaykit/gkgamemodelupdate) protocol) describe the set of moves available during a given player’s turn.
+    ///
+    /// - Simulating future moves on a copy of the game. Your [`setGameModel:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/setgamemodel(_:)) method allows GameplayKit to work with a separate instance of the game model—that is, not the one representing the actual game in play—and your [`applyGameModelUpdate:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/apply(_:)) uses the information in your move class to perform hypothetical moves on that separate copy of the game.
+    ///
+    /// - Rating the desirability of possible future states of the game. Each time GameplayKit performs a hypothetical move in its copy of the game model, it calls your [`isWinForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/iswin(for:)), [`isLossForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/isloss(for:)), or [`scoreForPlayer:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/score(for:)) method to evaluate that state of the game from the perspective of a particular player.
+    ///
+    /// When you use a strategist to plan moves in your game, it uses your game model to combine these parts into a strategy: By identifying, performing, and rating the success of possible future moves, the strategist can choose a move most likely to result in a future win. This process involves using the [`copyWithZone:`](https://developer.apple.com/documentation/foundation/nscopying/copy(with:)) and [`setGameModel:`](https://developer.apple.com/documentation/gameplaykit/gkgamemodel/setgamemodel(_:)) methods to evaluate many possible states of a game model—for best results, ensure that your game model class contains only the information critical to describing your game and that it can copy that state quickly.
+    ///
+    /// For more information about describing your gameplay model and using a strategist, see [The Minmax Strategist](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/Minmax.html#//apple_ref/doc/uid/TP40015172-CH2) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
     /// A protocol for abstracting a game model for use with the GKMinmaxStrategist class. The minmax
     /// strategist uses the game model class, along with GKGameModelPlayer and GKGameModelUpdate to
     /// find optimal moves in an adversarial, turn-based game.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gkgamemodel?language=objc)
     pub unsafe trait GKGameModel: NSObjectProtocol + NSCopying {
         /// Array of instances of GKGameModelPlayers representing players within this game model. When the
         /// GKMinmaxStrategist class is used to find an optimal move for a specific player, it uses this

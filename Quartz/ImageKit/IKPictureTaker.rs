@@ -9,9 +9,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The `IKPictureTaker` class represents a panel that allows users to choose images by browsing the file system. The picture taker panel provides an Open Recent menu, supports image cropping, and supports taking snapshots from an iSight or other digital camera.
     /// An IKPictureTaker object is a panel that allows users to choose and crop an image. It supports browsing of the file system and includes a recents popup-menu. The IKPictureTaker lets the user to crop a choosen image or to take snapshot from a camera like the built-in iSight.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetaker?language=objc)
     #[unsafe(super(NSPanel, NSWindow, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKPictureTaker;
@@ -245,61 +244,102 @@ impl IKPictureTaker {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowsvideocapturekey?language=objc)
+    /// A key for allowing video capture.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an `NSNumber` value (`BOOL`) whose default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static IKPictureTakerAllowsVideoCaptureKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowsfilechoosingkey?language=objc)
+    /// A key for allowing the user to choose a file.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an `NSNumber` object that contains a `BOOL` value whose default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static IKPictureTakerAllowsFileChoosingKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowrecentpicturekey?language=objc)
     pub static IKPictureTakerShowRecentPictureKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerupdaterecentpicturekey?language=objc)
+    /// A key for allowing a recent picture to be updated.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an `NSNumber` object that contains a `BOOL` value whose default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static IKPictureTakerUpdateRecentPictureKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerallowseditingkey?language=objc)
+    /// A key for allowing image editing.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an `NSNumber` object that contains a `BOOL` value whose default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     pub static IKPictureTakerAllowsEditingKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershoweffectskey?language=objc)
+    /// A key for showing effects.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an `NSNumber` object that contains a `BOOL` value whose default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static IKPictureTakerShowEffectsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerinformationaltextkey?language=objc)
+    /// A key for informational text. The associated value is an `NSString` or `NSAttributedString` object whose default value is `"Drag Image Here"`.
     pub static IKPictureTakerInformationalTextKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerimagetransformskey?language=objc)
+    /// A n image transformation key. The associated value is an `NSDictionary` object that can be serialized.
     pub static IKPictureTakerImageTransformsKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakeroutputimagemaxsizekey?language=objc)
+    /// A key for the maximum size of the output image. The associated value is an `NSValue` object (`NSSize`).
     pub static IKPictureTakerOutputImageMaxSizeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowaddressbookpicturekey?language=objc)
+    /// A key for showing the address book picture.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a Boolean value packages as an  `NSNumber` object. The default value is [`false`](https://developer.apple.com/documentation/swift/false). If set to YES, the picture taker automatically adds the address book image for the Me user at the end of the Recent Pictures pop-up menu.
+    ///
+    ///
     pub static IKPictureTakerShowAddressBookPictureKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakershowemptypicturekey?language=objc)
+    /// A key for showing an empty picture. The associated value is an `NSImage` object. The default value is `nil`. If set to an image, the picture taker automatically shows an image at the end of the Recent Pictures pop-up menu. that means “no picture.”
     pub static IKPictureTakerShowEmptyPictureKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikpicturetakerremainopenaftervalidatekey?language=objc)
+    /// A key that determines if the picture taker UI should remain open after the user selects done.
+    ///
+    /// ## Discussion
+    ///
+    /// This allows the application to programmatically dismiss the panel. The associated value is an `NSNumber` object that contains a `BOOL` value whose default value is [`false`](https://developer.apple.com/documentation/swift/false)
+    ///
+    ///
     pub static IKPictureTakerRemainOpenAfterValidateKey: Option<&'static NSString>;
 }

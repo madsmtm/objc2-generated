@@ -6,17 +6,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The lead used to record a voltage measurement.
 /// The medically-defined leads supported by HKElectrocardiogram
 ///
 /// the ECG app, enables the generation and analysis of an ECG  similar to a Lead I ECG.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/lead?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKElectrocardiogramLead(pub NSInteger);
 impl HKElectrocardiogramLead {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/lead/applewatchsimilartoleadi?language=objc)
+    /// Apple Watch Series 4 or later.
+    ///
+    /// ## Discussion
+    ///
+    /// The Apple Watch’s heart rate sensor generates and analyzes ECG data similar to a Lead I ECG.
+    ///
+    ///
     #[doc(alias = "HKElectrocardiogramLeadAppleWatchSimilarToLeadI")]
     pub const AppleWatchSimilarToLeadI: Self = Self(1);
 }
@@ -29,36 +34,53 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Classifications returned by Apple Watch’s ECG algorithm.
 /// The possible classifications determined for HKElectrocardiograms
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramClassification(pub NSInteger);
 impl HKElectrocardiogramClassification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/notset?language=objc)
+    /// A sample that doesn’t have an assigned classification.
     #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/sinusrhythm?language=objc)
+    /// The sample exhibits no signs of atrial fibrillation.
     #[doc(alias = "HKElectrocardiogramClassificationSinusRhythm")]
     pub const SinusRhythm: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/atrialfibrillation?language=objc)
+    /// The sample exhibits signs of atrial fibrillation.
     #[doc(alias = "HKElectrocardiogramClassificationAtrialFibrillation")]
     pub const AtrialFibrillation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivelowheartrate?language=objc)
+    /// An unclassifiable sample caused by a heart rate below 50 bpm.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveLowHeartRate")]
     pub const InconclusiveLowHeartRate: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivehighheartrate?language=objc)
+    /// An unclassifiable sample caused by a rapid heart rate.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`HKAppleECGAlgorithmVersion1`](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version1) algorithm can categorize heart rates below 120 BPM. [`HKAppleECGAlgorithmVersion2`](https://developer.apple.com/documentation/healthkit/hkappleecgalgorithmversion/version2) can categorize heart rates up to 150 BPM.
+    ///
+    ///
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveHighHeartRate")]
     pub const InconclusiveHighHeartRate: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusivepoorreading?language=objc)
+    /// An unclassifiable sample caused by an unclear signal.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Watch reports a poor recording when circumstances cause the watch to collect insufficient or inaccurate data, such as when the user wears the watch too loosely on their wrist, or if the user’s arm isn’t resting on a firm surface. The user can make another attempt at measuring their ECG after fixing the issue.
+    ///
+    ///
     #[doc(alias = "HKElectrocardiogramClassificationInconclusivePoorReading")]
     pub const InconclusivePoorReading: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/inconclusiveother?language=objc)
+    /// An unclassifiable sample caused by an unknown issue.
     #[doc(alias = "HKElectrocardiogramClassificationInconclusiveOther")]
     pub const InconclusiveOther: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum/unrecognized?language=objc)
+    /// A sample classification that this version of HealthKit doesn’t recognize.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, if the Apple Watch recording the sample is running a newer version of watchOS, it may support classification types that aren’t included in this version. You can check the version of the algorithm used to classify the ECG by reading the value of the sample’s [`HKMetadataKeyAppleECGAlgorithmVersion`](https://developer.apple.com/documentation/healthkit/hkmetadatakeyappleecgalgorithmversion) metadata key.
+    ///
+    ///
     #[doc(alias = "HKElectrocardiogramClassificationUnrecognized")]
     pub const Unrecognized: Self = Self(100);
 }
@@ -71,6 +93,7 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values indicating whether the user entered a symptom when they recorded the ECG.
 /// An indication of whether the user experienced symptoms when taking an ECG
 ///
 /// HKElectrocardiogramSymptomsStatusNone          The user did not experience any symptoms during the duration of the electrocardiogram reading.
@@ -78,20 +101,24 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 ///
 /// If an HKElectrocardiogram indicates that there are symptoms present, you must do a separate sample query to
 /// retrieve those symptoms.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramSymptomsStatus(pub NSInteger);
 impl HKElectrocardiogramSymptomsStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/notset?language=objc)
+    /// The user didn’t specify whether or not they experienced symptoms.
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]
     pub const NotSet: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/none?language=objc)
+    /// The user didn’t experience any symptoms during the duration of the electrocardiogram reading.
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum/present?language=objc)
+    /// The user added a symptom when they recorded the ECG.
+    ///
+    /// ## Discussion
+    ///
+    /// To access the symptoms, query for the [`HKCategorySample`](https://developer.apple.com/documentation/healthkit/hkcategorysample) samples associated with the electrocardiogram sample.
+    ///
+    ///
     #[doc(alias = "HKElectrocardiogramSymptomsStatusPresent")]
     pub const Present: Self = Self(2);
 }
@@ -105,10 +132,72 @@ unsafe impl RefEncode for HKElectrocardiogramSymptomsStatus {
 }
 
 extern_class!(
+    /// A sample for electrocardiogram data.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HKElectrocardiogram`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram) is a collection of voltage values representing waveforms from one or more leads. The [`HKElectrocardiogram`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram) sample provides high-level details about the ECG reading, such as the sampling frequency or classification. HealthKit provides read-only access to electrocardiogram (ECG) data saved by Apple Watch.
+    ///
+    /// You can query for [`HKElectrocardiogram`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram) samples using an [`HKSampleQuery`](https://developer.apple.com/documentation/healthkit/hksamplequery).
+    ///
+    /// ```swift
+    /// // Create the electrocardiogram sample type.
+    /// let ecgType = HKObjectType.electrocardiogramType()
+    ///
+    ///
+    /// // Query for electrocardiogram samples
+    /// let ecgQuery = HKSampleQuery(sampleType: ecgType,
+    ///                              predicate: nil,
+    ///                              limit: HKObjectQueryNoLimit,
+    ///                              sortDescriptors: nil) { (query, samples, error) in
+    ///     if let error = error {
+    ///         // Handle the error here.
+    ///         fatalError("*** An error occurred \(error.localizedDescription) ***")
+    ///     }
+    ///     
+    ///     guard let ecgSamples = samples as? [HKElectrocardiogram] else {
+    ///         fatalError("*** Unable to convert \(String(describing: samples)) to [HKElectrocardiogram] ***")
+    ///     }
+    ///     
+    ///     for sample in ecgSamples {
+    ///         // Handle the samples here.
+    ///         
+    ///     }
+    /// }
+    ///
+    /// // Execute the query.
+    /// healthStore.execute(ecgQuery)
+    /// ```
+    ///
+    /// After retrieving an [`HKElectrocardiogram`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram) sample, you can access the voltage measurements associated with the sample use an [`HKElectrocardiogramQuery`](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramquery) query.
+    ///
+    /// ```swift
+    /// // Create a query for the voltage measurements
+    /// let voltageQuery = HKElectrocardiogramQuery(ecgSample) { (query, result) in
+    ///     switch(result) {
+    ///     
+    ///     case .measurement(let measurement):
+    ///         if let voltageQuantity = measurement.quantity(for: .appleWatchSimilarToLeadI) {
+    ///             // Do something with the voltage quantity here.
+    ///
+    ///         }
+    ///     
+    ///     case .done:
+    ///         // No more voltage measurements. Finish processing the existing measurements.
+    ///
+    ///     case .error(let error):
+    ///         // Handle the error here.
+    ///
+    ///     }
+    /// }
+    ///
+    /// // Execute the query.
+    /// healthStore.execute(voltageQuery)
+    /// ```
+    ///
+    ///
     /// An HKElectrocardiogram is a collection of voltage values as waveforms
     /// from one or more leads
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram?language=objc)
     #[unsafe(super(HKSample, HKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "HKObject", feature = "HKSample"))]
@@ -219,16 +308,34 @@ impl HKElectrocardiogram {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathaverageheartrate?language=objc)
+    /// The key path for the sample’s average heart rate.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include the ECG’s average heart rate in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathAverageHeartRate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgclassification?language=objc)
+    /// The key path for the sample’s classification.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include the ECG’s classification in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathECGClassification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathecgsymptomsstatus?language=objc)
+    /// The key path for the sample’s symptom status.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant whenever you want to include the ECG’s symptoms status in a predicate format string. Add a `%K` placeholder to the format string, and then pass this constant as an argument.
+    ///
+    ///
     pub static HKPredicateKeyPathECGSymptomsStatus: &'static NSString;
 }

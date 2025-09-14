@@ -8,7 +8,57 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller?language=objc)
+    /// An object that manages the display of a search bar, along with a table view that displays search results.
+    ///
+    /// ## Overview
+    ///
+    /// You initialize a search display controller with a search bar and a view controller responsible for managing the data to be searched. When the user starts a search, the search display controller superimposes the search interface over the original view controller’s view and shows the search results in its table view.
+    ///
+    /// In addition to managing the searchable data, the original view controller typically plays four more roles you need to fill when using a search display controller. Those roles are the following:
+    ///
+    /// 1. Data source for the search results table view ([`searchResultsDataSource`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller/searchresultsdatasource)), which provides the data for the results table.
+    ///
+    /// 2. Delegate for the search results table view ([`searchResultsDelegate`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller/searchresultsdelegate)), which responds to the user’s selection of an item in the results table.
+    ///
+    /// 3. Delegate for the search display controller ([`delegate`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller/delegate)), which responds to events such the starting or ending of a search, and the showing or hiding of the search interface. As a convenience, this delegate may also be told about changes to the search string or search scope, so that the results table view can be reloaded.
+    ///
+    /// 4. Delegate for the search bar ([`delegate`](https://developer.apple.com/documentation/uikit/uisearchbar/delegate) described in [`UISearchBar`](https://developer.apple.com/documentation/uikit/uisearchbar)), which responds to changes in search criteria.
+    ///
+    /// Typically, you initialize a search display controller from a view controller (usually an instance of [`UITableViewController`](https://developer.apple.com/documentation/uikit/uitableviewcontroller)) that’s displaying a list. See the Simple UISearchBar with State Restoration sample code project for an example of how to configure a search display controller in Interface Builder. To perform configuration programmatically, set `self` for the search display controller’s view controller and search results data source and delegate, as shown here:
+    ///
+    /// ```objc
+    /// searchController = [[UISearchDisplayController alloc]
+    ///                          initWithSearchBar:searchBar contentsController:self];
+    /// searchController.delegate = self;
+    /// searchController.searchResultsDataSource = self;
+    /// searchController.searchResultsDelegate = self;
+    /// ```
+    ///
+    /// If you follow this pattern, then in the table view data source and delegate methods you can check the methods’ table view argument to determine which table view is sending the message:
+    ///
+    /// ```objc
+    /// - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    ///  
+    ///     if (tableView == self.tableView) {
+    ///         return ...;
+    ///     }
+    ///     // If necessary (if self is the data source for other table views),
+    ///     // check whether tableView is searchController.searchResultsTableView.
+    ///     return ...;
+    /// }
+    /// ```
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A view controller or search bar can be associated with only a single search display controller at a time. If a search display controller is destroyed (for example, in response to a memory warning), then you can create a new one and associate it with the original view controller or search bar.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Starting in iOS 7.0, you can use a search display controller with a navigation bar (an instance of the [`UINavigationBar`](https://developer.apple.com/documentation/uikit/uinavigationbar) class) by configuring the search display controller’s [`displaysSearchBarInNavigationBar`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller/displayssearchbarinnavigationbar) and [`navigationItem`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller/navigationitem) properties.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -183,7 +233,13 @@ impl UISearchDisplayController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchdisplaydelegate?language=objc)
+    /// The interface for the delegate of a search display controller.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol defines delegate methods for [`UISearchDisplayController`](https://developer.apple.com/documentation/uikit/uisearchdisplaycontroller) objects.
+    ///
+    ///
     pub unsafe trait UISearchDisplayDelegate: NSObjectProtocol + MainThreadOnly {
         #[deprecated]
         #[optional]

@@ -5,16 +5,16 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style?language=objc)
+/// Values that define an authorization button’s style.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceAuthorizationAppleIDButtonStyle(pub NSInteger);
 impl WKInterfaceAuthorizationAppleIDButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style/default?language=objc)
+    /// The system’s default button style.
     #[doc(alias = "WKInterfaceAuthorizationAppleIDButtonStyleDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style/white?language=objc)
+    /// A white button with black lettering.
     #[doc(alias = "WKInterfaceAuthorizationAppleIDButtonStyleWhite")]
     pub const White: Self = Self(1);
 }
@@ -28,7 +28,31 @@ unsafe impl RefEncode for WKInterfaceAuthorizationAppleIDButtonStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton?language=objc)
+    /// A button that you can use to trigger a Sign in with Apple request.
+    ///
+    /// ## Overview
+    ///
+    /// Use the authorization button to initiate Sign in with Apple on Apple Watch. You can’t use this button to do anything other than initiating sign-in requests.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The authorization button doesn’t perform the sign-in request; it provides a button with the correct branding. You must connect this button to an action method to perform the actual request. For more information, see [`Authentication Services`](https://developer.apple.com/documentation/authenticationservices).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Don’t subclass or create instances of this class yourself. Instead, drag the button from the Object library and add it to your storyboard. Then define an outlet in your interface controller class and connect it to the button object.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var authorizationButton: WKInterfaceAuthorizationAppleIDButton!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceAuthorizationAppleIDButton* authorizationButton;"], metadata: None }] }] })
+    /// While initializing the interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the button (for example, hiding or disabling the button). This class inherits the methods and properties from its superclass, the [`WKInterfaceObject`](https://developer.apple.com/documentation/watchkit/wkinterfaceobject) class.
+    ///
+    /// To respond to authorization button taps, connect the interface object in the storyboard to an action method in the interface controller:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func beginAppleIDSignIn()"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)beginAppleIDSignIn"], metadata: None }] }] })
+    /// In the action method, create a sign-in request using the authorization provider, and then use an instance of [`ASAuthorizationController`](https://developer.apple.com/documentation/authenticationservices/asauthorizationcontroller) to execute the request.
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

@@ -5,7 +5,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/nsstringfromcpmaneuvertype(_:)?language=objc)
 #[cfg(feature = "CPManeuver")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromCPManeuverType(
@@ -18,7 +17,6 @@ pub unsafe extern "C-unwind" fn NSStringFromCPManeuverType(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/nsstringfromcpjunctiontype(_:)?language=objc)
 #[cfg(feature = "CPManeuver")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromCPJunctionType(
@@ -31,7 +29,6 @@ pub unsafe extern "C-unwind" fn NSStringFromCPJunctionType(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/nsstringfromcptrafficside(_:)?language=objc)
 #[cfg(feature = "CPManeuver")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromCPTrafficSide(
@@ -44,7 +41,6 @@ pub unsafe extern "C-unwind" fn NSStringFromCPTrafficSide(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/nsstringfromcplanestatus(_:)?language=objc)
 #[cfg(feature = "CPLane")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSStringFromCPLaneStatus(

@@ -15,8 +15,6 @@ extern_class!(
     ///
     /// The client instance MIDICIDeviceManager maintains a list of discovered CI devices.
     /// MIDICIDevice objects are not constructible via API.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

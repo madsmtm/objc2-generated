@@ -7,23 +7,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute?language=objc)
+/// Attributes define the type of playlist.
+///
+/// ## Overview
+///
+/// Playlist attributes to use as possible values for the [`MPMediaPlaylistPropertyPlaylistAttributes`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyplaylistattributes) property.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaPlaylistAttribute(pub NSUInteger);
 bitflags::bitflags! {
     impl MPMediaPlaylistAttribute: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/mpmediaplaylistattributenone?language=objc)
+/// A playlist with no attributes.
         #[doc(alias = "MPMediaPlaylistAttributeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/onthego?language=objc)
+/// A playlist created on a device rather than synced from the Music app.
         #[doc(alias = "MPMediaPlaylistAttributeOnTheGo")]
         const OnTheGo = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/smart?language=objc)
+/// A smart playlist includes items that match one or more user-specified rules.
         #[doc(alias = "MPMediaPlaylistAttributeSmart")]
         const Smart = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/genius?language=objc)
+/// A Genius playlist includes items related to other items in your Music library.
         #[doc(alias = "MPMediaPlaylistAttributeGenius")]
         const Genius = 1<<2;
     }
@@ -38,42 +44,89 @@ unsafe impl RefEncode for MPMediaPlaylistAttribute {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertypersistentid?language=objc)
+    /// The persistent identifier for the playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a `UInt64_t` (unsigned long long). Can be used to build a media property predicate as described in [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery).
+    ///
+    ///
     pub static MPMediaPlaylistPropertyPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertycloudglobalid?language=objc)
+    /// The cloud identifier for the playlist.
     pub static MPMediaPlaylistPropertyCloudGlobalID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyname?language=objc)
+    /// The name of the playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. Can be used to build a media property predicate as described in [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery).
+    ///
+    ///
     pub static MPMediaPlaylistPropertyName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyplaylistattributes?language=objc)
+    /// The attributes associated with the playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing an [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) data type. Fields in the `NSInteger` identify the attributes of the playlist. A playlist may have any combination of attributes described in [`MPMediaPlaylistAttribute`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute). Can be used to build a media property predicate as described in [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery).
+    ///
+    ///
     pub static MPMediaPlaylistPropertyPlaylistAttributes: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyseeditems?language=objc)
+    /// The items seeded to generate the playlist; applies only to Genius playlists.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing one or more [`MPMediaItem`](https://developer.apple.com/documentation/mediaplayer/mpmediaitem) objects. Value is `nil` for playlists that don’t have the [`MPMediaPlaylistAttributeGenius`](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistattribute/genius) flag set.
+    ///
+    ///
     pub static MPMediaPlaylistPropertySeedItems: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertydescriptiontext?language=objc)
+    /// Descriptive text for the playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static MPMediaPlaylistPropertyDescriptionText: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistpropertyauthordisplayname?language=objc)
+    /// App defined name for the playlist.
+    ///
+    /// ## Discussion
+    ///
+    /// This is required for 3rd party apps. Defaults to the app display name when not defined.
+    ///
+    ///
     pub static MPMediaPlaylistPropertyAuthorDisplayName: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylist?language=objc)
+    /// A playable collection of related media items.
+    ///
+    /// ## Overview
+    ///
+    /// Each playlist has a name, a set of attributes, and a unique identifier that persists across application launches.
+    ///
+    /// Users configure playlists using iTunes or by creating a playlist on the device. Playlists are read-only to your iOS app. To obtain playlists, configure a media query that’s grouped by playlist. Each returned media item collection is a media playlist. The following code snippet illustrates this by logging playlist and song names to the Xcode debugger console:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let myPlaylistQuery = MPMediaQuery.playlists()", "let playlists = myPlaylistQuery.collections", "for playlist in playlists! {", "    print(playlist.value(forProperty: MPMediaPlaylistPropertyName)!)", "            ", "    let songs = playlist.items", "    for song in songs {", "        let songTitle = song.value(forProperty: MPMediaItemPropertyTitle)", "        print(\"\\t\\t\", songTitle!)", "    }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["MPMediaQuery *myPlaylistsQuery = [MPMediaQuery playlistsQuery];", "NSArray *playlists = [myPlaylistsQuery collections];", " ", "for (MPMediaPlaylist *playlist in playlists) {", "    NSLog (@\"%@\", [playlist valueForProperty: MPMediaPlaylistPropertyName]);", " ", "    NSArray *songs = [playlist items];", "    for (MPMediaItem *song in songs) {", "        NSString *songTitle =", "            [song valueForProperty: MPMediaItemPropertyTitle];", "        NSLog (@\"\\t\\t%@\", songTitle);", "    }", "}"], metadata: None }] }] })
+    /// [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate) and [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery) describe the API for building a media query. [`MPMediaEntity`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity) describes the methods for querying media playlist property values.
+    ///
+    ///
     #[unsafe(super(MPMediaItemCollection, MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItemCollection"))]
@@ -176,7 +229,13 @@ impl MPMediaPlaylist {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaplaylistcreationmetadata?language=objc)
+    /// A set of attributes for describing a playlist when creating it.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class when creating a new playlist using the [`getPlaylistWithUUID:creationMetadata:completionHandler:`](https://developer.apple.com/documentation/mediaplayer/mpmedialibrary/getplaylist(with:creationmetadata:completionhandler:)) method. The system adds the metadata to the playlist when you create it, however it ignores the metadata if the playlist already exists.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaPlaylistCreationMetadata;

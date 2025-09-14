@@ -8,7 +8,45 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem?language=objc)
+    /// An object that defines a summary item for a payment that occurs repeatedly at a specified interval, such as a subscription.
+    ///
+    /// ## Overview
+    ///
+    /// [`PKRecurringPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem) is a subclass of [`PKPaymentSummaryItemType`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitemtype) and inherits all properties of the parent class.
+    ///
+    /// Add a summary item of this type to the [`paymentSummaryItems`](https://developer.apple.com/documentation/passkit/pkpaymentrequest/paymentsummaryitems) property of a [`PKPaymentRequest`](https://developer.apple.com/documentation/passkit/pkpaymentrequest) to display to the user a recurring payment in the summary items on the payment sheet.
+    ///
+    /// To describe a recurring payment, set the summary item values as follows:
+    ///
+    /// - In the [`amount`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem/amount) property, provide the billing amount for the set interval, for example, the amount charged per week if the [`intervalUnit`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalunit) is a week.
+    ///
+    /// - Omit the [`type`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem/type) property. The summary item type is only relevant for the [`PKPaymentSummaryItem`](https://developer.apple.com/documentation/passkit/pkpaymentsummaryitem) parent class.
+    ///
+    /// - Set the [`startDate`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/startdate) and [`endDate`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/enddate) to represent the term for the recurring payments, as appropriate.
+    ///
+    /// - Set the [`intervalUnit`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalunit), [`intervalCount`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalcount), and [`endDate`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/enddate) to specify a number of repeating payments.
+    ///
+    /// For example, the following code shows a summary item that specifies six monthly payments that start on the transaction date:
+    ///
+    /// ```swift
+    /// let recurringPayment = PKRecurringPaymentSummaryItem(label: "Total Payment",                                                  NSDecimalNumber(string: "199.99"))
+    ///
+    /// // Payment starts today.
+    /// recurringPayment.startDate = nil
+    ///
+    /// // Pay once a month.
+    /// recurringPayment.intervalUnit = .month
+    /// recurringPayment.intervalCount = 1
+    ///
+    /// // Make 5 more payments for a total of 6 payments.
+    /// var dateComponent = DateComponents()
+    /// dateComponent.month = 5
+    /// recurringPayment.endDate = Calendar.current.date(byAdding: dateComponent, Date())
+    /// ```
+    ///
+    /// The payment interval is a combination of the [`intervalUnit`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalunit) and the [`intervalCount`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalcount). For example, if you set the [`intervalUnit`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalunit) to .[`kCFCalendarUnitMonth`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/month) and [`intervalCount`](https://developer.apple.com/documentation/passkit/pkrecurringpaymentsummaryitem/intervalcount) to `3`, then the payment interval is three months.
+    ///
+    ///
     #[unsafe(super(PKPaymentSummaryItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKPaymentSummaryItem")]

@@ -11,12 +11,17 @@ use objc2_core_media::*;
 
 use crate::*;
 
+/// An object for storing information for each frame of a multipass compression session.
+///
+/// ## Overview
+///
+/// The multipass storage object is a reference-counted CoreFoundation (CF) type. The data stored in the multipass storage object is private to the video encoder.
+///
+///
 /// A mechanism for storing information for each frame of a multi-pass compression session.
 ///
 /// VTMultiPassStorageRef is a CF type, so call CFRelease and CFRetain to manage objects of this type.
 /// The data stored in the VTMultiPassStorage is private to the video encoder.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstorage?language=objc)
 #[doc(alias = "VTMultiPassStorageRef")]
 #[repr(C)]
 pub struct VTMultiPassStorage {
@@ -33,7 +38,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for VTMultiPassStorage {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstoragegettypeid()?language=objc)
+    /// Retrieves the Core Foundation type identifier for the multipass storage object.
+    ///
+    /// ## Return Value
+    ///
+    /// The `CFTypeID` of the multipass storage object.
+    ///
+    ///
     #[doc(alias = "VTMultiPassStorageGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -45,6 +56,27 @@ unsafe impl ConcreteType for VTMultiPassStorage {
 }
 
 impl VTMultiPassStorage {
+    /// Creates a multipass storage object using a temporary file.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator for the session.  Pass `NULL` to use the default allocator.
+    ///
+    /// - fileURL: Specifies where to put the backing file for the multipass storage object. If you pass `NULL` for `fileURL`, the video toolbox will pick a unique temporary file name.
+    ///
+    /// - timeRange: Gives a hint to the multipass storage about valid time stamps for data. You can pass `kCMTimeRangeInvalid` if you do not want to provide a time range hint.
+    ///
+    /// - options: If the file did not exist when the storage was created, the file will be deleted when the multipass storage object is finalized, unless you set the [`kVTMultiPassStorageCreationOption_DoNotDelete`](https://developer.apple.com/documentation/videotoolbox/kvtmultipassstoragecreationoption_donotdelete) option to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) in the `options` dictionary.
+    ///
+    /// - multiPassStorageOut: A pointer to the newly created multipass storage object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can use the multipass storage object to perform multipass encoding; see [`kVTCompressionPropertyKey_MultiPassStorage`](https://developer.apple.com/documentation/videotoolbox/kvtcompressionpropertykey_multipassstorage).
+    ///
+    /// Call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) to release the multipass storage object when you are done with it.
+    ///
+    ///
     /// Creates a VTMultiPassStorage object using a temporary file.
     ///
     /// The returned VTMultiPassStorage object may be used to perform multi-pass encoding; see kVTCompressionPropertyKey_MultiPassStorage.
@@ -62,8 +94,6 @@ impl VTMultiPassStorage {
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `multi_pass_storage_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstoragecreate(allocator:fileurl:timerange:options:multipassstorageout:)?language=objc)
     #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]
     #[inline]
@@ -96,17 +126,32 @@ impl VTMultiPassStorage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtmultipassstoragecreationoption_donotdelete?language=objc)
+    /// Indicates that the multipass storage object’s backing store should not be deleted when finalized.
+    ///
+    /// ## Discussion
+    ///
+    /// If the backing store file did not exist when the storage was created, the file will be deleted when the multipass storage object is finalized, unless you set this option to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) in the options dictionary.
+    ///
+    ///
     pub static kVTMultiPassStorageCreationOption_DoNotDelete: &'static CFString;
 }
 
 impl VTMultiPassStorage {
     /// Ensures that any pending data is written to the multipass storage file and closes the file.
     ///
+    /// Parameters:
+    /// - multiPassStorage: The multipass storage object to close.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After this function is called, all functions on the multipass storage object fail. It’s still necessary to release the object by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
+    /// Ensures that any pending data is written to the multipass storage file and closes the file.
+    ///
     /// After this function is called, all methods on the multipass storage object will fail.
     /// It is still necessary to release the object by calling CFRelease.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmultipassstorageclose(_:)?language=objc)
     #[doc(alias = "VTMultiPassStorageClose")]
     #[inline]
     pub unsafe fn close(&self) -> OSStatus {

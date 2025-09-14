@@ -7,12 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The abstract base class for objects managed by ClassKit.
     /// An object managed by ClassKit.
     ///
     /// See
     /// `CLSContext`for more details.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clsobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLSObject;

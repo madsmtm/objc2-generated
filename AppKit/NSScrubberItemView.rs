@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberarrangedview?language=objc)
+    /// An abstract base class for the views whose layout is managed by a scrubber.
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -136,10 +136,15 @@ impl NSScrubberArrangedView {
 }
 
 extern_class!(
+    /// An abstract base class for specifying the appearance of a highlighted or selected item in a scrubber.
+    ///
+    /// ## Overview
+    ///
+    /// Create a subclass to customize the selection or highlight appearance of an item in your scrubber control. You need to return an instance of your subclass from the [`makeSelectionView`](https://developer.apple.com/documentation/appkit/nsscrubberselectionstyle/makeselectionview()) method on [`NSScrubberSelectionStyle`](https://developer.apple.com/documentation/appkit/nsscrubberselectionstyle).
+    ///
+    ///
     /// The base view class for all selection decorations used by the
     /// `NSScrubber`control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberselectionview?language=objc)
     #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -244,10 +249,9 @@ impl NSScrubberSelectionView {
 }
 
 extern_class!(
+    /// An item at a specific index position in the scrubber.
     /// The base view class that is arranged by a
     /// `NSScrubber`control.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberitemview?language=objc)
     #[unsafe(super(NSScrubberArrangedView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -352,10 +356,15 @@ impl NSScrubberItemView {
 }
 
 extern_class!(
+    /// A concrete view subclass for displaying text for an item in a scrubber.
+    ///
+    /// ## Overview
+    ///
+    /// Provide the text you want to display in the scrubber item to the [`title`](https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/title) property. If you want finer control over the appearance of the text, you can access the underlying text field using the [`textField`](https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield) property.
+    ///
+    ///
     /// A simple
     /// `NSScrubberItemView`for displaying text. The -fittingSize method can be used to measure the smallest size for the view which fits the title without truncating.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbertextitemview?language=objc)
     #[unsafe(super(
         NSScrubberItemView,
         NSScrubberArrangedView,
@@ -482,13 +491,20 @@ impl NSScrubberTextItemView {
 }
 
 extern_class!(
+    /// A concrete view subclass for displaying images in a scrubber items.
+    ///
+    /// ## Overview
+    ///
+    /// Provide the image you want to display in the scrubber item to the [`image`](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image) property. If you want finer control over the appearance of the image, you can access the underlying image view using the [`imageView`](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview) property.
+    ///
+    /// The image is scaled proportionally to fit the view’s frame. Use the [`imageAlignment`](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment) property to determine how the scaled image is cropped within that frame.
+    ///
+    ///
     /// A simple
     /// `NSScrubberItemView`for displaying an image.
     ///
     /// If the provided image is larger than the view's frame, it is scaled proportionally to fill the entire frame. The cropped portion of the image is determined by the
     /// `imageAlignment`property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberimageitemview?language=objc)
     #[unsafe(super(
         NSScrubberItemView,
         NSScrubberArrangedView,

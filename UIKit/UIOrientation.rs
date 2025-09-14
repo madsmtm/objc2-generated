@@ -4,31 +4,37 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation?language=objc)
+/// Constants that describe the physical orientation of the device.
+///
+/// ## Overview
+///
+/// The [`orientation`](https://developer.apple.com/documentation/uikit/uidevice/orientation) property uses these constants to identify the device orientation. These constants identify the physical orientation of the device and aren’t tied to the orientation of your app’s user interface.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceOrientation(pub NSInteger);
 impl UIDeviceOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/unknown?language=objc)
+    /// The orientation of the device can’t be determined.
     #[doc(alias = "UIDeviceOrientationUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/portrait?language=objc)
+    /// The device is in portrait mode, with the device held upright and the front-facing camera at the top.
     #[doc(alias = "UIDeviceOrientationPortrait")]
     pub const Portrait: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/portraitupsidedown?language=objc)
+    /// The device is in portrait mode but upside down, with the device held upright and the front-facing camera at the bottom.
     #[doc(alias = "UIDeviceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/landscapeleft?language=objc)
+    /// The device is in landscape mode, with the device held upright and the front-facing camera on the left side.
     #[doc(alias = "UIDeviceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/landscaperight?language=objc)
+    /// The device is in landscape mode, with the device held upright and the front-facing camera on the right side.
     #[doc(alias = "UIDeviceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/faceup?language=objc)
+    /// The device is held parallel to the ground with the screen facing upwards.
     #[doc(alias = "UIDeviceOrientationFaceUp")]
     pub const FaceUp: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation/facedown?language=objc)
+    /// The device is held parallel to the ground with the screen facing downwards.
     #[doc(alias = "UIDeviceOrientationFaceDown")]
     pub const FaceDown: Self = Self(6);
 }
@@ -51,25 +57,47 @@ impl UIDeviceOrientation {
     // TODO: pub fn UIDeviceOrientationIsValidInterfaceOrientation(orientation: UIDeviceOrientation,) -> Bool;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation?language=objc)
+/// Constants that specify the orientation of the app’s user interface.
+///
+/// ## Overview
+///
+/// Starting in iOS 8, you should employ the [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) and [`UITraitEnvironment`](https://developer.apple.com/documentation/uikit/uitraitenvironment) APIs, and size class properties as used in those APIs, instead of using [`UIInterfaceOrientation`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation) constants or otherwise writing your app in terms of interface orientation.
+///
+/// In earlier versions of iOS, you used these constants in the [`statusBarOrientation`](https://developer.apple.com/documentation/uikit/uiapplication/statusbarorientation) property and the [`setStatusBarOrientation:animated:`](https://developer.apple.com/documentation/uikit/uiapplication/setstatusbarorientation(_:animated:)) method.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Notice that [`UIDeviceOrientationLandscapeRight`](https://developer.apple.com/documentation/uikit/uideviceorientation/landscaperight) is assigned to [`UIInterfaceOrientationLandscapeLeft`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscapeleft) and [`UIDeviceOrientationLandscapeLeft`](https://developer.apple.com/documentation/uikit/uideviceorientation/landscapeleft) is assigned to [`UIInterfaceOrientationLandscapeRight`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscaperight). The reason for this is that rotating the device requires rotating the content in the opposite direction.
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterfaceOrientation(pub NSInteger);
 impl UIInterfaceOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/unknown?language=objc)
+    /// The orientation of the device is unknown.
     #[doc(alias = "UIInterfaceOrientationUnknown")]
     pub const Unknown: Self = Self(UIDeviceOrientation::Unknown.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/portrait?language=objc)
+    /// The device is in portrait mode, with the device upright and the Home button on the bottom.
     #[doc(alias = "UIInterfaceOrientationPortrait")]
     pub const Portrait: Self = Self(UIDeviceOrientation::Portrait.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/portraitupsidedown?language=objc)
+    /// The device is in portrait mode but is upside down, with the device upright and the Home button at the top.
+    ///
+    /// ## Discussion
+    ///
+    /// [`UIViewController`](https://developer.apple.com/documentation/uikit/uiviewcontroller) doesn’t support this case on devices without a Home button.
+    ///
+    ///
     #[doc(alias = "UIInterfaceOrientationPortraitUpsideDown")]
     pub const PortraitUpsideDown: Self = Self(UIDeviceOrientation::PortraitUpsideDown.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscapeleft?language=objc)
+    /// The device is in landscape mode, with the device upright and the Home button on the left.
     #[doc(alias = "UIInterfaceOrientationLandscapeLeft")]
     pub const LandscapeLeft: Self = Self(UIDeviceOrientation::LandscapeRight.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation/landscaperight?language=objc)
+    /// The device is in landscape mode, with the device upright and the Home button on the right.
     #[doc(alias = "UIInterfaceOrientationLandscapeRight")]
     pub const LandscapeRight: Self = Self(UIDeviceOrientation::LandscapeLeft.0);
 }
@@ -82,32 +110,40 @@ unsafe impl RefEncode for UIInterfaceOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask?language=objc)
+/// Constants that specify a view controller’s supported interface orientations.
+///
+/// ## Overview
+///
+/// Starting in iOS 8, you should employ the [`UITraitCollection`](https://developer.apple.com/documentation/uikit/uitraitcollection) and [`UITraitEnvironment`](https://developer.apple.com/documentation/uikit/uitraitenvironment) APIs, and size class properties as used in those APIs, instead of using [`UIInterfaceOrientation`](https://developer.apple.com/documentation/uikit/uiinterfaceorientation) constants or otherwise writing your app in terms of interface orientation.
+///
+/// In earlier versions of iOS, you returned these constants from the [`supportedInterfaceOrientationsForWindow:`](https://developer.apple.com/documentation/uikit/uiapplication/supportedinterfaceorientations(for:)) method or when determining which orientations to support in your app’s view controllers.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterfaceOrientationMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UIInterfaceOrientationMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/portrait?language=objc)
+/// The view controller supports a portrait interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskPortrait")]
         const Portrait = 1<<UIInterfaceOrientation::Portrait.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscapeleft?language=objc)
+/// The view controller supports a landscape-left interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskLandscapeLeft")]
         const LandscapeLeft = 1<<UIInterfaceOrientation::LandscapeLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscaperight?language=objc)
+/// The view controller supports a landscape-right interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskLandscapeRight")]
         const LandscapeRight = 1<<UIInterfaceOrientation::LandscapeRight.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/portraitupsidedown?language=objc)
+/// The view controller supports an upside-down portrait interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskPortraitUpsideDown")]
         const PortraitUpsideDown = 1<<UIInterfaceOrientation::PortraitUpsideDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/landscape?language=objc)
+/// The view controller supports both landscape-left and landscape-right interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskLandscape")]
         const Landscape = UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/all?language=objc)
+/// The view controller supports all interface orientations.
         #[doc(alias = "UIInterfaceOrientationMaskAll")]
         const All = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0|UIInterfaceOrientationMask::PortraitUpsideDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/allbutupsidedown?language=objc)
+/// The view controller supports all but the upside-down portrait interface orientation.
         #[doc(alias = "UIInterfaceOrientationMaskAllButUpsideDown")]
         const AllButUpsideDown = UIInterfaceOrientationMask::Portrait.0|UIInterfaceOrientationMask::LandscapeLeft.0|UIInterfaceOrientationMask::LandscapeRight.0;
     }

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationconfiguration?language=objc)
+    /// An object that provides configuration options for a window scene request.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIWindowSceneActivationConfiguration`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationconfiguration) object to request a new window scene from the system. An activation configuration requires a [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object that represents the scene’s content. You can specify a preferred presentation style for the new scene by including an optional [`UIWindowSceneActivationRequestOptions`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationrequestoptions) object. The system automatically animates the transition to the new scene, but you can customize the transition by providing an optional targeted preview.
+    ///
+    /// To request scene activation from a view interaction, use an instance of this class with [`UIWindowSceneActivationInteraction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction). To request scene activation from a context menu, use an instance of this class with [`UIWindowSceneActivationAction`](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneActivationConfiguration;

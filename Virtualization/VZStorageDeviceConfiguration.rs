@@ -7,6 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The common configuration traits for storage device requests.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a [`VZStorageDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration) object directly. Instead, instantiate one of its subclasses, such as [`VZVirtioBlockDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtioblockdeviceconfiguration). Use the [`attachment`](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration/attachment) property of this class to access the device’s underlying storage.
+    ///
+    ///
     /// Base class for a storage device configuration.
     ///
     /// VZStorageDeviceConfiguration should not be instantiated directly.
@@ -18,8 +25,6 @@ extern_class!(
     /// See: VZUSBMassStorageDeviceConfiguration
     ///
     /// See: VZVirtioBlockDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzstoragedeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZStorageDeviceConfiguration;

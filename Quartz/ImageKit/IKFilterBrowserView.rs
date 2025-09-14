@@ -9,6 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The `IKFilterBrowserView` class is used as a container for the elements of an [`IKFilterBrowserPanel`](https://developer.apple.com/documentation/quartz/ikfilterbrowserpanel) object.
     /// IKFilterBrowserView
     ///
     /// 2006 Apple Inc. All rights reserved.
@@ -17,8 +18,6 @@ extern_class!(
     /// View containing the elements of the IKFilterBrowser
     ///
     /// See discussion in IKFilterBrowserPanel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartz/ikfilterbrowserview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct IKFilterBrowserView;

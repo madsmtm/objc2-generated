@@ -4,82 +4,94 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code?language=objc)
+/// Error codes for framework operations.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CHHapticErrorCode(pub NSInteger);
 impl CHHapticErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/enginenotrunning?language=objc)
+    /// Your app requested haptic playback when the engine wasn’t running.
     #[doc(alias = "CHHapticErrorCodeEngineNotRunning")]
     pub const EngineNotRunning: Self = Self(-4805);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/operationnotpermitted?language=objc)
+    /// Your app requested an operation that the haptic engine disallows.
     #[doc(alias = "CHHapticErrorCodeOperationNotPermitted")]
     pub const OperationNotPermitted: Self = Self(-4806);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/enginestarttimeout?language=objc)
+    /// The haptic engine timed out while starting.
     #[doc(alias = "CHHapticErrorCodeEngineStartTimeout")]
     pub const EngineStartTimeout: Self = Self(-4808);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/notsupported?language=objc)
+    /// The current device doesn’t support the haptic engine.
     #[doc(alias = "CHHapticErrorCodeNotSupported")]
     pub const NotSupported: Self = Self(-4809);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/serverinitfailed?language=objc)
+    /// The haptic server failed to initialize.
     #[doc(alias = "CHHapticErrorCodeServerInitFailed")]
     pub const ServerInitFailed: Self = Self(-4810);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/serverinterrupted?language=objc)
+    /// Your app lost its connection to the haptic server.
     #[doc(alias = "CHHapticErrorCodeServerInterrupted")]
     pub const ServerInterrupted: Self = Self(-4811);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidpatternplayer?language=objc)
+    /// The current pattern player is no longer valid due to a server error.
     #[doc(alias = "CHHapticErrorCodeInvalidPatternPlayer")]
     pub const InvalidPatternPlayer: Self = Self(-4812);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidpatterndata?language=objc)
+    /// Your app passed an invalid pattern to the haptic engine or player.
     #[doc(alias = "CHHapticErrorCodeInvalidPatternData")]
     pub const InvalidPatternData: Self = Self(-4813);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidpatterndictionary?language=objc)
+    /// A pattern in the dictionary is missing a required field.
     #[doc(alias = "CHHapticErrorCodeInvalidPatternDictionary")]
     pub const InvalidPatternDictionary: Self = Self(-4814);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidaudiosession?language=objc)
+    /// The system invalidated the audio session associated with the haptic engine.
     #[doc(alias = "CHHapticErrorCodeInvalidAudioSession")]
     pub const InvalidAudioSession: Self = Self(-4815);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidengineparameter?language=objc)
+    /// Your app attempted to initialize the haptic engine with an invalid configuration parameter.
     #[doc(alias = "CHHapticErrorCodeInvalidEngineParameter")]
     pub const InvalidEngineParameter: Self = Self(-4816);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidparametertype?language=objc)
+    /// A pattern dictionary or parameter array contains an unknown or invalid parameter type.
     #[doc(alias = "CHHapticErrorCodeInvalidParameterType")]
     pub const InvalidParameterType: Self = Self(-4820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalideventtype?language=objc)
+    /// The type of an event in the dictionary is invalid.
     #[doc(alias = "CHHapticErrorCodeInvalidEventType")]
     pub const InvalidEventType: Self = Self(-4821);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalideventtime?language=objc)
+    /// The time of an event in the dictionary is invalid.
     #[doc(alias = "CHHapticErrorCodeInvalidEventTime")]
     pub const InvalidEventTime: Self = Self(-4822);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalideventduration?language=objc)
+    /// An event in the dictionary has an invalid duration.
     #[doc(alias = "CHHapticErrorCodeInvalidEventDuration")]
     pub const InvalidEventDuration: Self = Self(-4823);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidaudioresource?language=objc)
+    /// A pattern dictionary or an event array contain a reference to an invalid audio resource.
     #[doc(alias = "CHHapticErrorCodeInvalidAudioResource")]
     pub const InvalidAudioResource: Self = Self(-4824);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/resourcenotavailable?language=objc)
+    /// The requested operation couldn’t finish due to a limit on available resources.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when your app’s registered audio resources reach the limit. The app needs to unregister others to make resources available again.
+    ///
+    ///
     #[doc(alias = "CHHapticErrorCodeResourceNotAvailable")]
     pub const ResourceNotAvailable: Self = Self(-4825);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/badevententry?language=objc)
+    /// An event is missing a required field.
     #[doc(alias = "CHHapticErrorCodeBadEventEntry")]
     pub const BadEventEntry: Self = Self(-4830);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/badparameterentry?language=objc)
+    /// A parameter in an event is missing a required field.
     #[doc(alias = "CHHapticErrorCodeBadParameterEntry")]
     pub const BadParameterEntry: Self = Self(-4831);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/invalidtime?language=objc)
+    /// The time offset passed to the haptic engine is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when you pass a negative or improperly formatted time value to the haptic engine.
+    ///
+    ///
     #[doc(alias = "CHHapticErrorCodeInvalidTime")]
     pub const InvalidTime: Self = Self(-4840);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/filenotfound?language=objc)
+    /// The system couldn’t find an audio file or haptic asset.
     #[doc(alias = "CHHapticErrorCodeFileNotFound")]
     pub const FileNotFound: Self = Self(-4851);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/insufficientpower?language=objc)
+    /// The operation failed due to power restrictions.
     #[doc(alias = "CHHapticErrorCodeInsufficientPower")]
     pub const InsufficientPower: Self = Self(-4897);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/unknownerror?language=objc)
+    /// An operation failed due to an unknown error.
     #[doc(alias = "CHHapticErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(-4898);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticerror/code/memoryerror?language=objc)
+    /// The operation failed due to a lack of memory.
     #[doc(alias = "CHHapticErrorCodeMemoryError")]
     pub const MemoryError: Self = Self(-4899);
 }

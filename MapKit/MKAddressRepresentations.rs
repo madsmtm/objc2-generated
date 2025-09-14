@@ -6,19 +6,43 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle?language=objc)
+/// Values that describe the degree of disambiguation context to include in an address representation.
+///
+/// ## Discussion
+///
+/// Use the [`MKAddressRepresentationsContextStyle`](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle) to configure the degree of disambiguation context to include in an address representation from [`MKAddressRepresentations`](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations), such as including the region name with the city.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAddressRepresentationsContextStyle(pub NSInteger);
 impl MKAddressRepresentationsContextStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/automatic?language=objc)
+    /// The value that represents the automatic context style.
+    ///
+    /// ## Discussion
+    ///
+    /// This value tells the framework to automatically select the content style for address representations. For example, when used with [`cityWithContextUsingStyle:`](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext(_:)) MapKit only includes the region.
+    ///
+    ///
     #[doc(alias = "MKAddressRepresentationsContextStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/short?language=objc)
+    /// The value that represents the short context style.
+    ///
+    /// ## Discussion
+    ///
+    /// The value that tells the framework to exclude optional context. For example, when used with [`cityWithContextUsingStyle:`](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext(_:)) MapKit always excludes the region name.
+    ///
+    ///
     #[doc(alias = "MKAddressRepresentationsContextStyleShort")]
     pub const Short: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/contextstyle/full?language=objc)
+    /// The value that represents the full context style.
+    ///
+    /// ## Discussion
+    ///
+    /// The value that tells the framework to include all relevant context. For example, when used with [`cityWithContextUsingStyle:`](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations/citywithcontext(_:)) MapKit always includes the region name if the device is in that region.
+    ///
+    ///
     #[doc(alias = "MKAddressRepresentationsContextStyleFull")]
     pub const Full: Self = Self(2);
 }
@@ -32,7 +56,13 @@ unsafe impl RefEncode for MKAddressRepresentationsContextStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkaddressrepresentations?language=objc)
+    /// A class that provides formatted address strings.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this class to obtain formatted address strings for a place’s full address, city, or region.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKAddressRepresentations;

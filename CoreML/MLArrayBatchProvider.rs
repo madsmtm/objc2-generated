@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A concrete convenience class conforming to MLBatchProvider.
+    /// A convenience wrapper for batches of feature providers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlarraybatchprovider?language=objc)
+    /// ## Overview
+    ///
+    /// This batch provider supports an array of feature providers or a dictionary of arrays of feature values.
+    ///
+    ///
+    /// A concrete convenience class conforming to MLBatchProvider.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLArrayBatchProvider;

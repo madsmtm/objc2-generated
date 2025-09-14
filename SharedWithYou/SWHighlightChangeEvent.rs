@@ -6,16 +6,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightchangeeventtrigger?language=objc)
+/// The type of change event for the highlight
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SWHighlightChangeEventTrigger(pub NSInteger);
 impl SWHighlightChangeEventTrigger {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightchangeeventtrigger/edit?language=objc)
+    /// Signifies a highlight edit.
     #[doc(alias = "SWHighlightChangeEventTriggerEdit")]
     pub const Edit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightchangeeventtrigger/comment?language=objc)
+    /// Signifies a highlight comment.
     #[doc(alias = "SWHighlightChangeEventTriggerComment")]
     pub const Comment: Self = Self(2);
 }
@@ -29,9 +29,8 @@ unsafe impl RefEncode for SWHighlightChangeEventTrigger {
 }
 
 extern_class!(
+    /// An object that represents change activity for a highlight.
     /// A model object representing activity that has happened on some content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightchangeevent?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWHighlightChangeEvent;

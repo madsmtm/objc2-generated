@@ -7,7 +7,7 @@ use objc2_open_gl::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib?language=objc)
+/// Values used as indices in OpenGL code to associate vertex data with an attribute in a named shader effect.
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -17,19 +17,19 @@ pub struct GLKVertexAttrib(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 impl GLKVertexAttrib {
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib/position?language=objc)
+    /// This index is used to provide the vertex position to a shader.
     #[doc(alias = "GLKVertexAttribPosition")]
     pub const Position: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib/normal?language=objc)
+    /// This index is used to provide the vertex normal to a shader.
     #[doc(alias = "GLKVertexAttribNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib/color?language=objc)
+    /// This index is used to provide the vertex color to a shader.
     #[doc(alias = "GLKVertexAttribColor")]
     pub const Color: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib/texcoord0?language=objc)
+    /// This index is used to provide a set of texture coordinates to a shader.
     #[doc(alias = "GLKVertexAttribTexCoord0")]
     pub const TexCoord0: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattrib/texcoord1?language=objc)
+    /// This index is used to provide the second set of texture coordinates to a shader.
     #[doc(alias = "GLKVertexAttribTexCoord1")]
     pub const TexCoord1: Self = Self(4);
 }

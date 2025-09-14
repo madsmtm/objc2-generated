@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The likelihood of a sound belonging to identified class
+    /// A type that pairs a sound classifier’s prediction with its confidence in that prediction.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassification?language=objc)
+    /// ## Overview
+    ///
+    /// An `SNClassification` represents a single sound classification prediction, and the sound classifier model’s confidence in that prediction.
+    ///
+    ///
+    /// The likelihood of a sound belonging to identified class
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassification;
@@ -45,9 +50,16 @@ impl SNClassification {
 }
 
 extern_class!(
-    /// A result containing the most likely classification candidates in the time range specified
+    /// A result that contains the highest-ranking classifications in a time range.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassificationresult?language=objc)
+    /// ## Overview
+    ///
+    /// An `SNClassificationResult` represents the predictions that a sound classification model made for a time span in an audio file or stream. Each result contains one or more classification predictions and a time range within the audio data.
+    ///
+    /// An audio analyzer, such as [`SNAudioFileAnalyzer`](https://developer.apple.com/documentation/soundanalysis/snaudiofileanalyzer) and [`SNAudioStreamAnalyzer`](https://developer.apple.com/documentation/soundanalysis/snaudiostreamanalyzer), produces an `SNClassificationResult` each time it recognizes a sound for any of its [`SNClassifySoundRequest`](https://developer.apple.com/documentation/soundanalysis/snclassifysoundrequest) instances.
+    ///
+    ///
+    /// A result containing the most likely classification candidates in the time range specified
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNClassificationResult;

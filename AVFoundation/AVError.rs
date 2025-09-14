@@ -6,326 +6,367 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfoundationerrordomain?language=objc)
+    /// The error domain of AVFoundation errors.
     pub static AVFoundationErrorDomain: Option<&'static NSErrorDomain>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrordevicekey?language=objc)
+    /// The user information key to retrieve the device name.
     pub static AVErrorDeviceKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrortimekey?language=objc)
+    /// The user information key to retrieve the error time.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is of type [`CMTime`](https://developer.apple.com/documentation/coremedia/cmtime).
+    ///
+    ///
     pub static AVErrorTimeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorfilesizekey?language=objc)
+    /// The user information key to retrieve the file size in bytes.
     pub static AVErrorFileSizeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpidkey?language=objc)
+    /// The user information key to retrieve the process ID value.
     pub static AVErrorPIDKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorrecordingsuccessfullyfinishedkey?language=objc)
+    /// The user information key to retrieve a Boolean value that indicates whether recording finished successfully.
     pub static AVErrorRecordingSuccessfullyFinishedKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrormediatypekey?language=objc)
+    /// The user information key to retrieve the media type.
     pub static AVErrorMediaTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrormediasubtypekey?language=objc)
+    /// The user information key to retrieve the media subtype.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an array of integers that indicate the media subtype.
+    ///
+    ///
     pub static AVErrorMediaSubTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpresentationtimestampkey?language=objc)
+    /// The user information key to retrieve the presentation time stamp.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is of type [`CMTime`](https://developer.apple.com/documentation/coremedia/cmtime).
+    ///
+    ///
     pub static AVErrorPresentationTimeStampKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorpersistenttrackidkey?language=objc)
+    /// The user information key to retrieve the track’s persistent identifier.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is of type [`CMPersistentTrackID`](https://developer.apple.com/documentation/coremedia/cmpersistenttrackid).
+    ///
+    ///
     pub static AVErrorPersistentTrackIDKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrorfiletypekey?language=objc)
+    /// The user information key to retrieve the file type.
     pub static AVErrorFileTypeKey: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averrordiscontinuityflagskey?language=objc)
+    /// The user information key to retrieve discontinuity flags.
     pub static AVErrorDiscontinuityFlagsKey: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code?language=objc)
+/// An enumeration that defines the errors that framework operations can generate.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVError(pub NSInteger);
 impl AVError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "AVErrorUnknown")]
     pub const Unknown: Self = Self(-11800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/outofmemory?language=objc)
+    /// The operation couldn’t finish because there isn’t enough memory available to process the media.
     #[doc(alias = "AVErrorOutOfMemory")]
     pub const OutOfMemory: Self = Self(-11801);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/sessionnotrunning?language=objc)
+    /// The recording couldn’t start because the session isn’t running.
     #[doc(alias = "AVErrorSessionNotRunning")]
     pub const SessionNotRunning: Self = Self(-11803);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/devicealreadyusedbyanothersession?language=objc)
+    /// Your app can’t access the device because another session is currently using it.
     #[doc(alias = "AVErrorDeviceAlreadyUsedByAnotherSession")]
     pub const DeviceAlreadyUsedByAnotherSession: Self = Self(-11804);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/nodatacaptured?language=objc)
+    /// The recording failed because the system received no data.
     #[doc(alias = "AVErrorNoDataCaptured")]
     pub const NoDataCaptured: Self = Self(-11805);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/sessionconfigurationchanged?language=objc)
+    /// Recording stopped because the configuration of media sources and destinations changed.
     #[doc(alias = "AVErrorSessionConfigurationChanged")]
     pub const SessionConfigurationChanged: Self = Self(-11806);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/diskfull?language=objc)
+    /// Recording stopped because the disk is full.
     #[doc(alias = "AVErrorDiskFull")]
     pub const DiskFull: Self = Self(-11807);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/devicewasdisconnected?language=objc)
+    /// A previously connected device is no longer accessible.
     #[doc(alias = "AVErrorDeviceWasDisconnected")]
     pub const DeviceWasDisconnected: Self = Self(-11808);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/mediachanged?language=objc)
+    /// Recording stopped because the format of the source media changed.
     #[doc(alias = "AVErrorMediaChanged")]
     pub const MediaChanged: Self = Self(-11809);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/maximumdurationreached?language=objc)
+    /// The recording stopped because it reached the file’s maximum duration.
     #[doc(alias = "AVErrorMaximumDurationReached")]
     pub const MaximumDurationReached: Self = Self(-11810);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/maximumfilesizereached?language=objc)
+    /// The recording stopped because it reached the file’s maximum size.
     #[doc(alias = "AVErrorMaximumFileSizeReached")]
     pub const MaximumFileSizeReached: Self = Self(-11811);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/mediadiscontinuity?language=objc)
+    /// Recording stopped because there was an interruption in the input media.
     #[doc(alias = "AVErrorMediaDiscontinuity")]
     pub const MediaDiscontinuity: Self = Self(-11812);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/maximumnumberofsamplesforfileformatreached?language=objc)
+    /// The recording stopped because it reached the file’s maximum number of samples.
     #[doc(alias = "AVErrorMaximumNumberOfSamplesForFileFormatReached")]
     pub const MaximumNumberOfSamplesForFileFormatReached: Self = Self(-11813);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/devicenotconnected?language=objc)
+    /// You app can’t access the device because it isn’t connected.
     #[doc(alias = "AVErrorDeviceNotConnected")]
     pub const DeviceNotConnected: Self = Self(-11814);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/deviceinusebyanotherapplication?language=objc)
+    /// Your app can’t access the device because another app is currently using it.
     #[doc(alias = "AVErrorDeviceInUseByAnotherApplication")]
     pub const DeviceInUseByAnotherApplication: Self = Self(-11815);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/devicelockedforconfigurationbyanotherprocess?language=objc)
+    /// Your app can’t change device settings because another process currently controls the device.
     #[doc(alias = "AVErrorDeviceLockedForConfigurationByAnotherProcess")]
     pub const DeviceLockedForConfigurationByAnotherProcess: Self = Self(-11817);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/exportfailed?language=objc)
+    /// The requested export operation failed.
     #[doc(alias = "AVErrorExportFailed")]
     pub const ExportFailed: Self = Self(-11820);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/decodefailed?language=objc)
+    /// The system failed to decode the media.
     #[doc(alias = "AVErrorDecodeFailed")]
     pub const DecodeFailed: Self = Self(-11821);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidsourcemedia?language=objc)
+    /// The system couldn’t read the source media.
     #[doc(alias = "AVErrorInvalidSourceMedia")]
     pub const InvalidSourceMedia: Self = Self(-11822);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/filealreadyexists?language=objc)
+    /// A file with the same name exists at the location and you can’t overwrite it.
     #[doc(alias = "AVErrorFileAlreadyExists")]
     pub const FileAlreadyExists: Self = Self(-11823);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/compositiontracksegmentsnotcontiguous?language=objc)
+    /// The composition can’t add the source media because it contains gaps.
     #[doc(alias = "AVErrorCompositionTrackSegmentsNotContiguous")]
     pub const CompositionTrackSegmentsNotContiguous: Self = Self(-11824);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidcompositiontracksegmentduration?language=objc)
+    /// You can’t add the source media because its duration in the destination is invalid.
     #[doc(alias = "AVErrorInvalidCompositionTrackSegmentDuration")]
     pub const InvalidCompositionTrackSegmentDuration: Self = Self(-11825);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidcompositiontracksegmentsourcestarttime?language=objc)
+    /// You can’t add the source media because its start time in the destination is invalid.
     #[doc(alias = "AVErrorInvalidCompositionTrackSegmentSourceStartTime")]
     pub const InvalidCompositionTrackSegmentSourceStartTime: Self = Self(-11826);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidcompositiontracksegmentsourceduration?language=objc)
+    /// You can’t add the source media because it has no duration.
     #[doc(alias = "AVErrorInvalidCompositionTrackSegmentSourceDuration")]
     pub const InvalidCompositionTrackSegmentSourceDuration: Self = Self(-11827);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/fileformatnotrecognized?language=objc)
+    /// The system can’t open the file because it’s in an unrecognized format.
     #[doc(alias = "AVErrorFileFormatNotRecognized")]
     pub const FileFormatNotRecognized: Self = Self(-11828);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/filefailedtoparse?language=objc)
+    /// The file is corrupt or in an unrecognized format.
     #[doc(alias = "AVErrorFileFailedToParse")]
     pub const FileFailedToParse: Self = Self(-11829);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/maximumstillimagecapturerequestsexceeded?language=objc)
+    /// Your app can’t take a photo because there are too many unfinished photo capture requests.
     #[doc(alias = "AVErrorMaximumStillImageCaptureRequestsExceeded")]
     pub const MaximumStillImageCaptureRequestsExceeded: Self = Self(-11830);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/contentisprotected?language=objc)
+    /// The app isn’t authorized to open the media.
     #[doc(alias = "AVErrorContentIsProtected")]
     pub const ContentIsProtected: Self = Self(-11831);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/noimageattime?language=objc)
+    /// No image is available in the media at the indicated time.
     #[doc(alias = "AVErrorNoImageAtTime")]
     pub const NoImageAtTime: Self = Self(-11832);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/decodernotfound?language=objc)
+    /// The system can’t find a suitable decoder for the media.
     #[doc(alias = "AVErrorDecoderNotFound")]
     pub const DecoderNotFound: Self = Self(-11833);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/encodernotfound?language=objc)
+    /// The requested encoder isn’t found.
     #[doc(alias = "AVErrorEncoderNotFound")]
     pub const EncoderNotFound: Self = Self(-11834);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/contentisnotauthorized?language=objc)
+    /// The user isn’t authorized to play the media.
     #[doc(alias = "AVErrorContentIsNotAuthorized")]
     pub const ContentIsNotAuthorized: Self = Self(-11835);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/applicationisnotauthorized?language=objc)
+    /// The app isn’t authorized to play media.
     #[doc(alias = "AVErrorApplicationIsNotAuthorized")]
     pub const ApplicationIsNotAuthorized: Self = Self(-11836);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/operationnotsupportedforasset?language=objc)
+    /// Your app attempted to perform an unsupported operation with the asset.
     #[doc(alias = "AVErrorOperationNotSupportedForAsset")]
     pub const OperationNotSupportedForAsset: Self = Self(-11838);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/decodertemporarilyunavailable?language=objc)
+    /// A suitable decoder for the media is temporarily available.
     #[doc(alias = "AVErrorDecoderTemporarilyUnavailable")]
     pub const DecoderTemporarilyUnavailable: Self = Self(-11839);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/encodertemporarilyunavailable?language=objc)
+    /// An appropriate encoder isn’t currently available.
     #[doc(alias = "AVErrorEncoderTemporarilyUnavailable")]
     pub const EncoderTemporarilyUnavailable: Self = Self(-11840);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidvideocomposition?language=objc)
+    /// You attempted to present an unsupported video composition.
     #[doc(alias = "AVErrorInvalidVideoComposition")]
     pub const InvalidVideoComposition: Self = Self(-11841);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/referenceforbiddenbyreferencepolicy?language=objc)
+    /// The current reference restrictions prevent the system from loading referenced media.
     #[doc(alias = "AVErrorReferenceForbiddenByReferencePolicy")]
     pub const ReferenceForbiddenByReferencePolicy: Self = Self(-11842);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidoutputurlpathextension?language=objc)
+    /// The path extension of the output URL is invalid.
     #[doc(alias = "AVErrorInvalidOutputURLPathExtension")]
     pub const InvalidOutputURLPathExtension: Self = Self(-11843);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/screencapturefailed?language=objc)
+    /// An unexpected problem occurred that prevented screen capture.
     #[doc(alias = "AVErrorScreenCaptureFailed")]
     pub const ScreenCaptureFailed: Self = Self(-11844);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/displaywasdisabled?language=objc)
+    /// Screen capture failed because the display was inactive.
     #[doc(alias = "AVErrorDisplayWasDisabled")]
     pub const DisplayWasDisabled: Self = Self(-11845);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/torchlevelunavailable?language=objc)
+    /// The specified torch level is valid but currently unavailable, possibly due to overheating.
     #[doc(alias = "AVErrorTorchLevelUnavailable")]
     pub const TorchLevelUnavailable: Self = Self(-11846);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/incompatibleasset?language=objc)
+    /// You can’t display the media because the device isn’t capable of playing the content.
+    ///
+    /// ## Discussion
+    ///
+    /// This might occur if the device doesn’t support playing a particular video profile level.
+    ///
+    ///
     #[doc(alias = "AVErrorIncompatibleAsset")]
     pub const IncompatibleAsset: Self = Self(-11848);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/failedtoloadmediadata?language=objc)
+    /// The system can’t load the requested media data.
     #[doc(alias = "AVErrorFailedToLoadMediaData")]
     pub const FailedToLoadMediaData: Self = Self(-11849);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/serverincorrectlyconfigured?language=objc)
+    /// The configuration of the HTTP server that streams the media resource isn’t correct.
+    ///
+    /// ## Discussion
+    ///
+    /// This error might indicate that the server doesn’t support byte range requests.
+    ///
+    ///
     #[doc(alias = "AVErrorServerIncorrectlyConfigured")]
     pub const ServerIncorrectlyConfigured: Self = Self(-11850);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/applicationisnotauthorizedtousedevice?language=objc)
+    /// The user denied this app permission to capture media.
     #[doc(alias = "AVErrorApplicationIsNotAuthorizedToUseDevice")]
     pub const ApplicationIsNotAuthorizedToUseDevice: Self = Self(-11852);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/failedtoparse?language=objc)
+    /// The system can’t parse the media.
     #[doc(alias = "AVErrorFailedToParse")]
     pub const FailedToParse: Self = Self(-11853);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/filetypedoesnotsupportsamplereferences?language=objc)
+    /// The file type doesn’t support sample references.
     #[doc(alias = "AVErrorFileTypeDoesNotSupportSampleReferences")]
     pub const FileTypeDoesNotSupportSampleReferences: Self = Self(-11854);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/undecodablemediadata?language=objc)
+    /// The system couldn’t decode the media data.
     #[doc(alias = "AVErrorUndecodableMediaData")]
     pub const UndecodableMediaData: Self = Self(-11855);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/airplaycontrollerrequiresinternet?language=objc)
+    /// The AirPlay controller requires an internet connection to function.
     #[doc(alias = "AVErrorAirPlayControllerRequiresInternet")]
     pub const AirPlayControllerRequiresInternet: Self = Self(-11856);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/airplayreceiverrequiresinternet?language=objc)
+    /// The AirPlay receiver requires an internet connection to function.
     #[doc(alias = "AVErrorAirPlayReceiverRequiresInternet")]
     pub const AirPlayReceiverRequiresInternet: Self = Self(-11857);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/videocompositorfailed?language=objc)
+    /// The compositor couldn’t composite video frames.
     #[doc(alias = "AVErrorVideoCompositorFailed")]
     pub const VideoCompositorFailed: Self = Self(-11858);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/recordingalreadyinprogress?language=objc)
+    /// Your app attempted to start recording a movie file while an existing recording is underway.
     #[doc(alias = "AVErrorRecordingAlreadyInProgress")]
     pub const RecordingAlreadyInProgress: Self = Self(-11859);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/createcontentkeyrequestfailed?language=objc)
+    /// The app couldn’t create a content key request.
     #[doc(alias = "AVErrorCreateContentKeyRequestFailed")]
     pub const CreateContentKeyRequestFailed: Self = Self(-11860);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/unsupportedoutputsettings?language=objc)
+    /// Your app requested unsupported output settings.
     #[doc(alias = "AVErrorUnsupportedOutputSettings")]
     pub const UnsupportedOutputSettings: Self = Self(-11861);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/operationnotallowed?language=objc)
+    /// The requested operation isn’t allowed.
     #[doc(alias = "AVErrorOperationNotAllowed")]
     pub const OperationNotAllowed: Self = Self(-11862);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/contentisunavailable?language=objc)
+    /// The captured content is unavailable.
     #[doc(alias = "AVErrorContentIsUnavailable")]
     pub const ContentIsUnavailable: Self = Self(-11863);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/formatunsupported?language=objc)
+    /// The current asset format isn’t supported.
     #[doc(alias = "AVErrorFormatUnsupported")]
     pub const FormatUnsupported: Self = Self(-11864);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/malformeddepth?language=objc)
+    /// The depth data isn’t properly structured.
     #[doc(alias = "AVErrorMalformedDepth")]
     pub const MalformedDepth: Self = Self(-11865);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/contentnotupdated?language=objc)
+    /// The system couldn’t update the captured content.
     #[doc(alias = "AVErrorContentNotUpdated")]
     pub const ContentNotUpdated: Self = Self(-11866);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/nolongerplayable?language=objc)
+    /// The asset is no longer playable.
     #[doc(alias = "AVErrorNoLongerPlayable")]
     pub const NoLongerPlayable: Self = Self(-11867);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/nocompatiblealternatesforexternaldisplay?language=objc)
+    /// The system found no compatible external displays.
     #[doc(alias = "AVErrorNoCompatibleAlternatesForExternalDisplay")]
     pub const NoCompatibleAlternatesForExternalDisplay: Self = Self(-11868);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/nosourcetrack?language=objc)
+    /// The asset doesn’t contain a source track.
     #[doc(alias = "AVErrorNoSourceTrack")]
     pub const NoSourceTrack: Self = Self(-11869);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/externalplaybacknotsupportedforasset?language=objc)
+    /// The current asset doesn’t support playback.
     #[doc(alias = "AVErrorExternalPlaybackNotSupportedForAsset")]
     pub const ExternalPlaybackNotSupportedForAsset: Self = Self(-11870);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/operationnotsupportedforpreset?language=objc)
+    /// Your app attempted to perform an unsupported operation for the current preset.
     #[doc(alias = "AVErrorOperationNotSupportedForPreset")]
     pub const OperationNotSupportedForPreset: Self = Self(-11871);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/sessionhardwarecostoverage?language=objc)
+    /// Your app requested too many camera hardware resources.
     #[doc(alias = "AVErrorSessionHardwareCostOverage")]
     pub const SessionHardwareCostOverage: Self = Self(-11872);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/unsupporteddeviceactiveformat?language=objc)
+    /// The capture session doesn’t support the camera device’s active format.
     #[doc(alias = "AVErrorUnsupportedDeviceActiveFormat")]
     pub const UnsupportedDeviceActiveFormat: Self = Self(-11873);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/incorrectlyconfigured?language=objc)
+    /// The system is incorrectly configured for the requested operation.
+    ///
+    /// ## Discussion
+    ///
+    /// The system raises this error when you attempt to perform an incorrectly configured operation. For example, HTTP Live Streaming presents only a single video and audio track at a time. If you’re using [`AVAssetWriter`](https://developer.apple.com/documentation/avfoundation/avassetwriter) to generate a fragmented MPEG-4 asset for streaming, adding more that one video and audio [`AVAssetWriterInput`](https://developer.apple.com/documentation/avfoundation/avassetwriterinput) to the asset writer generates an error when you start writing.
+    ///
+    ///
     #[doc(alias = "AVErrorIncorrectlyConfigured")]
     pub const IncorrectlyConfigured: Self = Self(-11875);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/segmentstartedwithnonsyncsample?language=objc)
+    /// The operation attempted to write a new MPEG-4 segment that didn’t start with a sync sample.
     #[doc(alias = "AVErrorSegmentStartedWithNonSyncSample")]
     pub const SegmentStartedWithNonSyncSample: Self = Self(-11876);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/rosettanotinstalled?language=objc)
+    /// The system doesn’t have Rosetta installed and can’t perform the requested operation.
+    ///
+    /// ## Discussion
+    ///
+    /// Apple Silicon devices can use Intel-only codecs and file parsers, but only if you’ve installed Rosetta on the host system.
+    ///
+    ///
     #[doc(alias = "AVErrorRosettaNotInstalled")]
     pub const RosettaNotInstalled: Self = Self(-11877);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/operationcancelled?language=objc)
+    /// The asset handled a request to cancel loading a property value asynchronously.
     #[doc(alias = "AVErrorOperationCancelled")]
     pub const OperationCancelled: Self = Self(-11878);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/contentkeyrequestcancelled?language=objc)
+    /// The app canceled a request to retrieve a content key.
     #[doc(alias = "AVErrorContentKeyRequestCancelled")]
     pub const ContentKeyRequestCancelled: Self = Self(-11879);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/invalidsamplecursor?language=objc)
+    /// An invalid sample cursor produced an error.
     #[doc(alias = "AVErrorInvalidSampleCursor")]
     pub const InvalidSampleCursor: Self = Self(-11880);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/failedtoloadsampledata?language=objc)
+    /// The system can’t load the requested sample data.
     #[doc(alias = "AVErrorFailedToLoadSampleData")]
     pub const FailedToLoadSampleData: Self = Self(-11881);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/airplayreceivertemporarilyunavailable?language=objc)
+    /// An AirPlay receiver is temporarily unavailable.
     #[doc(alias = "AVErrorAirPlayReceiverTemporarilyUnavailable")]
     pub const AirPlayReceiverTemporarilyUnavailable: Self = Self(-11882);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/encodefailed?language=objc)
+    /// The system couldn’t encode the media data.
     #[doc(alias = "AVErrorEncodeFailed")]
     pub const EncodeFailed: Self = Self(-11883);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/sandboxextensiondenied?language=objc)
+    /// The system denied issuing the sandbox extension.
     #[doc(alias = "AVErrorSandboxExtensionDenied")]
     pub const SandboxExtensionDenied: Self = Self(-11884);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/tonemappingfailed?language=objc)
+    /// The requested tone mapping failed.
     #[doc(alias = "AVErrorToneMappingFailed")]
     pub const ToneMappingFailed: Self = Self(-11885);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/mediaextensiondisabled?language=objc)
     #[doc(alias = "AVErrorMediaExtensionDisabled")]
     pub const MediaExtensionDisabled: Self = Self(-11886);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/mediaextensionconflict?language=objc)
     #[doc(alias = "AVErrorMediaExtensionConflict")]
     pub const MediaExtensionConflict: Self = Self(-11887);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-c.enum/averrorcontentkeyrequestplaybackdestinationdoesnotsupportdeviceidentifierrandomization?language=objc)
     #[doc(
         alias = "AVErrorContentKeyRequestPlaybackDestinationDoesNotSupportDeviceIdentifierRandomization"
     )]
     pub const ContentKeyRequestPlaybackDestinationDoesNotSupportDeviceIdentifierRandomization:
         Self = Self(-11888);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-c.enum/averrorcontentkeyinvalid?language=objc)
     #[doc(alias = "AVErrorContentKeyInvalid")]
     pub const ContentKeyInvalid: Self = Self(-11889);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/nosmartframingsenabled?language=objc)
     #[doc(alias = "AVErrorNoSmartFramingsEnabled")]
     pub const NoSmartFramingsEnabled: Self = Self(-11890);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/autowhitebalancenotlocked?language=objc)
     #[doc(alias = "AVErrorAutoWhiteBalanceNotLocked")]
     pub const AutoWhiteBalanceNotLocked: Self = Self(-11891);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code/followexternalsyncdevicetimedout?language=objc)
     #[doc(alias = "AVErrorFollowExternalSyncDeviceTimedOut")]
     pub const FollowExternalSyncDeviceTimedOut: Self = Self(-11892);
 }

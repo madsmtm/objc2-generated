@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate?language=objc)
+    /// Methods that let you respond to user interactions with your payment authorization view controller.
+    ///
+    /// ## Overview
+    ///
+    /// The [`PKPaymentAuthorizationViewControllerDelegate`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate) protocol is implemented by the payment authorization view controller’s delegate. You implement this protocol to respond to user interaction with that view controller.
+    ///
+    /// The payment authorization view controller automatically waits for its delegate to finish responding to one method before it calls other delegate methods. You indicate that the delegate is finished with the current method by calling that method’s completion block. This action tells the pay authorization view controller to proceed with the next step in the authorization process.
+    ///
+    /// There is one exception to this step-by-step procedure: The pay authorization view controller calls the [`paymentAuthorizationViewControllerDidFinish:`](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationviewcontrollerdelegate/paymentauthorizationviewcontrollerdidfinish(_:)) method as soon as the user cancels a payment without authorizing a payment request, or when a payment is canceled after timing out. The controller can call this method at any time.
+    ///
+    ///
     pub unsafe trait PKPaymentAuthorizationViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "PKPaymentAuthorizationViewController",

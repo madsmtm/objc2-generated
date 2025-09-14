@@ -8,16 +8,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodel/modeltype?language=objc)
+/// The different types of a natural language model.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLModelType(pub NSInteger);
 impl NLModelType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodel/modeltype/classifier?language=objc)
+    /// A classifier model type that tags text at the phrase, sentence, paragraph, or higher level.
     #[doc(alias = "NLModelTypeClassifier")]
     pub const Classifier: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodel/modeltype/sequence?language=objc)
+    /// A sequence model type that tags text at the token level.
     #[doc(alias = "NLModelTypeSequence")]
     pub const Sequence: Self = Self(1);
 }
@@ -31,7 +31,64 @@ unsafe impl RefEncode for NLModelType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodel?language=objc)
+    /// A custom model trained to classify or tag natural language text.
+    ///
+    /// ## Overview
+    ///
+    /// With [`Natural Language`](https://developer.apple.com/documentation/naturallanguage), you can create text classifier ([`MLTextClassifier`](https://developer.apple.com/documentation/createml/mltextclassifier)) or word tagger ([`MLWordTagger`](https://developer.apple.com/documentation/createml/mlwordtagger)) models. Use [`NLModel`](https://developer.apple.com/documentation/naturallanguage/nlmodel) to integrate those models into your app. This integration ensures that your tokenization and tagger configurations are identical when you train your model and use it in your app.
+    ///
+    /// If you create a text classifier as described in doc:creating-a-text-classifier-model, you can integrate that model into your app and use it to make predictions like this:
+    ///
+    /// ```swift
+    /// let text = "I am very happy."
+    ///
+    /// do {
+    ///     let mlModel = try SentimentClassifier(configuration: MLModelConfiguration()).model
+    ///         
+    ///     let customModel = try NLModel(mlModel: mlModel)
+    ///     
+    ///     // Use the text classifier model to get the most likely label.
+    ///     if let label = customModel.predictedLabel(for: text) {
+    ///         print("Most likely label: \(label)")
+    ///     }
+    ///     
+    ///     // Get multiple possible labels with their associated confidence scores.
+    ///     let labelHypotheses = customModel.predictedLabelHypotheses(for: text, maximumCount: 3)
+    ///     print("Label confidence scores: \(labelHypotheses)")
+    ///     
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
+    ///
+    /// If you create a custom word tagger as described in [Creating a word tagger model](https://developer.apple.com/documentation/naturallanguage/creating-a-word-tagger-model), you can integrate that model into your app and generate tags for new text input like this:
+    ///
+    /// ```swift
+    /// let text = "The iPad is my favorite Apple product."
+    ///
+    /// do {
+    ///     let mlModel = try AppleTagger(configuration: MLModelConfiguration()).model
+    ///         
+    ///     let customModel = try NLModel(mlModel: mlModel)
+    ///     let customTagScheme = NLTagScheme("Apple")
+    ///     
+    ///     let tagger = NLTagger(tagSchemes: [.nameType, customTagScheme])
+    ///     tagger.string = text
+    ///     tagger.setModels([customModel], forTagScheme: customTagScheme)
+    ///     
+    ///     tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word,
+    ///                          scheme: customTagScheme, options: .omitWhitespace) { tag, tokenRange  in
+    ///         if let tag = tag {
+    ///             print("\(text[tokenRange]): \(tag.rawValue)")
+    ///         }
+    ///         return true
+    ///     }
+    /// } catch {
+    ///     print(error)
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLModel;
@@ -106,7 +163,7 @@ impl NLModel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlmodelconfiguration?language=objc)
+    /// The configuration parameters of a natural language model.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLModelConfiguration;

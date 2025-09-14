@@ -12,8 +12,7 @@ use crate::*;
 
 extern_class!(
     /// Abstract superclass for a a row item element object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemelement?language=objc)
+    /// Abstract superclass for a a row item element object.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

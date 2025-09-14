@@ -8,9 +8,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Values that specify whether to prioritize quality or performance.
 /// Configuration value you set to prioritize quality or performance.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -18,10 +17,10 @@ use crate::*;
 pub struct VTMotionBlurConfigurationQualityPrioritization(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfigurationQualityPrioritization {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum/normal?language=objc)
+    /// A normal quality prioritization level.
     #[doc(alias = "VTMotionBlurConfigurationQualityPrioritizationNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum/quality?language=objc)
+    /// A quality prioritization level.
     #[doc(alias = "VTMotionBlurConfigurationQualityPrioritizationQuality")]
     pub const Quality: Self = Self(2);
 }
@@ -36,12 +35,11 @@ unsafe impl RefEncode for VTMotionBlurConfigurationQualityPrioritization {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The specific algorithm or configuration revision that is to be used to perform the request.
 /// Available algorithm revisions.
 ///
 /// A new enum case with higher revision number is added when the processing algorithm is updated.
 /// The ``VTMotionBlurConfiguration/defaultRevision`` property provides the default algorithm revision.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -49,7 +47,7 @@ unsafe impl RefEncode for VTMotionBlurConfigurationQualityPrioritization {
 pub struct VTMotionBlurConfigurationRevision(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurConfigurationRevision {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/revision-swift.enum/revision1?language=objc)
+    /// An algorithm or implementation that represents the first revision.
     #[doc(alias = "VTMotionBlurConfigurationRevision1")]
     pub const Revision1: Self = Self(1);
 }
@@ -64,6 +62,13 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A value describing the processing request in a parameters submission object.
+///
+/// ## Overview
+///
+/// Set to VTMotionBlurParametersSubmissionModeSequential to indicate that the current submission follows the presentation time order without jumping or skipping when compared to the previous submission. Using the submission mode sequential will yield better performance. Set to VTMotionBlurParametersSubmissionModeRandom to indicate a skip or a jump in frame sequence. If the submission mode random is set, the internal cache will be cleared during the processWithParameters call.
+///
+///
 /// Indicates the order of input frames.
 ///
 /// When submitting ``VTMotionBlurParameters`` to the processor, you need to provide one of these values based on how
@@ -76,8 +81,6 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
 /// Use ``VTMotionBlurParametersSubmissionModeRandom`` to indicate that the current submission has no relation to the
 /// previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears internal
 /// caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -85,10 +88,22 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
 pub struct VTMotionBlurParametersSubmissionMode(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTMotionBlurParametersSubmissionMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum/random?language=objc)
+    /// A submission follow presentation time order with a jump or skip in a frame sequence.
+    ///
+    /// ## Discussion
+    ///
+    /// If this value is set, the internal cache will be cleared during the processWithParameters call.
+    ///
+    ///
     #[doc(alias = "VTMotionBlurParametersSubmissionModeRandom")]
     pub const Random: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum/sequential?language=objc)
+    /// A submission follow presentation time order without a jump or skip when compared to a previous submission.
+    ///
+    /// ## Discussion
+    ///
+    /// This submission mode will yield a better performance.
+    ///
+    ///
     #[doc(alias = "VTMotionBlurParametersSubmissionModeSequential")]
     pub const Sequential: Self = Self(2);
 }
@@ -105,11 +120,10 @@ unsafe impl RefEncode for VTMotionBlurParametersSubmissionMode {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A configuration object to enable motion blur on a frame processing session.
     /// Configuration that you use to set up the motion blur processor.
     ///
     /// This configuration enables the motion blur on a `VTFrameProcessor` session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -296,13 +310,20 @@ impl VTMotionBlurConfiguration {
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// This object contains both input and output parameters necessary to run the motion blur processor on a frame.
+    ///
+    /// ## Overview
+    ///
+    /// This object is used in the processWithParameters call of the VTFrameProcessor class. The output parameter is a destinationFrame where the output frame is returned as a VTFrameProcessorFrame back to the caller function once processWithParameters completes.
+    ///
+    /// The parameters within VTMotionBlurParameters are frame level parameters.
+    ///
+    ///
     /// An object that contains both input and output parameters that the motion blur processor needs to run on a frame.
     ///
     /// Use this object in the `processWithParameters` call of `VTFrameProcessor` class. The output parameter for this class is `destinationFrame` where the processor returns the output frame (as `VTFrameProcessorFrame`) back to you once the `processWithParameters` completes.
     ///
     /// `VTMotionBlurParameters` are frame-level parameters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

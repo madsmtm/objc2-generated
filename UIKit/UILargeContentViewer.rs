@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentvieweritem?language=objc)
+    /// Methods that provide details about how to display your custom content in the large content viewer.
     pub unsafe trait UILargeContentViewerItem: NSObjectProtocol + MainThreadOnly {
         /// Returns whether the item shows the large content viewer.
         /// In general, only views that cannot scale for the full range of Dynamic Type sizes should return YES.
@@ -108,12 +108,19 @@ extern_conformance!(
 );
 
 extern_class!(
+    /// An interaction that enables a gesture to present the large content viewer for cases when supporting the largest dynamic type sizes isn’t appropriate.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t use the large content viewer as a replacement for proper Dynamic Type support. For example, Dynamic Type allows items in a list to grow or shrink vertically to accommodate the user’s preferred font size. Rely on the large content viewer only in situations where items must remain small due to unavoidable design constraints. For example, buttons in a tab bar remain small to leave more room for the main app content.
+    ///
+    /// For more information about allowing your app’s content to adjust to varying font sizes, see [Add Dynamic Type support](https://developer.apple.com/documentation/uikit/creating-self-sizing-table-view-cells#add-dynamic-type-support) and the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/accessibility/overview/text-size-and-weight/).
+    ///
+    ///
     /// UILargeContentViewerInteraction enables a gesture to present and dismiss the large content viewer on a device with relevant settings.
     /// Use methods in
     /// <UIKit
     /// /UIInteraction.h> to add the interaction to an appropriate view, such as a custom tab bar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -175,7 +182,7 @@ impl UILargeContentViewerInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractiondelegate?language=objc)
+    /// An object that customizes the behavior of the large content viewer interactions.
     pub unsafe trait UILargeContentViewerInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -221,9 +228,14 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// Posted when the large content viewer gets enabled or disabled on the device.
+    /// A notification the system posts when it enables or disables the large content viewer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction/enabledstatusdidchangenotification?language=objc)
+    /// ## Discussion
+    ///
+    /// Observe this notification to know whether to enable or disable your custom interaction behaviors. For example, if you add an interaction to a button that needs to cooperate with other gesture recognizers when the large content viewer settings are enabled. This notification lets you enable or disable the interaction accordingly.
+    ///
+    ///
+    /// Posted when the large content viewer gets enabled or disabled on the device.
     pub static UILargeContentViewerInteractionEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }

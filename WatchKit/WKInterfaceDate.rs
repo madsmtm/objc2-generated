@@ -10,7 +10,25 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedate?language=objc)
+    /// A label that displays the current date or time.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`WKInterfaceDate`](https://developer.apple.com/documentation/watchkit/wkinterfacedate) when you want to display date or time information without further interaction from your WatchKit extension. At runtime, use the date object to configure the appearance of the date and time information being displayed.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a date object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myDate: WKInterfaceDate!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceDate* myDate;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates any needed date objects and assigns them to their connected outlets. After those objects are set, you can use them to make changes to the onscreen date and time information.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your date interface object in your storyboard file. The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Format" }] }], [Paragraph { inline_content: [Text { text: "A selector for choosing between standard and custom formats. For standard formats, you use the Date and Time attributes to configure the information you want to display. Changing the value of this attribute to Custom lets you configure the date exactly the way you want based on the format options described in " }, Reference { identifier: "https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DataFormatting/DataFormatting.html#//apple_ref/doc/uid/10000029i", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: "." }] }]], [[Paragraph { inline_content: [Text { text: "Date" }] }], [Paragraph { inline_content: [Text { text: "The date information to display. The date options correspond to the values of the " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/DateFormatter/Style", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " type." }] }]], [[Paragraph { inline_content: [Text { text: "Time" }] }], [Paragraph { inline_content: [Text { text: "The time information to display. The time options correspond to the values of the " }, Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/DateFormatter/Style", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " type." }] }]], [[Paragraph { inline_content: [Text { text: "Preview" }] }], [Paragraph { inline_content: [Text { text: "A preview of what the date and time will look like." }] }]]], alignments: None, metadata: None })
+    /// A date object is a custom label whose text you cannot set directly. However, you can customize the appearance of the date object as you would customize a label using the Attributes inspector in Xcode. For information about the label attributes you can configure, see [`WKInterfaceLabel`](https://developer.apple.com/documentation/watchkit/wkinterfacelabel).
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

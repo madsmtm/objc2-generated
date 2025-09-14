@@ -4,7 +4,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode?language=objc)
+/// Values that describe the synchronization modes available to the guest OS.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -12,12 +12,28 @@ pub struct VZDiskSynchronizationMode(pub NSInteger);
 impl VZDiskSynchronizationMode {
     /// Perform all synchronization operations as requested by the guest OS.
     ///
+    /// ## Discussion
+    ///
+    /// Using this mode, `flush` and `barrier` commands from the guest result in the system sending their counterpart synchronization commands to the underlying disk implementation.
+    ///
+    ///
+    /// Perform all synchronization operations as requested by the guest OS.
+    ///
     /// With VZDiskSynchronizationModeFull, "flush" and "barrier" commands from the guest
     /// result in their counterpart synchronization commands being sent to the disk implementation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode/full?language=objc)
     #[doc(alias = "VZDiskSynchronizationModeFull")]
     pub const Full: Self = Self(0);
+    /// Don’t synchronize the data with the permanent storage.
+    ///
+    /// ## Discussion
+    ///
+    /// This option doesn’t guarantee data integrity if any error condition occurs such as disk full on the host, panic, power loss, and so on.
+    ///
+    /// This mode is useful when a VM is only run once to perform a task to completion or failure. In case of failure, the state of blocks on disk and their order isn’t defined.
+    ///
+    /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
+    ///
+    ///
     /// Do not synchronize the data with the permanent storage.
     /// This option does not guarantee data integrity if any error condition occurs such as disk full on the host,
     /// panic, power loss, etc.
@@ -26,8 +42,6 @@ impl VZDiskSynchronizationMode {
     /// In case of failure, the state of blocks on disk and their order is undefined.
     ///
     /// Using this mode may result in improved performance since no synchronization with the underlying storage is necessary.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode/none?language=objc)
     #[doc(alias = "VZDiskSynchronizationModeNone")]
     pub const None: Self = Self(1);
 }

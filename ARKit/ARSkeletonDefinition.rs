@@ -8,68 +8,91 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname?language=objc)
+/// A name identifier for a joint.
+///
+/// ## Discussion
+///
+/// Use this class to access information about a named joint, such as its index in a skeleton’s array of joints, or its position on the screen or in the physical environment.
+///
+/// When you’re tracking a body in 2D space, you get the screen-space position of a named joint by using the [`landmark(for:)`](https://developer.apple.com/documentation/arkit/arskeleton2d/landmark(for:)) function.
+///
+/// When you’re tracking a body in 3D space, you get a named joint’s position in either local or model space by using the [`localTransform(for:)`](https://developer.apple.com/documentation/arkit/arskeleton3d/localtransform(for:)) or [`modelTransform(for:)`](https://developer.apple.com/documentation/arkit/arskeleton3d/modeltransform(for:)) functions, respectively.
+///
+///
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type ARSkeletonJointName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/root?language=objc)
+    /// A skeletal joint that’s the root of all other joints.
+    ///
+    /// ## Discussion
+    ///
+    /// The root skeletal joint is at the hip, and is located at the origin of its associated body anchor.
+    ///
+    ///
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/head?language=objc)
+    /// A skeletal joint that ARKit tracks representing the head.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameHead: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/lefthand?language=objc)
+    /// A skeletal joint that ARKit tracks representing the left hand.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/righthand?language=objc)
+    /// A skeletal joint that ARKit tracks representing the right hand.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/leftfoot?language=objc)
+    /// A skeletal joint that ARKit tracks representing the left foot.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/rightfoot?language=objc)
+    /// A skeletal joint that ARKit tracks representing the right foot.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/leftshoulder?language=objc)
+    /// A skeletal joint that ARKit tracks representing the left shoulder.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftShoulder: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/rightshoulder?language=objc)
+    /// A skeletal joint that ARKit tracks representing the right shoulder.
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightShoulder: &'static ARSkeletonJointName;
 }
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// The hierarchy of joints and their names.
+    ///
+    /// ## Overview
+    ///
+    /// A skeleton definition establishes the relationship of joints that make up a 3D or 2D body’s [`skeleton`](https://developer.apple.com/documentation/arkit/arbody2d/skeleton), in which joints connect to other joints to compose a single skeleton in a parent-child hierarchy. Use [`parentIndices`](https://developer.apple.com/documentation/arkit/arskeletondefinition/parentindices-82iw2) to identify the hierarchy for a given skeleton definition.
+    ///
+    /// ARKit names particular joints that are crucial to body tracking. You can access named joints by calling [`indexForJointName:`](https://developer.apple.com/documentation/arkit/arskeletondefinition/indexforjointname:) and passing in one of the available [`jointNames`](https://developer.apple.com/documentation/arkit/arskeletondefinition/jointnames) identifiers.
+    ///
+    ///
     /// Definition of a skeleton.
     ///
     ///
     /// A skeleton consists of a set of labeled joints that are defined in a certain hierarchy, i.e. joints are parented to other joints.
     /// One may use the parentIndices property to identify the hierarchy for a given skeleton definition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletondefinition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

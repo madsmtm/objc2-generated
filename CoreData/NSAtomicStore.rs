@@ -8,7 +8,39 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsatomicstore?language=objc)
+    /// An abstract superclass that you subclass to create a Core Data atomic store.
+    ///
+    /// ## Overview
+    ///
+    /// Use an atomic store to handle data sets that can be expressed in memory. The atomic store API favors simplicity over performance.
+    ///
+    /// This class provides default implementations of some utility methods. Create a custom atomic store subclass when you have a custom file format that you want to integrate with a Core Data app. When you create a subclass, override the following [`NSAtomicStore`](https://developer.apple.com/documentation/coredata/nsatomicstore) methods:
+    ///
+    /// - [`load:`](https://developer.apple.com/documentation/coredata/nsatomicstore/load())
+    ///
+    /// - [`newCacheNodeForManagedObject:`](https://developer.apple.com/documentation/coredata/nsatomicstore/newcachenode(for:))
+    ///
+    /// - [`newReferenceObjectForManagedObject:`](https://developer.apple.com/documentation/coredata/nsatomicstore/newreferenceobject(for:))
+    ///
+    /// - [`save:`](https://developer.apple.com/documentation/coredata/nsatomicstore/save())
+    ///
+    /// - [`updateCacheNode:fromManagedObject:`](https://developer.apple.com/documentation/coredata/nsatomicstore/updatecachenode(_:from:))
+    ///
+    /// Also override the following properties and methods of [`NSPersistentStore`](https://developer.apple.com/documentation/coredata/nspersistentstore), from which the atomic store class inherits:
+    ///
+    /// - [`type`](https://developer.apple.com/documentation/coredata/nspersistentstore/type)
+    ///
+    /// - [`identifier`](https://developer.apple.com/documentation/coredata/nspersistentstore/identifier)
+    ///
+    /// - [`metadata`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadata)
+    ///
+    /// - [`metadataForPersistentStoreWithURL:error:`](https://developer.apple.com/documentation/coredata/nspersistentstore/metadataforpersistentstore(with:))
+    ///
+    /// - [`setMetadata:forPersistentStoreWithURL:error:`](https://developer.apple.com/documentation/coredata/nspersistentstore/setmetadata(_:forpersistentstoreat:))
+    ///
+    /// `NSAtomicStore` provides a default dictionary of metadata. This dictionary contains the store type and identifier ([`NSStoreTypeKey`](https://developer.apple.com/documentation/coredata/nsstoretypekey) and [`NSStoreUUIDKey`](https://developer.apple.com/documentation/coredata/nsstoreuuidkey)) as well as store versioning information. Subclasses must ensure that the metadata is saved along with the store data.
+    ///
+    ///
     #[unsafe(super(NSPersistentStore, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentStore")]

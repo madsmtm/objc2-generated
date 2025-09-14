@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkfindresult?language=objc)
+    /// An object that contains the results of searching the web view’s contents.
+    ///
+    /// ## Overview
+    ///
+    /// When you perform a search using the methods of [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), the web view creates a [`WKFindResult`](https://developer.apple.com/documentation/webkit/wkfindresult) object and delivers it to your completion handler. You don’t create instances of this class directly. Use the objects that the web view provides to determine whether it found a match for the content.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

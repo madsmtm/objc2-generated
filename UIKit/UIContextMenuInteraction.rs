@@ -9,16 +9,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle?language=objc)
+/// Constants that control the interaction commit style.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionCommitStyle(pub NSInteger);
 impl UIContextMenuInteractionCommitStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle/dismiss?language=objc)
+    /// An interaction with no animations.
     #[doc(alias = "UIContextMenuInteractionCommitStyleDismiss")]
     pub const Dismiss: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle/pop?language=objc)
+    /// An interaction that uses animations.
     #[doc(alias = "UIContextMenuInteractionCommitStylePop")]
     pub const Pop: Self = Self(1);
 }
@@ -31,19 +31,19 @@ unsafe impl RefEncode for UIContextMenuInteractionCommitStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance?language=objc)
+/// Constants that describe the appearance of the menu.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionAppearance(pub NSInteger);
 impl UIContextMenuInteractionAppearance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/unknown?language=objc)
+    /// No menu appearance.
     #[doc(alias = "UIContextMenuInteractionAppearanceUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/rich?language=objc)
+    /// A modal menu with an optional preview.
     #[doc(alias = "UIContextMenuInteractionAppearanceRich")]
     pub const Rich: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance/compact?language=objc)
+    /// A nonmodal, compact menu with no preview.
     #[doc(alias = "UIContextMenuInteractionAppearanceCompact")]
     pub const Compact: Self = Self(2);
 }
@@ -57,7 +57,15 @@ unsafe impl RefEncode for UIContextMenuInteractionAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction?language=objc)
+    /// An interaction object that you use to display relevant actions for your content.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UIContextMenuInteraction`](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction) object to focus the user’s attention on a specific portion of your content, and to provide actions for the user to perform on that content. A context menu interaction object tracks Force Touch gestures on devices that support 3D Touch, and long-press gestures on devices that don’t support it. When the appropriate gesture occurs, this object animates your content to a new interface and displays the contextual menu that you supplied. UIKit manages all menu-related interactions and reports the selected action, if any, back to your app.
+    ///
+    /// A context menu interaction object inherits from [`UIInteraction`](https://developer.apple.com/documentation/uikit/uiinteraction). After creating the object, assign an appropriate object to its [`delegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/delegate) property and use the [`addInteraction:`](https://developer.apple.com/documentation/uikit/uiview/addinteraction(_:)) method to attach it to one of your views. The delegate object you provide must adopt the [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate) protocol. Use the methods of that object to provide the contents of the contextual menu. Add your context menu interaction object to a view in your interface using the view’s [`addInteraction:`](https://developer.apple.com/documentation/uikit/uiview/addinteraction(_:)) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -150,7 +158,7 @@ impl UIContextMenuInteraction {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionanimating?language=objc)
+    /// Methods adopted by system-supplied animator objects when interacting with context menus.
     pub unsafe trait UIContextMenuInteractionAnimating:
         NSObjectProtocol + MainThreadOnly
     {
@@ -173,7 +181,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitanimating?language=objc)
+    /// Methods adopted by system-supplied animator objects when committing preview-related animations.
+    ///
+    /// ## Overview
+    ///
+    /// When the user taps in a preview interface to dismiss it, UIKit creates an object that adopts this protocol and passes it to your [`UIContextMenuInteractionDelegate`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate) method. Use the object to add any custom animations that you want to run alongside the dismissal animations.
+    ///
+    ///
     pub unsafe trait UIContextMenuInteractionCommitAnimating:
         UIContextMenuInteractionAnimating + MainThreadOnly
     {
@@ -193,7 +207,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate?language=objc)
+    /// The methods for providing the set of actions to perform on your content, and for customizing the preview of that content.
+    ///
+    /// ## Overview
+    ///
+    /// Use this protocol to provide UIKit with the contextual menu that you want to display. When a [`UIContextMenuInteraction`](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction) object detects an appropriate interaction, it calls the [`contextMenuInteraction:configurationForMenuAtLocation:`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/contextmenuinteraction(_:configurationformenuatlocation:)) method of your delegate. You use that method to specify the basic configuration details for your interface. In addition to your contextual menu, you can tell UIKit whether you want it to display a default preview interface or a custom view controller that you provide. You can also specify options for how you want UIKit to animate the presentation and dismissal of that interface.
+    ///
+    /// For additional information about how to implement contextual menus, see [Adding context menus in your app](https://developer.apple.com/documentation/uikit/adding-context-menus-in-your-app).
+    ///
+    ///
     pub unsafe trait UIContextMenuInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

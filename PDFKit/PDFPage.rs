@@ -14,44 +14,49 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest?language=objc)
+/// The mouse position over PDF view areas.
+///
+/// ## Overview
+///
+/// These constants are components of a bit field and may be combined arbitrarily.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFAreaOfInterest(pub NSInteger);
 bitflags::bitflags! {
     impl PDFAreaOfInterest: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/kpdfnoarea?language=objc)
+/// The mouse is over an undefined area.
         #[doc(alias = "kPDFNoArea")]
         const NoArea = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/pagearea?language=objc)
+/// The mouse is over a page.
         #[doc(alias = "kPDFPageArea")]
         const PageArea = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/textarea?language=objc)
+/// The mouse is over text.
         #[doc(alias = "kPDFTextArea")]
         const TextArea = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/annotationarea?language=objc)
+/// The mouse is over an annotation.
         #[doc(alias = "kPDFAnnotationArea")]
         const AnnotationArea = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/linkarea?language=objc)
+/// The mouse is over a link.
         #[doc(alias = "kPDFLinkArea")]
         const LinkArea = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/controlarea?language=objc)
+/// The mouse is over a control.
         #[doc(alias = "kPDFControlArea")]
         const ControlArea = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/textfieldarea?language=objc)
+/// The mouse is over a text field.
         #[doc(alias = "kPDFTextFieldArea")]
         const TextFieldArea = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/iconarea?language=objc)
+/// The mouse is over an icon.
         #[doc(alias = "kPDFIconArea")]
         const IconArea = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/popuparea?language=objc)
+/// The mouse is over a popup menu.
         #[doc(alias = "kPDFPopupArea")]
         const PopupArea = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/imagearea?language=objc)
+/// The mouse is over an image.
         #[doc(alias = "kPDFImageArea")]
         const ImageArea = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfareaofinterest/anyarea?language=objc)
         #[doc(alias = "kPDFAnyArea")]
         const AnyArea = NSIntegerMax as _;
     }
@@ -65,25 +70,25 @@ unsafe impl RefEncode for PDFAreaOfInterest {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox?language=objc)
+/// The following box types may be used with `PDFPage` drawing and bounds-setting methods. See the Adobe PDF Specification for more information on box types, units, and coordinate systems.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayBox(pub NSInteger);
 impl PDFDisplayBox {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/mediabox?language=objc)
+    /// A rectangle defining the boundaries of the physical medium for display or printing, expressed in default user-space units.
     #[doc(alias = "kPDFDisplayBoxMediaBox")]
     pub const MediaBox: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/cropbox?language=objc)
+    /// A rectangle defining the boundaries of the visible region , expressed in default user-space units. Default value equal to `kPDFDisplayBoxMediaBox`.
     #[doc(alias = "kPDFDisplayBoxCropBox")]
     pub const CropBox: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/bleedbox?language=objc)
+    /// A rectangle defining the boundaries of the clip region for the page contents in a production environment. Default value equal to `kPDFDisplayBoxCropBox`.
     #[doc(alias = "kPDFDisplayBoxBleedBox")]
     pub const BleedBox: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/trimbox?language=objc)
+    /// A rectangle defining the intended boundaries of the finished page. Default value equal to `kPDFDisplayBoxCropBox`.
     #[doc(alias = "kPDFDisplayBoxTrimBox")]
     pub const TrimBox: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaybox/artbox?language=objc)
+    /// A rectangle defining the boundaries of the page’s meaningful content including surrounding white space intended for display. Default value equal to `kPDFDisplayBoxCropBox`.
     #[doc(alias = "kPDFDisplayBoxArtBox")]
     pub const ArtBox: Self = Self(4);
 }
@@ -96,12 +101,21 @@ unsafe impl RefEncode for PDFDisplayBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption?language=objc)
 // NS_TYPED_ENUM
 pub type PDFPageImageInitializationOption = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage?language=objc)
+    /// `PDFPage`, a subclass of `NSObject`, defines methods used to render PDF pages and work with annotations, text, and selections.
+    ///
+    /// ## Overview
+    ///
+    /// `PDFPage` objects are flexible and powerful. With them you can render PDF content onscreen or to a printer, add annotations, count characters, define selections, and get the textual content of a page as an `NSString` object.
+    ///
+    /// Your application instantiates a `PDFPage` object by asking for one from a `PDFDocument` object.
+    ///
+    /// For simple display and navigation of PDF documents within your application, you don’t need to use `PDFPage`. You need only use `PDFView`.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFPage;
@@ -318,23 +332,19 @@ impl PDFPage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/mediabox?language=objc)
     pub static PDFPageImageInitializationOptionMediaBox: &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/rotation?language=objc)
     pub static PDFPageImageInitializationOptionRotation: &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/upscaleifsmaller?language=objc)
     pub static PDFPageImageInitializationOptionUpscaleIfSmaller:
         &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/compressionquality?language=objc)
     pub static PDFPageImageInitializationOptionCompressionQuality:
         &'static PDFPageImageInitializationOption;
 }

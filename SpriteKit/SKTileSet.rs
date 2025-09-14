@@ -9,24 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// An enumeration defining how tiles are arranged.
 /// The tile set type is used to describe how the tiles will be arranged in a tile map.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileSetType(pub NSUInteger);
 impl SKTileSetType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype/grid?language=objc)
     #[doc(alias = "SKTileSetTypeGrid")]
     pub const Grid: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype/isometric?language=objc)
     #[doc(alias = "SKTileSetTypeIsometric")]
     pub const Isometric: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype/hexagonalflat?language=objc)
     #[doc(alias = "SKTileSetTypeHexagonalFlat")]
     pub const HexagonalFlat: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype/hexagonalpointy?language=objc)
     #[doc(alias = "SKTileSetTypeHexagonalPointy")]
     pub const HexagonalPointy: Self = Self(3);
 }
@@ -39,118 +34,82 @@ unsafe impl RefEncode for SKTileSetType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enumeration defining how neighboring tiles are automatically placed next to each other.
 /// The adjacency mask is used to specify which neighboring tiles need to be filled in for a rule to go into effect.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileAdjacencyMask(pub NSUInteger);
 bitflags::bitflags! {
     impl SKTileAdjacencyMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyup?language=objc)
         #[doc(alias = "SKTileAdjacencyUp")]
         const AdjacencyUp = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperright?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperRight")]
         const AdjacencyUpperRight = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyright?language=objc)
         #[doc(alias = "SKTileAdjacencyRight")]
         const AdjacencyRight = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerright?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerRight")]
         const AdjacencyLowerRight = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencydown?language=objc)
         #[doc(alias = "SKTileAdjacencyDown")]
         const AdjacencyDown = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerleft?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerLeft")]
         const AdjacencyLowerLeft = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyleft?language=objc)
         #[doc(alias = "SKTileAdjacencyLeft")]
         const AdjacencyLeft = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperleft?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperLeft")]
         const AdjacencyUpperLeft = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyall?language=objc)
         #[doc(alias = "SKTileAdjacencyAll")]
         const AdjacencyAll = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencyup?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyUp")]
         const HexFlatAdjacencyUp = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencyupperright?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyUpperRight")]
         const HexFlatAdjacencyUpperRight = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencylowerright?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyLowerRight")]
         const HexFlatAdjacencyLowerRight = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencydown?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyDown")]
         const HexFlatAdjacencyDown = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencylowerleft?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyLowerLeft")]
         const HexFlatAdjacencyLowerLeft = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencyupperleft?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyUpperLeft")]
         const HexFlatAdjacencyUpperLeft = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexflatadjacencyall?language=objc)
         #[doc(alias = "SKTileHexFlatAdjacencyAll")]
         const HexFlatAdjacencyAll = SKTileAdjacencyMask::HexFlatAdjacencyUp.0|SKTileAdjacencyMask::HexFlatAdjacencyUpperRight.0|SKTileAdjacencyMask::HexFlatAdjacencyLowerRight.0|SKTileAdjacencyMask::HexFlatAdjacencyDown.0|SKTileAdjacencyMask::HexFlatAdjacencyLowerLeft.0|SKTileAdjacencyMask::HexFlatAdjacencyUpperLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencyupperleft?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyUpperLeft")]
         const HexPointyAdjacencyUpperLeft = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencyupperright?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyUpperRight")]
         const HexPointyAdjacencyUpperRight = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencyright?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyRight")]
         const HexPointyAdjacencyRight = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencylowerright?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyLowerRight")]
         const HexPointyAdjacencyLowerRight = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencylowerleft?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyLowerLeft")]
         const HexPointyAdjacencyLowerLeft = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencyleft?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyLeft")]
         const HexPointyAdjacencyLeft = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/hexpointyadjacencyadd?language=objc)
         #[doc(alias = "SKTileHexPointyAdjacencyAdd")]
         const HexPointyAdjacencyAdd = SKTileAdjacencyMask::HexPointyAdjacencyUpperLeft.0|SKTileAdjacencyMask::HexPointyAdjacencyUpperRight.0|SKTileAdjacencyMask::HexPointyAdjacencyRight.0|SKTileAdjacencyMask::HexPointyAdjacencyLowerRight.0|SKTileAdjacencyMask::HexPointyAdjacencyLowerLeft.0|SKTileAdjacencyMask::HexPointyAdjacencyLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupedge?language=objc)
         #[doc(alias = "SKTileAdjacencyUpEdge")]
         const AdjacencyUpEdge = SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperrightedge?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperRightEdge")]
         const AdjacencyUpperRightEdge = SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyrightedge?language=objc)
         #[doc(alias = "SKTileAdjacencyRightEdge")]
         const AdjacencyRightEdge = SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0|SKTileAdjacencyMask::AdjacencyUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerrightedge?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerRightEdge")]
         const AdjacencyLowerRightEdge = SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0|SKTileAdjacencyMask::AdjacencyUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencydownedge?language=objc)
         #[doc(alias = "SKTileAdjacencyDownEdge")]
         const AdjacencyDownEdge = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerleftedge?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerLeftEdge")]
         const AdjacencyLowerLeftEdge = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyleftedge?language=objc)
         #[doc(alias = "SKTileAdjacencyLeftEdge")]
         const AdjacencyLeftEdge = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperleftedge?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperLeftEdge")]
         const AdjacencyUpperLeftEdge = SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperrightcorner?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperRightCorner")]
         const AdjacencyUpperRightCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerrightcorner?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerRightCorner")]
         const AdjacencyLowerRightCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencylowerleftcorner?language=objc)
         #[doc(alias = "SKTileAdjacencyLowerLeftCorner")]
         const AdjacencyLowerLeftCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyLowerRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask/adjacencyupperleftcorner?language=objc)
         #[doc(alias = "SKTileAdjacencyUpperLeftCorner")]
         const AdjacencyUpperLeftCorner = SKTileAdjacencyMask::AdjacencyUp.0|SKTileAdjacencyMask::AdjacencyUpperRight.0|SKTileAdjacencyMask::AdjacencyRight.0|SKTileAdjacencyMask::AdjacencyDown.0|SKTileAdjacencyMask::AdjacencyLowerLeft.0|SKTileAdjacencyMask::AdjacencyLeft.0|SKTileAdjacencyMask::AdjacencyUpperLeft.0;
     }
@@ -165,9 +124,16 @@ unsafe impl RefEncode for SKTileAdjacencyMask {
 }
 
 extern_class!(
-    /// A tile set contains all of the tile definitions that are available for use in a tile map. In addition, it also contains tile groups, which define collections of related tile definitions and the rules that govern their placement.
+    /// A container for related tile groups.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileset?language=objc)
+    /// ## Overview
+    ///
+    /// An [`SKTileSet`](https://developer.apple.com/documentation/spritekit/sktileset) object contains an array of tile groups that define which tile definitions are available for use in a tile map.
+    ///
+    /// Tile sets also define the arrangement of tiles within a tile map. In addition to the default rectangular grid layout, tile sets can also define hexagonal and isometric layouts.
+    ///
+    ///
+    /// A tile set contains all of the tile definitions that are available for use in a tile map. In addition, it also contains tile groups, which define collections of related tile definitions and the rules that govern their placement.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTileSet;
@@ -322,9 +288,22 @@ impl SKTileSet {
 }
 
 extern_class!(
-    /// A tile group encapsulates a collection of related tile definitions that are designed to be pieced together within a tile map. How those tiles are pieced together is governed by the set of rules. When a tile group is placed in a tile map, the map evaluates the rules to determine which tiles should be placed to achieve the desired outcome.
+    /// A set of tiles that collectively define one type of terrain.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilegroup?language=objc)
+    /// ## Overview
+    ///
+    /// An `SKTileGroup` object contains either the definition of a single tile or an array of [`SKTileGroupRule`](https://developer.apple.com/documentation/spritekit/sktilegrouprule) objects that define adjacency rules.
+    ///
+    /// You supply a tile group with either:
+    ///
+    /// - The definition of a single tile that can be used to populate a tile map node with a single texture.
+    ///
+    /// - An array of one or more tile group rules that allow for the automatic placement of textures dependent on their adjacency and the placement weights of their definitions. For example, a tile group may contain nine tile group rules containing the definitions of the central tile and eight edge tiles that, when placed adjacently, appear as a single object.
+    ///
+    /// The preferred method to create tile groups is to use the editor tools in Xcode. However, to work with SpriteKit’s tile support programmatically, see the following articles.
+    ///
+    ///
+    /// A tile group encapsulates a collection of related tile definitions that are designed to be pieced together within a tile map. How those tiles are pieced together is governed by the set of rules. When a tile group is placed in a tile map, the map evaluates the rules to determine which tiles should be placed to achieve the desired outcome.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTileGroup;
@@ -435,9 +414,14 @@ impl SKTileGroup {
 }
 
 extern_class!(
-    /// A tile group rule defines how a certain type of tile should be placed on the map. These tiles are like puzzle pieces, and the rules define how they should be pieced together. This is accomplished by defining which neighboring spaces need to be filled with tiles that belong to the same group, and which tiles are required to be empty. The required pattern of neighboring tiles is defined using the SKTileAdjacencyMask.
+    /// Rules that describe how various tiles should be placed in a map.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilegrouprule?language=objc)
+    /// ## Overview
+    ///
+    /// When a tile is filled in a tile map, the tile group rule defines how neighboring tiles are populated based on adjacency rules. A rule with multiple definitions uses the placement weights of the definitions to randomly select which to use.
+    ///
+    ///
+    /// A tile group rule defines how a certain type of tile should be placed on the map. These tiles are like puzzle pieces, and the rules define how they should be pieced together. This is accomplished by defining which neighboring spaces need to be filled with tiles that belong to the same group, and which tiles are required to be empty. The required pattern of neighboring tiles is defined using the SKTileAdjacencyMask.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKTileGroupRule;

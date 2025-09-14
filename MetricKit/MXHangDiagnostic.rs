@@ -7,13 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a diagnostic report for an app that is too busy to handle user input responsively.
     /// An MXDiagnostic subclass that encapsulates hang diagnostic reports.
     ///
     /// Applications are considered to be "hanging" when they are unable to handle user input responsively.
     ///
     /// This generally occurs when your applications main thread is blocked.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhangdiagnostic?language=objc)
     #[unsafe(super(MXDiagnostic, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MXDiagnostic")]

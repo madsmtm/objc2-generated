@@ -10,7 +10,7 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator?language=objc)
+    /// An object that generates thumbnail images based on provided requirements.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailGenerator;

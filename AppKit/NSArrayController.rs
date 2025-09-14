@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsarraycontroller?language=objc)
+    /// A bindings-compatible controller that manages a collection of objects.
+    ///
+    /// ## Overview
+    ///
+    /// Typically the collection that an [`NSArrayController`](https://developer.apple.com/documentation/appkit/nsarraycontroller) manages is an array, however, if the controller manages a relationship of a managed object (see [`NSManagedObject`](https://developer.apple.com/documentation/coredata/nsmanagedobject)) the collection may be a set. [`NSArrayController`](https://developer.apple.com/documentation/appkit/nsarraycontroller) provides selection management and sorting capabilities.
+    ///
+    ///
     #[unsafe(super(NSObjectController, NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

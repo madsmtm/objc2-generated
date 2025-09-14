@@ -7,12 +7,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An `ODRecord` object serves as a Cocoa wrapper for an Open Directory record.
     /// This class is used to read, update and modify records within the directory
     ///
     /// This class is used to read, update and modify records within the directory.  outError is optional parameter,
     /// nil can be passed if error details are not needed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecord?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ODRecord;

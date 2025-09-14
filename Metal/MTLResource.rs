@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The purgeable state of the resource.
 /// Options for setPurgeable call.
 ///
 ///
@@ -20,23 +21,27 @@ use crate::*;
 ///
 ///
 /// The purgeabelity state is not changed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLPurgeableState(pub NSUInteger);
 impl MTLPurgeableState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/keepcurrent?language=objc)
+    /// The current state is queried but doesn’t change.
+    ///
+    /// ## Discussion
+    ///
+    /// The [`setPurgeableState:`](https://developer.apple.com/documentation/metal/mtlresource/setpurgeablestate(_:)) method never returns this value. When this value is passed to that function, it returns the current purgability state without changing it.
+    ///
+    ///
     #[doc(alias = "MTLPurgeableStateKeepCurrent")]
     pub const KeepCurrent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/nonvolatile?language=objc)
+    /// The contents of the resource aren’t allowed to be discarded.
     #[doc(alias = "MTLPurgeableStateNonVolatile")]
     pub const NonVolatile: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/volatile?language=objc)
+    /// The system is allowed to discard the resource to free up memory.
     #[doc(alias = "MTLPurgeableStateVolatile")]
     pub const Volatile: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpurgeablestate/empty?language=objc)
+    /// A state that indicates to the system that it needs to consider the contents of a resource as invalid, typically because you’re discarding it.
     #[doc(alias = "MTLPurgeableStateEmpty")]
     pub const Empty: Self = Self(4);
 }
@@ -49,6 +54,7 @@ unsafe impl RefEncode for MTLPurgeableState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for the CPU cache mode that define the CPU mapping of the resource.
 /// Describes what CPU cache mode is used for the CPU's mapping of a texture resource.
 ///
 /// The default cache mode for the system.
@@ -58,17 +64,23 @@ unsafe impl RefEncode for MTLPurgeableState {
 ///
 ///
 /// Applications should only investigate changing the cache mode if writing to normally cached buffers is known to cause performance issues due to cache pollution, as write combined memory can have surprising performance pitfalls.  Another approach is to use non-temporal stores to normally cached memory (STNP on ARMv8, _mm_stream_* on x86_64).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCPUCacheMode(pub NSUInteger);
 impl MTLCPUCacheMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode/defaultcache?language=objc)
+    /// The default CPU cache mode for the resource, which guarantees that read and write operations are executed in the expected order.
     #[doc(alias = "MTLCPUCacheModeDefaultCache")]
     pub const DefaultCache: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode/writecombined?language=objc)
+    /// A write-combined CPU cache mode that is optimized for resources that the CPU writes into, but never reads.
+    ///
+    /// ## Discussion
+    ///
+    /// Write-combined memory is optimized for resources that the CPU writes into, but never reads. On some implementations, writes may bypass caches to avoid cache pollution. Read actions may perform very poorly.
+    ///
+    /// Applications should use write combining only if writing to normally cached buffers is known to cause performance issues due to cache pollution, as write-combined memory can have surprising performance pitfalls.  Another approach is to use non-temporal writes to normally cached memory (STNP on ARMv8, _mm_stream_* on x86_64).
+    ///
+    ///
     #[doc(alias = "MTLCPUCacheModeWriteCombined")]
     pub const WriteCombined: Self = Self(1);
 }
@@ -81,6 +93,13 @@ unsafe impl RefEncode for MTLCPUCacheMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for the memory location and access permissions for a resource.
+///
+/// ## Overview
+///
+/// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+///
+///
 /// Describes location and CPU mapping of MTLTexture.
 ///
 /// In this mode, CPU and device will nominally both use the same underlying memory when accessing the contents of the texture resource.
@@ -103,23 +122,59 @@ unsafe impl RefEncode for MTLCPUCacheMode {
 /// devices. The contents of the on-chip storage is undefined and does not persist, but its configuration is controlled by the
 /// MTLTexture descriptor. Textures created with MTLStorageModeMemoryless dont have an IOAccelResource at any point in their
 /// lifetime. The only way to populate such resource is to perform rendering operations on it. Blit operations are disallowed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStorageMode(pub NSUInteger);
 impl MTLStorageMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/shared?language=objc)
+    /// The CPU and GPU share access to the resource, allocated in system memory.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default storage mode for [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instances on integrated GPUs and both [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) and [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances on Apple silicon GPUs. On non-Apple family GPUs, the shared storage mode isn’t available for [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances.
+    ///
+    /// When either the CPU or GPU changes the contents of the resource, you’re responsible for synchronizing access to the texture from the other participant. Ensure that all changes you schedule on either the CPU or GPU for a resource that uses shared memory complete before accessing that resource on the other processor.
+    ///
+    /// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+    ///
+    ///
     #[doc(alias = "MTLStorageModeShared")]
     pub const Shared: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/managed?language=objc)
+    /// The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.
+    ///
+    /// ## Discussion
+    ///
+    /// On Intel-based Mac computers, this is the default storage mode for [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects. In iOS and tvOS, the managed storage mode isn’t available. With managed storage, you synchronize changes between the CPU and GPU manually. For instructions and examples of resource synchronization, see [Synchronizing a managed resource in macOS](https://developer.apple.com/documentation/metal/synchronizing-a-managed-resource-in-macos).
+    ///
+    /// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+    ///
+    ///
     #[doc(alias = "MTLStorageModeManaged")]
     pub const Managed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/private?language=objc)
+    /// The resource is only available to the GPU.
+    ///
+    /// ## Discussion
+    ///
+    /// Metal may apply additional optimizations to private resources that aren’t allowed on shared or managed resources.
+    ///
+    /// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+    ///
+    ///
     #[doc(alias = "MTLStorageModePrivate")]
     pub const Private: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode/memoryless?language=objc)
+    /// The resource’s contents are only available to the GPU, and only exist temporarily during a render pass.
+    ///
+    /// ## Discussion
+    ///
+    /// The memoryless storage mode uses tile memory, and is only available on Apple family GPUs. Memoryless resources are temporary targets used in a pass and you can’t access their contents with [`MTLLoadActionLoad`](https://developer.apple.com/documentation/metal/mtlloadaction/load) or [`MTLStoreActionStore`](https://developer.apple.com/documentation/metal/mtlstoreaction/store).
+    ///
+    /// Use memoryless resources for temporary elements used only within a single pass. For example, most render passes don’t store depth attachments and multisample attachments to memory. You can significantly reduce your memory usage by creating these attachments as memoryless resources.
+    ///
+    /// On Metal devices that support tile rendering, you can use imageblocks to manage transient rendering data more flexibly. For more information about imageblock memory and using it with your shader functions, see the [Metal Shading Language Specification (PDF)](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) sections 2.11, 4.5, and 5.6.
+    ///
+    /// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+    ///
+    ///
     #[doc(alias = "MTLStorageModeMemoryless")]
     pub const Memoryless: Self = Self(3);
 }
@@ -132,21 +187,41 @@ unsafe impl RefEncode for MTLStorageMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The options you use to specify the hazard tracking mode.
 /// Describes how hazard tracking is performed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHazardTrackingMode(pub NSUInteger);
 impl MTLHazardTrackingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/default?language=objc)
+    /// An option specifying that the default tracking mode should be used.
+    ///
+    /// ## Discussion
+    ///
+    /// The default behavior varies depending on the type of object being tracked:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Resource" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/tracked", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Heap" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.metal/documentation/Metal/MTLHazardTrackingMode/untracked", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    ///
     #[doc(alias = "MTLHazardTrackingModeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/untracked?language=objc)
+    /// An option specifying that the app must prevent hazards when modifying this object’s contents.
+    ///
+    /// ## Discussion
+    ///
+    /// Metal does not do any dependency analysis on untracked resources. You are responsible for ensuring that resources are modified safely. See [Resource synchronization](https://developer.apple.com/documentation/metal/resource-synchronization). When you already have detailed knowledge of how your app works, using untracked resources can improve performance.
+    ///
+    ///
     #[doc(alias = "MTLHazardTrackingModeUntracked")]
     pub const Untracked: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/tracked?language=objc)
+    /// An option specifying that Metal prevents hazards when modifying this object’s contents.
+    ///
+    /// ## Discussion
+    ///
+    /// For a resource, Metal tracks dependencies on any accesses to the resource. If you submit a command that modifies the resource, Metal delays that command from executing until prior commands accessing that resource are complete, and prevents future commands from executing until the modifications are complete.
+    ///
+    /// For a heap, Metal tracks dependencies on accesses to _any_ resources on the heap. If you submit a command that modifies a resource on a heap, Metal delays that command from executing until prior commands accessing the heap’s resources are complete, and prevents future commands accessing the heap’s resources from executing until the modifications are complete. For better performance, use untracked resources and synchronize access yourself.
+    ///
+    ///
     #[doc(alias = "MTLHazardTrackingModeTracked")]
     pub const Tracked: Self = Self(2);
 }
@@ -159,45 +234,101 @@ unsafe impl RefEncode for MTLHazardTrackingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions?language=objc)
+/// Optional arguments used to set the behavior of a resource.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLResourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourcecpucachemodedefaultcache?language=objc)
+/// The default CPU cache mode for the resource, which guarantees that read and write operations are executed in the expected order.
         #[doc(alias = "MTLResourceCPUCacheModeDefaultCache")]
         const CPUCacheModeDefaultCache = MTLCPUCacheMode::DefaultCache.0<<MTLResourceCPUCacheModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/cpucachemodewritecombined?language=objc)
+/// A write-combined CPU cache mode that is optimized for resources that the CPU writes into, but never reads.
         #[doc(alias = "MTLResourceCPUCacheModeWriteCombined")]
         const CPUCacheModeWriteCombined = MTLCPUCacheMode::WriteCombined.0<<MTLResourceCPUCacheModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodeshared?language=objc)
+/// The CPU and GPU share access to the resource, allocated in system memory.
+///
+/// ## Discussion
+///
+/// This is the default storage mode for [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) instances on integrated GPUs and both [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer) and [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances on Apple silicon GPUs. On non-Apple family GPUs, the shared storage mode isn’t available for [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) instances.
+///
+/// When either the CPU or GPU changes the contents of the resource, you’re responsible for synchronizing access to the texture from the other participant. Ensure that all changes you schedule on either the CPU or GPU for a resource that uses shared memory complete before accessing that resource on the other processor.
+///
+/// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+///
+///
         #[doc(alias = "MTLResourceStorageModeShared")]
         const StorageModeShared = MTLStorageMode::Shared.0<<MTLResourceStorageModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodemanaged?language=objc)
+/// The CPU and GPU may maintain separate copies of the resource, and any changes must be explicitly synchronized.
+///
+/// ## Discussion
+///
+/// On Intel-based Mac computers, this is the default storage mode for [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture) objects. In iOS and tvOS, the managed storage mode isn’t available. With managed storage, you synchronize changes between the CPU and GPU manually. For instructions and examples of resource synchronization, see [Synchronizing a managed resource in macOS](https://developer.apple.com/documentation/metal/synchronizing-a-managed-resource-in-macos).
+///
+/// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+///
+///
         #[doc(alias = "MTLResourceStorageModeManaged")]
         const StorageModeManaged = MTLStorageMode::Managed.0<<MTLResourceStorageModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodeprivate?language=objc)
+/// The resource is only available to the GPU.
+///
+/// ## Discussion
+///
+/// Metal may apply additional optimizations to private resources that aren’t allowed on shared or managed resources.
+///
+/// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+///
+///
         #[doc(alias = "MTLResourceStorageModePrivate")]
         const StorageModePrivate = MTLStorageMode::Private.0<<MTLResourceStorageModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/storagemodememoryless?language=objc)
+/// The resource’s contents are only available to the GPU, and only exist temporarily during a render pass.
+///
+/// ## Discussion
+///
+/// The memoryless storage mode uses tile memory, and is only available on Apple family GPUs. Memoryless resources are temporary targets used in a pass and you can’t access their contents with [`MTLLoadActionLoad`](https://developer.apple.com/documentation/metal/mtlloadaction/load) or [`MTLStoreActionStore`](https://developer.apple.com/documentation/metal/mtlstoreaction/store).
+///
+/// Use memoryless resources for temporary elements used only within a single pass. For example, most render passes don’t store depth attachments and multisample attachments to memory. You can significantly reduce your memory usage by creating these attachments as memoryless resources.
+///
+/// On Metal devices that support tile rendering, you can use imageblocks to manage transient rendering data more flexibly. For more information about imageblock memory and using it with your shader functions, see the [Metal Shading Language Specification (PDF)](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) sections 2.11, 4.5, and 5.6.
+///
+/// For more guidance on how to choose storage modes, see [Setting resource storage modes](https://developer.apple.com/documentation/metal/setting-resource-storage-modes).
+///
+///
         #[doc(alias = "MTLResourceStorageModeMemoryless")]
         const StorageModeMemoryless = MTLStorageMode::Memoryless.0<<MTLResourceStorageModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourcehazardtrackingmodedefault?language=objc)
+/// An option specifying that the default tracking mode should be used.
+///
+/// ## Discussion
+///
+/// For more information, see [`MTLHazardTrackingMode.default`](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/default).
+///
+///
         #[doc(alias = "MTLResourceHazardTrackingModeDefault")]
         const HazardTrackingModeDefault = MTLHazardTrackingMode::Default.0<<MTLResourceHazardTrackingModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/hazardtrackingmodeuntracked?language=objc)
+/// An option specifying that the app must prevent hazards when modifying this object’s contents.
+///
+/// ## Discussion
+///
+/// For more information, see [`MTLHazardTrackingModeUntracked`](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/untracked).
+///
+///
         #[doc(alias = "MTLResourceHazardTrackingModeUntracked")]
         const HazardTrackingModeUntracked = MTLHazardTrackingMode::Untracked.0<<MTLResourceHazardTrackingModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/hazardtrackingmodetracked?language=objc)
+/// An option specifying that Metal prevents hazards when modifying this object’s contents.
+///
+/// ## Discussion
+///
+/// For more information, see [`MTLHazardTrackingModeTracked`](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode/tracked).
+///
+///
         #[doc(alias = "MTLResourceHazardTrackingModeTracked")]
         const HazardTrackingModeTracked = MTLHazardTrackingMode::Tracked.0<<MTLResourceHazardTrackingModeShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/mtlresourceoptioncpucachemodedefault?language=objc)
+/// This constant was deprecated in iOS 9.0 and macOS 10.11.
         #[doc(alias = "MTLResourceOptionCPUCacheModeDefault")]
 #[deprecated]
         const OptionCPUCacheModeDefault = MTLResourceOptions::CPUCacheModeDefaultCache.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions/optioncpucachemodewritecombined?language=objc)
+/// This constant was deprecated in iOS 9.0 and macOS 10.11.
         #[doc(alias = "MTLResourceOptionCPUCacheModeWriteCombined")]
 #[deprecated]
         const OptionCPUCacheModeWriteCombined = MTLResourceOptions::CPUCacheModeWriteCombined.0;
@@ -212,21 +343,20 @@ unsafe impl RefEncode for MTLResourceOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The page size options, in kilobytes, for sparse textures.
 /// Physical size of sparse resource page in KBs.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLSparsePageSize(pub NSInteger);
 impl MTLSparsePageSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size16?language=objc)
+    /// Represents a sparse texture’s page size of 16 kilobytes.
     #[doc(alias = "MTLSparsePageSize16")]
     pub const Size16: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size64?language=objc)
+    /// Represents a sparse texture’s page size of 64 kilobytes.
     #[doc(alias = "MTLSparsePageSize64")]
     pub const Size64: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsepagesize/size256?language=objc)
+    /// Represents a sparse texture’s page size of 256 kilobytes.
     #[doc(alias = "MTLSparsePageSize256")]
     pub const Size256: Self = Self(103);
 }
@@ -240,18 +370,33 @@ unsafe impl RefEncode for MTLSparsePageSize {
 }
 
 /// Enumerates the different support levels for sparse buffers.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier?language=objc)
+/// Enumerates the different support levels for sparse buffers.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBufferSparseTier(pub NSInteger);
 impl MTLBufferSparseTier {
     /// Indicates that the buffer is not sparse.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier/tiernone?language=objc)
+    /// Indicates that the buffer is not sparse.
     #[doc(alias = "MTLBufferSparseTierNone")]
     pub const TierNone: Self = Self(0);
+    /// Indicates support for sparse buffers tier 1.
+    ///
+    /// ## Discussion
+    ///
+    /// Tier 1 sparse buffers allow the following:
+    ///
+    /// - Partial memory backing at sparse page granularity.
+    ///
+    /// - Defined behavior for accessing an _unbacked_ buffer range.
+    ///
+    /// An unbacked buffer range indicates a range within the buffer that doesn’t have memory backing at a given point in time. Accessing an unbacked buffer range of a sparse buffer produces the following results:
+    ///
+    /// - Reading return zero.
+    ///
+    /// - Writing produces no result.
+    ///
+    ///
     /// Indicates support for sparse buffers tier 1.
     ///
     /// Tier 1 sparse buffers allow the following:
@@ -263,8 +408,6 @@ impl MTLBufferSparseTier {
     /// range of a sparse buffer produces the following results:
     /// * Reading return zero.
     /// * Writing produces no result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier/tier1?language=objc)
     #[doc(alias = "MTLBufferSparseTier1")]
     pub const Tier1: Self = Self(1);
 }
@@ -278,18 +421,37 @@ unsafe impl RefEncode for MTLBufferSparseTier {
 }
 
 /// Enumerates the different support levels for sparse textures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier?language=objc)
+/// Enumerates the different support levels for sparse textures.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureSparseTier(pub NSInteger);
 impl MTLTextureSparseTier {
     /// Indicates that the texture is not sparse.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tiernone?language=objc)
+    /// Indicates that the texture is not sparse.
     #[doc(alias = "MTLTextureSparseTierNone")]
     pub const TierNone: Self = Self(0);
+    /// Indicates support for sparse textures tier 1.
+    ///
+    /// ## Discussion
+    ///
+    /// Tier 1 sparse textures allow the following:
+    ///
+    /// - Partial memory backing at sparse tile granularity.
+    ///
+    /// - Defined behavior for accessing an unbacked texture region.
+    ///
+    /// - Shader feedback on texture access to determine memory backing.
+    ///
+    /// An unbacked texture region indicates a region within the texture that doesn’t have memory backing at a given point in time. Accessing an unbacked texture region produces the following results:
+    ///
+    /// - Reading returns zero (transparent black) for pixel formats with an alpha (A) channel.
+    ///
+    /// - Reading return zero in RGB and one in alpha (A) channels (opaque black) otherwise.
+    ///
+    /// - Writing produces no result.
+    ///
+    ///
     /// Indicates support for sparse textures tier 1.
     ///
     /// Tier 1 sparse textures allow the following:
@@ -303,17 +465,22 @@ impl MTLTextureSparseTier {
     /// * Reading returns zero (transparent black) for pixel formats with an alpha (A) channel.
     /// * Reading return zero in RGB and one in alpha (A) channels (opaque black) otherwise.
     /// * Writing produces no result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tier1?language=objc)
     #[doc(alias = "MTLTextureSparseTier1")]
     pub const Tier1: Self = Self(1);
+    /// Indicates support for sparse textures tier 2.
+    ///
+    /// ## Discussion
+    ///
+    /// In addition to the guarantees tier 1 sparse textures provide, tier 2 sparse textures allow the following:
+    ///
+    /// - Obtain per-tile activity counters.
+    ///
+    ///
     /// Indicates support for sparse textures tier 2.
     ///
     /// In addition to the guarantees tier 1 sparse textures provide,
     /// tier 2 sparse textures allow the following:
     /// * Obtain per-tile activity counters.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier/tier2?language=objc)
     #[doc(alias = "MTLTextureSparseTier2")]
     pub const Tier2: Self = Self(2);
 }
@@ -327,9 +494,22 @@ unsafe impl RefEncode for MTLTextureSparseTier {
 }
 
 extern_protocol!(
-    /// Common APIs available for MTLBuffer and MTLTexture instances
+    /// An allocation of memory accessible to a GPU.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresource?language=objc)
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t implement this protocol yourself. Create resources by calling methods on [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice), [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer), or [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture).
+    ///
+    ///
+    ///
+    /// </div>
+    /// When you execute commands on the GPU, those commands can only affect memory allocated as [`MTLResource`](https://developer.apple.com/documentation/metal/mtlresource) objects. Only the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) that created these resources can modify them. Different resource types have different uses. The most common resource types are buffers ([`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer)), which are linear allocations of memory, and textures ([`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture)), which hold structured image data.
+    ///
+    ///
+    /// Common APIs available for MTLBuffer and MTLTexture instances
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLResource: MTLAllocation {
         /// A string to help identify this object.

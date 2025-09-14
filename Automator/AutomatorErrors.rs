@@ -4,112 +4,202 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code?language=objc)
+/// Automator error codes.
+///
+/// ## Overview
+///
+/// These constants are [`NSError`](https://developer.apple.com/documentation/foundation/nserror) code numbers in the Automator error domain ([`AMAutomatorErrorDomain`](https://developer.apple.com/documentation/automator/amautomatorerrordomain)). You’ll obtain these error codes from the instances of [`NSError`](https://developer.apple.com/documentation/foundation/nserror) returned, for example, by certain methods of [`AMWorkflow`](https://developer.apple.com/documentation/automator/amworkflow) and [`AMWorkflowController`](https://developer.apple.com/documentation/automator/amworkflowcontroller). For related information, see [`AMActionErrorKey`](https://developer.apple.com/documentation/automator/amactionerrorkey).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AMErrorCode(pub NSInteger);
 impl AMErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflownewerversionerror?language=objc)
+    /// An error that indicates an attempt to open a workflow document that was saved with a newer version of Automator.
     #[doc(alias = "AMWorkflowNewerVersionError")]
     pub const WorkflowNewerVersionError: Self = Self(-100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflowpropertylistinvaliderror?language=objc)
+    /// An error that indicates an attempt to open a workflow document whose property list couldn’t be read.
+    ///
+    /// ## Discussion
+    ///
+    /// The property list document (`document.wflow`) could be missing, damaged, or constructed improperly.
+    ///
+    ///
     #[doc(alias = "AMWorkflowPropertyListInvalidError")]
     pub const WorkflowPropertyListInvalidError: Self = Self(-101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflowneweractionversionerror?language=objc)
+    /// An error that indicates an action in a workflow is newer than the installed action.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is presented to the user as a warning.
+    ///
+    ///
     #[doc(alias = "AMWorkflowNewerActionVersionError")]
     pub const WorkflowNewerActionVersionError: Self = Self(-111);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflowolderactionversionerror?language=objc)
+    /// An error that indicates an action in a workflow is older than the installed action.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is presented to the user as a warning.
+    ///
+    ///
     #[doc(alias = "AMWorkflowOlderActionVersionError")]
     pub const WorkflowOlderActionVersionError: Self = Self(-112);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflowactionsnotloadederror?language=objc)
+    /// An error that indicates one of the actions of the workflow couldn’t be loaded.
     #[doc(alias = "AMWorkflowActionsNotLoadedError")]
     pub const WorkflowActionsNotLoadedError: Self = Self(-113);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/workflownoenabledactionserror?language=objc)
+    /// An error that indicates there are no enabled actions in the workflow.
     #[doc(alias = "AMWorkflowNoEnabledActionsError")]
     pub const WorkflowNoEnabledActionsError: Self = Self(-114);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/usercancelederror?language=objc)
+    /// An error that indicates the user cancelled.
+    ///
+    /// ## Discussion
+    ///
+    /// This error is the same as the AppleScript error [`userCanceledErr`](https://developer.apple.com/documentation/kernel/1645157-anonymous/usercancelederr). When an Apple Event is canceled by the user, a running action may return this error. Automator ignores the error and stops the workflow gracefully, without displaying the error to the user.
+    ///
+    ///
     #[doc(alias = "AMUserCanceledError")]
     pub const UserCanceledError: Self = Self(-128);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/nosuchactionerror?language=objc)
+    /// An error that indicates the action could not be located on the system.
     #[doc(alias = "AMNoSuchActionError")]
     pub const NoSuchActionError: Self = Self(-200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionnotloadableerror?language=objc)
+    /// An error that indicates the action’s executable is of a type that is not loadable in the current process.
+    ///
+    /// ## Discussion
+    ///
+    /// If the action uses a custom subclass of [`AMBundleAction`](https://developer.apple.com/documentation/automator/ambundleaction) or [`AMAppleScriptAction`](https://developer.apple.com/documentation/automator/amapplescriptaction), then the most likely problem is that the bundle’s executable is missing or the `NSPrincipleClass` is not set in the `Info.plist`. Users are likely to be confused by a “missing bundle” error, so Automator presents it as the more generic “action not loadable” error.
+    ///
+    ///
     #[doc(alias = "AMActionNotLoadableError")]
     pub const ActionNotLoadableError: Self = Self(-201);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionarchitecturemismatcherror?language=objc)
+    /// An error that indicates the action’s binary is not compatible with the current processor.
+    ///
+    /// ## Discussion
+    ///
+    /// Actions compiled for PowerPC, for example, would encounter this error on Intel systems.
+    ///
+    ///
     #[doc(alias = "AMActionArchitectureMismatchError")]
     pub const ActionArchitectureMismatchError: Self = Self(-202);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionruntimemismatcherror?language=objc)
+    /// An error that indicates an attempt was made to load an action that is not compiled in a way that is compatible with the current app.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the action may be compiled for 32-bit apps.
+    ///
+    ///
     #[doc(alias = "AMActionRuntimeMismatchError")]
     pub const ActionRuntimeMismatchError: Self = Self(-203);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionloaderror?language=objc)
+    /// An error that indicates the action’s executable failed to load.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, there may have been a problem with a library it depends on.
+    ///
+    ///
     #[doc(alias = "AMActionLoadError")]
     pub const ActionLoadError: Self = Self(-204);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionlinkerror?language=objc)
+    /// An error that indicates the action’s executable failed to load due to linking issues.
     #[doc(alias = "AMActionLinkError")]
     pub const ActionLinkError: Self = Self(-205);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionapplicationresourceerror?language=objc)
+    /// An error that indicates an app required by the action is not found.
     #[doc(alias = "AMActionApplicationResourceError")]
     pub const ActionApplicationResourceError: Self = Self(-206);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionapplicationversionresourceerror?language=objc)
+    /// An error that indicates an app required by the action is the wrong version.
     #[doc(alias = "AMActionApplicationVersionResourceError")]
     pub const ActionApplicationVersionResourceError: Self = Self(-207);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionfileresourceerror?language=objc)
+    /// An error that indicates a file required by the action is not found.
     #[doc(alias = "AMActionFileResourceError")]
     pub const ActionFileResourceError: Self = Self(-208);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionlicenseresourceerror?language=objc)
+    /// An error that indicates a license required by the action was not found.
+    ///
+    /// ## Discussion
+    ///
+    /// The only license currently supported is QuickTime Pro.
+    ///
+    ///
     #[doc(alias = "AMActionLicenseResourceError")]
     pub const ActionLicenseResourceError: Self = Self(-209);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionrequiredactionresourceerror?language=objc)
+    /// An error that indicates an action required by the action is not loaded.
     #[doc(alias = "AMActionRequiredActionResourceError")]
     pub const ActionRequiredActionResourceError: Self = Self(-210);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actioninitializationerror?language=objc)
+    /// An error that indicates Automator is unable to initialize an action (reason unknown).
     #[doc(alias = "AMActionInitializationError")]
     pub const ActionInitializationError: Self = Self(-211);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionexecutionerror?language=objc)
+    /// An error that indicates an action encounters an error while running (reason unknown).
     #[doc(alias = "AMActionExecutionError")]
     pub const ActionExecutionError: Self = Self(-212);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionexceptionerror?language=objc)
+    /// An error that indicates an action encounters an exception while running.
     #[doc(alias = "AMActionExceptionError")]
     pub const ActionExceptionError: Self = Self(-213);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionpropertylistinvaliderror?language=objc)
+    /// An error that indicates the property list for an action is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// The property list (`Info.plist`) could be missing, damaged, or constructed improperly.
+    ///
+    ///
     #[doc(alias = "AMActionPropertyListInvalidError")]
     pub const ActionPropertyListInvalidError: Self = Self(-214);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actioninsufficientdataerror?language=objc)
+    /// An error that indicates the action requires input data to run, but none was supplied.
     #[doc(alias = "AMActionInsufficientDataError")]
     pub const ActionInsufficientDataError: Self = Self(-215);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionisdeprecatederror?language=objc)
+    /// An error that indicates the action has been deprecated.
+    ///
+    /// ## Discussion
+    ///
+    /// Use a replacement action, if available.
+    ///
+    ///
     #[doc(alias = "AMActionIsDeprecatedError")]
     pub const ActionIsDeprecatedError: Self = Self(-216);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionfailedgatekeepererror?language=objc)
+    /// An error that indicates the action doesn’t meet the Gatekeeper security policy.
     #[doc(alias = "AMActionFailedGatekeeperError")]
     pub const ActionFailedGatekeeperError: Self = Self(-217);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionsignaturecorrupterror?language=objc)
+    /// An error that indicates developer signature for this action is corrupted.
     #[doc(alias = "AMActionSignatureCorruptError")]
     pub const ActionSignatureCorruptError: Self = Self(-218);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionquarantineerror?language=objc)
+    /// An error that indicates action has been quarantined by XProtect, the antimalware system on the Mac.
     #[doc(alias = "AMActionQuarantineError")]
     pub const ActionQuarantineError: Self = Self(-219);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionxprotecterror?language=objc)
+    /// An error that indicates XProtect is unable to successfully analyze the action.
     #[doc(alias = "AMActionXProtectError")]
     pub const ActionXProtectError: Self = Self(-220);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionmalwareerror?language=objc)
+    /// An error that indicates the action has been identified as malware by XProtect.
     #[doc(alias = "AMActionMalwareError")]
     pub const ActionMalwareError: Self = Self(-221);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionthirdpartyactionsnotallowederror?language=objc)
+    /// An error that indicates the action is a third party action, and loading it has not been allowed by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// The user must enable loading of third party actions inside Automator.
+    ///
+    ///
     #[doc(alias = "AMActionThirdPartyActionsNotAllowedError")]
     pub const ActionThirdPartyActionsNotAllowedError: Self = Self(-222);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/actionxpcerror?language=objc)
+    /// An error that indicates the remote process running the action has crashed.
     #[doc(alias = "AMActionXPCError")]
     pub const ActionXPCError: Self = Self(-223);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/conversionnotpossibleerror?language=objc)
+    /// An error that occurs when the converter determines that it is unable to convert from one data type to another.
+    ///
+    /// ## Discussion
+    ///
+    /// This error isn’t displayed to the user.
+    ///
+    ///
     #[doc(alias = "AMConversionNotPossibleError")]
     pub const ConversionNotPossibleError: Self = Self(-300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/conversionnodataerror?language=objc)
+    /// An error that occurs when the converter determines that the conversion, though possible, would produce a nil result.
+    ///
+    /// ## Discussion
+    ///
+    /// This error isn’t displayed to the user.
+    ///
+    ///
     #[doc(alias = "AMConversionNoDataError")]
     pub const ConversionNoDataError: Self = Self(-301);
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amerror/code/conversionfailederror?language=objc)
+    /// An error that occurs when, for example, the converter encounters an error converting data from one type to another.
     #[doc(alias = "AMConversionFailedError")]
     pub const ConversionFailedError: Self = Self(-302);
 }

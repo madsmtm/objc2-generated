@@ -10,7 +10,13 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvinterfacecreating?language=objc)
+    /// A protocol that defines methods used to create views and view controllers.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol contains methods used to create views and view controllers from a [`TVViewElement`](https://developer.apple.com/documentation/tvmlkit/tvviewelement).
+    ///
+    ///
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub unsafe trait TVInterfaceCreating: NSObjectProtocol {
         #[cfg(all(feature = "TVViewElement", feature = "objc2-ui-kit"))]
@@ -89,9 +95,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Interface factory for creation of views and view controllers. Application can extend or override framework implementation by setting extendedInterfaceCreator.
+    /// A factory for the creation of views and view controllers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvinterfacefactory?language=objc)
+    /// ## Overview
+    ///
+    /// The app can extend or override the framework implementation by setting [`extendedInterfaceCreator`](https://developer.apple.com/documentation/tvmlkit/tvinterfacefactory/extendedinterfacecreator).
+    ///
+    ///
+    /// Interface factory for creation of views and view controllers. Application can extend or override framework implementation by setting extendedInterfaceCreator.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

@@ -9,6 +9,23 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
+    /// A self-contained environment for JavaScript execution.
+    ///
+    /// ## Overview
+    ///
+    /// You use this class for two main purposes: to support concurrent JavaScript execution, and to manage memory for objects that bridge between JavaScript and Objective-C or Swift.
+    ///
+    /// ### Support Threading and Concurrent JavaScript Execution
+    ///
+    /// Each JavaScript context (a [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) object) belongs to a virtual machine. Each virtual machine can encompass multiple contexts, allowing values ([`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) objects) to pass between contexts. However, each virtual machine is distinct—you can’t pass a value that you create in one virtual machine to a context in another virtual machine.
+    ///
+    /// The JavaScriptCore API is thread-safe—for example, you can create [`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) objects or evaluate scripts from any thread—however, all other threads attempting to use the same virtual machine must wait. To run JavaScript concurrently on multiple threads, use a separate [`JSVirtualMachine`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine) instance for each thread.
+    ///
+    /// ### Manage Memory for Exported Objects
+    ///
+    /// When you export an Objective-C or Swift object to JavaScript, you must not to store JavaScript values in that object. This action creates a retain cycle—[`JSValue`](https://developer.apple.com/documentation/javascriptcore/jsvalue) objects hold strong references to their enclosing JavaScript contexts, and [`JSContext`](https://developer.apple.com/documentation/javascriptcore/jscontext) objects hold strong references to the native objects you export to JavaScript. Instead, use the [`JSManagedValue`](https://developer.apple.com/documentation/javascriptcore/jsmanagedvalue) class to conditionally retain a JavaScript value, and report the native ownership chain for that managed value to the JavaScriptCore virtual machine. Use the [`addManagedReference:withOwner:`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine/addmanagedreference(_:withowner:)) and [`removeManagedReference:withOwner:`](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine/removemanagedreference(_:withowner:)) methods to describe your native object graph to JavaScriptCore. After you remove the last managed reference for an object, the JavaScript garbage collector can safely destroy that object.
+    ///
+    ///
     /// An instance of JSVirtualMachine represents a single JavaScript "object space"
     /// or set of execution resources. Thread safety is supported by locking the
     /// virtual machine, with concurrent JavaScript execution supported by allocating
@@ -18,8 +35,6 @@ extern_class!(
     /// or resolving WebAssembly compilations. By default, a virtual machine will use the run loop
     /// of the thread it was initialized on. Currently, there is no API to change a
     /// JSVirtualMachine's run loop once it has been initialized.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsvirtualmachine?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

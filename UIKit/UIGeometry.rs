@@ -9,7 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsets?language=objc)
+/// The inset distances for views.
+///
+/// ## Overview
+///
+/// Edge inset values are applied to a rectangle to shrink or expand the area represented by that rectangle. Typically, edge insets are used during view layout to modify the view’s frame. Positive values cause the frame to be inset (or shrunk) by the specified amount. Negative values cause the frame to be outset (or expanded) by the specified amount.
+///
+/// See also [`UIEdgeInsetsMake`](https://developer.apple.com/documentation/uikit/uiedgeinsets/init(top:left:bottom:right:)-1s1t9) and [`UIEdgeInsetsZero`](https://developer.apple.com/documentation/uikit/uiedgeinsets/zero).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -44,7 +52,7 @@ unsafe impl Send for UIEdgeInsets {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for UIEdgeInsets {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets?language=objc)
+/// The inset distances for views, taking the user interface layout direction into account.
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -79,7 +87,15 @@ unsafe impl Send for NSDirectionalEdgeInsets {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for NSDirectionalEdgeInsets {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffset?language=objc)
+/// A structure that specifies an amount to offset a position.
+///
+/// ## Overview
+///
+/// The components are positive for right or down, negative for left or up.
+///
+/// See also [Initializing offsets](https://developer.apple.com/documentation/uikit/uioffset#initializing-offsets) and [`UIOffsetZero`](https://developer.apple.com/documentation/uikit/uioffset/zero).
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -105,26 +121,32 @@ unsafe impl Send for UIOffset {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for UIOffset {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner?language=objc)
+/// The corners of a rectangle.
+///
+/// ## Overview
+///
+/// The specified constants reflect the corners of a rectangle that has not been modified by an affine transform and is drawn in the default coordinate system (where the origin is in the upper-left corner and positive values extend down and to the right).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIRectCorner(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRectCorner: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/topleft?language=objc)
+/// The top-left corner of the rectangle.
         #[doc(alias = "UIRectCornerTopLeft")]
         const TopLeft = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/topright?language=objc)
+/// The top-right corner of the rectangle.
         #[doc(alias = "UIRectCornerTopRight")]
         const TopRight = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/bottomleft?language=objc)
+/// The bottom-left corner of the rectangle.
         #[doc(alias = "UIRectCornerBottomLeft")]
         const BottomLeft = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/bottomright?language=objc)
+/// The bottom-right corner of the rectangle.
         #[doc(alias = "UIRectCornerBottomRight")]
         const BottomRight = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner/allcorners?language=objc)
+/// All corners of the rectangle.
         #[doc(alias = "UIRectCornerAllCorners")]
         const AllCorners = !0;
     }
@@ -138,29 +160,29 @@ unsafe impl RefEncode for UIRectCorner {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge?language=objc)
+/// Constants that specify an edge or a set of edges, taking the user interface layout direction into account.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectionalRectEdge: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/nsdirectionalrectedgenone?language=objc)
+/// No specified edge.
         #[doc(alias = "NSDirectionalRectEdgeNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/top?language=objc)
+/// The top edge.
         #[doc(alias = "NSDirectionalRectEdgeTop")]
         const Top = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/leading?language=objc)
+/// The leading edge.
         #[doc(alias = "NSDirectionalRectEdgeLeading")]
         const Leading = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/bottom?language=objc)
+/// The bottom edge.
         #[doc(alias = "NSDirectionalRectEdgeBottom")]
         const Bottom = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/trailing?language=objc)
+/// The trailing edge.
         #[doc(alias = "NSDirectionalRectEdgeTrailing")]
         const Trailing = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge/all?language=objc)
+/// All edges.
         #[doc(alias = "NSDirectionalRectEdgeAll")]
         const All = NSDirectionalRectEdge::Top.0|NSDirectionalRectEdge::Leading.0|NSDirectionalRectEdge::Bottom.0|NSDirectionalRectEdge::Trailing.0;
     }
@@ -174,7 +196,7 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge?language=objc)
+/// Constants that specify an edge or a set of edges, taking the user interface layout direction into account.
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -182,27 +204,27 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
 pub struct UIDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDirectionalRectEdge: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/uidirectionalrectedgenone?language=objc)
+/// No specified edge.
         #[doc(alias = "UIDirectionalRectEdgeNone")]
 #[deprecated]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/top?language=objc)
+/// The top edge.
         #[doc(alias = "UIDirectionalRectEdgeTop")]
 #[deprecated]
         const Top = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/leading?language=objc)
+/// The leading edge.
         #[doc(alias = "UIDirectionalRectEdgeLeading")]
 #[deprecated]
         const Leading = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/bottom?language=objc)
+/// The bottom edge.
         #[doc(alias = "UIDirectionalRectEdgeBottom")]
 #[deprecated]
         const Bottom = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/trailing?language=objc)
+/// The trailing edge.
         #[doc(alias = "UIDirectionalRectEdgeTrailing")]
 #[deprecated]
         const Trailing = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidirectionalrectedge/all?language=objc)
+/// All edges.
         #[doc(alias = "UIDirectionalRectEdgeAll")]
 #[deprecated]
         const All = UIDirectionalRectEdge::Top.0|UIDirectionalRectEdge::Leading.0|UIDirectionalRectEdge::Bottom.0|UIDirectionalRectEdge::Trailing.0;
@@ -217,37 +239,37 @@ unsafe impl RefEncode for UIDirectionalRectEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment?language=objc)
+/// Constants that specify alignment to an edge or a set of edges depending on the user interface layout direction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRectAlignment(pub NSInteger);
 impl NSRectAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/none?language=objc)
+    /// Has no specified alignment.
     #[doc(alias = "NSRectAlignmentNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/top?language=objc)
+    /// Aligns to the top edge.
     #[doc(alias = "NSRectAlignmentTop")]
     pub const Top: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/topleading?language=objc)
+    /// Aligns to the top and leading edges.
     #[doc(alias = "NSRectAlignmentTopLeading")]
     pub const TopLeading: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/leading?language=objc)
+    /// Aligns to the leading edge.
     #[doc(alias = "NSRectAlignmentLeading")]
     pub const Leading: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottomleading?language=objc)
+    /// Aligns to the bottom and leading edges.
     #[doc(alias = "NSRectAlignmentBottomLeading")]
     pub const BottomLeading: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottom?language=objc)
+    /// Aligns to the bottom edge.
     #[doc(alias = "NSRectAlignmentBottom")]
     pub const Bottom: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/bottomtrailing?language=objc)
+    /// Aligns to the bottom and trailing edges.
     #[doc(alias = "NSRectAlignmentBottomTrailing")]
     pub const BottomTrailing: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/trailing?language=objc)
+    /// Aligns to the trailing edge.
     #[doc(alias = "NSRectAlignmentTrailing")]
     pub const Trailing: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment/toptrailing?language=objc)
+    /// Aligns to the top and trailing edges.
     #[doc(alias = "NSRectAlignmentTopTrailing")]
     pub const TopTrailing: Self = Self(8);
 }
@@ -296,24 +318,40 @@ impl UIOffset {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsets/zero?language=objc)
+    /// An edge insets struct whose top, left, bottom, and right fields are all set to `0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIEdgeInsetsZero: UIEdgeInsets;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets/zero?language=objc)
+    /// A directional edge insets structure whose top, leading, bottom, and trailing fields all have a value of `0`.
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffset/zero?language=objc)
+    /// An offset structure with no offset in the horizontal and vertical directions.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant represents a [`UIOffset`](https://developer.apple.com/documentation/uikit/uioffset) structure whose [`horizontal`](https://developer.apple.com/documentation/uikit/uioffset/horizontal) and [`vertical`](https://developer.apple.com/documentation/uikit/uioffset/vertical) fields are `0`.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIOffsetZero: UIOffset;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgpoint?language=objc)
+/// Returns a string formatted to contain the data from a point.
+///
+/// Parameters:
+/// - point: A Core Graphics structure representing a point.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `point`. See [`CGPointFromString`](https://developer.apple.com/documentation/uikit/cgpointfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSString> {
@@ -325,7 +363,17 @@ pub extern "C-unwind" fn NSStringFromCGPoint(point: CGPoint) -> Retained<NSStrin
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgvector?language=objc)
+/// Returns a string formatted to contain the data from a vector data structure.
+///
+/// Parameters:
+/// - vector: A Core Graphics structure representing a two-dimensional vector.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `vector`. See [`CGVectorFromString`](https://developer.apple.com/documentation/uikit/cgvectorfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSString> {
@@ -337,7 +385,17 @@ pub extern "C-unwind" fn NSStringFromCGVector(vector: CGVector) -> Retained<NSSt
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgsize?language=objc)
+/// Returns a string formatted to contain the data from a size data structure.
+///
+/// Parameters:
+/// - size: A Core Graphics structure representing a size.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `size`. See [`CGSizeFromString`](https://developer.apple.com/documentation/uikit/cgsizefromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> {
@@ -349,7 +407,17 @@ pub extern "C-unwind" fn NSStringFromCGSize(size: CGSize) -> Retained<NSString> 
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgrect?language=objc)
+/// Returns a string formatted to contain the data from a rectangle.
+///
+/// Parameters:
+/// - rect: A Core Graphics structure representing a rectangle.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `rect`. See [`CGRectFromString`](https://developer.apple.com/documentation/uikit/cgrectfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> {
@@ -361,7 +429,17 @@ pub extern "C-unwind" fn NSStringFromCGRect(rect: CGRect) -> Retained<NSString> 
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromcgaffinetransform?language=objc)
+/// Returns a string formatted to contain the data from an affine transform.
+///
+/// Parameters:
+/// - transform: A Core Graphics affine transform structure.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `transform`. See [`CGAffineTransformFromString`](https://developer.apple.com/documentation/uikit/cgaffinetransformfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromCGAffineTransform(
@@ -375,7 +453,17 @@ pub extern "C-unwind" fn NSStringFromCGAffineTransform(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromuiedgeinsets?language=objc)
+/// Returns a string formatted to contain the data from an edge insets structure.
+///
+/// Parameters:
+/// - insets: A UIKit edge insets data structure.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `insets`. See [`UIEdgeInsetsFromString`](https://developer.apple.com/documentation/uikit/uiedgeinsetsfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retained<NSString> {
@@ -387,7 +475,17 @@ pub extern "C-unwind" fn NSStringFromUIEdgeInsets(insets: UIEdgeInsets) -> Retai
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromdirectionaledgeinsets?language=objc)
+/// Returns a string formatted to contain the data from a directional edge insets structure.
+///
+/// Parameters:
+/// - insets: A directional edge insets data structure.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to insets. See [`NSDirectionalEdgeInsetsFromString`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsetsfromstring) for a discussion of the string format.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
@@ -401,7 +499,17 @@ pub extern "C-unwind" fn NSStringFromDirectionalEdgeInsets(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsstringfromuioffset?language=objc)
+/// Returns a string formatted to contain the data from an offset structure.
+///
+/// Parameters:
+/// - offset: A UIKit offset data structure.
+///
+///
+/// ## Return Value
+///
+/// A string that corresponds to `offset`.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSString> {
@@ -413,7 +521,23 @@ pub extern "C-unwind" fn NSStringFromUIOffset(offset: UIOffset) -> Retained<NSSt
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgpointfromstring?language=objc)
+/// Returns a Core Graphics point structure corresponding to the data in a given string.
+///
+/// Parameters:
+/// - string: A string whose contents are of the form “{_x_,_y_}”, where _x_ is the x coordinate and _y_ is the y coordinate. The _x_ and _y_ values can represent integer or float values. An example of a valid string is @”{3.0,2.5}”. The string is not localized, so items are always separated with a comma.
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics structure that represents a point. If the string is not well-formed, the function returns [`CGPointZero`](https://developer.apple.com/documentation/coregraphics/cgpointzero).
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromCGPoint`](https://developer.apple.com/documentation/uikit/nsstringfromcgpoint) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
@@ -423,7 +547,23 @@ pub extern "C-unwind" fn CGPointFromString(string: &NSString) -> CGPoint {
     unsafe { CGPointFromString(string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgvectorfromstring?language=objc)
+/// Returns a Core Graphics vector corresponding to the data in a given string.
+///
+/// Parameters:
+/// - string: A string whose contents are of the form “{_dx_, _dy_}”, where _dx_ is the x-coordinate of the vector and _dy_ is the y-coordinate. The _dx_ and _dy_ values can be integer or float values. An example of a valid string is @”{3.0,2.5}”. The string is not localized, so items are always separated with a comma.
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics structure that represents a two-dimensional vector. If the string is not well-formed, the function returns a vector whose dx and dy values are `0`.
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromCGVector`](https://developer.apple.com/documentation/uikit/nsstringfromcgvector) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
@@ -433,7 +573,23 @@ pub extern "C-unwind" fn CGVectorFromString(string: &NSString) -> CGVector {
     unsafe { CGVectorFromString(string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgsizefromstring?language=objc)
+/// Returns a Core Graphics size structure corresponding to the data in a given string.
+///
+/// Parameters:
+/// - string: A string whose contents are of the form “{_w_, _h_}”, where _w_ is the width and _h_ is the height. The _w_ and _h_ values can be integer or float values. An example of a valid string is @”{3.0,2.5}”. The string is not localized, so items are always separated with a comma.
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics structure that represents a size. If the string is not well-formed, the function returns [`CGSizeZero`](https://developer.apple.com/documentation/coregraphics/cgsizezero).
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromCGSize`](https://developer.apple.com/documentation/uikit/nsstringfromcgsize) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
@@ -443,7 +599,23 @@ pub extern "C-unwind" fn CGSizeFromString(string: &NSString) -> CGSize {
     unsafe { CGSizeFromString(string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgrectfromstring?language=objc)
+/// Returns a Core Graphics rectangle structure corresponding to the data in a given string.
+///
+/// Parameters:
+/// - string: A string whose contents are of the form “{{_x_,_y_},{_w_, _h_}}”, where _x_ is the x coordinate, _y_ is the y coordinate, _w_ is the width, and _h_ is the height. These components can represent integer or float values. An example of a valid string is @”{{3,2},{4,5}}”. The string is not localized, so items are always separated with a comma.
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics structure that represents a rectangle. If the string is not well-formed, the function returns [`CGRectZero`](https://developer.apple.com/documentation/coregraphics/cgrectzero).
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromCGRect`](https://developer.apple.com/documentation/uikit/nsstringfromcgrect) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
@@ -453,7 +625,23 @@ pub extern "C-unwind" fn CGRectFromString(string: &NSString) -> CGRect {
     unsafe { CGRectFromString(string) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/cgaffinetransformfromstring?language=objc)
+/// Returns a Core Graphics affine transform structure corresponding to the data in a given string.
+///
+/// Parameters:
+/// - string: A string whose contents are of the form “{_a_, _b_, _c_, _d_, _tx_, _ty_}”, where _a_, _b_, _c_, _d_, _tx_, and _ty_ are the floating-point component values of the [`CGAffineTransform`](https://developer.apple.com/documentation/corefoundation/cgaffinetransform) data structure. An example of a valid string is @”{1,0,0,1,2.5,3.0}”. The string is not localized, so items are always separated with a comma. For information about the position of each value in the transform array, see [CGAffineTransform](https://developer.apple.com/documentation/coregraphics/cgaffinetransform).
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics affine transform structure. If the string is not well-formed, the function returns the identity transform.
+///
+///
+///
+/// ## Discussion
+///
+/// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromCGAffineTransform`](https://developer.apple.com/documentation/uikit/nsstringfromcgaffinetransform) function.
+///
+///
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
 pub extern "C-unwind" fn CGAffineTransformFromString(string: &NSString) -> CGAffineTransform {
@@ -465,7 +653,23 @@ pub extern "C-unwind" fn CGAffineTransformFromString(string: &NSString) -> CGAff
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIEdgeInsets {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsetsfromstring?language=objc)
+    /// Returns a UIKit edge insets structure based on the data in the specified string.
+    ///
+    /// Parameters:
+    /// - string: A string whose contents are of the form “{_top_, _left_, _bottom_, _right_}”, where _top_, _left_, _bottom_, _right_ are the floating-point component values of the [`UIEdgeInsets`](https://developer.apple.com/documentation/uikit/uiedgeinsets) structure. An example of a valid string is @”{3.0,8.0,3.0,5.0}”. The string is not localized, so items are always separated with a comma.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An edge insets data structure. If the string is not well-formed, the function returns [`zero`](https://developer.apple.com/documentation/uikit/uiedgeinsets/zero).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromUIEdgeInsets`](https://developer.apple.com/documentation/uikit/nsstringfromuiedgeinsets) function.
+    ///
+    ///
     #[doc(alias = "UIEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -479,7 +683,17 @@ impl UIEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl NSDirectionalEdgeInsets {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsetsfromstring?language=objc)
+    /// Returns a directional edge insets structure based on data in the specified string.
+    ///
+    /// Parameters:
+    /// - string: A string whose contents are of the form “{top, leading, bottom, trailing}”, where top, leading, bottom, trailing are the floating-point component values of the [`NSDirectionalEdgeInsets`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets) structure. An example of a valid string is “`{3.0,8.0,3.0,5.0}`”. The string is not localized, so items are always separated with a comma.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A directional edge insets data structure. If the string is not well-formed, the function returns [`zero`](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets/zero).
+    ///
+    ///
     #[doc(alias = "NSDirectionalEdgeInsetsFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -493,7 +707,23 @@ impl NSDirectionalEdgeInsets {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl UIOffset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffsetfromstring?language=objc)
+    /// Returns a UIKit offset structure corresponding to the data in a given string.
+    ///
+    /// Parameters:
+    /// - string: A string containing a representation of an offset.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An edge insets data structure. If the string is not well-formed, the function returns [`zero`](https://developer.apple.com/documentation/uikit/uioffset/zero).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In general, you should use this function only to convert strings that were previously created using the [`NSStringFromUIOffset`](https://developer.apple.com/documentation/uikit/nsstringfromuioffset) function.
+    ///
+    ///
     #[doc(alias = "UIOffsetFromString")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

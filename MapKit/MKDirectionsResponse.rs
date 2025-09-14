@@ -9,7 +9,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/response?language=objc)
+    /// The route information that Apple servers return in response to your request for directions.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you initiate a request for directions by calling the [`calculateDirectionsWithCompletionHandler:`](https://developer.apple.com/documentation/mapkit/mkdirections/calculate(completionhandler:)) method of an [`MKDirections`](https://developer.apple.com/documentation/mapkit/mkdirections) object. The completion handler you pass to that method receives an `MKDirections.Response` object with the results.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirectionsResponse;
@@ -51,7 +57,15 @@ impl MKDirectionsResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroute?language=objc)
+    /// A single route between a requested start and end point.
+    ///
+    /// ## Overview
+    ///
+    /// An `MKRoute` object defines the geometry for the route — that is, it contains line segments associated with specific map coordinates. A route object may also include other information, such as the name of the route, its distance, and the expected travel time.
+    ///
+    /// You don’t create instances of this class directly. When you use an [`MKDirections`](https://developer.apple.com/documentation/mapkit/mkdirections) object to request directions from Apple, the returned [`MKDirectionsResponse`](https://developer.apple.com/documentation/mapkit/mkdirections/response) object contains the possible routes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKRoute;
@@ -118,7 +132,15 @@ impl MKRoute {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroute/step?language=objc)
+    /// One portion of an overall route.
+    ///
+    /// ## Overview
+    ///
+    /// Each `MKRoute.Step` object corresponds to a single instruction that the person needs to follow when navigating between two points. For example, a step might involve following a single road until continuing along the route requires a turn.
+    ///
+    /// You don’t create instances of this class directly. An [`MKRoute`](https://developer.apple.com/documentation/mapkit/mkroute) object contains the `MKRoute.Step` objects associated with a route. For more information about requesting directions, see [`MKDirections`](https://developer.apple.com/documentation/mapkit/mkdirections).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKRouteStep;
@@ -169,7 +191,13 @@ impl MKRouteStep {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse?language=objc)
+    /// The travel-time information that Apple servers return.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you initiate a request for the travel time by calling the [`calculateETAWithCompletionHandler:`](https://developer.apple.com/documentation/mapkit/mkdirections/calculateeta(completionhandler:)) method of an [`MKDirections`](https://developer.apple.com/documentation/mapkit/mkdirections) object. The completion handler you pass to that method receives an `MKDirections.ETAResponse` object with the results.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKETAResponse;

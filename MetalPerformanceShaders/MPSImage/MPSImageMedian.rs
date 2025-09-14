@@ -8,6 +8,21 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that applies a median filter in a square region centered around each pixel in the source image.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageMedian`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemedian) filter finds the median color value for each channel within a `kernelDiameter * kernelDiameter` window surrounding the pixel of interest.  It is a common means of noise reduction and also as a smoothing filter with edge preserving qualities.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`MPSImageMedian`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemedian) filter supports only images with 8 or less bits per channel.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The MPSImageMedian applies a median filter to an image.  A median filter finds the
     /// median color value for each channel within a kernelDiameter x kernelDiameter
     /// window surrounding the pixel of interest.  It is a common means of noise reduction
@@ -16,8 +31,6 @@ extern_class!(
     /// NOTE: The MPSImageMedian filter currently only supports images with
     /// <
     /// = 8 bits/channel.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagemedian?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

@@ -9,20 +9,44 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerEmitterShape = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerEmitterMode = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode?language=objc)
 // NS_TYPED_ENUM
 pub type CAEmitterLayerRenderMode = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayer?language=objc)
+    /// A layer that emits, animates, and renders a particle system.
+    ///
+    /// ## Overview
+    ///
+    /// The particles, defined by instances of [`CAEmitterCell`](https://developer.apple.com/documentation/quartzcore/caemittercell), are drawn above the layer’s background color and border.
+    ///
+    /// The following code shows how to set up a simple point (the default [`emitterShape`](https://developer.apple.com/documentation/quartzcore/caemitterlayer/emittershape) is [`kCAEmitterLayerPoint`](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/point)) particle emitter. It uses an image named `RadialGradient.png` as the cell contents and, by setting the emitter cell’s [`emissionRange`](https://developer.apple.com/documentation/quartzcore/caemittercell/emissionrange) to `2 x` doc://com.apple.documentation/documentation/corefoundation/cgfloat/1845230-pi, the particles are emitted in all directions.
+    ///
+    /// ```swift
+    /// let emitterLayer = CAEmitterLayer()
+    ///     
+    /// emitterLayer.emitterPosition = CGPoint(x: 320, y: 320)
+    ///     
+    /// let cell = CAEmitterCell()
+    /// cell.birthRate = 100
+    /// cell.lifetime = 10
+    /// cell.velocity = 100
+    /// cell.scale = 0.1
+    ///     
+    /// cell.emissionRange = CGFloat.pi * 2.0
+    /// cell.contents = UIImage(named: "RadialGradient.png")!.cgImage
+    ///     
+    /// emitterLayer.emitterCells = [cell]
+    ///     
+    /// view.layer.addSublayer(emitterLayer)
+    /// ```
+    ///
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
@@ -248,82 +272,79 @@ impl DefaultRetained for CAEmitterLayer {
 }
 
 extern "C" {
+    /// Particles are emitted from a single point at (`emitterPosition.x`, `emitterPosition.y`, `emitterZPosition`)
     /// `emitterShape' values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/point?language=objc)
     pub static kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/line?language=objc)
+    /// Particles are emitted along a line from (`emitterPosition.x - emitterSize.width/2`, `emitterPosition.y`, `emitterZPosition`) to (`emitterPosition.x + emitterSize.width/2`, `emitterPosition.y`, `emitterZPosition`).
     pub static kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/rectangle?language=objc)
+    /// Particles are emitted from a rectangle with opposite corners [emitterPosition.x - emitterSize.width/2, emitterPosition.y - emitterSize.height/2, emitterZPosition], [emitterPosition.x + emitterSize.width/2, emitterPosition.y + emitterSize.height/2, emitterZPosition].
     pub static kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/cuboid?language=objc)
+    /// Particles are emitted from a cuboid (3D rectangle) with opposite corners: [emitterPosition.x - emitterSize.width/2, emitterPosition.y - emitterSize.height/2, emitterZPosition - emitterDepth/2], [emitterPosition.x + emitterSize.width/2, emitterPosition.y + emitterSize.height/2, emitterZPosition+emitterDepth/2].
     pub static kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/circle?language=objc)
+    /// Particles are emitted from a circle centered at (`emitterPosition.x`, `emitterPosition.y`, `emitterZPosition`) of radius `emitterSize.width`.
     pub static kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/sphere?language=objc)
+    /// Particles are emitted from a sphere centered at (`emitterPosition.x`, `emitterPosition.y`, `emitterZPosition`) of radius `emitterSize.width`.
     pub static kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
+    /// Particles are emitted from points on the particle emitter.
     /// `emitterMode' values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/points?language=objc)
     pub static kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/outline?language=objc)
+    /// Particles are emitted from the outline of the particle emitter.
     pub static kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/surface?language=objc)
+    /// Particles are emitted from the surface of the particle emitter.
     pub static kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/volume?language=objc)
+    /// Particles are emitted from the a position within the particle emitter.
     pub static kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
+    /// Particles are rendered unordered. This mode uses source-over compositing.
     /// `renderMode' values. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/unordered?language=objc)
     pub static kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/oldestfirst?language=objc)
+    /// Particles are rendered oldest first. This mode uses source-over compositing.
     pub static kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/oldestlast?language=objc)
+    /// Particles are rendered oldest last. This mode uses source-over compositing.
     pub static kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/backtofront?language=objc)
+    /// Particles are rendered from back to front, sorted by z-position. This mode uses source-over compositing.
     pub static kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/additive?language=objc)
+    /// The particles are rendered using source-additive compositing.
     pub static kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode;
 }

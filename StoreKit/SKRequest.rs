@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequest?language=objc)
+    /// An abstract class that represents a request to the App Store.
+    ///
+    /// ## Overview
+    ///
+    /// To make a request, initialize a subclass of [`SKRequest`](https://developer.apple.com/documentation/storekit/skrequest)—such as [`SKProductsRequest`](https://developer.apple.com/documentation/storekit/skproductsrequest) or [`SKReceiptRefreshRequest`](https://developer.apple.com/documentation/storekit/skreceiptrefreshrequest)—set the [`delegate`](https://developer.apple.com/documentation/storekit/skrequest/delegate) property, and call the [`start`](https://developer.apple.com/documentation/storekit/skrequest/start()) method.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "No longer supported"]
@@ -60,7 +66,7 @@ impl SKRequest {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequestdelegate?language=objc)
+    /// Common methods that are implemented by delegates for any subclass of the `SKRequest` abstract class.
     #[deprecated = "No longer supported"]
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
         #[deprecated = "No longer supported"]

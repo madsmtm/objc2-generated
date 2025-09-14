@@ -5,41 +5,55 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/menuitem?language=objc)
+    /// The accessibility element behaves like a menu item.
     pub static BEAccessibilityTraitMenuItem: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/popupbutton?language=objc)
+    /// The accessibility element behaves like a pop-up button.
     pub static BEAccessibilityTraitPopUpButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/radiobutton?language=objc)
+    /// The accessibility element behaves like a radio button.
     pub static BEAccessibilityTraitRadioButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/readonly?language=objc)
+    /// The accessibility element is read-only.
     pub static BEAccessibilityTraitReadOnly: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/visited?language=objc)
+    /// The accessibility element behaves like a link that someone previously visited.
     pub static BEAccessibilityTraitVisited: UIAccessibilityTraits;
 }
 
 extern "C" {
+    /// The notification you post when the selection inside an element changes.
+    ///
+    /// ## Discussion
+    ///
+    /// If an element contains a text selection and the content changes, or the editing cursor position changes, post this notification after posting [`BEAccessibilityValueChangedNotification`](https://developer.apple.com/documentation/browserenginekit/beaccessibility/valuechangednotification) for the element.
+    ///
+    ///
     /// Posted when the selection inside an element changes.
     ///
     /// When text inside an editable element changes, or the editing cursor position changes, this notification
     /// must be posted alongside, and after, BEAccessibilityValueChangedNotification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/selectionchangednotification?language=objc)
     pub static BEAccessibilitySelectionChangedNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
+    /// The notification you post when the value of an element changes.
+    ///
+    /// ## Overview
+    ///
+    /// Post this notification when the value of an input element changes, when someone or a script adds text to a text control or removes text from a text control, or when the `aria-valuenow` or `aria-valuetext` attributes of an element change.
+    ///
+    /// If an element contains a text selection and the content changes, or the editing cursor position changes, post this notification followed by [`BEAccessibilitySelectionChangedNotification`](https://developer.apple.com/documentation/browserenginekit/beaccessibility/selectionchangednotification) for the element.
+    ///
+    ///
     /// Posted when the value of an element changes. Some examples of when this notification is appropriate:
     /// - The value of an input element changes
     /// - Text is added or removed from any text control
@@ -47,7 +61,5 @@ extern "C" {
     ///
     /// Furthermore, when text inside an editable element changes, or the editing cursor position changes, this notification
     /// must be posted alongside, and before, BEAccessibilitySelectionChangedNotification.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/valuechangednotification?language=objc)
     pub static BEAccessibilityValueChangedNotification: UIAccessibilityNotifications;
 }

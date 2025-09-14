@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintent?language=objc)
+    /// An intent for requesting money from another user’s account.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INRequestPaymentIntent`](https://developer.apple.com/documentation/intents/inrequestpaymentintent) object when the current user requests a payment from another user. A request payment intent object includes the payment amount and the person receiving the request. This intent represents only a request for payment and shouldn’t initiate any payments.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INRequestPaymentIntentHandling`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling) protocol. Your handler should confirm the request and create an [`INRequestPaymentIntentResponse`](https://developer.apple.com/documentation/intents/inrequestpaymentintentresponse) object with the results of making the request.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions, Shortcuts app" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device. In addition, Siri always prompts the user to confirm the request before asking your Intents extension to handle it.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -84,11 +99,18 @@ impl INRequestPaymentIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for delivering a request for payment from another user of your app.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INRequestPaymentIntentHandling`](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling) protocol to resolve, confirm, and handle the requesting of money from another user of your app. Adopt this protocol in an object of your Intents extension that is capable of contacting the designated user and communicating the request for payment.
+    ///
+    /// Siri delivers an [`INRequestPaymentIntent`](https://developer.apple.com/documentation/intents/inrequestpaymentintent) object to your handler when the user makes a request for payment using your app. The provided intent object contains the details of the payment request, including the recipient of the request, the amount of the payment, and any memos associated with the payment. Use the methods of this protocol to resolve the payment parameters and to validate that the payment is possible.
+    ///
+    ///
     /// Protocol to declare support for handling an INRequestPaymentIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestpaymentintenthandling?language=objc)
     pub unsafe trait INRequestPaymentIntentHandling: NSObjectProtocol {
         #[cfg(all(
             feature = "INIntent",

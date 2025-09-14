@@ -10,7 +10,15 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph?language=objc)
+    /// A data object for an emoji-like image that can appear in attributed text.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSAdaptiveImageGlyph`](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph) contains an image that automatically adapts to different sizes and resolutions. The text system creates instances of this type to represent custom emojis that people create using the system interfaces. This type manages multiple images, along with metadata describing how to adapt those images correctly to different fonts and font attributes.
+    ///
+    /// Typically, you receive new [`NSAdaptiveImageGlyph`](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph) objects only from the text-input system. When someone creates a new emoji and inserts it into their text, TextKit creates an instance of this type to represent it. If your app examines or changes the attributes of attributed strings, preserve the [`adaptiveImageGlyph`](https://developer.apple.com/documentation/foundation/nsattributedstring/key/adaptiveimageglyph) attribute when making any changes. For example, if you filter unknown attributes in a custom text-storage object, update your code to preserve this attribute. The value of the attribute is an [`NSAdaptiveImageGlyph`](https://developer.apple.com/documentation/appkit/nsadaptiveimageglyph) containing the emoji data. You can save the image data with the rest of your content and use the data to recreate the type later.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAdaptiveImageGlyph;

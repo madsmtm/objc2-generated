@@ -9,7 +9,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfboolean?language=objc)
+///
+/// ## Overview
+///
+/// CFBoolean objects are used to wrap boolean values for use in Core Foundation property lists and collection types.
+///
+///
 ///
 /// This is toll-free bridged with `NSNumber`.
 #[doc(alias = "CFBooleanRef")]
@@ -28,17 +33,23 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue?language=objc)
+    /// Boolean true value.
     pub static kCFBooleanTrue: Option<&'static CFBoolean>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse?language=objc)
+    /// Boolean false value.
     pub static kCFBooleanFalse: Option<&'static CFBoolean>;
 }
 
 unsafe impl ConcreteType for CFBoolean {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleangettypeid()?language=objc)
+    /// Returns the Core Foundation type identifier for the CFBoolean opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation type identifier for CFBoolean opaque type.
+    ///
+    ///
     #[doc(alias = "CFBooleanGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -50,7 +61,17 @@ unsafe impl ConcreteType for CFBoolean {
 }
 
 impl CFBoolean {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfbooleangetvalue(_:)?language=objc)
+    /// Returns the value of a CFBoolean object as a standard C type `Boolean`.
+    ///
+    /// Parameters:
+    /// - boolean: The boolean to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The value of `boolean`.
+    ///
+    ///
     #[doc(alias = "CFBooleanGetValue")]
     #[inline]
     pub fn value(&self) -> bool {
@@ -62,61 +83,73 @@ impl CFBoolean {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype?language=objc)
+/// Flags used by CFNumber to indicate the data type of a value.
+///
+/// ## Overview
+///
+/// The type specified in the call to [`CFNumberCreate`](https://developer.apple.com/documentation/corefoundation/cfnumbercreate(_:_:_:)) is not necessarily preserved when creating a new CFNumber object. A CFNumber object uses whatever internal storage type the creation function deems appropriate. Use the [`CFNumberGetType`](https://developer.apple.com/documentation/corefoundation/cfnumbergettype(_:)) function to find out what type the CFNumber object used to store your value.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNumberType(pub CFIndex);
 impl CFNumberType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint8type?language=objc)
+    /// Eight-bit, signed integer. The `SInt8` data type is defined in `MacTypes.h`.
     #[doc(alias = "kCFNumberSInt8Type")]
     pub const SInt8Type: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint16type?language=objc)
+    /// Sixteen-bit, signed integer. The `SInt16` data type is defined in `MacTypes.h`.
     #[doc(alias = "kCFNumberSInt16Type")]
     pub const SInt16Type: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint32type?language=objc)
+    /// Thirty-two-bit, signed integer. The `SInt32` data type is defined in `MacTypes.h`.
     #[doc(alias = "kCFNumberSInt32Type")]
     pub const SInt32Type: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/sint64type?language=objc)
+    /// Sixty-four-bit, signed integer. The `SInt64` data type is defined in `MacTypes.h`.
     #[doc(alias = "kCFNumberSInt64Type")]
     pub const SInt64Type: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/float32type?language=objc)
+    /// Thirty-two-bit real. The `Float32` data type is defined in `MacTypes.h`.
     #[doc(alias = "kCFNumberFloat32Type")]
     pub const Float32Type: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/float64type?language=objc)
+    /// Sixty-four-bit real. The `Float64` data type is defined in `MacTypes.h` and conforms to the 64-bit IEEE 754 standard.
     #[doc(alias = "kCFNumberFloat64Type")]
     pub const Float64Type: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/chartype?language=objc)
+    /// Basic C `char` type.
     #[doc(alias = "kCFNumberCharType")]
     pub const CharType: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/shorttype?language=objc)
+    /// Basic C `short` type.
     #[doc(alias = "kCFNumberShortType")]
     pub const ShortType: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/inttype?language=objc)
+    /// Basic C `int` type.
     #[doc(alias = "kCFNumberIntType")]
     pub const IntType: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/longtype?language=objc)
+    /// Basic C `long` type.
     #[doc(alias = "kCFNumberLongType")]
     pub const LongType: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/longlongtype?language=objc)
+    /// Basic C `long long` type.
     #[doc(alias = "kCFNumberLongLongType")]
     pub const LongLongType: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/floattype?language=objc)
+    /// Basic C `float` type.
     #[doc(alias = "kCFNumberFloatType")]
     pub const FloatType: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/doubletype?language=objc)
+    /// Basic C `double` type.
     #[doc(alias = "kCFNumberDoubleType")]
     pub const DoubleType: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cfindextype?language=objc)
+    /// CFIndex value.
     #[doc(alias = "kCFNumberCFIndexType")]
     pub const CFIndexType: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/nsintegertype?language=objc)
+    /// `NSInteger` value.
     #[doc(alias = "kCFNumberNSIntegerType")]
     pub const NSIntegerType: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cgfloattype?language=objc)
+    /// `CGFloat` value.
     #[doc(alias = "kCFNumberCGFloatType")]
     pub const CGFloatType: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbertype/maxtype?language=objc)
+    /// Same as [`kCFNumberCGFloatType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cgfloattype).
+    ///
+    /// ## Discussion
+    ///
+    /// Note that in OS X v10.4, [`kCFNumberMaxType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/maxtype) was the same as [`kCFNumberCFIndexType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype/cfindextype) .
+    ///
+    ///
     #[doc(alias = "kCFNumberMaxType")]
     pub const MaxType: Self = Self(16);
 }
@@ -131,7 +164,24 @@ unsafe impl RefEncode for CFNumberType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumber?language=objc)
+///
+/// ## Overview
+///
+/// CFNumber encapsulates C scalar (numeric) types. It provides functions for setting and accessing the value as any basic C type. It also provides a compare function to determine the ordering of two CFNumber objects. CFNumber objects are used to wrap numerical values for use in Core Foundation property lists and collections.
+///
+/// CFNumber objects are not intended as a replacement for C scalar values and should not be used in APIs or implementations where scalar values are more appropriate and efficient.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  In order to improve performance, some commonly-used numbers (such as `0` and `1`) are uniqued. You should not expect that allocating multiple CFNumber instances will necessarily result in distinct objects.
+///
+///
+///
+/// </div>
+/// CFNumber is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSNumber *` parameter, you can pass in a `CFNumberRef`, and in a function where you see a `CFNumberRef` parameter, you can pass in an NSNumber instance. This fact also applies to concrete subclasses of NSNumber. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSNumber`.
 #[doc(alias = "CFNumberRef")]
@@ -150,22 +200,28 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumberpositiveinfinity?language=objc)
+    /// Designates a positive infinity value.
     pub static kCFNumberPositiveInfinity: Option<&'static CFNumber>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernegativeinfinity?language=objc)
+    /// Designates a negative infinity value.
     pub static kCFNumberNegativeInfinity: Option<&'static CFNumber>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnumbernan?language=objc)
+    /// “Not a Number.” This value is often the result of an invalid operation, such as the square-root of a negative number.
     pub static kCFNumberNaN: Option<&'static CFNumber>;
 }
 
 unsafe impl ConcreteType for CFNumber {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergettypeid()?language=objc)
+    /// Returns the type identifier for the CFNumber opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFNumber opaque type.
+    ///
+    ///
     #[doc(alias = "CFNumberGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -177,7 +233,27 @@ unsafe impl ConcreteType for CFNumber {
 }
 
 impl CFNumber {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbercreate(_:_:_:)?language=objc)
+    /// Creates a CFNumber object using a specified value.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the default allocator.
+    ///
+    /// - theType: A constant that specifies the data type of the value to convert. See [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype) for a list of possible values.
+    ///
+    /// - valuePtr: A pointer to the value for the returned number object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new number with the value specified by `valuePtr`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The `theType` parameter is not necessarily preserved when creating a new CFNumber object. The CFNumber object will be created using whatever internal storage type the creation function deems appropriate. Use the function [`CFNumberGetType`](https://developer.apple.com/documentation/corefoundation/cfnumbergettype(_:)) to find out what type the CFNumber object used to store your value.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +277,23 @@ impl CFNumber {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergettype(_:)?language=objc)
+    /// Returns the type used by a CFNumber object to store its value.
+    ///
+    /// Parameters:
+    /// - number: The CFNumber object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A constant that indicates the data type of the value contained in `number`. See [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype) for a list of possible values.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The type specified in the call to [`CFNumberCreate`](https://developer.apple.com/documentation/corefoundation/cfnumbercreate(_:_:_:)) is not necessarily preserved when a new CFNumber object is created—it uses whatever internal storage type the creation function deems appropriate.
+    ///
+    ///
     #[doc(alias = "CFNumberGetType")]
     #[inline]
     pub fn r#type(&self) -> CFNumberType {
@@ -211,7 +303,23 @@ impl CFNumber {
         unsafe { CFNumberGetType(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergetbytesize(_:)?language=objc)
+    /// Returns the number of bytes used by a CFNumber object to store its value.
+    ///
+    /// Parameters:
+    /// - number: The CFNumber object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The size in bytes of the value contained in `number`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Because a CFNumber object might store a value using a type different from that of the original value with which it was created, this function may return a size different from the size of the original value’s type.
+    ///
+    ///
     #[doc(alias = "CFNumberGetByteSize")]
     #[inline]
     pub fn byte_size(&self) -> CFIndex {
@@ -221,7 +329,17 @@ impl CFNumber {
         unsafe { CFNumberGetByteSize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberisfloattype(_:)?language=objc)
+    /// Determines whether a CFNumber object contains a value stored as one of the defined floating point types.
+    ///
+    /// Parameters:
+    /// - number: The CFNumber object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `number`’s value is one of the defined floating point types, otherwise `false`. The valid floating point types are listed in [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype).
+    ///
+    ///
     #[doc(alias = "CFNumberIsFloatType")]
     #[inline]
     pub fn is_float_type(&self) -> bool {
@@ -232,7 +350,27 @@ impl CFNumber {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbergetvalue(_:_:_:)?language=objc)
+    /// Obtains the value of a CFNumber object cast to a specified type.
+    ///
+    /// Parameters:
+    /// - number: The CFNumber object to examine.
+    ///
+    /// - theType: A constant that specifies the data type to return. See [`CFNumberType`](https://developer.apple.com/documentation/corefoundation/cfnumbertype) for a list of possible values.
+    ///
+    /// - valuePtr: On return, contains the value of `number`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the operation was successful, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the argument type differs from the return type, and the conversion is lossy or the return value is out of range, then this function passes back an approximate value in `valuePtr` and returns `false`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -251,7 +389,39 @@ impl CFNumber {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumbercompare(_:_:_:)?language=objc)
+    /// Compares two CFNumber objects and returns a comparison result.
+    ///
+    /// Parameters:
+    /// - number: The first CFNumber object to compare.
+    ///
+    /// - otherNumber: The second CFNumber object to compare.
+    ///
+    /// - context: Pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) constant that indicates whether `number` is equal to, less than, or greater than `otherNumber`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When comparing two CFNumber objects using this function, one or both objects can represent a special-case number such as signed 0, signed infinity, or NaN.
+    ///
+    /// The following rules apply:
+    ///
+    /// - Negative 0 compares less than positive 0.
+    ///
+    /// - Positive infinity compares greater than everything except itself, to which it compares equal.
+    ///
+    /// - Negative infinity compares less than everything except itself, to which it compares equal.
+    ///
+    /// - If both numbers are NaN, then they compare equal.
+    ///
+    /// - If only one of the numbers is NaN, then the NaN compares greater than the other number if it is negative, and smaller than the other number if it is positive.
+    ///
+    ///
     ///
     /// # Safety
     ///

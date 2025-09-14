@@ -8,14 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A home automation accessory, like a garage door opener or a thermostat.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HMAccessory`](https://developer.apple.com/documentation/homekit/hmaccessory) instance represents a physical device, like a garage door opener, installed in a home and assigned to a room.
+    ///
+    /// You don’t create accessories directly. Instead you get them from the [`accessories`](https://developer.apple.com/documentation/homekit/hmhome/accessories) array of an [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) instance when you want all the accessories in a home, or the [`accessories`](https://developer.apple.com/documentation/homekit/hmroom/accessories) array of an [`HMRoom`](https://developer.apple.com/documentation/homekit/hmroom) instance when you want all the accessories in a particular room. Each physical accessory in the home is represented by exactly one accessory instance, so that one instance appears in both a home and a room collection. This is because it’s simultaneously part of the home and in one of the home’s rooms.
+    ///
+    /// When you want to add new accessories, you call the home’s [`addAndSetupAccessoriesWithCompletionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addandsetupaccessories(completionhandler:)) method. In response, HomeKit presents the user with an interface that steps through the process of searching for new accessories in the physical environment, naming them, and assigning them to a room.
+    ///
+    /// Accessories provide one or more services, represented by instances of [`HMService`](https://developer.apple.com/documentation/homekit/hmservice), that are the features that the user can control, like the light attached to a garage door opener, or the door opener mechanism itself.
+    ///
+    ///
     /// Represent an accessory in the home.
     ///
     ///
     /// This class represents an accessory in the home. There is a one to
     /// one relationship between a physical accessory and an object of this
     /// class. An accessory is composed of one or more services.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessory;
@@ -344,10 +355,27 @@ impl HMAccessory {
 }
 
 extern_protocol!(
+    /// A set of methods that defines the communication method for state updates from accessories to their delegates.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol to find out about changes made outside your app to a specific accessory, like when the accessory’s name changes, or when a characteristic value changes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To receive [`accessory:service:didUpdateValueForCharacteristic:`](https://developer.apple.com/documentation/homekit/hmaccessorydelegate/accessory(_:service:didupdatevaluefor:)) method calls for a particular characteristic, indicating when the characteristic value changes, you must first call the characteristic’s [`enableNotification:completionHandler:`](https://developer.apple.com/documentation/homekit/hmcharacteristic/enablenotification(_:completionhandler:)) method.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Changes that your app initiates—even those made asynchronously followed by a call to a completion handler—generate delegate callbacks in other apps, but not in your own. As a result, your app must update its internal data store or user interface from both the completion handler of an asynchronous call, and the delegate callback that corresponds to the same kind of change made by another app.
+    ///
+    /// To find out about changes made to the accessory’s home, adopt the [`HMHomeDelegate`](https://developer.apple.com/documentation/homekit/hmhomedelegate) protocol. To be alerted about changes made to the overall list of homes, adopt the [`HMHomeManagerDelegate`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate) protocol.
+    ///
+    ///
     /// This defines the protocol for a delegate to receive updates about
     /// different aspects of an accessory
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorydelegate?language=objc)
     pub unsafe trait HMAccessoryDelegate: NSObjectProtocol + Send + Sync {
         /// Informs the delegate when the name of the accessory is modified.
         ///

@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidrequest?language=objc)
+    /// An OpenID authorization request that relies on the user’s Apple ID.
     #[unsafe(super(ASAuthorizationOpenIDRequest, ASAuthorizationRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

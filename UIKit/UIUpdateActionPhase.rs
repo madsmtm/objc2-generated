@@ -6,6 +6,39 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// An object that defines specific phases of the UI update process.
+    ///
+    /// ## Overview
+    ///
+    /// Each UI update consists of several phases that run in a consistent order, and the [`UIUpdateActionPhase`](https://developer.apple.com/documentation/uikit/uiupdateactionphase) object defines constants that represent these phases. When using a [`UIUpdateLink`](https://developer.apple.com/documentation/uikit/uiupdatelink), you can use these constants to decide which phase of the UI update process you want its actions to run in.
+    ///
+    /// There are two _phase groups_: standard and low-latency. The standard phase group runs for each UI update. This phase group includes these phases, which run in the following order:
+    ///
+    /// 1. [`beforeEventDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/beforeeventdispatch)
+    ///
+    /// 2. [`afterEventDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/aftereventdispatch)
+    ///
+    /// 3. [`beforeCADisplayLinkDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/beforecadisplaylinkdispatch)
+    ///
+    /// 4. [`afterCADisplayLinkDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/aftercadisplaylinkdispatch)
+    ///
+    /// 5. [`beforeCATransactionCommit`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/beforecatransactioncommit)
+    ///
+    /// 6. [`afterCATransactionCommit`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/aftercatransactioncommit)
+    ///
+    /// The low-latency phase group is optional, and it’s off by default. It runs only if you explicitly request low-latency event dispatch using [`wantsLowLatencyEventDispatch`](https://developer.apple.com/documentation/uikit/uiupdatelink/wantslowlatencyeventdispatch). The low-latency phase group includes these phases, which run in the following order (after the standard phases):
+    ///
+    /// 1. [`beforeLowLatencyEventDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/beforelowlatencyeventdispatch)
+    ///
+    /// 2. [`afterLowLatencyEventDispatch`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/afterlowlatencyeventdispatch)
+    ///
+    /// 3. [`beforeLowLatencyCATransactionCommit`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/beforelowlatencycatransactioncommit)
+    ///
+    /// 4. [`afterLowLatencyCATransactionCommit`](https://developer.apple.com/documentation/uikit/uiupdateactionphase/afterlowlatencycatransactioncommit)
+    ///
+    /// When a phase group runs, all phases inside the group run. Phases run one after another in the specified order without exiting back into the run loop.
+    ///
+    ///
     /// Each UI update consists of several phases which run in order, one after another. There are two phase groups - normal
     /// and low-latency. Normal phase group consists of phases from `EventDispatch` to `CATransactionCommit`. Low-latency
     /// phase group consists of phases from `LowLatencyEventDispatch` to `LowLatencyCATransactionCommit`. When phase group
@@ -26,8 +59,6 @@ extern_class!(
     /// Instead, consider calling `-[CAMetalLayer nextDrawable]` on the background thread and block main thread manually
     /// in one of the phases. Use small timeout that allows for UI update to proceed without a new drawable and still finish
     /// before the completion deadline.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiupdateactionphase?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

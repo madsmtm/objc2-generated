@@ -9,30 +9,42 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/completionhandler?language=objc)
+/// A completion handler for responding to the completion of a print job or for handling printing errors.
+///
+/// ## Discussion
+///
+/// You implement this block as the final argument of [`presentAnimated:completionHandler:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/present(animated:completionhandler:)), [`presentFromBarButtonItem:animated:completionHandler:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/present(from:animated:completionhandler:)), or [`presentFromRect:inView:animated:completionHandler:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/present(from:in:animated:completionhandler:)). When a print job concludes, you can reset any state set up for printing and do related housekeeping tasks. If the print job encountered an error, it is likely to be a programming error, so you might want to log the error for debugging purposes.
+///
+/// - `printInteractionController`: The shared instance of `UIPrintInteractionController` that is managing the print job.
+///
+/// - `completed`: A Boolean value that indicates whether the print job completed successfully.
+///
+/// - `error`: An instance of the [`NSError`](https://developer.apple.com/documentation/foundation/nserror) that contains information about the printing error. The printing domain is [`UIPrintErrorDomain`](https://developer.apple.com/documentation/uikit/uiprinterrordomain). The printing error codes are described in `UIKit Printing Error Codes`. If the print job completes successfully, this parameter is `nil`.
+///
+///
 #[cfg(feature = "block2")]
 pub type UIPrintInteractionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior?language=objc)
+/// Constants that specify the cutter behavior of a roll-fed printer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrinterCutterBehavior(pub NSInteger);
 impl UIPrinterCutterBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/nocut?language=objc)
+    /// Don’t cut the paper.
     #[doc(alias = "UIPrinterCutterBehaviorNoCut")]
     pub const NoCut: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/printerdefault?language=objc)
+    /// Use the printer’s default behavior.
     #[doc(alias = "UIPrinterCutterBehaviorPrinterDefault")]
     pub const PrinterDefault: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachpage?language=objc)
+    /// Cut the paper after each page.
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachPage")]
     pub const CutAfterEachPage: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachcopy?language=objc)
+    /// Cut the paper after each copy of the document.
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachCopy")]
     pub const CutAfterEachCopy: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior/cutaftereachjob?language=objc)
+    /// Cut the paper after each print job finishes.
     #[doc(alias = "UIPrinterCutterBehaviorCutAfterEachJob")]
     pub const CutAfterEachJob: Self = Self(4);
 }
@@ -46,7 +58,29 @@ unsafe impl RefEncode for UIPrinterCutterBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller?language=objc)
+    /// A user interface that manages the printing of documents, images, and other printable content in iOS.
+    ///
+    /// ## Overview
+    ///
+    /// [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) is the central class for printing in iOS. The shared instance of it represents a print job. A print job includes the content to print and information and options related to its printing, such as output type, job name, paper size, and orientation.
+    ///
+    /// [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) has four mutually exclusive properties for giving it the content to print:
+    ///
+    /// - [`printingItem`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printingitem) takes a single print-ready object.
+    ///
+    /// - [`printingItems`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printingitems) takes an array of print-ready objects.
+    ///
+    /// - [`printFormatter`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printformatter) takes a print formatter, an object that knows how to lay out content of a certain type.
+    ///
+    /// - [`printPageRenderer`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printpagerenderer) takes a page renderer, a custom object that draws the content for printing.
+    ///
+    /// If the [`showsPageRange`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/showspagerange) property is [`true`](https://developer.apple.com/documentation/swift/true), the number of pages is more than 1, and you assign an object to any of these properties except for the [`printingItems`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/printingitems) property, the printing options include a control that allows users to select a page range.
+    ///
+    /// When users tap a print button on the app’s user interface, a controller object of the app should respond to the action message by obtaining the shared instance of [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) and preparing it for the print job. When the app calls one of the `present...` methods (for example, [`presentAnimated:completionHandler:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/present(animated:completionhandler:))), [`UIPrintInteractionController`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller) displays a view containing printing options. This interface is simple, allowing users to select a printer, specify the number of copies and possibly a range of pages, and choose single-sided or double-sided printing (if the printer supports duplex printing). When users make their selections and tap Print, the print job begins.
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/ios/system-capabilities/printing/).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -286,7 +320,13 @@ impl UIPrintInteractionController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate?language=objc)
+    /// An optional set of methods that the delegate of the shared print-interaction controller implements.
+    ///
+    /// ## Overview
+    ///
+    /// If the application has special requirements for content sizes, it can implement [`printInteractionController:choosePaper:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate/printinteractioncontroller(_:choosepaper:)) to return a [`UIPrintPaper`](https://developer.apple.com/documentation/uikit/uiprintpaper) object encapsulating the page size and the printing area to use for a print job. If you want more control of the presentation of the printing options, the delegate can return a view controller that owns the printing-options view in an implementation of [`printInteractionControllerParentViewController:`](https://developer.apple.com/documentation/uikit/uiprintinteractioncontrollerdelegate/printinteractioncontrollerparentviewcontroller(_:)). The delegate can also implement methods that are invoked when the printing user interface is presented and when it is dismissed, and when the print job begins and ends.
+    ///
+    ///
     pub unsafe trait UIPrintInteractionControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

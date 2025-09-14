@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanagerdelegate?language=objc)
+    /// A delegate that receives updates about ambient pressure, water pressure, water temperature, and submersion events.
+    ///
+    /// ## Overview
+    ///
+    /// The system calls your delegate’s methods to provide updated data to your app. When the watch isn’t submerged, your app receives event, measurement, and error messages. However, the measurement updates include only surface pressure and submersion state data. After submersion, the measurement updates include depth and water pressure data. The watch also begins receiving water temperature updates.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The system calls all the delegate’s methods on an anonymous background queue. Typically, you need to dispatch this data to the main queue or pass it to a [`MainActor`](https://developer.apple.com/documentation/swift/mainactor) object before updating the user interface.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system sends measurement and temperature updates three times a second while the watch is submerged. When the watch is on the surface, the system provides updates at a slower rate, and may stop providing updates if the watch isn’t moving.
+    ///
+    ///
     pub unsafe trait CMWaterSubmersionManagerDelegate: NSObjectProtocol {
         #[cfg(feature = "CMWaterSubmersionData")]
         #[unsafe(method(manager:didUpdateEvent:))]
@@ -44,7 +60,48 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanager?language=objc)
+    /// An object for managing the collection of pressure and temperature data during submersion.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to receive live depth, water pressure, and water temperature data on Apple Watch Ultra.
+    ///
+    /// Start by assigning a usage description using the [`NSMotionUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsmotionusagedescription) key in your app target’s information property list. You also need to include an entitlement to access the live submersion data.
+    ///
+    /// To access data for dives with a maximum depth of 6 m, add the Shallow Depth and Pressure capability to your app. For more information, see [Adding capabilities to your app](https://developer.apple.com/documentation/xcode/adding-capabilities-to-your-app).
+    ///
+    /// To enable a maximum depth of 40 m, you must apply for the full Submerged Depth and Pressure entitlement. For more information, see [Express interest in the Submerged Depth and Pressure API](https://developer.apple.com/contact/request/submerged-depth-pressure-api/).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  As the wearer approaches the maximum depth, the system sends a measurement with an [`CMWaterSubmersionDepthStateApproachingMaxDepth`](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/approachingmaxdepth) submersion state. When they pass the maximum depth, it sends a [`CMWaterSubmersionDepthStatePastMaxDepth`](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/pastmaxdepth) state, and if they continue to descent past the maximum depth, it sends a [`CMWaterSubmersionDepthStateSensorDepthError`](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/sensordeptherror) state.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Next, check whether submersion data is available.
+    ///
+    /// ```swift
+    /// guard CMWaterSubmersionManager.waterSubmersionAvailable else {
+    ///     return false
+    /// }
+    /// ```
+    ///
+    /// If the [`waterSubmersionAvailable`](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanager/watersubmersionavailable) property is [`true`](https://developer.apple.com/documentation/swift/true), instantiate a [`CMWaterSubmersionManager`](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmanager) object and assign a delegate.
+    ///
+    /// ```swift
+    /// // Instantiate the submersion manager.
+    /// submersionManager = CMWaterSubmersionManager()
+    ///
+    ///
+    /// // Assign the submersion manager delegate.
+    /// submersionManager.delegate = self
+    /// ```
+    ///
+    /// Your delegate then begins receiving updates from the system. For more information, see [Accessing submersion data](https://developer.apple.com/documentation/coremotion/accessing-submersion-data).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionManager;

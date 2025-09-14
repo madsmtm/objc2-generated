@@ -10,6 +10,13 @@ use objc2_audio_toolbox::*;
 use crate::*;
 
 extern_class!(
+    /// An object that processes audio in real time.
+    ///
+    /// ## Overview
+    ///
+    /// This processing uses [`AudioUnit`](https://developer.apple.com/documentation/audiotoolbox/audiounit) of type effect, music effect, panner, remote effect, or remote music effect. These effects run in real time and process some number of audio input samples to produce several audio output samples. A delay unit is an example of an effect unit.
+    ///
+    ///
     /// an AVAudioUnit that processes audio in real-time
     ///
     /// An AVAudioUnitEffect represents an audio unit of type kAudioUnitType_Effect,
@@ -19,8 +26,6 @@ extern_class!(
     /// These effects run in real-time and process some x number of audio input
     /// samples to produce x number of audio output samples. A delay unit is an
     /// example of an effect unit.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiouniteffect?language=objc)
     #[unsafe(super(AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "AVAudioNode", feature = "AVAudioUnit"))]

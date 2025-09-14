@@ -12,7 +12,17 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestination?language=objc)
+/// An opaque type that you use to write image data to a URL, data object, or data consumer.
+///
+/// ## Overview
+///
+/// A [`CGImageDestinationRef`](https://developer.apple.com/documentation/imageio/cgimagedestination) object provides an abstract interface for saving image data. Use an image destination to represent a single image, or multiple images packaged together. For example, you might create an image that also contains a thumbnail. You can also use the image destination to add metadata to your images.
+///
+/// An image destination outputs data to a URL, a `CFData` object, or a [`CGDataConsumerRef`](https://developer.apple.com/documentation/coregraphics/cgdataconsumer) object, which you specify at creation time. After you create the image destination, add the image data and properties. When you are done, call [`CGImageDestinationFinalize`](https://developer.apple.com/documentation/imageio/cgimagedestinationfinalize(_:)) to finalize the image data and write it to the output location.
+///
+/// For more information, see [Image I/O Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/ImageIOGuide/imageio_intro/ikpg_intro.html#//apple_ref/doc/uid/TP40005462).
+///
+///
 #[doc(alias = "CGImageDestinationRef")]
 #[repr(C)]
 pub struct CGImageDestination {
@@ -29,36 +39,77 @@ cf_objc2_type!(
 );
 
 extern "C" {
+    /// The desired compression quality to use when writing the image data.
+    ///
+    /// ## Discussion
+    ///
+    /// If present, the value associated with this key must be a `CFNumberRef` data type in the range `0.0` to `1.0`. A value of `1.0` specifies to use lossless compression if destination format supports it. A value of 0.0 implies to use maximum compression.
+    ///
+    ///
     /// Properties which may be passed to "CGImageDestinationAddImage"
     /// * or "CGImageDestinationAddImageFromSource" to effect the output.
     /// * The values apply to a single image of an image destination. *
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationlossycompressionquality?language=objc)
     pub static kCGImageDestinationLossyCompressionQuality: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationbackgroundcolor?language=objc)
+    /// The background color to use when the image has an alpha component, but the destination format doesn’t support alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// If present, the value associated with this key must be a [`CGColorRef`](https://developer.apple.com/documentation/coregraphics/cgcolor) data type without an alpha component of its own. If not present, and if a background color is needed, a white color is used.
+    ///
+    ///
     pub static kCGImageDestinationBackgroundColor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationimagemaxpixelsize?language=objc)
+    /// The maximum width and height of the image, in pixels.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). If present, the destination rescales the image as needed to fit within the maximum width and height. If this key isn’t present, the destination retains the native image size.
+    ///
+    ///
     pub static kCGImageDestinationImageMaxPixelSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationembedthumbnail?language=objc)
+    /// A Boolean value that indicates whether to embed a thumbnail for JPEG and HEIF images.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse).
+    ///
+    ///
     pub static kCGImageDestinationEmbedThumbnail: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationoptimizecolorforsharing?language=objc)
+    /// A Boolean value that indicates whether to create the image using a colorspace.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). Include this key and set it to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to color convert the image using its colorspace, which provides better compatibility with older devices.
+    ///
+    ///
     pub static kCGImageDestinationOptimizeColorForSharing: &'static CFString;
 }
 
 unsafe impl ConcreteType for CGImageDestination {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationgettypeid()?language=objc)
+    /// Returns the unique type identifier of an image destination opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns the Core Foundation type ID for an image destination.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A type identifier is an integer that identifies the opaque type to which a Core Foundation object belongs. You use type IDs in various contexts, such as when you are operating on heterogeneous collections.
+    ///
+    ///
     #[doc(alias = "CGImageDestinationGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -70,7 +121,13 @@ unsafe impl ConcreteType for CGImageDestination {
 }
 
 impl CGImageDestination {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcopytypeidentifiers()?language=objc)
+    /// Returns an array of the uniform type identifiers that are supported for image destinations.
+    ///
+    /// ## Return Value
+    ///
+    /// Returns an array of the uniform type identifiers that image destinations support. For a list of system-declared and third-party identifiers, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers).
+    ///
+    ///
     #[doc(alias = "CGImageDestinationCopyTypeIdentifiers")]
     #[inline]
     pub unsafe fn type_identifiers() -> CFRetained<CFArray> {
@@ -83,7 +140,23 @@ impl CGImageDestination {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithdataconsumer(_:_:_:_:)?language=objc)
+    /// Creates an image destination that writes to the specified data consumer.
+    ///
+    /// Parameters:
+    /// - consumer: A data consumer object to store the image data.
+    ///
+    /// - type: The uniform type identifier of the resulting image file. For a list of system-declared and third-party identifiers, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers).
+    ///
+    /// - count: The number of images (not including thumbnail images) you want to include in the image file.
+    ///
+    /// - options: Future options. Specify `NULL` for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An image destination, or `NULL` if an error occurs. You are responsible for releasing this object using [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -111,7 +184,23 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithdata(_:_:_:_:)?language=objc)
+    /// Creates an image destination that writes to a Core Foundation mutable data object.
+    ///
+    /// Parameters:
+    /// - data: The data object in which to store the image data.
+    ///
+    /// - type: The uniform type identifier of the resulting image file. For a list of system-declared and third-party identifiers, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers).
+    ///
+    /// - count: The number of images (not including thumbnail images) you want to include in the image file.
+    ///
+    /// - options: Future options. Specify `NULL` for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An image destination, or `NULL` if an error occurs. You are responsible for releasing this object using [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -137,7 +226,23 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcreatewithurl(_:_:_:_:)?language=objc)
+    /// Creates an image destination that writes image data to the specified URL.
+    ///
+    /// Parameters:
+    /// - url: The URL at which to write the image data. This object overwrites any data at the specified URL.
+    ///
+    /// - type: The uniform type identifier of the resulting image file. For a list of system-declared and third-party identifiers, see [`Uniform Type Identifiers`](https://developer.apple.com/documentation/uniformtypeidentifiers).
+    ///
+    /// - count: The number of images (not including thumbnail images) you want to include in the image file.
+    ///
+    /// - options: Future options. Specify `NULL` for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An image destination, or `NULL` if an error occurs. You are responsible for releasing this object using [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -163,7 +268,13 @@ impl CGImageDestination {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationsetproperties(_:_:)?language=objc)
+    /// Applies one or more properties to all images in an image destination.
+    ///
+    /// Parameters:
+    /// - idst: The image destination to modify
+    ///
+    /// - properties: A dictionary that contains the properties to apply. For a list of possible values, see [Image Properties](https://developer.apple.com/documentation/imageio/image-properties) and [Configuring the Image Behaviors](https://developer.apple.com/documentation/imageio/cgimagedestination#configuring-the-image-behaviors).
+    ///
     ///
     /// # Safety
     ///
@@ -181,7 +292,21 @@ impl CGImageDestination {
         unsafe { CGImageDestinationSetProperties(self, properties) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimage(_:_:_:)?language=objc)
+    /// Adds an image to an image destination.
+    ///
+    /// Parameters:
+    /// - idst: The image destination to modify.
+    ///
+    /// - image: The image to add.
+    ///
+    /// - properties: An optional dictionary that specifies the properties of the added image. Specify `NULL` to omit any additional properties. For a list of possible values, see [Image Properties](https://developer.apple.com/documentation/imageio/image-properties) and [Configuring the Image Behaviors](https://developer.apple.com/documentation/imageio/cgimagedestination#configuring-the-image-behaviors).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function logs an error if you add more images than what you specified when you created the image destination.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +326,17 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImage(self, image, properties) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimagefromsource(_:_:_:_:)?language=objc)
+    /// Adds an image from an image source to an image destination.
+    ///
+    /// Parameters:
+    /// - idst: The image destination to modify.
+    ///
+    /// - isrc: An image source that contains the image.
+    ///
+    /// - index: The index of the image in the image source. Specify a valid, zero-based index into the images of the image source. If the index is invalid, this method returns `NULL`.
+    ///
+    /// - properties: An optional dictionary that specifies additional image property information. The added image automatically inherits the properties found in the image source. Use this dictionary to add properties to the image, or to modify one of the inherited properties. To remove an inherited property altogether, specify `NULL` for the property’s value. For a list of possible values, see [Image Properties](https://developer.apple.com/documentation/imageio/image-properties) and [Configuring the Image Behaviors](https://developer.apple.com/documentation/imageio/cgimagedestination#configuring-the-image-behaviors).
+    ///
     ///
     /// # Safety
     ///
@@ -227,7 +362,23 @@ impl CGImageDestination {
         unsafe { CGImageDestinationAddImageFromSource(self, isrc, index, properties) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationfinalize(_:)?language=objc)
+    /// Writes image data and properties to the data, URL, or data consumer associated with the image destination.
+    ///
+    /// Parameters:
+    /// - idst: An image destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the image destination successfully finalized the images, or `false` if an error occurred.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this method as the final step in saving your images. The output of the image destination isn’t valid until you call this method. After calling this function, you can’t add any more data to the image destination.
+    ///
+    ///
     #[doc(alias = "CGImageDestinationFinalize")]
     #[inline]
     pub unsafe fn finalize(&self) -> bool {
@@ -237,8 +388,6 @@ impl CGImageDestination {
         unsafe { CGImageDestinationFinalize(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddimageandmetadata(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -265,86 +414,123 @@ impl CGImageDestination {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationpreservegainmap?language=objc)
+    /// A Boolean value that indicates whether to include a HEIF-embedded gain map in the image data.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). If you scale the destination image using the [`kCGImageDestinationImageMaxPixelSize`](https://developer.apple.com/documentation/imageio/kcgimagedestinationimagemaxpixelsize) key, the destination also scales the gain map.
+    ///
+    ///
     pub static kCGImageDestinationPreserveGainMap: &'static CFString;
 }
 
 extern "C" {
+    /// The metadata tags to include with the image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is a [`CGImageMetadataRef`](https://developer.apple.com/documentation/imageio/cgimagemetadata) type. When you specify this key, the image destination ovewrites all EXIF, IPTC, and XMP metadata. If you want to merge the new tags with the existing metadata, include the [`kCGImageDestinationMergeMetadata`](https://developer.apple.com/documentation/imageio/kcgimagedestinationmergemetadata) key in addition to this key.
+    ///
+    ///
     /// * Keys which may be used in the 'options' dictionary of
     /// * "CGImageDestinationCopyImageSource" to effect the output.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationmetadata?language=objc)
     pub static kCGImageDestinationMetadata: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationmergemetadata?language=objc)
+    /// A Boolean value that indicates whether to merge new metadata with the image’s existing metadata.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse).
+    ///
+    /// If you set this key to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), the image destination merges the information in the [`kCGImageDestinationMetadata`](https://developer.apple.com/documentation/imageio/kcgimagedestinationmetadata) key with the image’s existing metadata. Specifically, if a tag doesn’t exist in the source, the destination adds it. If the tag exists in the source, the destination updates its value. To remove a tag, set the value of the appropriate key to [`kCFNull`](https://developer.apple.com/documentation/corefoundation/kcfnull).
+    ///
+    ///
     pub static kCGImageDestinationMergeMetadata: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatashouldexcludexmp?language=objc)
+    /// A Boolean value that indicates whether to exclude XMP data from the destination.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), which causes the destination to include XMP metadata. If you use this flag in conjunction with the [`kCGImageDestinationMetadata`](https://developer.apple.com/documentation/imageio/kcgimagedestinationmetadata) flag, the image destination preserves EXIF and IPTC tags but doesn’t write XMP packets to the file.
+    ///
+    ///
     pub static kCGImageMetadataShouldExcludeXMP: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagemetadatashouldexcludegps?language=objc)
+    /// A Boolean value that indicates whether to exclude GPS metadata from EXIF data or the corresponding XMP tags.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFBooleanRef`](https://developer.apple.com/documentation/corefoundation/cfboolean) value. The default value is [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), which includes GPS information in the metadata. This flag doesn’t filter any proprietary location data in the manufacturer’s EXIF MakerNote or in custom XMP properties.
+    ///
+    ///
     pub static kCGImageMetadataShouldExcludeGPS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationdatetime?language=objc)
+    /// The date and time information to associate with the image.
+    ///
+    /// ## Discussion
+    ///
+    /// This property puts the specified date and time information into the DateTime parameters of the image’s metadata. Specify the value of this key using a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) or [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata). For strings, the value must be in EXIF DateTime or ISO 8601 DateTime format.
+    ///
+    /// This option is mutually exclusive with [`kCGImageDestinationMetadata`](https://developer.apple.com/documentation/imageio/kcgimagedestinationmetadata).
+    ///
+    ///
     pub static kCGImageDestinationDateTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationorientation?language=objc)
+    /// The orientation of the image, specified as an EXIF value in the range 1 to 8.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber), and the number must be an integer in the range `1`–`8`. For more information about the meaning of each number, see the orientation field in the EXIF specification.
+    ///
+    /// This option is mutually exclusive with [`kCGImageDestinationMetadata`](https://developer.apple.com/documentation/imageio/kcgimagedestinationmetadata).
+    ///
+    ///
     pub static kCGImageDestinationOrientation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyencoder?language=objc)
     pub static kCGImagePropertyEncoder: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcencoder?language=objc)
     pub static kCGImagePropertyASTCEncoder: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertypvrencoder?language=objc)
     pub static kCGImagePropertyPVREncoder: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertybcencoder?language=objc)
     pub static kCGImagePropertyBCEncoder: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertybcformat?language=objc)
     pub static kCGImagePropertyBCFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize?language=objc)
     pub static kCGImagePropertyASTCBlockSize: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize4x4?language=objc)
     pub static kCGImagePropertyASTCBlockSize4x4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagepropertyastcblocksize8x8?language=objc)
     pub static kCGImagePropertyASTCBlockSize8x8: &'static CFString;
 }
 
 impl CGImageDestination {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationcopyimagesource(_:_:_:_:)?language=objc)
-    ///
     /// # Safety
     ///
     /// - `options` generic must be of the correct type.
@@ -370,7 +556,21 @@ impl CGImageDestination {
         unsafe { CGImageDestinationCopyImageSource(self, isrc, options, err) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagedestinationaddauxiliarydatainfo(_:_:_:)?language=objc)
+    /// Sets the auxiliary data, such as mattes and depth information, that accompany the image.
+    ///
+    /// Parameters:
+    /// - idst: The image destination to modify.
+    ///
+    /// - auxiliaryImageDataType: The type of auxiliary information you want to add. For a list of possible values, see [Auxiliary Data Types](https://developer.apple.com/documentation/imageio/individual-image-properties#auxiliary-data-types).
+    ///
+    /// - auxiliaryDataInfoDictionary: A dictionary that contains the [`kCGImageAuxiliaryDataInfoData`](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfodata), [`kCGImageAuxiliaryDataInfoDataDescription`](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfodatadescription), and [`kCGImageAuxiliaryDataInfoMetadata`](https://developer.apple.com/documentation/imageio/kcgimageauxiliarydatainfometadata) keys. Use those keys to describe the depth or matte information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this method after you add an image to the image destination. This method adds the specified depth or matte information to the most recently added image.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -401,72 +601,58 @@ impl CGImageDestination {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencoderequest?language=objc)
     pub static kCGImageDestinationEncodeRequest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetosdr?language=objc)
     pub static kCGImageDestinationEncodeToSDR: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetoisohdr?language=objc)
     pub static kCGImageDestinationEncodeToISOHDR: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetoisogainmap?language=objc)
     pub static kCGImageDestinationEncodeToISOGainmap: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencoderequestoptions?language=objc)
     pub static kCGImageDestinationEncodeRequestOptions: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodebaseissdr?language=objc)
     pub static kCGImageDestinationEncodeBaseIsSDR: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodetonemapmode?language=objc)
     pub static kCGImageDestinationEncodeTonemapMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodeisbaseimage?language=objc)
     pub static kCGImageDestinationEncodeIsBaseImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodebasecolorspace?language=objc)
     pub static kCGImageDestinationEncodeBaseColorSpace: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodebasepixelformatrequest?language=objc)
     pub static kCGImageDestinationEncodeBasePixelFormatRequest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegenerategainmapwithbaseimage?language=objc)
     pub static kCGImageDestinationEncodeGenerateGainMapWithBaseImage: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegainmappixelformatrequest?language=objc)
     pub static kCGImageDestinationEncodeGainMapPixelFormatRequest: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodegainmapsubsamplefactor?language=objc)
     pub static kCGImageDestinationEncodeGainMapSubsampleFactor: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imageio/kcgimagedestinationencodealternatecolorspace?language=objc)
     pub static kCGImageDestinationEncodeAlternateColorSpace: &'static CFString;
 }
 

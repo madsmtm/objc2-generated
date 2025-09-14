@@ -12,26 +12,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/enumerationoptions?language=objc)
+/// Values that describe options for enumerating text layout fragments.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutFragmentEnumerationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragmentenumerationoptions/nstextlayoutfragmentenumerationoptionsnone?language=objc)
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/enumerationoptions/reverse?language=objc)
+/// Causes the enumeration to start from the last element.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsReverse")]
         const Reverse = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/enumerationoptions/estimatessize?language=objc)
+/// When enumerating, tell the layout fragments to estimate their size.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEstimatesSize")]
         const EstimatesSize = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/enumerationoptions/ensureslayout?language=objc)
+/// When enumerating, tell the layout fragments to layout their contents.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresLayout")]
         const EnsuresLayout = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/enumerationoptions/ensuresextralinefragment?language=objc)
+/// Synthesize the extra line fragment when necessary.
         #[doc(alias = "NSTextLayoutFragmentEnumerationOptionsEnsuresExtraLineFragment")]
         const EnsuresExtraLineFragment = 1<<3;
     }
@@ -45,22 +44,22 @@ unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.enum?language=objc)
+/// Values that describe the possible layout states.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentState(pub NSUInteger);
 impl NSTextLayoutFragmentState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.enum/none?language=objc)
+    /// No layout information is available.
     #[doc(alias = "NSTextLayoutFragmentStateNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.enum/estimatedusagebounds?language=objc)
+    /// The text layout manager hasn’t performed a full layout yet for the region covered by this layout fragment and is returning an estimated bounds.
     #[doc(alias = "NSTextLayoutFragmentStateEstimatedUsageBounds")]
     pub const EstimatedUsageBounds: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.enum/calculatedusagebounds?language=objc)
+    /// The layout fragment measurements are available without text line fragments.
     #[doc(alias = "NSTextLayoutFragmentStateCalculatedUsageBounds")]
     pub const CalculatedUsageBounds: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment/state-swift.enum/layoutavailable?language=objc)
+    /// Measurements for the text line fragments and layout fragment are available.
     #[doc(alias = "NSTextLayoutFragmentStateLayoutAvailable")]
     pub const LayoutAvailable: Self = Self(3);
 }
@@ -74,7 +73,7 @@ unsafe impl RefEncode for NSTextLayoutFragmentState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutfragment?language=objc)
+    /// A class that represents the layout fragment typically corresponding to a rendering surface, such as a layer or view subclass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTextLayoutFragment;

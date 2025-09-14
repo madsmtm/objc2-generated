@@ -10,7 +10,23 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset?language=objc)
+    /// The detailed metadata for a searchable item.
+    ///
+    /// ## Overview
+    ///
+    /// A `CSSearchableItemAttributeSet` contains an extensive set of attributes that describe your app’s content. Attributes include information such as its title and a brief description. They can also refer to who created the item, what kind of data it represents, when someone created it, and more. During the indexing process, you create [`CSSearchableItem`](https://developer.apple.com/documentation/corespotlight/cssearchableitem) objects and use a `CSSearchableItemAttributeSet` to fill in the attributes for that item. During a search, you can query the index for items with attributes that match specific values.
+    ///
+    /// When creating a [`CSSearchableItem`](https://developer.apple.com/documentation/corespotlight/cssearchableitem), it’s important to fill out as much information in the accompanying `CSSearchableItemAttributeSet` object as possible. You don’t have to provide values for every attribute. Instead, choose attributes that match the domain of your content. This type divides attributes into groups such as media, documents, events, places, music, images, and more. You can also add custom attributes to describe new types of content. When defining custom attributes, be as specific as possible in your definition, and provide a value for the [`contentTypeTree`](https://developer.apple.com/documentation/corespotlight/cssearchableitemattributeset/contenttypetree) property so your custom attribute inherits from a known type.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Modify a `CSSearchableItemAttributeSet` object on only one thread at a time. Concurrent access to properties in an attribute set has undefined behavior.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSSearchableItemAttributeSet;
@@ -70,7 +86,26 @@ impl CSSearchableItemAttributeSet {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cslocalizedstring?language=objc)
+    /// An object that displays localized text in search results related to your app.
+    ///
+    /// ## Overview
+    ///
+    /// The `CSLocalizedString` class helps you localize text in searchable items. You can use a `CSLocalizedString` object in place of an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object to display localized text in search results related to your app.
+    ///
+    /// For example, you might use the following code to define a `CSLocalizedString` object for a searchable item you want to identify as “Song” in English:
+    ///
+    /// ```objc
+    /// CSSearchableItem *item = [CSSearchableItem new];
+    ///     item.uniqueIdentifier = @"song";
+    ///  
+    ///     CSSearchableItemAttributeSet *attributes = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:(NSString *)kUTTypeItem];
+    ///     item.attributeSet = attributes;
+    ///  
+    ///     CSLocalizedString *displayName = [[CSLocalizedString alloc] initWithLocalizedStrings:@{@"en":@"Song", @"fr":@"Chanson"}];
+    ///     attributes.displayName = displayName.localizedString;
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSString, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSLocalizedString;
@@ -151,7 +186,15 @@ impl CSLocalizedString {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cscustomattributekey?language=objc)
+    /// A key associated with a custom attribute for a searchable item.
+    ///
+    /// ## Overview
+    ///
+    /// The `CSCustomAttributeKey` class defines a key that you can associate with a custom attribute for a searchable item. Item attributes provide metadata about the item that can be indexed and displayed to users in search results.
+    ///
+    /// Although the Core Spotlight framework provides several predefined attributes, such as title and description, you can create a `CSCustomAttributeKey` object to specify a custom attribute that makes sense in your domain.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSCustomAttributeKey;

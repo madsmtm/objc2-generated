@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype?language=objc)
+/// Constants that describe the different media destination types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaDestinationType(pub NSInteger);
 impl INMediaDestinationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/unknown?language=objc)
+    /// A type where the media destination is unknown.
     #[doc(alias = "INMediaDestinationTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/library?language=objc)
+    /// A type where the media destination is a library.
     #[doc(alias = "INMediaDestinationTypeLibrary")]
     pub const Library: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediadestinationtype/playlist?language=objc)
+    /// A type where the media destination is a playlist.
     #[doc(alias = "INMediaDestinationTypePlaylist")]
     pub const Playlist: Self = Self(2);
 }

@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A softmax kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -23,8 +24,6 @@ extern_class!(
     /// objects. This filter computes the same result for MPSMatrices as
     /// MPSCNNSoftMax filter does for MPSImages by interpreting the columns
     /// of the matrix as feature channels, that is the sum runs over column indices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmax?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -238,6 +237,7 @@ impl MPSMatrixSoftMax {
 }
 
 extern_class!(
+    /// A logarithmic softmax kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -252,8 +252,6 @@ extern_class!(
     /// objects. This filter computes the same result for MPSMatrices as
     /// MPSCNNLogSoftMax filter does for MPSImages by interpreting the columns
     /// of the matrix as feature channels, that is the sum runs over column indices.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmax?language=objc)
     #[unsafe(super(MPSMatrixSoftMax, MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -371,6 +369,7 @@ impl MPSMatrixLogSoftMax {
 }
 
 extern_class!(
+    /// A gradient softmax kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -385,8 +384,6 @@ extern_class!(
     /// the original input to the forward MPSMatrixSoftMax operation, Y is
     /// the output of the forward MPSMatrixSoftMax operation, and dL_dY is the
     /// gradient of the loss function with respect to Y.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixsoftmaxgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]
@@ -594,6 +591,7 @@ impl MPSMatrixSoftMaxGradient {
 }
 
 extern_class!(
+    /// A logarithmic gradient softmax kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -608,8 +606,6 @@ extern_class!(
     /// the original input to the forward MPSMatrixLogSoftMax operation, Y is
     /// the output of the forward MPSMatrixLogSoftMax operation, and dL_dY is the
     /// gradient of the loss function with respect to Y.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixlogsoftmaxgradient?language=objc)
     #[unsafe(super(MPSMatrixSoftMaxGradient, MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "MPSMatrixTypes"))]

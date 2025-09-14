@@ -8,14 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Configuration that represents the configuration of a Virtio graphics device for a Linux VM.
     /// Configuration for a Virtio graphics device.
     ///
     /// This device configuration creates a graphics device using paravirtualization.
     /// The emulated device follows the Virtio GPU Device specification.
     ///
     /// This device can be used to attach a display to be shown in a VZVirtualMachineView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtiographicsdeviceconfiguration?language=objc)
     #[unsafe(super(VZGraphicsDeviceConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZGraphicsDeviceConfiguration")]

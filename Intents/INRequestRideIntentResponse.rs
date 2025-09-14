@@ -7,48 +7,96 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRequestRideIntentResponseCode(pub NSInteger);
 impl INRequestRideIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/unspecified?language=objc)
+    /// There is no specified response code.
     #[doc(alias = "INRequestRideIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/inprogress?language=objc)
+    /// You are in the process of handling the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Avoid using this response code when possible. Use it for situations where you sent the ride information to your service but did not receive information back in a timely manner.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeInProgress")]
     #[deprecated = "INRequestRideIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your ride service acknowledged receipt of the ride information and is actively working on completing the booking. Use the [`phase`](https://developer.apple.com/documentation/intents/inridestatus/phase) property of the [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object you create to indicate the progress toward fulfilling the request.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failure?language=objc)
+    /// You were unable to book the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from booking the ride.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to book the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you can’t process the request for a reason not covered by any other response code. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
+    /// The user must launch your app and verify their credentials to continue.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you require authentication to book rides and the user is not currently authenticated. Do not use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials")]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchnoserviceinarea?language=objc)
+    /// You do not provide rides in the area requested by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when the pickup or drop-off locations are outside of your service area. Do not use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchNoServiceInArea")]
     pub const FailureRequiringAppLaunchNoServiceInArea: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
+    /// Your service is temporarily unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you are unable to reach your service to book the ride. Do not use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(
         alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
     pub const FailureRequiringAppLaunchServiceTemporarilyUnavailable: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchpreviousrideneedscompletion?language=objc)
+    /// An existing ride is currently in progress and the app can’t book a new ride.
     #[doc(
         alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchPreviousRideNeedsCompletion"
     )]
     pub const FailureRequiringAppLaunchPreviousRideNeedsCompletion: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/failurerequiringapplaunchridescheduledtoofar?language=objc)
+    /// The scheduled ride is out of the ride area and requires the user to open the app to fix the problem.
     #[doc(alias = "INRequestRideIntentResponseCodeFailureRequiringAppLaunchRideScheduledTooFar")]
     pub const FailureRequiringAppLaunchRideScheduledTooFar: Self = Self(10);
 }
@@ -62,7 +110,17 @@ unsafe impl RefEncode for INRequestRideIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrequestrideintentresponse?language=objc)
+    /// Your app’s response to a request ride intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INRequestRideIntentResponse`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse) object contains your app’s response to a ride-booking request. After creating your response object, assign an appropriate object to the [`rideStatus`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse/ridestatus) property. The ride status object provides the details about how you handled the ride, including details about selected vehicle type, pricing, driver information, pickup time, pickup location, drop-off location, and so on. Siri and Maps display your response information to the user during the confirmation and booking phases.
+    ///
+    /// Siri and Maps expect your response to contain a valid [`INRideStatus`](https://developer.apple.com/documentation/intents/inridestatus) object with information about the ride. Specifically, your status object must include a valid [`INRideOption`](https://developer.apple.com/documentation/intents/inrideoption) object and you should always specify an activity object in the [`userActivityForCancelingInApplication`](https://developer.apple.com/documentation/intents/inridestatus/useractivityforcancelinginapplication) property of your status object. When handling the intent, the [`INRequestRideIntentResponseCodeUnspecified`](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/unspecified) and [`INRequestRideIntentResponseCodeReady`](https://developer.apple.com/documentation/intents/inrequestrideintentresponsecode/ready) codes generate an error and should not be used.
+    ///
+    /// You create an [`INRequestRideIntentResponse`](https://developer.apple.com/documentation/intents/inrequestrideintentresponse) object in the [`confirmRequestRide:completion:`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling/confirm(intent:completion:)) and [`handleRequestRide:completion:`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INRequestRideIntentHandling`](https://developer.apple.com/documentation/intents/inrequestrideintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

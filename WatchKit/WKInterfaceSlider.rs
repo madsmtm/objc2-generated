@@ -9,7 +9,28 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceslider?language=objc)
+    /// An interface element that lets users select a single floating-point value from a range of values.
+    ///
+    /// ## Overview
+    ///
+    /// You configure the appearance of sliders in your storyboard file, including the images to display for the minimum and maximum value. At runtime, you use a slider object to enable the slider or set its value.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a slider object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var mySlider: WKInterfaceSlider!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceSlider* mySlider;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates a new instance of this class and assigns it to your outlet. At that point, you can use the object in your outlet to make changes to the onscreen slider.
+    ///
+    /// When the user changes the value of a slider, WatchKit delivers the new value to the slider’s action method. The format of a slider’s action method is as follows:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func sliderAction(value: Float)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)sliderAction:(float)value"], metadata: None }] }] })
+    /// Declare a method of this form in the interface controller class used to receive the slider’s new value. You can change the method name to anything you like. When configuring the slider in Xcode, connect its selector to your custom action method.
+    ///
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your slider in your storyboard file. The following table lists the attributes you can configure in your storyboard and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Value" }] }], [Paragraph { inline_content: [Text { text: "The initial numerical value of the slider. This value must be between the specified minimum and maximum values. Clicking the slider buttons decreases or increases the current value until it reaches the minimum or maximum value." }] }]], [[Paragraph { inline_content: [Text { text: "Minimum" }] }], [Paragraph { inline_content: [Text { text: "The smallest numerical value allowed by the slider." }] }]], [[Paragraph { inline_content: [Text { text: "Maximum" }] }], [Paragraph { inline_content: [Text { text: "The largest numerical value allowed by the slider." }] }]], [[Paragraph { inline_content: [Text { text: "Steps" }] }], [Paragraph { inline_content: [Text { text: "The number of steps between the minimum and maximum values. The slider uses the number of steps to determine how much to increment or decrement the value when the user interacts with the slider controls." }] }]], [[Paragraph { inline_content: [Text { text: "Continuous" }] }], [Paragraph { inline_content: [Text { text: "The display style for the slider. When enabled, the slider value displays its value using a solid bar. When disabled, the slider displays its value using discrete steps." }] }]], [[Paragraph { inline_content: [Text { text: "Color" }] }], [Paragraph { inline_content: [Text { text: "The color of the slider bar. You can also set the color programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceSlider/setColor(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]], [[Paragraph { inline_content: [Text { text: "Min Image" }] }], [Paragraph { inline_content: [Text { text: "The name of the image to display next to the minimum value of the slider. This image must be bundled in the WatchKit app." }] }]], [[Paragraph { inline_content: [Text { text: "Max Image" }] }], [Paragraph { inline_content: [Text { text: "The name of the image to display next to the maximum value of the slider. This image must be bundled with your WatchKit app." }] }]], [[Paragraph { inline_content: [Text { text: "Enabled" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the slider is enabled and whether it sends events when its value changes." }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

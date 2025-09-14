@@ -6,14 +6,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
+    /// A class that represents a storage device in a VM.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t create a `VZStorageDevice` directly. Use one of its subclasses, such as [`VZUSBMassStorageDevice`](https://developer.apple.com/documentation/virtualization/vzusbmassstoragedevice), instead.
+    ///
+    ///
     /// Class representing a storage device in a virtual machine.
     ///
     /// VZStorageDevice should not be instantiated directly.
     /// One of its subclasses like VZUSBMassStorageDevice should be used instead.
     ///
     /// See: VZUSBMassStorageDevice
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzstoragedevice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZStorageDevice;

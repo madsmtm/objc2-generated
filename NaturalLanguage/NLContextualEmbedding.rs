@@ -7,38 +7,38 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey?language=objc)
+/// Contextual embedding keys.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NLContextualEmbeddingKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/languages?language=objc)
+    /// A key that identifies the languages in a contextual embedding.
     pub static NLContextualEmbeddingKeyLanguages: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/scripts?language=objc)
+    /// A key that identifies the scripts in a contextual embedding.
     pub static NLContextualEmbeddingKeyScripts: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/revision?language=objc)
+    /// A key that identifies the revision for a contextual embedding.
     pub static NLContextualEmbeddingKeyRevision: &'static NLContextualEmbeddingKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult?language=objc)
+/// The status of an asset request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLContextualEmbeddingAssetsResult(pub NSInteger);
 impl NLContextualEmbeddingAssetsResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/available?language=objc)
+    /// A result that indicates assets are available.
     #[doc(alias = "NLContextualEmbeddingAssetsResultAvailable")]
     pub const Available: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/notavailable?language=objc)
+    /// A result that indicates assets aren’t available.
     #[doc(alias = "NLContextualEmbeddingAssetsResultNotAvailable")]
     pub const NotAvailable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult/error?language=objc)
+    /// A result that indicates the framework encounters an error.
     #[doc(alias = "NLContextualEmbeddingAssetsResultError")]
     pub const Error: Self = Self(2);
 }
@@ -52,7 +52,27 @@ unsafe impl RefEncode for NLContextualEmbeddingAssetsResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding?language=objc)
+    /// A model that computes sequences of embedding vectors for natural language utterances.
+    ///
+    /// ## Overview
+    ///
+    /// Starting in iOS 17 and macOS 14, the framework supports 27 languages across three models:
+    ///
+    /// - Latin — including Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Hungarian, Indonesian, Italian, Norwegian, Polish, Portuguese, Romanian, Slovak, Swedish, Spanish, Turkish, and Vietnamese
+    ///
+    /// - Cyrillic — including Bulgarian, Kazakh, Russian, and Ukrainian
+    ///
+    /// - Chinese, Japanese, and Korean
+    ///
+    /// In iOS 18 and macOS 15, the framework expands language support to include three additional models:
+    ///
+    /// - Arabic
+    ///
+    /// - Thai
+    ///
+    /// - Indic — including Hindi, Marathi, Bangla, Urdu, Punjabi, Gujarati, Tamil, Telugu, Kannada, and Malayalam
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbedding;
@@ -166,7 +186,7 @@ impl NLContextualEmbedding {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingresult?language=objc)
+    /// An object that represents the embedding vector result from applying a contextual embedding to a string.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NLContextualEmbeddingResult;

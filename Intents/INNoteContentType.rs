@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype?language=objc)
+/// Constants indicating the type of content represented by the note.
 // NS_ENUM
 #[deprecated = "This enum is no longer used"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNoteContentType(pub NSInteger);
 impl INNoteContentType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/unknown?language=objc)
+    /// An unknown type of note content.
     #[doc(alias = "INNoteContentTypeUnknown")]
     #[deprecated = "This enum is no longer used"]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/text?language=objc)
+    /// A note containing text.
     #[doc(alias = "INNoteContentTypeText")]
     #[deprecated = "This enum is no longer used"]
     pub const Text: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/innotecontenttype/image?language=objc)
+    /// A note containing an image.
     #[doc(alias = "INNoteContentTypeImage")]
     #[deprecated = "This enum is no longer used"]
     pub const Image: Self = Self(2);

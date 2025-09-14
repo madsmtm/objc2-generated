@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The MSMessageLayout is an abstract base for classes that define a messages presentation in the conversation transcript.
+    /// An abstract base class that defines the appearance of [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) objects in the conversation transcript.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagelayout?language=objc)
+    /// ## Overview
+    ///
+    /// You do not subclass `MSMessageLayout` or create instances of it directly. Instead, instantiate the provided concrete subclass, the [`MSMessageTemplateLayout`](https://developer.apple.com/documentation/messages/msmessagetemplatelayout) class.
+    ///
+    ///
+    /// The MSMessageLayout is an abstract base for classes that define a messages presentation in the conversation transcript.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSMessageLayout;

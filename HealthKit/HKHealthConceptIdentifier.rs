@@ -8,29 +8,44 @@ use crate::*;
 
 /// A domain that represents a health concept.
 ///
+/// ## Overview
+///
+/// A health concept describes what type of medical information a concept belongs to. For example, the medication domain groups all medication concepts together.
+///
+///
+/// A domain that represents a health concept.
+///
 /// A health concept describes what type of medical information a concept belongs to.
 /// For example, the medication domain groups all medication concepts together.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomain?language=objc)
 // NS_TYPED_ENUM
 pub type HKHealthConceptDomain = NSString;
 
 extern "C" {
     /// The domain that represents medication concepts.
     ///
+    /// ## Discussion
+    ///
     /// Use with identifiers for medications, such as ibuprofen or insulin.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomain/medication?language=objc)
+    ///
+    /// The domain that represents medication concepts.
+    ///
+    /// Use with identifiers for medications, such as ibuprofen or insulin.
     pub static HKHealthConceptDomainMedication: &'static HKHealthConceptDomain;
 }
 
 extern_class!(
     /// A unique identifier for a specific health concept within a domain.
     ///
+    /// ## Overview
+    ///
+    /// Each identifier points to one concept inside a domain. For example, within the medication domain, one identifier might represent ibuprofen while another represents insulin.
+    ///
+    ///
+    /// A unique identifier for a specific health concept within a domain.
+    ///
     /// Each identifier points to one concept inside a domain. For example, within the medication
     /// domain, one identifier might represent ibuprofen while another represents insulin.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKHealthConceptIdentifier;

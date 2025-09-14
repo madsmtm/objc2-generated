@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptor?language=objc)
+    /// A description of where to store GPU counter information at the start and end of a resource state pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptor;
@@ -111,7 +111,7 @@ impl DefaultRetained for MTLResourceStatePassSampleBufferAttachmentDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepasssamplebufferattachmentdescriptorarray?language=objc)
+    /// An array of sample buffer attachments for a resource state pass.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
@@ -167,9 +167,8 @@ impl DefaultRetained for MTLResourceStatePassSampleBufferAttachmentDescriptorArr
 }
 
 extern_class!(
+    /// A configuration for a resource state pass, used to create a resource state command encoder.
     /// MTLResourceStatePassDescriptor represents a collection of attachments to be used to create a concrete resourceState command encoder
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourcestatepassdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLResourceStatePassDescriptor;

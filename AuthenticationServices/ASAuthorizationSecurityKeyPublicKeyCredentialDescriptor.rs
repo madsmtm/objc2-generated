@@ -7,39 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A structure that defines the security key credential transport type.
 /// A string indicating a transport for communicating with an authenticator.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 
 extern "C" {
+    /// The USB transport type.
     /// Indicates using USB or Lightning to communicate with an authenticator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/usb?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
+    /// The Near Field Communication transport type.
     /// Indiciates using NFC to communicate with an authenticator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/nfc?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
 extern "C" {
+    /// The Bluetooth transport type.
     /// Indicates using Bluetooth, including BLE, to communicate with an authenticator.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/bluetooth?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
 
+/// An array of currently supported transport types.
 /// Returns a list of all transports the device currently supports for communicating with an authenticator.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/allsupported?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDescriptorTransports(
 ) -> Retained<NSArray<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport>> {
@@ -53,9 +48,14 @@ pub unsafe extern "C-unwind" fn ASAuthorizationAllSupportedPublicKeyCredentialDe
 }
 
 extern_class!(
-    /// An object to describe a credential on a security key.
+    /// An object that holds public key credential transport information.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// This class ties together a credential and its corresponding transport types (USB, NFC, Bluetooth, or all of them).
+    ///
+    ///
+    /// An object to describe a credential on a security key.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;

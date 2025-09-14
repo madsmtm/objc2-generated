@@ -9,13 +9,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimeinterval?language=objc)
+/// Type used to represent elapsed time in seconds.
 pub type CFTimeInterval = c_double;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetime?language=objc)
+/// Type used to represent a specific point in time relative to the absolute reference date of 1 Jan 2001 00:00:00 GMT.
+///
+/// ## Discussion
+///
+/// Absolute time is measured by the number of seconds between the reference date and the specified date. Negative values indicate dates/times before the reference date. Positive values indicate dates/times after the reference date.
+///
+///
 pub type CFAbsoluteTime = CFTimeInterval;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetcurrent()?language=objc)
+/// Returns the current system absolute time.
+///
+/// ## Return Value
+///
+/// The current absolute time.
+///
+///
+///
+/// ## Discussion
+///
+/// Absolute time is measured in seconds relative to the absolute reference date of Jan 1 2001 00:00:00 GMT. A positive value represents a date after the reference date, a negative value represents a date before it. For example, the absolute time `-32940326` is equivalent to December 16th, 1999 at 17:54:34. Repeated calls to this function do not guarantee monotonically increasing results. The system time may decrease due to synchronization with external time references or due to an explicit user change of the clock.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
     extern "C-unwind" {
@@ -25,16 +43,25 @@ pub extern "C-unwind" fn CFAbsoluteTimeGetCurrent() -> CFAbsoluteTime {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfabsolutetimeintervalsince1970?language=objc)
+    /// The time interval between 1 January 1970 and the reference date 1 January 2001 00:00:00 GMT.
     pub static kCFAbsoluteTimeIntervalSince1970: CFTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfabsolutetimeintervalsince1904?language=objc)
+    /// The time interval between 1 January 1904 and the reference date 1 January 2001 00:00:00 GMT.
     pub static kCFAbsoluteTimeIntervalSince1904: CFTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdate?language=objc)
+///
+/// ## Overview
+///
+/// `CFDate` objects store dates and times that can be compared to other dates and times. `CFDate` objects are immutable—there is no mutable counterpart for this opaque type.
+///
+/// `CFDate` provides functions for creating dates, comparing dates, and computing intervals. You use the [`CFDateCreate`](https://developer.apple.com/documentation/corefoundation/cfdatecreate(_:_:)) function to create `CFDate` objects. You use the [`CFDateCompare`](https://developer.apple.com/documentation/corefoundation/cfdatecompare(_:_:_:)) function to compare two dates, and the [`CFDateGetTimeIntervalSinceDate`](https://developer.apple.com/documentation/corefoundation/cfdategettimeintervalsincedate(_:_:)) function to compute a time interval. Additional functions for managing dates and times are described in [Time Utilities](https://developer.apple.com/documentation/corefoundation/time-utilities)
+///
+/// `CFDate` is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate). What this means is that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. In other words, in a method where you see an `NSDate *` parameter, you can pass in a `CFDateRef`, and in a function where you see a `CFDateRef` parameter, you can pass in an `NSDate` instance. This also applies to concrete subclasses of `NSDate`. See Interchangeable Data Types for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSDate`.
 #[doc(alias = "CFDateRef")]
@@ -53,7 +80,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFDate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategettypeid()?language=objc)
+    /// Returns the type identifier for the `CFDate` opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFDate opaque type.
+    ///
+    ///
     #[doc(alias = "CFDateGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -65,7 +98,25 @@ unsafe impl ConcreteType for CFDate {
 }
 
 impl CFDate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatecreate(_:_:)?language=objc)
+    /// Creates a `CFDate` object given an absolute time.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - at: The absolute time to convert to a CFDate object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A date object that represents the absolute time `at`.  The caller is responsible for releasing the `CFDate` object using [`CFRelease`](https://developer.apple.com/documentation/corefoundation/cfrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `CFDate` objects must always be created using absolute time. Time intervals are not supported.
+    ///
+    ///
     #[doc(alias = "CFDateCreate")]
     #[inline]
     pub fn new(allocator: Option<&CFAllocator>, at: CFAbsoluteTime) -> Option<CFRetained<CFDate>> {
@@ -79,7 +130,23 @@ impl CFDate {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategetabsolutetime(_:)?language=objc)
+    /// Returns a `CFDate` object’s absolute time.
+    ///
+    /// Parameters:
+    /// - theDate: The date to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The absolute time of `theDate`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Absolute time is measured in seconds relative to the absolute reference date of Jan 1 2001 00:00:00 GMT. A positive value represents a date after the reference date, a negative value represents a date before it. For example, the absolute time -32940326 is equivalent to December 16th, 1999 at 17:54:34.
+    ///
+    ///
     #[doc(alias = "CFDateGetAbsoluteTime")]
     #[inline]
     pub fn absolute_time(&self) -> CFAbsoluteTime {
@@ -89,7 +156,19 @@ impl CFDate {
         unsafe { CFDateGetAbsoluteTime(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdategettimeintervalsincedate(_:_:)?language=objc)
+    /// Returns the number of elapsed seconds between the given `CFDate` objects.
+    ///
+    /// Parameters:
+    /// - theDate: The date to compare to `otherDate`.
+    ///
+    /// - otherDate: The date to compare to `theDate`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of elapsed seconds between `theDate` and `otherDate`. The result is positive if `theDate` is later than `otherDate`.
+    ///
+    ///
     #[doc(alias = "CFDateGetTimeIntervalSinceDate")]
     #[inline]
     pub fn time_interval_since_date(&self, other_date: Option<&CFDate>) -> CFTimeInterval {
@@ -102,7 +181,21 @@ impl CFDate {
         unsafe { CFDateGetTimeIntervalSinceDate(self, other_date) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfdatecompare(_:_:_:)?language=objc)
+    /// Compares two `CFDate` objects and returns a comparison result.
+    ///
+    /// Parameters:
+    /// - theDate: The date to compare to `otherDate`.
+    ///
+    /// - otherDate: The date to compare to `theDate`.
+    ///
+    /// - context: Unused. Pass `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A [`CFComparisonResult`](https://developer.apple.com/documentation/corefoundation/cfcomparisonresult) value that indicates whether `theDate` is equal to, less than, or greater than `otherDate`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -126,7 +219,16 @@ impl CFDate {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cftimezone?language=objc)
+///
+/// ## Overview
+///
+/// CFTimeZone defines the behavior of time zone objects. Time zone objects represent geopolitical regions. Consequently, these objects have names for these regions. Time zone objects also represent a temporal offset, either plus or minus, from Greenwich Mean Time (GMT) and an abbreviation (such as PST for Pacific Standard Time).
+///
+/// CFTimeZone provides several functions to create time zone objects: [`CFTimeZoneCreateWithName`](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithname(_:_:_:)) and [`CFTimeZoneCreateWithTimeIntervalFromGMT`](https://developer.apple.com/documentation/corefoundation/cftimezonecreatewithtimeintervalfromgmt(_:_:)). CFTimeZone also permits you to set the default time zone within your application using the [`CFTimeZoneSetDefault`](https://developer.apple.com/documentation/corefoundation/cftimezonesetdefault(_:)) function. You can access this default time zone at any time with the [`CFTimeZoneCopyDefault`](https://developer.apple.com/documentation/corefoundation/cftimezonecopydefault()) function.
+///
+/// CFTimeZone is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSTimeZone`](https://developer.apple.com/documentation/foundation/nstimezone). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSTimeZone *` parameter, you can pass in a `CFTimeZoneRef`, and in a function where you see a `CFTimeZoneRef` parameter, you can pass in an NSTimeZone instance. This fact also applies to concrete subclasses of NSTimeZone. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSTimeZone`.
 #[doc(alias = "CFTimeZoneRef")]
@@ -144,7 +246,15 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFTimeZone"> for CFTimeZone {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandate?language=objc)
+/// Structure used to represent a point in time using the Gregorian calendar.
+///
+/// ## Overview
+///
+/// [`CFGregorianDate`](https://developer.apple.com/documentation/corefoundation/cfgregoriandate) is implemented using the smallest data type appropriate for the range of possible values. For example, there are only 12 months in the Gregorian year, so there is no need to use an integer type larger than 8 bits. To represent a time interval in Gregorian units, use a [`CFGregorianUnits`](https://developer.apple.com/documentation/corefoundation/cfgregorianunits).
+///
+/// The month and day units are 1-based: the index for January is 1, and the index for the first day of the month is 1.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFGregorianDate {
@@ -176,7 +286,13 @@ unsafe impl RefEncode for CFGregorianDate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunits?language=objc)
+/// Structure used to represent a time interval in Gregorian units.
+///
+/// ## Overview
+///
+/// A CFGregorianUnits is used to represent arbitrary time _intervals_ (to represent a point in time using Gregorian units, use a [`CFGregorianDate`](https://developer.apple.com/documentation/corefoundation/cfgregoriandate)). Each field can take values up to the maximum possible for its data type. Negative values are also valid.
+///
+///
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFGregorianUnits {
@@ -208,38 +324,44 @@ unsafe impl RefEncode for CFGregorianUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags?language=objc)
+/// These option flags are used as a mask to indicate a specific set of fields in the CFGregorianDate or CFGregorianUnits structures.
+///
+/// ## Overview
+///
+/// These flags are used with functions such as [`CFGregorianDateIsValid`](https://developer.apple.com/documentation/corefoundation/cfgregoriandateisvalid(_:_:)) and [`CFAbsoluteTimeGetDifferenceAsGregorianUnits`](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdifferenceasgregorianunits(_:_:_:_:)) which operate on a CFGregorianDate or CFGregorianUnits structure. For more details, see the discussion of those functions.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFGregorianUnitFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFGregorianUnitFlags: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsyears?language=objc)
+/// Specifies the year field.
         #[doc(alias = "kCFGregorianUnitsYears")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsYears = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsmonths?language=objc)
+/// Specifies the month field.
         #[doc(alias = "kCFGregorianUnitsMonths")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMonths = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsdays?language=objc)
+/// Specifies the day field.
         #[doc(alias = "kCFGregorianUnitsDays")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsDays = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitshours?language=objc)
+/// Specifies the hours field.
         #[doc(alias = "kCFGregorianUnitsHours")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsHours = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsminutes?language=objc)
+/// Specifies the minutes field.
         #[doc(alias = "kCFGregorianUnitsMinutes")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsMinutes = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/unitsseconds?language=objc)
+/// Specifies the seconds field.
         #[doc(alias = "kCFGregorianUnitsSeconds")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const UnitsSeconds = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags/allunits?language=objc)
+/// Specifies all fields.
         #[doc(alias = "kCFGregorianAllUnits")]
 #[deprecated = "Use CFCalendar or NSCalendar API instead"]
         const AllUnits = 0x00FFFFFF;
@@ -257,7 +379,19 @@ unsafe impl RefEncode for CFGregorianUnitFlags {
 }
 
 impl CFGregorianDate {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandateisvalid(_:_:)?language=objc)
+    /// Checks the specified fields of a CFGregorianDate structure for valid values.
+    ///
+    /// Parameters:
+    /// - gdate: The CFGregorianDate structure whose fields to validate.
+    ///
+    /// - unitFlags: A mask that specifies which Gregorian unit fields to validate. See [`CFGregorianUnitFlags`](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags) for a list of values from which to construct the mask.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the specified fields are valid, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFGregorianDateIsValid")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
@@ -270,7 +404,19 @@ impl CFGregorianDate {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandategetabsolutetime(_:_:)?language=objc)
+    /// Converts a Gregorian date value into an absolute time value.
+    ///
+    /// Parameters:
+    /// - gdate: The Gregorian date to convert.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The absolute time equivalent of `gdate`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -290,7 +436,19 @@ impl CFGregorianDate {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetgregoriandate(_:_:)?language=objc)
+    /// Converts an absolute time value into a Gregorian date.
+    ///
+    /// Parameters:
+    /// - at: The absolute time value to convert.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The Gregorian date equivalent for `at`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -303,7 +461,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimeaddgregorianunits(_:_:_:)?language=objc)
+    /// Adds a time interval, expressed as Gregorian units, to a given absolute time.
+    ///
+    /// Parameters:
+    /// - at: The absolute time to which the interval is added.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    /// - units: The time interval to add to `at`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An absolute time value equal to the sum of `at` and `units`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -317,7 +489,42 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdifferenceasgregorianunits(_:_:_:_:)?language=objc)
+    /// Computes the time difference between two specified absolute times and returns the result as an interval in Gregorian units.
+    ///
+    /// Parameters:
+    /// - at1: An absolute time.
+    ///
+    /// - at2: An absolute time.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    /// - unitFlags: A mask that specifies which Gregorian unit fields to use when converting the absolute time difference into a Gregorian interval. See [`CFGregorianUnitFlags`](https://developer.apple.com/documentation/corefoundation/cfgregorianunitflags) for a list of values from which to construct the mask.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The difference between the specified absolute times (as `at1 - at2`—if `at1` is earlier than `at2`, the result is negative) expressed in the units specified by `unitFlags`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The temporal difference is expressed as accurately as possible, given the units specified. For example, if you asked for the number of months and hours between 2:30pm on April 8 2005 and 5:45pm September 9 2005, the result would be 5 months and 27 hours.
+    ///
+    /// The following example prints the number of hours and minutes between the current time (now) and the reference date (1 January 2001 00:00:00 GMT).
+    ///
+    /// ```objc
+    /// CFAbsoluteTime now = CFAbsoluteTimeGetCurrent ();
+    ///  
+    /// CFGregorianUnits units = CFAbsoluteTimeGetDifferenceAsGregorianUnits
+    ///     (now, 0, NULL, (kCFGregorianUnitsHours | kCFGregorianUnitsMinutes));
+    ///  
+    /// CFStringRef output = CFStringCreateWithFormat
+    ///     (NULL, 0, CFSTR("hours: %d; minutes: %d"), units.hours, units.minutes);
+    /// CFShow(output);
+    /// ```
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -332,7 +539,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdayofweek(_:_:)?language=objc)
+    /// Returns an integer representing the day of the week indicated by the specified absolute time.
+    ///
+    /// Parameters:
+    /// - at: The absolute time to convert.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An integer (`1-7`) representing the day of the week specified by `at`. Per ISO-8601, Monday is represented by `1`, Tuesday by `2`, and so on.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -342,7 +561,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetdayofyear(_:_:)?language=objc)
+    /// Returns an integer representing the day of the year indicated by the specified absolute time.
+    ///
+    /// Parameters:
+    /// - at: The absolute time to convert.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An integer (`1-366`) representing the day of the year specified by `at`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -352,7 +583,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfabsolutetimegetweekofyear(_:_:)?language=objc)
+    /// Returns an integer representing the week of the year indicated by the specified absolute time.
+    ///
+    /// Parameters:
+    /// - at: The absolute time to convert.
+    ///
+    /// - tz: The time zone to use for time correction. Pass `NULL` for GMT.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An integer (`1-53`) representing the week of the year specified by `at`. The numbering follows the ISO 8601 definition of week.
+    ///
+    ///
     ///
     /// # Safety
     ///

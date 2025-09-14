@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxsetgroupcallaction?language=objc)
+    /// An encapsulation of the act of grouping or ungrouping calls.
+    ///
+    /// ## Overview
+    ///
+    /// [`CXSetGroupCallAction`](https://developer.apple.com/documentation/callkit/cxsetgroupcallaction) is a concrete subclass of [`CXCallAction`](https://developer.apple.com/documentation/callkit/cxcallaction). When the user or the system groups a call with another call, the provider sends [`provider:performSetGroupCallAction:`](https://developer.apple.com/documentation/callkit/cxproviderdelegate/provider(_:perform:)-9masw) to its delegate. The provider’s delegate calls the [`fulfill`](https://developer.apple.com/documentation/callkit/cxaction/fulfill()) method to indicate that the action was successfully performed. A group call allows more than two recipients to simultaneously communicate with one another.
+    ///
+    ///
     #[unsafe(super(CXCallAction, CXAction, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]

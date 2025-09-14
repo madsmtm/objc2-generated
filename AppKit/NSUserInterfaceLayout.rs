@@ -4,16 +4,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection?language=objc)
+/// Specifies the directional flow of the user interface.
+///
+/// ## Overview
+///
+/// These constants are returned by [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsapplication/userinterfacelayoutdirection).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutDirection(pub NSInteger);
 impl NSUserInterfaceLayoutDirection {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection/lefttoright?language=objc)
+    /// Layout direction is left to right.
     #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
     pub const LeftToRight: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection/righttoleft?language=objc)
+    /// Layout direction is right to left.
+    ///
+    /// ## Discussion
+    ///
+    /// This is appropriate when running with localizations such as Arabic or Hebrew that should have the user interface layout origin on the right edge of the coordinate system.
+    ///
+    ///
     #[doc(alias = "NSUserInterfaceLayoutDirectionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
 }
@@ -26,16 +38,32 @@ unsafe impl RefEncode for NSUserInterfaceLayoutDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation?language=objc)
+/// The stack view layout directions, and user interface axes for hugging priority and clipping resistance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutOrientation(pub NSInteger);
 impl NSUserInterfaceLayoutOrientation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/horizontal?language=objc)
+    /// The horizontal orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant in the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property to specify a horizontal layout for the stack view. Use it to specify the horizontal user interface axis for clipping resistance and hugging priority.
+    ///
+    /// The leading, center, and trailing gravity areas in a horizontal stack view are arranged left to right or right to left depending on the value of the inherited [`userInterfaceLayoutDirection`](https://developer.apple.com/documentation/appkit/nsview/userinterfacelayoutdirection) property.
+    ///
+    ///
     #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]
     pub const Horizontal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation/vertical?language=objc)
+    /// The vertical orientation.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant in the [`orientation`](https://developer.apple.com/documentation/appkit/nsstackview/orientation) property to specify a vertical layout for the stack view. Use it to specify the vertical user interface axis for clipping resistance and hugging priority.
+    ///
+    /// The leading, center, and trailing gravity areas in a vertical stack view are arranged top to bottom.
+    ///
+    ///
     #[doc(alias = "NSUserInterfaceLayoutOrientationVertical")]
     pub const Vertical: Self = Self(1);
 }

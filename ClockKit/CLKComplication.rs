@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplication?language=objc)
+    /// Metadata about a custom complication.
+    ///
+    /// ## Overview
+    ///
+    /// ClockKit defines each complication by its [`family`](https://developer.apple.com/documentation/clockkit/clkcomplication/family) and [`identifier`](https://developer.apple.com/documentation/clockkit/clkcomplication/identifier) properties. Each pair represents a unique complication that the user can select when configuring a watch face. When creating timeline entries, check both properties before creating and filling the complication’s template.
+    ///
+    /// You specify the possible [`family`](https://developer.apple.com/documentation/clockkit/clkcomplication/family) and [`identifier`](https://developer.apple.com/documentation/clockkit/clkcomplication/identifier) combinations in your data source’s [`getComplicationDescriptorsWithHandler:`](https://developer.apple.com/documentation/clockkit/clkcomplicationdatasource/getcomplicationdescriptors(handler:)) method. Each of the [`CLKComplicationDescriptor`](https://developer.apple.com/documentation/clockkit/clkcomplicationdescriptor) objects you provide defines a unique identifier and the families that it supports.
+    ///
+    /// In watchOS 6 and earlier, each app can have only one complication per supported family. When your app creates complication templates, determine the complication’s type from its [`family`](https://developer.apple.com/documentation/clockkit/clkcomplication/family) property only. For more information, see [Declaring complications for your app](https://developer.apple.com/documentation/clockkit/declaring-complications-for-your-app).
+    ///
+    /// You don’t create instances of this class directly. Instead, you retrieve them from the [`CLKComplicationServer`](https://developer.apple.com/documentation/clockkit/clkcomplicationserver) object. Complication objects are only available when your complication is in use on the watch face.
+    ///
+    /// In addition to getting information about the complication, you use complication objects to extend or replace the timeline data for one of your active complications. When calling the [`extendTimelineForComplication:`](https://developer.apple.com/documentation/clockkit/clkcomplicationserver/extendtimeline(for:)) and [`reloadTimelineForComplication:`](https://developer.apple.com/documentation/clockkit/clkcomplicationserver/reloadtimeline(for:)) methods of the shared [`CLKComplicationServer`](https://developer.apple.com/documentation/clockkit/clkcomplicationserver) object, pass the complication object you want to update.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]

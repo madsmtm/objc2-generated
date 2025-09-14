@@ -7,22 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The options that determine the mutability of a buffer’s contents.
 /// Specifies whether a buffer will be modified between the time it is bound and a compute
 /// or render pipeline is executed in a draw or dispatch.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMutability(pub NSUInteger);
 impl MTLMutability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/default?language=objc)
+    /// The default behavior, based on the buffer’s type.
     #[doc(alias = "MTLMutabilityDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/mutable?language=objc)
+    /// An option that states that you can modify the buffer’s contents.
     #[doc(alias = "MTLMutabilityMutable")]
     pub const Mutable: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability/immutable?language=objc)
+    /// An option that states that you can’t modify the buffer’s contents.
     #[doc(alias = "MTLMutabilityImmutable")]
     pub const Immutable: Self = Self(2);
 }
@@ -35,19 +34,19 @@ unsafe impl RefEncode for MTLMutability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation?language=objc)
+/// Indicates whether shader validation in an enabled or disabled state, or neither state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLShaderValidation(pub NSInteger);
 impl MTLShaderValidation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/default?language=objc)
+    /// The default value when the property isn’t set.
     #[doc(alias = "MTLShaderValidationDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/enabled?language=objc)
+    /// Enables shader validation.
     #[doc(alias = "MTLShaderValidationEnabled")]
     pub const Enabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation/disabled?language=objc)
+    /// Disables shader validation.
     #[doc(alias = "MTLShaderValidationDisabled")]
     pub const Disabled: Self = Self(2);
 }
@@ -61,7 +60,15 @@ unsafe impl RefEncode for MTLShaderValidation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptor?language=objc)
+    /// The mutability options for a buffer that a render or compute pipeline uses.
+    ///
+    /// ## Overview
+    ///
+    /// Metal can perform additional optimizations if you guarantee that neither the CPU nor the GPU modify a buffer’s contents before starting a pass. Use immutable buffers as much as possible to take advantage of Metal optimizations.
+    ///
+    /// To declare that a buffer is immutable, set the [`mutability`](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptor/mutability) property of their associated [`MTLPipelineBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptor) object to [`MTLMutabilityImmutable`](https://developer.apple.com/documentation/metal/mtlmutability/immutable).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPipelineBufferDescriptor;
@@ -114,7 +121,7 @@ impl DefaultRetained for MTLPipelineBufferDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelinebufferdescriptorarray?language=objc)
+    /// An array of pipeline buffer descriptors.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLPipelineBufferDescriptorArray;

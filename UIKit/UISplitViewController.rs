@@ -9,42 +9,125 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum?language=objc)
+/// Constants that describe the possible arrangements for a split view interface.
+///
+/// ## Overview
+///
+/// A split view controller’s display mode controls the visual arrangement of its child view controllers. You set a preferred display mode by using the [`preferredDisplayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferreddisplaymode) property, and the split view controller updates itself and reflects the actual display mode in the [`displayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.property) property.
+///
+/// Display modes apply to a split view controller in an expanded arrangement. When the split view interface is collapsed — when [`collapsed`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/iscollapsed) is [`true`](https://developer.apple.com/documentation/swift/true) — the display mode has no impact on the appearance of the split view controller interface.
+///
+/// A split view controller’s split behavior ([`splitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.property)) affects its possible display modes. For more information, see [`UISplitViewControllerSplitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum).
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Split Behavior" }] }], [Paragraph { inline_content: [Text { text: "Possible Display Modes" }] }]], [[Paragraph { inline_content: [Text { text: "Tile" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Overlay" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneOverSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoOverSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Displace" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoDisplaceSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+/// There are several ways for user interaction to change the current display mode. Based on the type of user interaction (gesture or button tap), the display mode can transition between a set of predetermined states.
+///
+///
+/// <picture>
+///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/2025335ff4b6a99aa605beec5447f1f3/media-3624554~dark%402x.png 2x" />
+///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/6d9d7f1ee87afacb1be85dbc9857b8e9/media-3624554%402x.png 2x" />
+///     <img alt="Flow diagram showing the possible state transitions between display modes, based on split behavior and column style." src="https://docs-assets.developer.apple.com/published/6d9d7f1ee87afacb1be85dbc9857b8e9/media-3624554%402x.png" />
+/// </picture>
+///
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayMode(pub NSInteger);
 impl UISplitViewControllerDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/automatic?language=objc)
+    /// The split view controller automatically decides the most appropriate display mode based on the device and the current app size.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant represents the default value of the [`preferredDisplayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferreddisplaymode) property. Although you can assign the property this constant as its value, the [`displayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.property) property never reports it.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly?language=objc)
+    /// Only the secondary view controller is shown onscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// The primary and supplementary view controllers are offscreen.
+    ///
+    /// This display mode is available for any split behavior.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeSecondaryOnly")]
     pub const SecondaryOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary?language=objc)
+    /// One sidebar appears side-by-side with the secondary view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// This display mode shows one sidebar tiled next to the secondary view controller. The sidebar shown is the primary column for [`UISplitViewControllerStyleDoubleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn) interfaces and the supplementary column for [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) interfaces. The sidebar is displayed on the side specified by [`primaryEdge`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.property), followed by the secondary view controller. The secondary view controller’s view is fully interactive.
+    ///
+    /// This display mode is available for the [`UISplitViewControllerSplitBehaviorTile`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/tile) and [`UISplitViewControllerSplitBehaviorDisplace`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/displace) split behaviors.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeOneBesideSecondary")]
     pub const OneBesideSecondary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary?language=objc)
+    /// One sidebar is layered on top of the secondary view controller, leaving the secondary view controller partially visible.
+    ///
+    /// ## Discussion
+    ///
+    /// This display mode shows one sidebar layered on top of the secondary view controller, partially obscuring it. The sidebar shown is the primary column for [`UISplitViewControllerStyleDoubleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn) interfaces and the supplementary column for [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) interfaces. The secondary view controller is dimmed out, preventing interaction with its view. Touching the dimmed view dismisses the overlay and returns the interface to the [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly) display mode.
+    ///
+    /// This display mode is available for the [`UISplitViewControllerSplitBehaviorOverlay`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/overlay) split behavior.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeOneOverSecondary")]
     pub const OneOverSecondary: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twobesidesecondary?language=objc)
+    /// Two sidebars appear side-by-side with the secondary view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// This display mode is only available for [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) interfaces.
+    ///
+    /// This display mode shows both sidebars tiled next to the secondary view controller. The primary view controller is displayed on the side specified by [`primaryEdge`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.property), followed by the supplementary view controller, and finally the secondary view controller. The secondary view controller’s view is fully interactive.
+    ///
+    /// This display mode is available for the [`UISplitViewControllerSplitBehaviorTile`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/tile) split behavior.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeTwoBesideSecondary")]
     pub const TwoBesideSecondary: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twooversecondary?language=objc)
+    /// Two sidebars are layered on top of the secondary view controller, leaving the secondary view controller partially visible.
+    ///
+    /// ## Discussion
+    ///
+    /// This display mode is only available for [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) interfaces.
+    ///
+    /// This display mode shows both sidebars layered on top of the secondary view controller, partially obscuring it. The secondary view controller is dimmed out, preventing interaction with its view. Touching the dimmed view dismisses the overlay and returns the interface to the [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly) display mode.
+    ///
+    /// The interactive gesture can move the interface freely through [`UISplitViewControllerDisplayModeOneOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary) to [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly) and back, stopping at any of the display modes depending on the user interaction.
+    ///
+    /// This display mode is available for the [`UISplitViewControllerSplitBehaviorOverlay`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/overlay) split behavior.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeTwoOverSecondary")]
     pub const TwoOverSecondary: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twodisplacesecondary?language=objc)
+    /// Two sidebars displace the secondary view controller instead of overlapping it, moving it partially offscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// This display mode is only available for [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) interfaces.
+    ///
+    /// This display mode shows both sidebars, which partially displace the secondary view controller offscreen to make space for the primary column. The secondary view controller is dimmed out, preventing interaction with its view. Touching the dimmed view or using a gesture returns the interface to the [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary) display mode.
+    ///
+    /// This display mode is available for the [`UISplitViewControllerSplitBehaviorDisplace`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/displace) split behavior.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeTwoDisplaceSecondary")]
     pub const TwoDisplaceSecondary: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/primaryhidden?language=objc)
+    /// The primary view controller is hidden.
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryHidden")]
     #[deprecated]
     pub const PrimaryHidden: Self = Self(UISplitViewControllerDisplayMode::SecondaryOnly.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/allvisible?language=objc)
+    /// The primary and secondary view controllers are displayed side-by-side onscreen.
     #[doc(alias = "UISplitViewControllerDisplayModeAllVisible")]
     #[deprecated]
     pub const AllVisible: Self = Self(UISplitViewControllerDisplayMode::OneBesideSecondary.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/primaryoverlay?language=objc)
+    /// The primary view controller is layered on top of the secondary view controller, leaving the secondary view controller partially visible.
     #[doc(alias = "UISplitViewControllerDisplayModePrimaryOverlay")]
     #[deprecated]
     pub const PrimaryOverlay: Self = Self(UISplitViewControllerDisplayMode::OneOverSecondary.0);
@@ -58,16 +141,28 @@ unsafe impl RefEncode for UISplitViewControllerDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.enum?language=objc)
+/// Constants that indicate the side on which the primary view controller sits.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerPrimaryEdge(pub NSInteger);
 impl UISplitViewControllerPrimaryEdge {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.enum/leading?language=objc)
+    /// Place the primary view controller on the leading edge of the interface.
+    ///
+    /// ## Discussion
+    ///
+    /// In an interface that is oriented left-to-right, this value corresponds to the left side of the split view interface. For right-to-left interfaces, the leading edge is on the right side.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerPrimaryEdgeLeading")]
     pub const Leading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/primaryedge-swift.enum/trailing?language=objc)
+    /// Place the primary view controller on the trailing edge of the interface.
+    ///
+    /// ## Discussion
+    ///
+    /// In an interface that is oriented left-to-right, this value corresponds to the right side of the split view interface. For right-to-left interfaces, the trailing edge is on the left side.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerPrimaryEdgeTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -80,16 +175,16 @@ unsafe impl RefEncode for UISplitViewControllerPrimaryEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/backgroundstyle?language=objc)
+/// Styles that apply a visual effect to the background of a primary view controller.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerBackgroundStyle(pub NSInteger);
 impl UISplitViewControllerBackgroundStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/backgroundstyle/none?language=objc)
+    /// A style that has no visual effect on the background appearance of the primary view controller.
     #[doc(alias = "UISplitViewControllerBackgroundStyleNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/backgroundstyle/sidebar?language=objc)
+    /// A style that applies a blurred effect to the background of the primary view controller.
     #[doc(alias = "UISplitViewControllerBackgroundStyleSidebar")]
     pub const Sidebar: Self = Self(1);
 }
@@ -102,20 +197,48 @@ unsafe impl RefEncode for UISplitViewControllerBackgroundStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum?language=objc)
+/// Constants that describe the number of columns the split view interface displays.
+///
+/// ## Overview
+///
+/// In iOS 14 and later, [`UISplitViewController`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller) supports column-style layouts. A column-style split view controller lets you create an interface with two or three columns by using [`initWithStyle:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/init(style:)) with the appropriate [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property):
+///
+/// - Use the [`UISplitViewControllerStyleDoubleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn) style to create a split view interface with a two-column layout. This style of split view controller manages two child view controllers, placed in the primary and secondary columns.
+///
+/// - Use the [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) style to create a split view interface with a three-column layout. This style of split view controller manages three child view controllers, placed in the primary, supplementary, and secondary columns.
+///
+///
+/// <picture>
+///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/c0959c237e3ac4beb16193d2d37599dd/media-3625687~dark%402x.png 2x" />
+///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f6a737334e0751d7d1cfc2082ad65ec3/media-3625687%402x.png 2x" />
+///     <img alt="Diagram showing a double-column and a triple-column split view interface. " src="https://docs-assets.developer.apple.com/published/f6a737334e0751d7d1cfc2082ad65ec3/media-3625687%402x.png" />
+/// </picture>
+///
+///
+/// Before iOS 14, [`UISplitViewController`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller) supported just one split view interface style with a primary view controller and a secondary view controller. This classic interface style applies to split view controllers created using any other approach than [`initWithStyle:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/init(style:)). Split view controllers with the classic interface have a [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property) of [`UISplitViewControllerStyleUnspecified`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/unspecified) and they don’t respond to any of the column-style APIs introduced in iOS 14 and later.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerStyle(pub NSInteger);
 impl UISplitViewControllerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/unspecified?language=objc)
+    /// The split view interface uses the classic split view style.
+    ///
+    /// ## Discussion
+    ///
+    /// A split view controller with this style represents a classic split view controller created using any other approach than [`initWithStyle:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/init(style:)). You cannot create a split view controller with a style of [`UISplitViewControllerStyleUnspecified`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/unspecified) using this initializer.
+    ///
+    /// Split view controllers with this style don’t support any column-style APIs, such as [`setViewController:forColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/setviewcontroller(_:for:)).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerStyleUnspecified")]
     #[deprecated]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn?language=objc)
+    /// The split view interface displays two columns.
     #[doc(alias = "UISplitViewControllerStyleDoubleColumn")]
     pub const DoubleColumn: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn?language=objc)
+    /// The split view interface displays three columns.
     #[doc(alias = "UISplitViewControllerStyleTripleColumn")]
     pub const TripleColumn: Self = Self(2);
 }
@@ -128,25 +251,36 @@ unsafe impl RefEncode for UISplitViewControllerStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column?language=objc)
+/// Constants that describe the columns within the split view interface.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerColumn(pub NSInteger);
 impl UISplitViewControllerColumn {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/primary?language=objc)
+    /// The column for the primary view controller.
     #[doc(alias = "UISplitViewControllerColumnPrimary")]
     pub const Primary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/supplementary?language=objc)
+    /// The column for the supplementary view controller.
+    ///
+    /// ## Discussion
+    ///
+    /// This value only takes effect when the split view controller’s [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property) property is [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerColumnSupplementary")]
     pub const Supplementary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/secondary?language=objc)
+    /// The column for the secondary, or detail, view controller.
     #[doc(alias = "UISplitViewControllerColumnSecondary")]
     pub const Secondary: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/compact?language=objc)
+    /// The column for the view controller that’s shown when the split view controller is collapsed.
+    ///
+    /// ## Discussion
+    ///
+    /// If a view controller is set for this column, that view controller is shown when [`collapsed`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/iscollapsed) is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerColumnCompact")]
     pub const Compact: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/inspector?language=objc)
     #[doc(alias = "UISplitViewControllerColumnInspector")]
     pub const Inspector: Self = Self(4);
 }
@@ -159,22 +293,91 @@ unsafe impl RefEncode for UISplitViewControllerColumn {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum?language=objc)
+/// Constants that describe the possible ways that the child view controllers appear in relation to each other.
+///
+/// ## Overview
+///
+/// A split view controller’s split behavior controls how its secondary view controller appears in relation to the others. You can configure this behavior so that the secondary view controller always appears side-by-side with the others, so that it’s partially obscured by the others, or so that it’s displaced offscreen opposite the others to make space for them.
+///
+/// A split view controller’s split behavior affects its possible display mode ([`displayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.property)). For more information, see [`UISplitViewControllerDisplayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum).
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Split Behavior" }] }], [Paragraph { inline_content: [Text { text: "Possible Display Modes" }] }]], [[Paragraph { inline_content: [Text { text: "Tile" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Overlay" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneOverSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoOverSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Displace" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/secondaryOnly", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/oneBesideSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UISplitViewController/DisplayMode-swift.enum/twoDisplaceSecondary", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+///
+/// <picture>
+///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/798cdc295d3bc55000b8b0b41f472c11/media-3616616~dark%402x.png 2x" />
+///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/784c280453b77630f7e439e3aee17f5f/media-3616616%402x.png 2x" />
+///     <img alt="Diagram showing a triple-column split view interface using the tile, overlay, and displace split behaviors." src="https://docs-assets.developer.apple.com/published/798cdc295d3bc55000b8b0b41f472c11/media-3616616~dark%402x.png" />
+/// </picture>
+///
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerSplitBehavior(pub NSInteger);
 impl UISplitViewControllerSplitBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/automatic?language=objc)
+    /// The split view controller automatically decides the most appropriate split behavior based on the device and the current app size.
     #[doc(alias = "UISplitViewControllerSplitBehaviorAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/tile?language=objc)
+    /// The sidebars and secondary view controller appear tiled side-by-side.
+    ///
+    /// ## Discussion
+    ///
+    /// This split behavior shows one or both sidebars tiled next to the secondary view controller. The secondary view controller’s view is fully interactive.
+    ///
+    /// The possible display modes for this split behavior are:
+    ///
+    /// - [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly)
+    ///
+    /// - [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary)
+    ///
+    /// - [`UISplitViewControllerDisplayModeTwoBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twobesidesecondary)
+    ///
+    /// If [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) is [`true`](https://developer.apple.com/documentation/swift/true), the split view controller presents a special bar button item styled as a sidebar toggle icon.
+    ///
+    /// For a double-column split view interface, when a user taps this button, it toggles the current display mode between [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly) and [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary).
+    ///
+    /// For a triple-column split view interface, when a user taps this button, it toggles the current display mode between [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary) and [`UISplitViewControllerDisplayModeTwoBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twobesidesecondary). The button doesn’t appear in [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerSplitBehaviorTile")]
     pub const Tile: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/overlay?language=objc)
+    /// The sidebars are layered on top of the secondary view controller, leaving the secondary view controller partially visible.
+    ///
+    /// ## Discussion
+    ///
+    /// This split behavior shows one or both sidebars layered on top of the secondary view controller, partially obscuring it. The secondary view controller is dimmed out, preventing interaction with its view.
+    ///
+    /// The possible display modes for this split behavior are:
+    ///
+    /// - [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly)
+    ///
+    /// - [`UISplitViewControllerDisplayModeOneOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary)
+    ///
+    /// - [`UISplitViewControllerDisplayModeTwoOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twooversecondary)
+    ///
+    /// If the current display mode is not [`UISplitViewControllerDisplayModeTwoOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twooversecondary) and [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) is [`true`](https://developer.apple.com/documentation/swift/true), the split view controller presents a special bar button item styled as a back-chevron icon. When a user taps this button, it changes the current display mode from [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly) to [`UISplitViewControllerDisplayModeOneOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary), and from [`UISplitViewControllerDisplayModeOneOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/oneoversecondary) to [`UISplitViewControllerDisplayModeTwoOverSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twooversecondary).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerSplitBehaviorOverlay")]
     pub const Overlay: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/displace?language=objc)
+    /// The sidebars displace the secondary view controller instead of overlapping it, moving it partially offscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// This split behavior shows one or both sidebars tiled next to the secondary view controller. If both sidebars are visible, they partially displace the secondary view controller offscreen to make space for the primary column. The secondary view controller is dimmed out, preventing interaction with its view.
+    ///
+    /// The possible display modes for this split behavior are:
+    ///
+    /// - [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly)
+    ///
+    /// - [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary)
+    ///
+    /// - [`UISplitViewControllerDisplayModeTwoDisplaceSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twodisplacesecondary)
+    ///
+    /// If the current display mode is [`UISplitViewControllerDisplayModeOneBesideSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/onebesidesecondary) and [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) is [`true`](https://developer.apple.com/documentation/swift/true), the split view controller presents a special bar button item styled as a back-chevron icon. When a user taps this button, it changes the current display mode to [`UISplitViewControllerDisplayModeTwoDisplaceSecondary`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/twodisplacesecondary).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerSplitBehaviorDisplace")]
     pub const Displace: Self = Self(3);
 }
@@ -187,19 +390,31 @@ unsafe impl RefEncode for UISplitViewControllerSplitBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum?language=objc)
+/// Constants that determine the visibility of the display mode button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayModeButtonVisibility(pub NSInteger);
 impl UISplitViewControllerDisplayModeButtonVisibility {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/automatic?language=objc)
+    /// A constant that automatically determines the visibility of the display mode button.
+    ///
+    /// ## Discussion
+    ///
+    /// With this behavior, setting [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) to [`false`](https://developer.apple.com/documentation/swift/false) hides the display mode button. This behavior is the default.
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/never?language=objc)
+    /// A constant that prevents the display mode button from appearing.
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityNever")]
     pub const Never: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymodebuttonvisibility-swift.enum/always?language=objc)
+    /// A constant that allows the display mode button to always appear.
+    ///
+    /// ## Discussion
+    ///
+    /// With this behavior, the display mode button can appear even if [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityAlways")]
     pub const Always: Self = Self(2);
 }
@@ -213,13 +428,123 @@ unsafe impl RefEncode for UISplitViewControllerDisplayModeButtonVisibility {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/automaticdimension?language=objc)
+    /// The default value to apply to a dimension.
     #[cfg(feature = "objc2-core-foundation")]
     pub static UISplitViewControllerAutomaticDimension: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller?language=objc)
+    /// A container view controller that implements a hierarchical interface.
+    ///
+    /// ## Overview
+    ///
+    /// A split view controller is a container view controller that manages child view controllers in a hierarchical interface. In this type of interface, changes in one view controller drive changes in the content of another.
+    ///
+    /// Split view interfaces are most suitable for filterable content or navigating content hierarchies, like traversing the folders and notes within the Notes app to view each note. In the Notes app, selecting a folder in the primary sidebar shows the list of notes in that folder, and selecting a note from the list shows the contents of that specific note in the secondary view.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/986b94059725f2ed1124e1a34b1a19c0/media-3616480~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/74861aa3da8a9ad0dd66cfda2d84a72e/media-3616480%402x.png 2x" />
+    ///     <img alt="Diagram showing a triple-column split view interface with the primary, supplementary, and secondary columns labeled. " src="https://docs-assets.developer.apple.com/published/986b94059725f2ed1124e1a34b1a19c0/media-3616480~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When you build your app’s user interface, the split view controller is typically the root view controller of your app’s window. The split view controller has no significant appearance of its own. Most of its appearance is defined by the child view controllers you install.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can’t push a split view controller onto a navigation stack. Although it’s possible to install a split view controller as a child in some other container view controllers, doing so isn’t recommended in most cases. For design guidance, see [Split views](https://developer.apple.com/design/human-interface-guidelines/split-views/).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Split view styles
+    ///
+    /// In iOS 14 and later, [`UISplitViewController`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller) supports column-style layouts. A column-style split view controller lets you create an interface with two or three columns by using [`initWithStyle:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/init(style:)) with the appropriate [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property):
+    ///
+    /// - Use the [`UISplitViewControllerStyleDoubleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/doublecolumn) style to create a split view interface with a two-column layout. This style of split view controller manages two child view controllers, placed in the primary and secondary columns.
+    ///
+    /// - Use the [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn) style to create a split view interface with a three-column layout. This style of split view controller manages three child view controllers, placed in the primary, supplementary, and secondary columns.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/3ded97183b118aca3f50540f8e222ab2/media-3616482~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/bb6ed731c35dd804f496bcd5a5d33f44/media-3616482%402x.png 2x" />
+    ///     <img alt="Diagram showing a double-column and a triple-column split view interface. " src="https://docs-assets.developer.apple.com/published/bb6ed731c35dd804f496bcd5a5d33f44/media-3616482%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Before iOS 14, [`UISplitViewController`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller) supported just one split view interface style with a primary view controller and a secondary view controller. This classic interface style applies to split view controllers created using any other approach than [`initWithStyle:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/init(style:)). Split view controllers with the classic interface have a [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property) of [`UISplitViewControllerStyleUnspecified`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/unspecified) and they don’t respond to any of the column-style APIs introduced in iOS 14 and later.
+    ///
+    /// ### Child view controllers
+    ///
+    /// In a column-style split view interface, use the [`setViewController:forColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/setviewcontroller(_:for:)) and [`viewControllerForColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/viewcontroller(for:)) methods to set and get view controllers for each column. The split view controller wraps all of its child view controllers in navigation controllers. If you set a child view controller that’s not a navigation controller, the split view controller creates a navigation controller for it. The split view controller returns your original view controller through [`viewControllerForColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/viewcontroller(for:)), but its [`childViewControllers`](https://developer.apple.com/documentation/uikit/uiviewcontroller/children) property contains the navigation controller it used to wrap your view controller. After you assign view controllers to specific columns, you can show and hide those columns using [`showColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/show(_:)) or [`hideColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/hide(_:)).
+    ///
+    /// In a classic split view interface, you can configure the child view controllers using Interface Builder or programmatically by assigning the view controllers to the [`viewControllers`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/viewcontrollers) property. In cases where you need to change either the primary or secondary view controller, it’s recommended that you do so using the [`showViewController:sender:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/show(_:sender:)) and [`showDetailViewController:sender:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/showdetailviewcontroller(_:sender:)) methods. Using these methods (instead of modifying the [`viewControllers`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/viewcontrollers) property directly) lets the split view controller present the specified view controller in a way that’s most appropriate for the current display mode and size class.
+    ///
+    /// ### Interface transitions
+    ///
+    /// The split view controller performs collapse and expand transitions in response to certain changes in its interface. For example, transitions occur when the interface’s size class toggles between horizontally regular and horizontally compact, when a user interaction hides or shows a column, or when you hide or show columns programmatically. The split view controller works with its [`delegate`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/delegate) object to perform collapse and expand transitions. The delegate is an object you provide that adopts the [`UISplitViewControllerDelegate`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate) protocol.
+    ///
+    /// In a column-style split view interface, when the interface is collapsed, you can show a different view controller than your primary, supplementary, or secondary. Set the desired view controller for the [`UISplitViewControllerColumnCompact`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/column/compact) column using [`setViewController:forColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/setviewcontroller(_:for:)). If you want to further customize transitions for collapsing and expanding the interface, see [Column-style split views](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate#column-style-split-views).
+    ///
+    /// For information about managing transitions in classic split view interfaces, see [Classic split views](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate#classic-split-views).
+    ///
+    /// ### Display mode
+    ///
+    /// A split view controller’s current display mode represents the visual arrangement of its child view controllers. It determines how many of its child view controllers are shown, and how they’re positioned in relation to each other. For example, you can arrange the child view controllers so that they appear side-by-side, so that only one at a time is visible, or so that one is partially obscured by the others.
+    ///
+    /// You don’t set the display mode directly; instead, you set a preferred display mode by using the [`preferredDisplayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferreddisplaymode) property. The split view controller makes every effort to respect the display mode you specify, but it may not be able to accommodate that mode visually because of space constraints. For example, the split view controller can’t display its child view controllers side-by-side in a horizontally compact environment. For possible configurations, see [`UISplitViewControllerDisplayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d0f3a38d192613d680d69b61779917f1/media-3624553~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/be15b86b1c34a056dcd35b2d58c2fefb/media-3624553%402x.png 2x" />
+    ///     <img alt="Flow diagram showing the possible state transitions between display modes, based on split behavior and column style." src="https://docs-assets.developer.apple.com/published/d0f3a38d192613d680d69b61779917f1/media-3624553~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// After you set the preferred display mode, the split view controller updates itself and reflects the actual display mode in the [`displayMode`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.property) property. If you just want to change which columns are shown, try using [`showColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/show(_:)) or [`hideColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/hide(_:)). The split view controller will determine how to update the display mode to display the desired columns.
+    ///
+    /// ### Gesture and button support
+    ///
+    /// There are several ways for user interaction to change the current display mode.
+    ///
+    /// The split view controller installs a built-in gesture recognizer that lets the user change the display mode using a swipe. You can suppress this gesture recognizer by setting the [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) property to [`false`](https://developer.apple.com/documentation/swift/false). For example, you might set this property to [`false`](https://developer.apple.com/documentation/swift/false) if you want your primary view controller to always be visible.
+    ///
+    /// If [`presentsWithGesture`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/presentswithgesture) is [`true`](https://developer.apple.com/documentation/swift/true), the split view controller also presents a special bar button item for changing the display mode. The split view controller manages the behavior, appearance, and positioning of this item. It appears as a sidebar toggle icon for [`UISplitViewControllerSplitBehaviorTile`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/tile) and as a back-chevron icon for [`UISplitViewControllerSplitBehaviorOverlay`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/overlay) and [`UISplitViewControllerSplitBehaviorDisplace`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum/displace). Tapping this button transitions to a new display mode based on the current display mode and split behavior.
+    ///
+    /// For three-column split view interfaces—those with a [`style`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.property) of [`UISplitViewControllerStyleTripleColumn`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/style-swift.enum/triplecolumn)—another property that affects display mode is [`showsSecondaryOnlyButton`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/showssecondaryonlybutton). When this property is [`true`](https://developer.apple.com/documentation/swift/true), the split view controller presents another bar button item for toggling the display mode to and from [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly). The split view controller manages the behavior, appearance, and positioning of this item. It appears as a double-arrow icon. When a user taps this button, it toggles the display mode to or from [`UISplitViewControllerDisplayModeSecondaryOnly`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/displaymode-swift.enum/secondaryonly).
+    ///
+    /// ### Split behavior
+    ///
+    /// A split view controller’s split behavior controls how its secondary view controller appears in relation to the others. You can configure this behavior so that the secondary view controller always appears side-by-side with the others, so that it’s partially obscured by the others, or so that it’s displaced offscreen opposite the others to make space for them.
+    ///
+    /// You don’t set the split behavior directly; instead, you set a preferred split behavior by using the [`preferredSplitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferredsplitbehavior) property. This change takes effect after the next layout occurs. The split view controller reflects the actual split behavior in the [`splitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.property) property. The value of the [`splitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.property) property affects which display modes are available for the split view controller. For possible configurations, see [`UISplitViewControllerSplitBehavior`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/splitbehavior-swift.enum).
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/28ab2c266fb36cb64b370167601fa846/media-3616615~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/07e4766775c395fdd216e5ce3cd138da/media-3616615%402x.png 2x" />
+    ///     <img alt="Diagram showing a triple-column split view interface using the tile, overlay, and displace split behaviors." src="https://docs-assets.developer.apple.com/published/28ab2c266fb36cb64b370167601fa846/media-3616615~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Column-width customization
+    ///
+    /// You can specify custom widths for the primary and supplementary columns of the split view interface by adjusting [`preferredPrimaryColumnWidthFraction`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferredprimarycolumnwidthfraction) and [`preferredSupplementaryColumnWidthFraction`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/preferredsupplementarycolumnwidthfraction). If you don’t specify values for these properties, they default to [`UISplitViewControllerAutomaticDimension`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/automaticdimension), and the system determines the appropriate behavior based on the available space.
+    ///
+    /// ### Message forwarding
+    ///
+    /// A split view controller interposes itself between the app’s window and its child view controllers. As a result, all messages to the child view controllers must flow through the split view controller. Messages are forwarded as appropriate. For example, view appearance and disappearance messages are sent only when the corresponding child view controller actually appears onscreen.
+    ///
+    /// ### State preservation
+    ///
+    /// If you assign a value to the split view controller’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it preserves any child view controllers that have their own valid restoration identifier. During the next launch cycle, the split view controller restores the preserved view controllers to their previous state. The child view controllers of a split view controller may use the same restoration identifiers. The split view controller automatically stores additional information to ensure that each child’s restoration path is unique.
+    ///
+    ///
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -689,7 +1014,55 @@ impl UISplitViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate?language=objc)
+    /// The methods adopted by the object you use to manage changes to a split view interface.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of this protocol to respond to changes in the current display mode and to the current interface orientation. When the split view interface collapses and expands, or when a new view controller is added to the interface, you can also use these methods to configure the child view controllers.
+    ///
+    /// The methods of this protocol are all optional. If you don’t implement any of the methods, the split view controller provides default behavior to handle the collapsing and expanding transitions.
+    ///
+    /// For more information, see [`UISplitViewController`](https://developer.apple.com/documentation/uikit/uisplitviewcontroller).
+    ///
+    /// ### Column-style split views
+    ///
+    /// In a column-style split view interface, you use these delegate methods to customize interface transition behavior:
+    ///
+    /// - [`splitViewController:topColumnForCollapsingToProposedTopColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:topcolumnforcollapsingtoproposedtopcolumn:))
+    ///
+    /// - [`splitViewController:willHideColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:willhide:))
+    ///
+    /// - [`splitViewControllerDidCollapse:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontrollerdidcollapse(_:))
+    ///
+    /// - [`splitViewController:displayModeForExpandingToProposedDisplayMode:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:displaymodeforexpandingtoproposeddisplaymode:))
+    ///
+    /// - [`splitViewController:willShowColumn:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:willshow:))
+    ///
+    /// - [`splitViewControllerDidExpand:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontrollerdidexpand(_:))
+    ///
+    /// ### Classic split views
+    ///
+    /// In a classic split view interface, you use these delegate methods to customize interface transition behavior:
+    ///
+    /// - [`primaryViewControllerForCollapsingSplitViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/primaryviewcontroller(forcollapsing:))
+    ///
+    /// - [`splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:collapsesecondary:onto:))
+    ///
+    /// - [`primaryViewControllerForExpandingSplitViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/primaryviewcontroller(forexpanding:))
+    ///
+    /// - [`splitViewController:separateSecondaryViewControllerFromPrimaryViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:separatesecondaryfrom:))
+    ///
+    /// - [`splitViewController:showViewController:sender:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:show:sender:))
+    ///
+    /// - [`splitViewController:showDetailViewController:sender:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:showdetail:sender:))
+    ///
+    /// At the end of a collapse transition, the split view controller typically shows only the content from its primary view controller. You can change this behavior by implementing the [`primaryViewControllerForCollapsingSplitViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/primaryviewcontroller(forcollapsing:)) method in your split view controller delegate. You might use that method to specify the secondary view controller or an entirely different view controller—perhaps one better suited for display in a horizontally compact environment.
+    ///
+    /// If you want to perform any additional adjustments of the view controllers and view hierarchy, you can also implement the [`splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:collapsesecondary:onto:)) method in your delegate.
+    ///
+    /// The expansion process reverses the collapsing process by asking the delegate to designate which view controller becomes the primary view controller and to give the delegate a chance to perform the transition itself. If you implement the delegate methods for collapsing your split view interface, you should also implement the [`primaryViewControllerForExpandingSplitViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/primaryviewcontroller(forexpanding:)) and [`splitViewController:separateSecondaryViewControllerFromPrimaryViewController:`](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdelegate/splitviewcontroller(_:separatesecondaryfrom:)) methods for expanding that interface.
+    ///
+    ///
     pub unsafe trait UISplitViewControllerDelegate: MainThreadOnly {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]

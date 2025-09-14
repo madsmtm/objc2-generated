@@ -5,6 +5,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Returns an accessibility caption from an image’s metadata.
 /// Returns an accessibility caption from an image's metadata.
 ///
 /// Parameter `url`: The URL locating the image on disk.
@@ -19,8 +20,6 @@ use crate::*;
 /// # Safety
 ///
 /// `error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningcopycaption(_:_:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
     url: &CFURL,
@@ -37,6 +36,7 @@ pub unsafe extern "C-unwind" fn MAImageCaptioningCopyCaption(
 }
 
 extern "C-unwind" {
+    /// Sets the accessibility caption for an image’s metadata.
     /// Sets the accessibility caption into an image's metadata.
     ///
     /// Parameter `url`: The URL locating the image on disk.
@@ -53,8 +53,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningsetcaption(_:_:_:)?language=objc)
     pub fn MAImageCaptioningSetCaption(
         url: &CFURL,
         string: Option<&CFString>,
@@ -62,14 +60,13 @@ extern "C-unwind" {
     ) -> bool;
 }
 
+/// Returns the metadata tag path.
 /// Returns the metadata tagpath for this key.
 /// This tag path can be used to copy metadata directly using CGImageMetadataCopyTagWithPath from the CGImageMetadataRef, for example.
 ///
 /// Returns: A string representing the tag path.
 ///
 /// This returns the appropriate metadata tag path to be used.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maimagecaptioningcopymetadatatagpath()?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MAImageCaptioningCopyMetadataTagPath() -> CFRetained<CFString> {
     extern "C-unwind" {

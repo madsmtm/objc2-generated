@@ -5,22 +5,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum?language=objc)
+/// Constants that indicate the foreground or background execution state of your app.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneActivationState(pub NSInteger);
 impl UISceneActivationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/unattached?language=objc)
+    /// A state that indicates that the scene is not currently connected to your app.
+    ///
+    /// ## Discussion
+    ///
+    /// A scene starts in the unattached state and remains in that state until the system sends a connection notification to it. A scene reenters the attached state when the user dismisses the interface from the app switcher or to reclaim its resources.
+    ///
+    ///
     #[doc(alias = "UISceneActivationStateUnattached")]
     pub const Unattached: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/foregroundactive?language=objc)
+    /// A state that indicates that the scene is running in the foreground and is currently receiving events.
+    ///
+    /// ## Discussion
+    ///
+    /// The interface for an active scene is onscreen and visible to the user.
+    ///
+    ///
     #[doc(alias = "UISceneActivationStateForegroundActive")]
     pub const ForegroundActive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/foregroundinactive?language=objc)
+    /// A state that indicates that the scene is running in the foreground but is not receiving events.
+    ///
+    /// ## Discussion
+    ///
+    /// A scene transits through the foreground-inactive state on its way to or from another state.
+    ///
+    ///
     #[doc(alias = "UISceneActivationStateForegroundInactive")]
     pub const ForegroundInactive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum/background?language=objc)
+    /// A state that indicates that the scene is running in the background and is not onscreen.
+    ///
+    /// ## Discussion
+    ///
+    /// A background scene does not have a visible interface.
+    ///
+    ///
     #[doc(alias = "UISceneActivationStateBackground")]
     pub const Background: Self = Self(2);
 }
@@ -33,19 +57,15 @@ unsafe impl RefEncode for UISceneActivationState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneCaptureState(pub NSInteger);
 impl UISceneCaptureState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/unspecified?language=objc)
     #[doc(alias = "UISceneCaptureStateUnspecified")]
     pub const Unspecified: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/inactive?language=objc)
     #[doc(alias = "UISceneCaptureStateInactive")]
     pub const Inactive: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate/active?language=objc)
     #[doc(alias = "UISceneCaptureStateActive")]
     pub const Active: Self = Self(1);
 }
@@ -58,31 +78,37 @@ unsafe impl RefEncode for UISceneCaptureState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct?language=objc)
+/// Constants that indicate the possible roles for a scene.
 // NS_TYPED_ENUM
 pub type UISceneSessionRole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrordomain?language=objc)
+    /// The domain for scene-related errors.
     pub static UISceneErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code?language=objc)
+/// Error codes for issues with scenes.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneErrorCode(pub NSInteger);
 impl UISceneErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/multiplescenesnotsupported?language=objc)
+    /// An error that indicates multiple scenes aren’t supported.
+    ///
+    /// ## Discussion
+    ///
+    /// This error code indicates that the app doesn’t support multiple scenes, or the system was unable to display multiple scenes for your app.
+    ///
+    ///
     #[doc(alias = "UISceneErrorCodeMultipleScenesNotSupported")]
     pub const MultipleScenesNotSupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/requestdenied?language=objc)
+    /// An error that indicates the request was denied.
     #[doc(alias = "UISceneErrorCodeRequestDenied")]
     pub const RequestDenied: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/geometryrequestunsupported?language=objc)
+    /// An error that indicates the geometry request is invalid or unsupported.
     #[doc(alias = "UISceneErrorCodeGeometryRequestUnsupported")]
     pub const GeometryRequestUnsupported: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code/geometryrequestdenied?language=objc)
+    /// An error that indicates the geometry request is valid but the system denied the request.
     #[doc(alias = "UISceneErrorCodeGeometryRequestDenied")]
     pub const GeometryRequestDenied: Self = Self(101);
 }

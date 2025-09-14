@@ -6,32 +6,31 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrordomain?language=objc)
+    /// The domain for a credential provider extension error.
     pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code?language=objc)
+/// The codes for a credential provider extension error.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASExtensionErrorCode(pub NSInteger);
 impl ASExtensionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/failed?language=objc)
+    /// The operation failed.
     #[doc(alias = "ASExtensionErrorCodeFailed")]
     pub const Failed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/usercanceled?language=objc)
+    /// The user canceled the operation.
     #[doc(alias = "ASExtensionErrorCodeUserCanceled")]
     pub const UserCanceled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/userinteractionrequired?language=objc)
+    /// User interaction is required.
     #[doc(alias = "ASExtensionErrorCodeUserInteractionRequired")]
     pub const UserInteractionRequired: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/credentialidentitynotfound?language=objc)
+    /// The credential identity was not found.
     #[doc(alias = "ASExtensionErrorCodeCredentialIdentityNotFound")]
     pub const CredentialIdentityNotFound: Self = Self(101);
+    /// This error should only be used for a passkey registration request, if the @c excludedCredentials property matches a known passkey.
     /// This error should only be used for a passkey registration request, if the
     /// `excludedCredentials`property matches a known passkey.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code/matchedexcludedcredential?language=objc)
     #[doc(alias = "ASExtensionErrorCodeMatchedExcludedCredential")]
     pub const MatchedExcludedCredential: Self = Self(102);
 }
@@ -45,8 +44,13 @@ unsafe impl RefEncode for ASExtensionErrorCode {
 }
 
 extern "C" {
-    /// A key that specifies an error string to be shown to the user when an extension request fails.
+    /// A key that specifies a string value to show to the user when a request fails.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionlocalizedfailurereasonerrorkey?language=objc)
+    /// ## Discussion
+    ///
+    /// When canceling a request, your extension calls [`cancelRequestWithError:`](https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationextensioncontext/cancelrequest(witherror:)). The system informs the user that the request failed. To show additional information regarding the failure, use this key to set a string value in the error’s `userInfo` dictionary.
+    ///
+    ///
+    /// A key that specifies an error string to be shown to the user when an extension request fails.
     pub static ASExtensionLocalizedFailureReasonErrorKey: Option<&'static NSErrorUserInfoKey>;
 }

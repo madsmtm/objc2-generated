@@ -13,11 +13,20 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A specialized lockup view that contains a circular image of a person or the person’s initials, along with a footer view.
+    ///
+    /// ## Overview
+    ///
+    /// If you don’t provide an image, the system provides a generic placeholder image. If [`personNameComponents`](https://developer.apple.com/documentation/tvuikit/tvmonogramview/personnamecomponents) is not `nil`, the system creates a localized monogram image using the first initials from the name components.
+    ///
+    ///
+    /// ![A darkened image with a highlighted box along the left side. The box contains a round image with an actor’s initials inside of it.](https://docs-assets.developer.apple.com/published/fe64712a44bd1278401b48bb657bc167/media-3016835%402x.png)
+    ///
+    ///
+    ///
     /// TVMonogramView is a lockup view specializing in presenting monograms.
     ///
     /// The system provides a generic silhouette placeholder image. If personNameComponents is set, the system composes an appropriate 'monogram' image with the initials. When an 'image' is set, the system uses it instead. When no frame or contentSize is explicitly set, the system uses a default size.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvmonogramview?language=objc)
     #[unsafe(super(TVLockupView, UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "TVLockupView")]

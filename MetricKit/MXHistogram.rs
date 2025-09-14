@@ -7,13 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object representing a bucket of data in a histogram.
     /// A class that represents a bucket within an MXHistogram
     ///
     /// Histogram buckets are sorted in ascending order.
     ///
     /// Histogram bucket start and end values are exclusive.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogrambucket?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXHistogramBucket<UnitType: ?Sized = AnyObject>;
@@ -81,9 +80,24 @@ impl<UnitType: Message + AsRef<NSUnit>> MXHistogramBucket<UnitType> {
 }
 
 extern_class!(
-    /// A class representing bucketized histogram data.
+    /// An object representing a histogram of data values of the same type of unit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxhistogram?language=objc)
+    /// ## Overview
+    ///
+    /// A _histogram_ measures the number of times a data point for a variable falls into a specific range of possible values within a set of data. Usually, histograms are depicted as bar charts, in which each bar represents a range of values, and the height of each bar represents the number of times the value of the variable falls within a particular range. In this class, each bar is represented by a _bucket_.
+    ///
+    /// A bucket holds the results for a series of measured values, such as all the events occurring between 3 and 5 seconds. MetricKit uses fixed-width buckets that are device-independent with intervals that are based on the type of metric. Use the [`bucketStart`](https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketstart) and [`bucketEnd`](https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketend) properties to find the start and end of an interval.
+    ///
+    /// The returned results contain only buckets with at least one item so [`bucketEnumerator`](https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator) may not return all intervals.
+    ///
+    /// For example, if the fixed width for the time to resume the app is 10 ms, then the sequence of buckets is:
+    ///
+    /// 0…9 ms, 10…19 ms, 20…29 ms, etc.
+    ///
+    /// If there’s data only in the 0…9 ms and 20…29 ms buckets, then the report skips the 10…19 ms bucket.
+    ///
+    ///
+    /// A class representing bucketized histogram data.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MXHistogram<UnitType: ?Sized = AnyObject>;

@@ -4,31 +4,31 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency?language=objc)
+/// The time frame for which the rule applies.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRecurrenceFrequency(pub NSInteger);
 impl INRecurrenceFrequency {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/unknown?language=objc)
+    /// An unknown repetition frequency.
     #[doc(alias = "INRecurrenceFrequencyUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/minute?language=objc)
+    /// A time range that repeats every minute.
     #[doc(alias = "INRecurrenceFrequencyMinute")]
     pub const Minute: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/hourly?language=objc)
+    /// A time range that repeats on an hourly basis.
     #[doc(alias = "INRecurrenceFrequencyHourly")]
     pub const Hourly: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/daily?language=objc)
+    /// A time range that repeats on a daily basis.
     #[doc(alias = "INRecurrenceFrequencyDaily")]
     pub const Daily: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/weekly?language=objc)
+    /// A date range that repeats on a weekly basis.
     #[doc(alias = "INRecurrenceFrequencyWeekly")]
     pub const Weekly: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/monthly?language=objc)
+    /// A date range that repeats on a monthly basis.
     #[doc(alias = "INRecurrenceFrequencyMonthly")]
     pub const Monthly: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inrecurrencefrequency/yearly?language=objc)
+    /// A date range that repeats on a yearly basis.
     #[doc(alias = "INRecurrenceFrequencyYearly")]
     pub const Yearly: Self = Self(6);
 }

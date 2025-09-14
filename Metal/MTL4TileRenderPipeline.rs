@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Groups together properties you use to create a tile render pipeline state object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4tilerenderpipelinedescriptor?language=objc)
+    /// Groups together properties you use to create a tile render pipeline state object.
     #[unsafe(super(MTL4PipelineDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTL4PipelineState")]

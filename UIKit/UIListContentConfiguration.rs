@@ -13,7 +13,28 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontentconfiguration-c.class?language=objc)
+    /// A content configuration for a list-based content view.
+    ///
+    /// ## Overview
+    ///
+    /// A list content configuration describes the styling and content for an individual element that might appear in a list, like a cell, header, or footer. Using a list content configuration, you can obtain system default styling for a variety of different view states. You fill the configuration with your content, and then assign it directly to cells, headers, and footers in [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) and [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview), or to your own custom list content view ([`UIListContentView`](https://developer.apple.com/documentation/uikit/uilistcontentview)).
+    ///
+    /// For views like cells, headers, and footers, use their [`defaultContentConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell/defaultcontentconfiguration) to get a list content configuration that has preconfigured default styling. Alternatively, you can create a list content configuration from one of the system default styles. After you get the configuration, you assign your content to it, customize any other properties, and assign it to your view as the current content configuration.
+    ///
+    /// ```objc
+    /// UIListContentConfiguration *content = [cell defaultContentConfiguration];
+    ///
+    /// // Configure content.
+    /// [content setImage:[UIImage systemImageNamed:@"star"]];
+    /// [content setText:@"Favorites"];
+    ///
+    /// // Customize appearance.
+    /// [content.imageProperties setTintColor:[UIColor purpleColor]];
+    ///
+    /// [cell setContentConfiguration:content];
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -339,7 +360,17 @@ impl UIListContentConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontentview?language=objc)
+    /// A content view for displaying list-based content.
+    ///
+    /// ## Overview
+    ///
+    /// You use a list content view for displaying list-based content in a custom view hierarchy. You can embed a list content view manually in a custom cell or in a container view, like a [`UIStackView`](https://developer.apple.com/documentation/uikit/uistackview). You can use Auto Layout or manual layout techniques to size and position the view, and its height adjusts dynamically according to its width and the space it needs to display its content.
+    ///
+    /// A list content view relies on its list content configuration to supply its styling and content. You create a list content view by passing in a [`UIListContentConfiguration`](https://developer.apple.com/documentation/uikit/uilistcontentconfiguration-swift.struct) to [`init(configuration:)`](https://developer.apple.com/documentation/uikit/uilistcontentview/init(configuration:)) (Swift) or [`initWithConfiguration:`](https://developer.apple.com/documentation/uikit/uilistcontentview/initwithconfiguration:) (Objective-C). To update the content view, you set a new configuration on it through its [`configuration`](https://developer.apple.com/documentation/uikit/uilistcontentview/configuration) property.
+    ///
+    /// If you’re using a [`UICollectionView`](https://developer.apple.com/documentation/uikit/uicollectionview) or [`UITableView`](https://developer.apple.com/documentation/uikit/uitableview), you don’t need to manually create a list content view to take advantage of the list configuration. Instead, you assign a [`UIListContentConfiguration`](https://developer.apple.com/documentation/uikit/uilistcontentconfiguration-swift.struct) to the [`contentConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentconfiguration-1lcqh) property of the cells, headers, or footers within those types.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

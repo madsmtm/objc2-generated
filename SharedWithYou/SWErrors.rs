@@ -4,22 +4,22 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcentererrorcode?language=objc)
+/// The error codes for the highlight center.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWHighlightCenterErrorCode(pub NSInteger);
 impl SWHighlightCenterErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcentererrorcode/noerror?language=objc)
+    /// Reports no error.
     #[doc(alias = "SWHighlightCenterErrorCodeNoError")]
     pub const NoError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcentererrorcode/internalerror?language=objc)
+    /// Reports an internal error.
     #[doc(alias = "SWHighlightCenterErrorCodeInternalError")]
     pub const InternalError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcentererrorcode/invalidurl?language=objc)
+    /// Reports an invalid URL error.
     #[doc(alias = "SWHighlightCenterErrorCodeInvalidURL")]
     pub const InvalidURL: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swhighlightcentererrorcode/accessdenied?language=objc)
+    /// Reports and access denied error.
     #[doc(alias = "SWHighlightCenterErrorCodeAccessDenied")]
     pub const AccessDenied: Self = Self(3);
 }

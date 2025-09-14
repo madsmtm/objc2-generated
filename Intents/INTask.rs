@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intask?language=objc)
+    /// An individual task the user needs to complete.
+    ///
+    /// ## Overview
+    ///
+    /// Use task objects to represent tasks for the user to complete. Each task object contains a description of the task, its current completion state, and any trigger conditions to remind the user to complete the task.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INTask;

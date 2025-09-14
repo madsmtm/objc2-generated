@@ -7,50 +7,115 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerrordomain?language=objc)
+    /// A string that identifies the SKAdNetwork error domain.
     pub static SKANErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code?language=objc)
+/// Constants that indicate the type of error for an ad network attribution operation.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKANError(pub NSInteger);
 impl SKANError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressionmissingrequiredvalue?language=objc)
+    /// A required value is missing from a view-through ad impression.
+    ///
+    /// ## Discussion
+    ///
+    /// Check that your instance of [`SKAdImpression`](https://developer.apple.com/documentation/storekit/skadimpression) provides all of the required values.
+    ///
+    ///
     #[doc(alias = "SKANErrorImpressionMissingRequiredValue")]
     pub const ImpressionMissingRequiredValue: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/unsupported?language=objc)
+    /// Your app attempted to use functionality that isn’t supported in the specified version.
+    ///
+    /// ## Discussion
+    ///
+    /// For information about supported features by version number, see [SKAdNetwork release notes](https://developer.apple.com/documentation/storekit/skadnetwork-release-notes). For example, to provide view-through ads, use SKAdNetwork version 2.2 or later.
+    ///
+    ///
     #[doc(alias = "SKANErrorUnsupported")]
     pub const Unsupported: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/adnetworkidmissing?language=objc)
+    /// The ad network identifier in the ad impression doesn’t match the value in the information property list.
+    ///
+    /// ## Discussion
+    ///
+    /// The value you specify for your ad network identifier in your ad impresion must match the value in the `Info.plist`. ``An app that participates in ad campaigns by displaying ads must include the ad network identifiers in its `Info.plist`. For more information, see [Configuring a source app](https://developer.apple.com/documentation/storekit/configuring-a-source-app).
+    ///
+    ///
     #[doc(alias = "SKANErrorAdNetworkIdMissing")]
     pub const AdNetworkIdMissing: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/mismatchedsourceappid?language=objc)
+    /// The source app identifier in the ad impression doesn’t match the app identifier in the source app.
+    ///
+    /// ## Discussion
+    ///
+    /// Check that the [`sourceAppStoreItemIdentifier`](https://developer.apple.com/documentation/storekit/skadimpression/sourceappstoreitemidentifier) you provide in the [`SKAdImpression`](https://developer.apple.com/documentation/storekit/skadimpression) object matches the app identifier of the app displaying the ad.
+    ///
+    ///
     #[doc(alias = "SKANErrorMismatchedSourceAppId")]
     pub const MismatchedSourceAppId: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressionnotfound?language=objc)
+    /// The system can’t find the ad impression.
+    ///
+    /// ## Discussion
+    ///
+    /// This error may occur if an app calls [`endImpression:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/endimpression(_:completionhandler:)) before calling [`startImpression:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/startimpression(_:completionhandler:)).
+    ///
+    ///
     #[doc(alias = "SKANErrorImpressionNotFound")]
     pub const ImpressionNotFound: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidcampaignid?language=objc)
+    /// The campaign identifier that you provided is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Check that the campaign identifier is a valid value. For more information, see [`SKStoreProductParameterAdNetworkCampaignIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkcampaignidentifier) for StoreKit-rendered ads, and [`adCampaignIdentifier`](https://developer.apple.com/documentation/storekit/skadimpression/adcampaignidentifier) for view-through ads.
+    ///
+    ///
     #[doc(alias = "SKANErrorInvalidCampaignId")]
     pub const InvalidCampaignId: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidconversionvalue?language=objc)
+    /// The conversion value is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Apps provide a conversion value when calling [`updatePostbackConversionValue:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/updatepostbackconversionvalue(_:completionhandler:)) or [`updateConversionValue:`](https://developer.apple.com/documentation/storekit/skadnetwork/updateconversionvalue(_:)). Check that the conversion value you provide is within the allowed range.
+    ///
+    ///
     #[doc(alias = "SKANErrorInvalidConversionValue")]
     pub const InvalidConversionValue: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidsourceappid?language=objc)
+    /// The App Store ID of the app displaying the ad is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Check that the value you provide for [`SKStoreProductParameterAdNetworkSourceAppStoreIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworksourceappstoreidentifier) or [`sourceAppStoreItemIdentifier`](https://developer.apple.com/documentation/storekit/skadimpression/sourceappstoreitemidentifier) is correct and matches the App Store ID of the app that’s displaying the ad.
+    ///
+    ///
     #[doc(alias = "SKANErrorInvalidSourceAppId")]
     pub const InvalidSourceAppId: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidadvertisedappid?language=objc)
+    /// The App Store ID of the advertised app is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Ad networks provide an advertised app identifier when signing an ad impression. If you’re providing a StoreKit-rendered ad, check that the value you set for [`SKStoreProductParameterITunesItemIdentifier`](https://developer.apple.com/documentation/storekit/skstoreproductparameteritunesitemidentifier) in [`loadProductWithParameters:completionBlock:`](https://developer.apple.com/documentation/storekit/skstoreproductviewcontroller/loadproduct(withparameters:completionblock:)) is a valid app identifer. If you’re providing a view-through ad, check the value of [`advertisedAppStoreItemIdentifier`](https://developer.apple.com/documentation/storekit/skadimpression/advertisedappstoreitemidentifier).
+    ///
+    ///
     #[doc(alias = "SKANErrorInvalidAdvertisedAppId")]
     pub const InvalidAdvertisedAppId: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/invalidversion?language=objc)
+    /// The SKAdNetwork version number is invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// Ad networks provide an SKAdNetwork version number when preparing an ad impression, in [`SKStoreProductParameterAdNetworkVersion`](https://developer.apple.com/documentation/storekit/skstoreproductparameteradnetworkversion) or [`version`](https://developer.apple.com/documentation/storekit/skadimpression/version). Check that the version number is valid and that you follow the version-specific instructions to generate a signature. For more information about versions, see [SKAdNetwork release notes](https://developer.apple.com/documentation/storekit/skadnetwork-release-notes).
+    ///
+    ///
     #[doc(alias = "SKANErrorInvalidVersion")]
     pub const InvalidVersion: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// If this error appears, continue processing the ad; an ad impression may succeed despite this error.
+    ///
+    ///
     #[doc(alias = "SKANErrorUnknown")]
     pub const Unknown: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code/impressiontooshort?language=objc)
     #[doc(alias = "SKANErrorImpressionTooShort")]
     pub const ImpressionTooShort: Self = Self(11);
 }

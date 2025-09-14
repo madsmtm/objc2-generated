@@ -8,7 +8,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintent?language=objc)
+    /// A request to transfer money between two accounts.
+    ///
+    /// ## Overview
+    ///
+    /// Siri creates an [`INTransferMoneyIntent`](https://developer.apple.com/documentation/intents/intransfermoneyintent) object when the user asks to transfer money between two accounts. Transfers can occur only between accounts associated with the user. Use the information provided by the intent object to identify the involved accounts and the amount to transfer.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INTransferMoneyIntentHandling`](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling) protocol. Your handler should confirm the request and create an [`INTransferMoneyIntentResponse`](https://developer.apple.com/documentation/intents/intransfermoneyintentresponse) object with the transaction details. For successful transfers, Siri offers a way for the user to view the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents, Siri Suggestions" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// When performing a search, Siri automatically asks the user to unlock a currently locked device. You don’t need to explicitly ask to unlock the device. In addition, Siri always prompts the user to confirm the request before asking your Intents extension to handle it.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -107,11 +122,18 @@ impl INTransferMoneyIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for transferring money between accounts.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INTransferMoneyIntentHandling`](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling) protocol to resolve, confirm, and handle requests to transfer money between accounts. Adopt this protocol in an object of your Intents extension that’s capable of handling the transfer.
+    ///
+    /// Siri delivers an [`INTransferMoneyIntent`](https://developer.apple.com/documentation/intents/intransfermoneyintent) object to your handler when the user asks to transfer money using your app. The provided intent object contains information about the amount to transfer and the accounts involved. Use the methods of this protocol to resolve the account information and initiate the transaction.
+    ///
+    ///
     /// Protocol to declare support for handling an INTransferMoneyIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/intransfermoneyintenthandling?language=objc)
     #[deprecated = "INTransferMoneyIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INTransferMoneyIntentHandling: NSObjectProtocol {
         #[cfg(all(

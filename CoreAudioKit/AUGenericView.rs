@@ -12,20 +12,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags?language=objc)
+/// Flags that describe the display of a generic view.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUGenericViewDisplayFlags(pub u32);
 bitflags::bitflags! {
     impl AUGenericViewDisplayFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewtitledisplayflag?language=objc)
+/// If set, the generic view displays the title and manufacturer of the audio unit.
         #[doc(alias = "AUViewTitleDisplayFlag")]
         const ViewTitleDisplayFlag = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewpropertiesdisplayflag?language=objc)
+/// If set, the generic view displays the audio unit properties of the audio unit.
         #[doc(alias = "AUViewPropertiesDisplayFlag")]
         const ViewPropertiesDisplayFlag = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericviewdisplayflags/viewparametersdisplayflag?language=objc)
+/// If set, the generic view displays the audio unit parameters of the audio unit.
         #[doc(alias = "AUViewParametersDisplayFlag")]
         const ViewParametersDisplayFlag = 1<<2;
     }
@@ -40,9 +40,8 @@ unsafe impl RefEncode for AUGenericViewDisplayFlags {
 }
 
 extern_class!(
+    /// A view that provides a generic user interface for a Cocoa audio unit.
     /// An AUGenericView object retrieves and instantiates a generic user interface view for the given audio unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiokit/augenericview?language=objc)
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

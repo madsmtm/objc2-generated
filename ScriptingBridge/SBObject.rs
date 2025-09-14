@@ -10,6 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The `SBObject` class declares methods that can be invoked on any object in a scriptable application. It defines methods for getting elements and properties of an object, as well as setting a given object to a new value.
+    ///
+    /// ## Overview
+    ///
+    /// Each `SBObject` is built around an object specifier, which tells Scripting Bridge how to locate the object. Therefore, you can think of an `SBObject` as a reference to an object in an target application rather than an object itself. To bypass this reference-based approach and force evaluation, use the [`get`](https://developer.apple.com/documentation/scriptingbridge/sbobject/get()) method.
+    ///
+    /// Typically, rather than create `SBObject` instances explictly, you receive `SBObject` objects by calling methods of an [`SBApplication`](https://developer.apple.com/documentation/scriptingbridge/sbapplication) subclass. For example, if you wanted to get an `SBObject` representing the current iTunes track, you would use code like this (where `iTunesTrack` is a subclass of `SBObject`):
+    ///
+    /// ```objc
+    /// iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+    /// iTunesTrack *track = [iTunes currentTrack];
+    /// ```
+    ///
+    /// You can discover the names of dynamically generated classes such as `iTunesApplication` and `iTunesTrack` by examining the header file created by the `sdp` tool. Alternatively, you give these variables the dynamic Objective-C type `id`.
+    ///
+    ///
     /// The `SBObject` class declares methods that can be invoked on any object in a
     /// scriptable application. It defines methods for getting elements and
     /// properties of an object, as well as setting a given object to a new value.
@@ -37,8 +53,6 @@ extern_class!(
     /// `iTunesApplication` and `iTunesTrack` by examining the header file created
     /// by the `sdp` tool. Alternatively, you give these variables the dynamic
     /// Objective-C type `id`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scriptingbridge/sbobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SBObject;

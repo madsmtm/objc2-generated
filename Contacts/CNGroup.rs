@@ -7,12 +7,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An immutable object that represents a group of contacts.
+    ///
+    /// ## Overview
+    ///
+    /// Contacts may be members of one or more groups, depending upon their accounts.
+    ///
+    /// `CNGroup` objects are thread-safe, and you may access their properties from any thread of your app.
+    ///
+    ///
     /// An immutable value object representing a group.
     ///
     ///
     /// CNGroup is thread safe.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNGroup;
@@ -74,11 +81,23 @@ impl CNGroup {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroupidentifierkey?language=objc)
+    /// The identifier of the group.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNGroupIdentifierKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/contacts/cngroupnamekey?language=objc)
+    /// The name of the group.
+    ///
+    /// ## Discussion
+    ///
+    /// This key takes a string value.
+    ///
+    ///
     pub static CNGroupNameKey: &'static NSString;
 }

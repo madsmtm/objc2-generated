@@ -4,37 +4,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype?language=objc)
+/// Constants describing the available payment options.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPaymentMethodType(pub NSInteger);
 impl INPaymentMethodType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/unknown?language=objc)
+    /// An unspecified payment type.
     #[doc(alias = "INPaymentMethodTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/checking?language=objc)
+    /// Payment from a checking account.
     #[doc(alias = "INPaymentMethodTypeChecking")]
     pub const Checking: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/savings?language=objc)
+    /// Payment from a savings account.
     #[doc(alias = "INPaymentMethodTypeSavings")]
     pub const Savings: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/brokerage?language=objc)
+    /// Payment from a brokerage account.
     #[doc(alias = "INPaymentMethodTypeBrokerage")]
     pub const Brokerage: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/debit?language=objc)
+    /// Payment using a debit card.
     #[doc(alias = "INPaymentMethodTypeDebit")]
     pub const Debit: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/credit?language=objc)
+    /// Payment using a credit card.
     #[doc(alias = "INPaymentMethodTypeCredit")]
     pub const Credit: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/prepaid?language=objc)
+    /// Payment using a prepaid card or account.
     #[doc(alias = "INPaymentMethodTypePrepaid")]
     pub const Prepaid: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/store?language=objc)
+    /// Payment using a store charge card.
     #[doc(alias = "INPaymentMethodTypeStore")]
     pub const Store: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentmethodtype/applepay?language=objc)
+    /// Payment using Apple Pay.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Always use the [`applePayPaymentMethod`](https://developer.apple.com/documentation/intents/inpaymentmethod/applepay()) class method to create payment methods of this type.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "INPaymentMethodTypeApplePay")]
     pub const ApplePay: Self = Self(8);
 }

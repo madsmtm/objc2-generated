@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// Groups together properties for creating a compiler context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilerdescriptor?language=objc)
+    /// Groups together properties for creating a compiler context.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CompilerDescriptor;
@@ -86,11 +85,16 @@ impl DefaultRetained for MTL4CompilerDescriptor {
 extern_class!(
     /// The configuration options that control the behavior of a compilation task for a Metal 4 compiler instance.
     ///
+    /// ## Overview
+    ///
+    /// You can configure task-specific settings that affect a compilation task by creating an instance of this class, setting its properties, and passing it to one of the applicable methods of an [`MTL4Compiler`](https://developer.apple.com/documentation/metal/mtl4compiler) instance.
+    ///
+    ///
+    /// The configuration options that control the behavior of a compilation task for a Metal 4 compiler instance.
+    ///
     /// You can configure task-specific settings that affect a compilation task by
     /// creating an instance of this class, setting its properties,
     /// and passing it to one of the applicable methods of an ``MTL4Compiler`` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CompilerTaskOptions;
@@ -159,15 +163,13 @@ impl DefaultRetained for MTL4CompilerTaskOptions {
 }
 
 /// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a binary function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4newbinaryfunctioncompletionhandler?language=objc)
+/// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a binary function.
 #[cfg(all(feature = "MTL4BinaryFunction", feature = "block2"))]
 pub type MTL4NewBinaryFunctionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTL4BinaryFunction>, *mut NSError)>;
 
 /// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a machine learning pipeline state.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4newmachinelearningpipelinestatecompletionhandler?language=objc)
+/// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a machine learning pipeline state.
 #[cfg(all(
     feature = "MTL4MachineLearningPipeline",
     feature = "MTLAllocation",
@@ -179,8 +181,7 @@ pub type MTL4NewMachineLearningPipelineStateCompletionHandler = *mut block2::Dyn
 
 extern_protocol!(
     /// A abstraction for a pipeline state and shader function compiler.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compiler?language=objc)
+    /// A abstraction for a pipeline state and shader function compiler.
     pub unsafe trait MTL4Compiler: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// Returns the device that this compiler belongs to.

@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.class?language=objc)
+    /// An object that marks the stopping point for a query and the starting point for retrieving the remaining results.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class yourself. When fetching records using a query operation, if the number of results exceeds the limit for the query, CloudKit provides a cursor. Use that cursor to create a new instance of [`CKQueryOperation`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation) and retrieve the next batch of results for the same query.
+    ///
+    /// For information about how to use a [`CKQueryCursor`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.class) object, see [`CKQueryOperation`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQueryCursor;
@@ -47,15 +55,40 @@ impl CKQueryCursor {
 }
 
 extern "C" {
+    /// A constant value that represents the maximum number of results CloudKit retrieves.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this constant doesn’t correspond to the actual number of records. CloudKit dynamically determines the actual number according to various conditions at runtime.
+    ///
+    /// This constant is the [`resultsLimit`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit) property’s default value.
+    ///
+    ///
     /// Query operations have a dynamically defined maximum number of results.  If the results of a query exceed this max, your completion block will invoked with a cursor.
     /// Issue a new query with that cursor to fetch the next batch of results.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/maximumresults?language=objc)
     pub static CKQueryOperationMaximumResults: NSUInteger;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperation?language=objc)
+    /// An operation for executing queries in a database.
+    ///
+    /// ## Overview
+    ///
+    /// A `CKQueryOperation` object is a concrete operation that you can use to execute queries. A query operation applies query parameters to the specified database and record zone, delivering any matching records asynchronously to the handlers that you provide.
+    ///
+    /// To perform a new search:
+    ///
+    /// 1. Initialize a `CKQueryOperation` object with a [`CKQuery`](https://developer.apple.com/documentation/cloudkit/ckquery) object that contains the search criteria and sorting information for the records you want.
+    ///
+    /// 2. Assign a handler to the [`queryCompletionBlock`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/querycompletionblock) property so that you can process the results and execute the operation.
+    ///
+    /// If the search yields many records, the operation object may deliver a portion of the total results to your blocks immediately, along with a cursor for obtaining the remaining records. Use the cursor to initialize and execute a separate `CKQueryOperation` instance when you’re ready to process the next batch of results. 3. Optionally, configure the results by specifying values for the [`resultsLimit`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/resultslimit) and [`desiredKeys`](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/desiredkeys-4a6vy) properties. 4. Pass the query operation object to the [`addOperation:`](https://developer.apple.com/documentation/cloudkit/ckdatabase/add(_:)) method of the target database to execute the operation.
+    ///
+    /// CloudKit restricts queries to the records in a single record zone. For new queries, you specify the zone when you initialize the query operation object. For cursor-based queries, the cursor contains the zone information. To search for records in multiple zones, you must create a separate `CKQueryOperation` object for each zone you want to search, although you can initialize each of them with the same [`CKQuery`](https://developer.apple.com/documentation/cloudkit/ckquery) object.
+    ///
+    /// If you assign a handler to the operation’s [`completionBlock`](https://developer.apple.com/documentation/foundation/operation/completionblock) property, the operation calls it after it executes and returns any results. Use a handler to perform housekeeping tasks for the operation, but don’t use it to process the results of the operation. The handler you provide should manage any failures, whether due to an error or an explicit cancellation.
+    ///
+    ///
     #[unsafe(super(CKDatabaseOperation, CKOperation, NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "CKDatabaseOperation", feature = "CKOperation"))]

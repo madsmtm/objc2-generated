@@ -8,13 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A shared content manager for controlling interactions between your media app and system-provided or external media player interfaces.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Some features of this class are specific to CarPlay, which requires a special entitlement issued by Apple. Apps without the correct entitlement won’t appear on the CarPlay home screen. See [http://www.apple.com/ios/carplay/](http://www.apple.com/ios/carplay/) for more information.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The app provides data to the content manager so that the media player can browse the content provided. A delegate provides the media player the ability to perform actions that manage the app’s playback queue.
+    ///
+    /// You don’t create a new content manager directly, instead you grab the shared content manager using the [`sharedContentManager`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/shared()) method. After getting the shared content manager, your next step depends on the features your app supports:
+    ///
+    /// - To provide content navigation and suggested content for CarPlay, immediately set both the [`dataSource`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/datasource) and [`delegate`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/delegate) properties. After setting these properties, use the [`beginUpdates`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/beginupdates()) and [`endUpdates`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/endupdates()) methods to load the information from the data source.
+    ///
+    /// - To provide suggested content when the user connects headphones, a Bluetooth stereo, or another output device, set only the [`delegate`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager/delegate) property. After you set a delegate, iOS automatically calls methods in the [`MPPlayableContentDelegate`](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentdelegate) protocol allowing you to suggest appropriate content.
+    ///
+    ///
     /// MPPlayableContentManager is a class that manages the interactions between a
     /// media application and an external media player interface. The application
     /// provides the content manager with a data source, which allows the media player
     /// to browse the media content offered by the application, as well as a delegate,
     /// which allows the media player to relay non-media remote playback commands to the application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpplayablecontentmanager?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use CarPlay framework"]

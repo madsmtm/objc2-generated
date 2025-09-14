@@ -5,6 +5,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// A memory allocation from a Metal GPU device, such as a memory heap, texture, or data buffer.
+    ///
+    /// ## Overview
+    ///
+    /// Types that conform to [`MTLAllocation`](https://developer.apple.com/documentation/metal/mtlallocation), including [`MTLBuffer`](https://developer.apple.com/documentation/metal/mtlbuffer), [`MTLTexture`](https://developer.apple.com/documentation/metal/mtltexture), and [`MTLHeap`](https://developer.apple.com/documentation/metal/mtlheap), have underlying memory. You make their memory _resident_, or GPU-accessible, by adding an allocation to an [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) or calling the appropriate method of a command encoder.
+    ///
+    /// See [Simplifying GPU resource management with residency sets](https://developer.apple.com/documentation/metal/simplifying-gpu-resource-management-with-residency-sets) for more information.
+    ///
+    ///
     /// Base class for Metal allocations.
     ///
     /// This protocol provides a common interface for adding Metal resources to ``MTLResidencySet`` instances. Call
@@ -12,8 +21,6 @@ extern_protocol!(
     ///
     /// <doc
     /// :simplifying-gpu-resource-management-with-residency-sets.md>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlallocation?language=objc)
     pub unsafe trait MTLAllocation: NSObjectProtocol {
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]

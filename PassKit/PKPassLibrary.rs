@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus?language=objc)
+/// Statuses that PassKit uses when it adds passes to the pass library.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAddPassesStatus(pub NSInteger);
 impl PKPassLibraryAddPassesStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/didaddpasses?language=objc)
+    /// A status that occurs when the user successfully adds one or more passes.
     #[doc(alias = "PKPassLibraryDidAddPasses")]
     pub const DidAddPasses: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/shouldreviewpasses?language=objc)
+    /// A status that occurs when the app prompts the user to review the passes.
     #[doc(alias = "PKPassLibraryShouldReviewPasses")]
     pub const ShouldReviewPasses: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus/didcanceladdpasses?language=objc)
+    /// A status that occurs when the user cancels the addition of passes.
     #[doc(alias = "PKPassLibraryDidCancelAddPasses")]
     pub const DidCancelAddPasses: Self = Self(2);
 }
@@ -32,25 +32,31 @@ unsafe impl RefEncode for PKPassLibraryAddPassesStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult?language=objc)
+/// The result of an attempt to suppress automatic pass presentation.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAutomaticPassPresentationSuppressionResult(pub NSUInteger);
 impl PKAutomaticPassPresentationSuppressionResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/notsupported?language=objc)
+    /// The device doesn’t support the suppression of automatic pass presentation.
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultNotSupported")]
     pub const NotSupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/alreadypresenting?language=objc)
+    /// The device is already presenting passes.
+    ///
+    /// ## Discussion
+    ///
+    /// The device is unable to suppress automatic presentation of passes.
+    ///
+    ///
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultAlreadyPresenting")]
     pub const AlreadyPresenting: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/denied?language=objc)
+    /// The user prevented the suppression, or an internal error occurred.
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/cancelled?language=objc)
+    /// The system canceled the suppression before calling the response handler.
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultCancelled")]
     pub const Cancelled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult/success?language=objc)
+    /// Suppression of automatic presentation successful.
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultSuccess")]
     pub const Success: Self = Self(4);
 }
@@ -63,13 +69,11 @@ unsafe impl RefEncode for PKAutomaticPassPresentationSuppressionResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/capability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryCapability(pub NSInteger);
 impl PKPassLibraryCapability {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/capability/backgroundaddpasses?language=objc)
     #[doc(alias = "PKPassLibraryCapabilityBackgroundAddPasses")]
     pub const BackgroundAddPasses: Self = Self(0);
 }
@@ -82,22 +86,17 @@ unsafe impl RefEncode for PKPassLibraryCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAuthorizationStatus(pub NSInteger);
 impl PKPassLibraryAuthorizationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/notdetermined?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/denied?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusDenied")]
     pub const Denied: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/authorized?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus/restricted?language=objc)
     #[doc(alias = "PKPassLibraryAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(2);
 }
@@ -110,11 +109,23 @@ unsafe impl RefEncode for PKPassLibraryAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksuppressionrequesttoken?language=objc)
+/// A token that represents a request to suppress the automatic presentation of payment passes.
+///
+/// ## Discussion
+///
+/// You receive a suppression request token when you begin suppressing the automatic presentation of passes. Use the token to end the suppression and reenable Apple Pay.
+///
+///
 pub type PKSuppressionRequestToken = NSUInteger;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary?language=objc)
+    /// Provides an interface to the user’s library of passes.
+    ///
+    /// ## Overview
+    ///
+    /// The `PKPassLibrary` isn’t thread-safe. Use instances of this class only on a single thread.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPassLibrary;
@@ -404,51 +415,62 @@ impl PKPassLibrary {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationname?language=objc)
+/// The types of notifications that the pass library posts.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PKPassLibraryNotificationName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationname/pkpasslibrarydidchange?language=objc)
+    /// A notification that PassKit posts when the pass library changes.
+    ///
+    /// ## Discussion
+    ///
+    /// PassKit posts this notification on an arbitary queue, and only does so if an instance of `PKPassLibrary` exists. The notification’s user info dictionary describes the changes. See [`PKPassLibrary`](https://developer.apple.com/documentation/passkit/pkpasslibrary) for the keys it uses.
+    ///
+    ///
     pub static PKPassLibraryDidChangeNotification: &'static PKPassLibraryNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationname/pkpasslibraryremotepaymentpassesdidchange?language=objc)
+    /// A notification that PassKit posts when it adds or removes a pass on a paired remote device.
+    ///
+    /// ## Discussion
+    ///
+    /// PassKit posts this notification on an arbitary queue, and only does so if an instance of `PKPassLibrary` exists. The notification’s user info dictionary describes the changes. See [`PKPassLibrary`](https://developer.apple.com/documentation/passkit/pkpasslibrary) for the keys it uses.
+    ///
+    ///
     pub static PKPassLibraryRemotePaymentPassesDidChangeNotification:
         &'static PKPassLibraryNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey?language=objc)
+/// The user info keys that a pass library notification uses.
 // NS_TYPED_ENUM
 pub type PKPassLibraryNotificationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/addedpassesuserinfokey?language=objc)
+    /// An array of added passes.
     pub static PKPassLibraryAddedPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/replacementpassesuserinfokey?language=objc)
+    /// An array of replaced passes.
     pub static PKPassLibraryReplacementPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/removedpassinfosuserinfokey?language=objc)
+    /// An array of dictionaries that describes the removed passes.
     pub static PKPassLibraryRemovedPassInfosUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/passtypeidentifieruserinfokey?language=objc)
+    /// The pass’s pass type identifier.
     pub static PKPassLibraryPassTypeIdentifierUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/serialnumberuserinfokey?language=objc)
+    /// The pass’s serial number.
     pub static PKPassLibrarySerialNumberUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/recoveredpassesuserinfokey?language=objc)
     pub static PKPassLibraryRecoveredPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }

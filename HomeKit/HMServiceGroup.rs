@@ -8,14 +8,19 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A collection of accessory services.
+    ///
+    /// ## Overview
+    ///
+    /// A service group makes it easier to address the services as a single entity. For example, a user might choose to group a set of lights together as “Desk Lamps,” and have another set of lights grouped as “Ceiling Lights”. You create service groups using the [`addServiceGroupWithName:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhome/addservicegroup(withname:completionhandler:)) method of [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome). Service groups are visible to Siri and allow users to control a group of services through Siri.
+    ///
+    ///
     /// Used to describe a collection of HMService objects
     ///
     ///
     /// This class is used to group a collection of HMService objects.
     /// This allows for association of a set of accessory services into a group.
     /// Eg. A collection of lights can be grouped as the "Desk Lamps" service group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmservicegroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMServiceGroup;

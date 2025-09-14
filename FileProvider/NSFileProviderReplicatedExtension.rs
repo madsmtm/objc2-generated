@@ -9,15 +9,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for creating items.
 /// Options passed on item creation.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderCreateItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderCreateItemOptions: NSUInteger {
+/// An option indicating that the item may already exist in your remote storage.
+///
+/// ## Discussion
+///
+/// Your extension should examine the item and determine whether it exists in your remote storage. Because the system may try to reimport a large number of items at once, avoid performing any computationally expensive tasks while trying to match items.
+///
+/// The system attempts to create an item using this flag in the following situations:
+///
+/// - The system reimports its items after an action that might cause it to lose synchronization with your remote storage, such as when restoring a backup or migrating to a new device.
+///
+/// - When merging two directories, the system attempts to create each child object passing the [`NSFileProviderCreateItemMayAlreadyExist`](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions/mayalreadyexist) flag. Your extension can then recursively merge the child items.
+///
+/// After processing all the imported items, the system calls the [`importDidFinishWithCompletionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/importdidfinish(completionhandler:)) method.
+///
+///
 /// The imported item may already exist.
 ///
 /// This can happen because:
@@ -46,16 +60,19 @@ bitflags::bitflags! {
 ///
 /// When all the items pending reimport have been processed, the system
 /// will call -[NSFileProviderExtension importDidFinishWithCompletionHandler:].
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions/mayalreadyexist?language=objc)
         #[doc(alias = "NSFileProviderCreateItemMayAlreadyExist")]
         const MayAlreadyExist = 1<<0;
+/// A value indicating a conflict for a deleted item.
+///
+/// ## Discussion
+///
+/// If the File Provider extension signals the deletion of an item but the deletion conflicts with local edits, the system attempts to create the modified item by calling the [`createItemBasedOnTemplate:fields:contents:options:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/createitem(basedon:fields:contents:options:request:completionhandler:)) method, and passing this value as an option.
+///
+///
 /// This item is recreated after the system failed to apply a deletion requested
 /// by the extension because the item was found to be edited locally.
 /// This happens only if the edit wasn't yet known by the system at the time the
 /// deletion was requested.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions/deletionconflicted?language=objc)
         #[doc(alias = "NSFileProviderCreateItemDeletionConflicted")]
         const DeletionConflicted = 1<<1;
     }
@@ -69,18 +86,16 @@ unsafe impl RefEncode for NSFileProviderCreateItemOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for deleting items.
 /// Options passed on item deletion.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdeleteitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDeleteItemOptions: NSUInteger {
+/// A value indicating that the delete operation removes the item and all of its children.
 /// The deletion of the item is recursive.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdeleteitemoptions/recursive?language=objc)
         #[doc(alias = "NSFileProviderDeleteItemRecursive")]
         const Recursive = 1<<0;
     }
@@ -94,24 +109,44 @@ unsafe impl RefEncode for NSFileProviderDeleteItemOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Flags that provides additional information about the provided content.
 /// NSFileProviderMaterializationFlags are used to inform the system about specific conditions
 /// that apply to the content retrieved by the provider in fetchPartialContentsForItemWithIdentifier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderMaterializationFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderMaterializationFlags: NSUInteger {
+/// A flag indicating that the system should consider the file fully materialized, even if it’s a sparse file.
+///
+/// ## Discussion
+///
+/// There are two reasons why your app may pass a sparse file to the [`fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderpartialcontentfetching/fetchpartialcontents(for:version:request:minimalrange:aligningto:options:completionhandler:)) method’s completion handler:
+///
+/// - You’re deliberately passing just part of the file to the completion handler, and the system should ignore anything outside your retrieved range.
+///
+/// - The original file contains sparse regions.
+///
+/// This flag tells the system that the original file deliberately has sparse ranges, and that the system can mark the file as materialized without having to request additional information. The system may use this information to optimize its requests, based on the system’s current state.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  Don’t use this flag unless the original file is a sparse file, and your file provider extension passed the entire file, including the sparse ranges, to the callback handler. Using this flag incorrectly may appear to work during testing, but may prevent the system from downloading complete files due to new performance improvements.
+///
+///
+///
+/// </div>
+/// The system ignores this flag unless the retrieved range passed to the [`fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderpartialcontentfetching/fetchpartialcontents(for:version:request:minimalrange:aligningto:options:completionhandler:)) method’s callback handler covers the entire file (a range with a location of zero and a length equal to the file-size in bytes).
+///
+///
 /// By default, the system will track which parts of the returned file are sparse; those parts will remain non-materialized
 /// and trigger subsequent calls to the materialization methods on access. Returning this flag will instead cause the entire
 /// file to be marked as materialized. This is useful if the resulting file is known to contain sparse parts,
 /// and all the remaining parts have been filled in.
 /// This flag is ignored if the provided range doesn't cover the entire file (ie. [0, EOF]).
 /// This flag is not functional prior to macOS 13.3.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializationflags/knownsparseranges?language=objc)
         #[doc(alias = "NSFileProviderMaterializationFlagsKnownSparseRanges")]
         const KnownSparseRanges = 1<<0;
     }
@@ -125,20 +160,24 @@ unsafe impl RefEncode for NSFileProviderMaterializationFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Options for fetching a range of data from a file.
 /// Used by the system to express options and constraints to the provider in fetchPartialContentsForItemWithIdentifier.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfetchcontentsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderFetchContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderFetchContentsOptions: NSUInteger {
+/// An option that indicates the system requires an exact match of the requested item’s version.
+///
+/// ## Discussion
+///
+/// If the system includes this option when calling your [`fetchPartialContentsForItemWithIdentifier:version:request:minimalRange:aligningTo:options:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderpartialcontentfetching/fetchpartialcontents(for:version:request:minimalrange:aligningto:options:completionhandler:)) method, you must provide the requested version of the item. If you can’t provide the requested version, pass a [`NSFileProviderErrorVersionNoLongerAvailable`](https://developer.apple.com/documentation/fileprovider/nsfileprovidererror/code/versionnolongeravailable) error to the completion handler instead.
+///
+///
 /// Set by the system to inform the provider that any other content version than the requested one
 /// will be discarded.
 /// If the provider cannot supply this version, it should fail with NSFileProviderErrorVersionNoLongerAvailable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfetchcontentsoptions/strictversioning?language=objc)
         #[doc(alias = "NSFileProviderFetchContentsOptionsStrictVersioning")]
         const StrictVersioning = 1<<0;
     }
@@ -153,7 +192,7 @@ unsafe impl RefEncode for NSFileProviderFetchContentsOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderenumerating?language=objc)
+    /// Support for enumerating the file provider’s contents.
     pub unsafe trait NSFileProviderEnumerating: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderEnumerating",
@@ -253,6 +292,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A File Provider extension in which the system replicates the contents on disk.
     /// FileProvider extension for which the system replicates the content on disk.
     ///
     /// The extension exposes a hierarchy of NSFileProviderItem instances that the system
@@ -295,8 +335,6 @@ extern_protocol!(
     /// That limit is configurable by setting the NSExtensionFileProviderMetadataOnlyUploadPipelineDepth key to an
     /// integer value (between 1 and 128) in the Info.plist of the extension.
     /// The configuration key is honored starting in macOS 15.0 and iOS 18.0.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension?language=objc)
     pub unsafe trait NSFileProviderReplicatedExtension:
         NSObjectProtocol + NSFileProviderEnumerating
     {
@@ -1108,9 +1146,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Protocol to implement if the provider instance supports fetching incremental content changes.
+    /// Support for fetching changes to the item’s content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderincrementalcontentfetching?language=objc)
+    /// ## Overview
+    ///
+    /// Adopt this protocol to support the incremental fetching of changes from your remote storage. If you don’t implement the [`fetchContentsForItemWithIdentifier:version:usingExistingContentsAtURL:existingVersion:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderincrementalcontentfetching/fetchcontents(for:version:usingexistingcontentsat:existingversion:request:completionhandler:)) method, the system calls your [`fetchContentsForItemWithIdentifier:version:request:completionHandler:`](https://developer.apple.com/documentation/fileprovider/nsfileproviderreplicatedextension/fetchcontents(for:version:request:completionhandler:)) method for all updates.
+    ///
+    ///
+    /// Protocol to implement if the provider instance supports fetching incremental content changes.
     pub unsafe trait NSFileProviderIncrementalContentFetching: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -1141,7 +1184,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderservicing?language=objc)
+    /// Support for providing a custom service source.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol if your File Provider extension supports custom services. For more information on custom services, see [`NSFileProviderService`](https://developer.apple.com/documentation/foundation/nsfileproviderservice).
+    ///
+    ///
     pub unsafe trait NSFileProviderServicing: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -1180,9 +1229,14 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Protocol to implement if the provider supports fetching thumbnails for its items.
+    /// Support for item thumbnails.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderthumbnailing?language=objc)
+    /// ## Overview
+    ///
+    /// Adopt this protocol if your File Provider extension supports downloading thumbnails from the remote storage.
+    ///
+    ///
+    /// Protocol to implement if the provider supports fetching thumbnails for its items.
     pub unsafe trait NSFileProviderThumbnailing: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -1252,7 +1306,15 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercustomaction?language=objc)
+    /// Support for custom actions.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol to add a custom action to the context menu (for example, when the user control-clicks an item in Finder).
+    ///
+    /// If you want to create an action that displays custom user interface elements, add actions using the [`File Provider UI`](https://developer.apple.com/documentation/fileproviderui) framework instead. For more information, see `Adding Actions to the Context Menu`.
+    ///
+    ///
     pub unsafe trait NSFileProviderCustomAction: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderActions",
@@ -1283,9 +1345,26 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// Protocol to implement for managing UserInteraction alerts.
+    /// Support for suppressing user-interaction alerts.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinteractionsuppressing?language=objc)
+    /// ## Overview
+    ///
+    /// Implement this protocol to give users the option to suppress certain user-interaction alerts.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To enable the suppression of a user-interaction alert, you must add the `SuppressionIdentifier` key to the `NSExtension` > `NSFileProviderUserInteractions` > `UserInteraction` dictionary in the File Provider extension’s Info tab or `Info.plist` file. Multiple user interactions can use the same suppression identifier. Suppressing one interaction suppresses all the interactions that share the identifier.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When the user indicates that they don’t want to see an alert again, the system calls your [`setInteractionSuppressed:forIdentifier:`](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinteractionsuppressing/setinteractionsuppressed(_:foridentifier:)) method. Then, before the system displays a user interaction, it calls the [`isInteractionSuppressedForIdentifier:`](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinteractionsuppressing/isinteractionsuppressed(foridentifier:)) method.
+    ///
+    /// Your File Provider extension can choose whether the suppression only applies to the current domain, or if it should apply to all domains. For example, your extension could choose to suppress future alerts related to adding an item to a shared folder across all domains, after the user suppresses the alert on any one of the domains. Alternatively, the extension could choose to only suppress the alert for the current domain, showing the alert again if the user performs the same action in a different domain.
+    ///
+    ///
+    /// Protocol to implement for managing UserInteraction alerts.
     pub unsafe trait NSFileProviderUserInteractionSuppressing: NSObjectProtocol {
         /// Suppression management:
         ///
@@ -1327,7 +1406,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainstate?language=objc)
+    /// An object that contains global state data about the domain.
     pub unsafe trait NSFileProviderDomainState: NSObjectProtocol {
         #[cfg(feature = "NSFileProviderDomain")]
         /// Version of the domain.
@@ -1368,7 +1447,23 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpartialcontentfetching?language=objc)
+    /// Support for fetching part of a file’s content.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol to let the system request only part of a file. Apps that read files provided by your extension can benefit from this feature, either by minimizing the amount of data your file provider needs to download, or by finishing the download quickly, freeing up the reading process.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To trigger a partial download, an app must use POSIX read operations to read part of the file. If you clone the entire file, or read the file using file coordination, the system requests the entire file.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For example, a photo app could read just the metadata from each picture in a large album, without having to completely download all the images. Alternatively, a video streaming app could begin playing the video before reading the whole file, reading chunks of data just before it needs them.
+    ///
+    ///
     pub unsafe trait NSFileProviderPartialContentFetching: NSObjectProtocol {
         #[cfg(all(
             feature = "NSFileProviderItem",
@@ -1507,7 +1602,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderexternalvolumehandling?language=objc)
+    /// A protocol that defines the interface for handling external volumes.
     pub unsafe trait NSFileProviderExternalVolumeHandling: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Implement this protocol on your extension's Principal Class in order for the system

@@ -13,7 +13,20 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell?language=objc)
+    /// A collection view cell that provides list features and default styling.
+    ///
+    /// ## Overview
+    ///
+    /// A list cell represents an individual item that might appear in a list. List cells provide built-in support for indentation, and the ability to add cell accessories ([`UICellAccessory`](https://developer.apple.com/documentation/uikit/uicellaccessory-swift.struct)) for visual adornment or to support user interactions with the cell.
+    ///
+    /// You can use a list cell in any type of layout. Using a list cell inside a list enables additional list-specific behavior for the cells. For example, in a list section or layout, you can define separator alignment between list cells, and configure swipe actions for each cell’s leading and trailing edges. You create an individual list section using [`list(using:layoutEnvironment:)`](https://developer.apple.com/documentation/uikit/nscollectionlayoutsection/list(using:layoutenvironment:)), or a full list layout using [`list(using:)`](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayout/list(using:)).
+    ///
+    /// You can use a list cell’s [`defaultContentConfiguration()`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell/defaultcontentconfiguration()) (Swift)  or [`defaultContentConfiguration`](https://developer.apple.com/documentation/uikit/uicollectionviewlistcell/defaultcontentconfiguration) (Objective-C) to get a list content configuration that has preconfigured default styling. After you get the default configuration, you assign your content to it, customize any other properties, and assign it to the cell as the current content configuration. For customization options, see [`UIListContentConfiguration`](https://developer.apple.com/documentation/uikit/uilistcontentconfiguration-swift.struct).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["var content = cell.defaultContentConfiguration()", "", "// Configure content.", "content.image = UIImage(systemName: \"star\")", "content.text = \"Favorites\"", "", "// Customize appearance.", "content.imageProperties.tintColor = .purple", "", "cell.contentConfiguration = content"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIListContentConfiguration *content = [cell defaultContentConfiguration];", "", "// Configure content.", "[content setImage:[UIImage systemImageNamed:@\"star\"]];", "[content setText:@\"Favorites\"];", "", "// Customize appearance.", "[content.imageProperties setTintColor:[UIColor purpleColor]];", "", "[cell setContentConfiguration:content];"], metadata: None }] }] })
+    /// Alternatively, you can set your content through your own custom subviews using the cell’s [`contentView`](https://developer.apple.com/documentation/uikit/uicollectionviewcell/contentview).
+    ///
+    ///
     #[unsafe(super(
         UICollectionViewCell,
         UICollectionReusableView,

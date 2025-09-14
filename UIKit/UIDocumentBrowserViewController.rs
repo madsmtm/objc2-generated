@@ -12,20 +12,20 @@ use objc2_uniform_type_identifiers::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererrordomain?language=objc)
+    /// The error domain for document browser errors.
     pub static UIDocumentBrowserErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code?language=objc)
+/// The error codes for document browser errors.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIDocumentBrowserErrorCode(pub NSInteger);
 impl UIDocumentBrowserErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code/generic?language=objc)
+    /// An unspecified error.
     #[doc(alias = "UIDocumentBrowserErrorGeneric")]
     pub const Generic: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code/nolocationavailable?language=objc)
+    /// An error indicating that no location exists.
     #[doc(alias = "UIDocumentBrowserErrorNoLocationAvailable")]
     pub const NoLocationAvailable: Self = Self(2);
 }
@@ -38,19 +38,19 @@ unsafe impl RefEncode for UIDocumentBrowserErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode?language=objc)
+/// The document browser’s import modes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserImportMode(pub NSUInteger);
 impl UIDocumentBrowserImportMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/none?language=objc)
+    /// A mode indicating that the document can’t be imported.
     #[doc(alias = "UIDocumentBrowserImportModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/copy?language=objc)
+    /// A mode indicating that the file should be copied into its new location (the original file is left unchanged).
     #[doc(alias = "UIDocumentBrowserImportModeCopy")]
     pub const Copy: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode/move?language=objc)
+    /// A mode indicating that the file should be moved to its new location (the original file should be deleted).
     #[doc(alias = "UIDocumentBrowserImportModeMove")]
     pub const Move: Self = Self(2);
 }
@@ -63,19 +63,19 @@ unsafe impl RefEncode for UIDocumentBrowserImportMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum?language=objc)
+/// Styles that define the document browser’s appearance.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserUserInterfaceStyle(pub NSUInteger);
 impl UIDocumentBrowserUserInterfaceStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/white?language=objc)
+    /// A white background.
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleWhite")]
     pub const White: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/light?language=objc)
+    /// A light background.
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleLight")]
     pub const Light: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum/dark?language=objc)
+    /// A dark background.
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleDark")]
     pub const Dark: Self = Self(2);
 }
@@ -89,9 +89,34 @@ unsafe impl RefEncode for UIDocumentBrowserUserInterfaceStyle {
 }
 
 extern_class!(
-    /// UIDocumentBrowserViewController is a view controller to browse the files on the user's device or cloud services and open them directly in your application
+    /// A view controller for browsing and performing actions on documents that you store locally and in the cloud.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller?language=objc)
+    /// ## Overview
+    ///
+    /// With the document browser view controller, users can easily access and view their documents in the cloud. By default, the document browser can access both the system’s local file provider and its iCloud file provider.
+    ///
+    ///
+    /// ![A screenshot of the document browser. The On My iPad location is in a selected state on the left, and several photos and folders appear in the pane on the right.](https://docs-assets.developer.apple.com/published/294c1b3d0e1de953ec9fc339c2907ef8/media-2922157%402x.png)
+    ///
+    ///
+    /// The local file provider grants access to all the documents in the app’s `Documents` directory. Users can also access documents from another app’s `Documents` directory, if that app declares either the [`UISupportsDocumentBrowser`](https://developer.apple.com/documentation/bundleresources/information-property-list/uisupportsdocumentbrowser) key, or both the [`UIFileSharingEnabled`](https://developer.apple.com/documentation/bundleresources/information-property-list/uifilesharingenabled) and [`LSSupportsOpeningDocumentsInPlace`](https://developer.apple.com/documentation/bundleresources/information-property-list/lssupportsopeningdocumentsinplace) keys in its `Info.plist` file. When the user opens a document from another app’s `Documents` directory, they edit the document in place, and save the changes to the other app’s `Documents` directory.
+    ///
+    /// The iCloud file provider creates a folder for your app in the user’s iCloud Drive. Users can access documents from this folder, or from anywhere in their iCloud Drive. The system automatically handles access to iCloud for you, so you don’t need to enable your app’s iCloud capabilities.
+    ///
+    /// Third-party storage services can also provide access to the documents they manage by implementing a File Provider extension (iOS 11 or later). For more information, see [`File Provider`](https://developer.apple.com/documentation/fileprovider).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Don’t assume that the files you access are local. Users can store files in iCloud Drive, or in any cloud storage that provides a current File Provider extension.
+    ///
+    /// Remember that the system (or other apps) might modify the files that the document browser provides at any time. Therefore, you must coordinate your access to these files using either a [`UIDocument`](https://developer.apple.com/documentation/uikit/uidocument) subclass, or [`NSFilePresenter`](https://developer.apple.com/documentation/foundation/nsfilepresenter) and [`NSFileCoordinator`](https://developer.apple.com/documentation/foundation/nsfilecoordinator) objects.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// UIDocumentBrowserViewController is a view controller to browse the files on the user's device or cloud services and open them directly in your application
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
@@ -424,7 +449,7 @@ impl UIDocumentBrowserViewController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontrollerdelegate?language=objc)
+    /// The protocol you implement to respond as the user interacts with the document browser.
     pub unsafe trait UIDocumentBrowserViewControllerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// Called when the user validates a selection of items to open or pick.
@@ -529,13 +554,32 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that implements the standard loading and transition animations for a document browser.
+    ///
+    /// ## Overview
+    ///
+    /// Each transition controller is associated with a document in the document browser. The transition controller can provide two separate animation sequences for this document:
+    ///
+    /// - If you set the [`loadingProgress`](https://developer.apple.com/documentation/uikit/uidocumentbrowsertransitioncontroller/loadingprogress) property, the document browser shows the loading progress in the document’s thumbnail.
+    ///
+    /// - If you set the [`targetView`](https://developer.apple.com/documentation/uikit/uidocumentbrowsertransitioncontroller/targetview) property, the transition controller acts as a [`UIViewControllerAnimatedTransitioning`](https://developer.apple.com/documentation/uikit/uiviewcontrolleranimatedtransitioning) object, providing a custom transition between the document’s thumbnail and the target view. This transitioning object can be used both when presenting and when dismissing the document.
+    ///
+    /// You don’t instantiate instances of [`UIDocumentBrowserTransitionController`](https://developer.apple.com/documentation/uikit/uidocumentbrowsertransitioncontroller) yourself. Instead, call the document browser’s [`transitionControllerForDocumentURL:`](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/transitioncontroller(fordocumenturl:)) method to get a transition controller for the specified document.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In Mac apps built with Mac Catalyst, the transition controller doesn’t trigger animations because the macOS design doesn’t use animations for opening or closing documents.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Class to handle the loading and animation transition when opening or closing a document.
     ///
     /// You can use this object to display a loading indicator if you need time to perform time-consuming operations (loading, parsing, …) after the document download and before presenting it. You can also get a transition controller to pass to UIKit when pushing or presenting your document view
     /// in response to
     /// `documentBrowser:didPickItem:,`or when popping or dismissing it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsertransitioncontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

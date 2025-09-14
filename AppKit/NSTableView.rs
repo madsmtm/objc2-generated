@@ -9,16 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation?language=objc)
+/// `NSTableView` defines these constants to specify drop operations.
+///
+/// ## Overview
+///
+/// For example, given a table with `n` rows (numbered with row `0` at the top visually), a row of `n–1` and operation of `NSTableViewDropOn` would specify a drop on the last row. To specify a drop below the last row, you use a row of `n` and `NSTableViewDropAbove` for the operation.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDropOperation(pub NSUInteger);
 impl NSTableViewDropOperation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation/on?language=objc)
+    /// Specifies that the drop should occur on the specified row.
     #[doc(alias = "NSTableViewDropOn")]
     pub const On: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation/above?language=objc)
+    /// Specifies that the drop should occur above the specified row.
     #[doc(alias = "NSTableViewDropAbove")]
     pub const Above: Self = Self(1);
 }
@@ -31,28 +37,40 @@ unsafe impl RefEncode for NSTableViewDropOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum?language=objc)
+/// The following constants specify the autoresizing styles. These constants are used by the  [`columnAutoresizingStyle`](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.property) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewColumnAutoresizingStyle(pub NSUInteger);
 impl NSTableViewColumnAutoresizingStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/nocolumnautoresizing?language=objc)
+    /// Disable table column autoresizing.
     #[doc(alias = "NSTableViewNoColumnAutoresizing")]
     pub const NoColumnAutoresizing: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/uniformcolumnautoresizingstyle?language=objc)
+    /// Autoresize all columns by distributing space equally, simultaneously.
     #[doc(alias = "NSTableViewUniformColumnAutoresizingStyle")]
     pub const UniformColumnAutoresizingStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/sequentialcolumnautoresizingstyle?language=objc)
+    /// Autoresize each table column sequentially, from the last auto-resizable column to the first auto-resizable column; proceed to the next column when the current column has reached its minimum or maximum size.
     #[doc(alias = "NSTableViewSequentialColumnAutoresizingStyle")]
     pub const SequentialColumnAutoresizingStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/reversesequentialcolumnautoresizingstyle?language=objc)
+    /// Autoresize each table column sequentially, from the first auto-resizable column to the last auto-resizable column; proceed to the next column when the current column has reached its minimum or maximum size.
     #[doc(alias = "NSTableViewReverseSequentialColumnAutoresizingStyle")]
     pub const ReverseSequentialColumnAutoresizingStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/lastcolumnonlyautoresizingstyle?language=objc)
+    /// Autoresize only the last table column.
+    ///
+    /// ## Discussion
+    ///
+    /// When that table column can no longer be resized, stop autoresizing.  Normally you should use one of the sequential autoresizing modes instead.
+    ///
+    ///
     #[doc(alias = "NSTableViewLastColumnOnlyAutoresizingStyle")]
     pub const LastColumnOnlyAutoresizingStyle: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum/firstcolumnonlyautoresizingstyle?language=objc)
+    /// Autoresize only the first table column.
+    ///
+    /// ## Discussion
+    ///
+    /// When that table column can no longer be resized, stop autoresizing.  Normally you should use one of the sequential autoresizing modes instead.
+    ///
+    ///
     #[doc(alias = "NSTableViewFirstColumnOnlyAutoresizingStyle")]
     pub const FirstColumnOnlyAutoresizingStyle: Self = Self(5);
 }
@@ -65,23 +83,23 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle?language=objc)
+/// `NSTableView` defines these constants to specify grid styles. These constants are used by the [`gridStyleMask`](https://developer.apple.com/documentation/appkit/nstableview/gridstylemask) property. The mask can be either [`NSTableViewGridNone`](https://developer.apple.com/documentation/appkit/nstableviewgridlinestyle/nstableviewgridnone) or it can contain either or both of the other options combined using the C bitwise `OR` operator.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewGridLineStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewGridLineStyle: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewgridlinestyle/nstableviewgridnone?language=objc)
+/// Specifies that no grid lines should be displayed.
         #[doc(alias = "NSTableViewGridNone")]
         const GridNone = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/solidverticalgridlinemask?language=objc)
+/// Specifies that vertical grid lines should be displayed.
         #[doc(alias = "NSTableViewSolidVerticalGridLineMask")]
         const SolidVerticalGridLineMask = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/solidhorizontalgridlinemask?language=objc)
+/// Specifies that horizontal grid lines should be displayed.
         #[doc(alias = "NSTableViewSolidHorizontalGridLineMask")]
         const SolidHorizontalGridLineMask = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle/dashedhorizontalgridlinemask?language=objc)
+/// Specifies that the horizontal grid lines should be drawn dashed.
         #[doc(alias = "NSTableViewDashedHorizontalGridLineMask")]
         const DashedHorizontalGridLineMask = 1<<3;
     }
@@ -95,25 +113,25 @@ unsafe impl RefEncode for NSTableViewGridLineStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum?language=objc)
+/// The row size style constants define the size of the rows in the table view. They are used by the [`effectiveRowSizeStyle`](https://developer.apple.com/documentation/appkit/nstableview/effectiverowsizestyle) and [`rowSizeStyle`](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.property) properties. You can also query the row size in the [`NSTableCellView`](https://developer.apple.com/documentation/appkit/nstablecellview) class’ property [`rowSizeStyle`](https://developer.apple.com/documentation/appkit/nstablecellview/rowsizestyle).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewRowSizeStyle(pub NSInteger);
 impl NSTableViewRowSizeStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/default?language=objc)
+    /// The table will use the system default layout size: small, medium or large.
     #[doc(alias = "NSTableViewRowSizeStyleDefault")]
     pub const Default: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/custom?language=objc)
+    /// The table will use the [`rowHeight`](https://developer.apple.com/documentation/appkit/nstableview/rowheight) or invoke the delegate method [`tableView:heightOfRow:`](https://developer.apple.com/documentation/appkit/nstableviewdelegate/tableview(_:heightofrow:)), if implemented. The cell layout is not changed.
     #[doc(alias = "NSTableViewRowSizeStyleCustom")]
     pub const Custom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/small?language=objc)
+    /// The table will use a row height specified for a small table. It is required that the size be fully tested and supported if `NSTableViewRowSizeStyleCustom` is not used.
     #[doc(alias = "NSTableViewRowSizeStyleSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/medium?language=objc)
+    /// The table will use a row height specified for a medium table. It is required that the size be fully tested and supported if `NSTableViewRowSizeStyleCustom` is not used.
     #[doc(alias = "NSTableViewRowSizeStyleMedium")]
     pub const Medium: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum/large?language=objc)
+    /// The table will use a row height specified for a large table. It is required that the size be fully tested and supported if `NSTableViewRowSizeStyleCustom` is not used.
     #[doc(alias = "NSTableViewRowSizeStyleLarge")]
     pub const Large: Self = Self(3);
 }
@@ -126,25 +144,69 @@ unsafe impl RefEncode for NSTableViewRowSizeStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum?language=objc)
+/// Contains the possible style values for a table view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewStyle(pub NSInteger);
 impl NSTableViewStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/automatic?language=objc)
+    /// The system resolves the table view style based on the table view hierarchy.
+    ///
+    /// ## Discussion
+    ///
+    /// The system resolves the table view style in the following manner:
+    ///
+    /// - If the table view is in a sidebar split-view controller item, [`effectiveStyle`](https://developer.apple.com/documentation/appkit/nstableview/effectivestyle) resolves to [`NSTableViewStyleSourceList`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/sourcelist).
+    ///
+    /// - If the table’s scroll view has a border, [`effectiveStyle`](https://developer.apple.com/documentation/appkit/nstableview/effectivestyle) resolves to [`NSTableViewStyleFullWidth`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/fullwidth).
+    ///
+    /// - Otherwise, [`effectiveStyle`](https://developer.apple.com/documentation/appkit/nstableview/effectivestyle) resolves to [`NSTableViewStyleInset`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/inset). However, if the table needs extra space to fit its column cells, [`effectiveStyle`](https://developer.apple.com/documentation/appkit/nstableview/effectivestyle) resolves to [`NSTableViewStyleFullWidth`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/fullwidth).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  For backward compatibility reasons, when [`selectionHighlightStyle`](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.property) is [`NSTableViewSelectionHighlightStyleSourceList`](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/sourcelist), [`style`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.property) also resolves to [`NSTableViewStyleSourceList`](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/sourcelist).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSTableViewStyleAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/fullwidth?language=objc)
+    /// The table view style resolves to a full-width style.
+    ///
+    /// ## Discussion
+    ///
+    /// In a full-width style table, each row spans the entire width of the table. The full-width style also applies a standard horizontal inset between the edges of the table and its first and last columns.
+    ///
+    ///
     #[doc(alias = "NSTableViewStyleFullWidth")]
     pub const FullWidth: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/inset?language=objc)
+    /// The table view style resolves to an inset style.
+    ///
+    /// ## Discussion
+    ///
+    /// In the inset style, each row is inset from the edges of the table, and the row background and selection both adopt a rounded appearance. The inset style also applies standard horizontal and vertical insets around the table’s columns and rows.
+    ///
+    ///
     #[doc(alias = "NSTableViewStyleInset")]
     pub const Inset: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/sourcelist?language=objc)
+    /// The table view style resolves to a source-list style.
+    ///
+    /// ## Discussion
+    ///
+    /// A source-list style table adopts the standard metrics, row selection style, and background of a sidebar source list. In addition, an [`NSOutlineView`](https://developer.apple.com/documentation/appkit/nsoutlineview) with the source-list style adopts standard values for its [`indentationPerLevel`](https://developer.apple.com/documentation/appkit/nsoutlineview/indentationperlevel), [`rowHeight`](https://developer.apple.com/documentation/appkit/nstableview/rowheight), and [`intercellSpacing`](https://developer.apple.com/documentation/appkit/nstableview/intercellspacing) properties.
+    ///
+    ///
     #[doc(alias = "NSTableViewStyleSourceList")]
     pub const SourceList: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum/plain?language=objc)
+    /// The table view style resolves to a plain style.
+    ///
+    /// ## Discussion
+    ///
+    /// A plain-style table applies no additional insets or padding around its content, except for the spacing that the [`intercellSpacing`](https://developer.apple.com/documentation/appkit/nstableview/intercellspacing) property specifies.
+    ///
+    ///
     #[doc(alias = "NSTableViewStylePlain")]
     pub const Plain: Self = Self(4);
 }
@@ -157,19 +219,42 @@ unsafe impl RefEncode for NSTableViewStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum?language=objc)
+/// The following constants specify the selection highlight styles. These constants are used by the [`selectionHighlightStyle`](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.property) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewSelectionHighlightStyle(pub NSInteger);
 impl NSTableViewSelectionHighlightStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/none?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Displays no highlight style at all.
+    ///
+    ///
     #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
     pub const None: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/regular?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The regular highlight style of NSTableView. In OS X v10.7 a light blue (returned by sending `NSColor` a [`alternateSelectedControlColor`](https://developer.apple.com/documentation/appkit/nscolor/alternateselectedcontrolcolor) message) or light gray color (returned by sending NSColor a [`secondarySelectedControlColor`](https://developer.apple.com/documentation/appkit/nscolor/secondaryselectedcontrolcolor) message).
+    ///
+    ///
     #[doc(alias = "NSTableViewSelectionHighlightStyleRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum/sourcelist?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The source list style of NSTableView. On 10.5, a light blue gradient is used to highlight selected rows.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  When using this style, cell subclasses that implement `drawsBackground` must set the value to [`false`](https://developer.apple.com/documentation/swift/false). Otherwise, the cells will draw over the tableview’s highlighting.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSTableViewSelectionHighlightStyleSourceList")]
     #[deprecated = "Set the NSTableView.style property to NSTableViewStyleSourceList instead."]
     pub const SourceList: Self = Self(1);
@@ -183,22 +268,22 @@ unsafe impl RefEncode for NSTableViewSelectionHighlightStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum?language=objc)
+/// These constants specify the drag styles displayed by the table view. They’re used by [`draggingDestinationFeedbackStyle`](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.property).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDraggingDestinationFeedbackStyle(pub NSInteger);
 impl NSTableViewDraggingDestinationFeedbackStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/none?language=objc)
+    /// Provides no feedback when the user drags over the table view. This option exists to allow subclasses to implement their dragging destination highlighting, or to make it not show anything all.
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
     pub const None: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/regular?language=objc)
+    /// Draws a solid round-rect background on drop target rows, and an insertion marker between rows. This style should be used in most cases.
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/sourcelist?language=objc)
+    /// Draws an outline on drop target rows, and an insertion marker between rows. This style will automatically be set for source lists when the table’s [`unhideRowsAtIndexes:withAnimation:`](https://developer.apple.com/documentation/appkit/nstableview/unhiderows(at:withanimation:)) is set to [`NSTableViewDraggingDestinationFeedbackStyleSourceList`](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/sourcelist). This is the standard look for Source Lists, but may be used in other areas as needed.
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleSourceList")]
     pub const SourceList: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum/gap?language=objc)
+    /// Provides a gap insertion when dragging over the table. Note that this style is only officially supported for [`NSView`](https://developer.apple.com/documentation/appkit/nsview)-based table views, but may partially work in Cell Based TableViews. The decision to use the gap style (compared to another style) can be made in [`tableView:draggingSession:willBeginAtPoint:forRowIndexes:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:draggingsession:willbeginat:forrowindexes:)), or it can dynamically be changed.
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleGap")]
     pub const Gap: Self = Self(2);
 }
@@ -211,16 +296,16 @@ unsafe impl RefEncode for NSTableViewDraggingDestinationFeedbackStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge?language=objc)
+/// These constants define table row edges on which row actions are attached. They are used by the `tableView:rowActionsForRow:edge:` delegate method.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableRowActionEdge(pub NSInteger);
 impl NSTableRowActionEdge {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge/leading?language=objc)
+    /// Denotes the leading, or left, edge of a table row view.
     #[doc(alias = "NSTableRowActionEdgeLeading")]
     pub const Leading: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge/trailing?language=objc)
+    /// Denotes the trailing, or right, edge of a table row view.
     #[doc(alias = "NSTableRowActionEdgeTrailing")]
     pub const Trailing: Self = Self(1);
 }
@@ -233,35 +318,34 @@ unsafe impl RefEncode for NSTableRowActionEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/autosavename-swift.typealias?language=objc)
 pub type NSTableViewAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions?language=objc)
+/// Specifies the animation effects to apply when inserting or removing rows.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewAnimationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewanimationoptions/nstableviewanimationeffectnone?language=objc)
+/// Use no animation effects.
         #[doc(alias = "NSTableViewAnimationEffectNone")]
         const EffectNone = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/effectfade?language=objc)
+/// Use a fade for row or column removal. The effect can be combined with any of the slide constants.
         #[doc(alias = "NSTableViewAnimationEffectFade")]
         const EffectFade = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/effectgap?language=objc)
+/// Creates a gap for newly inserted rows. This is useful for drag and drop animations that animate to a newly opened gap and should be used in the delegate method [`tableView:acceptDrop:row:dropOperation:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:acceptdrop:row:dropoperation:)).
         #[doc(alias = "NSTableViewAnimationEffectGap")]
         const EffectGap = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideup?language=objc)
+/// Animates a row insertion or removal by sliding upward.
         #[doc(alias = "NSTableViewAnimationSlideUp")]
         const SlideUp = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slidedown?language=objc)
+/// Animates a row insertion or removal by sliding downward.
         #[doc(alias = "NSTableViewAnimationSlideDown")]
         const SlideDown = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideleft?language=objc)
+/// Animates a row insertion by sliding from the left. Animates a row removal by sliding towards the left.
         #[doc(alias = "NSTableViewAnimationSlideLeft")]
         const SlideLeft = 0x30;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions/slideright?language=objc)
+/// Animates a row insertion by sliding from the right. Animates a row removal by sliding towards the right.
         #[doc(alias = "NSTableViewAnimationSlideRight")]
         const SlideRight = 0x40;
     }
@@ -276,7 +360,33 @@ unsafe impl RefEncode for NSTableViewAnimationOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview?language=objc)
+    /// A set of related records, displayed in rows that represent individual records and columns that represent the attributes of those records.
+    ///
+    /// ## Overview
+    ///
+    /// Table views are displayed in scroll views. Beginning with macOS v10.7, you can use [`NSView`](https://developer.apple.com/documentation/appkit/nsview) objects (most commonly customized [`NSTableCellView`](https://developer.apple.com/documentation/appkit/nstablecellview) objects) instead of cells for specifying rows and columns. You can still use [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) objects for each row and column item if you prefer.
+    ///
+    /// A table view does not store its own data; it retrieves data values as needed from a data source to which it has a weak reference. You should not, therefore, directly set data values programmatically in the table view; instead, modify the values in the data source and allow the changes to be reflected in the table view. To learn about the methods that an `NSTableView` object uses to provide and access the contents of its data source object, see [`NSTableViewDataSource`](https://developer.apple.com/documentation/appkit/nstableviewdatasource).
+    ///
+    /// To customize a table view’s behavior without subclassing `NSTableView`, use the methods defined by the `NSTableViewDelegate` protocol. For example, the delegate supports table column management, type-to-select functionality, row selection and editing, custom tracking, and custom views for individual columns and rows. To learn more about the table view delegate, see [`NSTableViewDelegate`](https://developer.apple.com/documentation/appkit/nstableviewdelegate).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It’s possible that your data source methods for populating the table view may be called before [`awakeFromNib`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/awakefromnib()) is called if the data source is specified in Interface Builder. You should defend against this by having the data source’s [`numberOfRowsInTableView:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/numberofrows(in:)) method return `0` for the number of rows when the data source has not yet been configured. In [`awakeFromNib`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/awakefromnib()), when the data source is initialized you should always call `reloadData` on the table view.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Subclassing
+    ///
+    /// Subclassing `NSTableView` is usually not necessary. Instead, you customize the table view using a delegate object (an object conforming to the [`NSTableViewDelegate`](https://developer.apple.com/documentation/appkit/nstableviewdelegate) protocol) and a data source object (conforming to the [`NSTableViewDataSource`](https://developer.apple.com/documentation/appkit/nstableviewdatasource) protocol), or by subclassing one of the following subcomponents: cells (when using [`NSCell`](https://developer.apple.com/documentation/appkit/nscell)-based table views), the row cell view or the row view (when using [`NSView`](https://developer.apple.com/documentation/appkit/nsview)-based table views), the table column class, or table column header classes.
+    ///
+    /// ### Enabling the Table View
+    ///
+    /// Use the [`enabled`](https://developer.apple.com/documentation/appkit/nscontrol/isenabled) property to enable or disable the table view, which the view inherits from [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol). This property affects the visual appearance of the table view differently depending on whether you use a view- or a cell-based table view. When you change the property’s value for a cell-based table view, the system manages the visual appearance of that table view’s rows, and updates them to a state that reflects the value. Because view-based table views permit complex items in their cells, it’s the developer’s responsibility to update each cell’s appearance as appropriate.
+    ///
+    ///
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
@@ -1198,7 +1308,13 @@ impl NSTableView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdelegate?language=objc)
+    /// A set of optional methods you implement in a table view delegate to customize the behavior of the table view.
+    ///
+    /// ## Overview
+    ///
+    /// Using a table view delegate allows you to customize a table view’s behavior without creating a table view subclass. A table view delegate provides views for table rows and columns, and supports functionality such as column reordering and resizing and row selection. To learn more about table views, see [`NSTableView`](https://developer.apple.com/documentation/appkit/nstableview).
+    ///
+    ///
     #[cfg(feature = "NSControl")]
     pub unsafe trait NSTableViewDelegate: NSControlTextEditingDelegate {
         #[cfg(all(feature = "NSResponder", feature = "NSTableColumn", feature = "NSView"))]
@@ -1543,33 +1659,83 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectiondidchangenotification?language=objc)
+    /// Posted after an `NSTableView` object’s selection changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the table view whose selection changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSTableViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columndidmovenotification?language=objc)
+    /// Posted whenever a column is moved by user action in an `NSTableView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the table view in which a column moved. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldColumn\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing the integer value of the column’s original index." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSNewColumn\"" }] }], [Paragraph { inline_content: [Text { text: "An " }, CodeVoice { code: "NSNumber" }, Text { text: " object containing the integer value of the column’s present index." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSTableViewColumnDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columndidresizenotification?language=objc)
+    /// Posted whenever a column is resized in an `NSTableView` object.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the table view in which a column was resized. The `userInfo` dictionary contains the following information:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value" }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSTableColumn\"" }] }], [Paragraph { inline_content: [Text { text: "The column that was resized." }] }]], [[Paragraph { inline_content: [CodeVoice { code: "@\"NSOldWidth\"" }] }], [Paragraph { inline_content: [Text { text: "An NSNumber containing the integer value of the column’s original width." }] }]]], alignments: None, metadata: None })
+    ///
     pub static NSTableViewColumnDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionischangingnotification?language=objc)
+    /// Posted as an `NSTableView` object’s selection changes (while the mouse button is still down).
+    ///
+    /// ## Discussion
+    ///
+    /// Note that the notification is sent only for mouse events that change the table’s selection, not keyboard events. The notification object is the table view whose selection is changing. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSTableViewSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowviewidentifier?language=objc)
+    /// The key associated with the identifier in the nib file containing the template row view.
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdatasource?language=objc)
+    /// A set of methods that a table view uses to provide data to a table view and to allow the editing of the table view’s data source object.
+    ///
+    /// ## Overview
+    ///
+    /// Some of the methods in this protocol, such as [`tableView:objectValueForTableColumn:row:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:objectvaluefor:row:)) and [`numberOfRowsInTableView:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/numberofrows(in:)) along with other methods that return data, are called frequently, so they must be efficient.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  View-based table views must not use the [`tableView:setObjectValue:forTableColumn:row:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:setobjectvalue:for:row:)) method for setting values. Instead the views must explicitly set the values for the fields, or use Cocoa bindings. Likewise, use target/action for editing. See [Table View Programming Guide for Mac](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TableView/Introduction/Introduction.html#//apple_ref/doc/uid/10000026i) for more information on populating view-based and cell-based table views.
+    ///
+    ///
+    ///
+    /// </div>
+    /// If you’re not using Cocoa bindings to provide data to the table view, the following methods are required:
+    ///
+    /// - [`numberOfRowsInTableView:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/numberofrows(in:))
+    ///
+    /// - [`tableView:objectValueForTableColumn:row:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:objectvaluefor:row:))
+    ///
+    /// - [`tableView:setObjectValue:forTableColumn:row:`](https://developer.apple.com/documentation/appkit/nstableviewdatasource/tableview(_:setobjectvalue:for:row:)) (cell-based tables only)
+    ///
+    /// To learn more about Cocoa bindings, see [Cocoa Bindings Programming Topics](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaBindings/CocoaBindings.html#//apple_ref/doc/uid/10000167i).
+    ///
+    ///
     pub unsafe trait NSTableViewDataSource: NSObjectProtocol {
         #[cfg(all(feature = "NSControl", feature = "NSResponder", feature = "NSView"))]
         #[optional]

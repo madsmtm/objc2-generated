@@ -8,20 +8,26 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions?language=objc)
+/// Options that control the behavior when promoting the container’s schema to CloudKit.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerSchemaInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersistentCloudKitContainerSchemaInitializationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/nspersistentcloudkitcontainerschemainitializationoptionsnone?language=objc)
+/// Indicates there are no specified schema options.
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/dryrun?language=objc)
+/// A flag that indicates the container validates the model and generates the records, but doesn’t upload them to CloudKit.
+///
+/// ## Discussion
+///
+/// This option is useful for unit testing to ensure your managed object model is valid for use with CloudKit.
+///
+///
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsDryRun")]
         const DryRun = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions/printschema?language=objc)
+/// Prints the generated records to the console.
         #[doc(alias = "NSPersistentCloudKitContainerSchemaInitializationOptionsPrintSchema")]
         const PrintSchema = 1<<2;
     }
@@ -36,7 +42,17 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerSchemaInitializationOptio
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer?language=objc)
+    /// A container that encapsulates the Core Data stack in your app, and mirrors select persistent stores to a CloudKit private database.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPersistentCloudKitContainer`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer) is a subclass of [`NSPersistentContainer`](https://developer.apple.com/documentation/coredata/nspersistentcontainer) capable of managing both CloudKit-backed and noncloud stores.
+    ///
+    /// By default, [`NSPersistentCloudKitContainer`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer) contains a single store description, which Core Data assigns to the first CloudKit container identifier in an app’s entitlements. Use [`NSPersistentCloudKitContainerOptions`](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontaineroptions) to customize this behavior or create additional store descriptions with backing by different containers.
+    ///
+    /// For more information about setting up multiple stores, see [Setting Up Core Data with CloudKit](https://developer.apple.com/documentation/coredata/setting-up-core-data-with-cloudkit).
+    ///
+    ///
     #[unsafe(super(NSPersistentContainer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPersistentContainer")]

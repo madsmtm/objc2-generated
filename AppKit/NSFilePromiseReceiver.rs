@@ -8,7 +8,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilepromisereceiver?language=objc)
+    /// An object that receives a file promise from the pasteboard.
+    ///
+    /// ## Overview
+    ///
+    /// Because [`NSFilePromiseReceiver`](https://developer.apple.com/documentation/appkit/nsfilepromisereceiver) implements the [`NSPasteboardReading`](https://developer.apple.com/documentation/appkit/nspasteboardreading) protocol, you receive all file promises on the drag pasteboard as follows:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let filePromises = draggingPasteboard.readObjects(forClasses: [NSFilePromiseReceiver.self], options: nil)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSArray<NSFilePromiseReceiver*> filePromises = [draggingPasteboard readObjectsForClasses:@[[NSFilePromiseReceiver class]] options:nil];"], metadata: None }] }] })
+    /// Likewise, you can enumerate dragged items by calling the following:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["draggingInfo.enumerateDraggingItems(options: [], for: view, classes: [NSFilePromiseReceiver.self], searchOptions: [:], using: {(draggingItem, idx, stop) in", "    let filePromiseReceiver = draggingItem.item", "    // Use filePromiseReceiver here for your task.", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["[draggingInfo enumerateDraggingItemsWithOptions:0 forView:view classes:@[[NSFilePromiseReceiver class]] searchOptions:@{} usingBlock:^(NSDraggingItem* draggingItem, NSInteger idx, BOOL* stop) {", "    NSFilePromiseReceiver* filePromiseReceiver = draggingItem.item", "    // Use filePromiseReceiver here for your task.", "}];"], metadata: None }] }] })
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  A non-item-based drag source may promise multiple files on the same pasteboard item. To be compatible with these drag sources, many [`NSFilePromiseReceiver`](https://developer.apple.com/documentation/appkit/nsfilepromisereceiver) methods return an array of values. Multiple-file item-based promises result in one [`NSFilePromiseReceiver`](https://developer.apple.com/documentation/appkit/nsfilepromisereceiver) per promised file.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFilePromiseReceiver;

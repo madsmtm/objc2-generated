@@ -12,7 +12,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcomposition?language=objc)
+    /// An object that combines and arranges media from multiple assets into a single composite asset that you can play or process.
+    ///
+    /// ## Overview
+    ///
+    /// A composition is a container for one or more tracks of media. Its tracks are instances of [`AVCompositionTrack`](https://developer.apple.com/documentation/avfoundation/avcompositiontrack) that present media of a uniform type like audio or video. A track itself is a container for one or more segments of media, which are instances of [`AVCompositionTrackSegment`](https://developer.apple.com/documentation/avfoundation/avcompositiontracksegment), a type that represents a region of media in the source track.
+    ///
+    ///
     #[unsafe(super(AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]
@@ -250,7 +256,23 @@ impl AVComposition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecomposition?language=objc)
+    /// An object that you use to create a new composition from existing assets.
+    ///
+    /// ## Overview
+    ///
+    /// Use this object to add and remove composition tracks, and add, remove, and scale their time ranges. You can make an immutable snapshot of a mutable composition for playback and inspection as follows:
+    ///
+    /// ```swift
+    /// // Use a mutable composition object you create.
+    /// let mutableComposition = AVMutableComposition()
+    ///         
+    /// guard let composition = mutableComposition.copy() as? AVComposition else { return }
+    ///         
+    /// // Create a player item to inspect and play the composition.
+    /// let playerItem = AVPlayerItem(asset: composition)
+    /// ```
+    ///
+    ///
     #[unsafe(super(AVComposition, AVAsset, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVAsset")]

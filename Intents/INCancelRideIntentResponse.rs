@@ -7,22 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCancelRideIntentResponseCode(pub NSInteger);
 impl INCancelRideIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/unspecified?language=objc)
+    /// There is no specified response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifying this code during the confirmation or handling phases results in an error.
+    ///
+    ///
     #[doc(alias = "INCancelRideIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INCancelRideIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/success?language=objc)
+    /// You successfully canceled the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code during the handling phase to indicate that your ride service acknowledged the cancellation of the ride. You can also specify this code during the confirmation phase to indicate that you are ready to handle the intent.
+    ///
+    ///
     #[doc(alias = "INCancelRideIntentResponseCodeSuccess")]
     pub const Success: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponsecode/failure?language=objc)
+    /// You were unable to cancel the ride.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from canceling the ride. When specifying this code, SiriKit may fall back to other options that include letting the user cancel the ride in your app.
+    ///
+    ///
     #[doc(alias = "INCancelRideIntentResponseCodeFailure")]
     pub const Failure: Self = Self(3);
 }
@@ -36,7 +60,15 @@ unsafe impl RefEncode for INCancelRideIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelrideintentresponse?language=objc)
+    /// Your app’s response to a cancel ride intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INCancelRideIntentResponse`](https://developer.apple.com/documentation/intents/incancelrideintentresponse) object contains your app’s response to the cancellation of a ride. After creating the response object, specify any cancellation-related fees using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase.
+    ///
+    /// You create an [`INCancelRideIntentResponse`](https://developer.apple.com/documentation/intents/incancelrideintentresponse) object in the [`confirmCancelRide:completion:`](https://developer.apple.com/documentation/intents/incancelrideintenthandling/confirm(cancelride:completion:)) and [`handleCancelRide:completion:`](https://developer.apple.com/documentation/intents/incancelrideintenthandling/handle(cancelride:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INCancelRideIntentHandling`](https://developer.apple.com/documentation/intents/incancelrideintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

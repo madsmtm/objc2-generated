@@ -12,7 +12,15 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframe?language=objc)
+/// A frame.
+///
+/// ## Overview
+///
+/// A frame contains multiple lines of text. The frame object is the output resulting from the text-framing process performed by a [`CTFramesetterRef`](https://developer.apple.com/documentation/coretext/ctframesetter) object.
+///
+/// You can draw the entire text frame directly into the current graphic context. The frame object contains an array of line objects that can be retrieved for individual rendering or to get glyph information.
+///
+///
 #[doc(alias = "CTFrameRef")]
 #[repr(C)]
 pub struct CTFrame {
@@ -29,9 +37,14 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CTFrame {
-    /// Returns the CFType of the frame object
+    /// Returns the type identifier for the CTFrame opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the CTFrame opaque type.
+    ///
+    ///
+    /// Returns the CFType of the frame object
     #[doc(alias = "CTFrameGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -42,6 +55,13 @@ unsafe impl ConcreteType for CTFrame {
     }
 }
 
+/// Constants that specify frame progression types.
+///
+/// ## Overview
+///
+/// The lines of text within a frame may stack for either horizontal or vertical text. Values are enumerated for each stacking type supported by [`CTFrameProgression`](https://developer.apple.com/documentation/coretext/ctframeprogression). Frames with a progression type that specifies vertical text rotate lines 90 degrees counterclockwise during drawing.
+///
+///
 /// These constants specify frame progression types.
 ///
 ///
@@ -59,20 +79,18 @@ unsafe impl ConcreteType for CTFrame {
 ///
 ///
 /// Lines are stacked left to right for vertical text.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFrameProgression(pub u32);
 impl CTFrameProgression {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/toptobottom?language=objc)
+    /// Lines stack top to bottom for horizontal text.
     #[doc(alias = "kCTFrameProgressionTopToBottom")]
     pub const TopToBottom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/righttoleft?language=objc)
+    /// Lines stack right to left for vertical text.
     #[doc(alias = "kCTFrameProgressionRightToLeft")]
     pub const RightToLeft: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression/lefttoright?language=objc)
+    /// Lines stack left to right for vertical text.
     #[doc(alias = "kCTFrameProgressionLeftToRight")]
     pub const LeftToRight: Self = Self(2);
 }
@@ -90,6 +108,15 @@ unsafe impl RefEncode for CTFrameProgression {
 extern "C" {
     /// Specifies progression for a frame.
     ///
+    /// ## Discussion
+    ///
+    /// A [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing a [`CTFrameProgression`](https://developer.apple.com/documentation/coretext/ctframeprogression) constant. The default is `kCTFrameProgressionTopToBottom`.
+    ///
+    /// This value determines the line-stacking behavior for a frame and does not affect the appearance of the glyphs within that frame.
+    ///
+    ///
+    /// Specifies progression for a frame.
+    ///
     ///
     /// Value must be a CFNumberRef containing a CTFrameProgression.
     /// Default is kCTFrameProgressionTopToBottom. This value determines
@@ -98,11 +125,16 @@ extern "C" {
     ///
     ///
     /// See also: CTFramesetterCreateFrame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeprogressionattributename?language=objc)
     pub static kCTFrameProgressionAttributeName: &'static CFString;
 }
 
+/// These constants specify the fill rule used by a frame
+///
+/// ## Overview
+///
+/// When a path intersects with itself, the client should specify which rule to use for deciding the area of the path.
+///
+///
 /// These constants specify fill rule used by the frame.
 ///
 ///
@@ -114,17 +146,27 @@ extern "C" {
 ///
 ///
 /// Text is fill in the area that would be painted if the path were given to CGContextFillPath.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFramePathFillRule(pub u32);
 impl CTFramePathFillRule {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule/evenodd?language=objc)
+    /// Paints the area using the even-odd fill rule.
+    ///
+    /// ## Discussion
+    ///
+    /// Text is filled in the area that would be painted if the path were given to [`CGContextEOFillPath`](https://developer.apple.comhttps://developer.apple.com/documentation/coregraphics/1454865-cgcontexteofillpath).
+    ///
+    ///
     #[doc(alias = "kCTFramePathFillEvenOdd")]
     pub const EvenOdd: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule/windingnumber?language=objc)
+    /// Paints the area using the nonzero winding number rule.
+    ///
+    /// ## Discussion
+    ///
+    /// Text is filled in the area that would be painted if the path were given to [`CGContextFillPath`](https://developer.apple.comhttps://developer.apple.com/documentation/coregraphics/1456306-cgcontextfillpath).
+    ///
+    ///
     #[doc(alias = "kCTFramePathFillWindingNumber")]
     pub const WindingNumber: Self = Self(1);
 }
@@ -140,6 +182,13 @@ unsafe impl RefEncode for CTFramePathFillRule {
 }
 
 extern "C" {
+    /// The key used to specify the fill rule for a frame.
+    ///
+    /// ## Discussion
+    ///
+    /// The value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing a [`CTFramePathFillRule`](https://developer.apple.com/documentation/coretext/ctframepathfillrule) constant. The default value is [`kCTFramePathFillEvenOdd`](https://developer.apple.com/documentation/coretext/ctframepathfillrule/evenodd).
+    ///
+    ///
     /// Specifies fill rule for a frame if this attribute is used at top level of frameAttributes dictionary, or specify
     /// fill rule for a clipping path if used in a dictionary contained in an array specified by kCTFrameClippingPathsAttributeName.
     ///
@@ -149,12 +198,17 @@ extern "C" {
     ///
     ///
     /// See also: CTFramesetterCreateFrame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathfillruleattributename?language=objc)
     pub static kCTFramePathFillRuleAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// The key used to specify the frame width.
+    ///
+    /// ## Discussion
+    ///
+    /// The value must be a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object containing a value specifying the frame width. The default width value is zero.
+    ///
+    ///
     /// Specifies frame width if this attribute is used at top level of frameAttributes dictionary, or specify
     /// clipping path width if used in a dictionary contained in an array specified by kCTFrameClippingPathsAttributeName.
     ///
@@ -164,12 +218,17 @@ extern "C" {
     ///
     ///
     /// See also: CTFramesetterCreateFrame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathwidthattributename?language=objc)
     pub static kCTFramePathWidthAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies array of paths to clip frame.
+    ///
+    /// ## Discussion
+    ///
+    /// The value must be a `CFArrayRef` containing `CFDictionaryRef`s. Each dictionary should have a `kCTFramePathClippingPathAttributeName` key-value pair, and can have a `kCTFramePathFillRuleAttributeName` key-value pair and `kCTFramePathFillRuleAttributeName` key-value pair as optional parameters.
+    ///
+    ///
     /// Specifies array of paths to clip frame.
     ///
     ///
@@ -179,12 +238,19 @@ extern "C" {
     ///
     ///
     /// See also: CTFramesetterCreateFrame
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframeclippingpathsattributename?language=objc)
     pub static kCTFrameClippingPathsAttributeName: &'static CFString;
 }
 
 extern "C" {
+    /// Specifies clipping path.
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies clipping path.  This attribute is valid only in a dictionary contained in an array specified by `kCTFrameClippingPathsAttributeName`.
+    ///
+    /// The value must be a `CGPathRef` specifying a clipping path. See [`kCTFrameClippingPathsAttributeName`](https://developer.apple.com/documentation/coretext/kctframeclippingpathsattributename).
+    ///
+    ///
     /// Specifies clipping path.  This attribute is valid in a dictionary contained in an array specified by kCTFrameClippingPathsAttributeName.
     /// On 10.8 or later, This attribute is also valid in frameAttributes dictionary passed to CTFramesetterCreateFrame.
     ///
@@ -193,12 +259,21 @@ extern "C" {
     ///
     ///
     /// See also: kCTFrameClippingPathsAttributeName
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kctframepathclippingpathattributename?language=objc)
     pub static kCTFramePathClippingPathAttributeName: &'static CFString;
 }
 
 impl CTFrame {
+    /// Returns the range of characters originally requested to fill the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame whose character range is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFRange` structure containing the backing store range of characters that were originally requested to fill the frame, or, if the function call is not successful, an empty range.
+    ///
+    ///
     /// Returns the range of characters that were originally requested
     /// to fill the frame.
     ///
@@ -210,8 +285,6 @@ impl CTFrame {
     /// store range of characters that were originally requested
     /// to fill the frame. If the function call is not successful,
     /// then an empty range will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetstringrange(_:)?language=objc)
     #[doc(alias = "CTFrameGetStringRange")]
     #[inline]
     pub fn string_range(&self) -> CFRange {
@@ -221,6 +294,23 @@ impl CTFrame {
         unsafe { CTFrameGetStringRange(self) }
     }
 
+    /// Returns the range of characters that actually fit in the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame whose visible character range is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A `CFRange` structure containing the backing store range of characters that fit into the frame, or if the function call is not successful or no characters fit in the frame, an empty range.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function can be used to cascade frames, because it returns the range of characters that can be seen in the frame. The next frame would start where this frame ends.
+    ///
+    ///
     /// Returns the range of characters that actually fit in the
     /// frame.
     ///
@@ -238,8 +328,6 @@ impl CTFrame {
     /// store range of characters that fit into the frame. If the
     /// function call is not successful, or if no characters fit
     /// in the frame, then an empty range will be returned.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetvisiblestringrange(_:)?language=objc)
     #[doc(alias = "CTFrameGetVisibleStringRange")]
     #[inline]
     pub fn visible_string_range(&self) -> CFRange {
@@ -251,10 +339,13 @@ impl CTFrame {
 
     /// Returns the path used to create the frame.
     ///
+    /// Parameters:
+    /// - frame: The frame whose path is returned.
+    ///
+    /// Returns the path used to create the frame.
+    ///
     ///
     /// Parameter `frame`: The frame that you want to obtain the path from.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetpath(_:)?language=objc)
     #[doc(alias = "CTFrameGetPath")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -268,6 +359,23 @@ impl CTFrame {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Returns the frame attributes used to create the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame whose attributes are returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a CFDictionary object containing the frame attributes that were used to create the frame, or, if the frame was created without any frame attributes, `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can create a frame with an attributes dictionary to control various aspects of the framing process. These attributes are different from the ones used to create an attributed string.
+    ///
+    ///
     /// Returns the frame attributes used to create the frame.
     ///
     ///
@@ -284,8 +392,6 @@ impl CTFrame {
     /// frame attributes that were used to create the frame. If the
     /// frame was created without any frame attributes, this function
     /// will return NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetframeattributes(_:)?language=objc)
     #[doc(alias = "CTFrameGetFrameAttributes")]
     #[inline]
     pub fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
@@ -296,6 +402,17 @@ impl CTFrame {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Returns an array of lines stored in the frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame whose line array is returned.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A CFArray object containing the CTLine objects that make up the frame, or, if there are no lines in the frame, an array with no elements.
+    ///
+    ///
     /// Returns an array of lines that make up the frame.
     ///
     ///
@@ -312,8 +429,6 @@ impl CTFrame {
     ///
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetlines(_:)?language=objc)
     #[doc(alias = "CTFrameGetLines")]
     #[inline]
     pub fn lines(&self) -> CFRetained<CFArray> {
@@ -326,6 +441,25 @@ impl CTFrame {
         unsafe { CFRetained::retain(ret) }
     }
 
+    /// Copies a range of line origins for a frame.
+    ///
+    /// Parameters:
+    /// - frame: The frame whose line origin array is copied.
+    ///
+    /// - range: The range of line origins you wish to copy. If the length of the range is 0, then the copy operation continues from the start index of the range to the last line origin.
+    ///
+    /// - origins: The buffer to which the origins are copied. The buffer must have at least as many elements as specified by range’s length. Each [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) in this array is the origin of the corresponding line in the array of lines returned by [`CTFrameGetLines`](https://developer.apple.com/documentation/coretext/ctframegetlines(_:)) relative to the origin of the path’s bounding box, which can be obtained from `CGPathGetPathBoundingBox`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function copies a range of [`CGPoint`](https://developer.apple.com/documentation/corefoundation/cgpoint) structures into the `origins` buffer. The maximum number of line origins this function will copy into the `origins` buffer is the count of the array of lines (the length of the `range` parameter).
+    ///
+    /// ### Special Considerations
+    ///
+    /// In versions of macOS prior to 10.7 and versions of iOS prior to 4.2, this function may function unpredictably if the frame is not rectangular.
+    ///
+    ///
     /// Copies a range of line origins for a frame.
     ///
     ///
@@ -358,8 +492,6 @@ impl CTFrame {
     /// # Safety
     ///
     /// `origins` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframegetlineorigins(_:_:_:)?language=objc)
     #[doc(alias = "CTFrameGetLineOrigins")]
     #[inline]
     pub unsafe fn line_origins(&self, range: CFRange, origins: NonNull<CGPoint>) {
@@ -369,6 +501,19 @@ impl CTFrame {
         unsafe { CTFrameGetLineOrigins(self, range, origins) }
     }
 
+    /// Draws an entire frame into a context.
+    ///
+    /// Parameters:
+    /// - frame: The frame to draw.
+    ///
+    /// - context: The context in which to draw the frame.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If both the frame and the context are valid, the frame is drawn in the context. This call can leave the context in any state and does not flush it after the draw operation.
+    ///
+    ///
     /// Draws an entire frame to a context.
     ///
     ///
@@ -385,8 +530,6 @@ impl CTFrame {
     ///
     /// If both the frame and the context are valid, the frame will be
     /// drawn in the context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframedraw(_:_:)?language=objc)
     #[doc(alias = "CTFrameDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]

@@ -7,6 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A group of related tracks in an asset.
+    ///
+    /// ## Overview
+    ///
+    /// A track group describes a group of related alternative tracks, only one of which should play at a time. Groups of alternative tracks typically contain variations of the same content, like subtitles in multiple translations.
+    ///
+    /// You can inspect an asset’s track groups by loading the value of its [`trackGroups`](https://developer.apple.com/documentation/avfoundation/avpartialasyncproperty/trackgroups) property.
+    ///
+    ///
     /// A class whose instances describe a group of tracks in an asset.
     ///
     ///
@@ -17,8 +26,6 @@ extern_class!(
     /// Clients can inspect the track groups contained in an AVAsset by loading and obtaining the value of its trackGroups property.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetTrackGroup;

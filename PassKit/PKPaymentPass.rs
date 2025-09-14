@@ -6,30 +6,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate?language=objc)
+/// Cases that indicate payment pass activation states.
 // NS_ENUM
 #[deprecated = "Use PKSecureElementPassActivationState instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentPassActivationState(pub NSUInteger);
 impl PKPaymentPassActivationState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/activated?language=objc)
+    /// Active and ready for payment use.
     #[doc(alias = "PKPaymentPassActivationStateActivated")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activated: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/requiresactivation?language=objc)
+    /// Not active but may be activated by the issuer.
     #[doc(alias = "PKPaymentPassActivationStateRequiresActivation")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const RequiresActivation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/activating?language=objc)
+    /// Not ready for use but activation is in progress.
     #[doc(alias = "PKPaymentPassActivationStateActivating")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Activating: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/suspended?language=objc)
+    /// Not active and can’t be activated.
     #[doc(alias = "PKPaymentPassActivationStateSuspended")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Suspended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpassactivationstate/deactivated?language=objc)
+    /// Not active because the issuer disabled the account associated with the device.
+    ///
+    /// ## Discussion
+    ///
+    /// To reactivate the account, reprovision the pass.
+    ///
+    ///
     #[doc(alias = "PKPaymentPassActivationStateDeactivated")]
     #[deprecated = "Use PKSecureElementPassActivationState instead"]
     pub const Deactivated: Self = Self(4);
@@ -44,7 +50,21 @@ unsafe impl RefEncode for PKPaymentPassActivationState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentpass?language=objc)
+    /// An object that represents a provisioned payment card for in-app payments.
+    ///
+    /// ## Overview
+    ///
+    /// Use [`PKSecureElementPass`](https://developer.apple.com/documentation/passkit/pksecureelementpass) in apps instead of this class to implement a payment pass in apps with these these system versions:
+    ///
+    /// - iOS 13.4 or later
+    ///
+    /// - macOS 11.0 or later
+    ///
+    /// - watchOS 6.2 or later
+    ///
+    /// - Mac Catalyst 13.4 or later
+    ///
+    ///
     #[unsafe(super(PKSecureElementPass, PKPass, PKObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

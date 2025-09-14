@@ -9,9 +9,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request to generate a thumbnail for a custom file type.
     /// This class contains information about the thumbnail that should be provided.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlfilethumbnailrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLFileThumbnailRequest;

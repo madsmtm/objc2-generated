@@ -9,19 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLServiceSessionAuthorizationRequirement(pub NSInteger);
 impl CLServiceSessionAuthorizationRequirement {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementnone?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementwheninuse?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementWhenInUse")]
     pub const WhenInUse: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessionauthorizationrequirement/clservicesessionauthorizationrequirementalways?language=objc)
     #[doc(alias = "CLServiceSessionAuthorizationRequirementAlways")]
     pub const Always: Self = Self(2);
 }
@@ -35,7 +31,6 @@ unsafe impl RefEncode for CLServiceSessionAuthorizationRequirement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesessiondiagnostic?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLServiceSessionDiagnostic;
@@ -95,7 +90,6 @@ impl CLServiceSessionDiagnostic {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesession-2ddhd?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLServiceSession;

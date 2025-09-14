@@ -8,11 +8,24 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object provides the ability to discover and connect to nearby iOS devices using Bluetooth or Wi-fi.
+    ///
+    /// ## Overview
+    ///
+    /// Sessions primarily work with _peers_. A peer is any iOS device made visible by creating and configuring a [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) object. Each peer is identified by a unique identifier, called a peer id ([`peerID`](https://developer.apple.com/documentation/gamekit/gksession/peerid)) string. Your application can use a [`peerID`](https://developer.apple.com/documentation/gamekit/gksession/peerid) string to obtain a user-readable name for a remote peer and to attempt to connect to that peer. Similarly, your session’s peer ID is visible to other nearby peers. After a connection is established, your application uses the remote peer’s ID to address data packets that it wants to send.
+    ///
+    /// Peers discover other peers by using a unique string to identify the service they implement, called a session ID ([`sessionID`](https://developer.apple.com/documentation/gamekit/gksession/sessionid)). Sessions can be configured to broadcast a session ID (as a _server_), to search for other peers advertising with that session ID (as a _client_), or to act as both a server and a client simultaneously (as a _peer_.
+    ///
+    /// Your application controls the behavior of a session through a delegate that implements the [`GKSessionDelegate`](https://developer.apple.com/documentation/gamekit/gksessiondelegate) protocol. The delegate is called when remote peers are discovered, when those peers attempt to connect to the session, and when the state of a remote peer changes. Your application also provides a data handler to the session so that the session can forward data it receives from remote peers. The data handler can be a separate object or the same object as the delegate.
+    ///
+    /// When Bluetooth is turned on, Wi-Fi download speeds drastically decrease while the device is searching for other Bluetooth enabled devices. After the Bluetooth discovery time has completed, Wi-Fi speeds return to normal.
+    ///
+    /// [`GKSession`](https://developer.apple.com/documentation/gamekit/gksession) methods are thread-safe and may be called from any thread. However, the session always calls its delegate on the main thread.
+    ///
+    ///
     /// The GKSession handles networking between peers for a game, which includes establishing and maintaining connections over a game network, and network data transport.
     ///
     /// This a not a Game Center feature. To support Game Center and online play, see GKMatch.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

@@ -7,11 +7,10 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A 3D point that includes an identifier to the point.
     /// An extension of VNPoint3D that associates an identifier to the point.
     ///
     /// It should be noted that VNRecognizedPoint3D is not intended as an overall replacement of simd float 4x4, but is used by observations that recognize labeled points of interest.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3d?language=objc)
     #[unsafe(super(VNPoint3D, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNGeometry")]

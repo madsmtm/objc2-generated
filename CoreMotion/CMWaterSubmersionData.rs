@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum?language=objc)
+/// The device’s submersion state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionState(pub NSInteger);
 impl CMWaterSubmersionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/unknown?language=objc)
+    /// The submersion state is unknown.
     #[doc(alias = "CMWaterSubmersionStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/notsubmerged?language=objc)
+    /// The device isn’t submerged in water.
     #[doc(alias = "CMWaterSubmersionStateNotSubmerged")]
     pub const NotSubmerged: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum/submerged?language=objc)
+    /// The device is submerged in water.
     #[doc(alias = "CMWaterSubmersionStateSubmerged")]
     pub const Submerged: Self = Self(2);
 }
@@ -31,31 +31,51 @@ unsafe impl RefEncode for CMWaterSubmersionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate?language=objc)
+/// A state based on the device’s depth under water.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionDepthState(pub NSInteger);
 impl CMWaterSubmersionDepthState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/unknown?language=objc)
+    /// The device’s depth state is unknown.
     #[doc(alias = "CMWaterSubmersionDepthStateUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/notsubmerged?language=objc)
+    /// The device is not submerged in water.
     #[doc(alias = "CMWaterSubmersionDepthStateNotSubmerged")]
     pub const NotSubmerged: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/submergedshallow?language=objc)
+    /// The device is submerged, but less than 1 meter under water.
     #[doc(alias = "CMWaterSubmersionDepthStateSubmergedShallow")]
     pub const SubmergedShallow: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/submergeddeep?language=objc)
+    /// The device is submerged at least 1 meter under water.
     #[doc(alias = "CMWaterSubmersionDepthStateSubmergedDeep")]
     pub const SubmergedDeep: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/approachingmaxdepth?language=objc)
+    /// The device is approaching the maximum safe diving depth.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sets the maximum depth based on the entitlement that your app uses, as shown in this table:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Shallow Depth and Pressure entitlement" }] }], [Paragraph { inline_content: [Text { text: "6 m" }] }]], [[Paragraph { inline_content: [Text { text: "Full Submerged Depth and Pressure entitlement" }] }], [Paragraph { inline_content: [Text { text: "40 m" }] }]]], alignments: None, metadata: None })
+    ///
     #[doc(alias = "CMWaterSubmersionDepthStateApproachingMaxDepth")]
     pub const ApproachingMaxDepth: Self = Self(400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/pastmaxdepth?language=objc)
+    /// The device has exceeded the maximum safe diving depth.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sets the maximum depth based on the entitlement that your app uses, as shown in this table:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Shallow Depth and Pressure entitlement" }] }], [Paragraph { inline_content: [Text { text: "6 m" }] }]], [[Paragraph { inline_content: [Text { text: "Full Submerged Depth and Pressure entitlement" }] }], [Paragraph { inline_content: [Text { text: "40 m" }] }]]], alignments: None, metadata: None })
+    ///
     #[doc(alias = "CMWaterSubmersionDepthStatePastMaxDepth")]
     pub const PastMaxDepth: Self = Self(500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate/sensordeptherror?language=objc)
+    /// An error with the depth sensor occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// The system sends a measurement with this state if the wearer continues to descend past the maximum depth.
+    ///
+    ///
     #[doc(alias = "CMWaterSubmersionDepthStateSensorDepthError")]
     pub const SensorDepthError: Self = Self(600);
 }
@@ -69,7 +89,7 @@ unsafe impl RefEncode for CMWaterSubmersionDepthState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent?language=objc)
+    /// An event indicating that the device’s submersion state has changed.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionEvent;
@@ -121,7 +141,7 @@ impl CMWaterSubmersionEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement?language=objc)
+    /// An update that contains data about the pressure and depth.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterSubmersionMeasurement;
@@ -185,7 +205,7 @@ impl CMWaterSubmersionMeasurement {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatertemperature?language=objc)
+    /// An update that contains data about the water temperature.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMWaterTemperature;

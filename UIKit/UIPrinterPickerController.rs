@@ -9,13 +9,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller/completionhandler?language=objc)
+/// The completion handler to execute when dismissing a printer picker controller.
+///
+/// ## Discussion
+///
+/// A printer picker completion handler takes the following parameters:
+///
+/// - printerPickerController: The printer picker controller object that is being dismissed. This parameter contains information about the selected printer, if any.
+///
+/// - userDidSelect: [`true`](https://developer.apple.com/documentation/swift/true) if the user selected a printer or [`false`](https://developer.apple.com/documentation/swift/false) if the user canceled the selection process. When this parameter is [`true`](https://developer.apple.com/documentation/swift/true), use the `printerPickerController` object to retrieve the selected printer object.
+///
+/// - error: An [`NSError`](https://developer.apple.com/documentation/foundation/nserror) object if there was a problem with the printer picker or `nil` if a printer was selected or the user canceled the picker.
+///
+///
 #[cfg(feature = "block2")]
 pub type UIPrinterPickerCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate?language=objc)
+    /// A set of methods for managing the presentation and dismissal of a printer picker interface.
+    ///
+    /// ## Overview
+    ///
+    /// You also use the methods of this protocol to influence the content displayed in the picker and to respond when the user selects a printer. Implement the methods of this protocol in your own custom object and assign that object to the delegate property of your [`UIPrinterPickerController`](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller) object before presenting it. When you present the picker, it calls the methods of your delegate at appropriate times to ask for information or provide you with information about the state of the picker interface. For more information about presenting a printer picker interface, see [`UIPrinterPickerController`](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller).
+    ///
+    ///
     pub unsafe trait UIPrinterPickerControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {
@@ -88,7 +106,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller?language=objc)
+    /// A view controller that displays the standard interface for selecting a printer.
+    ///
+    /// ## Overview
+    ///
+    /// You can use a printer picker controller to display a list of printers to the user prior to printing a document, photo, or other content. Printer pickers display all pickers normally but you can filter out printers by assigning an appropriate delegate object to the picker before displaying it.
+    ///
+    /// A printer picker controller coordinates the presentation and dismissal of its interface with its associated delegate object. The delegate object is an object that you provide and that conforms to the [`UIPrinterPickerControllerDelegate`](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate) protocol. When the user selects a printer, the picker also notifies the delegate of the selection.
+    ///
+    /// A printer picker controller isn’t a view controller, so you don’t present it the way you do other view controllers. You present the picker using one of the presentation methods of this class. Those methods work with the picker’s delegate object to determine the most appropriate way to present the picker. If the delegate implements the [`printerPickerControllerParentViewController:`](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate/printerpickercontrollerparentviewcontroller(_:)) method, the picker presents itself using the view controller returned by that method. Some presentation methods may present the picker using a popover instead.
+    ///
+    /// For more information about the picker delegate methods, see [`UIPrinterPickerControllerDelegate`](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

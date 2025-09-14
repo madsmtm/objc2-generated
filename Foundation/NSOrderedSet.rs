@@ -7,9 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// **************       Immutable Ordered Set   ***************
+    /// A static, ordered collection of unique objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsorderedset?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSOrderedSet`](https://developer.apple.com/documentation/foundation/nsorderedset) declares the programmatic interface for static sets of distinct objects. You establish a static set’s entries when it’s created, and thereafter the entries can’t be modified. [`NSMutableOrderedSet`](https://developer.apple.com/documentation/foundation/nsmutableorderedset), on the other hand, declares a programmatic interface for dynamic sets of distinct objects. A dynamic—or mutable—set allows the addition and deletion of entries at any time, automatically allocating memory as needed.
+    ///
+    /// You can use ordered sets as an alternative to arrays when the order of elements is important and performance in testing whether an object is contained in the set is a consideration—testing for membership of an array is slower than testing for membership of a set.
+    ///
+    ///
+    /// **************       Immutable Ordered Set   ***************
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOrderedSet<ObjectType: ?Sized = AnyObject>;
@@ -678,9 +685,14 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 }
 
 extern_class!(
-    /// **************       Mutable Ordered Set     ***************
+    /// A dynamic, ordered collection of unique objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutableorderedset?language=objc)
+    /// ## Overview
+    ///
+    /// [`NSMutableOrderedSet`](https://developer.apple.com/documentation/foundation/nsmutableorderedset) objects are not like C arrays. That is, even though you may specify a size when you create a mutable ordered set, the specified size is regarded as a “hint”; the actual size of the set is still 0. This means that you cannot insert an object at an index greater than the current count of an set. For example, if a set contains two objects, its size is 2, so you can add objects at indices 0, 1, or 2. Index 3 is illegal and out of bounds; if you try to add an object at index 3 (when the size of the array is 2), `NSMutableOrderedSet` raises an exception.
+    ///
+    ///
+    /// **************       Mutable Ordered Set     ***************
     #[unsafe(super(NSOrderedSet<ObjectType>, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSMutableOrderedSet<ObjectType: ?Sized = AnyObject>;

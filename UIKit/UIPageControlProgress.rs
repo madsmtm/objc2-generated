@@ -8,7 +8,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrolprogressdelegate?language=objc)
     pub unsafe trait UIPageControlProgressDelegate: NSObjectProtocol {
         /// Returns the initial progress (between 0...1) for the specified page. By default, `currentProgress` is set to 0 when the page changes.
         #[optional]
@@ -45,7 +44,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrolprogress?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPageControlProgress;
@@ -114,7 +112,6 @@ impl DefaultRetained for UIPageControlProgress {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontroltimerprogressdelegate?language=objc)
     pub unsafe trait UIPageControlTimerProgressDelegate:
         UIPageControlProgressDelegate
     {
@@ -138,7 +135,6 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontroltimerprogress?language=objc)
     #[unsafe(super(UIPageControlProgress, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPageControlTimerProgress;

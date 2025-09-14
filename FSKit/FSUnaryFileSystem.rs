@@ -10,14 +10,23 @@ use crate::*;
 extern_class!(
     /// An abstract base class for implementing a minimal file system.
     ///
+    /// ## Overview
+    ///
+    /// `FSUnaryFileSystem` is a simplified file system, which works with one [`FSResource`](https://developer.apple.com/documentation/fskit/fsresource) and presents it as one [`FSVolume`](https://developer.apple.com/documentation/fskit/fsvolume).
+    ///
+    /// The one volume and its container have a shared state and lifetime, a more constrained life cycle than the [`FSFileSystem`](https://developer.apple.com/documentation/fskit/fsfilesystem) design flow.
+    ///
+    /// Implement your app extension by providing a subclass of `FSUnaryFileSystem` as a delegate object. Your delegate also needs to implement the [`FSUnaryFileSystemOperations`](https://developer.apple.com/documentation/fskit/fsunaryfilesystemoperations) protocol so that it can load resources.
+    ///
+    ///
+    /// An abstract base class for implementing a minimal file system.
+    ///
     /// `FSUnaryFileSystem` is a simplified file system, which works with one ``FSResource`` and presents it as one ``FSVolume``.
     ///
     /// The one volume and its container have a shared state and lifetime, a more constrained life cycle than the ``FSFileSystem`` design flow.
     ///
     /// Implement your app extension by providing a subclass of `FSUnaryFileSystem` as a delegate object.
     /// Your delegate also needs to implement the ``FSUnaryFileSystemOperations`` protocol so that it can load resources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsunaryfilesystem?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSUnaryFileSystem;
@@ -52,9 +61,14 @@ impl FSUnaryFileSystem {
 extern_protocol!(
     /// Operations performed by a unary file system.
     ///
-    /// Make sure your subclass of ``FSUnaryFileSystem`` conforms to this protocol.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsunaryfilesystemoperations?language=objc)
+    /// Make sure your subclass of [`FSUnaryFileSystem`](https://developer.apple.com/documentation/fskit/fsunaryfilesystem) conforms to this protocol.
+    ///
+    ///
+    /// Operations performed by a unary file system.
+    ///
+    /// Make sure your subclass of ``FSUnaryFileSystem`` conforms to this protocol.
     pub unsafe trait FSUnaryFileSystemOperations: NSObjectProtocol {
         #[cfg(all(feature = "FSResource", feature = "block2"))]
         /// Requests that the file system probe the specified resource.

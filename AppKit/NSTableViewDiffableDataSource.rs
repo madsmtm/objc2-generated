@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencecellprovider?language=objc)
+/// A closure that configures and returns a cell for a table view from its diffable data source.
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -24,7 +24,7 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     ) -> NonNull<NSView>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencerowprovider?language=objc)
+/// A closure that configures and returns a row view for a table view from its diffable data source.
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -37,7 +37,7 @@ pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencesectionheaderviewprovider?language=objc)
+/// A closure that configures and returns a section header view for a table view from its diffable data source.
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -50,7 +50,35 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::D
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereference?language=objc)
+    /// The object you use to manage data and provide items for a table view.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  If you’re working in a Swift codebase, always use [`NSTableViewDiffableDataSource`](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasource-c5gl) instead of `NSTableViewDiffableDataSourceReference`.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A _diffable data source_ object is a specialized type of data source that works together with your table view object. It provides the behavior you need to manage updates to your table view’s data and UI in a simple, efficient way. It also conforms to the [`NSTableViewDataSource`](https://developer.apple.com/documentation/appkit/nstableviewdatasource) protocol.
+    ///
+    /// To fill a table view with data:
+    ///
+    /// 1. Connect a diffable data source to your table view.
+    ///
+    /// 2. Implement a cell provider to configure your table view’s cells.
+    ///
+    /// 3. Generate the current state of the data.
+    ///
+    /// 4. Display the data in the UI.
+    ///
+    /// To connect a diffable data source to a table view, you create the diffable data source using its [`initWithTableView:cellProvider:`](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereference/init(tableview:cellprovider:)) initializer, passing in the table view you want to associate with that data source. You also pass in a cell provider, where you configure each of your cells to determine how to display your data in the UI.
+    ///
+    /// Then, you generate the current state of the data and display the data in the UI by constructing and applying a snapshot. For more information, see [`NSDiffableDataSourceSnapshot`](https://developer.apple.com/documentation/appkit/nsdiffabledatasourcesnapshotreference).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewDiffableDataSource<

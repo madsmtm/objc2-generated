@@ -6,22 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertoolstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EPDeveloperToolStatus(pub NSInteger);
 impl EPDeveloperToolStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertoolstatus/notdetermined?language=objc)
     #[doc(alias = "EPDeveloperToolStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertoolstatus/restricted?language=objc)
     #[doc(alias = "EPDeveloperToolStatusRestricted")]
     pub const Restricted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertoolstatus/denied?language=objc)
     #[doc(alias = "EPDeveloperToolStatusDenied")]
     pub const Denied: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertoolstatus/authorized?language=objc)
     #[doc(alias = "EPDeveloperToolStatusAuthorized")]
     pub const Authorized: Self = Self(3);
 }
@@ -35,7 +30,6 @@ unsafe impl RefEncode for EPDeveloperToolStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/epdevelopertool?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EPDeveloperTool;

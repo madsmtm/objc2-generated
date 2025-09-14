@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarappearance?language=objc)
+    /// An object for customizing the basic appearance of system bars.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIBarAppearance`](https://developer.apple.com/documentation/uikit/uibarappearance) object contains the common traits shared by navigation bars, tab bars, and toolbars. When configuring a specific type of bar, you usually instantiate the appropriate bar appearance subclass. However, you may also create a [`UIBarAppearance`](https://developer.apple.com/documentation/uikit/uibarappearance) object, configure its properties, and use it to create new bar appearance objects in your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

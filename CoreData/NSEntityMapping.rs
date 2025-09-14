@@ -7,28 +7,40 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype?language=objc)
+/// The types for mapping an entity between a source model and a destination model.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEntityMappingType(pub NSUInteger);
 impl NSEntityMappingType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/undefinedentitymappingtype?language=objc)
+    /// Specifies that the developer handles destination instance creation.
     #[doc(alias = "NSUndefinedEntityMappingType")]
     pub const UndefinedEntityMappingType: Self = Self(0x00);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/customentitymappingtype?language=objc)
+    /// Specifies a custom mapping.
     #[doc(alias = "NSCustomEntityMappingType")]
     pub const CustomEntityMappingType: Self = Self(0x01);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/addentitymappingtype?language=objc)
+    /// Specifies that this is a new entity in the destination model.
+    ///
+    /// ## Discussion
+    ///
+    /// Instances of the entity only exist in the destination.
+    ///
+    ///
     #[doc(alias = "NSAddEntityMappingType")]
     pub const AddEntityMappingType: Self = Self(0x02);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/removeentitymappingtype?language=objc)
+    /// Specifies that this entity is not present in the destination model.
+    ///
+    /// ## Discussion
+    ///
+    /// Instances of the entity only exist in the source—source instances are not mapped to destination.
+    ///
+    ///
     #[doc(alias = "NSRemoveEntityMappingType")]
     pub const RemoveEntityMappingType: Self = Self(0x03);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/copyentitymappingtype?language=objc)
+    /// Specifies that source instances are migrated as-is.
     #[doc(alias = "NSCopyEntityMappingType")]
     pub const CopyEntityMappingType: Self = Self(0x04);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymappingtype/transformentitymappingtype?language=objc)
+    /// Specifies that entity exists in source and destination and is mapped.
     #[doc(alias = "NSTransformEntityMappingType")]
     pub const TransformEntityMappingType: Self = Self(0x05);
 }
@@ -42,7 +54,7 @@ unsafe impl RefEncode for NSEntityMappingType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsentitymapping?language=objc)
+    /// A mapping instance that specifies how to map an entity from a source to a destination managed object model.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEntityMapping;

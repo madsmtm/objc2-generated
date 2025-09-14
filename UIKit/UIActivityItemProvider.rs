@@ -9,7 +9,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsource?language=objc)
+    /// A set of methods that an activity view controller uses to retrieve the data items to act on.
+    ///
+    /// ## Overview
+    ///
+    /// You can use this protocol in situations where you want to provide the data from one of your app’s existing objects instead of creating a separate [`UIActivityItemProvider`](https://developer.apple.com/documentation/uikit/uiactivityitemprovider) object. When implementing this protocol, your object becomes the data provider, providing the view controller with access to the items.
+    ///
+    /// Because the methods of this protocol are executed on your app’s main thread, you should avoid using this protocol in cases where the data objects might take a significant amount of time to create. When creating large data objects, consider using a [`UIActivityItemProvider`](https://developer.apple.com/documentation/uikit/uiactivityitemprovider) object instead.
+    ///
+    ///
     pub unsafe trait UIActivityItemSource: NSObjectProtocol {
         #[cfg(all(
             feature = "UIActivityViewController",
@@ -88,7 +96,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemprovider?language=objc)
+    /// A proxy for data that passes to an activity view controller.
+    ///
+    /// ## Overview
+    ///
+    /// You can use a provider object in situations where you want to make data available for use by an activity but you want to delay providing that data until it’s actually needed. For example, you might use a provider object to represent a large video file that needs to be processed before it can be shared to a user’s social media account.
+    ///
+    /// When you initialize a [`UIActivityViewController`](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller) object, you can pass a provider object in addition to any other data objects. When the user selects an activity, the activity view controller adds your provider object (which is also an operation object) to an operation queue so that it can begin to gather or process the needed data.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// You must subclass `UIActivityItemProvider` and implement its [`item`](https://developer.apple.com/documentation/uikit/uiactivityitemprovider/item) method, which is called to generate the item data. You implement this method instead of the normal [`main`](https://developer.apple.com/documentation/foundation/operation/main()) method you’d implement for an operation object. (The [`main`](https://developer.apple.com/documentation/foundation/operation/main()) method calls the [`item`](https://developer.apple.com/documentation/uikit/uiactivityitemprovider/item) method when the operation object is executed.) Your implementation of the [`item`](https://developer.apple.com/documentation/uikit/uiactivityitemprovider/item) method should do whatever work is necessary to create and return the data.
+    ///
+    ///
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityItemProvider;

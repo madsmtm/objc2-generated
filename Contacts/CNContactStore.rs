@@ -8,16 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 /// The entities the user can grant access to.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype?language=objc)
+/// The entities the user can grant access to.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNEntityType(pub NSInteger);
 impl CNEntityType {
+    /// The user’s contacts.
     /// The user's contacts.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype/contacts?language=objc)
     #[doc(alias = "CNEntityTypeContacts")]
     pub const Contacts: Self = Self(0);
 }
@@ -30,38 +28,40 @@ unsafe impl RefEncode for CNEntityType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An authorization status the user can grant for an app to access the specified entity type.
 /// The authorization the user has given the application to access an entity type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNAuthorizationStatus(pub NSInteger);
 impl CNAuthorizationStatus {
     /// The user has not yet made a choice regarding whether the application may access contact data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/notdetermined?language=objc)
+    /// The user has not yet made a choice regarding whether the application may access contact data.
     #[doc(alias = "CNAuthorizationStatusNotDetermined")]
     pub const NotDetermined: Self = Self(0);
+    /// The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.
     /// The application is not authorized to access contact data.
     /// The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/restricted?language=objc)
     #[doc(alias = "CNAuthorizationStatusRestricted")]
     pub const Restricted: Self = Self(1);
     /// The user explicitly denied access to contact data for the application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/denied?language=objc)
+    /// The user explicitly denied access to contact data for the application.
     #[doc(alias = "CNAuthorizationStatusDenied")]
     pub const Denied: Self = Self(2);
     /// The application is authorized to access contact data.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/authorized?language=objc)
+    /// The application is authorized to access contact data.
     #[doc(alias = "CNAuthorizationStatusAuthorized")]
     pub const Authorized: Self = Self(3);
-    /// This application is authorized to access some contact data.
+    /// The app has access to a limited subset of contacts, chosen by the person using the app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus/limited?language=objc)
+    /// ## Discussion
+    ///
+    /// A person can give your app limited access to their contacts by choosing this option when your app first attempts to authorize for accessing contacts. Thereafter, the person can maintain the set of contacts exposed to your app by managing them in the Settings app.
+    ///
+    /// Your app can prompt the person to add contacts to the limited-access set by displaying a [`ContactAccessButton`](https://developer.apple.com/documentation/contactsui/contactaccessbutton), in association with a search UI your app provides. You can also display a picker to add contacts with the SwiftUI view modifier [`contactAccessPicker(isPresented:completionHandler:)`](https://developer.apple.com/documentation/swiftui/view/contactaccesspicker(ispresented:completionhandler:)).
+    ///
+    ///
+    /// This application is authorized to access some contact data.
     #[doc(alias = "CNAuthorizationStatusLimited")]
     pub const Limited: Self = Self(4);
 }
@@ -75,6 +75,23 @@ unsafe impl RefEncode for CNAuthorizationStatus {
 }
 
 extern_class!(
+    /// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
+    ///
+    /// ## Overview
+    ///
+    /// The `CNContactStore` object represents the user’s contacts store database, and you use it to fetch information from that database and save changes back to it. There are a few recommended ways you can implement fetch and save requests in your app:
+    ///
+    /// - Fetch only the properties that you need for contacts.
+    ///
+    /// - When fetching all contacts and caching the results, first fetch all contacts identifiers, then fetch batches of detailed contacts by identifiers as required.
+    ///
+    /// - To aggregate several contacts fetches, first collect a set of unique identifiers from the fetches. Then fetch batches of detailed contacts by those unique identifiers.
+    ///
+    /// - If you cache the fetched contacts, groups, or containers, you need to refetch these objects (and release the old cached objects) when [`CNContactStoreDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/cncontactstoredidchange) is posted.
+    ///
+    /// Because `CNContactStore` fetch methods perform I/O, it’s recommended that you avoid using the main thread to execute fetches.
+    ///
+    ///
     /// Provides methods to fetch and save contacts.
     ///
     ///
@@ -86,8 +103,6 @@ extern_class!(
     /// 2) When fetching all contacts and caching the results, first fetch all contact identifiers only. Then fetch batches of detailed contacts by identifiers as you need them.
     /// 3) To aggregate several contact fetches collect a set of unique contact identifiers from the fetches. Then fetch batches of detailed contacts by identifiers.
     /// 4) When CNContactStoreDidChangeNotification is posted, if you cache any fetched contacts/groups/containers then they must be refetched and the old cached objects released.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNContactStore;
@@ -390,8 +405,7 @@ impl CNContactStore {
 }
 
 extern "C" {
+    /// Posted when changes occur to the contact store.
     /// Notification posted when changes occur in another CNContactStore.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactstoredidchangenotification?language=objc)
     pub static CNContactStoreDidChangeNotification: &'static NSString;
 }

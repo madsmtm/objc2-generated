@@ -6,34 +6,86 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnconfidence?language=objc)
+/// A type alias for the confidence value of an observation.
+///
+/// ## Discussion
+///
+/// The Vision framework normalizes this value to `[0.0, 1.0]` under most circumstances. A value of `0.0` indicates no confidence. A value of `1.0` indicates highest confidence, or the observation doesn’t support or assign meaning to confidence.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  When the results come from a [`VNCoreMLRequest`](https://developer.apple.com/documentation/vision/vncoremlrequest), Vision forwards confidence values as-is and doesn’t normalize them.
+///
+///
+///
+/// </div>
+///
 pub type VNConfidence = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnaspectratio?language=objc)
+/// A type alias for expressing rectangle aspect ratios in Vision.
+///
+/// ## Discussion
+///
+/// The value is a [float](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariCSSRef/Articles/StandardCSSProperties.html#//apple_ref/doc/uid/TP30001266-float), but limited to a range of `0.0` to `1.0`, inclusive, with the default of `0.5` indicating a square image. It defines aspect ratio as the shorter dimension over the longer dimension.
+///
+///
 pub type VNAspectRatio = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndegrees?language=objc)
+/// A typealias for expressing tolerance angles in Vision.
 pub type VNDegrees = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption?language=objc)
+/// Options that define how Vision crops and scales an input-image.
+///
+/// ## Overview
+///
+/// Scaling an image ensures that it fits within the algorithm’s input image dimensions, which may require a change in aspect ratio. The figure below shows how each crop-and-scale option transforms the input image:
+///
+///
+/// <picture>
+///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/4bf8fd862977ba79bd1029a3fd0ca2f7/scale-crop-options~dark%402x.png 2x" />
+///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/f364baac9c906e2c98ec66ee3b303aab/scale-crop-options%402x.png 2x" />
+///     <img alt="A series of six photos that show the effects of applying a center crop, scale fit, scale fill, scale fit rotate 90 degrees counterclockwise, and scale fill rotate 90 degrees counterclockwise option to the original input image." src="https://docs-assets.developer.apple.com/published/f364baac9c906e2c98ec66ee3b303aab/scale-crop-options%402x.png" />
+/// </picture>
+///
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNImageCropAndScaleOption(pub NSUInteger);
 impl VNImageCropAndScaleOption {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/centercrop?language=objc)
+    /// An option that scales the image to fit its shorter side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
     #[doc(alias = "VNImageCropAndScaleOptionCenterCrop")]
     pub const CenterCrop: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefit?language=objc)
+    /// An option that scales the image to fit its longer side within the input dimensions, while preserving its aspect ratio, and center-crops the image.
+    ///
+    /// ## Discussion
+    ///
+    /// This option fills the remaining space with transparent pixels to maintain aspect ratio.
+    ///
+    ///
     #[doc(alias = "VNImageCropAndScaleOptionScaleFit")]
     pub const ScaleFit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefill?language=objc)
+    /// An option that scales the image to fill the input dimensions, resizing it if necessary.
     #[doc(alias = "VNImageCropAndScaleOptionScaleFill")]
     pub const ScaleFill: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefitrotate90ccw?language=objc)
+    /// An option that rotates the image 90 degrees counterclockwise and then scales it, while preserving its aspect ratio, to fit on the long side.
+    ///
+    /// ## Discussion
+    ///
+    /// This option optimizes portrait images to fit into landscape buffers for algorithms that are rotation agnostic, and fills the remaining space with transparent pixels.
+    ///
+    ///
     #[doc(alias = "VNImageCropAndScaleOptionScaleFitRotate90CCW")]
     pub const ScaleFitRotate90CCW: Self = Self(0x100 + VNImageCropAndScaleOption::ScaleFit.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption/scalefillrotate90ccw?language=objc)
+    /// An option that rotates the image 90 degrees counterclockwise and then scales it to fill the input dimensions.
+    ///
+    /// ## Discussion
+    ///
+    /// This option optimizes portrait images to fill into landscape buffers for algorithms that are rotation agnostic.
+    ///
+    ///
     #[doc(alias = "VNImageCropAndScaleOptionScaleFillRotate90CCW")]
     pub const ScaleFillRotate90CCW: Self = Self(0x100 + VNImageCropAndScaleOption::ScaleFill.0);
 }
@@ -46,170 +98,173 @@ unsafe impl RefEncode for VNImageCropAndScaleOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestage?language=objc)
+/// Types that represent the compute stage.
 // NS_TYPED_ENUM
 pub type VNComputeStage = NSString;
 
 extern "C" {
+    /// A stage that represents where the system performs the main functionality.
     /// The stage of a request where the main functionality is being performed.
     ///
     /// All requests will have this compute stage.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestage/main?language=objc)
     pub static VNComputeStageMain: Option<&'static VNComputeStage>;
 }
 
 extern "C" {
+    /// A stage that represents where the system performs additional analysis from the main compute stage.
     /// A compute stage for additional analysis and/or conversion of the data produced by the `VNComputeStageMain`.
     ///
     /// This is an optional compute stage that some requests may expose.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncomputestage/postprocessing?language=objc)
     pub static VNComputeStagePostProcessing: Option<&'static VNComputeStage>;
 }
 
+/// The barcode symbologies that the framework detects.
+///
+/// ## Discussion
+///
+/// Use [`supportedSymbologiesAndReturnError:`](https://developer.apple.com/documentation/vision/vndetectbarcodesrequest/supportedsymbologies()) to get the specific symbologies the request supports.
+///
+///
 /// Barcode symbologies that are supported by the Vision framework.
 ///
 ///
 /// The actual set of barcode symbologies that can actually be recognized by a specific version of the Vision framework should be determined by using the VNRequestNameSupportedBarcodeSymbologies request.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology?language=objc)
 // NS_TYPED_ENUM
 pub type VNBarcodeSymbology = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/aztec-s3va?language=objc)
+    /// A constant that indicates Aztec symbology.
     pub static VNBarcodeSymbologyAztec: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code39-2ggrb?language=objc)
+    /// A constant that indicates Code 39 symbology.
     pub static VNBarcodeSymbologyCode39: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code39checksum-3jdl6?language=objc)
+    /// A constant that indicates Code 39 symbology with a checksum.
     pub static VNBarcodeSymbologyCode39Checksum: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code39fullascii-942jj?language=objc)
+    /// A constant that indicates Code 39 Full ASCII symbology.
     pub static VNBarcodeSymbologyCode39FullASCII: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code39fullasciichecksum-6700?language=objc)
+    /// A constant that indicates Code 39 Full ASCII symbology with a checksum.
     pub static VNBarcodeSymbologyCode39FullASCIIChecksum: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code93-2geph?language=objc)
+    /// A constant that indicates Code 93 symbology.
     pub static VNBarcodeSymbologyCode93: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code93i-t5q5?language=objc)
+    /// A constant that indicates Code 93i symbology.
     pub static VNBarcodeSymbologyCode93i: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/code128-1lkm2?language=objc)
+    /// A constant that indicates Code 128 symbology.
     pub static VNBarcodeSymbologyCode128: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/datamatrix-6tg7m?language=objc)
+    /// A constant that indicates Data Matrix symbology.
     pub static VNBarcodeSymbologyDataMatrix: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/ean8-9qg0n?language=objc)
+    /// A constant that indicates EAN-8 symbology.
     pub static VNBarcodeSymbologyEAN8: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/ean13-7gb2d?language=objc)
+    /// A constant that indicates EAN-13 symbology.
     pub static VNBarcodeSymbologyEAN13: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/i2of5-cyk4?language=objc)
+    /// A constant that indicates Interleaved 2 of 5 (ITF) symbology.
     pub static VNBarcodeSymbologyI2of5: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/i2of5checksum-999jm?language=objc)
+    /// A constant that indicates Interleaved 2 of 5 (ITF) symbology with a checksum.
     pub static VNBarcodeSymbologyI2of5Checksum: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/itf14-9mbkq?language=objc)
+    /// A constant that indicates ITF-14 symbology.
     pub static VNBarcodeSymbologyITF14: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/pdf417-8n3oh?language=objc)
+    /// A constant that indicates PDF417 symbology.
     pub static VNBarcodeSymbologyPDF417: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/qr-2l1ve?language=objc)
+    /// A constant that indicates Quick Response (QR) symbology.
     pub static VNBarcodeSymbologyQR: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/upce-1jtoc?language=objc)
+    /// A constant that indicates UPC-E symbology.
     pub static VNBarcodeSymbologyUPCE: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/codabar?language=objc)
+    /// A constant that indicates Codabar symbology.
     pub static VNBarcodeSymbologyCodabar: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/gs1databar?language=objc)
+    /// A constant that indicates GS1 DataBar symbology.
     pub static VNBarcodeSymbologyGS1DataBar: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/gs1databarexpanded?language=objc)
+    /// A constant that indicates GS1 DataBar Expanded symbology.
     pub static VNBarcodeSymbologyGS1DataBarExpanded: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/gs1databarlimited?language=objc)
+    /// A constant that indicates GS1 DataBar Limited symbology.
     pub static VNBarcodeSymbologyGS1DataBarLimited: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/micropdf417?language=objc)
+    /// A constant that indicates MicroPDF417 symbology.
     pub static VNBarcodeSymbologyMicroPDF417: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/microqr?language=objc)
+    /// A constant that indicates MicroQR symbology.
     pub static VNBarcodeSymbologyMicroQR: Option<&'static VNBarcodeSymbology>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodesymbology/msiplessey?language=objc)
+    /// A constant that indicates Modified Plessey symbology.
     pub static VNBarcodeSymbologyMSIPlessey: Option<&'static VNBarcodeSymbology>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype?language=objc)
+/// An enumeration of the type of element in feature print data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNElementType(pub NSUInteger);
 impl VNElementType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/unknown?language=objc)
+    /// The element type isn’t known.
     #[doc(alias = "VNElementTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/float?language=objc)
+    /// The elements are floating-point numbers.
     #[doc(alias = "VNElementTypeFloat")]
     pub const Float: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype/double?language=objc)
+    /// The elements are double-precision floating-point numbers.
     #[doc(alias = "VNElementTypeDouble")]
     pub const Double: Self = Self(2);
 }
@@ -222,36 +277,36 @@ unsafe impl RefEncode for VNElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoption?language=objc)
+/// Options to pass to the video processor when adding requests.
 #[deprecated]
 // NS_TYPED_ENUM
 pub type VNVideoProcessingOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoption/framecadence?language=objc)
+    /// A value that indicates the video frame cadence at which to perform the video processing.
     #[deprecated]
     pub static VNVideoProcessingOptionFrameCadence: Option<&'static VNVideoProcessingOption>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessingoption/timeinterval?language=objc)
+    /// A value that indicates that the video processor should perform a request every _n_-seconds.
     #[deprecated]
     pub static VNVideoProcessingOptionTimeInterval: Option<&'static VNVideoProcessingOption>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality?language=objc)
+/// Constants that the define the chirality, or handedness, of a pose.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNChirality {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/unknown?language=objc)
+    /// Indicates that the pose chirality is unknown.
     #[doc(alias = "VNChiralityUnknown")]
     #[default]
     Unknown = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/left?language=objc)
+    /// Indicates a left-handed pose.
     #[doc(alias = "VNChiralityLeft")]
     Left = -1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality/right?language=objc)
+    /// Indicates a right-handed pose.
     #[doc(alias = "VNChiralityRight")]
     Right = 1,
 }
@@ -264,19 +319,16 @@ unsafe impl RefEncode for VNChirality {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification?language=objc)
+/// The set of classifications that describe how to interpret the points the region provides.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNPointsClassification {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/disconnected?language=objc)
     #[doc(alias = "VNPointsClassificationDisconnected")]
     #[default]
     Disconnected = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/openpath?language=objc)
     #[doc(alias = "VNPointsClassificationOpenPath")]
     OpenPath = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification/closedpath?language=objc)
     #[doc(alias = "VNPointsClassificationClosedPath")]
     ClosedPath = 2,
 }
@@ -289,25 +341,25 @@ unsafe impl RefEncode for VNPointsClassification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype?language=objc)
+/// Composite types for barcode requests.
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNBarcodeCompositeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/none?language=objc)
+    /// A type that represents no composite type.
     #[doc(alias = "VNBarcodeCompositeTypeNone")]
     #[default]
     None = 0,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/linked?language=objc)
+    /// A type that represents a linked composite type.
     #[doc(alias = "VNBarcodeCompositeTypeLinked")]
     Linked = 1,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typea?language=objc)
+    /// A type that represents trade items in bulk.
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeA")]
     GS1TypeA = 2,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typeb?language=objc)
+    /// A type that represents trade items by piece.
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeB")]
     GS1TypeB = 3,
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype/gs1typec?language=objc)
+    /// A type that represents trade items in varying quantity.
     #[doc(alias = "VNBarcodeCompositeTypeGS1TypeC")]
     GS1TypeC = 4,
 }
@@ -320,358 +372,357 @@ unsafe impl RefEncode for VNBarcodeCompositeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointkey?language=objc)
+/// The data type for all recognized point keys.
 // NS_TYPED_ENUM
 pub type VNRecognizedPointKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkey?language=objc)
+/// The data type for all recognized-point group keys.
 // NS_TYPED_ENUM
 pub type VNRecognizedPointGroupKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname?language=objc)
+/// The joint names for an animal body pose.
 // NS_TYPED_ENUM
 pub type VNAnimalBodyPoseObservationJointName = VNRecognizedPointKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/lefteartop?language=objc)
+    /// A joint name that represents the top of the left ear.
     pub static VNAnimalBodyPoseObservationJointNameLeftEarTop:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/righteartop?language=objc)
+    /// A joint name that represents the top of the right ear.
     pub static VNAnimalBodyPoseObservationJointNameRightEarTop:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftearmiddle?language=objc)
+    /// A joint name that represents the middle of the left ear.
     pub static VNAnimalBodyPoseObservationJointNameLeftEarMiddle:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightearmiddle?language=objc)
+    /// A joint name that represents the middle of the right ear.
     pub static VNAnimalBodyPoseObservationJointNameRightEarMiddle:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftearbottom?language=objc)
+    /// A joint name that represents the bottom of the left ear.
     pub static VNAnimalBodyPoseObservationJointNameLeftEarBottom:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightearbottom?language=objc)
+    /// A joint name that represents the bottom of the right ear.
     pub static VNAnimalBodyPoseObservationJointNameRightEarBottom:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/lefteye?language=objc)
+    /// A joint name that represents the left eye.
     pub static VNAnimalBodyPoseObservationJointNameLeftEye:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/righteye?language=objc)
+    /// A joint name that represents the right eye.
     pub static VNAnimalBodyPoseObservationJointNameRightEye:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/nose?language=objc)
+    /// A joint name that represents the nose.
     pub static VNAnimalBodyPoseObservationJointNameNose:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/neck?language=objc)
+    /// A joint name that represents the neck.
     pub static VNAnimalBodyPoseObservationJointNameNeck:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftfrontelbow?language=objc)
+    /// A joint name that represents the front of the left elbow.
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontElbow:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightfrontelbow?language=objc)
+    /// A joint name that represents the front of the right elbow.
     pub static VNAnimalBodyPoseObservationJointNameRightFrontElbow:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftfrontknee?language=objc)
+    /// A joint name that represents the front of the left knee.
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontKnee:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightfrontknee?language=objc)
+    /// A joint name that represents the front of the right knee.
     pub static VNAnimalBodyPoseObservationJointNameRightFrontKnee:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftfrontpaw?language=objc)
+    /// A joint name that represents the front of the left paw.
     pub static VNAnimalBodyPoseObservationJointNameLeftFrontPaw:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightfrontpaw?language=objc)
+    /// A joint name that represents the front of the right paw.
     pub static VNAnimalBodyPoseObservationJointNameRightFrontPaw:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftbackelbow?language=objc)
+    /// A joint name that represents the back of the left elbow.
     pub static VNAnimalBodyPoseObservationJointNameLeftBackElbow:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightbackelbow?language=objc)
+    /// A joint name that represents the back of the right elbow.
     pub static VNAnimalBodyPoseObservationJointNameRightBackElbow:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftbackknee?language=objc)
+    /// A joint name that represents the back of the left knee.
     pub static VNAnimalBodyPoseObservationJointNameLeftBackKnee:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightbackknee?language=objc)
+    /// A joint name that represents the back of the right knee.
     pub static VNAnimalBodyPoseObservationJointNameRightBackKnee:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/leftbackpaw?language=objc)
+    /// A joint name that represents the back of the left paw.
     pub static VNAnimalBodyPoseObservationJointNameLeftBackPaw:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/rightbackpaw?language=objc)
+    /// A joint name that represents the back of the right paw.
     pub static VNAnimalBodyPoseObservationJointNameRightBackPaw:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/tailtop?language=objc)
+    /// A joint name that represents the top of the tail.
     pub static VNAnimalBodyPoseObservationJointNameTailTop:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/tailmiddle?language=objc)
+    /// A joint name that represents the middle of the tail.
     pub static VNAnimalBodyPoseObservationJointNameTailMiddle:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointname/tailbottom?language=objc)
+    /// A joint name that represents the bottom of the tail.
     pub static VNAnimalBodyPoseObservationJointNameTailBottom:
         Option<&'static VNAnimalBodyPoseObservationJointName>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname?language=objc)
+/// The joint group names for an animal body pose.
 // NS_TYPED_ENUM
 pub type VNAnimalBodyPoseObservationJointsGroupName = VNRecognizedPointGroupKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/head?language=objc)
+    /// A group name that represents the head.
     pub static VNAnimalBodyPoseObservationJointsGroupNameHead:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/trunk?language=objc)
+    /// A group name that represents the trunk.
     pub static VNAnimalBodyPoseObservationJointsGroupNameTrunk:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/forelegs?language=objc)
+    /// A group name that represents the forelegs.
     pub static VNAnimalBodyPoseObservationJointsGroupNameForelegs:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/hindlegs?language=objc)
+    /// A group name that represents the hindlegs.
     pub static VNAnimalBodyPoseObservationJointsGroupNameHindlegs:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/tail?language=objc)
+    /// A group name that represents the tail.
     pub static VNAnimalBodyPoseObservationJointsGroupNameTail:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalbodyposeobservation/jointsgroupname/all?language=objc)
+    /// A group name that represents all joints.
     pub static VNAnimalBodyPoseObservationJointsGroupNameAll:
         Option<&'static VNAnimalBodyPoseObservationJointsGroupName>;
 }
 
+/// The joint names for a 3D body pose.
 /// Human Body 3D Pose Joints that are suppported by Vision framework
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname?language=objc)
 // NS_TYPED_ENUM
 pub type VNHumanBodyPose3DObservationJointName = VNRecognizedPointKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/root?language=objc)
+    /// A joint name that represents the point between the left hip and right hip.
     pub static VNHumanBodyPose3DObservationJointNameRoot:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/righthip?language=objc)
+    /// A joint name that represents the right hip.
     pub static VNHumanBodyPose3DObservationJointNameRightHip:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/rightknee?language=objc)
+    /// A joint name that represents the right knee.
     pub static VNHumanBodyPose3DObservationJointNameRightKnee:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/rightankle?language=objc)
+    /// A joint name that represents the right ankle.
     pub static VNHumanBodyPose3DObservationJointNameRightAnkle:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/lefthip?language=objc)
+    /// A joint name that represents the left hip.
     pub static VNHumanBodyPose3DObservationJointNameLeftHip:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/leftknee?language=objc)
+    /// A joint name that represents the left knee.
     pub static VNHumanBodyPose3DObservationJointNameLeftKnee:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/leftankle?language=objc)
+    /// A joint name that represents the left ankle.
     pub static VNHumanBodyPose3DObservationJointNameLeftAnkle:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/spine?language=objc)
+    /// A joint name that represents the spine.
     pub static VNHumanBodyPose3DObservationJointNameSpine:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/centershoulder?language=objc)
+    /// A joint name that represents the point between the shoulders.
     pub static VNHumanBodyPose3DObservationJointNameCenterShoulder:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/centerhead?language=objc)
+    /// A joint name that represents the center of the head.
     pub static VNHumanBodyPose3DObservationJointNameCenterHead:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/tophead?language=objc)
+    /// A joint name that represents the top of the head.
     pub static VNHumanBodyPose3DObservationJointNameTopHead:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/leftshoulder?language=objc)
+    /// A joint name that represents the left shoulder.
     pub static VNHumanBodyPose3DObservationJointNameLeftShoulder:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/leftelbow?language=objc)
+    /// A joint name that represents the left elbow.
     pub static VNHumanBodyPose3DObservationJointNameLeftElbow:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/leftwrist?language=objc)
+    /// A joint name that represents the left wrist.
     pub static VNHumanBodyPose3DObservationJointNameLeftWrist:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/rightshoulder?language=objc)
+    /// A joint name that represents the right shoulder.
     pub static VNHumanBodyPose3DObservationJointNameRightShoulder:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/rightelbow?language=objc)
+    /// A joint name that represents the right elbow.
     pub static VNHumanBodyPose3DObservationJointNameRightElbow:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointname/rightwrist?language=objc)
+    /// A joint name that represents the right wrist.
     pub static VNHumanBodyPose3DObservationJointNameRightWrist:
         Option<&'static VNHumanBodyPose3DObservationJointName>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname?language=objc)
+/// The joint group names for a 3D body pose.
 // NS_TYPED_ENUM
 pub type VNHumanBodyPose3DObservationJointsGroupName = VNRecognizedPointGroupKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/head?language=objc)
+    /// A group name that represents the head joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameHead:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/torso?language=objc)
+    /// A group name that represents the torso joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameTorso:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/leftarm?language=objc)
+    /// A group name that represents the left arm joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameLeftArm:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/rightarm?language=objc)
+    /// A group name that represents the right arm joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameRightArm:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/leftleg?language=objc)
+    /// A group name that represents the left leg joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameLeftLeg:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/rightleg?language=objc)
+    /// A group name that represents the right leg joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameRightLeg:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/jointsgroupname/all?language=objc)
+    /// A group name that represents all joints.
     pub static VNHumanBodyPose3DObservationJointsGroupNameAll:
         Option<&'static VNHumanBodyPose3DObservationJointsGroupName>;
 }

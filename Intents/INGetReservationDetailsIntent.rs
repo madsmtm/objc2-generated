@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetreservationdetailsintent?language=objc)
+    /// A request for details about one or more reservations.
+    ///
+    /// ## Overview
+    ///
+    /// Create an [`INGetReservationDetailsIntent`](https://developer.apple.com/documentation/intents/ingetreservationdetailsintent) object when the user makes a request to see the details about one or more reservations in your app. The app creates a new [`INInteraction`](https://developer.apple.com/documentation/intents/ininteraction) object containing the [`INGetReservationDetailsIntent`](https://developer.apple.com/documentation/intents/ingetreservationdetailsintent) and [`INGetReservationDetailsIntentResponse`](https://developer.apple.com/documentation/intents/ingetreservationdetailsintentresponse) object and donates it to the system.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]

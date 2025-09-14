@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhoststream?language=objc)
+    /// The class responsible for sending stream data for function drivers.
+    ///
+    /// ## Overview
+    ///
+    /// The [`copyStreamWithStreamID:error:`](https://developer.apple.com/documentation/iousbhost/iousbhostpipe/copystream(withstreamid:)) method creates stream objects.
+    ///
+    ///
     #[unsafe(super(IOUSBHostIOSource, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "IOUSBHostIOSource")]

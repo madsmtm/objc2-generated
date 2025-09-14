@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfield?language=objc)
+/// A structure containing 3-axis magnetometer data
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMMagneticField {
@@ -32,7 +32,21 @@ unsafe impl RefEncode for CMMagneticField {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagnetometerdata?language=objc)
+    /// Measurements of the Earth’s magnetic field relative to the device.
+    ///
+    /// ## Overview
+    ///
+    /// Your application can obtain samples of magnetometer measurements, as represented by instances of this class, from the block handler of the [`startMagnetometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startmagnetometerupdates(to:withhandler:)) method or from the [`magnetometerData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata) property of the `CMMotionManager` class.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`magnetometerData`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/magnetometerdata) property of `CMMotionManager` provides a non-`nil` value only if you have called the `startMagnetometerUpdates()` method or the [`startMagnetometerUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startmagnetometerupdates(to:withhandler:)) method to start magnetometer updates.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

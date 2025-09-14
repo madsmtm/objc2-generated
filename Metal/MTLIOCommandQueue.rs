@@ -7,19 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority?language=objc)
+/// Designates the priority for a new input/output command queue.
+///
+/// ## Overview
+///
+/// Set a new input/output command queue’s priority that you create with an [`MTLIOCommandQueueDescriptor`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor) instance by setting its [`priority`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/priority) property. Create a queue that minimizes an asset’s loading latency by setting a descriptor’s priority to [`MTLIOPriorityHigh`](https://developer.apple.com/documentation/metal/mtliopriority/high).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOPriority(pub NSInteger);
 impl MTLIOPriority {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/high?language=objc)
+    /// Sets a new input/output command queue’s priority to a high priority.
+    ///
+    /// ## Discussion
+    ///
+    /// Create a command queue with a high priority to load important assets or those your app needs quickly. For example, a game that plays sound effects that match its animations can load its audio assets with low latency with a high priority queue.
+    ///
+    ///
     #[doc(alias = "MTLIOPriorityHigh")]
     pub const High: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/normal?language=objc)
+    /// Designates the normal priority for a new input/output command queue.
     #[doc(alias = "MTLIOPriorityNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority/low?language=objc)
+    /// Designates the low priority for a new input/output command queue.
     #[doc(alias = "MTLIOPriorityLow")]
     pub const Low: Self = Self(2);
 }
@@ -32,16 +44,16 @@ unsafe impl RefEncode for MTLIOPriority {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype?language=objc)
+/// Designates the queue type for a new input/output command queue.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCommandQueueType(pub NSInteger);
 impl MTLIOCommandQueueType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype/concurrent?language=objc)
+    /// Sets a new input/output command queue’s type to a queue that runs commands concurrently.
     #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]
     pub const Concurrent: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype/serial?language=objc)
+    /// Sets a new input/output command queue’s type to a queue that runs commands serially.
     #[doc(alias = "MTLIOCommandQueueTypeSerial")]
     pub const Serial: Self = Self(1);
 }
@@ -55,20 +67,20 @@ unsafe impl RefEncode for MTLIOCommandQueueType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerrordomain?language=objc)
+    /// The domain for input/output command queue errors.
     pub static MTLIOErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code?language=objc)
+/// The error codes for creating an input/output file handle.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct MTLIOError(pub NSInteger);
 impl MTLIOError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code/urlinvalid?language=objc)
+    /// An error code that represents a problem with a file URL.
     #[doc(alias = "MTLIOErrorURLInvalid")]
     pub const URLInvalid: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code/internal?language=objc)
+    /// An error code that represents a problem internal to the Metal framework.
     #[doc(alias = "MTLIOErrorInternal")]
     pub const Internal: Self = Self(2);
 }
@@ -82,10 +94,17 @@ unsafe impl RefEncode for MTLIOError {
 }
 
 extern_protocol!(
+    /// A command queue that schedules input/output commands for reading files in the file system, and writing to GPU resources and memory.
+    ///
+    /// ## Overview
+    ///
+    /// Use an input/output command queue to submit commands, in command buffers, that load assets from the file system directly into GPU resources. Your app can then use those resources with other commands it submits to an [`MTLCommandQueue`](https://developer.apple.com/documentation/metal/mtlcommandqueue) that comes from the same [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice).
+    ///
+    /// You make input/output command queues by creating and configuring an [`MTLIOCommandQueueDescriptor`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor) instance and calling an [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) instance’s [`newIOCommandQueueWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makeiocommandqueue(descriptor:)) method.
+    ///
+    ///
     /// Represents a queue that schedules command buffers containing command that
     /// read from handle objects and write to MTLResource objects.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueue?language=objc)
     pub unsafe trait MTLIOCommandQueue: NSObjectProtocol + Send + Sync {
         /// Inserts a barrier that ensures that all commandBuffers commited
         /// prior are completed before any commandBuffers after start execution.
@@ -132,11 +151,16 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol your app implements that wraps a Metal buffer instance to serve as scratch memory for an input/output command queue.
+    ///
+    /// ## Overview
+    ///
+    /// Your app can reintegrate an [`MTLIOScratchBuffer`](https://developer.apple.com/documentation/metal/mtlioscratchbuffer) instance’s underlying memory back into a memory pool by overriding your type’s [`dealloc`](https://developer.apple.comhttps://developer.apple.com/documentation/objectivec/nsobject/1571947-dealloc) method. The system calls the method when an input/output command queue no longer needs a scratch buffer.
+    ///
+    ///
     /// An extendible protocol that can be used to wrap the buffers vended by
     /// a custom allocator. The underlying buffer is used as scratch space for IO commands
     /// that need it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbuffer?language=objc)
     pub unsafe trait MTLIOScratchBuffer: NSObjectProtocol {
         #[cfg(all(
             feature = "MTLAllocation",
@@ -150,6 +174,13 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A protocol your app implements to provide scratch memory to an input/output command queue.
+    ///
+    /// ## Overview
+    ///
+    /// An allocator returns instances of [`MTLIOScratchBuffer`](https://developer.apple.com/documentation/metal/mtlioscratchbuffer), another type your app implements.
+    ///
+    ///
     /// An extendible protocol that can implement a custom allocator passed
     /// to the queue descriptor.
     ///
@@ -157,8 +188,6 @@ extern_protocol!(
     /// when it needs scratch storage for IO commands. When the commands that use the memory
     /// complete they return the storage by dealloc'ing the MTLIOScratchBuffer objects (where
     /// the application can optionally pool the memory for use by future commands.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioscratchbufferallocator?language=objc)
     pub unsafe trait MTLIOScratchBufferAllocator: NSObjectProtocol {
         /// This method is called when additional scratch memory is required by a load command.
         /// The scratch buffer returned should NOT be an autoreleased object.
@@ -181,9 +210,34 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// Represents a descriptor to create a MTLIOCommandQueue.
+    /// A configuration template you use to create a new input/output command queue.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// Use this descriptor type to configure the settings of each input/output command queue that you create using [`newIOCommandQueueWithDescriptor:error:`](https://developer.apple.com/documentation/metal/mtldevice/makeiocommandqueue(descriptor:)). To create additional input/output command queues, you can reuse a descriptor instance and optionally reconfigure its properties.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Changing a descriptor’s properties doesn’t affect command queues you’ve already created with the descriptor.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Create each input/output queue to meet your apps needs by setting the descriptor’s properties.
+    ///
+    /// - Select a queue’s relative level of importance with the [`priority`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/priority) property.
+    ///
+    /// - Create a queue that runs multiple input/output command buffers in parallel by setting the [`type`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/type) property to [`MTLIOCommandQueueTypeConcurrent`](https://developer.apple.com/documentation/metal/mtliocommandqueuetype/concurrent).
+    ///
+    /// - Decide how many individual commands a queue can run simultaneously with the [`maxCommandsInFlight`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/maxcommandsinflight) property.
+    ///
+    /// - Choose how many command buffers a queue can have waiting to run with [`maxCommandBufferCount`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/maxcommandbuffercount) property.
+    ///
+    /// - Take control of the queue’s scratch memory allocation by implementing [`MTLIOScratchBufferAllocator`](https://developer.apple.com/documentation/metal/mtlioscratchbufferallocator) and assign an instance of it to the [`scratchBufferAllocator`](https://developer.apple.com/documentation/metal/mtliocommandqueuedescriptor/scratchbufferallocator) property.
+    ///
+    ///
+    /// Represents a descriptor to create a MTLIOCommandQueue.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIOCommandQueueDescriptor;
@@ -291,10 +345,9 @@ impl DefaultRetained for MTLIOCommandQueueDescriptor {
 }
 
 extern_protocol!(
+    /// Represents a raw or compressed file, such as a resource asset file in your app’s bundle.
     /// Represents a  file (raw or compressed) that can be used as a source
     /// for load commands encoded in a MTLIOCommandBuffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
     pub unsafe trait MTLIOFileHandle: NSObjectProtocol + Send + Sync {
         /// An optional label for this handle.
         #[unsafe(method(label))]

@@ -12,7 +12,7 @@ use objc2_shared_with_you_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swremoveparticipantalert?language=objc)
+    /// An alert that prompts the user to remove a participant from a Messages group.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWRemoveParticipantAlert;

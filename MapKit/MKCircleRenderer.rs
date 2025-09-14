@@ -9,7 +9,15 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcirclerenderer?language=objc)
+    /// The visual representation of a circular overlay.
+    ///
+    /// ## Overview
+    ///
+    /// This renderer fills and strokes the circular region that the overlay object represents. You can change the color and other drawing attributes of the circle by modifying the properties it inherits from the main class. You typically use this class as-is and don’t subclass it.
+    ///
+    /// You create an instance of this class in your map view delegate’s [`mapView:rendererForOverlay:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:rendererfor:)) method.
+    ///
+    ///
     #[unsafe(super(MKOverlayPathRenderer, MKOverlayRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKOverlayPathRenderer", feature = "MKOverlayRenderer"))]

@@ -8,7 +8,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadimpression?language=objc)
+    /// A class that defines an ad impression for a view-through ad.
+    ///
+    /// ## Overview
+    ///
+    /// Create a `SKAdImpression` instance when you’re preparing to present a view-through ad. In the instance, you set:
+    ///
+    /// - Values known to you, including your ad network ID, the App Store IDs of the source app and the advertised app, and the version.
+    ///
+    /// - A value you determine – the campaign ID.
+    ///
+    /// - Values you generate, including the timestamp, a nonce (ad-impression identifier), and the cryptographic signature.
+    ///
+    /// For information about generating the cryptographic signature, see [Generating the signature to validate view-through ads](https://developer.apple.com/documentation/storekit/generating-the-signature-to-validate-view-through-ads).
+    ///
+    /// Use your `SKAdImpression` instance when you call [`startImpression:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/startimpression(_:completionhandler:)) to begin presenting your view-through ad. Use the same instance when you call [`endImpression:completionHandler:`](https://developer.apple.com/documentation/storekit/skadnetwork/endimpression(_:completionhandler:)) to end the ad presentation.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKAdImpression;

@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A class representing a layer in a NeuralNetwork.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructureneuralnetworklayer?language=objc)
+    /// A class representing a layer in a NeuralNetwork.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructureNeuralNetworkLayer;

@@ -12,25 +12,24 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype?language=objc)
+/// The drawing primitive that connects vertices when rendering a geometry element, used by the [`primitiveType`](https://developer.apple.com/documentation/scenekit/scngeometryelement/primitivetype) property to specify how SceneKit interprets the geometry element’s data.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNGeometryPrimitiveType(pub NSInteger);
 impl SCNGeometryPrimitiveType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/triangles?language=objc)
+    /// The geometry element’s data is a sequence of triangles, with each triangle described by three new vertices.
     #[doc(alias = "SCNGeometryPrimitiveTypeTriangles")]
     pub const Triangles: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/trianglestrip?language=objc)
+    /// The geometry element’s data is a sequence of triangles, with each triangle described by one new vertex and two vertices from the previous triangle.
     #[doc(alias = "SCNGeometryPrimitiveTypeTriangleStrip")]
     pub const TriangleStrip: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/line?language=objc)
+    /// The geometry element’s data is a sequence of line segments, with each line segment described by two new vertices.
     #[doc(alias = "SCNGeometryPrimitiveTypeLine")]
     pub const Line: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/point?language=objc)
+    /// The geometry element’s data is a sequence of unconnected points.
     #[doc(alias = "SCNGeometryPrimitiveTypePoint")]
     pub const Point: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryprimitivetype/polygon?language=objc)
     #[doc(alias = "SCNGeometryPrimitiveTypePolygon")]
     pub const Polygon: Self = Self(4);
 }
@@ -43,59 +42,166 @@ unsafe impl RefEncode for SCNGeometryPrimitiveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SCNGeometrySourceSemantic = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertex?language=objc)
+    /// The semantic for vertex position data.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing the positions of each vertex in the geometry. If you create a custom geometry using the [`geometryWithSources:elements:`](https://developer.apple.com/documentation/scenekit/scngeometry/init(sources:elements:)) method, you must provide a geometry source for this semantic.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s vertex position data to an input attribute of the shader.
+    ///
+    /// Vertex position data is typically an array of three- or four-component vectors.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticVertex: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/normal?language=objc)
+    /// The semantic for surface normal data.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing the surface normal vector at each vertex in the geometry. SceneKit uses this information to compute lighting effects on the surface.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s vertex normal data to an input attribute of the shader.
+    ///
+    /// Vertex normal data is typically an array of three- or four-component vectors.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticNormal: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/color?language=objc)
+    /// The semantic for per-vertex color data.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing a color for each vertex in the geometry. SceneKit interpolates per-vertex colors across a surface to produce smooth shading. Per-vertex colors modulate those produced by lighting and a geometry’s materials, if applicable.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s vertex color data to an input attribute of the shader.
+    ///
+    /// Vertex color data is typically an array of three- or four-component vectors.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticColor: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/texcoord?language=objc)
+    /// The semantic for texture coordinate data.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing texture mapping coordinates for each vertex in the geometry. Unlike other semantics, a geometry may contain multiple sources for texture coordinates—each corresponds to a separate [`mappingChannel`](https://developer.apple.com/documentation/scenekit/scnmaterialproperty/mappingchannel) number that you can use when associating textured materials.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s texture coordinate data to one or more input attributes of the shader.
+    ///
+    /// Texture coordinate data is typically an array of two-component vectors.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticTexcoord: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/tangent?language=objc)
+    /// The semantic for surface tangent vector data.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing the surface tangent vector at each vertex in the geometry. SceneKit uses this information to compute advanced lighting effects on the surface.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s vertex tangent data to an input attribute of the shader.
+    ///
+    /// Vertex tangent data is typically an array of three- or four-component vectors.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticTangent: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertexcrease?language=objc)
+    /// The semantic for vertex crease data, used for subdividing surfaces.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing crease data for each vertex in the geometry. SceneKit uses this information to determine the sharpness of corners and smoothness of surfaces when you change a geometry’s [`subdivisionLevel`](https://developer.apple.com/documentation/scenekit/scngeometry/subdivisionlevel) property.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s vertex crease data to an input attribute of the shader.
+    ///
+    /// Vertex crease data is an array of scalar floating-point values, where each value determines the smoothness or sharpness of the corresponding vertex: A value of `0.0` specifies a completely smoothed corner, and a value of `10.0` or greater specifies an infinitely sharp point.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticVertexCrease: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/edgecrease?language=objc)
+    /// The semantic for edge crease data, used for subdividing surfaces.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing crease data for each vertex in the geometry. SceneKit uses this information to determine the sharpness of edges and smoothness of surfaces when you change a geometry’s [`subdivisionLevel`](https://developer.apple.com/documentation/scenekit/scngeometry/subdivisionlevel) property.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s edge crease data to an input attribute of the shader.
+    ///
+    /// Edge crease data is an array of scalar floating-point values, where each value determines the smoothness or sharpness of the edge identified by the primitive at the corresponding index in the geometry’s [SceneKit Constants](https://developer.apple.com/documentation/scenekit/scenekit-constants) geometry element: A value of `0.0` specifies a completely smoothed edge, and a value of `10.0` or greater specifies an infinitely sharp edge.
+    ///
+    ///
     pub static SCNGeometrySourceSemanticEdgeCrease: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/boneweights?language=objc)
+    /// The semantic for bone weight data, used for skeletal animation of skinned surfaces.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing skeletal animation data for each vertex in the geometry. SceneKit uses this information to determine how much a vertex’s position is influenced by the positions of bone nodes in the skeleton.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s bone weight data to an input attribute of the shader.
+    ///
+    /// For details on skeletal animation, see [`SCNSkinner`](https://developer.apple.com/documentation/scenekit/scnskinner).
+    ///
+    ///
     pub static SCNGeometrySourceSemanticBoneWeights: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/boneindices?language=objc)
+    /// The semantic for bone index data, used for skeletal animation of skinned surfaces.
+    ///
+    /// ## Discussion
+    ///
+    /// For a geometry source, this semantic identifies data containing skeletal animation data for each vertex in the geometry. SceneKit uses this information to determine which bone nodes in the skeleton affect the behavior of each vertex.
+    ///
+    /// For a custom shader program, you use this semantic to bind SceneKit’s bone index data to an input attribute of the shader.
+    ///
+    /// For details on skeletal animation, see [`SCNSkinner`](https://developer.apple.com/documentation/scenekit/scnskinner).
+    ///
+    ///
     pub static SCNGeometrySourceSemanticBoneIndices: &'static SCNGeometrySourceSemantic;
 }
 
 extern_class!(
-    /// SCNGeometry is an abstract class that represents the geometry that can be attached to a SCNNode.
+    /// A three-dimensional shape (also called a model or mesh) that can be displayed in a scene, with attached materials that define its appearance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometry?language=objc)
+    /// ## Overview
+    ///
+    /// In SceneKit, geometries attached to [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) objects form the visible elements of a scene, and [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) objects attached to a geometry determine its appearance.
+    ///
+    /// ### Working with Geometry Objects
+    ///
+    /// You control a geometry’s appearance in a scene with nodes and materials. A geometry object provides only the form of a visible object rendered by SceneKit. You specify color and texture for a geometry’s surface, control how it responds to light, and add special effects by attaching materials (for details, see the methods in Managing a Geometry’s Materials). You position and orient a geometry in a scene by attaching it to an [`SCNNode`](https://developer.apple.com/documentation/scenekit/scnnode) object. Multiple nodes can reference the same geometry object, allowing it to appear at different positions in a scene.
+    ///
+    /// You can easily copy geometries and change their materials. A geometry object manages the association between immutable vertex data and a mutable assignment of materials. To make a geometry appear more than once in the same scene with a different set of materials, use its inherited [`copy`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/copy()) method. The copy shares the underlying vertex data of the original, but can be assigned materials independently. You can thus make many copies of a geometry without incurring a significant cost to rendering performance.
+    ///
+    /// You can animate a geometry object. The vertex data associated with a geometry is immutable, but SceneKit provides several ways to animate geometry. You can use a [`SCNMorpher`](https://developer.apple.com/documentation/scenekit/scnmorpher) or [`SCNSkinner`](https://developer.apple.com/documentation/scenekit/scnskinner) object to deform a geometry’s surface, or run animations created in an external 3D authoring tool and loaded from a scene file. You can also use methods in the [`SCNShadable`](https://developer.apple.com/documentation/scenekit/scnshadable) protocol to add custom GLSL shader programs that alter SceneKit’s rendering of a geometry.
+    ///
+    /// ### Obtaining a Geometry Object
+    ///
+    /// SceneKit provides several ways to introduce geometry objects to your app:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Action" }] }], [Paragraph { inline_content: [Text { text: "For further information" }] }]], [[Paragraph { inline_content: [Text { text: "Load from a scene file created using external 3D authoring tools" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNScene", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNSceneSource", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Use and customize SceneKit’s built-in primitive shapes" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPlane", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNBox", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNSphere", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNPyramid", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNCone", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNCylinder", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNCapsule", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNTube", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", and " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNTorus", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Create 3D geometry from 2D text or Bézier curves" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNText", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNShape", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Create a custom geometry from vertex data" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometrySource", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometryElement", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.scenekit/documentation/SceneKit/SCNGeometry/init(sources:elements:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", Managing Geometry Data" }] }]]], alignments: None, metadata: None })
+    ///
+    /// SCNGeometry is an abstract class that represents the geometry that can be attached to a SCNNode.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNGeometry;
@@ -450,9 +556,69 @@ impl SCNGeometry {
 }
 
 extern_class!(
-    /// A geometry source contains geometry data for a specific semantic. The data format is described by properties.
+    /// A container for vertex data forming part of the definition for a three-dimensional object, or geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource?language=objc)
+    /// ## Overview
+    ///
+    /// You use geometry sources together with [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) objects to define custom [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects or to inspect the data that composes an existing geometry.
+    ///
+    /// You create a custom geometry using a three-step process:
+    ///
+    /// 1. Create one or more [`SCNGeometrySource`](https://developer.apple.com/documentation/scenekit/scngeometrysource) objects containing vertex data. Each geometry source defines an attribute, or semantic, of the vertices it describes. You must provide at least one geometry source, using the [`SCNGeometrySourceSemanticVertex`](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertex) semantic, to create a custom geometry; typically you also provide geometry sources for surface normals and texture coordinates.
+    ///
+    /// 2. Create at least one [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) object, containing an array of indices identifying vertices in the geometry sources and describing the drawing primitive that SceneKit uses to connect the vertices when rendering the geometry.
+    ///
+    /// 3. Create an [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) instance from the geometry sources and geometry elements.
+    ///
+    /// ### Interleaving Vertex Data
+    ///
+    /// Because most geometries use more than one geometry source and the GPU typically uses data from multiple sources together, you can achieve better rendering performance for custom geometries by interleaving the vertex data for multiple semantics in the same array.
+    ///
+    /// To do this, first create an array where each element contains values for multiple semantics for the same vertex. Next, create an [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object from that array, and create each geometry source from that data using the `offset` and `stride` parameters to specify where the values for each semantic can be found in the array. To make specifying the sizes and locations of vectors more convenient, you can define your own data structure for vertices and use the `sizeof` (and, in Objective-C, `offsetof`) functions, as shown in Listing 1.
+    ///
+    /// Listing 1. Creating multiple geometry sources from interleaved data
+    ///
+    /// ```objc
+    /// typedef struct {
+    ///     float x, y, z;    // position
+    ///     float nx, ny, nz; // normal
+    ///     float s, t;       // texture coordinates
+    /// } MyVertex;
+    ///  
+    /// MyVertex vertices[VERTEX_COUNT] = { /* ... vertex data ... */ };
+    /// NSData *data = [NSData dataWithBytes:vertices length:sizeof(vertices)];
+    /// SCNGeometrySource *vertexSource, *normalSource, *tcoordSource;
+    ///  
+    /// vertexSource = [SCNGeometrySource geometrySourceWithData:data
+    ///                                                 semantic:SCNGeometrySourceSemanticVertex
+    ///                                              vectorCount:VERTEX_COUNT
+    ///                                          floatComponents:YES
+    ///                                      componentsPerVector:3 // x, y, z
+    ///                                        bytesPerComponent:sizeof(float)
+    ///                                               dataOffset:offsetof(MyVertex, x)
+    ///                                               dataStride:sizeof(MyVertex)];
+    ///  
+    /// normalSource = [SCNGeometrySource geometrySourceWithData:data
+    ///                                                 semantic:SCNGeometrySourceSemanticNormal
+    ///                                              vectorCount:VERTEX_COUNT
+    ///                                          floatComponents:YES
+    ///                                      componentsPerVector:3 // nx, ny, nz
+    ///                                        bytesPerComponent:sizeof(float)
+    ///                                               dataOffset:offsetof(MyVertex, nx)
+    ///                                               dataStride:sizeof(MyVertex)];
+    ///  
+    /// tcoordSource = [SCNGeometrySource geometrySourceWithData:data
+    ///                                                 semantic:SCNGeometrySourceSemanticTexcoord
+    ///                                              vectorCount:VERTEX_COUNT
+    ///                                          floatComponents:YES
+    ///                                      componentsPerVector:2 // s, t
+    ///                                        bytesPerComponent:sizeof(float)
+    ///                                               dataOffset:offsetof(MyVertex, s)
+    ///                                               dataStride:sizeof(MyVertex)];
+    /// ```
+    ///
+    ///
+    /// A geometry source contains geometry data for a specific semantic. The data format is described by properties.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNGeometrySource;
@@ -674,9 +840,26 @@ impl SCNGeometrySource {
 }
 
 extern_class!(
-    /// A geometry element describes how vertices from a geometry source are connected together.
+    /// A container for index data describing how vertices connect to define a three-dimensional object, or geometry.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometryelement?language=objc)
+    /// ## Overview
+    ///
+    /// You use geometry elements together with [`SCNGeometrySource`](https://developer.apple.com/documentation/scenekit/scngeometrysource) objects to define custom [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) objects or to inspect the data that composes an existing geometry. You create a custom geometry using a three-step process:
+    ///
+    /// 1. Create one or more [`SCNGeometrySource`](https://developer.apple.com/documentation/scenekit/scngeometrysource) objects, each of which defines per-vertex information such as position, surface normal, or texture coordinates for all vertices in the geometry.
+    ///
+    /// 2. Create at least one [`SCNGeometryElement`](https://developer.apple.com/documentation/scenekit/scngeometryelement) object, containing an array of indices identifying vertices in the geometry sources and describing the drawing primitive that SceneKit uses to connect the vertices when rendering the geometry.
+    ///
+    /// 3. Create an [`SCNGeometry`](https://developer.apple.com/documentation/scenekit/scngeometry) instance from the geometry sources and geometry elements.
+    ///
+    /// When SceneKit renders a geometry, each geometry element corresponds to a drawing command sent to the GPU. Because different rendering states require separate drawing commands, you can define a geometry using multiple geometry elements. For example, the teapot geometry shown below has four geometry elements, so you can assign up to four [`SCNMaterial`](https://developer.apple.com/documentation/scenekit/scnmaterial) objects in order to render each element with a different appearance. But because each drawing command incurs a CPU time overhead when rendering, minimizing the number of elements in a custom geometry can improve rendering performance.
+    ///
+    ///
+    /// ![](https://docs-assets.developer.apple.com/published/4cd3b44ccbea79bf52cb77c6d99edcff/media-2929778%402x.png)
+    ///
+    ///
+    ///
+    /// A geometry element describes how vertices from a geometry source are connected together.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNGeometryElement;
@@ -879,19 +1062,15 @@ impl SCNGeometryElement {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNTessellationSmoothingMode(pub NSInteger);
 impl SCNTessellationSmoothingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/none?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/pntriangles?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModePNTriangles")]
     pub const PNTriangles: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntessellationsmoothingmode/phong?language=objc)
     #[doc(alias = "SCNTessellationSmoothingModePhong")]
     pub const Phong: Self = Self(2);
 }
@@ -906,8 +1085,6 @@ unsafe impl RefEncode for SCNTessellationSmoothingMode {
 
 extern_class!(
     /// A geometry tessellator describes how a more detailed surface is calculated from the geometry's initial surface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrytessellator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNGeometryTessellator;

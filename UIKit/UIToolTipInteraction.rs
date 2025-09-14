@@ -10,7 +10,40 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitooltipinteraction?language=objc)
+    /// An interaction object that makes it possible to show a tooltip when hovering a pointer over a view or control.
+    ///
+    /// ## Overview
+    ///
+    /// To show a tooltip when the pointer hovers over a view, add a [`UIToolTipInteraction`](https://developer.apple.com/documentation/uikit/uitooltipinteraction) object to the view. For example, the following code listings shows how to add a tooltip to a label:
+    ///
+    /// ```swift
+    /// let label = UILabel()
+    /// label.text = "Label with a tooltip"
+    ///
+    /// let tooltipInteraction = UIToolTipInteraction(defaultToolTip: "The label's tooltip.")
+    /// label.addInteraction(tooltipInteraction)
+    /// ```
+    ///
+    /// If you want your app to determine the tooltip text at a later time — for instance, to reflect the current state of your app — set the interaction’s [`delegate`](https://developer.apple.com/documentation/uikit/uitooltipinteraction/delegate) property to an object that conforms to the [`UIToolTipInteractionDelegate`](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate) protocol.
+    ///
+    /// To add a tooltip to a control derived from [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol), use the convenience property [`toolTip`](https://developer.apple.com/documentation/uikit/uicontrol/tooltip); for example, to add a tooltip to the button:
+    ///
+    /// ```swift
+    /// let button = UIButton(configuration: configuration, primaryAction: action)
+    /// button.toolTip = "Click to buy this item. You'll have a chance to change your mind before confirming your purchase."
+    /// ```
+    ///
+    /// Setting the [`toolTip`](https://developer.apple.com/documentation/uikit/uicontrol/tooltip) property creates a tooltip interaction for the control, which you can retrieve from the [`toolTipInteraction`](https://developer.apple.com/documentation/uikit/uicontrol/tooltipinteraction) property.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Tooltips appear when your app runs in macOS or visionOS. To show a tooltip in macOS, your app must be an iPhone or iPad app running on a Mac with Apple silicon, or built with Mac Catalyst.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -91,7 +124,19 @@ impl UIToolTipInteraction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitooltipconfiguration?language=objc)
+    /// An object that a tooltip interaction delegate uses to describe the tooltip settings.
+    ///
+    /// ## Overview
+    ///
+    /// Use a tooltip configuration to specify:
+    ///
+    /// - The text that appears in the tooltip.
+    ///
+    /// - The region that the pointer must hover over to trigger the appearance of the tooltip.
+    ///
+    /// A [`UIToolTipInteraction`](https://developer.apple.com/documentation/uikit/uitooltipinteraction) object asks for a configuration from its [`delegate`](https://developer.apple.com/documentation/uikit/uitooltipinteraction/delegate) by calling the delegate method [`toolTipInteraction:configurationAtPoint:`](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate/tooltipinteraction(_:configurationat:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -144,7 +189,50 @@ impl UIToolTipConfiguration {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate?language=objc)
+    /// An interface that provides tooltip settings to an interaction.
+    ///
+    /// ## Overview
+    ///
+    /// A tooltip interaction delegate provides configuration information about a tooltip. You can, for instance, use the delegate to change the text of a tooltip.
+    ///
+    /// To change the tooltip text, set a tooltip interaction’s [`delegate`](https://developer.apple.com/documentation/uikit/uitextinteraction/delegate) property to an object that conforms to the [`UIToolTipInteractionDelegate`](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate) protocol and implements the [`toolTipInteraction:configurationAtPoint:`](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate/tooltipinteraction(_:configurationat:)) method. For example, in the following code listing, the code creates a new view and assigns its background color. Then the code creates a [`UIToolTipInteraction`](https://developer.apple.com/documentation/uikit/uitooltipinteraction) object, sets the [`delegate`](https://developer.apple.com/documentation/uikit/uitextinteraction/delegate) equal to the view, and adds the interaction to the view.
+    ///
+    /// ```swift
+    /// lazy var viewWithBackgroundColorTooltip: UIView = {
+    ///     let view = ViewWithBackgroundColorTooltip()
+    ///     view.backgroundColor = UIColor.systemYellow
+    ///     
+    ///     let tooltipInteraction = UIToolTipInteraction()
+    ///     tooltipInteraction.delegate = view
+    ///     view.addInteraction(tooltipInteraction)
+    ///     
+    ///     return view
+    /// }()
+    /// ```
+    ///
+    /// The delegate’s implementation of the [`toolTipInteraction:configurationAtPoint:`](https://developer.apple.com/documentation/uikit/uitooltipinteractiondelegate/tooltipinteraction(_:configurationat:)) method looks up the [`accessibilityName`](https://developer.apple.com/documentation/uikit/uicolor/accessibilityname) of the view’s background color. If the name is available, the method creates a [`UIToolTipConfiguration`](https://developer.apple.com/documentation/uikit/uitooltipconfiguration) object, passing in the name of the color. Then the method returns the configuration. If the name isn’t available, the method returns `nil`, which prevents the display of the tooltip.
+    ///
+    /// ```swift
+    /// class ViewWithBackgroundColorTooltip: UIView, UIToolTipInteractionDelegate {
+    ///     
+    ///     func toolTipInteraction(_ interaction: UIToolTipInteraction, configurationAt point: CGPoint) -> UIToolTipConfiguration? {
+    ///
+    ///         let configuration: UIToolTipConfiguration?
+    ///         if let accessibilityName = backgroundColor?.accessibilityName {
+    ///             configuration = UIToolTipConfiguration(toolTip: "The color is \(accessibilityName).")
+    ///         } else {
+    ///             configuration = nil
+    ///         }
+    ///         
+    ///         return configuration
+    ///     }
+    ///
+    /// }
+    /// ```
+    ///
+    /// In addition to changing the tooltip text, you can also specify the region within a view or control where a person must position the pointer to trigger the display of the tooltip. To specify the region, create the tooltip configuration using the [`configurationWithToolTip:inRect:`](https://developer.apple.com/documentation/uikit/uitooltipconfiguration/init(tooltip:in:)) method.
+    ///
+    ///
     pub unsafe trait UIToolTipInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

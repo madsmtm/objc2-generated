@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// An object that can render an image from encapsulated PostScript (EPS) code.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsepsimagerep?language=objc)
+    /// An object that can render an image from encapsulated PostScript (EPS) code.
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]

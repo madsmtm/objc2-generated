@@ -9,106 +9,105 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenlinkinnewwindow?language=objc)
+/// Open the link in a new window.
 #[deprecated]
 pub const WebMenuItemTagOpenLinkInNewWindow: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagdownloadlinktodisk?language=objc)
+/// Download the link to a disk.
 #[deprecated]
 pub const WebMenuItemTagDownloadLinkToDisk: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopylinktoclipboard?language=objc)
+/// Copy the link to the clipboard.
 #[deprecated]
 pub const WebMenuItemTagCopyLinkToClipboard: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenimageinnewwindow?language=objc)
+/// Open the image in a new window.
 #[deprecated]
 pub const WebMenuItemTagOpenImageInNewWindow: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagdownloadimagetodisk?language=objc)
+/// Download the image to disk.
 #[deprecated]
 pub const WebMenuItemTagDownloadImageToDisk: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopyimagetoclipboard?language=objc)
+/// Copy the image to the clipboard.
 #[deprecated]
 pub const WebMenuItemTagCopyImageToClipboard: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenframeinnewwindow?language=objc)
+/// Open the frame in a new window.
 #[deprecated]
 pub const WebMenuItemTagOpenFrameInNewWindow: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcopy?language=objc)
+/// Copy the element to the clipboard.
 #[deprecated]
 pub const WebMenuItemTagCopy: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaggoback?language=objc)
+/// Load the previous page.
 #[deprecated]
 pub const WebMenuItemTagGoBack: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaggoforward?language=objc)
+/// Load the next page.
 #[deprecated]
 pub const WebMenuItemTagGoForward: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagstop?language=objc)
+/// Stop loading the current page.
 #[deprecated]
 pub const WebMenuItemTagStop: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagreload?language=objc)
+/// Reload the current page.
 #[deprecated]
 pub const WebMenuItemTagReload: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagcut?language=objc)
+/// Cut the currently selected content.
 #[deprecated]
 pub const WebMenuItemTagCut: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagpaste?language=objc)
+/// Paste the content on the clipboard onto the current selection.
 #[deprecated]
 pub const WebMenuItemTagPaste: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagspellingguess?language=objc)
+/// Suggest spellings for the misspelled word.
 #[deprecated]
 pub const WebMenuItemTagSpellingGuess: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagnoguessesfound?language=objc)
+/// Indicate whether any suggested spellings for the misspelled word could be found.
 #[deprecated]
 pub const WebMenuItemTagNoGuessesFound: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagignorespelling?language=objc)
+/// Ignore the misspelled word.
 #[deprecated]
 pub const WebMenuItemTagIgnoreSpelling: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaglearnspelling?language=objc)
+/// Add the misspelled word to the user’s list of acceptable words.
 #[deprecated]
 pub const WebMenuItemTagLearnSpelling: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagother?language=objc)
+/// Used when a tag for an item in the context menu can’t be determined.
 #[deprecated]
 pub const WebMenuItemTagOther: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagsearchinspotlight?language=objc)
+/// Search SpotLight for the current selection.
 #[deprecated]
 pub const WebMenuItemTagSearchInSpotlight: c_uint = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagsearchweb?language=objc)
+/// Search the web for the current selection.
 #[deprecated]
 pub const WebMenuItemTagSearchWeb: c_uint = 21;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtaglookupindictionary?language=objc)
+/// Look up the current selection in the Dictionary.
 #[deprecated]
 pub const WebMenuItemTagLookUpInDictionary: c_uint = 22;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitemtagopenwithdefaultapplication?language=objc)
+/// Open the current selection using the default application.
 #[deprecated]
 pub const WebMenuItemTagOpenWithDefaultApplication: c_uint = 23;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfactualsize?language=objc)
+/// Display a PDF document at its original size.
 #[deprecated]
 pub const WebMenuItemPDFActualSize: c_uint = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfzoomin?language=objc)
+/// Scale up a PDF document.
 #[deprecated]
 pub const WebMenuItemPDFZoomIn: c_uint = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfzoomout?language=objc)
+/// Scale down a PDF document.
 #[deprecated]
 pub const WebMenuItemPDFZoomOut: c_uint = 26;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfautosize?language=objc)
+/// Display a PDF document at a user-specified size.
 #[deprecated]
 pub const WebMenuItemPDFAutoSize: c_uint = 27;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfsinglepage?language=objc)
+/// Display a PDF document one page at a time.
 #[deprecated]
 pub const WebMenuItemPDFSinglePage: c_uint = 28;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdffacingpages?language=objc)
+/// Display a PDF document two pages at a time.
 #[deprecated]
 pub const WebMenuItemPDFFacingPages: c_uint = 29;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfcontinuous?language=objc)
+/// Display all pages in a PDF document continuously, using a vertical scroll bar, if necessary.
 #[deprecated]
 pub const WebMenuItemPDFContinuous: c_uint = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfnextpage?language=objc)
+/// Display the next page of a PDF document.
 #[deprecated]
 pub const WebMenuItemPDFNextPage: c_uint = 31;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webmenuitempdfpreviouspage?language=objc)
+/// Display the previous page of a PDF document.
 #[deprecated]
 pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 
+/// Actions that the destination object of a drag operation can perform.
 /// Actions that the destination of a drag can perform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -116,23 +115,23 @@ pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 pub struct WebDragDestinationAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragDestinationAction: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction/webdragdestinationactionnone?language=objc)
+/// No action.
         #[doc(alias = "WebDragDestinationActionNone")]
 #[deprecated]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction/dhtml?language=objc)
+/// Allows DHTML (such as JavaScript) to handle the drag.
         #[doc(alias = "WebDragDestinationActionDHTML")]
 #[deprecated]
         const DHTML = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction/edit?language=objc)
+/// Allows editable documents to be changed by the drag operation.
         #[doc(alias = "WebDragDestinationActionEdit")]
 #[deprecated]
         const Edit = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction/load?language=objc)
+/// Allows the drag operation to change the location.
         #[doc(alias = "WebDragDestinationActionLoad")]
 #[deprecated]
         const Load = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragdestinationaction/any?language=objc)
+/// Allows any defined action to occur.
         #[doc(alias = "WebDragDestinationActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;
@@ -147,9 +146,8 @@ unsafe impl RefEncode for WebDragDestinationAction {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Actions that the source object of a drag operation can perform.
 /// Actions that the source of a drag can perform.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction?language=objc)
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
@@ -157,27 +155,27 @@ unsafe impl RefEncode for WebDragDestinationAction {
 pub struct WebDragSourceAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragSourceAction: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/webdragsourceactionnone?language=objc)
+/// No action.
         #[doc(alias = "WebDragSourceActionNone")]
 #[deprecated]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/dhtml?language=objc)
+/// Allows DHTML (such as JavaScript) in the source object to initiate a drag operation.
         #[doc(alias = "WebDragSourceActionDHTML")]
 #[deprecated]
         const DHTML = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/image?language=objc)
+/// Allows the user to drag an image in the source object.
         #[doc(alias = "WebDragSourceActionImage")]
 #[deprecated]
         const Image = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/link?language=objc)
+/// Allows the user to drag a link in the source object.
         #[doc(alias = "WebDragSourceActionLink")]
 #[deprecated]
         const Link = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/selection?language=objc)
+/// Allows the user to drag a selection in the source object.
         #[doc(alias = "WebDragSourceActionSelection")]
 #[deprecated]
         const Selection = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/webdragsourceaction/any?language=objc)
+/// Allows any defined action to occur.
         #[doc(alias = "WebDragSourceActionAny")]
 #[deprecated]
         const Any = c_uint::MAX as _;
@@ -193,10 +191,9 @@ unsafe impl RefEncode for WebDragSourceAction {
 }
 
 extern_protocol!(
+    /// `WebView` user interface delegates that implement the webView:runOpenPanelForFileButtonWithResultListener: method use the methods defined in this protocol to communicate with the listener object. The methods allow the delegate to send a cancel message, or set the selected file name.
     /// This protocol is used to call back with the results of
     /// the file open panel requested by runOpenPanelForFileButtonWithResultListener:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webopenpanelresultlistener?language=objc)
     #[deprecated]
     pub unsafe trait WebOpenPanelResultListener: NSObjectProtocol {
         /// Call this method to return a filename from the file open panel.
@@ -232,12 +229,11 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// Web view user interface delegates implement this protocol to control the opening of new windows, augment the behavior of default menu items displayed when the user clicks elements, and perform other user interface–related tasks. These methods can be invoked as a result of handling JavaScript or other plug-in content. Delegates that display more than one web view per window, for example, need to implement some of these methods to handle that case. The default implementation assumes one window per web view, so non-conventional user interfaces might implement a user interface delegate.
     /// A class that implements WebUIDelegate provides
     /// window-related methods that may be used by Javascript, plugins and
     /// other aspects of web pages. These methods are used to open new
     /// windows and control aspects of existing windows.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webuidelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebUIDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebView", feature = "objc2-app-kit"))]

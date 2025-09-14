@@ -10,9 +10,26 @@ use objc2_sprite_kit::*;
 use crate::*;
 
 extern_class!(
-    /// A component that encapsulates a SpriteKit node.
+    /// A component that manages a SpriteKit node.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent?language=objc)
+    /// ## Overview
+    ///
+    /// Adding a [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) object to an entity automatically updates the [`entity`](https://developer.apple.com/documentation/spritekit/sknode/entity) property of the component’s SpriteKit node (an [`SKNode`](https://developer.apple.com/documentation/spritekit/sknode) object) to point to that entity.
+    ///
+    /// When you add entities and components to a node in the Xcode SpriteKit scene editor, Xcode automatically creates a [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) object to manage the relationship between that SpriteKit node and the [`GKEntity`](https://developer.apple.com/documentation/gameplaykit/gkentity) object that node represents. Load the scene file with the [`GKScene`](https://developer.apple.com/documentation/gameplaykit/gkscene) class to access these entities and components.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  The [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) class adopts the [`GKAgentDelegate`](https://developer.apple.com/documentation/gameplaykit/gkagentdelegate) protocol. If you use the [`GKAgent2D`](https://developer.apple.com/documentation/gameplaykit/gkagent2d) class to drive the movement of game entities, set your [`GKSKNodeComponent`](https://developer.apple.com/documentation/gameplaykit/gksknodecomponent) instance as the delegate for the entity’s agent, and GameplayKit will automatically synchronize the agent and its SpriteKit representation.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information on Entity-Component architecture, read [Entities and Components](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/EntityComponent.html#//apple_ref/doc/uid/TP40015172-CH6) in [GameplayKit Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/GameplayKit_Guide/index.html#//apple_ref/doc/uid/TP40015172).
+    ///
+    ///
+    /// A component that encapsulates a SpriteKit node.
     #[unsafe(super(GKComponent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "GKComponent")]

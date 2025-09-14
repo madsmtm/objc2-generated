@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum?language=objc)
+/// The appearance of a section in a sidebar.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -15,18 +15,12 @@ pub struct UITabGroupSidebarAppearance(pub NSUInteger);
 impl UITabGroupSidebarAppearance {
     /// The default appearance showing the group and its children appropriately depending
     /// on the group level it is in.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/automatic?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceAutomatic")]
     pub const Automatic: Self = Self(0);
     /// Displays only the children alongside the group's siblings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/inline?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceInline")]
     pub const Inline: Self = Self(1);
     /// Displays the group and its children as a top-level group of the sidebar.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup/sidebarappearance-swift.enum/rootsection?language=objc)
     #[doc(alias = "UITabGroupSidebarAppearanceRootSection")]
     pub const RootSection: Self = Self(2);
 }
@@ -40,7 +34,13 @@ unsafe impl RefEncode for UITabGroupSidebarAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabgroup?language=objc)
+    /// An object that manages a collection of tab objects.
+    ///
+    /// ## Overview
+    ///
+    /// Use tab groups to create a rich hierarchy of tab items. On iPad, the system displays the tab group as a section in the sidebar. For more information, see [Elevating your iPad app with a tab bar and sidebar](https://developer.apple.com/documentation/uikit/elevating-your-ipad-app-with-a-tab-bar-and-sidebar).
+    ///
+    ///
     #[unsafe(super(UITab, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

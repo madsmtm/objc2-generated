@@ -8,6 +8,77 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object you use to install macOS on the specified virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// Initialize a [`VZMacOSInstaller`](https://developer.apple.com/documentation/virtualization/vzmacosinstaller) object with a [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) and a file URL that refers to a macOS restore image.
+    ///
+    /// The following code example shows how to use a `VZMacOSInstaller:`
+    ///
+    /// ```swift
+    /// // Call VZMacOSInstaller with a URL that corresponds to a local file.
+    /// // This is the storage location for the restore image the app downloads.
+    /// let localRestoreImageURL = ...
+    ///
+    /// // Load the latest restore image.
+    /// guard let restoreImage = try? await VZMacOSRestoreImage.latestSupported else {
+    ///     // Handle the error.
+    ///     abort()
+    /// }
+    ///
+    /// // Call VZMacOSInstaller with a URL that corresponds to a local file.
+    /// // Because restoreImage came from latestSupported, its URL property refers to a
+    /// // restore image on the network. Download the restore image to the local file system.
+    /// guard let (location, _) = try? await URLSession.shared.download(from: restoreImage.url, delegate: nil)
+    ///     else {
+    ///         // Handle the error.
+    ///         abort()
+    /// }
+    ///
+    /// guard ((try? FileManager.default.moveItem(at: location, to: localRestoreImageURL)) != nil) else {
+    ///     // Handle the error.
+    ///     abort()
+    /// }
+    ///
+    /// DispatchQueue.main.async {
+    ///     // Becuase this restore image came from VZMacOSRestoreImage.
+    ///     // latestSupported, mostFeaturefulSupportedConfiguration should not be nil.
+    ///     let configurationRequirements = restoreImage.mostFeaturefulSupportedConfiguration!
+    ///
+    ///     // Construct a VZVirtualMachineConfiguration that satisfies the configuration requirements.
+    ///     let configuration = VZVirtualMachineConfiguration()
+    ///     configuration.bootLoader = VZMacOSBootLoader()
+    ///     configuration.platform = VZMacPlatformConfiguration()
+    ///
+    ///     // The following are minimum values; you can use larger values if desired.
+    ///     configuration.cpuCount = configurationRequirements.minimumSupportedCPUCount
+    ///     configuration.memorySize = configurationRequirements.minimumSupportedMemorySize
+    ///
+    ///     // Set other configuration properties as necessary.
+    ///     // ...
+    ///
+    /// guard ((try? configuration.validate()) != nil) else {
+    ///     // Handle the error.
+    ///     abort()
+    /// }
+    ///
+    /// let virtualMachine = VZVirtualMachine(configuration: configuration)
+    /// let installer = VZMacOSInstaller(virtualMachine: virtualMachine, restoringFromImageAt: localRestoreImageURL)
+    /// installer.install(completionHandler: { (result: Result) in
+    ///     if case let .failure(error) = result {
+    ///         // Handle the error.
+    ///         abort()
+    ///     } else {
+    ///         // Installation was successful.
+    ///     }
+    /// })
+    ///
+    /// // Observe progress using installer.progress object.
+    /// }
+    /// ```
+    ///
+    ///
     /// VZMacOSInstaller is used to install macOS on the specified virtual machine.
     ///
     /// A VZMacOSInstaller object must be initialized with a VZVirtualMachine and a file URL referring to a macOS restore image.
@@ -80,8 +151,6 @@ extern_class!(
     /// See also: VZVirtualMachine
     ///
     /// See also: VZMacOSRestoreImage
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosinstaller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacOSInstaller;

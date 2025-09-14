@@ -8,30 +8,39 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// A frame index in the layer’s timeline.
+/// A frame index in the layer’s timeline.
 ///
 /// The layer assigns sequential indexes to the frames it provides to
 /// your app.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerframeindex?language=objc)
 pub type cp_layer_frame_index_t = u64;
 
+/// The sequential index for a frame in the compositor’s timeline.
+///
+/// ## Discussion
+///
+/// During the creation of your content, the compositor creates frames for you to render your content. This type stores the index the compositor assigns to that frame. The compositor presents frames sequentially based on their indexes.
+///
+///
 /// The sequential index for a frame in the compositor’s timeline.
 ///
 /// During the creation of your content, the compositor creates
 /// frames for you to render your content. This type stores the
 /// index the compositor assigns to that frame. The compositor
 /// presents frames onscreen sequentially based on their indexes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/compositorframeindex?language=objc)
 pub type cp_compositor_frame_index_t = u64;
 
+/// A Mach absolute time clock value.
+///
+/// ## Overview
+///
+/// Mach absolute time measures the number of ticks that have elapsed since an arbitrary point after system startup. Each value represents a unique point in time during the course of your app’s execution.
+///
+///
 /// A Mach absolute time clock value.
 ///
 /// Mach absolute time measures the number of ticks that have elapsed
 /// since an arbitrary point after system startup. Each value represents
 /// a unique point in time during the course of your app's execution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cp_time {
@@ -48,22 +57,36 @@ unsafe impl RefEncode for cp_time {
 
 /// A Mach absolute time clock value.
 ///
+/// ## Discussion
+///
+/// Mach absolute time measures the number of ticks that have elapsed since an arbitrary point after system startup. Each value represents a unique point in time during the course of your app’s execution.
+///
+///
+/// A Mach absolute time clock value.
+///
 /// Mach absolute time measures the number of ticks that have elapsed
 /// since an arbitrary point after system startup. Each value represents
 /// a unique point in time during the course of your app's execution.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_t?language=objc)
 pub type cp_time_t = cp_time;
 
 impl cp_time {
+    /// Converts a Mach absolute time value to a Core Foundation time value.
+    ///
+    /// Parameters:
+    /// - time: The time value to convert.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The elapsed time in seconds that correspond to the specified time value.
+    ///
+    ///
     /// Converts a Mach absolute time value to a Core Foundation time value.
     ///
     /// - Parameters:
     /// - time: The time value to convert.
     /// - Returns: The elapsed time in seconds that correspond to the specified
     /// time value.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_to_cf_time_interval?language=objc)
     #[doc(alias = "cp_time_to_cf_time_interval")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -76,10 +99,13 @@ impl cp_time {
 
     /// Blocks the current thread until the specified time.
     ///
+    /// Parameters:
+    /// - time: The Mach absolute time at which to wake up the thread. Typically, you supply one of the predicted times associated with the current frame, such as the optimal input time.
+    ///
+    /// Blocks the current thread until the specified time.
+    ///
     /// - Parameters:
     /// - time: The Mach absolute time at which to wake up the thread.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time_wait_until?language=objc)
     #[doc(alias = "cp_time_wait_until")]
     #[inline]
     pub unsafe fn wait_until(time: cp_time_t) {
@@ -90,6 +116,7 @@ impl cp_time {
     }
 }
 
+/// Constants that indicate the axis and direction to use for a perspective projection matrix.
 /// Axis direction convention for defining the X/Y/Z directions.
 ///
 /// This can be used to define different coordinate systems such
@@ -100,23 +127,45 @@ impl cp_time {
 /// by ``cp_drawable_compute_projection``
 /// which currently only supports right convention mainly due to foveated
 /// rendering rasterization rate maps using a right axis.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_axis_direction_convention(pub u8);
 impl cp_axis_direction_convention {
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightupback?language=objc)
+    /// The convention that uses a counterclockwise winding order and positions the leading pixel at the top-left corner of the view.
+    ///
+    /// ## Discussion
+    ///
+    /// This convention positions the left-most pixel at the left edge of the view and the top-most pixel at the top edge of the view, and the system renders with a counterclockwise winding order.
+    ///
+    ///
     #[doc(alias = "cp_axis_direction_convention_right_up_back")]
     pub const right_up_back: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightupforward?language=objc)
+    /// The convention that uses a clockwise winding order and positions the leading pixel at the top-left corner of the view.
+    ///
+    /// ## Discussion
+    ///
+    /// This convention positions the left-most pixel at the left edge of the view and the top-most pixel at the top edge of the view, and the system renders with a clockwise winding order.
+    ///
+    ///
     #[doc(alias = "cp_axis_direction_convention_right_up_forward")]
     pub const right_up_forward: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightdownback?language=objc)
+    /// The convention that uses a counterclockwise winding order and positions the leading pixel at the bottom-left corner of the view.
+    ///
+    /// ## Discussion
+    ///
+    /// This convention positions the left-most pixel at the left edge of the view and the top-most pixel at the bottom edge of the view, and the system renders with a counterclockwise winding order.
+    ///
+    ///
     #[doc(alias = "cp_axis_direction_convention_right_down_back")]
     pub const right_down_back: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention/rightdownforward?language=objc)
+    /// The convention that uses a clockwise winding order and positions the leading pixel at the bottom-left corner of the view.
+    ///
+    /// ## Discussion
+    ///
+    /// This convention positions the left-most pixel  at the left edge of the view and the top-most pixel at the bottom edge of the view, and the system renders with a clockwise winding order.
+    ///
+    ///
     #[doc(alias = "cp_axis_direction_convention_right_down_forward")]
     pub const right_down_forward: Self = Self(3);
 }
@@ -129,6 +178,17 @@ unsafe impl RefEncode for cp_axis_direction_convention {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Render quality controls the quality which drawing happens at.
+///
+/// ## Overview
+///
+/// This can be used to increase the quality of what users see, however this directly impacts the memory allocated for resources which is billed to the app as well as per-frame GPU time. The app should monitor its frame rate to ensure its not regularly missing frames and will likely need to change the quality based on scene complexity that is being shown.
+///
+/// To control the memory allocated for resources
+///
+/// To control the per-frame GPU cost
+///
+///
 /// Render quality controls the quality which drawing happens at.
 ///
 /// This can be used to increase the quality of what users see,
@@ -144,8 +204,6 @@ unsafe impl RefEncode for cp_axis_direction_convention {
 /// To control the per-frame GPU cost
 ///
 /// See: ``cp_layer_renderer_set_render_quality``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/renderquality-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_render_quality_t = c_float;
 

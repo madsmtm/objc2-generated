@@ -4,31 +4,49 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase?language=objc)
+/// Constants indicating the current ride status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRidePhase(pub NSInteger);
 impl INRidePhase {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/unknown?language=objc)
+    /// The state of the ride is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// You may specify this state during the confirmation phase of a ride-booking request. Don’t specify this value during the handling of a request, where it is as an error.
+    ///
+    ///
     #[doc(alias = "INRidePhaseUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/received?language=objc)
+    /// You have received the booking request and are processing it, but have not yet confirmed the request or communicated the pickup information to the driver of the vehicle.
     #[doc(alias = "INRidePhaseReceived")]
     pub const Received: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/confirmed?language=objc)
+    /// You have booked the ride and communicated the pickup information to the driver of the vehicle.
+    ///
+    /// ## Discussion
+    ///
+    /// The driver has confirmed receipt of the information and will pick up the user’s party at the estimated time.
+    ///
+    ///
     #[doc(alias = "INRidePhaseConfirmed")]
     pub const Confirmed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/ongoing?language=objc)
+    /// The driver has picked up the user’s party and is en route to the destination.
     #[doc(alias = "INRidePhaseOngoing")]
     pub const Ongoing: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/completed?language=objc)
+    /// The driver has transited through all of the waypoints and is now at the ride’s destination.
+    ///
+    /// ## Discussion
+    ///
+    /// The ride is now complete.
+    ///
+    ///
     #[doc(alias = "INRidePhaseCompleted")]
     pub const Completed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/approachingpickup?language=objc)
+    /// The driver is approaching the pickup location.
     #[doc(alias = "INRidePhaseApproachingPickup")]
     pub const ApproachingPickup: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inridephase/pickup?language=objc)
+    /// The driver is at the pickup location.
     #[doc(alias = "INRidePhasePickup")]
     pub const Pickup: Self = Self(6);
 }

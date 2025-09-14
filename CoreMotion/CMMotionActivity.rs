@@ -6,19 +6,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence?language=objc)
+/// The confidence that the motion data is accurate.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMMotionActivityConfidence(pub NSInteger);
 impl CMMotionActivityConfidence {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/low?language=objc)
+    /// Confidence is low.
     #[doc(alias = "CMMotionActivityConfidenceLow")]
     pub const Low: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/medium?language=objc)
+    /// Confidence is good.
     #[doc(alias = "CMMotionActivityConfidenceMedium")]
     pub const Medium: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityconfidence/high?language=objc)
+    /// Confidence is high.
     #[doc(alias = "CMMotionActivityConfidenceHigh")]
     pub const High: Self = Self(2);
 }
@@ -32,7 +32,17 @@ unsafe impl RefEncode for CMMotionActivityConfidence {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivity?language=objc)
+    /// The data for a single motion update event.
+    ///
+    /// ## Overview
+    ///
+    /// On devices that support motion, you can use a [`CMMotionActivityManager`](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager) or [`CMHeadphoneActivityManager`](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager) object to request updates when the current type of motion changes. When a change occurs, the update information is packaged into a [`CMMotionActivity`](https://developer.apple.com/documentation/coremotion/cmmotionactivity) object and sent to your app.
+    ///
+    /// The motion-related properties of this class aren’t mutually exclusive. In other words, it’s possible for more than one of the motion-related properties to contain the value [`true`](https://developer.apple.com/documentation/swift/true). For example, if the user was driving in a car and the car stopped at a red light, the update event associated with that change in motion would have both the [`automotive`](https://developer.apple.com/documentation/coremotion/cmmotionactivity/automotive) and [`stationary`](https://developer.apple.com/documentation/coremotion/cmmotionactivity/stationary) properties set to [`true`](https://developer.apple.com/documentation/swift/true). It’s also possible for all of the properties to be set to [`false`](https://developer.apple.com/documentation/swift/false) when the device is in motion but the movement doesn’t correlate to walking, running, cycling, or automotive travel.
+    ///
+    /// You don’t create instances of this class yourself. The [`CMMotionActivityManager`](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager) object creates them and sends them to the handler block you registered. For more information about how to initiate the delivery of motion activity updates to your app, see [`CMMotionActivityManager`](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager).
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

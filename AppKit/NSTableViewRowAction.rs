@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.enum?language=objc)
+/// Constants that help define the appearance and behavior of action buttons.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewRowActionStyle(pub NSInteger);
 impl NSTableViewRowActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.enum/regular?language=objc)
+    /// Apply the default style to the button. This style does not apply any special coloring to the button.
     #[doc(alias = "NSTableViewRowActionStyleRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.enum/destructive?language=objc)
+    /// Apply a style that indicates that the action might change or delete data. This style changes the value of the [`backgroundColor`](https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor) property to an appropriate value to reflect the destructive action. After creating the action object, you can change the background color as needed. Destructive actions require a longer swipe to activate, and trigger an animation when a table row is deleted.
     #[doc(alias = "NSTableViewRowActionStyleDestructive")]
     pub const Destructive: Self = Self(1);
 }
@@ -30,7 +30,15 @@ unsafe impl RefEncode for NSTableViewRowActionStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowaction?language=objc)
+    /// A single action to present when the user swipes horizontally on a table row.
+    ///
+    /// ## Overview
+    ///
+    /// In an editable table, performing a horizontal swipe on a row reveals a button to delete the row by default. This class lets you define one or more custom actions to display for a given row in your table. Each instance of this class represents a single action to perform and includes the text, formatting information, and behavior for the corresponding button.
+    ///
+    /// To add custom actions to your table view’s rows, implement the [`tableView:rowActionsForRow:edge:`](https://developer.apple.com/documentation/appkit/nstableviewdelegate/tableview(_:rowactionsforrow:edge:)) method in your table view’s delegate object. In that method, create and return an array of actions for the specified row. The table handles the remaining work of displaying the action buttons and executing the appropriate handler block when the user clicks the button.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewRowAction;

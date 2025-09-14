@@ -8,9 +8,18 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that represents a summary of a user's activity for a given day.
+    /// An object that contains the move, exercise, and stand data for a given day.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummary?language=objc)
+    /// ## Overview
+    ///
+    /// You can read [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects from the HealthKit store using an [`HKActivitySummaryQuery`](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery) object. Unlike the [`HKSample`](https://developer.apple.com/documentation/healthkit/hksample) subclasses,  [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) instances are mutable, but changes made to the object’s properties have no affect on the values in the HealthKit store.
+    ///
+    /// You can instantiate your own [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects (if needed), but you can’t save [`HKActivitySummary`](https://developer.apple.com/documentation/healthkit/hkactivitysummary) objects to the store.
+    ///
+    /// You can display an active summary in iOS using the [`HKActivityRingView`](https://developer.apple.com/documentation/healthkitui/hkactivityringview) class or in watchOS using the [`WKInterfaceActivityRing`](https://developer.apple.com/documentation/watchkit/wkinterfaceactivityring) class.
+    ///
+    ///
+    /// An object that represents a summary of a user's activity for a given day.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKActivitySummary;
@@ -237,6 +246,6 @@ impl HKActivitySummary {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathdatecomponents?language=objc)
+    /// The key path for accessing an activity summary’s date components.
     pub static HKPredicateKeyPathDateComponents: &'static NSString;
 }

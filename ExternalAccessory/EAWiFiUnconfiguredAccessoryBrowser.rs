@@ -9,24 +9,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The possible states of an accessory browser.
 /// Represents the current state of a EAWiFiUnconfiguredAccessoryBrowser.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryBrowserState(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryBrowserState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/wifiunavailable?language=objc)
+    /// Wi-Fi is unavailable, typically because the user has placed the device in Airplane Mode or explicitly turned off Wi-Fi.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
     pub const WiFiUnavailable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/stopped?language=objc)
+    /// The browser is not actively searching for unconfigured accessories.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateStopped")]
     pub const Stopped: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/searching?language=objc)
+    /// The browser is actively searching for unconfigured accessory.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateSearching")]
     pub const Searching: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate/configuring?language=objc)
+    /// The browser is actively configuring an accessory.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateConfiguring")]
     pub const Configuring: Self = Self(3);
 }
@@ -39,21 +38,20 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Values that represent the state of the configuration process for an [`EAWiFiUnconfiguredAccessory`](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory) object.
 /// Represents the state of an EAWiFiUnconfiguredAccessory configuration process.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryConfigurationStatus(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryConfigurationStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/success?language=objc)
+    /// The configuration of the accessory succeeded.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]
     pub const Success: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/usercancelledconfiguration?language=objc)
+    /// The user cancelled the configuration process.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusUserCancelledConfiguration")]
     pub const UserCancelledConfiguration: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus/failed?language=objc)
+    /// The configuration failed.
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -67,6 +65,13 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryConfigurationStatus {
 }
 
 extern_class!(
+    /// An object you use to scan for wireless accessories and configure them for use with the user’s app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`EAWiFiUnconfiguredAccessoryBrowser`](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowser) class gives your app access to the MFi Wireless Accessory Configuration process. You use a browser object to scan for unconfigured accessories, connect them to the user’s Wi-Fi infrastructure, and configure attributes of the accessories. An accessory is represented by an instance of [`EAWiFiUnconfiguredAccessory`](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory).
+    ///
+    ///
     /// Interface for browsing unconfigured accessories
     ///
     ///
@@ -74,8 +79,6 @@ extern_class!(
     /// This browser enables the application to scan for unconfigured accessories,
     /// connect them to the user's Wi-Fi infrastructure and configure attributes of
     /// the accessory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct EAWiFiUnconfiguredAccessoryBrowser;
@@ -176,11 +179,10 @@ impl EAWiFiUnconfiguredAccessoryBrowser {
 }
 
 extern_protocol!(
+    /// A protocol you use to manage the search and configuration processes for an unconfigured accessory browser.
     /// The delegate of a EAWiFiUnconfiguredAccessoryBrowser object must adopt the
     /// EAWiFiUnconfiguredAccessoryBrowserDelegate protocol. The required
     /// callbacks keep the delegate informed of the state of the search and configuration processes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserdelegate?language=objc)
     pub unsafe trait EAWiFiUnconfiguredAccessoryBrowserDelegate: NSObjectProtocol {
         /// Invoked whenever the EAWiFiUnconfiguredAccessoryBrowser's state has changed.
         ///

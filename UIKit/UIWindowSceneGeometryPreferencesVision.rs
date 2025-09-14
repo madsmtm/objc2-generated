@@ -10,14 +10,11 @@ use crate::*;
 
 extern "C" {
     /// Used as the value for a dimension of a size related preference when wanting to leave it unchanged.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiproposedscenesizenopreference?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIProposedSceneSizeNoPreference: CGFloat;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/vision?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

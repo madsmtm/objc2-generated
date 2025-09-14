@@ -12,13 +12,12 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnmask?language=objc)
+/// The Quick Look generator can create a preview.
 pub const kQLReturnMask: c_uint = 0xaf00;
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlreturnhasmore?language=objc)
+/// The Quick Look generator has more content to display as part of the preview.
 pub const kQLReturnHasMore: c_uint = kQLReturnMask | 10;
+/// An opaque reference that represents a thumbnail request object.
 /// This is the type of a reference to Thumbnail requests.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequest?language=objc)
 #[doc(alias = "QLThumbnailRequestRef")]
 #[repr(C)]
 pub struct QLThumbnailRequest {
@@ -35,9 +34,20 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for QLThumbnailRequest {
-    /// Returns the CoreFoundation type ID for QLThumbnailRequests.
+    /// Gets the type identifier for the `QLThumbnailRequest` opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the `QLThumbnailRequest` opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
+    /// Returns the CoreFoundation type ID for QLThumbnailRequests.
     #[doc(alias = "QLThumbnailRequestGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -49,13 +59,28 @@ unsafe impl ConcreteType for QLThumbnailRequest {
 }
 
 impl QLThumbnailRequest {
+    /// Returns the URL of the document for which the thumbnail request is requested.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL identifying the document for which the thumbnail is requested. You should explicitly release the CFURL object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Returns the url of the file for the thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The url of the file for the thumbnail request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopyurl(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyURL")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -67,13 +92,32 @@ impl QLThumbnailRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the options specified for the thumbnail request.
+    ///
+    /// Parameters:
+    /// - thumbnail: A thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the options that the client specified for the thumbnail request. See `General Thumbnail Options` for supported options. You should explicitly release the dictionary when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The client sets options in the thumbnail request to give hints to the generator. For macOS 10.5, no options are supported. You should explicitly release the dictionary when it’s no longer needed.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Returns the desired options for the thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The desired options for the thumbnail request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopyoptions(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyOptions")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -89,11 +133,26 @@ impl QLThumbnailRequest {
 
     /// Returns the UTI for the thumbnail request.
     ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The UTI identifying the content type of the document for which the thumbnail is requested; returns `NULL` if the UTI cannot be located. You should explicitly release this string object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
+    /// Returns the UTI for the thumbnail request.
+    ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The UTI of the content being thumbnailed, NULL if not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcopycontentuti(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCopyContentUTI")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -107,13 +166,28 @@ impl QLThumbnailRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the maximum size (in points) specified for the thumbnail image.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum size (in points) specified for the thumbnail image.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Returns the maximum desired size (in points) for the thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The maximum desired size (in points) for the thumbnail request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetmaximumsize(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetMaximumSize")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -124,11 +198,26 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestGetMaximumSize(self) }
     }
 
+    /// Get the bundle of the generator receiving the thumbnail request.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to the bundle object representing the generator’s bundle.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Get the thumbnail request generator bundle.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetgeneratorbundle(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -142,6 +231,15 @@ impl QLThumbnailRequest {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Stores an object as part of a thumbnail request.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request.
+    ///
+    /// - object: The object that you want to associate with the thumbnail request.
+    ///
+    /// - callbacks: Callbacks for retaining or releasing the object that you want to store as part of the thumbnail request.
+    ///
     /// Store some object in thumbnail request.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -156,8 +254,6 @@ impl QLThumbnailRequest {
     ///
     /// - `object` must be a valid pointer.
     /// - `callbacks` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetdocumentobject(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -176,13 +272,22 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestSetDocumentObject(self, object, callbacks) }
     }
 
+    /// Returns the object that’s stored as part of a thumbnail request.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The object that’s stored as part of the thumbnail request.
+    ///
+    ///
     /// Get the object previously stored with QLThumbnailRequestSetDocumentObject.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: The object representing the document
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetdocumentobject(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestGetDocumentObject")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -194,6 +299,25 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestGetDocumentObject(self) }
     }
 
+    /// Sets the thumbnail request to a specified image.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    /// - image: The image object to be used as the thumbnail of the document.
+    ///
+    /// - properties: A dictionary of properties for the thumbnail. macOS doesn’t use any properties.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You call this function to have Quick Look use the `CGImage` object supplied in `image` as the thumbnail. Call [`QLThumbnailRequestGetMaximumSize`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetmaximumsize(_:)) to get the maximum allowed size for thumbnail and resize it if necessary before calling `QLThumbnailSetImage`.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Sets the thumbnail request response to image.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -208,8 +332,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimage(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types"]
@@ -225,6 +347,25 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestSetImage(self, image, properties) }
     }
 
+    /// Sets the response to the thumbnail request to image data saved within the document.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    /// - data: The image data, which must be in a format supported by the Image I/O framework (JPG, PNG, and so on). In other words, a content type of `kUTTypeImage` is assumed. (`ImageIO.framework` is a subframework of the umbrella Application Services framework.)
+    ///
+    /// - properties: A dictionary of properties. The only property that you can currently specify is kCGImageSourceTypeIdentifierHint; see [Quartz 2D Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066) for information about this property.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns the thumbnail as a `CFData` object containing image data. The document’s application must save this data as part of the document’s data; the generator retrieves it and uses this function to return it to the client. Before you call this function, call [`QLThumbnailRequestGetMaximumSize`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestgetmaximumsize(_:)) to obtain the maximum allowed size for the thumbnail and resize the image if necessary.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Sets the thumbnail request response to image data.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -239,8 +380,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimagewithdata(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -259,6 +398,35 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestSetImageWithData(self, data, properties) }
     }
 
+    /// Creates a graphics context to draw the thumbnail in.
+    ///
+    /// Parameters:
+    /// - size: The size of the thumbnail; if `isBitmap` is `true` the size is in pixels, otherwise it’s in points.
+    ///
+    /// - isBitmap: `true` if the thumbnail data is bitmap-based, `false` if vector-based. This value of this parameter affects the interpretation of the `size` parameter.
+    ///
+    /// - properties: A dictionary containing properties for the thumbnail response. For macOS 10.5, no properties have been defined.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Graphics graphics-context object that you can draw your thumbnail image in. You should explicitly release this object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can directly draw your thumbnail data in the graphics-context object created by this function. After calling this function, you should flush the context with [`QLThumbnailRequestFlushContext`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)). Also be sure to release the `CGContext` object.
+    ///
+    /// With this function you can create two types of graphics contexts for drawing thumbnails: bitmap and single-page vector-based; you use the `isBitmap` flag to distinguish between the two. Quick Look handles bitmap thumbnail context differently than non-bitmap contexts; in the latter case, Quick Look might scale the drawing up or down if necessary, and it respects the scale factor (for HiDPI support).
+    ///
+    /// If you prefer to work in Objective-C code, you can convert the created [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) to a [`NSGraphicsContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext) object using [`graphicsContextWithGraphicsPort:flipped:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(graphicsport:flipped:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Creates a graphic context to draw the thumbnail response in.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -278,8 +446,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcreatecontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -303,6 +469,21 @@ impl QLThumbnailRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Flush the graphics context and sets the thumbnail response.
+    ///
+    /// Parameters:
+    /// - context: The graphics context to flush.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should call this method after drawing in the graphics context created by [`QLThumbnailRequestCreateContext`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestcreatecontext(_:_:_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Flushes the graphic context and creates the thumbnail image response.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -312,8 +493,6 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// `context` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestflushcontext(_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -328,6 +507,21 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestFlushContext(self, context) }
     }
 
+    /// Sets the thumbnail request to contain the image at a given URL.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    /// - url: The URL to the image that the response to the thumbnail request returns.
+    ///
+    /// - properties: A dictionary of properties for the thumbnail. macOS doesn’t use any properties.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to have QuickLook use the image at the provided url as a thumbnail.
+    ///
+    ///
     /// Sets the thumbnail request response to the image contained at url.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -342,8 +536,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimageaturl(_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -358,6 +550,25 @@ impl QLThumbnailRequest {
         unsafe { QLThumbnailRequestSetImageAtURL(self, url, properties) }
     }
 
+    /// Sets the default image representation for an item with the provided data and specified file type.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    /// - data: The content data.
+    ///
+    /// - contentTypeUTI: The UTI of the content for the preview representation.
+    ///
+    /// - previewProperties: Additional properties for the preview response.
+    ///
+    /// - properties: A dictionary of properties for the thumbnail. macOS doesn’t support any properties.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// There are currently no supported UTIs. This call only works if you set your generator to run on the main thread.
+    ///
+    ///
     /// Sets the thumbnail request response to the image produced by the equivalent preview representation.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -382,8 +593,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetthumbnailwithdatarepresentation(_:_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -414,6 +623,19 @@ impl QLThumbnailRequest {
         }
     }
 
+    /// Sets the default image representation for an item of a given type at the specified URL.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    /// - url: The url to the file of the preview response.
+    ///
+    /// - contentTypeUTI: The UTI of the content for the preview representation.
+    ///
+    /// - previewProperties: Additional properties for the preview response.
+    ///
+    /// - properties: A dictionary of properties for the thumbnail. macOS doesn’t support any properties.
+    ///
     /// Sets the thumbnail request response to the image produced by the equivalent preview representation.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
@@ -436,8 +658,6 @@ impl QLThumbnailRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetthumbnailwithurlrepresentation(_:_:_:_:_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -468,13 +688,28 @@ impl QLThumbnailRequest {
         }
     }
 
+    /// Returns whether the thumbnail request has been cancelled by the client.
+    ///
+    /// Parameters:
+    /// - thumbnail: The thumbnail request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the request is being cancelled, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the thumbnail request is made in; generally, this is the same thread in which the `GenerateThumbnailForURL` callback was invoked.
+    ///
+    ///
     /// Returns wether the thumbnail request was cancelled or not.
     ///
     /// Parameter `thumbnail`: The thumbnail request.
     ///
     /// Returns: true if the request was cancelled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestiscancelled(_:)?language=objc)
     #[doc(alias = "QLThumbnailRequestIsCancelled")]
     #[deprecated = "Use a QLFileThumbnailRequest in a Thumbnail Extension to provide thumbnails for your file types."]
     #[inline]
@@ -488,35 +723,49 @@ impl QLThumbnailRequest {
 }
 
 extern "C" {
-    /// Value should be a CFString. The extension is used as a badge when producing an icon.
+    /// The extension to use as a badge when creating an icon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertyextensionkey?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh.
+    ///
+    ///
+    /// Value should be a CFString. The extension is used as a badge when producing an icon.
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyExtensionKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Value should be a CGImage. The badge is used when producing an icon.
+    /// An image to use for generating the badge for a file’s icon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertybadgeimagekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value for this key is a [`CGImageRef`](https://developer.apple.com/documentation/coregraphics/cgimage).
+    ///
+    ///
+    /// Value should be a CGImage. The badge is used when producing an icon.
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyBadgeImageKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// A path that’s outside of the default security scope for creating a thumbnail.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh. By default, the Quick Look feature only accepts files within the current document bundle. To generate thumbnails for files at a different location, use `kQLThumbnailPropertyBaseBundlePathKey` with [`QLThumbnailRequestSetImageAtURL`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetimageaturl(_:_:_:)) or [`QLThumbnailRequestSetThumbnailWithURLRepresentation`](https://developer.apple.com/documentation/quicklook/qlthumbnailrequestsetthumbnailwithurlrepresentation(_:_:_:_:_:)).
+    ///
+    ///
     /// Extends the security scope where Quick Look will accept to look at a file. Value is a path as CFString.
     ///
     /// Only useful when using QLThumbnailRequestSetImageAtURL() or QLThumbnailRequestSetThumbnailWithURLRepresentation().
     /// By default, Quick Look will only accept files within the current document bundle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailpropertybasebundlepathkey?language=objc)
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
     pub static kQLThumbnailPropertyBaseBundlePathKey: Option<&'static CFString>;
 }
 
+/// An opaque reference that represents a preview request object.
 /// This is the type of a reference to Preview requests.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequest?language=objc)
 #[doc(alias = "QLPreviewRequestRef")]
 #[repr(C)]
 pub struct QLPreviewRequest {
@@ -533,9 +782,20 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for QLPreviewRequest {
-    /// Returns the CoreFoundation type ID for QLPreviewRequests.
+    /// Gets the type identifier for the `QLPreviewReqest` opaque type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// The type identifier for the `QLPreviewReqest` opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
+    /// Returns the CoreFoundation type ID for QLPreviewRequests.
     #[doc(alias = "QLPreviewRequestGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -547,60 +807,85 @@ unsafe impl ConcreteType for QLPreviewRequest {
 }
 
 extern "C" {
-    /// Customizes Displayed name in the preview panel. This replaces the document's display name. Value is a CFString.
+    /// A custom display name for the preview panel.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertydisplaynamekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The default display name is the document’s title. You must encapsulate the value in a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object.
+    ///
+    ///
+    /// Customizes Displayed name in the preview panel. This replaces the document's display name. Value is a CFString.
     #[deprecated = "Use the title property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyDisplayNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Gives the width (in points) of the preview. Value is a CFNumber.
+    /// The width in points of the preview.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertywidthkey?language=objc)
+    /// ## Discussion
+    ///
+    /// Note that this property is a hint; Quick Look might set the width automatically for some types of previews. You mus encapsulate the value in a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object.
+    ///
+    ///
+    /// Gives the width (in points) of the preview. Value is a CFNumber.
     #[deprecated = "Use the preferredContentSize property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyWidthKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Gives the height (in points) of the preview. Value is a CFNumber.
+    /// The height in points of the preview.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyheightkey?language=objc)
+    /// ## Discussion
+    ///
+    /// Note that this property is a hint; Quick Look may set the height automatically for some types of previews. You must encapsulate the value in a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object.
+    ///
+    ///
+    /// Gives the height (in points) of the preview. Value is a CFNumber.
     #[deprecated = "Use the preferredContentSize property of your QLPreviewingController in a Preview Extension."]
     pub static kQLPreviewPropertyHeightKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// A path that’s outside of the default security scope for creating a preview.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the Quick Look feature only accepts files within the current document bundle. Use `kQLPreviewPropertyBaseBundlePathKey` to expand the accepted security scope and look at files outside of the current document bundle. The associated value is a path as a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh.
+    ///
+    ///
     /// Extends the security scope where Quick Look will accept to look at a file. Value is a path as CFString.
     ///
     /// Only useful when using QLPreviewRequestSetURLRepresentation().
     /// By default, Quick Look will only accept files within the current document bundle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertybasebundlepathkey?language=objc)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyBaseBundlePathKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Gives the CFStringEncoding of the preview data if the preview type is plain text. Value is a CFNumber.
+    /// The string encoding of the preview data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertystringencodingkey?language=objc)
+    /// ## Discussion
+    ///
+    /// Specifies the string encoding of the preview data as an [`CFStringEncoding`](https://developer.apple.com/documentation/corefoundation/cfstringencoding) if the native type is plain text. You must encapsulate the value in a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd object.
+    ///
+    ///
+    /// Gives the CFStringEncoding of the preview data if the preview type is plain text. Value is a CFNumber.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyStringEncodingKey: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewpdfstyle?language=objc)
+/// A value you use to configure the appearance of previews for PDF files.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLPreviewPDFStyle(pub c_uint);
 impl QLPreviewPDFStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfstandardstyle?language=objc)
+    /// The PDF appears in the operating system’s standard style.
     #[doc(alias = "kQLPreviewPDFStandardStyle")]
     pub const StandardStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfpageswiththumbnailsonrightstyle?language=objc)
+    /// The content of the PDF appears with thumbnails of all pages on the right side of the current page’s content.
     #[doc(alias = "kQLPreviewPDFPagesWithThumbnailsOnRightStyle")]
     pub const PagesWithThumbnailsOnRightStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpdfpageswiththumbnailsonleftstyle?language=objc)
+    /// The content of the PDF appears with thumbnails of all pages on the left side of the current page’s content.
     #[doc(alias = "kQLPreviewPDFPagesWithThumbnailsOnLeftStyle")]
     pub const PagesWithThumbnailsOnLeftStyle: Self = Self(4);
 }
@@ -616,9 +901,14 @@ unsafe impl RefEncode for QLPreviewPDFStyle {
 }
 
 extern "C" {
-    /// Specify the preferred way to display PDF content. Value is a CFNumber using QLPreviewPDFStyle values.
+    /// The preferred way to display PDF content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertypdfstylekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd provided by [`QLPreviewPDFStyle`](https://developer.apple.com/documentation/quicklook/qlpreviewpdfstyle).
+    ///
+    ///
+    /// Specify the preferred way to display PDF content. Value is a CFNumber using QLPreviewPDFStyle values.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyPDFStyleKey: Option<&'static CFString>;
 }
@@ -627,8 +917,6 @@ extern "C" {
     /// Value is the same CFNumber passed by potential previous calls to generator's preview callback for the same document with kQLPreviewPropertyCursorKey.
     ///
     /// Use this value to provide more of the preview content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewoptioncursorkey?language=objc)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewOptionCursorKey: Option<&'static CFString>;
 }
@@ -636,20 +924,33 @@ extern "C" {
 extern "C" {
     /// Value should be a CFNumber. This value will be used to get more of the document's preview if necessary
     /// (and if the preview genererator returns kQLReturnHasMore)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertycursorkey?language=objc)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyCursorKey: Option<&'static CFString>;
 }
 
 impl QLPreviewRequest {
+    /// Returns the URL of the document for which a preview is requested.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The URL identifying the file for which the preview is requested.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is thread safe.
+    ///
+    ///
     /// Returns the url of the file for the preview request.
     ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The url of the file for the preview request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopyurl(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyURL")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -661,13 +962,32 @@ impl QLPreviewRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Returns the options specified for the preview request.
+    ///
+    /// Parameters:
+    /// - preview: A preview request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A dictionary containing the properties specified for the preview request. See `Preview Properties` for supported options. You should explicitly release this object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The client sets options in the preview request to give hints to the generator. For macOS 10.5, no options are supported.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Returns the desired options for the preview request.
     ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The desired options for the preview request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopyoptions(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyOptions")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -683,11 +1003,26 @@ impl QLPreviewRequest {
 
     /// Returns the UTI for the preview request.
     ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The UTI of the associated preview request; returns `NULL` if the UTI is not available. You should explicitly release this object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
+    /// Returns the UTI for the preview request.
+    ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The UTI of the content being previewed, NULL if not available.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcopycontentuti(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCopyContentUTI")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -701,11 +1036,26 @@ impl QLPreviewRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Get the bundle of the generator receiving the preview request.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a bundle object representing the generator’s bundle.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Gets the preview request generator bundle.
     ///
     /// Parameter `preview`: The preview request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgetgeneratorbundle(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestGetGeneratorBundle")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -719,6 +1069,15 @@ impl QLPreviewRequest {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// Stores an object as part of a preview request.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - object: The object that you want to associate with the preview request.
+    ///
+    /// - callbacks: Callbacks for retaining or releasing the object that you want to store as part of the preview request.
+    ///
     /// Store some object in preview request.
     ///
     /// Parameter `preview`: The preview request.
@@ -733,8 +1092,6 @@ impl QLPreviewRequest {
     ///
     /// - `object` must be a valid pointer.
     /// - `callbacks` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestsetdocumentobject(_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -753,13 +1110,28 @@ impl QLPreviewRequest {
         unsafe { QLPreviewRequestSetDocumentObject(self, object, callbacks) }
     }
 
+    /// Returns the object that’s stored as part of a preview request.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The object that’s stored as part of the preview request.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this method to get the object that you stored previously with the preview request using [`QLPreviewRequestSetDocumentObject`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestsetdocumentobject(_:_:_:)).
+    ///
+    ///
     /// Get the object previously stored with QLPreviewRequestSetDocumentObject.
     ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: The object representing the document
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestgetdocumentobject(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestGetDocumentObject")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -770,13 +1142,32 @@ impl QLPreviewRequest {
         unsafe { QLPreviewRequestGetDocumentObject(self) }
     }
 
+    /// Returns whether the preview request has been cancelled by the client.
+    ///
+    /// Parameters:
+    /// - preview: The object representing the preview request.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the request is being canceled, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// While computing the response, the generator can poll the preview request object with this function to determine if the client has cancelled the request. Alternatively, the generator can implement the `CancelPreviewGeneration` callback. but since that function is called in a secondary thread, it is generally safer to take the polling approach.
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Returns wether the preview request was cancelled or not.
     ///
     /// Parameter `preview`: The preview request.
     ///
     /// Returns: true if the request was cancelled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestiscancelled(_:)?language=objc)
     #[doc(alias = "QLPreviewRequestIsCancelled")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -788,6 +1179,29 @@ impl QLPreviewRequest {
         ret != 0
     }
 
+    /// Sets the preview request to data saved within the document or to dynamically generated data.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - data: The data of the preview returned to the client.
+    ///
+    /// - contentTypeUTI: The UTI specifying the content type of the preview.
+    ///
+    /// - properties: Additional properties for the preview response. For more on supported keys and values for this dictionary, see `Preview Properties`. If the saved data is HTML, you may specify a special set of properties; see the discussion below for more information.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns preview data to the client. The data is either extracted from a document where the document’s application has saved it, or it’s dynamically generated. How Quick Look handles the data depends upon the value of `contentTypeUTI`. The content data of the preview must be of a native Quick Look type. Currently supported UTIs for these types are: `kUTTypeImage`, `kUTTypePDF`, `kUTTypeHTML`, `kUTTypeXML`, `kUTTypePlainText`, `kUTTypeRTF`, `kUTTypeMovie`, and `kUTTypeAudio`.
+    ///
+    /// If the UTI type is `kUTTypeHTML`, you can have WebKit handle the layout and display of your preview. You must provide the HTML in `data` plus any attachments (for example, Address Book cards, Mail messages, or Omni Outliner documents) in the `properties` dictionary. This dictionary takes [`kQLPreviewPropertyAttachmentsKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentskey) as its key and consists of one ore more subdictionaries (one per attachment). Each subdictionary uses an arbitrary string identifier as a key; the attachment should be referenced within the HTML data using the kQLPreviewContentIDScheme URL scheme (“cid”) and the identifier as the URL resource specifier—for example, “cid:the_identifier”. The keys of the subdictionary properties are [`kQLPreviewPropertyMIMETypeKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertymimetypekey), [`kQLPreviewPropertyTextEncodingNameKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertytextencodingnamekey), and [`kQLPreviewPropertyAttachmentDataKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentdatakey).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Sets the preview response with the provided data.
     ///
     /// Parameter `preview`: The preview request.
@@ -809,8 +1223,6 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestsetdatarepresentation(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -831,6 +1243,41 @@ impl QLPreviewRequest {
         unsafe { QLPreviewRequestSetDataRepresentation(self, data, content_type_uti, properties) }
     }
 
+    /// Sets the contents of the file at the given URL as the response to the preview request.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - url: The URL of the file that’s returned as the response to the preview request. The file must be one of the supported file types.
+    ///
+    /// - contentTypeUTI: The UTI specifying the content type of the preview.
+    ///
+    /// - properties: Additional properties for the preview response.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns preview data at the given URL to the client. How the Quick Look feature handles the data depends upon the value of the given content type UTI. The content data of the preview must be of a native Quick Look type. Quick Look supports the following UTIs:
+    ///
+    /// - `kUTTypeImage`
+    ///
+    /// - `kUTTypePDF`
+    ///
+    /// - `kUTTypeHTML`
+    ///
+    /// - `kUTTypeXML`
+    ///
+    /// - `kUTTypePlainText`
+    ///
+    /// - `kUTTypeRTF`
+    ///
+    /// - `kUTTypeRTFD`
+    ///
+    /// - `kUTTypeMovie`
+    ///
+    /// - `kUTTypeAudio`
+    ///
+    ///
     /// Sets the preview request response with contents at url.
     ///
     /// Parameter `preview`: The preview request.
@@ -852,8 +1299,6 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestseturlrepresentation(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     #[inline]
@@ -874,6 +1319,37 @@ impl QLPreviewRequest {
         unsafe { QLPreviewRequestSetURLRepresentation(self, url, content_type_uti, properties) }
     }
 
+    /// Creates a graphics context to draw the preview in.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - size: The size of the preview; if `isBitmap` is `true` the size is in pixels, otherwise it’s in points.
+    ///
+    /// - isBitmap: `true` if the preview uses a bitmap-based graphics context, `false` otherwise. This value of this parameter affects the interpretation of the `size` parameter.
+    ///
+    /// - properties: A dictionary containing properties for the preview response. `Preview Properties` lists the current property keys and describes their values.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Graphics graphics-context object that you can draw your preview image in. You should explicitly release this object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can directly draw your preview data in the graphics-context object created by this function. After calling this function, you should flush the context with [`QLPreviewRequestFlushContext`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestflushcontext(_:_:)). Also be sure to release the `CGContext` object.
+    ///
+    /// Quick Look provides three types of graphics contexts for drawing previews: bitmap, single-page vector-based, and multi-page vector-based (for PDF previews). You use this function to acquire a context for bitmap and single-page vector drawing; the `isBitmap` parameter is used to distinguish between them. For multi-page contexts, use the [`QLPreviewRequestCreatePDFContext`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatepdfcontext(_:_:_:_:)) function.
+    ///
+    /// If you prefer to work in Objective-C code, you can convert the created [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext) to a [`NSGraphicsContext`](https://developer.apple.com/documentation/appkit/nsgraphicscontext) object using [`graphicsContextWithGraphicsPort:flipped:`](https://developer.apple.com/documentation/appkit/nsgraphicscontext/init(graphicsport:flipped:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Creates a context to draw the preview in. Context should be flushed with QLPreviewRequestFlushContext()
     ///
     /// Parameter `preview`: The preview request.
@@ -889,8 +1365,6 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatecontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -913,6 +1387,35 @@ impl QLPreviewRequest {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
+    /// Creates a PDF context suitable to draw a multi-page preview.
+    ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - mediaBox: A pointer to the media box of the context.
+    ///
+    /// A media box is a rectangle that defines the size and location of the PDF page. The origin of the rectangle should typically be (0,0). If you pass NULL, Quartz uses a default page size of 8.5 by 11 inches (612 by 792 points). For information see the description for [`CGPDFContextCreate`](https://developer.apple.com/documentation/coregraphics/cgcontext/init(consumer:mediabox:_:)).
+    ///
+    /// - auxiliaryInfo: A dictionary containing PDF auxiliary information. See the description of the auxiliary dictionary keys in doc://com.apple.documentation/documentation/coregraphics/cgpdfcontext for more information about the keys and values of this dictionary.
+    ///
+    /// - properties: A dictionary containing additional properties for the preview response. For information on acceptable keys and values, see `Preview Properties`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A reference to a Core Graphics context object that is used to display a PDF version of the preview. You should explicitly release this object when it is no longer needed.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Be sure to bracket each PDF page written to the context with [`CGPDFContextBeginPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/beginpdfpage(_:)) and [`CGPDFContextEndPage`](https://developer.apple.com/documentation/coregraphics/cgcontext/endpdfpage()) calls. After calling this function, you should flush the context with [`QLPreviewRequestFlushContext`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestflushcontext(_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
     /// Creates a PDF context to draw the preview in, likely to be multi-pages. Context should be flushed with QLPreviewRequestFlushContext()
     ///
     /// Parameter `preview`: The preview request.
@@ -932,8 +1435,6 @@ impl QLPreviewRequest {
     /// - `properties` generic must be of the correct type.
     /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatepdfcontext(_:_:_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -960,6 +1461,23 @@ impl QLPreviewRequest {
 
     /// Flush the context and sets the preview response.
     ///
+    /// Parameters:
+    /// - preview: The preview request object.
+    ///
+    /// - context: The graphics context to flush.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You should call this method immediately after drawing in the graphics contexts created by [`QLPreviewRequestCreateContext`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatecontext(_:_:_:_:)) and [`QLPreviewRequestCreatePDFContext`](https://developer.apple.com/documentation/quicklook/qlpreviewrequestcreatepdfcontext(_:_:_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Thread-safety: This function should be called in the same thread as the preview request is made in; generally, this is the same thread in which the `GeneratePreviewForURL` callback was invoked.
+    ///
+    ///
+    /// Flush the context and sets the preview response.
+    ///
     /// Parameter `preview`: The preview request.
     ///
     /// Parameter `context`: context previously created by QLPreviewRequestCreateContext() or QLPreviewRequestCreatePDFContext().
@@ -967,8 +1485,6 @@ impl QLPreviewRequest {
     /// # Safety
     ///
     /// `context` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewrequestflushcontext(_:_:)?language=objc)
     #[doc(alias = "QLPreviewRequestFlushContext")]
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -985,49 +1501,74 @@ impl QLPreviewRequest {
 }
 
 extern "C" {
-    /// Gives the web content or attachment mime type. For the main data, default is text/html. Value is a CFString.
+    /// The web content or attachment mime type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertymimetypekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The associated value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh object. Use this key to retrievie the web content’s or attachment’s mime type. For the main data, the default type is `text/html`.
+    ///
+    ///
+    /// Gives the web content or attachment mime type. For the main data, default is text/html. Value is a CFString.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyMIMETypeKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Gives the web content or attachment text encoding. Use IANA encodings like UTF-8. Value is a CFString.
+    /// The encoding of the web content or attachment text.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertytextencodingnamekey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh object. Use IANA encodings like `UTF-8` for the associated value.
+    ///
+    ///
+    /// Gives the web content or attachment text encoding. Use IANA encodings like UTF-8. Value is a CFString.
     pub static kQLPreviewPropertyTextEncodingNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Gives the attachment data. Value is a CFData.
+    /// Attachment data for a preview.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentdatakey?language=objc)
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfdata-rv9 object.
+    ///
+    ///
+    /// Gives the attachment data. Value is a CFData.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyAttachmentDataKey: Option<&'static CFString>;
 }
 
 extern "C" {
+    /// A list of attachments or sub-resources.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum object. The keys of the dictionary are the attachment identifiers (doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh objects) that can be referenced with the `cid:id` URL. The dictionary’s values are themselves dictionaries that use the [`kQLPreviewPropertyAttachmentDataKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentdatakey), [`kQLPreviewPropertyMIMETypeKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertymimetypekey) and [`kQLPreviewPropertyTextEncodingNameKey`](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertytextencodingnamekey) properties.
+    ///
+    ///
     /// Gives the list of attachments (or sub-resources). Value is a CFDictionary.
     ///
     /// Keys are the attachment ids (CFStringRef) that can be referenced with "cid:id" URL and
     /// Values are dictionaries using kQLPreviewPropertyAttachmentDataKey,
     /// kQLPreviewPropertyMIMETypeKey and kQLPreviewPropertyTextEncodingNameKey keys.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewpropertyattachmentskey?language=objc)
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewPropertyAttachmentsKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// Is the "cid" URL scheme.
+    /// The content ID URL scheme.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlpreviewcontentidscheme?language=objc)
+    /// ## Discussion
+    ///
+    /// The `cid` URL scheme permits the HTML of a mail message to refer to the images or other data included in the message. For more information, read [RFC 2111](https://www.rfc-archive.org/getrfc.php?rfc=2111).
+    ///
+    ///
+    /// Is the "cid" URL scheme.
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
     pub static kQLPreviewContentIDScheme: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlgeneratorinterfacestruct?language=objc)
+/// An opaque reference that provides callbacks that the platform uses to interface with a Quick Look plug-in.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]

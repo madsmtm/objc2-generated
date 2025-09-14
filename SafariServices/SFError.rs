@@ -6,23 +6,23 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrordomain?language=objc)
+    /// The domain for content blocker or Safari app extension errors.
     pub static SFErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode?language=objc)
+/// Messages that describe a content blocker or Safari app extension error.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SFErrorCode(pub NSInteger);
 impl SFErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/noextensionfound?language=objc)
+    /// A Content Blocker or Safari app extension with the specified bundle identifier was not found, or the bundle identifier specified an extension that was not owned by you.
     #[doc(alias = "SFErrorNoExtensionFound")]
     pub const NoExtensionFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/noattachmentfound?language=objc)
+    /// The Content Blocker extension returned an [`NSExtensionItem`](https://developer.apple.com/documentation/foundation/nsextensionitem) that did not include an attachment.
     #[doc(alias = "SFErrorNoAttachmentFound")]
     pub const NoAttachmentFound: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/safariservices/sferrorcode/loadinginterrupted?language=objc)
+    /// There was an error loading the content blocker extension.
     #[doc(alias = "SFErrorLoadingInterrupted")]
     pub const LoadingInterrupted: Self = Self(3);
 }

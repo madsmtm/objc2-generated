@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionmultidate?language=objc)
+    /// An object that tracks multiple dates the user selects from a calendar view.
     #[unsafe(super(UICalendarSelection, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -77,7 +77,7 @@ impl UICalendarSelectionMultiDate {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicalendarselectionmultidatedelegate?language=objc)
+    /// A set of methods you implement to provide selectable dates and handle changes to the selection of multiple dates.
     pub unsafe trait UICalendarSelectionMultiDateDelegate:
         NSObjectProtocol + MainThreadOnly
     {

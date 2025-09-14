@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothobexsession?language=objc)
+    /// An OBEX Session with a Bluetooth RFCOMM channel as the transport.
     #[unsafe(super(OBEXSession, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "OBEXSession")]

@@ -18,18 +18,22 @@ use crate::*;
 ///
 /// This flag can be set by a property listener in order to signal to the parser that the client is
 /// interested in the value of the property and that it should be cached until the full value of the property is available.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamPropertyFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamPropertyFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags/propertyiscached?language=objc)
+/// This flag is set when the callback [`AudioFileStream_PropertyListenerProc`](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_propertylistenerproc) is invoked in the case that the value of the property has been cached and can be obtained later.
+///
+/// ## Discussion
+///
+/// If this flag is not set,  get the value of the property from within this callback or set the [`kAudioFileStreamPropertyFlag_CacheProperty`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags/cacheproperty) flag to instruct the parser to begin caching the property data. Otherwise, the value will not be available after the callback returns.
+///
+///
         #[doc(alias = "kAudioFileStreamPropertyFlag_PropertyIsCached")]
         const PropertyIsCached = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags/cacheproperty?language=objc)
+/// A property listener sets this flag to instruct the parser to cache the property value so that it remains available after the callback returns.
         #[doc(alias = "kAudioFileStreamPropertyFlag_CacheProperty")]
         const CacheProperty = 2;
     }
@@ -46,15 +50,19 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
 /// This flag is passed in to AudioFileStreamParseBytes to signal a discontinuity. Any partial packet straddling a buffer
 /// boundary will be discarded. This is necessary to avoid being called with a corrupt packet. After a discontinuity occurs
 /// seeking may be approximate in some data formats.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamParseFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags/discontinuity?language=objc)
+/// Pass this flag to the [`AudioFileStreamParseBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)) function to signal a discontinuity in the audio data.
+///
+/// ## Discussion
+///
+/// Any partial packet straddling a buffer boundary is discarded to avoid having the parser call your callback with a corrupt packet. After a discontinuity occurs, the [`AudioFileStreamSeek`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)) function might return approximate values for some data formats.
+///
+///
         #[doc(alias = "kAudioFileStreamParseFlag_Discontinuity")]
         const Discontinuity = 1;
     }
@@ -69,15 +77,13 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
 }
 
 /// This flag may be returned from AudioFileStreamSeek if the byte offset is only an estimate, not exact.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamSeekFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags/offsetisestimated?language=objc)
+/// This flag is returned by the [`AudioFileStreamSeek`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)) function if the byte offset is only an estimate.
         #[doc(alias = "kAudioFileStreamSeekFlag_OffsetIsEstimated")]
         const OffsetIsEstimated = 1;
     }
@@ -91,7 +97,13 @@ unsafe impl RefEncode for AudioFileStreamSeekFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyid?language=objc)
+/// Uniquely identifies an audio file stream property.
+///
+/// ## Discussion
+///
+/// See [Audio File Stream Properties](https://developer.apple.com/documentation/audiotoolbox/1391506-audio-file-stream-properties) for possible values.
+///
+///
 pub type AudioFileStreamPropertyID = u32;
 
 #[repr(C)]
@@ -106,10 +118,32 @@ unsafe impl RefEncode for OpaqueAudioFileStreamID {
         Encoding::Pointer(&Encoding::Struct("OpaqueAudioFileStreamID", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamid?language=objc)
+/// Defines an opaque data type that represents an audio file stream parser.
 pub type AudioFileStreamID = *mut OpaqueAudioFileStreamID;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_propertylistenerproc?language=objc)
+/// Invoked by an audio file stream parser when it finds a property value in the audio file stream.
+///
+/// Parameters:
+/// - inClientData: The value you provided in the `inClientData` parameter when you called the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:))function.
+///
+/// - inAudioFileStream: The ID of the audio file stream parser that invoked the callback. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+///
+/// - inPropertyID: The four-character ID of the property that the parser found in the audio file data stream. See [Audio File Stream Properties](https://developer.apple.com/documentation/audiotoolbox/1391506-audio-file-stream-properties) for possible values.
+///
+/// - ioFlags: On input, if the `kAudioFileStreamPropertyFlag_PropertyIsCached` value is set, the parser is caching the property value. If not, on output you can set the `kAudioFileStreamPropertyFlag_CacheProperty` flag to cause the parser to cache the value. See [Audio File Stream Flags](https://developer.apple.com/documentation/audiotoolbox/audio-file-stream-flags).
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFileStream_PropertyListenerProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// When the parser calls your property listener, check the `ioFlags` value to see if the property value is being cached. If not, you can call the [`AudioFileStreamGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)) and [`AudioFileStreamGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)) functions to obtain the value of the property from inside the property listener, or you can set the `kAudioFileStreamPropertyFlag_CacheProperty` flag on return to cause the parser to cache the value.
+///
+/// In some cases when you call the [`AudioFileStreamGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)) function from inside the property listener, because of boundaries in the input data, the parser returns the result code `“kAudioFileStreamError_DataUnavailable”` indicating the value is not yet available. When unavailable data is requested from within the property listener, the parser begins caching the property value and calls the property listener again when the property value is available. If the `kAudioFileStreamPropertyFlag_PropertyIsCached` flag is not set, this is your only opportunity to get the value of the property, as the data is disposed of when the property listener callback returns.
+///
+///
 pub type AudioFileStream_PropertyListenerProc = Option<
     unsafe extern "C-unwind" fn(
         NonNull<c_void>,
@@ -119,7 +153,29 @@ pub type AudioFileStream_PropertyListenerProc = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_packetsproc?language=objc)
+/// Invoked by an audio file stream parser when it finds audio data in the audio file stream.
+///
+/// Parameters:
+/// - inClientData: The value you provided in the `inClientData` parameter when you called the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+///
+/// - inNumberBytes: The number of bytes of data in the `inInputData` buffer.
+///
+/// - inNumberPackets: The number of packets of audio data in the `inInputData` buffer.
+///
+/// - inInputData: The audio data.
+///
+/// - inPacketDescriptions: An array of audio file stream packet description structures describing the data. Audio file stream packet description structures are described in [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+///
+///
+/// ## Discussion
+///
+/// If you named your function `MyAudioFileStream_PacketsProc`, you would declare it like this:
+///
+/// ### Discussion
+///
+/// For constant-bit-rate (CBR) audio data, your callback is typically called with as much data as you passed to the [`AudioFileStreamParseBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)) function. At times, however, only a single packet might be passed because of boundaries in the input data. For variable-bit-rate (VBR) audio data, your callback might be called several times for each time you called the [`AudioFileStreamParseBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)) function.
+///
+///
 #[cfg(feature = "objc2-core-audio-types")]
 pub type AudioFileStream_PacketsProc = Option<
     unsafe extern "C-unwind" fn(
@@ -131,82 +187,138 @@ pub type AudioFileStream_PacketsProc = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedfiletype?language=objc)
+/// The specified file type is not supported.
 pub const kAudioFileStreamError_UnsupportedFileType: OSStatus = 0x7479703f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupporteddataformat?language=objc)
+/// The data format is not supported by the specified file type.
 pub const kAudioFileStreamError_UnsupportedDataFormat: OSStatus = 0x666d743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unsupportedproperty?language=objc)
+/// The property is not supported.
 pub const kAudioFileStreamError_UnsupportedProperty: OSStatus = 0x7074793f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_badpropertysize?language=objc)
+/// The size of the buffer you provided for property data was not correct.
 pub const kAudioFileStreamError_BadPropertySize: OSStatus = 0x2173697a;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_notoptimized?language=objc)
+/// It is not possible to produce output packets because the streamed audio file’s packet table or other defining information is not present or appears after the audio data.
 pub const kAudioFileStreamError_NotOptimized: OSStatus = 0x6f70746d;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidpacketoffset?language=objc)
+/// A packet offset was less than `0`, or past the end of the file, or a corrupt packet size was read when building the packet table.
 pub const kAudioFileStreamError_InvalidPacketOffset: OSStatus = 0x70636b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_invalidfile?language=objc)
+/// The file is malformed, not a valid instance of an audio file of its type, or not recognized as an audio file.
 pub const kAudioFileStreamError_InvalidFile: OSStatus = 0x6474613f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_valueunknown?language=objc)
+/// The property value is not present in this file before the audio data.
 pub const kAudioFileStreamError_ValueUnknown: OSStatus = 0x756e6b3f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_dataunavailable?language=objc)
+/// The amount of data provided to the parser was insufficient to produce any result.
 pub const kAudioFileStreamError_DataUnavailable: OSStatus = 0x6d6f7265;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_illegaloperation?language=objc)
+/// An illegal operation was attempted.
 pub const kAudioFileStreamError_IllegalOperation: OSStatus = 0x6e6f7065;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_unspecifiederror?language=objc)
+/// An unspecified error has occurred.
 pub const kAudioFileStreamError_UnspecifiedError: OSStatus = 0x7768743f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamerror_discontinuitycantrecover?language=objc)
+/// A discontinuity has occurred in the audio data, and Audio File Stream Services cannot recover.
 pub const kAudioFileStreamError_DiscontinuityCantRecover: OSStatus = 0x64736321;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_readytoproducepackets?language=objc)
+///
+/// ## Discussion
+///
+/// A `UInt32` value that is `0` until the parser has parsed up to the beginning of the audio data. Once the parser has reached the audio data, the value of this property is set to `1`, at which point all the audio file stream properties that can be known are known.
+///
+///
 pub const kAudioFileStreamProperty_ReadyToProducePackets: AudioFileStreamPropertyID = 0x72656479;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_fileformat?language=objc)
+/// A four-character code that identifies the audio data format.
+///
+/// ## Discussion
+///
+/// A `UInt32` four-character code that identifies the audio data format. For a list of audio format IDs, see “Audio Data Format IDs” in [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+///
+///
 pub const kAudioFileStreamProperty_FileFormat: AudioFileStreamPropertyID = 0x66666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataformat?language=objc)
+/// An `AudioStreamBasicDescription` structure describing the format of the audio data in the stream.
+///
+/// ## Discussion
+///
+/// An `AudioStreamBasicDescription` structure describing the format of the audio data in the stream. For more information on audio stream basic descriptions, see [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+///
+///
 pub const kAudioFileStreamProperty_DataFormat: AudioFileStreamPropertyID = 0x64666d74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_formatlist?language=objc)
+/// To support formats such as AAC with SBR where an encoded data stream can be decoded to multiple destination formats, this property returns an array of `AudioFormatListItem` structures (declared in `AudioFormat.h`)—one for each of the destination formats. The default behavior is to return an `AudioFormatListItem` structure that has the same `AudioStreamBasicDescription` structure as that returned by the [`kAudioFileStreamProperty_DataFormat`](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataformat) property.
 pub const kAudioFileStreamProperty_FormatList: AudioFileStreamPropertyID = 0x666c7374;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_magiccookiedata?language=objc)
+/// A pointer (`void *`) to a magic cookie. For audio file types that require a magic cookie before packets can be written to a file, you should get this property value before calling the [`AudioFileWriteBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritebytes(_:_:_:_:_:)) or [`AudioFileWritePackets`](https://developer.apple.com/documentation/audiotoolbox/audiofilewritepackets(_:_:_:_:_:_:_:)) functions.
 pub const kAudioFileStreamProperty_MagicCookieData: AudioFileStreamPropertyID = 0x6d676963;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatabytecount?language=objc)
+/// A `UInt64` value indicating the number of bytes of audio data in the streamed file. This property is valid only if the number of bytes for the entire stream is known from the data parsed in the header. For some kinds of streams this property may have no value.
 pub const kAudioFileStreamProperty_AudioDataByteCount: AudioFileStreamPropertyID = 0x62636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_audiodatapacketcount?language=objc)
+/// A `UInt64` value indicating the number of packets of audio data in the streamed file.
 pub const kAudioFileStreamProperty_AudioDataPacketCount: AudioFileStreamPropertyID = 0x70636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_maximumpacketsize?language=objc)
+/// A `UInt32` value indicating the maximum packet size of the data in the streamed file.
 pub const kAudioFileStreamProperty_MaximumPacketSize: AudioFileStreamPropertyID = 0x70737a65;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_dataoffset?language=objc)
+/// An `SInt64` value indicating the byte offset in the streamed file at which the audio data starts.
 pub const kAudioFileStreamProperty_DataOffset: AudioFileStreamPropertyID = 0x646f6666;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_channellayout?language=objc)
+/// An `AudioChannelLayout` structure.
+///
+/// ## Discussion
+///
+/// An `AudioChannelLayout` structure. For details, see [Core Audio Data Types](https://developer.apple.com/documentation/coreaudio/core-audio-data-types).
+///
+///
 pub const kAudioFileStreamProperty_ChannelLayout: AudioFileStreamPropertyID = 0x636d6170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettoframe?language=objc)
+/// Obtains the frame number corresponding to a packet number.
+///
+/// ## Discussion
+///
+/// Obtains the frame number corresponding to a packet number. Pass an `AudioFramePacketTranslation` structure with the `mPacket` field filled in, and a value in the `mFrame` field is returned on output.  (The `mFrameOffsetInPacket` field of the `AudioFramePacketTranslation` structure is ignored.) For more information on the audio frame packet translation structure, see [Audio File Services](https://developer.apple.com/documentation/audiotoolbox/audio-file-services).
+///
+///
 pub const kAudioFileStreamProperty_PacketToFrame: AudioFileStreamPropertyID = 0x706b6672;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_frametopacket?language=objc)
+/// Obtains the packet number corresponding to a frame number.
+///
+/// ## Discussion
+///
+/// Obtains the packet number corresponding to a frame number. Pass an `AudioFramePacketTranslation` structure with the `mFrame` field filled in, and values in the `mPacket` and `mFrameOffsetInPacket` fields are returned on output. For more information on the audio frame packet translation structure, see [Audio File Services](https://developer.apple.com/documentation/audiotoolbox/audio-file-services).
+///
+///
 pub const kAudioFileStreamProperty_FrameToPacket: AudioFileStreamPropertyID = 0x6672706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_restrictsrandomaccess?language=objc)
 pub const kAudioFileStreamProperty_RestrictsRandomAccess: AudioFileStreamPropertyID = 0x72726170;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettorolldistance?language=objc)
 pub const kAudioFileStreamProperty_PacketToRollDistance: AudioFileStreamPropertyID = 0x706b726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_previousindependentpacket?language=objc)
 pub const kAudioFileStreamProperty_PreviousIndependentPacket: AudioFileStreamPropertyID =
     0x70696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_nextindependentpacket?language=objc)
 pub const kAudioFileStreamProperty_NextIndependentPacket: AudioFileStreamPropertyID = 0x6e696e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettodependencyinfo?language=objc)
 pub const kAudioFileStreamProperty_PacketToDependencyInfo: AudioFileStreamPropertyID = 0x706b6470;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettobyte?language=objc)
+/// Obtains the byte number corresponding to a packet number. Pass an `AudioBytePacketTranslation` structure with the `mPacket` field filled in, and a value is returned in the `mByte` field. The `mByteOffsetInPacket` field of the `AudioBytePacketTranslation` structure is ignored. If the `mByte` value is an estimate, then the `kBytePacketTranslationFlag_IsEstimate` value will be set in the `mFlags` field.
 pub const kAudioFileStreamProperty_PacketToByte: AudioFileStreamPropertyID = 0x706b6279;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bytetopacket?language=objc)
+/// Obtains the packet number corresponding to a byte number. Pass an `AudioBytePacketTranslation` structure with the `mByte` field filled in, and values are returned in the `mPacket` and `mByteOffsetInPacket` fields. If the `mPacket` value is an estimate, then the `kBytePacketTranslationFlag_IsEstimate` value will be set in the `mFlags` field.
 pub const kAudioFileStreamProperty_ByteToPacket: AudioFileStreamPropertyID = 0x6279706b;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packettableinfo?language=objc)
+/// An `AudioFilePacketTableInfo` structure.
+///
+/// ## Discussion
+///
+/// An `AudioFilePacketTableInfo` structure. For more information on the audio file packet table info structure, see [Audio File Services](https://developer.apple.com/documentation/audiotoolbox/audio-file-services).
+///
+///
 pub const kAudioFileStreamProperty_PacketTableInfo: AudioFileStreamPropertyID = 0x706e666f;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_packetsizeupperbound?language=objc)
+/// A `UInt32` value indicating the theoretical maximum packet size in the streamed file. This value is useful for determining minimum buffer sizes, for example.
 pub const kAudioFileStreamProperty_PacketSizeUpperBound: AudioFileStreamPropertyID = 0x706b7562;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_averagebytesperpacket?language=objc)
+/// A `Float64` value indicating the average bytes per packet. For CBR and files with packet tables, this number will be exact. Otherwise, it is a running average of packets parsed.
 pub const kAudioFileStreamProperty_AverageBytesPerPacket: AudioFileStreamPropertyID = 0x61627070;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_bitrate?language=objc)
+/// A `UInt32` value indicating the bit rate of a stream in bits per second.
 pub const kAudioFileStreamProperty_BitRate: AudioFileStreamPropertyID = 0x62726174;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiofilestreamproperty_infodictionary?language=objc)
 pub const kAudioFileStreamProperty_InfoDictionary: AudioFileStreamPropertyID = 0x696e666f;
 
 extern "C-unwind" {
+    /// Creates and opens a new audio file stream parser.
+    ///
+    /// Parameters:
+    /// - inClientData: A pointer to a value or structure to be passed to your callback functions.
+    ///
+    /// - inPropertyListenerProc: Your property-listener callback. Whenever the parser finds the value of a property in the data stream, it calls your property listener with the property ID. You can then call the [`AudioFileStreamGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)) and [`AudioFileStreamGetProperty`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)) functions to get the value of the property.
+    ///
+    /// - inPacketsProc: Your audio-data callback. Whenever the parser finds audio data packets in the data stream, it passes the data to your audio-data callback.
+    ///
+    /// - inFileTypeHint: An audio file type hint. If the audio file stream that you intend to pass to the parser is of a type that the parser cannot easily or uniquely determine from the data (such as ADTS or AC3), you can use this parameter to indicate the type. Possible values are listed in the [`AudioFileTypeID`](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeid) enumeration in [Audio File Services](https://developer.apple.com/documentation/audiotoolbox/audio-file-services).
+    ///
+    /// If you do not know the audio file type, pass `0`.
+    ///
+    /// - outAudioFileStream: On output, an opaque object representing the audio file stream parser. This object is referred to in this document as the audio file stream parser ID. You need to pass this ID in to other functions in the Audio File Stream API.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Create a new audio file stream parser.
     /// The client provides the parser with data and the parser calls
     /// callbacks when interesting things are found in the data, such as properties and
@@ -240,8 +352,6 @@ extern "C-unwind" {
     /// - `in_property_listener_proc` must be implemented correctly.
     /// - `in_packets_proc` must be implemented correctly.
     /// - `out_audio_file_stream` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AudioFile", feature = "objc2-core-audio-types"))]
     pub fn AudioFileStreamOpen(
         in_client_data: *mut c_void,
@@ -253,6 +363,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Passes audio file stream data to the parser.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser to which you wish to pass data. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    /// - inDataByteSize: The number of bytes of data to be parsed.
+    ///
+    /// - inData: The data to be parsed.
+    ///
+    /// - inFlags: An audio file stream flag. If there is a discontinuity from the last data you passed to the parser, set the  [`kAudioFileStreamParseFlag_Discontinuity`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags/discontinuity) flag.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Streamed audio file data is expected to be passed to the parser in the same sequence in which it appears in the audio file, from the beginning of the audio file stream, without gaps. However, if you called the [`AudioFileStreamSeek`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)) function, the parser assumes that the data passed to the [`AudioFileStreamParseBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)) function starts from the byte offset returned by the [`AudioFileStreamSeek`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)) function.
+    ///
+    /// When you provide data to the parser, the parser looks for property data and audio data packets and, when it has data ready, calls your [`AudioFileStream_PropertyListenerProc`](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_propertylistenerproc) and [`AudioFileStream_PacketsProc`](https://developer.apple.com/documentation/audiotoolbox/audiofilestream_packetsproc) callback functions to process the data. You should provide at least more than a single packet’s worth of audio file data, but it is better to provide a few packets to a few seconds data at a time.
+    ///
+    ///
     /// This call is the means for streams to supply data to the parser.
     /// Data is expected to be passed in sequentially from the beginning of the file, without gaps.
     /// In the course of parsing, the client's property and/or packets callbacks may be called.
@@ -272,8 +407,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `in_data` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamParseBytes(
         in_audio_file_stream: AudioFileStreamID,
         in_data_byte_size: u32,
@@ -283,6 +416,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Provides a byte offset for a specified packet in the data stream.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser to which you wish to provide a byte offset. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    /// - inPacketOffset: The number of packets from the beginning of the file of the packet whose byte offset you wish to have returned.
+    ///
+    /// - outDataByteOffset: On output, the absolute byte offset of the packet whose offset you specify in the `inPacketOffset` parameter. For audio file formats that do not contain packet tables, the returned offset may be an estimate.
+    ///
+    /// - ioFlags: On output, if the `outDataByteOffset` parameter returns an estimate, this parameter returns the constant `kAudioFileStreamSeekFlag_OffsetIsEstimated`. Currently, no input flags are defined for this call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// After you call this function, the parser assumes the next data passed to the [`AudioFileStreamParseBytes`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparsebytes(_:_:_:_:)) function starts from the byte offset returned in the `outDataByteOffset` parameter.
+    ///
+    ///
     /// This call is used to seek in the data stream. The client passes in a packet
     /// offset to seek to and the parser passes back a byte offset from which to
     /// get the data to satisfy that request. The data passed to the next call to
@@ -306,8 +462,6 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `out_data_byte_offset` must be a valid pointer.
     /// - `io_flags` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseek(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamSeek(
         in_audio_file_stream: AudioFileStreamID,
         in_packet_offset: i64,
@@ -317,6 +471,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves information about a property value.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser from which you wish to obtain information. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    /// - inPropertyID: A four-character ID indicating the audio file stream property about which you want information. See [Audio File Stream Properties](https://developer.apple.com/documentation/audiotoolbox/1391506-audio-file-stream-properties) for possible values.
+    ///
+    /// - outPropertyDataSize: On output, the size, in bytes, of the current value of the specified property.
+    ///
+    /// - outWritable: On output, `true` if the property can be written. Currently, there are no writable audio file stream properties.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Retrieve the info about the given property. The outSize argument
     /// will return the size in bytes of the current value of the property.
     ///
@@ -337,8 +508,6 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `out_property_data_size` must be a valid pointer or null.
     /// - `out_writable` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamGetPropertyInfo(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -348,6 +517,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves the value of the specified property.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser from which you wish to obtain data. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    /// - inPropertyID: A four-character ID indicating the audio file stream property whose value you want to read. See [Audio File Stream Properties](https://developer.apple.com/documentation/audiotoolbox/1391506-audio-file-stream-properties) for possible values.
+    ///
+    /// - ioPropertyDataSize: On input, the size of the buffer in the `outPropertyData` parameter. Call the [`AudioFileStreamGetPropertyInfo`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetpropertyinfo(_:_:_:_:)) function to obtain the size of the property value. On output, the number of bytes of the property value returned.
+    ///
+    /// - outPropertyData: On output, the value of the specified property.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Some Core Audio property values are C types and others are Core Foundation objects.
+    ///
+    /// If you call this function to retrieve a value that is a Core Foundation object, then this function—despite the use of “Get” in its name—duplicates the object. You are responsible for releasing the object, as described in [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029) in [Memory Management Programming Guide for Core Foundation](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/CFMemoryMgmt.html#//apple_ref/doc/uid/10000127i).
+    ///
+    ///
     /// Retrieve the indicated property data.
     ///
     ///
@@ -368,8 +562,6 @@ extern "C-unwind" {
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `io_property_data_size` must be a valid pointer.
     /// - `out_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamgetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamGetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -379,6 +571,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets the value of the specified property.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser to which you wish to pass data. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    /// - inPropertyID: The ID of the audio file stream property whose value is to be set.
+    ///
+    /// - inPropertyDataSize: The size, in bytes, of the property data.
+    ///
+    /// - inPropertyData: The property data.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Currently, there are no settable properties.
+    ///
+    ///
     /// Set the value of the property. There are currently no settable properties.
     ///
     ///
@@ -397,8 +612,6 @@ extern "C-unwind" {
     ///
     /// - `in_audio_file_stream` must be a valid pointer.
     /// - `in_property_data` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamsetproperty(_:_:_:_:)?language=objc)
     pub fn AudioFileStreamSetProperty(
         in_audio_file_stream: AudioFileStreamID,
         in_property_id: AudioFileStreamPropertyID,
@@ -408,6 +621,17 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Closes and deallocates the specified audio file stream parser.
+    ///
+    /// Parameters:
+    /// - inAudioFileStream: The ID of the parser you wish to close. The parser ID is returned by the [`AudioFileStreamOpen`](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamopen(_:_:_:_:_:)) function.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See Result Codes.
+    ///
+    ///
     /// Close and deallocate the file stream object.
     ///
     ///
@@ -416,7 +640,5 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_audio_file_stream` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamclose(_:)?language=objc)
     pub fn AudioFileStreamClose(in_audio_file_stream: AudioFileStreamID) -> OSStatus;
 }

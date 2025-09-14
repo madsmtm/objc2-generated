@@ -7,34 +7,69 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode?language=objc)
+/// Constants that indicate the response state.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSendMessageIntentResponseCode(pub NSInteger);
 impl INSendMessageIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/unspecified?language=objc)
+    /// The response code isn’t specified.
     #[doc(alias = "INSendMessageIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/inprogress?language=objc)
+    /// You are in the process of sending the message but have not yet done so.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if you are unable to send the message within a few seconds.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code if your app successfully sent the message.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failure?language=objc)
+    /// You are unable to send the message.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that would prevent you from sending the message.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app before they can send the message.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up an account with your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failuremessageservicenotavailable?language=objc)
+    /// You were unable to send the message because your message service is currently unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// You might use this code if sending the message requires communicating with a remote server and the network is unavailable.
+    ///
+    ///
     #[doc(alias = "INSendMessageIntentResponseCodeFailureMessageServiceNotAvailable")]
     pub const FailureMessageServiceNotAvailable: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponsecode/failurerequiringinappauthentication?language=objc)
     #[doc(alias = "INSendMessageIntentResponseCodeFailureRequiringInAppAuthentication")]
     pub const FailureRequiringInAppAuthentication: Self = Self(7);
 }
@@ -48,7 +83,15 @@ unsafe impl RefEncode for INSendMessageIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insendmessageintentresponse?language=objc)
+    /// Your app’s response to a send message intent.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSendMessageIntentResponse`](https://developer.apple.com/documentation/intents/insendmessageintentresponse) object to specify the results of sending a message to another user. You create instances of this class when confirming or handling a send message intent. Use this object to communicate whether the message was successfully sent or whether an error occurred.
+    ///
+    /// You create an [`INSendMessageIntentResponse`](https://developer.apple.com/documentation/intents/insendmessageintentresponse) object in the [`confirmSendMessage:completion:`](https://developer.apple.com/documentation/intents/insendmessageintenthandling/confirm(intent:completion:)) and [`handleSendMessage:completion:`](https://developer.apple.com/documentation/intents/insendmessageintenthandling/handle(intent:completion:)) methods of your send message handler object. For more information about implementing your handler object, see [`INSendMessageIntentHandling`](https://developer.apple.com/documentation/intents/insendmessageintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

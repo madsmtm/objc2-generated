@@ -9,49 +9,55 @@ use objc2_audio_toolbox::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset?language=objc)
+/// Constants that represent preset reverbs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioUnitReverbPreset(pub NSInteger);
 impl AVAudioUnitReverbPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/smallroom?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a small-sized room environment.
     #[doc(alias = "AVAudioUnitReverbPresetSmallRoom")]
     pub const SmallRoom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumroom?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a medium-sized room environment.
     #[doc(alias = "AVAudioUnitReverbPresetMediumRoom")]
     pub const MediumRoom: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largeroom?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a large-sized room environment.
     #[doc(alias = "AVAudioUnitReverbPresetLargeRoom")]
     pub const LargeRoom: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a medium-sized hall environment.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default value for [`AVAudioUnitReverb`](https://developer.apple.com/documentation/avfaudio/avaudiounitreverb).
+    ///
+    ///
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall")]
     pub const MediumHall: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largehall?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a large-sized hall environment.
     #[doc(alias = "AVAudioUnitReverbPresetLargeHall")]
     pub const LargeHall: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/plate?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a plate environment.
     #[doc(alias = "AVAudioUnitReverbPresetPlate")]
     pub const Plate: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumchamber?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a medium-sized chamber environment.
     #[doc(alias = "AVAudioUnitReverbPresetMediumChamber")]
     pub const MediumChamber: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largechamber?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a large-sized chamber environment.
     #[doc(alias = "AVAudioUnitReverbPresetLargeChamber")]
     pub const LargeChamber: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/cathedral?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of a cathedral environment.
     #[doc(alias = "AVAudioUnitReverbPresetCathedral")]
     pub const Cathedral: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largeroom2?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of an alternative large-sized room environment.
     #[doc(alias = "AVAudioUnitReverbPresetLargeRoom2")]
     pub const LargeRoom2: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall2?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of an alternative medium-sized hall environment.
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall2")]
     pub const MediumHall2: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/mediumhall3?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of an alternative medium-sized hall environment.
     #[doc(alias = "AVAudioUnitReverbPresetMediumHall3")]
     pub const MediumHall3: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverbpreset/largehall2?language=objc)
+    /// A preset that represents a reverb with the acoustic characteristics of an alternative large-sized hall environment.
     #[doc(alias = "AVAudioUnitReverbPresetLargeHall2")]
     pub const LargeHall2: Self = Self(12);
 }
@@ -65,13 +71,18 @@ unsafe impl RefEncode for AVAudioUnitReverbPreset {
 }
 
 extern_class!(
+    /// An object that implements a reverb effect.
+    ///
+    /// ## Overview
+    ///
+    /// A reverb simulates the acoustic characteristics of a particular environment. Use the different presets to simulate a particular space and blend it in with the original signal using the [`wetDryMix`](https://developer.apple.com/documentation/avfaudio/avaudiounitreverb/wetdrymix) property.
+    ///
+    ///
     /// an AVAudioUnitEffect that implements a reverb
     ///
     /// A reverb simulates the acoustic characteristics of a particular environment.
     /// Use the different presets to simulate a particular space and blend it in with
     /// the original signal using the wetDryMix parameter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitreverb?language=objc)
     #[unsafe(super(AVAudioUnitEffect, AVAudioUnit, AVAudioNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

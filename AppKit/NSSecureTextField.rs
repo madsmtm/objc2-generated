@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssecuretextfield?language=objc)
+    /// A text field that hides the typed text.
+    ///
+    /// ## Overview
+    ///
+    /// A secure text field is suitable for use as a password-entry object or for any item in which the text value must be kept secret. [`NSSecureTextField`](https://developer.apple.com/documentation/appkit/nssecuretextfield) uses [`NSSecureTextFieldCell`](https://developer.apple.com/documentation/appkit/nssecuretextfieldcell) to implement its user interface.
+    ///
+    ///
     #[unsafe(super(NSTextField, NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -216,7 +222,13 @@ impl NSSecureTextField {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssecuretextfieldcell?language=objc)
+    /// A text field whose value is hidden from the user.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSSecureTextFieldCell`](https://developer.apple.com/documentation/appkit/nssecuretextfieldcell) works with [`NSSecureTextField`](https://developer.apple.com/documentation/appkit/nssecuretextfield) and overrides the general cell use of the field editor to provide its own field editor, which doesn’t display text or allow the user to cut or copy its value.
+    ///
+    ///
     #[unsafe(super(NSTextFieldCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

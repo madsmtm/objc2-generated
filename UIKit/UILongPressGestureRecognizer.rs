@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilongpressgesturerecognizer?language=objc)
+    /// A continuous gesture recognizer that interprets long-press gestures.
+    ///
+    /// ## Overview
+    ///
+    /// [`UILongPressGestureRecognizer`](https://developer.apple.com/documentation/uikit/uilongpressgesturerecognizer) is a concrete subclass of [`UIGestureRecognizer`](https://developer.apple.com/documentation/uikit/uigesturerecognizer).
+    ///
+    /// The user must press one or more fingers on a view and hold them there for a minimum period of time before the action triggers. While down, the userʼs fingers canʼt move more than a specified distance or the gesture fails.
+    ///
+    /// A long-press gesture is continuous. The gesture begins ([`UIGestureRecognizerStateBegan`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/began)) when the user presses the number of allowable fingers ([`numberOfTouchesRequired`](https://developer.apple.com/documentation/uikit/uilongpressgesturerecognizer/numberoftouchesrequired)) for the specified period ([`minimumPressDuration`](https://developer.apple.com/documentation/uikit/uilongpressgesturerecognizer/minimumpressduration)) and the touches don’t move beyond the allowable range of movement ([`allowableMovement`](https://developer.apple.com/documentation/uikit/uilongpressgesturerecognizer/allowablemovement)). The gesture recognizer transitions to the Change state whenever a finger moves, and it ends ([`UIGestureRecognizerStateEnded`](https://developer.apple.com/documentation/uikit/uigesturerecognizer/state-swift.enum/ended)) when the user lifts any of the fingers.
+    ///
+    ///
     #[unsafe(super(UIGestureRecognizer, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

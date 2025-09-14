@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery?language=objc)
+    /// A query for reading activity summary objects from the HealthKit store.
+    ///
+    /// ## Overview
+    ///
+    /// Activity summary query objects are mostly immutable. You can assign the query’s [`updateHandler`](https://developer.apple.com/documentation/healthkit/hkactivitysummaryquery/updatehandler) property after instantiating the object, but before executing the query. All other properties must be set when you instantiate the object, and they can’t change.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

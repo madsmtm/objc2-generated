@@ -9,11 +9,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationname?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CFNotificationName = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenter?language=objc)
+///
+/// ## Overview
+///
+/// A CFNotificationCenter object provides the means by which you can send a message, or notification, to any number of recipients, or observers, without having to know anything about the recipients. A notification message consists of a notification name (a CFString), a pointer value that identifies the object posting the notification, and an optional dictionary that contains additional information about the particular notification.
+///
+/// To register as an observer of a notification, you call [`CFNotificationCenterAddObserver`](https://developer.apple.com/documentation/corefoundation/cfnotificationcenteraddobserver(_:_:_:_:_:_:)), providing an identifier for your observer, the callback function that should be called when the notification is posted, and the name of the notification and the object in which you are interested. The observer identifier is passed back to the callback function, along with the notification information. You can use the identifier to distinguish multiple observers using the same callback function. The identifier is also used to unregister the observer with [`CFNotificationCenterRemoveObserver`](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveobserver(_:_:_:_:)) and [`CFNotificationCenterRemoveEveryObserver`](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveeveryobserver(_:_:)).
+///
+/// To send a notification, you call [`CFNotificationCenterPostNotification`](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterpostnotification(_:_:_:_:_:)), passing in the notification information. The notification center then looks up all the observers that registered for this notification and sends the notification information to their callback functions.
+///
+/// There are three types of CFNotificationCenter—a distributed notification center, a local notification center, and a Darwin notification center—an application may have at most one of each type. The distributed notification is obtained with [`CFNotificationCenterGetDistributedCenter`](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdistributedcenter()). A distributed notification center delivers notifications between applications. In this case, the notification object must always be a CFString object and the notification dictionary must contain only property list values. The local and Darwin notification centers are available in macOS 10.4 and later, and obtained using [`CFNotificationCenterGetLocalCenter`](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetlocalcenter()) and [`CFNotificationCenterGetDarwinNotifyCenter`](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdarwinnotifycenter()) respectively.
+///
+/// Unlike some other Core Foundation opaque types with names similar to a Cocoa Foundation class (such as CFString and `NSString`), CFNotificationCenter objects cannot be cast (“toll-free bridged”) to [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) objects or vice-versa.
+///
+///
 #[doc(alias = "CFNotificationCenterRef")]
 #[repr(C)]
 pub struct CFNotificationCenter {
@@ -29,7 +41,21 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFNotificationCenter"> for CFNotificationCenter {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcallback?language=objc)
+/// Callback function invoked for each observer of a notification when the notification is posted.
+///
+/// Parameters:
+/// - center: The notification center handling the notification.
+///
+/// - observer: An arbitrary value, other than `NULL`, that identifies the observer.
+///
+/// - name: The name of the notification being posted.
+///
+/// - object: An arbitrary value that identifies the object posting the notification. For distributed notifications, `object` is always a CFString object. This value could be `NULL`.
+///
+/// - userInfo: A dictionary containing additional information regarding the notification. This value could be `NULL`.
+///
+/// If the notification center is a Darwin notification center, this value must be ignored.
+///
 #[cfg(feature = "CFDictionary")]
 pub type CFNotificationCallback = Option<
     unsafe extern "C-unwind" fn(
@@ -41,22 +67,28 @@ pub type CFNotificationCallback = Option<
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior?language=objc)
+/// Suspension flags that indicate how distributed notifications should be handled when the receiving application is in the background.
+///
+/// ## Overview
+///
+/// An application selects the suspension behavior for a given notification when it registers an observer for that notification with [`CFNotificationCenterAddObserver`](https://developer.apple.com/documentation/corefoundation/cfnotificationcenteraddobserver(_:_:_:_:_:_:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFNotificationSuspensionBehavior(pub CFIndex);
 impl CFNotificationSuspensionBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/drop?language=objc)
+    /// The server will not queue any notifications of the specified name and object while the receiving application is in the background.
     #[doc(alias = "CFNotificationSuspensionBehaviorDrop")]
     pub const Drop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/coalesce?language=objc)
+    /// The server will only queue the last notification of the specified name and object; earlier notifications are dropped.
     #[doc(alias = "CFNotificationSuspensionBehaviorCoalesce")]
     pub const Coalesce: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/hold?language=objc)
+    /// The server will hold all matching notifications until the queue has been filled (queue size determined by the server) at which point the server may flush queued notifications.
     #[doc(alias = "CFNotificationSuspensionBehaviorHold")]
     pub const Hold: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior/deliverimmediately?language=objc)
+    /// The server will deliver notifications of the specified name and object whether or not the application is in the background. When a notification with this suspension behavior is matched, it has the effect of first flushing any queued notifications.
     #[doc(alias = "CFNotificationSuspensionBehaviorDeliverImmediately")]
     pub const DeliverImmediately: Self = Self(4);
 }
@@ -72,7 +104,13 @@ unsafe impl RefEncode for CFNotificationSuspensionBehavior {
 }
 
 unsafe impl ConcreteType for CFNotificationCenter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergettypeid()?language=objc)
+    /// Returns the type identifier for the CFNotificationCenter opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFNotificationCenter opaque type.
+    ///
+    ///
     #[doc(alias = "CFNotificationCenterGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -84,7 +122,13 @@ unsafe impl ConcreteType for CFNotificationCenter {
 }
 
 impl CFNotificationCenter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetlocalcenter()?language=objc)
+    /// Returns the application’s local notification center.
+    ///
+    /// ## Return Value
+    ///
+    /// The application’s local notification center. An application has only one local notification center, so this function returns the same value each time it is called.
+    ///
+    ///
     #[doc(alias = "CFNotificationCenterGetLocalCenter")]
     #[inline]
     pub fn local_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -95,7 +139,19 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdistributedcenter()?language=objc)
+    /// Returns the application’s distributed notification center.
+    ///
+    /// ## Return Value
+    ///
+    /// The application’s distributed notification center. An application has only one distributed notification center, so this function returns the same value each time it is called.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A distributed notification center delivers notifications between applications. A notification object used with a distributed notification center must always be a CFString object and the notification dictionary must contain only property list values.
+    ///
+    ///
     #[doc(alias = "CFNotificationCenterGetDistributedCenter")]
     #[inline]
     pub fn distributed_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -106,7 +162,29 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcentergetdarwinnotifycenter()?language=objc)
+    /// Returns the application’s Darwin notification center.
+    ///
+    /// ## Return Value
+    ///
+    /// The application’s Darwin notification center.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This notification center is used to cover the `<notify.h>` Core OS notification mechanism (see `/usr/include/notify.h`). An application has only one Darwin notification center, so this function returns the same value each time it is called.
+    ///
+    /// The Darwin Notify Center has no notion of per-user sessions, all notifications are system-wide. As with distributed notifications, the main thread’s run loop must be running in one of the common modes (usually `kCFRunLoopDefaultMode`) for Darwin-style notifications to be delivered.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Several function parameters are ignored by Darwin notification centers. To ensure future compatibility, you should pass `NULL` or `0` for all ignored arguments.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "CFNotificationCenterGetDarwinNotifyCenter")]
     #[inline]
     pub fn darwin_notify_center() -> Option<CFRetained<CFNotificationCenter>> {
@@ -117,7 +195,35 @@ impl CFNotificationCenter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenteraddobserver(_:_:_:_:_:_:)?language=objc)
+    /// Registers an observer to receive notifications.
+    ///
+    /// Parameters:
+    /// - center: The notification center to which to add the observer.
+    ///
+    /// - observer: The observer. In macOS 10.3 and later, this parameter may be `NULL`.
+    ///
+    /// - callBack: The callback function to call when `object` posts the notification named `name`.
+    ///
+    /// - name: The name of the notification to observe. If `NULL`, `callback` is called for any notification posted by `object`.
+    ///
+    /// If `center` is a Darwin notification center, this value must _not_ be `NULL`.
+    ///
+    /// - object: The object to observe. For distributed notifications, `object` must be a CFString object. If `NULL`, `callback` is called when a notification named `name` is posted by any object.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    /// - suspensionBehavior: Flag indicating how notifications should be handled when the application is in the background. See [`CFNotificationSuspensionBehavior`](https://developer.apple.com/documentation/corefoundation/cfnotificationsuspensionbehavior) for the list of available values.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Notification delivery is registered for the main thread.
+    ///
+    /// If you need to control which thread processes a notification, your callback function must be able to forward the notification to the proper thread. You can use a `CFMessagePort` object or a custom `CFRunLoopSource` object to send notifications to the correct thread’s run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -158,7 +264,25 @@ impl CFNotificationCenter {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveobserver(_:_:_:_:)?language=objc)
+    /// Stops an observer from receiving certain notifications.
+    ///
+    /// Parameters:
+    /// - center: The notification center to modify.
+    ///
+    /// - observer: The observer. This value must not be `NULL`.
+    ///
+    /// - name: The name of the notification to stop observing. If `NULL`, `observer` stops receiving callbacks for all notifications posted by `object`.
+    ///
+    /// - object: The object to stop observing. For distributed notifications, `object` must be a CFString object. If `NULL`, `observer` stops receiving callbacks for all objects posting notifications named `name`.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If both `name` and `object` are `NULL`, this function unregisters `observer` from all the notifications for which it had previously registered with `center`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -184,7 +308,19 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveObserver(self, observer, name, object) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterremoveeveryobserver(_:_:)?language=objc)
+    /// Stops an observer from receiving any notifications from any object.
+    ///
+    /// Parameters:
+    /// - center: The notification center from which to remove observers.
+    ///
+    /// - observer: The observer. This value must not be `NULL`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you no longer want an observer to receive any notifications, perhaps because the observer is being deallocated, you can call this function to unregister the observer from all the notifications for which it had previously registered.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -201,7 +337,29 @@ impl CFNotificationCenter {
         unsafe { CFNotificationCenterRemoveEveryObserver(self, observer) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterpostnotification(_:_:_:_:_:)?language=objc)
+    /// Posts a notification for an object.
+    ///
+    /// Parameters:
+    /// - center: The notification center to post the notification.
+    ///
+    /// - name: The name of the notification to post. This value must not be `NULL`.
+    ///
+    /// - object: The object posting the notification. If `NULL`, the notification is sent only to observers that are observing all objects. In other words, only observers that registered for the notification with a `NULL` value for `object` will receive the notification.
+    ///
+    /// If you want to allow your clients to register for notifications using Cocoa APIs (see [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter)), then `object` must be a Core Foundation or Cocoa object.
+    ///
+    /// For distributed notifications, `object` must be a CFString object.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    /// - userInfo: A dictionary passed to observers. You populate this dictionary with additional information describing the notification. For distributed notifications, the dictionary must contain only property list objects. This value may be `NULL`.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    /// - deliverImmediately: If `true`, the notification is delivered to all observers immediately, even if some observers are in suspended (background) applications and they requested different suspension behavior when registering for the notification. If `false`, each observer’s requested suspension behavior is respected.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
     ///
     /// # Safety
     ///
@@ -241,13 +399,33 @@ impl CFNotificationCenter {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationdeliverimmediately?language=objc)
+/// Delivers the notification immediately.
 pub const kCFNotificationDeliverImmediately: CFOptionFlags = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfnotificationposttoallsessions?language=objc)
+/// Delivers the notification to all sessions.
 pub const kCFNotificationPostToAllSessions: CFOptionFlags = 1 << 1;
 
 impl CFNotificationCenter {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnotificationcenterpostnotificationwithoptions(_:_:_:_:_:)?language=objc)
+    /// Posts a notification for an object using specified options.
+    ///
+    /// Parameters:
+    /// - center: The notification center to post the notification.
+    ///
+    /// - name: The name of the notification to post. This value must not be `NULL`.
+    ///
+    /// - object: The object posting the notification. If `NULL`, the notification is sent only to observers that are observing all objects. In other words, only observers that registered for the notification with a `NULL` value for `object` will receive the notification.
+    ///
+    /// If you want to allow your clients to register for notifications using Cocoa APIs (see [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter)), then `object` must be a Core Foundation or Cocoa object.
+    ///
+    /// For distributed notifications, `object` must be a CFString object.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
+    /// - userInfo: A dictionary to pass to observers. You populate this dictionary with additional information describing the notification. For distributed notifications, the dictionary must contain only property list objects. Can be `NULL`. If `center` is a Darwin notification center, this value is ignored.
+    ///
+    /// - options: Specifies if the notification should be posted immediately, or to all sessions. See [Notification Posting Options](https://developer.apple.com/documentation/corefoundation/1569610-notification-posting-options) for possible values.
+    ///
+    /// If `center` is a Darwin notification center, this value is ignored.
+    ///
     ///
     /// # Safety
     ///

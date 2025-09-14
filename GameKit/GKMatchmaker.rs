@@ -7,49 +7,48 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A player’s response to an invitation to join a match.
 /// Possible invitee responses
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKInviteRecipientResponse(pub NSInteger);
 impl GKInviteRecipientResponse {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/accepted?language=objc)
+    /// A response when the player accepts the invitation.
     #[doc(alias = "GKInviteRecipientResponseAccepted")]
     pub const Accepted: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/declined?language=objc)
+    /// A response when the player rejects the invitation.
     #[doc(alias = "GKInviteRecipientResponseDeclined")]
     pub const Declined: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/failed?language=objc)
+    /// A response when the system fails to deliver the invitation to the player.
     #[doc(alias = "GKInviteRecipientResponseFailed")]
     pub const Failed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/incompatible?language=objc)
+    /// A response when the player isn’t running a compatible version of the game.
     #[doc(alias = "GKInviteRecipientResponseIncompatible")]
     pub const Incompatible: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/unabletoconnect?language=objc)
+    /// A response when the system can’t contact the player.
     #[doc(alias = "GKInviteRecipientResponseUnableToConnect")]
     pub const UnableToConnect: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/noanswer?language=objc)
+    /// A response when the invitation times out because the player doesn’t answer it.
     #[doc(alias = "GKInviteRecipientResponseNoAnswer")]
     pub const NoAnswer: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseaccepted?language=objc)
+    /// The player accepted the invitation.
     #[deprecated]
     pub const GKInviteeResponseAccepted: Self = Self(GKInviteRecipientResponse::Accepted.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsedeclined?language=objc)
+    /// The player rejected the invitation.
     #[deprecated]
     pub const GKInviteeResponseDeclined: Self = Self(GKInviteRecipientResponse::Declined.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsefailed?language=objc)
+    /// The invitation was unable to be delivered.
     #[deprecated]
     pub const GKInviteeResponseFailed: Self = Self(GKInviteRecipientResponse::Failed.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseincompatible?language=objc)
+    /// The invitee isn’t running a compatible version of your game.
     #[deprecated]
     pub const GKInviteeResponseIncompatible: Self = Self(GKInviteRecipientResponse::Incompatible.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponseunabletoconnect?language=objc)
+    /// The invitee couldn’t be contacted.
     #[deprecated]
     pub const GKInviteeResponseUnableToConnect: Self =
         Self(GKInviteRecipientResponse::UnableToConnect.0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse/inviteeresponsenoanswer?language=objc)
+    /// The invitation timed out without an answer.
     #[deprecated]
     pub const GKInviteeResponseNoAnswer: Self = Self(GKInviteRecipientResponse::NoAnswer.0);
 }
@@ -62,23 +61,35 @@ unsafe impl RefEncode for GKInviteRecipientResponse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviteeresponse?language=objc)
+/// Possible responses from an invitation to a remote player.
 #[deprecated]
 pub type GKInviteeResponse = GKInviteRecipientResponse;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype?language=objc)
+/// The kind of match managed by Game Center.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchType(pub NSUInteger);
 impl GKMatchType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/peertopeer?language=objc)
+    /// A peer-to-peer match hosted by Game Center.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`GKMatch`](https://developer.apple.com/documentation/gamekit/gkmatch) object represents a peer-to-peer match.
+    ///
+    ///
     #[doc(alias = "GKMatchTypePeerToPeer")]
     pub const PeerToPeer: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/hosted?language=objc)
+    /// A match hosted on your private server.
     #[doc(alias = "GKMatchTypeHosted")]
     pub const Hosted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype/turnbased?language=objc)
+    /// A turn-based match hosted by Game Center.
+    ///
+    /// ## Discussion
+    ///
+    /// A [`GKTurnBasedMatch`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch) object represents a turn-based match.
+    ///
+    ///
     #[doc(alias = "GKMatchTypeTurnBased")]
     pub const TurnBased: Self = Self(2);
 }
@@ -92,9 +103,38 @@ unsafe impl RefEncode for GKMatchType {
 }
 
 extern_class!(
-    /// GKMatchRequest represents the parameters needed to create the match.
+    /// An object that encapsulates the parameters to create a real-time or turn-based match.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchrequest?language=objc)
+    /// ## Overview
+    ///
+    /// To request a match, set the properties of the match request, such as the number of players, the invitation message, and whether to use automatch to fill the player slots. You’re required to set the minimum and maximum number of players allowed in the match. Then, pass the match request to the appropriate class, depending on the type of game and whether you implement your own user interface.
+    ///
+    /// To use the matchmaking user interface that GameKit provides, pass the match request to the [`GKMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller) class for real-time games, or the [`GKTurnBasedMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller) class for turn-based games. GameKit sends messages to the delegates of these classes when players receive and accept invitations to the match.
+    ///
+    /// If you implement your own interface for finding players, pass the match request to the [`GKMatchmaker`](https://developer.apple.com/documentation/gamekit/gkmatchmaker) class for real-time games, or the [`GKTurnBasedMatch`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch) class for turn-based games. If the player selects the other players to invite in your interface, set the [`recipients`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipients), the [`inviteMessage`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/invitemessage), and the [`recipientResponseHandler`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipientresponsehandler) properties before creating the match.
+    ///
+    /// ### Matchmaking using rules
+    ///
+    /// You can refine the match results and reduce player wait times by configuring matchmaking before you present an interface. You can either find players using matchmaking rules you set up on the server, or find players from a subset of players you specify in the game.
+    ///
+    /// To use matchmaking rules, set the [`queueName`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename) property to the queue name that you configure in App Store Connect. Optionally, set [`properties`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties) and [`recipientProperties`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipientproperties) to game-specific criteria. Players in the [`recipientProperties`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipientproperties) property need to also be in the [`recipients`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipients) property — that is, be a recipient of an invitation. When using matchmaking rules, Game Center ignores the subset that you specify using the [`playerGroup`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup) and [`playerAttributes`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerattributes) properties.
+    ///
+    /// If you set the request’s [`minPlayers`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/minplayers) and [`maxPlayers`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/maxplayers) properties, use values that are in the rule set’s player range. Otherwise, the default values for these properties are the rule set’s `minPlayers` and `maxPlayers` fields (see [`Create a rule set`](https://developer.apple.com/documentation/appstoreconnectapi/post-v1-gamecentermatchmakingrulesets)).
+    ///
+    /// If you don’t use matchmaking rules, you can restrict finding players to a subset of players. Set the [`queueName`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/queuename) property to `nil`, and set the [`playerGroup`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/playergroup) and [`playerAttributes`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/playerattributes) properties to specify the subset. Then matchmaking ignores the rules-based [`properties`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/properties) and [`recipientProperties`](https://developer.apple.com/documentation/gamekit/gkmatchrequest/recipientproperties) properties.
+    ///
+    /// For more information, see [Finding players using matchmaking rules](https://developer.apple.com/documentation/gamekit/finding-players-using-matchmaking-rules).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Matchmaking rules are only available for peer-to-peer ([`GKMatchTypeTurnBased`](https://developer.apple.com/documentation/gamekit/gkmatchtype/turnbased)) and hosted ([`GKMatchTypeHosted`](https://developer.apple.com/documentation/gamekit/gkmatchtype/hosted)) match requests.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// GKMatchRequest represents the parameters needed to create the match.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchRequest;
@@ -330,9 +370,14 @@ impl GKMatchRequest {
 }
 
 extern_class!(
-    /// GKInvite represents an accepted game invite, it is used to create a GKMatchmakerViewController
+    /// An invitation to join a match sent to the local player from another player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinvite?language=objc)
+    /// ## Overview
+    ///
+    /// Your game never directly creates `GKInvite` objects. Instead, these objects are created by GameKit and delivered to your game’s matchmaking event handler. The properties of the invitation object describe the match to which another player invites the local player.
+    ///
+    ///
+    /// GKInvite represents an accepted game invite, it is used to create a GKMatchmakerViewController
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKInvite;
@@ -385,9 +430,18 @@ impl GKInvite {
 }
 
 extern_protocol!(
-    /// GKInviteEventListener uses the GKLocalPlayerListener mechanism on GKLocalPlayer to listen to the two kinds of invite events that a game must respond to
+    /// A protocol that handles invite events from Game Center.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener?language=objc)
+    /// ## Overview
+    ///
+    /// Implement the methods in the [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener) protocol to accept invitations from other players or handle when other players accept invitations from the local player.
+    ///
+    /// Adopt the [`GKLocalPlayerListener`](https://developer.apple.com/documentation/gamekit/gklocalplayerlistener) protocol to listen for and handle a variety of Game Center events for player accounts instead of the individual [`GKChallengeListener`](https://developer.apple.com/documentation/gamekit/gkchallengelistener), [`GKInviteEventListener`](https://developer.apple.com/documentation/gamekit/gkinviteeventlistener), [`GKSavedGameListener`](https://developer.apple.com/documentation/gamekit/gksavedgamelistener), and [`GKTurnBasedEventListener`](https://developer.apple.com/documentation/gamekit/gkturnbasedeventlistener) protocols.
+    ///
+    /// For details, see [Finding multiple players for a game](https://developer.apple.com/documentation/gamekit/finding-multiple-players-for-a-game).
+    ///
+    ///
+    /// GKInviteEventListener uses the GKLocalPlayerListener mechanism on GKLocalPlayer to listen to the two kinds of invite events that a game must respond to
     pub unsafe trait GKInviteEventListener {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
         /// player:didAcceptInvite: gets called when another player accepts the invite from the local player
@@ -422,7 +476,13 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchedplayers?language=objc)
+    /// An object that represents matchmaking results, including the players that join the match and their properties that matchmaking rules uses.
+    ///
+    /// ## Overview
+    ///
+    /// If the [`properties`](https://developer.apple.com/documentation/gamekit/gkmatchedplayers/properties) and `playersProperties` properties are `nil`, Game Center didn’t use matchmaking rules to find the players. For more information, see [Matchmaking rules](https://developer.apple.com/documentation/gamekit/matchmaking-rules).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchedPlayers;
@@ -467,9 +527,24 @@ impl GKMatchedPlayers {
 }
 
 extern_class!(
-    /// GKMatchmaker is a singleton object to manage match creation from invites and automatching.
+    /// An object that creates matches with other players without presenting an interface to the players.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchmaker?language=objc)
+    /// ## Overview
+    ///
+    /// Use the `GKMatchmaker` class to auto-match players for a quicker game start, programmatically invite specific players, or implement your own interface for players to invite other players. If you want to present a familiar matchmaking GameKit interface to players, instead use either the [`GKMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkmatchmakerviewcontroller) or [`GKTurnBasedMatchmakerViewController`](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchmakerviewcontroller) class.
+    ///
+    /// If you host a game on your own server, you can also use this class to find Game Center players. That is, you implement the networking and communication between the players through your own servers not Game Center.
+    ///
+    /// To find players using this class, create a [`GKMatchRequest`](https://developer.apple.com/documentation/gamekit/gkmatchrequest) object and configure it according to the parameters of your game. Then, pass the match request and a handler using the [`findMatchForRequest:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/findmatch(for:withcompletionhandler:)) method, or the [`findPlayersForHostedMatchRequest:withCompletionHandler:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/findplayers(forhostedmatchrequest:withcompletionhandler:)) method for hosted games, to the shared `GKMatchmaker` object.
+    ///
+    /// GameKit calls the handler when players accept their invitations. Implement the handler to set the delegate of the [`GKMatch`](https://developer.apple.com/documentation/gamekit/gkmatch) object that GameKit sends and start the game when there are enough players.
+    ///
+    /// If the match doesn’t have enough players (for example, some players decline their invitations), you can create another match request and call the [`addPlayersToMatch:matchRequest:completionHandler:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/addplayers(to:matchrequest:completionhandler:)) method repeatedly until the match’s [`expectedPlayerCount`](https://developer.apple.com/documentation/gamekit/gkmatch/expectedplayercount) property is zero. When you have enough players to start the match, call the [`finishMatchmakingForMatch:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/finishmatchmaking(for:)) method to end the matchmaking process.
+    ///
+    /// If you provide a SharePlay interface for inviting players, use the [`startGroupActivityWithPlayerHandler:`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/startgroupactivity(playerhandler:)) and [`stopGroupActivity`](https://developer.apple.com/documentation/gamekit/gkmatchmaker/stopgroupactivity()) methods to create a group activity on behalf of the player.
+    ///
+    ///
+    /// GKMatchmaker is a singleton object to manage match creation from invites and automatching.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKMatchmaker;

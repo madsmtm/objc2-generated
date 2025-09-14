@@ -7,7 +7,25 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc)
+    /// A proxy for objects in other applications or threads.
+    ///
+    /// ## Overview
+    ///
+    /// When a distant object receives a message, in most cases it forwards the message through its [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) object to the real object in another application, supplying the return value to the sender of the message if one is received, and propagating any exception back to the invoker of the method that raised it.
+    ///
+    /// [`NSDistantObject`](https://developer.apple.com/documentation/foundation/nsdistantobject) is a concrete subclass of [`NSProxy`](https://developer.apple.com/documentation/foundation/nsproxy), adding two useful instance methods of its own: [`connectionForProxy`](https://developer.apple.com/documentation/foundation/nsdistantobject/connectionforproxy) returns the [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) object that handles the receiver; [`setProtocolForProxy:`](https://developer.apple.com/documentation/foundation/nsdistantobject/setprotocolforproxy:) establishes the set of methods the real object is known to respond to, saving the network traffic required to determine the argument and return types the first time a particular selector is forwarded to the remote proxy.
+    ///
+    /// There are two kinds of distant object: local proxies and remote proxies. A local proxy is created by an [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) object the first time an object is sent to another application. It is used by the connection for bookkeeping purposes and should be considered private. The local proxy is transmitted over the network using the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol to create the remote proxy, which is the object that the other application uses. [`NSDistantObject`](https://developer.apple.com/documentation/foundation/nsdistantobject) defines methods for an [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection) object to create instances, but they’re intended only for subclasses to override—you should never invoke them directly. Use the [`rootProxyForConnectionWithRegisteredName:host:`](https://developer.apple.com/documentation/foundation/nsconnection/rootproxyforconnectionwithregisteredname:host:) method of [`NSConnection`](https://developer.apple.com/documentation/foundation/nsconnection), which sets up all the required state for an object-proxy pair.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  [`NSDistantObject`](https://developer.apple.com/documentation/foundation/nsdistantobject) conforms to the [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocol, but only supports coding by an [`NSPortCoder`](https://developer.apple.com/documentation/foundation/nsportcoder). [`NSDistantObject`](https://developer.apple.com/documentation/foundation/nsdistantobject) and its subclasses do not support archiving.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSProxy))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSProxy")]

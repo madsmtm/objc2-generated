@@ -8,25 +8,46 @@ use crate::*;
 extern "C" {
     /// A pixel buffer pool for pixel buffers being output by the decompression session.
     ///
+    /// ## Discussion
+    ///
+    /// This pixel buffer pool is always compatible with the client’s pixel buffer attributes as specified when calling [`VTDecompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)).
+    ///
+    ///
+    /// A pixel buffer pool for pixel buffers being output by the decompression session.
+    ///
     /// This pixel buffer pool is always compatible with the client's pixel buffer attributes
     /// as specified when calling VTDecompressionSessionCreate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_pixelbufferpool?language=objc)
     pub static kVTDecompressionPropertyKey_PixelBufferPool: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether a common pixel buffer pool is shared between the video decoder and the session client.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is false if separate pools are used because the pixel buffer attributes specified by the video decoder and the client are incompatible.
+    ///
+    ///
     /// Indicates whether a common pixel buffer pool is shared between
     /// the video decoder and the session client.
     ///
     /// This is false if separate pools are used because the pixel buffer attributes specified
     /// by the video decoder and the client were incompatible.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_pixelbufferpoolisshared?language=objc)
     pub static kVTDecompressionPropertyKey_PixelBufferPoolIsShared: &'static CFString;
 }
 
 extern "C" {
+    /// The requested minimum buffer count that a decompression session should use for its output pixel buffer pool, without releasing buffers while the number in use is below this level.
+    ///
+    /// ## Discussion
+    ///
+    /// This property effectively requests that the [`kCVPixelBufferPoolMinimumBufferCountKey`](https://developer.apple.com/documentation/corevideo/kcvpixelbufferpoolminimumbuffercountkey) key be used for the creation of the output [CVPixelBufferPool](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool-77o).
+    ///
+    /// For general playback cases, standard [CVPixelBufferPool](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool-77o) age-out behavior is sufficient, and this property isn’t necessary.  Use this property only in unusual playback scenarios where a peak pool level is known, and the potential memory overhead is an acceptable tradeoff to avoid possible buffer reallocation. Setting this property to `NULL` or passing in the value `0` clears this setting and removes the minimum buffer count.
+    ///
+    /// Setting this property while a decompression session is in use results in the creation of a new [CVPixelBufferPool](https://developer.apple.com/documentation/corevideo/cvpixelbufferpool-77o). Setting this property causes new buffers to be allocated, and existing buffers to be deallocated when they are released.
+    ///
+    ///
     /// Requests that the VTDecompressionSession use the value provided as a minimum buffer
     /// count for its output CVPixelBufferPool, not releasing buffers while the number in
     /// use is below this level.
@@ -45,26 +66,34 @@ extern "C" {
     /// Setting this property while a VTDecompressionSession is in use will result in the
     /// creation of a new CVPixelBufferPool. This will cause new buffers to be allocated, and
     /// existing buffers to be deallocated when they are released.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_outputpoolrequestedminimumbuffercount?language=objc)
     pub static kVTDecompressionPropertyKey_OutputPoolRequestedMinimumBufferCount: &'static CFString;
 }
 
 extern "C" {
     /// Returns the number of frames currently being decoded.
     ///
+    /// ## Discussion
+    ///
     /// This number may decrease asynchronously as frames are output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_numberofframesbeingdecoded?language=objc)
+    ///
+    /// Returns the number of frames currently being decoded.
+    ///
+    /// This number may decrease asynchronously as frames are output.
     pub static kVTDecompressionPropertyKey_NumberOfFramesBeingDecoded: &'static CFString;
 }
 
 extern "C" {
     /// The minimum output presentation timestamp of the frames currently being decoded.
     ///
-    /// This may change asynchronously as frames are output.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_minoutputpresentationtimestampofframesbeingdecoded?language=objc)
+    /// This value may change asynchronously as frames are output.
+    ///
+    ///
+    /// The minimum output presentation timestamp of the frames currently being decoded.
+    ///
+    /// This may change asynchronously as frames are output.
     pub static kVTDecompressionPropertyKey_MinOutputPresentationTimeStampOfFramesBeingDecoded:
         &'static CFString;
 }
@@ -72,23 +101,40 @@ extern "C" {
 extern "C" {
     /// The maximum output presentation timestamp of the frames currently being decoded.
     ///
-    /// This may change asynchronously as frames are output.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_maxoutputpresentationtimestampofframesbeingdecoded?language=objc)
+    /// This value may change asynchronously as frames are output.
+    ///
+    ///
+    /// The maximum output presentation timestamp of the frames currently being decoded.
+    ///
+    /// This may change asynchronously as frames are output.
     pub static kVTDecompressionPropertyKey_MaxOutputPresentationTimeStampOfFramesBeingDecoded:
         &'static CFString;
 }
 
 extern "C" {
+    /// An optional Boolean property indicating if the content being decoded has interframe dependencies, if the decoder knows.
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional, read-only property that video decoders may implement.
+    ///
+    ///
     /// Indicates whether the content being decoded has interframe dependencies, if the decoder knows.
     ///
     /// This is an optional property for video decoders to implement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_contenthasinterframedependencies?language=objc)
     pub static kVTDecompressionPropertyKey_ContentHasInterframeDependencies: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether VideoToolbox uses a hardware-accelerated video decoder, if available.
+    ///
+    /// ## Discussion
+    ///
+    /// You set this key in the `decoderSpecification` passed in to [`VTDecompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)).  Set it to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue) to allow hardware-accelerated decoding.  To specifically prevent hardware-accelerated decoding, set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse). This property is useful for clients doing realtime decode operations because it allows VideoToolbox to choose the optimal decoding path.
+    ///
+    ///
     /// If set to kCFBooleanTrue, the VideoToolbox will use a hardware accelerated video decoder if available.  If set to
     /// kCFBooleanFalse, hardware decode will never be used.
     ///
@@ -96,13 +142,28 @@ extern "C" {
     /// to kCFBooleanTrue to allow hardware accelerated decode.  To  prevent hardware decode,
     /// this property can be set to kCFBooleanFalse.
     /// In MacOS 10.15 and later, hardware decode is enabled in VTDecompressionSessions by default.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_enablehardwareacceleratedvideodecoder?language=objc)
     pub static kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder:
         &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether to require hardware-accelerated decoding.
+    ///
+    /// ## Discussion
+    ///
+    /// This key is set in the `decoderSpecification` passed in to [`VTDecompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)). If set to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue), VideoToolbox tries to allocate a hardware-accelerated decoder. If it cannot, it returns an error and the session creation fails.
+    ///
+    /// Setting this key automatically implies [`kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder`](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_enablehardwareacceleratedvideodecoder)–there is no need to set both and the Enable key does nothing if the Require key is set.	This key is useful for clients that have their own software decoding implementation or those that may want to configure software and hardware decode sessions differently.
+    ///
+    /// Hardware acceleration may be unavailable for a number of reasons:
+    ///
+    /// - The machine doesn’t have hardware acceleration capabilities.
+    ///
+    /// - The requested decoding format or configuration isn’t supported.
+    ///
+    /// - The hardware decoding resources on the machine are busy.
+    ///
+    ///
     /// If set to kCFBooleanTrue, the VideoToolbox will try to allocate a hardware accelerated decoder and
     /// return an error if that isn't possible.
     /// Setting this key automatically implies kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder --
@@ -117,32 +178,40 @@ extern "C" {
     /// - the machine does not have hardware acceleration capabilities
     /// - the requested decoding format or configuration is not supported
     /// - the hardware decode resources on the machine are busy
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_requirehardwareacceleratedvideodecoder?language=objc)
     pub static kVTVideoDecoderSpecification_RequireHardwareAcceleratedVideoDecoder:
         &'static CFString;
 }
 
 extern "C" {
+    /// Indicates if a hardware-accelerated video decoder is being used.
+    ///
+    /// ## Discussion
+    ///
+    /// You can query this property using [`VTSessionCopyProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyproperty(_:key:allocator:valueout:)) after you have enabled hardware accelerated decode using [`kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder`](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_enablehardwareacceleratedvideodecoder) to see if a hardware accelerated decoder was selected.
+    ///
+    ///
     /// If set to kCFBooleanTrue, a hardware accelerated video decoder is being used.
     ///
     /// You can query this property using VTSessionCopyProperty after you have enabled hardware
     /// accelerated decode using kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder
     /// to see if a hardware accelerated decoder was selected.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_usinghardwareacceleratedvideodecoder?language=objc)
     pub static kVTDecompressionPropertyKey_UsingHardwareAcceleratedVideoDecoder: &'static CFString;
 }
 
 extern "C" {
+    /// A Boolean value indicating whether it’s recommended that the video decoder perform decompression in real time.
+    ///
+    /// ## Discussion
+    ///
+    /// For non-realtime decompression, clients may set this property to [`kCFBooleanFalse`](https://developer.apple.com/documentation/corefoundation/kcfbooleanfalse), which indicates that it is OK to run this decode pipeline at a lower priority than is used for realtime decoding. By default, VideoToolbox will treat the decompression session as though it is being used for realtime playback ([`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue)).  Setting the property to `NULL` is equivalent to setting it to [`kCFBooleanTrue`](https://developer.apple.com/documentation/corefoundation/kcfbooleantrue).
+    ///
+    ///
     /// Hints the video decoder that decompression is, or is not, being performed in real time.
     ///
     /// For non-realtime decompression, clients may set this property to kCFBooleanFalse, which indicates that
     /// it is OK to run this decode pipeline at a lower priority than is used for realtime decode.
     /// By default, the VideoToolbox will treat the VTDecompressionSession as though it is being used for
     /// realtime playback.  Setting the property to NULL is equivalent to setting it to kCFBooleanTrue.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_realtime?language=objc)
     pub static kVTDecompressionPropertyKey_RealTime: &'static CFString;
 }
 
@@ -155,110 +224,169 @@ extern "C" {
     /// Setting both kVTDecompressionPropertyKey_MaximizePowerEfficiency and kVTDecompressionPropertyKey_RealTime is unsupported and results in undefined behavior.
     /// Not all video decoders may support this property
     /// By default, this property is NULL.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_maximizepowerefficiency?language=objc)
     pub static kVTDecompressionPropertyKey_MaximizePowerEfficiency: &'static CFString;
 }
 
 extern "C" {
-    /// Gets number of threads used by codec or suggests number of threads to use.
+    /// The number of threads used by a codec or the suggested number of threads to use (optional).
+    ///
+    /// ## Discussion
     ///
     /// This is an optional property for video decoders to implement.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_threadcount?language=objc)
+    ///
+    /// Gets number of threads used by codec or suggests number of threads to use.
+    ///
+    /// This is an optional property for video decoders to implement.
     pub static kVTDecompressionPropertyKey_ThreadCount: &'static CFString;
 }
 
 extern "C" {
+    /// Modes for special handling of interlaced content (optional).
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. Decoders should only accept the modes that they will implement.
+    ///
+    ///
     /// Requests special handling of interlaced content.
     ///
     /// This is an optional property for video decoders to implement.
     /// Decoders should only accept the modes that they will implement.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_fieldmode?language=objc)
     pub static kVTDecompressionPropertyKey_FieldMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_bothfields?language=objc)
     pub static kVTDecompressionProperty_FieldMode_BothFields: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_topfieldonly?language=objc)
     pub static kVTDecompressionProperty_FieldMode_TopFieldOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_bottomfieldonly?language=objc)
     pub static kVTDecompressionProperty_FieldMode_BottomFieldOnly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_singlefield?language=objc)
     pub static kVTDecompressionProperty_FieldMode_SingleField: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_deinterlacefields?language=objc)
     pub static kVTDecompressionProperty_FieldMode_DeinterlaceFields: &'static CFString;
 }
 
 extern "C" {
+    /// Modes for requesting a specific deinterlacing technique.
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. Decoders should only accept the modes that they will implement.
+    ///
+    /// This property is only applicable if [`kVTDecompressionPropertyKey_FieldMode`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_fieldmode) is set to [`kVTDecompressionProperty_FieldMode_DeinterlaceFields`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_fieldmode_deinterlacefields).
+    ///
+    ///
     /// Requests a specific deinterlacing technique.
     ///
     /// This is an optional property for video decoders to implement.
     /// Decoders should only accept the modes that they will implement.
     /// This property is only applicable if kVTDecompressionPropertyKey_FieldMode
     /// is set to kVTDecompressionProperty_FieldMode_DeinterlaceFields.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_deinterlacemode?language=objc)
     pub static kVTDecompressionPropertyKey_DeinterlaceMode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_deinterlacemode_verticalfilter?language=objc)
+    /// A vertical filter deinterlace mode.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies a 0.25-0.50-0.25 vertical filter to individual interlaced frames. This is the default mode.
+    ///
+    ///
     pub static kVTDecompressionProperty_DeinterlaceMode_VerticalFilter: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_deinterlacemode_temporal?language=objc)
+    /// A temporal deinterlace mode.
+    ///
+    /// ## Discussion
+    ///
+    /// Applies a filter that uses a window of multiple frames to generate deinterlaced results, and provides a better result at the expense of a pipeline delay.
+    ///
+    /// This mode is only used if [`kVTDecodeFrame_EnableTemporalProcessing`](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags/kvtdecodeframe_enabletemporalprocessing) is set, otherwise a non-temporal mode will be used instead.
+    ///
+    ///
     pub static kVTDecompressionProperty_DeinterlaceMode_Temporal: &'static CFString;
 }
 
 extern "C" {
+    /// Request decoding at smaller resolutions than full-size (optional).
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. Decoders that only support a fixed set of resolutions should pick the smallest resolution greater than or equal to the requested width and height.
+    ///
+    ///
     /// Requests decoding at a smaller resolution than full-size.
     ///
     /// This is an optional property for video decoders to implement.
     /// Decoders that only support a fixed set of resolutions should pick the smallest resolution
     /// greater than or equal to the requested width x height.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_reducedresolutiondecode?language=objc)
     pub static kVTDecompressionPropertyKey_ReducedResolutionDecode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionresolutionkey_width?language=objc)
+    /// A key to specify the resolution width.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kVTDecompressionResolutionKey_Width: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionresolutionkey_height?language=objc)
+    /// A key to specify the resolution height.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd.
+    ///
+    ///
     pub static kVTDecompressionResolutionKey_Height: &'static CFString;
 }
 
 extern "C" {
     /// Requests approximation during decoding.
     ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. Only decoders for which such approximations make sense should implement this property. The meaning of the number of coefficients will be decoder-specific.
+    ///
+    ///
+    /// Requests approximation during decoding.
+    ///
     /// This is an optional property for video decoders to implement.
     /// Only decoders for which such approximations make sense should implement this property.
     /// The meaning of the number of coefficients will be decoder-specific.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_reducedcoefficientdecode?language=objc)
     pub static kVTDecompressionPropertyKey_ReducedCoefficientDecode: &'static CFString;
 }
 
 extern "C" {
+    /// The proportion of frames that should be delivered, indicating that the rest may be dropped.
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. If supported, it requests that frame delivery be reduced by the specified amount.
+    ///
+    /// This number is a fraction between 0.0 and 1.0 that indicates what proportion of frames should be delivered–others may be dropped. For example, `0.25` would indicate that only one frame in every four should be delivered. This is a guideline;  the actual selection of frames is up to the decoder, which knows which frames can be skipped without harm.
+    ///
+    /// You can use this key on its own, or in the dictionaries returned in the array obtained from [`kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_suggestedqualityofservicetiers). This key may also be used in conjunction with [`kVTDecompressionPropertyKey_OnlyTheseFrames`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_onlytheseframes).  For example, the dictionary containing `[{kVTDecompressionPropertyKey_OnlyTheseFrames, kVTDecompressionProperty_OnlyTheseFrames_KeyFrames}, {kVTDecompressionPropertyKey_ReducedFrameDelivery, 0.25}]` requests that the decoder only deliver a quarter of keyframes.
+    ///
+    /// If the decoder does not support this property directly, but reports that the content has no interframe dependencies, VideoToolbox may step in and perform simple frame dropping.
+    ///
+    ///
     /// Requests frame dropping.
     ///
     /// This is an optional property for video decoders to implement.
@@ -269,40 +397,41 @@ extern "C" {
     /// which frames can be skipped without harm.
     /// If the decoder does not support this property directly, but reports that the content has
     /// no interframe dependencies, the video toolbox may step in and perform simple frame dropping.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_reducedframedelivery?language=objc)
     pub static kVTDecompressionPropertyKey_ReducedFrameDelivery: &'static CFString;
 }
 
 extern "C" {
     /// Requests that frames be filtered by type.
     ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement.  If supported, it requests that the decoder limit decoding to the frame type specified by one of the `Only These Frames Constants`. This key may be used on its own, or may appear in the dictionaries returned in the array obtained from [`kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_suggestedqualityofservicetiers).
+    ///
+    /// If [`kVTDecompressionPropertyKey_ReducedFrameDelivery`](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_reducedframedelivery) is supported and used in conjunction with this property, the `ReducedFrameDelivery` is the proportion of the frames selected by this property. For example, a dictionary containing `[{kVTDecompressionPropertyKey_OnlyTheseFrames, kVTDecompressionProperty_OnlyTheseFrames_KeyFrames}, {kVTDecompressionPropertyKey_ReducedFrameDelivery, 0.25}]` would request that the decoder only deliver 1/4 of keyframes.
+    ///
+    ///
+    /// Requests that frames be filtered by type.
+    ///
     /// This is an optional property for video decoders to implement.
     /// If kVTDecompressionPropertyKey_ReducedFrameDelivery is supported and used in conjunction with
     /// this property, the ReducedFrameDelivery is the proportion of the frames selected by this property:
     /// 0.25 and IFrames would indicate that only one I frame in every four should be delivered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_onlytheseframes?language=objc)
     pub static kVTDecompressionPropertyKey_OnlyTheseFrames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_onlytheseframes_allframes?language=objc)
     pub static kVTDecompressionProperty_OnlyTheseFrames_AllFrames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_onlytheseframes_nondroppableframes?language=objc)
     pub static kVTDecompressionProperty_OnlyTheseFrames_NonDroppableFrames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_onlytheseframes_iframes?language=objc)
     pub static kVTDecompressionProperty_OnlyTheseFrames_IFrames: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_onlytheseframes_keyframes?language=objc)
     pub static kVTDecompressionProperty_OnlyTheseFrames_KeyFrames: &'static CFString;
 }
 
@@ -315,12 +444,19 @@ extern "C" {
     /// be limited to the specified temporal level and lower.
     /// For more information on temporal levels, see kCMSampleAttachmentKey_HEVCTemporalLevelInfo
     /// in CoreMedia/CMSampleBuffer.h
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionproperty_temporallevellimit?language=objc)
     pub static kVTDecompressionProperty_TemporalLevelLimit: &'static CFString;
 }
 
 extern "C" {
+    /// An array of dictionaries that describe decreasing quality-of-service levels that clients can use to maintain realtime playback (optional).
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. This property value is an array of doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum objects describing different reduced frame delivery options supported by the decoder.
+    ///
+    /// The first dictionary in the array should contain the set of properties that restore the default (full) quality of service; later dictionaries should contain property sets with decreasing qualities of service.  Clients can work their way down these tiers until they are able to keep up with the frame rate. The dictionaries can be applied directly on the decompression session using [`VTSessionSetProperties`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperties(_:propertydictionary:)) in order to request that quality of service tier be enforced.
+    ///
+    ///
     /// Suggests how quality-of-service may be lowered in order to maintain realtime playback.
     ///
     /// This is an optional property for video decoders to implement.
@@ -330,46 +466,86 @@ extern "C" {
     /// default (full) quality of service; later entries should contain property sets with
     /// decreasing qualities of service.  Clients may work their way down these tiers until they are
     /// able to keep up with the frame rate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_suggestedqualityofservicetiers?language=objc)
     pub static kVTDecompressionPropertyKey_SuggestedQualityOfServiceTiers: &'static CFString;
 }
 
 extern "C" {
+    /// An array indicating quality levels among pixel formats.
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. This property value is an array containing doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd objects holding [`CMPixelFormatType`](https://developer.apple.com/documentation/coremedia/cmpixelformattype) values, ordered by quality from best to worse.
+    ///
+    ///
     /// Provides hints about quality tradeoffs between pixel formats.
     ///
     /// This is an optional property for video decoders to implement.
     /// This property value is an array containing CFNumbers holding CMPixelFormatType values,
     /// ordered by quality from best to worse.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_supportedpixelformatsorderedbyquality?language=objc)
     pub static kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByQuality: &'static CFString;
 }
 
 extern "C" {
+    /// An array indicating speed tradeoffs between pixel formats (optional).
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. This property value is an array containing doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd objects holding [`CMPixelFormatType`](https://developer.apple.com/documentation/coremedia/cmpixelformattype) values,	ordered by speed from fastest to slowest.
+    ///
+    ///
     /// Provides hints about speed tradeoffs between pixel formats.
     ///
     /// This is an optional property for video decoders to implement.
     /// This property value is an array containing CFNumbers holding CMPixelFormatType values,
     /// ordered by speed from fast to slow.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_supportedpixelformatsorderedbyperformance?language=objc)
     pub static kVTDecompressionPropertyKey_SupportedPixelFormatsOrderedByPerformance:
         &'static CFString;
 }
 
 extern "C" {
+    /// Pixel formats that support reduced-resolution decoding (optional).
+    ///
+    /// ## Discussion
+    ///
+    /// This is an optional property for video decoders to implement. This property value is an array containing doc://com.apple.documentation/documentation/corefoundation/cfnumber-rjd objects holding [`CMPixelFormatType`](https://developer.apple.com/documentation/coremedia/cmpixelformattype) values.
+    ///
+    ///
     /// Indicates which pixel formats support reduced resolution decoding.
     ///
     /// This is an optional property for video decoders to implement.
     /// This property value is an array containing CFNumbers holding CMPixelFormatType values.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_pixelformatswithreducedresolutionsupport?language=objc)
     pub static kVTDecompressionPropertyKey_PixelFormatsWithReducedResolutionSupport:
         &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```not specified
+    /// @constant	kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions
+    /// @abstract
+    /// 	True if decoder is allowed to output buffers matching reduced frame dimensions in the bitstream rather than
+    /// 	under-filling them.
+    /// @discussion
+    /// 	This is an optional property only supported by video decoders for bitstream formats which have a provision
+    /// 	for specifying output dimensions per-frame, such as AV1.
+    ///
+    /// 	If a decoder does not support this property or if the property value is set to `kCFBooleanFalse`, all decoded
+    /// 	frames will have the same dimensions as specified in the format description. In this case, if the bitstream
+    /// 	changes the frame dimensions, the output buffer will be padded to the dimensions specified in the format
+    /// 	description.
+    ///
+    /// 	When this property is set to `kCFBooleanTrue`, the decoder will set the dimensions of each output buffer to
+    /// 	match the dimensions specified in the bitstream for that frame.
+    ///
+    /// 	In all cases, output buffer dimensions will never exceed the dimensions specified in the format description.
+    ///
+    /// 	In apps linked to SDK versions before this property was added, the AV1 decoder will behave as if this property
+    /// 	is set to `kCFBooleanFalse`. Otherwise, value of this property defaults to `kCFBooleanTrue` where supported.
+    /// ```
+    ///
+    ///
     /// True if decoder is allowed to output buffers matching reduced frame dimensions in the bitstream rather than
     /// under-filling them.
     ///
@@ -388,18 +564,21 @@ extern "C" {
     ///
     /// In apps linked to SDK versions before this property was added, the AV1 decoder will behave as if this property
     /// is set to `kCFBooleanFalse`. Otherwise, value of this property defaults to `kCFBooleanTrue` where supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_allowbitstreamtochangeframedimensions?language=objc)
     pub static kVTDecompressionPropertyKey_AllowBitstreamToChangeFrameDimensions: &'static CFString;
 }
 
 extern "C" {
+    /// Specific pixel transfer features to be used during decompression.
+    ///
+    /// ## Discussion
+    ///
+    /// This property value is a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum object containing properties from `VTPixelTransferProperties.h`.
+    ///
+    ///
     /// Requests particular pixel transfer features.
     ///
     /// This property is implemented by the video toolbox.
     /// This property value is a CFDictionary containing properties from VTPixelTransferProperties.h.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_pixeltransferproperties?language=objc)
     pub static kVTDecompressionPropertyKey_PixelTransferProperties: &'static CFString;
 }
 
@@ -410,8 +589,6 @@ extern "C" {
     /// The GPU registryID can be obtained from a MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
     /// This option can only be used to specify a GPU registryID corresponding to a removable GPU (eGPU).
     /// If 0 is specified for the required GPU registryID, the VideoToolbox will not utilize removable GPUs for decode.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_requireddecodergpuregistryid?language=objc)
     pub static kVTVideoDecoderSpecification_RequiredDecoderGPURegistryID: &'static CFString;
 }
 
@@ -426,8 +603,6 @@ extern "C" {
     /// to software decode.
     /// The GPU registryID can be obtained from a MTLDevice using [MTLDevice registryID] or can be obtained from OpenGL or OpenCL.
     /// This option can only be used to specify a GPU registryID corresponding to a removable GPU (eGPU).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtvideodecoderspecification_preferreddecodergpuregistryid?language=objc)
     pub static kVTVideoDecoderSpecification_PreferredDecoderGPURegistryID: &'static CFString;
 }
 
@@ -436,30 +611,47 @@ extern "C" {
     ///
     /// You can query this property using VTSessionCopyProperty after building a VTDecompressionSession to find out which GPU the decoder is using.
     /// If a decoder based on a built-in GPU was used it will return NULL.  If a software decoder is used, it will return NULL
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_usinggpuregistryid?language=objc)
     pub static kVTDecompressionPropertyKey_UsingGPURegistryID: &'static CFString;
 }
 
 extern "C" {
     /// This controls whether or not to propagate any per frame HDR
     /// display metadata from the input compressed bitstream to the output pixel buffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_propagateperframehdrdisplaymetadata?language=objc)
     pub static kVTDecompressionPropertyKey_PropagatePerFrameHDRDisplayMetadata: &'static CFString;
 }
 
 extern "C" {
+    /// A key that indicates to generate per frame HDR Metadata and attach it to the resulting decoded pixel buffers.
+    ///
+    /// ## Discussion
+    ///
+    /// If the color space and YCbCr matrix match a supported HDR format such as HLG ([`kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG`](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_2100_hlg)) the system analyzes the decoded frame and adds the metadata as an attachment to the pixel buffers.
+    ///
+    ///
     /// Generates Per Frame HDR Metadata and attaches it to the resulting decoded CVPixelBuffers.
     ///
     /// If the color space and YCbCrMatrix matches a supported HDR format such as HLG (kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG)
     /// the decoded frame will be analyzed and metadata will be added as an attachment to the CVPixelBuffer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_generateperframehdrdisplaymetadata?language=objc)
     pub static kVTDecompressionPropertyKey_GeneratePerFrameHDRDisplayMetadata: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```not specified
+    /// @constant       kVTDecompressionPropertyKey_DecoderProducesRAWOutput
+    /// @abstract
+    /// 	Indicates whether the decoder can produce RAW output requiring a VTRAWProcessingSession for post-decode processing.
+    /// @discussion
+    /// 	If this property is not implemented, it is assumed that the decoder does not produce RAW output.
+    /// 	If the decoder reports that it produces RAW output the VTDecompressionSession will internally invoke a VTRAWProcessingSession by default to produce
+    /// 	processed output.
+    /// 	If the client sets kVTDecompressionPropertyKey_RequestRAWOutput, the VTDecompressionSession will do no processing and return the decoder's native RAW
+    /// 	output, and any requested destinationImageBufferAttributes on the VTDecompressionSession will be ignored.
+    /// ```
+    ///
+    ///
     /// Indicates whether the decoder can produce RAW output requiring a VTRAWProcessingSession for post-decode processing.
     ///
     /// If this property is not implemented, it is assumed that the decoder does not produce RAW output.
@@ -467,12 +659,28 @@ extern "C" {
     /// processed output.
     /// If the client sets kVTDecompressionPropertyKey_RequestRAWOutput, the VTDecompressionSession will do no processing and return the decoder's native RAW
     /// output, and any requested destinationImageBufferAttributes on the VTDecompressionSession will be ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_decoderproducesrawoutput?language=objc)
     pub static kVTDecompressionPropertyKey_DecoderProducesRAWOutput: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// ```not specified
+    /// @constant       kVTDecompressionPropertyKey_RequestRAWOutput
+    /// @abstract
+    /// 	For decoders which produce RAW output, this property requests that the VTDecompressionSession provide output which has not been processed.
+    /// @discussion
+    /// 	When a decoder produces RAW output (signalled by kVTDecompressionPropertyKey_DecoderProducesRAWOutput) the VTDecompressionSession will automatically
+    /// 	invoke a VTRAWProcessingSession with default settings and emit processed frames by default, or when kVTDecompressionPropertyKey_RequestRAWOutput is set
+    /// 	to kCFBooleanFalse.
+    /// 	If a client wants to run a VTRAWProcessingSession on the RAW output themselves in order to control the post-decode processing of the decoded CVPixelBuffers,
+    /// 	they must set kVTDecompressionPropertyKey_RequestRAWOutput to kCFBooleanTrue.
+    /// 	If kVTDecompressionPropertyKey_RequestRAWOutput has been enabled and the decoder produces RAW output, the VTDecompressionSession
+    /// 	will return CVPixelBuffers in the decoder's native RAW format.  Any destinationImageBufferAttributes set on the VTDecompressionSession will be ignored.
+    /// ```
+    ///
+    ///
     /// For decoders which produce RAW output, this property requests that the VTDecompressionSession provide output which has not been processed.
     ///
     /// When a decoder produces RAW output (signalled by kVTDecompressionPropertyKey_DecoderProducesRAWOutput) the VTDecompressionSession will automatically
@@ -482,12 +690,29 @@ extern "C" {
     /// they must set kVTDecompressionPropertyKey_RequestRAWOutput to kCFBooleanTrue.
     /// If kVTDecompressionPropertyKey_RequestRAWOutput has been enabled and the decoder produces RAW output, the VTDecompressionSession
     /// will return CVPixelBuffers in the decoder's native RAW format.  Any destinationImageBufferAttributes set on the VTDecompressionSession will be ignored.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_requestrawoutput?language=objc)
     pub static kVTDecompressionPropertyKey_RequestRAWOutput: &'static CFString;
 }
 
 extern "C" {
+    /// Requests multi-image decoding of specific MV-HEVC video layers.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is specific to MV-HEVC. The use of it requires you to use the [`VTDecompressionSessionSetMultiImageCallback`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessionsetmultiimagecallback) function to install a callback capable of receiving [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) objects in response to multi-image frame decode requests.
+    ///
+    /// MV-HEVC video layer IDs not in this list don’t need to be output, and the decoder may skip decoding them if not otherwise necessary.
+    ///
+    /// The property is NULL by default. If this property is NULL, MV-HEVC ignores layers other than the base layer.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In multiview decompression, a single video sample contains a single frame (with one PTS) that the system decodes to produce multiple images.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// Requests multi-image decoding of specific MV-HEVC VideoLayerIDs.
     ///
     /// MV-HEVC specific.
@@ -497,30 +722,40 @@ extern "C" {
     /// The property is NULL by default.
     /// If this property is NULL, MV-HEVC shall be decoded ignoring layers other than the base layer.
     /// Terminology note: in multi-image decompression, a single video sample (from one CMSampleBuffer) contains a single frame (with one PTS) that is decoded to produce multiple images.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecompressionpropertykey_requestedmvhevcvideolayerids?language=objc)
     pub static kVTDecompressionPropertyKey_RequestedMVHEVCVideoLayerIDs: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// Clockwise rotation (one of 0, 90, 180, 270) to be applied for proper display orientation.
+    ///
+    /// This value is used for content analysis to properly orient the image before analysis. The value should be a CFNumber with values of 0, 90, 180, or 270, representing degrees of clockwise rotation. This key is not used unless you have attached a `SCVideoStreamAnalyzer` to the decompression session.
+    ///
+    ///
     /// Clockwise rotation (one of 0, 90, 180, 270) to be applied for proper display orientation.
     ///
     /// This value is used for content analysis to properly orient the image before analysis.
     /// The value should be a CFNumber with values of 0, 90, 180, or 270, representing degrees of clockwise rotation.
     /// This key is not used unless you have attached a ``SCVideoStreamAnalyzer`` to the decompression session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecodeframeoptionkey_contentanalyzerrotation?language=objc)
     pub static kVTDecodeFrameOptionKey_ContentAnalyzerRotation: &'static CFString;
 }
 
 extern "C" {
+    ///
+    /// ## Discussion
+    ///
+    /// CGRect within the image to be used for content analysis, cropped before applying rotation.
+    ///
+    /// This value specifies a rectangle within the original frame that should be used for content analysis. The cropping is applied before any rotation specified by kVTDecodeFrameOptionKey_ContentAnalyzerRotation. The value should be a CFDictionary representing a CGRect created using CGRectCreateDictionaryRepresentation(). This key is not used unless you have attached a `SCVideoStreamAnalyzer` to the decompression session.
+    ///
+    ///
     /// CGRect within the image to be used for content analysis, cropped before applying rotation.
     ///
     /// This value specifies a rectangle within the original frame that should be used for content analysis.
     /// The cropping is applied before any rotation specified by kVTDecodeFrameOptionKey_ContentAnalyzerRotation.
     /// The value should be a CFDictionary representing a CGRect created using CGRectCreateDictionaryRepresentation().
     /// This key is not used unless you have attached a ``SCVideoStreamAnalyzer`` to the decompression session.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtdecodeframeoptionkey_contentanalyzercroprectangle?language=objc)
     pub static kVTDecodeFrameOptionKey_ContentAnalyzerCropRectangle: &'static CFString;
 }

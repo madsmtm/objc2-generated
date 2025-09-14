@@ -8,83 +8,88 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctserviceradioaccesstechnologydidchangenotification?language=objc)
     pub static CTServiceRadioAccessTechnologyDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologydidchangenotification?language=objc)
+    /// The name of the notification indicating that the radio access technology changed for one of the services.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/nsnotification/object) is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) that represents the service identifier of the service whose radio access technology has changed. Use this string as the key in [`serviceCurrentRadioAccessTechnology`](https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/servicecurrentradioaccesstechnology) to get the value of the new radio access technology for the service.
+    ///
+    ///
     #[deprecated]
     pub static CTRadioAccessTechnologyDidChangeNotification: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologygprs?language=objc)
+    /// The General Packet Radio Service (GPRS) radio access technology.
     pub static CTRadioAccessTechnologyGPRS: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologyedge?language=objc)
+    /// The Enhanced Data rates for GSM Evolution (EDGE) radio access technology.
     pub static CTRadioAccessTechnologyEdge: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologywcdma?language=objc)
+    /// The Wideband Code Division Multiple Access (WCDMA) radio access technology.
     pub static CTRadioAccessTechnologyWCDMA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologyhsdpa?language=objc)
+    /// The High-Speed Downlink Packet Access (HSDPA) radio access technology.
     pub static CTRadioAccessTechnologyHSDPA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologyhsupa?language=objc)
+    /// The High-Speed Uplink Packet Acess (HSUPA) radio access technology.
     pub static CTRadioAccessTechnologyHSUPA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologycdma1x?language=objc)
+    /// The Code Division Multiple Access (CDMA) 1x radio access technology.
     pub static CTRadioAccessTechnologyCDMA1x: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologycdmaevdorev0?language=objc)
+    /// The Code Division Multiple Access (CDMA) Evolution-Data Optimized (EV-DO) Rev. 0 radio access technology.
     pub static CTRadioAccessTechnologyCDMAEVDORev0: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologycdmaevdoreva?language=objc)
+    /// The Code Division Multiple Access (CDMA) Evolution-Data Optimized (EV-DO) Rev. A radio access technology.
     pub static CTRadioAccessTechnologyCDMAEVDORevA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologycdmaevdorevb?language=objc)
+    /// The Code Division Multiple Access (CDMA) Evolution-Data Optimized (EV-DO) Rev. B radio access technology.
     pub static CTRadioAccessTechnologyCDMAEVDORevB: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologyehrpd?language=objc)
+    /// The Enhanced High Rate Packet Data (eHRPD) radio access technology.
     pub static CTRadioAccessTechnologyeHRPD: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologylte?language=objc)
+    /// The Long-Term Evolution (LTE) radio access technology.
     pub static CTRadioAccessTechnologyLTE: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologynrnsa?language=objc)
+    /// The 5G New Radio Non-Standalone (NRNSA) radio access technology.
     pub static CTRadioAccessTechnologyNRNSA: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctradioaccesstechnologynr?language=objc)
+    /// The 5G New Radio (NR) radio access technology.
     pub static CTRadioAccessTechnologyNR: &'static NSString;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfodelegate?language=objc)
+    /// The methods that the system invokes when data service changes occur.
     pub unsafe trait CTTelephonyNetworkInfoDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(dataServiceIdentifierDidChange:))]
@@ -94,7 +99,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo?language=objc)
+    /// An object that provides notifications of changes to the user’s cellular service provider.
+    ///
+    /// ## Overview
+    ///
+    /// Your app should be able to handle changes to the user’s cellular service provider. For example, the user could swap the device’s SIM card with one from another provider while your app is running.
+    ///
+    /// This class also gives you access to the [`CTCarrier`](https://developer.apple.com/documentation/coretelephony/ctcarrier) object, which contains information about the user’s home cellular service provider.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CTTelephonyNetworkInfo;

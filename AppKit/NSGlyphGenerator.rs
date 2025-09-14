@@ -7,15 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowcontrolglyphs?language=objc)
+/// Generates displayable glyphs for control characters.
 pub const NSShowControlGlyphs: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshowinvisibleglyphs?language=objc)
+/// Generates displayable glyphs for invisible characters.
 pub const NSShowInvisibleGlyphs: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswantsbidilevels?language=objc)
+/// Generates directional formatting codes for bidirectional text.
 pub const NSWantsBidiLevels: c_uint = 1 << 2;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphstorage?language=objc)
+    /// A set of methods that a glyph storage object must implement to interact properly with [`NSGlyphGenerator`](https://developer.apple.com/documentation/appkit/nsglyphgenerator).
+    ///
+    /// ## Overview
+    ///
+    /// An example of a class that conforms to the [`NSGlyphStorage`](https://developer.apple.com/documentation/appkit/nsglyphstorage) protocol is [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager).
+    ///
+    ///
     pub unsafe trait NSGlyphStorage {
         #[cfg(feature = "NSFont")]
         /// # Safety
@@ -51,7 +57,15 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphgenerator?language=objc)
+    /// An object that performs the initial, nominal glyph generation phase in the layout process.
+    ///
+    /// ## Overview
+    ///
+    /// The nominal glyph generation pass essentially generates one glyph per character; the typesetter may later make substitutions in the glyph stream, for example, changing an acute accent glyph followed by an “e” glyph into a single acute-accented “é” glyph.
+    ///
+    /// [`NSGlyphGenerator`](https://developer.apple.com/documentation/appkit/nsglyphgenerator) communicates via the [`NSGlyphStorage`](https://developer.apple.com/documentation/appkit/nsglyphstorage) protocol. An example of a class that conforms to the protocol is [`NSLayoutManager`](https://developer.apple.com/documentation/appkit/nslayoutmanager).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSGlyphGenerator;

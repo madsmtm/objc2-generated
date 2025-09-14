@@ -7,45 +7,67 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomain?language=objc)
+    /// The domain for CallKit errors.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) for possible error codes.
+    ///
+    ///
     pub static CXErrorDomain: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainincomingcall?language=objc)
+    /// The domain for errors that occur during incoming calls.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`CXProvider`](https://developer.apple.com/documentation/callkit/cxprovider) for possible error codes.
+    ///
+    ///
     pub static CXErrorDomainIncomingCall: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainrequesttransaction?language=objc)
+    /// Domain for errors when requesting a transaction from a call controller.
+    ///
+    /// ## Discussion
+    ///
+    /// See [CallKit Constants](https://developer.apple.com/documentation/callkit/callkit-constants) for possible error codes.
+    ///
+    ///
     pub static CXErrorDomainRequestTransaction: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomaincalldirectorymanager?language=objc)
+    /// Domain for errors when interacting with a call directory manager.
+    ///
+    /// ## Discussion
+    ///
+    /// See [CallKit Constants](https://developer.apple.com/documentation/callkit/callkit-constants) for possible error codes.
+    ///
+    ///
     pub static CXErrorDomainCallDirectoryManager: &'static NSErrorDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrordomainnotificationserviceextension?language=objc)
     pub static CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code?language=objc)
+/// Error codes for the CallKit errors.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCode(pub NSInteger);
 impl CXErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/unknownerror?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CXErrorCodeUnknownError")]
     pub const UnknownError: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/unentitled?language=objc)
+    /// The caller doesn’t have the correct entitlement.
     #[doc(alias = "CXErrorCodeUnentitled")]
     pub const Unentitled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/invalidargument?language=objc)
+    /// The argument is invalid.
     #[doc(alias = "CXErrorCodeInvalidArgument")]
     pub const InvalidArgument: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code/missingvoipbackgroundmode?language=objc)
     #[doc(alias = "CXErrorCodeMissingVoIPBackgroundMode")]
     pub const MissingVoIPBackgroundMode: Self = Self(3);
 }
@@ -58,33 +80,30 @@ unsafe impl RefEncode for CXErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code?language=objc)
+/// Codes for errors that occur during incoming calls.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeIncomingCallError(pub NSInteger);
 impl CXErrorCodeIncomingCallError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/unentitled?language=objc)
+    /// The app isn’t entitled to receive incoming calls.
     #[doc(alias = "CXErrorCodeIncomingCallErrorUnentitled")]
     pub const Unentitled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/calluuidalreadyexists?language=objc)
+    /// The incoming call UUID already exists.
     #[doc(alias = "CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists")]
     pub const CallUUIDAlreadyExists: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbydonotdisturb?language=objc)
+    /// The incoming call is filtered because Do Not Disturb is active and the incoming caller is not a VIP.
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb")]
     pub const FilteredByDoNotDisturb: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbyblocklist?language=objc)
+    /// The incoming call is filtered because the incoming caller has been blocked by the user.
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredByBlockList")]
     pub const FilteredByBlockList: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredduringrestrictedsharingmode?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode")]
     pub const FilteredDuringRestrictedSharingMode: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/callisprotected?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorCallIsProtected")]
     pub const CallIsProtected: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code/filteredbysensitiveparticipants?language=objc)
     #[doc(alias = "CXErrorCodeIncomingCallErrorFilteredBySensitiveParticipants")]
     pub const FilteredBySensitiveParticipants: Self = Self(7);
 }
@@ -97,36 +116,41 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code?language=objc)
+/// Error codes for the CallKit error domain.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
 impl CXErrorCodeRequestTransactionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unentitled?language=objc)
+    /// The app isn’t entitled to perform the actions in the requested transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// You most commonly receive this error code when the `voip` value is missing from the `UIBackgroundModes` array in your app’s `Info.plist` file.
+    ///
+    ///
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnentitled")]
     pub const Unentitled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknowncallprovider?language=objc)
+    /// The controller couldn’t find a call provider to perform the actions in the requested transaction.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallProvider")]
     pub const UnknownCallProvider: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/emptytransaction?language=objc)
+    /// The requested transaction contains no actions.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorEmptyTransaction")]
     pub const EmptyTransaction: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/unknowncalluuid?language=objc)
+    /// The requested transaction contains call actions that reference an unknown UUID.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknownCallUUID")]
     pub const UnknownCallUUID: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/calluuidalreadyexists?language=objc)
+    /// The requested transaction contains call actions that reference a UUID that already exists.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists")]
     pub const CallUUIDAlreadyExists: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/invalidaction?language=objc)
+    /// The requested transaction contains an invalid action.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorInvalidAction")]
     pub const InvalidAction: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/maximumcallgroupsreached?language=objc)
+    /// The requested transaction contains actions that, if performed, would exceed the maximum number of call groups for the provider.
     #[doc(alias = "CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached")]
     pub const MaximumCallGroupsReached: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code/callisprotected?language=objc)
     #[doc(alias = "CXErrorCodeRequestTransactionErrorCallIsProtected")]
     pub const CallIsProtected: Self = Self(8);
 }
@@ -139,36 +163,36 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code?language=objc)
+/// Error codes the CallKit framework returns.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
 impl CXErrorCodeCallDirectoryManagerError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/unknown?language=objc)
+    /// An unknown error occurred.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/noextensionfound?language=objc)
+    /// The call directory manager could not find a corresponding app extension.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorNoExtensionFound")]
     pub const NoExtensionFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/loadinginterrupted?language=objc)
+    /// The call directory manager was interrupted while loading the app extension.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted")]
     pub const LoadingInterrupted: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/entriesoutoforder?language=objc)
+    /// The entries in the call directory are out of order.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder")]
     pub const EntriesOutOfOrder: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/duplicateentries?language=objc)
+    /// There are duplicate entries in the call directory.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorDuplicateEntries")]
     pub const DuplicateEntries: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/maximumentriesexceeded?language=objc)
+    /// There are too many entries in the call directory.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded")]
     pub const MaximumEntriesExceeded: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/extensiondisabled?language=objc)
+    /// The call directory extension isn’t enabled by the system.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorExtensionDisabled")]
     pub const ExtensionDisabled: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/currentlyloading?language=objc)
+    /// The call directory manager is loading the app extension.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading")]
     pub const CurrentlyLoading: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code/unexpectedincrementalremoval?language=objc)
+    /// A request occurred before confirming incremental loading.
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval")]
     pub const UnexpectedIncrementalRemoval: Self = Self(8);
 }
@@ -181,18 +205,32 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code?language=objc)
+/// Constants for errors returned when reporting new, incoming VoIP calls.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);
 impl CXErrorCodeNotificationServiceExtensionError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/unknown?language=objc)
+    /// An error that occurs when there is an unknown problem.
     #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/invalidclientprocess?language=objc)
+    /// An error indicating that an invalid client process reported the incoming call.
+    ///
+    /// ## Discussion
+    ///
+    /// Only call the [`reportNewIncomingVoIPPushPayload:completion:`](https://developer.apple.com/documentation/callkit/cxprovider/reportnewincomingvoippushpayload(_:completion:)) method from a [`UNNotificationServiceExtension`](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension) object that is responding to an incoming notification request.
+    ///
+    ///
     #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorInvalidClientProcess")]
     pub const InvalidClientProcess: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code/missingnotificationfilteringentitlement?language=objc)
+    /// An error indicating that the notification service extension is missing the required filtering entitlement.
+    ///
+    /// ## Discussion
+    ///
+    /// To call the [`reportNewIncomingVoIPPushPayload:completion:`](https://developer.apple.com/documentation/callkit/cxprovider/reportnewincomingvoippushpayload(_:completion:)) method, a notification service extension must have a `com.apple.developer.usernotifications.filtering` entitlement. To apply for this entitlement, see [https://developer.apple.com/contact/request/notification-service](https://developer.apple.com/contact/request/notification-service).
+    ///
+    /// After you receive permission to use the entitlement, add [`com.apple.developer.usernotifications.filtering`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.usernotifications.filtering) to the entitlements file for the Notification Service Extension target.
+    ///
+    ///
     #[doc(
         alias = "CXErrorCodeNotificationServiceExtensionErrorMissingNotificationFilteringEntitlement"
     )]

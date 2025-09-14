@@ -7,28 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Available modes for selecting streaming content from a picker presented by the operating system.
 /// SCContentSharingPickerModeSingleWindow picker mode for single window selection
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCContentSharingPickerMode(pub NSUInteger);
 bitflags::bitflags! {
     impl SCContentSharingPickerMode: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singlewindow?language=objc)
+/// The mode allowing the selection of a single window through the presented picker.
         #[doc(alias = "SCContentSharingPickerModeSingleWindow")]
         const SingleWindow = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/multiplewindows?language=objc)
+/// The mode allowing the selection of multiple windows through the presented picker.
         #[doc(alias = "SCContentSharingPickerModeMultipleWindows")]
         const MultipleWindows = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singleapplication?language=objc)
+/// The mode allowing the selection of a single application through the presented picker.
         #[doc(alias = "SCContentSharingPickerModeSingleApplication")]
         const SingleApplication = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/multipleapplications?language=objc)
+/// The mode allowing the selection of multiple applications through the presented picker.
         #[doc(alias = "SCContentSharingPickerModeMultipleApplications")]
         const MultipleApplications = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickermode/singledisplay?language=objc)
+/// The mode allowing the selection of a single display through the presented picker.
         #[doc(alias = "SCContentSharingPickerModeSingleDisplay")]
         const SingleDisplay = 1<<4;
     }
@@ -43,11 +42,10 @@ unsafe impl RefEncode for SCContentSharingPickerMode {
 }
 
 extern_class!(
+    /// An instance for configuring the system content-sharing picker.
     /// SCContentSharingPickerConfiguration
     ///
     /// SCContentSharingPickerConfiguration is an object which can optionally be set on the SCContentSharingPicker for customized configuration.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickerconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;
@@ -135,11 +133,22 @@ impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
 }
 
 extern_class!(
+    /// An instance of a picker presented by the operating system for managing frame-capture streams.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Avoid creating your own sharing picker. Use the picker provided by the [`sharedPicker`](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker/shared) static property.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// SCContentSharingPicker
     ///
     /// SCContentSharingPicker is an object created by client applications to opt-in to Control Center's content picker
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpicker?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentSharingPicker;
@@ -293,11 +302,10 @@ impl SCContentSharingPicker {
 }
 
 extern_protocol!(
+    /// An observer protocol your app implements to receive messages from the operating system’s content picker.
     /// SCContentSharingPickerObserver
     ///
     /// SCContentSharingPickerObserver the protocol that is used to inform client when the picker did make selection or cancel
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickerobserver?language=objc)
     pub unsafe trait SCContentSharingPickerObserver: NSObjectProtocol {
         #[cfg(feature = "SCStream")]
         /// contentSharingPicker:didCancelforStream:

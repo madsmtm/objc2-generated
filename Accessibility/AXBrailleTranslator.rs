@@ -8,8 +8,7 @@ use crate::*;
 
 extern_class!(
     /// A rule for translating print text to Braille, and back-translating Braille to print text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbrailletable?language=objc)
+    /// A rule for translating print text to Braille, and back-translating Braille to print text.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXBrailleTable;
@@ -108,8 +107,7 @@ impl AXBrailleTable {
 
 extern_class!(
     /// The result of translation or back-translation.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbrailletranslationresult?language=objc)
+    /// The result of translation or back-translation.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXBrailleTranslationResult;
@@ -156,8 +154,7 @@ impl AXBrailleTranslationResult {
 
 extern_class!(
     /// Translates print text to Braille and Braille to print text according to the given Braille table.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axbrailletranslator?language=objc)
+    /// Translates print text to Braille and Braille to print text according to the given Braille table.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXBrailleTranslator;

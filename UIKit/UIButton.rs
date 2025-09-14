@@ -12,37 +12,37 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum?language=objc)
+/// Specifies the style of a button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonType(pub NSInteger);
 impl UIButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/custom?language=objc)
+    /// No button style.
     #[doc(alias = "UIButtonTypeCustom")]
     pub const Custom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/system?language=objc)
+    /// A system style button, such as those shown in navigation bars and toolbars.
     #[doc(alias = "UIButtonTypeSystem")]
     pub const System: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/detaildisclosure?language=objc)
+    /// A detail disclosure button.
     #[doc(alias = "UIButtonTypeDetailDisclosure")]
     pub const DetailDisclosure: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/infolight?language=objc)
+    /// An information button that has a light background.
     #[doc(alias = "UIButtonTypeInfoLight")]
     pub const InfoLight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/infodark?language=objc)
+    /// An information button that has a dark background.
     #[doc(alias = "UIButtonTypeInfoDark")]
     pub const InfoDark: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/contactadd?language=objc)
+    /// A contact add button.
     #[doc(alias = "UIButtonTypeContactAdd")]
     pub const ContactAdd: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/plain?language=objc)
+    /// A standard system button without a blurred background view.
     #[doc(alias = "UIButtonTypePlain")]
     pub const Plain: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/close?language=objc)
+    /// A close button to dismiss panels and views.
     #[doc(alias = "UIButtonTypeClose")]
     pub const Close: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/roundedrect?language=objc)
+    /// A rounded-rectangle style button.
     #[doc(alias = "UIButtonTypeRoundedRect")]
     pub const RoundedRect: Self = Self(UIButtonType::System.0);
 }
@@ -55,22 +55,22 @@ unsafe impl RefEncode for UIButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum?language=objc)
+/// Constants that describe the role of the button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonRole(pub NSInteger);
 impl UIButtonRole {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/normal?language=objc)
+    /// A button role for a default button style.
     #[doc(alias = "UIButtonRoleNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/primary?language=objc)
+    /// A button role that responds to a primary key press.
     #[doc(alias = "UIButtonRolePrimary")]
     pub const Primary: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/cancel?language=objc)
+    /// A button role that responds to a cancel action.
     #[doc(alias = "UIButtonRoleCancel")]
     pub const Cancel: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum/destructive?language=objc)
+    /// A button role with a red background color.
     #[doc(alias = "UIButtonRoleDestructive")]
     pub const Destructive: Self = Self(3);
 }
@@ -83,7 +83,27 @@ unsafe impl RefEncode for UIButtonRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonpointerstyleprovider?language=objc)
+/// A type alias defining a block that returns a pointer style to apply to a button.
+///
+/// Parameters:
+/// - button: The button requesting the pointer style.
+///
+/// - proposedEffect: The content effect that the system suggests.
+///
+/// - proposedShape: The shape of the pointer that the system suggests.
+///
+///
+/// ## Return Value
+///
+/// The pointer style to apply to the button when the pointer hovers over it. Return `nil` when you don’t want to apply a pointer style to the button.
+///
+///
+///
+/// ## Discussion
+///
+/// To change the appearance of the pointer when it hovers over the button, create a pointer style provider block and assign it to the button’s [`pointerStyleProvider`](https://developer.apple.com/documentation/uikit/uibutton/pointerstyleprovider-1d4d2) property.
+///
+///
 #[cfg(all(
     feature = "UIControl",
     feature = "UIHoverStyle",
@@ -100,7 +120,11 @@ pub type UIButtonPointerStyleProvider = *mut block2::DynBlock<
     ) -> *mut UIPointerStyle,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/configurationupdatehandler-swift.typealias?language=objc)
+/// A closure to update the configuration of a button.
+///
+/// Parameters:
+/// - button: The button to update.
+///
 #[cfg(all(
     feature = "UIControl",
     feature = "UIResponder",
@@ -110,7 +134,117 @@ pub type UIButtonPointerStyleProvider = *mut block2::DynBlock<
 pub type UIButtonConfigurationUpdateHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIButton>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton?language=objc)
+    /// A control that executes your custom code in response to user interactions.
+    ///
+    /// ## Overview
+    ///
+    /// When you tap a button, or select a button that has focus, the button performs any actions attached to it. You communicate the purpose of a button using a text label, an image, or both. The appearance of buttons is configurable, so you can tint buttons or format titles to match the design of your app. You can add buttons to your interface programmatically or using Interface Builder.
+    ///
+    ///
+    /// ![A screenshot showing three buttons. The first button shows the label “Button”. The second button shows an image of a plus sign in a circle. The third button shows an image of a lowercase “i” in a circle.](https://docs-assets.developer.apple.com/published/abe7c4c3472254b2d40bb7dc8bfb8d5b/media-2557338.png)
+    ///
+    ///
+    /// When adding a button to your interface, perform the following steps:
+    ///
+    /// - Set the type of the button at creation time.
+    ///
+    /// - Supply a title string or image; size the button appropriately for your content.
+    ///
+    /// - Connect one or more action methods to the button.
+    ///
+    /// - Set up Auto Layout rules to govern the size and position of the button in your interface.
+    ///
+    /// - Provide accessibility information and localized strings.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  An app built with Mac Catalyst running in macOS 11 throws an exception when calling a button’s [`addGestureRecognizer:`](https://developer.apple.com/documentation/uikit/uiview/addgesturerecognizer(_:)) method when [`buttonType`](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.property) is [`UIButtonTypeSystem`](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum/system) and the user interface idiom is [`UIUserInterfaceIdiomMac`](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom/mac).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Respond to button taps
+    ///
+    /// Buttons use the target-action design pattern to notify your app when the user taps the button. Rather than handle touch events directly, you assign action methods to the button and designate which events trigger calls to your methods. At runtime, the button handles all incoming touch events and calls your methods in response.
+    ///
+    /// You connect a button to your action method using the [`addTarget:action:forControlEvents:`](https://developer.apple.com/documentation/uikit/uicontrol/addtarget(_:action:for:)) method or by creating a connection in Interface Builder. The signature of an action method takes one of three forms, as shown in the following code. Choose the form that provides the information that you need to respond to the button tap.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBAction func doSomething()", "@IBAction func doSomething(sender: UIButton)", "@IBAction func doSomething(sender: UIButton, forEvent event: UIEvent)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (IBAction)doSomething;", "- (IBAction)doSomething:(id)sender;", "- (IBAction)doSomething:(id)sender forEvent:(UIEvent*)event;"], metadata: None }] }] })
+    /// ### Configure a button’s appearance
+    ///
+    /// A button’s type defines its basic appearance and behavior. You specify the type of a button at creation time using the [`buttonWithType:`](https://developer.apple.com/documentation/uikit/uibutton/init(type:)) method or in your storyboard file. After creating a button, you can’t change its type. The most commonly used button types are the Custom and System types, but use the other types when appropriate.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  To configure the appearance of all buttons in your app, use the appearance proxy object. The [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) class implements the [`appearance`](https://developer.apple.com/documentation/uikit/uiappearance/appearance()) class method, which you can use to fetch the appearance proxy for all buttons in your app.
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Configure button states
+    ///
+    /// Buttons have five states that define their appearance: default, highlighted, focused, selected, and disabled. When you add a button to your interface, it’s in the default state initially, which means the button is enabled and the user isn’t interacting with it. As the user interacts with the button, its state changes to the other values. For example, when the user taps a button with a title, the button moves to the highlighted state.
+    ///
+    /// When configuring a button either programmatically or in Interface Builder, you specify attributes for each state separately. In Interface Builder, use the State Config control in the Attributes inspector to choose the appropriate state and then configure the other attributes. If you don’t specify attributes for a particular state, the [`UIButton`](https://developer.apple.com/documentation/uikit/uibutton) class provides a reasonable default behavior. For example, a disabled button is normally dimmed and doesn’t display a highlight when tapped. Other properties of this class, such as the [`adjustsImageWhenHighlighted`](https://developer.apple.com/documentation/uikit/uibutton/adjustsimagewhenhighlighted) and [`adjustsImageWhenDisabled`](https://developer.apple.com/documentation/uikit/uibutton/adjustsimagewhendisabled) properties, let you alter the default behavior in specific cases.
+    ///
+    /// #### Provide content
+    ///
+    /// The content of a button consists of a title string or image that you specify. The content you specify is used to configure the [`UILabel`](https://developer.apple.com/documentation/uikit/uilabel) and [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) object managed by the button itself. You can access these objects using the [`titleLabel`](https://developer.apple.com/documentation/uikit/uibutton/titlelabel) or [`imageView`](https://developer.apple.com/documentation/uikit/uibutton/imageview) properties and modify their values directly. The methods of this class also provide a convenient shortcut for configuring the appearance of your string or image.
+    ///
+    /// Normally, you configure a button using either a title or an image and size the button accordingly. Buttons can also have a background image, which is positioned behind the content you specify. It’s possible to specify both an image and a title for buttons, which results in the appearance shown in the following image. You can access the current content of a button using the indicated properties.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/f68bc9126ee1cbc3b77b4d2dff963002/media-3081016~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/b18fd0e1e20cf9a7e61095bb304cda2c/media-3081016%402x.png 2x" />
+    ///     <img alt="Providing a title and image for a button." src="https://docs-assets.developer.apple.com/published/f68bc9126ee1cbc3b77b4d2dff963002/media-3081016~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// When setting the content of a button, you must specify the title, image, and appearance attributes for each state separately. If you don’t customize the content for a particular state, the button uses the values associated with the Default state and adds any appropriate customizations. For example, in the highlighted state, an image-based button draws a highlight on top of the default image if no custom image is provided.
+    ///
+    /// #### Customize tint color
+    ///
+    /// You can specify a custom button tint using the [`tintColor`](https://developer.apple.com/documentation/uikit/uibutton/tintcolor) property. This property sets the color of the button image and text. If you don’t explicitly set a tint color, the button uses its superview’s tint color.
+    ///
+    /// #### Specify edge insets
+    ///
+    /// Use insets to add or remove space around the content in your custom or system buttons. You can specify separate insets for your button’s title ([`titleEdgeInsets`](https://developer.apple.com/documentation/uikit/uibutton/titleedgeinsets)), image ([`imageEdgeInsets`](https://developer.apple.com/documentation/uikit/uibutton/imageedgeinsets)), and both the title and image together ([`contentEdgeInsets`](https://developer.apple.com/documentation/uikit/uibutton/contentedgeinsets)). When applied, insets affect the corresponding content rectangle of the button, which the Auto Layout engine uses to determine the button’s position.
+    ///
+    /// There should be no reason for you to adjust the edge insets for info, contact, or disclosure buttons.
+    ///
+    /// ### Configure button attributes in Interface Builder
+    ///
+    /// The following table lists the core attributes that you configure for buttons in Interface Builder.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Type" }] }], [Paragraph { inline_content: [Text { text: "The button type. This attribute determines the default settings for many other button attributes. The value of this attribute can’t be changed at runtime, but you can access it using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/buttonType-swift.property", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "State Config" }] }], [Paragraph { inline_content: [Text { text: "The state selector. After selecting a value in this control, changes to the button’s attributes apply to the specified state." }] }]], [[Paragraph { inline_content: [Text { text: "Title" }] }], [Paragraph { inline_content: [Text { text: "The button’s title. You can specify a button’s title as a plain string or attributed string." }] }]], [[Paragraph { inline_content: [Text { text: "(Title Font and Attributes)" }] }], [Paragraph { inline_content: [Text { text: "The font and other attributes to apply to the button’s title string. The specific configuration options depends on whether you specified a plain string or attributed string for the button’s title. For a plain string, you can customize the font, text color, and shadow color. For an attributed string, you can specify alignment, text direction, indentation, hyphenation, and many other options." }] }]], [[Paragraph { inline_content: [Text { text: "Image" }] }], [Paragraph { inline_content: [Text { text: "The button’s foreground image. Typically, you use template images for a button’s foreground, but you may specify any image in your Xcode project." }] }]], [[Paragraph { inline_content: [Text { text: "Background" }] }], [Paragraph { inline_content: [Text { text: "The button’s background image. The background image is displayed behind its title and foreground image." }] }]]], alignments: None, metadata: None })
+    /// The following table lists attributes that affect the button’s appearance.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Shadow Offset" }] }], [Paragraph { inline_content: [Text { text: "The offsets and behavior of the button’s shadow. Shadows affect title strings only. Enable the Reverses on Highlight option to change the highlighting of the shadow when the button state changes to or from the highlighted state. " }, Image { identifier: "spacer", metadata: None }, Text { text: " Configure the offsets programmatically using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UILabel/shadowOffset", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property of the button’s " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/titleLabel", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " object. Configure the highlighting behavior using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/reversesTitleShadowWhenHighlighted", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Drawing" }] }], [Paragraph { inline_content: [Text { text: "The drawing behavior of the button. " }, Image { identifier: "spacer", metadata: None }, Text { text: " When the Shows Touch On Highlight (" }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/showsTouchWhenHighlighted", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ") option is enabled, the button adds a white glow to the part of a button that the user touches. " }, Image { identifier: "spacer", metadata: None }, Text { text: " When the Highlighted Adjusts Image (" }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/adjustsImageWhenHighlighted", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ") option is enabled, button images get darker when it’s in the highlighted state. " }, Image { identifier: "spacer", metadata: None }, Text { text: " When the Disabled Adjusts Image (" }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/adjustsImageWhenDisabled", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ") option is enabled, the image is dimmed when the button is disabled." }] }]], [[Paragraph { inline_content: [Text { text: "Line Break" }] }], [Paragraph { inline_content: [Text { text: "The line breaking options for the button’s text. Use this attribute to define how the button’s title is modified to fit the available space." }] }]]], alignments: None, metadata: None })
+    /// The following table lists the edge inset attributes for buttons. Use edge inset buttons to alter the rectangle for the button’s content.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Edge" }] }], [Paragraph { inline_content: [Text { text: "The edge insets to configure. You can specify separate edge insets for the button’s overall content, its title, and its image." }] }]], [[Paragraph { inline_content: [Text { text: "Inset" }] }], [Paragraph { inline_content: [Text { text: "The inset values. Positive values shrink the corresponding edge, moving it closer to the center of the button. Negative values expand the edge, moving it away from the center of the button. Access these values at runtime using the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/contentEdgeInsets", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/titleEdgeInsets", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", and " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIButton/imageEdgeInsets", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " properties." }] }]]], alignments: None, metadata: None })
+    /// For information about the button’s inherited Interface Builder attributes, see [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol) and [`UIView`](https://developer.apple.com/documentation/uikit/uiview).
+    ///
+    /// ### Support localization
+    ///
+    /// To internationalize a button, specify a localized string for the button’s title text. (You may also localize a button’s image as appropriate.)
+    ///
+    /// When using storyboards to build your interface, use Xcode’s base internationalization feature to configure the localizations your project supports. When you add a localization, Xcode creates a strings file for that localization. When configuring your interface programmatically, use the system’s built-in support for loading localized strings and resources. For more information about internationalizing your interface, see [Internationalization and Localization Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/Introduction/Introduction.html#//apple_ref/doc/uid/10000171i).
+    ///
+    /// ### Make buttons accessible
+    ///
+    /// Buttons are accessible by default. The default accessibility traits for a button are Button and User Interaction Enabled.
+    ///
+    /// The accessibility label, traits, and hint are spoken back to the user when VoiceOver is enabled on a device. The button’s title overwrites its accessibility label; even if you set a custom value for the label, VoiceOver speaks the value of the title. VoiceOver speaks this information when a user taps the button once. For example, when a user taps the Options button in Camera, VoiceOver speaks the following:
+    ///
+    /// - `"Options. Button. Shows additional camera options."`
+    ///
+    /// For more information about making iOS controls accessible, see the accessibility information in [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol). For general information about making your interface accessible, see [Accessibility Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/iPhoneAccessibility/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008785).
+    ///
+    ///
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

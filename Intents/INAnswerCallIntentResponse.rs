@@ -7,31 +7,23 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INAnswerCallIntentResponseCode(pub NSInteger);
 impl INAnswerCallIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/unspecified?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/ready?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/continueinapp?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeContinueInApp")]
     pub const ContinueInApp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/inprogress?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/success?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeSuccess")]
     pub const Success: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/failure?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeFailure")]
     pub const Failure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponsecode/failurerequiringapplaunch?language=objc)
     #[doc(alias = "INAnswerCallIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(6);
 }
@@ -45,7 +37,6 @@ unsafe impl RefEncode for INAnswerCallIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inanswercallintentresponse?language=objc)
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

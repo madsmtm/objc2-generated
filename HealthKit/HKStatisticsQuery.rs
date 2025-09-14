@@ -8,7 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsquery?language=objc)
+    /// A query that performs statistical calculations over a set of matching quantity samples, and returns the results.
+    ///
+    /// ## Overview
+    ///
+    /// Statistics queries calculate common statistics over the set of matching samples. You can use statistical queries to calculate the minimum, maximum, or average value of a set of discrete quantities, or use them to calculate the sum for cumulative quantities. For the complete list of possible calculations, see [`HKStatisticsOptions`](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions). For more information about the available quantity types and to learn whether they are discrete or cumulative values, see [Data types](https://developer.apple.com/documentation/healthkit/data-types).
+    ///
+    /// You can use statistics queries with quantity samples only. If you want to calculate statistics over workouts or correlation samples, you must perform the appropriate query and process the data yourself.
+    ///
+    /// Statistics queries are immutable. Their properties are set when they are first created, and they can’t change.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

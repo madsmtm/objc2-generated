@@ -12,50 +12,56 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype?language=objc)
+/// The properties for defining the type for a media item.
+///
+/// ## Overview
+///
+/// Media item types are possible values for the [`MPMediaItemPropertyMediaType`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertymediatype) property. A media item can have more than one media item type.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMediaType(pub NSUInteger);
 bitflags::bitflags! {
     impl MPMediaType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/music?language=objc)
+/// The media item contains music.
         #[doc(alias = "MPMediaTypeMusic")]
         const Music = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/podcast?language=objc)
+/// The media item contains a podcast.
         #[doc(alias = "MPMediaTypePodcast")]
         const Podcast = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/audiobook?language=objc)
+/// The media item contains an audio book.
         #[doc(alias = "MPMediaTypeAudioBook")]
         const AudioBook = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/audioitunesu?language=objc)
+/// The media item contains an iTunes U audio lesson.
         #[doc(alias = "MPMediaTypeAudioITunesU")]
         const AudioITunesU = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/anyaudio?language=objc)
+/// The media item contains an unspecified type of audio content.
         #[doc(alias = "MPMediaTypeAnyAudio")]
         const AnyAudio = 0x00ff;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/movie?language=objc)
+/// The media item contains a movie.
         #[doc(alias = "MPMediaTypeMovie")]
         const Movie = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/tvshow?language=objc)
+/// The media item contains a TV show.
         #[doc(alias = "MPMediaTypeTVShow")]
         const TVShow = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/videopodcast?language=objc)
+/// The media item contains a video podcast.
         #[doc(alias = "MPMediaTypeVideoPodcast")]
         const VideoPodcast = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/musicvideo?language=objc)
+/// The media item contains a music video.
         #[doc(alias = "MPMediaTypeMusicVideo")]
         const MusicVideo = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/videoitunesu?language=objc)
+/// The media item contains an iTunes U video.
         #[doc(alias = "MPMediaTypeVideoITunesU")]
         const VideoITunesU = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/homevideo?language=objc)
+/// The media item contains a home video.
         #[doc(alias = "MPMediaTypeHomeVideo")]
         const HomeVideo = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/anyvideo?language=objc)
+/// The media item contains an unspecified type of video content.
         #[doc(alias = "MPMediaTypeAnyVideo")]
         const AnyVideo = 0xff00;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediatype/any?language=objc)
+/// The media item contains an unspecified type of media content.
         #[doc(alias = "MPMediaTypeAny")]
         const Any = !0;
     }
@@ -70,202 +76,477 @@ unsafe impl RefEncode for MPMediaType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid?language=objc)
+    /// The key for the persistent identifier for the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a [`MPMediaEntityPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypersistentid). The value of the `MPMediaItemPropertyPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertymediatype?language=objc)
+    /// The media type of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents an [`NSInteger`](https://developer.apple.com/documentation/objectivec/nsinteger) data type. The `NSInteger` value represents a bit field flag, or set of flags, from [`MPMediaType`](https://developer.apple.com/documentation/mediaplayer/mpmediatype).
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyMediaType: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertytitle?language=objc)
+    /// The title or name of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is unrelated to the [`MPMediaItemPropertyAlbumTitle`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtitle) property. Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtitle?language=objc)
+    /// The title of an album.
+    ///
+    /// ## Discussion
+    ///
+    /// This value property contains the album title, such as “Live On Mars”, as opposed to the title of an individual song on the album, such as “Crater Dance (radio edit)” (which you specify using the [`MPMediaItemPropertyTitle`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertytitle) property). Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumpersistentid?language=objc)
+    /// The key for the persistent identifier for an album.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a [`MPMediaEntityPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypersistentid). The value of the `MPMediaItemPropertyAlbumPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartist?language=objc)
+    /// The performing artists for a media item — which may vary from the primary artist for the album that a media item belongs to.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, if the album artist is “Joseph Fable,” the artist for one of the songs in the album may be “Joseph Fable featuring Thomas Smithson”. Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyArtist: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartistpersistentid?language=objc)
+    /// The key for the persistent identifier for an artist.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a [`MPMediaEntityPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypersistentid). The value of the `MPMediaItemPropertyArtistPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyArtistPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumartist?language=objc)
+    /// The primary performing artist for an album.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumArtist: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumartistpersistentid?language=objc)
+    /// The persistent identifier for an album artist.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a `uint64_t` (unsigned long long). The value of the `MPMediaItemPropertyAlbumArtistPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumArtistPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertygenre?language=objc)
+    /// The music or film genre of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyGenre: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertygenrepersistentid?language=objc)
+    /// The persistent identifier for a genre.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a `uint64_t` (unsigned long long). The value of the `MPMediaItemPropertyGenrePersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyGenrePersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomposer?language=objc)
+    /// The musical composer for the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyComposer: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomposerpersistentid?language=objc)
+    /// The persistent identifier for a composer.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a `uint64_t` (unsigned long long). The value of the `MPMediaItemPropertyComposerPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyComposerPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaybackduration?language=objc)
+    /// The playback duration of the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing a duration in seconds as an [`NSTimeInterval`](https://developer.apple.com/documentation/foundation/timeinterval).
+    ///
+    ///
     pub static MPMediaItemPropertyPlaybackDuration: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtracknumber?language=objc)
+    /// The track number of the media item, for a media item that is part of an album.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumTrackNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyalbumtrackcount?language=objc)
+    /// The number of tracks for the album that contains the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type. For an audio streaming app, the system provides a default value of `1` for this property.
+    ///
+    ///
     pub static MPMediaItemPropertyAlbumTrackCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydiscnumber?language=objc)
+    /// The disc number of the media item, for a media item that is part of a multidisc album.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyDiscNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydisccount?language=objc)
+    /// The number of discs for the album that contains the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyDiscCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyartwork?language=objc)
+    /// The artwork image for the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is a media item image, described in [`MPMediaItemArtwork`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork).
+    ///
+    ///
     pub static MPMediaItemPropertyArtwork: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyisexplicit?language=objc)
+    /// A Boolean value that indicates whether the media item contains explicit (adult) lyrics or language.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents a `BOOL` data type.
+    ///
+    ///
     pub static MPMediaItemPropertyIsExplicit: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertylyrics?language=objc)
+    /// The lyrics for the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static MPMediaItemPropertyLyrics: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyiscompilation?language=objc)
+    /// A Boolean value that indicates whether the media item is part of a compilation.
+    ///
+    /// ## Discussion
+    ///
+    /// This property corresponds to the “Part of a compilation” checkbox in the Info tab of the Get Info dialog in iTunes. Its associated value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing a Boolean value.
+    ///
+    ///
     pub static MPMediaItemPropertyIsCompilation: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyreleasedate?language=objc)
+    /// The date of the media item’s first public release.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    ///
     pub static MPMediaItemPropertyReleaseDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertybeatsperminute?language=objc)
+    /// The number of musical beats per minute for the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyBeatsPerMinute: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertycomments?language=objc)
+    /// Textual information about the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static MPMediaItemPropertyComments: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyasseturl?language=objc)
+    /// A URL that points to the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSURL`](https://developer.apple.com/documentation/foundation/nsurl) object. The URL has the custom scheme of `ipod-library`. For example, a URL might look like this:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["ipod-library://item/item.m4a?id=12345"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["ipod-library://item/item.m4a?id=12345"], metadata: None }] }] })
+    ///
     pub static MPMediaItemPropertyAssetURL: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyisclouditem?language=objc)
+    /// A Boolean value that indicates whether the media item is an iCloud item.
+    ///
+    /// ## Discussion
+    ///
+    /// A media item is an iCloud item if it’s available in the iCloud Music Library, or if it’s part of the Apple Music subscription service and isn’t already on the device. This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents a `BOOL` data type.
+    ///
+    ///
     pub static MPMediaItemPropertyIsCloudItem: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyhasprotectedasset?language=objc)
+    /// A Boolean value that indicates the media item has DRM protection so it can’t play through a standard playback API.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents a `BOOL` data type.
+    ///
+    ///
     pub static MPMediaItemPropertyHasProtectedAsset: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypodcasttitle?language=objc)
+    /// The title of a podcast.
+    ///
+    /// ## Discussion
+    ///
+    /// The property contains the title of a podcast, such as “This Martian Drudgery”, as opposed to the title of an individual episode of a podcast such as “Episode 12: Another Cold Day At The Pole” (which you specify using the [`MPMediaItemPropertyTitle`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertytitle) property). Value is an `NSString` object.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyPodcastTitle: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypodcastpersistentid?language=objc)
+    /// The persistent identifier for an audio podcast.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a `uint64_t` (unsigned long long). The value of the `MPMediaItemPropertyPodcastPersistentID` identifier persists across application launches and across syncs that do not change the sync status of the media item. The value is not guaranteed to persist across a sync/unsync/sync cycle.
+    ///
+    /// Can be used to build a media property predicate as described in [`MPMediaPropertyPredicate`](https://developer.apple.com/documentation/mediaplayer/mpmediapropertypredicate).
+    ///
+    ///
     pub static MPMediaItemPropertyPodcastPersistentID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaycount?language=objc)
+    /// The number of times the user plays the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents a [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyPlayCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyskipcount?language=objc)
+    /// The number of times the user has skipped playing the item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertySkipCount: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyrating?language=objc)
+    /// The user-specified rating of the object in the range `[0...5]`, where a value of 5 indicates the most favorable rating.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing an [`NSUInteger`](https://developer.apple.com/documentation/objectivec/nsuinteger) data type.
+    ///
+    ///
     pub static MPMediaItemPropertyRating: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertylastplayeddate?language=objc)
+    /// The most recent calendar date on which the user played the media item.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    ///
     pub static MPMediaItemPropertyLastPlayedDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyusergrouping?language=objc)
+    /// Corresponds to the “Grouping” field in the Info tab in the Get Info dialog in iTunes.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object.
+    ///
+    ///
     pub static MPMediaItemPropertyUserGrouping: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertybookmarktime?language=objc)
+    /// The user’s place in the media item the most recent time it was played.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object representing a duration in seconds as an [`NSTimeInterval`](https://developer.apple.com/documentation/foundation/timeinterval).
+    ///
+    ///
     pub static MPMediaItemPropertyBookmarkTime: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertydateadded?language=objc)
+    /// The date the media item was added to the user’s Media library.
+    ///
+    /// ## Discussion
+    ///
+    /// Value is a [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) object.
+    ///
+    ///
     pub static MPMediaItemPropertyDateAdded: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyplaybackstoreid?language=objc)
+    /// The identifier for enqueueing store tracks.
+    ///
+    /// ## Discussion
+    ///
+    /// Matches the identifier used by [`MPMusicPlayerController`](https://developer.apple.com/documentation/mediaplayer/mpmusicplayercontroller) to enqueue store tracks.
+    ///
+    ///
     pub static MPMediaItemPropertyPlaybackStoreID: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertyispreorder?language=objc)
+    /// A Boolean value that indicates whether the media item is a preorder.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that represents a `BOOL` data type.
+    ///
+    ///
     pub static MPMediaItemPropertyIsPreorder: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitem?language=objc)
+    /// A collection of properties that represents a single item in the media library.
+    ///
+    /// ## Overview
+    ///
+    /// A media item has an overall unique identifier, accessed using the [`MPMediaItemPropertyPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaitempropertypersistentid) property key, as well as specific identifiers for its metadata. These identifiers persists across application launches.
+    ///
+    /// A media item can have a wide range of metadata associated with it. You access this metadata using the [`valueForProperty:`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity/value(forproperty:)) method along with the property keys described in this document. You can also access metadata in a batch fashion using the [`enumerateValuesForProperties:usingBlock:`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity/enumeratevalues(forproperties:using:)) method. Anytime the app accesses more than one property, enumerating over a set of property keys is more efficient than fetching each individual property. [`MPMediaEntity`](https://developer.apple.com/documentation/mediaplayer/mpmediaentity) defines both of these methods, the abstract superclass of [`MPMediaItemCollection`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemcollection), and described in `MPMediaEntity`.
+    ///
+    /// You use attributes of media items to build media queries for searching the Media library. [`MPMediaType`](https://developer.apple.com/documentation/mediaplayer/mpmediatype), [General media item property keys](https://developer.apple.com/documentation/mediaplayer/general-media-item-property-keys), and `Podcast Item Property Keys` describe these attributes. In addition, [Media entity property keys](https://developer.apple.com/documentation/mediaplayer/media-entity-property-keys) describes the [`MPMediaEntityPropertyPersistentID`](https://developer.apple.com/documentation/mediaplayer/mpmediaentitypropertypersistentid) property, and [`MPMediaQuery`](https://developer.apple.com/documentation/mediaplayer/mpmediaquery) describes media queries.
+    ///
+    ///
     #[unsafe(super(MPMediaEntity, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MPMediaEntity")]
@@ -463,7 +744,7 @@ impl MPMediaItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork?language=objc)
+    /// A graphical image, such as music album cover art, associated with a media item.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaItemArtwork;
@@ -522,6 +803,19 @@ impl MPMediaItemArtwork {
 extern_class!(
     /// An animated image, such as an animated music album cover art, for a media item.
     ///
+    /// ## Overview
+    ///
+    /// A single instance of animated artwork is comprised of two assets: an artwork video asset, and a preview image which should match the first frame of the artwork video. The preview image may be used when displaying the animated artwork whilst the video becomes available.
+    ///
+    /// Both the preview image and artwork video can be fetched asynchronously and will only be requested when required at point of display. Aim to provide preview images as quickly as possible once requested, and ideally synchronously.
+    ///
+    /// Video asset `URL`s you provide must be local file `URL`s. You should make the associated assets available locally before providing them via the relevant handler, for example by fetching the associated video asset over the network. The `URL`s should remain valid for the lifetime of the [`MPMediaItemAnimatedArtwork`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemanimatedartwork), once provided.
+    ///
+    /// [`MPMediaItemAnimatedArtwork`](https://developer.apple.com/documentation/mediaplayer/mpmediaitemanimatedartwork) should not be subclassed.
+    ///
+    ///
+    /// An animated image, such as an animated music album cover art, for a media item.
+    ///
     /// A single instance of animated artwork is comprised of two assets: an artwork video asset, and a
     /// preview image which should match the first frame of the artwork video. The preview image may be
     /// used when displaying the animated artwork whilst the video becomes available.
@@ -536,8 +830,6 @@ extern_class!(
     /// ``MPMediaItemAnimatedArtwork``, once provided.
     ///
     /// ``MPMediaItemAnimatedArtwork`` should not be subclassed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmediaitemanimatedartwork?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MPMediaItemAnimatedArtwork;

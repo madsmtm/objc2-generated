@@ -6,40 +6,38 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// Error domain for error values from app metrics.
     /// Error domain for NSError values stemming from the MetricKit Framework API.
     ///
     /// This error domain is used as the domain for all NSError instances stemming from the MetricKit Framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrordomain?language=objc)
     pub static MXErrorDomain: Option<&'static NSErrorDomain>;
 }
 
+/// Error codes for error values from app metrics.
 /// Error codes for NSError values stemming from the MetricKit Framework.
 ///
 /// These error codes are used as the codes for all NSError instances stemmming from the MetricKit Framework.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MXErrorCode(pub NSInteger);
 impl MXErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskinvalidid?language=objc)
+    /// The task ID is a `null` value or exceeds the maximum 128 character length.
     #[doc(alias = "MXErrorLaunchTaskInvalidID")]
     pub const LaunchTaskInvalidID: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskmaxcount?language=objc)
+    /// Exceeded the maximum number of tasks.
     #[doc(alias = "MXErrorLaunchTaskMaxCount")]
     pub const LaunchTaskMaxCount: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskpastdeadline?language=objc)
+    /// The start call was made too late.
     #[doc(alias = "MXErrorLaunchTaskPastDeadline")]
     pub const LaunchTaskPastDeadline: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskduplicated?language=objc)
+    /// A task with the same ID has already been started.
     #[doc(alias = "MXErrorLaunchTaskDuplicated")]
     pub const LaunchTaskDuplicated: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskunknown?language=objc)
+    /// The task hasn’t been started or has already been finished.
     #[doc(alias = "MXErrorLaunchTaskUnknown")]
     pub const LaunchTaskUnknown: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code/launchtaskinternalfailure?language=objc)
+    /// Internal failures happened inside the framework.
     #[doc(alias = "MXErrorLaunchTaskInternalFailure")]
     pub const LaunchTaskInternalFailure: Self = Self(5);
 }

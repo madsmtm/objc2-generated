@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressgesturerecognizer?language=objc)
+    /// A discrete gesture recognizer that tracks whether the user holds down a mouse button for a minimum amount of time before releasing it.
+    ///
+    /// ## Overview
+    ///
+    /// Use a press gesture recognizer to configure which button the user must hold and the length of time they must hold it. You can also specify how far the mouse can move for a valid gesture.
+    ///
+    /// Upon creation, the gesture recognizer recognizes press gestures involving only the primary button. It also delays sending primary button events to the view by setting the [`delaysPrimaryMouseButtonEvents`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysprimarymousebuttonevents) property to [`true`](https://developer.apple.com/documentation/swift/true). To change the set of buttons to track, modify the [`buttonMask`](https://developer.apple.com/documentation/appkit/nspressgesturerecognizer/buttonmask) property.
+    ///
+    ///
     #[unsafe(super(NSGestureRecognizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSGestureRecognizer")]

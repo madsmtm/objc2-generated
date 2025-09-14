@@ -9,24 +9,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The Bluetooth range in which to discover accessories.
 /// Discovery Range
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASDiscoveryDescriptorRange(pub NSInteger);
 impl ASDiscoveryDescriptorRange {
     /// The default range in which to discover accessories.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/default?language=objc)
+    /// The default range in which to discover accessories.
     #[doc(alias = "ASDiscoveryDescriptorRangeDefault")]
     pub const Default: Self = Self(0);
     /// A range in the immediate vicinity of the device performing accessory discovery.
     ///
+    /// ## Discussion
+    ///
     /// This range means that an accessory is right next to the device running your app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/immediate?language=objc)
+    ///
+    /// A range in the immediate vicinity of the device performing accessory discovery.
+    ///
+    /// This range means that an accessory is right next to the device running your app.
     #[doc(alias = "ASDiscoveryDescriptorRangeImmediate")]
     pub const Immediate: Self = Self(10);
 }
@@ -39,22 +42,19 @@ unsafe impl RefEncode for ASDiscoveryDescriptorRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A type that defines the role of an accessory’s Wi-Fi Aware’s service.
 /// A type that defines service roles for Wi-Fi Aware accessories.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ASDiscoveryDescriptorWiFiAwareServiceRole(pub NSInteger);
 impl ASDiscoveryDescriptorWiFiAwareServiceRole {
     /// The subscriber service role.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum/subscriber?language=objc)
+    /// The subscriber service role.
     #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRoleSubscriber")]
     pub const Subscriber: Self = Self(10);
     /// The publisher service role.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum/publisher?language=objc)
+    /// The publisher service role.
     #[doc(alias = "ASDiscoveryDescriptorWiFiAwareServiceRolePublisher")]
     pub const Publisher: Self = Self(20);
 }
@@ -68,7 +68,18 @@ unsafe impl RefEncode for ASDiscoveryDescriptorWiFiAwareServiceRole {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor?language=objc)
+    /// Descriptive traits used to discover accessories.
+    ///
+    /// ## Overview
+    ///
+    /// Use an instance of this type to identify accessories your app can set up, then set it as the [`descriptor`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem/descriptor) property of an [`ASPickerDisplayItem`](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplayitem).
+    ///
+    /// Some of the Bluetooth identifier properties work together to filter matching accessories, as described in the following table.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Use" }] }], [Paragraph { inline_content: [Text { text: "Filter property" }] }], [Paragraph { inline_content: [Text { text: "Also requires" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Required" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "(none)" }] }], [Paragraph { inline_content: [Text { text: "Provide at least one UUID or manufacturer ID to filter." }] }]], [[Paragraph { inline_content: [Text { text: "Optional" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothNameSubstring", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "Provide a name substring to look for.  Requires setting at least a service UUID or company ID, which identifies the service or company using the name." }] }]], [[Paragraph { inline_content: [Text { text: "Optional" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataBlob", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothManufacturerDataMask", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "When using manufacturer data filters, provide both the data and mask. These properties should have the same length and be less than or equal to the size of the advertised payload. The " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothCompanyIdentifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " identifies the manufacturer associated with the data." }] }]], [[Paragraph { inline_content: [Text { text: "Optional" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataBlob", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " and " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceDataMask", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "When using UUID service data filters, provide both the data and mask. These properties should have the same length and be less than or equal to the size of the advertised payload. The " }, Reference { identifier: "doc://com.apple.AccessorySetupKit/documentation/AccessorySetupKit/ASDiscoveryDescriptor/bluetoothServiceUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " identifies the service associated with the data." }] }]]], alignments: None, metadata: None })
+    /// The descriptor also allows you to set the [`bluetoothRange`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/bluetoothrange) of matched accessories; set its value to [`ASDiscoveryDescriptorRangeImmediate`](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range/immediate) to limit discovery of Bluetooth accessories to those within the immediate proximity of the device running your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASDiscoveryDescriptor;

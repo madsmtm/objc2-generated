@@ -11,12 +11,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkviewcontroller?language=objc)
+    /// The abstract base protocol adopted by GameKit view controller classes.
     pub unsafe trait GKViewController {}
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkdialogcontroller?language=objc)
+    /// An object that provides the ability to present the dashboard in macOS games.
+    ///
+    /// ## Overview
+    ///
+    /// For macOS games, use a `GKDialogController` object to present the dashboard from which players can browse and manage their Game Center data.
+    ///
+    /// Initialize a new [`GKGameCenterViewController`](https://developer.apple.com/documentation/gamekit/gkgamecenterviewcontroller) object, as you would for an iOS game, specifying the state and setting its delegate. Then get the singleton dialog controller using the [`sharedDialogController`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller/shared()) class method, or initialize a new `GKDialogController` object.
+    ///
+    /// To present the dashboard, set the [`parentWindow`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller/parentwindow) property to the window that should display the dashboard and then call the [`presentViewController:`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller/present(_:)) method, passing the `GKGameCenterViewController` object.
+    ///
+    /// ```swift
+    /// func presentAchievement() {
+    ///     let viewController = GKGameCenterViewController(achievementID: "101")
+    ///     viewController.gameCenterDelegate = self
+    ///     
+    ///     let dialogController = GKDialogController.shared()
+    ///     dialogController.parentWindow = NSApplication.shared.mainWindow
+    ///     dialogController.present(viewController)
+    /// }
+    /// ```
+    ///
+    /// When the player closes the dashboard, GameKit calls the [`gameCenterViewControllerDidFinish:`](https://developer.apple.com/documentation/gamekit/gkgamecentercontrollerdelegate/gamecenterviewcontrollerdidfinish(_:)) delegate method. Implement this method to dismiss the shared dialog controller using the [`dismiss:`](https://developer.apple.com/documentation/gamekit/gkdialogcontroller/dismiss(_:)) method.
+    ///
+    /// ```swift
+    /// func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+    ///     // Dismiss the view controller.
+    ///     let dialogController = GKDialogController.shared()
+    ///     dialogController.dismiss(self)
+    /// }
+    /// ```
+    ///
+    ///
     #[unsafe(super(NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

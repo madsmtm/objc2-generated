@@ -8,13 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object in the scene.
+    ///
+    /// ## Overview
+    ///
+    /// This class models a member of your app’s scene by defining a 3D position and orientation.
+    ///
+    /// The following subclasses derive from this class:
+    ///
+    /// - [`PHASESource`](https://developer.apple.com/documentation/phase/phasesource): An object that plays audio from a 3D location and orientation in a scene.
+    ///
+    /// - [`PHASEListener`](https://developer.apple.com/documentation/phase/phaselistener): A central point of reference that defines the area within the scene that’s most audible to the user.
+    ///
+    /// - [`PHASEOccluder`](https://developer.apple.com/documentation/phase/phaseoccluder): An object with a shape and position that blocks audio from reaching the listener.
+    ///
+    /// The [`children`](https://developer.apple.com/documentation/phase/phaseobject/children) array holds instances of this class to position and orient them relatively.
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEObject represents a 3D object in the engine, which can be organized into a hierarchy with relative transforms.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseobject?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEObject;

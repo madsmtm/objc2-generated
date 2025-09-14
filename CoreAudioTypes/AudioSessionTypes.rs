@@ -5,11 +5,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// A unique identifier of an audio session.
 /// Defines a unique identifier for an audio session.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosessionid?language=objc)
 pub type AudioSessionID = u32;
 
+/// Codes that describe error conditions that may occur when performing audio session operations.
 /// Error codes returned from the AVAudioSession API.
 ///
 /// Operation succeeded.
@@ -55,56 +55,78 @@ pub type AudioSessionID = u32;
 /// An unspecified error has occurred.
 ///
 /// The operation failed because the session is not active.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionErrorCode(pub AVAudioInteger);
 impl AVAudioSessionErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/none?language=objc)
+    /// An error code that indicates the operation succeeded.
     #[doc(alias = "AVAudioSessionErrorCodeNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/mediaservicesfailed?language=objc)
+    /// An error code that indictates an attempt to use the audio session during or after a Media Services failure.
     #[doc(alias = "AVAudioSessionErrorCodeMediaServicesFailed")]
     pub const MediaServicesFailed: Self = Self(0x6d737276);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/isbusy?language=objc)
+    /// An error code that indicates an attempt to deactivate the audio session while it’s still playing or recording.
     #[doc(alias = "AVAudioSessionErrorCodeIsBusy")]
     pub const IsBusy: Self = Self(0x21616374);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/incompatiblecategory?language=objc)
+    /// An error code that indicates an attempt to perform an operation that the current audio session category doesn’t support.
+    ///
+    /// ## Discussion
+    ///
+    /// This error occurs when calling [`setPreferredInputNumberOfChannels:error:`](https://developer.apple.com/documentation/avfaudio/avaudiosession/setpreferredinputnumberofchannels(_:)) while the session’s category is [`AVAudioSessionCategoryPlayback`](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback).
+    ///
+    ///
     #[doc(alias = "AVAudioSessionErrorCodeIncompatibleCategory")]
     pub const IncompatibleCategory: Self = Self(0x21636174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/cannotinterruptothers?language=objc)
+    /// An error code that indictates an attempt to make a nonmixable audio session active while the app was in the background.
     #[doc(alias = "AVAudioSessionErrorCodeCannotInterruptOthers")]
     pub const CannotInterruptOthers: Self = Self(0x21696e74);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/missingentitlement?language=objc)
+    /// An error code that indicates an attempt to perform an operation for which the app doesn’t have the required entitlements.
     #[doc(alias = "AVAudioSessionErrorCodeMissingEntitlement")]
     pub const MissingEntitlement: Self = Self(0x656e743f);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/siriisrecording?language=objc)
+    /// An error code that indicates an attempt to perform an operation that isn’t allowed while Siri is recording.
     #[doc(alias = "AVAudioSessionErrorCodeSiriIsRecording")]
     pub const SiriIsRecording: Self = Self(0x73697269);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/cannotstartplaying?language=objc)
+    /// An error code that indicates an attempt to start audio playback when it wasn’t allowed.
+    ///
+    /// ## Discussion
+    ///
+    /// This error type can occur if the app’s [Information property list](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/InfoPlist.html#//apple_ref/doc/uid/TP40008195-CH61) doesn’t permit audio use. It can also occur if the app is in the background and using a category that doesn’t allow background audio.
+    ///
+    ///
     #[doc(alias = "AVAudioSessionErrorCodeCannotStartPlaying")]
     pub const CannotStartPlaying: Self = Self(0x21706c61);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/cannotstartrecording?language=objc)
+    /// An error code that indicates an attempt to start audio recording, but the operation failed.
+    ///
+    /// ## Discussion
+    ///
+    /// This error type usually occurs when an app starts a mixable recording from the background and it isn’t configured as an Inter-App Audio app.
+    ///
+    ///
     #[doc(alias = "AVAudioSessionErrorCodeCannotStartRecording")]
     pub const CannotStartRecording: Self = Self(0x21726563);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/badparam?language=objc)
+    /// An error code that indicates an attempt to set a property to an illegal value.
     #[doc(alias = "AVAudioSessionErrorCodeBadParam")]
     pub const BadParam: Self = Self(-50);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/insufficientpriority?language=objc)
+    /// An error code that indicates the app isn’t allowed to set the audio category because it’s in use by another app.
     #[doc(alias = "AVAudioSessionErrorCodeInsufficientPriority")]
     pub const InsufficientPriority: Self = Self(0x21707269);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/resourcenotavailable?language=objc)
+    /// An error code that indicates that an operation failed because the device doesn’t have sufficient hardware resources to complete the action.
     #[doc(alias = "AVAudioSessionErrorCodeResourceNotAvailable")]
     pub const ResourceNotAvailable: Self = Self(0x21726573);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/unspecified?language=objc)
+    /// An error code that indicates an unspecified error occurred.
+    ///
+    /// ## Discussion
+    ///
+    /// This error type typically happens when the audio system is in an inconsistent state.
+    ///
+    ///
     #[doc(alias = "AVAudioSessionErrorCodeUnspecified")]
     pub const Unspecified: Self = Self(0x77686174);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/expiredsession?language=objc)
+    /// An error code that indicates that an operation failed because the system deallocated the associated session.
     #[doc(alias = "AVAudioSessionErrorCodeExpiredSession")]
     pub const ExpiredSession: Self = Self(0x21736573);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode/sessionnotactive?language=objc)
+    /// An error code that indicates the operation failed because the session isn’t active.
     #[doc(alias = "AVAudioSessionErrorCodeSessionNotActive")]
     pub const SessionNotActive: Self = Self(0x696e6163);
 }
@@ -119,7 +141,7 @@ unsafe impl RefEncode for AVAudioSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorinsufficientpriority?language=objc)
+/// An error code that indicates the app isn’t allowed to set the audio category because it’s in use by another app.
 #[deprecated]
 pub const AVAudioSessionErrorInsufficientPriority: AVAudioInteger =
     AVAudioSessionErrorCode::InsufficientPriority.0;

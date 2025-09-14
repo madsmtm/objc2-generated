@@ -7,16 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagelayout/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPageLayoutResult(pub NSInteger);
 impl NSPageLayoutResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagelayout/result/cancelled?language=objc)
     #[doc(alias = "NSPageLayoutResultCancelled")]
     pub const Cancelled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagelayout/result/changed?language=objc)
     #[doc(alias = "NSPageLayoutResultChanged")]
     pub const Changed: Self = Self(1);
 }
@@ -30,7 +27,15 @@ unsafe impl RefEncode for NSPageLayoutResult {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagelayout?language=objc)
+    /// A panel that queries the user for information such as paper type and orientation.
+    ///
+    /// ## Overview
+    ///
+    /// A page layout panel is typically displayed in response to the user selecting the Page Setup menu item. You obtain an instance with the [`pageLayout`](https://developer.apple.com/documentation/appkit/nspagelayout/pagelayout) class method. The pane can then be run as a sheet using [`beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:`](https://developer.apple.com/documentation/appkit/nspagelayout/beginsheet(with:modalfor:delegate:didend:contextinfo:)) or modally using [`runModal`](https://developer.apple.com/documentation/appkit/nspagelayout/runmodal()) or [`runModalWithPrintInfo:`](https://developer.apple.com/documentation/appkit/nspagelayout/runmodal(with:)).
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/macos/system-capabilities/printing#page-setup-dialogs).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

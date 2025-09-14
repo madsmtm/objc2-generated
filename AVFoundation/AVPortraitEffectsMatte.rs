@@ -11,14 +11,34 @@ use objc2_image_io::*;
 use crate::*;
 
 extern_class!(
+    /// An auxiliary image used to separate foreground from background with high resolution.
+    ///
+    /// ## Overview
+    ///
+    /// Before iOS 11, the iPhone camera software used depth maps to render a shallow depth of field (the _bokeh_ effect) into still images taken in Portrait Mode before discarding the maps. Because the effect was part of the photo, you couldn’t access the maps separately, as metadata, for photos taken by devices running iOS 10 or earlier.
+    ///
+    /// Starting in iOS 11, apps accessing the photo library can use images containing embedded auxiliary depth maps to render creative depth effects, such as forced perspective, or image projection from 2D to 3D space. These depth maps are low-resolution compared to the full-resolution RGB image. As such, the depth effects you can render are limited by the resolution and accuracy of the maps. Fine detail, such as hair, is challenging to preserve faithfully at the resolution of these depth maps.
+    ///
+    /// Starting in iOS 12, the portrait effects matte helps achieve this fine-grain level of detail.
+    ///
+    ///
+    /// ![Zoomed in photo showing the fine detail in a portrait effects matte image](https://docs-assets.developer.apple.com/published/c69e91511a8754659f6683c83569e86d/media-3030223%402x.png)
+    ///
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Strong { inline_content: [Text { text: "Camera type" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "RGB image resolution" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Depth map resolution" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Portrait effects matte resolution" }] }] }]], [[Paragraph { inline_content: [Text { text: "Rear dual camera" }] }], [Paragraph { inline_content: [Text { text: "4032 x 3024" }] }], [Paragraph { inline_content: [Text { text: "768 x 576" }] }], [Paragraph { inline_content: [Text { text: "2016 x 1512" }] }]], [[Paragraph { inline_content: [Text { text: "TrueDepth camera" }] }], [Paragraph { inline_content: [Text { text: "3088 x 2320" }] }], [Paragraph { inline_content: [Text { text: "640 x 480" }] }], [Paragraph { inline_content: [Text { text: "1544 x 1160" }] }]]], alignments: None, metadata: None })
+    /// Using the auxiliary matte image, you can improve the quality of rendered portrait effects, such as Natural Light, Studio Light, Contour Light, Stage Light, and Stage Light Mono.
+    ///
+    /// Unlike the depth map, the portrait effects matte isn’t intended to faithfully preserve all gradations of depth in the scene. It’s a depth-guided, people-focused segmentation mask generated from a proprietary Apple neural network trained to detect people. It separates an individual in the foreground from whatever is in the background, with greater detail and clarity than with the depth map alone. It achieves this clarity in part because the matte image has higher resolution than the depth map.
+    ///
+    /// For information about capturing the portrait effects matte, see [Configuring Camera Capture to Collect a Portrait Effects Matte](https://developer.apple.com/documentation/avfoundation/configuring-camera-capture-to-collect-a-portrait-effects-matte). To learn how to extract a portrait effects matte from photos previously captured in portrait mode on a device running iOS 12, see [Extracting Portrait Effects Matte Image Data from a Photo](https://developer.apple.com/documentation/avfoundation/extracting-portrait-effects-matte-image-data-from-a-photo).
+    ///
+    ///
     /// An object wrapping a matting image used for high quality rendering of portrait style effects onto an image (i.e. shallow depth of field, stage lighting, etc).
     ///
     ///
     /// The pixel data in the matting image is represented in CVPixelBuffers as kCVPixelFormatType_OneComponent8 ('L008'). It's stored in image files as an auxiliary image, accessible using CGImageSourceCopyAuxiliaryDataInfoAtIndex with the data type kCGImageAuxiliaryDataTypePortraitEffectsMatte (see
     /// <ImageIO
     /// /CGImageProperties.h>).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avportraiteffectsmatte?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPortraitEffectsMatte;

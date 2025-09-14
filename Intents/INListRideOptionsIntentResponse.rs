@@ -7,50 +7,120 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INListRideOptionsIntentResponseCode(pub NSInteger);
 impl INListRideOptionsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/unspecified?language=objc)
+    /// No response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Consider specifying this constant during handling of the intent a failure on your part and it results in an error.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your Intents extension is ready and able to act on the intent. Consider specifying this constant during handling of the intent a failure on your part and it results in an error.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/inprogress?language=objc)
+    /// You failed to handle the intent in a timely manner.
+    ///
+    /// ## Discussion
+    ///
+    /// Do not use this response code.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeInProgress")]
     #[deprecated = "INListRideOptionsIntentResponseCodeInProgress is deprecated."]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/success?language=objc)
+    /// You successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you are successfully able to provide the ride option information.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failure?language=objc)
+    /// You were unable to retrieve the list of ride options.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code for both transient and unrecoverable errors that prevented you from retrieving the information.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to get information about the ride options.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when there is a failure that your parent app can resolve. Specify this code to redirect the user to your app. Don’t use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchmustverifycredentials?language=objc)
+    /// The user must launch your app and verify their credentials to continue.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you require the user to login or sign up for your service and the user is currently not logged in or signed up. Specify this code to redirect the user to your app to provide the appropriate credentials. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchMustVerifyCredentials"
     )]
     pub const FailureRequiringAppLaunchMustVerifyCredentials: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchnoserviceinarea?language=objc)
+    /// You do not provide service in the area requested by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you definitively do not provide service in the requested area. Specify this code to redirect the user to your app. For temporary service disruptions, use the [`INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable) code instead. Don’t use this response code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchNoServiceInArea")]
     pub const FailureRequiringAppLaunchNoServiceInArea: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchservicetemporarilyunavailable?language=objc)
+    /// Your service is temporarily unavailable.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when you cannot offer service to the specified area right now. You might return this code if no vehicles are available in the user’s area or your service is temporarily unavailable. Specify this code to redirect the user to your app. Don’t use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchServiceTemporarilyUnavailable"
     )]
     pub const FailureRequiringAppLaunchServiceTemporarilyUnavailable: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchpreviousrideneedscompletion?language=objc)
+    /// You can’t book a new ride because an existing ride is currently in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user must provide feedback for the previous ride before getting a new ride. Specify this code to redirect the user to your app so that the user can complete or cancel the previous ride. For example, you might use this code if the user still needs to pay for the previous ride.
+    ///
+    /// If there is a previous ride that is not yet complete, but you still want to allow the user to book another ride, return [`INListRideOptionsIntentResponseCodeSuccess`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/success).
+    ///
+    ///
     #[doc(
         alias = "INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchPreviousRideNeedsCompletion"
     )]
     pub const FailureRequiringAppLaunchPreviousRideNeedsCompletion: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurepreviousrideneedsfeedback?language=objc)
+    /// You can’t book a new ride because an existing ride is currently in progress.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when the user must provide feedback for the previous ride before getting a new ride. Specifying this code causes SiriKit to send an [`INSendRideFeedbackIntent`](https://developer.apple.com/documentation/intents/insendridefeedbackintent) object to your Intents extension. If your Intents extension does not support that intent, SiriKit launches your app as if you had specified the [`INListRideOptionsIntentResponseCodeFailureRequiringAppLaunchPreviousRideNeedsCompletion`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/failurerequiringapplaunchpreviousrideneedscompletion) response code.
+    ///
+    /// If there is a previous ride that is not yet complete, but you still want to allow the user to book another ride, return [`INListRideOptionsIntentResponseCodeSuccess`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponsecode/success).
+    ///
+    ///
     #[doc(alias = "INListRideOptionsIntentResponseCodeFailurePreviousRideNeedsFeedback")]
     pub const FailurePreviousRideNeedsFeedback: Self = Self(10);
 }
@@ -64,7 +134,17 @@ unsafe impl RefEncode for INListRideOptionsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponse?language=objc)
+    /// Your app’s response to a list ride options intent.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INListRideOptionsIntentResponse`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponse) object contains your app’s response to a request for ride options that your service offers. SiriKit can ask for a list of ride options at any time. When creating your response object, provide the types of vehicles you can offer in the [`rideOptions`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponse/rideoptions) property. Each option provides information about a specific type of vehicle, including information about the pricing and passenger capacity of those vehicles. You can also provide information about accepted forms of payment and when the list of ride options expires.
+    ///
+    /// When creating a response object with a code that involves launching the app, always provide a relevant [`NSUserActivity`](https://developer.apple.com/documentation/foundation/nsuseractivity) object. The activity object gets delivered to your parent app so that it has the context that it needs to handle the operation.
+    ///
+    /// You create an [`INListRideOptionsIntentResponse`](https://developer.apple.com/documentation/intents/inlistrideoptionsintentresponse) object in the [`confirmListRideOptions:completion:`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling/confirm(intent:completion:)) and [`handleListRideOptions:completion:`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INListRideOptionsIntentHandling`](https://developer.apple.com/documentation/intents/inlistrideoptionsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

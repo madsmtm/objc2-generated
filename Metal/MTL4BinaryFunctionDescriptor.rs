@@ -8,8 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 /// Options for configuring the creation of binary functions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctionoptions?language=objc)
+/// Options for configuring the creation of binary functions.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -17,14 +16,12 @@ pub struct MTL4BinaryFunctionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4BinaryFunctionOptions: NSUInteger {
 /// Represents the default value: no options.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctionoptions/mtl4binaryfunctionoptionnone?language=objc)
+/// Represents the default value: no options.
         #[doc(alias = "MTL4BinaryFunctionOptionNone")]
         const None = 0;
+/// Compiles the function to have its function handles return a constant MTLResourceID across all pipeline states. The function needs to be linked to the pipeline that will use this function.
 /// Compiles the function to have its function handles return a constant MTLResourceID across
 /// all pipeline states. The function needs to be linked to the pipeline that will use this function.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctionoptions/pipelineindependent?language=objc)
         #[doc(alias = "MTL4BinaryFunctionOptionPipelineIndependent")]
         const PipelineIndependent = 1<<1;
     }
@@ -40,8 +37,7 @@ unsafe impl RefEncode for MTL4BinaryFunctionOptions {
 
 extern_class!(
     /// Base interface for other function-derived interfaces.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4binaryfunctiondescriptor?language=objc)
+    /// Base interface for other function-derived interfaces.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4BinaryFunctionDescriptor;

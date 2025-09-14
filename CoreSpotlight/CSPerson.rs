@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/csperson?language=objc)
+    /// An object that represents a person in the context of search results.
+    ///
+    /// ## Overview
+    ///
+    /// A `CSPerson` object represents a person in the context of search results. You can create a `CSPerson` object when you have a display name and a contact handle of some kind, such as an email address or phone number.
+    ///
+    /// If you create a `CSPerson` object to represent a specific contact, you can use the value of the contact’s identifier property for the person object’s [`contactIdentifier`](https://developer.apple.com/documentation/corespotlight/csperson/contactidentifier) property. Using the same value lets you avoid using names or phone numbers to look up the contact that’s associated with a person.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CSPerson;

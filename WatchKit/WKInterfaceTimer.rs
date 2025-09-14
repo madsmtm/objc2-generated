@@ -10,7 +10,33 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacetimer?language=objc)
+    /// A label that displays a countdown or count-up timer.
+    ///
+    /// ## Overview
+    ///
+    /// Use a timer object to configure the amount of time and the appearance of the timer text. When you start the timer, WatchKit updates the displayed text automatically on the user’s Apple Watch without further interactions from your extension. To know when the timer reaches 0, configure a [`NSTimer`](https://developer.apple.com/documentation/foundation/timer) object with the same target date you used to set up the timer.
+    ///
+    /// Do not subclass or create instances of this class yourself. Instead, define outlets in your interface controller class and connect them to the corresponding objects in your storyboard file. For example, to refer to a timer object in your interface, define a property with the following syntax in your interface controller class:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["@IBOutlet weak var myTimer: WKInterfaceTimer!"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["@property (weak, nonatomic) IBOutlet WKInterfaceTimer* myTimer;"], metadata: None }] }] })
+    /// During the initialization of your interface controller, WatchKit creates any needed timer objects and assigns them to their connected outlets. At that point, you can use those objects to reconfigure the corresponding timers.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  This class provides methods for configuring interface objects at initialization time or while an interface controller is active on the user’s Apple Watch. WatchKit coalesces the data from all setter method calls made during the same run loop iteration and transmits it to the device at the end of the run loop. If you set an attribute to different values in the same run loop iteration,  only the last value is transmitted. If you set an attribute to the same value in the same run loop iteration, WatchKit generates a log message so that you can track down the duplicate change.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Interface Builder Configuration Options
+    ///
+    /// Xcode lets you configure information about your timer interface object in your storyboard file. The following table lists the attributes you can configure and their meaning.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Format" }] }], [Paragraph { inline_content: [Text { text: "The format of the timer string. Select different options to update the appearance of the timer label in your storyboard scene." }] }]], [[Paragraph { inline_content: [Text { text: "Enabled" }] }], [Paragraph { inline_content: [Text { text: "A checkbox indicating whether the timer starts running as soon as your interface is initialized." }] }]], [[Paragraph { inline_content: [Text { text: "Units" }] }], [Paragraph { inline_content: [Text { text: "The units to be displayed in the label. Enabling checkboxes in this section causes the timer to display the corresponding units that are in range of the time. In other words, a timer with 2 minutes remaining displays minutes and seconds only; it does not display hours, days, or any larger units." }] }]], [[Paragraph { inline_content: [Text { text: "Preview Secs" }] }], [Paragraph { inline_content: [Text { text: "The initial number of seconds for the timer. You can change this value programmatically using the " }, Reference { identifier: "doc://com.apple.watchkit/documentation/WatchKit/WKInterfaceTimer/setDate(_:)", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " method." }] }]]], alignments: None, metadata: None })
+    /// A date object is a custom label whose text you cannot set directly. However, you can customize the appearance of the date object as you would for a label using the Attributes inspector in Xcode. For information about the label attributes you can configure, see [`WKInterfaceLabel`](https://developer.apple.com/documentation/watchkit/wkinterfacelabel).
+    ///
+    ///
     #[unsafe(super(WKInterfaceObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "WKInterfaceObject")]

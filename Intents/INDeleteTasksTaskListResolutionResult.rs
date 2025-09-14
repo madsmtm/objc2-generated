@@ -6,14 +6,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstasklistunsupportedreason?language=objc)
+/// Constants that indicate the reason an app can’t support the delete task request.
 // NS_ENUM
 #[deprecated = "INDeleteTasksTaskListUnsupportedReason is deprecated. There is no replacement."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INDeleteTasksTaskListUnsupportedReason(pub NSInteger);
 impl INDeleteTasksTaskListUnsupportedReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstasklistunsupportedreason/notasklistfound?language=objc)
+    /// A resolution result that indicates no task list was found.
     #[doc(alias = "INDeleteTasksTaskListUnsupportedReasonNoTaskListFound")]
     #[deprecated = "INDeleteTasksTaskListUnsupportedReason is deprecated. There is no replacement."]
     pub const NoTaskListFound: Self = Self(1);
@@ -28,7 +28,15 @@ unsafe impl RefEncode for INDeleteTasksTaskListUnsupportedReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/indeletetaskstasklistresolutionresult?language=objc)
+    /// A resolution result for deleting task lists.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INDeleteTasksTaskListResolutionResult`](https://developer.apple.com/documentation/intents/indeletetaskstasklistresolutionresult) object when resolving parameters containing an [`INDeleteTasksTaskListUnsupportedReason`](https://developer.apple.com/documentation/intents/indeletetaskstasklistunsupportedreason) value. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INTaskListResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

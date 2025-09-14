@@ -8,10 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object used to register new elements to extend the Apple TV Markup Language (TVML).
+    ///
+    /// ## Overview
+    ///
+    /// You must register new elements before initializing a [`TVApplicationController`](https://developer.apple.com/documentation/tvmlkit/tvapplicationcontroller) object.
+    ///
+    ///
     /// Factory for registration of new elements that extend Apple TV markup language. Registration is required
     /// in order for the framework to parse these new elements and should happen prior to initializing TVApplicationController.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvelementfactory?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

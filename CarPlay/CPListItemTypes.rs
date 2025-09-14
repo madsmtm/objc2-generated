@@ -10,11 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A description of the common properties of all list item types.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You don’t create custom classes that conform to `CPListItemTemplate`. Instead, you use one of the prebuilt list item types that adopt this protocol, such as [`CPMessageListItem`](https://developer.apple.com/documentation/carplay/cpmessagelistitem).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// `CPListTemplateItem`describes common properties of list items that can be displayed
     /// in a
     /// `CPListTemplate.`
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplisttemplateitem?language=objc)
     pub unsafe trait CPListTemplateItem: NSObjectProtocol {
         /// The primary text shown in a cell displaying this list item.
         #[unsafe(method(text))]
@@ -54,10 +65,21 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// A description of a selectable list item.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You don’t create custom classes that conform to `CPSelectableListItem`. Instead, you use one of the prebuilt list item types that adopt this protocol, such as [`CPListItem`](https://developer.apple.com/documentation/carplay/cplistitem) or [`CPListImageRowItem`](https://developer.apple.com/documentation/carplay/cplistimagerowitem).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// `CPListSelectable`describes list items that accept a list item handler, called when
     /// the user selects this list item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpselectablelistitem?language=objc)
     pub unsafe trait CPSelectableListItem: CPListTemplateItem {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// An optional action block, fired when the user selects this item in a list template.

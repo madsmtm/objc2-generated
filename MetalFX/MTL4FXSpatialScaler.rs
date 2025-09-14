@@ -10,6 +10,17 @@ use crate::*;
 extern_protocol!(
     /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
     ///
+    /// ## Overview
+    ///
+    /// You create instances of this class by calling [`newSpatialScalerWithDevice:compiler:`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerdescriptor/makespatialscaler(device:compiler:)).
+    ///
+    /// When using instances of objects conforming to this protocol, you configure the different properties it inherits from protocol [`MTLFXSpatialScalerBase`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase) and then call [`encodeToCommandBuffer:`](https://developer.apple.com/documentation/metalfx/mtl4fxspatialscaler/encode(commandbuffer:)) to encode its work into a Metal command buffer.
+    ///
+    /// See [`MTLFXSpatialScalerBase`](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalerbase) for more details on configuring and using spatial scalers.
+    ///
+    ///
+    /// An upscaling effect that generates a higher resolution texture in a render pass by spatially analyzing an input texture.
+    ///
     /// You create instances of this class by calling ``MTLFXSpatialScalerDescriptor/newSpatialScalerWithDevice:compiler:``.
     ///
     /// When using instances of objects conforming to this protocol, you configure the different properties it
@@ -17,8 +28,6 @@ extern_protocol!(
     /// encode its work into a Metal command buffer.
     ///
     /// See ``MTLFXSpatialScalerBase`` for more details on configuring and using spatial scalers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtl4fxspatialscaler?language=objc)
     #[cfg(feature = "MTLFXSpatialScaler")]
     pub unsafe trait MTL4FXSpatialScaler: MTLFXSpatialScalerBase {
         /// Encode this spatial scaler work into a command buffer.

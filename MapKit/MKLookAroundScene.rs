@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundscene?language=objc)
+    /// A utility class that encapsulates information the framework requires to retrieve and display a specific Look Around location’s imagery.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundScene;

@@ -8,9 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This a not a Game Center feature. To support voice chat as part of Game Center online play, see GKVoiceChat.
+    /// The [`GKVoiceChatService`](https://developer.apple.com/documentation/gamekit/gkvoicechatservice) class allows your application to connect two iOS devices into a voice chat.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatservice?language=objc)
+    /// ## Overview
+    ///
+    /// Before you can use voice chat, your application must configure an audio session that allows for both play and recording ([`kAudioSessionCategory_PlayAndRecord`](https://developer.apple.com/documentation/audiotoolbox/kaudiosessioncategory_playandrecord)). For more information on audio sessions, see [Audio Session Programming Guide](https://developer.apple.com/library/archive/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007875).
+    ///
+    /// The voice chat service uses a [`client`](https://developer.apple.com/documentation/gamekit/gkvoicechatservice/client) implemented by your application to find and connect to other participants. Each participant in the chat is identified by a unique _participant identifier_ string. The client provides a participant identifier for the local user and translates other participant identifiers into connections to other users.  The format and mechanism used to translate participant identifiers into network connections is defined by the client.
+    ///
+    /// Your application can configure the voice chat service to control the volume level of both local and remote participants and to detect when someone is speaking.
+    ///
+    /// To use the voice chat service, your application retrieves the default service and attaches a client to it, then either connects to another participant or waits for them to start a connection.
+    ///
+    ///
+    /// This a not a Game Center feature. To support voice chat as part of Game Center online play, see GKVoiceChat.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use SharePlay instead"]

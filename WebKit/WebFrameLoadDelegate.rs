@@ -16,8 +16,6 @@ extern_protocol!(
     /// When a data source of a frame starts to load, the data source is considered "provisional".
     /// Once at least one byte is received, the data source is considered "committed". This is done
     /// so the contents of the frame will not be lost if the new data source fails to successfully load.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webframeloaddelegate?language=objc)
     #[deprecated]
     pub unsafe trait WebFrameLoadDelegate: NSObjectProtocol {
         #[cfg(all(feature = "WebFrame", feature = "WebView", feature = "objc2-app-kit"))]

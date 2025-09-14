@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mktileoverlay?language=objc)
+    /// An overlay that covers an area of the map with tiles of bitmap images.
+    ///
+    /// ## Overview
+    ///
+    /// You use tile overlay objects to represent your own tile-based content and to coordinate the display of that content in a map view. Your tiles can supplement the underlying map content or replace it completely. A tile overlay object coordinates the loading and management of the tiles, and a corresponding [`MKTileOverlayRenderer`](https://developer.apple.com/documentation/mapkit/mktileoverlayrenderer) object handles the actual drawing of the tiles on the map.
+    ///
+    /// You can use a single tile overlay object to represent all of the tiles at one or more zoom levels of the map. The default tile overlay object uses a template string to build URLs so that it can locate the map tiles it needs. Each URL incorporates the x and y index of the map tile, the zoom level it’s intended for, and the scale factor corresponding to the screen resolution on which to display the tile. The default class lets you specify map tiles with indexes that start in either the upper-left corner or lower-left corner of the map. If you use a different indexing scheme for your tiles, you can also subclass and override the [`URLForTilePath:`](https://developer.apple.com/documentation/mapkit/mktileoverlay/url(fortilepath:)) or [`loadTileAtPath:result:`](https://developer.apple.com/documentation/mapkit/mktileoverlay/loadtile(at:result:)) methods to map between the requested tile and your custom indexing scheme.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKTileOverlay;
@@ -105,7 +113,7 @@ impl MKTileOverlay {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mktileoverlaypath?language=objc)
+/// Values that specify the path indexes for a single overlay tile.
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]

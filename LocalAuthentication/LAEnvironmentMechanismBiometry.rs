@@ -7,7 +7,6 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironment/mechanismbiometry?language=objc)
     #[unsafe(super(LAEnvironmentMechanism, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "LAEnvironmentMechanism")]

@@ -8,14 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A builder object for incrementally building a heartbeat series.
     /// An HKHeartbeatSeriesBuilder is used to generate an HKHeartbeatSeriesSample.
     ///
     /// This class is intended for generating an HKHeartbeatSeriesSample which represents a series of
     /// heartbeats. If the discard method is called, collected data will be deleted.
     /// Calling finishSeriesWithcompletion: will stop and complete the series. If the builder is deleted,
     /// or the client goes away before calling the finish method, data will be lost.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartbeatseriesbuilder?language=objc)
     #[unsafe(super(HKSeriesBuilder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKSeriesBuilder")]

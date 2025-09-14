@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticscollection?language=objc)
+    /// An object that manages a collection of statistics, representing the results calculated over separate time intervals.
+    ///
+    /// ## Overview
+    ///
+    /// For more information on statistics objects, see [`HKStatistics`](https://developer.apple.com/documentation/healthkit/hkstatistics). For more information on calculating statistics over consecutive time intervals, see [`HKStatisticsCollectionQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStatisticsCollection;
@@ -79,7 +85,25 @@ impl HKStatisticsCollection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery?language=objc)
+    /// A query that performs multiple statistics queries over a series of fixed-length time intervals.
+    ///
+    /// ## Overview
+    ///
+    /// Statistics collection queries are often used to produce data for graphs and charts. For example, you might create a statistics collection query that calculates the total number of steps for each day or the average heart rate for each hour. Like observer queries, collection queries can also act as long-running queries, receiving updates when the HealthKit store’s content changes.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can only use statistics collection queries with quantity samples. If you want to calculate statistics over workouts or correlation samples, you must perform the appropriate query and process the data yourself.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Statistics collection queries are mostly immutable. You can assign the query’s [`initialResultsHandler`](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/initialresultshandler) and [`statisticsUpdateHandler`](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery/statisticsupdatehandler) properties after instantiating the object. You must set all other properties when you instantiate the object, and they can’t change.
+    ///
+    /// For more information about statistics queries, see [`HKStatisticsQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticsquery).
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

@@ -10,18 +10,62 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnulldirectdisplay?language=objc)
+/// A value that will never correspond to actual hardware.
 pub const kCGNullDirectDisplay: CGDirectDisplayID = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdirectdisplayid?language=objc)
+/// A unique identifier for an attached display.
+///
+/// ## Discussion
+///
+/// In Quartz, the term _display_ refers to a graphics hardware system consisting of a framebuffer, a color correction (gamma) table, and possibly an attached monitor. If no monitor is attached, a display is characterized as offline.
+///
+/// When a monitor is attached, Quartz assigns a unique display identifier (ID). A display ID can persist across processes and typically remains constant until the machine is restarted.
+///
+/// When assigning a display ID, Quartz considers the following parameters:
+///
+/// - Vendor
+///
+/// - Model
+///
+/// - Serial number
+///
+/// - Position in the I/O Kit registry
+///
+/// For information about how to obtain a display ID, see [Finding Displays](https://developer.apple.com/documentation/coregraphics/quartz-display-services#finding-displays).
+///
+///
 pub type CGDirectDisplayID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgopengldisplaymask?language=objc)
+/// A bitmask used in OpenGL to specify a set of attached displays.
+///
+/// ## Discussion
+///
+/// In macOS, OpenGL can provide information about the capabilities of the hardware renderers driving a specified set of displays. A 32-bit mask is used to specify the displays—each bit in the mask represents a single display.
+///
+/// To learn how to find the mask bit that corresponds to a given display, see the function [`CGDisplayIDToOpenGLDisplayMask`](https://developer.apple.com/documentation/coregraphics/cgdisplayidtoopengldisplaymask(_:)).
+///
+///
 pub type CGOpenGLDisplayMask = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgrefreshrate?language=objc)
+/// A display’s refresh rate in frames per second.
+///
+/// ## Discussion
+///
+/// When requesting a new display mode, you can specify a desired refresh rate as a hint to Quartz. For example, see the function [`CGDisplayBestModeForParametersAndRefreshRate`](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparametersandrefreshrate(_:_:_:_:_:_:)).
+///
+/// ### Special Considerations
+///
+/// Most applications should never need this data type. Starting in OS X v10.6, the `CGDisplayBestMode` functions are deprecated and the new display mode API does not use this type.
+///
+///
 pub type CGRefreshRate = c_double;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode?language=objc)
+/// A reference to a display mode object.
+///
+/// ## Overview
+///
+/// A display mode is a set of properties (such as width, height, pixel depth, and refresh rate), and options (such as stretched LCD panel filling). For more information see [Creating and Managing Display Modes](https://developer.apple.com/documentation/coregraphics/quartz-display-services#creating-and-managing-display-modes) or [Getting Information About a Display Mode](https://developer.apple.com/documentation/coregraphics/quartz-display-services#getting-information-about-a-display-mode).
+///
+///
 #[doc(alias = "CGDisplayModeRef")]
 #[repr(C)]
 pub struct CGDisplayMode {
@@ -37,7 +81,23 @@ cf_objc2_type!(
     unsafe impl RefEncode<"CGDisplayMode"> for CGDisplayMode {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmaindisplayid()?language=objc)
+/// Returns the display ID of the main display.
+///
+/// ## Return Value
+///
+/// The display ID assigned to the main display.
+///
+///
+///
+/// ## Discussion
+///
+/// The main display is the display with its screen location at (0,0) in the global display coordinate space. In a system without display mirroring, the display with the menu bar is typically the main display.
+///
+/// If mirroring is enabled and the menu bar appears on more than one display, this function provides a reliable way to find the main display.
+///
+/// In case of hardware mirroring, the drawable display becomes the main display. In case of software mirroring, the display with the highest resolution and deepest pixel depth typically becomes the main display.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
     extern "C-unwind" {
@@ -47,7 +107,29 @@ pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithpoint(_:_:_:_:)?language=objc)
+    /// Provides a list of online displays with bounds that include the specified point.
+    ///
+    /// Parameters:
+    /// - point: The coordinates of a point in the global display coordinate space. The origin is the upper-left corner of the main display.
+    ///
+    /// - maxDisplays: The size of the `displays` array. This value determines the maximum number of displays the list includes.
+    ///
+    /// - displays: A pointer to storage you provide for an array of display IDs. On return, the array contains a list of displays with bounds that include the point. If you pass `NULL`, on return the display count contains the total number of displays with bounds that include the point.
+    ///
+    /// - matchingDisplayCount: A pointer to a display count variable you provide. On return, the display count contains the actual number of displays the list includes in the `dspys` array. This value is at most `maxDisplays`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the `displays` array is `nil`, this function ignores the `maxDisplays` parameter. If the `maxDisplays` parameter is `0`, this function ignores the `displays` array. In any case, this function fills in the `matchingDisplayCount` pointer with the number of displays that contain the specified point.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -63,7 +145,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithrect(_:_:_:_:)?language=objc)
+    /// Gets a list of online displays with bounds that intersect the specified rectangle.
+    ///
+    /// Parameters:
+    /// - rect: The location and size of a rectangle in the global display coordinate space. The origin is the upper-left corner of the main display.
+    ///
+    /// - maxDisplays: The size of the `displays` array. This value determines the maximum number of displays that can be returned in the `displays` parameter. Generally, you should specify a number greater than 0 for this parameter. If you specify 0, the value returned in `matchingDisplayCount` is undefined and this function sets the `displays` parameter to `NULL`.
+    ///
+    /// - displays: A pointer to storage provided by the caller for an array of display IDs. On return, the array contains a list of displays whose bounds intersect the specified rectangle.
+    ///
+    /// - matchingDisplayCount: A pointer to a display count variable provided by the caller. On return, this variable contains the number of displays that were returned in the `displays` parameter. You must provide a non-`NULL` value for this parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the `dspys` array is `NULL`, this function ignores the `maxDisplays` parameter. If the `maxDisplays` parameter is `0`, this function ignores the `displays` array. In any case, this function fills in the `matchingDisplayCount` pointer with the number of displays that intersect the specified rectangle.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -79,7 +183,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplayswithopengldisplaymask(_:_:_:_:)?language=objc)
+    /// Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
+    ///
+    /// Parameters:
+    /// - mask: An OpenGL display mask that identifies one or more displays.
+    ///
+    /// - maxDisplays: The size of the `displays` array. This value determines the maximum number of displays the list includes.
+    ///
+    /// - displays: A pointer to storage you provide for an array of display IDs. On return, the array contains a list of displays that corresponds to the bits set in the mask. If you pass `NULL`, on return the display count contains the total number of displays specified in the mask.
+    ///
+    /// - matchingDisplayCount: A pointer to a display count variable you provide. On return, the display count contains the actual number of displays the function added to the `displays` array. This value is at most `maxDisplays`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -95,7 +215,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetactivedisplaylist(_:_:_:)?language=objc)
+    /// Provides a list of displays that are active for drawing.
+    ///
+    /// Parameters:
+    /// - maxDisplays: The size of the `activeDisplays` array. This value determines the maximum number of displays the list includes.
+    ///
+    /// - activeDisplays: A pointer to storage you provide for an array of display IDs. On return, the array contains a list of active displays. If you pass `NULL`, on return the display count contains the total number of active displays.
+    ///
+    /// - displayCount: A pointer to a display count variable you provide. On return, the display count contains the actual number of displays the function added to the `activeDisplays` array. This value is at most `maxDisplays`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The first entry in the list of active displays is the main display. In case of mirroring, the first entry is the largest drawable display or, if all are the same size, the display with the greatest pixel depth.
+    ///
+    /// Note that when using hardware mirroring between displays, only the primary display is active and appears in the list. When using software mirroring, all the mirrored displays are active and appear in the list. For more information about mirroring, see [`CGConfigureDisplayMirrorOfDisplay`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymirrorofdisplay(_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -110,7 +252,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetonlinedisplaylist(_:_:_:)?language=objc)
+    /// Provides a list of displays that are online (active, mirrored, or sleeping).
+    ///
+    /// Parameters:
+    /// - maxDisplays: The size of the `onlineDisplays` array. This value determines the maximum number of display IDs that can be returned.
+    ///
+    /// - onlineDisplays: A pointer to storage provided by the caller for an array of display IDs. On return, the array contains a list of the online displays. If you pass `NULL`, on return the display count contains the total number of online displays.
+    ///
+    /// - displayCount: A pointer to a display count variable provided by the caller. On return, the display count contains the actual number of displays returned in the `onlineDisplays` array. This value is at most `maxDisplays`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the framebuffer hardware is connected, a display is considered connected or online.
+    ///
+    /// When hardware mirroring is used, a display can be online but not active or drawable. Programs that manipulate display settings (such as gamma tables) need access to all displays, including hardware mirrors, which are not drawable.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -124,7 +288,23 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayidtoopengldisplaymask(_:)?language=objc)
+/// Maps a display ID to an OpenGL display mask.
+///
+/// Parameters:
+/// - display: The display ID to be converted.
+///
+///
+/// ## Return Value
+///
+/// The OpenGL display mask that corresponds to the specified display.
+///
+///
+///
+/// ## Discussion
+///
+/// OpenGL sometimes identifies a display using a bitmask with one bit set. This function maps a display ID to the corresponding OpenGL display mask.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
     display: CGDirectDisplayID,
@@ -135,7 +315,23 @@ pub extern "C-unwind" fn CGDisplayIDToOpenGLDisplayMask(
     unsafe { CGDisplayIDToOpenGLDisplayMask(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgopengldisplaymasktodisplayid(_:)?language=objc)
+/// Maps an OpenGL display mask to a display ID.
+///
+/// Parameters:
+/// - mask: The OpenGL display mask to be converted.
+///
+///
+/// ## Return Value
+///
+/// The display ID assigned to the specified display mask, or `kCGNullDirectDisplay` if no display matches the mask.
+///
+///
+///
+/// ## Discussion
+///
+/// OpenGL sometimes identifies a display using a bitmask with one bit set. This function maps such a display mask to the corresponding display ID. If you pass in a mask with multiple bits set, this function returns a display ID matching one of these bits.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
     mask: CGOpenGLDisplayMask,
@@ -146,7 +342,17 @@ pub extern "C-unwind" fn CGOpenGLDisplayMaskToDisplayID(
     unsafe { CGOpenGLDisplayMaskToDisplayID(mask) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybounds(_:)?language=objc)
+/// Returns the bounds of a display in the global display coordinate space.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The bounds of the display, expressed as a rectangle in the global display coordinate space (relative to the upper-left corner of the main display).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
     extern "C-unwind" {
@@ -155,7 +361,17 @@ pub extern "C-unwind" fn CGDisplayBounds(display: CGDirectDisplayID) -> CGRect {
     unsafe { CGDisplayBounds(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaypixelswide(_:)?language=objc)
+/// Returns the display width in pixel units.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The display width in pixel units.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
@@ -164,7 +380,17 @@ pub extern "C-unwind" fn CGDisplayPixelsWide(display: CGDirectDisplayID) -> usiz
     unsafe { CGDisplayPixelsWide(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaypixelshigh(_:)?language=objc)
+/// Returns the display height in pixel units.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The display height in pixel units.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usize {
     extern "C-unwind" {
@@ -173,7 +399,19 @@ pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usiz
     unsafe { CGDisplayPixelsHigh(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopyalldisplaymodes(_:_:)?language=objc)
+/// Returns information about the currently available display modes.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+/// - options: Reserved for future expansion. Pass `NULL` for now.
+///
+///
+/// ## Return Value
+///
+/// An array of display modes that the display supports, or `NULL` if the display is invalid. The caller is responsible for releasing the array. For more information on accessing the properties of a display mode, see [Getting Information About a Display Mode](https://developer.apple.com/documentation/coregraphics/quartz-display-services#getting-information-about-a-display-mode).
+///
+///
 ///
 /// # Safety
 ///
@@ -195,11 +433,20 @@ pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayshowduplicatelowresolutionmodes?language=objc)
     pub static kCGDisplayShowDuplicateLowResolutionModes: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycopydisplaymode(_:)?language=objc)
+/// Returns information about a display’s current configuration.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A display-mode opaque-type reference, or `NULL` if the display is invalid. In Objective-C, you’re responsible for releasing the display mode using [`CGDisplayModeRelease`](https://developer.apple.com/documentation/coregraphics/cgdisplaymoderelease).
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
     display: CGDirectDisplayID,
@@ -212,7 +459,31 @@ pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaysetdisplaymode(_:_:_:)?language=objc)
+    /// Switches a display to a different mode.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to configure.
+    ///
+    /// - mode: A display mode that contains information about the display mode to set.
+    ///
+    /// - options: Reserved for future expansion. Pass `NULL` for now.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A Core Graphics result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function switches the display mode of the specified display. The operation is always synchronous; the function doesn’t return until the mode switch is complete. Note that after switching, display parameters and addresses may change.
+    ///
+    /// The selected display mode persists for the life of the calling program. When the program terminates, the display mode automatically reverts to the permanent setting in the Displays panel of System Preferences.
+    ///
+    /// When you change the display mode of a display in a mirroring set, your change switches other displays in the mirroring set to a mode capable of mirroring the bounds of the adjusted display. To avoid this automatic behavior, you can use the following procedure: call [`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)), call [`CGConfigureDisplayWithDisplayMode`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaywithdisplaymode(_:_:_:_:)) for each display to explicitly set the mode, and finally call [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -227,7 +498,17 @@ extern "C-unwind" {
 }
 
 impl CGDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/width?language=objc)
+    /// Returns the width of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The width, in pixels, of the specified display mode.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetWidth")]
     #[inline]
     pub fn width(mode: Option<&CGDisplayMode>) -> usize {
@@ -237,7 +518,17 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetWidth(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/height?language=objc)
+    /// Returns the height of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The height, in pixels, of the specified display mode.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetHeight")]
     #[inline]
     pub fn height(mode: Option<&CGDisplayMode>) -> usize {
@@ -247,7 +538,23 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetHeight(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelencoding?language=objc)
+    /// Returns the pixel encoding of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode for which to find the associated pixel encoding.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representing the pixel encoding of the specified display mode. This string is expressed as a `CFString` type containing an I/O Kit graphics mode. The caller is responsible for releasing the string.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The returned string can be used to determine various aspects of the pixel encoding, such as bits per pixel and bits per sample. For more information, see the header file IOKit/IOGraphicsTypes.h in [`IOKit`](https://developer.apple.com/documentation/iokit).
+    ///
+    ///
     #[doc(alias = "CGDisplayModeCopyPixelEncoding")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -261,7 +568,17 @@ impl CGDisplayMode {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/refreshrate?language=objc)
+    /// Returns the refresh rate of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode for which to find the associated refresh rate.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The refresh rate, in hertz, of the specified display mode for a CRT display. Some displays may not use conventional video vertical and horizontal sweep in painting the screen; for these displays, the return value is 0.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetRefreshRate")]
     #[inline]
     pub fn refresh_rate(mode: Option<&CGDisplayMode>) -> c_double {
@@ -271,7 +588,17 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetRefreshRate(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/ioflags?language=objc)
+    /// Returns the I/O Kit flags of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode for which to find the associated flags.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The I/O Kit flags of the specified display mode. For more information, see the header file `IOKit/IOGraphicsTypes.h`.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetIOFlags")]
     #[inline]
     pub fn io_flags(mode: Option<&CGDisplayMode>) -> u32 {
@@ -281,7 +608,17 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIOFlags(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/iodisplaymodeid?language=objc)
+    /// Returns the I/O Kit display mode ID of the specified display mode.
+    ///
+    /// Parameters:
+    /// - mode: A display mode for which to find the associated display mode ID.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The I/O Kit display mode ID of the specified display mode.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetIODisplayModeID")]
     #[inline]
     pub fn io_display_mode_id(mode: Option<&CGDisplayMode>) -> i32 {
@@ -291,7 +628,23 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetIODisplayModeID(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/isusablefordesktopgui()?language=objc)
+    /// Returns a Boolean value indicating whether the specified display mode is usable for a desktop graphical user interface.
+    ///
+    /// Parameters:
+    /// - mode: A display mode to be checked for usability.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If `true`, the specified display mode is usable for a desktop graphical user interface; otherwise, `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function’s criteria include factors such as sufficient width and height and adequate pixel depth.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeIsUsableForDesktopGUI")]
     #[inline]
     pub fn is_usable_for_desktop_gui(mode: Option<&CGDisplayMode>) -> bool {
@@ -303,7 +656,13 @@ impl CGDisplayMode {
 }
 
 unsafe impl ConcreteType for CGDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/typeid?language=objc)
+    /// Returns the type identifier of Quartz display modes.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier of the `CGDisplayMode` opaque type.
+    ///
+    ///
     #[doc(alias = "CGDisplayModeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -315,7 +674,6 @@ unsafe impl ConcreteType for CGDisplayMode {
 }
 
 impl CGDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelwidth?language=objc)
     #[doc(alias = "CGDisplayModeGetPixelWidth")]
     #[inline]
     pub fn pixel_width(mode: Option<&CGDisplayMode>) -> usize {
@@ -325,7 +683,6 @@ impl CGDisplayMode {
         unsafe { CGDisplayModeGetPixelWidth(mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymode/pixelheight?language=objc)
     #[doc(alias = "CGDisplayModeGetPixelHeight")]
     #[inline]
     pub fn pixel_height(mode: Option<&CGDisplayMode>) -> usize {
@@ -336,10 +693,62 @@ impl CGDisplayMode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggammavalue?language=objc)
+/// A value used to map a color generated in software to a color supported by the display hardware.
+///
+/// ## Discussion
+///
+/// In macOS, the Display panel in System Preferences is used to set the default gamma for a display. Quartz also allows an application to provide its own custom gamma information, using functions such as [`CGSetDisplayTransferByTable`](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbytable(_:_:_:_:_:)) and [`CGSetDisplayTransferByFormula`](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)).
+///
+/// These functions take `CGGammaValue` arguments that specify:
+///
+/// - A set of gamma table entries ranging from 0 to 1
+///
+/// - The positive real coefficients in a gamma equation
+///
+///
 pub type CGGammaValue = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)?language=objc)
+/// Sets the gamma function for a display by specifying the coefficients of the gamma transfer formula.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+/// - redMin: The minimum value of the red channel in the gamma table. The value should be a number in the interval [0, redMax).
+///
+/// - redMax: The maximum value of the red channel in the gamma table. The value should be a number in the interval (redMin, 1].
+///
+/// - redGamma: A positive value used to compute the red channel in the gamma table.
+///
+/// - greenMin: The minimum value of the green channel in the gamma table. The value should be a number in the interval [0, greenMax).
+///
+/// - greenMax: The maximum value of the green channel in the gamma table. The value should be a number in the interval (greenMin, 1].
+///
+/// - greenGamma: A positive value used to compute the green channel in the gamma table.
+///
+/// - blueMin: The minimum value of the blue channel in the gamma table. The value should be a number in the interval [0, blueMax).
+///
+/// - blueMax: The maximum value of the blue channel in the gamma table. The value should be a number in the interval (blueMin, 1].
+///
+/// - blueGamma: A positive value used to compute the blue channel in the gamma table.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function uses the specified parameter values to compute a gamma correction table for the specified display. The values in the table are computed by sampling the following gamma transfer formula for a range of indices from 0 to 1:
+///
+/// ```objc
+/// value = Min + ((Max - Min) * pow(index, Gamma))
+/// ```
+///
+/// The resulting values are converted to a machine-specific format and loaded into display hardware.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
@@ -385,7 +794,41 @@ pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)?language=objc)
+    /// Gets the coefficients of the gamma transfer formula for a display.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to access.
+    ///
+    /// - redMin: The minimum value of the red channel in the gamma table. The value is a number in the interval `[0, redMax]`.
+    ///
+    /// - redMax: The maximum value of the red channel in the gamma table. The value is a number in the interval `[redMin, 1]`.
+    ///
+    /// - redGamma: A positive value used to compute the red channel in the gamma table.
+    ///
+    /// - greenMin: The minimum value of the green channel in the gamma table. The value is a number in the interval `[0, greenMax]`.
+    ///
+    /// - greenMax: The maximum value of the green channel in the gamma table. The value is a number in the interval `[greenMin, 1]`.
+    ///
+    /// - greenGamma: A positive value used to compute the green channel in the gamma table.
+    ///
+    /// - blueMin: The minimum value of the blue channel in the gamma table. The value is a number in the interval `[0, blueMax]`.
+    ///
+    /// - blueMax: The maximum value of the blue channel in the gamma table. The value is a number in the interval `[blueMin, 1]`.
+    ///
+    /// - blueGamma: A positive value used to compute the blue channel in the gamma table.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For information about the gamma transfer formula, see the description of the function [`CGSetDisplayTransferByFormula`](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbyformula(_:_:_:_:_:_:_:_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -413,7 +856,17 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaygammatablecapacity(_:)?language=objc)
+/// Returns the capacity, or number of entries, in the gamma table for a display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The number of entries in the gamma table for a display.
+///
+///
 #[inline]
 pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID) -> u32 {
     extern "C-unwind" {
@@ -423,7 +876,31 @@ pub extern "C-unwind" fn CGDisplayGammaTableCapacity(display: CGDirectDisplayID)
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbytable(_:_:_:_:_:)?language=objc)
+    /// Sets the color gamma function for a display by specifying the values in the RGB gamma tables.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be accessed.
+    ///
+    /// - tableSize: The number of entries in each table.
+    ///
+    /// - redTable: An array of size `tableSize` containing the values of the red channel in the display’s gamma table. The values should be in the range `0.0` to `1.0`.
+    ///
+    /// - greenTable: An array of size `tableSize` containing the values of the green channel in the display’s gamma table. The values should be in the range `0.0` to `1.0`.
+    ///
+    /// - blueTable: An array of size `tableSize` containing the values of the blue channel in the display’s gamma table. The values should be in the range `0.0` to `1.0`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The same table may be passed in for the red, green, and blue channels. The tables are interpolated as needed to generate the number of samples required by the graphics hardware.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -441,7 +918,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetdisplaytransferbytable(_:_:_:_:_:_:)?language=objc)
+    /// Gets the values in the RGB gamma tables for a display.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be accessed.
+    ///
+    /// - capacity: The number of entries each table can hold.
+    ///
+    /// - redTable: A pointer to an array of type `CGGammaValue` with size `capacity`. On return, the array contains the values of the red channel in the display’s gamma table.
+    ///
+    /// - greenTable: A pointer to an array of type `CGGammaValue` with size `capacity`. On return, the array contains the values of the green channel in the display’s gamma table.
+    ///
+    /// - blueTable: A pointer to an array of type `CGGammaValue` with size `capacity`. On return, the array contains the values of the blue channel in the display’s gamma table.
+    ///
+    /// - sampleCount: The number of samples actually copied into each array.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -461,7 +958,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgsetdisplaytransferbybytetable(_:_:_:_:_:)?language=objc)
+    /// Sets the byte values in the 8-bit RGB gamma tables for a display.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be accessed.
+    ///
+    /// - tableSize: The number of entries in each table.
+    ///
+    /// - redTable: An array of size `tableSize` containing the byte values of the red channel in the display’s gamma table.
+    ///
+    /// - greenTable: An array of size `tableSize` containing the byte values of the green channel in the display’s gamma table.
+    ///
+    /// - blueTable: An array of size `tableSize` containing the byte values of the blue channel in the display’s gamma table.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The same table may be passed in for the red, green, and blue channels. The tables are interpolated as needed to generate the number of samples required by the graphics hardware.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -478,7 +999,7 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrestorecolorsyncsettings()?language=objc)
+/// Restores the gamma tables to the values in the user’s ColorSync display profile.
 #[inline]
 pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
     extern "C-unwind" {
@@ -487,17 +1008,23 @@ pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
     unsafe { CGDisplayRestoreColorSyncSettings() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions?language=objc)
+/// Configuration parameters that are used when capturing displays.
+///
+/// ## Overview
+///
+/// For information about how these constants are used, see the functions [`CGDisplayCaptureWithOptions`](https://developer.apple.com/documentation/coregraphics/cgdisplaycapturewithoptions(_:_:)) and [`CGCaptureAllDisplaysWithOptions`](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplayswithoptions(_:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGCaptureOptions(pub u32);
 bitflags::bitflags! {
     impl CGCaptureOptions: u32 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions/kcgcapturenooptions?language=objc)
+/// The system should use the default fill behavior, which is fill with black.
         #[doc(alias = "kCGCaptureNoOptions")]
         const NoOptions = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions/nofill?language=objc)
+/// Disables fill with black.
         #[doc(alias = "kCGCaptureNoFill")]
 #[deprecated]
         const NoFill = 1<<0;
@@ -514,7 +1041,17 @@ unsafe impl RefEncode for CGCaptureOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayiscaptured(_:)?language=objc)
+/// Returns a Boolean value indicating whether a display is captured.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// If `true`, the specified display is captured; otherwise, `false`.
+///
+///
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -526,7 +1063,25 @@ pub extern "C-unwind" fn CGDisplayIsCaptured(display: CGDirectDisplayID) -> bool
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycapture(_:)?language=objc)
+/// Obtains exclusive use of a display, preventing other applications and system services from using the display or changing its configuration.
+///
+/// Parameters:
+/// - display: The identifier of the display to capture.
+///
+///
+/// ## Return Value
+///
+/// A Core Graphics result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// When an application captures a display, Quartz doesn’t allow other applications and system services to use the display or change its configuration.
+///
+/// If hardware or software mirroring is in effect, the easiest way to capture the primary display and all mirrored displays is to use the function [`CGCaptureAllDisplays`](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplays()). In case of software mirroring, applications that draw directly to the display must make sure to draw the same content to all displays in the mirror set.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError {
@@ -536,7 +1091,25 @@ pub extern "C-unwind" fn CGDisplayCapture(display: CGDirectDisplayID) -> CGError
     unsafe { CGDisplayCapture(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycapturewithoptions(_:_:)?language=objc)
+/// Obtains exclusive use of a display for an application using the options you specify.
+///
+/// Parameters:
+/// - display: The identifier of the display to capture.
+///
+/// - options: The options to use. See [`CGCaptureOptions`](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions).
+///
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// This function allows you to specify one or more options to use during capture of a display.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
@@ -552,7 +1125,17 @@ pub extern "C-unwind" fn CGDisplayCaptureWithOptions(
     unsafe { CGDisplayCaptureWithOptions(display, options) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayrelease(_:)?language=objc)
+/// Releases a captured display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be released.
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError {
@@ -562,7 +1145,19 @@ pub extern "C-unwind" fn CGDisplayRelease(display: CGDirectDisplayID) -> CGError
     unsafe { CGDisplayRelease(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplays()?language=objc)
+/// Obtains exclusive use of all active displays, preventing other applications and system services from using the display or changing its configuration.
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// This function captures all attached displays in a single operation. When an application captures a display, Quartz doesn’t allow other applications and system services to use the display or change its configuration. This can provide a more immersive environment for your application.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
@@ -572,7 +1167,23 @@ pub extern "C-unwind" fn CGCaptureAllDisplays() -> CGError {
     unsafe { CGCaptureAllDisplays() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplayswithoptions(_:)?language=objc)
+/// Captures all attached displays, using the specified options.
+///
+/// Parameters:
+/// - options: The options to use. See [`CGCaptureOptions`](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions).
+///
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function allows you to specify one or more options to use during capture of all attached displays.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptions) -> CGError {
@@ -582,7 +1193,19 @@ pub extern "C-unwind" fn CGCaptureAllDisplaysWithOptions(options: CGCaptureOptio
     unsafe { CGCaptureAllDisplaysWithOptions(options) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgreleasealldisplays()?language=objc)
+/// Releases all captured displays.
+///
+/// ## Return Value
+///
+/// A result code. See `Core Graphics Data Types and Constants`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function releases all captured displays and restores the display modes to the user’s preferences. It may be used in conjunction with any of the functions that capture displays, such as [`CGCaptureAllDisplays`](https://developer.apple.com/documentation/coregraphics/cgcapturealldisplays()).
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
@@ -592,7 +1215,25 @@ pub extern "C-unwind" fn CGReleaseAllDisplays() -> CGError {
     unsafe { CGReleaseAllDisplays() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshieldingwindowid(_:)?language=objc)
+/// Returns the window ID of the shield window for a captured display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// The window ID of the shield window for the specified display, or `NULL` if the display is not shielded.
+///
+///
+///
+/// ## Discussion
+///
+/// To prevent updates by direct-to-screen programs, Quartz draws a shield window that fills the entire screen of a captured display.
+///
+/// This function is not recommended for use in applications. Note that the graphics context associated with this window is not a full-featured drawing context. To get a full-featured drawing context for a captured display, you should use the function [`CGDisplayGetDrawingContext`](https://developer.apple.com/documentation/coregraphics/cgdisplaygetdrawingcontext(_:)).
+///
+///
 #[cfg(feature = "CGWindow")]
 #[inline]
 pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWindowID {
@@ -602,7 +1243,19 @@ pub extern "C-unwind" fn CGShieldingWindowID(display: CGDirectDisplayID) -> CGWi
     unsafe { CGShieldingWindowID(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshieldingwindowlevel()?language=objc)
+/// Returns the window level of the shield window for a captured display.
+///
+/// ## Return Value
+///
+/// The window level of the shield window for a captured display.
+///
+///
+///
+/// ## Discussion
+///
+/// This function returns a value that is sometimes used to position a window over the shield window for a captured display. Attempting to position a window over a captured display may be unsuccessful—or it may present undesirable results such as illegible or invisible content—because of interactions between full-screen graphics (such as OpenGL full-screen drawing contexts) and the graphics hardware. Because of these limitations, this technique is not recommended.
+///
+///
 #[cfg(feature = "CGWindowLevel")]
 #[inline]
 pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
@@ -612,7 +1265,17 @@ pub extern "C-unwind" fn CGShieldingWindowLevel() -> CGWindowLevel {
     unsafe { CGShieldingWindowLevel() }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycreateimage(_:)?language=objc)
+/// Returns an image containing the contents of the specified display.
+///
+/// Parameters:
+/// - displayID: The identifier of the display for which an image is being created.
+///
+///
+/// ## Return Value
+///
+/// An image containing the contents of the specified display. If the display ID is invalid, the return value is `NULL`. In Objective-C, you’re responsible for releasing the image created by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+///
+///
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -626,7 +1289,25 @@ pub extern "C-unwind" fn CGDisplayCreateImage(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycreateimage(_:rect:)?language=objc)
+/// Returns an image containing the contents of a portion of the specified display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+/// - rect: The rectangle, specified in display space, for the portion of the display being copied into the image.
+///
+///
+/// ## Return Value
+///
+/// An image containing the contents of the specified rectangle. If the display ID is invalid, the return value is `NULL`. In Objective-C, you’re responsible for releasing the image created by calling [`CGImageRelease`](https://developer.apple.com/documentation/coregraphics/cgimagerelease).
+///
+///
+///
+/// ## Discussion
+///
+/// The actual rectangle used is the rectangle returned by [`CGRectIntegral`](https://developer.apple.com/documentation/coregraphics/cgrectintegral(_:)) with `rect` as a parameter.
+///
+///
 #[cfg(feature = "CGImage")]
 #[deprecated = "Please use ScreenCaptureKit instead."]
 #[inline]
@@ -644,7 +1325,23 @@ pub extern "C-unwind" fn CGDisplayCreateImageForRect(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayhidecursor(_:)?language=objc)
+/// Hides the mouse cursor, and increments the hide cursor count.
+///
+/// Parameters:
+/// - display: This parameter has no effect. By default, you can pass `kCGDirectMainDisplay`.
+///
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// This function hides the cursor regardless of its current location. The `display` parameter has no effect. In most cases, the caller must be the foreground application to affect the cursor.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGError {
@@ -654,7 +1351,23 @@ pub extern "C-unwind" fn CGDisplayHideCursor(display: CGDirectDisplayID) -> CGEr
     unsafe { CGDisplayHideCursor(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayshowcursor(_:)?language=objc)
+/// Decrements the hide cursor count, and shows the mouse cursor if the count is `0`.
+///
+/// Parameters:
+/// - display: This parameter has no effect. By default, you can pass `kCGDirectMainDisplay`.
+///
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// If the hide cursor count is `0`, this function shows the cursor regardless of its current location. The `display` parameter has no effect. In most cases, the caller must be the foreground application to affect the cursor.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGError {
@@ -664,7 +1377,25 @@ pub extern "C-unwind" fn CGDisplayShowCursor(display: CGDirectDisplayID) -> CGEr
     unsafe { CGDisplayShowCursor(display) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaymovecursortopoint(_:_:)?language=objc)
+/// Moves the mouse cursor to a specified point relative to the upper-left corner of the display.
+///
+/// Parameters:
+/// - display: The identifier of the display to access.
+///
+/// - point: The coordinates of a point in local display space. The origin is the upper-left corner of the specified display.
+///
+///
+/// ## Return Value
+///
+/// A result code. To interpret the result code, see [`CGError`](https://developer.apple.com/documentation/coregraphics/cgerror).
+///
+///
+///
+/// ## Discussion
+///
+/// The function doesn’t generate events as a result of this move. The action clips points that lie outside the desktop to its bounds.
+///
+///
 #[cfg(feature = "CGError")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
@@ -678,7 +1409,19 @@ pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggetlastmousedelta?language=objc)
+    /// Reports the change in mouse position since the last mouse movement event received by the application.
+    ///
+    /// Parameters:
+    /// - deltaX: A pointer to a `int32_t` variable. On return, this variable contains the horizontal change in the mouse position since the last mouse movement event.
+    ///
+    /// - deltaY: A pointer to a `int32_t` variable. On return, this variable contains the vertical change in the mouse position since the last mouse movement event.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is not recommended for general use. Instead, you should use the mouse-tracking functions provided by the `NSEvent` class.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -687,7 +1430,23 @@ extern "C-unwind" {
     pub fn CGGetLastMouseDelta(delta_x: *mut i32, delta_y: *mut i32);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaygetdrawingcontext(_:)?language=objc)
+/// Returns a graphics context suitable for drawing to a captured display.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A Quartz graphics context suitable for drawing to a captured display, or `NULL` if the display has not been captured. The context is owned by the system and you should not release it.
+///
+///
+///
+/// ## Discussion
+///
+/// After capturing a display or changing the configuration of a captured display, you can use this function to obtain the current graphics context for the display. The graphics context remains valid while the display is captured and the display configuration is unchanged. Releasing the captured display or reconfiguring the display invalidates the context. To determine when the display configuration is changing, you can use the function [`CGDisplayRegisterReconfigurationCallback`](https://developer.apple.com/documentation/coregraphics/cgdisplayregisterreconfigurationcallback(_:_:)) to register a display reconfiguration callback.
+///
+///
 #[cfg(feature = "CGContext")]
 #[inline]
 pub extern "C-unwind" fn CGDisplayGetDrawingContext(
@@ -700,14 +1459,36 @@ pub extern "C-unwind" fn CGDisplayGetDrawingContext(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycount?language=objc)
+/// The number of displays in various lists.
+///
+/// ## Discussion
+///
+/// Quartz uses `CGDisplayCount` to represent a count of either the current or the maximum number of displays in a display list. For example, see the function [`CGGetActiveDisplayList`](https://developer.apple.com/documentation/coregraphics/cggetactivedisplaylist(_:_:_:)).
+///
+///
 pub type CGDisplayCount = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayerr?language=objc)
+/// A uniform type for result codes returned by functions in Quartz Display Services.
 #[cfg(feature = "CGError")]
 pub type CGDisplayErr = CGError;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayavailablemodes(_:)?language=objc)
+/// Returns information about the currently available display modes.
+///
+/// Parameters:
+/// - dsp: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// An array of dictionaries with display mode information, or `NULL` if the display is invalid. The array is owned by the system and you should not release it. Each dictionary in the array contains information about a mode that the display supports. For a list of the properties in a display mode dictionary, see [Display Mode Standard Properties](https://developer.apple.com/documentation/coregraphics/display-mode-standard-properties) and [Display Mode Optional Properties](https://developer.apple.com/documentation/coregraphics/display-mode-optional-properties). For general information about using dictionaries, see [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+///
+///
+///
+/// ## Discussion
+///
+/// This deprecated function returns an array of display mode dictionary. Starting in OS X v10.6, display mode dictionaries have been replaced by the `CGDisplayMode` opaque type. Whereas display mode dictionaries returned by `CGDisplayAvailableModes` are owned by the system and are not to be released, display mode opaque type references returned by `CGDisplayCopyAllDisplayModes` are owned by the caller and you must release them.
+///
+///
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
@@ -720,7 +1501,35 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparameters(_:_:_:_:_:)?language=objc)
+/// Returns information about the display mode closest to a specified depth and screen size.
+///
+/// Parameters:
+/// - display: The identifier of the display to optimize.
+///
+/// - bitsPerPixel: Optimal display depth in bits per pixel. Note that this value is not the same as pixel depth, which is the number of bits per channel or component.
+///
+/// - width: Optimal display width in pixel units.
+///
+/// - height: Optimal display height in pixel units.
+///
+/// - exactMatch: A pointer to a Boolean variable. On return, its value is `true` if an exact match in display depth, width, and height is found; otherwise, `false`. If this information is not needed, pass `NULL`.
+///
+///
+/// ## Return Value
+///
+/// A display mode dictionary, or `NULL` if the display is invalid. The dictionary is owned by the system and you should not release it. The dictionary contains information about the display mode closest to the specified depth and screen size. For a list of the properties in a display mode dictionary, see [Display Mode Standard Properties](https://developer.apple.com/documentation/coregraphics/display-mode-standard-properties) and [Display Mode Optional Properties](https://developer.apple.com/documentation/coregraphics/display-mode-optional-properties). For general information about using dictionaries, see [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+///
+///
+///
+/// ## Discussion
+///
+/// This function tries to find an optimal display mode for the specified display. The function first tries to find a mode with the specified pixel depth and dimensions equal to or greater than the specified width and height. If no depth match is found, it tries to find a mode with greater depth and the same or greater dimensions. If a suitable display mode is not found, this function simply returns the current display mode.
+///
+/// ### Special Considerations
+///
+/// This deprecated function selects a display mode closest to the specified parameters. Starting in OS X v10.6 new display mode APIs should be used to query display modes so that an application can tailor its definition of “best” to its graphics and memory needs.
+///
+///
 ///
 /// # Safety
 ///
@@ -750,7 +1559,45 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparametersandrefreshrate(_:_:_:_:_:_:)?language=objc)
+/// Returns information about the display mode closest to a specified depth, screen size, and refresh rate.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+/// - bitsPerPixel: Optimal display depth, in bits per pixel. Note that this value is not the same as pixel depth, which is the number of bits per channel or component.
+///
+/// - width: Optimal display width, in pixel units.
+///
+/// - height: Optimal display height, in pixel units.
+///
+/// - refreshRate: Optimal display refresh rate, in frames per second.
+///
+/// - exactMatch: A pointer to a Boolean variable. On return, its value is `true` if an exact match in display depth, width, height, and refresh rate is found; otherwise, `false`. If this information is not needed, pass `NULL`.
+///
+///
+/// ## Return Value
+///
+/// A display mode dictionary, or `NULL` if the display is invalid. The dictionary is owned by the system and you should not release it. The dictionary contains information about the display mode closest to the specified depth, screen size, and refresh rate. For a list of the properties in a display mode dictionary, see [Display Mode Standard Properties](https://developer.apple.com/documentation/coregraphics/display-mode-standard-properties) and [Display Mode Optional Properties](https://developer.apple.com/documentation/coregraphics/display-mode-optional-properties). For general information about using dictionaries, see [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+///
+///
+///
+/// ## Discussion
+///
+/// This function searches the list of available display modes for a mode that comes closest to satisfying these criteria:
+///
+/// - Has a pixel depth equal to or greater than the specified depth
+///
+/// - Has dimensions equal to or greater than the specified height and width
+///
+/// - Uses a refresh rate equal to or near the specified rate
+///
+/// If a suitable display mode is not found, this function simply returns the current display mode.
+///
+/// ### Special Considerations
+///
+/// This deprecated function selects a display mode closest to the specified parameters. Starting in OS X v10.6 new display mode APIs should be used to query display modes so that an app can tailor its definition of “best” to its graphics and memory needs.
+///
+///
 ///
 /// # Safety
 ///
@@ -789,7 +1636,23 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaycurrentmode(_:)?language=objc)
+/// Returns information about the current display mode.
+///
+/// Parameters:
+/// - display: The identifier of the display to be accessed.
+///
+///
+/// ## Return Value
+///
+/// A display mode dictionary, or `NULL` if the display is invalid. The dictionary is owned by the system and you should not release it. The dictionary contains information about the current display mode. For a list of the properties in a display mode dictionary, see [Display Mode Standard Properties](https://developer.apple.com/documentation/coregraphics/display-mode-standard-properties) and [Display Mode Optional Properties](https://developer.apple.com/documentation/coregraphics/display-mode-optional-properties). For general information about using dictionaries, see [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+///
+///
+///
+/// ## Discussion
+///
+/// This deprecated function returns a display mode dictionary. Starting in OS X v10.6, display mode dictionaries have been replaced by the `CGDisplayMode` opaque type. Whereas display mode dictionaries returned by `CGDisplayCurrentModes` are owned by the system and are not to be released, display mode opaque type references returned by `CGDisplayCopyDisplayMode` are owned by the caller and you must release them.
+///
+///
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
@@ -803,7 +1666,33 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayswitchtomode(_:_:)?language=objc)
+    /// Switches a display to a different mode.
+    ///
+    /// Parameters:
+    /// - display: The identifier of the display to be accessed.
+    ///
+    /// - mode: A display mode dictionary that contains information about the display mode to set. The dictionary passed in must be a dictionary returned by another Quartz display function such as [`CGDisplayAvailableModes`](https://developer.apple.com/documentation/coregraphics/cgdisplayavailablemodes(_:)) or [`CGDisplayBestModeForParameters`](https://developer.apple.com/documentation/coregraphics/cgdisplaybestmodeforparameters(_:_:_:_:_:)). For a list of the properties in a display mode dictionary, see [Display Mode Standard Properties](https://developer.apple.com/documentation/coregraphics/display-mode-standard-properties) and [Display Mode Optional Properties](https://developer.apple.com/documentation/coregraphics/display-mode-optional-properties). For general information about using dictionaries, see [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See `Core Graphics Data Types and Constants`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function switches the display mode of the specified display. The operation is always synchronous; the function does not return until the mode switch is complete. Note that after switching, display parameters and addresses may change.
+    ///
+    /// The selected display mode persists for the life of the calling program. When the program terminates, the display mode automatically reverts to the permanent setting in the Displays panel of System Preferences.
+    ///
+    /// When changing the display mode of a display in a mirroring set, other displays in the mirroring set will be assigned a mode that’s capable of mirroring the bounds of the display being adjusted. To avoid this automatic behavior, you can use the following procedure: call[`CGBeginDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgbegindisplayconfiguration(_:)), call [`CGConfigureDisplayMode`](https://developer.apple.com/documentation/coregraphics/cgconfiguredisplaymode(_:_:_:)) for each display to explicitly set the mode, and finally call [`CGCompleteDisplayConfiguration`](https://developer.apple.com/documentation/coregraphics/cgcompletedisplayconfiguration(_:_:))
+    ///
+    /// ### Special Considerations
+    ///
+    /// This deprecated function takes as a parameter a display mode dictionary. Starting in OS X v10.6, display mode dictionaries have been replaced by the `CGDisplayMode` opaque type.
+    ///
+    ///
     ///
     /// # Safety
     ///

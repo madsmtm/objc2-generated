@@ -4,28 +4,52 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus?language=objc)
+/// Constants indicating the state of the financial transaction.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPaymentStatus(pub NSInteger);
 impl INPaymentStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/unknown?language=objc)
+    /// The payment status is unknown.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant when the financial transaction has not yet occurred and you are unable to determine its state.
+    ///
+    ///
     #[doc(alias = "INPaymentStatusUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/pending?language=objc)
+    /// The app hasn’t sent the payment yet.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant when you have a record of the transaction details but the funds you haven’t transferred the funds yet.
+    ///
+    ///
     #[doc(alias = "INPaymentStatusPending")]
     pub const Pending: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/completed?language=objc)
+    /// The app made the payment.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant when the funds have been successfully transferred to the payee’s account.
+    ///
+    ///
     #[doc(alias = "INPaymentStatusCompleted")]
     pub const Completed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/canceled?language=objc)
+    /// The app canceled the transaction before transferring the funds.
     #[doc(alias = "INPaymentStatusCanceled")]
     pub const Canceled: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/failed?language=objc)
+    /// The transaction failed and the funds were not transferred.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant to indicate that there was an error in processing the transaction.
+    ///
+    ///
     #[doc(alias = "INPaymentStatusFailed")]
     pub const Failed: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpaymentstatus/unpaid?language=objc)
+    /// The bill is currently unpaid.
     #[doc(alias = "INPaymentStatusUnpaid")]
     pub const Unpaid: Self = Self(5);
 }

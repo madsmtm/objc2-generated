@@ -10,9 +10,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The VNCoreMLModel uses an CoreML based model and prepares it for use with VNCoreMLRequests.
+    /// A container for the model to use with Vision requests.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlmodel?language=objc)
+    /// ## Overview
+    ///
+    /// A [`Core ML`](https://developer.apple.com/documentation/coreml) model encapsulates the information trained from a data set used to drive Vision recognition requests. See [Getting a Core ML Model](https://developer.apple.com/documentation/coreml/getting-a-core-ml-model) for instructions on training your own model. Once you train the model, use this class to initialize a [`VNCoreMLRequest`](https://developer.apple.com/documentation/vision/vncoremlrequest) for identification.
+    ///
+    ///
+    /// The VNCoreMLModel uses an CoreML based model and prepares it for use with VNCoreMLRequests.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNCoreMLModel;
@@ -83,10 +88,29 @@ impl VNCoreMLModel {
 }
 
 extern_class!(
+    /// An image-analysis request that uses a Core ML model to process images.
+    ///
+    /// ## Overview
+    ///
+    /// The results array of a Core ML-based image analysis request contains a different observation type, depending on the kind of [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) object you use:
+    ///
+    /// - If the model predicts a single feature, the model’s [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription) object has a non-`nil` value for [`predictedFeatureName`](https://developer.apple.com/documentation/coreml/mlmodeldescription/predictedfeaturename) and Vision treats the model as a classifier. The results are [`VNClassificationObservation`](https://developer.apple.com/documentation/vision/vnclassificationobservation) objects.
+    ///
+    /// - If the model’s outputs include at least one output with a feature type of [`MLFeatureTypeImage`](https://developer.apple.com/documentation/coreml/mlfeaturetype/image), Vision treats that model as an image-to-image model. The results are [`VNPixelBufferObservation`](https://developer.apple.com/documentation/vision/vnpixelbufferobservation) objects.
+    ///
+    /// - Otherwise, Vision treats the model as a general predictor model. The results are [`VNCoreMLFeatureValueObservation`](https://developer.apple.com/documentation/vision/vncoremlfeaturevalueobservation) objects.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Vision forwards all [`confidence`](https://developer.apple.com/documentation/vision/vnobservation/confidence) values from Core ML models as-is and doesn’t normalize them to `[0, 1]`.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// The VNCoreMLRequest uses a VNCoreMLModel, that is based on a CoreML MLModel object, to run predictions with that model. Depending on the model the returned
     /// observation is either a VNClassificationObservation for classifier models, VNPixelBufferObservations for image-to-image models, VNRecognizedObjectObservation for object recognition models or VNCoreMLFeatureValueObservation for everything else. All -[VNObservation confidence] values are forwarded from relevant models as is, and do not conform to a common [0, 1] range rule
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlrequest?language=objc)
     #[unsafe(super(VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VNRequest")]
@@ -186,5 +210,16 @@ impl VNCoreMLRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vncoremlrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of a Core ML request.
+///
+/// ## Discussion
+///
+/// The revision number is a constant that you pass on a per-request basis to indicate to the Vision framework which version of the Core ML algorithm to use for that request. Each OS release in which the framework improves aspects of the algorithm (recognition speed, accuracy, number of languages supported, and so forth), the revision number increments by 1.
+///
+/// By default, recognition requests use the latest—the highest—revision number for the SDK that your app links against. If you don’t recompile your app against a newer SDK, your app binary uses the revision that was the default at the time you last compiled it. If you do recompile, your app uses the default of the new SDK.
+///
+/// If your app must support users on older OS versions that don’t have access to the latest Vision framework, you may want to specify an earlier revision. For example, your algorithm may depend on specific behavior from a Vision request, such as writing your image processing algorithm to assume the size or aspect ratio of bounding boxes from an older revision of the face detector. In such a scenario, you can support earlier versions of the algorithm by specifying lower numbers:
+///
+/// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["visionRequest.revision = VNCoreMLRequestRevision1"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["visionRequest.revision = VNCoreMLRequestRevision1;"], metadata: None }] }] })
+///
 pub static VNCoreMLRequestRevision1: NSUInteger = 1;

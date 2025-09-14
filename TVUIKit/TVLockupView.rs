@@ -13,9 +13,8 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_protocol!(
+    /// The protocol for responding to lockup view state changes.
     /// Component views inside the lockup view may conform to this protocol in order to participate in the state changes of the containing lockup view by altering their appearances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvlockupviewcomponent?language=objc)
     pub unsafe trait TVLockupViewComponent: NSObjectProtocol {
         /// This is called when a lockup view's state changes.
         ///
@@ -31,9 +30,28 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// TVLockupView is a composed view specializing in presenting a main content, and optional header or footer.
+    /// A focusable view that presents main content, like a movie poster, and an optional header and footer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvuikit/tvlockupview?language=objc)
+    /// ## Overview
+    ///
+    /// A `TVLockupView` object consists of three views that operate as a single view. The content view typically contains a media item image, like a movie poster, with additional information in the header and footer views. The `TVLockupView` object expands when it comes into focus, using [`focusSizeIncrease`](https://developer.apple.com/documentation/tvuikit/tvlockupview/focussizeincrease) and [`contentSize`](https://developer.apple.com/documentation/tvuikit/tvlockupview/contentsize) to calculate the size increase. Provide sufficient `focusSizeIncrease` values so that your custom content doesn’t overlap other objects when the content comes into focus.
+    ///
+    /// The following figure shows a `TVLockupView` object that’s in focus. The yellow, vertical bars indicate the space between views. The center view is in focus and has increased in size, expanding into the space between views. Views don’t move as other views come into focus.
+    ///
+    ///
+    /// ![A diagram depicting five TV lockup views in a row, separated by yellow, vertical bars that indicate the space between views. The center view is larger than the other views and covers part of the yellow areas on either side of it.](https://docs-assets.developer.apple.com/published/2ed04a2c3cfadc7465289bdfbee40037/media-3016664%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Don’t create a [`TVLockupView`](https://developer.apple.com/documentation/tvuikit/tvlockupview) directly. Instead, create an instance of the subclass that best suits your use case, such as [`TVPosterView`](https://developer.apple.com/documentation/tvuikit/tvposterview) or [`TVCardView`](https://developer.apple.com/documentation/tvuikit/tvcardview).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
+    /// TVLockupView is a composed view specializing in presenting a main content, and optional header or footer.
     #[unsafe(super(UIControl, UIView, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TVLockupView;

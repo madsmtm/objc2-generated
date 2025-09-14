@@ -7,19 +7,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInputTraitType(pub NSInteger);
 impl NSTextInputTraitType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/default?language=objc)
     #[doc(alias = "NSTextInputTraitTypeDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/no?language=objc)
     #[doc(alias = "NSTextInputTraitTypeNo")]
     pub const No: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype/yes?language=objc)
     #[doc(alias = "NSTextInputTraitTypeYes")]
     pub const Yes: Self = Self(2);
 }
@@ -32,22 +28,34 @@ unsafe impl RefEncode for NSTextInputTraitType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior?language=objc)
+/// Constants that specify the Writing Tools experience for the underlying view.
+///
+/// ## Overview
+///
+/// Writing Tools provide proofreading and rewriting support for the content of text views. On devices that support Writing Tools features, people engage the system UI to choose how to rewrite all or part of the available text. These constants indicate whether people experience Writing Tools inline with their text, in an overlay panel, or not at all.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingToolsBehavior(pub NSInteger);
 impl NSWritingToolsBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/none?language=objc)
+    /// An option to prevent Writing Tools from modifying the text in the view.
     #[doc(alias = "NSWritingToolsBehaviorNone")]
     pub const None: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/default?language=objc)
+    /// An option to let the system determine the best way to enable Writing Tools for the view.
+    ///
+    /// ## Discussion
+    ///
+    /// The system chooses a complete, limited, or none experience based on the device-level support for the feature.
+    ///
+    ///
     #[doc(alias = "NSWritingToolsBehaviorDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/complete?language=objc)
+    /// An option to provide the complete Writing Tools experience for the text view.
     #[doc(alias = "NSWritingToolsBehaviorComplete")]
     pub const Complete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior/limited?language=objc)
+    /// An option to provide a limited, overlay-panel experience for the text view.
     #[doc(alias = "NSWritingToolsBehaviorLimited")]
     pub const Limited: Self = Self(2);
 }
@@ -60,29 +68,33 @@ unsafe impl RefEncode for NSWritingToolsBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions?language=objc)
+/// Constants to specify what type of content to allow in Writing Tools suggestions or rewrites.
+///
+/// ## Overview
+///
+/// When configuring a text view, specify what type of text input you want Writing Tools to deliver to your view. You can ask it to return plain text without any attributes, or you can ask it to apply relevant formatting attributes to the text. You can even encourage it to return items in a list or format them in a table.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWritingToolsResultOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/nswritingtoolsresultdefault?language=objc)
         #[doc(alias = "NSWritingToolsResultDefault")]
         const Default = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/plaintext?language=objc)
+/// An option to allow only plain text without any attributes in the returned text.
         #[doc(alias = "NSWritingToolsResultPlainText")]
         const PlainText = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/richtext?language=objc)
+/// An option to include style attributes consistent with the RTF format in the returned text.
         #[doc(alias = "NSWritingToolsResultRichText")]
         const RichText = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/list?language=objc)
+/// An option to allow list-style formatting in the returned text.
         #[doc(alias = "NSWritingToolsResultList")]
         const List = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/table?language=objc)
+/// An option to allow tabular layout attributes in the returned text.
         #[doc(alias = "NSWritingToolsResultTable")]
         const Table = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions/presentationintent?language=objc)
         #[doc(alias = "NSWritingToolsResultPresentationIntent")]
         const PresentationIntent = 1<<4;
     }
@@ -97,7 +109,6 @@ unsafe impl RefEncode for NSWritingToolsResultOptions {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraits?language=objc)
     pub unsafe trait NSTextInputTraits {
         #[optional]
         #[unsafe(method(autocorrectionType))]
@@ -262,7 +273,6 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingclient?language=objc)
     #[cfg(feature = "NSTextInputClient")]
     pub unsafe trait NSTextCheckingClient: NSTextInputClient + NSTextInputTraits {
         /// # Safety

@@ -7,31 +7,79 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype?language=objc)
+/// Values that indicate a document’s edit status.
+///
+/// ## Overview
+///
+/// These constants indicate how a document should operate on its change count and are passed to the [`updateChangeCount:`](https://developer.apple.com/documentation/appkit/nsdocument/updatechangecount(_:)) method.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDocumentChangeType(pub NSUInteger);
 impl NSDocumentChangeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changedone?language=objc)
+    /// Increment change count.
+    ///
+    /// ## Discussion
+    ///
+    /// Pass this value to the [`updateChangeCount:`](https://developer.apple.com/documentation/appkit/nsdocument/updatechangecount(_:)) method to indicate that a single change has been done. For example, the built-in undo support in the [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class passes this value whenever a document receives an [`NSUndoManagerDidCloseUndoGroupNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidcloseundogroup) notification from its own undo manager.
+    ///
+    ///
     #[doc(alias = "NSChangeDone")]
     pub const ChangeDone: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeundone?language=objc)
+    /// Decrement change count.
+    ///
+    /// ## Discussion
+    ///
+    /// A single change has been undone. For example, the built-in undo support of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) passes this value whenever a document receives an [`NSUndoManagerDidUndoChangeNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidundochange) from its own undo manager.
+    ///
+    ///
     #[doc(alias = "NSChangeUndone")]
     pub const ChangeUndone: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeredone?language=objc)
+    /// A single change has been redone.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the built-in undo support of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) passes this value whenever a document receives an [`NSUndoManagerDidRedoChangeNotification`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidredochange) from its own undo manager.
+    ///
+    ///
     #[doc(alias = "NSChangeRedone")]
     pub const ChangeRedone: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changecleared?language=objc)
+    /// Set change count to 0.
+    ///
+    /// ## Discussion
+    ///
+    /// The document has been synchronized with its file or file package. For example, [`saveToURL:ofType:forSaveOperation:error:`](https://developer.apple.com/documentation/appkit/nsdocument/savetourl:oftype:forsaveoperation:error:) passes this value for a successful [`NSSaveOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveoperation) or [`NSSaveAsOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveasoperation). The [`revertDocumentToSaved:`](https://developer.apple.com/documentation/appkit/nsdocument/reverttosaved(_:)) method does too.
+    ///
+    ///
     #[doc(alias = "NSChangeCleared")]
     pub const ChangeCleared: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changereadothercontents?language=objc)
+    /// The document has been initialized with the contents of a file or file package other than the one whose location is in the `fileURL` property, and therefore can’t possibly be synchronized with its persistent representation.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, [`initForURL:withContentsOfURL:ofType:error:`](https://developer.apple.com/documentation/appkit/nsdocument/init(for:withcontentsof:oftype:)) passes this value when the two passed-in URLs are not equal to indicate that an autosaved document is being reopened.
+    ///
+    ///
     #[doc(alias = "NSChangeReadOtherContents")]
     pub const ChangeReadOtherContents: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeautosaved?language=objc)
+    /// The document’s contents have been autosaved.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, [`saveToURL:ofType:forSaveOperation:error:`](https://developer.apple.com/documentation/appkit/nsdocument/savetourl:oftype:forsaveoperation:error:) passes this value for a successful [`NSAutosaveOperation`](https://developer.apple.com/documentation/appkit/nssaveoperationtype/nsautosaveoperation).
+    ///
+    ///
     #[doc(alias = "NSChangeAutosaved")]
     pub const ChangeAutosaved: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changediscardable?language=objc)
+    /// A discardable change has been done.
+    ///
+    /// ## Discussion
+    ///
+    /// Discardable changes cause the document to be edited. In a locked document, for example, discardable changes may be thrown away instead of prompting the user to save them. Combine this value with the appropriate kind of change, [`NSChangeDone`](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changedone), [`NSChangeUndone`](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeundone), or [`NSChangeRedone`](https://developer.apple.com/documentation/appkit/nsdocument/changetype/changeredone), using the C bitwise OR operator. For example, a discardable change is `NSChangeDone | NSChangeDiscardable`.
+    ///
+    ///
     #[doc(alias = "NSChangeDiscardable")]
     pub const ChangeDiscardable: Self = Self(256);
 }
@@ -44,31 +92,43 @@ unsafe impl RefEncode for NSDocumentChangeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype?language=objc)
+/// Constants for specifying the type of document-save operation to perform.
+///
+/// ## Overview
+///
+/// These values are used with method parameters of type [`NSSaveOperationType`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype). Depending on the method, the save operation type can affect the title of the Save dialog and can affect which files are displayed in the dialog.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSaveOperationType(pub NSUInteger);
 impl NSSaveOperationType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveoperation?language=objc)
+    /// An operation that overwrites a document’s file or file package with the document’s contents.
     #[doc(alias = "NSSaveOperation")]
     pub const SaveOperation: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveasoperation?language=objc)
+    /// An operation that writes the document’s contents to a new location and updates the document to point to that location
     #[doc(alias = "NSSaveAsOperation")]
     pub const SaveAsOperation: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/savetooperation?language=objc)
+    /// An operation that writes a copy of the document’s contents to the specified location, without changing the original document’s location.
     #[doc(alias = "NSSaveToOperation")]
     pub const SaveToOperation: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveinplaceoperation?language=objc)
+    /// An operation that overwrites the document’s current contents with autosave data.
     #[doc(alias = "NSAutosaveInPlaceOperation")]
     pub const AutosaveInPlaceOperation: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveelsewhereoperation?language=objc)
+    /// An operation that writes an autosave version of the file to a different location.
+    ///
+    /// ## Discussion
+    ///
+    /// For an [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) subclass that overrides [`autosavesInPlace`](https://developer.apple.com/documentation/appkit/nsdocument/autosavesinplace) to have the value [`true`](https://developer.apple.com/documentation/swift/true), this is used during autosaving of documents that have never been saved and therefore do not yet have a document file that can be overwritten during autosaving. `NSDocument` may also pass `NSAutosaveElsewhereOperation` when invoking `writeSafelyToURL:ofType:forSaveOperation:error:` while duplicating or reverting a document.
+    ///
+    ///
     #[doc(alias = "NSAutosaveElsewhereOperation")]
     pub const AutosaveElsewhereOperation: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveasoperation?language=objc)
+    /// An operation that writes a document’s contents to a new file or file package even though the user has not explicitly requested it, then changes the document’s current location to point to the just-written file or file package.
     #[doc(alias = "NSAutosaveAsOperation")]
     pub const AutosaveAsOperation: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssaveoperationtype/nsautosaveoperation?language=objc)
+    /// Old name for the [`NSDocument.SaveOperationType.autosaveElsewhereOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/autosaveelsewhereoperation) operation type.
     #[doc(alias = "NSAutosaveOperation")]
     #[deprecated = "Use NSAutosaveElsewhereOperation instead"]
     pub const AutosaveOperation: Self = Self(3);
@@ -83,7 +143,61 @@ unsafe impl RefEncode for NSSaveOperationType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocument?language=objc)
+    /// An abstract class that defines the interface for macOS documents.
+    ///
+    /// ## Overview
+    ///
+    /// A document is an object that can internally represent data displayed in a window and that can read data from and write data to a file or file package. Documents create and manage one or more window controllers and are in turn managed by a document controller. Documents respond to first-responder action messages to save, revert, and print their data.
+    ///
+    /// Conceptually, a document is a container for a body of information identified by a name under which it is stored in a disk file. In this sense, however, the document is not the same as the file but is an object in memory that owns and manages the document data. In the context of AppKit, a document is an instance of a custom [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) subclass that knows how to represent internally, in one or more formats, persistent data that is displayed in windows.
+    ///
+    /// A document can read that data from a file and write it to a file. It is also the first-responder target for many menu commands related to documents, such as Save, Revert, and Print. A document manages its window’s edited status and is set up to perform undo and redo operations. When a window is closing, the document is asked before the window delegate to approve the closing.
+    ///
+    /// [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) is one of the triad of AppKit classes that establish an architectural basis for document-based apps (the others being [`NSDocumentController`](https://developer.apple.com/documentation/appkit/nsdocumentcontroller) and [`NSWindowController`](https://developer.apple.com/documentation/appkit/nswindowcontroller)).
+    ///
+    /// For more information about using [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) in a document-based app, see [Developing a Document-Based App](https://developer.apple.com/documentation/appkit/developing-a-document-based-app).
+    ///
+    /// ### Subclassing NSDocument
+    ///
+    /// The [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class is designed to be subclassed. That is, the [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class is abstract, and your app must create at least one [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) subclass in order to use the document architecture. To create a useful [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) subclass, you must override some methods, and you can optionally override others.
+    ///
+    /// The [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class itself knows how to handle document data as undifferentiated lumps; although it understands that these lumps are typed, it knows nothing about particular types. In their overrides of the data-based reading and writing methods, subclasses must add the knowledge of particular types and how data of the document’s native type is structured internally. Subclasses are also responsible for the creation of the window controllers that manage document windows and for the implementation of undo and redo. The `NSDocument` class takes care of much of the rest, including generally managing the state of the document.
+    ///
+    /// See [Document-Based App Programming Guide for Mac](https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/DocBasedAppProgrammingGuideForOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011179) for more information about creating subclasses of [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument), particularly the list of primitive methods that subclasses must override and those that you can optionally override.
+    ///
+    /// ### Document Saving Behavior
+    ///
+    /// The [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class implements document saving in a way that preserves, when possible, various attributes of each document, including:
+    ///
+    /// - Creation date
+    ///
+    /// - Permissions/privileges
+    ///
+    /// - Location of the document’s icon in its parent folder’s Icon View Finder window
+    ///
+    /// - Value of the document’s Show Extension setting
+    ///
+    /// Care is also taken to save documents in a way that does not break any user-created aliases that may point to documents. As a result, some methods in any class of `NSDocument` may be invoked with parameters that do not have the same meaning as they did in early releases of macOS. It is important that overrides of [`writeToURL:ofType:error:`](https://developer.apple.com/documentation/appkit/nsdocument/write(to:oftype:)) and [`writeToURL:ofType:forSaveOperation:originalContentsURL:error:`](https://developer.apple.com/documentation/appkit/nsdocument/write(to:oftype:for:originalcontentsurl:)) make no assumptions about the file paths passed as parameters, including:
+    ///
+    /// - The location to which the file is being written. This location might be a hidden temporary directory.
+    ///
+    /// - The name of the file being written. It is possible that this file has no obvious relation to the document name.
+    ///
+    /// - The relation of any file being passed, including the original file, to the value in [`fileURL`](https://developer.apple.com/documentation/appkit/nsdocument/fileurl).
+    ///
+    /// When updating your app to link against OS X v10.5, keep in mind that it is usually more appropriate to invoke in your app code one of the `NSDocument` `save...` methods than one of the `write...` methods. The `write...` methods are there primarily for you to override. The [`saveToURL:ofType:forSaveOperation:error:`](https://developer.apple.com/documentation/appkit/nsdocument/savetourl:oftype:forsaveoperation:error:) method that is meant always to be invoked during document saving, sets the [`fileModificationDate`](https://developer.apple.com/documentation/appkit/nsdocument/filemodificationdate) property  with the file’s new modification date after it has been written (for [`NSSaveOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveoperation) and [`NSSaveAsOperation`](https://developer.apple.com/documentation/appkit/nsdocument/saveoperationtype/saveasoperation) only).
+    ///
+    /// Likewise, it’s usually more appropriate to invoke in your app code one of the `NSDocument` `revert...` methods than one of the `read...` methods. The `read...` methods are there primarily for you to override. The [`revertToContentsOfURL:ofType:error:`](https://developer.apple.com/documentation/appkit/nsdocument/revert(tocontentsof:oftype:)) method that is meant always to be invoked during rereading of an open document, sets the [`fileModificationDate`](https://developer.apple.com/documentation/appkit/nsdocument/filemodificationdate) property with the file’s modification date after it has been read.
+    ///
+    /// ### iCloud Support
+    ///
+    /// The [`NSDocument`](https://developer.apple.com/documentation/appkit/nsdocument) class implements the file coordination support that is required for an iCloud-enabled, document-based Mac app (see [How iCloud Document Storage Works](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForDocumentsIniCloud.html#//apple_ref/doc/uid/TP40012094-CH2-SW10) in [iCloud Design Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094)). In addition, this class’s methods for moving and renaming documents, new in OS X v10.8, ensure that these operations are performed in a safe manner for iCloud-enabled apps.
+    ///
+    /// ### Multicore Considerations
+    ///
+    /// In macOS 10.6 and later, `NSDocument` supports the ability to open multiple documents concurrently. However, this support requires the cooperation of the document object. If your document subclass is able to read specific document types independently of other similar documents, you should override the [`canConcurrentlyReadDocumentsOfType:`](https://developer.apple.com/documentation/appkit/nsdocument/canconcurrentlyreaddocuments(oftype:)) class method and return [`true`](https://developer.apple.com/documentation/swift/true) for the appropriate document types. If specific document types rely on shared state information, however, you should return [`false`](https://developer.apple.com/documentation/swift/false) for those types.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

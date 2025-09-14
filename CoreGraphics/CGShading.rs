@@ -10,7 +10,15 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading?language=objc)
+/// A definition for a smooth transition between colors, controlled by a custom function you provide, for drawing radial and axial gradient fills.
+///
+/// ## Overview
+///
+/// Shading means to fill using a smooth transition between colors across an area. You create a shading using a custom function with a [`CGFunctionRef`](https://developer.apple.com/documentation/coregraphics/cgfunction) instance. To paint with a Core Graphics shading, you call [`CGContextDrawShading`](https://developer.apple.com/documentation/coregraphics/cgcontext/drawshading(_:)). This function fills the current clipping path using the specified color gradient, calling your parametric function repeatedly as it draws.
+///
+/// An alternative to using a `CGShading` instance is to use the [`CGGradientRef`](https://developer.apple.com/documentation/coregraphics/cggradient) type. For applications that run in macOS 10.5 and later, `CGGradient` objects are much simpler to use.
+///
+///
 #[doc(alias = "CGShadingRef")]
 #[repr(C)]
 pub struct CGShading {
@@ -27,7 +35,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CGShading {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/typeid?language=objc)
+    /// Returns the Core Foundation type identifier for Core Graphics shading objects.
+    ///
+    /// ## Return Value
+    ///
+    /// The Core Foundation identifier for the type [`CGShadingRef`](https://developer.apple.com/documentation/coregraphics/cgshading).
+    ///
+    ///
     #[doc(alias = "CGShadingGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -39,7 +53,33 @@ unsafe impl ConcreteType for CGShading {
 }
 
 impl CGShading {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(axialspace:start:end:function:extendstart:extendend:)?language=objc)
+    /// Creates a shading object to use for axial shading.
+    ///
+    /// Parameters:
+    /// - space: The color space in which color values are expressed. Core Graphics retains this object; upon return, you may safely release it.
+    ///
+    /// - start: The starting point of the axis, in the shading’s target coordinate space.
+    ///
+    /// - end: The ending point of the axis, in the shading’s target coordinate space.
+    ///
+    /// - function: A CGFunction object created by the function [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)). This object refers to your function for creating an axial shading. Core Graphics retains this object; upon return, you may safely release it.
+    ///
+    /// - extendStart: A Boolean value that specifies whether to extend the shading beyond the starting point of the axis.
+    ///
+    /// - extendEnd: A Boolean value that specifies whether to extend the shading beyond the ending point of the axis.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new Core Graphics axial shading. In Objective-C, you’re responsible for releasing this object using [`CGShadingRelease`](https://developer.apple.com/documentation/coregraphics/cgshadingrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An axial shading is a color blend that varies along a linear axis between two endpoints and extends indefinitely perpendicular to that axis. When you are ready to draw the shading, call the function [`CGContextDrawShading`](https://developer.apple.com/documentation/coregraphics/cgcontext/drawshading(_:)).
+    ///
+    ///
     #[doc(alias = "CGShadingCreateAxial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -66,7 +106,6 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(axialheadroom:space:start:end:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateAxialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -104,7 +143,37 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(radialspace:start:startradius:end:endradius:function:extendstart:extendend:)?language=objc)
+    /// Creates a shading object to use for radial shading.
+    ///
+    /// Parameters:
+    /// - space: The color space in which color values are expressed. Core Graphics retains this object; upon return, you may safely release it.
+    ///
+    /// - start: The center of the starting circle, in the shading’s target coordinate space.
+    ///
+    /// - startRadius: The radius of the starting circle, in the shading’s target coordinate space.
+    ///
+    /// - end: The center of the ending circle, in the shading’s target coordinate space.
+    ///
+    /// - endRadius: The radius of the ending circle, in the shading’s target coordinate space.
+    ///
+    /// - function: A CGFunction object created by the function [`CGFunctionCreate`](https://developer.apple.com/documentation/coregraphics/cgfunction/init(info:domaindimension:domain:rangedimension:range:callbacks:)). This object refers to your function for creating a radial shading. Core Graphics retains this object; upon return, you may safely release it.
+    ///
+    /// - extendStart: A Boolean value that specifies whether to extend the shading beyond the starting circle.
+    ///
+    /// - extendEnd: A Boolean value that specifies whether to extend the shading beyond the ending circle.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A new Core Graphics radial shading. In Objective-C, you’re responsible for releasing this object using [`CGShadingRelease`](https://developer.apple.com/documentation/coregraphics/cgshadingrelease).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A radial shading is a color blend that varies between two circles. To draw the shading, call the function [`CGContextDrawShading`](https://developer.apple.com/documentation/coregraphics/cgcontext/drawshading(_:)).
+    ///
+    ///
     #[doc(alias = "CGShadingCreateRadial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -145,7 +214,6 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/init(radialheadroom:space:start:startradius:end:endradius:function:extendstart:extendend:)?language=objc)
     #[doc(alias = "CGShadingCreateRadialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
@@ -189,7 +257,6 @@ impl CGShading {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgshading/contentheadroom?language=objc)
     #[doc(alias = "CGShadingGetContentHeadroom")]
     #[inline]
     pub fn content_headroom(shading: Option<&CGShading>) -> c_float {

@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptionsresolutionresult?language=objc)
+    /// A resolution result that adds a temporal event trigger.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INTemporalEventTriggerTypeOptionsResolutionResult`](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptionsresolutionresult) object when resolving parameters containing an [`INTemporalEventTriggerTypeOptions`](https://developer.apple.com/documentation/intents/intemporaleventtriggertypeoptions) value. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

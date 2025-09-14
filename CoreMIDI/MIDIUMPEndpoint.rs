@@ -13,8 +13,6 @@ use crate::*;
 extern_class!(
     /// An NSObject containing basic information about a MIDI 2.0 device. Used by
     /// MIDIUMPEndpointPair and MIDICIDevice.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midi2deviceinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]
@@ -103,8 +101,6 @@ impl MIDI2DeviceInfo {
 ///
 ///
 /// Support for MIDI 2.0 protocol.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpprotocoloptions?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "MIDIMessages")]
 #[repr(transparent)]
@@ -113,10 +109,8 @@ pub struct MIDIUMPProtocolOptions(pub MIDIUInteger4);
 #[cfg(feature = "MIDIMessages")]
 bitflags::bitflags! {
     impl MIDIUMPProtocolOptions: MIDIUInteger4 {
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpprotocoloptions/midi1?language=objc)
         #[doc(alias = "kMIDIUMPProtocolOptionsMIDI1")]
         const MIDI1 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpprotocoloptions/midi2?language=objc)
         #[doc(alias = "kMIDIUMPProtocolOptionsMIDI2")]
         const MIDI2 = 1<<1;
     }
@@ -145,8 +139,6 @@ extern_class!(
     /// use UMP natively. Any standard MIDI endpoint created with a specified MIDIProtocolID
     /// is assumed to use all 16 UMP groups for the same unspecified function and to neither
     /// transmit nor receive jitter-reduction timestamps.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpendpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

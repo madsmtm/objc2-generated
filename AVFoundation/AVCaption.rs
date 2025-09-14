@@ -13,6 +13,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A structure that defines a units for caption formats.
+///
+/// ## Overview
+///
+/// Some geometry values may use sizing and positioning with different units. In some cases, an object might allow multiple kinds of dimensions varying by units.
+///
+///
 /// Geometry unit.
 ///
 /// Some geometric objects are positioned or sized with different kinds of dimensions differeing in unit. In some cases, an object might allow multiple kinds of dimensions varrying by units. AVCaptionUnitsType is an enumeration of kinds of units that are used across caption formats.
@@ -22,20 +29,24 @@ use crate::*;
 /// The integer value is a number of cells.
 ///
 /// The floating-point value number value is [0 .. 100] correspondng to 0% to 100%, typically relative to the enclosing rectangle.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionUnitsType(pub NSInteger);
 impl AVCaptionUnitsType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/unspecified?language=objc)
+    /// An unspecified unit type.
+    ///
+    /// ## Discussion
+    ///
+    /// An unspecified unit type indicates the caption dimension is invalid.
+    ///
+    ///
     #[doc(alias = "AVCaptionUnitsTypeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/cells?language=objc)
+    /// A cell-based unit type.
     #[doc(alias = "AVCaptionUnitsTypeCells")]
     pub const Cells: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype/percent?language=objc)
+    /// A percentage-based unit type.
     #[doc(alias = "AVCaptionUnitsTypePercent")]
     pub const Percent: Self = Self(2);
 }
@@ -48,11 +59,10 @@ unsafe impl RefEncode for AVCaptionUnitsType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that defines a caption dimension.
 /// The length with a unit or coordinate on a 2D geometric axis
 /// Field: value The value of the coordinate or length.
 /// Field: units The units of the coordinate (e.g., cells, points)
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimension?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -74,11 +84,10 @@ unsafe impl RefEncode for AVCaptionDimension {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that defines the origin point for a caption.
 /// A two dimensional point made of x and y AVCaptionDimension coordinates
 /// Field: x An AVCaptionDimension holding the x coordinate of the point
 /// Field: y An AVCaptionDimension holding the y coordinate of the point
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpoint?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -103,11 +112,10 @@ unsafe impl RefEncode for AVCaptionPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A structure that defines the height and width of a caption.
 /// A two dimensional size made of width and height AVCaptionDimensions
 /// Field: width An AVCaptionDimension holding the width
 /// Field: height An AVCaptionDimension holding the height
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsize?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -134,9 +142,8 @@ unsafe impl RefEncode for AVCaptionSize {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionDimension {
+    /// Creates a caption dimension with a value and unit type.
     /// Makes an AVCaptionDimension from a value and units.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimensionmake?language=objc)
     #[doc(alias = "AVCaptionDimensionMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -153,9 +160,8 @@ impl AVCaptionDimension {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionPoint {
+    /// Creates a caption point with the specified x and y positions.
     /// Makes an AVCaptionPoint from x and y coordinate AVCaptionDimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpointmake?language=objc)
     #[doc(alias = "AVCaptionPointMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -169,9 +175,8 @@ impl AVCaptionPoint {
 
 #[cfg(feature = "objc2-core-foundation")]
 impl AVCaptionSize {
+    /// Creates a caption size with the specified width and height.
     /// Makes an AVCaptionSize from width and height AVCaptionDimensions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsizemake?language=objc)
     #[doc(alias = "AVCaptionSizeMake")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -186,6 +191,13 @@ impl AVCaptionSize {
     }
 }
 
+/// Constants that indicate the alignment of lines in a region.
+///
+/// ## Overview
+///
+/// When you insert a caption line, the region places it relative to existing lines. The system determines the order in which the region places lines by its block progression direction. For example, English captions’ block progression direction are top-to-bottom, while Japanese vertical captions use right-to-left.
+///
+///
 /// Choices for region display alignment
 ///
 ///
@@ -201,20 +213,36 @@ impl AVCaptionSize {
 ///
 ///
 /// Align lines in later position in the block progression direction, or align to the left for Japanese vertical captions, for example.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionDisplayAlignment(pub NSInteger);
 impl AVCaptionRegionDisplayAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/before?language=objc)
+    /// An alignment that positions lines at the top of the block progression direction.
+    ///
+    /// ## Discussion
+    ///
+    /// Aligns lines to the top for English captions, for example.
+    ///
+    ///
     #[doc(alias = "AVCaptionRegionDisplayAlignmentBefore")]
     pub const Before: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/center?language=objc)
+    /// An alignment that positions lines in the middle of the block progression direction.
+    ///
+    /// ## Discussion
+    ///
+    /// The Apple iTT caption format doesn’t support this alignment.
+    ///
+    ///
     #[doc(alias = "AVCaptionRegionDisplayAlignmentCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum/after?language=objc)
+    /// An alignment that positions lines at the bottom of the block progression direction.
+    ///
+    /// ## Discussion
+    ///
+    /// Aligns lines to the left for Japanese vertical captions, for example.
+    ///
+    ///
     #[doc(alias = "AVCaptionRegionDisplayAlignmentAfter")]
     pub const After: Self = Self(2);
 }
@@ -227,18 +255,17 @@ unsafe impl RefEncode for AVCaptionRegionDisplayAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate the writing mode for a region.
 /// Choices for region writing mode
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionWritingMode(pub NSInteger);
 impl AVCaptionRegionWritingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum/lefttorightandtoptobottom?language=objc)
+    /// A left-to-right and top-to-bottom writing mode.
     #[doc(alias = "AVCaptionRegionWritingModeLeftToRightAndTopToBottom")]
     pub const LeftToRightAndTopToBottom: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum/toptobottomandrighttoleft?language=objc)
+    /// A top-to-bottom and right-to-left writing mode.
     #[doc(alias = "AVCaptionRegionWritingModeTopToBottomAndRightToLeft")]
     pub const TopToBottomAndRightToLeft: Self = Self(2);
 }
@@ -251,18 +278,17 @@ unsafe impl RefEncode for AVCaptionRegionWritingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate the scrolling effects the system applies to a region.
 /// Scrolling effect for a region
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionScroll(pub NSInteger);
 impl AVCaptionRegionScroll {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum/none?language=objc)
+    /// A type that indicates no scrolling.
     #[doc(alias = "AVCaptionRegionScrollNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum/rollup?language=objc)
+    /// A type that indicates a roll-up scroll effect.
     #[doc(alias = "AVCaptionRegionScrollRollUp")]
     pub const RollUp: Self = Self(1);
 }
@@ -276,11 +302,16 @@ unsafe impl RefEncode for AVCaptionRegionScroll {
 }
 
 extern_class!(
+    /// An object that represents the region in which the system presents a caption.
+    ///
+    /// ## Overview
+    ///
+    /// The framework defines four regions, and doesn’t support configuring region settings.
+    ///
+    ///
     /// An instance of AVCaptionRegion represents a region where a caption is placed.
     ///
     /// Currently, there is just four predefined region instances. The interface doesn't support configuration of region settings.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRegion;
@@ -448,9 +479,8 @@ impl AVCaptionRegion {
 }
 
 extern_class!(
+    /// A mutable caption region subclass that you use to create new caption regions.
     /// Mutable subclass of AVCaptionRegion.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaptionregion?language=objc)
     #[unsafe(super(AVCaptionRegion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableCaptionRegion;
@@ -567,18 +597,17 @@ impl AVMutableCaptionRegion {
     );
 }
 
+/// Animation options for a caption.
 /// Animation effect for a caption
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionAnimation(pub NSInteger);
 impl AVCaptionAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum/none?language=objc)
+    /// No animation.
     #[doc(alias = "AVCaptionAnimationNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum/characterreveal?language=objc)
+    /// A character reveal animation.
     #[doc(alias = "AVCaptionAnimationCharacterReveal")]
     pub const CharacterReveal: Self = Self(1);
 }
@@ -592,11 +621,16 @@ unsafe impl RefEncode for AVCaptionAnimation {
 }
 
 extern_class!(
+    /// An object that represents text to present over a time range.
+    ///
+    /// ## Overview
+    ///
+    /// A caption contains a cue, which is a single sentence or paragraph of text for a time range in the video timeline. Within the active range, the caption may animate (for example, Karaoke lyrics) by rolling-up, changing visibility, or using other dynamic styling.
+    ///
+    ///
     /// An instance of AVCaption represents a unit of text that is active at a particular time range.
     ///
     /// A caption contains one meaningful sentence, paragraph, or otherwise known as a caption cue. Within the active time range, it may perform animation (e.g. Karaoke), rolling-up, changes the visibility, or any other dynamic styling.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaption;
@@ -701,9 +735,8 @@ impl AVCaption {
 }
 
 extern_class!(
+    /// A mutable caption subclass that you use to create new captions.
     /// Mutable subclass of AVCaption.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmutablecaption?language=objc)
     #[unsafe(super(AVCaption, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVMutableCaption;
@@ -796,21 +829,20 @@ impl AVMutableCaption {
     );
 }
 
+/// Font weights for a caption.
 /// Choices for font weight.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontWeight(pub NSInteger);
 impl AVCaptionFontWeight {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/unknown?language=objc)
+    /// An unknown font weight.
     #[doc(alias = "AVCaptionFontWeightUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/normal?language=objc)
+    /// A normal font weight.
     #[doc(alias = "AVCaptionFontWeightNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight/bold?language=objc)
+    /// A bold font weight.
     #[doc(alias = "AVCaptionFontWeightBold")]
     pub const Bold: Self = Self(2);
 }
@@ -823,21 +855,20 @@ unsafe impl RefEncode for AVCaptionFontWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Font styles for caption text.
 /// Choices for character style.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontStyle(pub NSInteger);
 impl AVCaptionFontStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/unknown?language=objc)
+    /// An unknown font style.
     #[doc(alias = "AVCaptionFontStyleUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/normal?language=objc)
+    /// A normal font style.
     #[doc(alias = "AVCaptionFontStyleNormal")]
     pub const Normal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle/italic?language=objc)
+    /// An italic font style.
     #[doc(alias = "AVCaptionFontStyleItalic")]
     pub const Italic: Self = Self(2);
 }
@@ -850,25 +881,24 @@ unsafe impl RefEncode for AVCaptionFontStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Text decorations for caption text.
 /// Choices for character decoration .
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionDecoration(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptionDecoration: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration/avcaptiondecorationnone?language=objc)
+/// No text decoration.
         #[doc(alias = "AVCaptionDecorationNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/underline?language=objc)
+/// A decoration representing a line under the text.
         #[doc(alias = "AVCaptionDecorationUnderline")]
         const Underline = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/linethrough?language=objc)
+/// A decoration representing a line through the text.
         #[doc(alias = "AVCaptionDecorationLineThrough")]
         const LineThrough = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration/overline?language=objc)
+/// A decoration representing a line over the text.
         #[doc(alias = "AVCaptionDecorationOverline")]
         const Overline = 1<<2;
     }
@@ -882,6 +912,13 @@ unsafe impl RefEncode for AVCaptionDecoration {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The caption’s supported rendering policy options.
+///
+/// ## Overview
+///
+/// Text combine is a special rendering policy that combines multiple characters into one unit and presents it in upright position in a vertical text flow. This presentation achieves a horizontal-in-vertical layout (or Tate-Chu-Yoko layout), which lets the caption render a horizontal text string in vertical text.
+///
+///
 /// Choices for text combine.
 ///
 ///
@@ -906,29 +943,27 @@ unsafe impl RefEncode for AVCaptionDecoration {
 ///
 ///
 /// Combine four consecutive digits
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextCombine(pub NSInteger);
 impl AVCaptionTextCombine {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/all?language=objc)
+    /// An option that combines all of the characters.
     #[doc(alias = "AVCaptionTextCombineAll")]
     pub const All: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/none?language=objc)
+    /// An option that doesn’t combine text upright.
     #[doc(alias = "AVCaptionTextCombineNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/onedigit?language=objc)
+    /// An option that makes one digit upright.
     #[doc(alias = "AVCaptionTextCombineOneDigit")]
     pub const OneDigit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/twodigits?language=objc)
+    /// An option that combines two consecutive digits.
     #[doc(alias = "AVCaptionTextCombineTwoDigits")]
     pub const TwoDigits: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/threedigits?language=objc)
+    /// An option that combines three consecutive digits.
     #[doc(alias = "AVCaptionTextCombineThreeDigits")]
     pub const ThreeDigits: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine/fourdigits?language=objc)
+    /// An option that combines four consecutive digits.
     #[doc(alias = "AVCaptionTextCombineFourDigits")]
     pub const FourDigits: Self = Self(4);
 }
@@ -941,6 +976,7 @@ unsafe impl RefEncode for AVCaptionTextCombine {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Text alignment options for a caption.
 /// Alignment of a caption within the containing region.
 ///
 /// Aligned to the start of inline progression direction; e.g. left in left-to-right writing mode and right in right-to-left writing mode.
@@ -952,26 +988,36 @@ unsafe impl RefEncode for AVCaptionTextCombine {
 /// Aligned to left in horizontal writing mode or top in vertical writing mode.
 ///
 /// Aligned to right in horizontal writing mode or bottom in vertical writing mode.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextAlignment(pub NSInteger);
 impl AVCaptionTextAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/start?language=objc)
+    /// An alignment of the text to the start of the inline progression direction.
+    ///
+    /// ## Discussion
+    ///
+    /// This text alignment means that, for example, text aligns left in left-to-right writing mode, and right in right-to-left writing mode.
+    ///
+    ///
     #[doc(alias = "AVCaptionTextAlignmentStart")]
     pub const Start: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/end?language=objc)
+    /// An alignment of the text to the end of the inline progression direction.
+    ///
+    /// ## Discussion
+    ///
+    /// This text alignment means that, for example, text aligns right in left-to-right writing mode, and right in right-to-left writing mode.
+    ///
+    ///
     #[doc(alias = "AVCaptionTextAlignmentEnd")]
     pub const End: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/center?language=objc)
+    /// An alignment of the text to the center of the display.
     #[doc(alias = "AVCaptionTextAlignmentCenter")]
     pub const Center: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/left?language=objc)
+    /// An alignment of the text to the left in horizontal writing mode, and top in vertical writing mode.
     #[doc(alias = "AVCaptionTextAlignmentLeft")]
     pub const Left: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum/right?language=objc)
+    /// An alignment of the text to the right in horizontal writing mode, and bottom in vertical writing mode.
     #[doc(alias = "AVCaptionTextAlignmentRight")]
     pub const Right: Self = Self(4);
 }
@@ -1319,22 +1365,21 @@ impl AVMutableCaption {
     );
 }
 
+/// Constants that indicate ruby text positions.
 /// Choices for Ruby position
 ///
 /// Display Ruby text above horizontal text or right of vertical text in a right to left block progression.
 ///
 /// Display Ruby text below horizontal text or left of vertical text in a right to left block progression.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyPosition(pub NSInteger);
 impl AVCaptionRubyPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition/before?language=objc)
+    /// Display ruby text above horizontal text, or to the right of vertical text in a right-to-left block progression.
     #[doc(alias = "AVCaptionRubyPositionBefore")]
     pub const Before: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition/after?language=objc)
+    /// Display ruby text below horizontal text, or to the left of vertical text in a right-to-left block progression.
     #[doc(alias = "AVCaptionRubyPositionAfter")]
     pub const After: Self = Self(1);
 }
@@ -1347,6 +1392,7 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Constants that indicate ruby text alignments.
 /// Choices for Ruby alignment
 ///
 ///
@@ -1372,23 +1418,27 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
 /// Align Ruby text so that the spaces between the Ruby text characters are equal. This is the default.
 ///
 /// Align Ruby text so that the spaces around each Ruby text character are equal.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyAlignment(pub NSInteger);
 impl AVCaptionRubyAlignment {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/start?language=objc)
+    /// An alignment with the ruby base and text at the left edge of horizontal text in a left-to-right inline progression, or at top of the vertical text in a top-to-bottom inline progression.
     #[doc(alias = "AVCaptionRubyAlignmentStart")]
     pub const Start: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/center?language=objc)
+    /// An alignment with the ruby text at the center of ruby base.
     #[doc(alias = "AVCaptionRubyAlignmentCenter")]
     pub const Center: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/distributespacebetween?language=objc)
+    /// An alignment with the ruby text so the spaces between the ruby text characters are equal.
+    ///
+    /// ## Discussion
+    ///
+    /// This is the default.
+    ///
+    ///
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceBetween")]
     pub const DistributeSpaceBetween: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment/distributespacearound?language=objc)
+    /// An alignment with the ruby text so the spaces around each ruby text character are equal.
     #[doc(alias = "AVCaptionRubyAlignmentDistributeSpaceAround")]
     pub const DistributeSpaceAround: Self = Self(3);
 }
@@ -1402,9 +1452,14 @@ unsafe impl RefEncode for AVCaptionRubyAlignment {
 }
 
 extern_class!(
-    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// An object that presents ruby characters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/ruby?language=objc)
+    /// ## Overview
+    ///
+    /// Ruby characters are small annotations, typically used in Japanese content, that render alongside the base text.
+    ///
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRuby;

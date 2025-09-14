@@ -9,6 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that define the levels of quality for a person segmentation request.
 /// Person segmentation level options to favor speed over recognition accuracy.
 /// VNGeneratePersonSegmentationRequestQualityLevelAccurate is the default option.
 ///
@@ -16,20 +17,18 @@ use crate::*;
 /// balanced - generates a high accuracy segmentation mask
 /// accurate - generates a mask based on the balanced output that includes matting refinement
 /// The request may hold on to previous masks to improve temporal stability.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNGeneratePersonSegmentationRequestQualityLevel(pub NSUInteger);
 impl VNGeneratePersonSegmentationRequestQualityLevel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/accurate?language=objc)
+    /// Prefers image quality over performance.
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelAccurate")]
     pub const Accurate: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/balanced?language=objc)
+    /// Prefers processing that balances image quality and performance.
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelBalanced")]
     pub const Balanced: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest/qualitylevel-swift.enum/fast?language=objc)
+    /// Prefers performance over image quality.
     #[doc(alias = "VNGeneratePersonSegmentationRequestQualityLevelFast")]
     pub const Fast: Self = Self(2);
 }
@@ -43,9 +42,14 @@ unsafe impl RefEncode for VNGeneratePersonSegmentationRequestQualityLevel {
 }
 
 extern_class!(
-    /// Performs person segmentation on an image generating a mask.
+    /// An object that produces a matte image for a person it finds in the input image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequest?language=objc)
+    /// ## Overview
+    ///
+    /// Perform this request to detect and generate an image mask for a person in an image. The request returns the resulting image mask in an instance of [`VNPixelBufferObservation`](https://developer.apple.com/documentation/vision/vnpixelbufferobservation).
+    ///
+    ///
+    /// Performs person segmentation on an image generating a mask.
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -138,5 +142,5 @@ impl VNGeneratePersonSegmentationRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vngeneratepersonsegmentationrequestrevision1?language=objc)
+/// A constant for specifying revision 1 of the person segmentation generation request.
 pub static VNGeneratePersonSegmentationRequestRevision1: NSUInteger = 1;

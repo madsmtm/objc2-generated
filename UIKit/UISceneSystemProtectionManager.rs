@@ -7,15 +7,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A notification posted when the system-protection attributes of a scene change.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is the scene for which protection attributes changed.
+    ///
+    ///
     /// A notification posted when the system protection attributes of a scene change. The object of
     /// the notification is the scene whose protection attributes changed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/systemprotectiondidchangenotification?language=objc)
     pub static UISceneSystemProtectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/systemprotectionmanager-swift.class?language=objc)
+    /// A class that represents the status of system protection for the scene.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to determine if the system protects a scene, such as by locking the app and requiring authentication with Face ID or Touch ID. You may want to disable your own app’s privacy shielding if the system already requires authentication.
+    ///
+    /// The following example shows how a scene can use the manager’s [`userAuthenticationEnabled`](https://developer.apple.com/documentation/uikit/uiscene/systemprotectionmanager-swift.class/isuserauthenticationenabled) property to decide whether to provide its own UI shielding. When the scene becomes active, the app shows an authentication challenge if the system doesn’t already provide protection. When the scene resigns the active role, the app provides its own shielding only if the system isn’t already doing so.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func sceneDidBecomeActive(_ scene: UIScene) {", "    guard scene.systemProtectionManager?.isUserAuthenticationEnabled ?? false else {", "        // Show custom authentication.", "    }", "}", "", "func sceneWillResignActive(_ scene: UIScene) {", "    guard scene.systemProtectionManager?.isUserAuthenticationEnabled ?? false else {", "        // Show custom shield to hide sensitive information.", "    }", "}", ""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)sceneDidBecomeActive:(UIScene *)scene {", "    if ( scene.systemProtectionManager.userAuthenticationEnabled ) {", "        // Don't show custom authentication.", "    } else {", "        // Show custom shield to hide sensitive information.", "    }", "}", "", "- (void)sceneWillResignActive:(UIScene *)scene {", "    if ( scene.systemProtectionManager.userAuthenticationEnabled ) {", "        // Don't show custom shield; system already does so.", "    } else {", "        // Show custom shield to hide sensitive information.", "    }", "}"], metadata: None }] }] })
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

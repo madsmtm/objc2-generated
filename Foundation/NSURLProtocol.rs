@@ -7,11 +7,16 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
+    /// The interface used by [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol) subclasses to communicate with the URL Loading System.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t implement this protocol in your application. Instead, your [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol) subclass calls methods of this protocol on its own [`client`](https://developer.apple.com/documentation/foundation/urlprotocol/client) property.
+    ///
+    ///
     /// NSURLProtocolClient provides the interface to the URL
     /// loading system that is intended for use by NSURLProtocol
     /// implementors.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotocolclient?language=objc)
     pub unsafe trait NSURLProtocolClient: NSObjectProtocol + Send + Sync {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         /// Indicates to an NSURLProtocolClient that a redirect has
@@ -138,12 +143,41 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An abstract class that handles the loading of protocol-specific URL data.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate a [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol) subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the [`registerClass:`](https://developer.apple.com/documentation/foundation/urlprotocol/registerclass(_:)) class method during your app’s launch time so that the system is aware of your protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You cannot use this class to define custom URL schemes and protocols in watchOS 2 and later.
+    ///
+    ///
+    ///
+    /// </div>
+    /// To support the customization of protocol-specific requests, create extensions to the [`URLRequest`](https://developer.apple.com/documentation/foundation/urlrequest) class to provide any custom API that you need. You can store and retrieve protocol-specific request data by using [`NSURLProtocol`](https://developer.apple.com/documentation/foundation/urlprotocol)’s class methods [`propertyForKey:inRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/property(forkey:in:)) and [`setProperty:forKey:inRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/setproperty(_:forkey:in:)).
+    ///
+    /// Create a [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) for each request your subclass processes successfully. You may want to create a custom [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) class to provide protocol specific information.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// Swift:
+    ///
+    /// - Initialization — Override [`initWithTask:cachedResponse:client:`](https://developer.apple.com/documentation/foundation/urlprotocol/init(task:cachedresponse:client:)) instead of or in addition to [`initWithRequest:cachedResponse:client:`](https://developer.apple.com/documentation/foundation/urlprotocol/init(request:cachedresponse:client:)). Also override the task-based [`canInitWithTask:`](https://developer.apple.com/documentation/foundation/urlprotocol/caninit(with:)-18gbo) instead of or in addition to the request-based [`canInitWithRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/caninit(with:)-76brg).
+    ///
+    /// Objective-C:
+    ///
+    /// - Initialization — Override [`canInitWithTask:`](https://developer.apple.com/documentation/foundation/urlprotocol/caninit(with:)-18gbo) and [`initWithTask:cachedResponse:client:`](https://developer.apple.com/documentation/foundation/urlprotocol/init(task:cachedresponse:client:)) instead of or in addition to [`canInitWithRequest:`](https://developer.apple.com/documentation/foundation/urlprotocol/caninit(with:)-76brg) and [`initWithRequest:cachedResponse:client:`](https://developer.apple.com/documentation/foundation/urlprotocol/init(request:cachedresponse:client:)).
+    ///
+    ///
     /// NSURLProtocol is an abstract class which provides the
     /// basic structure for performing protocol-specific loading of URL
     /// data. Concrete subclasses handle the specifics associated with one
     /// or more protocols or URL schemes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotocol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtocol;

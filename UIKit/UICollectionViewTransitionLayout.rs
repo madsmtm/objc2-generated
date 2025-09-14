@@ -10,7 +10,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewtransitionlayout?language=objc)
+    /// A special type of layout object that lets you implement behaviors when changing from one layout to another in your collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You can use [`UICollectionViewTransitionLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewtransitionlayout) as-is or subclass it to provide specialized behavior for your app. A common use for transition layouts is to create interactive transitions, such as those that are driven by gesture recognizers or touch events.
+    ///
+    /// During a layout change, the collection view installs this layout object temporarily to manage the changeover. This layout object determines the layout of each item by interpolating between the layout values in the current and new layout objects. The interpolation is driven by the value in the [`transitionProgress`](https://developer.apple.com/documentation/uikit/uicollectionviewtransitionlayout/transitionprogress) property, which you update periodically from your code to drive the transition. For example, if you use this class in conjunction with a gesture recognizer, the handler for your gesture recognizer would update that property and invalidate the layout.
+    ///
+    /// If you want to provide more than just a linear transition from the old to new layout over time, you need to subclass and provide the layout attributes for items yourself. Subclassing requires you to override all of the same methods you would override when subclassing [`UICollectionViewLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewlayout). The difference is that your custom methods can work with your gesture recognizers or touch event code to change the layout based on input from the user. For example, you could use a custom layout object in conjunction with a gesture recognizer to make items track the location of the user’s finger on the screen. You also need to implement the [`collectionView:transitionLayoutForOldLayout:newLayout:`](https://developer.apple.com/documentation/uikit/uicollectionviewdelegate/collectionview(_:transitionlayoutforoldlayout:newlayout:)) method of your collection view delegate and return your custom layout object when asked for it.
+    ///
+    ///
     #[unsafe(super(UICollectionViewLayout, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -9,11 +9,29 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type CFRunLoopMode = CFString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloop?language=objc)
+///
+/// ## Overview
+///
+/// A CFRunLoop object monitors sources of input to a task and dispatches control when they become ready for processing. Examples of input sources might include user input devices, network connections, periodic or time-delayed events, and asynchronous callbacks.
+///
+/// Three types of objects can be monitored by a run loop: sources ([`CFRunLoopSourceRef`](https://developer.apple.com/documentation/corefoundation/cfrunloopsource)), timers ([`CFRunLoopTimerRef`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimer)), and observers ([`CFRunLoopObserverRef`](https://developer.apple.com/documentation/corefoundation/cfrunloopobserver)). To receive callbacks when these objects need processing, you must first place these objects into a run loop with [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)), [`CFRunLoopAddTimer`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddtimer(_:_:_:)), or [`CFRunLoopAddObserver`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddobserver(_:_:_:)). You can later remove an object from the run loop (or invalidate it) to stop receiving its callback.
+///
+/// Each source, timer, and observer added to a run loop must be associated with one or more run loop modes. Modes determine what events are processed by the run loop during a given iteration. Each time the run loop executes, it does so in a specific mode. While in that mode, the run loop processes only the events associated with sources, timers, and observers associated with that mode. You assign most sources to the default run loop mode (designated by the [`kCFRunLoopDefaultMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/defaultmode) constant), which is used to process events when the application (or thread) is idle. However, the system defines other modes and may execute the run loop in those other modes to limit which sources, timers, and observers are processed. Because run-loop modes are simply specified as strings, you can also define your own custom modes to limit the processing of events
+///
+/// Core Foundation defines a special pseudo-mode, called the common modes, that allow you to associate more than one mode with a given source, timer, or observer. To specify the common modes, use the [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) constant for the mode when configuring the object. Each run loop has its own independent set of common modes and the default mode ([`kCFRunLoopDefaultMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/defaultmode)) is always a member of the set. To add a mode to the set of common modes, use the [`CFRunLoopAddCommonMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddcommonmode(_:_:)) function.
+///
+/// There is exactly one run loop per thread. You neither create nor destroy a thread’s run loop. Core Foundation automatically creates it for you as needed. You obtain the current thread’s run loop with [`CFRunLoopGetCurrent`](https://developer.apple.com/documentation/corefoundation/cfrunloopgetcurrent()). Call [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) to run the current thread’s run loop in the default mode until the run loop is stopped with [`CFRunLoopStop`](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)). You can also call [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)) to run the current thread’s run loop in a specified mode for a set period of time (or until the run loop is stopped). A run loop can only run if the requested mode has at least one source or timer to monitor.
+///
+/// Run loops can be run recursively. You can call [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) or [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)) from within any run loop callout and create nested run loop activations on the current thread’s call stack. You are not restricted in which modes you can run from within a callout. You can create another run loop activation running in any available run loop mode, including any modes already running higher in the call stack.
+///
+/// Cocoa applications build upon CFRunLoop to implement their own higher-level event loop. When writing an application, you can add your sources, timers, and observers to their run loop objects and modes. Your objects will then get monitored as part of the regular application event loop. Use the [`getCFRunLoop`](https://developer.apple.com/documentation/foundation/runloop/getcfrunloop()) method of [`NSRunLoop`](https://developer.apple.com/documentation/foundation/runloop) to obtain the corresponding [`CFRunLoopRef`](https://developer.apple.com/documentation/corefoundation/cfrunloop) type. In Carbon applications, use the `GetCFRunLoopFromEventLoop` function.
+///
+/// For more information about how run loops behave, see [Run Loops](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html#//apple_ref/doc/uid/10000057i-CH16) in [Threading Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/Introduction/Introduction.html#//apple_ref/doc/uid/10000057i).
+///
+///
 #[doc(alias = "CFRunLoopRef")]
 #[repr(C)]
 pub struct CFRunLoop {
@@ -29,7 +47,22 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFRunLoop"> for CFRunLoop {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsource?language=objc)
+///
+/// ## Overview
+///
+/// A CFRunLoopSource object is an abstraction of an input source that can be put into a run loop. Input sources typically generate asynchronous events, such as messages arriving on a network port or actions performed by the user.
+///
+/// An input source type normally defines an API for creating and operating on objects of the type, as if it were a separate entity from the run loop, then provides a function to create a CFRunLoopSource for an object. The run loop source can then be registered with the run loop and act as an intermediary between the run loop and the actual input source type object. Examples of input sources include [`CFMachPortRef`](https://developer.apple.com/documentation/corefoundation/cfmachport), [`CFMessagePortRef`](https://developer.apple.com/documentation/corefoundation/cfmessageport), and [`CFSocketRef`](https://developer.apple.com/documentation/corefoundation/cfsocket).
+///
+/// There are two categories of sources. Version 0 sources, so named because the `version` field of their context structure is 0, are managed manually by the application. When a source is ready to fire, some part of the application, perhaps code on a separate thread waiting for an event, must call [`CFRunLoopSourceSignal`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcesignal(_:)) to tell the run loop that the source is ready to fire. The run loop source for CFSocket is currently implemented as a version 0 source.
+///
+/// Version 1 sources are managed by the run loop and kernel. These sources use Mach ports to signal when the sources are ready to fire. A source is automatically signaled by the kernel when a message arrives on the source’s Mach port. The contents of the message are given to the source to process when the source is fired. The run loop sources for CFMachPort and CFMessagePort are currently implemented as version 1 sources.
+///
+/// When creating your own custom run loop source, you can choose which version works best for you.
+///
+/// A run loop source can be registered in multiple run loops and run loop modes at the same time. When the source is signaled, whichever run loop that happens to detect the signal first will fire the source. Adding a source to multiple threads’ run loops can be used to manage a pool of “worker” threads that is processing discrete sets of data, such as client-server messages over a network or entries in a job queue filled by a “manager” thread. As messages arrive or jobs get added to the queue, the source gets signaled and a random thread receives and processes the request.
+///
+///
 #[doc(alias = "CFRunLoopSourceRef")]
 #[repr(C)]
 pub struct CFRunLoopSource {
@@ -45,7 +78,14 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFRunLoopSource"> for CFRunLoopSource {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserver?language=objc)
+///
+/// ## Overview
+///
+/// A CFRunLoopObserver provides a general means to receive callbacks at different points within a running run loop. In contrast to sources, which fire when an asynchronous event occurs, and timers, which fire when a particular time passes, observers fire at special locations within the execution of the run loop, such as before sources are processed or before the run loop goes to sleep, waiting for an event to occur. Observers can be either one-time events or repeated every time through the run loop’s loop.
+///
+/// Each run loop observer can be registered in only one run loop at a time, although it can be added to multiple run loop modes within that run loop.
+///
+///
 #[doc(alias = "CFRunLoopObserverRef")]
 #[repr(C)]
 pub struct CFRunLoopObserver {
@@ -61,7 +101,20 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFRunLoopObserver"> for CFRunLoopObserver {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimer?language=objc)
+///
+/// ## Overview
+///
+/// A CFRunLoopTimer object represents a specialized run loop source that fires at a preset time in the future. Timers can fire either only once or repeatedly at fixed time intervals. Repeating timers can also have their next firing time manually adjusted.
+///
+/// A timer is not a real-time mechanism; it fires only when one of the run loop modes to which the timer has been added is running and able to check if the timer’s firing time has passed. If a timer’s firing time occurs while the run loop is in a mode that is not monitoring the timer or during a long callout, the timer does not fire until the next time the run loop checks the timer. Therefore, the actual time at which the timer fires potentially can be a significant period of time after the scheduled firing time.
+///
+/// A repeating timer reschedules itself based on the scheduled firing time, not the actual firing time. For example, if a timer is scheduled to fire at a particular time and every 5 seconds after that, the scheduled firing time will always fall on the original 5 second time intervals, even if the actual firing time gets delayed. If the firing time is delayed so far that it passes one or more of the scheduled firing times, the timer is fired only once for that time period; the timer is then rescheduled, after firing, for the next scheduled firing time in the future.
+///
+/// Each run loop timer can be registered in only one run loop at a time, although it can be added to multiple run loop modes within that run loop.
+///
+/// CFRunLoopTimer is “toll-free bridged” with its Cocoa Foundation counterpart, [`NSTimer`](https://developer.apple.com/documentation/foundation/timer). This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSTimer *` parameter, you can pass in a `CFRunLoopTimerRef`, and in a function where you see a `CFRunLoopTimerRef` parameter, you can pass in an `NSTimer` instance. This also applies to concrete subclasses of `NSTimer`. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSTimer`.
 #[doc(alias = "CFRunLoopTimerRef")]
@@ -79,22 +132,21 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFRunLoopTimer"> for CFRunLoopTimer {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFRunLoopRunResult(pub i32);
 impl CFRunLoopRunResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/finished?language=objc)
+    /// The running run loop mode has no sources or timers to process.
     #[doc(alias = "kCFRunLoopRunFinished")]
     pub const Finished: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/stopped?language=objc)
+    /// [`CFRunLoopStop`](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)) was called on the run loop.
     #[doc(alias = "kCFRunLoopRunStopped")]
     pub const Stopped: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/timedout?language=objc)
+    /// The specified time interval for running the run loop has passed.
     #[doc(alias = "kCFRunLoopRunTimedOut")]
     pub const TimedOut: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprunresult/handledsource?language=objc)
+    /// A source has been processed. This value is returned only if the run loop was told to run only until a source was processed.
     #[doc(alias = "kCFRunLoopRunHandledSource")]
     pub const HandledSource: Self = Self(4);
 }
@@ -109,32 +161,43 @@ unsafe impl RefEncode for CFRunLoopRunResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity?language=objc)
+/// Run loop activity stages in which run loop observers can be scheduled.
+///
+/// ## Overview
+///
+/// The run loop stages in which an observer is scheduled are selected when the observer is created with [`CFRunLoopObserverCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreate(_:_:_:_:_:_:)).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFRunLoopActivity(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFRunLoopActivity: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/entry?language=objc)
+/// The entrance of the run loop, before entering the event processing loop. This activity occurs once for each call to [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) and [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)).
         #[doc(alias = "kCFRunLoopEntry")]
         const Entry = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforetimers?language=objc)
+/// Inside the event processing loop before any timers are processed.
         #[doc(alias = "kCFRunLoopBeforeTimers")]
         const BeforeTimers = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforesources?language=objc)
+/// Inside the event processing loop before any sources are processed.
         #[doc(alias = "kCFRunLoopBeforeSources")]
         const BeforeSources = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/beforewaiting?language=objc)
+///
+/// ## Discussion
+///
+/// Inside the event processing loop before the run loop sleeps, waiting for a source or timer to fire. This activity does not occur if [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)) is called with a timeout of 0 seconds. It also does not occur in a particular iteration of the event processing loop if a version 0 source fires.
+///
+///
         #[doc(alias = "kCFRunLoopBeforeWaiting")]
         const BeforeWaiting = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/afterwaiting?language=objc)
+/// Inside the event processing loop after the run loop wakes up, but before processing the event that woke it up. This activity occurs only if the run loop did in fact go to sleep during the current loop.
         #[doc(alias = "kCFRunLoopAfterWaiting")]
         const AfterWaiting = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/exit?language=objc)
+/// The exit of the run loop, after exiting the event processing loop. This activity occurs once for each call to [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) and [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)).
         #[doc(alias = "kCFRunLoopExit")]
         const Exit = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity/allactivities?language=objc)
+/// A combination of all the preceding stages.
         #[doc(alias = "kCFRunLoopAllActivities")]
         const AllActivities = 0x0FFFFFFF;
     }
@@ -151,17 +214,23 @@ unsafe impl RefEncode for CFRunLoopActivity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/defaultmode?language=objc)
+    /// Run loop mode that should be used when a thread is in its default, or idle, state, waiting for an event. This mode is used when the run loop is started with [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()).
     pub static kCFRunLoopDefaultMode: Option<&'static CFRunLoopMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes?language=objc)
+    /// Objects added to a run loop using this value as the mode are monitored by all run loop modes that have been declared as a member of the set of “common” modes with [`CFRunLoopAddCommonMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddcommonmode(_:_:)).
     pub static kCFRunLoopCommonModes: Option<&'static CFRunLoopMode>;
 }
 
 unsafe impl ConcreteType for CFRunLoop {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgettypeid()?language=objc)
+    /// Returns the type identifier for the CFRunLoop opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFRunLoop opaque type.
+    ///
+    ///
     #[doc(alias = "CFRunLoopGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -173,7 +242,19 @@ unsafe impl ConcreteType for CFRunLoop {
 }
 
 impl CFRunLoop {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetcurrent()?language=objc)
+    /// Returns the CFRunLoop object for the current thread.
+    ///
+    /// ## Return Value
+    ///
+    /// Current thread’s run loop. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Each thread has exactly one run loop associated with it.
+    ///
+    ///
     #[doc(alias = "CFRunLoopGetCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFRunLoop>> {
@@ -184,7 +265,13 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetmain()?language=objc)
+    /// Returns the main CFRunLoop object.
+    ///
+    /// ## Return Value
+    ///
+    /// The main run loop. Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
     #[doc(alias = "CFRunLoopGetMain")]
     #[inline]
     pub fn main() -> Option<CFRetained<CFRunLoop>> {
@@ -195,7 +282,23 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcopycurrentmode(_:)?language=objc)
+    /// Returns the name of the mode in which a given run loop is currently running.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The mode in which `rl` is currently running; `NULL` if `rl` is not running. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When run on the current thread’s run loop, the returned value identifies the run loop mode that made the callout in which your code is currently executing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopCopyCurrentMode")]
     #[inline]
     pub fn current_mode(&self) -> Option<CFRetained<CFRunLoopMode>> {
@@ -206,7 +309,17 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcopyallmodes(_:)?language=objc)
+    /// Returns an array that contains all the defined modes for a CFRunLoop object.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// An array that contains all the run loop modes defined for `rl`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFRunLoopCopyAllModes")]
     #[cfg(feature = "CFArray")]
     #[inline]
@@ -218,7 +331,23 @@ impl CFRunLoop {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddcommonmode(_:_:)?language=objc)
+    /// Adds a mode to the set of run loop common modes.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify. Each run loop has its own independent list of modes that are in the set of common modes.
+    ///
+    /// - mode: The run loop mode to add to the set of common modes of `rl`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Sources, timers, and observers get registered to one or more run loop modes and only run when the run loop is running in one of those modes. Common modes are a set of run loop modes for which you can define a set of sources, timers, and observers that are shared by these modes. Instead of registering a source, for example, to each specific run loop mode, you can register it once to the run loop’s common pseudo-mode and it will be automatically registered in each run loop mode in the common mode set. Likewise, when a mode is added to the set of common modes, any sources, timers, or observers already registered to the common pseudo-mode are added to the newly added common mode.
+    ///
+    /// Once a mode is added to the set of common modes, it cannot be removed.
+    ///
+    /// The Add, Contains, and Remove functions for sources, timers, and observers operate on a run loop’s set of common modes when you use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) for the run loop mode.
+    ///
+    ///
     #[doc(alias = "CFRunLoopAddCommonMode")]
     #[inline]
     pub fn add_common_mode(&self, mode: Option<&CFRunLoopMode>) {
@@ -228,7 +357,19 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddCommonMode(self, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopgetnexttimerfiredate(_:_:)?language=objc)
+    /// Returns the time at which the next timer will fire.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    /// - mode: The run loop mode within `rl` to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The earliest firing time of the run loop timers registered in `mode` for the run loop `rl`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopGetNextTimerFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -242,7 +383,15 @@ impl CFRunLoop {
         unsafe { CFRunLoopGetNextTimerFireDate(self, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()?language=objc)
+    /// Runs the current thread’s CFRunLoop object in its default mode indefinitely.
+    ///
+    /// ## Discussion
+    ///
+    /// The current thread’s run loop runs in the default mode (see [Default Run Loop Mode](https://developer.apple.com/documentation/corefoundation/default-run-loop-mode)) until the run loop is stopped with [`CFRunLoopStop`](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)) or all the sources and timers are removed from the default run loop mode.
+    ///
+    /// Run loops can be run recursively. You can call [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) from within any run loop callout and create nested run loop activations on the current thread’s call stack.
+    ///
+    ///
     #[doc(alias = "CFRunLoopRun")]
     #[inline]
     pub fn run() {
@@ -252,7 +401,39 @@ impl CFRunLoop {
         unsafe { CFRunLoopRun() }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)?language=objc)
+    /// Runs the current thread’s CFRunLoop object in a particular mode.
+    ///
+    /// Parameters:
+    /// - mode: The run loop mode to run. `mode` can be any arbitrary CFString. You do not need to explicitly create a run loop mode, although a run loop mode needs to contain at least one source or timer to run.
+    ///
+    /// - seconds: The length of time to run the run loop. If `0`, only one pass is made through the run loop before returning; if multiple sources or timers are ready to fire immediately, only one (possibly two if one is a version 0 source) will be fired, regardless of the value of `returnAfterSourceHandled`.
+    ///
+    /// - returnAfterSourceHandled: A flag indicating whether the run loop should exit after processing one source. If `false`, the run loop continues processing events until `seconds` has passed.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A value indicating the reason the run loop exited. Possible values are described below.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Run loops can be run recursively. You can call [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)) from within any run loop callout and create nested run loop activations on the current thread’s call stack. You are not restricted in which modes you can run from within a callout. You can create another run loop activation running in any available run loop mode, including any modes already running higher in the call stack.
+    ///
+    /// The run loop exits with the following return values under the indicated conditions:
+    ///
+    /// - `kCFRunLoopRunFinished`. The run loop mode `mode` has no sources or timers.
+    ///
+    /// - `kCFRunLoopRunStopped`. The run loop was stopped with [`CFRunLoopStop`](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)).
+    ///
+    /// - `kCFRunLoopRunTimedOut`. The time interval `seconds` passed.
+    ///
+    /// - `kCFRunLoopRunHandledSource`. A source was processed. This exit condition only applies when `returnAfterSourceHandled` is `true`.
+    ///
+    /// You must not specify the [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) constant for the `mode` parameter. Run loops always run in a specific mode. You specify the common modes only when configuring a run-loop observer and only in situations where you want that observer to run in more than one mode.
+    ///
+    ///
     #[doc(alias = "CFRunLoopRunInMode")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -271,7 +452,23 @@ impl CFRunLoop {
         unsafe { CFRunLoopRunInMode(mode, seconds, return_after_source_handled as _) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopiswaiting(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether the run loop is waiting for an event.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `rl` has no events to process and is blocking, waiting for a source or timer to become ready to fire; `false` if `rl` either is not running or is currently processing a source, timer, or observer.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is useful only to test the state of another thread’s run loop. When called with the current thread’s run loop, this function always returns `false`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopIsWaiting")]
     #[inline]
     pub fn is_waiting(&self) -> bool {
@@ -282,7 +479,17 @@ impl CFRunLoop {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopwakeup(_:)?language=objc)
+    /// Wakes a waiting CFRunLoop object.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to wake up.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A run loop goes to sleep when it is waiting for a source or timer to become ready to fire. If no source or timer fires, the run loop stays there until it times out or is explicitly woken up. If a run loop is modified, such as a new source added, you need to wake up the run loop to allow it to process the change. Version 0 sources use [`CFRunLoopWakeUp`](https://developer.apple.com/documentation/corefoundation/cfrunloopwakeup(_:)) to cause the run loop to wake up after setting a source to be signaled, if they want the source handled immediately.
+    ///
+    ///
     #[doc(alias = "CFRunLoopWakeUp")]
     #[inline]
     pub fn wake_up(&self) {
@@ -292,7 +499,17 @@ impl CFRunLoop {
         unsafe { CFRunLoopWakeUp(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopstop(_:)?language=objc)
+    /// Forces a CFRunLoop object to stop running.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to stop.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function forces `rl` to stop running and return control to the function that called [`CFRunLoopRun`](https://developer.apple.com/documentation/corefoundation/cfrunlooprun()) or [`CFRunLoopRunInMode`](https://developer.apple.com/documentation/corefoundation/cfrunloopruninmode(_:_:_:)) for the current run loop activation. If the run loop is nested with a callout from one activation starting another activation running, only the innermost activation is exited.
+    ///
+    ///
     #[doc(alias = "CFRunLoopStop")]
     #[inline]
     pub fn stop(&self) {
@@ -302,7 +519,25 @@ impl CFRunLoop {
         unsafe { CFRunLoopStop(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopperformblock(_:_:_:)?language=objc)
+    /// Enqueues a block object on a given runloop to be executed as the runloop cycles in specified modes.
+    ///
+    /// Parameters:
+    /// - rl: A run loop.
+    ///
+    /// - mode: A CFString that identifies a runloop mode, or a CFArray of CFStrings that each identify a runloop mode.
+    ///
+    /// - block: The block object to execute.
+    ///
+    /// The block is copied by the function before the function returns.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When the runloop runs in the specified `mode`, the block object is executed. You can use this function as a means to offload work to another thread similar to Cocoa’s [`performSelector:onThread:withObject:waitUntilDone:`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/perform(_:on:with:waituntildone:)) and related methods. You can also use it as an alternative to mechanisms such as putting a CFRunLoopTimer in the other thread’s run loop, or using CFMessagePort to pass information between threads.
+    ///
+    /// This method enqueues the block only and does not automatically wake up the specified run loop. Therefore, execution of the block occurs the next time the run loop wakes up to handle another input source. If you want the work performed right away, you must explicitly wake up that thread using the [`CFRunLoopWakeUp`](https://developer.apple.com/documentation/corefoundation/cfrunloopwakeup(_:)) function.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -328,7 +563,27 @@ impl CFRunLoop {
         unsafe { CFRunLoopPerformBlock(self, mode, block) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainssource(_:_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopSource object.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    /// - source: The run loop source for which to search.
+    ///
+    /// - mode: The run loop mode of `rl` in which to search. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to search for `source` in the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `source` is in mode `mode` of the run loop `rl`, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `source` was added to [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes), this function returns `true` if `mode` is either [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) or any of the modes that has been added to the set of common modes.
+    ///
+    ///
     #[doc(alias = "CFRunLoopContainsSource")]
     #[inline]
     pub fn contains_source(
@@ -347,7 +602,25 @@ impl CFRunLoop {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)?language=objc)
+    /// Adds a CFRunLoopSource object to a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - source: The run loop source to add. The source is retained by the run loop.
+    ///
+    /// - mode: The run loop mode to which to add `source`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to add `source` to the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `source` is a version 0 source, this function calls the `schedule` callback function specified in the context structure for `source`. See [`CFRunLoopSourceContext`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext) for more details.
+    ///
+    /// A run loop source can be registered in multiple run loops and run loop modes at the same time. When the source is signaled, whichever run loop that happens to detect the signal first will fire the source.
+    ///
+    /// If `rl` already contains `source` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopAddSource")]
     #[inline]
     pub fn add_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
@@ -361,7 +634,23 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddSource(self, source, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremovesource(_:_:_:)?language=objc)
+    /// Removes a CFRunLoopSource object from a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - source: The run loop source to remove.
+    ///
+    /// - mode: The run loop mode of `rl` from which to remove `source`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to remove `source` from the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `source` is a version 0 source, this function calls the `cancel` callback function specified in the context structure for `source`. See [`CFRunLoopSourceContext`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext) and [`CFRunLoopSourceContext1`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext1)for more details.
+    ///
+    /// If `rl` does not contain `source` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopRemoveSource")]
     #[inline]
     pub fn remove_source(&self, source: Option<&CFRunLoopSource>, mode: Option<&CFRunLoopMode>) {
@@ -375,7 +664,27 @@ impl CFRunLoop {
         unsafe { CFRunLoopRemoveSource(self, source, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainsobserver(_:_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopObserver object.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    /// - observer: The run loop observer for which to search.
+    ///
+    /// - mode: The run loop mode in which to search for `observer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to search for `observer` in the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `observer` is in mode `mode` of the run loop `rl`, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `observer` was added to [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes), this function returns `true` if `mode` is either [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) or any of the modes that has been added to the set of common modes.
+    ///
+    ///
     #[doc(alias = "CFRunLoopContainsObserver")]
     #[inline]
     pub fn contains_observer(
@@ -394,7 +703,23 @@ impl CFRunLoop {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddobserver(_:_:_:)?language=objc)
+    /// Adds a CFRunLoopObserver object to a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - observer: The run loop observer to add.
+    ///
+    /// - mode: The run loop mode to which to add `observer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to add `observer` to the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A run loop observer can be registered in only one run loop at a time, although it can be added to multiple run loop modes within that run loop.
+    ///
+    /// If `rl` already contains `observer` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopAddObserver")]
     #[inline]
     pub fn add_observer(&self, observer: Option<&CFRunLoopObserver>, mode: Option<&CFRunLoopMode>) {
@@ -408,7 +733,21 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddObserver(self, observer, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremoveobserver(_:_:_:)?language=objc)
+    /// Removes a CFRunLoopObserver object from a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - observer: The run loop observer to remove.
+    ///
+    /// - mode: The run loop mode of `rl` from which to remove `observer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to remove `observer` from the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `rl` does not contain `observer` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopRemoveObserver")]
     #[inline]
     pub fn remove_observer(
@@ -426,7 +765,27 @@ impl CFRunLoop {
         unsafe { CFRunLoopRemoveObserver(self, observer, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopcontainstimer(_:_:_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a run loop mode contains a particular CFRunLoopTimer object.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to examine.
+    ///
+    /// - timer: The run loop timer for which to search.
+    ///
+    /// - mode: The run loop mode of `rl` in which to search for `timer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to search for `timer` in the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `timer` is in mode `mode` of the run loop `rl`, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `timer` was added to [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes), this function returns `true` if `mode` is either [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) or any of the modes that has been added to the set of common modes.
+    ///
+    ///
     #[doc(alias = "CFRunLoopContainsTimer")]
     #[inline]
     pub fn contains_timer(
@@ -445,7 +804,23 @@ impl CFRunLoop {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopaddtimer(_:_:_:)?language=objc)
+    /// Adds a CFRunLoopTimer object to a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - timer: The run loop timer to add.
+    ///
+    /// - mode: The run loop mode of `rl` to which to add `timer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to add `timer` to the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A run loop timer can be registered in only one run loop at a time, although it can be added to multiple run loop modes within that run loop.
+    ///
+    /// If `rl` already contains `timer` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopAddTimer")]
     #[inline]
     pub fn add_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
@@ -459,7 +834,21 @@ impl CFRunLoop {
         unsafe { CFRunLoopAddTimer(self, timer, mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopremovetimer(_:_:_:)?language=objc)
+    /// Removes a CFRunLoopTimer object from a run loop mode.
+    ///
+    /// Parameters:
+    /// - rl: The run loop to modify.
+    ///
+    /// - timer: The run loop timer to remove.
+    ///
+    /// - mode: The run loop mode of `rl` from which to remove `timer`. Use the constant [`kCFRunLoopCommonModes`](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes) to remove `timer` from the set of objects monitored by all the common modes.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `rl` does not contain `timer` in `mode`, this function does nothing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopRemoveTimer")]
     #[inline]
     pub fn remove_timer(&self, timer: Option<&CFRunLoopTimer>, mode: Option<&CFRunLoopMode>) {
@@ -474,7 +863,7 @@ impl CFRunLoop {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a version 0 CFRunLoopSource’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -514,7 +903,7 @@ unsafe impl RefEncode for CFRunLoopSourceContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecontext1?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a version 1 CFRunLoopSource’s behavior.
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -559,7 +948,13 @@ unsafe impl RefEncode for CFRunLoopSourceContext1 {
 }
 
 unsafe impl ConcreteType for CFRunLoopSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegettypeid()?language=objc)
+    /// Returns the type identifier of the CFRunLoopSource opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFRunLoopSource opaque type.
+    ///
+    ///
     #[doc(alias = "CFRunLoopSourceGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -571,7 +966,27 @@ unsafe impl ConcreteType for CFRunLoopSource {
 }
 
 impl CFRunLoopSource {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecreate(_:_:_:)?language=objc)
+    /// Creates a CFRunLoopSource object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - order: A priority index indicating the order in which run loop sources are processed. When multiple run loop sources are firing in a single pass through the run loop, the sources are processed in increasing order of this parameter. If the run loop is set to process only one source per loop, only the highest priority source, the one with the lowest `order` value, is processed. This value is ignored for version 1 sources. Pass 0 unless there is a reason to do otherwise.
+    ///
+    /// - context: A structure holding contextual information for the run loop source. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopSource object. You are responsible for releasing this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop source is not automatically added to a run loop. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -595,7 +1010,17 @@ impl CFRunLoopSource {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegetorder(_:)?language=objc)
+    /// Returns the ordering parameter for a CFRunLoopSource object.
+    ///
+    /// Parameters:
+    /// - source: The run loop source to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ordering parameter for `source`, which the run loop uses (for version 0 sources only) to determine the order in which sources are processed when multiple sources are firing.
+    ///
+    ///
     #[doc(alias = "CFRunLoopSourceGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -605,7 +1030,17 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceGetOrder(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourceinvalidate(_:)?language=objc)
+    /// Invalidates a CFRunLoopSource object, stopping it from ever firing again.
+    ///
+    /// Parameters:
+    /// - source: The run loop source to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once invalidated, `source` will never fire and call its perform callback function again. This function automatically removes `source` from all the run loop modes in which it was registered. If `source` is a version 0 source, this function calls its `cancel` callback function as it is removed from each run loop mode. The memory for `source` is not deallocated unless the run loop held the only reference to `source`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopSourceInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -615,7 +1050,17 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourceisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFRunLoopSource object is valid and able to fire.
+    ///
+    /// Parameters:
+    /// - source: The run loop source to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `source` is valid, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopSourceIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -626,7 +1071,19 @@ impl CFRunLoopSource {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcegetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFRunLoopSource object.
+    ///
+    /// Parameters:
+    /// - source: The run loop source to examine.
+    ///
+    /// - context: A pointer to the structure into which the context information for `source` is to be copied. The information being returned is the same information passed to [`CFRunLoopSourceCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcecreate(_:_:_:)) when creating `source`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Run loop sources come in two versions with different-sized context structures. `context` must point to the correct version of the structure for `source`. Before calling this function, you need to initialize the `version` member of `context` with the version number (either 0 or 1) of `source`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -643,7 +1100,17 @@ impl CFRunLoopSource {
         unsafe { CFRunLoopSourceGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopsourcesignal(_:)?language=objc)
+    /// Signals a CFRunLoopSource object, marking it as ready to fire.
+    ///
+    /// Parameters:
+    /// - source: The run loop source to signal.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function has no effect on version 1 sources, which are automatically handled when Mach messages arrive for them. After signaling a version 0 source, you need to call [`CFRunLoopWakeUp`](https://developer.apple.com/documentation/corefoundation/cfrunloopwakeup(_:)) on one of the run loops in which the source is registered to get the source handled immediately.
+    ///
+    ///
     #[doc(alias = "CFRunLoopSourceSignal")]
     #[inline]
     pub fn signal(&self) {
@@ -654,7 +1121,7 @@ impl CFRunLoopSource {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a CFRunLoopObserver object’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -685,12 +1152,32 @@ unsafe impl RefEncode for CFRunLoopObserverContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercallback?language=objc)
+/// Callback invoked when a CFRunLoopObserver object is fired.
+///
+/// Parameters:
+/// - observer: The run loop observer that is firing.
+///
+/// - activity: The current activity stage of the run loop.
+///
+/// - info: The `info` member of the [`CFRunLoopObserverContext`](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercontext) structure that was used when creating the run loop observer.
+///
+///
+/// ## Discussion
+///
+/// You specify this callback when you create the run loop observer with [`CFRunLoopObserverCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreate(_:_:_:_:_:_:)).
+///
+///
 pub type CFRunLoopObserverCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopObserver, CFRunLoopActivity, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopObserver {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergettypeid()?language=objc)
+    /// Returns the type identifier for the CFRunLoopObserver opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFRunLoopObserver opaque type.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -702,7 +1189,33 @@ unsafe impl ConcreteType for CFRunLoopObserver {
 }
 
 impl CFRunLoopObserver {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreate(_:_:_:_:_:_:)?language=objc)
+    /// Creates a CFRunLoopObserver object with a function callback.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - activities: Set of flags identifying the activity stages of the run loop during which the observer should be called. See [`CFRunLoopActivity`](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity)for the list of stages. To have the observer called at multiple stages in the run loop, combine the [`CFRunLoopActivity`](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity) values using the bitwise-OR operator.
+    ///
+    /// - repeats: A flag identifying whether the observer should be called only once or every time through the run loop. If `repeats` is `false`, the observer is invalidated after it is called once, even if the observer was scheduled to be called at multiple stages within the run loop.
+    ///
+    /// - order: A priority index indicating the order in which run loop observers are processed. When multiple run loop observers are scheduled in the same activity stage in a given run loop mode, the observers are processed in increasing order of this parameter. Pass 0 unless there is a reason to do otherwise.
+    ///
+    /// - callout: The callback function invoked when the observer runs.
+    ///
+    /// - context: A structure holding contextual information for the run loop observer. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL` if the observer does not need the context’s `info` pointer to keep track of state.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopObserver object. Ownership follows the Create Rule described in [Ownership Policy](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop observer is not automatically added to a run loop. To add the observer to a run loop, use [`CFRunLoopAddObserver`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddobserver(_:_:_:)). An observer can be registered to only one run loop, although it can be added to multiple run loop modes within that run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -735,7 +1248,35 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreatewithhandler(_:_:_:_:_:)?language=objc)
+    /// Creates a CFRunLoopObserver object with a block-based handler.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - activities: Set of flags identifying the activity stages of the run loop during which the observer is called. See [`CFRunLoopActivity`](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity)for the list of stages. To have the observer called at multiple stages in the run loop, combine the [`CFRunLoopActivity`](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity) values using the bitwise-OR operator.
+    ///
+    /// - repeats: A flag identifying whether the observer is called only once or every time through the run loop. If `repeats` is `false`, the observer is invalidated after it is called once, even if the observer was scheduled to be called at multiple stages within the run loop.
+    ///
+    /// - order: A priority index indicating the order in which run loop observers are processed. When multiple run loop observers are scheduled in the same activity stage in a given run loop mode, the observers are processed in increasing order of this parameter. Pass 0 unless there is a reason to do otherwise.
+    ///
+    /// - block: The block invoked when the observer runs. The block takes two arguments:
+    ///
+    /// - `observer`: The run loop observer that is firing.
+    ///
+    /// - `activity`: The current activity stage of the run loop.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopObserver object. Ownership follows the Create Rule described in [Ownership Policy](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop observer is not automatically added to a run loop. To add the observer to a run loop, use [`CFRunLoopAddObserver`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddobserver(_:_:_:)). An observer can be registered to only one run loop, although it can be added to multiple run loop modes within that run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -766,7 +1307,17 @@ impl CFRunLoopObserver {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetactivities(_:)?language=objc)
+    /// Returns the run loop stages during which an observer runs.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A bitwise-OR combination of all the run loop stages in which `observer` is called. See [`CFRunLoopActivity`](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity) for the list of stages.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverGetActivities")]
     #[inline]
     pub fn activities(&self) -> CFOptionFlags {
@@ -776,7 +1327,17 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverGetActivities(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverdoesrepeat(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFRunLoopObserver repeats.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `observer` is processed during every pass through the run loop; `false` if `observer` is processed once and then is invalidated.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverDoesRepeat")]
     #[inline]
     pub fn does_repeat(&self) -> bool {
@@ -787,7 +1348,17 @@ impl CFRunLoopObserver {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetorder(_:)?language=objc)
+    /// Returns the ordering parameter for a CFRunLoopObserver object.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ordering parameter for `observer`. When multiple observers are scheduled in the same run loop mode and stage, this value determines the order (from small to large) in which the observers are called.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -797,7 +1368,17 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverGetOrder(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverinvalidate(_:)?language=objc)
+    /// Invalidates a CFRunLoopObserver object, stopping it from ever firing again.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once invalidated, `observer` will never fire and call its callback function again. This function automatically removes `observer` from all run loop modes in which it had been added. The memory is not deallocated unless the run loop held the only reference to `observer`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -807,7 +1388,23 @@ impl CFRunLoopObserver {
         unsafe { CFRunLoopObserverInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobserverisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFRunLoopObserver object is valid and able to fire.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `observer` is valid, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A nonrepeating observer is automatically invalidated after it is called once.
+    ///
+    ///
     #[doc(alias = "CFRunLoopObserverIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -818,7 +1415,19 @@ impl CFRunLoopObserver {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopobservergetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFRunLoopObserver object.
+    ///
+    /// Parameters:
+    /// - observer: The run loop observer to examine.
+    ///
+    /// - context: Upon return, contains the context information for `observer`. This is the same information passed to [`CFRunLoopObserverCreate`](https://developer.apple.com/documentation/corefoundation/cfrunloopobservercreate(_:_:_:_:_:_:)) when creating `observer`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context version number for run loop observers is currently `0`. Before calling this function, you need to initialize the `version` member of `context` to `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -836,7 +1445,7 @@ impl CFRunLoopObserver {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a CFRunLoopTimer’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -867,12 +1476,32 @@ unsafe impl RefEncode for CFRunLoopTimerContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercallback?language=objc)
+/// Callback invoked when a CFRunLoopTimer object fires.
+///
+/// Parameters:
+/// - timer: The run loop timer that is firing.
+///
+/// - info: The `info` member of the [`CFRunLoopTimerContext`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercontext) structure that was used when creating the run loop timer.
+///
+///
+/// ## Discussion
+///
+/// If `timer` repeats, the run loop automatically schedules the next firing time after calling this function, unless you manually update the firing time within this callback by calling [`CFRunLoopTimerSetNextFireDate`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersetnextfiredate(_:_:)). If `timer` does not repeat, the run loop invalidates `timer`.
+///
+/// You specify this callback when you create the timer with [`CFRunLoopTimerCreate`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreate(_:_:_:_:_:_:_:)).
+///
+///
 pub type CFRunLoopTimerCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFRunLoopTimer, *mut c_void)>;
 
 unsafe impl ConcreteType for CFRunLoopTimer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergettypeid()?language=objc)
+    /// Returns the type identifier of the CFRunLoopTimer opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFRunLoopTimer opaque type.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -884,7 +1513,35 @@ unsafe impl ConcreteType for CFRunLoopTimer {
 }
 
 impl CFRunLoopTimer {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreate(_:_:_:_:_:_:_:)?language=objc)
+    /// Creates a new CFRunLoopTimer object with a function callback.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - fireDate: The time at which the timer should first fire. The fine precision (sub-millisecond at most) of the fire date may be adjusted slightly by the timer if there are implementation reasons to do so.
+    ///
+    /// - interval: The firing interval of the timer. If `0` or negative, the timer fires once and then is automatically invalidated. The fine precision (sub-millisecond at most) of the interval may be adjusted slightly by the timer if implementation reasons to do so exist.
+    ///
+    /// - flags: Currently ignored. Pass `0` for future compatibility.
+    ///
+    /// - order: A priority index indicating the order in which run loop timers are processed. Run loop timers currently ignore this parameter. Pass `0`.
+    ///
+    /// - callout: The callback function that is called when the timer fires.
+    ///
+    /// - context: A structure holding contextual information for the run loop timer. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call. Can be `NULL` if the callback function does not need the context’s `info` pointer to keep track of state.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopTimer object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A timer needs to be added to a run loop mode before it will fire. To add the timer to a run loop, use [`CFRunLoopAddTimer`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddtimer(_:_:_:)). A timer can be registered to only one run loop at a time, although it can be in multiple modes within that run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -922,7 +1579,35 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreatewithhandler(_:_:_:_:_:_:)?language=objc)
+    /// Creates a new CFRunLoopTimer object with a block-based handler.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - fireDate: The time at which the timer should first fire. The fine precision (sub-millisecond at most) of the fire date may be adjusted slightly by the timer if there are implementation reasons to do so.
+    ///
+    /// - interval: The firing interval of the timer. If `0` or negative, the timer fires once and then is automatically invalidated. The fine precision (sub-millisecond at most) of the interval may be adjusted slightly by the timer if implementation reasons to do so exist.
+    ///
+    /// - flags: Currently ignored. Pass `0` for future compatibility.
+    ///
+    /// - order: A priority index indicating the order in which run loop timers are processed. Run loop timers currently ignore this parameter. Pass `0`.
+    ///
+    /// - block: The block invoked when the timer fires. The block takes one argument:
+    ///
+    /// - `timer`: The run loop timer that is firing.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopTimer object. Ownership follows the Create Rule described in [Ownership Policy](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A timer needs to be added to a run loop mode before it will fire. To add the timer to a run loop, use [`CFRunLoopAddTimer`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddtimer(_:_:_:)). A timer can be registered to only one run loop at a time, although it can be in multiple modes within that run loop.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -955,7 +1640,17 @@ impl CFRunLoopTimer {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetnextfiredate(_:)?language=objc)
+    /// Returns the next firing time for a CFRunLoopTimer object.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The next firing time for `timer`. This time could be a date in the past if a run loop has not been able to process the timer since the firing time arrived.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerGetNextFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -966,7 +1661,19 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetNextFireDate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersetnextfiredate(_:_:)?language=objc)
+    /// Sets the next firing date for a CFRunLoopTimer object .
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to modify.
+    ///
+    /// - fireDate: The new firing time for `timer`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Resetting a timer’s next firing time is a relatively expensive operation and should not be done if it can be avoided; letting timers autorepeat is more efficient. In some cases, however, manually-adjusted, repeating timers are useful. For example, if you have an action that will be performed multiple times in the future, but at irregular time intervals, it would be very expensive to create, add to run loop modes, and then destroy a timer for each firing event. Instead, you can create a repeating timer with an initial firing time in the distant future (or the initial firing time) and a very large repeat interval—on the order of decades or more—and add it to all the necessary run loop modes. Then, when you know when the timer should fire next, you reset the firing time with [`CFRunLoopTimerSetNextFireDate`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersetnextfiredate(_:_:)), perhaps from the timer’s own callback function. This technique effectively produces a reusable, asynchronous timer.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerSetNextFireDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -977,7 +1684,17 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerSetNextFireDate(self, fire_date) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetinterval(_:)?language=objc)
+    /// Returns the firing interval of a repeating CFRunLoopTimer object.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The firing interval of `timer`. Returns `0` if `timer` does not repeat.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerGetInterval")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -988,7 +1705,17 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetInterval(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerdoesrepeat(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFRunLoopTimer object repeats.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to test.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `timer` repeats, or has a periodicity; otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerDoesRepeat")]
     #[inline]
     pub fn does_repeat(&self) -> bool {
@@ -999,7 +1726,23 @@ impl CFRunLoopTimer {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetorder(_:)?language=objc)
+    /// Returns the ordering parameter for a CFRunLoopTimer object.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ordering parameter for `timer`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The ordering parameter is currently ignored by run loop timers.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerGetOrder")]
     #[inline]
     pub fn order(&self) -> CFIndex {
@@ -1009,7 +1752,17 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetOrder(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerinvalidate(_:)?language=objc)
+    /// Invalidates a CFRunLoopTimer object, stopping it from ever firing again.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Once invalidated, `timer` will never fire and call its callback function again. This function automatically removes `timer` from all run loop modes in which it had been added. The memory is not deallocated unless the run loop held the only reference to `timer`.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -1019,7 +1772,23 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimerisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFRunLoopTimer object is valid and able to fire.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `timer` is valid; otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A non-repeating timer is automatically invalidated after it fires.
+    ///
+    ///
     #[doc(alias = "CFRunLoopTimerIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -1030,7 +1799,19 @@ impl CFRunLoopTimer {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFRunLoopTimer object.
+    ///
+    /// Parameters:
+    /// - timer: The run loop timer to examine.
+    ///
+    /// - context: A pointer to the structure into which the context information for `timer` is to be copied. The information being returned is the same information passed to [`CFRunLoopTimerCreate`](https://developer.apple.com/documentation/corefoundation/cfrunlooptimercreate(_:_:_:_:_:_:_:)) when creating `timer`.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context version number for run loop timers is currently 0. Before calling this function, you need to initialize the `version` member of `context` to `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -1047,7 +1828,6 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimergettolerance(_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerGetTolerance")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -1058,7 +1838,6 @@ impl CFRunLoopTimer {
         unsafe { CFRunLoopTimerGetTolerance(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunlooptimersettolerance(_:_:)?language=objc)
     #[doc(alias = "CFRunLoopTimerSetTolerance")]
     #[cfg(feature = "CFDate")]
     #[inline]

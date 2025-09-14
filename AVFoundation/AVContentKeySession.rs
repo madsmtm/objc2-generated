@@ -11,58 +11,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A key-delivery method for a content key session.
 /// Used by AVContentKeySession to determine the method of key delivery
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeySystem = NSString;
 
 extern "C" {
+    /// A method of key delivery that uses FairPlay Streaming.
     /// Used to specify FairPlay Streaming (FPS) as the method of key delivery.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/fairplaystreaming?language=objc)
     pub static AVContentKeySystemFairPlayStreaming: &'static AVContentKeySystem;
 }
 
 extern "C" {
+    /// A method of key delivery that uses a clear key system.
     /// Used to specify clear key as the method of key delivery.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/clearkey?language=objc)
     pub static AVContentKeySystemClearKey: &'static AVContentKeySystem;
 }
 
 extern "C" {
+    /// A method of key delivery that uses a token to authorize playback.
     /// Used to specify a token that could be used to authorize playback of associated content key recipients.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/authorizationtoken?language=objc)
     pub static AVContentKeySystemAuthorizationToken: &'static AVContentKeySystem;
 }
 
+/// Options for specifying additional information for generating server playback context (SPC).
 /// Options keys used to specify additional information for generating server playback context (SPC) in
 /// -[AVContentKeySession invalidatePersistableContentKey:options:completionHandler:] and
 /// -[AVContentKeySession invalidateAllPersistableContentKeysForApp:options:completionHandler:]
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeySessionServerPlaybackContextOption = NSString;
 
 extern "C" {
-    /// Specifies the versions of the content protection protocol supported by the application; as an NSArray of one or more NSNumber objects. If this option is not set, an appropriate protocol version will be selected based on sideband information such as an associated HLS playlist. If such information is not available, a protocol version of 1 is assumed
+    /// Specifies the versions of the content protection protocols supported by the application.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption/protocolversions?language=objc)
+    /// ## Discussion
+    ///
+    /// If you don’t specify a value for this key, the system assumes a default protocol version of `1`.
+    ///
+    ///
+    /// Specifies the versions of the content protection protocol supported by the application; as an NSArray of one or more NSNumber objects. If this option is not set, an appropriate protocol version will be selected based on sideband information such as an associated HLS playlist. If such information is not available, a protocol version of 1 is assumed
     pub static AVContentKeySessionServerPlaybackContextOptionProtocolVersions:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
 
 extern "C" {
-    /// Specifies a nonce as a 8-byte NSData object to be included in the secure server playback context (SPC) in order to prevent replay attacks. If not specified default server challenge of 0 is assumed.
+    /// Specifies a nonce to include in the secure server playback context (SPC) to prevent replay attacks.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption/serverchallenge?language=objc)
+    /// ## Discussion
+    ///
+    /// Specify this value as an 8-byte [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) object. If you don’t specify a value for this key, the system assumes a default server challenge of `0`.
+    ///
+    ///
+    /// Specifies a nonce as a 8-byte NSData object to be included in the secure server playback context (SPC) in order to prevent replay attacks. If not specified default server challenge of 0 is assumed.
     pub static AVContentKeySessionServerPlaybackContextOptionServerChallenge:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
 
 extern_class!(
+    /// An object that creates and tracks decryption keys for media data.
     /// An AVContentKeySession is used to create and track decryption keys for media data. Objects conforming to the AVContentKeyRecipient protocol, such as AVURLAssets, can be added to an AVContentKeySession to employ the services of the AVContentKeySession in handling new key requests and to obtain access to the session's already existing keys.
     ///
     /// Its secondary purpose is to provide a report of expired sessions to assist a controlling entity that wishes to track the set of sessions that are still active. If initialized with a location at which to store them, AVContentKeySession maintains a global collection of pending "expired session reports", each associated with an identifier for the app that created the session. The contents of this identifier are specified by the controlling entity that provides media data or that grants permission for its use.
@@ -74,8 +80,6 @@ extern_class!(
     /// After pending expired session reports have been sent to the controlling entity and their receipt has been acknowledged, they can be removed from the collection of pending expired session reports maintained by AVContentKeySession by using +removePendingExpiredSessionReports:withAppIdentifier:.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeySession;
@@ -352,37 +356,39 @@ impl AVContentKeySession {
     );
 }
 
+/// The reason for asking the client to retry a content key request.
 /// Used to specify a reason for asking the client to retry a content key request.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeyRequestRetryReason = NSString;
 
 extern "C" {
-    /// Indicates that the content key request should be retried because the key response was not set soon enough either due the initial request/response was taking too long, or a lease was expiring in the meantime.
+    /// A key response that wasn’t set soon enough.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/timedout?language=objc)
+    /// ## Discussion
+    ///
+    /// The response timed out because the initial request or response (or both) took too long, or because the lease expired during the request.
+    ///
+    ///
+    /// Indicates that the content key request should be retried because the key response was not set soon enough either due the initial request/response was taking too long, or a lease was expiring in the meantime.
     pub static AVContentKeyRequestRetryReasonTimedOut: &'static AVContentKeyRequestRetryReason;
 }
 
 extern "C" {
+    /// A key response with an expired lease that was set on the previous content key request.
     /// Indicates that the content key request should be retried because a key response with expired lease was set on the previous content key request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/receivedresponsewithexpiredlease?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedResponseWithExpiredLease:
         &'static AVContentKeyRequestRetryReason;
 }
 
 extern "C" {
+    /// An obsolete key response that was set on the previous content key request.
     /// Indicates that the content key request should be retried because an obsolete key response was set on the previous content key request.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/receivedobsoletecontentkey?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedObsoleteContentKey:
         &'static AVContentKeyRequestRetryReason;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessiondelegate?language=objc)
+    /// A protocol that handles content key requests.
     pub unsafe trait AVContentKeySessionDelegate: NSObjectProtocol + Send + Sync {
         #[unsafe(method(contentKeySession:didProvideContentKeyRequest:))]
         #[unsafe(method_family = none)]
@@ -489,40 +495,34 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum?language=objc)
+/// The status for a content key request.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVContentKeyRequestStatus(pub NSInteger);
 impl AVContentKeyRequestStatus {
+    /// The key request was just created.
     /// Indicates that the request has just been created.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/requestingresponse?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRequestingResponse")]
     pub const RequestingResponse: Self = Self(0);
+    /// The key request was received, and the key is in use.
     /// Indicates that a response to a key reequest was received and key is in use. This does not indicate that the key is valid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/receivedresponse?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusReceivedResponse")]
     pub const ReceivedResponse: Self = Self(1);
+    /// The key request was renewed.
     /// Indicates that the key request was renewed. This does not indicate that the key is valid.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/renewed?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRenewed")]
     pub const Renewed: Self = Self(2);
+    /// The key request was retried.
     /// Indicates that the key request was retried.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/retried?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusRetried")]
     pub const Retried: Self = Self(3);
+    /// The key request was canceled.
     /// Indicates that the key request was cancelled.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/cancelled?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusCancelled")]
     pub const Cancelled: Self = Self(4);
+    /// The key request failed.
     /// Indicates that the request has encountered an error. See also the error property.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum/failed?language=objc)
     #[doc(alias = "AVContentKeyRequestStatusFailed")]
     pub const Failed: Self = Self(5);
 }
@@ -536,16 +536,20 @@ unsafe impl RefEncode for AVContentKeyRequestStatus {
 }
 
 extern "C" {
-    /// Request secure token to have extended validation data. The value for the key should be previously created offline key using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:].
+    /// A key that requires the secure token to have extended validation data.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestrequiresvalidationdatainsecuretokenkey?language=objc)
+    /// ## Discussion
+    ///
+    /// You create the value for this key by using [`persistableContentKeyFromKeyVendorResponse:options:error:`](https://developer.apple.com/documentation/avfoundation/avpersistablecontentkeyrequest/persistablecontentkey(fromkeyvendorresponse:options:)).
+    ///
+    ///
+    /// Request secure token to have extended validation data. The value for the key should be previously created offline key using -[AVContentKeyRequest persistableContentKeyFromKeyVendorResponse:options:error:].
     pub static AVContentKeyRequestRequiresValidationDataInSecureTokenKey: &'static NSString;
 }
 
 extern_class!(
+    /// An object that encapsulates information about a content decryption key request issued from a content key session object.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeyRequest;
@@ -710,9 +714,14 @@ impl AVContentKeyRequest {
 }
 
 extern_class!(
-    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    /// An object that encapsulates information about a persistable content decryption key request issued from a content key session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avpersistablecontentkeyrequest?language=objc)
+    /// ## Overview
+    ///
+    /// This class allows clients to create and use persistable content keys.
+    ///
+    ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     #[unsafe(super(AVContentKeyRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPersistableContentKeyRequest;
@@ -775,11 +784,10 @@ impl AVContentKeyRequest {
 }
 
 extern_class!(
+    /// An object that encapsulates information about a response to a content decryption key request.
     /// AVContentKeyResponse is used to represent the data returned from the key server when requesting a key for decrypting content.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeyResponse;
@@ -852,13 +860,25 @@ impl AVContentKeyResponse {
 }
 
 extern "C" {
-    /// Specifies the versions of the content protection protocol supported by the application as an NSArray of one or more NSNumber objects.
+    /// A key that specifies the versions of the content protection protocol supported by the application.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestprotocolversionskey?language=objc)
+    /// ## Discussion
+    ///
+    /// The contents of this key are an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) or one or more [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) objects.
+    ///
+    ///
+    /// Specifies the versions of the content protection protocol supported by the application as an NSArray of one or more NSNumber objects.
     pub static AVContentKeyRequestProtocolVersionsKey: &'static NSString;
 }
 
 extern "C" {
+    /// Value is an Boolean indicating whether the user’s deviceID contained in the SPC blob during FairPlay key exchange should be randomized using a system generated seed
+    ///
+    /// ## Discussion
+    ///
+    /// Content providers use the SPC to distinguish the playback device from other devices, typically to enforce per-screen business rule limits. If the app developer, in cooperation with the content vendor, does not require to distinguish the playback device, they can further enhance user privacy by making this identifier non-constant, using this option. In either case, apps are not allowed to store or use the FairPlay anonymized device ID for anything other than to enforce business rule limits. App developers must use the AppTrackingTransparency framework to disclose to users if the application or the related FairPlay Key Server collect data about end users and share it with other companies for purposes of tracking across apps and web sites. When true, the system generates a random seed with which the device id will be randomized. To override the seed used; use this property in conjunction with AVContentKeyRequestRandomDeviceIdentifierSeedKey to provide a seed generated by your application.
+    ///
+    ///
     /// Value is an Boolean indicating whether the user's deviceID contained in the SPC blob during FairPlay key exchange should be randomized using a system generated seed
     ///
     /// Content providers use the SPC to distinguish the playback device from other devices, typically to enforce per-screen business rule limits.
@@ -869,12 +889,17 @@ extern "C" {
     /// data about end users and share it with other companies for purposes of tracking across apps and web sites.
     /// When true, the system generates a random seed with which the device id will be randomized. To override the seed used; use this property in conjunction with AVContentKeyRequestRandomDeviceIdentifierSeedKey
     /// to provide a seed generated by your application.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestshouldrandomizedeviceidentifierkey?language=objc)
     pub static AVContentKeyRequestShouldRandomizeDeviceIdentifierKey: &'static NSString;
 }
 
 extern "C" {
+    /// Value is an NSData containing a 16-byte seed to randomize the user’s deviceID contained in the SPC blob during FairPlay key exchange
+    ///
+    /// ## Discussion
+    ///
+    /// This property must be used in conjunction with AVContentKeyRequestShouldRandomizeDeviceIdentifierKey. Use a RND function to generate a 16 byte seed. This seed will be used to randomize the user’s anonymized device ID if AVContentKeyRequestShouldRandomizeDeviceIdentifierKey is true. Content providers use the SPC to distinguish the playback device from other devices, typically to enforce per-screen business rule limits. If the app developer, in cooperation with the content vendor, does not require to distinguish the playback device, they can further enhance user privacy by making this identifier non-constant, using this option. In either case, apps are not allowed to store or use the FairPlay anonymized device ID for anything other than to enforce business rule limits. App developers must use the AppTrackingTransparency framework to disclose to users if the application or the related FairPlay Key Server collect data about end users and share it with other companies for purposes of tracking across apps and web sites.
+    ///
+    ///
     /// Value is an NSData containing a 16-byte seed to randomize the user's deviceID contained in the SPC blob during FairPlay key exchange
     ///
     /// This property must be used in conjunction with AVContentKeyRequestShouldRandomizeDeviceIdentifierKey. Use a RND function to generate a 16 byte seed.
@@ -885,15 +910,12 @@ extern "C" {
     /// In either case, apps are not allowed to store or use the FairPlay anonymized device ID for anything other than to enforce business rule limits.
     /// App developers must use the AppTrackingTransparency framework to disclose to users if the application or the related FairPlay Key Server collect
     /// data about end users and share it with other companies for purposes of tracking across apps and web sites.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestrandomdeviceidentifierseedkey?language=objc)
     pub static AVContentKeyRequestRandomDeviceIdentifierSeedKey: &'static NSString;
 }
 
 extern_protocol!(
+    /// A protocol for requiring decryption keys for media data.
     /// Classes of objects that may require decryption keys for media data in order to enable processing, such as parsing or playback, conform to this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrecipient?language=objc)
     pub unsafe trait AVContentKeyRecipient {
         /// Informs the receiver that an AVContentKey has been obtained as the result of an invocation of -[AVContentKeyRequest processContentKeyResponse:].
         ///
@@ -917,9 +939,8 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that uniquely identifies a content key.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyspecifier?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKeySpecifier;
@@ -1010,27 +1031,23 @@ impl AVContentKeySpecifier {
     );
 }
 
+/// Constants that specify whether sufficient protection exists to display the content.
 /// The constants can be used to derive whether or not we have established sufficient protection to display content protected by this AVContentKey on some set of attached displays.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVExternalContentProtectionStatus(pub NSInteger);
 impl AVExternalContentProtectionStatus {
+    /// A status that indicates content protections are pending.
     /// Indicates that the current protection status has not yet been discovered for the attached display(s).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/pending?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusPending")]
     pub const Pending: Self = Self(0);
+    /// A status that indicates sufficient protections exists for display.
     /// Indicates that sufficient protection with the attached display(s) has been established, content protected by the associated AVContentKey will be eligible to be displayed on the display(s).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/sufficient?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusSufficient")]
     pub const Sufficient: Self = Self(1);
+    /// A status that indicates insufficient protections exists for display.
     /// Indicates that sufficient protection with the attached display(s) has failed to be established, content protected by the associated AVContentKey will not be displayed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus/insufficient?language=objc)
     #[doc(alias = "AVExternalContentProtectionStatusInsufficient")]
     pub const Insufficient: Self = Self(2);
 }
@@ -1044,9 +1061,8 @@ unsafe impl RefEncode for AVExternalContentProtectionStatus {
 }
 
 extern_class!(
+    /// An object that represents the content key decryptor.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkey?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVContentKey;
@@ -1098,6 +1114,21 @@ impl AVContentKey {
     );
 }
 
+/// Attaches a content key to a sample buffer for the purpose of content decryption.
+///
+/// Parameters:
+/// - sbuf: The sample buffer to which to attach the content key.
+///
+/// - contentKey: The content key to attach.
+///
+/// - outError: An error pointer. If a failure occurs, the system sets the pointer to an error object that describes the details of the failure.
+///
+///
+/// ## Return Value
+///
+/// A Boolean value that indicates whether the attachment is successful.
+///
+///
 /// Attaches an AVContentKey to a CMSampleBuffer for the purpose of content decryption.
 ///
 /// The client is expected to attach AVContentKeys to CMSampleBuffers that have been created by the client for enqueueing with AVSampleBufferDisplayLayer or AVSampleBufferAudioRenderer, for which the AVContentKeySpecifier matches indications of suitability that are available to the client according to the content key system that's in use.
@@ -1109,8 +1140,6 @@ impl AVContentKey {
 /// # Safety
 ///
 /// `out_error` must be a valid pointer or null.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferattachcontentkey(_:_:_:)?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[inline]
 pub unsafe extern "C-unwind" fn AVSampleBufferAttachContentKey(

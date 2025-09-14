@@ -9,22 +9,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory?language=objc)
+/// Constants specifying the type of element in the collection view.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionElementCategory(pub NSInteger);
 impl NSCollectionElementCategory {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/item?language=objc)
+    /// The element is an item. Items represent the main content of your collection view.
     #[doc(alias = "NSCollectionElementCategoryItem")]
     pub const Item: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/supplementaryview?language=objc)
+    /// The element is a supplementary view. Use supplementary views for single views that contain some data but are associated with an entire section. For example, use them to specify header or footer views for a section.
     #[doc(alias = "NSCollectionElementCategorySupplementaryView")]
     pub const SupplementaryView: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/decorationview?language=objc)
+    /// The element is a decoration view. Decoration views represent visual adornments that do not contain any data of their own.
     #[doc(alias = "NSCollectionElementCategoryDecorationView")]
     pub const DecorationView: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory/interitemgap?language=objc)
+    /// The element is an inter-item gap. An inter-item gap element is a custom visual indicator that is displayed between items when dropping items into the collection view.
     #[doc(alias = "NSCollectionElementCategoryInterItemGap")]
     pub const InterItemGap: Self = Self(3);
 }
@@ -37,18 +37,39 @@ unsafe impl RefEncode for NSCollectionElementCategory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/decorationelementkind?language=objc)
 pub type NSCollectionViewDecorationElementKind = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindinteritemgapindicator?language=objc)
+    /// The element kind string assigned to the attributes object when it represents an inter-item gap.
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindInterItemGapIndicator:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutattributes?language=objc)
+    /// An object that contains layout-related attributes for an element in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// During the layout, the layout object creates instances of [`NSCollectionViewLayoutAttributes`](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutattributes) for each element displayed in the collection view. The layout attributes describe the position of an element and other information such as its alpha and position on the z axis. The collection view later applies the layout attributes to the onscreen elements.
+    ///
+    /// The only time you interact with layout attribute objects is when you implement a custom layout, and the interactions are straightforward. When asked for layout attributes for a specific element, your layout object uses the methods of this class to create an appropriate instance of the class based on the type of the requested element. It then configures the properties of the object and returns it to the requester.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// If you implement a custom layout object and your layout object requires additional attributes, you can subclass `NSCollectionViewLayoutAttributes` and add custom properties to your subclass. In your subclass, be sure to do the following:
+    ///
+    /// - Provide an [`init`](https://developer.apple.com/documentation/objectivec/nsobject-swift.class/init()) method with no parameters to initialize your subclass.
+    ///
+    /// - Implement support for the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying) protocol. The collection view caches layout attribute objects for later use.
+    ///
+    /// - Override the inherited [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method to perform any relevant equality checks.
+    ///
+    /// Supporting equality checks is important because of how the collection view manages layout attributes. As an optimization, the collection view applies layout attributes only when they change. When the layout object returns a layout attributes object, the collection view checks to see if the new attributes are equal to any cached attributes. Therefore, if you want to include any new properties in the equality check, you must override the [`isEqual:`](https://developer.apple.com/documentation/objectivec/nsobjectprotocol/isequal(_:)) method.
+    ///
+    /// In addition to defining your `NSCollectionViewLayoutAttributes` subclass, override the [`layoutAttributesClass`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesclass) method of your layout object. That method is a funnel point for creating new layout attribute objects. Returning your custom class from that method ensures that the correct class is instantiated.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -179,25 +200,25 @@ impl NSCollectionViewLayoutAttributes {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction?language=objc)
+/// Constants indicating the type of action being performed on an item.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionUpdateAction(pub NSInteger);
 impl NSCollectionUpdateAction {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/insert?language=objc)
+    /// Insert the item into the collection view.
     #[doc(alias = "NSCollectionUpdateActionInsert")]
     pub const Insert: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/delete?language=objc)
+    /// Remove the action from the collection view.
     #[doc(alias = "NSCollectionUpdateActionDelete")]
     pub const Delete: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/reload?language=objc)
+    /// Reload the item, which consists of deleting and then inserting the item.
     #[doc(alias = "NSCollectionUpdateActionReload")]
     pub const Reload: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/move?language=objc)
+    /// Move the item from its current location to a new location.
     #[doc(alias = "NSCollectionUpdateActionMove")]
     pub const Move: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction/none?language=objc)
+    /// Take no action on the item.
     #[doc(alias = "NSCollectionUpdateActionNone")]
     pub const None: Self = Self(4);
 }
@@ -211,7 +232,13 @@ unsafe impl RefEncode for NSCollectionUpdateAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewupdateitem?language=objc)
+    /// A description of a single change to make to an item in a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create instances of this class directly. When updating its content, the collection view object creates them and passes them to the layout object’s [`prepareForCollectionViewUpdates:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare(forcollectionviewupdates:)) method, which can use them to prepare for the upcoming changes.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -252,7 +279,21 @@ impl NSCollectionViewUpdateItem {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext?language=objc)
+    /// An object that identifies the portions of your layout that need to be updated.
+    ///
+    /// ## Overview
+    ///
+    /// Invalidation contexts are a way to improve the efficiency of layout operations and must be supported explicitly by the layout object. Instead of invalidating the entire layout, you can create an invalidation layout object that specifies only the portions of the layout that changed. You then pass that invalidation context to the [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout(with:)) method of the layout object.
+    ///
+    /// Typically, you ask the layout object to create an invalidation context for you. The [`NSCollectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout) class defines methods for creating a supported invalidation context. If you define a custom layout, you can define additional methods for creating invalidation contexts with custom information. Layout objects may also create invalidation contexts in response to specific changes. For example, layout objects automatically create invalidation contexts when you change the collection view’s data source, when you insert or delete items, and when you reload the collection view’s data.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// If you define a custom layout object, you can also subclass `NSCollectionViewLayoutInvalidationContext` and add properties that are specific to your layout object. Creating a custom invalidation context is not required and should only be done when your layout object has additional ways to optimize the layout process.
+    ///
+    /// Fore more information about how to support custom invalidation contexts in your layout objects, see [`NSCollectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -347,7 +388,103 @@ impl NSCollectionViewLayoutInvalidationContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewlayout?language=objc)
+    /// An abstract base class that you subclass and use to generate layout information for a collection view.
+    ///
+    /// ## Overview
+    ///
+    /// The job of a layout object is to perform the calculations needed to determine the placement and appearance of items, supplementary views, and other content in the collection view. The layout object does not apply the layout attributes it generates to the views in your interface. Instead, it passes those layout attributes to the collection view, which then creates the needed views and applies the layout attributes to them.
+    ///
+    /// You do not create instances of this class directly. Instead, you create instances of one of its subclasses and associate that object with your collection view either programmatically (using the [`collectionViewLayout`](https://developer.apple.com/documentation/appkit/nscollectionview/collectionviewlayout) property) or at design time in Interface Builder. Changing the layout object of a collection view forces an immediate update of the layout information.
+    ///
+    /// Collection views support many different types of elements, most of which are visual and all of which require layout attributes:
+    ///
+    /// - _Items_ are the main elements managed by the layout. Each item represents a single piece of data in the collection view. A collection view can have a single group of items or it can divide the items into multiple sections.
+    ///
+    /// - _Supplementary views_ are optional views associated with a specific section. The layout object defines the placement and use of supplementary views. For example, grid and flow layouts use supplementary views to implement headers and footers for each section. Supplementary views cannot be selected by the user.
+    ///
+    /// - _Decoration views_ are visual adornments used to implement themes or to present visual content that is unrelated to the data being managed by the collection view. Decoration views are optional and the layout object defines their use and placement.
+    ///
+    /// - _Inter-item gaps_ supply a drop target for dragged content. Gaps do not have a direct visual representation, but they do have layout attributes, which the collection view uses for hit testing. The layout object provides attributes for inter-item gaps only when asked to do so.
+    ///
+    /// Each concrete layout object defines a specific organization for the contained elements and provides the appropriate layout attributes. The placement and appearance of items is determined entirely by the layout object. The [`NSCollectionViewFlowLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewflowlayout) and [`NSCollectionViewGridLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewgridlayout) subclasses define variants of a grid-based layout, but you can create custom layouts that arrange elements in different ways. For example, you might define a layout class that arranges items in a circle or define a class that groups items into stacks that resemble a pile of photos on a table.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// Layout objects provide information about the position and visual state of elements in the collection view. When defining an `NSCollectionViewLayout` subclass, first have an idea for how items in your layout will appear onscreen. Layouts should provide a well-defined organization for their elements and should not morph between different organizations. If you want your collection view to change how it organizes elements, define separate layout objects for each organization and switch between them at runtime.
+    ///
+    /// Remember that a layout object does not directly create the views for which it provides layout information. Creation of the views is handled by the collection view, which creates them with the help of its data source object. The layout object only assists the collection view by providing information about the position and appearance of the views that the collection view creates.
+    ///
+    /// Your `NSCollectionViewLayout` subclass should be mostly self contained and should not rely on the collection view. Layout objects can retrieve the number of sections and items from the collection view, but you should not design layout objects that require knowledge of the data being displayed. The separation of the layout information from the displayed data offers flexibility and makes it easier to reuse layout objects.
+    ///
+    /// #### Methods to Override
+    ///
+    /// When defining a custom layout class, always override the following methods and properties:
+    ///
+    /// - [`prepareLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare())
+    ///
+    /// - [`collectionViewContentSize`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize)
+    ///
+    /// - [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:))
+    ///
+    /// - [`layoutAttributesForItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforitem(at:))
+    ///
+    /// - [`layoutAttributesForSupplementaryViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforsupplementaryview(ofkind:at:)) (if your layout supports supplementary views)
+    ///
+    /// - [`layoutAttributesForDecorationViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesfordecorationview(ofkind:at:)) (if your layout supports decoration views)
+    ///
+    /// - [`shouldInvalidateLayoutForBoundsChange:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/shouldinvalidatelayout(forboundschange:))
+    ///
+    /// These methods provide the fundamental layout information that the collection view needs to configure the items and other views that it displays. Layout objects need to implement only the methods associated with the types of elements they support. So if your layout object does not include decoration views, you do not need to implement the [`layoutAttributesForDecorationViewOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesfordecorationview(ofkind:at:)) method or any other methods relating to decoration views.
+    ///
+    /// In addition to the preceding methods, it is recommended that you implement several other methods in your custom layout objects. The insertion or deletion of items usually involves animations to move those items into position. Providing initial or final layout attributes makes your layout more engaging by improving the animations associated with the insertion or deletion of items. Other methods provide additional support for layout-related behaviors.
+    ///
+    /// - [`initialLayoutAttributesForAppearingItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingitem(at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`initialLayoutAttributesForAppearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/initiallayoutattributesforappearingdecorationelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingItemAtIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingitem(at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingSupplementaryElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingsupplementaryelement(ofkind:at:))
+    ///
+    /// - [`finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/finallayoutattributesfordisappearingdecorationelement(ofkind:at:))
+    ///
+    /// - [`layoutAttributesForDropTargetAtPoint:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesfordroptarget(at:)) (if your layout supports dropping content between items
+    ///
+    /// - [`layoutAttributesForInterItemGapBeforeIndexPath:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforinteritemgap(before:)) (if your layout supports dropping content in gaps between elements)
+    ///
+    /// #### Understanding the Layout Process
+    ///
+    /// Although the collection view drives the layout process, layout objects do all the work of calculating the layout information used during that process. The layout object acts as a semi-passive utility object, computing the location of elements and returning layout attributes only when asked to do so. Layout occurs when the collection view is first displayed and reoccurs whenever all or part of the layout is marked as invalid.
+    ///
+    /// During the layout process, the collection view calls several methods of your layout object to gather information. In particular, it calls three very important methods, whose implementations drive the core layout behavior.
+    ///
+    /// - Use the [`prepareLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare()) method to perform your initial layout calculations. These calculations provide the basis for everything the layout object does later.
+    ///
+    /// - Use the [`collectionViewContentSize`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/collectionviewcontentsize) method to return the smallest rectangle that completely encloses all of the elements in the collection view. Use the calculations from your [`prepareLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare()) method to specify this rectangle.
+    ///
+    /// - Use the [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)) method to return the layout attributes for all elements in the specified rectangle. The collection view typically requests only the subset of visible elements, but may include elements that are just offscreen.
+    ///
+    /// The [`prepareLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/prepare()) method is your chance to perform the main calculations associated with the layout process. Use this method to generate an initial list of layout attributes for your content. For example, use this method to calculate the frame rectangles of all elements in the collection view. Performing all of these calculations up front and caching the resulting data is often simpler than trying to compute attributes for individual items later.
+    ///
+    /// In addition to the [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)) method, the collection view may call other methods to retrieve layout attributes for specific items. By performing your calculations in advance, your implementations of those methods should be able to return cached information without having to recompute that information first. The only time your layout object needs to recompute its layout information is when your app invalidates the layout. For example, you might invalidate the layout when the user inserts or deletes items.
+    ///
+    /// #### Adding Decoration Views to Your Layout
+    ///
+    /// Layouts can use decoration views to create a specific visual appearance for the collection view’s content. Decoration views are fully configured visual elements that the layout object provides. When defining your own custom layout objects, you might use decoration views to provide a dynamic background or add visual styling in and around the items of the collection view. The layout object defines what decoration views are needed and registers an appropriate class or nib file for each view using the [`registerClass:forDecorationViewOfKind:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/register(_:fordecorationviewofkind:)-44qmc) or [`registerNib:forDecorationViewOfKind:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/register(_:fordecorationviewofkind:)-7z7uf) method.
+    ///
+    /// To create a decoration view, return an appropriate layout attributes object from your layout object’s  [`layoutAttributesForElementsInRect:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/layoutattributesforelements(in:)) method. When the collection view receives attributes for a decoration view, it creates that view using the class or nib file that your layout object registered. Because the collection view creates them, decoration views must be fully configured at registration time. You cannot add content to a decoration view or change its configuration later.
+    ///
+    /// #### Optimizing Layout Performance Using Invalidation Contexts
+    ///
+    /// When designing custom layouts, you can improve performance by updating only the portions of your layout that actually changed. The [`invalidateLayout`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout()) method forces the collection view to throw away all of its layout information and recompute it, which is inefficient if most of the layout has not changed. A better way to update your layout is using the [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout(with:)) method, which uses the provided context object to invalidate only the parts of the layout that changed.
+    ///
+    /// Support for invalidation contexts must be built into the implementation of your layout object. At a minimum, you must override the [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout(with:)) method and use it to mark the parts of your layout that changed. You might do this by setting flags or throwing away cached layout attributes for the changed elements. Your [`invalidateLayoutWithContext:`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidatelayout(with:)) method should also call `super` so that the collection view can initiate the layout update process at a future time.
+    ///
+    /// If your layout object supports more fine-grained invalidation than the [`NSCollectionViewLayoutInvalidationContext`](https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext) class provides, you can subclass and add your invalidation information there. If you define a custom context class, override the [`invalidationContextClass`](https://developer.apple.com/documentation/appkit/nscollectionviewlayout/invalidationcontextclass) property in your layout object so that the collection view knows which class to instantiate. Similarly, other parts of your app should create instances of your custom context class and use them to invalidate the layout.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

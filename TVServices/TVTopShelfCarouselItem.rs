@@ -7,9 +7,8 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants indicating the item’s audio and video capabilities.
 /// Options for describing media capabilities supported by a movie or show.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -18,50 +17,66 @@ bitflags::bitflags! {
     impl TVTopShelfCarouselItemMediaOptions: NSUInteger {
 /// High-definition video resolution.
 ///
-/// Only one resolution value should be provided.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolutionhd?language=objc)
+/// Specify this constant, or the [`TVTopShelfCarouselItemVideoResolution4K`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolution4k) constant, but not both.
+///
+///
+/// High-definition video resolution.
+///
+/// Only one resolution value should be provided.
         #[doc(alias = "TVTopShelfCarouselItemVideoResolutionHD")]
         const VideoResolutionHD = 1<<0;
 /// Ultra-high-definition 4K video resolution.
 ///
-/// Only one resolution value should be provided.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolution4k?language=objc)
+/// Specify this constant, or the [`TVTopShelfCarouselItemVideoResolutionHD`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videoresolutionhd) constant, but not both.
+///
+///
+/// Ultra-high-definition 4K video resolution.
+///
+/// Only one resolution value should be provided.
         #[doc(alias = "TVTopShelfCarouselItemVideoResolution4K")]
         const VideoResolution4K = 2<<0;
 /// High-dynamic-range video.
 ///
-/// Only one color space value should be provided.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacehdr?language=objc)
+/// Specify this constant, or the [`TVTopShelfCarouselItemVideoColorSpaceDolbyVision`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacedolbyvision) constant, but not both.
+///
+///
+/// High-dynamic-range video.
+///
+/// Only one color space value should be provided.
         #[doc(alias = "TVTopShelfCarouselItemVideoColorSpaceHDR")]
         const VideoColorSpaceHDR = 1<<6;
 /// Dolby Vision video.
 ///
-/// Only one color space value should be provided.
+/// ## Discussion
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacedolbyvision?language=objc)
+/// Specify this constant, or the [`TVTopShelfCarouselItemVideoColorSpaceHDR`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/videocolorspacehdr) constant, but not both.
+///
+///
+/// Dolby Vision video.
+///
+/// Only one color space value should be provided.
         #[doc(alias = "TVTopShelfCarouselItemVideoColorSpaceDolbyVision")]
         const VideoColorSpaceDolbyVision = 2<<6;
+/// Audio content with Dolby Atmos.
 /// Whether the movie or show supports Dolby Atmos audio.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiodolbyatmos?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioDolbyAtmos")]
         const AudioDolbyAtmos = 1<<12;
+/// Audio content with closed captioning.
 /// Whether the movie or show supports closed captioning.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiotranscriptionclosedcaptioning?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioTranscriptionClosedCaptioning")]
         const AudioTranscriptionClosedCaptioning = 1<<13;
+/// Audio content with subtitles for people who are deaf or hard of hearing.
 /// Whether the movie or show supports subtitles for the deaf and hard-of-hearing.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiotranscriptionsdh?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioTranscriptionSDH")]
         const AudioTranscriptionSDH = 1<<14;
+/// Audio content with audio descriptions.
 /// Whether the movie or show supports audio descriptions.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct/audiodescription?language=objc)
         #[doc(alias = "TVTopShelfCarouselItemAudioDescription")]
         const AudioDescription = 1<<15;
     }
@@ -76,9 +91,16 @@ unsafe impl RefEncode for TVTopShelfCarouselItemMediaOptions {
 }
 
 extern_class!(
-    /// An object that represents a single item in the carousel content style.
+    /// An item containing images, video, and other information that you want to display using a carousel-based interface.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem?language=objc)
+    /// ## Overview
+    ///
+    /// A [`TVTopShelfCarouselItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem) object offers a more dynamic way to present your content than section-based items. When a carousel item first appears, it displays either a static image or a short looping video as its background. When the navigation focus stops on the item, the system plays the video in the item’s [`previewVideoURL`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/previewvideourl) property.
+    ///
+    /// Create one or more [`TVTopShelfCarouselItem`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem) objects and fill them with information about your content. The system determines which properties of the object to display based on the content style. For the [`TVTopShelfCarouselContentStyleDetails`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/details) style, the system displays all of the information in your carousel item. For the [`TVTopShelfCarouselContentStyleActions`](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum/actions) style, the system focuses on the actions associated with your item. To specify the actions for both styles, use the inherited [`playAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/playaction) and [`displayAction`](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/displayaction) properties of the object.
+    ///
+    ///
+    /// An object that represents a single item in the carousel content style.
     #[unsafe(super(TVTopShelfItem, TVTopShelfObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "TVTopShelfItem", feature = "TVTopShelfObject"))]

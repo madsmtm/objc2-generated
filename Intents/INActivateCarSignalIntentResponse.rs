@@ -7,28 +7,58 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode?language=objc)
+/// Constants indicating the status of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INActivateCarSignalIntentResponseCode(pub NSInteger);
 impl INActivateCarSignalIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/unspecified?language=objc)
+    /// A response code indicating that the status was not specified.
     #[doc(alias = "INActivateCarSignalIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/ready?language=objc)
+    /// A response code indicating that you are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// During the confirmation phase of an intent, use this code to signal that your app is ready and able to act on the intent.
+    ///
+    ///
     #[doc(alias = "INActivateCarSignalIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/inprogress?language=objc)
+    /// A response code indicating that you are activating the signals but do not yet have the results.
+    ///
+    /// ## Discussion
+    ///
+    /// When handling the intent, return this code if your activation attempt may take longer than a few seconds to complete.
+    ///
+    ///
     #[doc(alias = "INActivateCarSignalIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/success?language=objc)
+    /// A response code indicating that you have successfully handled the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code when your app has successfully activated the specified signals on the user’s car.
+    ///
+    ///
     #[doc(alias = "INActivateCarSignalIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/failure?language=objc)
+    /// An error code indicating that you were unable to activate the car’s signals.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that would prevent your app from activating the car’s signals.
+    ///
+    ///
     #[doc(alias = "INActivateCarSignalIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// An error code indicating that the user must launch your app to activate the car’s signals.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot handle the request through Siri for a reason not covered by any other response code. For example, you might use this code if the user has not set up the car in your app. Do not use it for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INActivateCarSignalIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +72,15 @@ unsafe impl RefEncode for INActivateCarSignalIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inactivatecarsignalintentresponse?language=objc)
+    /// Your app’s response to a request to activate a car’s signals.
+    ///
+    /// ## Overview
+    ///
+    /// Use an `INActivateCarSignalIntentResponse` object to specify the result of a request to activate the signal on the user’s car. You create instances of this class when confirming or handling an activate car signal intent. Use this object to confirm that the request is valid and communicate whether the signal was successfully activated, or to report any errors that occur.
+    ///
+    /// You create an `INActivateCarSignalIntentResponse` object in the [`confirmActivateCarSignal:completion:`](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling/confirm(intent:completion:)) and [`handleActivateCarSignal:completion:`](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INActivateCarSignalIntentHandling`](https://developer.apple.com/documentation/intents/inactivatecarsignalintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

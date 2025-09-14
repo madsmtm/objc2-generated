@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that can start and stop the camera stream and contains the view into which the stream is rendered.
     /// This class can be used to control the stream from a camera.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamcontrol?language=objc)
     #[unsafe(super(HMCameraControl, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HMCameraControl")]
@@ -111,9 +110,8 @@ impl HMCameraStreamControl {
 }
 
 extern_protocol!(
+    /// A protocol that gives the delegate updates on the camera stream.
     /// This delegate receives updates on the camera stream.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcamerastreamcontroldelegate?language=objc)
     pub unsafe trait HMCameraStreamControlDelegate: NSObjectProtocol {
         #[cfg(feature = "HMCameraControl")]
         /// Informs the delegate that the stream has started.

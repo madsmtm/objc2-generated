@@ -10,9 +10,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// This protocol is adopted by the document view of a `WebFrameView`. You can extend WebKit to support additional MIME types by implementing your own document view and document representation classes to render data for specific MIME types. You register those classes using the WebFrame [`registerViewClass:representationClass:forMIMEType:`](https://developer.apple.com/documentation/webkit/webview-swift.class/registerclass(_:representationclass:formimetype:)) method. Classes that adopt this protocol are expected to be subclasses of `NSView`.
     /// Protocol implemented by the document view of WebFrameView
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentview?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentView: NSObjectProtocol {
         #[cfg(feature = "WebDataSource")]
@@ -80,9 +79,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// `WebDocumentSearching` is an optional protocol for document view objects that support searching. Classes that adopt this protocol should also adopt `WebDocumentView` and inherit from `NSView`.
     /// Optional protocol for searching document view of WebFrameView.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentsearching?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentSearching: NSObjectProtocol {
         /// Searches a document view for a string and highlights the string if it is found.
@@ -114,9 +112,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// `WebDocumentText` is an optional protocol for document view objects that display text. This protocol defines methods for accessing document content as strings, and methods for text selection. Classes that adopt this protocol should also adopt [`WebDocumentView`](https://developer.apple.com/documentation/webkit/webdocumentview) and inherit from `NSView`.
     /// Optional protocol for supporting text operations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumenttext?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentText: NSObjectProtocol {
         /// Returns: YES if the document view support text encoding, NO if it doesn't.
@@ -164,9 +161,8 @@ extern_protocol!(
 );
 
 extern_protocol!(
+    /// This protocol is adopted by document representation classes that handle specific MIME types. You can implement your own document view classes and document representation classes to render data for specific MIME types, and register those classes using the `WebFrame` [`registerViewClass:representationClass:forMIMEType:`](https://developer.apple.com/documentation/webkit/webview-swift.class/registerclass(_:representationclass:formimetype:)) method.
     /// Protocol implemented by the document representation of a data source.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webdocumentrepresentation?language=objc)
     #[deprecated]
     pub unsafe trait WebDocumentRepresentation: NSObjectProtocol {
         #[cfg(feature = "WebDataSource")]

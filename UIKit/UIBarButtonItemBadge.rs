@@ -9,8 +9,7 @@ use crate::*;
 
 extern_class!(
     /// A badge to be rendered on a bar button item.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitembadge?language=objc)
+    /// A badge to be rendered on a bar button item.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

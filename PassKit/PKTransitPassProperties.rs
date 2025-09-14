@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pktransitpassproperties?language=objc)
+    /// The properties of a transit pass.
     #[unsafe(super(PKStoredValuePassProperties, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKStoredValuePassProperties")]

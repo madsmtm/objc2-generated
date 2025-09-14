@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// A representation of a manifest that lists asset packs that are available to download.
     ///
+    /// ## Overview
+    ///
     /// This class applies only when you want to manage your asset packs manually. Don’t use this class if you want to opt in to automatic management of asset packs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/baassetpackmanifest?language=objc)
+    ///
+    /// A representation of a manifest that lists asset packs that are available to download.
+    ///
+    /// This class applies only when you want to manage your asset packs manually. Don’t use this class if you want to opt in to automatic management of asset packs.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BAAssetPackManifest;

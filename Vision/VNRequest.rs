@@ -11,6 +11,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// A type alias to encapsulate the syntax for the completion handler the system calls after the request finishes processing.
+///
+/// ## Discussion
+///
+/// Vision executes the completion handler on the same queue that it executes the request; however, this queue differs from the one where you called [`performRequests:error:`](https://developer.apple.com/documentation/vision/vnimagerequesthandler/perform(_:)).
+///
+///
 /// A block that is executed at the completion of a request.
 ///
 /// The completion handler is called for each request when it is finished processing, before the performRequests call returns. When an array of multiple requests is executed with one performRequests call, each request's completion handler is invoked when that request has finished its processing. This invocation may therefore occur while other requests in the array are either still executing or waiting for execution. This allows, for example, UI to be updated while the first tasks are complete instead of having to wait that all requests have to finish. Note, however, that performRequests is not an asynchronous method, for which completion handlers are most typically used
@@ -18,18 +25,29 @@ use crate::*;
 /// Parameter `request`: The VNRequest that has been completed. The results of the request if no error was encountered are populated in the results array of the request.
 ///
 /// Parameter `error`: The error that caused the request to fail, or nil if completed successfully.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
 
 extern_class!(
+    /// The abstract superclass for analysis requests.
+    ///
+    /// ## Overview
+    ///
+    /// Other Vision request handlers that perform image analysis inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  A [`VNRequest`](https://developer.apple.com/documentation/vision/vnrequest) discards the alpha channel of input images, so don’t rely on it.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// VNRequest objects describe the operation to be performed as well as act as the recipient of the operation's resultant observations.
     ///
     /// VNRequest objects are instantiated in a pre-configured nominal state. Prior to sending a VNRequest to a request handler to perform a desired operation, the default configuration can be changed by modifying the values of VNRequest properties. The VNRequest class itself acts as a base class and is not meant to be directly instantiated.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNRequest;
@@ -154,9 +172,8 @@ impl VNRequest {
     );
 }
 
+/// A constant for specifying an unspecified request revision.
 /// A value that indicates that the request revision is either unknown or not applicable.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestrevisionunspecified?language=objc)
 pub static VNRequestRevisionUnspecified: NSUInteger = 0;
 
 impl VNRequest {
@@ -217,9 +234,14 @@ impl VNRequest {
 }
 
 extern_class!(
-    /// A request that will process the contents of a reference image.
+    /// The abstract superclass for image-analysis requests that focus on a specific part of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagebasedrequest?language=objc)
+    /// ## Overview
+    ///
+    /// Other Vision request handlers that operate on still images inherit from this abstract base class. Don’t use it directly.
+    ///
+    ///
+    /// A request that will process the contents of a reference image.
     #[unsafe(super(VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNImageBasedRequest;
@@ -291,6 +313,29 @@ impl VNImageBasedRequest {
     );
 }
 
+/// A block executed at intervals during the processing of a Vision request.
+///
+/// Parameters:
+/// - request: The completed Vision request. The results of the request, if no error occurred, reside in the [`results`](https://developer.apple.com/documentation/vision/vnrequest/results) array of the request.
+///
+/// - fractionCompleted: The fraction of the request that is completed, reported between `0.0` and `1.0`. If the [`indeterminate`](https://developer.apple.com/documentation/vision/vnrequestprogressproviding/indeterminate) property is set, this value is undefined.
+///
+/// - error: The error that caused the request to fail, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if the request completed successfully.
+///
+///
+/// ## Discussion
+///
+/// Vision may populate the [`results`](https://developer.apple.com/documentation/vision/vnrequest/results) array in the request with partial data, before all results are ready.
+///
+/// <div class="warning">
+///
+/// ### Note
+///  The Vision framework may call the progress handler on a different dispatch queue from the thread on which you initiated the original request, so ensure that your handler can execute asynchronously, in a thread-safe manner.
+///
+///
+///
+/// </div>
+///
 /// A block that is executed at intervals during the processing of a request.
 ///
 /// Parameter `request`: The VNRequest that has been completed. The results of the request, if no error was encountered, are populated in the results array of the request.
@@ -300,14 +345,26 @@ impl VNImageBasedRequest {
 /// Parameter `error`: The error that caused the request to fail, or nil if completed successfully.
 ///
 /// The results in the request can be populated with partial results. The progressHandler can be called on a different dispatch queue than what the request was initiated from.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestProgressHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<VNRequest>, c_double, *mut NSError)>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogressproviding?language=objc)
+    /// A protocol for providing progress information on long-running tasks in Vision.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol for potentially long-running Vision requests to provide information about progress throughout processing. For example, you can use the optional [`progressHandler`](https://developer.apple.com/documentation/vision/vnrequestprogressproviding/progresshandler) to update the user interface, provide a percentage of completion, or process partial results.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The Vision framework may call the progress handler on a different dispatch queue from the thread on which you initiated the original request, so ensure that your handler can execute asynchronously, in a thread-safe manner.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait VNRequestProgressProviding: NSObjectProtocol {
         #[cfg(feature = "block2")]
         /// Requests that support the VNRequestProgressProviding protocol would periodically call the progressHandler to report progress on longer running tasks.

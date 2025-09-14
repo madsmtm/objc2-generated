@@ -7,12 +7,36 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquerycompletionhandler?language=objc)
+/// The completion handler for background deliveries.
+///
+/// ## Discussion
+///
+/// This completion handler defines a block that can be called when responding to background deliveries. If your app registers for background deliveries, HealthKit wakes your app when new data has been saved to the HealthKit store. You can specify a maximum frequency for background deliveries. HealthKit wakes your app only once during each time period that is defined by the frequency.
+///
+/// When HealthKit wakes your app, it calls the update handler on any observer queries that match the new data. This block is passed to the update handler. You must call this block as soon as you are done processing the incoming data. Calling this block tells HealthKit that you have successfully received the background data. If you do not call this block, HealthKit continues to attempt to launch your app using a back off algorithm. If your app fails to respond three times, HealthKit assumes that your app cannot receive data, and stops sending you background updates.
+///
+///
 #[cfg(feature = "block2")]
 pub type HKObserverQueryCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquery?language=objc)
+    /// A long-running query that monitors the HealthKit store and updates your app when the HealthKit store saves or deletes a matching sample.
+    ///
+    /// ## Overview
+    ///
+    /// Observer queries set up a long-running task on a background queue. This task watches the HealthKit store, and alerts you when the store saves or removes matching data. Your app uses observer queries to respond to changes made by other apps and devices.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Background server queries aren’t supported on the Simulator. Be sure to test your background queries on a device.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Observer queries are immutable: You set their properties when you first create them, and you can’t change them.
+    ///
+    ///
     #[unsafe(super(HKQuery, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "HKQuery")]

@@ -6,6 +6,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A Boolean value that specifies whether the system warns the user if the app instantiates the central manager when Bluetooth service isn’t available.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. If the key isn’t specified, the default value is [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system should, if Bluetooth is powered off when
     /// <code>
     /// CBCentralManager
@@ -15,12 +22,17 @@ extern "C" {
     ///
     ///
     /// See: initWithDelegate:queue:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptionshowpoweralertkey?language=objc)
     pub static CBCentralManagerOptionShowPowerAlertKey: &'static NSString;
 }
 
 extern "C" {
+    /// A string containing a unique identifier (UID) for the central manager to instantiate.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). The system uses this UID to identify a specific central manager. As a result, the UID must remain the same for subsequent executions of the app to restore the central manager.
+    ///
+    ///
     /// An NSString containing a unique identifier (UID) for the
     /// <code>
     /// CBCentralManager
@@ -37,8 +49,6 @@ extern "C" {
     /// See: initWithDelegate:queue:options:
     ///
     /// See also: centralManager:willRestoreState:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptionrestoreidentifierkey?language=objc)
     pub static CBCentralManagerOptionRestoreIdentifierKey: &'static NSString;
 }
 
@@ -48,12 +58,25 @@ extern "C" {
     ///
     ///
     /// See: initWithDelegate:queue:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanageroptiondeviceaccessformedia?language=objc)
     pub static CBCentralManagerOptionDeviceAccessForMedia: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that specifies whether the scan should run without duplicate filtering.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. If [`true`](https://developer.apple.com/documentation/swift/true), the central disables filtering and generates a discovery event each time it receives an advertising packet from the peripheral. If [`false`](https://developer.apple.com/documentation/swift/false) (the default), the central coalesces multiple discoveries of the same peripheral into a single discovery event.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Disabling this filtering can have an adverse effect on battery life; use it only if necessary.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An NSNumber (Boolean) indicating that the scan should run without duplicate filtering. By default, multiple discoveries of the
     /// same peripheral are coalesced into a single discovery event. Specifying this option will cause a discovery event to be generated
     /// every time the peripheral is seen, which may be many times per second. This can be useful in specific situations, such as making
@@ -61,12 +84,19 @@ extern "C" {
     ///
     ///
     /// See: scanForPeripheralsWithServices:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerscanoptionallowduplicateskey?language=objc)
     pub static CBCentralManagerScanOptionAllowDuplicatesKey: &'static NSString;
 }
 
 extern "C" {
+    /// An array of service UUIDs that you want to scan for.
+    ///
+    /// ## Discussion
+    ///
+    /// The array is an instance of [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), and uses [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) objects to represent the UUIDs to scan for.
+    ///
+    /// Specifying this scan option causes the central manager to also scan for peripherals soliciting any of the services contained in the array.
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// CBUUID
@@ -76,12 +106,17 @@ extern "C" {
     ///
     ///
     /// See: scanForPeripheralsWithServices:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerscanoptionsolicitedserviceuuidskey?language=objc)
     pub static CBCentralManagerScanOptionSolicitedServiceUUIDsKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that specifies whether the system should display an alert when connecting a peripheral in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. This key is useful for apps that haven’t specified the `bluetooth-central` background mode and can’t display their own alert. If more than one app requests a notification for a given peripheral, the one that was most recently in the foreground receives the alert. If the key isn’t specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system should display a connection alert for a given peripheral, if the application is suspended
     /// when a successful connection is made.
     /// This is useful for applications that have not specified the
@@ -94,12 +129,17 @@ extern "C" {
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyonconnectionkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnConnectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that specifies whether the system should display an alert when disconnecting a peripheral in the background.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. This key is useful for apps that haven’t specified the `bluetooth-central` background mode and can’t display their own alert. If more than one app requests a notification for a given peripheral, the one that was most recently in the foreground receives the alert. If the key isn’t specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system should display a disconnection alert for a given peripheral, if the application
     /// is suspended at the time of the disconnection.
     /// This is useful for applications that have not specified the
@@ -112,12 +152,19 @@ extern "C" {
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyondisconnectionkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnDisconnectionKey: &'static NSString;
 }
 
 extern "C" {
+    /// A Boolean value that specifies whether the system should display an alert for any notification sent by a peripheral.
+    ///
+    /// ## Discussion
+    ///
+    /// If [`true`](https://developer.apple.com/documentation/swift/true), the system displays an alert for all notifications received from a given peripheral while the app is suspended.
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object. This key is useful for apps that haven’t specified the `bluetooth-central` background mode and can’t display their own alert. If more than one app requests a notification for a given peripheral, the one that was most recently in the foreground receives the alert. If the key isn’t specified, the default value is [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system should display an alert for all notifications received from a given peripheral, if
     /// the application is suspended at the time.
     /// This is useful for applications that have not specified the
@@ -130,42 +177,60 @@ extern "C" {
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionnotifyonnotificationkey?language=objc)
     pub static CBConnectPeripheralOptionNotifyOnNotificationKey: &'static NSString;
 }
 
 extern "C" {
+    /// An option that indicates a delay before the system makes a connection.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding value is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) that indicates the duration of the delay in seconds.
+    ///
+    ///
     /// An NSNumber indicating the number of seconds for the system to wait before starting a connection.
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionstartdelaykey?language=objc)
     pub static CBConnectPeripheralOptionStartDelayKey: &'static NSString;
 }
 
 extern "C" {
+    /// An option to bridge classic Bluetooth technology profiles, if already connected over Bluetooth Low Energy.
+    ///
+    /// ## Discussion
+    ///
+    /// This option tells the system to connect non-GATT profiles on classic Bluetooth devices, if there is a low energy GATT connection to the same device.
+    ///
+    /// The value associated with this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) as a Boolean value. A `true` value instructs the system to bring up classic transport profiles when a low energy transport peripheral connects. A `false` value tells the system not to use the profiles.
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the system will bring up classic transport profiles when low energy transport for peripheral is connected.
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionenabletransportbridgingkey?language=objc)
     pub static CBConnectPeripheralOptionEnableTransportBridgingKey: &'static NSString;
 }
 
 extern "C" {
+    /// An option to require Apple Notification Center Service (ANCS) when connecting a device.
     /// An NSNumber (Boolean) indicating that the ANCS (Apple Notification Center Service) is required for the peripheral is connected.
     ///
     ///
     /// See: connectPeripheral:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionrequiresancs?language=objc)
     pub static CBConnectPeripheralOptionRequiresANCS: &'static NSString;
 }
 
 extern "C" {
+    /// An array of peripherals for use when restoring the state of a central manager.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of [`CBPeripheral`](https://developer.apple.com/documentation/corebluetooth/cbperipheral) objects. The array contains all of the peripherals connected to the central manager (or had a pending connection) at the time the system terminated the app.
+    ///
+    /// When possible, the system restores all information about a peripheral, including any discovered services, characteristics, characteristic descriptors, and characteristic notification states.
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// CBPeripheral
@@ -178,12 +243,17 @@ extern "C" {
     /// See: centralManager:willRestoreState:
     ///
     /// See also: connectPeripheral:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstateperipheralskey?language=objc)
     pub static CBCentralManagerRestoredStatePeripheralsKey: &'static NSString;
 }
 
 extern "C" {
+    /// An array of service IDs for use when restoring state.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of service UUIDs (represented by [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) objects) containing all the services the central manager was scanning for at the time the system terminated the app.
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// CBUUID
@@ -194,28 +264,38 @@ extern "C" {
     /// See: centralManager:willRestoreState:
     ///
     /// See also: scanForPeripheralsWithServices:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstatescanserviceskey?language=objc)
     pub static CBCentralManagerRestoredStateScanServicesKey: &'static NSString;
 }
 
 extern "C" {
+    /// A dictionary of peripheral scan options for use when restoring state.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary). The dictionary contains all of the peripheral scan options in use by the central manager when the system terminated the app.
+    ///
+    ///
     /// An NSDictionary containing the scan options at the time the application was terminated by the system.
     ///
     ///
     /// See: centralManager:willRestoreState:
     ///
     /// See also: scanForPeripheralsWithServices:options:
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerrestoredstatescanoptionskey?language=objc)
     pub static CBCentralManagerRestoredStateScanOptionsKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption?language=objc)
+/// A set of options to use when registering for connection events.
 // NS_TYPED_ENUM
 pub type CBConnectionEventMatchingOption = NSString;
 
 extern "C" {
+    /// An array that represents service identifiers to match.
+    ///
+    /// ## Discussion
+    ///
+    /// A connected peer with any matching service UUIDs results in a call to [`centralManager:connectionEventDidOccur:forPeripheral:`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/centralmanager(_:connectioneventdidoccur:for:)).
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// CBUUID
@@ -233,13 +313,18 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption/serviceuuids?language=objc)
     pub static CBConnectionEventMatchingOptionServiceUUIDs:
         &'static CBConnectionEventMatchingOption;
 }
 
 extern "C" {
+    /// An array of UUID objects that represents peripherals to match.
+    ///
+    /// ## Discussion
+    ///
+    /// A connected peer with any matching peripheral UUIDs results in a call to [`centralManager:connectionEventDidOccur:forPeripheral:`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/centralmanager(_:connectioneventdidoccur:for:)).
+    ///
+    ///
     /// An NSArray of
     /// <code>
     /// NSUUID
@@ -260,13 +345,18 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption/peripheraluuids?language=objc)
     pub static CBConnectionEventMatchingOptionPeripheralUUIDs:
         &'static CBConnectionEventMatchingOption;
 }
 
 extern "C" {
+    /// A Boolean value that specifies whether the system automatically reconnects with a peripheral.
+    ///
+    /// ## Discussion
+    ///
+    /// After a peripheral device connects, this setting enables the system to initiate a connection to the peer device automatically when the link drops. The system uses [`centralManager:didDisconnectPeripheral:timestamp:isReconnecting:error:`](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerdelegate/centralmanager(_:diddisconnectperipheral:timestamp:isreconnecting:error:)) to notify the caller about the disconnection.
+    ///
+    ///
     /// An NSNumber (Boolean) indicating that the AutoReconnect is enabled for the peripheral is connected. After peripheral device is connected, this will allow
     /// the system to initiate connect to the peer device automatically when link is dropped. Caller will get notified about the disconnection with potential delay via
     /// {
@@ -279,7 +369,5 @@ extern "C" {
     ///  
     ///
     /// ```
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectperipheraloptionenableautoreconnect?language=objc)
     pub static CBConnectPeripheralOptionEnableAutoReconnect: &'static NSString;
 }

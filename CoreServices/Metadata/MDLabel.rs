@@ -11,8 +11,6 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// This is the type of a reference to an MDLabel.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabelref?language=objc)
 #[doc(alias = "MDLabelRef")]
 #[repr(C)]
 pub struct MDLabel {
@@ -29,7 +27,6 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for MDLabel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446579-mdlabelgettypeid?language=objc)
     #[doc(alias = "MDLabelGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -47,8 +44,6 @@ impl MDItem {
     /// Parameter `item`: The item to be interrogated.
     ///
     /// Returns: A CFArrayRef containing MDLabelRefs for the labels set on the item, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442606-mditemcopylabels?language=objc)
     #[doc(alias = "MDItemCopyLabels")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -71,8 +66,6 @@ impl MDItem {
     /// # Safety
     ///
     /// `label` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442559-mditemsetlabel?language=objc)
     #[doc(alias = "MDItemSetLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -95,8 +88,6 @@ impl MDItem {
     /// # Safety
     ///
     /// `label` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446067-mditemremovelabel?language=objc)
     #[doc(alias = "MDItemRemoveLabel")]
     #[cfg(feature = "MDItem")]
     #[inline]
@@ -110,16 +101,12 @@ impl MDItem {
 }
 
 /// These constants are used to specify a domain to MDLabelCreate().
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabeldomain?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLabelDomain(pub c_uint);
 impl MDLabelDomain {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabeldomain/kmdlabeluserdomain?language=objc)
     #[doc(alias = "kMDLabelUserDomain")]
     pub const UserDomain: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabeldomain/kmdlabellocaldomain?language=objc)
     #[doc(alias = "kMDLabelLocalDomain")]
     pub const LocalDomain: Self = Self(1);
 }
@@ -152,8 +139,6 @@ impl MDLabel {
     /// - `allocator` might not allow `None`.
     /// - `display_name` might not allow `None`.
     /// - `kind` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442614-mdlabelcreate?language=objc)
     #[doc(alias = "MDLabelCreate")]
     #[inline]
     pub unsafe fn new(
@@ -185,8 +170,6 @@ impl MDLabel {
     /// # Safety
     ///
     /// `name` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445456-mdlabelcopyattribute?language=objc)
     #[doc(alias = "MDLabelCopyAttribute")]
     #[inline]
     pub unsafe fn attribute(&self, name: Option<&CFString>) -> Option<CFRetained<CFType>> {
@@ -205,8 +188,6 @@ impl MDLabel {
     /// Parameter `label`: The label.
     ///
     /// Returns: A CFStringRef, or NULL on failure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445522-mdlabelcopyattributename?language=objc)
     #[doc(alias = "MDLabelCopyAttributeName")]
     #[inline]
     pub unsafe fn attribute_name(&self) -> Option<CFRetained<CFString>> {
@@ -222,8 +203,6 @@ impl MDLabel {
     /// Parameter `label`: The label.
     ///
     /// Returns: True if a label definition or override was successfully deleted.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449203-mdlabeldelete?language=objc)
     #[doc(alias = "MDLabelDelete")]
     #[inline]
     pub unsafe fn delete(&self) -> bool {
@@ -247,8 +226,6 @@ impl MDLabel {
     /// - `attrs` generic must be of the correct type.
     /// - `attrs` generic must be of the correct type.
     /// - `attrs` might not allow `None`.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449005-mdlabelsetattributes?language=objc)
     #[doc(alias = "MDLabelSetAttributes")]
     #[inline]
     pub unsafe fn set_attributes(&self, attrs: Option<&CFDictionary>) -> bool {
@@ -263,8 +240,6 @@ impl MDLabel {
 /// Copy the list of label kind strings.
 ///
 /// Returns: A CFArrayRef containing all of the label kind strings, or NULL on failure.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442887-mdcopylabelkinds?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -283,8 +258,6 @@ pub unsafe extern "C-unwind" fn MDCopyLabelKinds() -> Option<CFRetained<CFArray>
 /// # Safety
 ///
 /// `simple_query_string` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448237-mdcopylabelsmatchingexpression?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
     simple_query_string: Option<&CFString>,
@@ -307,8 +280,6 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsMatchingExpression(
 /// # Safety
 ///
 /// `kind` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444230-mdcopylabelswithkind?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
     kind: Option<&CFString>,
@@ -329,8 +300,6 @@ pub unsafe extern "C-unwind" fn MDCopyLabelsWithKind(
 /// # Safety
 ///
 /// `label_uuid` might not allow `None`.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447030-mdcopylabelwithuuid?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn MDCopyLabelWithUUID(
     label_uuid: Option<&CFUUID>,
@@ -390,53 +359,42 @@ extern "C" {
     ///
     /// This is a constant describing the label's visibility, either "Public" (kMDPublicVisibility) or "Private" (kMDPrivateVisibility).
     /// Type is a CFString. This attribute is read-only.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelbundleurl?language=objc)
     pub static kMDLabelBundleURL: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelcontentchangedate?language=objc)
     pub static kMDLabelContentChangeDate: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeldisplayname?language=objc)
     pub static kMDLabelDisplayName: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelicondata?language=objc)
     pub static kMDLabelIconData: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeliconuuid?language=objc)
     pub static kMDLabelIconUUID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelismutuallyexclusivesetmember?language=objc)
     pub static kMDLabelIsMutuallyExclusiveSetMember: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkind?language=objc)
     pub static kMDLabelKind: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelsetsfindercolor?language=objc)
     pub static kMDLabelSetsFinderColor: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeluuid?language=objc)
     pub static kMDLabelUUID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelvisibility?language=objc)
     pub static kMDLabelVisibility: Option<&'static CFString>;
 }
 
@@ -448,44 +406,33 @@ extern "C" {
     ///
     /// This key is used in the Info.plist file of a label bundle to specify the visibility of the labels defined by the bundle.
     /// The value is a CFString constant, either "Public" (kMDPublicVisibility) or "Private" (kMDPrivateVisibility).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkindismutuallyexclusivesetkey?language=objc)
     pub static kMDLabelKindIsMutuallyExclusiveSetKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelkindvisibilitykey?language=objc)
     pub static kMDLabelKindVisibilityKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdprivatevisibility?language=objc)
     pub static kMDPrivateVisibility: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdpublicvisibility?language=objc)
     pub static kMDPublicVisibility: Option<&'static CFString>;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been added. The notification object is the subject MDLabelRef. All label notifications are distributed to processes owned by the same uid that have initialized the Metadata framework label APIs.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabeladdednotification?language=objc)
     pub static kMDLabelAddedNotification: Option<&'static CFString>;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been changed. The notification object is the subject MDLabelRef. The label's new attributes can be retrieved using MDLabelCopyAttribute().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelchangednotification?language=objc)
     pub static kMDLabelChangedNotification: Option<&'static CFString>;
 }
 
 extern "C" {
     /// The name of the notification sent when a label has been deleted. The notification object is the subject MDLabelRef. The label's kMDLabelIconUUID, kMDLabelKind, kMDLabelKindBundleURL and kMDLabelUUID attributes can still be retrieved using MDLabelCopyAttribute(), and the label may still be passed to MDLabelCopyAttributeName().
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kmdlabelremovednotification?language=objc)
     pub static kMDLabelRemovedNotification: Option<&'static CFString>;
 }
 

@@ -7,19 +7,25 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/tablestatus?language=objc)
+/// Constants that describe the state of a printer information table stored by a printer object.
+///
+/// ## Overview
+///
+/// These constants are used by [`statusForTable:`](https://developer.apple.com/documentation/appkit/nsprinter/statusfortable:).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrinterTableStatus(pub NSUInteger);
 impl NSPrinterTableStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/tablestatus/ok?language=objc)
+    /// Printer table was found and is valid.
     #[doc(alias = "NSPrinterTableOK")]
     pub const OK: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/tablestatus/notfound?language=objc)
+    /// Printer table was not found.
     #[doc(alias = "NSPrinterTableNotFound")]
     pub const NotFound: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/tablestatus/error?language=objc)
+    /// Printer table is not valid.
     #[doc(alias = "NSPrinterTableError")]
     pub const Error: Self = Self(2);
 }
@@ -32,16 +38,22 @@ unsafe impl RefEncode for NSPrinterTableStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/typename?language=objc)
+/// The type you use to describe a printer’s make and model.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrinterTypeName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter/papername?language=objc)
+/// The type you use to specify the name of a type of paper.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSPrinterPaperName = NSString;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprinter?language=objc)
+    /// An object that describes a printer’s capabilities.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSPrinter`](https://developer.apple.com/documentation/appkit/nsprinter) provides information about a printer; it does not modify printer attributes or control a printing job. A printer object can be constructed by specifying either the printer name or the make and model of an available printer. Typically, Cocoa apps don’t create [`NSPrinter`](https://developer.apple.com/documentation/appkit/nsprinter) objects; instead, the printing system uses these objects to support the printing jobs and when it shows users a list of printers.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPrinter;

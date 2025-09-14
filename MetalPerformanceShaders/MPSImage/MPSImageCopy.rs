@@ -9,6 +9,15 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A class that copies image data to a matrix.
+    ///
+    /// ## Overview
+    ///
+    /// This kernel copies image data to a [`MPSMatrix`](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrix) object. The image data is stored in a row of a matrix.  The [`dataLayout`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecopytomatrix/datalayout) specifies the order in which the feature channels in the image get stored in the matrix.  If the [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) stores a batch of images, the images are copied into multiple rows, one row per image.
+    ///
+    /// The number of elements in a row in the matrix must be greater than the image width multiplied its height multiplied by the number of [`featureChannels`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage/featurechannels) in the image.
+    ///
+    ///
     /// The MPSImageCopyToMatrix copies image data to a MPSMatrix.
     /// The image data is stored in a row of a matrix.  The dataLayout
     /// specifies the order in which the feature channels in the MPSImage
@@ -17,8 +26,6 @@ extern_class!(
     ///
     /// The number of elements in a row in the matrix must be >= image width *
     /// image height * number of featureChannels in the image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecopytomatrix?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
@@ -240,10 +247,9 @@ impl MPSImageCopyToMatrix {
 }
 
 extern_class!(
+    /// A kernel that copies matrix data to a Metal Performance Shaders image.
     /// The MPSMatrixCopyToImage copies matrix data to a MPSImage.
     /// The operation is the reverse of MPSImageCopyToMatrix.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopytoimage?language=objc)
     #[unsafe(super(MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]

@@ -8,7 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller?language=objc)
+    /// A controller that accesses user preference information for your app from the user’s defaults database.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSUserDefaultsController`](https://developer.apple.com/documentation/appkit/nsuserdefaultscontroller) is a Cocoa bindings–compatible controller class. Properties of the shared instance of this class can be bound to user interface elements to access and modify values stored in [`NSUserDefaults`](https://developer.apple.com/documentation/foundation/userdefaults).
+    ///
+    ///
     #[unsafe(super(NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

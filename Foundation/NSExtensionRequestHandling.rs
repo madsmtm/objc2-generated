@@ -7,7 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionrequesthandling?language=objc)
+    /// The interface an app extension uses to respond to a request from a host app.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSExtensionRequestHandling`](https://developer.apple.com/documentation/foundation/nsextensionrequesthandling) protocol provides a life cycle hook into an app extension. An extension’s principal object can implement this protocol and use [`beginRequestWithExtensionContext:`](https://developer.apple.com/documentation/foundation/nsextensionrequesthandling/beginrequest(with:)) to keep track of the request from a host app.
+    ///
+    ///
     pub unsafe trait NSExtensionRequestHandling: NSObjectProtocol {
         #[cfg(feature = "NSExtensionContext")]
         #[unsafe(method(beginRequestWithExtensionContext:))]

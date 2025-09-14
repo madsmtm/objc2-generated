@@ -7,7 +7,29 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore?language=objc)
+    /// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
+    ///
+    /// ## Overview
+    ///
+    /// Use the iCloud key-value store to make preference, configuration, and app-state data available to every instance of your app on every device connected to a user’s iCloud account. You can store scalar values such as `BOOL`, as well as values containing any of the property list object types: [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber), [`NSString`](https://developer.apple.com/documentation/foundation/nsstring), [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate), [`NSData`](https://developer.apple.com/documentation/foundation/nsdata), [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray), and [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary).
+    ///
+    /// Changes your app writes to the key-value store object are initially held in memory, then written to disk by the system at appropriate times. If you write to the key-value store object when the user is not signed into an iCloud account, the data is stored locally until the next synchronization opportunity. When the user signs into an iCloud account, the system automatically reconciles your local, on-disk keys and values with those on the iCloud server.
+    ///
+    /// Any device running your app, and attached to the same iCloud account, can upload key-value changes to iCloud. To keep track of such changes, register for the [`NSUbiquitousKeyValueStoreDidChangeExternallyNotification`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/didchangeexternallynotification) notification during app launch. Then, obtain the keys and values from iCloud (which may be newer than those that are local) by calling the [`synchronize`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/synchronize()) method. You need not call the [`synchronize`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/synchronize()) method again during your app’s life cycle, unless your app design requires fast-as-possible upload to iCloud after you change a value.
+    ///
+    /// For more information on adopting key-value storage in your app, see [Designing for Key-Value Data in iCloud](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForKey-ValueDataIniCloud.html#//apple_ref/doc/uid/TP40012094-CH7) in [iCloud Design Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094).
+    ///
+    /// Avoid using this class for data that is essential to your app’s behavior when offline; instead, store such data directly into the local user defaults database.
+    ///
+    /// The total amount of space available in your app’s key-value store, for a given user, is 1 MB. There is a per-key value size limit of 1 MB, and a maximum of 1024 keys. If you attempt to write data that exceeds these quotas, the write attempt fails and no change is made to your iCloud key-value storage. In this scenario, the system posts the  [`NSUbiquitousKeyValueStoreDidChangeExternallyNotification`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/didchangeexternallynotification) notification with a change reason of [`NSUbiquitousKeyValueStoreQuotaViolationChange`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange).
+    ///
+    /// The maximum length for key strings for the iCloud key-value store is 64 bytes using UTF8 encoding. Attempting to write a value to a longer key name results in a runtime error.
+    ///
+    /// To use this class, you must distribute your app through the App Store or Mac App Store, and you must request the `com.apple.developer.ubiquity-kvstore-identifier` entitlement in your Xcode project. For more on this, see [Configuring Common Key-Value Storage for Multiple Apps](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/iCloudFundametals.html#//apple_ref/doc/uid/TP40012094-CH6-SW26) in [iCloud Design Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012094).
+    ///
+    /// This class is not meant to be subclassed.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUbiquitousKeyValueStore;
@@ -156,29 +178,85 @@ impl DefaultRetained for NSUbiquitousKeyValueStore {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/didchangeexternallynotification?language=objc)
+    /// Posted when the value of one or more keys in the local key-value store changed due to incoming data pushed from iCloud.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is sent only upon a change received from iCloud; it is not sent when your app sets a value.
+    ///
+    /// The user info dictionary can contain the reason for the notification as well as a list of which values changed, as follows:
+    ///
+    /// - The value of the [`NSUbiquitousKeyValueStoreChangeReasonKey`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey) key, when present, indicates why the key-value store changed. Its value is one of the constants in [Change Reason Values](https://developer.apple.com/documentation/foundation/1433687-change-reason-values).
+    ///
+    /// - The value of the [`NSUbiquitousKeyValueStoreChangedKeysKey`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey), when present, is an array of strings, each the name of a key whose value changed.
+    ///
+    /// The notification object is the [`NSUbiquitousKeyValueStore`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore) object whose contents changed.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Early in your app’s launch sequence, register for the [`NSUbiquitousKeyValueStoreDidChangeExternallyNotification`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/didchangeexternallynotification) notification using the [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter) class. Specify the default key-value store object (obtained using the [`defaultStore`](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/default) class method) as the object whose notifications you want to receive.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousKeyValueStoreDidChangeExternallyNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangereasonkey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key indicates the reason the key-value store changed, as described in [Change Reason Values](https://developer.apple.com/documentation/foundation/1433687-change-reason-values).
+    ///
+    /// An [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object with an integer value.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSUbiquitousKeyValueStoreChangeReasonKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorechangedkeyskey?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an array of [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) objects, where each is the name of a key that changed in the key-value store.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     pub static NSUbiquitousKeyValueStoreChangedKeysKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreserverchange?language=objc)
+///
+/// ## Discussion
+///
+/// A value changed in iCloud. This occurs when another device, running another instance of your app and attached to the same iCloud account, uploads a new value.
+///
+///
 pub const NSUbiquitousKeyValueStoreServerChange: NSInteger = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreinitialsyncchange?language=objc)
+///
+/// ## Discussion
+///
+/// Your attempt to write to key-value storage was discarded because an initial download from iCloud has not yet happened. That is, before you can first write key-value data, the system must ensure that your app’s local, on-disk cache matches the truth in iCloud.
+///
+/// Initial downloads happen the first time a device is connected to an iCloud account, and when a user switches their primary iCloud account.
+///
+///
 pub const NSUbiquitousKeyValueStoreInitialSyncChange: NSInteger = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange?language=objc)
+///
+/// ## Discussion
+///
+/// Your app’s key-value store has exceeded its space quota on the iCloud server.
+///
+///
 pub const NSUbiquitousKeyValueStoreQuotaViolationChange: NSInteger = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoreaccountchange?language=objc)
+///
+/// ## Discussion
+///
+/// The user has changed the primary iCloud account. The keys and values in the local key-value store have been replaced with those from the new account, regardless of the relative timestamps.
+///
+///
 pub const NSUbiquitousKeyValueStoreAccountChange: NSInteger = 3;

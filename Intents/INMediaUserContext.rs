@@ -7,25 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum?language=objc)
+/// Constants that describe the current description status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaUserContextSubscriptionStatus(pub NSInteger);
 impl INMediaUserContextSubscriptionStatus {
+    /// A code that indicates the app doesn’t offer subscriptions or the subscription status is unavailable.
     /// The app does not offer subscriptions, or the subscription status is unavailable
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/unknown?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusUnknown")]
     pub const Unknown: Self = Self(0);
+    /// A code that indicates the user isn’t a subscriber, but subscriptions are available.
     /// The user is not a subscriber, but subscriptions are offered
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/notsubscribed?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusNotSubscribed")]
     pub const NotSubscribed: Self = Self(1);
+    /// A code that indicates the user currently has a subscription.
     /// The user is registered with a subscription (free, trial, or paid)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext/subscriptionstatus-swift.enum/subscribed?language=objc)
     #[doc(alias = "INMediaUserContextSubscriptionStatusSubscribed")]
     pub const Subscribed: Self = Self(2);
 }
@@ -39,7 +36,20 @@ unsafe impl RefEncode for INMediaUserContextSubscriptionStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediausercontext?language=objc)
+    /// An object that provides user information to Siri.
+    ///
+    /// ## Overview
+    ///
+    /// When your media app launches, create an [`INMediaUserContext`](https://developer.apple.com/documentation/intents/inmediausercontext). Provide the number of items the user has in their library and indicate whether the user has a current paid subscription. Then call [`becomeCurrent`](https://developer.apple.com/documentation/intents/inusercontext/becomecurrent()) to share this user context with the system. The following code listing shows how to set the current context for a user with a paid subscription and a few hundred items in their library:
+    ///
+    /// ```swift
+    /// let context = INMediaUserContext()
+    /// context.numberOfLibraryItems = 345
+    /// context.subscriptionStatus = .subscribed
+    /// context.becomeCurrent()
+    /// ```
+    ///
+    ///
     #[unsafe(super(INUserContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INUserContext")]

@@ -6,13 +6,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistconfirmationreason?language=objc)
+/// Constants that indicate the reason for confirming a task list.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct INAddTasksTargetTaskListConfirmationReason(pub NSInteger);
 impl INAddTasksTargetTaskListConfirmationReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistconfirmationreason/listshouldbecreated?language=objc)
+    /// A confirmation reason that indicates the app should create the task list.
     #[doc(alias = "INAddTasksTargetTaskListConfirmationReasonListShouldBeCreated")]
     pub const ListShouldBeCreated: Self = Self(1);
 }
@@ -26,7 +26,15 @@ unsafe impl RefEncode for INAddTasksTargetTaskListConfirmationReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistresolutionresult?language=objc)
+    /// A resolution result that adds tasks to a target task list.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INAddTasksTargetTaskListResolutionResult`](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistresolutionresult) object when resolving parameters containing an [`INAddTasksTargetTaskListConfirmationReason`](https://developer.apple.com/documentation/intents/inaddtaskstargettasklistconfirmationreason) value. Use the creation method that best reflects your ability to successfully resolve the parameter.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INTaskListResolutionResult, INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

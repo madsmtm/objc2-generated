@@ -12,16 +12,13 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilabelvibrancy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILabelVibrancy(pub NSInteger);
 impl UILabelVibrancy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilabelvibrancy/none?language=objc)
     #[doc(alias = "UILabelVibrancyNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilabelvibrancy/automatic?language=objc)
     #[doc(alias = "UILabelVibrancyAutomatic")]
     pub const Automatic: Self = Self(1);
 }
@@ -35,7 +32,77 @@ unsafe impl RefEncode for UILabelVibrancy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilabel?language=objc)
+    /// A view that displays one or more lines of informational text.
+    ///
+    /// ## Overview
+    ///
+    /// You can configure the overall appearance of a label’s text, and use attributed strings to customize the appearance of substrings within the text. Add and customize labels in your interface programmatically, or with the Attributes inspector in Interface Builder.
+    ///
+    /// Follow these steps to add a label to your interface:
+    ///
+    /// - Supply either a string or an attributed string that represents the content.
+    ///
+    /// - If you’re using a nonattributed string, configure the appearance of the label.
+    ///
+    /// - Set up Auto Layout rules to govern the size and position of the label in your interface.
+    ///
+    /// - Provide accessibility information and localized strings.
+    ///
+    /// ### Customize the label’s appearance
+    ///
+    /// You provide the content for a label by assigning either a [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object to the [`text`](https://developer.apple.com/documentation/uikit/uilabel/text) property, or an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) object to the [`attributedText`](https://developer.apple.com/documentation/uikit/uilabel/attributedtext) property. The label displays the property set most recently.
+    ///
+    /// The [`attributedText`](https://developer.apple.com/documentation/uikit/uilabel/attributedtext) property allows you to control the appearance of individual characters and groups of characters, using the [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) API. The following image shows a label displaying an [`NSAttributedString`](https://developer.apple.com/documentation/foundation/nsattributedstring) that includes attributes to customize the font, color, and alignment of the string.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/64349ad1207f8611a6883df0e18ff4d5/media-2759882~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/40ee9fac5632a81fcc433d85594290bd/media-2759882%402x.png 2x" />
+    ///     <img alt="A screenshot of a label showing text aligned to the left and formatted with different attributes. The first attribute changes the text color of the second word to a color different from the rest of the text. The second attribute applies a bold font to the fifth word. The third and final attribute highlights the last four words that the label displays. The display text ends with an ellipsis indicating that the label truncates the full text at the end due to its line break mode. " src="https://docs-assets.developer.apple.com/published/64349ad1207f8611a6883df0e18ff4d5/media-2759882~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// If you want to format the label’s text in a uniform fashion, set the [`text`](https://developer.apple.com/documentation/uikit/uilabel/text) property to an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object containing the content, and configure the [`font`](https://developer.apple.com/documentation/uikit/uilabel/font), [`textColor`](https://developer.apple.com/documentation/uikit/uilabel/textcolor), [`textAlignment`](https://developer.apple.com/documentation/uikit/uilabel/textalignment), and [`lineBreakMode`](https://developer.apple.com/documentation/uikit/uilabel/linebreakmode) properties. The following image shows a label displaying an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) with a custom font, color, and alignment.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/d1fb32e72adc34db9c4a450ce745ce3a/media-2759883~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/056a9ff6d397d84c263077990f1cb109/media-2759883%402x.png 2x" />
+    ///     <img alt="A screenshot of a label displaying text with a center alignment and truncated in the middle, showing the beginning and ending of the full text, separated with an ellipsis." src="https://docs-assets.developer.apple.com/published/d1fb32e72adc34db9c4a450ce745ce3a/media-2759883~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// If you set these appearance properties on a label that displays the content of the [`attributedText`](https://developer.apple.com/documentation/uikit/uilabel/attributedtext) property, the label overrides the appropriate attributes and displays the attributed string with a uniform appearance. The following image shows the label from the first image with the [`textColor`](https://developer.apple.com/documentation/uikit/uilabel/textcolor) property set to green.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/cab193093e8b1614a8ac201ceab8969f/media-2759884~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/8e72b904f736047642dea7ce807b13b9/media-2759884%402x.png 2x" />
+    ///     <img alt="A screenshot of a label showing left aligned text. The color of the text is green." src="https://docs-assets.developer.apple.com/published/cab193093e8b1614a8ac201ceab8969f/media-2759884~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Specify the maximum number of lines for the label to use when laying out the text with the [`numberOfLines`](https://developer.apple.com/documentation/uikit/uilabel/numberoflines) property. Setting a value of `0` allows the label to use as many lines as necessary to lay out the text within the label’s width. Use the [`lineBreakMode`](https://developer.apple.com/documentation/uikit/uilabel/linebreakmode) property to control how the label splits the text into multiple lines, and the truncation behavior associated with the final line.
+    ///
+    /// Use Auto Layout to position and optionally size the label. The intrinsic content size for a label defaults to the size that displays the entirety of the content on a single line. If you provide Auto Layout constraints that define the width of the label but not the height, the label’s intrinsic content size adjusts the height to display the text completely.
+    ///
+    /// When the label has its size completely defined externally, you can specify how it handles the situation when its content doesn’t fit within the bounds. To reduce the font size, set the [`adjustsFontSizeToFitWidth`](https://developer.apple.com/documentation/uikit/uilabel/adjustsfontsizetofitwidth) property to [`true`](https://developer.apple.com/documentation/swift/true) and set the [`minimumScaleFactor`](https://developer.apple.com/documentation/uikit/uilabel/minimumscalefactor) property to a value between `0` and `1`. The latter of these properties represents how much smaller than the requested font size the label scales the text. Setting the [`allowsDefaultTighteningForTruncation`](https://developer.apple.com/documentation/uikit/uilabel/allowsdefaulttighteningfortruncation) property to [`true`](https://developer.apple.com/documentation/swift/true) instructs the label to reduce the spacing between characters before truncating the string. The following image shows a label that uses [`minimumScaleFactor`](https://developer.apple.com/documentation/uikit/uilabel/minimumscalefactor) and [`adjustsFontSizeToFitWidth`](https://developer.apple.com/documentation/uikit/uilabel/adjustsfontsizetofitwidth) to display the content of an entire string that would otherwise have overflowed.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/b3d25a2367f31b5385311fc3a7f294f0/media-2759885~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/ef03caba2711ad3ab5f90f6569c85cce/media-2759885%402x.png 2x" />
+    ///     <img alt="A screenshot showing two labels containing the same text, displayed side by side. The label on the left side truncates the text at the end. The label on the right side displays the full text in an adjusted, smaller font that fits within the display area of the label." src="https://docs-assets.developer.apple.com/published/ef03caba2711ad3ab5f90f6569c85cce/media-2759885%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// ### Design labels for a wide audience
+    ///
+    /// Labels provide valuable information to your users. To make sure that information reaches a wide audience, internationalize text and support accessibility in your labels. For information about how to implement internationalization and localization, see [Internationalization](https://developer.apple.com/internationalization/). Labels are accessible to VoiceOver by default. The default accessibility traits for a label are Static Text and User Interaction Enabled. For more information, see [Supporting VoiceOver in your app](https://developer.apple.com/documentation/uikit/supporting-voiceover-in-your-app). To learn about using text styles to support Dynamic Type, see [Scaling Fonts Automatically](https://developer.apple.com/documentation/uikit/scaling-fonts-automatically).
+    ///
+    /// For design guidance, see [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/components/layout-and-organization/labels/).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

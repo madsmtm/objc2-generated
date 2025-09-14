@@ -13,7 +13,37 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitoolbar?language=objc)
+    /// A control that displays one or more buttons along an edge of your interface.
+    ///
+    /// ## Overview
+    ///
+    /// To create toolbar items, use the [`UIBarButtonItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem) class. To add toolbar items to a toolbar, use the [`setItems:animated:`](https://developer.apple.com/documentation/uikit/uitoolbar/setitems(_:animated:)) method.
+    ///
+    /// Toolbar images that represent normal and highlighted states of an item derive from the image you set using the inherited [`image`](https://developer.apple.com/documentation/uikit/uibaritem/image) property from the [`UIBarItem`](https://developer.apple.com/documentation/uikit/uibaritem) class. The toolbar’s [`tintColor`](https://developer.apple.com/documentation/uikit/uitoolbar/tintcolor) colors the image.
+    ///
+    /// If you need radio button style controls, use the [`UITabBar`](https://developer.apple.com/documentation/uikit/uitabbar) class instead of [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar).
+    ///
+    /// When the system presents the toolbar with Liquid Glass:
+    ///
+    /// - Don’t apply custom backgrounds or appearances to [`UIToolbar`](https://developer.apple.com/documentation/uikit/uitoolbar). Instead, let the system determine the background appearance.
+    ///
+    /// - Don’t use `UIToolbar` directly when you present your view controller with a [`UINavigationController`](https://developer.apple.com/documentation/uikit/uinavigationcontroller). Instead, set [`toolbarItems`](https://developer.apple.com/documentation/uikit/uiviewcontroller/toolbaritems) to get system-provided transitions and animations in your toolbar.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// In iOS 18 and earlier, you use the methods listed in [Customizing appearance](https://developer.apple.com/documentation/uikit/uitoolbar#customizing-appearance) to customize the appearance of toolbars. You send the setter messages to the appearance proxy (`UIToolbar.appearance()` in Swift or `[UIToolbar appearance]` in Objective-C) to customize all toolbars, or to a specific `UIToolbar` instance. If a property is dependent on the bar metrics, specify a value for [`UIBarMetricsDefault`](https://developer.apple.com/documentation/uikit/uibarmetrics/default) as well as for [`UIBarMetricsCompact`](https://developer.apple.com/documentation/uikit/uibarmetrics/compact).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Split the toolbar’s shared background
+    ///
+    /// By default, the system organizes all of the buttons you provide into one grouping that shares a background in the toolbar. To split buttons into different groupings with separate shared backgrounds, add [`fixedSpaceItem`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/fixedspace()) between buttons to indicate where you want to split the shared background.
+    ///
+    /// For a button that finalizes or completes a task, set the button’s style to [`UIBarButtonItemStyleProminent`](https://developer.apple.com/documentation/uikit/uibarbuttonitem/style-swift.enum/prominent) so that the system can avoid visually grouping the button with other buttons.
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -312,7 +342,13 @@ impl UIToolbar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitoolbardelegate?language=objc)
+    /// The interface that toolbar delegate objects implement to manage the toolbar behavior.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol declares no methods of its own, but conforms to the [`UIBarPositioningDelegate`](https://developer.apple.com/documentation/uikit/uibarpositioningdelegate) protocol to support the positioning of a toolbar when it’s moved to a window.
+    ///
+    ///
     #[cfg(feature = "UIBarCommon")]
     pub unsafe trait UIToolbarDelegate: UIBarPositioningDelegate + MainThreadOnly {}
 );

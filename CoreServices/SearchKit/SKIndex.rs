@@ -10,7 +10,20 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexref?language=objc)
+/// Defines an opaque data type representing an index.
+///
+/// ## Discussion
+///
+/// A Search Kit index object contains the textual contents of one or more documents, as well as document URL objects (SKDocumentRefs) representing those documents’ locations.
+///
+/// To create a new disk-based Search Kit index object, use [`SKIndexCreateWithURL`](https://developer.apple.com/documentation/coreservices/1446111-skindexcreatewithurl). To create a memory-based index, use [`SKIndexCreateWithMutableData`](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata). For other operations on indexes, see REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1654608", kind: "article", title: "Creating, Opening, and Closing Indexes", url: "/documentation/coreservices/search_kit#1654608", abstract_: [], role: Some("task") } and REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1654733", kind: "article", title: "Managing Indexes", url: "/documentation/coreservices/search_kit#1654733", abstract_: [], role: Some("task") }. Also seeREFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/coreservices/search_kit#1655469", kind: "article", title: "Fast Asynchronous Searching", url: "/documentation/coreservices/search_kit#1655469", abstract_: [], role: Some("task") }.
+///
+/// <a id="1681550"></a>
+/// ### Special Considerations
+///
+/// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with SKIndex objects. In a garbage-collected environment, you must use [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose) to dispose of an SKIndex object.
+///
+///
 #[doc(alias = "SKIndexRef")]
 #[repr(C)]
 pub struct SKIndex {
@@ -27,7 +40,22 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450223-skindexgettypeid?language=objc)
+    /// Gets the type identifier for Search Kit indexes.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) object containing the type identifier for the [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit represents indexes with the [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) opaque type. If your code needs to determine whether a particular data type is an index, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Never hard-code the index type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKIndexGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -38,7 +66,13 @@ unsafe impl ConcreteType for SKIndex {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexdocumentiteratorref?language=objc)
+/// Defines an opaque data type representing an index-based document iterator.
+///
+/// ## Discussion
+///
+/// A Search Kit document iterator lets your application loop through all the document URL objects owned by a given parent document URL object. To create an iterator, use [`SKIndexDocumentIteratorCreate`](https://developer.apple.com/documentation/coreservices/1446189-skindexdocumentiteratorcreate). To get a copy of the next document in the set owned by the iterator, use [`SKIndexDocumentIteratorCopyNext`](https://developer.apple.com/documentation/coreservices/1442212-skindexdocumentiteratorcopynext).
+///
+///
 #[doc(alias = "SKIndexDocumentIteratorRef")]
 #[repr(C)]
 pub struct SKIndexDocumentIterator {
@@ -55,7 +89,24 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for SKIndexDocumentIterator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443022-skindexdocumentiteratorgettypeid?language=objc)
+    /// Gets the type identifier for Search Kit document iterators.
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFTypeID object containing the type identifier for the SKIndexDocumentIterator opaque type.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit represents document iterators with the [`SKIndexDocumentIteratorRef`](https://developer.apple.com/documentation/coreservices/skindexdocumentiteratorref) opaque type. If your code needs to determine whether a particular data type is a document iterator, you can use this function along with the [`CFGetTypeID(_:)`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function and perform a comparison.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// Never hard-code the document iterator type ID because it can change from one release of macOS to another.
+    ///
+    ///
     #[doc(alias = "SKIndexDocumentIteratorGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -66,21 +117,21 @@ unsafe impl ConcreteType for SKIndexDocumentIterator {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype?language=objc)
+/// Specifies the category of an index.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKIndexType(pub c_uint);
 impl SKIndexType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexunknown?language=objc)
+    /// Specifies an unknown index type.
     #[doc(alias = "kSKIndexUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexinverted?language=objc)
+    /// Specifies an inverted index, mapping terms to documents.
     #[doc(alias = "kSKIndexInverted")]
     pub const Inverted: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexvector?language=objc)
+    /// Specifies a vector index, mapping documents to terms.
     #[doc(alias = "kSKIndexVector")]
     pub const Vector: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype/kskindexinvertedvector?language=objc)
+    /// Specifies an index type with all the capabilities of an inverted and a vector index.
     #[doc(alias = "kSKIndexInvertedVector")]
     pub const InvertedVector: Self = Self(3);
 }
@@ -95,21 +146,21 @@ unsafe impl RefEncode for SKIndexType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate?language=objc)
+/// The indexing state of a document.
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKDocumentIndexState(pub c_uint);
 impl SKDocumentIndexState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstatenotindexed?language=objc)
+    /// Specifies that the document is not indexed.
     #[doc(alias = "kSKDocumentStateNotIndexed")]
     pub const StateNotIndexed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstateindexed?language=objc)
+    /// Specifies that the document is indexed.
     #[doc(alias = "kSKDocumentStateIndexed")]
     pub const StateIndexed: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstateaddpending?language=objc)
+    /// Specifies that the document is not in the index but will be added after the index is flushed or closed.
     #[doc(alias = "kSKDocumentStateAddPending")]
     pub const StateAddPending: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate/kskdocumentstatedeletepending?language=objc)
+    /// Specifies that the document is in the index but will be deleted after the index is flushed or closed.
     #[doc(alias = "kSKDocumentStateDeletePending")]
     pub const StateDeletePending: Self = Self(3);
 }
@@ -125,7 +176,41 @@ unsafe impl RefEncode for SKDocumentIndexState {
 }
 
 impl SKIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446111-skindexcreatewithurl?language=objc)
+    /// Creates a named index in a file whose location is specified with a CFURL object.
+    ///
+    /// Parameters:
+    /// - inURL: The location of the index.
+    ///
+    /// - inIndexName: The name of the index. If you call this function with `inIndexName` set to `NULL`, Search Kit assigns the index the default index name `IADefaultIndex`. If you then attempt to create a second index in the same file without assigning a name, no second index is created and this function returns `NULL`. Search Kit does not currently support retrieving index names from an index.
+    ///
+    /// - inIndexType: The index type. See [`SKIndexType`](https://developer.apple.com/documentation/coreservices/skindextype).
+    ///
+    /// - inAnalysisProperties: The text analysis properties dictionary, which optionally sets the minimum term length, stopwords, term substitutions, maximum unique terms to index, and proximity support (for phrase-based searches) when creating the index. See [Text Analysis Keys](https://developer.apple.com/documentation/coreservices/search_kit/text_analysis_keys). To get the analysis properties of an index, use the [`SKIndexGetAnalysisProperties`](https://developer.apple.com/documentation/coreservices/1443461-skindexgetanalysisproperties) function. The `inAnalysisProperties` parameter can be `NULL`, in which case Search Kit applies the default dictionary, which is `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    ///  A unique reference to the newly created index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `SKIndexCreateWithURL` creates an index in a file. Search Kit indexes are initially empty. Use this function when your application needs persistent storage of an index. To create a memory-based, nonpersistent index, use [`SKIndexCreateWithMutableData`](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata).
+    ///
+    /// A file can contain more than one index. To add a new index to an existing file, use the same value for `inURL` and supply a new name for `inIndexName`.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// When your application no longer needs the index, dispose of it by calling [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose).
+    ///
+    /// <a id="1680604"></a>
+    /// ### Special Considerations
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -156,7 +241,37 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449017-skindexopenwithurl?language=objc)
+    /// Opens an existing, named index stored in a file whose location is specified with a CFURL object.
+    ///
+    /// Parameters:
+    /// - inURL: The location of the index.
+    ///
+    /// - inIndexName: The name of the index. Can be `NULL`, in which case this function attempts to open the index with the default name of `IADefaultIndex`.
+    ///
+    /// - inWriteAccess: A Boolean value indicating whether the index is open for updating. To open an index for searching only, pass `false` (`0` or `kCFBoolenFalse`). To open it for searching and updating, pass `true` (`1` or `kCFBooleanTrue`).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The named index, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `inIndexName` is `NULL` and `inData` does not contain an index with the default name, this function returns `NULL`.
+    ///
+    /// A call to `SKIndexOpenWithURL` retains the opened index. When your application no longer needs the index, dispose of it by calling [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose).
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// <a id="1680695"></a>
+    /// ### Special Considerations
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -180,7 +295,41 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata?language=objc)
+    /// Creates a named index stored in a `CFMutableDataRef` object.
+    ///
+    /// Parameters:
+    /// - inData: An empty [`CFMutableData`](https://developer.apple.com/documentation/corefoundation/cfmutabledata) object to contain the index being created.
+    ///
+    /// - inIndexName: The name of the index. If you call this function with `inIndexName` set to `NULL`, Search Kit assigns the index the default index name `IADefaultIndex`. If you then attempt to create a second index in the same file without assigning a name, no second index is created and this function returns `NULL`. Search Kit does not support retrieving index names from an index.
+    ///
+    /// - inIndexType: The index type. See [`SKIndexType`](https://developer.apple.com/documentation/coreservices/skindextype).
+    ///
+    /// - inAnalysisProperties: The text analysis properties dictionary, which optionally sets the minimum term length, stopwords, term substitutions, maximum unique terms to index, and proximity support (for phrase-based searches) when creating the index. See [Text Analysis Keys](https://developer.apple.com/documentation/coreservices/search_kit/text_analysis_keys). The `inAnalysisProperties` parameter can be `NULL`, in which case Search Kit applies the default dictionary, which is `NULL`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    ///  The newly created index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// [`SKIndexCreateWithMutableData`](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata) creates an index in memory as a [`CFMutableData`](https://developer.apple.com/documentation/corefoundation/cfmutabledata) object. Search Kit indexes are initially empty. A memory-based index is useful for quick searching and when your application doesn’t need persistent storage. To create a disk-based, persistent index, use the [`SKIndexCreateWithURL`](https://developer.apple.com/documentation/coreservices/1446111-skindexcreatewithurl) function.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// This function retains the data object you provide in the `inData` parameter.
+    ///
+    /// When your application no longer needs the index, dispose of it by calling [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose).
+    ///
+    /// <a id="1680638"></a>
+    /// ### Special Considerations
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -216,7 +365,37 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446398-skindexopenwithdata?language=objc)
+    /// Opens an existing, named index for searching only.
+    ///
+    /// Parameters:
+    /// - inData: The index to open.
+    ///
+    /// - inIndexName: The name of the index. Can be `NULL`, in which case this function attempts to open the index with the default name of `IADefaultIndex`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    ///  The named index, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An index opened by `SKIndexOpenWithData` can be searched but not updated. To open an index for updating, use [`SKIndexOpenWithMutableData`](https://developer.apple.com/documentation/coreservices/1444201-skindexopenwithmutabledata).
+    ///
+    /// If `inIndexName` is `NULL` and `inData` does not contain an index with the default name, this function returns `NULL`.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// A call to `SKIndexOpenWithData` retains the opened index. When your application no longer needs the index, dispose of it by calling [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose).
+    ///
+    /// <a id="1680655"></a>
+    /// ### Special Considerations
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -238,7 +417,37 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444201-skindexopenwithmutabledata?language=objc)
+    /// Opens an existing, named index for searching and updating.
+    ///
+    /// Parameters:
+    /// - inData: The index to open.
+    ///
+    /// - inIndexName: The name of the index. Can be `NULL`, in which case this function attempts to open the index with the default name of `IADefaultIndex`.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The named index, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An index opened by `SKIndexOpenWithMutableData` may be searched or updated. To open an index for search only, use the [`SKIndexOpenWithData`](https://developer.apple.com/documentation/coreservices/1446398-skindexopenwithdata) function.
+    ///
+    /// If `inIndexName` is `NULL` and `inData` does not contain an index with the default name, this function returns `NULL`.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// A call to `SKIndexOpenWithMutableData` retains the opened index. When your application no longer needs the index, dispose of it by calling [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose).
+    ///
+    /// <a id="1680673"></a>
+    /// ### Special Considerations
+    ///
+    /// You cannot use [`CFMakeCollectable`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521163-cfmakecollectable) with [`SKIndexRef`](https://developer.apple.com/documentation/coreservices/skindexref) objects.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -260,7 +469,30 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450667-skindexflush?language=objc)
+    /// Invokes all pending updates associated with an index and commits them to backing store.
+    ///
+    /// Parameters:
+    /// - inIndex: The index you want to update and commit to backing store.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` on success, or `false` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// An on-disk or memory-based index becomes stale when your application updates it by adding or removing a document entry. A search on an index in such a state won’t have access to the nonflushed updates. The solution is to call this function before searching. `SKIndexFlush` flushes index-update information and commits memory-based index caches to disk, in the case of an on-disk index, or to a memory object, in the case of a memory-based index. In both cases, calling this function makes the state of the index consistent.
+    ///
+    /// Before searching an index, always call `SKIndexFlush`, even though the flush process may take up to several seconds. If there are no updates to commit, a call to `SKIndexFlush` does nothing and takes minimal time.
+    ///
+    /// A new Search Kit index does not have term IDs until it is flushed.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexFlush")]
     #[inline]
     pub unsafe fn flush(&self) -> bool {
@@ -271,7 +503,23 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus?language=objc)
+    /// Not recommended. Sets the memory size limit for updates to an index, measured in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// This function is rarely needed and is likely to be deprecated. Search Kit keeps track of index updates that are not yet committed to disk. Apple recommends using the default memory size limit for index updates, which is currently 2 million bytes.
+    ///
+    /// <a id="1680957"></a>
+    /// ### Special Considerations
+    ///
+    /// Apple recommends use of the [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) function instead of [`SKIndexSetMaximumBytesBeforeFlush`](https://developer.apple.com/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus).
+    ///
+    /// <a id="1680971"></a>
+    /// ### Version-Notes
+    ///
+    /// In OS X v10.3, the default memory size limit for index updates was 1 million bytes.
+    ///
+    ///
     #[doc(alias = "SKIndexSetMaximumBytesBeforeFlush")]
     #[inline]
     pub unsafe fn set_maximum_bytes_before_flush(&self, in_bytes_for_update: CFIndex) {
@@ -281,7 +529,13 @@ impl SKIndex {
         unsafe { SKIndexSetMaximumBytesBeforeFlush(self, in_bytes_for_update) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445329-skindexgetmaximumbytesbeforeflus?language=objc)
+    /// Not recommended. Gets the memory size limit for updates to an index, measured in bytes.
+    ///
+    /// ## Discussion
+    ///
+    /// This function is rarely needed and is likely to be deprecated. Apple recommends using the [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) function along with the default memory size limit for index updates. Refer to the [`SKIndexSetMaximumBytesBeforeFlush`](https://developer.apple.com/documentation/coreservices/1448696-skindexsetmaximumbytesbeforeflus) function for more information.
+    ///
+    ///
     #[doc(alias = "SKIndexGetMaximumBytesBeforeFlush")]
     #[inline]
     pub unsafe fn maximum_bytes_before_flush(&self) -> CFIndex {
@@ -291,7 +545,28 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumBytesBeforeFlush(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact?language=objc)
+    /// Invokes all pending updates associated with an index, compacts the index if compaction is needed, and commits all changes to backing store.
+    ///
+    /// Parameters:
+    /// - inIndex: The index you want to compact.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` on success, or `false` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Over time, as document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) and associated contents get added to and removed from an index, the index’s disk or memory footprint may grow due to fragmentation.
+    ///
+    /// Compacting can take a significant amount of time. Do not call [`SKIndexCompact`](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact) on the main thread in an application with a user interface. Call it only if the index is significantly fragmented and according to the needs of your application.
+    ///
+    /// Calling [`SKIndexCompact`](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact) changes the block allocation for an index’s backing store. Close all clients of an index before calling this function.
+    ///
+    ///
     #[doc(alias = "SKIndexCompact")]
     #[inline]
     pub unsafe fn compact(&self) -> bool {
@@ -302,7 +577,26 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442236-skindexgetindextype?language=objc)
+    /// Gets the category of an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index whose category you want to know.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The category of the index. See the [`SKIndexType`](https://developer.apple.com/documentation/coreservices/skindextype) enumeration for a list of the various index categories. On failure, returns a value of `kSKIndexUnknown`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// As described in [`SKIndexType`](https://developer.apple.com/documentation/coreservices/skindextype), Search Kit offers four categories of index, each optimized for one or more types of searching.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexGetIndexType")]
     #[inline]
     pub unsafe fn index_type(&self) -> SKIndexType {
@@ -312,7 +606,26 @@ impl SKIndex {
         unsafe { SKIndexGetIndexType(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443461-skindexgetanalysisproperties?language=objc)
+    /// Gets the text analysis properties of an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index whose text-analysis properties you want to get.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFDictionary object containing the index’s text-analysis properties. On failure, returns `NULL`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The text analysis properties of an index determine how searches behave when querying the index. You set the analysis properties when creating an index with the [`SKIndexCreateWithURL`](https://developer.apple.com/documentation/coreservices/1446111-skindexcreatewithurl) or [`SKIndexCreateWithMutableData`](https://developer.apple.com/documentation/coreservices/1447500-skindexcreatewithmutabledata) functions. For more information on text-analysis properties, see [Text Analysis Keys](https://developer.apple.com/documentation/coreservices/search_kit/text_analysis_keys).
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexGetAnalysisProperties")]
     #[inline]
     pub unsafe fn analysis_properties(&self) -> Option<CFRetained<CFDictionary>> {
@@ -323,7 +636,31 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449093-skindexgetdocumentcount?language=objc)
+    /// Gets the total number of documents represented in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index whose document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref))  you want to count.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFIndex`](https://developer.apple.com/documentation/corefoundation/cfindex) object containing the number of document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in the index. On failure, returns 0.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref))  added to an index have an indexing state of `kSKDocumentStateIndexed`. See the [`SKDocumentIndexState`](https://developer.apple.com/documentation/coreservices/skdocumentindexstate) enumeration.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// <a id="1680819"></a>
+    /// ### Special Considerations
+    ///
+    /// In the current implementation of Search Kit, `SKIndexGetDocumentCount` returns the number of documents represented in the on-disk index. If your application has added document URL objects to the index but has not yet called [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush), the document count may not be correct.
+    ///
+    ///
     #[doc(alias = "SKIndexGetDocumentCount")]
     #[inline]
     pub unsafe fn document_count(&self) -> CFIndex {
@@ -333,7 +670,19 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentCount(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442401-skindexclose?language=objc)
+    /// Closes an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index to close.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application no longer needs an index that it has opened or created, call [`SKIndexClose`](https://developer.apple.com/documentation/coreservices/1442401-skindexclose). Calling this function is equivalent to calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) on an index.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexClose")]
     #[inline]
     pub unsafe fn close(&self) {
@@ -344,11 +693,55 @@ impl SKIndex {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentid?language=objc)
+/// Defines an opaque data type representing a lightweight document identifier.
+///
+/// ## Discussion
+///
+/// Use document IDs rather than document URL objects (SKDocumentRefs) whenever possible. Using document IDs results in faster searching.
+///
+/// You can work with document IDs using a variety of Search Kit functions. See [`SKIndexGetMaximumDocumentID`](https://developer.apple.com/documentation/coreservices/1444628-skindexgetmaximumdocumentid), [`SKIndexCopyDocumentForDocumentID`](https://developer.apple.com/documentation/coreservices/1442760-skindexcopydocumentfordocumentid), [`SKIndexCopyInfoForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1445499-skindexcopyinfofordocumentids), [`SKIndexCopyDocumentRefsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1445305-skindexcopydocumentrefsfordocume), [`SKIndexCopyDocumentURLsForDocumentIDs`](https://developer.apple.com/documentation/coreservices/1443501-skindexcopydocumenturlsfordocume), [`SKIndexCopyDocumentIDArrayForTermID`](https://developer.apple.com/documentation/coreservices/1448003-skindexcopydocumentidarrayforter), and [`SKIndexCopyTermIDArrayForDocumentID`](https://developer.apple.com/documentation/coreservices/1446868-skindexcopytermidarrayfordocumen).
+///
+///
 pub type SKDocumentID = CFIndex;
 
 impl SKIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext?language=objc)
+    /// Adds a document URL ([`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) object, and the associated document’s textual content, to an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index to which you are adding the document URL object ([`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) .
+    ///
+    /// - inDocument: The document URL ([`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) object to add.
+    ///
+    /// - inDocumentText: The document text. Can be `NULL`.
+    ///
+    /// - inCanReplace: A Boolean value specifying whether Search Kit will overwrite a document’s index entry (`true`, indicated by `1` or `kCFBooleanTrue`), or retain the entry if it exists (`false`, indicated by `0` or `kCFBoolenFalse`).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` on success, or `false` on failure. Also returns `false` if the document has an entry in the index and `inCanReplace` is set to `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to add the textual contents of arbitrary document types to an index. With this function, your application takes responsibility for getting textual content and handing it to the index as A [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object. Because of this, your application can define what it considers to be a document—a database record, a tagged field in an XML document, an object in memory, a text file, and so on.
+    ///
+    /// Search Kit will index any size text string that you give it, up to its 4 GB index file size limit.
+    ///
+    /// To add the textual content of file-based documents to a Search Kit index, you can use this function or take advantage of Search Kit’s ability to locate and read certain on-disk, file-based document types—see [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument).
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// A single Search Kit index file can be up to 4 GB in size.
+    ///
+    /// <a id="1680744"></a>
+    /// ### Special Considerations
+    ///
+    /// In OS X v10.3, some functions do not provide expected results unless you follow a call to `SKIndexAddDocumentWithText` with a call to [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush). The affected functions include [`SKIndexGetDocumentCount`](https://developer.apple.com/documentation/coreservices/1449093-skindexgetdocumentcount), [`SKIndexGetDocumentTermCount`](https://developer.apple.com/documentation/coreservices/1448341-skindexgetdocumenttermcount), [`SKIndexGetDocumentTermFrequency`](https://developer.apple.com/documentation/coreservices/1447537-skindexgetdocumenttermfrequency), and [`SKIndexGetTermDocumentCount`](https://developer.apple.com/documentation/coreservices/1444015-skindexgettermdocumentcount). However, in typical use this won’t be an issue, because applications call these functions after a search, and you must call `SKIndexFlush` before a search.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -378,7 +771,47 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument?language=objc)
+    /// Adds location information for a file-based document, and the document’s textual content, to an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index to which you are adding the document URL object ([`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+    ///
+    /// - inDocument: The document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) , containing a file-based document’s location information, to add to the index. You can release the document URL object immediately after adding it to the index.
+    ///
+    /// - inMIMETypeHint: The MIME type hint for the specified file-based document. Can be `NULL`. In Search Kit, common MIME type hints include `text/plain`, `text/rtf`, `text/html`, `text/pdf`, and `application/msword`.
+    ///
+    /// Specify a MIME type hint to help Spotlight determine which of its metadata importers to use when Search Kit is indexing a file-based document. Search Kit uses filename extensions and type/creator codes in attempting to determine file types when indexing files. See [`SKLoadDefaultExtractorPlugIns`](https://developer.apple.com/documentation/coreservices/1447859-skloaddefaultextractorplugins). You can circumvent Search Kit’s file type determination process, or override it, by using a MIME type hint.
+    ///
+    /// - inCanReplace: A Boolean value specifying whether Search Kit will overwrite a document’s index entry (`true`, indicated by `1` or `kCFBooleanTrue`), or retain the entry if it exists (`false`, indicated by `0` or `kCFBoolenFalse`).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` on success, or `false` on failure. Also returns `false` if the document has an entry in the index and `inCanReplace` is set to `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///  The document scheme must be of type “`file`” to use this function. If it’s not, call [`SKIndexAddDocumentWithText`](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext) instead. For more information on schemes, see [http://www.iana.org/assignments/uri-schemes.html](https://developer.apple.comhttp://www.iana.org/assignments/uri-schemes.html).
+    ///
+    /// This function uses the referenced document and the optional MIME type hint to get the document’s textual content using the Spotlight metadata importers. If you do not supply a MIME type hint, Spotlight’s importers will use filename extensions and type/creator codes to guess file types.
+    ///
+    /// Search Kit indexes any nonexecutable file associated with a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) that you hand to this function, even nontext files such as images. Your application takes responsibility for ensuring that the document URL objects you pass to `SKIndexAddDocument` are in fact the locations of files you want to index.
+    ///
+    /// If your application did not call [`SKLoadDefaultExtractorPlugIns`](https://developer.apple.com/documentation/coreservices/1447859-skloaddefaultextractorplugins), Search Kit indexes the first 10 MB of a document. Otherwise, Search Kit indexes the entire document up to the index file size limit of 4 GB.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// A single Search Kit index can hold up to 4 billion document URL objects and their associated textual content.
+    ///
+    /// <a id="1817190"></a>
+    /// ### Special Considerations
+    ///
+    /// In the current implementation of Search Kit, some functions do not provide expected results unless you follow `SKIndexAddDocument` with a call to [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush). The affected functions include [`SKIndexGetDocumentCount`](https://developer.apple.com/documentation/coreservices/1449093-skindexgetdocumentcount), [`SKIndexGetDocumentTermCount`](https://developer.apple.com/documentation/coreservices/1448341-skindexgetdocumenttermcount), [`SKIndexGetDocumentTermFrequency`](https://developer.apple.com/documentation/coreservices/1447537-skindexgetdocumenttermfrequency), and [`SKIndexGetTermDocumentCount`](https://developer.apple.com/documentation/coreservices/1444015-skindexgettermdocumentcount). However, in typical use this won’t be an issue, because applications call these functions after a search, and you must call `SKIndexFlush` before a search.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -408,7 +841,28 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444375-skindexremovedocument?language=objc)
+    /// Removes a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) and its children, if any, from an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index from which you want to remove the document URL object (SKDocumentRef).
+    ///
+    /// - inDocument: The document URL object to remove.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` on success, or `false` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application deletes a document, use this function to update the index to reflect the change.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -428,7 +882,26 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449500-skindexcopydocumentproperties?language=objc)
+    /// Obtains the application-defined properties of an indexed document.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object whose properties you want to copy.
+    ///
+    /// - inDocument: The document URL object whose properties you want to copy.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFDictionary object containing the document URL object’s (SKDocumentRef’s) properties, or `NULL` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) can have an optional, application-defined properties dictionary to hold any information you’d like to associate with the document represented by a document URL object—such as timestamp, keywords, and so on. Use [`SKIndexSetDocumentProperties`](https://developer.apple.com/documentation/coreservices/1444576-skindexsetdocumentproperties) to add a properties dictionary to a document URL object, and this function to obtain a copy of the dictionary.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -451,7 +924,28 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444576-skindexsetdocumentproperties?language=objc)
+    /// Sets the application-defined properties of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)).
+    ///
+    /// Parameters:
+    /// - inIndex: An index containing the document URL object whose properties you want to set.
+    ///
+    /// - inDocument: The document URL object whose properties you want to set.
+    ///
+    /// - inProperties: A CFDictionary object containing the properties to apply to the document URL object.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Search Kit document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) can have an optional, application-defined properties dictionary to hold any information you’d like to associate with the document represented by a document URL object—such as timestamp, keywords, and so on.
+    ///
+    /// Use `SKIndexSetDocumentProperties` to persistently set application-defined properties for a document URL object in an index. This function replaces a document URL object’s existing properties dictionary with the new one. To obtain a copy of a document URL object’s properties dictionary, use [`SKIndexCopyDocumentProperties`](https://developer.apple.com/documentation/coreservices/1449500-skindexcopydocumentproperties).
+    ///
+    /// <a id="1681176"></a>
+    /// ### Special Considerations
+    ///
+    /// You must set any desired properties on a document URL object _after_ adding the document URL object to an index. Adding a document URL object to an index clears the object’s preexisting properties.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -478,7 +972,26 @@ impl SKIndex {
         unsafe { SKIndexSetDocumentProperties(self, in_document, in_properties) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443396-skindexgetdocumentstate?language=objc)
+    /// Gets the current indexing state of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object whose indexing state you want.
+    ///
+    /// - inDocument: The document URL object whose indexing state you want.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A value indicating the document URL object’s indexing state.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) can be in one of four states, as defined by the [`SKDocumentIndexState`](https://developer.apple.com/documentation/coreservices/skdocumentindexstate) enumeration: not indexed, indexed, not in the index but will be added after the index is flushed or closed, and in the index but will be deleted after the index is flushed or closed.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -497,7 +1010,26 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentState(self, in_document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444437-skindexgetdocumentid?language=objc)
+    /// Gets the ID of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the text of the document whose document URL object ID you want.
+    ///
+    /// - inDocument: The document URL object whose ID you want.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A document ID object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The document ID identifies a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in an index. The ID is available as soon as you add a document URL object to an index using [`SKIndexAddDocumentWithText`](https://developer.apple.com/documentation/coreservices/1444518-skindexadddocumentwithtext) or [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -516,7 +1048,26 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentID(self, in_document) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442760-skindexcopydocumentfordocumentid?language=objc)
+    /// Obtains a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) from an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object.
+    ///
+    /// - inDocumentID: The ID of the document URL object you want to copy.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Search Kit document URL object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In versions of macOS prior to OS X v10.4, the parameter type for `inDocumentID` was `CFIndex`. The parameter type in macOS 10.4 and later is `SKDocumentID`.
+    ///
+    ///
     #[doc(alias = "SKIndexCopyDocumentForDocumentID")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -534,7 +1085,30 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448935-skindexrenamedocument?language=objc)
+    /// Changes the name of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object whose name you want to change.
+    ///
+    /// - inDocument: The document URL object whose name you want to change.
+    ///
+    /// - inNewName: The new name for the document URL object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` if the document URL object name was successfully changed, or `false` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application changes the name of a document, use this function to update the index to reflect the change.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -560,7 +1134,30 @@ impl SKIndex {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449899-skindexmovedocument?language=objc)
+    /// Changes the parent of a document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object you want to move.
+    ///
+    /// - inDocument: The document URL object you want to move.
+    ///
+    /// - inNewParent: The new parent document URL object for the document URL object you want to move.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A Boolean value of `true` for a successful move, or `false` on failure.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application moves a document, use this function to update the index to reflect the change.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -589,7 +1186,32 @@ impl SKIndex {
 }
 
 impl SKIndexDocumentIterator {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446189-skindexdocumentiteratorcreate?language=objc)
+    /// Creates an index-based iterator for document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) owned by a parent document URL object.
+    ///
+    /// Parameters:
+    /// - inIndex: The index you want to iterate across.
+    ///
+    /// - inParentDocument: The document URL object that is the parent of the document URL objects you want to examine. Pass `NULL` to get the top item in an index. See [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref) for a discussion of how to get the full URL for a document URL object.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An index-based document iterator.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When you want to iterate across all the documents represented in an index, use this function to create an iterator and then call [`SKIndexDocumentIteratorCopyNext`](https://developer.apple.com/documentation/coreservices/1442212-skindexdocumentiteratorcopynext) in turn for each document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in the index.
+    ///
+    /// Document iterators iterate over a single level of an index. Your code is responsible for descending through a hierarchy of documents in an index.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// When your application no longer needs the iterator, dispose of it by calling [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -612,7 +1234,26 @@ impl SKIndexDocumentIterator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442212-skindexdocumentiteratorcopynext?language=objc)
+    /// Obtains the next document URL object (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) from an index using a document iterator.
+    ///
+    /// Parameters:
+    /// - inIterator: The index-based document iterator. See [`SKIndexDocumentIteratorCreate`](https://developer.apple.com/documentation/coreservices/1446189-skindexdocumentiteratorcreate) for information on creating an document iterator, and [`SKIndexDocumentIteratorRef`](https://developer.apple.com/documentation/coreservices/skindexdocumentiteratorref) for more about iterators.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// The next document URL object in the index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function returns `NULL` when there are no more document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) in the index. When finished iterating, your application must call [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) on all retrieved document URL objects that are non-`NULL`.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexDocumentIteratorCopyNext")]
     #[cfg(feature = "SKDocument")]
     #[inline]
@@ -628,7 +1269,31 @@ impl SKIndexDocumentIterator {
 }
 
 impl SKIndex {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444628-skindexgetmaximumdocumentid?language=objc)
+    /// Gets the highest-numbered document ID in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: An index.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A document ID object containing the highest-numbered document ID in the index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function with [`SKIndexGetDocumentCount`](https://developer.apple.com/documentation/coreservices/1449093-skindexgetdocumentcount) to determine whether an index is fragmented and in need of compaction. See [`SKIndexCompact`](https://developer.apple.com/documentation/coreservices/1443628-skindexcompact).
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    /// <a id="1680841"></a>
+    /// ### Version-Notes
+    ///
+    /// In versions of macOS prior to OS X v10.4, the return type for `SKIndexGetMaximumDocumentID` was `CFIndex`. The return type in macOS 10.4 and later is `SKDocumentID`.
+    ///
+    ///
     #[doc(alias = "SKIndexGetMaximumDocumentID")]
     #[inline]
     pub unsafe fn maximum_document_id(&self) -> SKDocumentID {
@@ -638,7 +1303,26 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumDocumentID(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448341-skindexgetdocumenttermcount?language=objc)
+    /// Gets the number of terms for a document in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the text of the document whose term count you want.
+    ///
+    /// - inDocumentID: The ID of the document URL object whose term count you want. Obtain a document ID by calling [`SKIndexGetDocumentID`](https://developer.apple.com/documentation/coreservices/1444437-skindexgetdocumentid).
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the number of terms in a document.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In versions of macOS prior to OS X v10.4, the parameter type for `inDocumentID` was `CFIndex`. In macOS 10.4 and later, the parameter type is `SKDocumentID`.
+    ///
+    ///
     #[doc(alias = "SKIndexGetDocumentTermCount")]
     #[inline]
     pub unsafe fn document_term_count(&self, in_document_id: SKDocumentID) -> CFIndex {
@@ -651,7 +1335,31 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentTermCount(self, in_document_id) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446868-skindexcopytermidarrayfordocumen?language=objc)
+    /// Obtains the IDs for the terms of an indexed document.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the document URL object (SKDocumentRef) and associated textual content.
+    ///
+    /// - inDocumentID: The ID of the document whose term IDs you are copying.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFArray containing CFNumbers, each of which represents the ID for a term in a document.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// To derive the list of terms contained in a document, use this function to obtain an array of the term IDs, then convert each ID into the corresponding term with the [`SKIndexCopyTermStringForTermID`](https://developer.apple.com/documentation/coreservices/1442802-skindexcopytermstringfortermid) function.
+    ///
+    /// <a id="1681155"></a>
+    /// ### Version-Notes
+    ///
+    /// In versions of macOS prior to OS X v10.4, the parameter type for `inDocumentID` was `CFIndex`. In macOS 10.4 and later, the parameter type is `SKDocumentID`.
+    ///
+    ///
     #[doc(alias = "SKIndexCopyTermIDArrayForDocumentID")]
     #[inline]
     pub unsafe fn term_id_array_for_document_id(
@@ -668,7 +1376,28 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447537-skindexgetdocumenttermfrequency?language=objc)
+    /// Gets the number of occurrences of a term in a document.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the text of the document whose term count you are interested in.
+    ///
+    /// - inDocumentID: The ID of the document URL object whose associated term count you are interested in. Obtain a document ID by calling [`SKIndexGetDocumentID`](https://developer.apple.com/documentation/coreservices/1444437-skindexgetdocumentid).
+    ///
+    /// - inTermID: The ID of the term whose number of occurrences you want.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A [`CFIndex`](https://developer.apple.com/documentation/corefoundation/cfindex) object containing the number of occurrences of a term in a document.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// In versions of macOS prior to OS X v10.4, the parameter type for `inDocumentID` was `CFIndex`. In macOS 10.4 and later, the parameter type is `SKDocumentID`.
+    ///
+    ///
     #[doc(alias = "SKIndexGetDocumentTermFrequency")]
     #[inline]
     pub unsafe fn document_term_frequency(
@@ -686,7 +1415,26 @@ impl SKIndex {
         unsafe { SKIndexGetDocumentTermFrequency(self, in_document_id, in_term_id) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444278-skindexgetmaximumtermid?language=objc)
+    /// Gets the highest-numbered term ID in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: An index.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the highest-numbered term ID in an index.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A new Search Kit index does not have term IDs until it is flushed.
+    ///
+    /// Search Kit is thread-safe. You can use separate indexing and searching threads. Your application is responsible for ensuring that no more than one process is open at a time for writing to an index.
+    ///
+    ///
     #[doc(alias = "SKIndexGetMaximumTermID")]
     #[inline]
     pub unsafe fn maximum_term_id(&self) -> CFIndex {
@@ -696,7 +1444,28 @@ impl SKIndex {
         unsafe { SKIndexGetMaximumTermID(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444015-skindexgettermdocumentcount?language=objc)
+    /// Gets the number of documents containing a given term represented in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index containing the text of the documents you want to examine.
+    ///
+    /// - inTermID: The terms whose occurrences you want to know.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A `CFIndex` object containing the number of documents represented in an index that contain a given term.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you want to know in which documents a term appears across multiple indexes, call this function separately on each index. Before querying each index, get the index-specific term ID using [`SKIndexGetTermIDForTermString`](https://developer.apple.com/documentation/coreservices/1448558-skindexgettermidfortermstring).
+    ///
+    /// To ensure that this function takes into account document URL objects (of type [`SKDocumentRef`](https://developer.apple.com/documentation/coreservices/skdocumentref)) recently added to indexes, call [`SKIndexFlush`](https://developer.apple.com/documentation/coreservices/1450667-skindexflush) on each index before calling this function.
+    ///
+    ///
     #[doc(alias = "SKIndexGetTermDocumentCount")]
     #[inline]
     pub unsafe fn term_document_count(&self, in_term_id: CFIndex) -> CFIndex {
@@ -706,7 +1475,28 @@ impl SKIndex {
         unsafe { SKIndexGetTermDocumentCount(self, in_term_id) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448003-skindexcopydocumentidarrayforter?language=objc)
+    /// Obtains document IDs for documents that contain a given term.
+    ///
+    /// Parameters:
+    /// - inIndex: The index to search.
+    ///
+    /// - inTermID: The ID of the term to search for.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An array of CFNumbers, each the ID for a document URL object that points to a document containing the search term.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// `SKIndexCopyDocumentIDArrayForTermID` searches a single index for documents that contain a given term. The search uses a term ID, not a term string. To get the ID of a term, use [`SKIndexGetTermIDForTermString`](https://developer.apple.com/documentation/coreservices/1448558-skindexgettermidfortermstring).
+    ///
+    /// Term IDs are index-specific; that is, a term has a different ID in each index in which it appears. If you want to search for all the documents containing a term in a set of indexes, call this function in turn for each index, using the index-specific term ID in each case.
+    ///
+    ///
     #[doc(alias = "SKIndexCopyDocumentIDArrayForTermID")]
     #[inline]
     pub unsafe fn document_id_array_for_term_id(
@@ -723,7 +1513,28 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442802-skindexcopytermstringfortermid?language=objc)
+    /// Obtains a term, specified by ID, from an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index whose terms you are searching.
+    ///
+    /// - inTermID: The ID of the term whose string you want.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFString containing the term specified by `inTermID`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// When your application has the ID of a term, perhaps as a result of calling [`SKIndexCopyTermIDArrayForDocumentID`](https://developer.apple.com/documentation/coreservices/1446868-skindexcopytermidarrayfordocumen), use this function to derive the term’s text string.
+    ///
+    /// To perform the inverse operation of deriving a term ID from a term string in a given index, use [`SKIndexGetTermIDForTermString`](https://developer.apple.com/documentation/coreservices/1448558-skindexgettermidfortermstring).
+    ///
+    ///
     #[doc(alias = "SKIndexCopyTermStringForTermID")]
     #[inline]
     pub unsafe fn term_string_for_term_id(
@@ -740,7 +1551,20 @@ impl SKIndex {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448558-skindexgettermidfortermstring?language=objc)
+    /// Gets the ID for a term in an index.
+    ///
+    /// Parameters:
+    /// - inIndex: The index you want to examine.
+    ///
+    /// - inTermString: The term string whose corresponding ID you want.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A CFIndex object containing the term ID for a given term in an index. If the term isn’t found, this function returns a value of `kCFNotFound`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -759,7 +1583,30 @@ impl SKIndex {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447859-skloaddefaultextractorplugins?language=objc)
+    /// Tells Search Kit to use the Spotlight metadata importers.
+    ///
+    /// ## Discussion
+    ///
+    /// The Spotlight metadata importers determine the `kMDItemTextContent` property for each document passed to the [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument) function.
+    ///
+    /// Call the `SKLoadDefaultExtractorPlugIns` function once at application launch to tell Search Kit to use the Spotlight metadata importers. The function [`SKIndexAddDocument`](https://developer.apple.com/documentation/coreservices/1444897-skindexadddocument) will then use Spotlight’s importers to extract the text from supported files and place that text into an index, leaving the markup behind.
+    ///
+    /// <a id="1681000"></a>
+    /// ### Version-Notes
+    ///
+    /// In versions of macOS prior to OS X v10.4, Search Kit used its own set of default text extractor plug-ins. The file types supported by Search Kit’s default text extractor plug-ins were:
+    ///
+    /// - plaintext
+    ///
+    /// - PDF
+    ///
+    /// - HTML
+    ///
+    /// - RTF
+    ///
+    /// - Microsoft Word (.doc)
+    ///
+    ///
     pub fn SKLoadDefaultExtractorPlugIns();
 }
 

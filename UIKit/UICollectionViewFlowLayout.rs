@@ -10,24 +10,30 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/automaticsize?language=objc)
+    /// A placeholder size for self-sizing cells.
+    ///
+    /// ## Discussion
+    ///
+    /// Set this constant as the value for the [`estimatedItemSize`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/estimateditemsize) property to enable self-sizing cells for your collection view. This is a non-zero, placeholder value that tells the collection view to query each cell for its actual size using the cell’s [`preferredLayoutAttributesFittingAttributes:`](https://developer.apple.com/documentation/uikit/uicollectionreusableview/preferredlayoutattributesfitting(_:)) method.
+    ///
+    ///
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionViewFlowLayoutAutomaticSize: CGSize;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum?language=objc)
+/// Constants that describe the reference point of the section insets.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewFlowLayoutSectionInsetReference(pub NSInteger);
 impl UICollectionViewFlowLayoutSectionInsetReference {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromcontentinset?language=objc)
+    /// Section insets are defined in relation to the collection view’s content inset.
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromContentInset")]
     pub const FromContentInset: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromsafearea?language=objc)
+    /// Section insets are defined in relation to the safe area of the layout.
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromSafeArea")]
     pub const FromSafeArea: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum/fromlayoutmargins?language=objc)
+    /// Section insets are defined in relation to the margins of the layout.
     #[doc(alias = "UICollectionViewFlowLayoutSectionInsetFromLayoutMargins")]
     pub const FromLayoutMargins: Self = Self(2);
 }
@@ -41,7 +47,13 @@ unsafe impl RefEncode for UICollectionViewFlowLayoutSectionInsetReference {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutinvalidationcontext?language=objc)
+    /// A set of properties for determining whether to recompute the size of items or their position in the layout.
+    ///
+    /// ## Overview
+    ///
+    /// The flow layout object creates instances of this class when it needs to invalidate its contents in response to changes. You can also create instances when invalidating the flow layout manually.
+    ///
+    ///
     #[unsafe(super(UICollectionViewLayoutInvalidationContext, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -95,7 +107,15 @@ impl UICollectionViewFlowLayoutInvalidationContext {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout?language=objc)
+    /// The methods that let you coordinate with a flow layout object to implement a grid-based layout.
+    ///
+    /// ## Overview
+    ///
+    /// The methods of this protocol define the size of items and the spacing between items in the grid. All of the methods in this protocol are optional. If you don’t implement a particular method, the flow layout delegate uses values in its own properties for the appropriate spacing information.
+    ///
+    /// The [`UICollectionViewFlowLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout) object expects the collection view’s delegate object to adopt this protocol. Therefore, implement this protocol on the object assigned to your collection view’s [`delegate`](https://developer.apple.com/documentation/uikit/uicollectionview/delegate) property.
+    ///
+    ///
     #[cfg(all(feature = "UICollectionView", feature = "UIScrollView"))]
     pub unsafe trait UICollectionViewDelegateFlowLayout:
         UICollectionViewDelegate + MainThreadOnly
@@ -200,7 +220,19 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout?language=objc)
+    /// A layout object that organizes items into a grid with optional header and footer views for each section.
+    ///
+    /// ## Overview
+    ///
+    /// A flow layout is a type of collection view layout. Items in the collection view flow from one row or column (depending on the scrolling direction) to the next, with each row containing as many cells as will fit. Cells can be the same sizes or different sizes.
+    ///
+    /// A flow layout works with the collection view’s delegate object to determine the size of items, headers, and footers in each section and grid. That delegate object must conform to the [`UICollectionViewDelegateFlowLayout`](https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout) protocol. Use of the delegate allows you to adjust layout information dynamically. For example, you use a delegate object to specify different sizes for items in the grid. If you don’t provide a delegate, the flow layout uses the default values you set in the properties of this class.
+    ///
+    /// Flow layouts lay out their content using a fixed distance in one direction and a scrollable distance in the other. For example, in a vertically scrolling grid, the width of the grid content is constrained to the width of the corresponding collection view while the height of the content adjusts dynamically to match the number of sections and items in the grid. The layout scrolls vertically by default, but you can configure the scrolling direction using the [`scrollDirection`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/scrolldirection) property.
+    ///
+    /// Each section in a flow layout can have its own custom header and footer. To configure the header or footer for a view, configure the size of the header or footer to be non-zero. Implement the appropriate delegate methods or assign appropriate values to the [`headerReferenceSize`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/headerreferencesize) and [`footerReferenceSize`](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/footerreferencesize) properties. If the header or footer size is `0`, the corresponding view isn’t added to the collection view.
+    ///
+    ///
     #[unsafe(super(UICollectionViewLayout, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

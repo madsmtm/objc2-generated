@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent?language=objc)
+    /// A request for the time slots available for making a reservation.
+    ///
+    /// ## Overview
+    ///
+    /// An [`INGetAvailableRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent) object asks you to generate details regarding the available time slots offered by a restaurant for a given party size. Maps sends this intent to your Intents extension when the user begins the booking process. You use this intent to obtain the initial details about the reservation request, including the number of people and the preferred date for the reservation. You use those details to identify potential time slots that can accommodate the party and return those time slots in your response object.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INGetAvailableRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling) protocol. Your handler should resolve and confirm any parameters and create an [`INGetAvailableRestaurantReservationBookingsIntentResponse`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintentresponse) object with the list of potential time slots.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Maps" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -151,7 +164,15 @@ impl INGetAvailableRestaurantReservationBookingsIntent {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling?language=objc)
+    /// The handler interface for generating a list of potential reservation times from which the user can select.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INGetAvailableRestaurantReservationBookingsIntentHandling`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintenthandling) protocol to resolve, confirm, and handle requests for an initial set of reservation times from which to select. The system delivers an [`INGetAvailableRestaurantReservationBookingsIntent`](https://developer.apple.com/documentation/intents/ingetavailablerestaurantreservationbookingsintent) object to your handler with information about the user’s party and preferred reservation time. Use that intent object to generate a list of potential reservation times from which the user can select.
+    ///
+    /// Maps does not require you to resolve or confirm the contents of a get available restaurant reservation bookings intent before handling it. User interactions drive the selection of data in Maps, ensuring that the data Maps places into an intent object is already valid.
+    ///
+    ///
     pub unsafe trait INGetAvailableRestaurantReservationBookingsIntentHandling:
         NSObjectProtocol
     {

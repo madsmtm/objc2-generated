@@ -12,115 +12,170 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype?language=objc)
+/// Constants for the types of events that responder objects can handle.
+///
+/// ## Overview
+///
+/// These constants appear in the event’s [`type`](https://developer.apple.com/documentation/appkit/nsevent/type) property. You also use them when you construct new events.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSEventType(pub NSUInteger);
 impl NSEventType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmousedown?language=objc)
+    /// The user pressed the left mouse button.
     #[doc(alias = "NSEventTypeLeftMouseDown")]
     pub const LeftMouseDown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmouseup?language=objc)
+    /// The user released the left mouse button.
     #[doc(alias = "NSEventTypeLeftMouseUp")]
     pub const LeftMouseUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmousedown?language=objc)
+    /// The user pressed the right mouse button.
     #[doc(alias = "NSEventTypeRightMouseDown")]
     pub const RightMouseDown: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmouseup?language=objc)
+    /// The user released the right mouse button.
     #[doc(alias = "NSEventTypeRightMouseUp")]
     pub const RightMouseUp: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mousemoved?language=objc)
+    /// The user moved the mouse in a way that caused the cursor to move onscreen.
     #[doc(alias = "NSEventTypeMouseMoved")]
     pub const MouseMoved: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/leftmousedragged?language=objc)
+    /// The user moved the mouse while holding down the left mouse button.
     #[doc(alias = "NSEventTypeLeftMouseDragged")]
     pub const LeftMouseDragged: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rightmousedragged?language=objc)
+    /// The user moved the mouse while holding down the right mouse button.
     #[doc(alias = "NSEventTypeRightMouseDragged")]
     pub const RightMouseDragged: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mouseentered?language=objc)
+    /// The cursor entered a well-defined area, such as a view.
     #[doc(alias = "NSEventTypeMouseEntered")]
     pub const MouseEntered: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mouseexited?language=objc)
+    /// The cursor exited a well-defined area, such as a view.
     #[doc(alias = "NSEventTypeMouseExited")]
     pub const MouseExited: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/keydown?language=objc)
+    /// The user pressed a key on the keyboard.
     #[doc(alias = "NSEventTypeKeyDown")]
     pub const KeyDown: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/keyup?language=objc)
+    /// The user released a key on the keyboard.
     #[doc(alias = "NSEventTypeKeyUp")]
     pub const KeyUp: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/flagschanged?language=objc)
+    /// The event flags changed.
     #[doc(alias = "NSEventTypeFlagsChanged")]
     pub const FlagsChanged: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/appkitdefined?language=objc)
+    /// An AppKit-related event occurred.
     #[doc(alias = "NSEventTypeAppKitDefined")]
     pub const AppKitDefined: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/systemdefined?language=objc)
+    /// A system-related event occurred.
     #[doc(alias = "NSEventTypeSystemDefined")]
     pub const SystemDefined: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/applicationdefined?language=objc)
+    /// An app-defined event occurred.
     #[doc(alias = "NSEventTypeApplicationDefined")]
     pub const ApplicationDefined: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/periodic?language=objc)
+    /// An event that provides execution time to periodic tasks.
     #[doc(alias = "NSEventTypePeriodic")]
     pub const Periodic: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/cursorupdate?language=objc)
+    /// An event that updates the cursor.
     #[doc(alias = "NSEventTypeCursorUpdate")]
     pub const CursorUpdate: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/scrollwheel?language=objc)
+    /// The scroll wheel position changed.
     #[doc(alias = "NSEventTypeScrollWheel")]
     pub const ScrollWheel: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/tabletpoint?language=objc)
+    /// The user touched a point on a tablet.
+    ///
+    /// ## Discussion
+    ///
+    /// Tablets generate tablet-point events between a mouse-down event and the first mouse drag event.
+    ///
+    ///
     #[doc(alias = "NSEventTypeTabletPoint")]
     pub const TabletPoint: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/tabletproximity?language=objc)
+    /// A pointing device is near, but not touching, the associated tablet.
     #[doc(alias = "NSEventTypeTabletProximity")]
     pub const TabletProximity: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermousedown?language=objc)
+    /// The user pressed a tertiary mouse button.
     #[doc(alias = "NSEventTypeOtherMouseDown")]
     pub const OtherMouseDown: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermouseup?language=objc)
+    /// The user released a tertiary mouse button.
     #[doc(alias = "NSEventTypeOtherMouseUp")]
     pub const OtherMouseUp: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/othermousedragged?language=objc)
+    /// The user moved the mouse while holding down a tertiary mouse button.
     #[doc(alias = "NSEventTypeOtherMouseDragged")]
     pub const OtherMouseDragged: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/gesture?language=objc)
+    /// The user performed a nonspecific type of gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// [`NSEventTypeGesture`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/gesture) represents a gesture that is not otherwise specified by a type such as [`NSEventTypeMagnify`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/magnify), [`NSEventTypeSwipe`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/swipe), [`NSEventTypeRotate`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rotate), [`NSEventTypeBeginGesture`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/begingesture), or [`NSEventTypeEndGesture`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/endgesture)
+    ///
+    ///
     #[doc(alias = "NSEventTypeGesture")]
     pub const Gesture: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/magnify?language=objc)
+    /// The user performed a pinch-open or pinch-close gesture.
     #[doc(alias = "NSEventTypeMagnify")]
     pub const Magnify: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/swipe?language=objc)
+    /// The user performed a swipe gesture.
     #[doc(alias = "NSEventTypeSwipe")]
     pub const Swipe: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/rotate?language=objc)
+    /// The user performed a rotate gesture.
     #[doc(alias = "NSEventTypeRotate")]
     pub const Rotate: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/begingesture?language=objc)
+    /// An event marking the beginning of a gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that apps that link against macOS 10.11 and later no longer receive this event type. If you need to access the phases of a specific gesture, you can implement the responder for that gesture and examine its [`phase`](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.property) property instead.
+    ///
+    ///
     #[doc(alias = "NSEventTypeBeginGesture")]
     pub const BeginGesture: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/endgesture?language=objc)
+    /// An event that marks the end of a gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// Note that apps that link against macOS 10.11 and later no longer receive this event type. If you need to access the phases of a specific gesture, you can implement the responder for that gesture and examine its [`phase`](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.property) property instead.
+    ///
+    ///
     #[doc(alias = "NSEventTypeEndGesture")]
     pub const EndGesture: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/smartmagnify?language=objc)
+    /// The user performed a smart-zoom gesture.
+    ///
+    /// ## Discussion
+    ///
+    /// [`NSEventTypeSmartMagnify`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/smartmagnify) represents the smart zoom gesture (that is, a two-finger double tap on trackpads), along with a corresponding [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) method. In response to this event, you should magnify the content appropriately for your app. For example, you might zoom in on a specific paragraph or image.
+    ///
+    ///
     #[doc(alias = "NSEventTypeSmartMagnify")]
     pub const SmartMagnify: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/quicklook?language=objc)
+    /// An event that initiates a Quick Look request.
     #[doc(alias = "NSEventTypeQuickLook")]
     pub const QuickLook: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/pressure?language=objc)
+    /// An event that reports a change in pressure on a pressure-sensitive device.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of event requires a 64-bit processor.
+    ///
+    ///
     #[doc(alias = "NSEventTypePressure")]
     pub const Pressure: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/directtouch?language=objc)
+    /// The user touched a portion of the touch bar.
+    ///
+    /// ## Discussion
+    ///
+    /// Use events of this type to handle events occurring in an [`NSTouchBar`](https://developer.apple.com/documentation/appkit/nstouchbar) object.
+    ///
+    ///
     #[doc(alias = "NSEventTypeDirectTouch")]
     pub const DirectTouch: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/changemode?language=objc)
+    /// The user changed the mode of a connected device.
+    ///
+    /// ## Discussion
+    ///
+    /// In macOS 10.15 and later, you can use an iPad as an additional screen for a macOS device. A double-tap on the side of an Apple Pencil paired with that iPad results in this type of event. AppKit calls the [`changeModeWithEvent:`](https://developer.apple.com/documentation/appkit/nsresponder/changemode(with:)) method to route these events to the first responder of the key window of the frontmost process.
+    ///
+    /// The object that needs to handle these types of events may not always be the first responder, or be in the active responder chain. To ensure that the events are handled in the right place, call the [`addLocalMonitorForEventsMatchingMask:handler:`](https://developer.apple.com/documentation/appkit/nsevent/addlocalmonitorforevents(matching:handler:)) method and handle or redirect the events in your handler block.
+    ///
+    ///
     #[doc(alias = "NSEventTypeChangeMode")]
     pub const ChangeMode: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype/mousecancelled?language=objc)
     #[doc(alias = "NSEventTypeMouseCancelled")]
     pub const MouseCancelled: Self = Self(40);
 }
@@ -133,208 +188,231 @@ unsafe impl RefEncode for NSEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedown?language=objc)
+/// A left mouse-down event.
 #[deprecated]
 pub static NSLeftMouseDown: NSEventType = NSEventType(NSEventType::LeftMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseup?language=objc)
+/// A left mouse-up event.
 #[deprecated]
 pub static NSLeftMouseUp: NSEventType = NSEventType(NSEventType::LeftMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedown?language=objc)
+/// A right mouse-down event.
 #[deprecated]
 pub static NSRightMouseDown: NSEventType = NSEventType(NSEventType::RightMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseup?language=objc)
+/// A right mouse-up event.
 #[deprecated]
 pub static NSRightMouseUp: NSEventType = NSEventType(NSEventType::RightMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemoved?language=objc)
+/// A mouse-moved event.
 #[deprecated]
 pub static NSMouseMoved: NSEventType = NSEventType(NSEventType::MouseMoved.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedragged?language=objc)
+/// A left mouse-dragged event.
 #[deprecated]
 pub static NSLeftMouseDragged: NSEventType = NSEventType(NSEventType::LeftMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedragged?language=objc)
+/// A right mouse-dragged event.
 #[deprecated]
 pub static NSRightMouseDragged: NSEventType = NSEventType(NSEventType::RightMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseentered?language=objc)
+/// A mouse-entered event.
 #[deprecated]
 pub static NSMouseEntered: NSEventType = NSEventType(NSEventType::MouseEntered.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexited?language=objc)
+/// A mouse-exited event.
 #[deprecated]
 pub static NSMouseExited: NSEventType = NSEventType(NSEventType::MouseExited.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydown?language=objc)
+/// A key-down event.
 #[deprecated]
 pub static NSKeyDown: NSEventType = NSEventType(NSEventType::KeyDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyup?language=objc)
+/// A key-up event.
 #[deprecated]
 pub static NSKeyUp: NSEventType = NSEventType(NSEventType::KeyUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschanged?language=objc)
+/// A flags-changed event.
 #[deprecated]
 pub static NSFlagsChanged: NSEventType = NSEventType(NSEventType::FlagsChanged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefined?language=objc)
+/// An AppKit-defined event.
 #[deprecated]
 pub static NSAppKitDefined: NSEventType = NSEventType(NSEventType::AppKitDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefined?language=objc)
+/// A system-defined event.
 #[deprecated]
 pub static NSSystemDefined: NSEventType = NSEventType(NSEventType::SystemDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefined?language=objc)
+/// An app-defined event.
 #[deprecated]
 pub static NSApplicationDefined: NSEventType = NSEventType(NSEventType::ApplicationDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodic?language=objc)
+/// A periodic event.
 #[deprecated]
 pub static NSPeriodic: NSEventType = NSEventType(NSEventType::Periodic.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdate?language=objc)
+/// A cursor-update event.
 #[deprecated]
 pub static NSCursorUpdate: NSEventType = NSEventType(NSEventType::CursorUpdate.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheel?language=objc)
+/// A scroll-wheel event.
 #[deprecated]
 pub static NSScrollWheel: NSEventType = NSEventType(NSEventType::ScrollWheel.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpoint?language=objc)
+/// An event representing the current state of a tablet pointing device, including its location, pressure, and tilt.
 #[deprecated]
 pub static NSTabletPoint: NSEventType = NSEventType(NSEventType::TabletPoint.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximity?language=objc)
+/// An event representing the proximity of a pointing device to its tablet.
 #[deprecated]
 pub static NSTabletProximity: NSEventType = NSEventType(NSEventType::TabletProximity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedown?language=objc)
+/// An other mouse-down event.
 #[deprecated]
 pub static NSOtherMouseDown: NSEventType = NSEventType(NSEventType::OtherMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseup?language=objc)
+/// An other mouse-up event.
 #[deprecated]
 pub static NSOtherMouseUp: NSEventType = NSEventType(NSEventType::OtherMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedragged?language=objc)
+/// An other mouse-dragged event.
 #[deprecated]
 pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask?language=objc)
+/// Constants that you use to filter out specific event types from the stream of incoming events.
+///
+/// ## Overview
+///
+/// Pass these constants to the [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) method [`sendActionOn:`](https://developer.apple.com/documentation/appkit/nscell/sendaction(on:)) to specify when an [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) object should send its action message.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventMask(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSEventMask: c_ulonglong {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmousedown?language=objc)
+/// A mask for left mouse-down events.
         #[doc(alias = "NSEventMaskLeftMouseDown")]
         const LeftMouseDown = 1<<NSEventType::LeftMouseDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmouseup?language=objc)
+/// A mask for left mouse-up events.
         #[doc(alias = "NSEventMaskLeftMouseUp")]
         const LeftMouseUp = 1<<NSEventType::LeftMouseUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmousedown?language=objc)
+/// A mask for right mouse-down events.
         #[doc(alias = "NSEventMaskRightMouseDown")]
         const RightMouseDown = 1<<NSEventType::RightMouseDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmouseup?language=objc)
+/// A mask for right mouse-up events.
         #[doc(alias = "NSEventMaskRightMouseUp")]
         const RightMouseUp = 1<<NSEventType::RightMouseUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mousemoved?language=objc)
+/// A mask for mouse-moved events.
         #[doc(alias = "NSEventMaskMouseMoved")]
         const MouseMoved = 1<<NSEventType::MouseMoved.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/leftmousedragged?language=objc)
+/// A mask for left mouse-dragged events.
         #[doc(alias = "NSEventMaskLeftMouseDragged")]
         const LeftMouseDragged = 1<<NSEventType::LeftMouseDragged.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rightmousedragged?language=objc)
+/// A mask for right mouse-dragged events.
         #[doc(alias = "NSEventMaskRightMouseDragged")]
         const RightMouseDragged = 1<<NSEventType::RightMouseDragged.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mouseentered?language=objc)
+/// A mask for mouse-entered events.
         #[doc(alias = "NSEventMaskMouseEntered")]
         const MouseEntered = 1<<NSEventType::MouseEntered.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mouseexited?language=objc)
+/// A mask for mouse-exited events.
         #[doc(alias = "NSEventMaskMouseExited")]
         const MouseExited = 1<<NSEventType::MouseExited.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/keydown?language=objc)
+/// A mask for key-down events.
         #[doc(alias = "NSEventMaskKeyDown")]
         const KeyDown = 1<<NSEventType::KeyDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/keyup?language=objc)
+/// A mask for key-up events.
         #[doc(alias = "NSEventMaskKeyUp")]
         const KeyUp = 1<<NSEventType::KeyUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/flagschanged?language=objc)
+/// A mask for flags-changed events.
         #[doc(alias = "NSEventMaskFlagsChanged")]
         const FlagsChanged = 1<<NSEventType::FlagsChanged.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/appkitdefined?language=objc)
+/// A mask for AppKit–defined events.
         #[doc(alias = "NSEventMaskAppKitDefined")]
         const AppKitDefined = 1<<NSEventType::AppKitDefined.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/systemdefined?language=objc)
+/// A mask for system-defined events.
         #[doc(alias = "NSEventMaskSystemDefined")]
         const SystemDefined = 1<<NSEventType::SystemDefined.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/applicationdefined?language=objc)
+/// A mask for app-defined events.
         #[doc(alias = "NSEventMaskApplicationDefined")]
         const ApplicationDefined = 1<<NSEventType::ApplicationDefined.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/periodic?language=objc)
+/// A mask for periodic events.
         #[doc(alias = "NSEventMaskPeriodic")]
         const Periodic = 1<<NSEventType::Periodic.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/cursorupdate?language=objc)
+/// A mask for cursor-update events.
         #[doc(alias = "NSEventMaskCursorUpdate")]
         const CursorUpdate = 1<<NSEventType::CursorUpdate.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/scrollwheel?language=objc)
+/// A mask for scroll-wheel events.
         #[doc(alias = "NSEventMaskScrollWheel")]
         const ScrollWheel = 1<<NSEventType::ScrollWheel.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/tabletpoint?language=objc)
+/// A mask for tablet-point events.
         #[doc(alias = "NSEventMaskTabletPoint")]
         const TabletPoint = 1<<NSEventType::TabletPoint.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/tabletproximity?language=objc)
+/// A mask for tablet-proximity events.
         #[doc(alias = "NSEventMaskTabletProximity")]
         const TabletProximity = 1<<NSEventType::TabletProximity.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermousedown?language=objc)
+/// A mask for tertiary mouse-down events.
         #[doc(alias = "NSEventMaskOtherMouseDown")]
         const OtherMouseDown = 1<<NSEventType::OtherMouseDown.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermouseup?language=objc)
+/// A mask for tertiary mouse-up events.
         #[doc(alias = "NSEventMaskOtherMouseUp")]
         const OtherMouseUp = 1<<NSEventType::OtherMouseUp.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/othermousedragged?language=objc)
+/// A mask for tertiary mouse-dragged events.
         #[doc(alias = "NSEventMaskOtherMouseDragged")]
         const OtherMouseDragged = 1<<NSEventType::OtherMouseDragged.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/gesture?language=objc)
+/// A mask for generic gesture events.
         #[doc(alias = "NSEventMaskGesture")]
         const Gesture = 1<<NSEventType::Gesture.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/magnify?language=objc)
+/// A mask for magnify-gesture events.
         #[doc(alias = "NSEventMaskMagnify")]
         const Magnify = 1<<NSEventType::Magnify.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/swipe?language=objc)
+/// A mask for swipe-gesture events.
         #[doc(alias = "NSEventMaskSwipe")]
         const Swipe = 1<<NSEventType::Swipe.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/rotate?language=objc)
+/// A mask for rotate-gesture events.
         #[doc(alias = "NSEventMaskRotate")]
         const Rotate = 1<<NSEventType::Rotate.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/begingesture?language=objc)
+/// A mask for begin-gesture events.
         #[doc(alias = "NSEventMaskBeginGesture")]
         const BeginGesture = 1<<NSEventType::BeginGesture.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/endgesture?language=objc)
+/// A mask for end-gesture events.
         #[doc(alias = "NSEventMaskEndGesture")]
         const EndGesture = 1<<NSEventType::EndGesture.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/smartmagnify?language=objc)
+/// A mask for smart-zoom gesture events.
+///
+/// ## Discussion
+///
+/// In response to this event, magnify the content appropriately for your app. For example, you might zoom in on a specific paragraph or image.
+///
+///
         #[doc(alias = "NSEventMaskSmartMagnify")]
         const SmartMagnify = 1<<NSEventType::SmartMagnify.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/pressure?language=objc)
+/// A mask for pressure-change events.
+///
+/// ## Discussion
+///
+/// Pressure-change events require a 64-bit processor.
+///
+///
         #[doc(alias = "NSEventMaskPressure")]
         const Pressure = 1<<NSEventType::Pressure.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/directtouch?language=objc)
+/// A mask for touch events.
+///
+/// ## Discussion
+///
+/// Use this mask to filter out [`NSEventTypeDirectTouch`](https://developer.apple.com/documentation/appkit/nsevent/eventtype/directtouch) events.
+///
+///
         #[doc(alias = "NSEventMaskDirectTouch")]
         const DirectTouch = 1<<NSEventType::DirectTouch.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/changemode?language=objc)
+/// A mask for change-mode events.
         #[doc(alias = "NSEventMaskChangeMode")]
         const ChangeMode = 1<<NSEventType::ChangeMode.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/mousecancelled?language=objc)
         #[doc(alias = "NSEventMaskMouseCancelled")]
         const MouseCancelled = 1<<NSEventType::MouseCancelled.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask/any?language=objc)
+/// A mask that matches any type of event.
         #[doc(alias = "NSEventMaskAny")]
         const Any = NSUIntegerMax as _;
     }
@@ -348,99 +426,99 @@ unsafe impl RefEncode for NSEventMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedownmask?language=objc)
+/// A mask for left mouse-down events.
 #[deprecated]
 pub static NSLeftMouseDownMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmouseupmask?language=objc)
+/// A mask for left mouse-up events.
 #[deprecated]
 pub static NSLeftMouseUpMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedownmask?language=objc)
+/// A mask for right mouse-down events.
 #[deprecated]
 pub static NSRightMouseDownMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmouseupmask?language=objc)
+/// A mask for right mouse-up events.
 #[deprecated]
 pub static NSRightMouseUpMask: NSEventMask = NSEventMask(NSEventMask::RightMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmousemovedmask?language=objc)
+/// A mask for mouse-moved events.
 #[deprecated]
 pub static NSMouseMovedMask: NSEventMask = NSEventMask(NSEventMask::MouseMoved.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftmousedraggedmask?language=objc)
+/// A mask for left mouse-dragged events.
 #[deprecated]
 pub static NSLeftMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::LeftMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightmousedraggedmask?language=objc)
+/// A mask for right mouse-dragged events.
 #[deprecated]
 pub static NSRightMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::RightMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseenteredmask?language=objc)
+/// A mask for mouse-entered events.
 #[deprecated]
 pub static NSMouseEnteredMask: NSEventMask = NSEventMask(NSEventMask::MouseEntered.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseexitedmask?language=objc)
+/// A mask for mouse-exited events.
 #[deprecated]
 pub static NSMouseExitedMask: NSEventMask = NSEventMask(NSEventMask::MouseExited.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeydownmask?language=objc)
+/// A mask for key-down events.
 #[deprecated]
 pub static NSKeyDownMask: NSEventMask = NSEventMask(NSEventMask::KeyDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nskeyupmask?language=objc)
+/// A mask for key-up events.
 #[deprecated]
 pub static NSKeyUpMask: NSEventMask = NSEventMask(NSEventMask::KeyUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsflagschangedmask?language=objc)
+/// A mask for flags-changed events.
 #[deprecated]
 pub static NSFlagsChangedMask: NSEventMask = NSEventMask(NSEventMask::FlagsChanged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitdefinedmask?language=objc)
+/// A mask for AppKit-defined events.
 #[deprecated]
 pub static NSAppKitDefinedMask: NSEventMask = NSEventMask(NSEventMask::AppKitDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemdefinedmask?language=objc)
+/// A mask for system-defined events.
 #[deprecated]
 pub static NSSystemDefinedMask: NSEventMask = NSEventMask(NSEventMask::SystemDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdefinedmask?language=objc)
+/// A mask for app-defined events.
 #[deprecated]
 pub static NSApplicationDefinedMask: NSEventMask = NSEventMask(NSEventMask::ApplicationDefined.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsperiodicmask?language=objc)
+/// A mask for periodic events.
 #[deprecated]
 pub static NSPeriodicMask: NSEventMask = NSEventMask(NSEventMask::Periodic.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorupdatemask?language=objc)
+/// A mask for cursor-update events.
 #[deprecated]
 pub static NSCursorUpdateMask: NSEventMask = NSEventMask(NSEventMask::CursorUpdate.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollwheelmask?language=objc)
+/// A mask for scroll-wheel events.
 #[deprecated]
 pub static NSScrollWheelMask: NSEventMask = NSEventMask(NSEventMask::ScrollWheel.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointmask?language=objc)
+/// A mask for tablet-point events.
 #[deprecated]
 pub static NSTabletPointMask: NSEventMask = NSEventMask(NSEventMask::TabletPoint.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximitymask?language=objc)
+/// A mask for tablet-proximity events.
 #[deprecated]
 pub static NSTabletProximityMask: NSEventMask = NSEventMask(NSEventMask::TabletProximity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedownmask?language=objc)
+/// A mask for other mouse-down events.
 #[deprecated]
 pub static NSOtherMouseDownMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermouseupmask?language=objc)
+/// A mask for other mouse-up events.
 #[deprecated]
 pub static NSOtherMouseUpMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseUp.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsothermousedraggedmask?language=objc)
+/// A mask for other mouse-dragged events.
 #[deprecated]
 pub static NSOtherMouseDraggedMask: NSEventMask = NSEventMask(NSEventMask::OtherMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanyeventmask?language=objc)
+/// A mask that matches any type of event.
 #[deprecated]
 pub static NSAnyEventMask: NSEventMask = NSEventMask(NSUIntegerMax as _);
 
@@ -448,38 +526,50 @@ impl NSEventMask {
     // TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct?language=objc)
+/// Flags that represent key states in an event object.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventModifierFlags: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/capslock?language=objc)
+/// The Caps Lock key has been pressed.
         #[doc(alias = "NSEventModifierFlagCapsLock")]
         const CapsLock = 1<<16;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/shift?language=objc)
+/// The Shift key has been pressed.
         #[doc(alias = "NSEventModifierFlagShift")]
         const Shift = 1<<17;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/control?language=objc)
+/// The Control key has been pressed.
         #[doc(alias = "NSEventModifierFlagControl")]
         const Control = 1<<18;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/option?language=objc)
+/// The Option or Alt key has been pressed.
         #[doc(alias = "NSEventModifierFlagOption")]
         const Option = 1<<19;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/command?language=objc)
+/// The Command key has been pressed.
         #[doc(alias = "NSEventModifierFlagCommand")]
         const Command = 1<<20;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/numericpad?language=objc)
+/// A key in the numeric keypad or an arrow key has been pressed.
         #[doc(alias = "NSEventModifierFlagNumericPad")]
         const NumericPad = 1<<21;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/help?language=objc)
+/// The Help key has been pressed.
         #[doc(alias = "NSEventModifierFlagHelp")]
         const Help = 1<<22;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/function?language=objc)
+/// A function key has been pressed.
+///
+/// ## Discussion
+///
+/// The function keys include the F keys at the top of most keyboards (F1, F2, and so on) and the navigation keys in the center of most keyboards (Help, Forward, Delete, Home, End, Page Up, Page Down, and the arrow keys).
+///
+///
         #[doc(alias = "NSEventModifierFlagFunction")]
         const Function = 1<<23;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct/deviceindependentflagsmask?language=objc)
+/// Device-independent modifier flags are masked.
+///
+/// ## Discussion
+///
+/// Use this symbol to preserve key event flags and mask all other flags.
+///
+///
         #[doc(alias = "NSEventModifierFlagDeviceIndependentFlagsMask")]
         const DeviceIndependentFlagsMask = 0xffff0000;
     }
@@ -493,66 +583,84 @@ unsafe impl RefEncode for NSEventModifierFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphashiftkeymask?language=objc)
+/// The Caps Lock key has been pressed.
 #[deprecated]
 pub static NSAlphaShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::CapsLock.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsshiftkeymask?language=objc)
+/// The Shift key has been pressed.
 #[deprecated]
 pub static NSShiftKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Shift.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolkeymask?language=objc)
+/// The Control key has been pressed.
 #[deprecated]
 pub static NSControlKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Control.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternatekeymask?language=objc)
+/// The Option or Alt key has been pressed.
 #[deprecated]
 pub static NSAlternateKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Option.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscommandkeymask?language=objc)
+/// The Command key has been pressed.
 #[deprecated]
 pub static NSCommandKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Command.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnumericpadkeymask?language=objc)
+/// A key in the numeric keypad or an arrow key has been pressed.
 #[deprecated]
 pub static NSNumericPadKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::NumericPad.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpkeymask?language=objc)
+/// The Help key has been pressed.
 #[deprecated]
 pub static NSHelpKeyMask: NSEventModifierFlags = NSEventModifierFlags(NSEventModifierFlags::Help.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfunctionkeymask?language=objc)
+/// A function key has been pressed.
+///
+/// ## Discussion
+///
+/// The numeric keypad is generally on the right side of the keyboard. This is also set if any of the arrow keys are pressed ([`NSUpArrowFunctionKey`](https://developer.apple.com/documentation/appkit/nsuparrowfunctionkey), [`NSDownArrowFunctionKey`](https://developer.apple.com/documentation/appkit/nsdownarrowfunctionkey), [`NSLeftArrowFunctionKey`](https://developer.apple.com/documentation/appkit/nsleftarrowfunctionkey), and [`NSRightArrowFunctionKey`](https://developer.apple.com/documentation/appkit/nsrightarrowfunctionkey)).
+///
+///
 #[deprecated]
 pub static NSFunctionKeyMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::Function.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceindependentmodifierflagsmask?language=objc)
+/// Device-independent modifier flags are masked.
+///
+/// ## Discussion
+///
+/// Use this symbol to mask off device-dependent modifier flags, including event coalescing information. The result will contain only key event flags.
+///
+///
 #[deprecated]
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::DeviceIndependentFlagsMask.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum?language=objc)
+/// The pointing-device types for tablet-proximity events or mouse events with a proximity event subtype.
+///
+/// ## Overview
+///
+/// The [`pointingDeviceType`](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property) property returns one of these constants.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPointingDeviceType(pub NSUInteger);
 impl NSPointingDeviceType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/unknown?language=objc)
+    /// Represents an unknown type of pointing device.
     #[doc(alias = "NSPointingDeviceTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/pen?language=objc)
+    /// Represents the tip end of a stylus-like pointing device.
     #[doc(alias = "NSPointingDeviceTypePen")]
     pub const Pen: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/cursor?language=objc)
+    /// Represents a cursor pointing device.
     #[doc(alias = "NSPointingDeviceTypeCursor")]
     pub const Cursor: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum/eraser?language=objc)
+    /// Represents the eraser end of a stylus-like pointing device.
     #[doc(alias = "NSPointingDeviceTypeEraser")]
     pub const Eraser: Self = Self(3);
 }
@@ -565,40 +673,40 @@ unsafe impl RefEncode for NSPointingDeviceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunknownpointingdevice?language=objc)
+/// Represents an unknown type of pointing device.
 #[deprecated]
 pub static NSUnknownPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Unknown.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenpointingdevice?language=objc)
+/// Represents the tip end of a stylus-like pointing device.
 #[deprecated]
 pub static NSPenPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Pen.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorpointingdevice?language=objc)
+/// Represents a cursor (or puck-like) pointing device.
 #[deprecated]
 pub static NSCursorPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Cursor.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseraserpointingdevice?language=objc)
+/// Represents the eraser end of a stylus-like pointing device.
 #[deprecated]
 pub static NSEraserPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Eraser.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct?language=objc)
+/// Constants you use to identify the activated tablet buttons in an event.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventButtonMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventButtonMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/pentip?language=objc)
+/// A mask that matches the pen tip.
         #[doc(alias = "NSEventButtonMaskPenTip")]
         const PenTip = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/penlowerside?language=objc)
+/// A mask that matches the button on the lower side of the device.
         #[doc(alias = "NSEventButtonMaskPenLowerSide")]
         const PenLowerSide = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct/penupperside?language=objc)
+/// A mask that matches the button on the upper side of the device.
         #[doc(alias = "NSEventButtonMaskPenUpperSide")]
         const PenUpperSide = 4;
     }
@@ -612,46 +720,46 @@ unsafe impl RefEncode for NSEventButtonMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspentipmask?language=objc)
+/// The pen tip is activated.
 #[deprecated]
 pub static NSPenTipMask: NSEventButtonMask = NSEventButtonMask(NSEventButtonMask::PenTip.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenlowersidemask?language=objc)
+/// The button on the lower side of the device is activated.
 #[deprecated]
 pub static NSPenLowerSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenLowerSide.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspenuppersidemask?language=objc)
+/// The button on the upper side of the device is activated.
 #[deprecated]
 pub static NSPenUpperSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenUpperSide.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct?language=objc)
+/// Constants that represent the possible phases during an event phase.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventPhase: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventphase/nseventphasenone?language=objc)
+/// The event is not associated with a phase.
         #[doc(alias = "NSEventPhaseNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/began?language=objc)
+/// An event phase has begun.
         #[doc(alias = "NSEventPhaseBegan")]
         const Began = 0x1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/stationary?language=objc)
+/// An event phase is in progress but hasn’t moved since the previous event.
         #[doc(alias = "NSEventPhaseStationary")]
         const Stationary = 0x1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/changed?language=objc)
+/// An event phase has changed.
         #[doc(alias = "NSEventPhaseChanged")]
         const Changed = 0x1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/ended?language=objc)
+/// The event phase ended.
         #[doc(alias = "NSEventPhaseEnded")]
         const Ended = 0x1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/cancelled?language=objc)
+/// The system canceled the event phase.
         #[doc(alias = "NSEventPhaseCancelled")]
         const Cancelled = 0x1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct/maybegin?language=objc)
+/// The system event phase may begin.
         #[doc(alias = "NSEventPhaseMayBegin")]
         const MayBegin = 0x1<<5;
     }
@@ -665,19 +773,19 @@ unsafe impl RefEncode for NSEventPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis?language=objc)
+/// Constants that specify the direction of travel for a gesture.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventGestureAxis(pub NSInteger);
 impl NSEventGestureAxis {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/none?language=objc)
+    /// No specific axis.
     #[doc(alias = "NSEventGestureAxisNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/horizontal?language=objc)
+    /// The horizontal axis.
     #[doc(alias = "NSEventGestureAxisHorizontal")]
     pub const Horizontal: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis/vertical?language=objc)
+    /// The vertical axis.
     #[doc(alias = "NSEventGestureAxisVertical")]
     pub const Vertical: Self = Self(2);
 }
@@ -690,17 +798,17 @@ unsafe impl RefEncode for NSEventGestureAxis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions?language=objc)
+/// Constants that specify swipe-tracking options.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventSwipeTrackingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventSwipeTrackingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions/lockdirection?language=objc)
+/// Clamp gestureAmount to 0 if the user starts to swipe in the opposite direction than they started.
         #[doc(alias = "NSEventSwipeTrackingLockDirection")]
         const LockDirection = 0x1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions/clampgestureamount?language=objc)
+/// Don’t allow gestureAmount to go beyond +/-1.0
         #[doc(alias = "NSEventSwipeTrackingClampGestureAmount")]
         const ClampGestureAmount = 0x1<<1;
     }
@@ -714,40 +822,46 @@ unsafe impl RefEncode for NSEventSwipeTrackingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype?language=objc)
+/// Subtypes for various types of events.
+///
+/// ## Overview
+///
+/// The event subtype contains one of these constants only when the event’s [`type`](https://developer.apple.com/documentation/appkit/nsevent/type) property contains [`NSAppKitDefined`](https://developer.apple.com/documentation/appkit/nsappkitdefined), [`NSSystemDefined`](https://developer.apple.com/documentation/appkit/nssystemdefined), or [`NSApplicationDefined`](https://developer.apple.com/documentation/appkit/nsapplicationdefined) or a mouse-related event type.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventSubtype(pub c_short);
 impl NSEventSubtype {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/windowexposed?language=objc)
+    /// An event that indicates a window’s contents are visible again.
     #[doc(alias = "NSEventSubtypeWindowExposed")]
     pub const WindowExposed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/applicationactivated?language=objc)
+    /// An app-activation event occurred.
     #[doc(alias = "NSEventSubtypeApplicationActivated")]
     pub const ApplicationActivated: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/applicationdeactivated?language=objc)
+    /// An app-deactivation event occurred.
     #[doc(alias = "NSEventSubtypeApplicationDeactivated")]
     pub const ApplicationDeactivated: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/windowmoved?language=objc)
+    /// An event that indicates a window moved.
     #[doc(alias = "NSEventSubtypeWindowMoved")]
     pub const WindowMoved: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/screenchanged?language=objc)
+    /// An event that indicates a window changed screens.
     #[doc(alias = "NSEventSubtypeScreenChanged")]
     pub const ScreenChanged: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/poweroff?language=objc)
+    /// An event that indicates a system shutdown or restart operation is in progress.
     #[doc(alias = "NSEventSubtypePowerOff")]
     pub const PowerOff: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/mouseevent?language=objc)
+    /// A mouse event occurred.
     #[doc(alias = "NSEventSubtypeMouseEvent")]
     pub const MouseEvent: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/tabletpoint?language=objc)
+    /// A tablet-pointer event occurred.
     #[doc(alias = "NSEventSubtypeTabletPoint")]
     pub const TabletPoint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/tabletproximity?language=objc)
+    /// A tablet-proximity event occurred.
     #[doc(alias = "NSEventSubtypeTabletProximity")]
     pub const TabletProximity: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype/touch?language=objc)
+    /// A touch event occurred.
     #[doc(alias = "NSEventSubtypeTouch")]
     pub const Touch: Self = Self(3);
 }
@@ -760,81 +874,89 @@ unsafe impl RefEncode for NSEventSubtype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowexposedeventtype?language=objc)
+/// A non-retained NSWindow has been exposed.
 #[deprecated]
 pub static NSWindowExposedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::WindowExposed.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivatedeventtype?language=objc)
+/// The application has been activated.
 #[deprecated]
 pub static NSApplicationActivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationActivated.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdeactivatedeventtype?language=objc)
+/// The application has been deactivated.
 #[deprecated]
 pub static NSApplicationDeactivatedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ApplicationDeactivated.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowmovedeventtype?language=objc)
+/// An NSWindow has moved.
 #[deprecated]
 pub static NSWindowMovedEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::WindowMoved.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreenchangedeventtype?language=objc)
+/// An NSWindow has changed screens.
 #[deprecated]
 pub static NSScreenChangedEventType: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::ScreenChanged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsawteventtype?language=objc)
+/// An event type used to support Java applications.
 #[deprecated = "This subtype no longer exists"]
 pub static NSAWTEventType: NSEventSubtype = NSEventSubtype(16);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspoweroffeventtype?language=objc)
+/// Specifies that the user is turning off the computer.
 #[deprecated]
 pub static NSPowerOffEventType: NSEventSubtype = NSEventSubtype(NSEventSubtype::PowerOff.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmouseeventsubtype?language=objc)
+/// Indicates a purely mouse event.
 #[deprecated]
 pub static NSMouseEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::MouseEvent.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletpointeventsubtype?language=objc)
+/// Indicates a tablet-pointer event; see description of `NSTabletPoint`.
 #[deprecated]
 pub static NSTabletPointEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletPoint.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabletproximityeventsubtype?language=objc)
+/// Indicates a tablet-proximity event; see description of `NSTabletProximity`.
 #[deprecated]
 pub static NSTabletProximityEventSubtype: NSEventSubtype =
     NSEventSubtype(NSEventSubtype::TabletProximity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoucheventsubtype?language=objc)
+/// Indicates a touch event subtype.
 #[deprecated]
 pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::Touch.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum?language=objc)
+/// These constants describe the behavior and progression of a pressure gesture.
+///
+/// ## Overview
+///
+/// These constants describe the behavior and progression of a pressure gesture. They allow you to configure how pressure from a pressure-sensitive device, such as the Force Touch trackpad, is interpreted by the system. For example, a drawing or painting app may adjust the behavior of pressure events to focus on variable pressure and prevent force clicks from occurring.
+///
+/// In most cases, a pressure gesture’s behavior goes into effect when the gesture event’s [`stage`](https://developer.apple.com/documentation/appkit/nsevent/stage) property reaches a value of `1` and remains in effect until the gesture event’s [`stage`](https://developer.apple.com/documentation/appkit/nsevent/stage) property reaches a value of `0`. This behavior corresponds to the behavior of simultaneously generated mouse-up and mouse-down events.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPressureBehavior(pub NSInteger);
 impl NSPressureBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/unknown?language=objc)
+    /// A pressure gesture’s behavior is not known, perhaps because the input device does not support pressure gestures.
     #[doc(alias = "NSPressureBehaviorUnknown")]
     pub const Unknown: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydefault?language=objc)
+    /// This is the default behavior when a pressure gesture’s behavior has not been explicitly configured. In OS X 10.10.3, this behavior defaults to the behavior of `NSPressureBehaviorPrimaryDeepClick`.
     #[doc(alias = "NSPressureBehaviorPrimaryDefault")]
     pub const PrimaryDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primaryclick?language=objc)
+    /// A pressure gesture’s behavior begins on left mouse-down events. A maximum of one stage is supported, and a stage transition animation occurs when moving from stage 1 to stage 0. Actuations (haptic feedback the user feels) occur during mouse-down and mouse-up events when this behavior is configured. Note that the pressure gesture operates on a separate event stream from the mouse events.
     #[doc(alias = "NSPressureBehaviorPrimaryClick")]
     pub const PrimaryClick: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarygeneric?language=objc)
+    /// A pressure gesture’s behavior begins on left mouse-down events. A maximum of one stage is supported, and a stage transition animation occurs when moving from stage 1 to stage 0. Actuations occur during the mouse-down and mouse-up events when this behavior is configured. This configuration is ideal for drawing, painting, and general use. Variable pressure occurs throughout the course of the gesture. Note that the pressure gesture operates on a separate event stream from the mouse events.
     #[doc(alias = "NSPressureBehaviorPrimaryGeneric")]
     pub const PrimaryGeneric: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primaryaccelerator?language=objc)
+    /// A pressure gesture’s behavior begins on left mouse-down events. A maximum of one stage is supported, and a stage transition animation occurs when moving from stage 1 to stage 0. Actuations occur during the mouse-down and mouse-up events when this behavior is configured. This configuration uses specific pressure mappings that are ideal for controlling speed as variable pressure occurs between the mouse-down and mouse-up events. The [`NSAcceleratorButton`](https://developer.apple.com/documentation/appkit/nsacceleratorbutton) class uses this behavior. Note that the pressure gesture operates on a separate event stream from the mouse events.
     #[doc(alias = "NSPressureBehaviorPrimaryAccelerator")]
     pub const PrimaryAccelerator: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydeepclick?language=objc)
+    /// A pressure gesture’s behavior begins on left mouse-down events. Two stages are supported, and a stage transition animation may occur when moving between stages—from stage 1 to stage 0, stage 1 to stage 2, stage 2 to stage 1, and stage 2 to stage 0. With this behavior type, stage 2 becomes disabled once dragging occurs. When this behavior is configured, actuations occur during the mouse-down and mouse-up events, as well as when force click is activated and released when entering or exiting stage 2. This configuration is ideal for responding to force clicks. Note that the pressure gesture operates on a separate event stream from the mouse events.
     #[doc(alias = "NSPressureBehaviorPrimaryDeepClick")]
     pub const PrimaryDeepClick: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum/primarydeepdrag?language=objc)
+    /// A pressure gesture’s behavior begins on left mouse-down events. Two stages are supported, and a stage transition animation may occur when moving between stages—from stage 1 to stage 0, stage 1 to stage 2, stage 2 to stage 1, or stage 2 to stage 0. Actuations occur during the mouse-down and mouse-up events, as well as during the transitions up and down between stage 1 and stage 2, when this behavior is configured. This configuration is ideal for responding to force clicks during drag operations. Note that the pressure gesture operates on a separate event stream from the mouse events.
     #[doc(alias = "NSPressureBehaviorPrimaryDeepDrag")]
     pub const PrimaryDeepDrag: Self = Self(6);
 }
@@ -848,7 +970,19 @@ unsafe impl RefEncode for NSPressureBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent?language=objc)
+    /// An object that contains information about an input action, such as a mouse click or a key press.
+    ///
+    /// ## Overview
+    ///
+    /// AppKit reports events that occur in a window to the app that created the window. Events include mouse clicks, key presses, and other types of input to the system. An [`NSEvent`](https://developer.apple.com/documentation/appkit/nsevent) object contains pertinent information about each event, such as the event type and when the event occurred. The event type defines what other information is available in the event object. For example, a keyboard event contains information about the pressed keys.
+    ///
+    /// Although you can create [`NSEvent`](https://developer.apple.com/documentation/appkit/nsevent) objects directly, you typically don’t. The system generates them automatically in response to input from the mouse, keyboard, trackpad, or other peripherals such as connected tablets. It enqueues those events in its event queue, and dequeues them when it’s ready to process them. The system delivers events to the most relevant [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) object, which might be the first responder or the object where the event occurred. For example, the system delivers mouse-click events to the view that contains the event location.
+    ///
+    /// To handle events, add support to your app’s [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) objects. You can also use gesture recognizers to handle some events for you and execute your app’s code at appropriate times. For more information, see the [`NSResponder`](https://developer.apple.com/documentation/appkit/nsresponder) reference.
+    ///
+    /// You can also monitor the events your app receives and modify or cancel some events as needed. Install a local monitor using the [`addLocalMonitorForEventsMatchingMask:handler:`](https://developer.apple.com/documentation/appkit/nsevent/addlocalmonitorforevents(matching:handler:)) method to detect specific types of events and take action when your app receives them. Install a global monitor using the [`addGlobalMonitorForEventsMatchingMask:handler:`](https://developer.apple.com/documentation/appkit/nsevent/addglobalmonitorforevents(matching:handler:)) method to monitor events systemwide, although without the ability to modify them.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSEvent;
@@ -1324,147 +1458,399 @@ impl DefaultRetained for NSEvent {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuparrowfunctionkey?language=objc)
+/// The up arrow key.
 pub const NSUpArrowFunctionKey: c_uint = 0xF700;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdownarrowfunctionkey?language=objc)
+/// The down arrow key.
 pub const NSDownArrowFunctionKey: c_uint = 0xF701;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsleftarrowfunctionkey?language=objc)
+/// The left arrow key.
 pub const NSLeftArrowFunctionKey: c_uint = 0xF702;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrightarrowfunctionkey?language=objc)
+/// The right arrow key.
 pub const NSRightArrowFunctionKey: c_uint = 0xF703;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf1functionkey?language=objc)
+/// The F1 key.
 pub const NSF1FunctionKey: c_uint = 0xF704;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf2functionkey?language=objc)
+/// The F2 key.
 pub const NSF2FunctionKey: c_uint = 0xF705;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf3functionkey?language=objc)
+/// The F3 key.
 pub const NSF3FunctionKey: c_uint = 0xF706;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf4functionkey?language=objc)
+/// The F4 key.
 pub const NSF4FunctionKey: c_uint = 0xF707;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf5functionkey?language=objc)
+/// The F5 key.
 pub const NSF5FunctionKey: c_uint = 0xF708;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf6functionkey?language=objc)
+/// The F6 key.
 pub const NSF6FunctionKey: c_uint = 0xF709;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf7functionkey?language=objc)
+/// The F7 key.
 pub const NSF7FunctionKey: c_uint = 0xF70A;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf8functionkey?language=objc)
+/// The F8 key.
 pub const NSF8FunctionKey: c_uint = 0xF70B;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf9functionkey?language=objc)
+/// The F9 key.
 pub const NSF9FunctionKey: c_uint = 0xF70C;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf10functionkey?language=objc)
+/// The F10 key.
 pub const NSF10FunctionKey: c_uint = 0xF70D;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf11functionkey?language=objc)
+/// The F11 key.
 pub const NSF11FunctionKey: c_uint = 0xF70E;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf12functionkey?language=objc)
+/// The F12 key.
 pub const NSF12FunctionKey: c_uint = 0xF70F;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf13functionkey?language=objc)
+/// The F13 key.
 pub const NSF13FunctionKey: c_uint = 0xF710;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf14functionkey?language=objc)
+/// The F14 key.
 pub const NSF14FunctionKey: c_uint = 0xF711;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf15functionkey?language=objc)
+/// The F15 key.
 pub const NSF15FunctionKey: c_uint = 0xF712;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf16functionkey?language=objc)
+/// The F16 key.
 pub const NSF16FunctionKey: c_uint = 0xF713;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf17functionkey?language=objc)
+/// The F17 key.
 pub const NSF17FunctionKey: c_uint = 0xF714;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf18functionkey?language=objc)
+/// The F18 key.
 pub const NSF18FunctionKey: c_uint = 0xF715;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf19functionkey?language=objc)
+/// The F19 key.
 pub const NSF19FunctionKey: c_uint = 0xF716;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf20functionkey?language=objc)
+/// The F20 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF20FunctionKey: c_uint = 0xF717;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf21functionkey?language=objc)
+/// The F21 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF21FunctionKey: c_uint = 0xF718;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf22functionkey?language=objc)
+/// The F22 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF22FunctionKey: c_uint = 0xF719;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf23functionkey?language=objc)
+/// The F23 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF23FunctionKey: c_uint = 0xF71A;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf24functionkey?language=objc)
+/// The F24 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF24FunctionKey: c_uint = 0xF71B;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf25functionkey?language=objc)
+/// The F25 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF25FunctionKey: c_uint = 0xF71C;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf26functionkey?language=objc)
+/// The F26 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF26FunctionKey: c_uint = 0xF71D;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf27functionkey?language=objc)
+/// The F27 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF27FunctionKey: c_uint = 0xF71E;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf28functionkey?language=objc)
+/// The F28 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF28FunctionKey: c_uint = 0xF71F;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf29functionkey?language=objc)
+/// The F29 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF29FunctionKey: c_uint = 0xF720;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf30functionkey?language=objc)
+/// The F30 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF30FunctionKey: c_uint = 0xF721;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf31functionkey?language=objc)
+/// The F31 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF31FunctionKey: c_uint = 0xF722;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf32functionkey?language=objc)
+/// The F32 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF32FunctionKey: c_uint = 0xF723;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf33functionkey?language=objc)
+/// The F33 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF33FunctionKey: c_uint = 0xF724;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf34functionkey?language=objc)
+/// The F34 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF34FunctionKey: c_uint = 0xF725;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsf35functionkey?language=objc)
+/// The F35 key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSF35FunctionKey: c_uint = 0xF726;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertfunctionkey?language=objc)
+/// The insert key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSInsertFunctionKey: c_uint = 0xF727;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletefunctionkey?language=objc)
+/// The forward delete key.
 pub const NSDeleteFunctionKey: c_uint = 0xF728;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshomefunctionkey?language=objc)
+/// The home key.
 pub const NSHomeFunctionKey: c_uint = 0xF729;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbeginfunctionkey?language=objc)
+/// The begin key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSBeginFunctionKey: c_uint = 0xF72A;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsendfunctionkey?language=objc)
+/// The end key.
 pub const NSEndFunctionKey: c_uint = 0xF72B;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspageupfunctionkey?language=objc)
+/// The page up key.
 pub const NSPageUpFunctionKey: c_uint = 0xF72C;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspagedownfunctionkey?language=objc)
+/// The page down key.
 pub const NSPageDownFunctionKey: c_uint = 0xF72D;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintscreenfunctionkey?language=objc)
+/// The print screen key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSPrintScreenFunctionKey: c_uint = 0xF72E;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrolllockfunctionkey?language=objc)
+/// The scroll lock key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSScrollLockFunctionKey: c_uint = 0xF72F;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspausefunctionkey?language=objc)
+/// The pause key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSPauseFunctionKey: c_uint = 0xF730;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssysreqfunctionkey?language=objc)
+/// The system request key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSSysReqFunctionKey: c_uint = 0xF731;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbreakfunctionkey?language=objc)
+/// The break key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSBreakFunctionKey: c_uint = 0xF732;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresetfunctionkey?language=objc)
+/// The reset key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSResetFunctionKey: c_uint = 0xF733;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstopfunctionkey?language=objc)
+/// The stop key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSStopFunctionKey: c_uint = 0xF734;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenufunctionkey?language=objc)
+/// The menu key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSMenuFunctionKey: c_uint = 0xF735;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserfunctionkey?language=objc)
+/// The user key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSUserFunctionKey: c_uint = 0xF736;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemfunctionkey?language=objc)
+/// The system key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSSystemFunctionKey: c_uint = 0xF737;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintfunctionkey?language=objc)
+/// The print key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSPrintFunctionKey: c_uint = 0xF738;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsclearlinefunctionkey?language=objc)
+/// The clear or num lock key.
 pub const NSClearLineFunctionKey: c_uint = 0xF739;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscleardisplayfunctionkey?language=objc)
+/// The clear display key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSClearDisplayFunctionKey: c_uint = 0xF73A;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertlinefunctionkey?language=objc)
+/// The insert line key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSInsertLineFunctionKey: c_uint = 0xF73B;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletelinefunctionkey?language=objc)
+/// The delete line key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSDeleteLineFunctionKey: c_uint = 0xF73C;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertcharfunctionkey?language=objc)
+/// The insert character key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSInsertCharFunctionKey: c_uint = 0xF73D;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletecharfunctionkey?language=objc)
+/// The delete character key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSDeleteCharFunctionKey: c_uint = 0xF73E;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprevfunctionkey?language=objc)
+/// Previous key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSPrevFunctionKey: c_uint = 0xF73F;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnextfunctionkey?language=objc)
+/// The next key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSNextFunctionKey: c_uint = 0xF740;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectfunctionkey?language=objc)
+/// The select key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSSelectFunctionKey: c_uint = 0xF741;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexecutefunctionkey?language=objc)
+/// The execute key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSExecuteFunctionKey: c_uint = 0xF742;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsundofunctionkey?language=objc)
+/// The undo key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSUndoFunctionKey: c_uint = 0xF743;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsredofunctionkey?language=objc)
+/// The redo key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSRedoFunctionKey: c_uint = 0xF744;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindfunctionkey?language=objc)
+/// The find key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSFindFunctionKey: c_uint = 0xF745;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpfunctionkey?language=objc)
+/// The help key.
 pub const NSHelpFunctionKey: c_uint = 0xF746;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodeswitchfunctionkey?language=objc)
+/// The mode switch key.
+///
+/// ## Discussion
+///
+/// This key is unavailable on most Macintosh keyboards.
+///
+///
 pub const NSModeSwitchFunctionKey: c_uint = 0xF747;

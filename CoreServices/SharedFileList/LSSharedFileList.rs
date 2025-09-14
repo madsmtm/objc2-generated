@@ -12,7 +12,7 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistref?language=objc)
+/// A persistent list of file-system objects.
 #[doc(alias = "LSSharedFileListRef")]
 #[repr(C)]
 pub struct LSSharedFileList {
@@ -28,7 +28,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueLSSharedFileListRef"> for LSSharedFileList {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistitemref?language=objc)
+/// A file-system object in the shared file list.
 #[doc(alias = "LSSharedFileListItemRef")]
 #[repr(C)]
 pub struct LSSharedFileListItem {
@@ -45,109 +45,89 @@ cf_objc2_type!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistfavoritevolumes?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListFavoriteVolumes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistfavoriteitems?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListFavoriteItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentapplicationitems?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentApplicationItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentdocumentitems?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentDocumentItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentserveritems?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentServerItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistsessionloginitems?language=objc)
     #[deprecated]
     pub static kLSSharedFileListSessionLoginItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistgloballoginitems?language=objc)
     #[deprecated]
     pub static kLSSharedFileListGlobalLoginItems: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistrecentitemsmaxamount?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListRecentItemsMaxAmount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumescomputervisible?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListVolumesComputerVisible: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumesidiskvisible?language=objc)
     #[deprecated = "iDisk is no longer available"]
     pub static kLSSharedFileListVolumesIDiskVisible: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistvolumesnetworkvisible?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListVolumesNetworkVisible: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitembeforefirst?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemBeforeFirst: &'static LSSharedFileListItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitemlast?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemLast: &'static LSSharedFileListItem;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistitemhidden?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListItemHidden: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistloginitemhidden?language=objc)
     #[deprecated = "No longer supported"]
     pub static kLSSharedFileListLoginItemHidden: &'static CFString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistresolutionflags?language=objc)
 pub type LSSharedFileListResolutionFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1581401-anonymous/klssharedfilelistnouserinteraction?language=objc)
 pub const kLSSharedFileListNoUserInteraction: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1581401-anonymous/klssharedfilelistdonotmountvolumes?language=objc)
 pub const kLSSharedFileListDoNotMountVolumes: c_uint = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistchangedprocptr?language=objc)
 pub type LSSharedFileListChangedProcPtr =
     Option<unsafe extern "C-unwind" fn(NonNull<LSSharedFileList>, NonNull<c_void>)>;
 
 unsafe impl ConcreteType for LSSharedFileList {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450618-lssharedfilelistgettypeid?language=objc)
     #[doc(alias = "LSSharedFileListGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -159,7 +139,6 @@ unsafe impl ConcreteType for LSSharedFileList {
 }
 
 unsafe impl ConcreteType for LSSharedFileListItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447138-lssharedfilelistitemgettypeid?language=objc)
     #[doc(alias = "LSSharedFileListItemGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -171,8 +150,6 @@ unsafe impl ConcreteType for LSSharedFileListItem {
 }
 
 impl LSSharedFileList {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443926-lssharedfilelistcreate?language=objc)
-    ///
     /// # Safety
     ///
     /// `list_options` should be of the correct type.
@@ -195,8 +172,6 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446834-lssharedfilelistsetauthorization?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_authorization` must be a valid pointer.
@@ -214,8 +189,6 @@ impl LSSharedFileList {
         unsafe { LSSharedFileListSetAuthorization(self, in_authorization) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445770-lssharedfilelistaddobserver?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_runloop` possibly has additional threading requirements.
@@ -245,8 +218,6 @@ impl LSSharedFileList {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443404-lssharedfilelistremoveobserver?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_runloop` possibly has additional threading requirements.
@@ -276,7 +247,6 @@ impl LSSharedFileList {
         }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444885-lssharedfilelistgetseedvalue?language=objc)
     #[doc(alias = "LSSharedFileListGetSeedValue")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -287,7 +257,6 @@ impl LSSharedFileList {
         unsafe { LSSharedFileListGetSeedValue(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444588-lssharedfilelistcopyproperty?language=objc)
     #[doc(alias = "LSSharedFileListCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -302,8 +271,6 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448857-lssharedfilelistsetproperty?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_property_data` should be of the correct type.
@@ -325,8 +292,6 @@ impl LSSharedFileList {
         unsafe { LSSharedFileListSetProperty(self, in_property_name, in_property_data) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448112-lssharedfilelistcopysnapshot?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_snapshot_seed` must be a valid pointer or null.
@@ -344,8 +309,6 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444471-lssharedfilelistinsertitemurl?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
@@ -390,8 +353,6 @@ impl LSSharedFileList {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449884-lssharedfilelistinsertitemfsref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
@@ -444,7 +405,6 @@ impl LSSharedFileList {
 }
 
 impl LSSharedFileListItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444348-lssharedfilelistitemmove?language=objc)
     #[doc(alias = "LSSharedFileListItemMove")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -463,7 +423,6 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemMove(in_list, in_item, in_move_after_item) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442025-lssharedfilelistitemremove?language=objc)
     #[doc(alias = "LSSharedFileListItemRemove")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -479,7 +438,6 @@ impl LSSharedFileListItem {
 }
 
 impl LSSharedFileList {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446389-lssharedfilelistremoveallitems?language=objc)
     #[doc(alias = "LSSharedFileListRemoveAllItems")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -492,7 +450,6 @@ impl LSSharedFileList {
 }
 
 impl LSSharedFileListItem {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443305-lssharedfilelistitemgetid?language=objc)
     #[doc(alias = "LSSharedFileListItemGetID")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -503,7 +460,6 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemGetID(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442889-lssharedfilelistitemcopyiconref?language=objc)
     #[doc(alias = "LSSharedFileListItemCopyIconRef")]
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
     #[deprecated = "No longer supported"]
@@ -515,7 +471,6 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemCopyIconRef(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449716-lssharedfilelistitemcopydisplayn?language=objc)
     #[doc(alias = "LSSharedFileListItemCopyDisplayName")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -531,8 +486,6 @@ impl LSSharedFileListItem {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447347-lssharedfilelistitemresolve?language=objc)
-    ///
     /// # Safety
     ///
     /// - `out_url` must be a valid pointer or null.
@@ -558,8 +511,6 @@ impl LSSharedFileListItem {
         unsafe { LSSharedFileListItemResolve(self, in_flags, out_url, out_ref) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449882-lssharedfilelistitemcopyresolved?language=objc)
-    ///
     /// # Safety
     ///
     /// `out_error` must be a valid pointer or null.
@@ -582,7 +533,6 @@ impl LSSharedFileListItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445074-lssharedfilelistitemcopyproperty?language=objc)
     #[doc(alias = "LSSharedFileListItemCopyProperty")]
     #[deprecated = "No longer supported"]
     #[inline]
@@ -597,8 +547,6 @@ impl LSSharedFileListItem {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445766-lssharedfilelistitemsetproperty?language=objc)
-    ///
     /// # Safety
     ///
     /// `in_property_data` should be of the correct type.

@@ -9,13 +9,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/drawingactions?language=objc)
+/// A closure for drawing PDF content.
+///
+/// ## Discussion
+///
+/// `UIGraphicsPDFDrawingActions` defines a block type that takes a [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) object as an argument and has no return value.
+///
+/// You provide a block of this type as an argument to the PDF drawing methods on [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer). Your block should use the provided PDF renderer context to perform the drawing operations you want the renderer to execute.
+///
+/// See [Creating a PDF with a PDF renderer](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#creating-a-pdf-with-a-pdf-renderer) for an example use of a `UIGraphicsPDFDrawingActions` block.
+///
+///
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsPDFDrawingActions =
     *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat?language=objc)
+    /// A set of drawing attributes that represents the configuration of a PDF renderer context.
+    ///
+    /// ## Overview
+    ///
+    /// Use this subclass of [`UIGraphicsRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat) to provide context configuration parameters to a [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer).
+    ///
+    /// Create an instance and then add PDF configuration parameters to the [`documentInfo`](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat/documentinfo) dictionary.
+    ///
+    /// The following code demonstrates how you can use a PDF renderer format object to specify the author of the PDFs created by a PDF renderer.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let format = UIGraphicsPDFRendererFormat()", "format.documentInfo = [ kCGPDFContextAuthor as String : \"Kate Bell\" ]", "let renderer =", "  UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 300),", "                        format: format)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIGraphicsPDFRendererFormat *format = [[UIGraphicsPDFRendererFormat alloc] init];", "format.documentInfo = @{ (NSString *)kCGPDFContextAuthor : @\"Kate Bell\" };", "UIGraphicsPDFRenderer *renderer =", "    [[UIGraphicsPDFRenderer alloc] initWithBounds:CGRectMake(0, 0, 500, 300)", "                                           format:format];"], metadata: None }] }] })
+    ///
     #[unsafe(super(UIGraphicsRendererFormat, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -95,7 +116,23 @@ impl DefaultRetained for UIGraphicsPDFRendererFormat {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext?language=objc)
+    /// The drawing environment for a PDF renderer.
+    ///
+    /// ## Overview
+    ///
+    /// When using the [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer) drawing methods, you must pass a block of type [`UIGraphicsPDFDrawingActions`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/drawingactions) as an argument, which provides a [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) instance as an argument. Use the context object to access high-level drawing functions and the underlying Core Graphics context.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) inherits much of its functionality from its abstract superclass [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext).
+    ///
+    ///
+    ///
+    /// </div>
+    /// To learn how to use a [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) object in combination with a PDF renderer, see [Creating a graphics PDF renderer](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#creating-a-graphics-pdf-renderer).
+    ///
+    ///
     #[unsafe(super(UIGraphicsRendererContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]
@@ -171,7 +208,99 @@ impl DefaultRetained for UIGraphicsPDFRendererContext {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer?language=objc)
+    /// A graphics renderer for creating PDFs.
+    ///
+    /// ## Overview
+    ///
+    /// You can use PDF renderers to create PDF files, without having to manage Core Graphics contexts.
+    ///
+    /// To render a PDF:
+    ///
+    /// 1. Optionally create a [`UIGraphicsPDFRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat) object to specify nondefault parameters the renderer should use to create its context.
+    ///
+    /// 2. Instantiate a [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer) object, providing the dimensions of the output image and a format object. The renderer uses sensible defaults for the current device if you don’t provide format object, as demonstrated in [Creating a graphics PDF renderer](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#creating-a-graphics-pdf-renderer).
+    ///
+    /// 3. Choose one of the rendering methods depending on your desired output: [`PDFDataWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/pdfdata(actions:)) outputs the PDF in the form of a [`Data`](https://developer.apple.com/documentation/foundation/data) object, and [`writePDFToURL:withActions:error:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/writepdf(to:withactions:)) saves the PDF as a file directly to disk.
+    ///
+    /// 4. Provide Core Graphics drawing instructions within the closure associated with your chosen method, as shown in [Creating a PDF with a PDF renderer](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#creating-a-pdf-with-a-pdf-renderer).
+    ///
+    /// 5. Optionally, you can create a multi-page PDF, using the approach shown in [Adding pages](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#adding-pages).
+    ///
+    /// 6. Optionally, add links to your PDF to make navigation easy, as shown in [Creating internal links](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer#creating-internal-links).
+    ///
+    /// After initializing a PDF renderer, you can use it to draw multiple PDFs with the same configuration.
+    ///
+    /// ### Creating a graphics PDF renderer
+    ///
+    /// Create a PDF renderer, providing the bounds of the PDF page.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let renderer = UIGraphicsPDFRenderer(bounds: CGRect(x: 0, y: 0, width: 500, height: 300))"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["UIGraphicsPDFRenderer *renderer = [[UIGraphicsPDFRenderer alloc] initWithBounds:CGRectMake(0, 0, 500, 300)];"], metadata: None }] }] })
+    /// You can instead use one of the other [`UIGraphicsPDFRenderer`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer) initializers to specify a renderer format ([`UIGraphicsPDFRendererFormat`](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat)) in addition to the bounds. This allows you to configure the underlying Core Graphics context with custom PDF document info. If you don’t provide a format, the renderer uses the [`defaultFormat`](https://developer.apple.com/documentation/uikit/uigraphicsrendererformat/default()) format, which creates a context best suited for the current device.
+    ///
+    /// ### Creating a PDF with a PDF renderer
+    ///
+    /// Use the [`PDFDataWithActions:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/pdfdata(actions:)) method to create a PDF with the PDF renderer you created above. This takes a block that represents the drawing actions. Within this block, the renderer creates a Core Graphics context using the parameters provided during renderer initialization, and sets this to be the current context.
+    ///
+    /// Before issuing PDF drawing instructions, you must create a page with a call to either the [`beginPage`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/beginpage()) method or [`beginPageWithBounds:pageInfo:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/beginpage(withbounds:pageinfo:)) method on the supplied [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext).
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let pdf = renderer.pdfData { (context) in", "  context.beginPage()", "  let attributes = [", "    NSFontAttributeName : UIFont.boldSystemFont(ofSize: 150)", "  ]", "  let text = \"Hello!\" as NSString", "  text.draw(in: CGRect(x: 0, y: 0, width: 500, height: 200), withAttributes: attributes)", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSData *pdf = [renderer PDFDataWithActions:^(UIGraphicsPDFRendererContext * _Nonnull context) {", "  [context beginPage];", "  NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:150]};", "  NSString *text = @\"Hello!\";", "  [text drawInRect:CGRectMake(0, 0, 500, 200) withAttributes:attributes];}];  "], metadata: None }] }] })
+    /// The drawing actions closure takes a single argument of type [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext). This provides access to some high-level drawing functions, such as [`fillRect:`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext/fill(_:)) through the [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) superclass.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  This code uses a drawing method on [`NSString`](https://developer.apple.com/documentation/foundation/nsstring). If you want to create a PDF with more text, consider using [TextKit](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/iPhoneOSTechnologies/iPhoneOSTechnologies.html#//apple_ref/doc/uid/TP40007898-CH3-SW11) or [Core Text](https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/LowerLevelText-HandlingTechnologies/LowerLevelText-HandlingTechnologies.html#//apple_ref/doc/uid/TP40009542-CH15-SW3), both of which provide extensive text layout functionality.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The above code creates the following result:
+    ///
+    ///
+    /// ![Image of a PDF open in Preview, with the word “Hello!” rendered in large, black lettering in the top-left.](https://docs-assets.developer.apple.com/published/a1502445dbaa2ddde3045eaa89064476/media-2864001%402x.png)
+    ///
+    ///
+    /// ### Adding pages
+    ///
+    /// Add multiple pages to your PDF through repeated calls to the [`beginPage`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/beginpage()) method on the [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) provided to the drawing block.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let pdf = renderer.pdfData { (context) in", "  let attributes = [", "    NSFontAttributeName : UIFont.boldSystemFont(ofSize: 150)", "  ]", "  for page in 1...3 {", "    context.beginPage()", "    let text = \"Page \\(page)\" as NSString", "    text.draw(in: CGRect(x: 0, y: 0, width: 500, height: 200), withAttributes: attributes)", "  }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSData *pdf = [renderer PDFDataWithActions:^(UIGraphicsPDFRendererContext * _Nonnull context) {", "  NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:150]}; ", "  for (int page = 1; page < 4; page++) {", "    [context beginPage];", "    NSString *text = [NSString stringWithFormat:@\"Page %d\", page];", "    [text drawInRect:CGRectMake(0, 0, 500, 200) withAttributes:attributes];", "  }}];"], metadata: None }] }] })
+    /// Use the [`beginPageWithBounds:pageInfo:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/beginpage(withbounds:pageinfo:)) method instead of the [`beginPage`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/beginpage()) method if you want to override the default properties for the new page.
+    ///
+    /// This code creates a PDF with three pages, each of which contains the current page number as large text, as shown in the following image.
+    ///
+    ///
+    /// ![Screenshot from Preview showing a 3-page PDF. Each page contains large black lettering which details the current page number.](https://docs-assets.developer.apple.com/published/69c0b1a8802e3a5f9e3d1cd2cfa64c77/media-2864003%402x.png)
+    ///
+    ///
+    /// ### Creating internal links
+    ///
+    /// You can create internal links, known as destinations, in PDFs. A complete link has two components:
+    ///
+    /// - A named destination. This is a point on a PDF page. You create these with the [`addDestinationWithName:atPoint:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/adddestination(withname:at:)) method on [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext).
+    ///
+    /// - A link region. This is a rectangle on a PDF page, which when tapped, instructs the PDF viewing app to jump to a specific named destination. You create these with the [`setDestinationWithName:forRect:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/setdestinationwithname(_:for:)) method on [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext), providing the name of the destination to jump to, and the bounds of the active link region.
+    ///
+    /// The following code demonstrates how to use destinations with a PDF renderer by showing how to create links that jump to the next page.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let pdf = renderer.pdfData { (context) in", "  let pageNumberAttributes = [", "    NSFontAttributeName : UIFont.boldSystemFont(ofSize: 150)", "  ]", "  ", "  let nextPage = \"Next Page ↠\" as NSString", "  let nextPageRect = CGRect(x: 350, y: 250, width: 150, height: 40)", "  let nextPageAttributes = [", "    NSFontAttributeName : UIFont.systemFont(ofSize: 25),", "    NSBackgroundColorAttributeName : UIColor.red,", "    NSForegroundColorAttributeName : UIColor.white", "  ]", "  ", "  for page in 1...3 {", "    context.beginPage()", "    let pageNumber = \"Page \\(page)\" as NSString", "    pageNumber.draw(in: CGRect(x: 0, y: 0, width: 500, height: 200), withAttributes: pageNumberAttributes)", "    ", "    nextPage.draw(in: nextPageRect, withAttributes: nextPageAttributes)", "    ", "    context.addDestination(withName: \"page-\\(page)\", at: CGPoint.zero.applying(context.cgContext.userSpaceToDeviceSpaceTransform))", "    context.setDestinationWithName(\"page-\\(page + 1)\", for: nextPageRect.applying(context.cgContext.userSpaceToDeviceSpaceTransform))", "  }", "}"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSData *pdf = [renderer PDFDataWithActions:^(UIGraphicsPDFRendererContext * _Nonnull context) {", "  NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:150]};", "    ", "  NSString *nextPage = @\"Next Page ↠\";", "  CGRect nextPageRect = CGRectMake(350, 250, 150, 40);", "  NSDictionary *nextPageAttributes = @{", "    NSFontAttributeName : [UIFont systemFontOfSize:25],", "    NSBackgroundColorAttributeName : [UIColor redColor],", "    NSForegroundColorAttributeName : [UIColor whiteColor]", "  };", "  for (int page = 1; page < 4; page++) {", "    [context beginPage];", "    NSString *pageNumber = [NSString stringWithFormat:@\"Page %d\", page];", "    [pageNumber drawInRect:CGRectMake(0, 0, 500, 200) withAttributes:attributes];", "    [nextPage drawInRect:nextPageRect withAttributes:nextPageAttributes];", "      ", "    [context addDestinationWithName:[NSString stringWithFormat:@\"page-%d\", page]", "                            atPoint:CGContextConvertPointToDeviceSpace(context.CGContext, CGPointZero)];", "    [context setDestinationWithName:[NSString stringWithFormat:@\"page-%d\", page+1]", "                            forRect:CGContextConvertRectToDeviceSpace(context.CGContext, nextPageRect)];", "  }", "}];"], metadata: None }] }] })
+    /// This code adds large red labels that jump from the current page to the next page when clicked. Each page has a destination with names of the form `page-1`, positioned at the origin. The bounding box for the next-page label is the link to the destination on the following page.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`addDestinationWithName:atPoint:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/adddestination(withname:at:)) and [`setDestinationWithName:forRect:`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext/setdestinationwithname(_:for:)) methods on [`UIGraphicsPDFRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderercontext) use the underlying PDF coordinate space, which has its y-axis flipped with respect to the coordinate system used by Core Graphics. You can translate between the two using the [`CGContextGetUserSpaceToDeviceSpaceTransform`](https://developer.apple.com/documentation/coregraphics/cgcontext/userspacetodevicespacetransform) property on [`CGContextRef`](https://developer.apple.com/documentation/coregraphics/cgcontext), as shown in the code.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The above code results in the following PDF:
+    ///
+    ///
+    /// ![Screenshot from Preview showing a 3-page PDFs with red links entitled “Next Page” at the bottom-right of each page.](https://docs-assets.developer.apple.com/published/9cae1cc7f0812418f8639b4d40da5e94/media-2864256%402x.png)
+    ///
+    ///
+    ///
     #[unsafe(super(UIGraphicsRenderer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIGraphicsRenderer")]

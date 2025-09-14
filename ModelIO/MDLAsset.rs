@@ -8,6 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An indexed container for 3D objects and associated information, such as transform hierarchies, meshes, cameras, and lights.
+    ///
+    /// ## Overview
+    ///
+    /// You create a [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) object by loading data from a URL, and you can export an asset to any of several file formats. To access the objects contained in an asset, use [Fast Enumeration](https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/Enumeration.html#//apple_ref/doc/uid/TP40008195-CH17-SW3), the [`objectAtIndex:`](https://developer.apple.com/documentation/modelio/mdlasset/object(at:)) method, or subscripting. Each object in an asset can be the root of a hierarchy of objects. To traverse that hierarchy, use an object’s [`children`](https://developer.apple.com/documentation/modelio/mdlobject/children) property.
+    ///
+    /// An asset may contain timed information, such as a series of mesh morphs. In such cases, the asset’s [`frameInterval`](https://developer.apple.com/documentation/modelio/mdlasset/frameinterval) property is nonzero and the [`startTime`](https://developer.apple.com/documentation/modelio/mdlasset/starttime) and [`endTime`](https://developer.apple.com/documentation/modelio/mdlasset/endtime) properties indicate the range of sample times available in the asset data. For objects contained in the asset, you can use methods such as [`localTransformAtTime:`](https://developer.apple.com/documentation/modelio/mdltransformcomponent/localtransform(attime:)) and [`boundingBoxAtTime:`](https://developer.apple.com/documentation/modelio/mdlobject/boundingbox(attime:)) to access object properties at a specific time sample. Requesting a sample outside the time range clamps to the start or end sample. Some asset formats support continuous sampling with interpolation for times between the samples stored in the asset; other asset formats are discrete. For an asset with discrete time information, requesting a sample time that falls between the samples stored in the asset returns data for the immediately preceding time.
+    ///
+    ///
     /// An MDLAsset represents the contents of a model file.
     ///
     ///
@@ -31,8 +40,6 @@ extern_class!(
     /// objects.
     ///
     /// Fast enumeration of an MDLAsset iterates the top level objects contained within.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlasset?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MDLAsset;
@@ -375,7 +382,13 @@ impl MDLAsset {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdllightprobeirradiancedatasource?language=objc)
+    /// Adopt this protocol to provide information for use in automatic placement of light probes around a scene.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MDLAsset`](https://developer.apple.com/documentation/modelio/mdlasset) [`placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:`](https://developer.apple.com/documentation/modelio/mdlasset/placelightprobes(withdensity:heuristic:using:)) method automatically creates [`MDLLightProbe`](https://developer.apple.com/documentation/modelio/mdllightprobe) objects, setting their positions and lighting parameters to provide optimal light probe coverage within a scene you define. When you use that method, you must provide an object implementing this protocol, which Model I/O queries in order to evaluate your scene.
+    ///
+    ///
     pub unsafe trait MDLLightProbeIrradianceDataSource: NSObjectProtocol {
         /// Spherical harmonics level used to calculate the spherical harmonics coefficients.
         #[optional]

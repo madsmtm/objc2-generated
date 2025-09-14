@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.enum?language=objc)
+/// Objects that control the timing of content output.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXCustomContentImportance(pub NSUInteger);
 impl AXCustomContentImportance {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.enum/default?language=objc)
+    /// Output the content to the user on demand.
     #[doc(alias = "AXCustomContentImportanceDefault")]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent/importance-swift.enum/high?language=objc)
+    /// Output the content to the user immediately.
     #[doc(alias = "AXCustomContentImportanceHigh")]
     pub const High: Self = Self(1);
 }
@@ -30,7 +30,13 @@ unsafe impl RefEncode for AXCustomContentImportance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontent?language=objc)
+    /// Objects that define custom content and the timing of its output.
+    ///
+    /// ## Overview
+    ///
+    /// An `AXCustomContent` object contains the accessibility strings for the labels you apply to your accessibility content. Combine them with the [`AXCustomContentProvider`](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider) protocol to allow your users to experience the content in a more appropriate manner for each assistive technology.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AXCustomContent;
@@ -107,13 +113,12 @@ impl AXCustomContent {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomContentReturnBlock =
     *mut block2::DynBlock<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider?language=objc)
+    /// The interface for customizing the accessibility content.
     pub unsafe trait AXCustomContentProvider: NSObjectProtocol {
         #[unsafe(method(accessibilityCustomContent))]
         #[unsafe(method_family = none)]

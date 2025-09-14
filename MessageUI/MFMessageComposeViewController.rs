@@ -12,6 +12,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
+/// These constants describe the result of the message-composition interface.
 /// Composition result sent to the delegate upon user completion.
 ///
 /// This result will inform the client of the user's message composition action.  If the
@@ -33,20 +34,18 @@ use crate::*;
 /// </p>
 /// Send may only be interpreted as a successful queueing of
 /// the message for later sending. The actual send will occur when the device is able to send.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MessageComposeResult(pub NSInteger);
 impl MessageComposeResult {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/cancelled?language=objc)
+    /// The user canceled the composition.
     #[doc(alias = "MessageComposeResultCancelled")]
     pub const Cancelled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/sent?language=objc)
+    /// The user successfully queued or sent the message.
     #[doc(alias = "MessageComposeResultSent")]
     pub const Sent: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/messagecomposeresult/failed?language=objc)
+    /// The user’s attempt to save or send the message was unsuccessful.
     #[doc(alias = "MessageComposeResultFailed")]
     pub const Failed: Self = Self(2);
 }
@@ -60,16 +59,29 @@ unsafe impl RefEncode for MessageComposeResult {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmenturl?language=objc)
+    /// The URL for the item that is attached to the message.
     pub static MFMessageComposeViewControllerAttachmentURL: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerattachmentalternatefilename?language=objc)
+    /// The key for the alternate filename for the file-based item attached to the message.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this constant with the [`attachments`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/attachments) property to retrieve the optional, more descriptive name for a message attachment.
+    ///
+    ///
     pub static MFMessageComposeViewControllerAttachmentAlternateFilename: &'static NSString;
 }
 
 extern "C" {
+    /// Posted when the value returned by the [`canSendText()`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendtext()) class method has changed.
+    ///
+    /// ## Discussion
+    ///
+    /// Upon receiving this notification, query its `userInfo` dictionary with the [`MFMessageComposeViewControllerTextMessageAvailabilityKey`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollertextmessageavailabilitykey) key. If the availability of text message sending has changed, your app should invalidate caches and update its user interface as appropriate.
+    ///
+    ///
     /// Notification posted when the value of
     /// <tt>
     /// +[MFMessageComposeViewController canSendText]
@@ -81,13 +93,18 @@ extern "C" {
     /// +[MFMessageComposeViewController canSendText]
     /// </tt>
     /// has changed. Clients should invalidate any caches and update UI as appropriate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/nsnotification/name/mfmessagecomposeviewcontrollertextmessageavailabilitydidchange?language=objc)
     pub static MFMessageComposeViewControllerTextMessageAvailabilityDidChangeNotification:
         &'static NSString;
 }
 
 extern "C" {
+    /// The value of this key is a number object that contains a Boolean value.
+    ///
+    /// ## Discussion
+    ///
+    /// This value matches the result of the [`canSendText`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendtext()) class method.The `userInfo` dictionary for the [`MFMessageComposeViewControllerTextMessageAvailabilityDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/mfmessagecomposeviewcontrollertextmessageavailabilitydidchange) notification includes this key. The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object that contains a Boolean value. This value matches the result of the [`canSendText`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendtext()) class method.
+    ///
+    ///
     /// UserInfo key for MFMessageComposeViewControllerTextMessageAvailabilityDidChangeNotification
     /// containing the value of
     /// <tt>
@@ -100,12 +117,56 @@ extern "C" {
     /// +[MFMessageComposeViewController canSendText]
     /// </tt>
     /// .
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollertextmessageavailabilitykey?language=objc)
     pub static MFMessageComposeViewControllerTextMessageAvailabilityKey: &'static NSString;
 }
 
 extern_class!(
+    /// A standard view controller whose interface lets the user compose and send SMS or MMS messages.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`MFMessageComposeViewController`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller) object to display the standard message composition interface inside your app. Before presenting the interface, populate the fields with the set of initial recipients and the message you want to send. After presenting the interface, a person can edit your initial values before sending the message.
+    ///
+    /// The composition interface doesn’t guarantee the delivery of your message; it only lets you construct the initial message and present it for a person’s approval. The person may opt to cancel the composition interface which discards the message and its contents. If the person opts to send the message, the Messages app takes on the responsibility of sending the message.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/07bae83d9a320eacd640c791b55b8cd9/media-4288093~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/e75d28ad3cf6ade12a7f581320e3a862/media-4288093%402x.png 2x" />
+    ///     <img alt="a screenshot of the New Message screen, with a phone number in the To field and a short sentence in the composition text field." src="https://docs-assets.developer.apple.com/published/e75d28ad3cf6ade12a7f581320e3a862/media-4288093%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must not modify the view hierarchy presented by this view controller. However, you can customize the appearance of the interface using the [`UIAppearance`](https://developer.apple.com/documentation/uikit/uiappearance) protocol.
+    ///
+    ///
+    ///
+    /// </div>
+    /// An alternate way to compose SMS messages is to create and open a URL that uses the `sms` scheme. URLs of that type go directly to the Messages app, which uses your URL to configure the message. For information about the structure of `sms` URLs, see [Apple URL Scheme Reference](https://developer.apple.com/library/archive/featuredarticles/iPhoneURLScheme_Reference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007899).
+    ///
+    /// ### Checking the availability of the composition interface
+    ///
+    /// Before presenting the message compose view controller, always call the [`canSendText`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendtext()) method to see if the person configured the current device to send messages. If the user’s device isn’t set up to send or receive messages, you can notify the user or disable the messaging features in your application. You shouldn’t attempt to use this interface if the [`canSendText`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendtext()) method returns [`false`](https://developer.apple.com/documentation/swift/false). If messaging is available, you can also use the [`canSendAttachments`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendattachments()) and [`canSendSubject`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/cansendsubject()) methods to determine if those specific messaging features are available.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["if !MFMessageComposeViewController.canSendText() {", "    print(\"SMS services are not available\")", "}", ""], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["if (![MFMessageComposeViewController canSendText]) {", "   NSLog(@\"Message services are not available.\");", "}"], metadata: None }] }] })
+    /// ### Configuring and displaying the composition interface
+    ///
+    /// After verifying that message services are available, you can create and configure the message composition view controller and then present it like any other view controller. Use the methods of this class to specify the message’s recipients and the contents of the message. If attachments or a subject line are supported, you can set values for them as well. The sample code below shows how to configure the composition interface and present it modally. Always assign a delegate to the [`messageComposeDelegate`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller/messagecomposedelegate) property, because the delegate is responsible for dismissing the composition interface later. The delegate object must conform to the [`MFMessageComposeViewControllerDelegate`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerdelegate) protocol.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let composeVC = MFMessageComposeViewController()", "composeVC.messageComposeDelegate = self", " ", "// Configure the fields of the interface.", "composeVC.recipients = [\"4085551212\"]", "composeVC.body = \"Hello from California!\"", " ", "// Present the view controller modally.", "self.present(composeVC, animated: true, completion: nil)", ""], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["MFMessageComposeViewController* composeVC = [[MFMessageComposeViewController alloc] init];", "composeVC.messageComposeDelegate = self;", " ", "// Configure the fields of the interface.", "composeVC.recipients = @[@\"14085551212\"];", "composeVC.body = @\"Hello from California!\";", " ", "// Present the view controller modally.", "[self present:composeVC animated:YES completion:nil];", ""], metadata: None }] }] })
+    /// The message compose view controller isn’t dismissed automatically. When the user taps the buttons to send the message or cancel the interface, the message compose view controller calls the [`messageComposeViewController:didFinishWithResult:`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerdelegate/messagecomposeviewcontroller(_:didfinishwith:)) method of its delegate. Your implementation of that method must dismiss the view controller explicitly, as shown in the sample code below. You can also use this method to check the result of the operation.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func messageComposeViewController(controller: MFMessageComposeViewController,", "                                  didFinishWithResult result: MessageComposeResult) {", "    // Check the result or perform other tasks.", "    ", "    // Dismiss the message compose view controller.", "    controller.dismissViewControllerAnimated(true, completion: nil)}", ""], metadata: None }] }, TabItem { title: "Obj-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)messageComposeViewController:(MFMessageComposeViewController *)controller", "                 didFinishWithResult:(MessageComposeResult)result {", "   // Check the result or perform other tasks.    // Dismiss the message compose view controller.", "   [self dismissViewControllerAnimated:YES completion:nil];}", ""], metadata: None }] }] })
+    /// For more information on how to present and dismiss view controllers, see [View Controller Programming Guide for iOS](https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457).
+    ///
+    /// ### Detecting changes to the availability of messaging
+    ///
+    /// Add an observer to the [`MFMessageComposeViewControllerTextMessageAvailabilityDidChange`](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/mfmessagecomposeviewcontrollertextmessageavailabilitydidchange) notification to get notified of changes to the messaging capabilities of the current device. The system delivers that notification to your observer when the status of messaging changes.
+    ///
+    ///
     /// The MFMessageComposeViewController class provides an interface for editing and sending a message.
     ///
     /// The MFMessageComposeViewController class manages all user interaction.  The client needs to set
@@ -122,8 +183,6 @@ extern_class!(
     /// </tt>
     /// .
     /// </p>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller?language=objc)
     #[unsafe(super(UINavigationController, UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]
@@ -437,13 +496,18 @@ impl MFMessageComposeViewController {
 }
 
 extern_protocol!(
+    /// An interface for responding to user interactions with a message compose view controller.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MFMessageComposeViewControllerDelegate`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerdelegate) protocol defines a single method that custom objects can implement to respond to updates from a message composition view (an instance of the  [`MFMessageComposeViewController`](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontroller) class). Use the method of this protocol to respond to the end of the user composing an SMS message. The method includes information about whether the user chose to send or cancel the message, or whether the attempt to send it failed.
+    ///
+    ///
     /// Protocol for delegate callbacks to MFMessageComposeViewControllerDelegate instances.
     ///
     /// This protocol will be implemented by delegates of MFMessageComposeViewController instances.
     /// It will be called at various times while the user is composing, sending, or canceling
     /// message composition.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollerdelegate?language=objc)
     pub unsafe trait MFMessageComposeViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-ui-kit")]
         /// Delegate callback which is called upon user's completion of message composition.

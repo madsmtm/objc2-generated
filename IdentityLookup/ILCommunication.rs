@@ -7,9 +7,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An abstract superclass representing a message or call to the user.
     /// An incident of communication via some medium.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilcommunication?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILCommunication;

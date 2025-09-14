@@ -7,39 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions?language=objc)
+/// Options that determine the authorized features of local and remote notifications.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAuthorizationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNAuthorizationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/badge?language=objc)
+/// The ability to update the app’s badge.
         #[doc(alias = "UNAuthorizationOptionBadge")]
         const Badge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/sound?language=objc)
+/// The ability to play sounds.
         #[doc(alias = "UNAuthorizationOptionSound")]
         const Sound = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/alert?language=objc)
+/// The ability to display alerts.
         #[doc(alias = "UNAuthorizationOptionAlert")]
         const Alert = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/carplay?language=objc)
+/// The ability to display notifications in a CarPlay environment.
         #[doc(alias = "UNAuthorizationOptionCarPlay")]
         const CarPlay = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/criticalalert?language=objc)
+/// The ability to play sounds for critical alerts.
+///
+/// ## Discussion
+///
+/// Critical alerts ignore the mute switch and Do Not Disturb; the system plays a critical alert’s sound regardless of the device’s mute or Do Not Disturb settings. You can specify a custom sound and volume.
+///
+/// Critical alerts require a special entitlement issued by Apple.
+///
+///
         #[doc(alias = "UNAuthorizationOptionCriticalAlert")]
         const CriticalAlert = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/providesappnotificationsettings?language=objc)
+/// An option indicating the system should display a button for in-app notification settings.
         #[doc(alias = "UNAuthorizationOptionProvidesAppNotificationSettings")]
         const ProvidesAppNotificationSettings = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/provisional?language=objc)
+/// The ability to post noninterrupting notifications provisionally to the Notification Center.
         #[doc(alias = "UNAuthorizationOptionProvisional")]
         const Provisional = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/announcement?language=objc)
+/// The ability for Siri to automatically read out messages over AirPods.
         #[doc(alias = "UNAuthorizationOptionAnnouncement")]
 #[deprecated = "Announcement authorization is always included"]
         const Announcement = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions/timesensitive?language=objc)
         #[doc(alias = "UNAuthorizationOptionTimeSensitive")]
 #[deprecated = "Use time-sensitive entitlement"]
         const TimeSensitive = 1<<8;
@@ -54,11 +61,35 @@ unsafe impl RefEncode for UNAuthorizationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptionnone?language=objc)
+/// No authorization options.
 pub static UNAuthorizationOptionNone: UNAuthorizationOptions = UNAuthorizationOptions(0);
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter?language=objc)
+    /// The central object for managing notification-related activities for your app or app extension.
+    ///
+    /// ## Overview
+    ///
+    /// Use the shared [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object to manage all notification-related behaviors in your app or app extension. Specifically, use this object to do the following:
+    ///
+    /// - Request authorization to interact with the user through alerts, sounds, and icon badges. See [Asking permission to use notifications](https://developer.apple.com/documentation/usernotifications/asking-permission-to-use-notifications).
+    ///
+    /// - Declare the notification types that your app supports and the custom actions the user may perform when the system delivers those notifications. See [Declaring your actionable notification types](https://developer.apple.com/documentation/usernotifications/declaring-your-actionable-notification-types).
+    ///
+    /// - Schedule the delivery of notifications from your app. See [Scheduling a notification locally from your app](https://developer.apple.com/documentation/usernotifications/scheduling-a-notification-locally-from-your-app).
+    ///
+    /// - Process the payloads from remote notifications the system delivers by Apple Push Notification service (APNs). See [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    /// - Manage the already delivered notifications the system displays in Notification Center. See Managing Delivered Notifications.
+    ///
+    /// - Handle user-selected actions associated with your custom notification types. See [Handling notifications and notification-related actions](https://developer.apple.com/documentation/usernotifications/handling-notifications-and-notification-related-actions).
+    ///
+    /// - Get the notification-related settings for your app. See Managing Settings and Authorization.
+    ///
+    /// To handle incoming notifications and notification-related actions, create an object that adopts the [`UNUserNotificationCenterDelegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate) protocol and assign it to the [`delegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/delegate) property. Always assign an object to the [`delegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/delegate) property before performing any tasks that might interact with that delegate.
+    ///
+    /// You may use the shared user notification center object simultaneously from any of your app’s threads. The object processes requests serially in the order that the system initiates them.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UNUserNotificationCenter;
@@ -192,27 +223,27 @@ impl UNUserNotificationCenter {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions?language=objc)
+/// Constants indicating how to present a notification in a foreground app.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationPresentationOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/badge?language=objc)
+/// Apply the notification’s badge value to the app’s icon.
         #[doc(alias = "UNNotificationPresentationOptionBadge")]
         const Badge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/sound?language=objc)
+/// Play the sound associated with the notification.
         #[doc(alias = "UNNotificationPresentationOptionSound")]
         const Sound = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/alert?language=objc)
+/// Display the alert using the content provided by the notification.
         #[doc(alias = "UNNotificationPresentationOptionAlert")]
 #[deprecated]
         const Alert = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/list?language=objc)
+/// Show the notification in Notification Center.
         #[doc(alias = "UNNotificationPresentationOptionList")]
         const List = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions/banner?language=objc)
+/// Present the notification as a banner.
         #[doc(alias = "UNNotificationPresentationOptionBanner")]
         const Banner = 1<<4;
     }
@@ -226,12 +257,34 @@ unsafe impl RefEncode for UNNotificationPresentationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptionnone?language=objc)
+/// No alert.
+///
+/// ## Discussion
+///
+/// Specify this constant when you want to silence any user interactions for a notification.
+///
+///
 pub static UNNotificationPresentationOptionNone: UNNotificationPresentationOptions =
     UNNotificationPresentationOptions(0);
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate?language=objc)
+    /// An interface for processing incoming notifications and responding to notification actions.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`UNUserNotificationCenterDelegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenterdelegate) protocol to handle user-selected actions from notifications, and to process notifications that arrive when your app is running in the foreground. After implementing these methods in an object, assign that object to the [`delegate`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/delegate) property of the shared [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object. The user notification center object calls the methods of your delegate at appropriate times.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You must assign your delegate object to the [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter) object before your app finishes launching. For example, in an iOS app, you must assign it in the [`application:willFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:willfinishlaunchingwithoptions:)) or [`application:didFinishLaunchingWithOptions:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didfinishlaunchingwithoptions:)) method of your app delegate. Assigning a delegate after the system calls these methods might cause you to miss incoming notifications.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For information about the shared user notification center object, see [`UNUserNotificationCenter`](https://developer.apple.com/documentation/usernotifications/unusernotificationcenter).
+    ///
+    ///
     pub unsafe trait UNUserNotificationCenterDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UNNotification", feature = "block2"))]
         #[optional]

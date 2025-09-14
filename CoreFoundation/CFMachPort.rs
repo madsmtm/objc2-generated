@@ -9,7 +9,28 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachport?language=objc)
+///
+/// ## Overview
+///
+/// A CFMachPort object is a wrapper for a native Mach port (`mach_port_t`). Mach ports are the native communication channel for the macOS kernel.
+///
+/// CFMachPort does not provide a function to send messages, so you primarily use a CFMachPort object if you need to listen to a Mach port that you obtained by other means. You can get a callback when a message arrives on the port or when the port becomes invalid, such as when the native port dies.
+///
+/// To listen for messages you need to create a run loop source with [`CFMachPortCreateRunLoopSource`](https://developer.apple.com/documentation/corefoundation/cfmachportcreaterunloopsource(_:_:_:)) and add it to a run loop with [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+///
+/// <div class="warning">
+///
+/// ### Important
+///  If you want to tear down the connection, you must invalidate the port (using [`CFMachPortInvalidate`](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidate(_:))) before releasing the runloop source and the Mach port object.
+///
+///
+///
+/// </div>
+/// To send data, you must use the Mach APIs with the native Mach port, which is not described here. Alternatively, you can use a [`CFMessagePortRef`](https://developer.apple.com/documentation/corefoundation/cfmessageport) object, which can send arbitrary data.
+///
+/// Mach ports only support communication on the local machine. For network communication, you have to use a [`CFSocketRef`](https://developer.apple.com/documentation/corefoundation/cfsocket) object.
+///
+///
 ///
 /// This is toll-free bridged with `NSMachPort`.
 #[doc(alias = "CFMachPortRef")]
@@ -27,7 +48,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CFMachPort"> for CFMachPort {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcontext?language=objc)
+/// A structure that contains program-defined data and callbacks with which you can configure a CFMachPort object’s behavior.
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -58,16 +79,52 @@ unsafe impl RefEncode for CFMachPortContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcallback?language=objc)
+/// Callback invoked to process a message received on a CFMachPort object.
+///
+/// Parameters:
+/// - port: The CFMachPort object on which the message `msg` was received.
+///
+/// - msg: The Mach message received on `port`. The pointer is to a `mach_msg_header_t` structure.
+///
+/// - size: Size of the Mach message `msg`, excluding the message trailer.
+///
+/// - info: The `info` member of the [`CFMachPortContext`](https://developer.apple.com/documentation/corefoundation/cfmachportcontext) structure used when creating `port`.
+///
+///
+/// ## Discussion
+///
+/// You specify this callback when creating a CFMachPort object with either [`CFMachPortCreate`](https://developer.apple.com/documentation/corefoundation/cfmachportcreate(_:_:_:_:)) or [`CFMachPortCreateWithPort`](https://developer.apple.com/documentation/corefoundation/cfmachportcreatewithport(_:_:_:_:_:)). To receive messages on a CFMachPort object (and have this callback invoked), you must create a run loop source for the port and add it to a run loop.
+///
+///
 pub type CFMachPortCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void, CFIndex, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidationcallback?language=objc)
+/// Callback invoked when a CFMachPort object is invalidated.
+///
+/// Parameters:
+/// - port: The CFMachPort object that has been invalidated.
+///
+/// - info: The `info` member of the [`CFMachPortContext`](https://developer.apple.com/documentation/corefoundation/cfmachportcontext) structure used when creating `port`.
+///
+///
+/// ## Discussion
+///
+/// Your callback should free any resources allocated for `port`.
+///
+/// You specify this callback with [`CFMachPortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmachportsetinvalidationcallback(_:_:)).
+///
+///
 pub type CFMachPortInvalidationCallBack =
     Option<unsafe extern "C-unwind" fn(*mut CFMachPort, *mut c_void)>;
 
 unsafe impl ConcreteType for CFMachPort {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgettypeid()?language=objc)
+    /// Returns the type identifier for the CFMachPort opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFMachPort opaque type.
+    ///
+    ///
     #[doc(alias = "CFMachPortGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -79,7 +136,23 @@ unsafe impl ConcreteType for CFMachPort {
 }
 
 impl CFMachPort {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreate(_:_:_:_:)?language=objc)
+    /// Creates a CFMachPort object with a new Mach port.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - callout: The callback function invoked when a message is received on the new Mach port.
+    ///
+    /// - context: A structure holding contextual information for the new Mach port. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call.
+    ///
+    /// - shouldFreeInfo: A flag set by the function to indicate whether the `info` member of `context` should be freed. The flag is set to `true` on failure, `false` otherwise. `shouldFreeInfo` can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFMachPort object or `NULL` on failure. The CFMachPort object has both send and receive rights. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -107,7 +180,31 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreatewithport(_:_:_:_:_:)?language=objc)
+    /// Creates a CFMachPort object for a pre-existing native Mach port.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - portNum: The native Mach port to use.
+    ///
+    /// - callout: The callback function invoked when a message is received on the Mach port.
+    ///
+    /// - context: A structure holding contextual information for the Mach port. The function copies the information out of the structure, so the memory pointed to by `context` does not need to persist beyond the function call.
+    ///
+    /// - shouldFreeInfo: A flag set by the function to indicate whether the `info` member of `context` should be freed. The flag is set to `true` on failure or if a CFMachPort object already exists for `portNum`, `false` otherwise. `shouldFreeInfo` can be `NULL`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFMachPort object or `NULL` on failure. If a CFMachPort object already exists for `portNum`, the function returns the pre-existing object instead of creating a new object; the `context` and `callout` parameters are ignored in this case. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The CFMachPort object does not take full ownership of the send and receive rights of the Mach port `portNum`. It is the caller’s responsibility to deallocate the Mach port rights after the CFMachPort object is no longer needed and has been invalidated.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -140,7 +237,17 @@ impl CFMachPort {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetport(_:)?language=objc)
+    /// Returns the native Mach port represented by a CFMachPort object.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The native Mach port represented by `port`.
+    ///
+    ///
     #[doc(alias = "CFMachPortGetPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -151,7 +258,19 @@ impl CFMachPort {
         unsafe { CFMachPortGetPort(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetcontext(_:_:)?language=objc)
+    /// Returns the context information for a CFMachPort object.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to examine.
+    ///
+    /// - context: A pointer to the structure into which the context information for `port` is to be copied. The information being returned is usually the same information you passed to [`CFMachPortCreate`](https://developer.apple.com/documentation/corefoundation/cfmachportcreate(_:_:_:_:)) or [`CFMachPortCreateWithPort`](https://developer.apple.com/documentation/corefoundation/cfmachportcreatewithport(_:_:_:_:_:)) when creating `port`. However, if [`CFMachPortCreateWithPort`](https://developer.apple.com/documentation/corefoundation/cfmachportcreatewithport(_:_:_:_:_:)) returned a cached CFMachPort object instead of creating a new object, `context` is filled with information from the original CFMachPort object instead of the information you passed to the function.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The context version number for CFMachPort objects is currently `0`. Before calling this function, you need to initialize the `version` member of `context` to `0`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -165,7 +284,19 @@ impl CFMachPort {
         unsafe { CFMachPortGetContext(self, context) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportinvalidate(_:)?language=objc)
+    /// Invalidates a CFMachPort object, stopping it from receiving any more messages.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to invalidate.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Invalidating a CFMachPort object prevents the port from ever receiving any more messages. The CFMachPort object is not deallocated, though. If the port has not already been invalidated, the port’s invalidation callback function is invoked, if one has been set with [`CFMachPortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmachportsetinvalidationcallback(_:_:)). The [`CFMachPortContext`](https://developer.apple.com/documentation/corefoundation/cfmachportcontext)  `info` information for `port` is also released, if a release callback was specified in the port’s context structure. Finally, if a run loop source was created for `port`, the run loop source is invalidated, as well.
+    ///
+    /// If the underlying Mach port is destroyed, the CFMachPort object is automatically invalidated.
+    ///
+    ///
     #[doc(alias = "CFMachPortInvalidate")]
     #[inline]
     pub fn invalidate(&self) {
@@ -175,7 +306,17 @@ impl CFMachPort {
         unsafe { CFMachPortInvalidate(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportisvalid(_:)?language=objc)
+    /// Returns a Boolean value that indicates whether a CFMachPort object is valid and able to receive messages.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if `port` can be used for communication, otherwise `false`.
+    ///
+    ///
     #[doc(alias = "CFMachPortIsValid")]
     #[inline]
     pub fn is_valid(&self) -> bool {
@@ -186,7 +327,17 @@ impl CFMachPort {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportgetinvalidationcallback(_:)?language=objc)
+    /// Returns the invalidation callback function for a CFMachPort object.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The callback function invoked when `port` is invalidated. `NULL` if no callback has been set with [`CFMachPortSetInvalidationCallBack`](https://developer.apple.com/documentation/corefoundation/cfmachportsetinvalidationcallback(_:_:)).
+    ///
+    ///
     #[doc(alias = "CFMachPortGetInvalidationCallBack")]
     #[inline]
     pub fn invalidation_call_back(&self) -> CFMachPortInvalidationCallBack {
@@ -198,7 +349,19 @@ impl CFMachPort {
         unsafe { CFMachPortGetInvalidationCallBack(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportsetinvalidationcallback(_:_:)?language=objc)
+    /// Sets the callback function invoked when a CFMachPort object is invalidated.
+    ///
+    /// Parameters:
+    /// - port: The CFMachPort object to modify.
+    ///
+    /// - callout: The callback function to invoke when `port` is invalidated. Pass `NULL` to remove a callback.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `port` is already invalid, `callout` is invoked immediately.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -215,7 +378,27 @@ impl CFMachPort {
         unsafe { CFMachPortSetInvalidationCallBack(self, callout) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfmachportcreaterunloopsource(_:_:_:)?language=objc)
+    /// Creates a CFRunLoopSource object for a CFMachPort object.
+    ///
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or [`kCFAllocatorDefault`](https://developer.apple.com/documentation/corefoundation/kcfallocatordefault) to use the current default allocator.
+    ///
+    /// - port: The Mach port for which to create a CFRunLoopSource object.
+    ///
+    /// - order: A priority index indicating the order in which run loop sources are processed. `order` is currently ignored by CFMachPort run loop sources. Pass `0` for this value.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The new CFRunLoopSource object for `port`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The run loop source is not automatically added to a run loop. To add the source to a run loop, use [`CFRunLoopAddSource`](https://developer.apple.com/documentation/corefoundation/cfrunloopaddsource(_:_:_:)).
+    ///
+    ///
     #[doc(alias = "CFMachPortCreateRunLoopSource")]
     #[cfg(feature = "CFRunLoop")]
     #[inline]

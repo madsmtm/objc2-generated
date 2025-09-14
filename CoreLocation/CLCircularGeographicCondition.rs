@@ -7,7 +7,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clcirculargeographiccondition?language=objc)
+    /// A circular geographic condition that a center point and radius define.
+    ///
+    /// ## Overview
+    ///
+    /// Use `CLCircularGeographicCondition` to monitor events that occur in a circular geographic condition that you describe.
+    ///
+    ///
     #[unsafe(super(CLCondition, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLCondition")]

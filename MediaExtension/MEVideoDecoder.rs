@@ -14,11 +14,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// A protocol that defines a factory to create new video decoders for a codec type that the extension implements.
+    ///
+    /// ## Discussion
+    ///
+    /// This protocol provides a factory method to create a new [`MEVideoDecoder`](https://developer.apple.com/documentation/mediaextension/mevideodecoder) instance for a codecType implemented by the extension. A single [`MEVideoDecoderExtension`](https://developer.apple.com/documentation/mediaextension/mevideodecoderextension) is instantiated by the `VideoToolbox`, and will be called to create individual [`MEVideoDecoder`](https://developer.apple.com/documentation/mediaextension/mevideodecoder) instances as needed. If the codecType or `FormatDescription` passed to [`videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:`](https://developer.apple.com/documentation/mediaextension/mevideodecoderextension/makevideodecoder(codectype:videoformatdescription:videodecoderspecifications:pixelbuffermanager:)) is not compatible with the [`MEVideoDecoder`](https://developer.apple.com/documentation/mediaextension/mevideodecoder) implementation, the factory call should fail and return [`MEErrorUnsupportedFeature`](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature).
+    ///
+    ///
     /// Provides a stateless factory interface for creating new MEVideoDecoder instances.
     ///
     /// The MEVideoDecoderExtension protocol provides a factory method to create a new MEVideoDecoder instance for a codecType implemented by the extension. A single MEVideoDecoderExtension is instantiated by the Video Toolbox, and will be called to create individual MEVideoDecoder instances as needed. If the codecType or FormatDescription passed to videoDecoderWithCodecType is not compatible with the MEVideoDecoder implementation, the factory call should fail and return MEErrorUnsupportedFeature.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mevideodecoderextension?language=objc)
     pub unsafe trait MEVideoDecoderExtension: NSObjectProtocol {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -59,9 +64,14 @@ extern_protocol!(
 extern_class!(
     /// Describes pixel buffer requirements and creates new pixel buffers.
     ///
-    /// Contains the interfaces that the App Extension video decoder uses for two tasks. First, to declare its set of requirements for output CVPixelBuffers in the form of a pixelBufferAttributes dictionary. Second, to create pixelBuffers which match decoder output requirements but also satisfy VideoToolbox and client requirements.
+    /// ## Discussion
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mevideodecoderpixelbuffermanager?language=objc)
+    /// Contains the interfaces that the [`MEVideoDecoder`](https://developer.apple.com/documentation/mediaextension/mevideodecoder) uses for two tasks. First, to declare its set of requirements for output `CVPixelBuffer` objects in the form of a [`pixelBufferAttributes`](https://developer.apple.com/documentation/mediaextension/mevideodecoderpixelbuffermanager/pixelbufferattributes) dictionary. Second, to create pixel buffers that match decoder output requirements but also satisfy [`Video Toolbox`](https://developer.apple.com/documentation/videotoolbox) and client requirements.
+    ///
+    ///
+    /// Describes pixel buffer requirements and creates new pixel buffers.
+    ///
+    /// Contains the interfaces that the App Extension video decoder uses for two tasks. First, to declare its set of requirements for output CVPixelBuffers in the form of a pixelBufferAttributes dictionary. Second, to create pixelBuffers which match decoder output requirements but also satisfy VideoToolbox and client requirements.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEVideoDecoderPixelBufferManager;
@@ -143,9 +153,8 @@ impl MEVideoDecoderPixelBufferManager {
 }
 
 extern_class!(
+    /// An object that guides the video decoder operation on a per-frame basis.
     /// Conveys directives or options from the VideoToolbox to guide decoder operation on a per-frame basis.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframeoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MEDecodeFrameOptions;
@@ -195,28 +204,38 @@ impl MEDecodeFrameOptions {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mevideodecoderreadyformoremediadatadidchangenotification?language=objc)
+    /// A notification that indicates a change to the decoder’s readiness to process additional media data.
+    ///
+    /// ## Discussion
+    ///
+    /// This notification is used to notify the Video Toolbox that the value of the [`isReadyForMoreMediaData`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/isreadyformoremediadata) property has changed.
+    ///
+    ///
     pub static MEVideoDecoderReadyForMoreMediaDataDidChangeNotification:
         &'static NSNotificationName;
 }
 
+/// A type that represents a non-error status related to a frame decode operation.
 /// These values are used to convey non-error status related to a frame decode operation.
 ///
 /// Set by the decoder to indicate that no non-error status information is available.
 ///
 /// Set by the decoder to report that output of this frame was dropped for non-error reasons, for example, if doNotOutputFrame was specified.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEDecodeFrameStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEDecodeFrameStatus: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus/medecodeframenostatus?language=objc)
         #[doc(alias = "MEDecodeFrameNoStatus")]
         const NoStatus = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/medecodeframestatus/framedropped?language=objc)
+/// A frame decode operation status that indicates the system dropped the output of the frame for a reason other than an error.
+///
+/// ## Discussion
+///
+/// The decoder sets this value if [`doNotOutputFrame`](https://developer.apple.com/documentation/mediaextension/medecodeframeoptions/donotoutputframe) is [`true`](https://developer.apple.com/documentation/swift/true).
+///
+///
         #[doc(alias = "MEDecodeFrameFrameDropped")]
         const FrameDropped = 1<<0;
     }
@@ -231,11 +250,62 @@ unsafe impl RefEncode for MEDecodeFrameStatus {
 }
 
 extern_protocol!(
+    /// A protocol that defines the requirements for a video decoder.
+    ///
+    /// ## Overview
+    ///
+    /// This protocol provides an interface for [`Video Toolbox`](https://developer.apple.com/documentation/videotoolbox) to create and interact with MediaExtension video decoders. `MEVideoDecoder` objects are always instantiated by Video Toolbox.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Developers who wish to build MediaExtension video decoders using this API need to include a [Video decoder entitlement](https://developer.apple.com/documentation/mediaextension/video-decoder-entitlement), provisioning profile, and specialized dictionary in their Info.plist file when building their extensions.
+    ///
+    /// For more information, see [Entitlements](https://developer.apple.com/documentation/bundleresources/entitlements), [Create a development provisioning profile](https://developer.apple.com/help/account/manage-provisioning-profiles/create-a-development-provisioning-profile), and [Video decoder property list dictionary](https://developer.apple.com/documentation/mediaextension/video-decoder-property-list-dictionary)
+    ///
+    ///
+    ///
+    /// </div>
+    /// Once a user installs and runs the host app, embedded video decoder extensions become available to any app on the user’s system that opts in to using them by calling [`VTRegisterProfessionalVideoWorkflowVideoDecoders`](https://developer.apple.com/documentation/videotoolbox/vtregisterprofessionalvideoworkflowvideodecoders()).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  `MEVideoDecoder` objects run in a sandboxed process without access to the filesystem, network, and other kernel resources.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The following sections explain the video decoder life cycle and performing decoding operations.
+    ///
+    /// ### Creating a video decoder
+    ///
+    /// The first time Video Toolbox opens a decoder in a process, it creates an instance of the [`MEVideoDecoderExtension`](https://developer.apple.com/documentation/mediaextension/mevideodecoderextension) factory object. It then calls its [`videoDecoderWithCodecType:videoFormatDescription:videoDecoderSpecifications:extensionDecoderPixelBufferManager:error:`](https://developer.apple.com/documentation/mediaextension/mevideodecoderextension/makevideodecoder(codectype:videoformatdescription:videodecoderspecifications:pixelbuffermanager:)) method for each decoder instance it needs. A decoder can evaluate the [`CMVideoCodecType`](https://developer.apple.com/documentation/coremedia/cmvideocodectype) and [`CMVideoFormatDescriptionRef`](https://developer.apple.com/documentation/coremedia/cmvideoformatdescription) that the system provides and confirm whether it can decode the specified format. If the decoder can’t decode the format, the factory routine needs to return the error [`MEErrorUnsupportedFeature`](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code/unsupportedfeature). This sequence of events happens within [`VTDecompressionSessionCreate`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncreate(allocator:formatdescription:decoderspecification:imagebufferattributes:outputcallback:decompressionsessionout:)).
+    ///
+    /// ### Configuring a pixel buffer
+    ///
+    /// Once instantiated, a decoder can call back to the provided [`MEVideoDecoderPixelBufferManager`](https://developer.apple.com/documentation/mediaextension/mevideodecoderpixelbuffermanager) object to notify Video Toolbox of its output [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) requirements. It can make these calls multiple times if output requirements change in response to properties receiving new values or due to observed bitstream characteristics.
+    ///
+    /// ### Querying and setting properties
+    ///
+    /// Properties can receive queries or new values on the decoder at any time, before, during or after frame decode, unless otherwise noted. These calls generally correspond to [`VTSessionSetProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessionsetproperty(_:key:value:)) and [`VTSessionCopyProperty`](https://developer.apple.com/documentation/videotoolbox/vtsessioncopyproperty(_:key:allocator:valueout:)) calls on the [`VTDecompressionSessionRef`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsession) which opened the decoder. There may be cases where Video Toolbox directly sets or queries properties as well.
+    ///
+    /// ### Decoding frames
+    ///
+    /// The framework serializes calls to [`decodeFrameFromSampleBuffer:options:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/decodeframe(from:options:completionhandler:)) and doesn’t send a new frame to the decoder until the last [`decodeFrameFromSampleBuffer:options:completionHandler:`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/decodeframe(from:options:completionhandler:)) returns, unless decoding happens asynchronously. These calls correspond to [`VTDecompressionSessionDecodeFrameWithOutputHandler`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessiondecodeframe(_:samplebuffer:flags:infoflagsout:outputhandler:)) calls on the owning `VTDecompressionSession`.
+    ///
+    /// Video decoders need to write their output frames into [CVPixelBuffer](https://developer.apple.com/documentation/corevideo/cvpixelbuffer-q2e) objects allocated by the [`MEVideoDecoderPixelBufferManager`](https://developer.apple.com/documentation/mediaextension/mevideodecoderpixelbuffermanager) object’s [`createPixelBufferAndReturnError:`](https://developer.apple.com/documentation/mediaextension/mevideodecoderpixelbuffermanager/makepixelbuffer()) method. Obtaining pixel buffers from any other source may degrade performance or result in other issues.
+    ///
+    /// If the decoder’s internal decoding queue is full and it can’t decode more frames, its [`readyForMoreMediaData`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/isreadyformoremediadata) property value returns [`false`](https://developer.apple.com/documentation/swift/false). It returns [`true`](https://developer.apple.com/documentation/swift/true) once the decoder can start accepting new frames again. This generally occurs after an earlier asynchronous frame completes.
+    ///
+    /// ### Handling format description changes
+    ///
+    /// If a change occurs in the format description on incoming [`CMSampleBufferRef`](https://developer.apple.com/documentation/coremedia/cmsamplebuffer) objects, [`Video Toolbox`](https://developer.apple.com/documentation/videotoolbox) calls [`canAcceptFormatDescription:`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/canaccept(_:)) to confirm whether the decoder can transition to the new format description. If that method response is [`false`](https://developer.apple.com/documentation/swift/false), the system usually closes the decoder and creates a new instance for the changed format description. A call to [`VTDecompressionSessionCanAcceptFormatDescription`](https://developer.apple.com/documentation/videotoolbox/vtdecompressionsessioncanacceptformatdescription(_:formatdescription:)) can trigger a call of [`canAcceptFormatDescription:`](https://developer.apple.com/documentation/mediaextension/mevideodecoder/canaccept(_:)), or Video Toolbox calls this method if it sees a format description change on incoming `CMSampleBufferRef` objects.
+    ///
+    ///
     /// The primary object for a MediaExtension video decoder, providing an interface for VideoToolbox to talk to the decoder.
     ///
     /// The MEVideoDecoder protocol provides an interface for the VideoToolbox to interact with MediaExtension video decoders. MEVideoDecoder objects are always instantiated by the VideoToolbox. To create an MEVideoDecoder, the VideoToolbox first creates an MEVideoDecoderExtension object and calls its videoDecoderWithCodecType: method. MEVideoDecoders should expect to run in a sandboxed process without access to the file system, network, or other kernel resources.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mevideodecoder?language=objc)
     pub unsafe trait MEVideoDecoder: NSObjectProtocol {
         /// The extension should implement this property returning YES if the decoder produces RAW ouput which requires the use of an MERAWProcessor for post-decode processing to produce renderable output.
         ///

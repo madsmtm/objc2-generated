@@ -10,9 +10,14 @@ use crate::*;
 extern_class!(
     /// Base class for Metal 4 acceleration structure descriptors.
     ///
-    /// Don't use this class directly. Use one of its subclasses instead.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuredescriptor?language=objc)
+    /// Don’t use this class directly. Use one of its subclasses instead.
+    ///
+    ///
+    /// Base class for Metal 4 acceleration structure descriptors.
+    ///
+    /// Don't use this class directly. Use one of its subclasses instead.
     #[unsafe(super(MTLAccelerationStructureDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MTLAccelerationStructure")]
@@ -64,9 +69,14 @@ impl DefaultRetained for MTL4AccelerationStructureDescriptor {
 extern_class!(
     /// Base class for all Metal 4 acceleration structure geometry descriptors.
     ///
-    /// Don't use this class directly. Use one of the derived classes instead.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor?language=objc)
+    /// Don’t use this class directly. Use one of the derived classes instead.
+    ///
+    ///
+    /// Base class for all Metal 4 acceleration structure geometry descriptors.
+    ///
+    /// Don't use this class directly. Use one of the derived classes instead.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureGeometryDescriptor;
@@ -229,10 +239,9 @@ impl DefaultRetained for MTL4AccelerationStructureGeometryDescriptor {
 }
 
 extern_class!(
+    /// Descriptor for a primitive acceleration structure that directly references geometric shapes, such as triangles and bounding boxes.
     /// Descriptor for a primitive acceleration structure that directly references geometric shapes, such as triangles and
     /// bounding boxes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4primitiveaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(
         MTL4AccelerationStructureDescriptor,
         MTLAccelerationStructureDescriptor,
@@ -379,10 +388,15 @@ impl DefaultRetained for MTL4PrimitiveAccelerationStructureDescriptor {
 extern_class!(
     /// Describes triangle geometry suitable for ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes triangle geometry suitable for ray tracing.
+    ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuretrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureTriangleGeometryDescriptor;
@@ -556,13 +570,20 @@ impl DefaultRetained for MTL4AccelerationStructureTriangleGeometryDescriptor {
 extern_class!(
     /// Describes bounding-box geometry suitable for ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape you define by using intersection functions.
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes bounding-box geometry suitable for ray tracing.
+    ///
     /// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape
     /// you define by using intersection functions.
     ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureBoundingBoxGeometryDescriptor;
@@ -653,10 +674,15 @@ impl DefaultRetained for MTL4AccelerationStructureBoundingBoxGeometryDescriptor 
 extern_class!(
     /// Describes motion triangle geometry, suitable for motion ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes motion triangle geometry, suitable for motion ray tracing.
+    ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotiontrianglegeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureMotionTriangleGeometryDescriptor;
@@ -839,13 +865,20 @@ impl DefaultRetained for MTL4AccelerationStructureMotionTriangleGeometryDescript
 extern_class!(
     /// Describes motion bounding box geometry, suitable for motion ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape you define by using intersection functions.
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes motion bounding box geometry, suitable for motion ray tracing.
+    ///
     /// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape
     /// you define by using intersection functions.
     ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotionboundingboxgeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor;
@@ -945,10 +978,15 @@ impl DefaultRetained for MTL4AccelerationStructureMotionBoundingBoxGeometryDescr
 extern_class!(
     /// Describes curve geometry suitable for ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes curve geometry suitable for ray tracing.
+    ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructurecurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureCurveGeometryDescriptor;
@@ -1209,10 +1247,15 @@ impl DefaultRetained for MTL4AccelerationStructureCurveGeometryDescriptor {
 extern_class!(
     /// Describes motion curve geometry, suitable for motion ray tracing.
     ///
+    /// ## Overview
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Describes motion curve geometry, suitable for motion ray tracing.
+    ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers this descriptor references when you build this
     /// acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor?language=objc)
     #[unsafe(super(MTL4AccelerationStructureGeometryDescriptor, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4AccelerationStructureMotionCurveGeometryDescriptor;
@@ -1489,6 +1532,17 @@ impl DefaultRetained for MTL4AccelerationStructureMotionCurveGeometryDescriptor 
 extern_class!(
     /// Descriptor for an instance acceleration structure.
     ///
+    /// ## Overview
+    ///
+    /// An instance acceleration structure references other acceleration structures, and provides the ability to “instantiate” them multiple times, each one with potentially a different transformation matrix.
+    ///
+    /// You specify the properties of the instances in the acceleration structure this descriptor builds by providing a buffer of `structs` via its [`instanceDescriptorBuffer`](https://developer.apple.com/documentation/metal/mtl4instanceaccelerationstructuredescriptor/instancedescriptorbuffer) property.
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers and acceleration structures this descriptor references when you build this acceleration structure.
+    ///
+    ///
+    /// Descriptor for an instance acceleration structure.
+    ///
     /// An instance acceleration structure references other acceleration structures, and provides the ability to
     /// "instantiate" them multiple times, each one with potentially a different transformation matrix.
     ///
@@ -1497,8 +1551,6 @@ extern_class!(
     ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers and acceleration structures this descriptor references
     /// when you build this acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4instanceaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(
         MTL4AccelerationStructureDescriptor,
         MTLAccelerationStructureDescriptor,
@@ -1702,6 +1754,21 @@ impl DefaultRetained for MTL4InstanceAccelerationStructureDescriptor {
 }
 
 extern_class!(
+    /// Descriptor for an “indirect” instance acceleration structure that allows providing the instance count and motion transform count indirectly, through buffer references.
+    ///
+    /// ## Overview
+    ///
+    /// An instance acceleration structure references other acceleration structures, and provides the ability to “instantiate” them multiple times, each one with potentially a different transformation matrix.
+    ///
+    /// You specify the properties of the instances in the acceleration structure this descriptor builds by providing a buffer of `structs` via its [`instanceDescriptorBuffer`](https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/instancedescriptorbuffer) property.
+    ///
+    /// Compared to [`MTL4InstanceAccelerationStructureDescriptor`](https://developer.apple.com/documentation/metal/mtl4instanceaccelerationstructuredescriptor), this descriptor allows you to provide the number of instances it references indirectly through a buffer reference, as well as the number of motion transforms.
+    ///
+    /// This enables you to determine these counts indirectly in the GPU timeline via a compute pipeline. Metal needs only to know the maximum possible number of instances and motion transforms to support, which you specify via the [`maxInstanceCount`](https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/maxinstancecount) and [`maxMotionTransformCount`](https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor/maxmotiontransformcount) properties.
+    ///
+    /// Use a [`MTLResidencySet`](https://developer.apple.com/documentation/metal/mtlresidencyset) to mark residency of all buffers and acceleration structures this descriptor references when you build this acceleration structure.
+    ///
+    ///
     /// Descriptor for an "indirect" instance acceleration structure that allows providing the instance count and
     /// motion transform count indirectly, through buffer references.
     ///
@@ -1720,8 +1787,6 @@ extern_class!(
     ///
     /// Use a ``MTLResidencySet`` to mark residency of all buffers and acceleration structures this descriptor references
     /// when you build this acceleration structure.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectinstanceaccelerationstructuredescriptor?language=objc)
     #[unsafe(super(
         MTL4AccelerationStructureDescriptor,
         MTLAccelerationStructureDescriptor,

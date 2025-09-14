@@ -6,6 +6,76 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Options for specifying the statistic to calculate.
+///
+/// ## Overview
+///
+/// You cannot combine a discrete option with a cumulative option. You can, however, combine multiple discrete options together to perform multiple calculations. You can also combine the [`HKStatisticsOptionSeparateBySource`](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/separatebysource) option with any of the other options.
+///
+/// ## Swift
+///
+/// ```swift
+/// let cumulativeActiveEnergyBurned = HKQuantityType(.activeEnergyBurned)
+///  
+/// let discreteHeartRate = HKQuantityType(.heartRate)
+///  
+/// // Cannot combine cumulative options with discrete options.
+/// // However, you can combine a cumulative option and separated by source
+/// let cumulativeQuery = HKStatisticsQuery(quantityType:cumulativeActiveEnergyBurned,
+///                                         quantitySamplePredicate:nil,
+///                                         options: [.cumulativeSum, .separateBySource]) {
+///                                             query, statistics, error in
+///                                             
+///                                             // ... process the results here
+/// }
+///  
+/// // You can also combine any number of discrete options
+/// // and the separated by source option.
+/// let discreteQuery = HKStatisticsQuery(quantityType: discreteHeartRate,
+///                                       quantitySamplePredicate: nil,
+///                                       options: [.discreteAverage, .discreteMin, .discreteMax, .separateBySource]) {
+///                                             query, statistics, error in
+///                                             
+///                                             // ... process the results here
+/// }
+/// ```
+///
+/// ## Objective-C
+///
+/// ```objc
+/// HKQuantityType *cumulativeActiveEnergyBurned =
+/// [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
+///  
+/// HKQuantityType *discreteHeartRate =
+/// [HKObjectType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeartRate];
+///  
+/// // Cannot combine cumulative options with discrete options.
+/// // However, you can combine a cumulative option and seperated by source
+/// HKStatisticsQuery *cumulativeQuery =
+/// [[HKStatisticsQuery alloc]
+///  initWithQuantityType:cumulativeActiveEnergyBurned
+///  quantitySamplePredicate:nil
+///  options:HKStatisticsOptionCumulativeSum | HKStatisticsOptionSeparateBySource
+///  completionHandler:^(HKStatisticsQuery *query, HKStatistics *result, NSError *error) {
+///  
+///       // ... process the results here
+///  }];
+///  
+/// // You can also combine any number of discrete options
+/// // and the seperated by source option.
+/// HKStatisticsQuery *discreteQuery =
+/// [[HKStatisticsQuery alloc]
+///  initWithQuantityType:discreteHeartRate
+///  quantitySamplePredicate:nil
+///  options:HKStatisticsOptionDiscreteAverage | HKStatisticsOptionDiscreteMin |
+///  HKStatisticsOptionDiscreteMax | HKStatisticsOptionSeparateBySource
+///  completionHandler:^(HKStatisticsQuery *query, HKStatistics *result, NSError *error) {
+///  
+///      // ... process the results here
+///  }];
+/// ```
+///
+///
 /// Options for specifying which statistics to calculate
 ///
 /// When querying for HKStatistics objects, an options bitmask will specify which statistics will be
@@ -14,40 +84,38 @@ use crate::*;
 /// Statistics are classified as discrete or cumulative.  If a discrete statistics option is specified for a
 /// cumulative HKQuantityType, an exception will be thrown.  If a cumulative statistics options is specified
 /// for a discrete HKQuantityType, an exception will also be thrown.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKStatisticsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKStatisticsOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/hkstatisticsoptionnone?language=objc)
+/// An option indicating that the system will not calculate any statistics values.
         #[doc(alias = "HKStatisticsOptionNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/separatebysource?language=objc)
+/// An option indicating that the system calculates the specified statistics separately for each source.
         #[doc(alias = "HKStatisticsOptionSeparateBySource")]
         const SeparateBySource = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discreteaverage?language=objc)
+/// An option indicating that the system calculates the average quantity for the samples.
         #[doc(alias = "HKStatisticsOptionDiscreteAverage")]
         const DiscreteAverage = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemin?language=objc)
+/// An option indicating that the system calculates the minimum quantity for the samples.
         #[doc(alias = "HKStatisticsOptionDiscreteMin")]
         const DiscreteMin = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemax?language=objc)
+/// An option indicating that the system calculates the maximum quantity for the samples.
         #[doc(alias = "HKStatisticsOptionDiscreteMax")]
         const DiscreteMax = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/cumulativesum?language=objc)
+/// An option indicating that the system calculates the sum of all the quantities for the samples.
         #[doc(alias = "HKStatisticsOptionCumulativeSum")]
         const CumulativeSum = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/mostrecent?language=objc)
+/// An option indicating that the system returns the most recent quantity from the matching samples.
         #[doc(alias = "HKStatisticsOptionMostRecent")]
         const MostRecent = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discretemostrecent?language=objc)
+/// An option indicating that the system returns the most recent quantity from the matching samples.
         #[doc(alias = "HKStatisticsOptionDiscreteMostRecent")]
 #[deprecated]
         const DiscreteMostRecent = HKStatisticsOptions::MostRecent.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/duration?language=objc)
+/// An option indicating that the system calculates the total duration covering all the samples.
         #[doc(alias = "HKStatisticsOptionDuration")]
         const Duration = 1<<6;
     }
@@ -62,9 +130,20 @@ unsafe impl RefEncode for HKStatisticsOptions {
 }
 
 extern_class!(
-    /// Represents statistics for quantity samples over a period of time.
+    /// An object that represents the result of calculating the minimum, maximum, average, or sum over a set of samples from the HealthKit store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatistics?language=objc)
+    /// ## Overview
+    ///
+    /// HealthKit creates statistic objects using either a statistics query or a statistics collection query. For the statistics query, it performs the specified calculations over all the samples that match the query. For the statistics collection query, it partitions the matching samples into a set of time intervals and performs the calculations over each interval separately.
+    ///
+    /// By default, these queries automatically merge the data from all of your data sources before performing the calculations. If you want to merge the data yourself, you can set the [`HKStatisticsOptionSeparateBySource`](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/separatebysource) option. You can then request the statistical data for each source separately.
+    ///
+    /// When requesting data from a statistics object, your request must match the options you used when creating the query. For example, if you create a query using the [`HKStatisticsOptionDiscreteAverage`](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions/discreteaverage) option, you must access the results using the [`averageQuantity`](https://developer.apple.com/documentation/healthkit/hkstatistics/averagequantity()) method.
+    ///
+    /// For more information on calculating statistical data, see [`HKStatisticsQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticsquery) Class Reference. To calculate the statistics over a series of time intervals, see the [`HKStatisticsCollectionQuery`](https://developer.apple.com/documentation/healthkit/hkstatisticscollectionquery) Class Reference.
+    ///
+    ///
+    /// Represents statistics for quantity samples over a period of time.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKStatistics;

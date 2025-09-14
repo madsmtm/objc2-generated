@@ -9,7 +9,15 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsdrawingactions?language=objc)
+/// A closure that executes a set of drawing instructions that the renderer applies to the Core Graphics context.
+///
+/// ## Discussion
+///
+/// [`UIGraphicsDrawingActions`](https://developer.apple.com/documentation/uikit/uigraphicsdrawingactions) defines a block type that takes a [`UIGraphicsRendererContext`](https://developer.apple.com/documentation/uikit/uigraphicsrenderercontext) object as an argument and has no return value.
+///
+/// You provide a block of this type as an argument to the graphics drawing methods on [`UIGraphicsRenderer`](https://developer.apple.com/documentation/uikit/uigraphicsrenderer). Your block should use the provided renderer context to perform the drawing operations you want the renderer to execute.
+///
+///
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsDrawingActions =
     *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsRendererContext>)>;

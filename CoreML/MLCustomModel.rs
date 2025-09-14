@@ -7,7 +7,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcustommodel?language=objc)
+    /// An interface that defines the behavior of a custom model.
+    ///
+    /// ## Overview
+    ///
+    /// To integrate your custom model with Core ML, adopt the [`MLCustomModel`](https://developer.apple.com/documentation/coreml/mlcustommodel) protocol in the implementation of your custom model. If you use a Swift class for your custom implementation, make it accessible to Core ML by using the `@objc(`_name_`)` attribute.
+    ///
+    /// ```swift
+    /// @objc(MyCustomModel)
+    /// class MyCustomModel: NSObject, MLCustomModel {
+    ///   ...
+    /// }
+    /// ```
+    ///
+    /// This defines the Objective-C name for the class, which Core ML needs to access your custom class’s implementation.
+    ///
+    ///
     pub unsafe trait MLCustomModel {
         #[cfg(feature = "MLModelDescription")]
         /// # Safety

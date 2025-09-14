@@ -9,6 +9,19 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that resamples an existing MPS image.
+    ///
+    /// ## Overview
+    ///
+    /// This filter can be used to resample an existing [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) using a different sampling frequency for the `x` and `y` dimensions with the purpose of enlarging the size of an image.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature channels.
+    ///
+    /// The `scaleFactor` must be an integer value `>= 1`. The default value is `1`.
+    ///
+    /// Nearest and bilinear variants are supported.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNUpsampling filter can be used to resample an existing MPSImage
@@ -22,8 +35,6 @@ extern_class!(
     /// If scaleFactor == 1, the filter acts as a copy kernel.
     ///
     /// Nearest and bilinear variants are supported.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsampling?language=objc)
     #[unsafe(super(MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -155,11 +166,20 @@ impl MPSCNNUpsampling {
 }
 
 extern_class!(
+    /// A nearest spatial upsampling filter.
+    ///
+    /// ## Overview
+    ///
+    /// This filter can be used to resample an existing [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) using a different sampling frequency for the `x` and `y` dimensions with the purpose of enlarging the size of an image.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature channels.
+    ///
+    /// The `scaleFactor` must be an integer value `>= 1`. The default value is `1`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the nearest spatial upsampling filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearest?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -298,11 +318,20 @@ impl MPSCNNUpsamplingNearest {
 }
 
 extern_class!(
+    /// A bilinear spatial upsampling filter.
+    ///
+    /// ## Overview
+    ///
+    /// This filter can be used to resample an existing [`MPSImage`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimage) using a different sampling frequency for the `x` and `y` dimensions with the purpose of enlarging the size of an image.
+    ///
+    /// The number of output feature channels remains the same as the number of input feature channels.
+    ///
+    /// The `scaleFactor` must be an integer value `>= 1`. The default value is `1`.
+    ///
+    ///
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the bilinear spatial upsampling filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilinear?language=objc)
     #[unsafe(super(MPSCNNUpsampling, MPSCNNKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -463,6 +492,7 @@ impl MPSCNNUpsamplingBilinear {
 }
 
 extern_class!(
+    /// A gradient filter that upsamples an existing Metal Performance Shaders image.
     /// Dependencies: This depends on Metal.framework
     ///
     /// The MPSCNNUpsamplingGradient filter is used for training. It is the backward
@@ -501,8 +531,6 @@ extern_class!(
     /// y = b1 + b2 + b3 + b4
     /// z = c1 + c2 + c3 + c4
     /// w = d1 + d2 + d3 + d4
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplinggradient?language=objc)
     #[unsafe(super(MPSCNNGradientKernel, MPSCNNBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
@@ -627,11 +655,10 @@ impl MPSCNNUpsamplingGradient {
 }
 
 extern_class!(
+    /// A gradient upsampling filter that samples the pixel nearest to the source when upsampling to the destination pixel.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the nearest spatial downsampling filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingnearestgradient?language=objc)
     #[unsafe(super(
         MPSCNNUpsamplingGradient,
         MPSCNNGradientKernel,
@@ -776,11 +803,10 @@ impl MPSCNNUpsamplingNearestGradient {
 }
 
 extern_class!(
+    /// A gradient bilinear spatial upsampling filter.
     /// Dependencies: This depends on Metal.framework.
     ///
     /// Specifies the bilinear spatial downsampling filter.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnupsamplingbilineargradient?language=objc)
     #[unsafe(super(
         MPSCNNUpsamplingGradient,
         MPSCNNGradientKernel,

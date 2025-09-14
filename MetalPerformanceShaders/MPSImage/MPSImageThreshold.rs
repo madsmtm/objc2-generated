@@ -9,14 +9,27 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A filter that returns a specified value for each pixel with a value greater than a specified threshold or 0 otherwise.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageThresholdBinary`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary) filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold.
+    ///
+    /// The following listing shows the threshold binary function.
+    ///
+    /// Listing 1. Threshold binary function
+    ///
+    /// ```other
+    /// destinationPixelValue = sourcePixelValue > thresholdValue ? maximumValue : 0
+    /// ```
+    ///
+    ///
     /// The MPSThreshold filter applies a fixed-level threshold to each pixel in the image.
     /// The threshold functions convert a single channel image to a binary image.
     /// If the input image is not a single channel image, convert the inputimage to a single channel
     /// luminance image using the linearGrayColorTransform and then apply the threshold.
     /// The ThresholdBinary function is:
     /// destinationPixelValue = sourcePixelValue > thresholdValue ? maximumValue : 0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinary?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -164,14 +177,25 @@ impl MPSImageThresholdBinary {
 }
 
 extern_class!(
+    /// A filter that returns 0 for each pixel with a value greater than a specified threshold or a specified value otherwise.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageThresholdBinaryInverse`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse) function converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold. The following listing shows the threshold binary inverse function.
+    ///
+    /// Listing 1. Threshold binary inverse function
+    ///
+    /// ```other
+    /// destinationPixelValue = sourcePixelValue > thresholdValue ? 0 : maximumValue
+    /// ```
+    ///
+    ///
     /// The MPSImageThresholdBinaryInverse filter applies a fixed-level threshold to each pixel in the image.
     /// The threshold functions convert a single channel image to a binary image.
     /// If the input image is not a single channel image, convert the inputimage to a single channel
     /// luminance image using the linearGrayColorTransform and then apply the threshold.
     /// The ThresholdBinaryInverse function is:
     /// destinationPixelValue = sourcePixelValue > thresholdValue ? 0 : maximumValue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdbinaryinverse?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -319,14 +343,27 @@ impl MPSImageThresholdBinaryInverse {
 }
 
 extern_class!(
+    /// A filter that clamps the return value to an upper specified value.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageThresholdTruncate`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate) filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold.
+    ///
+    /// The following listing shows the threshold truncate function.
+    ///
+    /// Listing 1. Threshold truncate function
+    ///
+    /// ```other
+    /// destinationPixelValue = sourcePixelValue > thresholdValue ? thresholdValue : sourcePixelValue
+    /// ```
+    ///
+    ///
     /// The MPSImageThresholdTruncate filter applies a fixed-level threshold to each pixel in the image:
     /// The threshold functions convert a single channel image to a binary image.
     /// If the input image is not a single channel image, convert the inputimage to a single channel
     /// luminance image using the linearGrayColorTransform and then apply the threshold.
     /// The ThresholdTruncate function is:
     /// destinationPixelValue = sourcePixelValue > thresholdValue ? thresholdValue : sourcePixelValue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtruncate?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -466,14 +503,27 @@ impl MPSImageThresholdTruncate {
 }
 
 extern_class!(
+    /// A filter that returns the original value for each pixel with a value greater than a specified threshold or 0 otherwise.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageThresholdToZero`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozero) filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold.
+    ///
+    /// The following listing shows the threshold to zero function.
+    ///
+    /// Listing 1. Threshold to zero function
+    ///
+    /// ```other
+    /// destinationPixelValue = sourcePixelValue > thresholdValue ? sourcePixelValue : 0
+    /// ```
+    ///
+    ///
     /// The MPSImageThresholdToZero filter applies a fixed-level threshold to each pixel in the image.
     /// The threshold functions convert a single channel image to a binary image.
     /// If the input image is not a single channel image, convert the inputimage to a single channel
     /// luminance image using the linearGrayColorTransform and then apply the threshold.
     /// The ThresholdToZero function is:
     /// destinationPixelValue = sourcePixelValue > thresholdValue ? sourcePixelValue : 0
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozero?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -613,14 +663,27 @@ impl MPSImageThresholdToZero {
 }
 
 extern_class!(
+    /// A filter that returns 0 for each pixel with a value greater than a specified threshold or the original value otherwise.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MPSImageThresholdToZeroInverse`](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozeroinverse) filter converts a single channel image to a binary image. If the input image is not a single channel image, the function first converts the input image into a single channel luminance image using the linear gray color transform, and then it applies the threshold.
+    ///
+    /// The following listing shows the threshold to zero inverse function.
+    ///
+    /// Listing 1. Threshold to zero inverse function
+    ///
+    /// ```other
+    /// destinationPixelValue = sourcePixelValue > thresholdValue ? 0 : sourcePixelValue
+    /// ```
+    ///
+    ///
     /// The MPSImageThresholdToZeroInverse filter applies a fixed-level threshold to each pixel in the image.
     /// The threshold functions convert a single channel image to a binary image.
     /// If the input image is not a single channel image, convert the inputimage to a single channel
     /// luminance image using the linearGrayColorTransform and then apply the threshold.
     /// The ThresholdToZeroINverse function is:
     /// destinationPixelValue = sourcePixelValue > thresholdValue ? 0 : sourcePixelValue
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagethresholdtozeroinverse?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

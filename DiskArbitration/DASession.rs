@@ -13,8 +13,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// Type of a reference to DASession instances.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasession?language=objc)
+/// Type of a reference to DASession instances.
 #[doc(alias = "DASessionRef")]
 #[repr(C)]
 pub struct DASession {
@@ -32,8 +31,7 @@ cf_objc2_type!(
 
 unsafe impl ConcreteType for DASession {
     /// Returns the type identifier of all DASession instances.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessiongettypeid()?language=objc)
+    /// Returns the type identifier of all DASession instances.
     #[doc(alias = "DASessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -47,12 +45,23 @@ unsafe impl ConcreteType for DASession {
 impl DASession {
     /// Creates a new session.
     ///
+    /// ## Return Value
+    ///
+    /// A reference to a new DASession.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The caller of this function receives a reference to the returned object. The caller also implicitly retains the object and is responsible for releasing it.
+    ///
+    ///
+    /// Creates a new session.
+    ///
     /// Returns: A reference to a new DASession.
     ///
     /// The caller of this function receives a reference to the returned object.  The
     /// caller also implicitly retains the object and is responsible for releasing it.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessioncreate(_:)?language=objc)
     #[doc(alias = "DASessionCreate")]
     #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DASession>> {
@@ -65,6 +74,15 @@ impl DASession {
 
     /// Schedules the session on a run loop.
     ///
+    /// Parameters:
+    /// - session: The session which is being scheduled.
+    ///
+    /// - runLoop: The run loop on which the session should be scheduled.
+    ///
+    /// - runLoopMode: The run loop mode in which the session should be scheduled.
+    ///
+    /// Schedules the session on a run loop.
+    ///
     /// Parameter `session`: The session which is being scheduled.
     ///
     /// Parameter `runLoop`: The run loop on which the session should be scheduled.
@@ -74,8 +92,6 @@ impl DASession {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionschedulewithrunloop(_:_:_:)?language=objc)
     #[doc(alias = "DASessionScheduleWithRunLoop")]
     #[inline]
     pub unsafe fn schedule_with_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -91,6 +107,15 @@ impl DASession {
 
     /// Unschedules the session from a run loop.
     ///
+    /// Parameters:
+    /// - session: The session which is being unscheduled.
+    ///
+    /// - runLoop: The run loop on which the session is scheduled.
+    ///
+    /// - runLoopMode: The run loop mode in which the session is scheduled.
+    ///
+    /// Unschedules the session from a run loop.
+    ///
     /// Parameter `session`: The session which is being unscheduled.
     ///
     /// Parameter `runLoop`: The run loop on which the session is scheduled.
@@ -100,8 +125,6 @@ impl DASession {
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionunschedulefromrunloop(_:_:_:)?language=objc)
     #[doc(alias = "DASessionUnscheduleFromRunLoop")]
     #[inline]
     pub unsafe fn unschedule_from_run_loop(&self, run_loop: &CFRunLoop, run_loop_mode: &CFString) {
@@ -117,6 +140,13 @@ impl DASession {
 
     /// Schedules the session on a dispatch queue.
     ///
+    /// Parameters:
+    /// - session: The session which is being scheduled.
+    ///
+    /// - queue: The dispatch queue on which the session should be scheduled. Pass NULL to unschedule.
+    ///
+    /// Schedules the session on a dispatch queue.
+    ///
     /// Parameter `session`: The session which is being scheduled.
     ///
     /// Parameter `queue`: The dispatch queue on which the session should be scheduled.  Pass NULL to unschedule.
@@ -124,8 +154,6 @@ impl DASession {
     /// # Safety
     ///
     /// `queue` possibly has additional threading requirements.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dasessionsetdispatchqueue(_:_:)?language=objc)
     #[doc(alias = "DASessionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -137,7 +165,6 @@ impl DASession {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionref?language=objc)
 #[doc(alias = "DAApprovalSessionRef")]
 #[repr(C)]
 pub struct DAApprovalSession {
@@ -154,7 +181,6 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for DAApprovalSession {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessiongettypeid?language=objc)
     #[doc(alias = "DAApprovalSessionGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -166,7 +192,6 @@ unsafe impl ConcreteType for DAApprovalSession {
 }
 
 impl DAApprovalSession {
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessioncreate?language=objc)
     #[doc(alias = "DAApprovalSessionCreate")]
     #[inline]
     pub unsafe fn new(allocator: Option<&CFAllocator>) -> Option<CFRetained<DAApprovalSession>> {
@@ -179,8 +204,6 @@ impl DAApprovalSession {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionschedulewithrunloop?language=objc)
-    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.
@@ -197,8 +220,6 @@ impl DAApprovalSession {
         unsafe { DAApprovalSessionScheduleWithRunLoop(self, run_loop, run_loop_mode) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionunschedulefromrunloop?language=objc)
-    ///
     /// # Safety
     ///
     /// `run_loop` possibly has additional threading requirements.

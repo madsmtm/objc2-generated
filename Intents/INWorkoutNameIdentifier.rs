@@ -4,112 +4,112 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier?language=objc)
+/// Constants that indicate the type of workout.
 // NS_TYPED_ENUM
 pub type INWorkoutNameIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/run?language=objc)
+    /// An identifier for an outdoor running workout.
     pub static INWorkoutNameIdentifierRun: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/sit?language=objc)
+    /// An identifier for a sitting workout.
     pub static INWorkoutNameIdentifierSit: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/steps?language=objc)
+    /// An identifier for a step-related workout.
     pub static INWorkoutNameIdentifierSteps: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/stand?language=objc)
+    /// An identifier for a standing workout.
     pub static INWorkoutNameIdentifierStand: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/move?language=objc)
+    /// An identifier for a movement-related workout.
     pub static INWorkoutNameIdentifierMove: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/walk?language=objc)
+    /// An identifier for an outdoor walking workout.
     pub static INWorkoutNameIdentifierWalk: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/yoga?language=objc)
+    /// An identifier for a yoga workout.
     pub static INWorkoutNameIdentifierYoga: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/dance?language=objc)
+    /// An identifier for a dance workout.
     pub static INWorkoutNameIdentifierDance: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/crosstraining?language=objc)
+    /// An identifier for a cross-training workout.
     pub static INWorkoutNameIdentifierCrosstraining: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/elliptical?language=objc)
+    /// An identifier for an elliptical workout.
     pub static INWorkoutNameIdentifierElliptical: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/rower?language=objc)
+    /// An identifier for a rowing workout.
     pub static INWorkoutNameIdentifierRower: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/cycle?language=objc)
+    /// An identifier for a bicycling workout.
     pub static INWorkoutNameIdentifierCycle: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/stairs?language=objc)
+    /// An identifier for a stair-climbing workout.
     pub static INWorkoutNameIdentifierStairs: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/other?language=objc)
+    /// An identifier for a workout not specified by any other constant.
     pub static INWorkoutNameIdentifierOther: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/indoorrun?language=objc)
+    /// An identifier for an indoor running workout.
     pub static INWorkoutNameIdentifierIndoorrun: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/indoorcycle?language=objc)
+    /// An identifier for an indoor cycling workout.
     pub static INWorkoutNameIdentifierIndoorcycle: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/indoorwalk?language=objc)
+    /// An identifier for an indoor walking workout.
     pub static INWorkoutNameIdentifierIndoorwalk: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/exercise?language=objc)
+    /// An identifier for a generic exercise program.
     pub static INWorkoutNameIdentifierExercise: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/hike?language=objc)
+    /// An identifier for a hike workout.
     pub static INWorkoutNameIdentifierHike: Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/highintensityintervaltraining?language=objc)
+    /// An identifier for a high-intensity interval-training workout.
     pub static INWorkoutNameIdentifierHighIntensityIntervalTraining:
         Option<&'static INWorkoutNameIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inworkoutnameidentifier/swim?language=objc)
+    /// An identifier for a swimming workout.
     pub static INWorkoutNameIdentifierSwim: Option<&'static INWorkoutNameIdentifier>;
 }

@@ -5,6 +5,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// Specifies an updated list of captive network SSIDs that the application performs authentication on.
+///
+/// Parameters:
+/// - ssidArray: An array of `CFString` objects representing the SSIDs the application supports.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the list is successfully updated; otherwise, `FALSE`.
+///
+///
+///
+/// ## Discussion
+///
+/// The list is maintained for as long as the application is installed.
+///
+/// Providing a new list replaces any earlier list the application has provided.
+///
+///
 /// Provides Captive Network Support with an updated list of
 /// SSIDs that this application will perform authentication on.
 ///
@@ -26,8 +45,6 @@ use crate::*;
 /// # Safety
 ///
 /// `ssid_array` generic must be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnsetsupportedssids?language=objc)
 #[deprecated]
 #[inline]
 pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> bool {
@@ -38,6 +55,17 @@ pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> boo
     ret != 0
 }
 
+/// Informs Captive Network Support that the application has successfully authenticated the device to a captive network. Captive Network Support notifies the rest of the system that WiFi is a viable interface.
+///
+/// Parameters:
+/// - interfaceName: The name of the interface that is now online.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the operation succeeded; otherwise, `FALSE`.
+///
+///
 /// Tells Captive Network Support that your application has
 /// authenticated the device to the network. Captive Network Support
 /// will notify the rest of the system that WiFi is now a viable
@@ -46,8 +74,6 @@ pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> boo
 /// Parameter `interfaceName`: Name of the interface that is now online.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnmarkportalonline?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
@@ -58,14 +84,23 @@ pub extern "C-unwind" fn CNMarkPortalOnline(interface_name: &CFString) -> bool {
     ret != 0
 }
 
+/// Informs Captive Network Support that the device is not authenticated on a captive network.
+///
+/// Parameters:
+/// - interfaceName: The name of the interface that is now offline.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the operation succeeded; otherwise, `FALSE`.
+///
+///
 /// Tells Captive Network Support that the device is not
 /// authenticated on the given network interface.
 ///
 /// Parameter `interfaceName`: Name of the interface that is still captive.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cnmarkportaloffline?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool {
@@ -76,13 +111,18 @@ pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool 
     ret != 0
 }
 
+/// Returns the names of all network interfaces Captive Network Support is monitoring.
+///
+/// ## Return Value
+///
+/// The network interface names, as an array of [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) objects. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+///
+///
 /// copies a list of all interfaces CaptiveNetworkSupport is monitoring.
 ///
 /// Returns: An array of CFStringRef- BSD interface names.
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cncopysupportedinterfaces?language=objc)
 #[inline]
 pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -93,26 +133,77 @@ pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArra
 }
 
 extern "C" {
+    /// The key for the network’s SSID, which is represented as a [`CFData`](https://developer.apple.com/documentation/corefoundation/cfdata) object.
     /// NetworkInfo Dictionary key for SSID in CFData format
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kcnnetworkinfokeyssiddata?language=objc)
     pub static kCNNetworkInfoKeySSIDData: &'static CFString;
 }
 
 extern "C" {
+    /// The key for the network’s SSID, which is represented as a [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
     /// NetworkInfo Dictionary key for SSID in CFString format
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kcnnetworkinfokeyssid?language=objc)
     pub static kCNNetworkInfoKeySSID: &'static CFString;
 }
 
 extern "C" {
+    /// The key for the network’s BSSID, which is represented as a [`CFString`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
     /// NetworkInfo Dictionary key for BSSID in CFString format
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kcnnetworkinfokeybssid?language=objc)
     pub static kCNNetworkInfoKeyBSSID: &'static CFString;
 }
 
+/// Returns the current network information for a given network interface.
+///
+/// Parameters:
+/// - interfaceName: The network interface name.
+///
+///
+/// ## Return Value
+///
+/// A dictionary containing the interface’s current network information, provided certain requirements are met (see Discussion section). If the requirements are not met, the return value is either a dictionary with pseudo-values or `NULL`. If an error occurs, the return value is `NULL`.
+///
+///
+///
+/// ## Discussion
+///
+/// The returned dictionary contains the following keys and values:
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Key" }] }], [Paragraph { inline_content: [Text { text: "Value type" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/kCNNetworkInfoKeySSIDData", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFData", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/kCNNetworkInfoKeySSID", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.systemconfiguration/documentation/SystemConfiguration/kCNNetworkInfoKeyBSSID", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/CoreFoundation/CFString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+/// Ownership of the returned dictionary follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029). You are responsible for releasing the returned value.
+///
+/// ## Discussion
+///
+/// The requesting app must meet one of the following requirements:
+///
+/// - The app uses [`Core Location`](https://developer.apple.com/documentation/corelocation), and has the user’s authorization to use location information.
+///
+/// - The app uses the [`NEHotspotConfiguration`](https://developer.apple.com/documentation/networkextension/nehotspotconfiguration) API to configure the current Wi-Fi network.
+///
+/// - The app has an active VPN configuration installed.
+///
+/// - The app has an active [`NEDNSSettingsManager`](https://developer.apple.com/documentation/networkextension/nednssettingsmanager) configuration installed.
+///
+/// If the requesting app is a Mac app built with Mac Catalyst, it must meet the following requirements:
+///
+/// - The app uses [`Core Location`](https://developer.apple.com/documentation/corelocation), and has the user’s authorization to use location information.
+///
+/// - The app includes the [`Access Wi-Fi Information Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.wifi-info).
+///
+/// - The app runs in macOS 11 or later.
+///
+/// An app that fails to meet the above requirements receives the following return value:
+///
+/// - An app linked against iOS 12 or earlier receives a dictionary with pseudo-values. In this case, the SSID is `Wi-Fi` (or `WLAN` in China mainland), and the BSSID is `00:00:00:00:00:00`.
+///
+/// - An app linked against iOS 13 or later receives `NULL`.
+///
+/// <div class="warning">
+///
+/// ### Important
+///  To use this function, an app linked against iOS 12 or later must enable the Access WiFi Information capability in Xcode. For more information, see [`Access Wi-Fi Information Entitlement`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.developer.networking.wifi-info). Calling this function without the entitlement always returns `NULL` when linked against iOS 12 or later.
+///
+///
+///
+/// </div>
+///
 /// Returns the network information for the specified interface when the requesting application meets one of following 4 requirements -.
 /// 1. application is using CoreLocation API and has the user's authorization to access location.
 /// 2. application has used the NEHotspotConfiguration API to configure the current Wi-Fi network.
@@ -147,8 +238,6 @@ extern "C" {
 /// Returns: Network Information dictionary associated with the interface.
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/cncopycurrentnetworkinfo?language=objc)
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn CNCopyCurrentNetworkInfo(

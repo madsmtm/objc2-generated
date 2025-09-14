@@ -7,6 +7,25 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that represents a type of data to load, send, or receive.
+    ///
+    /// ## Overview
+    ///
+    /// The [`UTType`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference) object may represent files on disk, abstract data types with no on-disk representation, or entirely unrelated hierarchical classification systems, such as hardware. Each instance has a unique [`identifier`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/identifier), and helpful properties, [`preferredFilenameExtension`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/preferredfilenameextension) and [`preferredMIMEType`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype-swift.struct/preferredmimetype).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The system includes static declarations for many common types, which you can look up by identifier, filename extension, or MIME type.
+    ///
+    ///
+    ///
+    /// </div>
+    /// The [`UTType`](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference) object may provide additional information related to the type. For example, it may include a localized user-facing description, a reference URL to technical documentation about the type, or its version number. You can look up types by their conformance to get either a type or a list of types that are relevant to your use case.
+    ///
+    /// To define your own types in your app’s `Info.plist`, see [Defining file and data types for your app](https://developer.apple.com/documentation/uniformtypeidentifiers/defining-file-and-data-types-for-your-app).
+    ///
+    ///
     /// A class representing a type in a type hierarchy.
     ///
     /// Types may represent files on disk, abstract data types with no on-disk
@@ -23,8 +42,6 @@ extern_class!(
     ///
     ///
     /// See also: https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UTType;

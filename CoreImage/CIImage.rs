@@ -19,180 +19,199 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat?language=objc)
+/// Pixel data formats for image input, output, and processing.
 // NS_TYPED_ENUM
 pub type CIFormat = c_int;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/argb8?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format in which the alpha value precedes the red, green, and blue color components.
     pub static kCIFormatARGB8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/bgra8?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format in which the blue, green, and red color components precede the alpha value.
     pub static kCIFormatBGRA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgba8?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format in which the red, green, and blue color components precede the alpha value.
     pub static kCIFormatRGBA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbx8?language=objc)
     pub static kCIFormatRGBX8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/abgr8?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format in which the alpha value precedes the blue, green, and red color components.
     pub static kCIFormatABGR8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbah?language=objc)
+    /// A 64-bit-per-pixel, floating-point pixel format.
     pub static kCIFormatRGBAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgba16?language=objc)
+    /// A 64-bit-per-pixel, fixed-point pixel format.
     pub static kCIFormatRGBA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbaf?language=objc)
+    /// A 128-bit-per-pixel, floating-point pixel format.
     pub static kCIFormatRGBAf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbx16?language=objc)
     pub static kCIFormatRGBX16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbxh?language=objc)
     pub static kCIFormatRGBXh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbxf?language=objc)
     pub static kCIFormatRGBXf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgb10?language=objc)
     pub static kCIFormatRGB10: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/a8?language=objc)
+    /// An 8-bit-per-pixel, fixed-point pixel format in which the sole component is alpha.
     pub static kCIFormatA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/a16?language=objc)
+    /// A 16-bit-per-pixel, fixed-point pixel format in which the sole component is alpha.
     pub static kCIFormatA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/ah?language=objc)
+    /// A 16-bit-per-pixel, half-width floating-point pixel format in which the sole component is alpha.
     pub static kCIFormatAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/af?language=objc)
+    /// A 32-bit-per-pixel, full-width floating-point pixel format in which the sole component is alpha.
     pub static kCIFormatAf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/r8?language=objc)
+    /// An 8-bit-per-pixel, fixed-point pixel format in which the sole component is a red color value.
     pub static kCIFormatR8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/r16?language=objc)
+    /// A 16-bit-per-pixel, fixed-point pixel format in which the sole component is a red color value.
     pub static kCIFormatR16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rh?language=objc)
+    /// A 16-bit-per-pixel, floating-point pixel format in which the sole component is a red color value.
     pub static kCIFormatRh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rf?language=objc)
+    /// A 32-bit-per-pixel, floating-point pixel format in which the sole component is a red color value.
     pub static kCIFormatRf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rg8?language=objc)
+    /// A 16-bit-per-pixel, fixed-point pixel format with only red and green color components.
     pub static kCIFormatRG8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rg16?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format with only red and green color components.
     pub static kCIFormatRG16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgh?language=objc)
+    /// A 32-bit-per-pixel, floating-point pixel format with only red and green color components.
     pub static kCIFormatRGh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgf?language=objc)
+    /// A 64-bit-per-pixel, floating-point pixel format with only red and green color components.
     pub static kCIFormatRGf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/l8?language=objc)
+    /// An 8-bit-per-pixel, fixed-point pixel format in which the sole component is luminance.
     pub static kCIFormatL8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/l16?language=objc)
+    /// A 16-bit-per-pixel, fixed-point pixel format in which the sole component is luminance.
     pub static kCIFormatL16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lh?language=objc)
+    /// A 16-bit-per-pixel, half-width floating-point pixel format in which the sole component is luminance.
     pub static kCIFormatLh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lf?language=objc)
+    /// A 32-bit-per-pixel, full-width floating-point pixel format in which the sole component is luminance.
     pub static kCIFormatLf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/la8?language=objc)
+    /// A 16-bit-per-pixel, fixed-point pixel format with only 8-bit luminance and alpha components.
     pub static kCIFormatLA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/la16?language=objc)
+    /// A 32-bit-per-pixel, fixed-point pixel format with only 16-bit luminance and alpha components.
     pub static kCIFormatLA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lah?language=objc)
+    /// A 32-bit-per-pixel, half-width floating-point pixel format with 16-bit luminance and alpha components.
     pub static kCIFormatLAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/laf?language=objc)
+    /// A 64-bit-per-pixel, full-width floating-point pixel format with 32-bit luminance and alpha components.
     pub static kCIFormatLAf: CIFormat;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIImageOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/colorspace?language=objc)
+    /// The key for a color space.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information on this data type see [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace). Typically you use this option when you need to load an elevation, mask, normal vector, or RAW sensor data directly from a file without color correcting it. This constant specifies to override Core Image, which, by default, assumes that data is in GenericRGB.
+    ///
+    /// The value you supply for this dictionary key must be a [`CGColorSpaceRef`](https://developer.apple.com/documentation/coregraphics/cgcolorspace) data type. If a value for this key isn’t supplied, the image’s [`colorSpace`](https://developer.apple.com/documentation/coreimage/ciimage/colorspace) dictionary are populated automatically by calling [`CGImageSourceCopyPropertiesAtIndex`](https://developer.apple.com/documentation/imageio/cgimagesourcecopypropertiesatindex(_:_:_:)). To request that Core Image perform no color management, specify the [`NSNull`](https://developer.apple.com/documentation/foundation/nsnull) object as the value for this key. Use this option for images that don’t contain color data (such as elevation maps, normal vector maps, and sampled function tables).
+    ///
+    ///
     pub static kCIImageColorSpace: &'static CIImageOption;
 }
 
 extern "C" {
+    /// A Boolean value to control whether an image created with a CVPixelBuffer or an IOSurface should be cropped and offset according clean aperture attachments.
+    ///
+    /// ## Discussion
+    ///
+    /// For a `CVPixelBuffer` this will use `kCVImageBufferPreferredCleanApertureKey` or `kCVImageBufferCleanApertureKey`.
+    ///
+    /// If the value for this option is:
+    ///
+    /// - True: then image will be cropped and offset to the clean aperture.
+    ///
+    /// - False: then the full image is returned.
+    ///
+    /// - [`CIVector`](https://developer.apple.com/documentation/coreimage/civector) : then use it as a `CGRect` to crop and offset.
+    ///
+    /// - Not specified : then it will behave as if False was specified.
+    ///
+    ///
     /// A Boolean value to control whether an image created with a CVPixelBuffer or an IOSurface
     /// should be cropped and offset according clean aperture attachments.
     ///
@@ -204,18 +223,15 @@ extern "C" {
     /// * False: then the full image is returned.
     /// * ``CIVector`` : then use it as a `CGRect` to crop and offset.
     /// * Not specified : then it will behave as if False was specified.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/applycleanaperture?language=objc)
     pub static kCIImageApplyCleanAperture: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/tonemaphdrtosdr?language=objc)
     pub static kCIImageToneMapHDRtoSDR: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/expandtohdr?language=objc)
+    /// A Boolean value that indicates whether to read Gain Map HDR images as HDR.
     pub static kCIImageExpandToHDR: &'static CIImageOption;
 }
 
@@ -224,100 +240,161 @@ extern "C" {
     /// when creating an image.
     ///
     /// The value for this key should be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/contentheadroom?language=objc)
     pub static kCIImageContentHeadroom: &'static CIImageOption;
 }
 
 extern "C" {
+    /// A value for overriding the automatic behavior of the Content Average Light Level property when creating an image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key should be an `NSNumber` instance.
+    ///
+    ///
     /// A value for overriding the automatic behavior of the Content Average Light Level property
     /// when creating an image.
     ///
     /// The value for this key should be an `NSNumber` instance.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/contentaveragelightlevel?language=objc)
     pub static kCIImageContentAverageLightLevel: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/nearestsampling?language=objc)
+    /// The key into the properties dictionary to indicate whether to use nearest-neighbor sampling.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean value specifying whether the image should be sampled using nearest neighbor behavior.  An unspecified value defaults to linear sampling.
+    ///
+    ///
     pub static kCIImageNearestSampling: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/cacheimmediately?language=objc)
     pub static kCIImageCacheImmediately: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/properties?language=objc)
+    /// The key for image metadata properties.
+    ///
+    /// ## Discussion
+    ///
+    /// To ensure that an image has no metadata properties, set the value of this key to `[NSNull null]`.
+    ///
+    ///
     pub static kCIImageProperties: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/applyorientationproperty?language=objc)
+    /// The key for transforming an image according to orientation metadata.
+    ///
+    /// ## Discussion
+    ///
+    /// Images can contain metadata that reveals the orientation at capture time.  You can load this metadata into [`CIImage`](https://developer.apple.com/documentation/coreimage/ciimage) with [`imageWithContentsOfURL:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithcontentsofurl:) or [`initWithData:`](https://developer.apple.com/documentation/coreimage/ciimage/init(data:)) when the captured image contains orientation metadata.  Use any of the `initWith:options:` methods if the [`kCIImageProperties`](https://developer.apple.com/documentation/coreimage/ciimageoption/properties) ([`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) of metadata properties) option is also provided.
+    ///
+    /// If the value of this key is true, then calls to [`imageWithContentsOfURL:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithcontentsofurl:options:) and [`imageWithData:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithdata:options:) will return the image transformed according to its orientation metadata.
+    ///
+    ///
     pub static kCIImageApplyOrientationProperty: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/texturetarget?language=objc)
+    /// The key for an OpenGL texture target.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a supported OpenGL texture target constant, either `GL_TEXTURE_2D` or `GL_TEXTURE_RECTANGLE_ARB`. You may only use this key when initializing an image using the [`initWithTexture:size:flipped:options:`](https://developer.apple.com/documentation/coreimage/ciimage/init(texture:size:flipped:options:)) method.
+    ///
+    ///
     #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureTarget: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/textureformat?language=objc)
+    /// The key for an OpenGL texture format.
+    ///
+    /// ## Discussion
+    ///
+    /// The value for this key must be an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) object containing a Core Image pixel format constant. (See `Pixel Formats`.) You may only use this key when initializing an image using the [`initWithTexture:size:flipped:options:`](https://developer.apple.com/documentation/coreimage/ciimage/init(texture:size:flipped:options:)) method.
+    ///
+    ///
     #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureFormat: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarydepth?language=objc)
+    /// The key into the properties dictionary indicating whether to return an auxiliary depth image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean [`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false).  If the value is [`true`](https://developer.apple.com/documentation/swift/true), then calls to [`imageWithContentsOfURL:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithcontentsofurl:options:) and [`imageWithData:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithdata:options:) will return the auxiliary image as a half-float monochrome image instead of the primary image, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if no auxiliary image exists.
+    ///
+    ///
     pub static kCIImageAuxiliaryDepth: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarydisparity?language=objc)
+    /// The key into the properties dictionary indicating whether to return an auxiliary disparity image.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean [`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false).  If the value is [`true`](https://developer.apple.com/documentation/swift/true), then calls to [`imageWithContentsOfURL:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithcontentsofurl:options:) and [`imageWithData:options:`](https://developer.apple.com/documentation/coreimage/ciimage/imagewithdata:options:) will return the auxiliary image as a half-float monochrome image instead of the primary image, or [`nil`](https://developer.apple.com/documentation/objectivec/nil-227m0) if no auxiliary image exists.
+    ///
+    ///
     pub static kCIImageAuxiliaryDisparity: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliaryportraiteffectsmatte?language=objc)
+    /// The key into the properties dictionary indicating whether to return auxiliary portrait effects matte.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) containing a Boolean [`true`](https://developer.apple.com/documentation/swift/true) or [`false`](https://developer.apple.com/documentation/swift/false).
+    ///
+    ///
     pub static kCIImageAuxiliaryPortraitEffectsMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationskinmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationSkinMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationhairmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationHairMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationteethmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationTeethMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationglassesmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationGlassesMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationskymatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationSkyMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliaryhdrgainmap?language=objc)
     pub static kCIImageAuxiliaryHDRGainMap: &'static CIImageOption;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimage?language=objc)
+    /// A representation of an image to be processed or produced by Core Image filters.
+    ///
+    /// ## Overview
+    ///
+    /// You use `CIImage` objects in conjunction with other Core Image classes—such as [`CIFilter`](https://developer.apple.com/documentation/coreimage/cifilter-swift.class), [`CIContext`](https://developer.apple.com/documentation/coreimage/cicontext), [`CIVector`](https://developer.apple.com/documentation/coreimage/civector), and [`CIColor`](https://developer.apple.com/documentation/coreimage/cicolor)—to take advantage of the built-in Core Image filters when processing images. You can create `CIImage` objects with data supplied from a variety of sources, including Quartz 2D images, Core Video image buffers ([`CVImageBufferRef`](https://developer.apple.com/documentation/corevideo/cvimagebuffer)), URL-based objects, and `NSData` objects.
+    ///
+    /// Although a `CIImage` object has image data associated with it, it is not an image. You can think of a `CIImage` object as an image “recipe.” A `CIImage` object has all the information necessary to produce an image, but Core Image doesn’t actually render an image until it is told to do so. This lazy evaluation allows Core Image to operate as efficiently as possible. To show a `CIImage` object as an on-screen image, you can display it as a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) in [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview):
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["guard let imageURL = Bundle.main.url(forResource: \"YourJPEGName\", withExtension: \"JPG\") else {", "    print(\"Could not find image\")", "    return", "}", "guard let let ciImage = CIImage(contentsOf: imageURL) else {", "    print(\"Could not create CIImage\")", "    return", "}", "let uiImage = UIImage(ciImage: ciImage)", "let imageView = UIImageView(image: uiImage)    ", "self.view.addSubview(imageView)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSURL* imageURL = [[NSBundle mainBundle] URLForResource:@\"YourJPEGName\" withExtension:@\"JPG\"];", "CIImage* ciImage = [CIImage imageWithContentsOfURL:imageURL];", "UIImage* uiImage = [UIImage imageWithCIImage:ciImage];", "UIImageView* imageView = [[UIImageView alloc] initWithImage:uiImage];", "[self.view addSubview:imageView];"], metadata: None }] }] })
+    /// `CIContext`  and `CIImage` objects are immutable, which means each can be shared safely among threads. Multiple threads can use the same GPU or CPU `CIContext` object to render `CIImage` objects.  However, this is not the case for `CIFilter` objects, which are mutable. A `CIFilter` object cannot be shared safely among threads.  If you app is multithreaded, each thread must create its own `CIFilter` objects. Otherwise, your app could behave unexpectedly.
+    ///
+    /// Core Image also provides auto-adjustment methods. These methods analyze an image for common deficiencies and return a set of filters to correct those deficiencies. The filters are preset with values for improving image quality by altering values for skin tones, saturation, contrast, and shadows and for removing red-eye or other artifacts caused by flash. (See Getting Autoadjustment Filters.)
+    ///
+    /// For a discussion of all the methods you can use to create `CIImage` objects on iOS and macOS, see [Core Image Programming Guide](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIImage;
@@ -1194,32 +1271,61 @@ impl CIImage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption?language=objc)
 // NS_TYPED_ENUM
 pub type CIImageAutoAdjustmentOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/enhance?language=objc)
+    /// A key used to specify whether to return enhancement filters.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a `CFBoolean` value. Supply `false` to indicate not to return enhancement filters. If you don’t specify this option, Core Image assumes its value is `true`.
+    ///
+    ///
     pub static kCIImageAutoAdjustEnhance: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/redeye?language=objc)
+    /// A key used to specify whether to return a red eye filter.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a `CFBoolean` value. Supply `false` to indicate not to return a red eye filter. If you don’t specify this option, Core Image assumes its value is `true`.
+    ///
+    ///
     pub static kCIImageAutoAdjustRedEye: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/features?language=objc)
+    /// A key used to specify an array of features that you want to apply enhancement and red eye filters to.
+    ///
+    /// ## Discussion
+    ///
+    /// The associated value is an array of `CIFeature` objects. If you don’t supply an array, the Core Image searches for features using the `CIDetector` class.
+    ///
+    ///
     pub static kCIImageAutoAdjustFeatures: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/crop?language=objc)
+    /// A key used to specify whether to return a filter that crops the image to focus on detected features.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a `CFBoolean` value. If `true`, the returned filters include an operation that crops the image around the features specified with the [`kCIImageAutoAdjustFeatures`](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/features) option (or any features detected in the image, if that option is not present). Supply `false` to indicate not to return a crop filter. If you don’t specify this option, Core Image assumes its value is `false`.
+    ///
+    ///
     pub static kCIImageAutoAdjustCrop: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/level?language=objc)
+    /// A key used to specify whether to return a filter that rotates the image to keep a level perspective.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is a `CFBoolean` value. If `true`, Core Image analyzes the image to determine whether it would benefit from rotation—for example, a landscape photo in which the horizon is not horizontal—and returns a filter to perform that rotation. Supply `false` to indicate not to return a rotation filter. If you don’t specify this option, Core Image assumes its value is `false`.
+    ///
+    ///
     pub static kCIImageAutoAdjustLevel: &'static CIImageAutoAdjustmentOption;
 }
 

@@ -4,6 +4,5 @@
 use crate::*;
 
 /// A 64-bit unsigned integer type appropriate for storing GPU addresses.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlgpuaddress?language=objc)
+/// A 64-bit unsigned integer type appropriate for storing GPU addresses.
 pub type MTLGPUAddress = u64;

@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The common configuration traits for network devices.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t instantiate the [`VZNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration) class directly. Instead, instantiate one of its subclasses, such as [`VZVirtioNetworkDeviceConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtionetworkdeviceconfiguration). Then use the properties of this class to configure the network device.
+    ///
+    ///
     /// Base class for a network adapter configuration.
     ///
     /// VZNetworkDeviceConfiguration should not be instantiated directly.
@@ -15,8 +22,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtioNetworkDeviceConfiguration
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vznetworkdeviceconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZNetworkDeviceConfiguration;

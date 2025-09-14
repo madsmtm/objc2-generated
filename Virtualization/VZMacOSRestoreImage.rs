@@ -8,6 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes a version of macOS to install on to a virtual machine.
+    ///
+    /// ## Overview
+    ///
+    /// To set up a new VM compatible with the restore image, use [`mostFeaturefulSupportedConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage/mostfeaturefulsupportedconfiguration) to obtain the [`hardwareModel`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration/hardwaremodel) of the [`VZMacPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzmacplatformconfiguration). Then, create a [`VZMacOSRestoreImage`](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage) object by loading an installation media file. Initialize a [`VZMacOSInstaller`](https://developer.apple.com/documentation/virtualization/vzmacosinstaller) object with this `VZMacOSRestoreImage` object to install the operating system onto a VM.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Loading a restore image requires the app to have the [`com.apple.security.virtualization`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.virtualization) entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// VZMacOSRestoreImage describes a version of macOS to be installed to a virtual machine.
     ///
     /// A VZMacOSRestoreImage object can be created by loading an installation media file. A VZMacOSInstaller
@@ -21,8 +36,6 @@ extern_class!(
     /// See also: VZMacOSInstaller
     ///
     /// See also: VZMacOSConfigurationRequirements
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacosrestoreimage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZMacOSRestoreImage;

@@ -9,12 +9,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A request that detects points on human bodies in 3D space, relative to the camera.
+    ///
+    /// ## Overview
+    ///
+    /// This request generates a collection of [`VNHumanBodyPose3DObservation`](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation) objects that describe the position of each body the request detects. If the system allows it, the request uses [`AVDepthData`](https://developer.apple.com/documentation/avfoundation/avdepthdata) information to improve the accuracy.
+    ///
+    ///
     /// A request that detects specific landmark points on human bodies in 3D space relative to the camera.
     /// When possible,`AVDepthData` depth information is used to produce more accurate results, but the request does not require it to run.
     ///
     /// This request generates a collection of VNHumanBodyPose3DObservation objects which describe the position of each detected body
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequest?language=objc)
     #[unsafe(super(VNStatefulRequest, VNImageBasedRequest, VNRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
@@ -118,5 +123,5 @@ impl VNDetectHumanBodyPose3DRequest {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vndetecthumanbodypose3drequestrevision1?language=objc)
+/// A value that indicates the first revision for a human 3D body pose request.
 pub static VNDetectHumanBodyPose3DRequestRevision1: NSUInteger = 1;

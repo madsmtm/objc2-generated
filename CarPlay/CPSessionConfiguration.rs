@@ -6,17 +6,17 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface?language=objc)
+/// The types of limitable user interface elements.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPLimitableUserInterface(pub NSUInteger);
 bitflags::bitflags! {
     impl CPLimitableUserInterface: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface/keyboard?language=objc)
+/// Indicates that the car is limiting the keyboard display.
         #[doc(alias = "CPLimitableUserInterfaceKeyboard")]
         const Keyboard = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface/lists?language=objc)
+/// Indicates that the car is limiting the display of lists.
         #[doc(alias = "CPLimitableUserInterfaceLists")]
         const Lists = 1<<1;
     }
@@ -30,17 +30,25 @@ unsafe impl RefEncode for CPLimitableUserInterface {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle?language=objc)
+/// The types of content style that the vehicle allows.
+///
+/// ## Overview
+///
+/// The vehicle selects the content style according to the ambient light level. Your navigation app can use this value to determine the most appropriate style of map content to draw in its base view. The content style is independent of the user interface style, which controls light and dark mode.
+///
+/// You don’t create instances of `CPContentStyle`. Instead, the session configuration provides the current content style, and it notifies its delegate of any changes. See [`CPSessionConfiguration`](https://developer.apple.com/documentation/carplay/cpsessionconfiguration) for more information.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPContentStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl CPContentStyle: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle/light?language=objc)
+/// The indication from the vehicle to draw the content in a light style.
         #[doc(alias = "CPContentStyleLight")]
         const Light = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle/dark?language=objc)
+/// The indication from the vehicle to draw the content in a dark style.
         #[doc(alias = "CPContentStyleDark")]
         const Dark = 1<<1;
     }
@@ -55,7 +63,13 @@ unsafe impl RefEncode for CPContentStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsessionconfiguration?language=objc)
+    /// An object that provides vehicle properties and configuration for the CarPlay environment.
+    ///
+    /// ## Overview
+    ///
+    /// You use a session configuration to determine any user interface limits the vehicle imposes, such as keyboard display and list length, and the content style the vehicle selects according to the ambient light level.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPSessionConfiguration;
@@ -110,7 +124,7 @@ impl CPSessionConfiguration {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsessionconfigurationdelegate?language=objc)
+    /// A protocol for receiving notifications about changes to vehicle properties and configuration.
     pub unsafe trait CPSessionConfigurationDelegate:
         NSObjectProtocol + MainThreadOnly
     {

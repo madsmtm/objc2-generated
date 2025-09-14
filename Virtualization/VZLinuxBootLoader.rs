@@ -8,6 +8,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that loads and configures a Linux kernel as the guest system of your VM.
+    ///
+    /// ## Overview
+    ///
+    /// Create and configure a [`VZLinuxBootLoader`](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader) object during the initial configuration of your VM. Use this object to specify the location of the Linux kernel that serves as the guest operating system. You can also specify additional information to use during the boot process, such as command-line parameters to pass to the kernel. Assign the [`VZLinuxBootLoader`](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader) object to the [`bootLoader`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader) property of your [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object.  A configuration with `VZLinuxBootLoader` is only valid if used with [`VZGenericPlatformConfiguration`](https://developer.apple.com/documentation/virtualization/vzgenericplatformconfiguration).
+    ///
+    ///
     /// Boot loader configuration for a Linux kernel.
     ///
     /// You must use a VZGenericPlatformConfiguration in conjunction with the Linux boot loader.
@@ -16,8 +23,6 @@ extern_class!(
     /// See: VZGenericPlatformConfiguration
     ///
     /// See: VZVirtualMachineConfiguration.platform.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzlinuxbootloader?language=objc)
     #[unsafe(super(VZBootLoader, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "VZBootLoader")]

@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate?language=objc)
+/// The possible states of the home hub.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMHomeHubState(pub NSUInteger);
 impl HMHomeHubState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/notavailable?language=objc)
+    /// No home hub is present.
     #[doc(alias = "HMHomeHubStateNotAvailable")]
     pub const NotAvailable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/connected?language=objc)
+    /// The home hub is connected.
     #[doc(alias = "HMHomeHubStateConnected")]
     pub const Connected: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomehubstate/disconnected?language=objc)
+    /// The home hub is disconnected.
     #[doc(alias = "HMHomeHubStateDisconnected")]
     pub const Disconnected: Self = Self(2);
 }
@@ -33,6 +33,25 @@ unsafe impl RefEncode for HMHomeHubState {
 }
 
 extern_class!(
+    /// The primary unit of living space, typically composed of rooms organized into zones.
+    ///
+    /// ## Overview
+    ///
+    /// An [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) instance is a top-level container in HomeKit representing a structure that a user considers as a single home. Users might have multiple homes that are far apart, like a primary home and a vacation home. Or they might have two homes that are close together, but that they consider as distinct units—for example, a main home and a guest cottage on the same property.
+    ///
+    /// An [`HMHome`](https://developer.apple.com/documentation/homekit/hmhome) instance:
+    ///
+    /// - Is the main access point for communicating with and configuring accessories, like a garage door opener or a thermostat.
+    ///
+    /// - Organizes accessories into a number of rooms, which are themselves optionally grouped into zones, such as the upstairs.
+    ///
+    /// - Allows the user to define sets of actions that can be performed with a single operation, and triggers that cause an action set to be performed at a specific time.
+    ///
+    /// You create a new home only in response to a specific user request, but you don’t do it directly. When the user asks your app to create a new home—for example, by tapping an Add button in your interface—your app calls the home manager’s [`addHomeWithName:completionHandler:`](https://developer.apple.com/documentation/homekit/hmhomemanager/addhome(withname:completionhandler:)) method with a name that the user supplies. To get a list of existing home instances, use the [`homes`](https://developer.apple.com/documentation/homekit/hmhomemanager/homes) array of the home manager (an instance of [`HMHomeManager`](https://developer.apple.com/documentation/homekit/hmhomemanager)).
+    ///
+    /// Because HomeKit gives your app access to a shared database of home automation information, other apps can change the home’s configuration. Adopt the [`HMHomeDelegate`](https://developer.apple.com/documentation/homekit/hmhomedelegate) protocol in your app to stay informed of any such changes that happen outside your app.
+    ///
+    ///
     /// Represents a home.
     ///
     ///
@@ -40,8 +59,6 @@ extern_class!(
     /// configure different accessories in the home. This is also used to manage
     /// all the rooms, zones, service groups, users, triggers, and action sets in
     /// the home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhome?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMHome;
@@ -798,10 +815,19 @@ impl HMHome {
 }
 
 extern_protocol!(
+    /// An interface that communicates changes to a home’s configuration.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt this protocol to find out about changes made outside your app to a particular home, like when the home’s name changes, or when a room is added.
+    ///
+    /// Changes that your app initiates—even those made asynchronously followed by a call to a completion handler—generate delegate callbacks in other apps, but not in your own. As a result, your app must update its internal data store or user interface from both the completion handler of an asynchronous call, and the delegate callback that corresponds to the same kind of change made by another app.
+    ///
+    /// To be alerted about changes made to the overall list of homes, adopt the [`HMHomeManagerDelegate`](https://developer.apple.com/documentation/homekit/hmhomemanagerdelegate) protocol. To find out about changes made to specific accessories, adopt the [`HMAccessoryDelegate`](https://developer.apple.com/documentation/homekit/hmaccessorydelegate) protocol.
+    ///
+    ///
     /// This delegate receives update on the various accessories, action sets, groups and triggers
     /// managed in the home.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmhomedelegate?language=objc)
     pub unsafe trait HMHomeDelegate: NSObjectProtocol {
         /// Informs the delegate of a change in the name of a home.
         ///
@@ -1254,6 +1280,13 @@ extern_protocol!(
 );
 
 extern "C" {
+    /// The key for retrieving details of what accessories failed to add or remove a user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value associated with this key is an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) of [`NSDictionary`](https://developer.apple.com/documentation/foundation/nsdictionary) objects. Each dictionary contains the doc://com.apple.documentation/documentation/foundation/nsuuid/1574571-uuid of the accessory that failed to be added/removed and the value corresponding to the dictionary key is an [`NSError`](https://developer.apple.com/documentation/foundation/nserror) that provides more details on the underlying error for that accessory.
+    ///
+    ///
     /// Key that provides more details on the accessories that failed during an
     /// addUser:completionHandler: or removeUser:completionHandler: call.
     ///
@@ -1262,7 +1295,5 @@ extern "C" {
     /// contains the UUID of the accessory that failed to the added/removed and the value
     /// corresponding to the dictionary key is an NSError that provides more details on the
     /// underlying error for that accessory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmuserfailedaccessorieskey?language=objc)
     pub static HMUserFailedAccessoriesKey: &'static NSString;
 }

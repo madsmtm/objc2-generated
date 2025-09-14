@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintent?language=objc)
+    /// A request to list the calls matching the specified criteria.
+    ///
+    /// ## Overview
+    ///
+    /// SiriKit creates [`INSearchCallHistoryIntent`](https://developer.apple.com/documentation/intents/insearchcallhistoryintent) objects when the user asks to see previous calls from their call history. This intent object contains the values for you to match when searching the user’s call history. Users can search for calls involving a specific person, calls that occurred on specific dates, or calls that are of a specific type such as missed calls. When performing the search, use only the parameters provided and ignore any that have no values.
+    ///
+    /// To handle this intent, the handler object in your Intents extension must adopt the [`INSearchCallHistoryIntentHandling`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling) protocol. Your handler confirms the request and creates an [`INSearchCallHistoryIntentResponse`](https://developer.apple.com/documentation/intents/insearchcallhistoryintentresponse) object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -105,11 +118,18 @@ impl INSearchCallHistoryIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for searching the user’s call history.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods of the [`INSearchCallHistoryIntentHandling`](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling) protocol to resolve, confirm, and handle requests to search for calls in the user’s call history. Adopt this protocol in an object of your Intents extension that’s capable of performing the search and finding any matching records. Siri doesn’t display the call information found during the search. After a successful search, Siri launches your app to display that information.
+    ///
+    /// Siri delivers an [`INSearchCallHistoryIntent`](https://developer.apple.com/documentation/intents/insearchcallhistoryintent) object to your handler when the user asks to search their call history. The provided intent object contains the search parameters, such as any contacts involved in the call or the range of dates to search. Use the methods of this protocol to resolve the search parameters and to perform the search.
+    ///
+    ///
     /// Protocol to declare support for handling an INSearchCallHistoryIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insearchcallhistoryintenthandling?language=objc)
     #[deprecated = "INSearchCallHistoryIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSearchCallHistoryIntentHandling: NSObjectProtocol {
         #[cfg(all(

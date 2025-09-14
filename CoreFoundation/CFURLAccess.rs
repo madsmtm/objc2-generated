@@ -8,7 +8,33 @@ use crate::*;
 
 #[cfg(feature = "CFURL")]
 impl CFURL {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatedataandpropertiesfromresource(_:_:_:_:_:_:)?language=objc)
+    /// Loads the data and properties referred to by a given URL.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to allocate memory for the new `CFData` and `CFDictionary` objects returned in `resourceData` and `properties`. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - url: The URL referring to the data and/or properties you wish to load.
+    ///
+    /// - resourceData: On return, contains a `CFData` object containing the data referred to by `url`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - properties: On return, a pointer to a `CFDictionary` object containing the resource properties referred to by `url`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    /// - desiredProperties: A list of the properties you wish to obtain and return in `properties`. See [File URL Properties](https://developer.apple.com/documentation/corefoundation/file-url-properties) and [HTTP URL Properties](https://developer.apple.com/documentation/corefoundation/http-url-properties) for the list of available properties.
+    ///
+    /// - errorCode: `0` if successful, otherwise an error code indicating the nature of the problem. See [`CFURLError`](https://developer.apple.com/documentation/corefoundation/cfurlerror) for a list of possible error codes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if successful, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If you are interested in loading only the resource data or the resource’s properties, pass `NULL` for the one you don’t want. If `properties` is non-`NULL` and `desiredProperties` is `NULL` then all properties are fetched. Note that as much work as possible is done even if `false` is returned. For instance, if one property is not available, the others are fetched anyway. This function is intended for convenience, not performance.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -59,7 +85,35 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlwritedataandpropertiestoresource(_:_:_:_:)?language=objc)
+    /// Writes the given data and properties to a given URL.
+    ///
+    /// Parameters:
+    /// - url: The resource to write.
+    ///
+    /// - dataToWrite: The data to write. Pass `NULL` to write only properties.
+    ///
+    /// - propertiesToWrite: The properties to write. Pass `NULL` to write only data. See [File URL Properties](https://developer.apple.com/documentation/corefoundation/file-url-properties) and [HTTP URL Properties](https://developer.apple.com/documentation/corefoundation/http-url-properties) for the list of available properties.
+    ///
+    /// - errorCode: Upon return, `0` if successful, otherwise contains an error code indicating the nature of the problem. See [`CFURLError`](https://developer.apple.com/documentation/corefoundation/cfurlerror) for a list of possible error codes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if successful, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Properties not present in `propertiesToWrite` are left unchanged, hence if `propertiesToWrite` is `NULL` or empty, the URL’s properties are not changed at all.
+    ///
+    /// If `url` uses a file scheme and it references a file, the contents of `dataToWrite` are written to the referenced file, overwriting any preexisting data, and the file’s properties are modified according to `propertiesToWrite`. If the file does not exist, but all intermediate directories along the path do already exist, the file is created (otherwise it is not).
+    ///
+    /// If `url` uses a file scheme and it references a directory (the last path character is “`/`”), the contents of `dataToWrite` are ignored, but if the parameter value is not `NULL`—and all intermediate directories along the path do already exist—a new directory is created  (otherwise it is not).
+    ///
+    /// If `url` uses an http scheme, an http `PUT` request is sent to the resource with `propertiesToWrite` as the header fields and `dataToWrite` as the data.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -97,7 +151,31 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurldestroyresource(_:_:)?language=objc)
+    /// Destroys a resource indicated by a given URL.
+    ///
+    /// Parameters:
+    /// - url: The `CFURL` object of the resource to destroy.
+    ///
+    /// - errorCode: On return, `0` if successful, otherwise an error code indicating the nature of the problem. See [`CFURLError`](https://developer.apple.com/documentation/corefoundation/cfurlerror) for a list of possible error codes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if successful, `false` otherwise.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `url` uses an http scheme, an http `DELETE` request is sent to the resource. If `url` uses a file scheme, then:
+    ///
+    /// - if the reference is a file, the file is deleted;
+    ///
+    /// - if the reference is a directory and the directory is empty, the directory is deleted;
+    ///
+    /// - if the reference is a directory and the directory is not empty, the function returns `false` and `errorCode` contains `kCFURLUnknownError`.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -114,7 +192,29 @@ impl CFURL {
         ret != 0
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlcreatepropertyfromresource(_:_:_:_:)?language=objc)
+    /// Returns a given property specified by a given URL and property string.
+    ///
+    /// Parameters:
+    /// - alloc: The allocator to use to to allocate memory for the new `CFType` object for the requested property. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - url: The `CFURL` object referring to the resource whose properties are loaded.
+    ///
+    /// - property: The name of the property you wish to load. Pass one of the provided string constants indicating the property. See [File URL Properties](https://developer.apple.com/documentation/corefoundation/file-url-properties) and [HTTP URL Properties](https://developer.apple.com/documentation/corefoundation/http-url-properties) for the list of available properties.
+    ///
+    /// - errorCode: On return, `0` if successful, otherwise an error code indicating the nature of the problem. See [`CFURLError`](https://developer.apple.com/documentation/corefoundation/cfurlerror) for a list of possible error codes.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// If successful, the requested property as a `CFType` object, `NULL` otherwise. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This is a convenience function for retrieving individual property values which calls through to [`CFURLCreateDataAndPropertiesFromResource`](https://developer.apple.com/documentation/corefoundation/cfurlcreatedataandpropertiesfromresource(_:_:_:_:_:_:)).
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -145,46 +245,46 @@ impl CFURL {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror?language=objc)
+/// `CFURL` error codes.
 // NS_ENUM
 #[deprecated = "Use CFError codes instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CFURLError(pub CFIndex);
 impl CFURLError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownerror?language=objc)
+    /// Indicates an unknown error.
     #[doc(alias = "kCFURLUnknownError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownError: Self = Self(-10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownschemeerror?language=objc)
+    /// Indicates that the scheme is not recognized.
     #[doc(alias = "kCFURLUnknownSchemeError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownSchemeError: Self = Self(-11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/resourcenotfounderror?language=objc)
+    /// Indicates a resource was not found.
     #[doc(alias = "kCFURLResourceNotFoundError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ResourceNotFoundError: Self = Self(-12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/resourceaccessviolationerror?language=objc)
+    /// Indicates an error in accessing a resource.
     #[doc(alias = "kCFURLResourceAccessViolationError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ResourceAccessViolationError: Self = Self(-13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/remotehostunavailableerror?language=objc)
+    /// Indicates a remote host is unavailable.
     #[doc(alias = "kCFURLRemoteHostUnavailableError")]
     #[deprecated = "Use CFError codes instead"]
     pub const RemoteHostUnavailableError: Self = Self(-14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/improperargumentserror?language=objc)
+    /// Indicates one or more arguments are improper.
     #[doc(alias = "kCFURLImproperArgumentsError")]
     #[deprecated = "Use CFError codes instead"]
     pub const ImproperArgumentsError: Self = Self(-15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/unknownpropertykeyerror?language=objc)
+    /// Indicates a property key is unknown.
     #[doc(alias = "kCFURLUnknownPropertyKeyError")]
     #[deprecated = "Use CFError codes instead"]
     pub const UnknownPropertyKeyError: Self = Self(-16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/propertykeyunavailableerror?language=objc)
+    /// Indicates a property key was unavailable.
     #[doc(alias = "kCFURLPropertyKeyUnavailableError")]
     #[deprecated = "Use CFError codes instead"]
     pub const PropertyKeyUnavailableError: Self = Self(-17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlerror/timeouterror?language=objc)
+    /// Indicates a timeout.
     #[doc(alias = "kCFURLTimeoutError")]
     #[deprecated = "Use CFError codes instead"]
     pub const TimeoutError: Self = Self(-18);
@@ -201,49 +301,49 @@ unsafe impl RefEncode for CFURLError {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileexists?language=objc)
+    /// A `CFBoolean` object indicating whether the file referred to by a URL exists.
     #[deprecated = "Use CFURLResourceIsReachable instead."]
     pub static kCFURLFileExists: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfiledirectorycontents?language=objc)
+    /// A `CFArray` object holding `CFURL` objects for the contents of a directory referred to by a URL.
     #[deprecated = "Use the CFURLEnumerator API instead."]
     pub static kCFURLFileDirectoryContents: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelength?language=objc)
+    /// A `CFNumber` object holding the file’s length in bytes.
     #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSizeKey instead."]
     pub static kCFURLFileLength: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfilelastmodificationtime?language=objc)
+    /// A `CFDate` object holding the file’s modification time.
     #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLContentModificationDateKey instead."]
     pub static kCFURLFileLastModificationTime: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileposixmode?language=objc)
+    /// A `CFNumber` holding the file’s POSIX mode as given in `/usr/include/sys/stat.h`.
     #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSecurityKey and then the CFFileSecurity API instead."]
     pub static kCFURLFilePOSIXMode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlfileownerid?language=objc)
+    /// A `CFNumber` holding the file owner’s UID.
     #[deprecated = "Use CFURLCopyResourcePropertyForKey with kCFURLFileSecurityKey and then the CFFileSecurity API instead."]
     pub static kCFURLFileOwnerID: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatuscode?language=objc)
+    /// A `CFNumber` object holding the status code of an HTTP request.
     #[deprecated = "Use NSHTTPURLResponse methods instead."]
     pub static kCFURLHTTPStatusCode: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfurlhttpstatusline?language=objc)
+    /// A `CFString` object holding the status line of an HTTP request.
     #[deprecated = "Use NSHTTPURLResponse methods instead."]
     pub static kCFURLHTTPStatusLine: Option<&'static CFString>;
 }

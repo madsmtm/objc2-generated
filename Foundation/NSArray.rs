@@ -9,9 +9,63 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// **************    Immutable Array        ***************
+    /// A static ordered collection of objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsarray?language=objc)
+    /// ## Overview
+    ///
+    /// You can use this type in Swift instead of an [`Array`](https://developer.apple.com/documentation/swift/array) constant in cases that require reference semantics.
+    ///
+    /// `NSArray` and its subclass [`NSMutableArray`](https://developer.apple.com/documentation/foundation/nsmutablearray) manage ordered collections of objects called **arrays**. `NSArray` creates static arrays, and `NSMutableArray` creates dynamic arrays. You can use arrays when you need an ordered collection of objects.
+    ///
+    /// `NSArray` is “toll-free bridged” with its Core Foundation counterpart, [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information on toll-free bridging.
+    ///
+    /// ### Creating NSArray Objects Using Array Literals
+    ///
+    /// In addition to the provided initializers, such as [`initWithObjects:`](https://developer.apple.com/documentation/foundation/nsarray/initwithobjects:), you can create an `NSArray` object using an _array literal_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let array: NSArray = [someObject, \"Hello, World!\", 42]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSArray *array = @[someObject, @\"Hello, World!\", @42];"], metadata: None }] }] })
+    /// In Objective-C, the compiler generates code that makes an underlying call to the [`arrayWithObjects:count:`](https://developer.apple.com/documentation/foundation/nsarray/init(objects:count:)-7dct1) method.
+    ///
+    /// ```objc
+    /// id objects[] = { someObject, @"Hello, World!", @42 };
+    /// NSUInteger count = sizeof(objects) / sizeof(id);
+    /// NSArray *array = [NSArray arrayWithObjects:objects
+    ///                                      count:count];
+    /// ```
+    ///
+    /// You should not terminate the list of objects with `nil` when using this literal syntax, and in fact `nil` is an invalid value. For more information about object literals in Objective-C, see [Working with Objects](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/WorkingwithObjects/WorkingwithObjects.html#//apple_ref/doc/uid/TP40011210-CH4) in [Programming with Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011210).
+    ///
+    /// In Swift, the `NSArray` class conforms to the `ArrayLiteralConvertible` protocol, which allows it to be initialized with array literals. For more information about object literals in Swift, see [Literal Expression](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/doc/uid/TP40014097-CH32-ID390) in [The Swift Programming Language (Swift 4.1)](https://developer.apple.com/library/archive/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097).
+    ///
+    /// ### Accessing Values Using Subscripting
+    ///
+    /// In addition to the provided instance methods, such as [`objectAtIndex:`](https://developer.apple.com/documentation/foundation/nsarray/object(at:)), you can access `NSArray` values by their indexes using _subscripting_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let value = array[3]"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["id value = array[3];"], metadata: None }] }] })
+    /// ### Subclassing Notes
+    ///
+    /// There is typically little reason to subclass `NSArray`. The class does well what it is designed to do—maintain an ordered collection of objects. But there are situations where a custom `NSArray` object might come in handy. Here are a few possibilities:
+    ///
+    /// - Changing how `NSArray` stores the elements of its collection. You might do this for performance reasons or for better compatibility with legacy code.
+    ///
+    /// - Acquiring more information about what is happening to the collection (for example, statistics gathering).
+    ///
+    /// #### Methods to Override
+    ///
+    /// Any subclass of `NSArray`    _must_ override the primitive instance methods [`count`](https://developer.apple.com/documentation/foundation/nsarray/count) and [`objectAtIndex:`](https://developer.apple.com/documentation/foundation/nsarray/object(at:)). These methods must operate on the backing store that you provide for the elements of the collection. For this backing store you can use a static array, a standard `NSArray` object, or some other data type or mechanism. You may also choose to override, partially or fully, any other `NSArray` method for which you want to provide an alternative implementation.
+    ///
+    /// You might want to implement an initializer for your subclass that is suited to the backing store that the subclass is managing. If you do, your initializer must invoke one of the designated initializers of the `NSArray` class, either [`init`](https://developer.apple.com/documentation/foundation/nsarray/init()) or [`initWithObjects:count:`](https://developer.apple.com/documentation/foundation/nsarray/init(objects:count:)-5odxv). The `NSArray` class adopts the [`NSCopying`](https://developer.apple.com/documentation/foundation/nscopying), [`NSMutableCopying`](https://developer.apple.com/documentation/foundation/nsmutablecopying), and [`NSCoding`](https://developer.apple.com/documentation/foundation/nscoding) protocols; custom subclasses of `NSArray` should override the methods in these protocols as necessary.
+    ///
+    /// Remember that `NSArray` is the public interface for a class cluster and what this entails for your subclass. You must provide the storage for your subclass and implement the primitive methods that directly act on that storage.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// Before making a custom subclass of `NSArray`, investigate [`NSPointerArray`](https://developer.apple.com/documentation/foundation/nspointerarray) and the corresponding Core Foundation type, [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray). Because `NSArray` and `CFArray` are “toll-free bridged,” you can substitute a `CFArray` object for a `NSArray` object in your code (with appropriate casting). Although they are corresponding types, `CFArray` and `NSArray` do not have identical interfaces or implementations, and you can sometimes do things with `CFArray` that you cannot easily do with `NSArray`. For example, `CFArray` provides a set of callbacks, some of which are for implementing custom retain-release behavior. If you specify `NULL` implementations for these callbacks, you can easily get a non-retaining array.
+    ///
+    /// If the behavior you want to add supplements that of the existing class, you could write a category on `NSArray`. Keep in mind, however, that this category will be in effect for all instances of `NSArray` that you use, and this might have unintended consequences. Alternatively, you could use composition to achieve the desired behavior.
+    ///
+    ///
+    /// **************    Immutable Array        ***************
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSArray<ObjectType: ?Sized = AnyObject>;
@@ -140,20 +194,20 @@ impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions?language=objc)
+/// Options for searches and insertions using [`indexOfObject:inSortedRange:options:usingComparator:`](https://developer.apple.com/documentation/foundation/nsarray/index(of:insortedrange:options:usingcomparator:)).
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBinarySearchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBinarySearchingOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/firstequal?language=objc)
+/// Specifies that the search should return the first object in the range that is equal to the given object.
         #[doc(alias = "NSBinarySearchingFirstEqual")]
         const FirstEqual = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/lastequal?language=objc)
+/// Specifies that the search should return the last object in the range that is equal to the given object.
         #[doc(alias = "NSBinarySearchingLastEqual")]
         const LastEqual = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions/insertionindex?language=objc)
+/// Returns the index at which you should insert the object in order to maintain a sorted array.
         #[doc(alias = "NSBinarySearchingInsertionIndex")]
         const InsertionIndex = 1<<10;
     }
@@ -703,9 +757,47 @@ impl<ObjectType: Message> NSArray<ObjectType> {
 }
 
 extern_class!(
-    /// **************    Mutable Array        ***************
+    /// A dynamic ordered collection of objects.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmutablearray?language=objc)
+    /// ## Overview
+    ///
+    /// You can use this type in Swift instead of an [`Array`](https://developer.apple.com/documentation/swift/array) variable in cases that require reference semantics.
+    ///
+    /// The `NSMutableArray` class declares the programmatic interface to objects that manage a modifiable array of objects. This class adds insertion and deletion operations to the basic array-handling behavior inherited from [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray).
+    ///
+    /// NSMutableArray is “toll-free bridged” with its Core Foundation counterpart, [`CFMutableArrayRef`](https://developer.apple.com/documentation/corefoundation/cfmutablearray). See [Toll-Free Bridging](https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Toll-FreeBridgin/Toll-FreeBridgin.html#//apple_ref/doc/uid/TP40010810-CH2) for more information.
+    ///
+    /// ### Accessing Values Using Subscripting
+    ///
+    /// In addition to the provided instance methods, such as [`replaceObjectAtIndex:withObject:`](https://developer.apple.com/documentation/foundation/nsmutablearray/replaceobject(at:with:)), you can access `NSArray` values by their indexes using _subscripting_.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["mutableArray[3] = \"someValue\""], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["mutableArray[3] = @\"someValue\";"], metadata: None }] }] })
+    /// ### Subclassing Notes
+    ///
+    /// There is typically little reason to subclass `NSMutableArray`. The class does well what it is designed to do—maintain a mutable, ordered collection of objects. But there are situations where a custom `NSArray` object might come in handy. Here are a few possibilities:
+    ///
+    /// - Changing how `NSMutableArray` stores the elements of its collection. You might do this for performance reasons or for better compatibility with legacy code.
+    ///
+    /// - Acquiring more information about what is happening to the collection (for example, statistics gathering).
+    ///
+    /// #### Methods to Override
+    ///
+    /// `NSMutableArray` defines five primitive methods:
+    ///
+    /// - [`insertObject:atIndex:`](https://developer.apple.com/documentation/foundation/nsmutablearray/insert(_:at:)-5dbx5)
+    ///
+    /// - [`removeObjectAtIndex:`](https://developer.apple.com/documentation/foundation/nsmutablearray/removeobject(at:))
+    ///
+    /// - [`addObject:`](https://developer.apple.com/documentation/foundation/nsmutablearray/add(_:))
+    ///
+    /// - [`removeLastObject`](https://developer.apple.com/documentation/foundation/nsmutablearray/removelastobject())
+    ///
+    /// - [`replaceObjectAtIndex:withObject:`](https://developer.apple.com/documentation/foundation/nsmutablearray/replaceobject(at:with:))
+    ///
+    /// In a subclass, you must override all these methods. You must also override the primitive methods of the [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) class.
+    ///
+    ///
+    /// **************    Mutable Array        ***************
     #[unsafe(super(NSArray<ObjectType>, NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSMutableArray<ObjectType: ?Sized = AnyObject>;

@@ -6,7 +6,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/intaskstatusresolutionresult?language=objc)
+    /// A resolution result for the status of a task.
+    ///
+    /// ## Overview
+    ///
+    /// You return an [`INTaskStatusResolutionResult`](https://developer.apple.com/documentation/intents/intaskstatusresolutionresult) object when resolving parameters containing an [`INTaskStatus`](https://developer.apple.com/documentation/intents/intaskstatus) value. Use the creation method that best reflects your ability to resolve the parameter successfully.
+    ///
+    /// For additional resolution operators, see [`INIntentResolutionResult`](https://developer.apple.com/documentation/intents/inintentresolutionresult).
+    ///
+    ///
     #[unsafe(super(INIntentResolutionResult, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResolutionResult")]

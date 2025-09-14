@@ -9,7 +9,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendar?language=objc)
+///
+/// ## Overview
+///
+/// The CFCalendar opaque type represents a calendar system. The associated API provides information about a calendar and supports calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time.
+///
+/// CFAbsoluteTime is the operational lingua franca of CFCalendar—to do calendar arithmetic, you start and end with an absolute time; to convert between a decomposed date in one calendar and another calendar, you first convert to an absolute time. CFAbsoluteTime provides the absolute scale and epoch for dates and times, which can then be rendered into a particular calendar, for calendrical computations or user display.
+///
+/// In a calendar, day, week, weekday, month, and year numbers are generally 1-based, but there may be calendar-specific exceptions. Ordinal numbers, where they occur, are 1-based. Some calendars represented by this API may have to map their basic unit concepts into year/month/week/day/… nomenclature. For example, a calendar composed of 4 quarters in a year instead of 12 months uses the “month” unit to represent quarters. The particular values of the unit are defined by each calendar, and are not necessarily “consistent with” or have a “correspondence with,” values for that unit in another calendar. Several CFCalendar functions ([`CFCalendarComposeAbsoluteTime`](https://developer.apple.com/documentation/corefoundation/cfcalendarcomposeabsolutetime), [`CFCalendarDecomposeAbsoluteTime`](https://developer.apple.com/documentation/corefoundation/cfcalendardecomposeabsolutetime), [`CFCalendarAddComponents`](https://developer.apple.com/documentation/corefoundation/cfcalendaraddcomponents), and [`CFCalendarGetComponentDifference`](https://developer.apple.com/documentation/corefoundation/cfcalendargetcomponentdifference)) take a description string that describes the calendrical components provided in a varargs parameter area. You can provide as many components as you need (or choose to), in whatever order you choose. When there is incomplete information to compute an absolute time, default values similar to 0 and 1 are usually chosen by a calendar, but this is a calendar-specific choice. If you provide inconsistent information, calendar-specific disambiguation is performed (which may involve ignoring one or more of the parameters). The characters of the description string specify the units and order of the parameters which follow. The characters are adopted from the corresponding format characters used by CFDateFormatter when possible, as shown in below.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Symbol" }] }], [Paragraph { inline_content: [Text { text: "Meaning" }] }], [Paragraph { inline_content: [Text { text: "Value Type" }] }]], [[Paragraph { inline_content: [Text { text: "y" }] }], [Paragraph { inline_content: [Text { text: "year" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]], [[Paragraph { inline_content: [Text { text: "M" }] }], [Paragraph { inline_content: [Text { text: "month" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]], [[Paragraph { inline_content: [Text { text: "d" }] }], [Paragraph { inline_content: [Text { text: "day" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]], [[Paragraph { inline_content: [Text { text: "H" }] }], [Paragraph { inline_content: [Text { text: "hour" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]], [[Paragraph { inline_content: [Text { text: "m" }] }], [Paragraph { inline_content: [Text { text: "minute" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]], [[Paragraph { inline_content: [Text { text: "s" }] }], [Paragraph { inline_content: [Text { text: "second" }] }], [Paragraph { inline_content: [Text { text: "int" }] }]]], alignments: None, metadata: None })
+/// Information related to formatting dates and times and name-related calendar information is managed by CFDateFormatter.
+///
+/// CFCalendar is subject to some limitations. There is no leap second handling—the existence of leap seconds is ignored as in the other CoreFoundation API. In general, historical accuracy of calendars is not guaranteed. There is currently no API for defining your own calendars.
+///
+/// CFCalendar is “toll-free bridged” with its Cocoa Foundation counterpart, NSCalendar. This means that the Core Foundation type is interchangeable in function or method calls with the bridged Foundation object. Therefore, in a method where you see an `NSCalendar *` parameter, you can pass in a `CFCalendarRef`, and in a function where you see a `CFCalendarRef` parameter, you can pass in an NSCalendar instance. See [Toll-Free Bridged Types](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#//apple_ref/doc/uid/TP40010677) for more information on toll-free bridging.
+///
+///
 ///
 /// This is toll-free bridged with `NSCalendar`.
 #[doc(alias = "CFCalendarRef")]
@@ -28,7 +44,13 @@ cf_objc2_type!(
 );
 
 unsafe impl ConcreteType for CFCalendar {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargettypeid()?language=objc)
+    /// Returns the type identifier for the CFCalendar opaque type.
+    ///
+    /// ## Return Value
+    ///
+    /// The type identifier for the CFCalendar opaque type.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -40,7 +62,21 @@ unsafe impl ConcreteType for CFCalendar {
 }
 
 impl CFCalendar {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopycurrent()?language=objc)
+    /// Returns a copy of the logical calendar for the current user.
+    ///
+    /// ## Return Value
+    ///
+    /// The logical calendar for the current user that is formed from the settings for the current user’s chosen system locale overlaid with any custom settings the user has specified in System Preferences. This function may return a retained cached object, not a new object. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Settings you get from this calendar do not change if user defaults change so that your operations are consistent.
+    ///
+    /// Typically you perform some operations on the returned object and then release it. The returned object may be cached, so you do not need to hold on to it indefinitely.
+    ///
+    ///
     #[doc(alias = "CFCalendarCopyCurrent")]
     #[inline]
     pub fn current() -> Option<CFRetained<CFCalendar>> {
@@ -51,9 +87,20 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
+    /// Returns a calendar object for the calendar identified by a calendar identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcreatewithidentifier(_:_:)?language=objc)
+    /// Parameters:
+    /// - allocator: The allocator to use to allocate memory for the new object. Pass `NULL` or kCFAllocatorDefault to use the current default allocator.
+    ///
+    /// - identifier: A calendar identifier. Calendar identifier constants are given in [`CFLocaleRef`](https://developer.apple.com/documentation/corefoundation/cflocale).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A calendar object for the calendar identified by `ident`. If the identifier is unknown (if, for example, it is either an unrecognized string, or the calendar is not supported by the current version of the operating system), returns `NULL`. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
+    /// Creates a calendar.  The identifiers are the `kCF*Calendar` constants in CFLocale.h.
     #[doc(alias = "CFCalendarCreateWithIdentifier")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -71,9 +118,18 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// Returns the calendar's identifier.
+    /// Returns the given calendar’s identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetidentifier(_:)?language=objc)
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A string representation of `calendar`’s identifier. Calendar identifier constants can be found in [`CFLocaleRef`](https://developer.apple.com/documentation/corefoundation/cflocale). Ownership follows the [The Get Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-SW1).
+    ///
+    ///
+    /// Returns the calendar's identifier.
     #[doc(alias = "CFCalendarGetIdentifier")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -87,7 +143,17 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopylocale(_:)?language=objc)
+    /// Returns a locale object for a specified calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the locale object for the specified calendar. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFCalendarCopyLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -99,7 +165,13 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetlocale(_:_:)?language=objc)
+    /// Sets the locale for a calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to modify.
+    ///
+    /// - locale: The locale to set for `calendar`.
+    ///
     ///
     /// # Safety
     ///
@@ -114,7 +186,17 @@ impl CFCalendar {
         unsafe { CFCalendarSetLocale(self, locale) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarcopytimezone(_:)?language=objc)
+    /// Returns a time zone object for a specified calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A copy of the time zone object for the specified calendar. Ownership follows the [The Create Rule](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFMemoryMgmt/Concepts/Ownership.html#//apple_ref/doc/uid/20001148-103029).
+    ///
+    ///
     #[doc(alias = "CFCalendarCopyTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -126,7 +208,13 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsettimezone(_:_:)?language=objc)
+    /// Sets the time zone for a calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to modify.
+    ///
+    /// - tz: The time zone to set for `calendar`.
+    ///
     #[doc(alias = "CFCalendarSetTimeZone")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -137,7 +225,17 @@ impl CFCalendar {
         unsafe { CFCalendarSetTimeZone(self, tz) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetfirstweekday(_:)?language=objc)
+    /// Returns the index of first weekday for a specified calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The index of the first weekday of the specified calendar.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetFirstWeekday")]
     #[inline]
     pub fn first_weekday(&self) -> CFIndex {
@@ -147,7 +245,13 @@ impl CFCalendar {
         unsafe { CFCalendarGetFirstWeekday(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetfirstweekday(_:_:)?language=objc)
+    /// Sets the first weekday for a calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to modify.
+    ///
+    /// - wkdy: The index to set for the first weekday of `calendar`.
+    ///
     #[doc(alias = "CFCalendarSetFirstWeekday")]
     #[inline]
     pub fn set_first_weekday(&self, wkdy: CFIndex) {
@@ -157,7 +261,17 @@ impl CFCalendar {
         unsafe { CFCalendarSetFirstWeekday(self, wkdy) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetminimumdaysinfirstweek(_:)?language=objc)
+    /// Returns the minimum number of days in the first week of a specified calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The minimum number of days in the first week of `calendar`.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetMinimumDaysInFirstWeek")]
     #[inline]
     pub fn minimum_days_in_first_week(&self) -> CFIndex {
@@ -167,7 +281,13 @@ impl CFCalendar {
         unsafe { CFCalendarGetMinimumDaysInFirstWeek(self) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarsetminimumdaysinfirstweek(_:_:)?language=objc)
+    /// Sets the minimum number of days in the first week of a specified calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to modify.
+    ///
+    /// - mwd: The number to set as the minimum number of days in the first week of `calendar`.
+    ///
     #[doc(alias = "CFCalendarSetMinimumDaysInFirstWeek")]
     #[inline]
     pub fn set_minimum_days_in_first_week(&self, mwd: CFIndex) {
@@ -178,57 +298,68 @@ impl CFCalendar {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit?language=objc)
+/// CFCalendarUnit constants are used to specify calendrical units, such as day or month, in various calendar calculations.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFCalendarUnit(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFCalendarUnit: CFOptionFlags {
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/era?language=objc)
+/// Specifies the era unit.
         #[doc(alias = "kCFCalendarUnitEra")]
         const Era = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/year?language=objc)
+/// Specifies the year unit.
         #[doc(alias = "kCFCalendarUnitYear")]
         const Year = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/month?language=objc)
+/// Specifies the month unit.
         #[doc(alias = "kCFCalendarUnitMonth")]
         const Month = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/day?language=objc)
+/// Specifies the day unit.
         #[doc(alias = "kCFCalendarUnitDay")]
         const Day = 1<<4;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/hour?language=objc)
+/// Specifies the hour unit.
         #[doc(alias = "kCFCalendarUnitHour")]
         const Hour = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/minute?language=objc)
+/// Specifies the minute unit.
         #[doc(alias = "kCFCalendarUnitMinute")]
         const Minute = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/second?language=objc)
+/// Specifies the second unit.
         #[doc(alias = "kCFCalendarUnitSecond")]
         const Second = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/week?language=objc)
+/// Specifies the week unit.
         #[doc(alias = "kCFCalendarUnitWeek")]
 #[deprecated = "Use kCFCalendarUnitWeekOfYear or kCFCalendarUnitWeekOfMonth instead"]
         const Week = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekday?language=objc)
+/// Specifies the weekday unit.
+///
+/// ## Discussion
+///
+/// The weekday units are the numbers `1`-`N` (where for the Gregorian calendar `N=7` and `1` is Sunday).
+///
+///
         #[doc(alias = "kCFCalendarUnitWeekday")]
         const Weekday = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekdayordinal?language=objc)
+/// Specifies the ordinal weekday unit.
+///
+/// ## Discussion
+///
+/// The weekday ordinal unit describes ordinal position within the month unit of the corresponding weekday unit. For example, in the Gregorian calendar a weekday ordinal unit of `2` for a weekday unit `3` indicates “the second Tuesday in the month”.
+///
+///
         #[doc(alias = "kCFCalendarUnitWeekdayOrdinal")]
         const WeekdayOrdinal = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/quarter?language=objc)
+/// Specifies the quarter-year unit.
         #[doc(alias = "kCFCalendarUnitQuarter")]
         const Quarter = 1<<11;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekofmonth?language=objc)
+/// Specifies the original week of a month calendar unit.
         #[doc(alias = "kCFCalendarUnitWeekOfMonth")]
         const WeekOfMonth = 1<<12;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/weekofyear?language=objc)
+/// Specifies the original week of the year calendar unit.
         #[doc(alias = "kCFCalendarUnitWeekOfYear")]
         const WeekOfYear = 1<<13;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/yearforweekofyear?language=objc)
+/// Specifies the relative year for a week within a year calendar unit.
         #[doc(alias = "kCFCalendarUnitYearForWeekOfYear")]
         const YearForWeekOfYear = 1<<14;
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit/dayofyear?language=objc)
         #[doc(alias = "kCFCalendarUnitDayOfYear")]
         const DayOfYear = 1<<16;
     }
@@ -245,7 +376,19 @@ unsafe impl RefEncode for CFCalendarUnit {
 }
 
 impl CFCalendar {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetminimumrangeofunit(_:_:)?language=objc)
+    /// Returns the minimum range limits of the values that a specified unit can take on in a given calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    /// - unit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The minimum range limits of the values that the specified unit can take on in `calendar`. For example, in the Gregorian calendar the minimum ranges for the Day unit is 1-28.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetMinimumRangeOfUnit")]
     #[inline]
     pub fn minimum_range_of_unit(&self, unit: CFCalendarUnit) -> CFRange {
@@ -258,7 +401,19 @@ impl CFCalendar {
         unsafe { CFCalendarGetMinimumRangeOfUnit(self, unit) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetmaximumrangeofunit(_:_:)?language=objc)
+    /// Returns the maximum range limits of the values that a specified unit can take on in a given calendar.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    /// - unit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The maximum range limits of the values that the specified unit can take on in `calendar`. For example, in the Gregorian calendar the maximum ranges for the Day unit is 1-31.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetMaximumRangeOfUnit")]
     #[inline]
     pub fn maximum_range_of_unit(&self, unit: CFCalendarUnit) -> CFRange {
@@ -271,7 +426,29 @@ impl CFCalendar {
         unsafe { CFCalendarGetMaximumRangeOfUnit(self, unit) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetrangeofunit(_:_:_:_:)?language=objc)
+    /// Returns the range of values that one unit can take on within a larger unit during which a specific absolute time occurs.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    /// - smallerUnit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    /// - biggerUnit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    /// - at: An absolute time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The range of values that the calendar unit specified by `smallerUnit` can take on within the calendar unit specified by `biggerUnit` that includes the absolute time `at`. For example, the range the Day unit can take on in the Month in which the absolute time lies.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If `biggerUnit` is not logically bigger than `smallerUnit` in the calendar, or the given combination of units does not make sense (or is a computation which is undefined), the result is `{kCFNotFound, kCFNotFound`}.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetRangeOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -292,7 +469,33 @@ impl CFCalendar {
         unsafe { CFCalendarGetRangeOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargetordinalityofunit(_:_:_:_:)?language=objc)
+    /// Returns the ordinal number of a calendrical unit within a larger unit at a specified absolute time.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    /// - smallerUnit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    /// - biggerUnit: A calendar unit. For valid values see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit).
+    ///
+    /// - at: An absolute time.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The ordinal number of the calendar unit specified by `smallerUnit` within the calendar unit specified by `biggerUnit` at the absolute time `at`. For example, the time 00:45 is in the first hour of the day, and for units Hour and Day respectively, the result would be 1.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If the `biggerUnit` parameter is not logically bigger than the `smallerUnit` parameter in the calendar, or the given combination of units does not make sense (or is a computation which is undefined), the result is `kCFNotFound`.
+    ///
+    /// ## Discussion
+    ///
+    /// The ordinality is in most cases not the same as the decomposed value of the unit. Typically return values are `1` and greater; an exception is the week-in-month calculation, which returns `0` for days before the first week in the month containing the date. Note that some computations can take a relatively long time to perform.
+    ///
+    ///
     #[doc(alias = "CFCalendarGetOrdinalityOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -313,7 +516,31 @@ impl CFCalendar {
         unsafe { CFCalendarGetOrdinalityOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendargettimerangeofunit(_:_:_:_:_:)?language=objc)
+    /// Returns by reference the start time and duration of a given calendar unit that contains a given absolute time.
+    ///
+    /// Parameters:
+    /// - calendar: The calendar to examine.
+    ///
+    /// - unit: A calendar unit (for valid values, see [`CFCalendarUnit`](https://developer.apple.com/documentation/corefoundation/cfcalendarunit)).
+    ///
+    /// - at: An absolute time.
+    ///
+    /// - startp: Upon return, contains the beginning of the calendar unit specified by `unit` that contains the time `at`.
+    ///
+    /// - tip: Upon return, contains the duration of the calendar unit specified by `unit` that contains the time `at`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// `true` if the values of `startp` and `tip` could be calculated, otherwise `false`.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The function may fail if, for example, you try to get the range of a `kCFCalendarUnitWeekday` and specify a time (`at`) that is during a weekend.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -343,7 +570,7 @@ impl CFCalendar {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfcalendarcomponentswrap?language=objc)
+/// Specifies that the components specified for calendar components should be incremented and wrap around to zero/one on overflow, but should not cause higher units to be incremented.
 pub const kCFCalendarComponentsWrap: CFOptionFlags = 1 << 0;
 
 #[deprecated = "renamed to `CFCalendar::current`"]

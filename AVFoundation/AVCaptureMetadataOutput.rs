@@ -12,12 +12,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A capture output for processing timed metadata produced by a capture session.
+    ///
+    /// ## Overview
+    ///
+    /// An `AVCaptureMetadataOutput` object intercepts metadata objects emitted by its associated capture connection and forwards them to a delegate object for processing. You can use instances of this class to process specific types of metadata included with the input data. You use this class the way you do other output objects, typically by adding it as an output to an [`AVCaptureSession`](https://developer.apple.com/documentation/avfoundation/avcapturesession) object.
+    ///
+    ///
     /// AVCaptureMetadataOutput is a concrete subclass of AVCaptureOutput that can be used to process metadata objects from an attached connection.
     ///
     ///
     /// Instances of AVCaptureMetadataOutput emit arrays of AVMetadataObject instances (see AVMetadataObject.h), such as detected faces. Applications can access the metadata objects with the captureOutput:didOutputMetadataObjects:fromConnection: delegate method.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput?language=objc)
     #[unsafe(super(AVCaptureOutput, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "AVCaptureOutputBase")]
@@ -148,9 +153,16 @@ impl AVCaptureMetadataOutput {
 }
 
 extern_protocol!(
-    /// Defines an interface for delegates of AVCaptureMetadataOutput to receive emitted objects.
+    /// Methods for receiving metadata produced by a metadata capture output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutputobjectsdelegate?language=objc)
+    /// ## Overview
+    ///
+    /// The `AVCaptureMetadataOutputObjectsDelegate` protocol must be adopted by the delegate of an [`AVCaptureMetadataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput) object. The single method in this protocol is optional. The method allows a delegate to respond when a capture metadata output object receives relevant metadata objects through its connection.
+    ///
+    /// The [`AVCaptureMetadataOutput`](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput) object calls the methods of the delegate object on the dispatch queue associated with its [`metadataObjectsCallbackQueue`](https://developer.apple.com/documentation/avfoundation/avcapturemetadataoutput/metadataobjectscallbackqueue) property.
+    ///
+    ///
+    /// Defines an interface for delegates of AVCaptureMetadataOutput to receive emitted objects.
     pub unsafe trait AVCaptureMetadataOutputObjectsDelegate: NSObjectProtocol {
         #[cfg(all(
             feature = "AVCaptureOutputBase",

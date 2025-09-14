@@ -6,19 +6,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior?language=objc)
+/// These constants specify the behavior of a number formatter. These constants are returned by the [`defaultFormatterBehavior`](https://developer.apple.com/documentation/foundation/numberformatter/defaultformatterbehavior()) class method and the [`formatterBehavior`](https://developer.apple.com/documentation/foundation/numberformatter/formatterbehavior) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterBehavior(pub NSUInteger);
 impl NSNumberFormatterBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/default?language=objc)
+    /// The number-formatter behavior set as the default for new instances. You can set the default formatter behavior with the class method [`setDefaultFormatterBehavior:`](https://developer.apple.com/documentation/foundation/numberformatter/setdefaultformatterbehavior(_:)).
     #[doc(alias = "NSNumberFormatterBehaviorDefault")]
     pub const BehaviorDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/behavior10_0?language=objc)
+    /// The number-formatter behavior as it existed prior to macOS 10.4.
     #[doc(alias = "NSNumberFormatterBehavior10_0")]
     pub const Behavior10_0: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior/behavior10_4?language=objc)
+    /// The number-formatter behavior since macOS 10.4.
     #[doc(alias = "NSNumberFormatterBehavior10_4")]
     pub const Behavior10_4: Self = Self(1040);
 }
@@ -31,40 +31,109 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style?language=objc)
+/// The predefined number format styles used by the [`numberStyle`](https://developer.apple.com/documentation/foundation/numberformatter/numberstyle) property.
+///
+/// ## Overview
+///
+/// The table below provides examples of each formatting style for the U.S., France, and China.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Style" }] }], [Paragraph { inline_content: [Text { text: "en_US Locale" }] }], [Paragraph { inline_content: [Text { text: "fr_FR Locale" }] }], [Paragraph { inline_content: [Text { text: "zh_CN Locale" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/none", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "1235" }] }], [Paragraph { inline_content: [Text { text: "1235" }] }], [Paragraph { inline_content: [Text { text: "1235" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/decimal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "1,234.568" }] }], [Paragraph { inline_content: [Text { text: "1\u{a0}234,568" }] }], [Paragraph { inline_content: [Text { text: "1,234.568" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/percent", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "12%" }] }], [Paragraph { inline_content: [Text { text: "12\u{a0}%" }] }], [Paragraph { inline_content: [Text { text: "12%" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/scientific", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "1.2345678E3" }] }], [Paragraph { inline_content: [Text { text: "1,2345678E3" }] }], [Paragraph { inline_content: [Text { text: "1.2345678E3" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/spellOut", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "one hundred twenty-three" }] }], [Paragraph { inline_content: [Text { text: "cent vingt-trois" }] }], [Paragraph { inline_content: [Text { text: "一百二十三" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/ordinal", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "3rd" }] }], [Paragraph { inline_content: [Text { text: "3e" }] }], [Paragraph { inline_content: [Text { text: "第3" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/currency", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "$1,234.57" }] }], [Paragraph { inline_content: [Text { text: "1\u{a0}234,57\u{a0}€" }] }], [Paragraph { inline_content: [Text { text: "￥1,234.57" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/currencyAccounting", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "($1,234.57)" }] }], [Paragraph { inline_content: [Text { text: "(1\u{a0}234,57\u{a0}€)" }] }], [Paragraph { inline_content: [Text { text: "(￥1,234.57)" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/currencyISOCode", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "USD1,234.57" }] }], [Paragraph { inline_content: [Text { text: "1\u{a0}234,57\u{a0}EUR" }] }], [Paragraph { inline_content: [Text { text: "CNY1,234.57" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NumberFormatter/Style/currencyPlural", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "1,234.57 US dollars" }] }], [Paragraph { inline_content: [Text { text: "1\u{a0}234,57 euros" }] }], [Paragraph { inline_content: [Text { text: "1,234.57人民币" }] }]]], alignments: None, metadata: None })
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterStyle(pub NSUInteger);
 impl NSNumberFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/none?language=objc)
+    /// An integer representation.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the number 1234.5678 is represented as 1235.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/decimal?language=objc)
+    /// A decimal style format.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as 1,234.568.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterDecimalStyle")]
     pub const DecimalStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currency?language=objc)
+    /// A currency style format that uses the currency symbol defined by the number formatter locale.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as $1,234.57; in the fr_FR locale, the number 1234.5678 is represented as 1 234,57 €.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterCurrencyStyle")]
     pub const CurrencyStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/percent?language=objc)
+    /// A percent style format.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 0.123 is represented as 12%.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterPercentStyle")]
     pub const PercentStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/scientific?language=objc)
+    /// A scientific style format.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as 1.2345678E3.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterScientificStyle")]
     pub const ScientificStyle: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/spellout?language=objc)
+    /// A style format in which numbers are spelled out in the language defined by the number formatter locale.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 1234.5678 is represented as one thousand two hundred thirty-four point five six seven eight; in the fr_FR locale, the number 1234.5678 is represented as mille deux cent trente-quatre virgule cinq six sept huit.
+    ///
+    /// This style is supported for most user locales. If this style doesn’t support the number formatter locale, the en_US locale is used as a fallback.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterSpellOutStyle")]
     pub const SpellOutStyle: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/ordinal?language=objc)
+    /// An ordinal style format.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, in the en_US locale, the number 3 is represented as 3rd; in the fr_FR locale, the number 3 is represented as 3e.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterOrdinalStyle")]
     pub const OrdinalStyle: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyisocode?language=objc)
+    /// A currency style format that uses the ISO 4217 currency code defined by the number formatter locale.
+    ///
+    /// ## Discussion
+    ///
+    /// This style behaves like the [`NSNumberFormatterCurrencyStyle`](https://developer.apple.com/documentation/foundation/numberformatter/style/currency) style, except that the currency symbol is replaced by the corresponding ISO 4217 currency code. For example, in the en_US locale, the number 1234.5678 is represented as USD1,234.57; in the fr_FR locale, the number 1234.5678 is represented as 1 234,57 EUR.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterCurrencyISOCodeStyle")]
     pub const CurrencyISOCodeStyle: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyplural?language=objc)
+    /// A currency style format that uses the pluralized denomination defined by the number formatter locale.
+    ///
+    /// ## Discussion
+    ///
+    /// This style behaves like the [`NSNumberFormatterCurrencyStyle`](https://developer.apple.com/documentation/foundation/numberformatter/style/currency) style, except that the currency symbol is replaced by the corresponding pluralized denomination. For example, in the en_US locale, the number 1234.5678 is represented as 1,234.57 US dollars; in the fr_FR locale, the number 1234.5678 is represented as 1 234,57 euros.
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterCurrencyPluralStyle")]
     pub const CurrencyPluralStyle: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style/currencyaccounting?language=objc)
+    /// An accounting currency style format that uses the currency symbol defined by the number formatter locale.
+    ///
+    /// ## Discussion
+    ///
+    /// This style behaves like the [`NSNumberFormatterCurrencyStyle`](https://developer.apple.com/documentation/foundation/numberformatter/style/currency) style, except that negative numbers representations are surrounded by parentheses rather than preceded by a negative symbol. For example, in the en_US locale, the number -1234.5678 is represented as ($1,234.57); in the fr_FR locale, the number -1234.5678 is represented as (1 234,57 €).
+    ///
+    ///
     #[doc(alias = "NSNumberFormatterCurrencyAccountingStyle")]
     pub const CurrencyAccountingStyle: Self = Self(10);
 }
@@ -77,22 +146,22 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition?language=objc)
+/// These constants are used to specify how numbers should be padded. These constants are used by the [`paddingPosition`](https://developer.apple.com/documentation/foundation/numberformatter/paddingposition) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterPadPosition(pub NSUInteger);
 impl NSNumberFormatterPadPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/beforeprefix?language=objc)
+    /// Specifies that the padding should occur before the prefix.
     #[doc(alias = "NSNumberFormatterPadBeforePrefix")]
     pub const BeforePrefix: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/afterprefix?language=objc)
+    /// Specifies that the padding should occur after the prefix.
     #[doc(alias = "NSNumberFormatterPadAfterPrefix")]
     pub const AfterPrefix: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/beforesuffix?language=objc)
+    /// Specifies that the padding should occur before the suffix.
     #[doc(alias = "NSNumberFormatterPadBeforeSuffix")]
     pub const BeforeSuffix: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition/aftersuffix?language=objc)
+    /// Specifies that the padding should occur after the suffix.
     #[doc(alias = "NSNumberFormatterPadAfterSuffix")]
     pub const AfterSuffix: Self = Self(3);
 }
@@ -105,31 +174,31 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum?language=objc)
+/// These constants are used to specify how numbers should be rounded. These constants are used by the [`roundingMode`](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.property) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
 impl NSNumberFormatterRoundingMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/ceiling?language=objc)
+    /// Round towards positive infinity.
     #[doc(alias = "NSNumberFormatterRoundCeiling")]
     pub const RoundCeiling: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/floor?language=objc)
+    /// Round towards negative infinity.
     #[doc(alias = "NSNumberFormatterRoundFloor")]
     pub const RoundFloor: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/down?language=objc)
+    /// Round towards zero.
     #[doc(alias = "NSNumberFormatterRoundDown")]
     pub const RoundDown: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/up?language=objc)
+    /// Round away from zero.
     #[doc(alias = "NSNumberFormatterRoundUp")]
     pub const RoundUp: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfeven?language=objc)
+    /// Round towards the nearest integer, or towards an even number if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfEven")]
     pub const RoundHalfEven: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfdown?language=objc)
+    /// Round towards the nearest integer, or towards zero if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfDown")]
     pub const RoundHalfDown: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum/halfup?language=objc)
+    /// Round towards the nearest integer, or away from zero if equidistant.
     #[doc(alias = "NSNumberFormatterRoundHalfUp")]
     pub const RoundHalfUp: Self = Self(6);
 }
@@ -143,7 +212,37 @@ unsafe impl RefEncode for NSNumberFormatterRoundingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter?language=objc)
+    /// A formatter that converts between numeric values and their textual representations.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) format the textual representation of cells that contain [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) objects and convert textual representations of numeric values into [`NSNumber`](https://developer.apple.com/documentation/foundation/nsnumber) objects. The representation encompasses integers, floats, and doubles; floats and doubles can be formatted to a specified decimal position. [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) objects can also impose ranges on the numeric values cells can accept.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`IntegerFormatStyle`](https://developer.apple.com/documentation/foundation/integerformatstyle), [`FloatingPointFormatStyle`](https://developer.apple.com/documentation/foundation/floatingpointformatstyle), or [`Decimal.FormatStyle`](https://developer.apple.com/documentation/foundation/decimal/formatstyle) rather than [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Significant Digits and Fraction Digits
+    ///
+    /// The [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) class provides flexible options for displaying non-zero fractional parts of numbers.
+    ///
+    /// If you set the [`usesSignificantDigits`](https://developer.apple.com/documentation/foundation/numberformatter/usessignificantdigits) property to [`true`](https://developer.apple.com/documentation/swift/true), you can configure [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) to display significant digits using the [`minimumSignificantDigits`](https://developer.apple.com/documentation/foundation/numberformatter/minimumsignificantdigits) and [`maximumSignificantDigits`](https://developer.apple.com/documentation/foundation/numberformatter/maximumsignificantdigits) properties. If [`usesSignificantDigits`](https://developer.apple.com/documentation/foundation/numberformatter/usessignificantdigits) is [`false`](https://developer.apple.com/documentation/swift/false), these properties are ignored. See Configuring Significant Digits.
+    ///
+    /// Otherwise, you can configure the minimum and maximum number of integer and fraction digits, or the numbers before and after the decimal separator, respectively, using the [`minimumIntegerDigits`](https://developer.apple.com/documentation/foundation/numberformatter/minimumintegerdigits), [`maximumIntegerDigits`](https://developer.apple.com/documentation/foundation/numberformatter/maximumintegerdigits), [`minimumFractionDigits`](https://developer.apple.com/documentation/foundation/numberformatter/minimumfractiondigits), and [`maximumFractionDigits`](https://developer.apple.com/documentation/foundation/numberformatter/maximumfractiondigits) properties. See Configuring Integer and Fraction Digits.
+    ///
+    /// ### Thread Safety
+    ///
+    /// On iOS 7 and later [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) is thread-safe.
+    ///
+    /// In macOS 10.9 and later [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) is thread-safe so long as you are using the modern behavior in a 64-bit app.
+    ///
+    /// On earlier versions of the operating system, or when using the legacy formatter behavior or running in 32-bit in macOS, [`NSNumberFormatter`](https://developer.apple.com/documentation/foundation/numberformatter) is not thread-safe, and you therefore must not mutate a number formatter simultaneously from multiple threads.
+    ///
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

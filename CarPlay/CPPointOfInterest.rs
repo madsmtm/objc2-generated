@@ -14,7 +14,17 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppointofinterest?language=objc)
+    /// An object that describes a point of interest on the template’s map and in its scrollable picker.
+    ///
+    /// ## Overview
+    ///
+    /// A point of interest describes a geographical location on a map. It also provides supplementary information about the location, such as a title and summary that the template displays in a scrollable picker and on a detail card. A point of interest also provides the buttons the detail card presents to the user as contextual actions.
+    ///
+    /// You provide an array of `CPPointOfInterest` objects when initializing [`CPPointOfInterestTemplate`](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate), or whenever the visible region of the template’s map changes, by calling the template’s [`setPointsOfInterest:selectedIndex:`](https://developer.apple.com/documentation/carplay/cppointofinteresttemplate/setpointsofinterest(_:selectedindex:)) method.
+    ///
+    /// `CPPointOfInterestTemplate` displays a maximum of twelve points of interest.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPPointOfInterest;

@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkuserlocation?language=objc)
+    /// An annotation that reflects the user’s location on the map.
+    ///
+    /// ## Overview
+    ///
+    /// You don’t create instances of this class directly. Instead, you retrieve an existing `MKUserLocation` object from the [`userLocation`](https://developer.apple.com/documentation/mapkit/mkmapview/userlocation) property of the map view that displays in your app.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKUserLocation;

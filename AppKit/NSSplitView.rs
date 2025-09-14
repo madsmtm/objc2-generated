@@ -9,22 +9,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/autosavename-swift.typealias?language=objc)
+/// The type that specifies the split view’s autosave name.
 pub type NSSplitViewAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum?language=objc)
+/// Constants that specify the style of the split view’s dividers.
+///
+/// ## Overview
+///
+/// These constants specify the possible divider styles that [`NSSplitView`](https://developer.apple.com/documentation/appkit/nssplitview) uses.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSSplitViewDividerStyle(pub NSInteger);
 impl NSSplitViewDividerStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/thick?language=objc)
+    /// A thick style divider displays between subviews.
+    ///
+    /// ## Discussion
+    ///
+    /// This style is the default divider style.
+    ///
+    ///
     #[doc(alias = "NSSplitViewDividerStyleThick")]
     pub const Thick: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/thin?language=objc)
+    /// A thin style divider displays between subviews.
     #[doc(alias = "NSSplitViewDividerStyleThin")]
     pub const Thin: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum/panesplitter?language=objc)
+    /// A thick style divider with a 3D appearance displays between subviews.
     #[doc(alias = "NSSplitViewDividerStylePaneSplitter")]
     pub const PaneSplitter: Self = Self(3);
 }
@@ -38,7 +50,15 @@ unsafe impl RefEncode for NSSplitViewDividerStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview?language=objc)
+    /// A view that arranges two or more views in a linear stack running horizontally or vertically.
+    ///
+    /// ## Overview
+    ///
+    /// A split view manages the dividers and orientation for a split view controller ([`NSSplitViewController`](https://developer.apple.com/documentation/appkit/nssplitviewcontroller)). By default, dividers have a horizontal orientation so that the split view arranges its panes vertically from top to bottom.
+    ///
+    /// Divider indices are zero-based. If the [`vertical`](https://developer.apple.com/documentation/appkit/nssplitview/isvertical) property is [`false`](https://developer.apple.com/documentation/swift/false), which is the default value, the top divider has an index of `0`. If [`vertical`](https://developer.apple.com/documentation/appkit/nssplitview/isvertical) is [`true`](https://developer.apple.com/documentation/swift/true), the leading divider has an index of `0`.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -288,7 +308,7 @@ impl NSSplitView {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdelegate?language=objc)
+    /// A set of optional methods that a delegate of a split view implements.
     pub unsafe trait NSSplitViewDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[optional]
@@ -414,12 +434,28 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/willresizesubviewsnotification?language=objc)
+    /// A notification that posts before a change to the size of some or all subviews of a split view.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object consists of the [`NSSplitView`](https://developer.apple.com/documentation/appkit/nssplitview) object about to resize its subviews.
+    ///
+    /// The [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary includes the `NSSplitViewDividerIndex` key that contains the index of the divider that the split view or the user moves. If the system sends the notification because the user drags a divider, the dictionary also includes the `NSSplitViewUserResizeKey` key with a value of `1`.
+    ///
+    ///
     pub static NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/didresizesubviewsnotification?language=objc)
+    /// A notification that posts after a change to the size of some or all subviews of a split view.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object consists of the [`NSSplitView`](https://developer.apple.com/documentation/appkit/nssplitview) that has resized its subviews.
+    ///
+    /// The [`userInfo`](https://developer.apple.com/documentation/foundation/notification/userinfo) dictionary includes the `NSSplitViewDividerIndex` key that contains the index of the divider that the split view or the user moves. If the system sends the notification because the user drags a divider, the dictionary also includes the `NSSplitViewUserResizeKey` key with a value of `1`.
+    ///
+    ///
     pub static NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName;
 }
 

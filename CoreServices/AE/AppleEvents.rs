@@ -10,126 +10,222 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keydirectobject?language=objc)
+/// Direct parameter. Usually specifies the data to be acted upon by the target application.
 #[cfg(feature = "AEDataModel")]
 pub const keyDirectObject: AEKeyword = 0x2d2d2d2d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyerrornumber?language=objc)
+/// Error number. Often used to extract error information from a reply Apple event.
 #[cfg(feature = "AEDataModel")]
 pub const keyErrorNumber: AEKeyword = 0x6572726e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyerrorstring?language=objc)
+/// Error string. Often used to extract error information from a reply Apple event to display to the user.
 #[cfg(feature = "AEDataModel")]
 pub const keyErrorString: AEKeyword = 0x65727273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyprocessserialnumber?language=objc)
+/// Process serial number. See also [`AEManagerInfo`](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo).
 #[cfg(feature = "AEDataModel")]
 pub const keyProcessSerialNumber: AEKeyword = 0x70736e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keypredispatch?language=objc)
+/// A predispatch handler (an Apple event handler that the Apple Event Manager calls immediately before it dispatches an Apple event). See also REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1652333", kind: "article", title: "Managing Special Handler Dispatch Tables", url: "/documentation/applicationservices/apple_event_manager#1652333", abstract_: [], role: Some("task") }.
 #[cfg(feature = "AEDataModel")]
 pub const keyPreDispatch: AEKeyword = 0x70686163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyselectproc?language=objc)
+/// You pass this value in the `functionClass` parameter of the [`AEManagerInfo`](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo) function to disable the Object Support Library. Disabling the Object Support Library is not recommended.
 #[cfg(feature = "AEDataModel")]
 pub const keySelectProc: AEKeyword = 0x73656c68;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyaerecordercount?language=objc)
+/// Used with the `keyword` parameter of the [`AEManagerInfo`](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo) function. If you pass this value, on return, the `result` parameter supplies the number of processes that are currently recording Apple events.
 #[cfg(feature = "AEDataModel")]
 pub const keyAERecorderCount: AEKeyword = 0x72656372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyaeversion?language=objc)
+/// Used with the `keyword` parameter of the [`AEManagerInfo`](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo) function. If you pass this value, on return, the `result` parameter supplies version information for the Apple Event Manager, in NumVersion format.
 #[cfg(feature = "AEDataModel")]
 pub const keyAEVersion: AEKeyword = 0x76657273;
 
 /// in a kAEOpenDocuments/kAEReopenApplication event, a typeBoolean value, if true then the process should expect a request to be frontmost to accompany this AppleEvent
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/4464838-anonymous/kaeapplicationactivationexpected?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEApplicationActivationExpected: AEKeyword = 0x61617064;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527210-event_class_constants/kcoreeventclass?language=objc)
+/// An Apple event sent by the Mac OS; applications that present a graphical interface to the user should be able to any events sent by the Mac OS that apply to the application.
 #[cfg(feature = "AEDataModel")]
 pub const kCoreEventClass: DescType = 0x61657674;
 
+/// Event that launches an application.
 /// Event sent as the first AppleEvent to an application which is not launched with a document to open or print or with a URL to open.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopenapplication?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenApplication: AEEventID = 0x6f617070;
-/// Event that provides an application with a list of documents to open.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopendocuments?language=objc)
+/// ## Discussion
+///
+/// Event that provides an application with a list of documents to open. Sent, for example, when a selects one or more documents for your application in the Finder and double-clicks them.
+///
+/// See also the constant `keyAESearchText` in the enum [`keyAEPropData`](https://developer.apple.com/documentation/applicationservices/apple_event_manager/keyaepropdata).
+///
+///
+/// Event that provides an application with a list of documents to open.
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenDocuments: AEEventID = 0x6f646f63;
 /// Event that provides an application with a list of documents to print.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeprintdocuments?language=objc)
+/// Event that provides an application with a list of documents to print.
 #[cfg(feature = "AEDataModel")]
 pub const kAEPrintDocuments: AEEventID = 0x70646f63;
-/// Event that provides an application with dragged content, such as text or an image.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopencontents?language=objc)
+/// ## Discussion
+///
+/// Event that provides an application with dragged content, such as text or an image. Sent, for example, when a user drags an image file onto your application’s icon in the Dock. The application can use the content as desired—for example, if no document is currently open, it might open a new document and insert the provided text or image.
+///
+/// For more information, see Handling Apple Events Sent by the Mac OS in Responding to Apple Events in Apple Events Programming Guide.
+///
+///
+/// Event that provides an application with dragged content, such as text or an image.
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenContents: AEEventID = 0x6f636f6e;
+/// Event that causes the application to quit.
 /// Event that causes an application to quit.  May include a property kAEQuitReason indicating what lead to the quit being sent.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaequitapplication?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEQuitApplication: AEEventID = 0x71756974;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeanswer?language=objc)
+/// Event that is a reply Apple event.
 #[cfg(feature = "AEDataModel")]
 pub const kAEAnswer: AEEventID = 0x616e7372;
 /// Event sent by the Process Manager to an application that launched another application when the launched application quits or terminates.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeapplicationdied?language=objc)
+/// Event sent by the Process Manager to an application that launched another application when the launched application quits or terminates.
 #[cfg(feature = "AEDataModel")]
 pub const kAEApplicationDied: AEEventID = 0x6f626974;
-/// sent by Mac OS X when the user chooses the Preferences item
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeshowpreferences?language=objc)
+/// ## Discussion
+///
+/// Event sent by the macOS to a process when the user chooses the Preferences item for that process.
+///
+/// Carbon applications that handle the Preferences command can install an Apple event handler for this event, but they more commonly install a Carbon event handler for `kEventCommandProcess` and check for the `kHICommandPreferences` command ID.
+///
+///
+/// sent by Mac OS X when the user chooses the Preferences item
 #[cfg(feature = "AEDataModel")]
 pub const kAEShowPreferences: AEEventID = 0x70726566;
 
 /// If present in a kAEOpenApplication or kAEReopenApplication AppleEvent, with the value kAEYes, then any saved application state should be restored; if present and kAENo, then any saved application state should not be restored
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/4013044-anonymous/keyaerestoreappstate?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERestoreAppState: DescType = 0x7273746f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaestartrecording?language=objc)
+///
+/// ## Discussion
+///
+/// Event ID for an event by a scripting component to the recording process (or to any running process on the local computer), but handled by the Apple Event Manager. The Apple Event Manager responds by turning on recording and sending a r`ecordingon` event to all running processes on the local computer.
+///
+/// If sent by process serial number (PSN), this event must be addressed using a real PSN; it should never be sent to an address specified as `kCurrentProcess`.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub const kAEStartRecording: AEEventID = 0x72656361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaestoprecording?language=objc)
+///
+/// ## Discussion
+///
+/// Event ID for an event sent by a scripting component to the recording process (or to any running process on the local computer), but handled by the Apple Event Manager. The Apple Event Manager responds by sending a `recording off` event to all running processes on the local computer.
+///
+/// If sent by a PSN, this event must be addressed using a real PSN; it should never be sent to an address specified as `kCurrentProcess`.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub const kAEStopRecording: AEEventID = 0x72656363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifystartrecording?language=objc)
+/// An event that notifies an application that recording has been turned on.
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStartRecording: AEEventID = 0x72656331;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifystoprecording?language=objc)
+/// An event that notifies an application that recording has been turned off.
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStopRecording: AEEventID = 0x72656330;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifyrecording?language=objc)
+///
+/// ## Discussion
+///
+/// Wildcard event class and event ID handled by a recording process in order to receive and record copies of recordable events sent to it by the Apple Event Manager. Scripting components install a handler for this event on behalf of a recording process when recording is turned on and remove the handler when recording is turned off.
+///
+///
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyRecording: AEEventID = 0x72656372;
 
+/// A data type for values that specify how an Apple event was delivered.
+///
+/// ## Discussion
+///
+/// [`Event Source Constants`](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants) lists the valid constant values for a variable or parameter of type `AEEventSource`.
+///
+/// You might use a variable of this type, for example, to get the source type of an Apple event by calling the function [`AEGetAttributePtr`](https://developer.apple.com/documentation/coreservices/1445109-aegetattributeptr). You pass the `keyEventSourceAttr` constant as the value for the `theAEKeyWord` parameter and you pass a pointer to a variable of type `AEEventSource` for the `dataPtr` parameter.On return, the variable will contain one of the event source constant values described in [`Event Source Constants`](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants). The complete call looks like the following:
+///
+/// ```occ
+/// AppleEvent       theAppleEvent; // previously obtained Apple event
+/// DescType        returnedType;
+/// AEEventSource   sourceOfAE;
+/// Size            actualSize;
+/// OSErr           myErr;
+/// myErr = AEGetAttributePtr(theAppleEvent,
+///                             keyEventSourceAttr,
+///                             typeShortInteger,
+///                             &returnedType,
+///                             (void *) &sourceOfAE,
+///                             sizeof (sourceOfAE),
+///                             &actualSize);
+/// ```
+///
+///
 /// AEEventSource is defined as an SInt8 for compatability with pascal.
 /// Important note: keyEventSourceAttr is returned by AttributePtr as a typeShortInteger.
 /// Be sure to pass at least two bytes of storage to AEGetAttributePtr - the result can be
 /// compared directly against the following enums.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventsource?language=objc)
 pub type AEEventSource = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaeunknownsource?language=objc)
+/// The source of the Apple event is unknown.
 pub const kAEUnknownSource: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaedirectcall?language=objc)
+/// The source of the Apple event is a direct call that bypassed the PPC Toolbox.
 pub const kAEDirectCall: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaesameprocess?language=objc)
+/// The source of the Apple event is the same application that received the event (the target application and the source application are the same).
 pub const kAESameProcess: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaelocalprocess?language=objc)
+/// The source application is another process on the same computer as the target application.
 pub const kAELocalProcess: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaeremoteprocess?language=objc)
+/// The source application is a process on a remote computer on the network.
 pub const kAERemoteProcess: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527221-anonymous/erraetargetaddressnotpermitted?language=objc)
 pub const errAETargetAddressNotPermitted: c_int = -1742;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527221-anonymous/erraeeventnotpermitted?language=objc)
 pub const errAEEventNotPermitted: c_int = -1743;
 
+/// Adds an entry for an event handler to an Apple event dispatch table.
+///
+/// Parameters:
+/// - theAEEventClass: The event class for the Apple event or events to dispatch to this event handler. The Discussion section describes interactions between this parameter and the `theAEEventID` parameter. See [`AEEventClass`](https://developer.apple.com/documentation/coreservices/aeeventclass).
+///
+/// - theAEEventID: The event ID for the Apple event or events to dispatch to this event handler. The Discussion section describes interactions between this parameter and the `theAEEventClass` parameter. See [`AEEventID`](https://developer.apple.com/documentation/coreservices/aeeventid).
+///
+/// - handler: A universal procedure pointer to the Apple event handler function to install. See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - handlerRefcon: A reference constant. The Apple Event Manager passes this value to the handler each time it calls it. If your handler doesn’t require a reference constant, pass 0 for this parameter.
+///
+/// - isSysHandler: Specifies the Apple event dispatch table to add the handler to. Pass `TRUE` to add the handler to the system dispatch table or `FALSE` to add the handler to your application’s dispatch table. See Version Notes for related information.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// The parameters `theAEEventClass` and `theAEEventID` specify the event class and event ID of the Apple events handled by the handler for this dispatch table entry. If there is already an entry in the specified dispatch table for the same event class and event ID, it is replaced. For these parameters, you must provide one of the following combinations:
+///
+/// - the event class and event ID of a single Apple event to dispatch to the handler (for example, an event class of `kAECoreSuite` and an event ID of `kAEDelete` so that a specific kind of `delete` event is dispatched to the handler)
+///
+/// - the `typeWildCard` constant for `theAEEventClass` and an event ID for `theAEEventID`, which indicates that Apple events from all event classes whose event IDs match `theAEEventID` should be dispatched to the handler (for example, an event class of `typeWildCard` and an event ID of` kAEDelete` so that for all event classes, the `delete` event is dispatched to the handler)
+///
+/// - an event class for `theAEEventClass` and the `typeWildCard` constant for `theAEEventID`, which indicates that all events from the specified event class should be dispatched to the handler (for example, an event class of `kAECoreSuite` and an event ID of` typeWildCard` so that all events for the core suite are dispatched to the handler)
+///
+/// - the` typeWildCard` constant for both the `theAEEventClass` and `theAEEventID` parameters, which indicates that all Apple events should be dispatched to the handler
+///
+/// If you use the `typeWildCard` constant for either the `theAEEventClass` or the `theAEEventID` parameter (or for both parameters), the corresponding handler must return the error `errAEEventNotHandled` if it does not handle a particular event.
+///
+/// If an Apple event dispatch table contains one entry for an event class and a specific event ID, and also contains another entry that is identical except that it specifies a wildcard value for either the event class or the event ID, the Apple Event Manager dispatches the more specific entry. For example, if an Apple event dispatch table includes one entry that specifies the event class as `kAECoreSuite` and the event ID as `kAEDelete`, and another entry that specifies the event class as `kAECoreSuite` and the event ID as `typeWildCard`, the Apple Event Manager dispatches the Apple event handler associated with the entry that specifies the event ID as `kAEDelete`.
+///
+/// In addition to the Apple event handler dispatch tables, applications can add entries to special handler dispatch tables, as described in REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1652333", kind: "article", title: "Managing Special Handler Dispatch Tables", url: "/documentation/applicationservices/apple_event_manager#1652333", abstract_: [], role: Some("task") }.
+///
+/// <a id="1770205"></a>
+/// ### Version-Notes
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// Your application should not install a handler in a system dispatch table with the goal that the handler will get called when other applications receive events—this won’t work in macOS. For more information, see The System Dispatch Table in Apple Event Dispatching in Apple Events Programming Guide.
+///
+///
 /// ************************************************************************
 /// These calls are used to set up and modify the event dispatch table.D
 /// ************************************************************************
@@ -138,8 +234,6 @@ pub const errAEEventNotPermitted: c_int = -1743;
 ///
 /// - `handler` must be implemented correctly.
 /// - `handler_refcon` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448596-aeinstalleventhandler?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallEventHandler(
@@ -169,7 +263,38 @@ pub unsafe extern "C-unwind" fn AEInstallEventHandler(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445239-aeremoveeventhandler?language=objc)
+/// Removes an event handler entry from an Apple event dispatch table.
+///
+/// Parameters:
+/// - theAEEventClass: The event class for the handler to remove. See [`AEEventClass`](https://developer.apple.com/documentation/coreservices/aeeventclass).
+///
+/// - theAEEventID: The event ID for the handler to remove. See [`AEEventID`](https://developer.apple.com/documentation/coreservices/aeeventid).
+///
+/// - handler: A universal procedure pointer to the handler to remove. Although the parameters `theAEEventClass` and `theAEEventID` are sufficient to identify the handler, you can identify the handler explicitly as a safeguard. If you pass `NULL` for this parameter, the Apple Event Manager relies solely on the event class and event ID to identify the handler.
+///
+/// If you use the `typeWildCard` constant for either or both of the event class and event ID parameters, `AERemoveEventHandler` will return an error unless an entry exists that specifies `typeWildCard` in exactly the same way. For example, if you specify `typeWildCard` in both the `theAEEventClass` parameter and the `theAEEventID` parameter, `AERemoveEventHandler` will not remove the first handler for any event class and event ID in the dispatch table; instead, it will only remove a handler if an entry exists that specifies type `typeWildCard` for both the event class and the event ID.
+///
+/// For an explanation of wildcard values, see the Discussion section for [`AEInstallEventHandler`](https://developer.apple.com/documentation/coreservices/1448596-aeinstalleventhandler).
+///
+/// See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - isSysHandler: Specifies the Apple event dispatch table to remove the handler from. Pass `TRUE` to remove the handler from the system dispatch table or `FALSE` to remove the handler from your application’s dispatch table. See Version Notes for related information.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// Your application should not install a handler in a system dispatch table with the goal that the handler will get called when other applications receive events—this won’t work in macOS. For more information, see The System Dispatch Table in Apple Event Dispatching in Apple Events Programming Guide.
+///
+///
 ///
 /// # Safety
 ///
@@ -200,7 +325,42 @@ pub unsafe extern "C-unwind" fn AERemoveEventHandler(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445631-aegeteventhandler?language=objc)
+/// Gets an event handler from an Apple event dispatch table.
+///
+/// Parameters:
+/// - theAEEventClass: The event class for the desired handler. See [`AEEventClass`](https://developer.apple.com/documentation/coreservices/aeeventclass).
+///
+/// - theAEEventID: The event ID for the desired handler. See [`AEEventID`](https://developer.apple.com/documentation/coreservices/aeeventid).
+///
+/// - handler: A universal procedure pointer. On return, a pointer to the specified handler, if a dispatch table entry exists that exactly matches the values supplied in the parameters `theAEEventClass` and `theAEEventID`.
+///
+/// If you use the `typeWildCard` constant for either or both of these parameters, `AEGetEventHandler` will return an error unless an entry exists that specifies `typeWildCard` in exactly the same way. For example, if you specify `typeWildCard` in both the `theAEEventClass` parameter and the `theAEEventID` parameter, the Apple Event Manager will not return the first handler for any event class and event ID in the dispatch table; instead, it will only return a handler if an entry exists that specifies type `typeWildCard` for both the event class and the event ID.
+///
+/// For an explanation of wildcard values, see the Discussion section for [`AEInstallEventHandler`](https://developer.apple.com/documentation/coreservices/1448596-aeinstalleventhandler).
+///
+/// See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - handlerRefcon: A pointer to a reference constant. On return, the reference constant from the dispatch table entry for the specified handler. The reference constant may have a value of 0.
+///
+/// - isSysHandler: Specifies the Apple event dispatch table to get the handler from. Pass `TRUE` to get the handler from the system dispatch table or `FALSE` to get the handler from your application’s dispatch table. See Version Notes for related information.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// Your application should not install a handler in a system dispatch table with the goal that the handler will get called when other applications receive events—this won’t work in macOS. For more information, see The System Dispatch Table in Apple Event Dispatching in Apple Events Programming Guide.
+///
+/// In Mac OS 7.1 through 9.x and macOS version v10.2 and later, `AEGetEventHandler` returns `errAEHandlerNotInstalled` when there’s not an exact match, even if a wildcard handler is installed that could handle the event. macOS version v10.0.x and v10.1.x will return the wildcard handler.
+///
+///
 ///
 /// # Safety
 ///
@@ -235,6 +395,47 @@ pub unsafe extern "C-unwind" fn AEGetEventHandler(
     }
 }
 
+/// Installs a callback function in a special handler dispatch table.
+///
+/// Parameters:
+/// - functionClass: A value that specifies the type of handler to install. You can use any of the constants defined in [`Special Handler Callback Constants`](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan).
+///
+/// If there is already an entry in the specified special handler dispatch table for the value you specify in this parameter, it is replaced.
+///
+/// See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+///
+/// - handler: A universal procedure pointer to the special handler to install. See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - isSysHandler: Specifies the special handler dispatch table to add the handler to. Pass `TRUE` to add the handler to the system special handler dispatch table or `FALSE` to add the handler to your application’s special handler dispatch table. Use of the system special handler dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// An Apple event special handler dispatch table contains entries with a function class keyword, the address of the handler function that handles the Apple events indicated by the keyword, and a reference constant. Depending on which handlers you choose to install, a special handler dispatch table can have entries for any of the following:
+///
+/// -  a predispatch handler (an Apple event handler that the Apple Event Manager calls immediately before it dispatches an Apple event)
+///
+/// -  up to one each of the callback functions described in [Apple Event Manager](https://developer.apple.com/documentation/applicationservices/apple_event_manager) these functions, such as an object comparison function and an object-counting function, can be installed with `AEInstallSpecialHandler` or with the [`AEInstallObjectAccessor`](https://developer.apple.com/documentation/coreservices/1447905-aeinstallobjectaccessor) function
+///
+/// See also [`AEGetSpecialHandler`](https://developer.apple.com/documentation/coreservices/1444274-aegetspecialhandler) and [`AERemoveSpecialHandler`](https://developer.apple.com/documentation/coreservices/1447960-aeremovespecialhandler).
+///
+/// <a id="1770210"></a>
+/// ### Version-Notes
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// For Carbon applications running in Mac OS 8 or Mac OS 9, a handler in the system special handler dispatch table should reside in the system heap, where it may be available to other applications. If you put your system handler code in your application heap, be sure to use `AERemoveSpecialHandler` to remove the handler when your application quits. Otherwise, your handler will still have an entry in the system dispatch table with a pointer a handler that no longer exists. Another application may dispatch an Apple event that attempts to call your handler, leading to a system crash.
+///
+/// Your application should not install a handler in a system dispatch table with the goal that the handler will get called when other applications receive events—this won’t work in macOS.
+///
+///
 /// ************************************************************************
 /// These calls are used to set up and modify special hooks into the
 /// AppleEvent manager.
@@ -243,8 +444,6 @@ pub unsafe extern "C-unwind" fn AEGetEventHandler(
 /// # Safety
 ///
 /// `handler` must be implemented correctly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
@@ -262,7 +461,43 @@ pub unsafe extern "C-unwind" fn AEInstallSpecialHandler(
     unsafe { AEInstallSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447960-aeremovespecialhandler?language=objc)
+/// Removes a handler from a special handler dispatch table.
+///
+/// Parameters:
+/// - functionClass: The keyword for the special handler to remove. Pass one of the constants described in [`Special Handler Callback Constants`](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan). See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+///
+/// - handler: A universal procedure pointer to the special handler to remove. Although the `functionClass` parameter is sufficient to identify the handler to remove, you can identify the handler explicitly as a safeguard. If you pass `NULL` for this parameter, the Apple Event Manager relies solely on the function class to identify the handler. See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - isSysHandler: Specifies the special handler dispatch table to remove the handler from. Pass `TRUE` to remove the handler from the system special handler dispatch table or `FALSE` to remove the handler from your application’s special handler dispatch table. Use of the system special handler dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// See also [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) and [`AEGetSpecialHandler`](https://developer.apple.com/documentation/coreservices/1444274-aegetspecialhandler).
+///
+/// <a id="1770211"></a>
+/// ### Version-Notes
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// Your application should not install a special handler in a system dispatch table with the goal that the handler will get called when other applications receive events—this won’t work in macOS.
+///
+/// In some previous versions of the Mac OS, applications might have reason to disable, within the application only, all Apple Event Manager functions that support Apple event objects—that is, all the functions available to an application as a result of linking the Object Support Library (OSL) and calling the [`AEObjectInit`](https://developer.apple.com/documentation/coreservices/1447372-aeobjectinit) function.
+///
+/// To disable the OSL, you should pass the keyword `keySelectProc` in the `functionClass` parameter, `NULL` in the `handler` parameter, and `FALSE` in the `isSysHandler` parameter. An application that expects its copy of the OSL to move after it is installed—for example, an application that keeps it in a stand-alone code resource—would need to disable the OSL. When an application calls `AEObjectInit` to initialize the OSL, the OSL installs the addresses of its functions as extensions to the pack. If those functions move, the addresses become invalid.
+///
+/// Once you have called the `AERemoveSpecialHandler` function to disable the OSL, subsequent calls by your application to any of the Apple Event Manager functions that support Apple event objects will return errors. To initialize the OSL after disabling it with the `AERemoveSpecialHandler` function, your application must call `AEObjectInit` again.
+///
+/// If you expect to initialize the OSL and disable it several times, you should call `AERemoveObjectAccessor` to remove your application’s object accessor functions from your application’s object accessor dispatch table before you call `AERemoveSpecialHandler`.
+///
+///
 ///
 /// # Safety
 ///
@@ -284,7 +519,35 @@ pub unsafe extern "C-unwind" fn AERemoveSpecialHandler(
     unsafe { AERemoveSpecialHandler(function_class, handler, is_sys_handler as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444274-aegetspecialhandler?language=objc)
+/// Gets a specified handler from a special handler dispatch table.
+///
+/// Parameters:
+/// - functionClass: The keyword for the special handler to get. You can specify any of the constants described in [`Special Handler Callback Constants`](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan). See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+///
+/// - handler: A universal procedure pointer. On return, a pointer to the specified special handler, if one exists that matches the value supplied in the `functionClass` parameter. See [`AEEventHandlerUPP`](https://developer.apple.com/documentation/coreservices/aeeventhandlerupp).
+///
+/// - isSysHandler: Specifies the special handler dispatch table to get the handler from. Pass `TRUE` to get the handler from the system special handler dispatch table or `FALSE` to get the handler from your application’s special handler dispatch table. Use of the system special handler dispatch table is not recommended.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+///
+///
+///
+/// ## Discussion
+///
+/// See also [`AEInstallSpecialHandler`](https://developer.apple.com/documentation/coreservices/1445532-aeinstallspecialhandler) and [`AERemoveSpecialHandler`](https://developer.apple.com/documentation/coreservices/1447960-aeremovespecialhandler).
+///
+/// <a id="1770209"></a>
+/// ### Version-Notes
+///
+/// Thread safe starting in OS X v10.2.
+///
+/// In macOS, you should generally install all handlers in the application dispatch table. For Carbon applications running in Mac OS 8 or Mac OS 9, a special handler in the system dispatch table could reside in the system heap, where it would be available to other applications. However, this won’t work in macOS.
+///
+///
 ///
 /// # Safety
 ///
@@ -307,6 +570,47 @@ pub unsafe extern "C-unwind" fn AEGetSpecialHandler(
 }
 
 extern "C-unwind" {
+    /// Provides information about the version of the Apple Event Manager currently available or the number of processes that are currently recording Apple events.
+    ///
+    /// Parameters:
+    /// - keyWord: A value that determines the kind of information the function supplies in the `result` parameter.
+    ///
+    /// Pass the value `keyAERecorderCount` to obtain the number of processes that are currently recording Apple events.
+    ///
+    /// Pass the value `keyAEVersion` to obtain version information for the Apple Event Manager, in `NumVersion` format.
+    ///
+    /// Some keyword constants are defined in [`Keyword Parameter Constants`](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants).
+    ///
+    /// See [`AEKeyword`](https://developer.apple.com/documentation/coreservices/aekeyword).
+    ///
+    /// - result: A pointer to a long value. On return, provides information that depends on what you pass in the `keyword` parameter.
+    ///
+    /// If you pass `keyAERecorderCount`, `result` specifies the number of processes that are currently recording Apple events.
+    ///
+    /// If you pass `keyAEVersion`, `result` supplies version information for the Apple Event Manager, in a format that matches the `'vers'` resource.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// A result code. See REFERENCE TODO: Section { identifier: "doc://com.apple.documentation/documentation/applicationservices/apple_event_manager#1656145", kind: "article", title: "Result Codes", url: "/documentation/applicationservices/apple_event_manager#1656145", abstract_: [], role: Some("task") }.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// For recordable applications, the information provided by `AEManagerInfo` may be useful when the application is responding to Apple events that it sends to itself.
+    ///
+    /// For information on determining whether the Apple Event Manager is available, see the Apple Event Manager Gestalt Selector, described in _Inside macOS: Gestalt Manager Reference_.
+    ///
+    /// <a id="1819457"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread safe starting in OS X v10.2.
+    ///
+    /// The `AEManagerInfo` function is available only in version 1.01 and later of the Apple Event Manager.
+    ///
+    ///
     /// ************************************************************************
     /// This call was added in version 1.0.1. If called with the keyword
     /// keyAERecorderCount ('recr'), the number of recorders that are
@@ -317,33 +621,37 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `result` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449373-aemanagerinfo?language=objc)
     #[cfg(feature = "AEDataModel")]
     pub fn AEManagerInfo(key_word: AEKeyword, result: *mut c_long) -> OSErr;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessurlkey?language=objc)
+    /// Use this key to obtain the full URL to the remote process, as a `CFURLRef`.
     pub static kAERemoteProcessURLKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessnamekey?language=objc)
+    /// Use this key to obtain the visible name of the remote process, in the localization supplied by the server, as a `CFStringRef`.
     pub static kAERemoteProcessNameKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessuseridkey?language=objc)
+    /// Use this key to obtain the user ID of the remote process, if available; if so, returned as a `CFNumberRef`.
     pub static kAERemoteProcessUserIDKey: Option<&'static CFString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocessprocessidkey?language=objc)
+    /// Use this key to obtain the process ID of the remote process, if available; if so, returned as a `CFNumberRef`.
     pub static kAERemoteProcessProcessIDKey: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext?language=objc)
+/// Supplied as a parameter when performing asynchronous resolutionof remote processes.
+///
+/// ## Overview
+///
+/// When you call [`AERemoteProcessResolverScheduleWithRunLoop`](https://developer.apple.com/documentation/coreservices/1447259-aeremoteprocessresolverschedulew) forasynchronous resolution, you supply a reference to a structure ofthis type, along with a reference to a callback routine, definedby [`AERemoteProcessResolverCallback`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback).The context is copied and the info pointer retained. When the callbackis made, the info pointer is passed to the callback.
+///
+///
 #[repr(C, packed(2))]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -387,11 +695,45 @@ unsafe impl RefEncode for AERemoteProcessResolver {
         Encoding::Pointer(&Encoding::Struct("AERemoteProcessResolver", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref?language=objc)
+/// An opaque reference to an object that encapsulates the mechanism for obtaining a list of processes running on a remote machine.
+///
+/// ## Discussion
+///
+/// You create an instance of `AERemoteProcessResolverRef` by calling [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver), and you must disposed of it by calling [`AEDisposeRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1442572-aedisposeremoteprocessresolver). An instance of this type is not a `CFType` (the base type used by all Core Foundation derived opaque types).
+///
+///
 pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver?language=objc)
+    /// Creates an object for resolving a list of remote processes.
+    ///
+    /// Parameters:
+    /// - allocator: An object that is used to allocates and deallocate any Core Foundation types created or returned by this API. You can pass `kCFAllocatorDefault` to get the default allocation behavior. The allocator is based on `CFAllocatorRef`, an opaque data type described in the Core Foundation Reference Documentation.
+    ///
+    /// - url: A `CFURL` reference identifying the remote host and port on which to look for processes. See the Core Foundation Reference Documentation for a description of the `CFURLRef` data type.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// An [`AERemoteProcessResolverRef`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref), which must be disposed of with [`AEDisposeRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1442572-aedisposeremoteprocessresolver). A resolver can only be used one time; once it has obtained a list of remote processes from a server, or gotten an error, it can no longer be scheduled. To retrieve a new list of processes, create a new instance of this object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You supply this function with the URL for a remote host and port; it returns a reference to a resolver object. To obtain a list of remote processes from the resolver, you can query it synchronously with [`AERemoteProcessResolverGetProcesses`](https://developer.apple.com/documentation/coreservices/1444456-aeremoteprocessresolvergetproces), which blocks until the request completes (either successfully or with an error).
+    ///
+    /// If asynchronous behavior is desired, you can optionally use [`AERemoteProcessResolverScheduleWithRunLoop`](https://developer.apple.com/documentation/coreservices/1447259-aeremoteprocessresolverschedulew) to schedule the resolver asynchronously on a run loop. If so, you supply a callback routine (see [`AERemoteProcessResolverCallback`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback)) that is executed when the resolver completes. To obtain information about the remote processes, you will again have to call [`AERemoteProcessResolverGetProcesses`](https://developer.apple.com/documentation/coreservices/1444456-aeremoteprocessresolvergetproces).
+    ///
+    /// A resolver can only be used once; once it has fetched the data or gotten an error it can no longer be scheduled. The data obtained by the resolver is a `CFArrayRef` of `CFDictionaryRef` objects. For information on the format of the returned remote process information, see the description of the function result for the function [`AERemoteProcessResolverGetProcesses`](https://developer.apple.com/documentation/coreservices/1444456-aeremoteprocessresolvergetproces), and also [Remote Process Dictionary Keys](https://developer.apple.com/documentation/applicationservices/apple_event_manager/remote_process_dictionary_keys).
+    ///
+    /// <a id="1770201"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread safe starting in OS X v10.3.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -404,7 +746,22 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442572-aedisposeremoteprocessresolver?language=objc)
+    /// Disposes of an `AERemoteProcessResolverRef`.
+    ///
+    /// Parameters:
+    /// - ref: The [`AERemoteProcessResolverRef`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref) to dispose of. Acquired from a previous call to [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver).
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// If this resolver is currently scheduled on a run loop, it is unscheduled, and the asynchronous callback is not executed.
+    ///
+    /// <a id="1770202"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread safe starting in OS X v10.3.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -413,7 +770,33 @@ extern "C-unwind" {
 }
 
 impl AERemoteProcessResolver {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444456-aeremoteprocessresolvergetproces?language=objc)
+    /// Returns an array of objects containing information about processes running on a remote machine.
+    ///
+    /// Parameters:
+    /// - ref: The [`AERemoteProcessResolverRef`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref) to query. Acquired from a previous call to [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver).
+    ///
+    /// - outError: If the function result is `NULL`, `outError` contains information about the failure. See the Core Foundation Reference Documentation for a description of the `CFStreamError` data type.
+    ///
+    ///
+    /// <a id="return_value"></a>
+    /// ## Return Value
+    ///
+    /// In the case of an error, returns `NULL`, in which case the `outError` parameter provides error information. If successful, returns a `CFArrayRef` of `CFDictionaryRef` objects containing information about the discovered remote processes. Each dictionary contains the URL of a remote application and its human readable name; it may also contain a `CFNumberRef` specifying a user ID for the application, if it has one; and it may also contain a `CFNumberRef` specifying the process ID for the process. The array is owned by the resolver, so you must retain it before disposing of the resolver object itself. For information on the keys for getting information from the dictionary, see [Remote Process Dictionary Keys](https://developer.apple.com/documentation/applicationservices/apple_event_manager/remote_process_dictionary_keys).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You first call [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver) to obtain a reference to a resolver object you can use to obtain a list of processes running on a specified remote machine. See the description for that function for additional information. You then pass that reference to `AERemoteProcessResolverGetProcesses` to get an array of objects containing information about the discovered remote processes.
+    ///
+    /// If the resolver was not previously scheduled for execution (by a call to the [`AERemoteProcessResolverScheduleWithRunLoop`](https://developer.apple.com/documentation/coreservices/1447259-aeremoteprocessresolverschedulew) function), `AERemoteProcessResolverGetProcesses` will block until the resulting array is available or an error occurs. If the resolver was previously scheduled but had not yet completed fetching the array, this call will block until the resolver does complete.
+    ///
+    /// <a id="1770203"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread safe starting in OS X v10.3.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -436,12 +819,48 @@ impl AERemoteProcessResolver {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback?language=objc)
+/// Defines a pointer to a function the Apple Event Manager calls when the asynchronous execution of a remote process resolver completes, either due to success or failure, after a call to the `AERemoteProcessResolverScheduleWithRunLoop` function. Your callback function can use the reference passed to it to get the remote process information.
+///
+/// Parameters:
+/// - ref: A reference of type [`AERemoteProcessResolverRef`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref) you can query to obtain the remote process information. Acquired from a previous call to [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver).
+///
+/// - info: An untyped pointer your application can use to pass information it needs when resolving remote processes. The application originally supplies this pointer in the [`AERemoteProcessResolverContext`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext) structure in the `ctx` parameter) when it calls the `AERemoteProcessResolverScheduleWithRunLoop` function.
+///
+///
+/// <a id="return_value"></a>
+/// ## Return Value
+///
+/// Your callback routine should not return a value.
+///
+///
 pub type AERemoteProcessResolverCallback =
     Option<unsafe extern "C-unwind" fn(AERemoteProcessResolverRef, *mut c_void)>;
 
 impl AERemoteProcessResolver {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447259-aeremoteprocessresolverschedulew?language=objc)
+    /// Schedules a resolver for execution on a given run loop in a given mode.
+    ///
+    /// Parameters:
+    /// - ref: The [`AERemoteProcessResolverRef`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolverref) to query. Acquired from a previous call to [`AECreateRemoteProcessResolver`](https://developer.apple.com/documentation/coreservices/1445692-aecreateremoteprocessresolver).
+    ///
+    /// - runLoop: The run loop on which to schedule resolution of remote processes. For information on run loops, see Introduction to Run Loops. See the Core Foundation Reference Documentation for a description of the `CFRunLoop` data type.
+    ///
+    /// - runLoopMode: Specifies the run loop mode. See Input Modes for information on available modes. See the Core Foundation Reference Documentation for a description of the `CFStringRef` data type.
+    ///
+    /// - callback: A callback function to be executed when the resolver completes. See [`AERemoteProcessResolverCallback`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercallback) for information on the callback definition.
+    ///
+    /// - ctx: Optionally supplies information of use while resolving remote processes. If this parameter is not `NULL`, the info field of this structure is passed to the callback function (otherwise, the info parameter to the `callback` function will explicitly be `NULL`). See [`AERemoteProcessResolverContext`](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolvercontext) for a description of this data type.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Schedules a resolver for execution on a given run loop in a given mode. The resolver will move through various internal states as long as the specified run loop is run. When the resolver completes, either with success or with an error condition, the callback is executed. There is no explicit unschedule of the resolver; you must dispose of it to remove it from the run loop.
+    ///
+    /// <a id="1770204"></a>
+    /// ### Version-Notes
+    ///
+    /// Thread safe starting in OS X v10.3.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -527,8 +946,6 @@ impl AERemoteProcessResolver {
 /// # Safety
 ///
 /// `target` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025784-aedeterminepermissiontoautomatet?language=objc)
 #[cfg(feature = "AEDataModel")]
 #[inline]
 pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(
@@ -556,13 +973,9 @@ pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(
 }
 
 /// Determining whether this can be sent would require prompting the user, and the AppleEvent was sent with kAEDoNotPromptForPermission
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025780-anonymous/erraeeventwouldrequireuserconsent?language=objc)
 pub const errAEEventWouldRequireUserConsent: c_int = -1744;
 
 /// If set, and the AppleEvent requires user consent, do not prompt and instead return errAEEventWouldRequireUserConsent
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025781-anonymous/kaedonotpromptforuserconsent?language=objc)
 pub const kAEDoNotPromptForUserConsent: c_uint = 0x00020000;
 
 #[deprecated = "renamed to `AERemoteProcessResolver::processes`"]

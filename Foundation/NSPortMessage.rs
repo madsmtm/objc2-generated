@@ -7,7 +7,19 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/portmessage?language=objc)
+    /// A low-level, operating system-independent type for inter-application (and inter-thread) messages.
+    ///
+    /// ## Overview
+    ///
+    /// Port messages are used primarily by the distributed objects system. You should implement inter-application communication using distributed objects whenever possible and use [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage) only when necessary.
+    ///
+    /// An [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage) object has three major parts: the send and receive ports, which are [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects that link the sender of the message to the receiver, and the components, which form the body of the message. The components are held as an [`NSArray`](https://developer.apple.com/documentation/foundation/nsarray) object containing [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) and [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects. The [`sendBeforeDate:`](https://developer.apple.com/documentation/foundation/portmessage/send(before:)) message sends the components out through the send port; any replies to the message arrive on the receive port. See the [`NSPort`](https://developer.apple.com/documentation/foundation/port) class specification for information on handling incoming messages.
+    ///
+    /// An [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage) instance can be initialized with a pair of [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects and an array of components. A port message’s body can contain only [`NSPort`](https://developer.apple.com/documentation/foundation/port) objects or [`NSData`](https://developer.apple.com/documentation/foundation/nsdata) objects. In the distributed objects system the byte/character arrays are usually encoded [`NSInvocation`](https://developer.apple.com/documentation/foundation/nsinvocation) objects that are being forwarded from a proxy to the corresponding real object.
+    ///
+    /// An [`NSPortMessage`](https://developer.apple.com/documentation/foundation/portmessage) object also maintains a message identifier, which can be used to indicate the class of a message, such as an Objective-C method invocation, a connection request, an error, and so on. Use the [`msgid`](https://developer.apple.com/documentation/foundation/portmessage/msgid) and [`msgid`](https://developer.apple.com/documentation/foundation/portmessage/msgid) methods to access the identifier.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPortMessage;

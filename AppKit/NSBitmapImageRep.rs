@@ -15,34 +15,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression?language=objc)
+/// Constants that represent the supported TIFF data-compression schemes.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSTIFFCompression(pub NSUInteger);
 impl NSTIFFCompression {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/none?language=objc)
+    /// No compression.
     #[doc(alias = "NSTIFFCompressionNone")]
     pub const None: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/ccittfax3?language=objc)
+    /// CCITT Fax Group 3 compression.
+    ///
+    /// ## Discussion
+    ///
+    /// Used for 1-bit fax images sent over telephone lines.
+    ///
+    ///
     #[doc(alias = "NSTIFFCompressionCCITTFAX3")]
     pub const CCITTFAX3: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/ccittfax4?language=objc)
+    /// CCITT Fax Group 4 compression.
+    ///
+    /// ## Discussion
+    ///
+    /// Used for 1-bit fax images sent over ISDN lines.
+    ///
+    ///
     #[doc(alias = "NSTIFFCompressionCCITTFAX4")]
     pub const CCITTFAX4: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/lzw?language=objc)
+    /// LZW compression.
     #[doc(alias = "NSTIFFCompressionLZW")]
     pub const LZW: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/jpeg?language=objc)
+    /// JPEG compression. No longer supported for input or output.
     #[doc(alias = "NSTIFFCompressionJPEG")]
     pub const JPEG: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/next?language=objc)
+    /// NeXT compressed. Supported for input only.
     #[doc(alias = "NSTIFFCompressionNEXT")]
     pub const NEXT: Self = Self(32766);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/packbits?language=objc)
+    /// PackBits compression.
     #[doc(alias = "NSTIFFCompressionPackBits")]
     pub const PackBits: Self = Self(32773);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression/oldjpeg?language=objc)
+    /// Old JPEG compression. No longer supported for input or output.
     #[doc(alias = "NSTIFFCompressionOldJPEG")]
     pub const OldJPEG: Self = Self(32865);
 }
@@ -55,28 +67,28 @@ unsafe impl RefEncode for NSTIFFCompression {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype?language=objc)
+/// Constants that specify bitmap file types.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBitmapImageFileType(pub NSUInteger);
 impl NSBitmapImageFileType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/tiff?language=objc)
+    /// Tagged Image File Format (TIFF).
     #[doc(alias = "NSBitmapImageFileTypeTIFF")]
     pub const TIFF: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/bmp?language=objc)
+    /// Windows bitmap image (BMP) format.
     #[doc(alias = "NSBitmapImageFileTypeBMP")]
     pub const BMP: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/gif?language=objc)
+    /// Graphics Image Format (GIF), originally created by CompuServe for online downloads.
     #[doc(alias = "NSBitmapImageFileTypeGIF")]
     pub const GIF: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/jpeg?language=objc)
+    /// JPEG format.
     #[doc(alias = "NSBitmapImageFileTypeJPEG")]
     pub const JPEG: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/png?language=objc)
+    /// Portable Network Graphics (PNG) format.
     #[doc(alias = "NSBitmapImageFileTypePNG")]
     pub const PNG: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype/jpeg2000?language=objc)
+    /// JPEG 2000 file format.
     #[doc(alias = "NSBitmapImageFileTypeJPEG2000")]
     pub const JPEG2000: Self = Self(5);
 }
@@ -89,28 +101,46 @@ unsafe impl RefEncode for NSBitmapImageFileType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus?language=objc)
+/// Constants that identify the loading status of the image.
+///
+/// ## Overview
+///
+/// These status values are returned by [`incrementalLoadFromData:complete:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/incrementalload(from:complete:)).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NSImageRepLoadStatus(pub NSInteger);
 impl NSImageRepLoadStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/unknowntype?language=objc)
+    /// Not enough data to determine image format. You should continue to provide more data.
     #[doc(alias = "NSImageRepLoadStatusUnknownType")]
     pub const UnknownType: Self = Self(-1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/readingheader?language=objc)
+    /// The image format is known, but not enough data has been read to determine the size, depth, etc., of the image. You should continue to provide more data.
     #[doc(alias = "NSImageRepLoadStatusReadingHeader")]
     pub const ReadingHeader: Self = Self(-2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/willneedalldata?language=objc)
+    /// Incremental loading cannot be supported.
+    ///
+    /// ## Discussion
+    ///
+    /// Until you call [`incrementalLoadFromData:complete:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/incrementalload(from:complete:)) with [`true`](https://developer.apple.com/documentation/swift/true), this status will be returned. You can continue to call the method but no decompression will take place. Once you do call the method with [`true`](https://developer.apple.com/documentation/swift/true), then the image will be decompressed and one of the final three status messages will be returned.
+    ///
+    ///
     #[doc(alias = "NSImageRepLoadStatusWillNeedAllData")]
     pub const WillNeedAllData: Self = Self(-3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/invaliddata?language=objc)
+    /// An error occurred during image decompression. The image contains the portions of the data that have already been successfully decompressed, if any
     #[doc(alias = "NSImageRepLoadStatusInvalidData")]
     pub const InvalidData: Self = Self(-4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/unexpectedeof?language=objc)
+    /// Not enough data was available to fully decompress the image.
+    ///
+    /// ## Discussion
+    ///
+    /// [`incrementalLoadFromData:complete:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/incrementalload(from:complete:)) was called with [`true`](https://developer.apple.com/documentation/swift/true), but not enough data was available for decompression. The image contains the portions of the data that have already been successfully decompressed, if any.
+    ///
+    ///
     #[doc(alias = "NSImageRepLoadStatusUnexpectedEOF")]
     pub const UnexpectedEOF: Self = Self(-5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus/completed?language=objc)
+    /// Enough data has been provided to successfully decompress the image (regardless of the complete: flag).
     #[doc(alias = "NSImageRepLoadStatusCompleted")]
     pub const Completed: Self = Self(-6);
 }
@@ -123,32 +153,56 @@ unsafe impl RefEncode for NSImageRepLoadStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format?language=objc)
+/// Constants that represent bitmap component formats.
+///
+/// ## Overview
+///
+/// You can combine these values and pass them to the  [`initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/init(bitmapdataplanes:pixelswide:pixelshigh:bitspersample:samplesperpixel:hasalpha:isplanar:colorspacename:bitmapformat:bytesperrow:bitsperpixel:)) method as the bitmap format. You can access them later in the  [`bitmapFormat`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapformat) property.
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBitmapFormat(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBitmapFormat: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/alphafirst?language=objc)
+/// A format where the alpha value comes first.
+///
+/// ## Discussion
+///
+/// If this option is not specified, alpha values are the last component specified, as in CMYKA and RGBA.
+///
+///
         #[doc(alias = "NSBitmapFormatAlphaFirst")]
         const AlphaFirst = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/alphanonpremultiplied?language=objc)
+/// A format where alpha values are not premultiplied.
+///
+/// ## Discussion
+///
+/// If this option is not specified, alpha values are premultiplied.
+///
+///
         #[doc(alias = "NSBitmapFormatAlphaNonpremultiplied")]
         const AlphaNonpremultiplied = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/floatingpointsamples?language=objc)
+/// A format where samples are specified using floating-point numbers.
+///
+/// ## Discussion
+///
+/// If this option is not specified, samples are integer values.
+///
+///
         #[doc(alias = "NSBitmapFormatFloatingPointSamples")]
         const FloatingPointSamples = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/sixteenbitlittleendian?language=objc)
+/// A 16-bit, little endian format.
         #[doc(alias = "NSBitmapFormatSixteenBitLittleEndian")]
         const SixteenBitLittleEndian = 1<<8;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/thirtytwobitlittleendian?language=objc)
+/// A 32-bit, little endian format.
         #[doc(alias = "NSBitmapFormatThirtyTwoBitLittleEndian")]
         const ThirtyTwoBitLittleEndian = 1<<9;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/sixteenbitbigendian?language=objc)
+/// A 16-bit, big endian format.
         #[doc(alias = "NSBitmapFormatSixteenBitBigEndian")]
         const SixteenBitBigEndian = 1<<10;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format/thirtytwobitbigendian?language=objc)
+/// A 32-bit, big endian format.
         #[doc(alias = "NSBitmapFormatThirtyTwoBitBigEndian")]
         const ThirtyTwoBitBigEndian = 1<<11;
     }
@@ -162,87 +216,198 @@ unsafe impl RefEncode for NSBitmapFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey?language=objc)
+/// Constants that identify bitmap image representation properties.
+///
+/// ## Discussion
+///
+/// Use these constants with [`representationOfImageRepsInArray:usingType:properties:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/representationofimagereps(in:using:properties:)), [`representationUsingType:properties:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/representation(using:properties:)), [`setPixel:atX:y:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/setpixel(_:atx:y:)), and [`valueForProperty:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/value(forproperty:)).
+///
+/// When using the [`valueForProperty:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/value(forproperty:)) method to retrieve the the value for any of these keys, be sure to check that the returned value is non-`nil` before you attempt to use it. A bitmap image representation may return `nil` for any values that have not yet been set.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSBitmapImageRepPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/compressionmethod?language=objc)
+    /// Identifies an `NSNumber` object identifying the compression method of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only for TIFF files. The value corresponds to one of the `NSTIFFCompression` constants, described below. It’s set when reading in and used when writing out.
+    ///
+    ///
     pub static NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/compressionfactor?language=objc)
+    /// Identifies an `NSNumber` object containing the compression factor of the image.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only for JPEG files. JPEG compression in TIFF files is not supported, and the factor is ignored. The value is a float between 0.0 and 1.0, with 1.0 resulting in no compression and 0.0 resulting in the maximum compression possible. It’s set when reading in and used when writing out the image.
+    ///
+    ///
     pub static NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/dithertransparency?language=objc)
+    /// Identifies an `NSNumber` object containing a Boolean that indicates whether the image is dithered.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only when writing GIF files.
+    ///
+    ///
     pub static NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/rgbcolortable?language=objc)
+    /// Identifies an `NSData` object containing the RGB color table.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only for GIF files. It’s stored as packed RGB. It’s set when reading in and used when writing out.
+    ///
+    ///
     pub static NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/interlaced?language=objc)
+    /// Identifies an `NSNumber` object containing a Boolean value that indicates whether the image is interlaced.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only when writing out PNG files.
+    ///
+    ///
     pub static NSImageInterlaced: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/colorsyncprofiledata?language=objc)
+    /// Identifies an `NSData` object containing the ColorSync profile data.
+    ///
+    /// ## Discussion
+    ///
+    /// It can be used for TIFF, JPEG, GIF, and PNG files. This value is set when reading in and used when writing out image data. You can get the profile data for a particular color space from the corresponding `NSColorSpace` object or from the ColorSync Manager.
+    ///
+    ///
     pub static NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/framecount?language=objc)
+    /// Identifies an `NSNumber` object containing the number of frames in an animated GIF file.
+    ///
+    /// ## Discussion
+    ///
+    /// This value is used when reading in data.
+    ///
+    ///
     pub static NSImageFrameCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/currentframe?language=objc)
+    /// Identifies an `NSNumber` object containing the current frame for an animated GIF file.
+    ///
+    /// ## Discussion
+    ///
+    /// The first frame is 0.
+    ///
+    ///
     pub static NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/currentframeduration?language=objc)
+    /// Identifies an `NSNumber` object containing the duration (in seconds) of the current frame for an animated GIF image.
+    ///
+    /// ## Discussion
+    ///
+    /// The frame duration can be a floating-point value. It is used when reading in, but not when writing out.
+    ///
+    ///
     pub static NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/loopcount?language=objc)
+    /// Identifies an `NSNumber` object containing the number of loops to make when animating a GIF image.
+    ///
+    /// ## Discussion
+    ///
+    /// A value of 0 indicates the animation should loop indefinitely. Values should be specified as integer numbers. It is used when reading in but not when writing out the image.
+    ///
+    ///
     pub static NSImageLoopCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/gamma?language=objc)
+    /// Identifies an `NSNumber` object containing the gamma value for the image.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only for PNG files. The gamma values is a floating-point number between 0.0 and 1.0, with 0.0 being black and 1.0 being the maximum color. It’s set when reading in and used when writing out.
+    ///
+    ///
     pub static NSImageGamma: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/progressive?language=objc)
+    /// Identifies an `NSNumber` object containing a Boolean that indicates whether the image uses progressive encoding.
+    ///
+    /// ## Discussion
+    ///
+    /// Used only for JPEG files. It’s set when reading in and used when writing out.
+    ///
+    ///
     pub static NSImageProgressive: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/exifdata?language=objc)
+    /// Identifies an `NSDictionary` object containing the EXIF data for the image.
+    ///
+    /// ## Discussion
+    ///
+    /// This property is used only when reading or writing JPEG files. The dictionary contains the EXIF keys and values. The standard dictionary keys (that is, those that are not specific to camera vendors) are identical to those for [`kCGImagePropertyExifDictionary`](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdictionary) declared in the `CGImageSource` API. See [`kCGImagePropertyExifDictionary`](https://developer.apple.com/documentation/imageio/kcgimagepropertyexifdictionary) Keys for details.
+    ///
+    ///
     pub static NSImageEXIFData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/imageiptcdata?language=objc)
     pub static NSImageIPTCData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/fallbackbackgroundcolor?language=objc)
+    /// Specifies the background color to use when writing to an image format (such as JPEG) that doesn’t support alpha.
+    ///
+    /// ## Discussion
+    ///
+    /// The color’s alpha value is ignored. The default background color, when this property is not specified, is white. The value of the property should be an [`NSColor`](https://developer.apple.com/documentation/appkit/nscolor) object. This constant corresponds to the [`kCGImageDestinationBackgroundColor`](https://developer.apple.com/documentation/imageio/kcgimagedestinationbackgroundcolor) constant in Quartz.
+    ///
+    ///
     pub static NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep?language=objc)
+    /// An object that renders an image from bitmap data.
+    ///
+    /// ## Overview
+    ///
+    /// Supported bitmap data formats include GIF, JPEG, TIFF, PNG, and various permutations of raw bitmap data.
+    ///
+    /// ### Alpha Premultiplication and Bitmap Formats
+    ///
+    /// When creating a bitmap using a premultiplied format, if a coverage (alpha) plane exists, the bitmap’s color components are premultiplied with it. In this case, if you modify the contents of the bitmap, you are therefore responsible for premultiplying the data. Note that premultiplying generally has negligible effect on output quality. For floating-point image data, premultiplying color components is a lossless operation, but for fixed-point image data, premultiplication can introduce small rounding errors. In either case, more rounding errors may appear when compositing many premultiplied images; however, such errors are generally not readily visible.
+    ///
+    /// For this reason, you should not use an [`NSBitmapImageRep`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep) object if you want to manipulate image data. To work with data that is not premultiplied, use the Core Graphics framework instead. (Specifically, create images using the [`CGImageCreate`](https://developer.apple.com/documentation/coregraphics/cgimage/init(width:height:bitspercomponent:bitsperpixel:bytesperrow:space:bitmapinfo:provider:decode:shouldinterpolate:intent:)) function and [`kCGImageAlphaLast`](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo/last) parameter.) Alternatively, include the [`NSAlphaNonpremultipliedBitmapFormat`](https://developer.apple.com/documentation/appkit/nsalphanonpremultipliedbitmapformat) flag when creating the bitmap.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Use the `bitmapFormat` parameter to the [`initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/init(bitmapdataplanes:pixelswide:pixelshigh:bitspersample:samplesperpixel:hasalpha:isplanar:colorspacename:bitmapformat:bytesperrow:bitsperpixel:)) method to specify the format for creating a bitmap. When creating or retrieving a bitmap with other methods, the bitmap format depends on the original source of the image data. Check the [`bitmapFormat`](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/bitmapformat) property before working with image data.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSImageRep, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSImageRep")]
@@ -609,66 +774,84 @@ impl NSBitmapImageRep {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstifffiletype?language=objc)
+/// Tagged Image File Format (TIFF).
 #[deprecated]
 pub static NSTIFFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::TIFF.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbmpfiletype?language=objc)
+/// Windows bitmap image (BMP) format.
 #[deprecated]
 pub static NSBMPFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::BMP.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgiffiletype?language=objc)
+/// Graphics Image Format (GIF), originally created by CompuServe for online downloads.
 #[deprecated]
 pub static NSGIFFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::GIF.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpegfiletype?language=objc)
+/// JPEG format.
 #[deprecated]
 pub static NSJPEGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspngfiletype?language=objc)
+/// Portable Network Graphics (PNG) format.
 #[deprecated]
 pub static NSPNGFileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::PNG.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsjpeg2000filetype?language=objc)
+/// JPEG 2000 file format.
 #[deprecated]
 pub static NSJPEG2000FileType: NSBitmapImageFileType =
     NSBitmapImageFileType(NSBitmapImageFileType::JPEG2000.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphafirstbitmapformat?language=objc)
+/// A format where the alpha value comes first.
+///
+/// ## Discussion
+///
+/// If this option is not specified, alpha values are the last component specified, as in CMYKA and RGBA.
+///
+///
 #[deprecated]
 pub static NSAlphaFirstBitmapFormat: NSBitmapFormat = NSBitmapFormat(NSBitmapFormat::AlphaFirst.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalphanonpremultipliedbitmapformat?language=objc)
+/// A format where alpha values are not premultiplied.
+///
+/// ## Discussion
+///
+/// If this option is not specified, alpha values are premultiplied.
+///
+///
 #[deprecated]
 pub static NSAlphaNonpremultipliedBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::AlphaNonpremultiplied.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloatingpointsamplesbitmapformat?language=objc)
+/// A format where samples are specified using floating-point numbers.
+///
+/// ## Discussion
+///
+/// If this option is not specified, samples are integer values.
+///
+///
 #[deprecated]
 pub static NSFloatingPointSamplesBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::FloatingPointSamples.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitlittleendianbitmapformat?language=objc)
+/// A 16-bit, little endian format.
 #[deprecated]
 pub static NS16BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitLittleEndian.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitlittleendianbitmapformat?language=objc)
+/// A 32-bit, little endian format.
 #[deprecated]
 pub static NS32BitLittleEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitLittleEndian.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns16bitbigendianbitmapformat?language=objc)
+/// A 16-bit, big endian format.
 #[deprecated]
 pub static NS16BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::SixteenBitBigEndian.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/ns32bitbigendianbitmapformat?language=objc)
+/// A 32-bit, big endian format.
 #[deprecated]
 pub static NS32BitBigEndianBitmapFormat: NSBitmapFormat =
     NSBitmapFormat(NSBitmapFormat::ThirtyTwoBitBigEndian.0);

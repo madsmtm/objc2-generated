@@ -12,7 +12,66 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/careplicatorlayer?language=objc)
+    /// A layer that creates a specified number of sublayer copies with varying geometric, temporal, and color transformations.
+    ///
+    /// ## Overview
+    ///
+    /// You can use a [`CAReplicatorLayer`](https://developer.apple.com/documentation/quartzcore/careplicatorlayer) object to build complex layouts based on a single source layer that is replicated with transformation rules that can affect the position, rotation color, and time.
+    ///
+    /// The following shows a simple example: a red square is added to a replicator layer with an instance count of `5`. The position of each replicated instance is offset along the `x` axis so that it appears to the right of the previous instance. The blue and green color channels are offset so that their values reach `0` at the final instance.
+    ///
+    /// ```swift
+    /// let replicatorLayer = CAReplicatorLayer()
+    ///      
+    /// let redSquare = CALayer()
+    /// redSquare.backgroundColor = NSColor.white.cgColor
+    /// redSquare.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+    ///      
+    /// let instanceCount = 5
+    ///      
+    /// replicatorLayer.instanceCount = instanceCount
+    /// replicatorLayer.instanceTransform = CATransform3DMakeTranslation(110, 0, 0)
+    ///      
+    /// let offsetStep = -1 / Float(instanceCount)
+    /// replicatorLayer.instanceBlueOffset = offsetStep
+    /// replicatorLayer.instanceGreenOffset = offsetStep
+    ///     
+    /// replicatorLayer.addSublayer(redSquare)
+    /// ```
+    ///
+    /// The result of the code above is a row of five squares, with colors graduating from white to red.
+    ///
+    ///
+    /// ![Replicator layer example](https://docs-assets.developer.apple.com/published/5daf81d00b1e70e3aa842a38bd19a63a/media-2776906%402x.png)
+    ///
+    ///
+    /// Replicator layers can be nested. The following code adds `replicatorLayer` to a second replicator layer that offsets the position of each instance vertically and subtracts from the red channel.
+    ///
+    /// ```swift
+    /// let outerReplicatorLayer = CAReplicatorLayer()
+    ///
+    /// outerReplicatorLayer.addSublayer(replicatorLayer)
+    ///
+    /// outerReplicatorLayer.instanceCount = instanceCount
+    /// outerReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(0, 110, 0)
+    /// outerReplicatorLayer.instanceRedOffset = offsetStep
+    /// ```
+    ///
+    /// The result of adding this code is to create a grid with the value of the red channel being reduced in the vertical direction.
+    ///
+    ///
+    /// ![Nested replicator layer example](https://docs-assets.developer.apple.com/published/7fc1110d14593942a632f25e1f3bdf2d/media-2776908%402x.png)
+    ///
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  The [`CAReplicatorLayer`](https://developer.apple.com/documentation/quartzcore/careplicatorlayer) implementation of [`hitTest:`](https://developer.apple.com/documentation/quartzcore/calayer/hittest(_:)) currently tests only the first instance of z replicator layer’s sublayers. This may change in the future.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]

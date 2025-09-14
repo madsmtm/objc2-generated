@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkrefreshbackgroundtask?language=objc)
+    /// The abstract superclass for WatchKit’s background task classes.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t subclass or create instances of this class. The system automatically creates an appropriate background task object whenever it triggers a background task. This object is passed to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method. Use the provided background task object to identify and manage the background task.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, see [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKRefreshBackgroundTask;
@@ -88,7 +102,23 @@ impl WKRefreshBackgroundTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationrefreshbackgroundtask?language=objc)
+    /// A task that updates your app’s state in the background.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t subclass or create instances of this class. Instead, schedule a background app refresh task by calling [`scheduleBackgroundRefreshWithPreferredDate:userInfo:scheduledCompletion:`](https://developer.apple.com/documentation/watchkit/wkextension/schedulebackgroundrefresh(withpreferreddate:userinfo:scheduledcompletion:)). When the system triggers the background task, it launches your app in the background, instantiates a [`WKApplicationRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkapplicationrefreshbackgroundtask) object, and passes the task object to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkextensiondelegate/handle(_:)-92ulv) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system budgets the number of background refresh tasks available to an app. In general, the system performs approximately four tasks per hour for each app with a complication on the active watch face. All the complications on the current watch face share this budget. After you exhaust the budget, the system delays your requests until more time becomes available.
+    ///
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKApplicationRefreshBackgroundTask;
@@ -115,25 +145,39 @@ impl WKApplicationRefreshBackgroundTask {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason?language=objc)
+/// The reason for a background snapshot task.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKSnapshotReason(pub NSInteger);
 impl WKSnapshotReason {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/appscheduled?language=objc)
+    /// The app scheduled this snapshot.
+    ///
+    /// ## Discussion
+    ///
+    /// You can schedule snapshots either by calling the [`scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:`](https://developer.apple.com/documentation/watchkit/wkextension/schedulesnapshotrefresh(withpreferreddate:userinfo:scheduledcompletion:)) method, or—when completing a background task—by calling the [`setTaskCompletedWithSnapshot:`](https://developer.apple.com/documentation/watchkit/wkrefreshbackgroundtask/settaskcompletedwithsnapshot(_:)) method and passing [`true`](https://developer.apple.com/documentation/swift/true).
+    ///
+    /// These snapshot refresh tasks are only triggered when the watchOS app is in the dock.
+    ///
+    ///
     #[doc(alias = "WKSnapshotReasonAppScheduled")]
     pub const AppScheduled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/returntodefaultstate?language=objc)
+    /// It has been more than an hour since the user’s last interaction with the app; the app’s snapshot should return to its default state.
     #[doc(alias = "WKSnapshotReasonReturnToDefaultState")]
     pub const ReturnToDefaultState: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/complicationupdate?language=objc)
+    /// The app updated the complication timeline.
+    ///
+    /// ## Discussion
+    ///
+    /// These snapshot refresh tasks are only triggered when the WatchKit extension has a complication on the current watch face.
+    ///
+    ///
     #[doc(alias = "WKSnapshotReasonComplicationUpdate")]
     pub const ComplicationUpdate: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/prelaunch?language=objc)
+    /// The system needs a snapshot for the dock, but the app has not been launched yet.
     #[doc(alias = "WKSnapshotReasonPrelaunch")]
     pub const Prelaunch: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotreason/appbackgrounded?language=objc)
+    /// The app transitioned from the foreground to the background.
     #[doc(alias = "WKSnapshotReasonAppBackgrounded")]
     pub const AppBackgrounded: Self = Self(4);
 }
@@ -147,7 +191,39 @@ unsafe impl RefEncode for WKSnapshotReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wksnapshotrefreshbackgroundtask?language=objc)
+    /// A background task used to update your app’s user interface in preparation for a snapshot.
+    ///
+    /// ## Overview
+    ///
+    /// Using the methods of [`WKSnapshotRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wksnapshotrefreshbackgroundtask), you can push, pop, or present other interface controllers, and then update the content of the desired interface controller. The system automatically takes a snapshot of your user interface as soon as this task completes.
+    ///
+    /// Don’t subclass or create instances of this class. Instead, schedule a background snapshot refresh task by calling [`scheduleSnapshotRefreshWithPreferredDate:userInfo:scheduledCompletion:`](https://developer.apple.com/documentation/watchkit/wkextension/schedulesnapshotrefresh(withpreferreddate:userinfo:scheduledcompletion:)). When the system triggers this task, it launches your app in the background, instantiates a [`WKSnapshotRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wksnapshotrefreshbackgroundtask) object, and passes the task object to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Background snapshot tasks are budgeted. In general, the system performs approximately one task per hour for each app in the dock (including the most recently used app). This budget is shared among all apps on the dock. The system performs multiple tasks an hour for each app with a complication on the active watch face. This budget is shared among all complications on the watch face. After you exhaust the budget, the system delays your requests until more time becomes available.
+    ///
+    /// The system automatically schedules background snapshot request tasks when:
+    ///
+    /// - Your device starts up
+    ///
+    /// - Your app updates the complication timeline
+    ///
+    /// - The user interacts with one of the apps notifications
+    ///
+    /// - The app transitions from the foreground to the background
+    ///
+    /// - One hour passes after the user’s last interaction with the app, then the `returnToGlanceableUI` property is set to [`true`](https://developer.apple.com/documentation/swift/true)
+    ///
+    /// These requests don’t cancel or replace any of your scheduled requests.
+    ///
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKSnapshotRefreshBackgroundTask;
@@ -196,7 +272,54 @@ impl WKSnapshotRefreshBackgroundTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkurlsessionrefreshbackgroundtask?language=objc)
+    /// A task that responds to background URL sessions.
+    ///
+    /// ## Overview
+    ///
+    /// Always upload and download data using a [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) background transfer. Background transfers occur in a separate process and continue to transfer data even after your app terminates. Asynchronous uploads and downloads, on the other hand, suspend with your app. Because watchOS apps have a short runtime, you can’t guarantee that an asynchronous transfer finishes before the app suspends. For more information on background transfers, see [Downloading files in the background](https://developer.apple.com/documentation/foundation/downloading-files-in-the-background).
+    ///
+    /// Schedule a background URL session to download an item as shown below.
+    ///
+    /// ```swift
+    /// // Create a background session configuration.
+    /// let config = URLSessionConfiguration.background(withIdentifier: myRequestID)
+    /// config.isDiscretionary = true
+    /// config.sessionSendsLaunchEvents = true
+    ///
+    /// // Create the background download task and schedule it to run in 15 minutes.
+    /// let urlSession = URLSession(configuration: config,
+    ///                             delegate: self,
+    ///                             delegateQueue: nil)
+    ///
+    ///
+    /// let backgroundTask = urlSession.downloadTask(with: url)
+    /// backgroundTask.earliestBeginDate = Date().addingTimeInterval(15 * 60)
+    ///
+    /// // Run the task.
+    /// backgroundTask.resume()
+    /// ```
+    ///
+    /// If your app has a complication on the active watch face, it can receive up to four [`WKURLSessionRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkurlsessionrefreshbackgroundtask) tasks per hour. To avoid throttling, use the [`earliestBeginDate`](https://developer.apple.com/documentation/foundation/urlsessiontask/earliestbegindate) property to schedule background URL session tasks no closer than 15 minutes apart.
+    ///
+    /// Don’t subclass or create instances of this class. Instead, the system instantiates a [`WKURLSessionRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkurlsessionrefreshbackgroundtask) object and passes the task object to your extension delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method in response to [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) events. Defer calling the background [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) task’s `setTaskCompleted()` method until all the delegate method calls finish processing.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system creates a background [`NSURLSession`](https://developer.apple.com/documentation/foundation/urlsession) task when any of the following events occur:
+    ///
+    /// - The server requires authentication to complete a background transfer.
+    ///
+    /// - All background transfers associated with a session identifier complete (either successfully or unsuccessfully).
+    ///
+    /// To get more information about the transfer, create a background configuration object with the same session identifier. Next, create a session object using the configuration object and a session delegate. The system automatically associates the new session with the transfer and calls the appropriate delegate methods.
+    ///
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKURLSessionRefreshBackgroundTask;
@@ -228,7 +351,33 @@ impl WKURLSessionRefreshBackgroundTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwatchconnectivityrefreshbackgroundtask?language=objc)
+    /// A background task used to receive background updates from the Watch Connectivity framework.
+    ///
+    /// ## Overview
+    ///
+    /// Don’t subclass or create instances of this class. Instead, when this background watch connectivity task is triggered, the system launches your app in the background, instantiates a [`WKWatchConnectivityRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkwatchconnectivityrefreshbackgroundtask) object, and passes the task object to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// Background watch connectivity tasks are triggered whenever the paired device sends data using one of the following [`WCSession`](https://developer.apple.com/documentation/watchconnectivity/wcsession) methods:
+    ///
+    /// - [`updateApplicationContext:error:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/updateapplicationcontext(_:))
+    ///
+    /// - [`transferUserInfo:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferuserinfo(_:))
+    ///
+    /// - [`transferCurrentComplicationUserInfo:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transfercurrentcomplicationuserinfo(_:))
+    ///
+    /// - [`transferFile:metadata:`](https://developer.apple.com/documentation/watchconnectivity/wcsession/transferfile(_:metadata:))
+    ///
+    /// The background watch connectivity task informs you that your app is given background time. You must use your [`WCSessionDelegate`](https://developer.apple.com/documentation/watchconnectivity/wcsessiondelegate) methods to receive this data. Because of the asynchronous nature of these tasks, defer calling your tasks’s [`setTaskCompleted`](https://developer.apple.com/documentation/watchkit/wkrefreshbackgroundtask/settaskcompleted()) method until after you’ve activated your session and received all the pending data. Use the [`hasContentPending`](https://developer.apple.com/documentation/watchconnectivity/wcsession/hascontentpending) property to determine whether you still have any pending data.
+    ///
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKWatchConnectivityRefreshBackgroundTask;
@@ -256,7 +405,25 @@ impl WKWatchConnectivityRefreshBackgroundTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkrelevantshortcutrefreshbackgroundtask?language=objc)
+    /// A background task used to periodically donate relevant Siri shortcuts.
+    ///
+    /// ## Overview
+    ///
+    /// Relevant shortcut refresh tasks provide background execution time for your app to update its relevant shortcuts. This task lets your app provide up-to-date, glanceable data, without requiring the user to tap the shortcut or launch your app. Use this task to check if your data is updated. If it is, supply new relevant shortcuts as needed.
+    ///
+    /// Don’t subclass or create instances of this class. Instead, the system instantiates a [`WKRelevantShortcutRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkrelevantshortcutrefreshbackgroundtask) object and passes the task object to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The system automatically schedules relevant shortcut refresh tasks based on the user’s engagement with your app’s shortcuts. The more the user glances at or interacts with the shortcuts, the more often the system gives your app a relevant shortcut refresh task.
+    ///
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKRelevantShortcutRefreshBackgroundTask;
@@ -284,7 +451,23 @@ impl WKRelevantShortcutRefreshBackgroundTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkintentdidrunrefreshbackgroundtask?language=objc)
+    /// A background task used to update your app after a SiriKit intent runs.
+    ///
+    /// ## Overview
+    ///
+    /// Intent-based shortcuts can update your app’s state; however, the intent executes in a separate process from your WatchKit extension. To update the app, the system schedules this task whenever one of your intents finishes executing. Use this task to check for any updates to your app’s state, and to make sure its visible interfaces are current. For example, you can update all of your app’s snapshot, complications, and relevant shortcuts.
+    ///
+    /// Don’t subclass or create instances of this class. Instead, the system instantiates a [`WKIntentDidRunRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkintentdidrunrefreshbackgroundtask) object and passes the task object to your app delegate’s [`handleBackgroundTasks:`](https://developer.apple.com/documentation/watchkit/wkapplicationdelegate/handle(_:)-4vdjo) method.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKIntentDidRunRefreshBackgroundTask;
@@ -312,11 +495,32 @@ impl WKIntentDidRunRefreshBackgroundTask {
 }
 
 extern_class!(
+    /// A task for handling timely Bluetooth alerts in the background.
+    ///
+    /// ## Overview
+    ///
+    /// Your app can receive [`WKBluetoothAlertRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkbluetoothalertrefreshbackgroundtask) tasks to handle timely alerts in the background. Use these tasks to reconnect a peripheral and handle a critical alert. Apps that use timely alerts can also scan for a specific system identifier (UUID) while in the background. You can then perform the initial connection and pair the devices if necessary.
+    ///
+    /// To receive timely alerts, your peripheral must use Generic Attribute Profile (GATT) transactions. Call [`setNotifyValue:forCharacteristic:`](https://developer.apple.com/documentation/corebluetooth/cbperipheral/setnotifyvalue(_:for:)) to enable notifications for the specified characteristic. Then, any changes to the peripheral’s characteristic wakes your app using a [`WKBluetoothAlertRefreshBackgroundTask`](https://developer.apple.com/documentation/watchkit/wkbluetoothalertrefreshbackgroundtask) task. Use this task to reconnect to the peripheral and handle the critical alert.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In watchOS 9 and later, SwiftUI Background tasks are the preferred way to handle background tasks and interactions. For more information, [`backgroundTask(_:action:)`](https://developer.apple.com/documentation/swiftui/scene/backgroundtask(_:action:)).
+    ///
+    ///
+    ///
+    /// </div>
+    /// The critical alerts and background scans share a budget. Your app can only use five timely alerts or background scans within a rolling 24-hour window.
+    ///
+    /// When your app receives a timely alert and your budget has only one Bluetooth alert task remaining, the system raises a [`leGattNearBackgroundNotificationLimit`](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/legattnearbackgroundnotificationlimit) error. If you exceed the budget, it raises a [`leGattExceededBackgroundNotificationLimit`](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/legattexceededbackgroundnotificationlimit) error. The system passes these errors to your [`CBPeripheralDelegate`](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate), by calling methods like the [`peripheral:didUpdateValueForCharacteristic:error:`](https://developer.apple.com/documentation/corebluetooth/cbperipheraldelegate/peripheral(_:didupdatevaluefor:error:)-1xyna) method.
+    ///
+    /// If you exceed your budget, your app doesn’t receive any timely alerts until additional background budget becomes available. The user can reset this budget by launching your app.
+    ///
+    ///
     /// Updates from Bluetooth are available to the application.
     /// Register a CBCentralManagerDelegate to receive the updates,
     /// and then call this task's completion handler.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbluetoothalertrefreshbackgroundtask?language=objc)
     #[unsafe(super(WKRefreshBackgroundTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct WKBluetoothAlertRefreshBackgroundTask;

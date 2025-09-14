@@ -11,22 +11,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype?language=objc)
+/// A type for the authorization button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonType(pub NSInteger);
 impl ASAuthorizationAppleIDButtonType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/signin?language=objc)
+    /// A button type that performs authorization using Sign in with Apple.
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
     pub const SignIn: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/continue?language=objc)
+    /// A button type that continues the Sign in with Apple authorization process.
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeContinue")]
     pub const Continue: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/signup?language=objc)
+    /// A button type that allows the user to sign up for Sign in with Apple.
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignUp")]
     pub const SignUp: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype/default?language=objc)
+    /// A default button type for the Sign in with Apple authorization process.
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeDefault")]
     pub const Default: Self = Self(ASAuthorizationAppleIDButtonType::SignIn.0);
 }
@@ -39,19 +39,19 @@ unsafe impl RefEncode for ASAuthorizationAppleIDButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style?language=objc)
+/// A style for the authorization button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonStyle(pub NSInteger);
 impl ASAuthorizationAppleIDButtonStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/white?language=objc)
+    /// A white button.
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]
     pub const White: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/whiteoutline?language=objc)
+    /// A button with a white outline.
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhiteOutline")]
     pub const WhiteOutline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style/black?language=objc)
+    /// A black button.
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleBlack")]
     pub const Black: Self = Self(2);
 }

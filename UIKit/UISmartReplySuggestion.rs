@@ -9,9 +9,14 @@ use crate::*;
 extern_class!(
     /// A class you use to handle a Smart Reply suggestion.
     ///
-    /// Use the ``smartReply`` string as a signal of the user’s intention when you generate long form text based on the option the user selected.
+    /// ## Overview
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uismartreplysuggestion?language=objc)
+    /// Use the [`smartReply`](https://developer.apple.com/documentation/uikit/uismartreplysuggestion/smartreply) string as a signal of the user’s intention when you generate long form text based on the option the user selected.
+    ///
+    ///
+    /// A class you use to handle a Smart Reply suggestion.
+    ///
+    /// Use the ``smartReply`` string as a signal of the user’s intention when you generate long form text based on the option the user selected.
     #[unsafe(super(UIInputSuggestion, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIInputSuggestion")]

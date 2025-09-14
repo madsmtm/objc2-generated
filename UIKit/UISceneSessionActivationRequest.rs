@@ -8,7 +8,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesessionactivationrequest-c.class?language=objc)
+    /// A collection of properties that you use to request activation of a scene.
+    ///
+    /// ## Overview
+    ///
+    /// A `UISceneSessionActiviationRequest` object provides information about how to activate a scene session. Create a request to specify:
+    ///
+    /// - A user activity for the scene session.
+    ///
+    /// - An existing scene session.
+    ///
+    /// - A scene session with a specific role.
+    ///
+    /// You create and configure a `UISceneSessionActivationRequest` object in your code, then you pass it as a parameter when you call [`activateSceneSessionForRequest:errorHandler:`](https://developer.apple.com/documentation/uikit/uiapplication/activatescenesessionforrequest:errorhandler:) to ask the system to activate the scene session.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISceneSessionActivationRequest;

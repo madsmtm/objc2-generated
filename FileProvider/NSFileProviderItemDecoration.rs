@@ -5,11 +5,61 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemdecorationidentifier?language=objc)
+/// A decoration identifier defined in the File Provider extension’s information property list.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFileProviderItemDecorationIdentifier = NSString;
 
 extern_protocol!(
+    /// Support for decorating items.
+    ///
+    /// ## Overview
+    ///
+    /// To adopt this protocol, implement the [`decorations`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemdecorating/decorations) method for your extension’s [`NSFileProviderItem`](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem-swift.typealias) and return valid identifiers for the desired decorations.
+    ///
+    /// You define decorations in the File Provider extension’s `Info.plist` file by adding the `NSFileProviderDecorations` key to the `NSExtension` dictionary.
+    ///
+    /// ```swift
+    ///  <key>NSFileProviderDecorations</key>
+    ///  <array>
+    ///    <dict>
+    ///       <key>Identifier</key>
+    ///       <string>$(PRODUCT_BUNDLE_IDENTIFIER).hasComments</string>
+    ///       <key>BadgeImageType</key>
+    ///       <string>com.someone.item.decoration.unreadCommentIcon</string>
+    ///       <key>Category</key>
+    ///       <string>Badge</string>
+    ///       <key>LocalizedTitle</key>
+    ///       <dict>
+    ///          <key>NSStringFormat</key>
+    ///          <string>%@ unread comments</string>
+    ///          <key>NSStringFormatValues</key>
+    ///          <array>
+    ///             <string>item.userInfo.unreadCommentCount</string>
+    ///          </array>
+    ///       </dict>
+    ///    </dict>
+    ///  </array>
+    /// ```
+    ///
+    /// Use the following keys to define the decorations:
+    ///
+    /// - `Identifier`: The decoration’s identifier.
+    ///
+    /// - `BadgeImageType`: A UTI for the item’s badge. To define the badge, create a new UTI that conforms to `com.apple.icon-decoration.badge` and set its icon.
+    ///
+    /// - `Label`: A localizable title for the item. For example, the system displays a title in detail views and VoiceOver.
+    ///
+    /// - `Category`: A string that defines the location of the badge image.
+    ///
+    /// The `Category` value must be one of the following:
+    ///
+    /// - `Badge`: The system displays the badge image on top of the item’s icon. It only displays the first `Badge` image.
+    ///
+    /// - `Sharing`: The system displays the badge image below the icon. It only displays the first `Sharing` image.
+    ///
+    /// - `FolderBadge`: Only available on folder items. The system embosses the image over the folder icon. It only displays the first `FolderBadge` image.
+    ///
+    ///
     /// Decorations are defined in the extension's Info.plist by adding a
     /// NSFileProviderDecorations key with one or many entries to the NSExtension dictionary.
     ///
@@ -100,8 +150,6 @@ extern_protocol!(
     /// Badge        | On top of the icon. The decoration is an image, taken from the BadgeImageType key. Only the first badge is displayed.
     /// Sharing      | Adjacent to the icon. The decoration is a string, taken from the Label key. Only the first label is displayed.
     /// FolderBadge  | Embossed on top of the folder icon. The image from the BadgeImageType key will be embossed. Only the first badge is displayed. Only valid for folders.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemdecorating?language=objc)
     #[cfg(feature = "NSFileProviderItem")]
     pub unsafe trait NSFileProviderItemDecorating: NSFileProviderItemProtocol {
         /// Returns an array of decorations for the item.

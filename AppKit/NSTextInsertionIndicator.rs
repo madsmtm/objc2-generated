@@ -7,19 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum?language=objc)
+/// Constants that determine how to display the system text cursor in a custom text UI.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInsertionIndicatorDisplayMode(pub NSInteger);
 impl NSTextInsertionIndicatorDisplayMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/automatic?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
     pub const Automatic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/hidden?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeHidden")]
     pub const Hidden: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/visible?language=objc)
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeVisible")]
     pub const Visible: Self = Self(2);
 }
@@ -32,17 +29,23 @@ unsafe impl RefEncode for NSTextInsertionIndicatorDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct?language=objc)
+/// Options that affect the automatic display mode.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInsertionIndicatorAutomaticModeOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSTextInsertionIndicatorAutomaticModeOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct/showeffectsview?language=objc)
+/// Specifies whether a trailing glow displays during dictation.
         #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowEffectsView")]
         const ShowEffectsView = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.struct/showwhiletracking?language=objc)
+/// Specifies whether the insertion indicator shows during a tracking loop.
+///
+/// ## Discussion
+///
+/// When set, the insertion indicator hides during an [`NSEventTrackingRunLoopMode`](https://developer.apple.com/documentation/appkit/nseventtrackingrunloopmode) such as while actively scrolling a view.
+///
+///
         #[doc(alias = "NSTextInsertionIndicatorAutomaticModeOptionsShowWhileTracking")]
         const ShowWhileTracking = 1<<1;
     }
@@ -57,7 +60,23 @@ unsafe impl RefEncode for NSTextInsertionIndicatorAutomaticModeOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicator?language=objc)
+    /// A view that represents the insertion indicator in text.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview) and [`NSTextField`](https://developer.apple.com/documentation/appkit/nstextfield) both use [`NSTextInsertionIndicator`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator) to display the insertion indicator. You can use this indicator if you have your own text engine or need to display an indicator elsewhere.
+    ///
+    /// To use the indicator, instantiate an [`NSTextInsertionIndicator`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator), then add the view to your view hierarchy. Set the indicator view’s frame to where you want to display a text insertion indicator. The indicator has the same height as the indicator view’s frame, and centers horizontally within the indicator view’s frame.
+    ///
+    /// The [`NSTextInsertionIndicatorDisplayMode`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum) specifies whether the indicator hides, remains visible, or blinks (automatic).
+    ///
+    /// When set to [`NSTextInsertionIndicatorDisplayModeAutomatic`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/automatic), the indicator stops blinking when you set the frame. The indicator starts blinking when the frame doesn’t change for a period of time. When the user dictates, the indicator displays a trailing glow when it is moved.
+    ///
+    /// Set the [`NSTextInsertionIndicatorDisplayMode`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum) to [`NSTextInsertionIndicatorDisplayModeAutomatic`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/automatic) when your custom view becomes the first responder. When your custom view resigns first responder, set the [`displayMode`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.property) to [`NSTextInsertionIndicatorDisplayModeHidden`](https://developer.apple.com/documentation/appkit/nstextinsertionindicator/displaymode-swift.enum/hidden) to indicate that key events aren’t sent to your view.
+    ///
+    /// By default the indicator’s color is [`textInsertionPointColor`](https://developer.apple.com/documentation/appkit/nscolor/textinsertionpointcolor). You can set a different color.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]

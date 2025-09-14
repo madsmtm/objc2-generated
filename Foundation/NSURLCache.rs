@@ -6,6 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
+/// These constants specify the caching strategy used by an [`NSCachedURLResponse`](https://developer.apple.com/documentation/foundation/cachedurlresponse) object.
 /// The NSURLCacheStoragePolicy enum defines constants that
 /// can be used to specify the type of storage that is allowable for an
 /// NSCachedURLResponse object that is to be stored in an NSURLCache.
@@ -20,20 +21,30 @@ use crate::*;
 ///
 /// NSURLCache is not allowed in any fashion, either in memory or on
 /// disk.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/allowed?language=objc)
+    /// Storage in [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) is allowed without restriction.
+    ///
+    /// ## Discussion
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  iOS prior to version 5 ignores this cache policy, and instead treats it as [`NSURLCacheStorageAllowedInMemoryOnly`](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/allowedinmemoryonly).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[doc(alias = "NSURLCacheStorageAllowed")]
     pub const Allowed: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/allowedinmemoryonly?language=objc)
+    /// Storage in [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) is allowed; however storage should be restricted to memory only.
     #[doc(alias = "NSURLCacheStorageAllowedInMemoryOnly")]
     pub const AllowedInMemoryOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy/notallowed?language=objc)
+    /// Storage in [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) is not allowed in any fashion, either in memory or on disk.
     #[doc(alias = "NSURLCacheStorageNotAllowed")]
     pub const NotAllowed: Self = Self(2);
 }
@@ -47,12 +58,21 @@ unsafe impl RefEncode for NSURLCacheStoragePolicy {
 }
 
 extern_class!(
+    /// A cached response to a URL request.
+    ///
+    /// ## Overview
+    ///
+    /// A [`NSCachedURLResponse`](https://developer.apple.com/documentation/foundation/cachedurlresponse) object provides the server’s response metadata in the form of a [`NSURLResponse`](https://developer.apple.com/documentation/foundation/urlresponse) object, along with an [NSData](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/PropertyLists/OldStylePlists/OldStylePLists.html#//apple_ref/doc/uid/20001012-47169) object containing the actual cached content data. Its storage policy determines whether the response should be cached on disk, in memory, or not at all.
+    ///
+    /// Cached responses also contain a user info dictionary where you can store app-specific information about the cached item.
+    ///
+    /// The [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) class stores and retrieves instances of [`NSCachedURLResponse`](https://developer.apple.com/documentation/foundation/cachedurlresponse).
+    ///
+    ///
     /// NSCachedURLResponse is a class whose objects functions as a wrapper for
     /// objects that are stored in the framework's caching system.
     /// It is used to maintain characteristics and attributes of a cached
     /// object.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/cachedurlresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCachedURLResponse;
@@ -197,7 +217,41 @@ impl DefaultRetained for NSCachedURLResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache?language=objc)
+    /// An object that maps URL requests to cached response objects.
+    ///
+    /// ## Overview
+    ///
+    /// The [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) class implements the caching of responses to URL load requests, by mapping [`NSURLRequest`](https://developer.apple.com/documentation/foundation/nsurlrequest) objects to [`NSCachedURLResponse`](https://developer.apple.com/documentation/foundation/cachedurlresponse) objects. It provides a composite in-memory and on-disk cache, and lets you manipulate the sizes of both the in-memory and on-disk portions. You can also control the path where cache data is persistently stored.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In iOS, the on-disk cache may be purged when the system runs low on disk space, but only when your app is not running.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Thread safety
+    ///
+    /// In iOS 8 and later, and macOS 10.10 and later, [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) is thread safe.
+    ///
+    /// Although [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) instance methods can safely be called from multiple execution contexts at the same time, be aware that methods like  [`cachedResponseForRequest:`](https://developer.apple.com/documentation/foundation/urlcache/cachedresponse(for:)) and [`storeCachedResponse:forRequest:`](https://developer.apple.com/documentation/foundation/urlcache/storecachedresponse(_:for:)-7p7bl) have an unavoidable race condition when attempting to read or write responses for the same request.
+    ///
+    /// Subclasses of [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) must implement overridden methods in such a thread-safe manner.
+    ///
+    /// ### Subclassing notes
+    ///
+    /// The [`NSURLCache`](https://developer.apple.com/documentation/foundation/urlcache) class is meant to be used as-is, but you can subclass it when you have specific needs. For example, you might want to screen which responses are cached, or reimplement the storage mechanism for security or other reasons.
+    ///
+    /// When overriding methods of this class, be aware that methods that take a `task` parameter are preferred by the system to those that do not. Therefore, you should override the task-based methods when subclassing, as follows:
+    ///
+    /// - Storing responses in the cache — Override the task-based [`storeCachedResponse:forDataTask:`](https://developer.apple.com/documentation/foundation/urlcache/storecachedresponse(_:for:)-8uq91), instead of or in addition to the request-based [`storeCachedResponse:forRequest:`](https://developer.apple.com/documentation/foundation/urlcache/storecachedresponse(_:for:)-7p7bl).
+    ///
+    /// - Getting responses from the cache — Override [`getCachedResponseForDataTask:completionHandler:`](https://developer.apple.com/documentation/foundation/urlcache/getcachedresponse(for:completionhandler:)), instead of or in addition to [`cachedResponseForRequest:`](https://developer.apple.com/documentation/foundation/urlcache/cachedresponse(for:)).
+    ///
+    /// - Removing cached responses — Override the task-based [`removeCachedResponseForDataTask:`](https://developer.apple.com/documentation/foundation/urlcache/removecachedresponse(for:)-1zwp6), instead of or in addition to the request-based [`removeCachedResponseForRequest:`](https://developer.apple.com/documentation/foundation/urlcache/removecachedresponse(for:)-1dh89).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCache;

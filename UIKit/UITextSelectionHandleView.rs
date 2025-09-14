@@ -8,12 +8,19 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface you use to draw custom the selection handles for ranges of text.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`UITextSelectionHandleView`](https://developer.apple.com/documentation/uikit/uitextselectionhandleview) protocol in a custom view you use to draw text-selection handles in one of your text views. Use your custom view in conjunction with a [`UITextSelectionDisplayInteraction`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction) object to apply your custom selection UI to one of your text views. This protocol provides the preferred frame for the selection handle, and you provide details about the handle back to the system. Use [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) objects or your view’s [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method to draw the handles.
+    ///
+    /// After adopting this protocol in your custom view, create exactly two instances and assign them to the [`handleViews`](https://developer.apple.com/documentation/uikit/uitextselectiondisplayinteraction/handleviews) property of the interaction object you attached to your text view. Configure one instance as the leading selection handle, and configure the other instance as the trailing selection handle.
+    ///
+    ///
     /// A view that represents a selection handle drawn at the edges of contiguous selection ranges.
     ///
     /// When a selection is ranged (i.e., length is > 0), and the device supports range adjustment via a gesture,
     /// selection handles ("lollipops") are displayed at the edges of the contiguous selection (usually a UITextSelectionHighlightView).
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextselectionhandleview?language=objc)
     #[cfg(feature = "UIView")]
     pub unsafe trait UITextSelectionHandleView: UICoordinateSpace + MainThreadOnly {
         #[cfg(feature = "UIGeometry")]

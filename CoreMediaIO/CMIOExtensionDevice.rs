@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A CMIOExtensionDeviceProperties describes a CoreMediaIO extension device properties.
+    /// An object that defines the properties of a device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensiondeviceproperties?language=objc)
+    /// ## Overview
+    ///
+    /// Create an instance of this object to manage the device’s property state.
+    ///
+    ///
+    /// A CMIOExtensionDeviceProperties describes a CoreMediaIO extension device properties.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionDeviceProperties;
@@ -164,7 +169,13 @@ impl CMIOExtensionDeviceProperties {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensiondevicesource?language=objc)
+    /// A protocol for objects that act as device sources.
+    ///
+    /// ## Overview
+    ///
+    /// Create a class that adopts this protocol to configure device properties.
+    ///
+    ///
     pub unsafe trait CMIOExtensionDeviceSource: NSObjectProtocol {
         #[cfg(feature = "CMIOExtensionProperties")]
         /// The set of available properties.
@@ -209,9 +220,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A CMIOExtensionDevice describes a device.
+    /// An object that represents a physical or virtual device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensiondevice?language=objc)
+    /// ## Overview
+    ///
+    /// A device provides one or more streams of media data to a [`CMIOExtensionProvider`](https://developer.apple.com/documentation/coremediaio/cmioextensionprovider).
+    ///
+    ///
+    /// A CMIOExtensionDevice describes a device.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionDevice;

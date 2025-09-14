@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Holds data that maps to a Widget specified by a `StaticConfiguration` in a specific extension.
+    /// A configuration object that specifies a static complication in WidgetKit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationstaticwidgetmigrationconfiguration?language=objc)
+    /// ## Overview
+    ///
+    /// You can use static complications if your app doesn’t dynamically customize the list of complications available in the complication picker. For example, if your complications display the current temperature and chance of precipitation at the user’s current location, you can use a set of static widgets to define these complications.
+    ///
+    /// For more information, see [Migrating ClockKit complications to WidgetKit](https://developer.apple.com/documentation/widgetkit/converting-a-clockkit-app).
+    ///
+    ///
+    /// Holds data that maps to a Widget specified by a `StaticConfiguration` in a specific extension.
     #[unsafe(super(CLKComplicationWidgetMigrationConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CLKComplicationWidgetMigrationConfiguration")]

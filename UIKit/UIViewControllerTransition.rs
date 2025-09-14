@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition?language=objc)
+    /// An object that defines the transition animation when switching to a new view controller.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewControllerTransition;
@@ -106,7 +106,7 @@ impl UIViewControllerTransition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition/zoomsourceviewprovidercontext?language=objc)
+    /// A context object that contains references to the view controllers from a zoom transition.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionSourceViewProviderContext;

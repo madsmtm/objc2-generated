@@ -6,133 +6,131 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A string that identifies the EventKit error domain.
     /// Error domain for NSError values stemming from the EventKit Framework API.
     ///
     /// This error domain is used as the domain for all NSError instances stemming from the
     /// EventKit Framework.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerrordomain?language=objc)
     pub static EKErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code?language=objc)
+/// Error codes for EventKit errors.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKErrorCode(pub NSInteger);
 impl EKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/eventnotmutable?language=objc)
+    /// The event isn’t mutable and you can’t save or delete it.
     #[doc(alias = "EKErrorEventNotMutable")]
     pub const EventNotMutable: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/nocalendar?language=objc)
+    /// The event isn’t associated with a calendar.
     #[doc(alias = "EKErrorNoCalendar")]
     pub const NoCalendar: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/nostartdate?language=objc)
+    /// The event has no start date set.
     #[doc(alias = "EKErrorNoStartDate")]
     pub const NoStartDate: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/noenddate?language=objc)
+    /// The event has no end date set.
     #[doc(alias = "EKErrorNoEndDate")]
     pub const NoEndDate: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/datesinverted?language=objc)
+    /// The event’s end date occurs before its start date.
     #[doc(alias = "EKErrorDatesInverted")]
     pub const DatesInverted: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/internalfailure?language=objc)
+    /// An internal error occurred.
     #[doc(alias = "EKErrorInternalFailure")]
     pub const InternalFailure: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendarreadonly?language=objc)
+    /// The calendar is read-only and you can’t add events to it.
     #[doc(alias = "EKErrorCalendarReadOnly")]
     pub const CalendarReadOnly: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/durationgreaterthanrecurrence?language=objc)
+    /// The duration of an event is greater than its recurrence interval.
     #[doc(alias = "EKErrorDurationGreaterThanRecurrence")]
     pub const DurationGreaterThanRecurrence: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/alarmgreaterthanrecurrence?language=objc)
+    /// The alarm interval is greater than the recurrence interval.
     #[doc(alias = "EKErrorAlarmGreaterThanRecurrence")]
     pub const AlarmGreaterThanRecurrence: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/startdatetoofarinfuture?language=objc)
+    /// The start date is further into the future than the calendar can display.
     #[doc(alias = "EKErrorStartDateTooFarInFuture")]
     pub const StartDateTooFarInFuture: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/startdatecollideswithotheroccurrence?language=objc)
+    /// The event’s start date collides with another occurrence of the event.
     #[doc(alias = "EKErrorStartDateCollidesWithOtherOccurrence")]
     pub const StartDateCollidesWithOtherOccurrence: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/objectbelongstodifferentstore?language=objc)
+    /// The object belongs to a different calendar store.
     #[doc(alias = "EKErrorObjectBelongsToDifferentStore")]
     pub const ObjectBelongsToDifferentStore: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/invitescannotbemoved?language=objc)
+    /// You can’t move the event because it’s an invitation.
     #[doc(alias = "EKErrorInvitesCannotBeMoved")]
     pub const InvitesCannotBeMoved: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/invalidspan?language=objc)
+    /// The system encountered an invalid span during a save or deletion.
     #[doc(alias = "EKErrorInvalidSpan")]
     pub const InvalidSpan: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendarhasnosource?language=objc)
+    /// You can’t save the calendar without setting a source first.
     #[doc(alias = "EKErrorCalendarHasNoSource")]
     pub const CalendarHasNoSource: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendarsourcecannotbemodified?language=objc)
+    /// You can’t move the calendar to another source.
     #[doc(alias = "EKErrorCalendarSourceCannotBeModified")]
     pub const CalendarSourceCannotBeModified: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendarisimmutable?language=objc)
+    /// The calendar is immutable and you can’t modify or delete it.
     #[doc(alias = "EKErrorCalendarIsImmutable")]
     pub const CalendarIsImmutable: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/sourcedoesnotallowcalendaradddelete?language=objc)
+    /// The source doesn’t allow you to add or delete calendars.
     #[doc(alias = "EKErrorSourceDoesNotAllowCalendarAddDelete")]
     pub const SourceDoesNotAllowCalendarAddDelete: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/recurringreminderrequiresduedate?language=objc)
+    /// The recurring reminder requires a due date.
     #[doc(alias = "EKErrorRecurringReminderRequiresDueDate")]
     pub const RecurringReminderRequiresDueDate: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/structuredlocationsnotsupported?language=objc)
+    /// The source to which this calendar belongs doesn’t support structured locations.
     #[doc(alias = "EKErrorStructuredLocationsNotSupported")]
     pub const StructuredLocationsNotSupported: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/reminderlocationsnotsupported?language=objc)
+    /// The source doesn’t support locations on reminders.
     #[doc(alias = "EKErrorReminderLocationsNotSupported")]
     pub const ReminderLocationsNotSupported: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/alarmproximitynotsupported?language=objc)
+    /// The source doesn’t allow geofences on alarms.
     #[doc(alias = "EKErrorAlarmProximityNotSupported")]
     pub const AlarmProximityNotSupported: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendardoesnotallowevents?language=objc)
+    /// The calendar doesn’t allow you to add events.
     #[doc(alias = "EKErrorCalendarDoesNotAllowEvents")]
     pub const CalendarDoesNotAllowEvents: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/calendardoesnotallowreminders?language=objc)
+    /// The calendar doesn’t allow you to add reminders.
     #[doc(alias = "EKErrorCalendarDoesNotAllowReminders")]
     pub const CalendarDoesNotAllowReminders: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/sourcedoesnotallowreminders?language=objc)
+    /// The source doesn’t allow calendars supporting reminder entity types.
     #[doc(alias = "EKErrorSourceDoesNotAllowReminders")]
     pub const SourceDoesNotAllowReminders: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/sourcedoesnotallowevents?language=objc)
+    /// The source doesn’t allow calendars supporting event entity types.
     #[doc(alias = "EKErrorSourceDoesNotAllowEvents")]
     pub const SourceDoesNotAllowEvents: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/priorityisinvalid?language=objc)
+    /// The priority number for the reminder is invalid.
     #[doc(alias = "EKErrorPriorityIsInvalid")]
     pub const PriorityIsInvalid: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/invalidentitytype?language=objc)
+    /// The entity type is invalid.
     #[doc(alias = "EKErrorInvalidEntityType")]
     pub const InvalidEntityType: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/procedurealarmsnotmutable?language=objc)
+    /// You can’t create or modify procedure alarms.
     #[doc(alias = "EKErrorProcedureAlarmsNotMutable")]
     pub const ProcedureAlarmsNotMutable: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/eventstorenotauthorized?language=objc)
+    /// The user hasn’t authorized your app to access events or reminders.
     #[doc(alias = "EKErrorEventStoreNotAuthorized")]
     pub const EventStoreNotAuthorized: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/osnotsupported?language=objc)
+    /// The action isn’t supported on the current operating system.
     #[doc(alias = "EKErrorOSNotSupported")]
     pub const OSNotSupported: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/invalidinvitereplycalendar?language=objc)
+    /// The calendar is invalid or nil.
     #[doc(alias = "EKErrorInvalidInviteReplyCalendar")]
     pub const InvalidInviteReplyCalendar: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/notificationscollectionflagnotset?language=objc)
+    /// The notification collection doesn’t have the notifications collection flag.
     #[doc(alias = "EKErrorNotificationsCollectionFlagNotSet")]
     pub const NotificationsCollectionFlagNotSet: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/sourcemismatch?language=objc)
+    /// The object’s source doesn’t match its container’s source.
     #[doc(alias = "EKErrorSourceMismatch")]
     pub const SourceMismatch: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/notificationcollectionmismatch?language=objc)
+    /// The notification collection that contains this notification doesn’t match the collection the system is trying to save.
     #[doc(alias = "EKErrorNotificationCollectionMismatch")]
     pub const NotificationCollectionMismatch: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/notificationsavedwithoutcollection?language=objc)
+    /// The notification can’t save because you haven’t added it to a notification collection and saved the collection first.
     #[doc(alias = "EKErrorNotificationSavedWithoutCollection")]
     pub const NotificationSavedWithoutCollection: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/reminderalarmcontainsemailorurl?language=objc)
     #[doc(alias = "EKErrorReminderAlarmContainsEmailOrUrl")]
     pub const ReminderAlarmContainsEmailOrUrl: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekerror/code/last?language=objc)
+    /// This error is for internal use.
     #[doc(alias = "EKErrorLast")]
     pub const Last: Self = Self(37);
 }

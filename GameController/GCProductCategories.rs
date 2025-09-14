@@ -5,99 +5,114 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// The DualSense product category.
     /// Game Controller Product Categories
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualsense?language=objc)
     pub static GCProductCategoryDualSense: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorydualshock4?language=objc)
+    /// The DualShock 4 product category.
     pub static GCProductCategoryDualShock4: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymfi?language=objc)
+    /// The MFi product category.
     pub static GCProductCategoryMFi: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryxboxone?language=objc)
+    /// The Xbox product category.
     pub static GCProductCategoryXboxOne: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryhid?language=objc)
+    /// The category for products that support the human interface device (HID) protocol.
     pub static GCProductCategoryHID: Option<&'static NSString>;
 }
 
 extern "C" {
     /// The category for game controller products that support 6DoF tracking on visionOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryspatialcontroller?language=objc)
+    /// The category for game controller products that support 6DoF tracking on visionOS.
     pub static GCProductCategorySpatialController: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryarcadestick?language=objc)
+    /// The arcade stick product category.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this product category to determine whether a [`GCController`](https://developer.apple.com/documentation/gamecontroller/gccontroller) object is an arcade stick.
+    ///
+    ///
     pub static GCProductCategoryArcadeStick: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// The Siri Remote (1st generation), or Apple TV Remote (1st generation), was first introduced in 2015. It features a Touch surface for touch navigation, and supports device motion.
+    /// The first-generation Siri Remote or first-generation Apple TV Remote product category.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote1stgen?language=objc)
+    /// ## Discussion
+    ///
+    /// Remotes in this category feature motion and a touch surface for navigation.
+    ///
+    ///
+    /// The Siri Remote (1st generation), or Apple TV Remote (1st generation), was first introduced in 2015. It features a Touch surface for touch navigation, and supports device motion.
     pub static GCProductCategorySiriRemote1stGen: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// The Siri Remote (2nd generation), or Apple TV Remote (2nd generation), was first introduced in 2021. It features a touch-enabled clickpad for navigation.
+    /// The second-generation Siri Remote or second-generation Apple TV Remote product category.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorysiriremote2ndgen?language=objc)
+    /// ## Discussion
+    ///
+    /// Remotes in this category feature a touch-enabled clickpad for navigation.
+    ///
+    ///
+    /// The Siri Remote (2nd generation), or Apple TV Remote (2nd generation), was first introduced in 2021. It features a touch-enabled clickpad for navigation.
     pub static GCProductCategorySiriRemote2ndGen: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The virtual remote in the Control Center on iOS and tvOS devices for controlling the Apple TV.
     /// Users can use Apple TV Remote controls in Control Center on an iOS or iPadOS device.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycontrolcenterremote?language=objc)
     pub static GCProductCategoryControlCenterRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The product category for a Universal Electronics remote that works with Apple TV.
     /// The Universal Electronics remote is an infrared and Bluetooth Low Energy remote designed to work with the Apple TV.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryuniversalelectronicsremote?language=objc)
     pub static GCProductCategoryUniversalElectronicsRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The Apple TV Remote product category for physical and virtual remotes that Game Center combines into a single device.
+    ///
+    /// ## Discussion
+    ///
+    /// Game Controller merges the physical Apple TV Remote with the virtual Apple TV Remote app into one [`GCDevice`](https://developer.apple.com/documentation/gamecontroller/gcdevice) object by default. To disable this behavior, or if you fully support the second-generation Siri Remote, set the [`GCSupportsMultipleMicroGamepads`](https://developer.apple.com/documentation/bundleresources/information-property-list/gcsupportsmultiplemicrogamepads) key to `YES` in the information property list.
+    ///
+    ///
     /// If multiple remotes have been combined into one, the device will have the GCProductCategoryCoalescedRemote product category.
     ///
     ///
     /// By default, the Game Controller framework will try to coalesce, or combine, the physical Apple TV Remote and the
     /// virtual Control Center remote and treat them as a single GCDevice instance. By setting GCSupportsMultipleMicroGamepads in your
     /// app's plist to true, you can disable this behavior.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorycoalescedremote?language=objc)
     pub static GCProductCategoryCoalescedRemote: Option<&'static NSString>;
 }
 
 extern "C" {
+    /// The mouse product category.
     /// Keyboards and Mice Product Categories
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorymouse?language=objc)
     pub static GCProductCategoryMouse: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategorykeyboard?language=objc)
+    /// The keyboard product category.
     pub static GCProductCategoryKeyboard: Option<&'static NSString>;
 }
 
 extern "C" {
     /// The category for stylus products that support 6DoF tracking on visionOS.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcproductcategoryspatialstylus?language=objc)
+    /// The category for stylus products that support 6DoF tracking on visionOS.
     pub static GCProductCategorySpatialStylus: Option<&'static NSString>;
 }

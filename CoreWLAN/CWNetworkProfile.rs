@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// Encapsulates an immutable network profile entry.
     /// Encapsulates a preferred network entry.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwnetworkprofile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWNetworkProfile;
@@ -139,13 +138,18 @@ impl CWNetworkProfile {
 }
 
 extern_class!(
+    /// Encapsulates a mutable network profile entry.
+    ///
+    /// ## Overview
+    ///
+    /// Use this class to change profile properties. To commit Wi-Fi network profile changes, use [`networkProfiles`](https://developer.apple.com/documentation/corewlan/cwmutableconfiguration/networkprofiles) and [`commitConfiguration:authorization:error:`](https://developer.apple.com/documentation/corewlan/cwinterface/commitconfiguration(_:authorization:)).
+    ///
+    ///
     /// Mutable subclass of CWNetworkProfile.  Use this class for changing profile properties.
     ///
     ///
     /// To commit Wi-Fi network profile changes, use -[CWMutableConfiguration setNetworkProfiles:] and
     /// -[CWInterface commitConfiguration:authorization:error:].
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwmutablenetworkprofile?language=objc)
     #[unsafe(super(CWNetworkProfile, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CWMutableNetworkProfile;

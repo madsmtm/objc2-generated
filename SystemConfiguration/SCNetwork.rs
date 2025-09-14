@@ -6,24 +6,74 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagstransientconnection?language=objc)
+/// The specified node name or address can be reached via a transient connection, such as PPP.
 pub const kSCNetworkFlagsTransientConnection: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsreachable?language=objc)
+/// The specified node name or address can be reached using the current network configuration.
 pub const kSCNetworkFlagsReachable: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionrequired?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established.
+///
+/// ## Discussion
+///
+/// For example, this status would be returned for a dialup connection that was not currently active, but could handle network traffic for the target system.
+///
+///
 pub const kSCNetworkFlagsConnectionRequired: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsconnectionautomatic?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established.
+///
+/// ## Discussion
+///
+/// Any traffic directed to the specified name or address will initiate the connection.
+///
+///
 pub const kSCNetworkFlagsConnectionAutomatic: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsinterventionrequired?language=objc)
+/// The specified node name or address can be reached using the current network configuration, but a connection must first be established.
+///
+/// ## Discussion
+///
+/// In addition, some form of user intervention will be required to establish this connection, such as providing a password, an authentication token, etc.
+///
+/// Currently, this flag is returned when there is a dial-on-traffic configuration (`ConnectionAutomatic`), an attempt to connect has already been made, and when some error (for example, no dial tone, no answer, bad password, etc.) was encountered during the automatic connection attempt. In this case the PPP controller stops attempting to establish a connection until the user has intervened.
+///
+///
 pub const kSCNetworkFlagsInterventionRequired: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsislocaladdress?language=objc)
+/// The specified node name or address is one associated with a network interface on the current system.
 pub const kSCNetworkFlagsIsLocalAddress: c_uint = 1 << 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/kscnetworkflagsisdirect?language=objc)
+/// Network traffic to the specified node name or address does not go through a gateway, but is routed directly to one of the interfaces in the system.
 pub const kSCNetworkFlagsIsDirect: c_uint = 1 << 17;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionflags?language=objc)
+/// Flags that indicate whether the specified network node name or address is reachable, whether a connection is required, and whether some user intervention may be required when establishing a connection.
 pub type SCNetworkConnectionFlags = u32;
 
+/// Determines whether the specified network address is reachable using the current network configuration.
+///
+/// Parameters:
+/// - address: The network address of the desired host.
+///
+/// - addrlen: The length, in bytes, of the address.
+///
+/// - flags: A pointer to memory that, on output, will be filled with a set of [`SCNetworkConnectionFlags`](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionflags) values detailing the reachability of the specified address
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the network connection flags are valid; `FALSE` if the status could not be determined.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is deprecated, but you can get equivalent results using the following code:
+///
+/// ```objc
+/// SCNetworkReachabilityRef target;
+/// SCNetworkConnectionFlags flags = 0;
+/// Boolean ok;
+/// target = SCNetworkReachabilityCreateWithAddress(NULL, address);
+/// ok = SCNetworkReachabilityGetFlags(target, &flags);
+/// CFRelease(target);
+/// ```
+///
+///
 /// Determines if the given network address is
 /// reachable using the current network configuration.
 ///
@@ -56,8 +106,6 @@ pub type SCNetworkConnectionFlags = u32;
 ///
 /// - `address` must be a valid pointer.
 /// - `flags` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkcheckreachabilitybyaddress?language=objc)
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -77,6 +125,34 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
     ret != 0
 }
 
+/// Determines whether the specified network host or node name is reachable using the current network configuration.
+///
+/// Parameters:
+/// - nodename: The node name of the desired host. This is the same name that would be passed to the gethostbyname(3) or getaddrinfo(3) functions.
+///
+/// - flags: A pointer to memory that, on output, will be filled with a set of [`SCNetworkConnectionFlags`](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionflags) values detailing the reachability of the specified address
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the network connection flags are valid; `FALSE` if the status could not be determined.
+///
+///
+///
+/// ## Discussion
+///
+/// This function is deprecated, but you can get equivalent results using the following code:
+///
+/// ```objc
+/// SCNetworkReachabilityRef target;
+/// SCNetworkConnectionFlags flags = 0;
+/// Boolean ok;
+/// target = SCNetworkReachabilityCreateWithName(NULL, name);
+/// ok = SCNetworkReachabilityGetFlags(target, &flags);
+/// CFRelease(target);
+/// ```
+///
+///
 /// Determines if the given network host or node name is
 /// reachable using the current network configuration.
 ///
@@ -109,8 +185,6 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
 ///
 /// - `nodename` must be a valid pointer.
 /// - `flags` must be a valid pointer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkcheckreachabilitybyname?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
@@ -127,6 +201,23 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
     ret != 0
 }
 
+/// Sends a notification to interested configuration agents to have them immediately retry their configuration over a particular network interface.
+///
+/// Parameters:
+/// - ifName: The BSD name of the network interface, such as `CFSTR("en0")`.
+///
+///
+/// ## Return Value
+///
+/// `TRUE` if the notification was sent; otherwise, `FALSE`.
+///
+///
+///
+/// ## Discussion
+///
+/// This function must be invoked by root (in other words, the user with uid equal to `0`).
+///
+///
 /// Sends a notification to interested configuration agents
 /// to have them immediately retry their configuration over a
 /// particular network interface.
@@ -137,8 +228,6 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
 /// CFSTR("en0").
 ///
 /// Returns: Returns TRUE if the notification was sent; FALSE otherwise.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkinterfacerefreshconfiguration?language=objc)
 #[deprecated = "No longer supported"]
 #[inline]
 pub extern "C-unwind" fn SCNetworkInterfaceRefreshConfiguration(if_name: &CFString) -> bool {

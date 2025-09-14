@@ -7,20 +7,30 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout?language=objc)
+/// The layout that an information template uses to arrange its items.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPInformationTemplateLayout(pub NSInteger);
 impl CPInformationTemplateLayout {
-    /// A layout that will align all items on the leading edge of the template.
+    /// A layout that displays a template’s items aligned to its leading edge.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout/leading?language=objc)
+    /// ## Discussion
+    ///
+    /// You use this layout when you want to align an item’s title and detail text on the template’s leading edge. In this configuration, the template displays an item’s detail text below its title.
+    ///
+    ///
+    /// A layout that will align all items on the leading edge of the template.
     #[doc(alias = "CPInformationTemplateLayoutLeading")]
     pub const Leading: Self = Self(0);
-    /// A layout that will split each item into two columns.
+    /// A layout that displays a template’s items in two columns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout/twocolumn?language=objc)
+    /// ## Discussion
+    ///
+    /// You use this layout when you want the template to display an item’s detail text beside its title. The template aligns text in the left column to its leading edge, and text in the right column to its trailing edge.
+    ///
+    ///
+    /// A layout that will split each item into two columns.
     #[doc(alias = "CPInformationTemplateLayoutTwoColumn")]
     pub const TwoColumn: Self = Self(1);
 }
@@ -34,7 +44,27 @@ unsafe impl RefEncode for CPInformationTemplateLayout {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpinformationtemplate?language=objc)
+    /// A template that provides information for a point of interest, food order, parking location, or charging location.
+    ///
+    /// ## Overview
+    ///
+    /// An information template displays a list of items, and up to three actions the user can perform.
+    ///
+    /// You use an information template to display informative, actionable content to the user. For example, you might display a summary of the user’s food order, and provide actions to place or cancel the order.
+    ///
+    /// When creating an information template, you populate the list with an array of [`CPInformationItem`](https://developer.apple.com/documentation/carplay/cpinformationitem) objects, and provide any contextual actions as an array of [`CPTextButton`](https://developer.apple.com/documentation/carplay/cptextbutton) objects. The template then arranges the list’s items using your choice of layout — see [`CPInformationTemplateLayout`](https://developer.apple.com/documentation/carplay/cpinformationtemplatelayout) for more information.
+    ///
+    /// To display an information template, call your interface controller’s [`pushTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/pushtemplate(_:animated:completion:)) method to push it onto the navigation hierarchy, or [`presentTemplate:animated:completion:`](https://developer.apple.com/documentation/carplay/cpinterfacecontroller/presenttemplate(_:animated:completion:)) to present it modally.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can’t use `CPInformationTemplate` in apps with the audio entitlement.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(CPTemplate, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

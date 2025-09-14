@@ -10,7 +10,13 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemstateappearance?language=objc)
+    /// A data object containing the specific customizations for tab bar items in a particular state.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UITabBarItemStateAppearance`](https://developer.apple.com/documentation/uikit/uitabbaritemstateappearance) object to customize the appearance of your tab bar items and the badges they display. Don’t create [`UITabBarItemStateAppearance`](https://developer.apple.com/documentation/uikit/uitabbaritemstateappearance) objects yourself. Instead, create a [`UITabBarItemAppearance`](https://developer.apple.com/documentation/uikit/uitabbaritemappearance) object and use its properties to fetch the appearance attributes for tab bar items in a particular state. For example, to set the attributes for items in the normal state, configure the object in the [`normal`](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/normal) property.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -139,19 +145,25 @@ impl UITabBarItemStateAppearance {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style?language=objc)
+/// Constants indicating the layout of a tab bar item’s content.
+///
+/// ## Overview
+///
+/// A tab bar adjusts the layout of each item’s icon and title string based on the current trait environment and other factors.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarItemAppearanceStyle(pub NSInteger);
 impl UITabBarItemAppearanceStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/stacked?language=objc)
+    /// A vertically stacked icon and title.
     #[doc(alias = "UITabBarItemAppearanceStyleStacked")]
     pub const Stacked: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/inline?language=objc)
+    /// A side-by-side layout of the icon and title, suitable for use in regular-width environments.
     #[doc(alias = "UITabBarItemAppearanceStyleInline")]
     pub const Inline: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/style/compactinline?language=objc)
+    /// A side-by-side layout of the icon and title, suitable for use in compact-width environments.
     #[doc(alias = "UITabBarItemAppearanceStyleCompactInline")]
     pub const CompactInline: Self = Self(2);
 }
@@ -165,7 +177,13 @@ unsafe impl RefEncode for UITabBarItemAppearanceStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbaritemappearance?language=objc)
+    /// An object for customizing the appearance of tab bar items.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`UITabBarItemAppearance`](https://developer.apple.com/documentation/uikit/uitabbaritemappearance) object to customize the appearance of a tab bar item in each of its possible states. You can customize the appearance differently for each state. For example, you might apply different colors to the tab bar item’s icon in the [`normal`](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/normal) and [`selected`](https://developer.apple.com/documentation/uikit/uitabbaritemappearance/selected) states.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -255,7 +273,13 @@ impl UITabBarItemAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarappearance?language=objc)
+    /// An object for customizing the appearance of a tab bar.
+    ///
+    /// ## Overview
+    ///
+    /// After creating a [`UITabBarAppearance`](https://developer.apple.com/documentation/uikit/uitabbarappearance) object, use the methods and properties of this class to specify the appearance of items in the tab bar. Use the inherited properties from [`UIBarAppearance`](https://developer.apple.com/documentation/uikit/uibarappearance) to configure the background and shadow attributes of the tab bar itself.
+    ///
+    ///
     #[unsafe(super(UIBarAppearance, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

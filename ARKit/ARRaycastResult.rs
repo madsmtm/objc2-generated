@@ -8,9 +8,22 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// Result of a raycast on a single target.
+    /// Information about a real-world surface found by examining a point on the screen.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastresult?language=objc)
+    /// ## Overview
+    ///
+    /// If you use [`ARView`](https://developer.apple.com/documentation/realitykit/arview) or [`ARSCNView`](https://developer.apple.com/documentation/arkit/arscnview) as your renderer, you can search for real-world surfaces at a screen point using the [`raycast(from:allowing:alignment:)`](https://developer.apple.com/documentation/realitykit/arview/raycast(from:allowing:alignment:)), and [`raycastQueryFromPoint:allowingTarget:alignment:`](https://developer.apple.com/documentation/arkit/arscnview/raycastquery(from:allowing:alignment:)) functions, respectively.
+    ///
+    /// If you use a custom renderer, you can find real-world positions using screen points with:
+    ///
+    /// - The [`raycastQueryFromPoint:allowingTarget:alignment:`](https://developer.apple.com/documentation/arkit/arframe/raycastquery(from:allowing:alignment:)) function of [`ARFrame`](https://developer.apple.com/documentation/arkit/arframe).
+    ///
+    /// - The [`raycast:`](https://developer.apple.com/documentation/arkit/arsession/raycast(_:)) function of [`ARSession`](https://developer.apple.com/documentation/arkit/arsession).
+    ///
+    /// For tracked raycasting, you call [`trackedRaycast:updateHandler:`](https://developer.apple.com/documentation/arkit/arsession/trackedraycast(_:updatehandler:)) on your app’s current [`ARSession`](https://developer.apple.com/documentation/arkit/arsession).
+    ///
+    ///
+    /// Result of a raycast on a single target.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

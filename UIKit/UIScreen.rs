@@ -13,53 +13,101 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/didconnectnotification?language=objc)
+    /// A notification the system posts when a new screen connects to the device.
+    ///
+    /// ## Discussion
+    ///
+    /// Connection notifications aren’t sent for screens that are already present when the app launches. The app can instead use the [`screens`](https://developer.apple.com/documentation/uikit/uiscreen/screens) method to get the current set of screens at launch time.
+    ///
+    /// The object of the notification is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object representing the new screen. There’s no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens"]
     pub static UIScreenDidConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/diddisconnectnotification?language=objc)
+    /// A notification the system posts when a screen disconnects from the device.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object that represented the now-disconnected screen. There’s no `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens"]
     pub static UIScreenDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/modedidchangenotification?language=objc)
+    /// A notification that posts when a screen’s mode changes.
+    ///
+    /// ## Discussion
+    ///
+    /// Clients can use this notification to detect changes in the screen resolution.
+    ///
+    /// The object of the notification is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object whose [`currentMode`](https://developer.apple.com/documentation/uikit/uiscreen/currentmode) property changed. There is no `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static UIScreenModeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/brightnessdidchangenotification?language=objc)
+    /// A notification that posts when a screen’s brightness changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The object of the notification is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object whose [`brightness`](https://developer.apple.com/documentation/uikit/uiscreen/brightness) property changed. There is no `userInfo` dictionary.
+    ///
+    ///
     pub static UIScreenBrightnessDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/captureddidchangenotification?language=objc)
+    /// A notification that posts when the capture status of a screen changes.
+    ///
+    /// ## Discussion
+    ///
+    /// The contents of a screen can be recorded, mirrored, sent over AirPlay, or otherwise cloned to another destination. UIKit sends this notification when the capture status of the screen changes.
+    ///
+    /// The object of the notification is the [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object whose [`captured`](https://developer.apple.com/documentation/uikit/uiscreen/iscaptured) property changed. There is no `userInfo` dictionary.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static UIScreenCapturedDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatusdidchangenotification?language=objc)
+    /// A notification that posts when there’s a change to a screen’s reference display mode status.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification’s [`object`](https://developer.apple.com/documentation/foundation/notification/object) is the changed screen. Use that object’s [`referenceDisplayModeStatus`](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.property) property to retrieve the new status.
+    ///
+    /// The system posts this notification on the main actor.
+    ///
+    ///
     pub static UIScreenReferenceDisplayModeStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum?language=objc)
+/// Describes different techniques for compensating for pixel loss at the edge of the screen.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenOverscanCompensation(pub NSInteger);
 impl UIScreenOverscanCompensation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/scale?language=objc)
+    /// The final composited framebuffer for the screen is scaled so that all pixels lie in the area visible on the screen.
     #[doc(alias = "UIScreenOverscanCompensationScale")]
     pub const Scale: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/insetbounds?language=objc)
+    /// The screen bounds are reduced in size so that all pixels in the framebuffer are visible on the screen.
     #[doc(alias = "UIScreenOverscanCompensationInsetBounds")]
     pub const InsetBounds: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/none?language=objc)
+    /// No scaling occurs. Use [`overscanCompensationInsets`](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensationinsets) to get the insets required to avoid clipping.
     #[doc(alias = "UIScreenOverscanCompensationNone")]
     pub const None: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum/insetapplicationframe?language=objc)
+    /// The application frame is reduced in size to compensate for overscan. Content drawn outside the application frame may be clipped.
     #[doc(alias = "UIScreenOverscanCompensationInsetApplicationFrame")]
     #[deprecated]
     pub const InsetApplicationFrame: Self = Self(2);
@@ -73,22 +121,28 @@ unsafe impl RefEncode for UIScreenOverscanCompensation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum?language=objc)
+/// Describes a screen’s reference display mode status.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenReferenceDisplayModeStatus(pub NSInteger);
 impl UIScreenReferenceDisplayModeStatus {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/notsupported?language=objc)
+    /// A status that indicates the screen doesn’t provide a reference display mode.
     #[doc(alias = "UIScreenReferenceDisplayModeStatusNotSupported")]
     pub const NotSupported: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/notenabled?language=objc)
+    /// A status that indicates the screen provides a reference display mode but it’s in a disabled state.
     #[doc(alias = "UIScreenReferenceDisplayModeStatusNotEnabled")]
     pub const NotEnabled: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/limited?language=objc)
+    /// A status that indicates the screen’s in a limited reference display mode.
+    ///
+    /// ## Discussion
+    ///
+    /// The screen may be unable to provide an accurate reference display mode due to thermal or power constraints.
+    ///
+    ///
     #[doc(alias = "UIScreenReferenceDisplayModeStatusLimited")]
     pub const Limited: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum/enabled?language=objc)
+    /// A status that indicates the screen’s in an accurate reference display mode.
     #[doc(alias = "UIScreenReferenceDisplayModeStatusEnabled")]
     pub const Enabled: Self = Self(3);
 }
@@ -102,7 +156,17 @@ unsafe impl RefEncode for UIScreenReferenceDisplayModeStatus {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen?language=objc)
+    /// An object that defines the properties associated with a hardware-based display.
+    ///
+    /// ## Overview
+    ///
+    /// A [`UIScreen`](https://developer.apple.com/documentation/uikit/uiscreen) object provides information about the screens attached to an iOS, iPadOS, or tvOS device. A screen object for an iOS or iPadOS device has information about the integrated display or an attached display. A screen object for a tvOS device represents the television connected to the device. In a compatible iPad or iPhone app running in visionOS, don’t rely on screen-related properties to configure your app.
+    ///
+    /// You don’t create any of these screen objects directly. Instead, fetch the screen object for one of your app’s windows from the [`UIWindowScene`](https://developer.apple.com/documentation/uikit/uiwindowscene) object that manages the window.
+    ///
+    /// Avoid using screen objects to make decisions about your app’s interface. Use a screen object only as needed to retrieve screen-related information, such as the screen’s bounds rectangle, brightness, and overscan settings. Apps that rely on the screen dimensions can use the object in the [`fixedCoordinateSpace`](https://developer.apple.com/documentation/uikit/uiscreen/fixedcoordinatespace) property as a fixed point of reference for any calculations they must make.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

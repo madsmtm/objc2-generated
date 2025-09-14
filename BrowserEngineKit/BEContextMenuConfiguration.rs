@@ -8,10 +8,27 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
+    /// A specialized `UIContextMenuConfiguration` object to defer a context menu presentation when the when the context menu gestures are first recognized and a possible menu presentation is not immediately known.
+    ///
+    /// ## Overview
+    ///
+    /// An object that defers presentation of the contextual menu.
+    ///
+    /// ## Overview
+    ///
+    /// Return an instance of this object if you don’t know whether presentation of a contextual menu is possible, or don’t already have the menu items when the system calls your interaction delegate’s [`contextMenuInteraction:configurationForMenuAtLocation:`](https://developer.apple.com/documentation/uikit/uicontextmenuinteractiondelegate/contextmenuinteraction(_:configurationformenuatlocation:)) method. As soon as you have the real configuration, call [`fulfillUsingConfiguration:`](https://developer.apple.com/documentation/browserenginekit/becontextmenuconfiguration/fulfill(using:)), and pass the real configuration as the parameter, or `nil` to indicate no menu presentation is possible.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In most situations, use [`UIDeferredMenuElement`](https://developer.apple.com/documentation/uikit/uideferredmenuelement) if you don’t have the content of a contextual menu element when the system asks your delegate and you need to calculate it asynchronously. When calculating the contextual menu configuration involves a short deferral, for example, making an XPC call to a browser extension, use `BEContextMenuConfiguration` instead.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// A specialized `UIContextMenuConfiguration` object to defer a context menu presentation when the
     /// when the context menu gestures are first recognized and a possible menu presentation is not immediately known.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/becontextmenuconfiguration?language=objc)
     #[unsafe(super(UIContextMenuConfiguration, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

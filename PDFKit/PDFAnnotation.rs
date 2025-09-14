@@ -12,226 +12,292 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype?language=objc)
+/// The type of annotation, such as circle, text, or ink.
 // NS_TYPED_ENUM
 pub type PDFAnnotationSubtype = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey?language=objc)
+/// Keys for setting properties of annotations.
 // NS_TYPED_ENUM
 pub type PDFAnnotationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/appearancedictionary?language=objc)
+    /// A dictionary that contains properties for controlling the annotation’s visual appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// PDFKit typically generates this property when saving a PDF document. If present, PDFKit uses the contents of the dictionary to render the annotation. PDFKit clears this value if either of the following occurs:
+    ///
+    /// - The appearance changes and PDFKit must rerender the annotation, such as if the color changes.
+    ///
+    /// - Explicit removal of the value occurs to allow use of the annotation’s properties for rendering.
+    ///
+    ///
     pub static PDFAnnotationKeyAppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/appearancestate?language=objc)
+    /// A string that specifies the appearance stream for the annotation.
     pub static PDFAnnotationKeyAppearanceState: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/border?language=objc)
+    /// An array of integers or border objects that describes the border of the annotation.
     pub static PDFAnnotationKeyBorder: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/color?language=objc)
+    /// An array of floats or a color object that specifies the annotation’s color.
+    ///
+    /// ## Discussion
+    ///
+    /// Annotations use the color for the following:
+    ///
+    /// - The background of the annotation’s icon when it’s in a closed state
+    ///
+    /// - The title bar of the annotation’s pop-up window
+    ///
+    /// - The border of a link annotation
+    ///
+    /// - The stroke of a circle, square, or line shape annotation
+    ///
+    ///
     pub static PDFAnnotationKeyColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/contents?language=objc)
+    /// The text that the annotation displays or represents.
+    ///
+    /// ## Discussion
+    ///
+    /// If the annotation doesn’t display text, the annotation uses it as an alternative human-readable form. For example, VoiceOver speaks the text for the annotation.
+    ///
+    ///
     pub static PDFAnnotationKeyContents: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/flags?language=objc)
+    /// An integer value that specifies flags for the annotation.
+    ///
+    /// ## Discussion
+    ///
+    /// For a full description of annotation flags, see [Table 165](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf#page=393) in the [Adobe PDF 1.7 Specification](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf).
+    ///
+    ///
     pub static PDFAnnotationKeyFlags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/date?language=objc)
+    /// The date, or string representation of a date, of the annotation’s most recent modification.
     pub static PDFAnnotationKeyDate: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/name?language=objc)
+    /// A string that uniquely identifies the annotation among all annotations on the same page.
     pub static PDFAnnotationKeyName: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/page?language=objc)
+    /// A dictionary or PDF page object that includes the annotation.
     pub static PDFAnnotationKeyPage: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/rect?language=objc)
+    /// The rectangle that the annotation occupies on the page, in page-space coordinates.
     pub static PDFAnnotationKeyRect: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/subtype?language=objc)
+    /// The type of annotation that the entries in a dictionary describe.
     pub static PDFAnnotationKeySubtype: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/action?language=objc)
+    /// A dictionary or PDF action object that represents an action to take, such as when the user clicks or taps a button.
     pub static PDFAnnotationKeyAction: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/additionalactions?language=objc)
+    /// A dictionary or PDF action object that represents additional actions an annotation can perform, such as when it receives input focus.
     pub static PDFAnnotationKeyAdditionalActions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/borderstyle?language=objc)
+    /// A dictionary that contains the properties of the annotation’s border.
     pub static PDFAnnotationKeyBorderStyle: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/defaultappearance?language=objc)
+    /// A string value a free text annotation uses to format the text.
     pub static PDFAnnotationKeyDefaultAppearance: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/destination?language=objc)
+    /// An array, name, or string that represents the destination of an action.
     pub static PDFAnnotationKeyDestination: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/highlightingmode?language=objc)
+    /// A string value that defines the way an annotation highlights when the user activates it, such as when clicking or tapping a link.
     pub static PDFAnnotationKeyHighlightingMode: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/inklist?language=objc)
+    /// An array of arrays that represents stroked paths.
     pub static PDFAnnotationKeyInklist: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/interiorcolor?language=objc)
+    /// An array of floating point values or a PDF color object that annotations use to fill interior space, such as line endings, squares, or circles.
     pub static PDFAnnotationKeyInteriorColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/linepoints?language=objc)
+    /// An array of floating point values that specifies the starting and ending points, in page-space coordinates, of a line.
     pub static PDFAnnotationKeyLinePoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/lineendingstyles?language=objc)
+    /// An array of string values that specifies the styles to use for the ends of lines.
     pub static PDFAnnotationKeyLineEndingStyles: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/iconname?language=objc)
+    /// A string value that specifies the name of an icon for a text or stamp annotation.
     pub static PDFAnnotationKeyIconName: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/open?language=objc)
+    /// A Boolean value that specifies whether the pop-up is in an opened state, showing its text content, or in a closed state and showing an icon.
     pub static PDFAnnotationKeyOpen: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/parent?language=objc)
+    /// A dictionary or annotation object that a pop-up or widget belongs to.
     pub static PDFAnnotationKeyParent: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/popup?language=objc)
+    /// A dictionary or annotation object that specifies the annotation to pop up for text entry or editing.
     pub static PDFAnnotationKeyPopup: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/quadding?language=objc)
+    /// An integer value that specifies left, right, or center justification.
     pub static PDFAnnotationKeyQuadding: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/quadpoints?language=objc)
+    /// An array of floating point values that specifies a rectangular region of a page.
     pub static PDFAnnotationKeyQuadPoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/textlabel?language=objc)
+    /// A string that represents the title of the annotation.
     pub static PDFAnnotationKeyTextLabel: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetdowncaption?language=objc)
+    /// A string that a push button widgets displays when it’s in a pressed state.
     pub static PDFAnnotationKeyWidgetDownCaption: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetbordercolor?language=objc)
+    /// An array of floating point values or a PDF color object that specifies the widget’s border color.
     pub static PDFAnnotationKeyWidgetBorderColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetbackgroundcolor?language=objc)
+    /// An array of floating point values or a PDF color object that specifies the widget’s background color.
     pub static PDFAnnotationKeyWidgetBackgroundColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetcaption?language=objc)
+    /// A string that a push button widget displays when it isn’t in a pressed state.
     pub static PDFAnnotationKeyWidgetCaption: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetdefaultvalue?language=objc)
+    /// A default value for the widget.
     pub static PDFAnnotationKeyWidgetDefaultValue: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetfieldflags?language=objc)
+    /// An integer value that specifies flags for a widget.
+    ///
+    /// ## Discussion
+    ///
+    /// For a full description of the possible widget field flags, see [Table 221](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf#page=441), [Table 226](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf#page=447), [Table 228](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf#page=451), and [Table 230](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf#page=452) in the [Adobe PDF 1.7 Specification](https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/PDF32000_2008.pdf).
+    ///
+    ///
     pub static PDFAnnotationKeyWidgetFieldFlags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetfieldtype?language=objc)
+    /// A string that specifies the type of widget, such as button, checkbox, or signature field.
     pub static PDFAnnotationKeyWidgetFieldType: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetappearancedictionary?language=objc)
+    /// A dictionary or appearance characteristic object that contains properties for controlling the widget’s visual appearance.
+    ///
+    /// ## Discussion
+    ///
+    /// For details about widget appearance characteristic objects, see [`PDFAppearanceCharacteristics`](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristics).
+    ///
+    ///
     pub static PDFAnnotationKeyWidgetAppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetmaxlen?language=objc)
+    /// An integer value that specifies the maximum length of a text field, in characters.
     pub static PDFAnnotationKeyWidgetMaxLen: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetoptions?language=objc)
+    /// An array that specifies the options to present in radio buttons or choice lists.
+    ///
+    /// ## Discussion
+    ///
+    /// Each element is a string or an array that contains two strings.
+    ///
+    ///
     pub static PDFAnnotationKeyWidgetOptions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetrotation?language=objc)
+    /// An integer value that specifies the rotation of the widget.
     pub static PDFAnnotationKeyWidgetRotation: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetrollovercaption?language=objc)
+    /// A string that push button widgets display when the pointer is over the button, but not clicking it.
     pub static PDFAnnotationKeyWidgetRolloverCaption: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgettextlabelui?language=objc)
+    /// A user-visible alternative field name that identifies the widget, typically for accessibility purposes.
     pub static PDFAnnotationKeyWidgetTextLabelUI: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationkey/widgetvalue?language=objc)
+    /// The widget’s value, typically for text and choice widgets.
+    ///
+    /// ## Discussion
+    ///
+    /// For radio button or checkbox widgets, the value for this key is typically `Off` if the button isn’t in a selected state; otherwise, [`buttonWidgetStateString`](https://developer.apple.com/documentation/pdfkit/pdfannotation/buttonwidgetstatestring).
+    ///
+    ///
     pub static PDFAnnotationKeyWidgetValue: &'static PDFAnnotationKey;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotation?language=objc)
+    /// An annotation in a PDF document.
+    ///
+    /// ## Overview
+    ///
+    /// In addition to its primary textual content, a PDF file can contain annotations that represent links, form elements, highlighting circles, textual notes, and so on. Each annotation has a specific location on a page and may offer interactivity with the user.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PDFAnnotation;
@@ -525,217 +591,181 @@ impl PDFAnnotation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_appearancedictionary?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_AppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_appearancestate?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_AppearanceState: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_border?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Border: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_color?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Color: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_contents?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Contents: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_flags?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Flags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_date?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Date: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_name?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Name: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_page?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Page: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_rect?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Rect: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_subtype?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Subtype: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_action?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Action: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_additionalactions?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_AdditionalActions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_borderstyle?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_BorderStyle: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_defaultappearance?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_DefaultAppearance: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_destination?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Destination: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_highlightingmode?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_HighlightingMode: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_inklist?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Inklist: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_interiorcolor?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_InteriorColor: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_linepoints?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_LinePoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_lineendingstyles?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_LineEndingStyles: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_iconname?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_IconName: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_open?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Open: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_parent?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Parent: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_popup?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Popup: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_quadding?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_Quadding: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_quadpoints?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_QuadPoints: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_textlabel?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_TextLabel: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetdefaultvalue?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetDefaultValue: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetfieldflags?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetFieldFlags: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetfieldtype?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetFieldType: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetappearancedictionary?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetAppearanceDictionary: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetmaxlen?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetMaxLen: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetoptions?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetOptions: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgettextlabelui?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetTextLabelUI: &'static PDFAnnotationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/kpdfannotationkey_widgetvalue?language=objc)
     #[deprecated]
     pub static kPDFAnnotationKey_WidgetValue: &'static PDFAnnotationKey;
 }

@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// The base class for reduction filters that take a single source as input.
     /// The MPSImageReduce performs a reduction operation
     /// The reduction operations supported are:
     /// - Reduce row min
@@ -19,8 +20,6 @@ extern_class!(
     /// - Reduce column mean
     /// - Reduce row sum
     /// - Reduce column sum
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereduceunary?language=objc)
     #[unsafe(super(MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -153,9 +152,8 @@ impl MPSImageReduceUnary {
 }
 
 extern_class!(
+    /// A filter that returns the minimum value for each row in an image.
     /// The MPSImageReduceRowMin performs a reduction operation returning the mininmum value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducerowmin?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -275,9 +273,8 @@ impl MPSImageReduceRowMin {
 }
 
 extern_class!(
+    /// A filter that returns the minimum value for each column in an image.
     /// The MPSImageReduceColumnMin performs a reduction operation returning the mininmum value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducecolumnmin?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -397,9 +394,8 @@ impl MPSImageReduceColumnMin {
 }
 
 extern_class!(
+    /// A filter that returns the maximum value for each row in an image.
     /// The MPSImageReduceRowMax performs a reduction operation returning the maximum value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducerowmax?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -519,9 +515,8 @@ impl MPSImageReduceRowMax {
 }
 
 extern_class!(
+    /// A filter that returns the maximum value for each column in an image.
     /// The MPSImageReduceColumnMax performs a reduction operation returning the maximum value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducecolumnmax?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -641,9 +636,8 @@ impl MPSImageReduceColumnMax {
 }
 
 extern_class!(
+    /// A filter that returns the mean value for each row in an image.
     /// The MPSImageReduceRowMean performs a reduction operation returning the mean value for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducerowmean?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -763,9 +757,8 @@ impl MPSImageReduceRowMean {
 }
 
 extern_class!(
+    /// A filter that returns the mean value for each column in an image.
     /// The MPSImageReduceColumnMean performs a reduction operation returning the mean value for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducecolumnmean?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -885,9 +878,8 @@ impl MPSImageReduceColumnMean {
 }
 
 extern_class!(
+    /// A filter that returns the sum of all values for a row in an image.
     /// The MPSImageReduceRowSum performs a reduction operation returning the sum for each row of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducerowsum?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]
@@ -1007,9 +999,8 @@ impl MPSImageReduceRowSum {
 }
 
 extern_class!(
+    /// A filter that returns the sum of all values for a column in an image.
     /// The MPSImageReduceColumnSum performs a reduction operation returning the sum for each column of an image
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereducecolumnsum?language=objc)
     #[unsafe(super(MPSImageReduceUnary, MPSUnaryImageKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MPSCore", feature = "MPSImageKernel", feature = "MPSKernel"))]

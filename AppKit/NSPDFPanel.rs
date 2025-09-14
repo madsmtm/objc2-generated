@@ -7,20 +7,20 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct?language=objc)
+/// Constants used to configure the contents of a PDF panel.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPDFPanelOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSPDFPanelOptions: NSInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/showspapersize?language=objc)
+/// The PDF panel shows a menu of paper sizes.
         #[doc(alias = "NSPDFPanelShowsPaperSize")]
         const ShowsPaperSize = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/showsorientation?language=objc)
+/// The PDF panel shows the current orientation of the PDF contents, such as landscape or portrait.
         #[doc(alias = "NSPDFPanelShowsOrientation")]
         const ShowsOrientation = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel/options-swift.struct/requestsparentdirectory?language=objc)
+/// The PDF panel doesn’t show a name field; instead, it allows the user to identify a directory in which to save multiple PDF files. If you set this flag, you’re responsible for appending a filename and the “pdf” extension to the resulting  URL value in the [`NSPDFInfo`](https://developer.apple.com/documentation/appkit/nspdfinfo) object before proceeding with the creation of the PDF file (or calling the `takeSettingsFromPDFInfo` method of [`NSPrintInfo`](https://developer.apple.com/documentation/appkit/nsprintinfo)).
         #[doc(alias = "NSPDFPanelRequestsParentDirectory")]
         const RequestsParentDirectory = 1<<24;
     }
@@ -35,7 +35,13 @@ unsafe impl RefEncode for NSPDFPanelOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspdfpanel?language=objc)
+    /// A Save or Export as PDF panel that’s consistent with the macOS user interface.
+    ///
+    /// ## Overview
+    ///
+    /// A PDF panel has a variety of built-in customization controls, such as page orientation, paper size, and tags. It also supports the use of a custom accessory view controller that allows an app to specify how a PDF file should be created.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

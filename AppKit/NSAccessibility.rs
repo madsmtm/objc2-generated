@@ -186,12 +186,32 @@ impl NSWorkspace {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayoptionsdidchangenotification?language=objc)
+    /// A notification that the workspace posts when any of the accessibility display options change.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the shared `NSWorkspace` instance. The notification doesn’t contain a `userInfo` dictionary.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  To receive this notification, use [`notificationCenter`](https://developer.apple.com/documentation/appkit/nsworkspace/notificationcenter) to register for it. If you use a different notification center to register, you won’t receive the notification.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub static NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification:
         &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenrect(fromview:rect:)?language=objc)
+/// Returns the frame in screen coordinates.
+///
+/// ## Discussion
+///
+/// Given a frame in the specified view’s coordinates, it returns the same frame in the screen’s coordinates.
+///
+///
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame: NSRect) -> NSRect {
@@ -201,7 +221,13 @@ pub extern "C-unwind" fn NSAccessibilityFrameInView(parent_view: &NSView, frame:
     unsafe { NSAccessibilityFrameInView(parent_view, frame) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/screenpoint(fromview:point:)?language=objc)
+/// Returns the point in screen coordinates.
+///
+/// ## Discussion
+///
+/// Given a point in the specified view’s coordinates, it returns the same point in the screen’s coordinates.
+///
+///
 #[cfg(all(feature = "NSResponder", feature = "NSView"))]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityPointInView(
@@ -214,7 +240,13 @@ pub extern "C-unwind" fn NSAccessibilityPointInView(
     unsafe { NSAccessibilityPointInView(parent_view, point) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/setmaycontainprotectedcontent(_:)?language=objc)
+/// Sets whether the app may have protected content.
+///
+/// ## Discussion
+///
+/// Uses the value of `flag` to specify whether the app may have protected content. Protected content is identified by a value of [`true`](https://developer.apple.com/documentation/swift/true) for `NSAccessibilityContainsProtectedContentAttribute`, but if `NSAccessibilitySetMayContainProtectedContent` returns [`false`](https://developer.apple.com/documentation/swift/false), the value of `NSAccessibilityContainsProtectedContentAttribute` is ignored. This function returns [`true`](https://developer.apple.com/documentation/swift/true) on success.
+///
+///
 #[inline]
 pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool) -> bool {
     extern "C-unwind" {
@@ -223,7 +255,13 @@ pub extern "C-unwind" fn NSAccessibilitySetMayContainProtectedContent(flag: bool
     unsafe { NSAccessibilitySetMayContainProtectedContent(Bool::new(flag)) }.as_bool()
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(with:)?language=objc)
+/// Returns a standard description for a role and subrole.
+///
+/// ## Discussion
+///
+/// You should pass `nil` to this function if there is no subrole. This function returns a description of a standard role. For example, if you implement a button widget that does not inherit from [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton), you should use this function to return a localized role description matching that returned by a standard button.
+///
+///
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityRoleDescription(
@@ -240,7 +278,13 @@ pub extern "C-unwind" fn NSAccessibilityRoleDescription(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(for:)?language=objc)
+/// Returns a standard role description for a user interface element.
+///
+/// ## Discussion
+///
+/// This function is like the [`NSAccessibilityRoleDescription`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(with:)) function, except that it queries `element` to get the role and subrole. The [`NSAccessibilityRoleDescription`](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/description(with:)) function is more efficient, but this function is useful for accessorizing base classes so that they properly handle derived classes, which may override the subrole or even the role.
+///
+///
 ///
 /// # Safety
 ///
@@ -256,7 +300,13 @@ pub unsafe extern "C-unwind" fn NSAccessibilityRoleDescriptionForUIElement(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/description?language=objc)
+/// Returns a standard description for an action.
+///
+/// ## Discussion
+///
+/// This function returns a standard description for `action`.
+///
+///
 #[cfg(feature = "NSAccessibilityConstants")]
 #[inline]
 pub extern "C-unwind" fn NSAccessibilityActionDescription(
@@ -270,7 +320,13 @@ pub extern "C-unwind" fn NSAccessibilityActionDescription(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/raisebadargumentexception(_:_:_:)?language=objc)
+    /// Raises an error if the parameter is the wrong type or has an illegal value
+    ///
+    /// ## Discussion
+    ///
+    /// Raises an error if a parameter is the wrong type or has an illegal value. This function can also be used to raise an error if an attempt is made to set an attribute’s value with the wrong type or an illegal value.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -288,13 +344,18 @@ extern "C-unwind" {
     );
 }
 
+/// Returns an unignored accessibility object, ascending the hierarchy, if necessary.
+///
+/// ## Discussion
+///
+/// Tests whether `element` is an ignored object, returning either `element`, if it is not ignored, or the first unignored ancestor of `element`.
+///
+///
 /// * Ignored UIElements Utilities **
 ///
 /// # Safety
 ///
 /// `element` should be of the correct type.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredancestor(of:)?language=objc)
 #[inline]
 pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     element: &AnyObject,
@@ -306,7 +367,13 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredAncestor(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoreddescendant(of:)?language=objc)
+/// Returns an unignored accessibility object, descending the hierarchy, if necessary.
+///
+/// ## Discussion
+///
+/// Tests whether `element` is an ignored object, returning either `element`, if it is not ignored, or the first unignored descendant of `element`. Use this function only if you know there is a linear, one-to-one, hierarchy below `element`. Otherwise, if `element` has either no unignored children or multiple unignored children, this function fails and returns `nil`.
+///
+///
 ///
 /// # Safety
 ///
@@ -322,7 +389,13 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredDescendant(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredchildren(from:)?language=objc)
+/// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+///
+/// ## Discussion
+///
+/// This function first tests whether `originalChildren` contains any ignored objects. If the array contains no ignored objects, the function returns `originalChildren`. If the array contains ignored objects, this function returns a new array that contains the contents of `originalChildren`, but with each ignored object replaced by its unignored descendant.
+///
+///
 ///
 /// # Safety
 ///
@@ -339,7 +412,13 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildren(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/unignoredchildrenforonlychild(from:)?language=objc)
+/// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+///
+/// ## Discussion
+///
+/// Tests whether `originalChild` is an ignored object and returns an array containing either `originalChild`, if it is not ignored, or its unignored descendants.
+///
+///
 ///
 /// # Safety
 ///
@@ -358,13 +437,18 @@ pub unsafe extern "C-unwind" fn NSAccessibilityUnignoredChildrenForOnlyChild(
 }
 
 extern "C-unwind" {
+    /// Sends a notification to any observing assistive apps.
+    ///
+    /// ## Discussion
+    ///
+    /// Sends `notification` to any assistive applications that register to receive the notification from the user interface object `element` in your app. Accessibility notifications require special handling, so they can’t post using [`NSNotificationCenter`](https://developer.apple.com/documentation/foundation/notificationcenter).
+    ///
+    ///
     /// * Posting Notifications **
     ///
     /// # Safety
     ///
     /// `element` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/post(element:notification:)?language=objc)
     #[cfg(feature = "NSAccessibilityConstants")]
     pub fn NSAccessibilityPostNotification(
         element: &AnyObject,

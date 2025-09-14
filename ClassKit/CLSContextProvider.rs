@@ -8,11 +8,36 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
+    /// An interface used to tell your ClassKit context provider app extension to update contexts.
+    ///
+    /// ## Overview
+    ///
+    /// The primary class of a ClassKit context provider extension adopts the [`CLSContextProvider`](https://developer.apple.com/documentation/classkit/clscontextprovider) protocol. The protocol’s one required method tells the app extension to create or update the descendants of a given context. Schoolwork triggers this method to fill in your context hierarchy incrementally as the teacher browses your app’s content.
+    ///
+    /// You still build contexts in your main app to support your app’s normal operation, as described in [Advertising your app’s assignable content](https://developer.apple.com/documentation/classkit/advertising-your-app-s-assignable-content). By also creating a context provider app extension, you enable Schoolwork to advertise your content without having to rely on the teacher first running your app.
+    ///
+    /// ### Create a ClassKit Context Provider App Extension
+    ///
+    /// Create a ClassKit context provider by adding a new target to your project in Xcode using File > New > Target. Choose the ClassKit context provider template and give it a name.
+    ///
+    ///
+    /// <picture>
+    ///     <source media="(prefers-color-scheme: dark)" srcset="https://docs-assets.developer.apple.com/published/996720dc57bfae77a33877dc7edeee21/media-3125786~dark%402x.png 2x" />
+    ///     <source media="(prefers-color-scheme: light)" srcset="https://docs-assets.developer.apple.com/published/82bea54c4066cfdbe2fef00e0c6769fc/media-3125786%402x.png 2x" />
+    ///     <img alt="Screenshot of ClassKit context provider template selection in Xcode." src="https://docs-assets.developer.apple.com/published/996720dc57bfae77a33877dc7edeee21/media-3125786~dark%402x.png" />
+    /// </picture>
+    ///
+    ///
+    /// Xcode adds several supporting files to your project, including a new source file defining the extension’s primary class that adopts the [`CLSContextProvider`](https://developer.apple.com/documentation/classkit/clscontextprovider) protocol. Fill in the empty [`updateDescendantsOfContext:completion:`](https://developer.apple.com/documentation/classkit/clscontextprovider/updatedescendants(of:completion:)) method with your implementation.
+    ///
+    /// You typically call on the context-building code of your main app in the app extension to avoid duplicating code. Do this by either linking the app extension against the relevant source files in your main app, or by putting the common code into a framework. For an example of the former, see the sample code in [Incorporating ClassKit into an Educational App](https://developer.apple.com/documentation/classkit/incorporating-classkit-into-an-educational-app).
+    ///
+    /// For a general discussion about app extensions, see [App Extension Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/index.html#//apple_ref/doc/uid/TP40014214).
+    ///
+    ///
     /// The CLSContext provider protocol.
     ///
     /// The app extension that provides CLSContexts should adopt this protocol.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontextprovider?language=objc)
     pub unsafe trait CLSContextProvider {
         #[cfg(all(feature = "CLSContext", feature = "CLSObject", feature = "block2"))]
         /// This method asks the app extension to update CLSContexts that are descendants of a given context.

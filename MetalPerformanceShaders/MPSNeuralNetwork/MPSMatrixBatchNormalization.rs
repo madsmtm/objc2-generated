@@ -9,6 +9,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
+    /// A batch normalization kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -27,8 +28,6 @@ extern_class!(
     /// to the variance.
     ///
     /// Optionally a neuron activation function may be applied to the result.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalization?language=objc)
     #[unsafe(super(MPSMatrixUnaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -371,6 +370,7 @@ impl MPSMatrixBatchNormalization {
 }
 
 extern_class!(
+    /// A batch normalization gradient kernel that operates on matrices.
     /// Dependencies: This depends on Metal.framework.
     ///
     ///
@@ -382,8 +382,6 @@ extern_class!(
     /// MPSMatrixBatchNormalization object.  The corresponding properties and data used by
     /// the MPSMatrixBatchNormalizationGradient object should correspond to those used by
     /// the forward MPSMatrixBatchNormalization object for which the gradient is being computed.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixbatchnormalizationgradient?language=objc)
     #[unsafe(super(MPSMatrixBinaryKernel, MPSKernel, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(

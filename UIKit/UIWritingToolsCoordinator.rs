@@ -9,6 +9,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Constants that specify the reason you updated your view’s content outside of the Writing Tools workflow.
+///
+/// ## Overview
+///
+/// If you modify your view’s text storage while Writing Tools is active, report those changes to your [`UIWritingToolsCoordinator`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator) object so it can track them correctly. Call the [`updateRange:withText:reason:forContextWithIdentifier:`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/updaterange(_:with:reason:forcontextwithidentifier:)) method to report changes that occur inside one of your context objects. Call the [`updateForReflowedTextInContextWithIdentifier:`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/updateforreflowedtextincontextwithidentifier(_:)) method for changes that affect the layout of your text, such as text insertions before a context object or changes to your view’s frame rectangle.
+///
+///
 /// Constants that specify the reason you updated your view’s content
 /// outside of the Writing Tools workflow.
 ///
@@ -20,8 +27,6 @@ use crate::*;
 /// ``UIWritingToolsCoordinator/updateForReflowedTextInContextWithIdentifier(_:)``
 /// method for changes that affect the layout of your text, such as text insertions
 /// before a context object or changes to your view’s frame rectangle.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textupdatereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,18 +34,28 @@ pub struct UIWritingToolsCoordinatorTextUpdateReason(pub NSInteger);
 impl UIWritingToolsCoordinatorTextUpdateReason {
     /// An operation that involved a person editing the text in your view.
     ///
+    /// ## Discussion
+    ///
     /// Specify this option when the changes come from the text input system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textupdatereason/typing?language=objc)
+    ///
+    /// An operation that involved a person editing the text in your view.
+    ///
+    /// Specify this option when the changes come from the text input system.
     #[doc(alias = "UIWritingToolsCoordinatorTextUpdateReasonTyping")]
     pub const Typing: Self = Self(0);
+    /// An operation that changed the view’s text as part of an undo or redo command.
+    ///
+    /// ## Discussion
+    ///
+    /// Specify this option when an undo or redo command initiated the change to your view.
+    ///
+    ///
     /// An operation that changed the view’s text as part of an undo or
     /// redo command.
     ///
     /// Specify this option when an undo or redo command initiated the
     /// change to your view.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textupdatereason/undoredo?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextUpdateReasonUndoRedo")]
     pub const UndoRedo: Self = Self(1);
 }
@@ -53,6 +68,13 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextUpdateReason {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The states that indicate the current activity, if any, Writing Tools is performing in your view.
+///
+/// ## Overview
+///
+/// Making changes to your view requires several different levels of interaction. Initially, Writing Tools displays its UI and collects information about what the person wants to do. When the person selects an operation, Writing Tools sends the relevant details to a large language model (LLM) and processes the results. It then works with the custom view to integrate any changes into the view’s text storage. During each of these activities, the coordinator reflects what’s happening in its [`state`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.property) property. You can use the current state as a guide to making decisions in other parts of your view.
+///
+///
 /// The states that indicate the current activity, if any, Writing Tools
 /// is performing in your view.
 ///
@@ -65,13 +87,18 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextUpdateReason {
 /// of these activities, the coordinator reflects what’s happening in
 /// its ``UIWritingToolsCoordinator/state`` property. You can use
 /// the current state as a guide to making decisions in other parts of your view.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorState(pub NSInteger);
 impl UIWritingToolsCoordinatorState {
+    /// A state that indicates Writing Tools isn’t currently performing any work on your view’s content.
+    ///
+    /// ## Discussion
+    ///
+    /// The coordinator starts in the `inactive` state, and transitions immediately to the [`UIWritingToolsCoordinatorStateNoninteractive`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/noninteractive) or [`UIWritingToolsCoordinatorStateInteractiveResting`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactiveresting) state when someone chooses an option from the Writing Tools UI. After the coordinator finishes incorporating any changes for the current operation, it returns to the `inactive` state and waits for the person to choose a different option or dismiss the Writing Tools UI.
+    ///
+    ///
     /// A state that indicates Writing Tools isn’t currently performing
     /// any work on your view’s content.
     ///
@@ -81,10 +108,15 @@ impl UIWritingToolsCoordinatorState {
     /// After the coordinator finishes incorporating any changes for the
     /// current operation, it returns to the `inactive` state and waits
     /// for the person to choose a different option or dismiss the Writing Tools UI.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/inactive?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorStateInactive")]
     pub const Inactive: Self = Self(0);
+    /// A state that indicates Writing Tools is handling interactions in the system UI, instead of in your view.
+    ///
+    /// ## Discussion
+    ///
+    /// Writing Tools transitions to this state when the coordinator uses the [`UIWritingToolsBehaviorLimited`](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior/limited) experience or when someone chooses an option that displays its results in the Writing Tools UI. When the person accepts the changes from the tool or dismisses the Writing Tools UI, the coordinator returns to the [`UIWritingToolsCoordinatorStateInactive`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/inactive) state. If the person discards the change and selects a tool with an interactive experience instead, the coordinator transitions to the [`UIWritingToolsCoordinatorStateInteractiveResting`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactiveresting) state.
+    ///
+    ///
     /// A state that indicates Writing Tools is handling interactions in
     /// the system UI, instead of in your view.
     ///
@@ -96,10 +128,15 @@ impl UIWritingToolsCoordinatorState {
     /// state. If the person discards the change and selects a tool with
     /// an interactive experience instead, the coordinator transitions
     /// to the ``interactiveResting`` state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/noninteractive?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorStateNoninteractive")]
     pub const Noninteractive: Self = Self(1);
+    /// A state that indicates Writing Tools is in the resting state for an inline editing experience.
+    ///
+    /// ## Discussion
+    ///
+    /// When someone initially selects a tool with an interactive experience, the coordinator transitions briefly to this state and starts the operation. The coordinator transitions swiftly to the [`UIWritingToolsCoordinatorStateInteractiveStreaming`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactivestreaming) state when it submits the request and delivers the results to your view. When it finishes delivering the results, it transitions back to the `interactiveResting` state and awaits further commands. If the person accepts the changes or dismisses the Writing Tools UI, the coordinator transitions from this state to the [`UIWritingToolsCoordinatorStateInactive`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/inactive) state.
+    ///
+    ///
     /// A state that indicates Writing Tools is in the resting state
     /// for an inline editing experience.
     ///
@@ -111,10 +148,15 @@ impl UIWritingToolsCoordinatorState {
     /// to the `interactiveResting` state and awaits further commands. If
     /// the person accepts the changes or dismisses the Writing Tools UI,
     /// the coordinator transitions from this state to the ``inactive`` state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactiveresting?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorStateInteractiveResting")]
     pub const InteractiveResting: Self = Self(2);
+    /// A state that indicates Writing Tools is processing a request and incorporating changes interactively into your view.
+    ///
+    /// ## Discussion
+    ///
+    /// The coordinator transitions swiftly from the [`UIWritingToolsCoordinatorStateInteractiveResting`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactiveresting) state to this state at the start of an operation. In this state, the coordinator submits the request for processing and delivers the results back to your view. When the coordinator finishes delivering the results, it transitions back to the [`UIWritingToolsCoordinatorStateInteractiveResting`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactiveresting) state.
+    ///
+    ///
     /// A state that indicates Writing Tools is processing a request and
     /// incorporating changes interactively into your view.
     ///
@@ -123,8 +165,6 @@ impl UIWritingToolsCoordinatorState {
     /// the coordinator submits the request for processing and delivers
     /// the results back to your view. When the coordinator finishes delivering
     /// the results, it transitions back to the ``interactiveResting`` state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/state-swift.enum/interactivestreaming?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorStateInteractiveStreaming")]
     pub const InteractiveStreaming: Self = Self(3);
 }
@@ -138,6 +178,25 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorState {
 }
 
 extern_class!(
+    /// An object that manages interactions between Writing Tools and your custom text view.
+    ///
+    /// ## Overview
+    ///
+    /// Add a `UIWritingToolsCoordinator` object to a custom view when you want to add Writing Tools support to that view. The coordinator manages interactions between your view and the Writing Tools UI and back-end capabilities. When creating a coordinator, you supply a delegate object to respond to requests from the system and provide needed information. Your delegate delivers your view’s text to Writing Tools, incorporates suggested changes back into your text storage, and supports the animations that Writing Tools creates to show the state of an operation.
+    ///
+    /// Create the `UIWritingToolsCoordinator` object when setting up your UI, and initialize it with a custom object that adopts the [`UIWritingToolsCoordinatorDelegate`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol) protocol. Add the coordinator to your view using the [`addInteraction:`](https://developer.apple.com/documentation/uikit/uiview/addinteraction(_:)) method. When a coordinator is present on a view, the system adds UI elements to initiate Writing Tools operations.
+    ///
+    /// When defining the delegate, choose an object from your app that has access to your view and its text storage. You can adopt the [`UIWritingToolsCoordinatorDelegate`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol) protocol in the view itself, or in another type that your view uses to manage content. During the interactions with Writing Tools, the delegate gets and sets the contents of the view’s text storage and supports Writing Tools behaviors.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    /// You don’t need to create an `UIWritingToolsCoordinator`  object if you display text using a [`UITextView`](https://developer.apple.com/documentation/uikit/uitextview), [`NSTextView`](https://developer.apple.com/documentation/appkit/nstextview), [`Text`](https://developer.apple.com/documentation/swiftui/text), [`TextField`](https://developer.apple.com/documentation/swiftui/textfield), or [`TextEditor`](https://developer.apple.com/documentation/swiftui/texteditor) view. Those views already include the required support to handle Writing Tools interactions.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// An object that manages interactions between Writing Tools and
     /// your custom text view.
     ///
@@ -174,8 +233,6 @@ extern_class!(
     /// ://com.apple.documentation/documentation/swiftui/texteditor> view.
     /// Those views already include the required support to handle Writing Tools
     /// interactions.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -469,6 +526,13 @@ impl UIWritingToolsCoordinator {
     );
 }
 
+/// Options that indicate whether Writing Tools is animating changes to your view’s text.
+///
+/// ## Overview
+///
+/// During an operation, Writing Tools delivers replacement text to the delegate of the active [`UIWritingToolsCoordinator`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator) object. Depending on the configured experience for your view, it delivers these changes as either interactive or noninteractive replacements. For interactive replacements, Writing Tools animates the change automatically and provides you with the information you need to perform any related animations.
+///
+///
 /// Options that indicate whether Writing Tools is animating changes to
 /// your view’s text.
 ///
@@ -478,13 +542,18 @@ impl UIWritingToolsCoordinator {
 /// as either interactive or noninteractive replacements. For interactive
 /// replacements, Writing Tools animates the change automatically and provides
 /// you with the information you need to perform any related animations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textreplacementreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorTextReplacementReason(pub NSInteger);
 impl UIWritingToolsCoordinatorTextReplacementReason {
+    /// An option to animate the replacement of text in your view.
+    ///
+    /// ## Discussion
+    ///
+    /// When Writing Tools requests an interactive change in your delegate’s `UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)` method, it passes a valid set of animation parameters to that method. Update your view’s text storage and use the provided [`UIWritingToolsCoordinatorAnimationParameters`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/animationparameters) type to create any view-specific animations you need to support the animated replacement of the text.
+    ///
+    ///
     /// An option to animate the replacement of text in your view.
     ///
     /// When Writing Tools requests an interactive change in your delegate’s
@@ -493,17 +562,20 @@ impl UIWritingToolsCoordinatorTextReplacementReason {
     /// Update your view’s text storage and use the provided ``UIWritingToolsCoordinator/AnimationParameters``
     /// type to create any view-specific animations you need to support the
     /// animated replacement of the text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textreplacementreason/interactive?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextReplacementReasonInteractive")]
     pub const Interactive: Self = Self(0);
+    /// An option to replace the text in your view without animating the change.
+    ///
+    /// ## Discussion
+    ///
+    /// When Writing Tools requests a noninteractive change in your delegate’s `UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)` method, update your view’s text storage without animating the change.
+    ///
+    ///
     /// An option to replace the text in your view without animating the change.
     ///
     /// When Writing Tools requests a noninteractive change in your delegate’s
     /// ``UIWritingToolsCoordinator/Delegate/writingToolsCoordinator(_:replaceRange:inContext:proposedText:reason:animationParameters:completion:)``
     /// method, update your view’s text storage without animating the change.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textreplacementreason/noninteractive?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextReplacementReasonNoninteractive")]
     pub const Noninteractive: Self = Self(1);
 }
@@ -518,12 +590,17 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextReplacementReason {
 
 /// Options that indicate how much of your content Writing Tools requested.
 ///
+/// ## Overview
+///
+/// At the start of any Writing Tools interaction, you provide the text for the system to evaluate from your [`UIWritingToolsCoordinatorDelegate`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol) object. The request for your content comes with a scope constant that indicates how much of your view’s text to provide.
+///
+///
+/// Options that indicate how much of your content Writing Tools requested.
+///
 /// At the start of any Writing Tools interaction, you provide the text for
 /// the system to evaluate from your ``UIWritingToolsCoordinator/Delegate``
 /// object. The request for your content comes with a scope constant that
 /// indicates how much of your view’s text to provide.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/contextscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -531,30 +608,45 @@ pub struct UIWritingToolsCoordinatorContextScope(pub NSInteger);
 impl UIWritingToolsCoordinatorContextScope {
     /// An option to provide only the view’s currently selected text.
     ///
+    /// ## Discussion
+    ///
+    /// With this option, include the selected text in your context object, along with some additional text before and after the selection. When performing changes inline with your view’s content, Writing Tools applies animations only to the selected text.
+    ///
+    ///
+    /// An option to provide only the view’s currently selected text.
+    ///
     /// With this option, include the selected text in your context object,
     /// along with some additional text before and after the selection. When
     /// performing changes inline with your view’s content, Writing Tools
     /// applies animations only to the selected text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/contextscope/userselection?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorContextScopeUserSelection")]
     pub const UserSelection: Self = Self(0);
+    /// An option to provide all of your view’s text.
+    ///
+    /// ## Discussion
+    ///
+    /// With this option, include all of the text your view manages. If your view has multiple text storage objects, create a separate context object for each one.
+    ///
+    ///
     /// An option to provide all of your view’s text.
     ///
     /// With this option, include all of the text your view manages.
     /// If your view has multiple text storage objects, create a separate
     /// context object for each one.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/contextscope/fulldocument?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorContextScopeFullDocument")]
     pub const FullDocument: Self = Self(1);
+    /// An option to provide only the text in the currently visible portion of your view.
+    ///
+    /// ## Discussion
+    ///
+    /// With this option, include only the currently visible text, along with some additional text before and after the visible text.
+    ///
+    ///
     /// An option to provide only the text in the currently visible portion
     /// of your view.
     ///
     /// With this option, include only the currently visible text, along
     /// with some additional text before and after the visible text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/contextscope/visiblearea?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorContextScopeVisibleArea")]
     pub const VisibleArea: Self = Self(2);
 }
@@ -567,6 +659,13 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorContextScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The types of animations that Writing Tools performs during an interactive update of your view.
+///
+/// ## Overview
+///
+/// Use the `UIWritingToolsCoordinator/TextAnimation` constants to determine the type of animation that is occurring. During an interactive change to your view, Writing Tools creates animations to provide feedback about what’s happening. During the setup for each animation, Writing Tools reports the type of animation to the coordinator’s delegate, so that you can perform additional actions related to that animation. For example, during an insertion animation, you might animate changes to other views in your interface.
+///
+///
 /// The types of animations that Writing Tools performs during an interactive
 /// update of your view.
 ///
@@ -577,13 +676,18 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorContextScope {
 /// type of animation to the coordinator’s delegate, so that you can perform
 /// additional actions related to that animation. For example, during an insertion
 /// animation, you might animate changes to other views in your interface.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorTextAnimation(pub NSInteger);
 impl UIWritingToolsCoordinatorTextAnimation {
+    /// The animation that Writing Tools performs when waiting to receive results from the large language model.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of animation applies a visual effect to the text that Writing Tools is evaluating. When preparing for this animation, hide the text that Writing Tools is about to evaluate. In the same space where that text appears, Writing Tools displays a preview image that you provide and animates changes to that image.
+    ///
+    ///
     /// The animation that Writing Tools performs when waiting to receive
     /// results from the large language model.
     ///
@@ -592,10 +696,15 @@ impl UIWritingToolsCoordinatorTextAnimation {
     /// the text that Writing Tools is about to evaluate. In the same space
     /// where that text appears, Writing Tools displays a preview image that
     /// you provide and animates changes to that image.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textanimation/anticipate?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationAnticipate")]
     pub const Anticipate: Self = Self(0);
+    /// The animation that Writing Tools performs when removing text from your view.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of animation shows the removal of text from your view. When preparing for this animation, hide the text in the provided range if you haven’t already. If you support animating the reflow of your view’s text, you can also prepare any other animations you need. Writing Tools uses a preview object you provide to animate the removal of the text.
+    ///
+    ///
     /// The animation that Writing Tools performs when removing text from your view.
     ///
     /// This type of animation shows the removal of text from your view. When
@@ -603,10 +712,15 @@ impl UIWritingToolsCoordinatorTextAnimation {
     /// you haven’t already. If you support animating the reflow of your view’s
     /// text, you can also prepare any other animations you need. Writing Tools
     /// uses a preview object you provide to animate the removal of the text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textanimation/remove?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationRemove")]
     pub const Remove: Self = Self(1);
+    /// The animation that Writing Tools performs when inserting text into your view.
+    ///
+    /// ## Discussion
+    ///
+    /// This type of animation shows the insertion of text to your view. When preparing for this animation, hide the text in the provided range if you haven’t already. If you support animating the reflow of your view’s text, you can also prepare any other animations you need. Writing Tools uses a preview object you provide to animate the insertion of the text.
+    ///
+    ///
     /// The animation that Writing Tools performs when inserting text into your view.
     ///
     /// This type of animation shows the insertion of text to your view. When preparing
@@ -614,8 +728,6 @@ impl UIWritingToolsCoordinatorTextAnimation {
     /// already. If you support animating the reflow of your view’s text, you can
     /// also prepare any other animations you need. Writing Tools uses a preview
     /// object you provide to animate the insertion of the text.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/textanimation/insert?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationInsert")]
     pub const Insert: Self = Self(2);
 }
@@ -629,7 +741,6 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextAnimation {
 }
 
 impl UIWritingToolsCoordinatorTextAnimation {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatortextanimationdebugdescription(_:)?language=objc)
     #[doc(alias = "UIWritingToolsCoordinatorTextAnimationDebugDescription")]
     #[inline]
     pub fn debug_description(self) -> Retained<NSString> {
@@ -645,6 +756,15 @@ impl UIWritingToolsCoordinatorTextAnimation {
 }
 
 extern_protocol!(
+    /// An interface that you use to manage interactions between Writing Tools and your custom text view.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the `UIWritingToolsCoordinator.Delegate` protocol in the type you use to manage your custom text view. When you add a [`UIWritingToolsCoordinator`](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator) object to your view, the coordinator uses this protocol to communicate with that view. The protocol lets Writing Tools fetch your view’s text, report suggested changes back to your view, and deliver visual feedback when Writing Tools features are active. Make sure the type that adopts this protocol has access to your view’s text storage and can perform relevant tasks on behalf of the view.
+    ///
+    /// Writing Tools expects you to call the provided handler blocks at the end of your delegate methods. It’s crucial that you execute these blocks in a timely manner to allow Writing Tools to perform subsequent tasks. For example, Writing Tools waits for you to execute the handlers for animation-related methods before moving on to the next stage of the animations.
+    ///
+    ///
     /// An interface that you use to manage interactions between Writing Tools
     /// and your custom text view.
     ///
@@ -662,8 +782,6 @@ extern_protocol!(
     /// timely manner to allow Writing Tools to perform subsequent tasks. For example,
     /// Writing Tools waits for you to execute the handlers for animation-related methods
     /// before moving on to the next stage of the animations.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/delegate-swift.protocol?language=objc)
     pub unsafe trait UIWritingToolsCoordinatorDelegate: NSObjectProtocol {
         #[cfg(all(feature = "UIWritingToolsCoordinatorContext", feature = "block2"))]
         /// Asks your delegate to provide the text to evaluate during the Writing Tools

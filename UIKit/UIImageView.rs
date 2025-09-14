@@ -15,7 +15,124 @@ use objc2_symbols::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimageview?language=objc)
+    /// A view that displays a single image or a sequence of animated images in your interface.
+    ///
+    /// ## Overview
+    ///
+    /// Image views let you efficiently draw any image that can be specified using a [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object. For example, you can use the [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) class to display the contents of many standard image files, such as JPEG and PNG files. You can configure image views programmatically or in your storyboard file and change the images they display at runtime. For animated images, you can also use the methods of this class to start and stop the animation and specify other animation parameters.
+    ///
+    ///
+    /// ![An image view](https://docs-assets.developer.apple.com/published/707440cc50954c46cf2c38fbab7cd76b/media-2923882%402x.png)
+    ///
+    ///
+    /// ### Understand how images are scaled
+    ///
+    /// An image view uses its [`contentMode`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.property) property and the configuration of the image itself to determine how to display the image. It’s best to specify images whose dimensions match the dimensions of the image view exactly, but image views can scale your images to fit all or some of the available space. If the size of the image view itself changes, it automatically scales the image as needed.
+    ///
+    /// For an image without cap insets, the presentation of the image is determined solely by the image view’s [`contentMode`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.property) property. The [`UIViewContentModeScaleAspectFit`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfit) and [`UIViewContentModeScaleAspectFill`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaleaspectfill) modes scale the image to fit or fill the space while maintaining the image’s original aspect ratio. The [`UIViewContentModeScaleToFill`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaletofill) value scales the image without regard to the original aspect ratio, which can cause the image to appear distorted. Other content modes place the image at the appropriate location in the image view’s bounds without scaling it.
+    ///
+    /// For a resizable image with cap insets, those insets affect the final appearance of the image. Specifically, cap insets define which parts of the image may be scaled and in which directions. You can create a resizable image that stretches using the [`resizableImageWithCapInsets:resizingMode:`](https://developer.apple.com/documentation/uikit/uiimage/resizableimage(withcapinsets:resizingmode:)) method of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage). When using an image of this type, you typically set the image view’s content mode to [`UIViewContentModeScaleToFill`](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum/scaletofill) so that the image stretches in the appropriate places and fills the image view’s bounds.
+    ///
+    /// For tips on how to prepare images, see [Debug issues with your image view](https://developer.apple.com/documentation/uikit/uiimageview#debug-issues-with-your-image-view). For more information on creating resizable images with cap insets, see [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage).
+    ///
+    /// ### Determine the final transparency of the image
+    ///
+    /// Images are composited onto the image view’s background and are then composited into the rest of the window. Any transparency in the image allows the image view’s background to show through. Similarly, any further transparency in the background of the image is dependent on the transparency of the image view and the transparency of the [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object it displays. When the image view and its image both have transparency, the image view uses alpha blending to combine the two.
+    ///
+    /// - The image is composited onto the image view’s background.
+    ///
+    /// - If the image view’s [`opaque`](https://developer.apple.com/documentation/uikit/uiview/isopaque) property is [`true`](https://developer.apple.com/documentation/swift/true), the image’s pixels are composited on top of the image view’s background color and the [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha) property of the image view is ignored.
+    ///
+    /// - If the image view’s [`opaque`](https://developer.apple.com/documentation/uikit/uiview/isopaque) property is [`false`](https://developer.apple.com/documentation/swift/false), the alpha value of each pixel is multiplied by the image view’s [`alpha`](https://developer.apple.com/documentation/uikit/uiview/alpha) value, with the resulting value becoming the actual transparency value for that pixel. If the image doesn’t have an alpha channel, the alpha value of each pixel is assumed to be `1.0`.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  It’s computationally expensive to composite the alpha channel of an image with the alpha channel of a non-opaque image view. The performance impact is further magnified if you use Core Animation shadows, because the shape of the shadow is then based on the contents of the view and must be dynamically computed. If you aren’t intentionally using the alpha channel of the image or the alpha channel of the image view, set the [`opaque`](https://developer.apple.com/documentation/uikit/uiview/isopaque) property to [`true`](https://developer.apple.com/documentation/swift/true) to improve performance. For additional optimization tips, see [Improve performance](https://developer.apple.com/documentation/uikit/uiimageview#improve-performance).
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Animate a sequence of images
+    ///
+    /// An image view can store an animated image sequence and play all or part of that sequence. You specify an image sequence as an array of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) objects and assign them to the [`animationImages`](https://developer.apple.com/documentation/uikit/uiimageview/animationimages) property. Once assigned, you can use the methods and properties of this class to configure the animation timing and to start and stop the animation.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  You can also construct a single [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) object from a sequence of individual images using the [`animatedImageWithImages:duration:`](https://developer.apple.com/documentation/uikit/uiimage/animatedimage(with:duration:)) method. Doing so yields the same results as assigning the individual images to the [`animationImages`](https://developer.apple.com/documentation/uikit/uiimageview/animationimages) property.
+    ///
+    ///
+    ///
+    /// </div>
+    /// Consider the following tips when displaying a sequence of animated images:
+    ///
+    /// - **All images in the sequence should have the same size.** When scaling is required, the image view scales each image in the sequence separately. If the images are different sizes, scaling may not yield the results you want.
+    ///
+    /// - **All images in the sequence should use the same content scale factor.** Make sure the [`scale`](https://developer.apple.com/documentation/uikit/uiimage/scale) property of each image contains the same value.
+    ///
+    /// ### Respond to touch events
+    ///
+    /// Image views ignore user events by default. Normally, you use image views only to present visual content in your interface. If you want an image view to handle user interactions as well, change the value of its [`userInteractionEnabled`](https://developer.apple.com/documentation/uikit/uiimageview/isuserinteractionenabled) property to [`true`](https://developer.apple.com/documentation/swift/true). After doing that, you can attach gesture recognizers or use any other event handling techniques to respond to touch events or other user-initiated events.
+    ///
+    /// For more information about handling events, see [Event Handling Guide for UIKit Apps](https://developer.apple.com/library/archive/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/index.html#//apple_ref/doc/uid/TP40009541).
+    ///
+    /// ### Improve performance
+    ///
+    /// Image scaling and alpha blending are two relatively expensive operations that can impact your app’s performance. To maximize performance of your image view code, consider the following tips:
+    ///
+    /// - **Cache scaled versions of frequently used images.** If you expect certain large images to be displayed frequently in a scaled-down thumbnail view, consider creating the scaled-down images in advance and storing them in a thumbnail cache. Doing so alleviates the need for each image view to scale them separately.
+    ///
+    /// - **Use images whose size is close to the size of the image view.** Rather than assigning a large image to an image view, created a scaled version that matches the current size of the image view. You can also create a resizable image object using the [`UIImageResizingModeTile`](https://developer.apple.com/documentation/uikit/uiimage/resizingmode-swift.enum/tile) option, which tiles the image instead of scaling it.
+    ///
+    /// - **Make your image view opaque whenever possible.** Unless you’re intentionally working with images that contain transparency (drawing UI elements, for example), make sure the [`opaque`](https://developer.apple.com/documentation/uikit/uiview/isopaque) property of your image view is set to [`true`](https://developer.apple.com/documentation/swift/true). For more information about how transparency is determined, see [Determine the final transparency of the image](https://developer.apple.com/documentation/uikit/uiimageview#determine-the-final-transparency-of-the-image).
+    ///
+    /// ### Debug issues with your image view
+    ///
+    /// If your image view isn’t displaying what you expected, use the following tips to help diagnose the problem:
+    ///
+    /// - **Load images using the correct method.** Use the [`imageNamed:inBundle:compatibleWithTraitCollection:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:in:compatiblewith:)) method of [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) to load images from asset catalogs or your app’s bundle. For images outside of your app’s bundle, use the [`imageWithContentsOfFile:`](https://developer.apple.com/documentation/uikit/uiimage/imagewithcontentsoffile:) method.
+    ///
+    /// - **Don’t use image views for custom drawing.** The [`UIImageView`](https://developer.apple.com/documentation/uikit/uiimageview) class doesn’t draw its content using the [`drawRect:`](https://developer.apple.com/documentation/uikit/uiview/draw(_:)) method. Use image views only to present images. To do custom drawing involving images, subclass [`UIView`](https://developer.apple.com/documentation/uikit/uiview) directly and draw your image there.
+    ///
+    /// ### Interface Builder attributes
+    ///
+    /// The following table lists the attributes that you configure for image views in Interface Builder.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Discussion" }] }]], [[Paragraph { inline_content: [Text { text: "Image" }] }], [Paragraph { inline_content: [Text { text: "The image to display. You can specify any image in your Xcode project, including standalone images and those in image assets. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIImageView/image", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIImageView/animationImages", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "Highlighted" }] }], [Paragraph { inline_content: [Text { text: "The image to display when the image view is highlighted. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIImageView/highlightedImage", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " or " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIImageView/highlightedAnimationImages", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]], [[Paragraph { inline_content: [Text { text: "State" }] }], [Paragraph { inline_content: [Text { text: "The initial state of the image. Use this attribute to mark the image as highlighted. To set this attribute programmatically, use the " }, Reference { identifier: "doc://com.apple.uikit/documentation/UIKit/UIImageView/isHighlighted", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " property." }] }]]], alignments: None, metadata: None })
+    /// ### Internationalization
+    ///
+    /// Internationalization of image views is automatic if your view displays only static images loaded from your app bundle. If you’re loading images programmatically, you’re at least partially responsible for loading the correct image.
+    ///
+    /// - For resources in your app bundle, you do this by specifying the name in the attributes inspector or by calling the [`imageNamed:`](https://developer.apple.com/documentation/uikit/uiimage/init(named:)) class method on [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) to obtain the localized version of each image.
+    ///
+    /// - For images that aren’t in your app bundle, your code must do the following:
+    ///
+    /// 1. Determine which image to load in a manner specific to your app, such as providing a localized string that contains the URL.
+    ///
+    /// 2. Load that image by passing the URL or data for the correct image to an appropriate [`UIImage`](https://developer.apple.com/documentation/uikit/uiimage) class method, such as [`imageWithData:`](https://developer.apple.com/documentation/uikit/uiimage/imagewithdata:) or [`imageWithContentsOfFile:`](https://developer.apple.com/documentation/uikit/uiimage/imagewithcontentsoffile:).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Screen metrics and layout may also change depending on the language and locale, particularly if the internationalized versions of your images have different dimensions. Where possible, you should try to make minimize dimension differences in internationalized versions of image resources.
+    ///
+    ///
+    ///
+    /// </div>
+    /// For more information, see [Localization](https://developer.apple.com/documentation/xcode/localization).
+    ///
+    /// ### Accessibility
+    ///
+    /// Image views are accessible by default. The default accessibility traits for an image view are Image and User Interaction Enabled.
+    ///
+    /// For more information about making iOS controls accessible, see the accessibility information in [`UIControl`](https://developer.apple.com/documentation/uikit/uicontrol). For general information about making your interface accessible, see [Accessibility for UIKit](https://developer.apple.com/documentation/uikit/accessibility-for-uikit).
+    ///
+    /// ### State preservation
+    ///
+    /// When you assign a value to an image view’s [`restorationIdentifier`](https://developer.apple.com/documentation/uikit/uiviewcontroller/restorationidentifier) property, it attempts to preserve the frame of the displayed image. Specifically, the class preserves the values of the [`bounds`](https://developer.apple.com/documentation/uikit/uiview/bounds), [`center`](https://developer.apple.com/documentation/uikit/uiview/center), and [`transform`](https://developer.apple.com/documentation/uikit/uiview/transform) properties of the view and the [`anchorPoint`](https://developer.apple.com/documentation/quartzcore/calayer/anchorpoint) property of the underlying layer. During restoration, the image view restores these values so that the image appears exactly as before. For more information about how state preservation and restoration works, see [Restoring your app’s state](https://developer.apple.com/documentation/uikit/restoring-your-app-s-state).
+    ///
+    ///
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

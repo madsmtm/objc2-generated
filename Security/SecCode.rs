@@ -7,9 +7,20 @@ use crate::*;
 
 #[cfg(feature = "CSCommon")]
 unsafe impl ConcreteType for SecCode {
-    /// Returns the type identifier of all SecCode instances.
+    /// Returns the unique identifier of the opaque type to which a code object belongs.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodegettypeid()?language=objc)
+    /// ## Return Value
+    ///
+    /// A value that identifies the opaque type of a code object.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can compare the value returned by this function to the [`CFTypeID`](https://developer.apple.com/documentation/corefoundation/cftypeid) identifier obtained by calling the [`CFGetTypeID`](https://developer.apple.com/documentation/corefoundation/cfgettypeid(_:)) function on a specific object. These values might change from release to release or platform to platform.
+    ///
+    ///
+    /// Returns the type identifier of all SecCode instances.
     #[doc(alias = "SecCodeGetTypeID")]
     #[inline]
     fn type_id() -> CFTypeID {
@@ -22,6 +33,27 @@ unsafe impl ConcreteType for SecCode {
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// Retrieves the code object for the code making the call.
+    ///
+    /// Parameters:
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - self: On return, a code object representing the caller.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// A code object (that is, an object of type [`SecCodeRef`](https://developer.apple.com/documentation/security/seccode)) represents code that is running on the system. The code can be a UNIX process, a script, an applet, a widget, or any other separately-identifiable code. You can use the code object returned by this function as input to other functions in the Code Signing Services API. This function returns a code object for the code that calls it regardless of whether the code is signed. Call the [`SecCodeCheckValidity`](https://developer.apple.com/documentation/security/seccodecheckvalidity(_:_:_:)) or [`SecCodeCheckValidityWithErrors`](https://developer.apple.com/documentation/security/seccodecheckvaliditywitherrors(_:_:_:_:)) function to determine whether the code has a valid signature.
+    ///
+    /// If the code calling this function is either a dedicated host or has called the [`SecHostSelectGuest`](https://developer.apple.com/documentation/security/sechostselectguest) function, then the host is considered to be acting as a proxy for its dedicated or selected guest and the [`SecCodeCopySelf`](https://developer.apple.com/documentation/security/seccodecopyself(_:_:)) function returns a code object for that guest.  See [`kSecCSDedicatedHost`](https://developer.apple.com/documentation/security/kseccsdedicatedhost) for a discussion of dedicated hosts.
+    ///
+    ///
     /// Obtains a SecCode object for the code making the call.
     /// The calling code is determined in a way that is subject to modification over
     /// time, but obeys the following rules. If it is a UNIX process, its process id (pid)
@@ -39,8 +71,6 @@ impl SecCode {
     /// # Safety
     ///
     /// `self` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyself(_:_:)?language=objc)
     #[doc(alias = "SecCodeCopySelf")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -52,12 +82,44 @@ impl SecCode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsuseallarchitectures?language=objc)
+/// Flag for requesting all architectures.
+///
+/// ## Discussion
+///
+/// When this flag is used, if code refers to a single architecture of a universal binary, return a [`SecStaticCodeRef`](https://developer.apple.com/documentation/security/secstaticcode) object that refers to the entire universal code with all its architectures. By default, the returned static reference identifies only the actual architecture of the running program.
+///
+///
 pub const kSecCSUseAllArchitectures: u32 = 1;
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)?language=objc)
+    /// Returns a static code object representing the on-disk version of the given running code.
+    ///
+    /// Parameters:
+    /// - code: A valid code object representing code running on the system.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) and [Code Signing Architecture Flags](https://developer.apple.com/documentation/security/code-signing-architecture-flags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - staticCode: On return, a static code object representing the code in the file system that is the origin of the code specified by the `code` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the [`SecCodeCopyPath`](https://developer.apple.com/documentation/security/seccodecopypath(_:_:_:)) function to get the URL specifying the location on disk of the code represented by a code or static code object.
+    ///
+    /// Many functions in the Code Signing Services API take either a static code object or a code object as an input parameter. For these functions, if you pass in a code reference, the function first translates it to a static code reference in the same manner as the [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function. In each such case, the parameter description documents this behavior.
+    ///
+    /// ### Special Considerations
+    ///
+    /// The link established by this function is generally reliable but is not guaranteed to be secure.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -80,6 +142,27 @@ impl SecCode {
         unsafe { SecCodeCopyStaticCode(self, flags, static_code) }
     }
 
+    /// Retrieves the code object for the host of specified guest code.
+    ///
+    /// Parameters:
+    /// - guest: A valid code object representing code running on the system as the guest of other code.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - host: On return, the code object of the host of the code specified in the `guest` parameter.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Host code acts as the supervisor and controller of its guest code and is the ultimate authority on the dynamic validity and status of its guests.
+    ///
+    ///
     /// Given a SecCode object, identify the (different) SecCode object that acts
     /// as its host. A SecCode's host acts as a supervisor and controller,
     /// and is the ultimate authority on the its dynamic validity and status.
@@ -100,8 +183,6 @@ impl SecCode {
     /// # Safety
     ///
     /// `host` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyhost(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyHost")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -118,52 +199,108 @@ impl SecCode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributecanonical?language=objc)
+    /// A key whose value is the guest code object for that guest.
+    ///
+    /// ## Discussion
+    ///
+    /// This object plus the process ID ([`kSecGuestAttributePid`](https://developer.apple.com/documentation/security/ksecguestattributepid)) uniquely identify the guest.
+    ///
+    ///
     pub static kSecGuestAttributeCanonical: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributehash?language=objc)
+    /// A key whose value is a data object containing the SHA-1 hash of the code directory.
+    ///
+    /// ## Discussion
+    ///
+    /// This hash can be used as a unique identifier to recognize this specific code in the future. This identifier is tied to the current version of the code, unlike the [`kSecCodeInfoIdentifier`](https://developer.apple.com/documentation/security/kseccodeinfoidentifier) identifier, which remains stable across developer-approved updates. If you are not passing this hash in the attribute dictionary when you call the [`SecHostCreateGuest`](https://developer.apple.com/documentation/security/sechostcreateguest) function, then you must pass the [`kSecCSGenerateGuestHash`](https://developer.apple.com/documentation/security/kseccsgenerateguesthash) flag to the function as well.
+    ///
+    ///
     pub static kSecGuestAttributeHash: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributemachport?language=objc)
+    /// Not implemented.
     pub static kSecGuestAttributeMachPort: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributepid?language=objc)
+    /// A key whose value is an integer of type `pid_t` representing a process ID (PID), usually of the kernel’s guest.
     pub static kSecGuestAttributePid: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributeaudit?language=objc)
     pub static kSecGuestAttributeAudit: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributedynamiccode?language=objc)
     pub static kSecGuestAttributeDynamicCode: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributedynamiccodeinfoplist?language=objc)
     pub static kSecGuestAttributeDynamicCodeInfoPlist: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributearchitecture?language=objc)
+    /// A key whose value is a number representing the CPU type under which the guest code is designed to run.
+    ///
+    /// ## Discussion
+    ///
+    /// See the ARCH(3) manual page for a list of possible CPU types.
+    ///
+    ///
     pub static kSecGuestAttributeArchitecture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/ksecguestattributesubarchitecture?language=objc)
+    /// A key whose value is a number representing the CPU subtype under which the guest code is designed to run.
+    ///
+    /// ## Discussion
+    ///
+    /// See the ARCH(3) manual page for a list of possible CPU subtypes.
+    ///
+    ///
     pub static kSecGuestAttributeSubarchitecture: &'static CFString;
 }
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
+    /// Asks a code host to identify one of its guests given the type and value of specific attributes of the guest code.
+    ///
+    /// Parameters:
+    /// - host: A valid code object representing code running on the system that acts as a host for signed code. Pass `NULL` to indicate that the code signing root of trust (currently, the system kernel) should be used as the code host.
+    ///
+    /// - attributes: A dictionary containing zero or more attribute values to be used in identifying guest code. See [Guest Attribute Dictionary Keys](https://developer.apple.com/documentation/security/guest-attribute-dictionary-keys) for possible dictionary keys and descriptions of the associated values. Each host supports only particular combinations of keys and values, and the function returns an error if any unsupported set is requested. Pass `NULL` to indicate an empty attribute set. Note that some hosts that support hosting chains (guests being hosts) may return sub-guests to this function; that is, the code object returned by this call may not be a direct guest of the queried host, although it will be a guest somewhere in the hosting chain.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - guest: On return, a code object identifying the particular guest of the host that has the specified attribute values. If the attributes specify the host itself, the function returns the code object for the host. If more than one guest meet the specified criteria, the function returns the result `errSecCSMultipleGuests`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes). In particular:
+    ///
+    /// - [`errSecCSUnsupportedGuestAttributes`](https://developer.apple.com/documentation/security/errseccsunsupportedguestattributes): The host does not support the specified attribute type.
+    ///
+    /// - [`errSecCSInvalidAttributeValues`](https://developer.apple.com/documentation/security/errseccsinvalidattributevalues): The type of value given for a guest attribute is not supported by the host.
+    ///
+    /// - [`errSecCSNoSuchCode`](https://developer.apple.com/documentation/security/errseccsnosuchcode): The host has no guest with the specified attribute value, even though the value is of a supported type. This error may also be returned if the code specified in the `host` parameter is not currently acting as a code host.
+    ///
+    /// - [`errSecCSNotAHost`](https://developer.apple.com/documentation/security/errseccsnotahost): The code specified in the `host` parameter cannot act as a code host, because it’s missing the [`kSecCodeSignatureHost`](https://developer.apple.com/documentation/security/seccodesignatureflags/host) option flag in its code signature.
+    ///
+    /// - [`errSecCSMultipleGuests`](https://developer.apple.com/documentation/security/errseccsmultipleguests): The attributes specified do not unambiguously identify a guest (the specification is not unique).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Different hosts support different types and combinations of attributes. The methods a host uses to identify, separate, and control its guests are specific to each type of host. This function provides a generic abstraction layer that allows uniform interrogation of all hosts.
+    ///
+    /// The most frequent use of this function is to obtain a code object for specific code. To do that, pass `NULL` for the `host` parameter and specify all the attributes you have for the guest. You can also use this function to crawl through the guest hosting structure in incremental steps. To do so, pass in a specific host and the attributes for a particular guest.
+    ///
+    ///
     /// This is the omnibus API function for obtaining dynamic code references.
     /// In general, it asks a particular code acting as a code host to locate
     /// and return a guest with given attributes. Different hosts support
@@ -226,8 +363,6 @@ impl SecCode {
     /// - `attributes` generic must be of the correct type.
     /// - `attributes` generic must be of the correct type.
     /// - `guest` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopyguestwithattributes(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -248,6 +383,29 @@ impl SecCode {
         unsafe { SecCodeCopyGuestWithAttributes(host, attributes, flags, guest) }
     }
 
+    /// Performs dynamic validation of signed code.
+    ///
+    /// Parameters:
+    /// - code: The code object to be validated.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - requirement: A code requirement specifying additional conditions the code must satisfy to be considered valid. Specify `NULL` if you don’t want to impose any additional requirements. Use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) or [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object. See [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929) for a discussion of code requirements.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains and verifies the signature on the code specified by the code object. It checks the validity of only those sealed components required to establish identity. For guest code, first the function checks the code object’s dynamic validity status as reported by its host, then it ensures that the code object’s host is in turn valid. For all code, it validates the code against a code requirement if one is specified. The call succeeds if all these conditions are satisfactory.
+    ///
+    /// This function is secure against attempts to modify the file system source of the code object.
+    ///
+    ///
     /// Performs dynamic validation of the given SecCode object. The call obtains and
     /// verifies the signature on the code object. It checks the validity of only those
     /// sealed components required to establish identity. It checks the SecCode's
@@ -270,8 +428,6 @@ impl SecCode {
     ///
     /// Returns: If validation passes, errSecSuccess. If validation fails, an OSStatus value
     /// documented in CSCommon.h or certain other Security framework headers.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecheckvalidity(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCheckValidity")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -290,6 +446,31 @@ impl SecCode {
         unsafe { SecCodeCheckValidity(self, flags, requirement) }
     }
 
+    /// Performs dynamic validation of signed code and returns detailed error information in the case of failure.
+    ///
+    /// Parameters:
+    /// - code: The code object to be validated.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass `kSecCSDefaultFlags` for standard behavior.
+    ///
+    /// - requirement: A code requirement specifying additional conditions the code must satisfy to be considered valid. Specify `NULL` if you don’t want to impose any additional requirements. Use the [`SecRequirementCreateWithString`](https://developer.apple.com/documentation/security/secrequirementcreatewithstring(_:_:_:)) or [`SecRequirementCreateWithStringAndErrors`](https://developer.apple.com/documentation/security/secrequirementcreatewithstringanderrors(_:_:_:_:)) function to create a code requirement object. See [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929) for a discussion of code requirements.
+    ///
+    /// - errors: On return, if the function call fails and returns a result code other than [`errSecSuccess`](https://developer.apple.com/documentation/security/errsecsuccess), points to an error object further describing the nature and circumstances of the failure. Use the [`CFErrorCopyUserInfo`](https://developer.apple.com/documentation/corefoundation/cferrorcopyuserinfo(_:)) function to retrieve the user info dictionary from the error object. See [User Info Dictionary Error Keys](https://developer.apple.com/documentation/security/user-info-dictionary-error-keys) for possible values. Pass `NULL` if you do not want this information. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function obtains and verifies the signature on the code specified by the code object. It checks the validity of only those sealed components required to establish identity. For guest code, first the function checks the code object’s dynamic validity status as reported by its host, then it ensures that the code object’s host is in turn valid. For all code, it validates the code against a code requirement if one is specified. The call succeeds if all these conditions are satisfactory.
+    ///
+    /// This function is secure against attempts to modify the file system source of the code object.
+    ///
+    ///
     /// Performs dynamic validation of the given SecCode object. The call obtains and
     /// verifies the signature on the code object. It checks the validity of only those
     /// sealed components required to establish identity. It checks the SecCode's
@@ -321,8 +502,6 @@ impl SecCode {
     /// # Safety
     ///
     /// `errors` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecheckvaliditywitherrors(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCheckValidityWithErrors")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -361,8 +540,6 @@ impl SecCode {
     /// Returns: noErr if fileData is the exact content of the file at relativePath at the
     /// time it was signed. Various error codes if it is different, there was no such file,
     /// it was not a plain file, or anything is irregular.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodevalidatefileresource(_:_:_:_:)?language=objc)
     #[doc(alias = "SecCodeValidateFileResource")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -383,6 +560,21 @@ impl SecCode {
         unsafe { SecCodeValidateFileResource(code, relative_path, file_data, flags) }
     }
 
+    /// Retrieves the location on disk of signed code, given a code or static code object.
+    ///
+    /// Parameters:
+    /// - staticCode: The code or static code object whose code you wish to locate. If you provide a code object, the function processes it in the same manner as the  [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - path: On return, provides a URL identifying the location on disk of the code or static code object. For single files, the URL points to the file. For bundles, it points to the directory containing the entire bundle. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
     /// For a given Code or StaticCode object, returns a URL to a location on disk where the
     /// code object can be found. For single files, the URL points to that file.
     /// For bundles, it points to the directory containing the entire bundle.
@@ -402,8 +594,6 @@ impl SecCode {
     /// # Safety
     ///
     /// `path` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopypath(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyPath")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -422,6 +612,29 @@ impl SecCode {
         unsafe { SecCodeCopyPath(static_code, flags, path) }
     }
 
+    /// Retrieves the designated code requirement of signed code.
+    ///
+    /// Parameters:
+    /// - code: The code or static code object for which you want the designated requirement. If you provide a code object, the function processes it in the same manner as the  [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    /// - requirement: On return, the code’s designated requirement. In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The designated requirement is the internal code requirement that the code specifies as the way to identify it. See [Code Signing Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005929) for a discussion of code requirements and designated requirements.
+    ///
+    /// If the code contains an explicit designated requirement, a copy of that is returned. If it doesn’t, a designated requirement is constructed from the code’s signing authority and its embedded unique identifier. No designated requirement can be obtained from unsigned code. Code that is modified after being signed, that has been signed improperly, or whose signature has become invalid, may or may not yield a designated requirement. This function does not validate the signature.
+    ///
+    ///
     /// For a given Code or StaticCode object, determines its Designated Code Requirement.
     /// The Designated Requirement is the SecRequirement that the code believes
     /// should be used to properly identify it in the future.
@@ -448,8 +661,6 @@ impl SecCode {
     /// # Safety
     ///
     /// `requirement` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopydesignatedrequirement(_:_:_:)?language=objc)
     #[doc(alias = "SecCodeCopyDesignatedRequirement")]
     #[cfg(feature = "CSCommon")]
     #[inline]
@@ -469,164 +680,391 @@ impl SecCode {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsinternalinformation?language=objc)
+/// Internal code signing information.
+///
+/// ## Discussion
+///
+/// This information is for use by Apple, and is subject to change without notice.
+///
+///
 pub const kSecCSInternalInformation: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccssigninginformation?language=objc)
+/// Cryptographic signing information.
+///
+/// ## Discussion
+///
+/// The certificate chain and Cryptographic Message Syntax (CMS) data (if any). For ad-hoc signed code, there are no certificates and the CMS data is empty.
+///
+///
 pub const kSecCSSigningInformation: u32 = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsrequirementinformation?language=objc)
+/// Code requirements—including the designated requirement—embedded in the code.
 pub const kSecCSRequirementInformation: u32 = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsdynamicinformation?language=objc)
+/// Dynamic validity information about running code.
+///
+/// ## Discussion
+///
+/// This information cannot be returned for code on disk (represented by a [`SecStaticCodeRef`](https://developer.apple.com/documentation/security/secstaticcode) object).
+///
+///
 pub const kSecCSDynamicInformation: u32 = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscontentinformation?language=objc)
+/// More information about the file system contents making up the signed code on disk.
+///
+/// ## Discussion
+///
+/// It is not generally advisable to make use of this information, but some utilities (such as software-update tools) may find it useful.
+///
+///
 pub const kSecCSContentInformation: u32 = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccsskipresourcedirectory?language=objc)
+/// Suppress validating the resource directory.
 pub const kSecCSSkipResourceDirectory: u32 = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kseccscalculatecmsdigest?language=objc)
 pub const kSecCSCalculateCMSDigest: u32 = 64;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfocertificates?language=objc)
+    /// A key whose value is an array of certificates representing the certificate chain of the signing certificate as seen by the system.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) array of [`SecCertificateRef`](https://developer.apple.com/documentation/security/seccertificate) objects that the system uses to process the signature. Absent for ad-hoc signed code. May be partial or absent in the case of error.
+    ///
+    /// Specify the [`kSecCSSigningInformation`](https://developer.apple.com/documentation/security/kseccssigninginformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoCertificates: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfochangedfiles?language=objc)
+    /// A key whose value is a list of all files in the code that may have been modified by the process of signing it.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) array of [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl) objects. Files not in this list have not been touched by the signing operation.
+    ///
+    /// Specify the [`kSecCSContentInformation`](https://developer.apple.com/documentation/security/kseccscontentinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoChangedFiles: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfocms?language=objc)
+    /// A key whose value is the CMS cryptographic object that secures the code signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object. Empty for ad-hoc signed code.
+    ///
+    /// Specify the [`kSecCSSigningInformation`](https://developer.apple.com/documentation/security/kseccssigninginformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoCMS: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfodesignatedrequirement?language=objc)
+    /// A keys whose value is the designated requirement of the code.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`SecRequirementRef`](https://developer.apple.com/documentation/security/secrequirement) object. If this object is identical to the one returned by the [`kSecCodeInfoImplicitDesignatedRequirement`](https://developer.apple.com/documentation/security/kseccodeinfoimplicitdesignatedrequirement) key, then there is no explicit designated requirement and the designated requirement in use was generated by the system.
+    ///
+    /// Specify the [`kSecCSRequirementInformation`](https://developer.apple.com/documentation/security/kseccsrequirementinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoDesignatedRequirement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoentitlements?language=objc)
+    /// A key whose value represents the embedded entitlement blob of the code, if any.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object.
+    ///
+    /// Specify the [`kSecCSRequirementInformation`](https://developer.apple.com/documentation/security/kseccsrequirementinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) to get this information.
+    ///
+    ///
     pub static kSecCodeInfoEntitlements: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoentitlementsdict?language=objc)
+    /// A key whose value is a dictionary of embedded entitlements.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object containing the embedded entitlements of the code if it has entitlements and they are in standard dictionary form. The value is absent if the code has no entitlements, or they are in a different format (in which case, see [`kSecCodeInfoEntitlements`](https://developer.apple.com/documentation/security/kseccodeinfoentitlements)).
+    ///
+    ///
     pub static kSecCodeInfoEntitlementsDict: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoflags?language=objc)
+    /// A key whose value indicates the static (on-disk) state of the object.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber). See [`SecCodeSignatureFlags`](https://developer.apple.com/documentation/security/seccodesignatureflags) for a list of possible values.
+    ///
+    ///
     pub static kSecCodeInfoFlags: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoformat?language=objc)
+    /// A key whose value is a string representing the type and format of the code in a form suitable for display to a knowledgeable user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object.
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags)  you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoFormat: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithm?language=objc)
+    /// A key whose value is a number indicating the cryptographic hash function.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) indicating the kind of cryptographic hash function used within the signature to seal its pieces together. See [`SecCSDigestAlgorithm`](https://developer.apple.com/documentation/security/seccsdigestalgorithm) for possible value.
+    ///
+    ///
     pub static kSecCodeInfoDigestAlgorithm: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithms?language=objc)
+    /// A key whose value is a list of the kinds of cryptographic hash functions available within the signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) of [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) objects indicating the kinds of cryptographic hash functions available within the signature. The ordering of the items in the array has no significance in terms of priority, but determines the order in which the hashes appear in [`kSecCodeInfoCdHashes`](https://developer.apple.com/documentation/security/kseccodeinfocdhashes).
+    ///
+    ///
     pub static kSecCodeInfoDigestAlgorithms: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoplatformidentifier?language=objc)
+    /// A key whose value identifies the operating system release with which the code is associated, if any.
+    ///
+    /// ## Discussion
+    ///
+    /// If this code was signed as part of an operating system release, the value identifies that release.
+    ///
+    ///
     pub static kSecCodeInfoPlatformIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoidentifier?language=objc)
+    /// A key whose value is the signing identifier sealed into the signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. Absent for unsigned code.
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoimplicitdesignatedrequirement?language=objc)
+    /// A key whose value is the designated requirement (DR) that the system generated—or would have generated—for the code in the absence of an explicitly-declared DR.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`SecRequirementRef`](https://developer.apple.com/documentation/security/secrequirement) object. The actual designated requirement is returned by the [`kSecCodeInfoDesignatedRequirement`](https://developer.apple.com/documentation/security/kseccodeinfodesignatedrequirement) key. If the DR was implicitly generated by the system, the two values are the same. You can use this fact to test for an explicit DR.
+    ///
+    /// Specify the [`kSecCSRequirementInformation`](https://developer.apple.com/documentation/security/kseccsrequirementinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoImplicitDesignatedRequirement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfodefaultdesignatedlightweightcoderequirement?language=objc)
     pub static kSecCodeInfoDefaultDesignatedLightweightCodeRequirement: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfomainexecutable?language=objc)
+    /// A key whose value is a URL locating the main executable file of the code.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFURLRef`](https://developer.apple.com/documentation/corefoundation/cfurl) object. For single files, the URL locates the file itself. For bundles, it locates the main executable as identified by the bundle’s `Info.plist` file.
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoMainExecutable: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoplist?language=objc)
+    /// A key whose value is an information dictionary containing the contents of the secured `Info.plist` file as seen by Code Signing Services.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDictionaryRef`](https://developer.apple.com/documentation/corefoundation/cfdictionary) object. Absent if no information property list (`Info.plist`) file is known to Code Signing Services. Note that this is not necessarily the same dictionary as the one that would be returned by a [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle) function such as [`CFBundleCopyInfoDictionaryForURL`](https://developer.apple.com/documentation/corefoundation/cfbundlecopyinfodictionaryforurl(_:)), because [`CFBundleRef`](https://developer.apple.com/documentation/corefoundation/cfbundle) is free to add entries to the information property list).
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoPList: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinforequirements?language=objc)
+    /// A key whose value is the internal requirements of the code as a text string in canonical syntax.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. If there is an explicit designated requirement, then it’s included in this text string.
+    ///
+    /// Specify the [`kSecCSRequirementInformation`](https://developer.apple.com/documentation/security/kseccsrequirementinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoRequirements: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinforequirementdata?language=objc)
+    /// A key whose value is the internal requirements of the code as a binary blob.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object. If there is an explicit designated requirement, then it’s included in this data blob.
+    ///
+    /// Specify the [`kSecCSRequirementInformation`](https://developer.apple.com/documentation/security/kseccsrequirementinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoRequirementData: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfosource?language=objc)
+    /// The source of the code signature used for the code object in a format suitable for display.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFStringRef`](https://developer.apple.com/documentation/corefoundation/cfstring) object. This string is for display purposes only. Don’t rely on the precise value returned.
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoSource: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfostatus?language=objc)
+    /// A key whose value is the set of code status flags for the running code.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFNumberRef`](https://developer.apple.com/documentation/corefoundation/cfnumber) object. This is a snapshot taken at the time the function is executed and may be out of date by the time you examine it. Note, however, that some flag values cannot be changed and are therefore permanently reliable. See [`SecCodeStatus`](https://developer.apple.com/documentation/security/seccodestatus) for a list of possible values.
+    ///
+    /// Specify the [`kSecCSDynamicInformation`](https://developer.apple.com/documentation/security/kseccsdynamicinformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoStatus: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfoteamidentifier?language=objc)
+    /// A key whose value is the team identifier.
     pub static kSecCodeInfoTeamIdentifier: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfotime?language=objc)
+    /// A key whose value is the signing date embedded in the code signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) object. Note that a signer is able to omit this date or pre-date it. Therefore, this is not necessarily the date the code was actually signed. However, you do know that this is the date the signer wanted you to see. Ad-hoc signatures never have secured signing dates.
+    ///
+    /// Specify the [`kSecCSSigningInformation`](https://developer.apple.com/documentation/security/kseccssigninginformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoTime: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfotimestamp?language=objc)
+    /// A key whose value indicates the actual signing date.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDateRef`](https://developer.apple.com/documentation/corefoundation/cfdate) object describing the signing date as (securely) certified by a timestamp authority service. This timestamp cannot be falsified by the signer, and is trusted to the same degree as the timestamp service that created the timestamp.
+    ///
+    ///
     pub static kSecCodeInfoTimestamp: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfotrust?language=objc)
+    /// A key whose value is the trust object the system uses to evaluate the validity of the code’s signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a retained [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) object. You may use [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) functions (see [Certificate, Key, and Trust Services](https://developer.apple.com/documentation/security/certificate-key-and-trust-services) to extract detailed information, for example the reasons why certificate validation may have failed. Because this object may continue to be used for further evaluations of the code signature, if you make any changes to it, the behavior of the [`SecTrustRef`](https://developer.apple.com/documentation/security/sectrust) functions is undefined.
+    ///
+    /// Specify the [`kSecCSSigningInformation`](https://developer.apple.com/documentation/security/kseccssigninginformation) flag when calling the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to get this information.
+    ///
+    ///
     pub static kSecCodeInfoTrust: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfounique?language=objc)
+    /// A key whose value is a binary number that uniquely identifies static code.
+    ///
+    /// ## Discussion
+    ///
+    /// The value is a [`CFDataRef`](https://developer.apple.com/documentation/corefoundation/cfdata) object. This identifier can be used to recognize this specific code in the future. This identifier is tied to the current version of the code, unlike the [`kSecCodeInfoIdentifier`](https://developer.apple.com/documentation/security/kseccodeinfoidentifier) identifier, which remains stable across developer-approved updates. The algorithm used for the [`kSecCodeInfoUnique`](https://developer.apple.com/documentation/security/kseccodeinfounique) identifier may change over time. However, the identifier remains stable for existing, signed code.
+    ///
+    /// This is generic information returned regardless of which [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) you pass to the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function.
+    ///
+    ///
     pub static kSecCodeInfoUnique: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfocdhashes?language=objc)
+    /// A key whose value is an array containing the unique binary identifier for every digest algorithm supported in the signature.
+    ///
+    /// ## Discussion
+    ///
+    /// The corresponding [`CFArrayRef`](https://developer.apple.com/documentation/corefoundation/cfarray) contains the values of the [`kSecCodeInfoUnique`](https://developer.apple.com/documentation/security/kseccodeinfounique) binary identifier for every digest algorithm supported in the signature in the same order as in the [`kSecCodeInfoDigestAlgorithms`](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithms) array. The [`kSecCodeInfoUnique`](https://developer.apple.com/documentation/security/kseccodeinfounique) value contained in this array corresponds to the [`kSecCodeInfoDigestAlgorithm`](https://developer.apple.com/documentation/security/kseccodeinfodigestalgorithm) value.
+    ///
+    ///
     pub static kSecCodeInfoCdHashes: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinforuntimeversion?language=objc)
+    /// A key whose value represents the runtime version.
     pub static kSecCodeInfoRuntimeVersion: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseccodeinfostaplednotarizationticket?language=objc)
     pub static kSecCodeInfoStapledNotarizationTicket: &'static CFString;
 }
 
 #[cfg(feature = "CSCommon")]
 impl SecCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)?language=objc)
+    /// Retrieves various pieces of information from a code signature.
+    ///
+    /// Parameters:
+    /// - code: The code or static code object from whose signature you wish to retrieve information. If you provide a code object, the function processes it in the same manner as the [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function—that is, the static code signing information is obtained from the signature on disk. Note that dynamic information ([`kSecCSDynamicInformation`](https://developer.apple.com/documentation/security/kseccsdynamicinformation)) can be obtained only for a code object, not for a static code object.
+    ///
+    /// - flags: Specify any or all of the flags in [Code Signing Information Flags](https://developer.apple.com/documentation/security/code-signing-information-flags) to select what information to return. A basic set of values is returned regardless; specify [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for just those.
+    ///
+    /// - information: On return, a dictionary containing information about the code. The contents of the dictionary depend on the flags you pass in the `flags` parameter. Regardless of flags, the [`kSecCodeInfoIdentifier`](https://developer.apple.com/documentation/security/kseccodeinfoidentifier) key is always present if the code is signed and always absent if the code is unsigned. See [Signing Information Dictionary Keys](https://developer.apple.com/documentation/security/signing-information-dictionary-keys) for descriptions of the dictionary keys.  In Objective-C, call the [`CFRelease`](https://developer.apple.comhttps://developer.apple.com/documentation/corefoundation/1521153-cfrelease) function to release this object when you are finished with it.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The amount and detail level of the data returned is controlled by the flags passed to the call.
+    ///
+    /// If the code exists but is not signed, this function call succeeds and returns a dictionary that does not contain the [`kSecCodeInfoIdentifier`](https://developer.apple.com/documentation/security/kseccodeinfoidentifier) key. This is the recommended way to check quickly whether code is signed if that is the only information you need. However, note that this function does not validate the signature.
+    ///
+    /// If the signing data for the code is corrupt or invalid, this function may fail or it may return partial data. To ensure that only valid data is returned (and errors are raised for invalid data), you must successfully call the [`SecCodeCheckValidity`](https://developer.apple.com/documentation/security/seccodecheckvalidity(_:_:_:)) or [`SecCodeCheckValidityWithErrors`](https://developer.apple.com/documentation/security/seccodecheckvaliditywitherrors(_:_:_:_:)) function before calling [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)).
+    ///
+    /// ### Special Considerations
+    ///
+    /// Some of the objects returned in the information dictionary are (retained) “live” API objects used by the code signing infrastructure. Making changes to these objects is unsupported and may cause subsequent code signing operations on the affected code to behave in undefined ways.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -649,7 +1087,25 @@ impl SecCode {
         unsafe { SecCodeCopySigningInformation(code, flags, information) }
     }
 
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/seccodemapmemory(_:_:)?language=objc)
+    /// Asks the kernel to accept the signing information currently attached to a code object and uses it to validate memory page-ins.
+    ///
+    /// Parameters:
+    /// - code: A code or static code object representing the signed code whose main executable should be subject to page-in validation. If you provide a code object, the function processes it in the same manner as the  [`SecCodeCopyStaticCode`](https://developer.apple.com/documentation/security/seccodecopystaticcode(_:_:_:)) function—that is, whether you provide a code object or a static code object, the function actually takes the signature from the code on disk.
+    ///
+    /// - flags: Optional flags; see [`SecCSFlags`](https://developer.apple.com/documentation/security/seccsflags) for possible values. Pass [`kSecCSDefaultFlags`](https://developer.apple.com/documentation/security/seccsflags/kseccsdefaultflags) for standard behavior.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Code Signing Services Result Codes](https://developer.apple.com/documentation/security/code-signing-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function is for the use of code hosts that use memory mapping to manage their own code. The kernel takes the signing information attached to the code on disk specified by the `code` parameter and attaches it to the memory object. After that, it uses the signature to validate memory page-ins, updating the dynamic validity status accordingly. You can use the [`SecCodeCopySigningInformation`](https://developer.apple.com/documentation/security/seccodecopysigninginformation(_:_:_:)) function to check the code’s dynamic validity status. The attachment of the signature to the memory object affects all processes that have the main executable of this code mapped.
+    ///
+    ///
     #[doc(alias = "SecCodeMapMemory")]
     #[cfg(feature = "CSCommon")]
     #[inline]

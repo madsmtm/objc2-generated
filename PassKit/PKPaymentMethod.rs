@@ -8,28 +8,28 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype?language=objc)
+/// The type of cards available in Apple Pay.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentMethodType(pub NSUInteger);
 impl PKPaymentMethodType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/unknown?language=objc)
+    /// The card’s type is unknown.
     #[doc(alias = "PKPaymentMethodTypeUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/debit?language=objc)
+    /// A debit card.
     #[doc(alias = "PKPaymentMethodTypeDebit")]
     pub const Debit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/credit?language=objc)
+    /// A credit card.
     #[doc(alias = "PKPaymentMethodTypeCredit")]
     pub const Credit: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/prepaid?language=objc)
+    /// A prepaid card.
     #[doc(alias = "PKPaymentMethodTypePrepaid")]
     pub const Prepaid: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/store?language=objc)
+    /// A store card.
     #[doc(alias = "PKPaymentMethodTypeStore")]
     pub const Store: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethodtype/emoney?language=objc)
+    /// An electronic money card.
     #[doc(alias = "PKPaymentMethodTypeEMoney")]
     pub const EMoney: Self = Self(5);
 }
@@ -43,7 +43,7 @@ unsafe impl RefEncode for PKPaymentMethodType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentmethod?language=objc)
+    /// An object that contains information about payment methods.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKPaymentMethod;

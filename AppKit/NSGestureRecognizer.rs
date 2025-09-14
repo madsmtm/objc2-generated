@@ -7,31 +7,31 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum?language=objc)
+/// The current state of the gesture recognizer.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGestureRecognizerState(pub NSInteger);
 impl NSGestureRecognizerState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible?language=objc)
+    /// The gesture recognizer has not yet recognized its gesture but may be evaluating events. This is the default state.
     #[doc(alias = "NSGestureRecognizerStatePossible")]
     pub const Possible: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/began?language=objc)
+    /// The gesture recognizer has recognized a sequence of events as a continuous gesture. It calls its action method at the next cycle of the run loop.
     #[doc(alias = "NSGestureRecognizerStateBegan")]
     pub const Began: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/changed?language=objc)
+    /// The gesture recognizer has detected a change to a continuous gesture. It calls its action method at the next cycle of the run loop.
     #[doc(alias = "NSGestureRecognizerStateChanged")]
     pub const Changed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/ended?language=objc)
+    /// The gesture recognizer has detected the end of a continuous gesture. It calls its action method at the next cycle of the run loop and resets its state to [`NSGestureRecognizerStatePossible`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible).
     #[doc(alias = "NSGestureRecognizerStateEnded")]
     pub const Ended: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/cancelled?language=objc)
+    /// The gesture recognizer received events that resulted in the cancellation of a continuous gesture. It calls its action method at the next cycle of the run loop and resets its state to [`NSGestureRecognizerStatePossible`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible).
     #[doc(alias = "NSGestureRecognizerStateCancelled")]
     pub const Cancelled: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/failed?language=objc)
+    /// The gesture recognizer failed to recognize its gesture and will not call its action method. The gesture recognizer resets itself to the [`NSGestureRecognizerStatePossible`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible) state.
     #[doc(alias = "NSGestureRecognizerStateFailed")]
     pub const Failed: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/recognized?language=objc)
+    /// The gesture recognizer successfully recognized its gesture. It calls its action method at the next cycle of the run loop and resets its state to [`NSGestureRecognizerStatePossible`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible).
     #[doc(alias = "NSGestureRecognizerStateRecognized")]
     pub const Recognized: Self = Self(NSGestureRecognizerState::Ended.0);
 }
@@ -45,7 +45,82 @@ unsafe impl RefEncode for NSGestureRecognizerState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizer?language=objc)
+    /// An object that monitors events and calls its action method when a predefined sequence of events occur.
+    ///
+    /// ## Overview
+    ///
+    /// A gesture recognizer might recognize a single click, a click and drag, or a sequence of events that imply rotation. You do not create instances of this class directly. This class is an abstract base class that defines the common behavior for all gesture recognizers. When using a gesture recognizer in your app, create an instance of one of the concrete subclasses.
+    ///
+    /// The concrete subclasses of [`NSGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer) are the following:
+    ///
+    /// - [`NSClickGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer)
+    ///
+    /// - [`NSMagnificationGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsmagnificationgesturerecognizer)
+    ///
+    /// - [`NSPanGestureRecognizer`](https://developer.apple.com/documentation/appkit/nspangesturerecognizer)
+    ///
+    /// - [`NSPressGestureRecognizer`](https://developer.apple.com/documentation/appkit/nspressgesturerecognizer)
+    ///
+    /// - [`NSRotationGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer)
+    ///
+    /// A gesture recognizer operates on events in a specific view (or in any of that view’s subviews). After creating a gesture recognizer, attach it to one of your views using the [`addGestureRecognizer:`](https://developer.apple.com/documentation/appkit/nsview/addgesturerecognizer(_:)) method. Events received by your app are forwarded automatically to any relevant gesture recognizers before they are sent to the corresponding view. The gesture recognizer can delay the further progression of the events until recognition is complete or allow the events to be delivered normally.
+    ///
+    /// A gesture recognizer can detect gestures that are either discrete or continuous in nature. A click gesture is discrete because it involves a mouse-down and mouse-up event without any mouse movements in between. By contrast, a pan or rotation gesture is continuous because it involves tracking mouse movements over a period of time.
+    ///
+    /// During the gesture recognition process, a gesture recognizer calls the action method of its associated target object to report the state of the recognition process. For discrete gestures, the action method is typically called only once when the gesture is recognized. For continuous gestures, it may be called multiple times depending on the current state of the gesture recognizer. In that situation, you can use your action method to perform appropriate tasks, such as creating animations for any mouse-related movements, in addition to handling the final results of the gesture recognition process.
+    ///
+    /// A gesture recognizer has only one action method and one target object, and the method must conform to one of the following signatures:
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["func handleGesture() { }", "func handleGesture(gestureRecognizer: NSGestureRecognizer) { }"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["- (void)handleGesture;", "- (void)handleGesture:(NSGestureRecognizer *)gestureRecognizer;"], metadata: None }] }] })
+    /// When your code needs additional information about the particulars of a gesture, define your action method to include the gesture recognizer parameter. You almost always want the gesture recognizer object when handling continuous gestures. For example, for a rotation gesture, you would use the gesture recognizer object to get the updated rotation value. You can also use the gesture recognizer object to get the location of where the gesture occurred.
+    ///
+    /// ### State Transitions
+    ///
+    /// Gesture recognizers operate within a predefined state machine, transitioning from state to state as they handle events. All gesture recognizers begin in the Possible ([`NSGestureRecognizerStatePossible`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/possible)) state, but the possible transitions differ for continuous and discrete gestures.
+    ///
+    /// Discrete gestures transition from the Possible state directly to the Recognized ([`NSGestureRecognizerStateRecognized`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/recognized)) or Failed ([`NSGestureRecognizerStateFailed`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/failed)) state, depending on whether they successfully interpret the gesture. When a discrete gesture recognizer transitions to the Recognized state, it calls the action method of its target object.
+    ///
+    /// For continuous gestures, the state transitions are as follows:
+    ///
+    /// - Possible —> Began —> [Changed] —> Cancelled
+    ///
+    /// - Possible —> Began —> [Changed] —> Ended
+    ///
+    /// The Changed state is optional and may occur multiple times before the Cancelled or Ended state is reached. Many state transitions cause the gesture recognizer to call its action method. Setting the [`state`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.property) property to [`NSGestureRecognizerStateChanged`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum/changed) while monitoring events also calls the action method. You can use these calls to update the state of your app or update any custom animations.
+    ///
+    /// For a list of possible states, see the constants in [`NSGestureRecognizerState`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/state-swift.enum).
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// You may create a subclass of `NSGestureRecognizer` that recognizes a distinctive gesture—for example, a “check mark” gesture. A custom gesture recognizer implements any appropriate event-related methods to detect its gesture along with a few other methods for managing state information.
+    ///
+    /// All gesture recognizers must update the value in the state property at appropriate times. Specifically, you must update it for all state transitions. For more information about the possible state transitions of a gesture recognizer, see [State Transitions](https://developer.apple.com/documentation/appkit/nsgesturerecognizer#state-transitions).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  [`NSGestureRecognizer`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer) does not support handing off event tracking to other non-gesture recognizer mechanisms (for example drag and drop and pop-up menus).
+    ///
+    ///
+    ///
+    /// </div>
+    /// #### Methods to Override
+    ///
+    /// When creating your own gesture recognizer subclass:
+    ///
+    /// - Implement the [`reset`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/reset()) method and any other relevant methods in Methods for Subclasses.
+    ///
+    /// - Override the [`locationInView:`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/location(in:)) method as needed to specify an appropriate point for your gesture.
+    ///
+    /// AppKit waits for a mouse-down event, magnify event, or rotation event to occur before starting the gesture recognition process. A gesture recognizer that used only key-down events to recognize its gesture would not have its [`keyDown:`](https://developer.apple.com/documentation/appkit/nsgesturerecognizer/keydown(with:)) method called until a mouse-down, magnify, or rotation event started the recognition process.
+    ///
+    /// #### Alternatives to Subclassing
+    ///
+    /// The `NSGestureRecognizer` class defines the common behaviors that can be configured for all concrete gesture recognizers. It also supports a delegate—an object that adopts the [`NSGestureRecognizerDelegate`](https://developer.apple.com/documentation/appkit/nsgesturerecognizerdelegate) protocol—for handling finer-grained customization of some behaviors without the need for subclassing. For example, you can use the delegate to create dependencies between specific gesture recognizer objects.
+    ///
+    /// For more information about using the delegate to control the behavior of your gesture recognizers, see [`NSGestureRecognizerDelegate`](https://developer.apple.com/documentation/appkit/nsgesturerecognizerdelegate).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -262,7 +337,13 @@ impl NSGestureRecognizer {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgesturerecognizerdelegate?language=objc)
+    /// A set of methods for fine-tuning a gesture recognizer’s behavior.
+    ///
+    /// ## Overview
+    ///
+    /// Use the methods in this protocol to establish dynamic dependencies between gesture recognizers and to prevent a single gesture recognizer from acting at all.
+    ///
+    ///
     pub unsafe trait NSGestureRecognizerDelegate: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "NSEvent")]
         #[optional]

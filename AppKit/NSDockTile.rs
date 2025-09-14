@@ -7,12 +7,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumberwithdocktilepluginsupport?language=objc)
+/// The specific version of the AppKit framework that introduced support for dock tile plug-ins.
+///
+/// ## Discussion
+///
+/// Developers should not need to use this constant unless they are writing applications for macOS 10.5 and earlier.
+///
+///
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDockTilePlugInSupport: NSAppKitVersion = 1001.0 as _;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktile?language=objc)
+    /// The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.
+    ///
+    /// ## Overview
+    ///
+    /// You do not create Dock tile objects explicitly in your app. Instead, you retrieve the Dock tile for an existing window or for the app by calling that object’s [`dockTile`](https://developer.apple.com/documentation/appkit/nswindow/docktile) method. Also, you do not subclass the [`NSDockTile`](https://developer.apple.com/documentation/appkit/nsdocktile) class; instead, you use the methods of the class to make the following customizations:
+    ///
+    /// - Badge the tile with a custom string.
+    ///
+    /// - Remove or show the application icon badge.
+    ///
+    /// - Draw the tile content yourself.
+    ///
+    /// If you decide to draw the tile content yourself, you must provide a custom content view to handle the drawing.
+    ///
+    /// ### Application Dock Tiles
+    ///
+    /// An application Dock tile defaults to display the application’s [`applicationIconImage`](https://developer.apple.com/documentation/appkit/nsapplication/applicationiconimage).
+    ///
+    /// The application Dock tile never shows a smaller application icon badge.
+    ///
+    /// Whether using the default or custom view, the application Dock tile may be badged with a short custom string.
+    ///
+    /// ### Window Dock Tiles
+    ///
+    /// A window Dock tile defaults to display a miniaturized version of the windows contents with a badge derived from the application Dock icon, including any customized application Dock icon. The default window Dock tile image may not be badged with a custom string.
+    ///
+    /// A window Dock tile can use a custom view to draw the Dock icon. If a custom view is used, no application badge will be added, but the text label will be overlaid on top of the icon.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDockTile;
@@ -90,7 +124,17 @@ impl DefaultRetained for NSDockTile {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocktileplugin?language=objc)
+    /// A set of methods implemented by plug-ins that allow an app’s Dock tile to be customized while the app is not running.
+    ///
+    /// ## Overview
+    ///
+    /// Customizing an application’s Dock tile when the application itself is not running requires that you write a plug-in. The plug-in’s principal class must implement the [`NSDockTilePlugIn`](https://developer.apple.com/documentation/appkit/nsdocktileplugin) protocol.
+    ///
+    /// The name of the plugin is indicated by a `NSDockTilePlugIn` key in the application’s `Info.plist` file.
+    ///
+    /// The plugin is loaded in a system process at login time or when the application tile is added to the Dock.  When the plugin is loaded, the principal class’ implementation of [`setDockTile:`](https://developer.apple.com/documentation/appkit/nsdocktileplugin/setdocktile(_:)) is invoked, passing an [`NSDockTile`](https://developer.apple.com/documentation/appkit/nsdocktile) for the plug-in to customize.  If the principal class implements [`dockMenu`](https://developer.apple.com/documentation/appkit/nsdocktileplugin/dockmenu()) it is invoked whenever the user causes the application’s dock menu to be shown.  When the dock tile is no longer valid (for example,. the application has been removed from the dock) -[`setDockTile:`](https://developer.apple.com/documentation/appkit/nsdocktileplugin/setdocktile(_:)) is invoked with `nil`.
+    ///
+    ///
     pub unsafe trait NSDockTilePlugIn: NSObjectProtocol {
         #[unsafe(method(setDockTile:))]
         #[unsafe(method_family = none)]

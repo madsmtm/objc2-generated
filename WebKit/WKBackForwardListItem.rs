@@ -7,9 +7,16 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A WKBackForwardListItem object represents a webpage in the back-forward list of a web view.
+    /// A representation of a webpage that the web view previously visited.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkbackforwardlistitem?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`WKBackForwardListItem`](https://developer.apple.com/documentation/webkit/wkbackforwardlistitem) object to get information about previously visited webpages. This object identifies the page’s title and URL. It also identifes the URL that requested the webpage.
+    ///
+    /// You don’t create [`WKBackForwardListItem`](https://developer.apple.com/documentation/webkit/wkbackforwardlistitem) objects directly. Instead, a [`WKBackForwardList`](https://developer.apple.com/documentation/webkit/wkbackforwardlist) object creates them in conjunction with its associated web view when the web view loads new pages.
+    ///
+    ///
+    /// A WKBackForwardListItem object represents a webpage in the back-forward list of a web view.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

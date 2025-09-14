@@ -8,32 +8,32 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibrarydomain?language=objc)
+    /// The domain for Metal dynamic library errors.
     pub static MTLDynamicLibraryDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code?language=objc)
+/// Error codes that Metal can generate when creating dynamic libraries.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDynamicLibraryError(pub NSUInteger);
 impl MTLDynamicLibraryError {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/none?language=objc)
+    /// An error code that represents the absence of any problems.
     #[doc(alias = "MTLDynamicLibraryErrorNone")]
     pub const None: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/invalidfile?language=objc)
+    /// An error code that indicates an app is using an invalid reference to a library file, typically related to a URL.
     #[doc(alias = "MTLDynamicLibraryErrorInvalidFile")]
     pub const InvalidFile: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/compilationfailure?language=objc)
+    /// An error code that indicates Metal couldn’t compile a dynamic library.
     #[doc(alias = "MTLDynamicLibraryErrorCompilationFailure")]
     pub const CompilationFailure: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/unresolvedinstallname?language=objc)
+    /// An error code that indicates Metal couldn’t resolve the installation name for a new dynamic library.
     #[doc(alias = "MTLDynamicLibraryErrorUnresolvedInstallName")]
     pub const UnresolvedInstallName: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/dependencyloadfailure?language=objc)
+    /// An error code that indicates a dynamic library couldn’t link to other dynamic libraries.
     #[doc(alias = "MTLDynamicLibraryErrorDependencyLoadFailure")]
     pub const DependencyLoadFailure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code/unsupported?language=objc)
+    /// An error code that indicates the GPU device doesn’t support dynamic libraries.
     #[doc(alias = "MTLDynamicLibraryErrorUnsupported")]
     pub const Unsupported: Self = Self(5);
 }
@@ -47,6 +47,7 @@ unsafe impl RefEncode for MTLDynamicLibraryError {
 }
 
 extern_protocol!(
+    /// A dynamically linkable representation of compiled shader code for a specific Metal device object.
     /// A container for the binary representation of code compiled for a MTLDevice.
     ///
     /// MTLDynamicLibrary can be created in two ways:
@@ -65,8 +66,6 @@ extern_protocol!(
     /// The set of both the implictly loaded MTLDynamicLibrary and the MTLDynamicLibrary specified with .preloadedLibraries are used to resolve any unresolved symbols in the source MTLLibrary (or in other MTLDynamicLibrary).
     /// If any unresolved symbols remain after searching the set, the creation of the MTLComputePipelineState fails.
     /// Otherwise, the MTLComputePipelineState creation succeeds, and the set of MTLDynamicLibraries used are retained by the MTLComputePipelineState.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibrary?language=objc)
     pub unsafe trait MTLDynamicLibrary: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object.
         #[unsafe(method(label))]

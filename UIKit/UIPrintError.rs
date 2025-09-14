@@ -7,26 +7,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterrordomain?language=objc)
+    /// The string constant that defines the UIKit printing error domain.
     pub static UIPrintErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code?language=objc)
+/// Constants that specify the print error code.
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIPrintErrorCode(pub NSInteger);
 impl UIPrintErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/notavailable?language=objc)
+    /// The device doesn’t support printing.
     #[doc(alias = "UIPrintingNotAvailableError")]
     pub const PrintingNotAvailableError: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/nocontent?language=objc)
+    /// UIKit hasn’t assigned a print formatter, page renderer, or printing item to print.
     #[doc(alias = "UIPrintNoContentError")]
     pub const PrintNoContentError: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/unknownimageformat?language=objc)
+    /// An image is in a format that UIKit doesn’t recognize for printing.
     #[doc(alias = "UIPrintUnknownImageFormatError")]
     pub const PrintUnknownImageFormatError: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterror/code/jobfailed?language=objc)
+    /// An internal error occurred with the print job.
     #[doc(alias = "UIPrintJobFailedError")]
     pub const PrintJobFailedError: Self = Self(4);
 }

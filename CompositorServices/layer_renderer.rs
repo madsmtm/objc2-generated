@@ -8,43 +8,57 @@ use objc2_metal::*;
 
 use crate::*;
 
+/// The states of the layer renderer, which tell you how to proceed with drawing operations.
 /// The potential states of the layer renderer, which tell you how to
 /// proceed with drawing operations.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct cp_layer_renderer_state(pub u32);
 impl cp_layer_renderer_state {
+    /// A state that indicates the layer is paused and not currently drawing.
+    ///
+    /// ## Discussion
+    ///
+    /// A layer starts in this state and later transitions to other states over time. Don’t run your render loop or do any drawing while in this state. Wait until the layer changes to one of the other states to take further action.
+    ///
+    ///
     /// A state that indicates the layer renderer isn't currently drawing.
     ///
     /// A layer renderer starts in this state and later transitions to the
     /// running or invalid states. Don't draw while in this state.
     /// Wait until the layer changes to one of the other states to
     /// take further action on the layer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/paused?language=objc)
     #[doc(alias = "cp_layer_renderer_state_paused")]
     pub const paused: Self = Self(1);
+    /// A state that indicates the layer is visible and ready for you to draw your content.
+    ///
+    /// ## Discussion
+    ///
+    /// When the layer enters this state, start your rendering loop and begin drawing frames of content. Keep drawing frames of content until the layer transitions to another state.
+    ///
+    ///
     /// A state that indicates the layer renderer is ready for you to draw
     /// your content.
     ///
     /// When the layer enters this state, start your rendering loop
     /// and draw your content. Keep drawing frames of content until
     /// the layer transitions to another state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/running?language=objc)
     #[doc(alias = "cp_layer_renderer_state_running")]
     pub const running: Self = Self(2);
+    /// A state that indicates the layer no longer supports drawing operations.
+    ///
+    /// ## Discussion
+    ///
+    /// A layer enters this state shortly before the system releases its resources. When the layer enters this state, exit your rendering loop and release any drawing-related structures.
+    ///
+    ///
     /// A state that indicates the layer renderer no longer supports drawing
     /// operations.
     ///
     /// A layer enters this state shortly before the system releases
     /// its resources. When the layer enters this state, exit your
     /// rendering loop and release any drawing-related structures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated?language=objc)
     #[doc(alias = "cp_layer_renderer_state_invalidated")]
     pub const invalidated: Self = Self(3);
 }
@@ -58,10 +72,19 @@ unsafe impl RefEncode for cp_layer_renderer_state {
 }
 
 extern_class!(
+    /// A type that provides the Metal types and timing information you need to draw your content.
+    ///
+    /// ## Overview
+    ///
+    /// A layer renderer type creates a bridge between a SwiftUI scene and the Metal code you use to draw fully immersive experiences. When you present an immersive space with [`CompositorLayer`](https://developer.apple.com/documentation/compositorservices/compositorlayer) content, the system creates a `LayerRenderer` type and makes it available to the content’s closure. Use the information in the layer renderer to set up your app’s rendering loop, and to start drawing frames of content.
+    ///
+    /// Each layer renderer has information that tells the system how to configure the Metal textures and data types your app needs. Compositor Services provides a default configuration for layers, but you can customize the configuration as needed. Specify your custom configuration details using the [`CompositorLayerConfiguration`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration) protocol and pass a type with those details to the initializer for your immersive space’s content. Use the layer renderer’s capability information to validate any configuration choices you make.
+    ///
+    /// For information about how to create and configure a layer renderer and use it to run your rendering loop, see [Drawing fully immersive content using Metal](https://developer.apple.com/documentation/compositorservices/drawing-fully-immersive-content-using-metal).
+    ///
+    ///
     /// An opaque type that provides the Metal types and timing
     /// information you need to draw your content.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer;
@@ -83,12 +106,38 @@ impl CP_OBJECT_cp_layer_renderer {
     );
 }
 
+/// A type that provides the Metal types and timing information you need to draw your content.
+///
+/// ## Discussion
+///
+/// A layer renderer type creates a bridge between a SwiftUI scene and the Metal code you use to draw fully immersive experiences. When you present an immersive space with [`CompositorLayer`](https://developer.apple.com/documentation/compositorservices/compositorlayer) content, the system creates a [`LayerRenderer`](https://developer.apple.com/documentation/compositorservices/layerrenderer) type and makes it available to the content’s closure. Use the information in the layer to set up your app’s rendering loop, and to start drawing frames of content.
+///
+/// Each layer has information that tells the system how to configure the Metal textures and data types your app needs. Compositor Services provides a default configuration for layers, but you can customize the configuration of your layer as needed. Specify your custom configuration details using the [`CompositorLayerConfiguration`](https://developer.apple.com/documentation/compositorservices/compositorlayerconfiguration) protocol and pass a type with those details to the initializer for your immersive space’s content . Use the layer’s capability information to validate any configuration choices you make.
+///
+/// For information about how to create and configure a layer and use it to run your rendering loop, see [Drawing fully immersive content using Metal](https://developer.apple.com/documentation/compositorservices/drawing-fully-immersive-content-using-metal).
+///
+///
 /// An opaque type that provides the Metal types and timing
 /// information you need to draw your content.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_t?language=objc)
 pub type cp_layer_renderer_t = CP_OBJECT_cp_layer_renderer;
 
+/// Returns the configuration details for the specified layer.
+///
+/// Parameters:
+/// - layer_renderer: The layer that contains the configuration details.
+///
+///
+/// ## Return Value
+///
+/// An opaque type you use to retrieve details about the layer’s configuration.
+///
+///
+///
+/// ## Discussion
+///
+/// Use the returned information to set up your rendering loop. The layer ignores any modifications you make to the specified configuration data. To properly configure the layer, specify those details in the initializer for your immersive space’s content.
+///
+///
 /// Returns the configuration details you used to create the
 /// specified layer.
 ///
@@ -100,8 +149,6 @@ pub type cp_layer_renderer_t = CP_OBJECT_cp_layer_renderer;
 /// function to retrieve those details. The system uses this information during the
 /// initial setup of the layer's data structures. Changes you make to the
 /// returned structure don't affect the layer's current configuration.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_get_configuration?language=objc)
 #[cfg(feature = "layer_renderer_configuration")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
@@ -117,6 +164,23 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// Returns the configured properties of the specified layer.
+///
+/// Parameters:
+/// - layer_renderer: The layer to query.
+///
+///
+/// ## Return Value
+///
+/// An opaque type you use to retrieve the property details.
+///
+///
+///
+/// ## Discussion
+///
+/// The layer properties include details about the layer’s textures, such as their organization and the location of drawable views in those textures.
+///
+///
 /// Returns the configured properties of the specified layer renderer.
 ///
 /// - Parameters layer_renderer: The layer renderer to query.
@@ -126,8 +190,6 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_configuration(
 /// The layer properties include details about the layer's textures,
 /// such as their organization and the location of drawable views in those
 /// textures.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_get_properties?language=objc)
 #[cfg(feature = "layer_renderer_properties")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
@@ -143,6 +205,23 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
+/// The GPU device that the layer renderer uses for drawing operations
+///
+/// Parameters:
+/// - layer_renderer: The layer the method queries.
+///
+///
+/// ## Return Value
+///
+/// The Metal device you need to use for drawing operations.
+///
+///
+///
+/// ## Discussion
+///
+/// You can inspect the device for any information you might need. The system uses it to create the textures for drawing, and also to create synchronization events for the layer.
+///
+///
 /// Returns the GPU interface that the layer uses for drawing operations.
 ///
 /// - Parameters layer_renderer: The layer renderer to query.
@@ -152,8 +231,6 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_properties(
 /// The system uses the returned device to create the textures you use for
 /// drawing. It also uses the device to create synchronization events for
 /// the layer.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/device?language=objc)
 #[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
@@ -171,12 +248,17 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_device(
 
 /// Returns the command queue that the layer uses for drawing operations.
 ///
+/// ## Discussion
+///
+/// Should only be called with when supporting Metal4 through configuration. [`cp_layer_renderer_configuration_set_supports_mtl4`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_supports_mtl4)
+///
+///
+/// Returns the command queue that the layer uses for drawing operations.
+///
 /// - Parameters layer_renderer: The layer renderer to query.
 ///
 /// Should only be called with when supporting Metal4 through configuration.
 /// ``cp_layer_renderer_configuration_set_supports_mtl4``
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/commandqueue?language=objc)
 #[cfg(feature = "objc2-metal")]
 #[inline]
 pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
@@ -193,6 +275,23 @@ pub unsafe extern "C-unwind" fn cp_layer_renderer_get_mtl4_command_queue(
 }
 
 extern "C-unwind" {
+    /// A value that indicates whether the layer renderer is currently visible and ready for you to draw content.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer to query.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The current state of the layer, which you use to determine when to draw.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use the state of the layer to determine when to start and stop your rendering loop. When the layer is in the [`cp_layer_renderer_state_running`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/running) state, draw frames of content using your rendering loop. Stop your rendering loop when the layer enters other states. When the layer reaches the [`cp_layer_renderer_state_invalidated`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/invalidated) state, clean up and deallocate your render loop structures.
+    ///
+    ///
     /// Returns the layer's current state, which indicates whether the layer is
     /// visible and ready for you to draw content.
     ///
@@ -205,14 +304,23 @@ extern "C-unwind" {
     /// the layer enters other states. When the layer reaches the
     /// ``cp_layer_renderer/cp_layer_renderer_state_invalidated`` state, it's safe to
     /// clean up and deallocate your render loop structures.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.property?language=objc)
     pub fn cp_layer_renderer_get_state(
         layer_renderer: &cp_layer_renderer_t,
     ) -> cp_layer_renderer_state;
 }
 
 extern "C-unwind" {
+    /// Stops further execution of your code until the layer renderer leaves the paused state.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer to monitor. If the layer isn’t in the [`cp_layer_renderer_state_paused`](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum/paused) state, this function returns immediately.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to let the system handle events while you wait for the layer to become ready. The function services incoming layer-related events until the layer exits the paused state.
+    ///
+    ///
     /// Stops further execution of your code until the layer renderer leaves
     /// the paused state.
     ///
@@ -224,12 +332,29 @@ extern "C-unwind" {
     /// you wait for the layer renderer to become ready. The function services
     /// incoming layer-related events until the layer exits the paused
     /// state.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/waituntilrunning()?language=objc)
     pub fn cp_layer_renderer_wait_until_running(layer_renderer: &cp_layer_renderer_t);
 }
 
 extern "C-unwind" {
+    /// Returns the next frame to use for drawing.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer that manages the drawing destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A frame type to use for drawing operations. The function returns `nil` if the layer is paused, invalidated, or has too many frames already in use.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function retrieves the next frame for you to use in your drawing operations. The system maintains a limited number of frames, so don’t try to render more than one frame in advance. If this function returns `nil`, wait a short time and try again. When the system finishes displaying a rendered frame onscreen, it returns that frame to the shared pool and makes it available for you to use again.
+    ///
+    /// The index of each returned frame is always greater than the index of the previous frame. The system increments index values sequentially so you can differentiate frames you are currently drawing.
+    ///
+    ///
     /// Returns the next frame to use for drawing.
     ///
     /// - Parameters layer_renderer: The layer renderer that manages the drawing destination.
@@ -248,13 +373,30 @@ extern "C-unwind" {
     /// The index of each returned frame is always greater than the index of the
     /// previous frame. The system increments index values sequentially so you
     /// can differentiate frames you are currently drawing.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_query_next_frame?language=objc)
     #[cfg(feature = "frame")]
     pub fn cp_layer_renderer_query_next_frame(layer_renderer: &cp_layer_renderer_t) -> cp_frame_t;
 }
 
 extern "C-unwind" {
+    /// The number of additional frames for which the system displays the same content.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer that manages the drawing destination.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// The number of additional frames that display the same content.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The minimum frame repeat count contains the number of additional frames that display the same content. For example, if this value is `1`, the layer displays the same content for the duration of two screen update cycles.
+    ///
+    /// Use this value to determine the pacing of your drawing operations. A higher repeat count increases the amount of time you have to render each frame, and decreases the amount of power your app uses per frame. However, higher repeat counts also mean your content updates less frequently.
+    ///
+    ///
     /// Return how many times a frame is repeated on display. This is typically used to
     /// build dynamic frame pacing.
     ///
@@ -266,14 +408,25 @@ extern "C-unwind" {
     ///
     /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
     /// This value should only be increased if appropriate for the content being rendered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/minimumframerepeatcount?language=objc)
     pub fn cp_layer_renderer_get_minimum_frame_repeat_count(
         layer_renderer: &cp_layer_renderer_t,
     ) -> c_int;
 }
 
 extern "C-unwind" {
+    /// Sets the number of additional times the system displays a frame.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer that manages the drawing destination.
+    ///
+    /// - frame_repeat_count: The number of times to repeat the frame. Specify `0` to display a new frame for each screen update. Specify `1` to display the same frame over two screen updates. Specify higher numbers to display the frame the specified number of times.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this value to specify the pacing of your drawing operations. A higher repeat count increases the amount of time you have to render each frame and decreases the amount of power your app uses to display that frame. However, higher repeat counts mean your content updates less frequently, so increase the value only if it is appropriate for your content.
+    ///
+    ///
     /// Set the frame repeat count. This is typically used to build dynamic frame pacing.
     ///
     /// - Parameters:
@@ -286,8 +439,6 @@ extern "C-unwind" {
     ///
     /// Lowering the number of frames being rendered every second will decrease the power usage per frame.
     /// This value should only be increased if appropriate for the content being rendered.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_minimum_frame_repeat_count?language=objc)
     pub fn cp_layer_renderer_set_minimum_frame_repeat_count(
         layer_renderer: &cp_layer_renderer_t,
         frame_repeat_count: c_int,
@@ -295,6 +446,19 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Get the render quality to be used by the drawables.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer on which you’re drawing.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The render quality will increase the resolution at which rendering happens. This value cannot exceed the quality specified on the layer renderer configuration see [`cp_layer_renderer_configuration_set_max_render_quality`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_max_render_quality). The quality will be changed to the target render quality over a set duration to hide the transition of quality from the user.
+    ///
+    /// The renderer should monitor its frame rate to determine whether its making the frames on time. If it is unable to maintain proper frame rate, the app should reduce the render quality, reduce the scene complexity, or increase the frame repeat count see [`cp_layer_renderer_set_minimum_frame_repeat_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_minimum_frame_repeat_count). It is generally preferable to reduce anything else before increasing the frame repeat count.
+    ///
+    ///
     /// Get the render quality to be used by the drawables.
     ///
     /// - Parameters:
@@ -311,8 +475,6 @@ extern "C-unwind" {
     /// quality, reduce the scene complexity, or increase the frame repeat count see
     /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
     /// It is generally preferable to reduce anything else before increasing the frame repeat count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/renderquality-swift.property?language=objc)
     #[cfg(feature = "cp_types")]
     pub fn cp_layer_renderer_get_render_quality(
         layer_renderer: &cp_layer_renderer_t,
@@ -320,6 +482,21 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Set the render quality to be used by the drawables.
+    ///
+    /// Parameters:
+    /// - layer_renderer: The layer on which you’re drawing.
+    ///
+    /// - render_quality: The value of quality [0, 1]. With 0 being the minimum quality that is supported on the device, and 1 being the highest quality that is supported on the device.
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The render quality will increase the resolution at which rendering happens. This value cannot exceed the quality specified on the layer renderer configuration see [`cp_layer_renderer_configuration_set_max_render_quality`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_configuration_set_max_render_quality). The quality will be changed to the target render quality over a set duration to hide the transition of quality from the user.
+    ///
+    /// The renderer should monitor its frame rate to determine whether its making the frames on time. If it is unable to maintain proper frame rate, the app should reduce the render quality, reduce the scene complexity, or increase the frame repeat count see [`cp_layer_renderer_set_minimum_frame_repeat_count`](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_minimum_frame_repeat_count). It is generally preferable to reduce anything else before increasing the frame repeat count.
+    ///
+    ///
     /// Set the render quality to be used by the drawables.
     ///
     /// - Parameters:
@@ -339,8 +516,6 @@ extern "C-unwind" {
     /// quality, reduce the scene complexity, or increase the frame repeat count see
     /// ``cp_layer_renderer_set_minimum_frame_repeat_count``.
     /// It is generally preferable to reduce anything else before increasing the frame repeat count.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_set_render_quality?language=objc)
     #[cfg(feature = "cp_types")]
     pub fn cp_layer_renderer_set_render_quality(
         layer_renderer: &cp_layer_renderer_t,

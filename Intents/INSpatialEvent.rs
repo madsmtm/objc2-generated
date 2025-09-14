@@ -4,19 +4,19 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent?language=objc)
+/// Constants indicating when to deliver location-related events.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSpatialEvent(pub NSInteger);
 impl INSpatialEvent {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/unknown?language=objc)
+    /// A constant indicating an unknown trigger condition.
     #[doc(alias = "INSpatialEventUnknown")]
     pub const Unknown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/arrive?language=objc)
+    /// A constant indicating to deliver events upon arriving at the specified location.
     #[doc(alias = "INSpatialEventArrive")]
     pub const Arrive: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inspatialevent/depart?language=objc)
+    /// A constant indicating to deliver events upon leaving the specified location.
     #[doc(alias = "INSpatialEventDepart")]
     pub const Depart: Self = Self(2);
 }

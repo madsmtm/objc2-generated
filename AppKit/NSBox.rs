@@ -9,31 +9,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum?language=objc)
+/// Specify the location of a box’s title with respect to its border.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlePosition(pub NSUInteger);
 impl NSTitlePosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/notitle?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The box has no title.
+    ///
+    ///
     #[doc(alias = "NSNoTitle")]
     pub const NoTitle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/abovetop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned above the box’s top border.
+    ///
+    ///
     #[doc(alias = "NSAboveTop")]
     pub const AboveTop: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/attop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned within the box’s top border.
+    ///
+    ///
     #[doc(alias = "NSAtTop")]
     pub const AtTop: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/belowtop?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned below the box’s top border.
+    ///
+    ///
     #[doc(alias = "NSBelowTop")]
     pub const BelowTop: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/abovebottom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned above the box’s bottom border.
+    ///
+    ///
     #[doc(alias = "NSAboveBottom")]
     pub const AboveBottom: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/atbottom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned within the box’s bottom border.
+    ///
+    ///
     #[doc(alias = "NSAtBottom")]
     pub const AtBottom: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum/belowbottom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Title positioned below the box’s bottom border.
+    ///
+    ///
     #[doc(alias = "NSBelowBottom")]
     pub const BelowBottom: Self = Self(6);
 }
@@ -46,19 +81,34 @@ unsafe impl RefEncode for NSTitlePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum?language=objc)
+/// These constants and data type identifies box types, which, in conjunction with a box’s border type, define the appearance of the box.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBoxType(pub NSUInteger);
 impl NSBoxType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/primary?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies the primary box appearance. This is the default box type.
+    ///
+    ///
     #[doc(alias = "NSBoxPrimary")]
     pub const Primary: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/separator?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that the box is a separator.
+    ///
+    ///
     #[doc(alias = "NSBoxSeparator")]
     pub const Separator: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/custom?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies that the appearance of the box is determined entirely by the by box-configuration methods, without automatically applying Apple human interface guidelines. See Customizing for details.
+    ///
+    ///
     #[doc(alias = "NSBoxCustom")]
     pub const Custom: Self = Self(4);
 }
@@ -72,7 +122,27 @@ unsafe impl RefEncode for NSBoxType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox?language=objc)
+    /// A stylized rectangular box with an optional title.
+    ///
+    /// ## Overview
+    ///
+    /// Use box objects to visually group the contents of your window. For example, you might use boxes to group related views. Use an [`NSBox`](https://developer.apple.com/documentation/appkit/nsbox) object to configure the appearance of the box.
+    ///
+    /// ### Subclassing Notes
+    ///
+    /// An `NSBox` object is a view that draws a line around its rectangular bounds and that displays a title on or near the line (or might display neither line nor title). You can adjust the style of the line (bezel, grooved, or plain) as well as the placement and font of the title. An `NSBox` also has a content view to which other views can be added; it thus offers a way for an application to group related views. You could create a custom subclass of `NSBox` that alters or augments its appearance or that modifies its grouping behavior. For example, you might add color to the lines or background, add a new line style, or have the views in the group automatically snap to an invisible grid when added.
+    ///
+    /// #### Methods to Override
+    ///
+    /// You must override the [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)) method (inherited from `NSView`) if you want to customize the appearance of your `NSBox` objects. Depending on the visual effect you’re trying to achieve, you may have to invoke `super`‘s implementation first. For example, if you are compositing a small image in a corner of the box, you would invoke the superclass implementation first. If you’re adding a new style of line, you would provide a way to store a request for this line type (such as a boolean instance variable and related accessor methods). Then, in [`drawRect:`](https://developer.apple.com/documentation/appkit/nsview/draw(_:)), if a request for this line type exists, you would draw the entire view yourself (that is, without calling `super`). Otherwise, you would invoke the superclass implementation.
+    ///
+    /// If you wish to change grouping behavior or other behavioral characteristics of the `NSBox` class, consider overriding [`contentView`](https://developer.apple.com/documentation/appkit/nsbox/contentview), [`sizeToFit`](https://developer.apple.com/documentation/appkit/nsbox/sizetofit()), or [`addSubview:`](https://developer.apple.com/documentation/appkit/nsview/addsubview(_:)) (inherited from `NSView`).
+    ///
+    /// #### Special Considerations
+    ///
+    /// If you are drawing the custom `NSBox` entirely by yourself, and you want it to look exactly like the superclass object (except for your changes), it may take some effort and time to get the details right.
+    ///
+    ///
     #[unsafe(super(NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -336,10 +406,20 @@ impl NSBox {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/secondary?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies the secondary box appearance.
+///
+///
 #[deprecated]
 pub static NSBoxSecondary: NSBoxType = NSBoxType(1);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/oldstyle?language=objc)
+///
+/// ## Discussion
+///
+/// Specifies that the box is an OS X v10.2–style box.
+///
+///
 #[deprecated = "NSBoxOldStyle is discouraged in modern application design. It should be replaced with either NSBoxPrimary or NSBoxCustom."]
 pub static NSBoxOldStyle: NSBoxType = NSBoxType(3);

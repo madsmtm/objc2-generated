@@ -12,13 +12,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that receives video data from a player object.
+    ///
+    /// ## Overview
+    ///
+    /// Attach a video output to an [`AVPlayer`](https://developer.apple.com/documentation/avfoundation/avplayer) object to access the player’s video data as [`CMTaggedBufferGroupRef`](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref) objects.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  You can only attach an instance of this class to a single player at a time. Attempting to attach the instance to more than one player results in the system raising an exception.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// AVPlayerVideoOutput offers a way to attach to an AVPlayer and receive video frames and video-related data vended through CMTaggedBufferGroups.
     ///
     /// AVPlayerVideoOutput can be attached to an AVPlayer using AVPlayer's method addVideoOutput:
     /// Note:  An AVPlayerVideoOutput can only be attached to a single player at a time, attempting to attach to multiple player will result in an exception being thrown.
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutput;
@@ -91,22 +104,21 @@ impl AVPlayerVideoOutput {
     );
 }
 
+/// Constants that indicate the type of video content to output.
 /// Video output presets supported by CMTagCollectionCreateWithVideoOutputPreset.
 ///
 /// Used for video output where there is no stereo view, e.g. kCMTagStereoNone.
 ///
 /// Used for video output where there are two stereo views, for both left and right eyes, e.g. kCMTagStereoLeftAndRight.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCollectionVideoOutputPreset(pub u32);
 impl CMTagCollectionVideoOutputPreset {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset/kcmtagcollectionvideooutputpreset_monoscopic?language=objc)
+    /// An output preset for monoscopic video.
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Monoscopic")]
     pub const Monoscopic: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset/kcmtagcollectionvideooutputpreset_stereoscopic?language=objc)
+    /// An output preset for stereoscopic video.
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Stereoscopic")]
     pub const Stereoscopic: Self = Self(1);
 }
@@ -120,6 +132,15 @@ unsafe impl RefEncode for CMTagCollectionVideoOutputPreset {
 }
 
 extern "C-unwind" {
+    /// Creates a collection with the required tags to describe the specified video output requirements.
+    ///
+    /// Parameters:
+    /// - allocator: An allocator to use to create the collection and internal data structures.
+    ///
+    /// - preset: A preset that indicates the desired output type.
+    ///
+    /// - newCollectionOut: The address of the newly created tag collection.
+    ///
     /// Creates a CMTagCollection with the required tags to describe the specified video output requirements.
     ///
     /// Convenience constructor to create a CMTagCollection with all of the required tags for use with video output interfaces.
@@ -135,8 +156,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `new_collection_out` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectioncreatewithvideooutputpreset?language=objc)
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMTagCollectionCreateWithVideoOutputPreset(
         allocator: Option<&CFAllocator>,
@@ -146,13 +165,12 @@ extern "C-unwind" {
 }
 
 extern_class!(
+    /// An object that specifies the pixel buffer attributes and tag collections handled by a player video output.
     /// AVVideoOutputSpecification offers a way to package CMTagCollections together with output settings. Allowing for direct association between output settings and specific tag collections, as well as default output settings which can be associated with all tag collections which do not have a specified mapping.
     ///
     /// For more information about working with CMTagCollections and CMTags first look at
     /// <CoreMedia
     /// /CMTagCollection.h>
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideooutputspecification?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoOutputSpecification;
@@ -331,11 +349,10 @@ impl AVVideoOutputSpecification {
 }
 
 extern_class!(
+    /// An object that provides configuration information for the related player item.
     /// An AVPlayerVideoOutputConfiguration carries an identifier for the AVPlayerItem the configuration is associated with as well as presentation settings for that item.
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutputConfiguration;

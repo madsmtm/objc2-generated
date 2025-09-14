@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiongrouper?language=objc)
+    /// An object that analyzes the temporal overlaps of caption objects to create caption groups for each span of concurrent captions.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionGrouper;

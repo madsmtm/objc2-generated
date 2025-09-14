@@ -7,6 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Specifies the caching model for a web view.
 /// Specifies a usage model for a WebView, which WebKit will use to
 /// determine its caching behavior.
 ///
@@ -29,23 +30,21 @@ use crate::*;
 /// and/or on disk.
 ///
 /// Examples: Safari, OmniWeb, Shiira.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebCacheModel(pub NSUInteger);
 impl WebCacheModel {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/documentviewer?language=objc)
+    /// Releases resources when they are no longer referenced and caches remote resources on disk. This model is appropriate for displaying a static document with no navigation user interface. This is the most memory-efficient model.
     #[doc(alias = "WebCacheModelDocumentViewer")]
     #[deprecated]
     pub const DocumentViewer: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/documentbrowser?language=objc)
+    /// Caches a reasonable number of resources and previously viewed documents in memory and on disk. This model is appropriate for displaying and navigating between multiple documents.
     #[doc(alias = "WebCacheModelDocumentBrowser")]
     #[deprecated]
     pub const DocumentBrowser: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webcachemodel/primarywebbrowser?language=objc)
+    /// Caches a large number of resources and previously viewed documents in memory and on disk. This model is appropriate for a web view that behaves like a web browser.
     #[doc(alias = "WebCacheModelPrimaryWebBrowser")]
     #[deprecated]
     pub const PrimaryWebBrowser: Self = Self(2);
@@ -60,13 +59,27 @@ unsafe impl RefEncode for WebCacheModel {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpreferenceschangednotification?language=objc)
+    /// Posted when the web preference settings are changed.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is the WebPreferences object that changed. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated]
     pub static WebPreferencesChangedNotification: Option<&'static NSString>;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/webkit/webpreferences?language=objc)
+    /// WebPreferences encapsulates the preferences you can change per WebView object. These preferences include font, text encoding, and image settings. Normally a WebView object uses the standard preferences returned by the [`standardPreferences`](https://developer.apple.com/documentation/webkit/webpreferences/standard()) class method. However, you can modify the preferences for individual WebView instances too. Use the [`preferencesIdentifier`](https://developer.apple.com/documentation/webkit/webview-swift.class/preferencesidentifier) WebView method to change a WebView object’s preferences, or to share preferences between WebView objects. Use the [`autosaves`](https://developer.apple.com/documentation/webkit/webpreferences/autosaves) method to specify if the preferences object should be automatically saved to the user defaults database.
+    ///
+    /// ## Overview
+    ///
+    /// WebPreferences also manages the font preferences for a web view. You can set custom font families for each of the primary web font styles (standard, serif, sans-serif, cursive, and fantasy) as well as their font sizes. The font size preferences alter the display font sizes in a certain way. If the HTML or CSS in the web view’s content specifies font sizes in a relative fashion (such as `font size=-1` in HTML or `font-size: medium` in CSS), the default font size settings (set by the font size methods prefaced with “default”) have an effect. They do not have an effect for font sizes specified absolutely. The values specified by the minimum font size settings (set by the font size methods prefaced with “minimum”) override all the HTML and CSS font size definitions, and so have an effect on the entirety of the content. The values specified by the minimum logical font size settings (set by the font size methods prefaced with “minimumLogical”) affect all relative font size declarations for HTML and CSS, but also override any CSS font size declarations in the content, whether they are relative or absolute.
+    ///
+    /// The font size for a web view is different than its logical font size. The minimum logical font size, for example, is the absolute minimum size at which the font will display onscreen. This is meant to be a functional boundary and not a style boundary. For example, the default value for a web view’s minimum logical font size is 9 points, because typical web content looks good in macOS at font sizes of 9 point and above. The constraint assures that web content will always look good in a web view. If you know that your content will look good only at 12 points or above, you should change the minimum font size to 12 points and leave the minimum _logical_ font size alone. This will assure that your content will never display at sizes less than 12 points, but the functional font size boundary of the web view will remain at 9 points to prevent any chance of displaying unnecessarily small text.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

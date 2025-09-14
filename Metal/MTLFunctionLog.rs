@@ -5,13 +5,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogtype?language=objc)
+/// Options for different kinds of function logs.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFunctionLogType(pub NSUInteger);
 impl MTLFunctionLogType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogtype/validation?language=objc)
+    /// A message related to usage validation.
     #[doc(alias = "MTLFunctionLogTypeValidation")]
     pub const Validation: Self = Self(0);
 }
@@ -25,12 +25,18 @@ unsafe impl RefEncode for MTLFunctionLogType {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllogcontainer-c.protocol?language=objc)
+    /// A collection of logged messages, created when a Metal device runs a command buffer.
+    ///
+    /// ## Overview
+    ///
+    /// Enumerate a log container object to get a list of [`MTLFunctionLog`](https://developer.apple.com/documentation/metal/mtlfunctionlog) instances.
+    ///
+    ///
     pub unsafe trait MTLLogContainer: NSObjectProtocol + NSFastEnumeration {}
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlogdebuglocation?language=objc)
+    /// The source code that logged a debug message.
     pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
         #[unsafe(method(functionName))]
         #[unsafe(method_family = none)]
@@ -51,7 +57,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionlog?language=objc)
+    /// A log entry a Metal device generates when the it runs a command buffer.
     pub unsafe trait MTLFunctionLog: NSObjectProtocol {
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]

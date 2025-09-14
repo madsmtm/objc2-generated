@@ -19,28 +19,40 @@ unsafe impl RefEncode for OpaqueAUGraph {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueAUGraph", &[]));
 }
 
+/// An opaque type representing an audio processing graph.
 /// A reference to an AUGraph object.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraph?language=objc)
 pub type AUGraph = *mut OpaqueAUGraph;
 
+/// A member of an audio processing graph, associated with an audio unit.
 /// Used to represent a member of an AUGraph
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunode?language=objc)
 pub type AUNode = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_nodenotfound?language=objc)
+/// The specified node cannot be found.
 pub const kAUGraphErr_NodeNotFound: OSStatus = -10860;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_invalidconnection?language=objc)
+/// The attempted connection between two nodes cannot be made.
 pub const kAUGraphErr_InvalidConnection: OSStatus = -10861;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_outputnodeerr?language=objc)
+/// Audio processing graphs can only contain one output unit. This error is returned if trying to add a second output unit or if the graph’s output unit is removed while the graph is running.
 pub const kAUGraphErr_OutputNodeErr: OSStatus = -10862;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_cannotdoincurrentcontext?language=objc)
+/// To avoid spinning or waiting in the render thread (a bad idea!), many of the calls to AUGraph can return: `kAUGraphErr_CannotDoInCurrentContext`. This result is only generated when you call an AUGraph API from its render callback. It means that the lock that it required was held at that time, by another thread. If you see this result code, you can generally attempt the action again - typically the NEXT render cycle (so in the mean time the lock can be cleared), or you can delegate that call to another thread in your app. You should not spin or put-to-sleep the render thread.
 pub const kAUGraphErr_CannotDoInCurrentContext: OSStatus = -10863;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaugrapherr_invalidaudiounit?language=objc)
 pub const kAUGraphErr_InvalidAudioUnit: OSStatus = -10864;
 
 extern "C-unwind" {
+    /// Creates a new audio processing graph.
+    ///
+    /// Parameters:
+    /// - outGraph: The new AUGraph object
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Create a new AUGraph
     ///
     ///
@@ -49,13 +61,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `out_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/newaugraph(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn NewAUGraph(out_graph: NonNull<AUGraph>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Disposes of an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph: The AUGraph object to be disposed
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates an AUGraph.
+    ///
+    ///
     /// Dispose an AUGraph
     ///
     /// Deallocates the AUGraph along with its nodes and their resources.
@@ -66,13 +93,32 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/disposeaugraph(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn DisposeAUGraph(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds a node to an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph: The `AUGraph` object that you are adding a node to.
+    ///
+    /// - inDescription: The `AudioComponentDescription` object used to find and open the audio unit that you are adding as a new node.
+    ///
+    /// - outNode: The newly added node.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Creates a node in an audio processing graph, using the supplied `AudioComponentDescription` object to find and open the audio unit for the node.
+    ///
+    ///
     /// Add a node to an AUGraph
     ///
     /// Creates a node in the graph that is an AudioUnit, using the supplied
@@ -90,8 +136,6 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_description` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphaddnode(_:_:_:)?language=objc)
     #[cfg(feature = "AudioComponent")]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddNode(
@@ -102,6 +146,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a node from an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph: The `AUGraph` object that you are removing a node from.
+    ///
+    /// - inNode: The node you want to remove.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Nodes can be removed in any thread context. The output node of the graph cannot be removed while the graph is running.
+    ///
+    ///
     /// Remove a node from an AUGraph
     ///
     /// Nodes can be removed from any thread context. The output node of
@@ -115,13 +178,24 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphremovenode(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveNode(in_graph: AUGraph, in_node: AUNode) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// The number of nodes in an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph: The AUGraph object
+    ///
+    /// - outNumberOfNodes: The number of nodes
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// The number of nodes in an AUGraph
     ///
     ///
@@ -133,13 +207,32 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_number_of_nodes` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodecount(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNodeCount(in_graph: AUGraph, out_number_of_nodes: NonNull<u32>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the audio processing graph node at a given index.
+    ///
+    /// Parameters:
+    /// - inGraph: The `AUGraph` object to get the node from.
+    ///
+    /// - inIndex: The index of the node to get.
+    ///
+    /// - outNode: On output, the node at the specified index.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// By using AUGraphGetNodeCount in conjunction with this call, you can iterate through the nodes of an audio processing graph.
+    ///
+    ///
     /// Returns the node at a given index
     ///
     /// By using AUGraphGetNodeCount in conjunction with this call, you can
@@ -156,8 +249,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetindnode(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetIndNode(
         in_graph: AUGraph,
@@ -167,6 +258,29 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns information about a node object.
+    ///
+    /// Parameters:
+    /// - inGraph: The AUGraph object.
+    ///
+    /// - inNode: The node to query.
+    ///
+    /// - outDescription: The component description that would describe the AudioUnit of this node.
+    ///
+    /// - outAudioUnit: The AudioUnit of this node
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You can pass `NULL` for any output parameter whose value you don’t care about.
+    ///
+    ///
     /// Returns information about a particular AUNode
     ///
     /// You can pass in NULL for any of the out parameters if you're not interested
@@ -186,8 +300,6 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `out_description` must be a valid pointer or null.
     /// - `out_audio_unit` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphnodeinfo(_:_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "AudioComponent"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphNodeInfo(
@@ -199,6 +311,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates a node object to represent a subgraph.
+    ///
+    /// Parameters:
+    /// - inGraph: The AUGraph object that you want to add a subgraph to.
+    ///
+    /// - outNode: The node that represents the subgraph.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function creates a node that represents a subgraph. The subgraph can be retrieved with the [`AUGraphGetNodeInfoSubGraph`](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeinfosubgraph(_:_:_:)) function. The subgraph is owned by the parent graph and will be disposed when the parent graph is disposed or when the node is removed from the parent graph.
+    ///
+    ///
     /// Create a node that will represent a sub graph
     ///
     /// This will create a node that represents a contained or member AUGraph.
@@ -217,13 +348,26 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_node` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphnewnodesubgraph(_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphNewNodeSubGraph(in_graph: AUGraph, out_node: NonNull<AUNode>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Gets the audio processing subgraph object represented by a node.
+    ///
+    /// Parameters:
+    /// - inGraph: The `AUGraph` object to get the subgraph from.
+    ///
+    /// - inNode: The node that represents the subgraph.
+    ///
+    /// - outSubGraph: The subgraph.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     /// Return an AUGraph represented by this node
     ///
     /// This will return the sub graph represented by this AUNode.
@@ -239,8 +383,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_sub_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeinfosubgraph(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphGetNodeInfoSubGraph(
         in_graph: AUGraph,
@@ -250,6 +392,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Determines whether a node object represent an audio processing graph or an audio unit.
+    ///
+    /// Parameters:
+    /// - inGraph: The `AUGraph` object containing the node you want to query.
+    ///
+    /// - inNode: The node to query.
+    ///
+    /// - outFlag: On output, true if the node is a subgraph, false if not.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Determine whether the node represents a sub graph
     ///
     /// This will return true if the specified node represents a subgraph, false if not.
@@ -265,8 +426,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_flag` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisnodesubgraph(_:_:_:)?language=objc)
     #[deprecated = "no longer supported"]
     pub fn AUGraphIsNodeSubGraph(
         in_graph: AUGraph,
@@ -275,14 +434,13 @@ extern "C-unwind" {
     ) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_connection?language=objc)
+/// connections between 2 audio units,
 pub const kAUNodeInteraction_Connection: u32 = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaunodeinteraction_inputcallback?language=objc)
+/// input callbacks being registered to a single audio unit’s input bus.
 pub const kAUNodeInteraction_InputCallback: u32 = 2;
 
+/// A connection between two node objects in an audio processing graph.
 /// A connection between two nodes
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitnodeconnection?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitNodeConnection {
@@ -308,15 +466,19 @@ unsafe impl RefEncode for AudioUnitNodeConnection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunodeconnection?language=objc)
 pub type AUNodeConnection = AudioUnitNodeConnection;
 
+/// A callback used to provide input to an audio unit.
+///
+/// ## Overview
+///
+/// Used to contain information when a callback is used to provide input to the specific node’s specified input.
+///
+///
 /// A callback used to provide input to an audio unit
 ///
 /// Used to contain information when a callback is used
 /// to provide input to the specific node's specified input
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunoderendercallback?language=objc)
 #[cfg(all(
     feature = "AUComponent",
     feature = "AudioUnitProperties",
@@ -356,13 +518,34 @@ unsafe impl RefEncode for AUNodeRenderCallback {
 }
 
 extern "C-unwind" {
+    /// Connects one node’s output to another node’s input.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inSourceNode:
+    ///
+    /// - inSourceOutputNumber:
+    ///
+    /// - inDestNode:
+    ///
+    /// - inDestInputNumber:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// connect a node's output to a node's input
     ///
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphconnectnodeinput(_:_:_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphConnectNodeInput(
         in_graph: AUGraph,
@@ -374,6 +557,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Sets an input callback function for a node.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inDestNode:
+    ///
+    /// - inDestInputNumber:
+    ///
+    /// - inInputCallback: The callback that will provide input data to the node.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Set a callback for the specified node's specified input.
     ///
     /// Parameter `inInputCallback`: The callback that will provide input data to the node
@@ -382,8 +586,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `in_input_callback` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphsetnodeinputcallback(_:_:_:_:)?language=objc)
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioUnitProperties",
@@ -399,6 +601,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Disconnects a node’s input.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inDestNode:
+    ///
+    /// - inDestInputNumber:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Use this function to disconnect a connection or a callback interaction.
+    ///
+    ///
     /// disconnect a node's input
     ///
     /// This can be used to disconnect either a connection or callback interaction
@@ -407,8 +630,6 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphdisconnectnodeinput(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphDisconnectNodeInput(
         in_graph: AUGraph,
@@ -418,6 +639,23 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Clears all of the interactions in an audio unit processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    ///
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This will clear all connections and callback interactions of the nodes of a graph.
+    ///
+    ///
     /// clear all of the interactions in a graph
     ///
     /// This will clear all connections and callback interactions of the nodes of a graph
@@ -425,13 +663,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphclearconnections(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClearConnections(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Retrieves the number of interactions for an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outNumInteractions:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number of node interactions currently being managed by the graph.
+    ///
+    ///
     /// Retrieve the number of interactions of a graph
     ///
     /// The number of node interactions currently being managed by the graph
@@ -440,8 +695,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_num_interactions` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnumberofinteractions(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetNumberOfInteractions(
         in_graph: AUGraph,
@@ -450,6 +703,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Retrieves the number of interactions of an audio processing graph’s node.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inNode:
+    ///
+    /// - outNumInteractions:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The number of node interactions currently being managed by the graph for the specified node.
+    ///
+    ///
     /// Retrieve the number of interactions of a graph's node
     ///
     /// The number of node interactions currently being managed by the graph for the specified node.
@@ -458,8 +732,6 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_num_interactions` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphcountnodeinteractions(_:_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphCountNodeInteractions(
         in_graph: AUGraph,
@@ -469,6 +741,31 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Updates the state of a running audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outIsUpdated: In input, pass `NULL` for synchronous (blocking) behavior, or non-`NULL` to have this function return immediately. On output, `true` if all of the edits were applied to the audio processing graph at the time of function return.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Call this function to finalize changes to an audio processing graph’s state after making calls such as [`AUGraphConnectNodeInput`](https://developer.apple.com/documentation/audiotoolbox/augraphconnectnodeinput(_:_:_:_:_:)).
+    ///
+    /// Node connections and disconnections can be completely processed in the render notification callback of a graph, finalized by calling this function from within the callback. You can also remove nodes (apart from the head node) from within the render notification callback.
+    ///
+    /// If this function returns the `kAUGraphErr_CannotDoInCurrentContext` result code, another thread was calling a function dependent on the graph’s existing state. When the competing thread completes its call, call this function again.
+    ///
+    /// Audio processing graph updates are all or none. If this function encounters any errors while attempting to finalize graph events, then no pending changes are finalized.
+    ///
+    ///
     /// Updates the state of a running AUGraph
     ///
     /// Call this after performing a series of "edits" on the AUGraph with calls
@@ -511,13 +808,28 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_updated` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphupdate(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUpdate(in_graph: AUGraph, out_is_updated: *mut Boolean) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Opens an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Upon return from this function call, the audio units belonging to the graph are open but not initialized. Specifically, no resource allocation occurs.
+    ///
+    ///
     /// Open a graph
     ///
     /// AudioUnits are open but not initialized (no resource allocation occurs here)
@@ -525,13 +837,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphopen(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphOpen(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Closes an audio unit processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    ///
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// All AudioUnits are closed - leaving only its nodal representation.
+    ///
+    ///
     /// Close a graph
     ///
     /// All AudioUnits are closed - leaving only its nodal representation
@@ -539,13 +866,30 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphclose(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphClose(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Initializes an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Calling this function calls the `AudioUnitInitialize` function on each opened node or audio unit that is involved in a interaction. If a node is not involved, it is initialized after it becomes involved in an interaction.
+    ///
+    /// A graph must be opened before it can be initialized.
+    ///
+    ///
     /// Initialise a graph
     ///
     /// AudioUnitInitialize() is called on each opened node/AudioUnit
@@ -558,13 +902,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphinitialize(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphInitialize(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Uninitializes an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function uninitializes the audio units that compose the audio processing graph.
+    ///
+    ///
     /// Uninitialise a graph
     ///
     /// The member of the graph are uninitialised
@@ -572,13 +931,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphuninitialize(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphUninitialize(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Starts an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function starts rendering by starting the head node of an audio processing graph. The graph must be initialized before it can be started.
+    ///
+    ///
     /// Start a graph
     ///
     /// Start() is called on the "head" node(s) of the AUGraph (now rendering starts)
@@ -588,13 +962,28 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphstart(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStart(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Stops an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// This function stops rendering by stopping the head node of an audio processing graph.
+    ///
+    ///
     /// Stop a graph
     ///
     /// Stop() is called on the "head" node(s) of the AUGraph    (rendering is stopped)
@@ -602,34 +991,62 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// `in_graph` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphstop(_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphStop(in_graph: AUGraph) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Determines whether an audio processing graph is open.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outIsOpen:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Is the graph open
     ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_open` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisopen(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsOpen(in_graph: AUGraph, out_is_open: NonNull<Boolean>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Determines whether an audio processing graph is initialized.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outIsInitialized:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Is the graph initialised
     ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_initialized` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisinitialized(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsInitialized(
         in_graph: AUGraph,
@@ -638,19 +1055,47 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Determines whether an audio processing graph running.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outIsRunning:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// Is the graph running (has it been started)
     ///
     /// # Safety
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_is_running` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphisrunning(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphIsRunning(in_graph: AUGraph, out_is_running: NonNull<Boolean>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Obtains the short-term running average of the current CPU load of the audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outAverageCPULoad:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    ///
+    ///
+    ///
     /// The CPU load of the graph
     ///
     /// Returns a short-term running average of the current CPU load of the graph.
@@ -659,13 +1104,28 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_average_cpu_load` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetcpuload(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetCPULoad(in_graph: AUGraph, out_average_cpu_load: NonNull<f32>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Obtains the maximum CPU load of an audio processing graph since this call was last made or since the graph was last started.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - outMaxLoad:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    ///
     /// The Maximum CPU load of the graph
     ///
     /// Returns the max CPU load of the graph since this call was last made or the graph was last
@@ -675,13 +1135,32 @@ extern "C-unwind" {
     ///
     /// - `in_graph` must be a valid pointer.
     /// - `out_max_load` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetmaxcpuload(_:_:)?language=objc)
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphGetMaxCPULoad(in_graph: AUGraph, out_max_load: NonNull<f32>) -> OSStatus;
 }
 
 extern "C-unwind" {
+    /// Adds a render notification callback to an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inCallback:
+    ///
+    /// - inRefCon:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    ///
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Adds a callback that the graph will call every time the graph renders. The callback will be called once before the graph’s render operation, and once after the render operation is complete.
+    ///
+    ///
     /// Add a notification callback
     ///
     /// Add a callback that the graph will call every time the graph renders. The callback will be
@@ -693,8 +1172,6 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphaddrendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphAddRenderNotify(
@@ -705,6 +1182,27 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a notification callback from an audio processing graph.
+    ///
+    /// Parameters:
+    /// - inGraph:
+    ///
+    /// - inCallback:
+    ///
+    /// - inRefCon:
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// Removes a previously added render notification callback. You must provide both the callback and the context (in the `inRefCon` parameter) that was used previously to add the callback.
+    ///
+    ///
     /// Remove a notification callback
     ///
     /// Remove a previously added callback. You must provide both the callback and the refCon that was
@@ -715,8 +1213,6 @@ extern "C-unwind" {
     /// - `in_graph` must be a valid pointer.
     /// - `in_callback` must be implemented correctly.
     /// - `in_ref_con` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphremoverendernotify(_:_:_:)?language=objc)
     #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
     #[deprecated = "AUGraph is deprecated in favor of AVAudioEngine"]
     pub fn AUGraphRemoveRenderNotify(
@@ -727,7 +1223,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnumberofconnections?language=objc)
+    /// Deprecated in OS X v10.5. Instead, use [`AUGraphGetNumberOfInteractions(_:_:)`](https://developer.apple.com/documentation/audiotoolbox/augraphgetnumberofinteractions(_:_:)).
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -741,7 +1243,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetconnectioninfo?language=objc)
+    /// Deprecated in OS X v10.5. Instead, use [`AUGraphGetInteractionInfo(_:_:_:)`](https://developer.apple.com/documentation/audiotoolbox/augraphgetinteractioninfo(_:_:_:)).
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -762,7 +1270,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphcountnodeconnections?language=objc)
+    /// Deprecated in OS X v10.5. Instead, use [`AUGraphCountNodeInteractions(_:_:_:)`](https://developer.apple.com/documentation/audiotoolbox/augraphcountnodeinteractions(_:_:_:)).
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///
@@ -777,7 +1291,13 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeconnections?language=objc)
+    /// Deprecated in OS X v10.5. Instead, use [`AUGraphGetNodeInteractions(_:_:_:_:)`](https://developer.apple.com/documentation/audiotoolbox/augraphgetnodeinteractions(_:_:_:_:)).
+    ///
+    /// ## Return Value
+    ///
+    /// A result code.
+    ///
+    ///
     ///
     /// # Safety
     ///

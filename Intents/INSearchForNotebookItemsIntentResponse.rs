@@ -7,28 +7,64 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode?language=objc)
+/// Constants indicating the state of the response.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSearchForNotebookItemsIntentResponseCode(pub NSInteger);
 impl INSearchForNotebookItemsIntentResponseCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/unspecified?language=objc)
+    /// The response didn’t specify a response code.
+    ///
+    /// ## Discussion
+    ///
+    /// Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeUnspecified")]
     pub const Unspecified: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/ready?language=objc)
+    /// You are ready to handle the intent.
+    ///
+    /// ## Discussion
+    ///
+    /// Return this response code during the confirmation phase after you have verified that you are able to perform the search. Don’t return this response code when handling the intent; doing so causes the device to display an error.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeReady")]
     pub const Ready: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/inprogress?language=objc)
+    /// You are in the process of searching for the results.
+    ///
+    /// ## Discussion
+    ///
+    /// Avoid using this code.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeInProgress")]
     pub const InProgress: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/success?language=objc)
+    /// You successfully performed the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this code after performing the search. Put the results of the search in your response object.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeSuccess")]
     pub const Success: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/failure?language=objc)
+    /// You were unable to perform the search.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code for both transient and unrecoverable errors that prevented you from performing the search.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailure")]
     pub const Failure: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponsecode/failurerequiringapplaunch?language=objc)
+    /// The user must launch your app to perform the search and view the results.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this response code when you cannot perform the search from your Intents extension but can do so from your app. Do not use this code for general errors or to force the user to launch your app.
+    ///
+    ///
     #[doc(alias = "INSearchForNotebookItemsIntentResponseCodeFailureRequiringAppLaunch")]
     pub const FailureRequiringAppLaunch: Self = Self(5);
 }
@@ -42,7 +78,15 @@ unsafe impl RefEncode for INSearchForNotebookItemsIntentResponseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponse?language=objc)
+    /// Your app’s response to a request to search for notes, tasks, or reminders.
+    ///
+    /// ## Overview
+    ///
+    /// Use an [`INSearchForNotebookItemsIntentResponse`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponse) object to return the search results requested by the user. Siri communicates the information from your response to the user at appropriate times.
+    ///
+    /// You create an [`INSearchForNotebookItemsIntentResponse`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintentresponse) object in the [`confirmSearchForNotebookItems:completion:`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintenthandling/confirm(intent:completion:)) and [`handleSearchForNotebookItems:completion:`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintenthandling/handle(intent:completion:)) methods of your handler object. For more information about implementing your handler object, see [`INSearchForNotebookItemsIntentHandling`](https://developer.apple.com/documentation/intents/insearchfornotebookitemsintenthandling).
+    ///
+    ///
     #[unsafe(super(INIntentResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntentResponse")]

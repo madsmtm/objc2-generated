@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// This class is used to represent an accessory category.
+    /// A category for a HomeKit accessory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmaccessorycategory?language=objc)
+    /// ## Overview
+    ///
+    /// A category represents a class of devices, like light bulbs or outlets. You can use a category to help users identify the types of accessories they’re browsing. For example, when adding a lamp and a fan to a home, users might not be able to distinguish these accessories if you display only the manufacturer name and model number for each accessory. To improve the user experience, you can use the category information associated with each accessory to help the user understand which accessory is the lamp and which is the fan.
+    ///
+    ///
+    /// This class is used to represent an accessory category.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HMAccessoryCategory;

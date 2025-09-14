@@ -7,7 +7,21 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem?language=objc)
+    /// An interface you adopt in custom objects that you want to share using the macOS share sheet.
+    ///
+    /// ## Overview
+    ///
+    /// Adopt the [`NSPreviewRepresentableActivityItem`](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem) interface in custom types your app makes available for sharing. Use this protocol to specify the item itself and a title and image the share sheet can use to create a preview for your item. To share the item from your app, initialize the [`NSSharingServicePicker`](https://developer.apple.com/documentation/appkit/nssharingservicepicker) object with the object that adopts this protocol.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your data consists of standard types like strings or images, use an [`NSPreviewRepresentingActivityItem`](https://developer.apple.com/documentation/appkit/nspreviewrepresentingactivityitem) object to specify metadata for those types. If your data consists of URLs, pass them directly to the sharing service picker instead of creating a custom preview item.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     pub unsafe trait NSPreviewRepresentableActivityItem: NSObjectProtocol {
         /// The item to be shared
         #[unsafe(method(item))]
@@ -41,7 +55,21 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspreviewrepresentingactivityitem?language=objc)
+    /// A type that adds metadata to an item you share using the macOS share sheet.
+    ///
+    /// ## Overview
+    ///
+    /// An [`NSPreviewRepresentingActivityItem`](https://developer.apple.com/documentation/appkit/nspreviewrepresentingactivityitem) object provides a concrete implementation of the [`NSPreviewRepresentableActivityItem`](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem) protocol. Use it to create shareable items for common types such as strings or images, or when you don’t want to adopt the [`NSPreviewRepresentableActivityItem`](https://developer.apple.com/documentation/appkit/nspreviewrepresentableactivityitem) protocol directly in your app’s objects. To share the item from your app, initialize the [`NSSharingServicePicker`](https://developer.apple.com/documentation/appkit/nssharingservicepicker) object with this object.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  If your data consists of a URL, pass that URL directly to the sharing service picker instead of using this class.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPreviewRepresentingActivityItem;

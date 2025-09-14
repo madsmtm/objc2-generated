@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmarkerannotationview?language=objc)
+    /// An annotation view that displays a balloon-shaped marker at the designated location.
+    ///
+    /// ## Overview
+    ///
+    /// Return an instance of this class from the [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz) method of your map view delegate when you want to display the same types of markers used in the Maps app.
+    ///
+    /// The default [`displayPriority`](https://developer.apple.com/documentation/mapkit/mkannotationview/displaypriority) for an instance of this class is [`MKFeatureDisplayPriorityDefaultLow`](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/defaultlow).
+    ///
+    ///
     #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

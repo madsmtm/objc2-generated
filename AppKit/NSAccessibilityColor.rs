@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolor?language=objc)
+    /// A role-based protocol that declares the minimum interface necessary for an accessibility element to act as a color.
     pub unsafe trait NSAccessibilityColor {
         /// Returns a localized description of the color for use in accessibility attributes.
         #[unsafe(method(accessibilityName))]

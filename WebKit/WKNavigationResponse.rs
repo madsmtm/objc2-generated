@@ -7,9 +7,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Contains information about a navigation response, used for making policy decisions.
+    /// An object that contains the response to a navigation request, and which you use to make navigation-related policy decisions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponse?language=objc)
+    /// ## Overview
+    ///
+    /// Use a [`WKNavigationResponse`](https://developer.apple.com/documentation/webkit/wknavigationresponse) object to make policy decisions about whether to allow navigation within your app’s web view. You don’t create [`WKNavigationResponse`](https://developer.apple.com/documentation/webkit/wknavigationresponse) objects directly. Instead, the web view creates them and delivers them to the appropriate delegate objects. Use the methods of your delegate to analyze the response and determine whether to allow the resulting navigation to occur.
+    ///
+    ///
+    /// Contains information about a navigation response, used for making policy decisions.
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

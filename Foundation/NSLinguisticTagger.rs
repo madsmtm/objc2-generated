@@ -6,298 +6,381 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme?language=objc)
+/// Constants for the tag schemes specified when initializing a linguistic tagger.
+///
+/// ## Discussion
+///
+/// When initializing a linguistic tagger with [`initWithTagSchemes:options:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/init(tagschemes:options:)), you specify one or more tag schemes that correspond to the kind of information you’re interested in for a selection of natural language text. To ensure optimal performance, avoid specifying tag schemes that you won’t use.
+///
+/// Some tag schemes are only available for certain units and languages. Use the [`availableTagSchemesForUnit:language:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/availabletagschemes(for:language:)) or [`availableTagSchemesForLanguage:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/availabletagschemes(forlanguage:)) methods to determine the possible values for a specified language and linguistic unit.
+///
+/// When working with linguistic tags using the methods described in Getting Linguistic Tags and Enumerating Linguistic Tags, the returned tag value depends on the specified scheme. For example, given the token “Überraschung”, the returned tag is [`NSLinguisticTagNoun`](https://developer.apple.com/documentation/foundation/nslinguistictag/noun) when using the [`NSLinguisticTagSchemeLexicalClass`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lexicalclass) tag scheme, “de” (German language) when using the [`NSLinguisticTagSchemeLanguage`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/language) tag scheme, and “Latn” (Latin script) when using the [`NSLinguisticTagSchemeScript`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/script) tag scheme, as shown in the following code.
+///
+/// ```swift
+/// let tagger = NSLinguisticTagger(tagSchemes: [.lexicalClass, .language, .script], options: 0)
+/// tagger.string = "Überraschung"
+///
+/// tagger.tag(at: 0, unit: .word, scheme: .lexicalClass, tokenRange: nil) // Noun
+/// tagger.tag(at: 0, unit: .word, scheme: .language, tokenRange: nil) // de
+/// tagger.tag(at: 0, unit: .word, scheme: .script, tokenRange: nil) // Latn
+/// ```
+///
+/// The following table lists the available tag schemes, their applicable linguistic units, and possible tag values.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Linguistic tag scheme" }] }], [Paragraph { inline_content: [Text { text: "Applicable linguistic units" }] }], [Paragraph { inline_content: [Text { text: "Possible tag values" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/tokenType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "See Token Types" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/lexicalClass", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "See Lexical Classes" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/nameType", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "See Name Types" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/nameTypeOrLexicalClass", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "See Name Types and Lexical Classes" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/lemma", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "A stem of the word" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/language", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/sentence", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/paragraph", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/document", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "A BCP-47 language tag" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTagScheme/script", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/sentence", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/paragraph", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: ", " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTaggerUnit/document", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "An ISO 15924 script code" }] }]]], alignments: None, metadata: None })
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTagScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/tokentype?language=objc)
+    /// Classifies tokens according to their broad type:  word, punctuation, or whitespace.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Token Types.
+    ///
+    /// To classify tokens by a more specific type, for example, distinguishing words between nouns and verbs, use the [`NSLinguisticTagSchemeLexicalClass`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lexicalclass) scheme.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lexicalclass?language=objc)
+    /// Classifies tokens according to class:  part of speech, type of punctuation, or whitespace.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Lexical Classes.
+    ///
+    /// The lexical class of a tag is a further distinction of its token type. Token types and lexical classes have the following correspondence:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Token type" }] }], [Paragraph { inline_content: [Text { text: "Lexical classes" }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/word", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/noun", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/verb", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/adjective", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/adverb", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/pronoun", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/determiner", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/particle", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/preposition", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/number", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/conjunction", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/interjection", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/classifier", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/idiom", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/otherWord", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/punctuation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/sentenceTerminator", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/openQuote", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/closeQuote", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/openParenthesis", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/closeParenthesis", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/wordJoiner", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/dash", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/otherPunctuation", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/whitespace", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/paragraphBreak", is_active: true, overriding_title: None, overriding_title_inline_content: None }, Text { text: " " }, Image { identifier: "spacer", metadata: None }, Text { text: " " }, Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/otherWhitespace", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Reference { identifier: "doc://com.apple.foundation/documentation/Foundation/NSLinguisticTag/other", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Emphasis { inline_content: [Text { text: "None" }] }] }]]], alignments: None, metadata: None })
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/nametype?language=objc)
+    /// Classifies tokens according to whether they are part of a named entity.
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Name Types.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/nametypeorlexicalclass?language=objc)
+    /// Classifies tokens corresponding to names according to [`NSLinguisticTagSchemeNameType`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/nametype), and classifies all other tokens according to [`NSLinguisticTagSchemeLexicalClass`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lexicalclass).
+    ///
+    /// ## Discussion
+    ///
+    /// For possible values, see Name Types and Lexical Classes.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lemma?language=objc)
+    /// Supplies a stem form of a word token, if known.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the stem of the English word “reading” is “read”.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/language?language=objc)
+    /// Supplies the language for a token, if one can be determined.
+    ///
+    /// ## Discussion
+    ///
+    /// Each value for this tag scheme is a BCP-47 language identifier. For example, the language identifier for English is “en” and the identifier for Chinese written using the Simplified Chinese script is “zh-Hans”. The identifier “und” is used if a specific language cannot be determined.
+    ///
+    /// The tagger generally attempts to determine the language of text at the level of an entire sentence, paragraph, or document, rather than word by word.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/script?language=objc)
+    /// Supplies the script for a token, if one can be determined.
+    ///
+    /// ## Discussion
+    ///
+    /// Each value for this tag scheme is an ISO 15924 script identifier. For example,  the identifier for Latin script is “Latn” and the identifier for Simplified Chinese script is “Hans”. The identifier “Zyyy” is used if a specific script cannot be determined.
+    ///
+    ///
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag?language=objc)
+/// A token, lexical class, name, lemma, language, or script returned by a linguistic tagger for natural language text.
+///
+/// ## Overview
+///
+/// When you create a linguistic tagger, you specify one or more [`NSLinguisticTagScheme`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme) constants that correspond to the kind of information you want to know about a selection of natural language text.  When working with linguistic tags using the methods described in Getting Linguistic Tags and Enumerating Linguistic Tags, the returned value depends on the specified scheme. The [`NSLinguisticTag`](https://developer.apple.com/documentation/foundation/nslinguistictag) type represents the constant values that can be returned for certain [`NSLinguisticTagScheme`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme) values.
+///
+///
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLinguisticTag = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/word?language=objc)
+    /// The token indicates a word.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/punctuation?language=objc)
+    /// The token indicates punctuation.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/whitespace?language=objc)
+    /// The token indicates white space of any sort.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/other?language=objc)
+    /// The token indicates a non-linguistic item, such as a symbol.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOther: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/noun?language=objc)
+    /// The token is a noun.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/verb?language=objc)
+    /// This token is a verb.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagVerb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/adjective?language=objc)
+    /// This token is an adjective
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdjective: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/adverb?language=objc)
+    /// This token is an adverb.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdverb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/pronoun?language=objc)
+    /// This token is a pronoun.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPronoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/determiner?language=objc)
+    /// This token is a determiner.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDeterminer: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/particle?language=objc)
+    /// This token is a particle.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParticle: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/preposition?language=objc)
+    /// This token is a preposition.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPreposition: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/number?language=objc)
+    /// This token is a number.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNumber: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/conjunction?language=objc)
+    /// This token is a conjunction.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagConjunction: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/interjection?language=objc)
+    /// This token is an interjection.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagInterjection: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/classifier?language=objc)
+    /// This token is a classifier.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagClassifier: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/idiom?language=objc)
+    /// This token is an idiom.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagIdiom: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherword?language=objc)
+    /// This token is a word other than a kind described by other lexical classes (noun, verb, adjective, adverb, pronoun, determiner, particle, preposition, number, conjunction, interjection, classifier, and idiom).
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/sentenceterminator?language=objc)
+    /// This token is a sentence terminator.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/openquote?language=objc)
+    /// This token is an open quote.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/closequote?language=objc)
+    /// This token is a close quote.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/openparenthesis?language=objc)
+    /// This token is an open parenthesis.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/closeparenthesis?language=objc)
+    /// This token is a close parenthesis.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/wordjoiner?language=objc)
+    /// This token is a word joiner.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWordJoiner: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/dash?language=objc)
+    /// This token is a dash.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDash: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherpunctuation?language=objc)
+    /// This token is punctuation other than a kind described by other lexical classes (sentence terminator, open or close quote, open or close parenthesis, word joiner, and dash).
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/paragraphbreak?language=objc)
+    /// This token is a paragraph break.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParagraphBreak: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherwhitespace?language=objc)
+    /// This token is whitespace other than a kind described by other lexical classes (paragraph break).
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/personalname?language=objc)
+    /// This token is a personal name.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPersonalName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/placename?language=objc)
+    /// This token is a place name.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPlaceName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/organizationname?language=objc)
+    /// This token is an organization name.
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit?language=objc)
+/// Constants representing linguistic units.
+///
+/// ## Overview
+///
+/// You use these constants with the [`availableTagSchemesForUnit:language:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/availabletagschemes(for:language:)) method as well as the [`tagForString:atIndex:unit:scheme:orthography:tokenRange:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/tag(for:at:unit:scheme:orthography:tokenrange:)),  [`tagsInRange:unit:scheme:options:tokenRanges:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/tags(in:unit:scheme:options:tokenranges:)), and [`enumerateTagsInRange:unit:scheme:options:usingBlock:`](https://developer.apple.com/documentation/foundation/nslinguistictagger/enumeratetags(in:unit:scheme:options:using:)) methods.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerUnit(pub NSInteger);
 impl NSLinguisticTaggerUnit {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/word?language=objc)
+    /// An individual word.
     #[doc(alias = "NSLinguisticTaggerUnitWord")]
     pub const Word: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/sentence?language=objc)
+    /// An individual sentence.
     #[doc(alias = "NSLinguisticTaggerUnitSentence")]
     pub const Sentence: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/paragraph?language=objc)
+    /// An individual paragraph.
     #[doc(alias = "NSLinguisticTaggerUnitParagraph")]
     pub const Paragraph: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit/document?language=objc)
+    /// The document in its entirety.
     #[doc(alias = "NSLinguisticTaggerUnitDocument")]
     pub const Document: Self = Self(3);
 }
@@ -310,26 +393,26 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options?language=objc)
+/// Constants for linguistic tagger enumeration specifying which tokens to omit and whether to join names.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLinguisticTaggerOptions: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitwords?language=objc)
+/// Omit tokens of type [`NSLinguisticTagWord`](https://developer.apple.com/documentation/foundation/nslinguistictag/word) (items considered to be words).
         #[doc(alias = "NSLinguisticTaggerOmitWords")]
         const OmitWords = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitpunctuation?language=objc)
+/// Omit tokens of type [`NSLinguisticTagPunctuation`](https://developer.apple.com/documentation/foundation/nslinguistictag/punctuation) (all punctuation).
         #[doc(alias = "NSLinguisticTaggerOmitPunctuation")]
         const OmitPunctuation = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitwhitespace?language=objc)
+/// Omit tokens of type [`NSLinguisticTagWhitespace`](https://developer.apple.com/documentation/foundation/nslinguistictag/whitespace) (whitespace of all sorts).
         #[doc(alias = "NSLinguisticTaggerOmitWhitespace")]
         const OmitWhitespace = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/omitother?language=objc)
+/// Omit tokens of type [`NSLinguisticTagOther`](https://developer.apple.com/documentation/foundation/nslinguistictag/other) (non-linguistic items, such as symbols).
         #[doc(alias = "NSLinguisticTaggerOmitOther")]
         const OmitOther = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options/joinnames?language=objc)
+/// Typically, multiple-word names will be returned as multiple tokens, following the standard tokenization practice of the tagger.  If this option is set, then multiple-word names will be joined together and returned as a single token.
         #[doc(alias = "NSLinguisticTaggerJoinNames")]
         const JoinNames = 1<<4;
     }
@@ -344,7 +427,19 @@ unsafe impl RefEncode for NSLinguisticTaggerOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger?language=objc)
+    /// Analyze natural language text to tag part of speech and lexical class, identify names, perform lemmatization, and determine the language and script.
+    ///
+    /// ## Overview
+    ///
+    /// [`NSLinguisticTagger`](https://developer.apple.com/documentation/foundation/nslinguistictagger) provides a uniform interface to a variety of natural language processing functionality with support for many different languages and scripts. You can use this class to segment natural language text into paragraphs, sentences, or words, and tag information about those segments, such as part of speech, lexical class, lemma, script, and language.
+    ///
+    /// When you create a linguistic tagger, you specify what kind of information you’re interested in by passing one or more [`NSLinguisticTagScheme`](https://developer.apple.com/documentation/foundation/nslinguistictagscheme) values. Set the [`string`](https://developer.apple.com/documentation/foundation/nslinguistictagger/string) property to the natural language text you want to analyze, and the linguistic tagger processes it according to the specified tag schemes. You can then enumerate over the tags in a specified range, using the methods described in Enumerating Linguistic Tags, to get the information requested for a given scheme and unit.
+    ///
+    /// ### Thread Safety
+    ///
+    /// A single instance of [`NSLinguisticTagger`](https://developer.apple.com/documentation/foundation/nslinguistictagger) should not be used simultaneously from multiple threads.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]

@@ -9,144 +9,77 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericdocumenticonresource?language=objc)
 pub const kGenericDocumentIconResource: c_int = -4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericstationeryiconresource?language=objc)
 pub const kGenericStationeryIconResource: c_int = -3985;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericeditionfileiconresource?language=objc)
 pub const kGenericEditionFileIconResource: c_int = -3989;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericapplicationiconresource?language=objc)
 pub const kGenericApplicationIconResource: c_int = -3996;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericdeskaccessoryiconresource?language=objc)
 pub const kGenericDeskAccessoryIconResource: c_int = -3991;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericfoldericonresource?language=objc)
 pub const kGenericFolderIconResource: c_int = -3999;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kprivatefoldericonresource?language=objc)
 pub const kPrivateFolderIconResource: c_int = -3994;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kfloppyiconresource?language=objc)
 pub const kFloppyIconResource: c_int = -3998;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/ktrashiconresource?language=objc)
 pub const kTrashIconResource: c_int = -3993;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericramdiskiconresource?language=objc)
 pub const kGenericRAMDiskIconResource: c_int = -3988;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556425-anonymous/kgenericcdromiconresource?language=objc)
 pub const kGenericCDROMIconResource: c_int = -3987;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kdesktopiconresource?language=objc)
 pub const kDesktopIconResource: c_int = -3992;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kopenfoldericonresource?language=objc)
 pub const kOpenFolderIconResource: c_int = -3997;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kgenericharddiskiconresource?language=objc)
 pub const kGenericHardDiskIconResource: c_int = -3995;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kgenericfileservericonresource?language=objc)
 pub const kGenericFileServerIconResource: c_int = -3972;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kgenericsuitcaseiconresource?language=objc)
 pub const kGenericSuitcaseIconResource: c_int = -3970;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556434-anonymous/kgenericmoverobjecticonresource?language=objc)
 pub const kGenericMoverObjectIconResource: c_int = -3969;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/kgenericpreferencesiconresource?language=objc)
 pub const kGenericPreferencesIconResource: c_int = -3971;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/kgenericquerydocumenticonresource?language=objc)
 pub const kGenericQueryDocumentIconResource: c_int = -16506;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/kgenericextensioniconresource?language=objc)
 pub const kGenericExtensionIconResource: c_int = -16415;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/ksystemfoldericonresource?language=objc)
 pub const kSystemFolderIconResource: c_int = -3983;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/khelpiconresource?language=objc)
 pub const kHelpIconResource: c_int = -20271;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556423-anonymous/kapplemenufoldericonresource?language=objc)
 pub const kAppleMenuFolderIconResource: c_int = -3982;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericdocumenticonresource?language=objc)
 pub const genericDocumentIconResource: c_int = kGenericDocumentIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericstationeryiconresource?language=objc)
 pub const genericStationeryIconResource: c_int = kGenericStationeryIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericeditionfileiconresource?language=objc)
 pub const genericEditionFileIconResource: c_int = kGenericEditionFileIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericapplicationiconresource?language=objc)
 pub const genericApplicationIconResource: c_int = kGenericApplicationIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericdeskaccessoryiconresource?language=objc)
 pub const genericDeskAccessoryIconResource: c_int = kGenericDeskAccessoryIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericfoldericonresource?language=objc)
 pub const genericFolderIconResource: c_int = kGenericFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/privatefoldericonresource?language=objc)
 pub const privateFolderIconResource: c_int = kPrivateFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/floppyiconresource?language=objc)
 pub const floppyIconResource: c_int = kFloppyIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/trashiconresource?language=objc)
 pub const trashIconResource: c_int = kTrashIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericramdiskiconresource?language=objc)
 pub const genericRAMDiskIconResource: c_int = kGenericRAMDiskIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericcdromiconresource?language=objc)
 pub const genericCDROMIconResource: c_int = kGenericCDROMIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/desktopiconresource?language=objc)
 pub const desktopIconResource: c_int = kDesktopIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/openfoldericonresource?language=objc)
 pub const openFolderIconResource: c_int = kOpenFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericharddiskiconresource?language=objc)
 pub const genericHardDiskIconResource: c_int = kGenericHardDiskIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericfileservericonresource?language=objc)
 pub const genericFileServerIconResource: c_int = kGenericFileServerIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericsuitcaseiconresource?language=objc)
 pub const genericSuitcaseIconResource: c_int = kGenericSuitcaseIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericmoverobjecticonresource?language=objc)
 pub const genericMoverObjectIconResource: c_int = kGenericMoverObjectIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericpreferencesiconresource?language=objc)
 pub const genericPreferencesIconResource: c_int = kGenericPreferencesIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericquerydocumenticonresource?language=objc)
 pub const genericQueryDocumentIconResource: c_int = kGenericQueryDocumentIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/genericextensioniconresource?language=objc)
 pub const genericExtensionIconResource: c_int = kGenericExtensionIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/systemfoldericonresource?language=objc)
 pub const systemFolderIconResource: c_int = kSystemFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556440-anonymous/applemenufoldericonresource?language=objc)
 pub const appleMenuFolderIconResource: c_int = kAppleMenuFolderIconResource;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kstartupfoldericonresource?language=objc)
 pub const kStartupFolderIconResource: c_int = -3981;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kownedfoldericonresource?language=objc)
 pub const kOwnedFolderIconResource: c_int = -3980;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kdropfoldericonresource?language=objc)
 pub const kDropFolderIconResource: c_int = -3979;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/ksharedfoldericonresource?language=objc)
 pub const kSharedFolderIconResource: c_int = -3978;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kmountedfoldericonresource?language=objc)
 pub const kMountedFolderIconResource: c_int = -3977;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kcontrolpanelfoldericonresource?language=objc)
 pub const kControlPanelFolderIconResource: c_int = -3976;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kprintmonitorfoldericonresource?language=objc)
 pub const kPrintMonitorFolderIconResource: c_int = -3975;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kpreferencesfoldericonresource?language=objc)
 pub const kPreferencesFolderIconResource: c_int = -3974;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kextensionsfoldericonresource?language=objc)
 pub const kExtensionsFolderIconResource: c_int = -3973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kfontsfoldericonresource?language=objc)
 pub const kFontsFolderIconResource: c_int = -3968;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556432-anonymous/kfulltrashiconresource?language=objc)
 pub const kFullTrashIconResource: c_int = -3984;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/startupfoldericonresource?language=objc)
 pub const startupFolderIconResource: c_int = kStartupFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/ownedfoldericonresource?language=objc)
 pub const ownedFolderIconResource: c_int = kOwnedFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/dropfoldericonresource?language=objc)
 pub const dropFolderIconResource: c_int = kDropFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/sharedfoldericonresource?language=objc)
 pub const sharedFolderIconResource: c_int = kSharedFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/mountedfoldericonresource?language=objc)
 pub const mountedFolderIconResource: c_int = kMountedFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/controlpanelfoldericonresource?language=objc)
 pub const controlPanelFolderIconResource: c_int = kControlPanelFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/printmonitorfoldericonresource?language=objc)
 pub const printMonitorFolderIconResource: c_int = kPrintMonitorFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/preferencesfoldericonresource?language=objc)
 pub const preferencesFolderIconResource: c_int = kPreferencesFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/extensionsfoldericonresource?language=objc)
 pub const extensionsFolderIconResource: c_int = kExtensionsFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/fontsfoldericonresource?language=objc)
 pub const fontsFolderIconResource: c_int = kFontsFolderIconResource;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556422-anonymous/fulltrashiconresource?language=objc)
 pub const fullTrashIconResource: c_int = kFullTrashIconResource;
 
 #[repr(C)]
@@ -161,395 +94,208 @@ unsafe impl RefEncode for OpaqueIconRef {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("OpaqueIconRef", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconref?language=objc)
 pub type IconRef = *mut OpaqueIconRef;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556445-anonymous/ksystemiconscreator?language=objc)
 pub const kSystemIconsCreator: c_uint = 0x6d616373;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kclipboardicon?language=objc)
 pub const kClipboardIcon: c_uint = 0x434c4950;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kclippingunknowntypeicon?language=objc)
 pub const kClippingUnknownTypeIcon: c_uint = 0x636c7075;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kclippingpicturetypeicon?language=objc)
 pub const kClippingPictureTypeIcon: c_uint = 0x636c7070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kclippingtexttypeicon?language=objc)
 pub const kClippingTextTypeIcon: c_uint = 0x636c7074;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kclippingsoundtypeicon?language=objc)
 pub const kClippingSoundTypeIcon: c_uint = 0x636c7073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kdesktopicon?language=objc)
 pub const kDesktopIcon: c_uint = 0x6465736b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kfindericon?language=objc)
 pub const kFinderIcon: c_uint = 0x464e4452;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kcomputericon?language=objc)
 pub const kComputerIcon: c_uint = 0x726f6f74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kfontsuitcaseicon?language=objc)
 pub const kFontSuitcaseIcon: c_uint = 0x4646494c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kfulltrashicon?language=objc)
 pub const kFullTrashIcon: c_uint = 0x66747268;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericapplicationicon?language=objc)
 pub const kGenericApplicationIcon: c_uint = 0x4150504c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericcdromicon?language=objc)
 pub const kGenericCDROMIcon: c_uint = 0x63646472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericcontrolpanelicon?language=objc)
 pub const kGenericControlPanelIcon: c_uint = 0x41505043;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericcontrolstripmoduleicon?language=objc)
 pub const kGenericControlStripModuleIcon: c_uint = 0x73646576;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericcomponenticon?language=objc)
 pub const kGenericComponentIcon: c_uint = 0x74686e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericdeskaccessoryicon?language=objc)
 pub const kGenericDeskAccessoryIcon: c_uint = 0x41505044;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericdocumenticon?language=objc)
 pub const kGenericDocumentIcon: c_uint = 0x646f6375;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericeditionfileicon?language=objc)
 pub const kGenericEditionFileIcon: c_uint = 0x65647466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericextensionicon?language=objc)
 pub const kGenericExtensionIcon: c_uint = 0x494e4954;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericfileservericon?language=objc)
 pub const kGenericFileServerIcon: c_uint = 0x73727672;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericfonticon?language=objc)
 pub const kGenericFontIcon: c_uint = 0x6666696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericfontscalericon?language=objc)
 pub const kGenericFontScalerIcon: c_uint = 0x73636c72;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericfloppyicon?language=objc)
 pub const kGenericFloppyIcon: c_uint = 0x666c7079;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericharddiskicon?language=objc)
 pub const kGenericHardDiskIcon: c_uint = 0x6864736b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericidiskicon?language=objc)
 pub const kGenericIDiskIcon: c_uint = 0x6964736b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericremovablemediaicon?language=objc)
 pub const kGenericRemovableMediaIcon: c_uint = 0x726d6f76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericmoverobjecticon?language=objc)
 pub const kGenericMoverObjectIcon: c_uint = 0x6d6f7672;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericpccardicon?language=objc)
 pub const kGenericPCCardIcon: c_uint = 0x70636d63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericpreferencesicon?language=objc)
 pub const kGenericPreferencesIcon: c_uint = 0x70726566;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericquerydocumenticon?language=objc)
 pub const kGenericQueryDocumentIcon: c_uint = 0x71657279;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericramdiskicon?language=objc)
 pub const kGenericRAMDiskIcon: c_uint = 0x72616d64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericsharedlibaryicon?language=objc)
 pub const kGenericSharedLibaryIcon: c_uint = 0x73686c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericstationeryicon?language=objc)
 pub const kGenericStationeryIcon: c_uint = 0x73646f63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericsuitcaseicon?language=objc)
 pub const kGenericSuitcaseIcon: c_uint = 0x73756974;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericurlicon?language=objc)
 pub const kGenericURLIcon: c_uint = 0x6775726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kgenericwormicon?language=objc)
 pub const kGenericWORMIcon: c_uint = 0x776f726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kinternationalresourcesicon?language=objc)
 pub const kInternationalResourcesIcon: c_uint = 0x6966696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kkeyboardlayouticon?language=objc)
 pub const kKeyboardLayoutIcon: c_uint = 0x6b66696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ksoundfileicon?language=objc)
 pub const kSoundFileIcon: c_uint = 0x7366696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ksystemsuitcaseicon?language=objc)
 pub const kSystemSuitcaseIcon: c_uint = 0x7a737973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ktrashicon?language=objc)
 pub const kTrashIcon: c_uint = 0x74727368;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ktruetypefonticon?language=objc)
 pub const kTrueTypeFontIcon: c_uint = 0x7466696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ktruetypeflatfonticon?language=objc)
 pub const kTrueTypeFlatFontIcon: c_uint = 0x73666e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/ktruetypemultiflatfonticon?language=objc)
 pub const kTrueTypeMultiFlatFontIcon: c_uint = 0x74746366;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kuseridiskicon?language=objc)
 pub const kUserIDiskIcon: c_uint = 0x7564736b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kunknownfsobjecticon?language=objc)
 pub const kUnknownFSObjectIcon: c_uint = 0x756e6673;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556442-anonymous/kinternationresourcesicon?language=objc)
 pub const kInternationResourcesIcon: c_uint = kInternationalResourcesIcon;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationhttpicon?language=objc)
 pub const kInternetLocationHTTPIcon: c_uint = 0x696c6874;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationftpicon?language=objc)
 pub const kInternetLocationFTPIcon: c_uint = 0x696c6674;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationappleshareicon?language=objc)
 pub const kInternetLocationAppleShareIcon: c_uint = 0x696c6166;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationappletalkzoneicon?language=objc)
 pub const kInternetLocationAppleTalkZoneIcon: c_uint = 0x696c6174;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationfileicon?language=objc)
 pub const kInternetLocationFileIcon: c_uint = 0x696c6669;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationmailicon?language=objc)
 pub const kInternetLocationMailIcon: c_uint = 0x696c6d61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationnewsicon?language=objc)
 pub const kInternetLocationNewsIcon: c_uint = 0x696c6e77;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationnslneighborhoodicon?language=objc)
 pub const kInternetLocationNSLNeighborhoodIcon: c_uint = 0x696c6e73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556431-anonymous/kinternetlocationgenericicon?language=objc)
 pub const kInternetLocationGenericIcon: c_uint = 0x696c6765;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kgenericfoldericon?language=objc)
 pub const kGenericFolderIcon: c_uint = 0x666c6472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kdropfoldericon?language=objc)
 pub const kDropFolderIcon: c_uint = 0x64626f78;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kmountedfoldericon?language=objc)
 pub const kMountedFolderIcon: c_uint = 0x6d6e7464;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kopenfoldericon?language=objc)
 pub const kOpenFolderIcon: c_uint = 0x6f666c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kownedfoldericon?language=objc)
 pub const kOwnedFolderIcon: c_uint = 0x6f776e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/kprivatefoldericon?language=objc)
 pub const kPrivateFolderIcon: c_uint = 0x70727666;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556436-anonymous/ksharedfoldericon?language=objc)
 pub const kSharedFolderIcon: c_uint = 0x7368666c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556420-anonymous/ksharingprivsnotapplicableicon?language=objc)
 pub const kSharingPrivsNotApplicableIcon: c_uint = 0x73686e61;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556420-anonymous/ksharingprivsreadonlyicon?language=objc)
 pub const kSharingPrivsReadOnlyIcon: c_uint = 0x7368726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556420-anonymous/ksharingprivsreadwriteicon?language=objc)
 pub const kSharingPrivsReadWriteIcon: c_uint = 0x73687277;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556420-anonymous/ksharingprivsunknownicon?language=objc)
 pub const kSharingPrivsUnknownIcon: c_uint = 0x7368756b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556420-anonymous/ksharingprivswritableicon?language=objc)
 pub const kSharingPrivsWritableIcon: c_uint = 0x77726974;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kuserfoldericon?language=objc)
 pub const kUserFolderIcon: c_uint = 0x75666c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kworkgroupfoldericon?language=objc)
 pub const kWorkgroupFolderIcon: c_uint = 0x77666c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kguestusericon?language=objc)
 pub const kGuestUserIcon: c_uint = 0x67757372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kusericon?language=objc)
 pub const kUserIcon: c_uint = 0x75736572;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kownericon?language=objc)
 pub const kOwnerIcon: c_uint = 0x73757372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556444-anonymous/kgroupicon?language=objc)
 pub const kGroupIcon: c_uint = 0x67727570;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kappearancefoldericon?language=objc)
 pub const kAppearanceFolderIcon: c_int = 0x61707072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kappleextrasfoldericon?language=objc)
 pub const kAppleExtrasFolderIcon: c_int = 0x616578C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kapplemenufoldericon?language=objc)
 pub const kAppleMenuFolderIcon: c_int = 0x616d6e75;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kapplicationsfoldericon?language=objc)
 pub const kApplicationsFolderIcon: c_int = 0x61707073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kapplicationsupportfoldericon?language=objc)
 pub const kApplicationSupportFolderIcon: c_int = 0x61737570;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kassistantsfoldericon?language=objc)
 pub const kAssistantsFolderIcon: c_int = 0x617374C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kcolorsyncfoldericon?language=objc)
 pub const kColorSyncFolderIcon: c_int = 0x70726f66;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kcontextualmenuitemsfoldericon?language=objc)
 pub const kContextualMenuItemsFolderIcon: c_int = 0x636d6e75;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kcontrolpaneldisabledfoldericon?language=objc)
 pub const kControlPanelDisabledFolderIcon: c_int = 0x63747244;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kcontrolpanelfoldericon?language=objc)
 pub const kControlPanelFolderIcon: c_int = 0x6374726c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kcontrolstripmodulesfoldericon?language=objc)
 pub const kControlStripModulesFolderIcon: c_int = 0x736476C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kdocumentsfoldericon?language=objc)
 pub const kDocumentsFolderIcon: c_int = 0x646f6373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kextensionsdisabledfoldericon?language=objc)
 pub const kExtensionsDisabledFolderIcon: c_int = 0x65787444;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kextensionsfoldericon?language=objc)
 pub const kExtensionsFolderIcon: c_int = 0x6578746e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kfavoritesfoldericon?language=objc)
 pub const kFavoritesFolderIcon: c_int = 0x66617673;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kfontsfoldericon?language=objc)
 pub const kFontsFolderIcon: c_int = 0x666f6e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/khelpfoldericon?language=objc)
 pub const kHelpFolderIcon: c_int = -999789456;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kinternetfoldericon?language=objc)
 pub const kInternetFolderIcon: c_int = 0x696E74C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kinternetpluginfoldericon?language=objc)
 pub const kInternetPlugInFolderIcon: c_int = -999398028;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kinternetsearchsitesfoldericon?language=objc)
 pub const kInternetSearchSitesFolderIcon: c_int = 0x69737366;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/klocalesfoldericon?language=objc)
 pub const kLocalesFolderIcon: c_int = -999526557;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kmacosreadmefoldericon?language=objc)
 pub const kMacOSReadMeFolderIcon: c_int = 0x6D6F72C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kpublicfoldericon?language=objc)
 pub const kPublicFolderIcon: c_int = 0x70756266;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kpreferencesfoldericon?language=objc)
 pub const kPreferencesFolderIcon: c_int = 0x707266C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kprinterdescriptionfoldericon?language=objc)
 pub const kPrinterDescriptionFolderIcon: c_int = 0x70706466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kprinterdriverfoldericon?language=objc)
 pub const kPrinterDriverFolderIcon: c_int = -999263644;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kprintmonitorfoldericon?language=objc)
 pub const kPrintMonitorFolderIcon: c_int = 0x70726e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/krecentapplicationsfoldericon?language=objc)
 pub const kRecentApplicationsFolderIcon: c_int = 0x72617070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/krecentdocumentsfoldericon?language=objc)
 pub const kRecentDocumentsFolderIcon: c_int = 0x72646f63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/krecentserversfoldericon?language=objc)
 pub const kRecentServersFolderIcon: c_int = 0x72737276;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kscriptingadditionsfoldericon?language=objc)
 pub const kScriptingAdditionsFolderIcon: c_int = -999070862;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/ksharedlibrariesfoldericon?language=objc)
 pub const kSharedLibrariesFolderIcon: c_int = -999528094;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kscriptsfoldericon?language=objc)
 pub const kScriptsFolderIcon: c_int = 0x736372C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kshutdownitemsdisabledfoldericon?language=objc)
 pub const kShutdownItemsDisabledFolderIcon: c_int = 0x73686444;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kshutdownitemsfoldericon?language=objc)
 pub const kShutdownItemsFolderIcon: c_int = 0x73686466;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kspeakableitemsfolder?language=objc)
 pub const kSpeakableItemsFolder: c_int = 0x73706b69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kstartupitemsdisabledfoldericon?language=objc)
 pub const kStartupItemsDisabledFolderIcon: c_int = 0x73747244;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kstartupitemsfoldericon?language=objc)
 pub const kStartupItemsFolderIcon: c_int = 0x73747274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/ksystemextensiondisabledfoldericon?language=objc)
 pub const kSystemExtensionDisabledFolderIcon: c_int = 0x6d616344;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/ksystemfoldericon?language=objc)
 pub const kSystemFolderIcon: c_int = 0x6d616373;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/ktextencodingsfoldericon?language=objc)
 pub const kTextEncodingsFolderIcon: c_int = -999004808;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kusersfoldericon?language=objc)
 pub const kUsersFolderIcon: c_int = 0x757372C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kutilitiesfoldericon?language=objc)
 pub const kUtilitiesFolderIcon: c_int = 0x757469C4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556428-anonymous/kvoicesfoldericon?language=objc)
 pub const kVoicesFolderIcon: c_int = 0x66766f63;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/kapplescriptbadgeicon?language=objc)
 pub const kAppleScriptBadgeIcon: c_uint = 0x73637270;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/klockedbadgeicon?language=objc)
 pub const kLockedBadgeIcon: c_uint = 0x6c626467;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/kmountedbadgeicon?language=objc)
 pub const kMountedBadgeIcon: c_uint = 0x6d626467;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/ksharedbadgeicon?language=objc)
 pub const kSharedBadgeIcon: c_uint = 0x73626467;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/kaliasbadgeicon?language=objc)
 pub const kAliasBadgeIcon: c_uint = 0x61626467;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556421-anonymous/kalertcautionbadgeicon?language=objc)
 pub const kAlertCautionBadgeIcon: c_uint = 0x63626467;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556430-anonymous/kalertnoteicon?language=objc)
 pub const kAlertNoteIcon: c_uint = 0x6e6f7465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556430-anonymous/kalertcautionicon?language=objc)
 pub const kAlertCautionIcon: c_uint = 0x63617574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556430-anonymous/kalertstopicon?language=objc)
 pub const kAlertStopIcon: c_uint = 0x73746f70;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kappletalkicon?language=objc)
 pub const kAppleTalkIcon: c_uint = 0x61746c6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kappletalkzoneicon?language=objc)
 pub const kAppleTalkZoneIcon: c_uint = 0x61747a6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kafpservericon?language=objc)
 pub const kAFPServerIcon: c_uint = 0x61667073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kftpservericon?language=objc)
 pub const kFTPServerIcon: c_uint = 0x66747073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/khttpservericon?language=objc)
 pub const kHTTPServerIcon: c_uint = 0x68747073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kgenericnetworkicon?language=objc)
 pub const kGenericNetworkIcon: c_uint = 0x676e6574;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556424-anonymous/kipfileservericon?language=objc)
 pub const kIPFileServerIcon: c_uint = 0x69737276;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarcustomizeicon?language=objc)
 pub const kToolbarCustomizeIcon: c_uint = 0x74637573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbardeleteicon?language=objc)
 pub const kToolbarDeleteIcon: c_uint = 0x7464656c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarfavoritesicon?language=objc)
 pub const kToolbarFavoritesIcon: c_uint = 0x74666176;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarhomeicon?language=objc)
 pub const kToolbarHomeIcon: c_uint = 0x74686f6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbaradvancedicon?language=objc)
 pub const kToolbarAdvancedIcon: c_uint = 0x74626176;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarinfoicon?language=objc)
 pub const kToolbarInfoIcon: c_uint = 0x7462696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarlabelsicon?language=objc)
 pub const kToolbarLabelsIcon: c_uint = 0x74626c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarapplicationsfoldericon?language=objc)
 pub const kToolbarApplicationsFolderIcon: c_uint = 0x74417073;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbardocumentsfoldericon?language=objc)
 pub const kToolbarDocumentsFolderIcon: c_uint = 0x74446f63;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarmoviefoldericon?language=objc)
 pub const kToolbarMovieFolderIcon: c_uint = 0x744d6f76;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarmusicfoldericon?language=objc)
 pub const kToolbarMusicFolderIcon: c_uint = 0x744d7573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarpicturesfoldericon?language=objc)
 pub const kToolbarPicturesFolderIcon: c_uint = 0x74506963;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarpublicfoldericon?language=objc)
 pub const kToolbarPublicFolderIcon: c_uint = 0x74507562;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbardesktopfoldericon?language=objc)
 pub const kToolbarDesktopFolderIcon: c_uint = 0x7444736b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbardownloadsfoldericon?language=objc)
 pub const kToolbarDownloadsFolderIcon: c_uint = 0x7444776e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarlibraryfoldericon?language=objc)
 pub const kToolbarLibraryFolderIcon: c_uint = 0x744c6962;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarutilitiesfoldericon?language=objc)
 pub const kToolbarUtilitiesFolderIcon: c_uint = 0x7455746c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556447-anonymous/ktoolbarsitesfoldericon?language=objc)
 pub const kToolbarSitesFolderIcon: c_uint = 0x74537473;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kapplelogoicon?language=objc)
 pub const kAppleLogoIcon: c_uint = 0x6361706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kapplemenuicon?language=objc)
 pub const kAppleMenuIcon: c_uint = 0x7361706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kbackwardarrowicon?language=objc)
 pub const kBackwardArrowIcon: c_uint = 0x6261726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kfavoriteitemsicon?language=objc)
 pub const kFavoriteItemsIcon: c_uint = 0x66617672;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kforwardarrowicon?language=objc)
 pub const kForwardArrowIcon: c_uint = 0x6661726f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kgridicon?language=objc)
 pub const kGridIcon: c_uint = 0x67726964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/khelpicon?language=objc)
 pub const kHelpIcon: c_uint = 0x68656c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kkeeparrangedicon?language=objc)
 pub const kKeepArrangedIcon: c_uint = 0x61726e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/klockedicon?language=objc)
 pub const kLockedIcon: c_uint = 0x6c6f636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/knofilesicon?language=objc)
 pub const kNoFilesIcon: c_uint = 0x6e66696c;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/knofoldericon?language=objc)
 pub const kNoFolderIcon: c_uint = 0x6e666c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/knowriteicon?language=objc)
 pub const kNoWriteIcon: c_uint = 0x6e777274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kprotectedapplicationfoldericon?language=objc)
 pub const kProtectedApplicationFolderIcon: c_uint = 0x70617070;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kprotectedsystemfoldericon?language=objc)
 pub const kProtectedSystemFolderIcon: c_uint = 0x70737973;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/krecentitemsicon?language=objc)
 pub const kRecentItemsIcon: c_uint = 0x72636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kshortcuticon?language=objc)
 pub const kShortcutIcon: c_uint = 0x73687274;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/ksortascendingicon?language=objc)
 pub const kSortAscendingIcon: c_uint = 0x61736e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/ksortdescendingicon?language=objc)
 pub const kSortDescendingIcon: c_uint = 0x64736e64;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kunlockedicon?language=objc)
 pub const kUnlockedIcon: c_uint = 0x756c636b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kconnecttoicon?language=objc)
 pub const kConnectToIcon: c_uint = 0x636e6374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kgenericwindowicon?language=objc)
 pub const kGenericWindowIcon: c_uint = 0x6777696e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kquestionmarkicon?language=objc)
 pub const kQuestionMarkIcon: c_uint = 0x71756573;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kdeletealiasicon?language=objc)
 pub const kDeleteAliasIcon: c_uint = 0x64616c69;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kejectmediaicon?language=objc)
 pub const kEjectMediaIcon: c_uint = 0x656a6563;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/kburningicon?language=objc)
 pub const kBurningIcon: c_uint = 0x6275726e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556441-anonymous/krightcontainerarrowicon?language=objc)
 pub const kRightContainerArrowIcon: c_uint = 0x72636172;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconservicesusageflags?language=objc)
 pub type IconServicesUsageFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556435-anonymous/kiconservicesnormalusageflag?language=objc)
 pub const kIconServicesNormalUsageFlag: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556435-anonymous/kiconservicesnobadgeflag?language=objc)
 pub const kIconServicesNoBadgeFlag: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556435-anonymous/kiconservicesupdateifneededflag?language=objc)
 pub const kIconServicesUpdateIfNeededFlag: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1556433-anonymous/kiconservicescataloginfomask?language=objc)
 pub const kIconServicesCatalogInfoMask: c_uint = 531550;
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447221-geticonrefowners?language=objc)
-    ///
     /// # Safety
     ///
     /// - `the_icon_ref` must be a valid pointer.
@@ -559,8 +305,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441852-acquireiconref?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -569,8 +313,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443504-releaseiconref?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -579,8 +321,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442776-geticonref?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -594,8 +334,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1441712-geticonreffromfolder?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -611,8 +349,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447966-geticonreffromfileinfo?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_ref` must be a valid pointer.
@@ -640,8 +376,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445758-geticonreffromtypeinfo?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_extension` might not allow `None`.
@@ -659,8 +393,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443251-geticonreffromiconfamilyptr?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_icon_family_ptr` must be a valid pointer.
@@ -675,8 +407,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1447113-geticonreffromcomponent?language=objc)
-    ///
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
@@ -688,8 +418,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1443918-registericonreffromiconfamily?language=objc)
-    ///
     /// # Safety
     ///
     /// - `icon_family` must be a valid pointer.
@@ -705,8 +433,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446795-registericonreffromfsref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `icon_file` must be a valid pointer.
@@ -722,14 +448,11 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444660-unregistericonref?language=objc)
     #[deprecated = "You do not need to unregister icons."]
     pub fn UnregisterIconRef(creator: OSType, icon_type: OSType) -> OSErr;
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445921-updateiconref?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -738,8 +461,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445253-overrideiconref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `old_icon_ref` must be a valid pointer.
@@ -749,8 +470,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1445832-removeiconrefoverride?language=objc)
-    ///
     /// # Safety
     ///
     /// `the_icon_ref` must be a valid pointer.
@@ -759,8 +478,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450541-compositeiconref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `background_icon_ref` must be a valid pointer.
@@ -775,8 +492,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446300-isiconrefcomposite?language=objc)
-    ///
     /// # Safety
     ///
     /// - `composite_icon_ref` must be a valid pointer.
@@ -790,8 +505,6 @@ extern "C-unwind" {
     ) -> OSErr;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1450233-isvalidiconref?language=objc)
-///
 /// # Safety
 ///
 /// `the_icon_ref` must be a valid pointer.
@@ -805,8 +518,6 @@ pub unsafe extern "C-unwind" fn IsValidIconRef(the_icon_ref: IconRef) -> bool {
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1446627-isdataavailableiniconref?language=objc)
-///
 /// # Safety
 ///
 /// `in_icon_ref` must be a valid pointer.
@@ -823,7 +534,6 @@ pub unsafe extern "C-unwind" fn IsDataAvailableInIconRef(
     ret != 0
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1449302-setcustomiconsenabled?language=objc)
 #[deprecated = "This function is no longer supported. Use NSWorkspace and NSImage to get icons."]
 #[inline]
 pub unsafe extern "C-unwind" fn SetCustomIconsEnabled(
@@ -837,8 +547,6 @@ pub unsafe extern "C-unwind" fn SetCustomIconsEnabled(
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1442255-getcustomiconsenabled?language=objc)
-    ///
     /// # Safety
     ///
     /// `custom_icons_enabled` must be a valid pointer.
@@ -847,8 +555,6 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1444939-readiconfromfsref?language=objc)
-    ///
     /// # Safety
     ///
     /// - `ref` must be a valid pointer.

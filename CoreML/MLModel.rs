@@ -8,13 +8,38 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An encapsulation of all the details of your machine learning model.
+    ///
+    /// ## Overview
+    ///
+    /// [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) encapsulates a model’s prediction methods, configuration, and model description.
+    ///
+    /// In most cases, you can use Core ML without accessing the [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) class directly. Instead, use the programmer-friendly wrapper class that Xcode automatically generates when you add a model (see [Integrating a Core ML Model into Your App](https://developer.apple.com/documentation/coreml/integrating-a-core-ml-model-into-your-app)). If your app needs the [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) interface, use the wrapper class’s `model` property.
+    ///
+    /// With the [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) interface, you can:
+    ///
+    /// - Make a prediction with your app’s custom [`MLFeatureProvider`](https://developer.apple.com/documentation/coreml/mlfeatureprovider) by calling [`predictionFromFeatures:error:`](https://developer.apple.com/documentation/coreml/mlmodel/prediction(from:)-9y2aa) or [`predictionFromFeatures:options:error:`](https://developer.apple.com/documentation/coreml/mlmodel/prediction(from:options:)-81mr6).
+    ///
+    /// - Make multiple predictions with your app’s custom [`MLBatchProvider`](https://developer.apple.com/documentation/coreml/mlbatchprovider) by calling [`predictionsFromBatch:error:`](https://developer.apple.com/documentation/coreml/mlmodel/predictions(frombatch:)) or [`predictionsFromBatch:options:error:`](https://developer.apple.com/documentation/coreml/mlmodel/predictions(from:options:)).
+    ///
+    /// - Inspect your model’s [`metadata`](https://developer.apple.com/documentation/coreml/mlmodeldescription/metadata) and [`MLFeatureDescription`](https://developer.apple.com/documentation/coreml/mlfeaturedescription) instances through [`modelDescription`](https://developer.apple.com/documentation/coreml/mlmodel/modeldescription).
+    ///
+    /// If your app downloads and compiles a model on the user’s device, you must use the [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) class directly to make predictions. See [Downloading and Compiling a Model on the User’s Device](https://developer.apple.com/documentation/coreml/downloading-and-compiling-a-model-on-the-user-s-device).
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Use an [`MLModel`](https://developer.apple.com/documentation/coreml/mlmodel) instance on one thread or one dispatch queue at a time. Do this by either serializing method calls to the model, or by creating a separate model instance for each thread and dispatch queue.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     /// MLModel
     ///
     /// Construct a model and evaluate on a specific set of input features.
     /// Inputs and outputs are accessed via the MLFeatureProvider protocol.
     /// Returns a model or nil if there is an error.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodel?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModel;

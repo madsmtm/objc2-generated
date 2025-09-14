@@ -8,7 +8,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection?language=objc)
+    /// Information about the arguments of a compute function.
+    ///
+    /// ## Overview
+    ///
+    /// An [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) object provides access to the arguments of the compute function used in an [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) object. An [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) object can be created along with an [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) object. Don’t create an [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) object directly. Instead, call either the [`newComputePipelineStateWithFunction:options:reflection:error:`](https://developer.apple.com/documentation/metal/mtldevice/makecomputepipelinestate(function:options:reflection:)) or [`newComputePipelineStateWithFunction:options:completionHandler:`](https://developer.apple.com/documentation/metal/mtldevice/makecomputepipelinestate(function:options:completionhandler:)) method of [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) to create both an [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) object and an [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) object.
+    ///
+    /// [`MTLComputePipelineReflection`](https://developer.apple.com/documentation/metal/mtlcomputepipelinereflection) objects can use a significant amount of memory; release any strong references to them after you finish creating pipeline objects.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePipelineReflection;
@@ -58,7 +66,21 @@ impl DefaultRetained for MTLComputePipelineReflection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor?language=objc)
+    /// An instance describing the desired GPU state for a kernel call in a compute pass.
+    ///
+    /// ## Overview
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  Before creating a pipeline state, set the [`computeFunction`](https://developer.apple.com/documentation/metal/mtlcomputepipelinedescriptor/computefunction) property on your descriptor instance. This property tells the GPU which kernel to run.
+    ///
+    ///
+    ///
+    /// </div>
+    /// A pipeline descriptor provides information necessary for creating an [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) instance.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLComputePipelineDescriptor;
@@ -331,11 +353,18 @@ impl DefaultRetained for MTLComputePipelineDescriptor {
 }
 
 extern_protocol!(
+    /// An interface that represents a GPU pipeline configuration for running kernels in a compute pass.
+    ///
+    /// ## Overview
+    ///
+    /// The [`MTLComputePipelineState`](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate) protocol is an interface that represents a specific configuration for the GPU pipeline for a compute pass. Use a pipeline state to configure a compute pass by calling the [`setComputePipelineState:`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder/setcomputepipelinestate(_:)) method of an [`MTLComputeCommandEncoder`](https://developer.apple.com/documentation/metal/mtlcomputecommandencoder) instance.
+    ///
+    /// To create a pipeline state, call the appropriate [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) method (see [Pipeline state creation](https://developer.apple.com/documentation/metal/pipeline-state-creation)). You typically make pipeline states at a noncritical time, like when your app first launches. This is because graphics drivers may need time to evaluate and build each pipeline state. However, you can quickly use and reuse each pipeline state throughout your app’s lifetime.
+    ///
+    ///
     /// A handle to compiled code for a compute function.
     ///
     /// MTLComputePipelineState is a single compute function.  It can only be used with the device that it was created against.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomputepipelinestate?language=objc)
     #[cfg(feature = "MTLAllocation")]
     pub unsafe trait MTLComputePipelineState:
         MTLAllocation + NSObjectProtocol + Send + Sync

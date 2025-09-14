@@ -8,10 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An object that describes a file.
     /// An object that describes a piece of data and its associated name and uniform type identifier.
     /// This data can either be stored in a file on disk, or in memory.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/infile?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INFile;

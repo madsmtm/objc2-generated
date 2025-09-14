@@ -4,95 +4,71 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype?language=objc)
+/// The types of neuron filter to append to a convolution.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNNeuronType(pub i32);
 impl MPSCNNNeuronType {
+    /// A neuron type indicating no neuron filter.
     /// f(x) = x
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/none?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeNone")]
     pub const None: Self = Self(0);
+    /// A neuron type indicating a rectified linear unit neuron filter.
     /// f(x) = x >= 0 ? x : a * x;  rectified linear unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/relu?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeReLU")]
     pub const ReLU: Self = Self(1);
+    /// A neuron type indicating a linear neuron filter.
     /// f(x) = a * x + b
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/linear?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeLinear")]
     pub const Linear: Self = Self(2);
+    /// A neuron type indicating a sigmoid neuron filter.
     /// f(x) = 1 / (1 + e^-x)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/sigmoid?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeSigmoid")]
     pub const Sigmoid: Self = Self(3);
+    /// A neuron type indicating a hard sigmoid neuron filter.
     /// f(x) = clamp((x * a) + b, 0, 1)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/hardsigmoid?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeHardSigmoid")]
     pub const HardSigmoid: Self = Self(4);
+    /// A neuron type indicating a hyperbolic tangent neuron filter.
     /// f(x) = a * tanh(b * x)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/tanh?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeTanH")]
     pub const TanH: Self = Self(5);
+    /// A neuron type indicating an absolute neuron filter.
     /// f(x) = fabs(x)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/absolute?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeAbsolute")]
     pub const Absolute: Self = Self(6);
+    /// A neuron type indicating a parametric softplus neuron filter.
     /// f(x) = a * log(1 + e^(b * x))
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/softplus?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeSoftPlus")]
     pub const SoftPlus: Self = Self(7);
+    /// A neuron type indicating a softsign neuron filter.
     /// f(x) = x / (1 + abs(x))
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/softsign?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeSoftSign")]
     pub const SoftSign: Self = Self(8);
+    /// A neuron type indicating a parametric exponential linear unit neuron filter.
     /// f(x) = x >= 0 ? x : a * (exp(x) - 1); exponential linear unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/elu?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeELU")]
     pub const ELU: Self = Self(9);
     /// Same as ReLU except parameter a is per channel; parameterized rectified linear unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/prelu?language=objc)
     #[doc(alias = "MPSCNNNeuronTypePReLU")]
     pub const PReLU: Self = Self(10);
     /// f(x) = min((x >= 0 ? x : a * x), b); clamped rectified liniear unit
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/relun?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeReLUN")]
     pub const ReLUN: Self = Self(11);
     /// f(x) = (a * x + b) ^ c
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/power?language=objc)
     #[doc(alias = "MPSCNNNeuronTypePower")]
     pub const Power: Self = Self(12);
     /// f(x) = c ^ (a * x + b)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/exponential?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeExponential")]
     pub const Exponential: Self = Self(13);
     /// f(x) = log_c(a * x + b)
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/logarithm?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeLogarithm")]
     pub const Logarithm: Self = Self(14);
     /// f(x) = (1.0 + erf(x * sqrt(0.5))) * 0.5 * x
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/gelu?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeGeLU")]
     pub const GeLU: Self = Self(15);
     /// holds the number of MPSCNNNeuronTypes
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnneurontype/count?language=objc)
     #[doc(alias = "MPSCNNNeuronTypeCount")]
     pub const Count: Self = Self(16);
 }

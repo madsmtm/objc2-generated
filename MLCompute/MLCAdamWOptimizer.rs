@@ -8,9 +8,8 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// An optimizer that represents the Adam algorithm with weight decay.
     /// The MLCAdamWOptimizer specifies the AdamW optimizer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcadamwoptimizer?language=objc)
     #[unsafe(super(MLCOptimizer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "MLCOptimizer")]

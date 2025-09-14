@@ -8,19 +8,25 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
+/// A block of code invoked after a drawable is presented.
 /// The presented callback function protocol
 ///
 /// Be careful when you use delta between this presentedTime and previous frame's presentedTime to animate next frame. If the frame was presented using presentAfterMinimumDuration or presentAtTime, the presentedTime might includes delays to meet your specified present time. If you want to measure how much frame you can achieve, use GPUStartTime in the first command buffer of your frame rendering and GPUEndTime of your last frame rendering to calculate the frame interval.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDrawablePresentedHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
-    /// All "drawable" objects (such as those coming from CAMetalLayer) are expected to conform to this protocol
+    /// A displayable resource that can be rendered or written to.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawable?language=objc)
+    /// ## Overview
+    ///
+    /// Objects that implement this protocol are connected both to the Metal framework and an underlying display system (such as Core Animation) that’s capable of showing content onscreen. You use drawable objects when you want to render images using Metal and present them onscreen.
+    ///
+    /// Don’t implement this protocol yourself; instead, see [`CAMetalLayer`](https://developer.apple.com/documentation/quartzcore/cametallayer), for a class that can create and manage drawable objects for you.
+    ///
+    ///
+    /// All "drawable" objects (such as those coming from CAMetalLayer) are expected to conform to this protocol
     pub unsafe trait MTLDrawable: NSObjectProtocol {
         #[unsafe(method(present))]
         #[unsafe(method_family = none)]

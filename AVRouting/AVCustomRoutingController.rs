@@ -9,8 +9,7 @@ use crate::*;
 
 extern "C" {
     /// A notification the system posts when the list of authorized routes changes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutesdidchange?language=objc)
+    /// A notification the system posts when the list of authorized routes changes.
     pub static AVCustomRoutingControllerAuthorizedRoutesDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -18,11 +17,16 @@ extern "C" {
 extern_class!(
     /// An object that manages the connection from a device to a destination.
     ///
+    /// ## Overview
+    ///
+    /// A routing controller also informs its [`delegate`](https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/delegate) object about which routes the user previously authorized, so it can reconnect, if appropriate.
+    ///
+    ///
+    /// An object that manages the connection from a device to a destination.
+    ///
     /// A routing controller also informs its ``AVCustomRoutingController/delegate``
     /// object about which routes the user previously authorized, so it can
     /// reconnect, if appropriate.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomRoutingController;
@@ -152,8 +156,7 @@ impl AVCustomRoutingController {
 
 extern_protocol!(
     /// A protocol for delegates of a custom routing controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontrollerdelegate?language=objc)
+    /// A protocol for delegates of a custom routing controller.
     pub unsafe trait AVCustomRoutingControllerDelegate:
         NSObjectProtocol + Send + Sync
     {
@@ -220,11 +223,32 @@ extern_protocol!(
 );
 
 extern_class!(
+    /// An object that represents a full or partial IP address.
+    ///
+    /// ## Overview
+    ///
+    /// Use this type to define the IP address and subnet mask of known routes on a local network. Create an instance of this class and add it to a custom routing controller’s [`knownRouteIPs`](https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips) array like shown below:
+    ///
+    /// ```swift
+    /// // Define the IP address.
+    /// let anIPAddressInBytes:[UInt8] = [192, 168, 10, 5]
+    /// let address = Data(bytes: anIPAddressInBytes, count: anIPAddressInBytes.count)
+    ///
+    /// // Define the subnet mask.
+    /// let aMaskInBytes:[UInt8] = [255, 255, 255, 255]
+    /// let mask = Data(bytes: aMaskInBytes, count: aMaskInBytes.count)
+    ///
+    /// // Create a new object to represent the address and mask.
+    /// let partialIP = AVCustomRoutingPartialIP(address: address, mask: mask)
+    ///
+    /// // Add the instance to the custom routing controller's known routes.
+    /// routingController.knownRouteIPs.append(partialIP)
+    /// ```
+    ///
+    ///
     /// Represents a full or partial IP address.
     ///
     /// Use this class in conjunction with ``knownRouteIPs``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingpartialip?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCustomRoutingPartialIP;

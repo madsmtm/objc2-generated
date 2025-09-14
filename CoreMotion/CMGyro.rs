@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrotationrate?language=objc)
+/// The type of structures representing a measurement of rotation rate.
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMRotationRate {
@@ -32,7 +32,13 @@ unsafe impl RefEncode for CMRotationRate {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmgyrodata?language=objc)
+    /// A single measurement of the device’s rotation rate.
+    ///
+    /// ## Overview
+    ///
+    /// An application receives or samples `CMGyroData` objects at regular intervals after calling the [`startGyroUpdatesToQueue:withHandler:`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startgyroupdates(to:withhandler:)) method or the [`startGyroUpdates`](https://developer.apple.com/documentation/coremotion/cmmotionmanager/startgyroupdates()) method of the [`CMMotionManager`](https://developer.apple.com/documentation/coremotion/cmmotionmanager) class.
+    ///
+    ///
     #[unsafe(super(CMLogItem, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CMLogItem")]

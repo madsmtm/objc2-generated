@@ -8,6 +8,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// The environment attributes and list of devices to use during the configuration of macOS or Linux VMs.
+    ///
+    /// ## Overview
+    ///
+    /// Use a [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) object to configure the environment for a macOS or Linux VM. This configuration object contains information about the VM environment, including the devices that the VM exposes to the guest operating system. For example, use the configuration object to specify the network interfaces and storage devices that the operating system may access. For more information on the devices that macOS and Linux guests can support, see the Devices section on the [`Virtualization`](https://developer.apple.com/documentation/virtualization) framework page.
+    ///
+    /// You create and configure [`VZVirtualMachineConfiguration`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration) objects directly. After validating the configuration object, use it to initialize the [`VZVirtualMachine`](https://developer.apple.com/documentation/virtualization/vzvirtualmachine) object that manages the virtual environment. The smallest valid configuration includes a value for the [`bootLoader`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/bootloader) property; you can also include more devices in the configuration depending on the needs of your app, such as graphics devices, shared directories, and so on. When you finish configuring the object, call the [`validateWithError:`](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration/validate()) method to determine whether a VM can successfully support your configuration. A configuration object is invalid if your app doesn’t have the [`com.apple.security.virtualization`](https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.virtualization) entitlement.
+    ///
+    /// For more information on using `VZVirtualMachineConfiguration`, see [Installing macOS on a Virtual Machine](https://developer.apple.com/documentation/virtualization/installing-macos-on-a-virtual-machine) and [Creating and Running a Linux Virtual Machine](https://developer.apple.com/documentation/virtualization/creating-and-running-a-linux-virtual-machine).
+    ///
+    ///
     /// Virtual machine configuration.
     ///
     /// VZVirtualMachineConfiguration defines the configuration of a VZVirtualMachine.
@@ -46,8 +57,6 @@ extern_class!(
     ///
     ///
     /// See: VZVirtualMachine
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzvirtualmachineconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VZVirtualMachineConfiguration;

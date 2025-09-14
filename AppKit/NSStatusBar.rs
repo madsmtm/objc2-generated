@@ -8,16 +8,22 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/variablelength?language=objc)
+/// A status item length that dynamically adjusts to the width of its contents.
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSVariableStatusItemLength: CGFloat = -1.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/squarelength?language=objc)
+/// A status item length that is equal to the status bar’s thickness.
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSSquareStatusItemLength: CGFloat = -2.0 as _;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusbar?language=objc)
+    /// An object that manages a collection of status items displayed within the system-wide menu bar.
+    ///
+    /// ## Overview
+    ///
+    /// A status item (an instance of [`NSStatusItem`](https://developer.apple.com/documentation/appkit/nsstatusitem)) can be displayed with text or an icon, can provide a menu and a target-action message when clicked, or can be a fully customized view that you create. Use status items sparingly and only if the alternatives (such as a Dock menu, preference pane, or status window) are not suitable. Because there is limited space in which to display status items, status items are not guaranteed to be available at all times. For this reason, do not rely on them being available and always provide a user preference for hiding your application’s status items to free up space in the menu bar.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSStatusBar;

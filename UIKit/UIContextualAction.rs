@@ -7,22 +7,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/handler-swift.typealias?language=objc)
+/// The handler block to call in response to the selection of an action.
+///
+/// Parameters:
+/// - action: The object containing information about the selected action.
+///
+/// - sourceView: The view in which the action was displayed.
+///
+/// - completionHandler: The handler block for you to execute after you have performed the action. This block has no return value and takes the following parameter:
+///
+/// - actionPerformed: A Boolean value indicating whether you performed the action. Specify [`true`](https://developer.apple.com/documentation/swift/true) if you performed the action or [`false`](https://developer.apple.com/documentation/swift/false) if you were unable to perform the action for some reason.
+///
 #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
 pub type UIContextualActionHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<UIContextualAction>, NonNull<UIView>, NonNull<block2::DynBlock<dyn Fn(Bool)>>),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum?language=objc)
+/// Constants indicating the style information that applies to the action button.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextualActionStyle(pub NSInteger);
 impl UIContextualActionStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum/normal?language=objc)
+    /// A normal action.
     #[doc(alias = "UIContextualActionStyleNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum/destructive?language=objc)
+    /// An action that deletes data or performs some type of destructive task.
     #[doc(alias = "UIContextualActionStyleDestructive")]
     pub const Destructive: Self = Self(1);
 }
@@ -36,7 +46,13 @@ unsafe impl RefEncode for UIContextualActionStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction?language=objc)
+    /// An action to display when the user swipes a table row.
+    ///
+    /// ## Overview
+    ///
+    /// Create [`UIContextualAction`](https://developer.apple.com/documentation/uikit/uicontextualaction) objects to define the types of actions that can be performed when the user swipes left or right on a table row. Use your actions to initialize a [`UISwipeActionsConfiguration`](https://developer.apple.com/documentation/uikit/uiswipeactionsconfiguration) object in your table view delegate object.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

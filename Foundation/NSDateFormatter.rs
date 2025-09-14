@@ -6,25 +6,66 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style?language=objc)
+/// The following constants specify predefined format styles for dates and times.
+///
+/// ## Overview
+///
+/// The format for these date and time styles is not exact because they depend on the locale, user preference settings, and the operating system version. Do not use these constants if you want an exact format.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterStyle(pub NSUInteger);
 impl NSDateFormatterStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/none?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies no style.
+    ///
+    /// Equal to `kCFDateFormatterNoStyle`.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterNoStyle")]
     pub const NoStyle: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/short?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a short style, typically numeric only, such as “11/23/37” or “3:30 PM”.
+    ///
+    /// Equal to `kCFDateFormatterShortStyle`.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterShortStyle")]
     pub const ShortStyle: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/medium?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a medium style, typically with abbreviated text, such as “Nov 23, 1937” or “3:30:32 PM”.
+    ///
+    /// Equal to `kCFDateFormatterMediumStyle`.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterMediumStyle")]
     pub const MediumStyle: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/long?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a long style, typically with full text, such as “November 23, 1937” or “3:30:32 PM PST”.
+    ///
+    /// Equal to `kCFDateFormatterLongStyle`.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterLongStyle")]
     pub const LongStyle: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/style/full?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies a full style with complete details, such as “Tuesday, April 12, 1952 AD” or “3:30:42 PM Pacific Standard Time”.
+    ///
+    /// Equal to `kCFDateFormatterFullStyle`.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterFullStyle")]
     pub const FullStyle: Self = Self(4);
 }
@@ -37,19 +78,34 @@ unsafe impl RefEncode for NSDateFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior?language=objc)
+/// Constants that specify the behavior `NSDateFormatter` should exhibit.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterBehavior(pub NSUInteger);
 impl NSDateFormatterBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/default?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies default formatting behavior.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterBehaviorDefault")]
     pub const BehaviorDefault: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/behavior10_0?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies formatting behavior equivalent to that in OS X 10.0.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterBehavior10_0")]
     pub const Behavior10_0: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter/behavior/behavior10_4?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Specifies formatting behavior equivalent for OS X 10.4.
+    ///
+    ///
     #[doc(alias = "NSDateFormatterBehavior10_4")]
     pub const Behavior10_4: Self = Self(1040);
 }
@@ -63,7 +119,58 @@ unsafe impl RefEncode for NSDateFormatterBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dateformatter?language=objc)
+    /// A formatter that converts between dates and their textual representations.
+    ///
+    /// ## Overview
+    ///
+    /// Instances of [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) create string representations of [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects, and convert textual representations of dates and times into [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects. For user-visible representations of dates and times, [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) provides a variety of localized presets and configuration options. For fixed format representations of dates and times, you can specify a custom format string.
+    ///
+    /// When working with date representations in ISO 8601 format, use [`NSISO8601DateFormatter`](https://developer.apple.com/documentation/foundation/iso8601dateformatter) instead.
+    ///
+    /// To represent an interval between two [`NSDate`](https://developer.apple.com/documentation/foundation/nsdate) objects, use [`NSDateIntervalFormatter`](https://developer.apple.com/documentation/foundation/dateintervalformatter) instead.
+    ///
+    /// To represent a quantity of time specified by an [`NSDateComponents`](https://developer.apple.com/documentation/foundation/nsdatecomponents) object, use [`NSDateComponentsFormatter`](https://developer.apple.com/documentation/foundation/datecomponentsformatter) instead.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Tip
+    ///  In Swift, you can use [`Date.FormatStyle`](https://developer.apple.com/documentation/foundation/date/formatstyle) or [`Date.VerbatimFormatStyle`](https://developer.apple.com/documentation/foundation/date/verbatimformatstyle) rather than [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter). The [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) API offers a declarative idiom for customizing the formatting of various types. Also, Foundation caches identical [`FormatStyle`](https://developer.apple.com/documentation/foundation/formatstyle) instances, so you don’t need to pass them around your app, or risk wasting memory with duplicate formatters.
+    ///
+    ///
+    ///
+    /// </div>
+    /// ### Working With User-Visible Representations of Dates and Times
+    ///
+    /// When displaying a date to a user, you set the [`dateStyle`](https://developer.apple.com/documentation/foundation/dateformatter/datestyle) and [`timeStyle`](https://developer.apple.com/documentation/foundation/dateformatter/timestyle) properties of the date formatter according to your particular needs. For example, if you want to show the month, day, and year without showing the time, you would set the [`dateStyle`](https://developer.apple.com/documentation/foundation/dateformatter/datestyle) property to [`NSDateFormatterLongStyle`](https://developer.apple.com/documentation/foundation/dateformatter/style/long) and the [`timeStyle`](https://developer.apple.com/documentation/foundation/dateformatter/timestyle) property to [`NSDateFormatterNoStyle`](https://developer.apple.com/documentation/foundation/dateformatter/style/none). Conversely, if you want to show only the time, you would set the `dateStyle` property to [`NSDateFormatterNoStyle`](https://developer.apple.com/documentation/foundation/dateformatter/style/none) and the [`timeStyle`](https://developer.apple.com/documentation/foundation/dateformatter/timestyle) property to [`NSDateFormatterShortStyle`](https://developer.apple.com/documentation/foundation/dateformatter/style/short). Based on the values of the [`dateStyle`](https://developer.apple.com/documentation/foundation/dateformatter/datestyle) and [`timeStyle`](https://developer.apple.com/documentation/foundation/dateformatter/timestyle) properties, [`NSDateFormatter`](https://developer.apple.com/documentation/foundation/dateformatter) provides a representation of a specified date that is appropriate for a given locale.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let dateFormatter = DateFormatter()", "dateFormatter.dateStyle = .medium", "dateFormatter.timeStyle = .none", " ", "let date = Date(timeIntervalSinceReferenceDate: 118800)", " ", "// US English Locale (en_US)", "dateFormatter.locale = Locale(identifier: \"en_US\")", "print(dateFormatter.string(from: date)) // Jan 2, 2001", " ", "// French Locale (fr_FR)", "dateFormatter.locale = Locale(identifier: \"fr_FR\")", "print(dateFormatter.string(from: date)) // 2 janv. 2001", " ", "// Japanese Locale (ja_JP)", "dateFormatter.locale = Locale(identifier: \"ja_JP\")", "print(dateFormatter.string(from: date)) // 2001/01/02"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];", "dateFormatter.dateStyle = NSDateFormatterMediumStyle;", "dateFormatter.timeStyle = NSDateFormatterNoStyle;", " ", "NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:118800];", " ", "// US English Locale (en_US)", "dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@\"en_US\"];", "NSLog(@\"%@\", [dateFormatter stringFromDate:date]); // Jan 2, 2001", " ", "// French Locale (fr_FR)", "dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@\"fr_FR\"];", "NSLog(@\"%@\", [dateFormatter stringFromDate:date]); // 2 janv. 2001", " ", "// Japanese Locale (ja_JP)", "dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@\"ja_JP\"];", "NSLog(@\"%@\", [dateFormatter stringFromDate:date]); // 2001/01/02"], metadata: None }] }] })
+    /// If you need to define a format that cannot be achieved using the predefined styles, you can use the [`setLocalizedDateFormatFromTemplate:`](https://developer.apple.com/documentation/foundation/dateformatter/setlocalizeddateformatfromtemplate(_:)) to specify a localized date format from a template.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let dateFormatter = DateFormatter()", "let date = Date(timeIntervalSinceReferenceDate: 410220000)", " ", "// US English Locale (en_US)", "dateFormatter.locale = Locale(identifier: \"en_US\")", "dateFormatter.setLocalizedDateFormatFromTemplate(\"MMMMd\") // set template after setting locale", "print(dateFormatter.string(from: date)) // December 31", " ", "// British English Locale (en_GB)", "dateFormatter.locale = Locale(identifier: \"en_GB\")", "dateFormatter.setLocalizedDateFormatFromTemplate(\"MMMMd\") // // set template after setting locale", "print(dateFormatter.string(from: date)) // 31 December"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];", "NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:410220000];", " ", "// US English Locale (en_US)", "dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@\"en_US\"];", "[dateFormatter setLocalizedDateFormatFromTemplate:@\"MMMMd\"]; // set template after setting locale", "NSLog(@\"%@\", [dateFormatter stringFromDate:date]); // December 31", " ", "// British English Locale (en_GB)", "dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@\"en_GB\"];", "[dateFormatter setLocalizedDateFormatFromTemplate:@\"MMMMd\"]; // set template after setting locale", "NSLog(@\"%@\", [dateFormatter stringFromDate:date]); // 31 December"], metadata: None }] }] })
+    /// ### Working With Fixed Format Date Representations
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    ///  In macOS 10.12 and later or iOS 10 and later, use the [`NSISO8601DateFormatter`](https://developer.apple.com/documentation/foundation/iso8601dateformatter) class when working with ISO 8601 date representations.
+    ///
+    ///
+    ///
+    /// </div>
+    /// When working with fixed format dates, such as RFC 3339, you set the [`dateFormat`](https://developer.apple.com/documentation/foundation/dateformatter/dateformat) property to specify a format string. For most fixed formats, you should also set the [`locale`](https://developer.apple.com/documentation/foundation/dateformatter/locale) property to a POSIX locale (`"en_US_POSIX"`), and set the [`timeZone`](https://developer.apple.com/documentation/foundation/dateformatter/timezone) property to UTC.
+    ///
+    /// (TODO tabnav: TabNavigator { tabs: [TabItem { title: "Swift", content: [CodeListing { syntax: Some("swift"), code: ["let RFC3339DateFormatter = DateFormatter()", "RFC3339DateFormatter.locale = Locale(identifier: \"en_US_POSIX\")", "RFC3339DateFormatter.dateFormat = \"yyyy-MM-dd'T'HH:mm:ssZZZZZ\"", "RFC3339DateFormatter.timeZone = TimeZone(secondsFromGMT: 0)", " ", "/* 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time) */", "let string = \"1996-12-19T16:39:57-08:00\"", "let date = RFC3339DateFormatter.date(from: string)"], metadata: None }] }, TabItem { title: "Objective-C", content: [CodeListing { syntax: Some("objc"), code: ["RFC3339DateFormatter = [[NSDateFormatter alloc] init];", "RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@\"en_US_POSIX\"];", "RFC3339DateFormatter.dateFormat = @\"yyyy-MM-dd'T'HH:mm:ssZZZZZ\";", "RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];", " ", "/* 39 minutes and 57 seconds after the 16th hour of December 19th, 1996 with an offset of -08:00 from UTC (Pacific Standard Time) */", "NSString *string = @\"1996-12-19T16:39:57-08:00\";", "NSDate *date = [RFC3339DateFormatter dateFromString:string];"], metadata: None }] }] })
+    /// For more information, see [Technical Q&A QA1480 “NSDateFormatter and Internet Dates”](https://developer.apple.com/library/mac/qa/qa1480/).
+    ///
+    /// ### Thread Safety
+    ///
+    /// On iOS 7 and later `NSDateFormatter` is thread safe.
+    ///
+    /// In macOS 10.9 and later `NSDateFormatter` is thread safe so long as you are using the modern behavior in a 64-bit app.
+    ///
+    /// On earlier versions of the operating system, or when using the legacy formatter behavior or running in 32-bit in macOS, `NSDateFormatter` is not thread safe, and you therefore must not mutate a date formatter simultaneously from multiple threads.
+    ///
+    ///
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

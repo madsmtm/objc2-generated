@@ -10,7 +10,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowcontroller?language=objc)
+    /// An object that lets you manage an Automator workflow in your app.
+    ///
+    /// ## Overview
+    ///
+    /// A controller can run and stop a workflow and obtain information about its state. The controller’s delegate ([`AMWorkflowControllerDelegate`](https://developer.apple.com/documentation/automator/amworkflowcontrollerdelegate)) receives messages as the workflow is executed and its actions are run.
+    ///
+    /// You can load and run a workflow with minimal overhead by using the [`AMWorkflow`](https://developer.apple.com/documentation/automator/amworkflow) class method [`runWorkflowAtURL:withInput:error:`](https://developer.apple.com/documentation/automator/amworkflow/run(at:withinput:)). Use [`AMWorkflowController`](https://developer.apple.com/documentation/automator/amworkflowcontroller) where you need greater control, such as the ability to start and stop the workflow. In that case, you must create and initialize both the workflow and the workflow controller objects.
+    ///
+    ///
     #[unsafe(super(NSController, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -159,7 +167,7 @@ impl AMWorkflowController {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automator/amworkflowcontrollerdelegate?language=objc)
+    /// A set of optional methods that a delegate of a workflow controller implements.
     pub unsafe trait AMWorkflowControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[optional]

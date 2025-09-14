@@ -11,8 +11,6 @@ extern_class!(
     /// Dependencies: This depends on Metal.framework.
     ///
     /// An efficient kernel to handle copies, transposed-copies and reshapes.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayidentity?language=objc)
     #[unsafe(super(
         MPSNDArrayUnaryKernel,
         MPSNDArrayMultiaryKernel,

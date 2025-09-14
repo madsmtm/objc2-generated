@@ -8,9 +8,14 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// The MSMessage encapsulates the data to be transferred to remote devices.
+    /// A custom message object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessage?language=objc)
+    /// ## Overview
+    ///
+    /// Use the [`MSMessage`](https://developer.apple.com/documentation/messages/msmessage) class to create custom message objects. To create interactive messages that can be updated by the conversation’s participants, instantiate a message with a session using the [`initWithSession:`](https://developer.apple.com/documentation/messages/msmessage/init(session:)) method. Otherwise, instantiate the message using the [`init`](https://developer.apple.com/documentation/messages/msmessage/init()) method.
+    ///
+    ///
+    /// The MSMessage encapsulates the data to be transferred to remote devices.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MSMessage;

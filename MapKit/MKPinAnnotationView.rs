@@ -10,22 +10,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor?language=objc)
+/// The supported colors for pin annotations.
 // NS_ENUM
 #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKPinAnnotationColor(pub NSUInteger);
 impl MKPinAnnotationColor {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/red?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The head of the pin is red. Red pins indicate destination points on the map.
+    ///
+    ///
     #[doc(alias = "MKPinAnnotationColorRed")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Red: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/green?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The head of the pin is green. Green pins indicate starting points on the map.
+    ///
+    ///
     #[doc(alias = "MKPinAnnotationColorGreen")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Green: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationcolor/purple?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// The head of the pin is purple. Purple pins indicate user-specified points on the map.
+    ///
+    ///
     #[doc(alias = "MKPinAnnotationColorPurple")]
     #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
     pub const Purple: Self = Self(2);
@@ -40,7 +55,21 @@ unsafe impl RefEncode for MKPinAnnotationColor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpinannotationview?language=objc)
+    /// An annotation view that displays a pin image on the map.
+    ///
+    /// ## Overview
+    ///
+    /// Return instances of this class from the [`mapView:viewForAnnotation:`](https://developer.apple.com/documentation/mapkit/mkmapviewdelegate/mapview(_:viewfor:)-8humz) method of your map view delegate when you want to display a pin for one of your annotations. The pins displayed by this view are the same ones found in the Maps application. You can specify the type of pin you want to display and whether you want the pin to be animated into place.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  In iOS 5.1 and earlier, the MapKit framework uses the Google Mobile Maps (GMM) service to provide map data. Use of specific classes of this framework (and their associated interfaces) is subject to the Google Mobile Maps terms of service, found at [http://code.google.com/apis/maps/iphone/terms.html](http://code.google.com/apis/maps/iphone/terms.html).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(MKAnnotationView, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "MKAnnotationView", feature = "objc2-app-kit"))]

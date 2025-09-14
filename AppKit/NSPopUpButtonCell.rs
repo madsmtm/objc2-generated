@@ -7,19 +7,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition?language=objc)
+/// These constants are defined for use with the [`arrowPosition`](https://developer.apple.com/documentation/appkit/nspopupbuttoncell/arrowposition) property.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopUpArrowPosition(pub NSUInteger);
 impl NSPopUpArrowPosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/noarrow?language=objc)
+    /// Does not display any arrow in the control.
     #[doc(alias = "NSPopUpNoArrow")]
     pub const NoArrow: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/arrowatcenter?language=objc)
+    /// Arrow is centered vertically, pointing toward the [`preferredEdge`](https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge).
     #[doc(alias = "NSPopUpArrowAtCenter")]
     pub const ArrowAtCenter: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition/arrowatbottom?language=objc)
+    /// Arrow is drawn at the edge of the button, pointing toward the [`preferredEdge`](https://developer.apple.com/documentation/appkit/nspopupbuttoncell/preferrededge).
     #[doc(alias = "NSPopUpArrowAtBottom")]
     pub const ArrowAtBottom: Self = Self(2);
 }
@@ -33,7 +33,23 @@ unsafe impl RefEncode for NSPopUpArrowPosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttoncell?language=objc)
+    /// The `NSPopUpButtonCell` class defines the visual appearance of pop-up buttons that display pop-up or pull-down menus. Pop-up menus present the user with a set of choices, much the way radio buttons do, but using much less space. Pull-down menus also provide a set of choices but present the information in a slightly different way, usually to provide a set of commands from which the user can choose.
+    ///
+    /// ## Overview
+    ///
+    /// The `NSPopUpButtonCell` class implements the user interface for the [`NSPopUpButton`](https://developer.apple.com/documentation/appkit/nspopupbutton) class.
+    ///
+    /// Changes made to a menu (such as adding, removing, or changing the items) are not apparent while the menu is being displayed or interacted with.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Important
+    /// Setting a pop up button’s [`image`](https://developer.apple.com/documentation/appkit/nscell/image) property has no effect. The image displayed in a pop up button is taken from the selected menu item (in the case of a pop up menu) or from the first menu item (in the case of a pull-down menu).
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSMenuItemCell, NSButtonCell, NSActionCell, NSCell, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(
@@ -422,6 +438,12 @@ impl NSPopUpButtonCell {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttoncell/willpopupnotification?language=objc)
+    /// This notification is posted just before a pop-up menu is attached to its window frame.
+    ///
+    /// ## Discussion
+    ///
+    /// You can use this notification to lazily construct your part’s menus, thus preventing unnecessary calculations until they are needed. The notification object can be either a pop-up button or its enclosed pop-up button cell. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     pub static NSPopUpButtonCellWillPopUpNotification: &'static NSNotificationName;
 }

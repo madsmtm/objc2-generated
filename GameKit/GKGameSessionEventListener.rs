@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessioneventlistener?language=objc)
+    /// An event listener that handles game session events.
     #[deprecated]
     pub unsafe trait GKGameSessionEventListener: NSObjectProtocol {
         #[cfg(all(

@@ -7,141 +7,176 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerrordomain?language=objc)
+    /// The error domain for general game errors.
     pub static GKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code?language=objc)
+/// Error codes for the GameKit error domain.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct GKErrorCode(pub NSInteger);
 impl GKErrorCode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/unknown?language=objc)
+    /// The system can’t complete the requested operation due to an unknown error.
     #[doc(alias = "GKErrorUnknown")]
     pub const Unknown: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/cancelled?language=objc)
+    /// The system canceled the requested operation or the user disabled it.
     #[doc(alias = "GKErrorCancelled")]
     pub const Cancelled: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/communicationsfailure?language=objc)
+    /// The system can’t complete the requested operation due to an error communicating with the server.
     #[doc(alias = "GKErrorCommunicationsFailure")]
     pub const CommunicationsFailure: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/userdenied?language=objc)
+    /// The system can’t complete the requested operation because the user denied it.
+    ///
+    /// ## Discussion
+    ///
+    /// `GKErrorUserDenied` is only called when Game Center is restricted in Parental Controls or has been turned off entirely in the configuration profile. All other user cancelled actions use `GKErrorCancelled`.
+    ///
+    ///
     #[doc(alias = "GKErrorUserDenied")]
     pub const UserDenied: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/invalidcredentials?language=objc)
+    /// The system can’t complete the requested operation because the user name or password are incorrect.
     #[doc(alias = "GKErrorInvalidCredentials")]
     pub const InvalidCredentials: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthenticated?language=objc)
+    /// The system can’t complete the requested operation because the system hasn’t authorized the player.
     #[doc(alias = "GKErrorNotAuthenticated")]
     pub const NotAuthenticated: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/authenticationinprogress?language=objc)
+    /// The system can’t complete the requested operation because the local player is already authenticating.
     #[doc(alias = "GKErrorAuthenticationInProgress")]
     pub const AuthenticationInProgress: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/invalidplayer?language=objc)
+    /// The system can’t complete the requested operation because the player is invalid.
     #[doc(alias = "GKErrorInvalidPlayer")]
     pub const InvalidPlayer: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/scorenotset?language=objc)
+    /// The system can’t complete the requested operation because the system hasn’t set the score.
     #[doc(alias = "GKErrorScoreNotSet")]
     pub const ScoreNotSet: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/parentalcontrolsblocked?language=objc)
+    /// The system can’t complete the requested operation because the user disabled this feature in Restrictions.
     #[doc(alias = "GKErrorParentalControlsBlocked")]
     pub const ParentalControlsBlocked: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/playerstatusexceedsmaximumlength?language=objc)
+    /// The player’s status exceeds the maximum length.
     #[doc(alias = "GKErrorPlayerStatusExceedsMaximumLength")]
     pub const PlayerStatusExceedsMaximumLength: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/playerstatusinvalid?language=objc)
+    /// The player’s status is invalid.
     #[doc(alias = "GKErrorPlayerStatusInvalid")]
     pub const PlayerStatusInvalid: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/matchrequestinvalid?language=objc)
+    /// The system can’t complete the requested operation because the match request is invalid.
     #[doc(alias = "GKErrorMatchRequestInvalid")]
     pub const MatchRequestInvalid: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/underage?language=objc)
+    /// The system can’t complete the requested operation because this feature isn’t available to underage players.
     #[doc(alias = "GKErrorUnderage")]
     pub const Underage: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/gameunrecognized?language=objc)
+    /// The system can’t complete the requested operation because Game Center doesn’t recognize the app.
+    ///
+    /// ## Discussion
+    ///
+    /// Ensure the app’s `bundleID` is correct.
+    ///
+    ///
     #[doc(alias = "GKErrorGameUnrecognized")]
     pub const GameUnrecognized: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/notsupported?language=objc)
+    /// The app doesn’t have Game Center enabled.
     #[doc(alias = "GKErrorNotSupported")]
     pub const NotSupported: Self = Self(16);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/invalidparameter?language=objc)
+    /// The system can’t complete the requested operation because one or more parameters are invalid.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, this error code may be returned if your application attempts to post a score and provides a category string that does not match a category you configured for your leaderboards in App Store Connect.
+    ///
+    ///
     #[doc(alias = "GKErrorInvalidParameter")]
     pub const InvalidParameter: Self = Self(17);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/unexpectedconnection?language=objc)
+    /// An unexpected player has connected to a match.
     #[doc(alias = "GKErrorUnexpectedConnection")]
     pub const UnexpectedConnection: Self = Self(18);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/challengeinvalid?language=objc)
+    /// The challenge request failed due to invalid challenge data.
     #[doc(alias = "GKErrorChallengeInvalid")]
     #[deprecated]
     pub const ChallengeInvalid: Self = Self(19);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/turnbasedmatchdatatoolarge?language=objc)
+    /// The system can’t complete the requested operation because the match data is too large.
     #[doc(alias = "GKErrorTurnBasedMatchDataTooLarge")]
     pub const TurnBasedMatchDataTooLarge: Self = Self(20);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/turnbasedtoomanysessions?language=objc)
+    /// The system can’t complete the requested operation because it exceeds the maximum number of sessions.
     #[doc(alias = "GKErrorTurnBasedTooManySessions")]
     pub const TurnBasedTooManySessions: Self = Self(21);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/turnbasedinvalidparticipant?language=objc)
+    /// The system can’t complete the requested operation because the specified participant is invalid.
     #[doc(alias = "GKErrorTurnBasedInvalidParticipant")]
     pub const TurnBasedInvalidParticipant: Self = Self(22);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/turnbasedinvalidturn?language=objc)
+    /// The system can’t complete the requested operation because the participant doesn’t have the required turn state.
     #[doc(alias = "GKErrorTurnBasedInvalidTurn")]
     pub const TurnBasedInvalidTurn: Self = Self(23);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/turnbasedinvalidstate?language=objc)
+    /// The system can’t complete the requested operation because the session is in an invalid state.
     #[doc(alias = "GKErrorTurnBasedInvalidState")]
     pub const TurnBasedInvalidState: Self = Self(24);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/invitationsdisabled?language=objc)
+    /// The system can’t complete the requested operation because the receiving player has disabled invitations.
     #[doc(alias = "GKErrorInvitationsDisabled")]
     pub const InvitationsDisabled: Self = Self(25);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/playerphotofailure?language=objc)
+    /// The system can’t complete the requested operation to retrieve a player’s photo.
     #[doc(alias = "GKErrorPlayerPhotoFailure")]
     pub const PlayerPhotoFailure: Self = Self(26);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/ubiquitycontainerunavailable?language=objc)
+    /// The system can’t complete the requested operation because the user hasn’t signed in to iCloud or hasn’t enabled iCloud Drive.
     #[doc(alias = "GKErrorUbiquityContainerUnavailable")]
     pub const UbiquityContainerUnavailable: Self = Self(27);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/matchnotconnected?language=objc)
+    /// The system can’t complete the requested operation because the match isn’t connected to other players.
     #[doc(alias = "GKErrorMatchNotConnected")]
     pub const MatchNotConnected: Self = Self(28);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/gamesessionrequestinvalid?language=objc)
+    /// The properties of the game session request are impossible to fulfill.
+    ///
+    /// ## Discussion
+    ///
+    /// For example, the maximum number of requested players is greater than the maximum number of allowed players.
+    ///
+    ///
     #[doc(alias = "GKErrorGameSessionRequestInvalid")]
     pub const GameSessionRequestInvalid: Self = Self(29);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/restrictedtoautomatch?language=objc)
+    /// The system can’t complete the requested operation because the player is using automatch.
     #[doc(alias = "GKErrorRestrictedToAutomatch")]
     pub const RestrictedToAutomatch: Self = Self(30);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/apinotavailable?language=objc)
+    /// The system can’t complete the requested operation because the API isn’t available.
     #[doc(alias = "GKErrorAPINotAvailable")]
     pub const APINotAvailable: Self = Self(31);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/notauthorized?language=objc)
+    /// The system can’t complete the requested operation because the system hasn’t authorized the player.
     #[doc(alias = "GKErrorNotAuthorized")]
     pub const NotAuthorized: Self = Self(32);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/connectiontimeout?language=objc)
+    /// The system can’t complete the requested operation because the connection timed out.
     #[doc(alias = "GKErrorConnectionTimeout")]
     pub const ConnectionTimeout: Self = Self(33);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/apiobsolete?language=objc)
+    /// The system can’t complete the requested operation because Apple deprecated the API.
     #[doc(alias = "GKErrorAPIObsolete")]
     pub const APIObsolete: Self = Self(34);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/icloudunavailable?language=objc)
+    /// The system can’t complete the requested operation because it can’t access the player’s iCloud account.
     #[doc(alias = "GKErrorICloudUnavailable")]
     pub const ICloudUnavailable: Self = Self(35);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/lockdownmode?language=objc)
+    /// The system can’t complete the requested operation because the player enabled Lockdown Mode on the device.
+    ///
+    /// ## Discussion
+    ///
+    /// For more information about Lockdown Mode, see [About Lockdown Mode](https://support.apple.com/en-us/HT212650).
+    ///
+    ///
     #[doc(alias = "GKErrorLockdownMode")]
     pub const LockdownMode: Self = Self(36);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/appunlisted?language=objc)
+    /// The system can’t complete the requested operation because the game isn’t available on the App Store.
     #[doc(alias = "GKErrorAppUnlisted")]
     pub const AppUnlisted: Self = Self(37);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/debugmode?language=objc)
     #[doc(alias = "GKErrorDebugMode")]
     pub const DebugMode: Self = Self(38);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/friendlistdescriptionmissing?language=objc)
+    /// Access to the local player’s list of friends denied for lack of a reason.
+    ///
+    /// ## Discussion
+    ///
+    /// If your game wants access to the player’s friends, provide a reason by adding the [`NSGKFriendListUsageDescription`](https://developer.apple.com/documentation/bundleresources/information-property-list/nsgkfriendlistusagedescription) key to the information property list.
+    ///
+    ///
     #[doc(alias = "GKErrorFriendListDescriptionMissing")]
     pub const FriendListDescriptionMissing: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/friendlistrestricted?language=objc)
+    /// Access to the local player’s list of friends restricted.
     #[doc(alias = "GKErrorFriendListRestricted")]
     pub const FriendListRestricted: Self = Self(101);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/friendlistdenied?language=objc)
+    /// Access to the local player’s list of friends denied.
     #[doc(alias = "GKErrorFriendListDenied")]
     pub const FriendListDenied: Self = Self(102);
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkerror/code/friendrequestnotavailable?language=objc)
+    /// The player can’t send a friend request at this time from this device.
     #[doc(alias = "GKErrorFriendRequestNotAvailable")]
     pub const FriendRequestNotAvailable: Self = Self(103);
 }

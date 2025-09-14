@@ -8,13 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
+    /// A central point of reference that defines the location within the scene that’s most audible to the user.
+    ///
+    /// ## Overview
+    ///
+    /// PHASE requires an instance of this class to play ambient or spatial audio. To output sound through an ambient mixer or spatial mixer, the app adds an instance of this class to a sound event by using [`PHASEMixerParameters`](https://developer.apple.com/documentation/phase/phasemixerparameters).
+    ///
+    /// For an example that demonstrates listeners, see [Playing sound from a location in a 3D scene](https://developer.apple.com/documentation/phase/playing-sound-from-a-location-in-a-3d-scene).
+    ///
+    ///
     /// *************************************************************************************************
     ///
     ///
     ///
     /// A PHASEListener represents the listener's point of view within the simulated acoustic scene.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaselistener?language=objc)
     #[unsafe(super(PHASEObject, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PHASEObject")]

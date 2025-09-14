@@ -7,58 +7,99 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype?language=objc)
+/// The types of attribute that Core Data supports.
+///
+/// ## Overview
+///
+/// Core Data supports the following attribute types, which differentiate between bit sizes to enable data-store independence. For some types, a scalar option is available.
+///
+/// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Strong { inline_content: [Text { text: "Attribute Type" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Type" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Scalar type" }] }] }], [Paragraph { inline_content: [Strong { inline_content: [Text { text: "Scalar by default?" }] }] }]], [[Paragraph { inline_content: [Text { text: "Integer 16" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/kernel/int16_t", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Integer 32" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/kernel/int32_t", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Integer 64" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/kernel/int64_t", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Double" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "double" }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Float" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [CodeVoice { code: "float" }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Boolean" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/BOOL", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "yes" }] }]], [[Paragraph { inline_content: [Text { text: "Date" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSDate", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/TimeInterval", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "no" }] }]], [[Paragraph { inline_content: [Text { text: "Decimal" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSDecimalNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSDecimalNumber", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "no" }] }]], [[Paragraph { inline_content: [Text { text: "UUID" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSUUID", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "no" }] }]], [[Paragraph { inline_content: [Text { text: "URI" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSURL", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]], [[Paragraph { inline_content: [Text { text: "String" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]], [[Paragraph { inline_content: [Text { text: "Binary data" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/Foundation/NSData", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]], [[Paragraph { inline_content: [Text { text: "Transformable" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.documentation/documentation/ObjectiveC/NSObject-swift.class", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]], [[Paragraph { inline_content: [Text { text: "Composite" }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]], [[Paragraph { inline_content: [Text { text: "Undefined" }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }], [Paragraph { inline_content: [Text { text: "—" }] }]]], alignments: None, metadata: None })
+/// <div class="warning">
+///
+/// ### Note
+///  If your application uses Binary Large Objects (BLOBs) like image and sound data, prefer to store its binary data outside of the Core Data store.
+///
+///
+///
+/// </div>
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributeType(pub NSUInteger);
 impl NSAttributeType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/undefinedattributetype?language=objc)
+    /// An attribute that doesn’t have an explicit type.
+    ///
+    /// ## Discussion
+    ///
+    /// Use this attribute type with transient attributues only. Core Data manages the attribute’s value and registers the necessary undo and redo actions.
+    ///
+    ///
     #[doc(alias = "NSUndefinedAttributeType")]
     pub const UndefinedAttributeType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer16attributetype?language=objc)
+    /// An attribute that stores a 16-bit signed integer value.
     #[doc(alias = "NSInteger16AttributeType")]
     pub const Integer16AttributeType: Self = Self(100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer32attributetype?language=objc)
+    /// An attribute that stores a 32-bit signed integer value.
     #[doc(alias = "NSInteger32AttributeType")]
     pub const Integer32AttributeType: Self = Self(200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/integer64attributetype?language=objc)
+    /// An attribute that stores a 64-bit signed integer value.
     #[doc(alias = "NSInteger64AttributeType")]
     pub const Integer64AttributeType: Self = Self(300);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/decimalattributetype?language=objc)
+    /// An attribute that stores a decimal value.
+    ///
+    /// ## Discussion
+    ///
+    /// Use instances of [`NSDecimalNumber`](https://developer.apple.com/documentation/foundation/nsdecimalnumber) when reading and writing attributes of this type.
+    ///
+    ///
     #[doc(alias = "NSDecimalAttributeType")]
     pub const DecimalAttributeType: Self = Self(400);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/doubleattributetype?language=objc)
+    /// An attribute that stores a double value.
     #[doc(alias = "NSDoubleAttributeType")]
     pub const DoubleAttributeType: Self = Self(500);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/floatattributetype?language=objc)
+    /// An attribute that stores a float value.
     #[doc(alias = "NSFloatAttributeType")]
     pub const FloatAttributeType: Self = Self(600);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/stringattributetype?language=objc)
+    /// An attribute that stores a string.
     #[doc(alias = "NSStringAttributeType")]
     pub const StringAttributeType: Self = Self(700);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/booleanattributetype?language=objc)
+    /// An attribute that stores a Boolean value.
     #[doc(alias = "NSBooleanAttributeType")]
     pub const BooleanAttributeType: Self = Self(800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/dateattributetype?language=objc)
+    /// An attribute that stores a date.
     #[doc(alias = "NSDateAttributeType")]
     pub const DateAttributeType: Self = Self(900);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/binarydataattributetype?language=objc)
+    /// An attribute that stores binary data.
     #[doc(alias = "NSBinaryDataAttributeType")]
     pub const BinaryDataAttributeType: Self = Self(1000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/uuidattributetype?language=objc)
+    /// An attribute that stores a universally unique identifier.
     #[doc(alias = "NSUUIDAttributeType")]
     pub const UUIDAttributeType: Self = Self(1100);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/uriattributetype?language=objc)
+    /// An attribute that stores a uniform resource identifier.
     #[doc(alias = "NSURIAttributeType")]
     pub const URIAttributeType: Self = Self(1200);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/transformableattributetype?language=objc)
+    /// An attribute that uses a value transformer to derive its value.
     #[doc(alias = "NSTransformableAttributeType")]
     pub const TransformableAttributeType: Self = Self(1800);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/objectidattributetype?language=objc)
+    /// An attribute that stores a managed object’s ID.
     #[doc(alias = "NSObjectIDAttributeType")]
     pub const ObjectIDAttributeType: Self = Self(2000);
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributetype/compositeattributetype?language=objc)
+    /// An attribute that derives its value by composing other attributes.
+    ///
+    /// ## Discussion
+    ///
+    /// Composite attributes support all attribute types except the following:
+    ///
+    /// - [`NSUndefinedAttributeType`](https://developer.apple.com/documentation/coredata/nsattributetype/undefinedattributetype)
+    ///
+    /// - [`NSObjectIDAttributeType`](https://developer.apple.com/documentation/coredata/nsattributetype/objectidattributetype)
+    ///
+    /// - [`NSBinaryDataAttributeType`](https://developer.apple.com/documentation/coredata/nsattributetype/binarydataattributetype) (when [`allowsExternalBinaryDataStorage`](https://developer.apple.com/documentation/coredata/nsattributedescription/allowsexternalbinarydatastorage) is [`true`](https://developer.apple.com/documentation/swift/true))
+    ///
+    /// For more information, see [`NSCompositeAttributeDescription`](https://developer.apple.com/documentation/coredata/nscompositeattributedescription).
+    ///
+    ///
     #[doc(alias = "NSCompositeAttributeType")]
     pub const CompositeAttributeType: Self = Self(2100);
 }
@@ -72,7 +113,25 @@ unsafe impl RefEncode for NSAttributeType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsattributedescription?language=objc)
+    /// A description of a single attribute belonging to an entity.
+    ///
+    /// ## Overview
+    ///
+    /// `NSAttributeDescription` inherits from [`NSPropertyDescription`](https://developer.apple.com/documentation/coredata/nspropertydescription), which provides most of the basic behavior. Instances of `NSAttributeDescription` are used to describe attributes, as distinct from relationships. The class adds the ability to specify the attribute type, and to specify a default value. In a managed object model, you must specify the type of all attributes—you can only use the undefined attribute type (`NSUndefinedAttributeType`) for transient attributes.
+    ///
+    /// ### Editing Attribute Descriptions
+    ///
+    /// Attribute descriptions are editable until they are used by an object graph manager. This allows you to create or modify them dynamically. However, once a description is used (when the managed object model to which it belongs is associated with a persistent store coordinator), it _must not_ (indeed cannot) be changed. This is enforced at runtime: any attempt to mutate a model or any of its sub-objects after the model is associated with a persistent store coordinator causes an exception to be thrown. If you need to modify a model that is in use, create a copy, modify the copy, and then discard the objects with the old model.
+    ///
+    /// <div class="warning">
+    ///
+    /// ### Note
+    ///  Default values set for attributes are retained by a managed object model, not copied. This means that attribute values do not have to implement the `NSCopying` protocol, however it also means that you should not modify any objects after they have been set as default values.
+    ///
+    ///
+    ///
+    /// </div>
+    ///
     #[unsafe(super(NSPropertyDescription, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSPropertyDescription")]

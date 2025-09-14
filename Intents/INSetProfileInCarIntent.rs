@@ -8,7 +8,29 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/insetprofileincarintent?language=objc)
+    /// A request to change the user’s vehicle environment settings to the ones from the specified profile.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive vendors whose cars support the saving of seat and other environment settings can add support for this intent to an Intents extension that they ship with their automotive apps. When users want to restore settings from a profile, SiriKit creates an [`INSetProfileInCarIntent`](https://developer.apple.com/documentation/intents/insetprofileincarintent) object and delivers it to the app’s Intents extension. You use the intent object to get the name or index of the profile whose settings you use to configure the vehicle.
+    ///
+    /// You’re responsible for determining which settings to save and restore with user profiles. You can restore seat-related settings, climate control settings, defroster settings, radio settings, other settings in your vehicle, or any combination of those settings. Siri handles only the name or index of the profile and doesn’t ask you to provide a list of the settings that you restored. Users can restore settings regardless for whether the profile was originally created through Siri or through your vehicle’s built-in interface.
+    ///
+    /// The object that handles this intent must adopt the [`INSetProfileInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetprofileincarintenthandling) protocol. Use this intent object to resolve the profile information and to create an [`INSetProfileInCarIntentResponse`](https://developer.apple.com/documentation/intents/insetprofileincarintentresponse) object indicating the results of restoring the profile.
+    ///
+    /// ### Additional Intent Attributes
+    ///
+    /// The following table lists additional attributes of this intent object:
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Attribute" }] }], [Paragraph { inline_content: [Text { text: "Description" }] }]], [[Paragraph { inline_content: [Text { text: "Supported by" }] }], [Paragraph { inline_content: [Text { text: "Siri Intents (in conjunction with CarPlay)" }] }]], [[Paragraph { inline_content: [Text { text: "Always requires unlocked device" }] }], [Paragraph { inline_content: [Text { text: "Yes" }] }]]], alignments: None, metadata: None })
+    /// ### Example Phrases
+    ///
+    /// Users can ask Siri to restore profile settings in a vehicle in a variety of ways. The table below provides a few sample phrases in different languages. You can use these phrases during testing to trigger your intents. This list isn’t exhaustive and Siri may recognize many other phrases.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Locale" }] }], [Paragraph { inline_content: [Text { text: "Example 1" }] }], [Paragraph { inline_content: [Text { text: "Example 2" }] }]], [[Paragraph { inline_content: [Text { text: "en" }] }], [Paragraph { inline_content: [Text { text: "Activate profile 1" }] }], [Paragraph { inline_content: [Text { text: "Restore profile 3" }] }]], [[Paragraph { inline_content: [Text { text: "zh_CN" }] }], [Paragraph { inline_content: [Text { text: "打开设置" }] }], [Paragraph { inline_content: [Text { text: "重设设置" }] }]], [[Paragraph { inline_content: [Text { text: "zh_HK" }] }], [Paragraph { inline_content: [Text { text: "打開資料" }] }], [Paragraph { inline_content: [Text { text: "恢復資料" }] }]], [[Paragraph { inline_content: [Text { text: "zh_TW" }] }], [Paragraph { inline_content: [Text { text: "打開一號設定檔" }] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "yue_CN" }] }], [Paragraph { inline_content: [Text { text: "打开资料" }] }], [Paragraph { inline_content: [Text { text: "恢复资料" }] }]], [[Paragraph { inline_content: [Text { text: "ar" }] }], [Paragraph { inline_content: [Text { text: "تفعيل الملف الشخصي" }] }], [Paragraph { inline_content: [Text { text: "تمكين الملف الشخصي" }] }]], [[Paragraph { inline_content: [Text { text: "da" }] }], [Paragraph { inline_content: [Text { text: "Aktiver profil 1" }] }], [Paragraph { inline_content: [Text { text: "Indlæs profil 2" }] }]], [[Paragraph { inline_content: [Text { text: "de" }] }], [Paragraph { inline_content: [Text { text: "Aktiviere Profil Urlaub" }] }], [Paragraph { inline_content: [Text { text: "Profil Urlaub aktivieren" }] }]], [[Paragraph { inline_content: [Text { text: "es" }] }], [Paragraph { inline_content: [Text { text: "Activa el perfil ‘día soleado’" }] }], [Paragraph { inline_content: [Text { text: "Pon la configuración ‘paseo familiar’" }] }]], [[Paragraph { inline_content: [Text { text: "fi" }] }], [Paragraph { inline_content: [Text { text: "Lataa asetukset nimellä 1" }] }], [Paragraph { inline_content: [Text { text: "Lataa asetukset 3" }] }]], [[Paragraph { inline_content: [Text { text: "fr" }] }], [Paragraph { inline_content: [Text { text: "Active le profil 1" }] }], [Paragraph { inline_content: [Text { text: "Charge le profil virée en voiture" }] }]], [[Paragraph { inline_content: [Text { text: "he" }] }], [Paragraph { inline_content: [] }], [Paragraph { inline_content: [] }]], [[Paragraph { inline_content: [Text { text: "it" }] }], [Paragraph { inline_content: [Text { text: "Attiva profilo uno" }] }], [Paragraph { inline_content: [Text { text: "Rimetti il profilo tre" }] }]], [[Paragraph { inline_content: [Text { text: "ja" }] }], [Paragraph { inline_content: [Text { text: "プロファイル1を使用する" }] }], [Paragraph { inline_content: [Text { text: "プロファイル3をリストアする" }] }]], [[Paragraph { inline_content: [Text { text: "ko" }] }], [Paragraph { inline_content: [Text { text: "프로파일 1 켜줘" }] }], [Paragraph { inline_content: [Text { text: "프로파일 3 작동 시켜" }] }]], [[Paragraph { inline_content: [Text { text: "ms" }] }], [Paragraph { inline_content: [Text { text: "Aktifkan profil 1" }] }], [Paragraph { inline_content: [Text { text: "Buka profil 2" }] }]], [[Paragraph { inline_content: [Text { text: "nb" }] }], [Paragraph { inline_content: [Text { text: "Aktiver profil 1" }] }], [Paragraph { inline_content: [Text { text: "Still inn profil 3" }] }]], [[Paragraph { inline_content: [Text { text: "nl" }] }], [Paragraph { inline_content: [Text { text: "Activeer profiel 1" }] }], [Paragraph { inline_content: [Text { text: "Herstel profiel 3" }] }]], [[Paragraph { inline_content: [Text { text: "pt" }] }], [Paragraph { inline_content: [Text { text: "Ativar perfil 1" }] }], [Paragraph { inline_content: [Text { text: "Restaurar perfil 3" }] }]], [[Paragraph { inline_content: [Text { text: "ru" }] }], [Paragraph { inline_content: [Text { text: "Активируй профиль 1" }] }], [Paragraph { inline_content: [Text { text: "Загрузи профиль 1" }] }]], [[Paragraph { inline_content: [Text { text: "sv" }] }], [Paragraph { inline_content: [Text { text: "namnge profilen semester" }] }], [Paragraph { inline_content: [Text { text: "spara profilen som helgresan" }] }]], [[Paragraph { inline_content: [Text { text: "th" }] }], [Paragraph { inline_content: [Text { text: "ใช\u{e49}งานโปรไฟล\u{e4c} 1" }] }], [Paragraph { inline_content: [Text { text: "โหลดโปรไฟล\u{e4c} 3" }] }]], [[Paragraph { inline_content: [Text { text: "tr" }] }], [Paragraph { inline_content: [Text { text: "Profil 1’i etkinleştir" }] }], [Paragraph { inline_content: [Text { text: "Profil 1’i aktif hale getir" }] }]]], alignments: None, metadata: None })
+    /// When managing CarPlay features, users don’t need to include the name of the app in the phrases that they speak. Siri knows automatically when CarPlay is active and routes CarPlay-related intents to the app of the corresponding automotive vendor.
+    ///
+    ///
     #[unsafe(super(INIntent, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "INIntent")]
@@ -91,11 +113,18 @@ impl INSetProfileInCarIntent {
 }
 
 extern_protocol!(
+    /// The handler interface for restoring vehicle environment settings from a user-specified profile.
+    ///
+    /// ## Overview
+    ///
+    /// Automotive venders can support the [`INSetProfileInCarIntentHandling`](https://developer.apple.com/documentation/intents/insetprofileincarintenthandling) protocol in an Intents extension that they ship with their automotive apps. Use the methods of this protocol to resolve, confirm, and handle requests to restore vehicle-related settings from the profile that the user designated. Your extension should be able to communicate with the vehicle and make the necessary changes.
+    ///
+    /// Siri delivers an [`INSetProfileInCarIntent`](https://developer.apple.com/documentation/intents/insetprofileincarintent) object to your handler when the user asks to restore the current settings from a profile. The provided intent object contains information for determining which profile to use.
+    ///
+    ///
     /// Protocol to declare support for handling an INSetProfileInCarIntent. By implementing this protocol, a class can provide logic for resolving, confirming and handling the intent.
     ///
     /// The minimum requirement for an implementing class is that it should be able to handle the intent. The resolution and confirmation methods are optional. The handling method is always called last, after resolving and confirming the intent.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/insetprofileincarintenthandling?language=objc)
     #[deprecated = "INSetProfileInCarIntentHandling is deprecated. There is no replacement."]
     pub unsafe trait INSetProfileInCarIntentHandling: NSObjectProtocol {
         #[cfg(all(

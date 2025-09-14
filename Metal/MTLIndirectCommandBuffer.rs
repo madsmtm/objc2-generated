@@ -7,37 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// The types of commands that you can encode into the indirect command buffer.
 /// A bitfield of commands that may be performed indirectly.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIndirectCommandType(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLIndirectCommandType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/draw?language=objc)
+/// A draw call command.
         #[doc(alias = "MTLIndirectCommandTypeDraw")]
         const Draw = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawindexed?language=objc)
+/// An indexed draw call command.
         #[doc(alias = "MTLIndirectCommandTypeDrawIndexed")]
         const DrawIndexed = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawpatches?language=objc)
+/// A draw call command for tessellated patches.
         #[doc(alias = "MTLIndirectCommandTypeDrawPatches")]
         const DrawPatches = 1<<2;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawindexedpatches?language=objc)
+/// An indexed draw call command for tessellated patches.
         #[doc(alias = "MTLIndirectCommandTypeDrawIndexedPatches")]
         const DrawIndexedPatches = 1<<3;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/concurrentdispatch?language=objc)
+/// A compute command using a grid aligned to threadgroup boundaries.
         #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatch")]
         const ConcurrentDispatch = 1<<5;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/concurrentdispatchthreads?language=objc)
+/// A compute command using an arbitrarily sized grid.
         #[doc(alias = "MTLIndirectCommandTypeConcurrentDispatchThreads")]
         const ConcurrentDispatchThreads = 1<<6;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawmeshthreadgroups?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreadgroups")]
         const DrawMeshThreadgroups = 1<<7;
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandtype/drawmeshthreads?language=objc)
         #[doc(alias = "MTLIndirectCommandTypeDrawMeshThreads")]
         const DrawMeshThreads = 1<<8;
     }
@@ -51,9 +48,8 @@ unsafe impl RefEncode for MTLIndirectCommandType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A range of commands in an indirect command buffer.
 /// The data layout required for specifying an indirect command buffer execution range.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferexecutionrange?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLIndirectCommandBufferExecutionRange {
@@ -74,9 +70,8 @@ impl MTLIndirectCommandBufferExecutionRange {
 }
 
 extern_class!(
+    /// A configuration you create to customize an indirect command buffer.
     /// Describes the limits and features that can be used in an indirect command
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferdescriptor?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTLIndirectCommandBufferDescriptor;
@@ -363,7 +358,15 @@ impl DefaultRetained for MTLIndirectCommandBufferDescriptor {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbuffer?language=objc)
+    /// A command buffer containing reusable commands, encoded either on the CPU or GPU.
+    ///
+    /// ## Overview
+    ///
+    /// Use an indirect command buffer to encode commands once and reuse them, and to encode commands on multiple CPU or GPU threads.
+    ///
+    /// Don’t implement this protocol yourself; instead, create an [`MTLIndirectCommandBufferDescriptor`](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferdescriptor) instance, configure its properties, and tell the [`MTLDevice`](https://developer.apple.com/documentation/metal/mtldevice) to create the indirect command buffer. See [Creating an indirect command buffer](https://developer.apple.com/documentation/metal/creating-an-indirect-command-buffer).
+    ///
+    ///
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIndirectCommandBuffer: MTLResource {
         #[unsafe(method(size))]

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype?language=objc)
+/// Constants indicating how the app alerts the user when a local or push notification arrives.
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
 #[repr(transparent)]
@@ -15,19 +15,19 @@ use crate::*;
 pub struct UIUserNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIUserNotificationType: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/uiusernotificationtypenone?language=objc)
+/// The app does not present any UI upon receiving a notification.
         #[doc(alias = "UIUserNotificationTypeNone")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/badge?language=objc)
+/// The app badges its icon.
         #[doc(alias = "UIUserNotificationTypeBadge")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Badge = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/sound?language=objc)
+/// The app plays a sound.
         #[doc(alias = "UIUserNotificationTypeSound")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Sound = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtype/alert?language=objc)
+/// The app posts an alert.
         #[doc(alias = "UIUserNotificationTypeAlert")]
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
         const Alert = 1<<2;
@@ -42,18 +42,24 @@ unsafe impl RefEncode for UIUserNotificationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior?language=objc)
+/// Constants indicating additional behavior that the action supports.
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionBehavior(pub NSUInteger);
 impl UIUserNotificationActionBehavior {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior/default?language=objc)
+    /// The default action behavior. When specified, the action supports no additional behaviors.
     #[doc(alias = "UIUserNotificationActionBehaviorDefault")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionbehavior/textinput?language=objc)
+    /// The text input behavior.
+    ///
+    /// ## Discussion
+    ///
+    /// When specified, the system provides a way for the user to enter a text response to be included with the notification. The text response is assigned to the [`UIUserNotificationActionResponseTypedTextKey`](https://developer.apple.com/documentation/uikit/uiusernotificationactionresponsetypedtextkey) of the response information dictionary when the notification is delivered to your app.
+    ///
+    ///
     #[doc(alias = "UIUserNotificationActionBehaviorTextInput")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
     pub const TextInput: Self = Self(1);
@@ -67,18 +73,18 @@ unsafe impl RefEncode for UIUserNotificationActionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode?language=objc)
+/// Constants indicating whether the app should activate to the foreground or background.
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActivationMode(pub NSUInteger);
 impl UIUserNotificationActivationMode {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode/foreground?language=objc)
+    /// Activate the app and put it in the foreground.
     #[doc(alias = "UIUserNotificationActivationModeForeground")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     pub const Foreground: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactivationmode/background?language=objc)
+    /// Activate the app and put it in the background. If the app is already in the foreground, it remains in the foreground.
     #[doc(alias = "UIUserNotificationActivationModeBackground")]
     #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
     pub const Background: Self = Self(1);
@@ -92,18 +98,30 @@ unsafe impl RefEncode for UIUserNotificationActivationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext?language=objc)
+/// Constants indicating the amount of space available for displaying actions in a notification.
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionContext(pub NSUInteger);
 impl UIUserNotificationActionContext {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext/default?language=objc)
+    /// The default context for displaying the alert.
+    ///
+    /// ## Discussion
+    ///
+    /// In this context, the full UI is displayed for the notification’s alert. You may specify up to four custom actions in this context.
+    ///
+    ///
     #[doc(alias = "UIUserNotificationActionContextDefault")]
     #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     pub const Default: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactioncontext/minimal?language=objc)
+    /// A notification where space is minimal.
+    ///
+    /// ## Discussion
+    ///
+    /// In this context, a minimal UI is displayed for the notification’s alert. You may specify up to two custom actions in this context.
+    ///
+    ///
     #[doc(alias = "UIUserNotificationActionContextMinimal")]
     #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
     pub const Minimal: Self = Self(1);
@@ -118,19 +136,41 @@ unsafe impl RefEncode for UIUserNotificationActionContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationtextinputactionbuttontitlekey?language=objc)
+    /// The key for specifying the title of the text input button.
+    ///
+    /// ## Description
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) object. When the user chooses to provide a text response to a notification, UIKit displays an interface for entering that response. The value of this key is used on the button that the user taps to accept that text and attach it to the notification.
+    ///
+    ///
     #[deprecated = "Use UserNotifications Framework's -[UNTextInputNotificationAction textInputButtonTitle]"]
     pub static UIUserNotificationTextInputActionButtonTitleKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationactionresponsetypedtextkey?language=objc)
+    /// The response text selected by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// The value of this key is an [`NSString`](https://developer.apple.com/documentation/foundation/nsstring) containing the user’s text response.
+    ///
+    ///
     #[deprecated = "Use UserNotifications Framework's -[UNTextInputNotificationResponse userText]"]
     pub static UIUserNotificationActionResponseTypedTextKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationsettings?language=objc)
+    /// The types of notifications that can be displayed to the user by your app.
+    ///
+    /// ## Overview
+    ///
+    /// Apps that use visible or audible alerts in conjunction with a local or push notification must register the types of alerts they employ. UIKit correlates the information you provide with the user’s preferences to determine what types of alerts your app is allowed to employ.
+    ///
+    /// Use this class to encapsulate your initial registration request and to view the request results. After creating an instance of this class and specifying your preferred settings, call the [`registerUserNotificationSettings:`](https://developer.apple.com/documentation/uikit/uiapplication/registerusernotificationsettings(_:)) method of the [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) class to register those settings. After checking your request against the user preferences, the app delivers the results to the [`application:didRegisterUserNotificationSettings:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:didregister:)) method of its app delegate. The object passed to that method specifies the types of notifications that your app is allowed to use.
+    ///
+    /// In addition to registering your app’s alert types, you can also use this class to register groups of custom actions to display in conjunction with local or push notifications. Custom actions represent immediate tasks your app can perform in response to the notification. You define groups of actions and associate the entire group with a given notification. When the corresponding alert is displayed, the system adds buttons for each action you specified. When the user taps the button for one of the actions, the system wakes your app and calls the [`application:handleActionWithIdentifier:forRemoteNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:forremotenotification:completionhandler:)) or [`application:handleActionWithIdentifier:forLocalNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:for:completionhandler:)) method of its app delegate. Use those methods to perform the requested action.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -179,7 +219,17 @@ impl UIUserNotificationSettings {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationcategory?language=objc)
+    /// Information about custom actions that your app can perform in response to a local or push notification.
+    ///
+    /// ## Overview
+    ///
+    /// Each instance of `UIUserNotificationCategory` represents a group of actions to display in conjunction with a single notification. The title of each action is uses as the title of a button in the alert displayed to the user. When the user taps a button, the system reports the selected action to your app delegate.
+    ///
+    /// Typically, you create an instance of the [`UIMutableUserNotificationCategory`](https://developer.apple.com/documentation/uikit/uimutableusernotificationcategory) class instead of this class. You use the mutable object to add actions and specify a category name before registering them with a [`UIUserNotificationSettings`](https://developer.apple.com/documentation/uikit/uiusernotificationsettings) object.
+    ///
+    /// To display a group of actions for a specific notification, configure the local or push notification with the category name of the group. For local notifications, you specify this name when configuring your [`UILocalNotification`](https://developer.apple.com/documentation/uikit/uilocalnotification) object. For push notifications, your server specifies a group of actions by adding a `category` key (whose value is the [`identifier`](https://developer.apple.com/documentation/uikit/uiusernotificationcategory/identifier) of the group) to the push notification’s payload.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -254,7 +304,15 @@ impl UIUserNotificationCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationcategory?language=objc)
+    /// Information about custom actions that your app can perform in response to a local or push notification.
+    ///
+    /// ## Overview
+    ///
+    /// Use instances of this class to customize the actions included in an alert when space onscreen is constrained.
+    ///
+    /// After creating an instance of this class using the standard alloc/init pattern, use it to modify the actions or category name as needed. The most common use of this class is to specify the subset of actions to display when the size of the alert is relatively small.
+    ///
+    ///
     #[unsafe(super(UIUserNotificationCategory, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -345,7 +403,17 @@ impl UIMutableUserNotificationCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiusernotificationaction?language=objc)
+    /// A custom action that your app can perform in response to a remote or local notification.
+    ///
+    /// ## Overview
+    ///
+    /// When a notification is delivered, the system displays a button for each custom action associated with the notification. Tapping a button launches your app (either in the foreground or background) and gives you a chance to perform the indicated action. You use this class to specify the text that is displayed in the button and the information your app needs to perform the corresponding action.
+    ///
+    /// Typically, you create an instance of the [`UIMutableUserNotificationAction`](https://developer.apple.com/documentation/uikit/uimutableusernotificationaction) class instead of this class. You use the mutable object to configure the action and then call the setActions:forContext: method of UIMutableUserNotificationActionSettings to add the resulting actions to a group.
+    ///
+    /// For each action you define, you must specify whether execution of that action requires the app to be running in the foreground or background. You can also specify whether the device must be unlocked or can remain locked while the action is performed. Unlocking the device may be necessary if the action involves reading or writing files that are encrypted on disk using the system’s data protection mechanism. When the user selects an action, the system puts your app into the appropriate mode and calls your app delegate’s [`application:handleActionWithIdentifier:forRemoteNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:forremotenotification:completionhandler:)) or [`application:handleActionWithIdentifier:forLocalNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:for:completionhandler:)) method to perform the action.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -437,7 +505,17 @@ impl UIUserNotificationAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutableusernotificationaction?language=objc)
+    /// A modifiable version of the user notification action class.
+    ///
+    /// ## Overview
+    ///
+    /// When a notification is delivered, the system displays a button for each custom action associated with the notification. Tapping a button launches your app (either in the foreground or background) and gives you a chance to perform the indicated action. You use this class to configure the details about the button that is displayed and the information your app needs to perform the corresponding action.
+    ///
+    /// To associate custom actions with a local or remote notification, create one or more instances of this class and use them to configure one or more UIMutableUserNotificationActionSettings objects. An action settings objects defines the set of actions to associate with a single notification. You register your app’s action settings objects at launch time, along with your app’s preferred notification options, using a [`UIUserNotificationSettings`](https://developer.apple.com/documentation/uikit/uiusernotificationsettings) object.
+    ///
+    /// For each action you define, you must specify whether execution of that action requires the app to be running in the foreground or background. You can also specify whether the device must be unlocked or can remain locked while the action is performed. Unlocking the device may be necessary if the action involves reading or writing files that are encrypted on disk using the system’s data protection mechanism. When the user selects an action, the system puts your app into the appropriate mode and calls your app delegate’s [`application:handleActionWithIdentifier:forRemoteNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:forremotenotification:completionhandler:)) or [`application:handleActionWithIdentifier:forLocalNotification:completionHandler:`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/application(_:handleactionwithidentifier:for:completionhandler:)) method to perform the action.
+    ///
+    ///
     #[unsafe(super(UIUserNotificationAction, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

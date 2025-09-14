@@ -10,7 +10,15 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/layerhierarchy?language=objc)
+    /// An object that holds a reference to layers rendered in another process’s view.
+    ///
+    /// ## Overview
+    ///
+    /// In your browser’s rendering extension, create a `LayerHierarchy` and set its [`layer`](https://developer.apple.com/documentation/browserenginekit/layerhierarchy/layer) to a [`CALayer`](https://developer.apple.com/documentation/quartzcore/calayer) that renders content to host in a view in the browser app. Get the layer hierarchy’s [`handle`](https://developer.apple.com/documentation/browserenginekit/layerhierarchy/handle), and send it to the browser app, where you add the handle to a [`BELayerHierarchyHostingView`](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingview).
+    ///
+    /// Use [`BELayerHierarchyHostingTransactionCoordinator`](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingtransactioncoordinator) to synchronize updates in the view and the layer. For more information, see [Hosting browser view layers in the rendering extension](https://developer.apple.com/documentation/browserenginekit/hosting-browser-view-layers-in-the-rendering-extension).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

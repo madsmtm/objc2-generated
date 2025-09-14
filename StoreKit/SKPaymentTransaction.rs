@@ -6,30 +6,54 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate?language=objc)
+/// Values representing the state of a transaction.
 // NS_ENUM
 #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKPaymentTransactionState(pub NSInteger);
 impl SKPaymentTransactionState {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/purchasing?language=objc)
+    /// A transaction that is being processed by the App Store.
     #[doc(alias = "SKPaymentTransactionStatePurchasing")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchasing: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/purchased?language=objc)
+    /// A successfully processed transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Your application should provide the content the user purchased.
+    ///
+    ///
     #[doc(alias = "SKPaymentTransactionStatePurchased")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Purchased: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/failed?language=objc)
+    /// A failed transaction.
+    ///
+    /// ## Discussion
+    ///
+    /// Check the [`error`](https://developer.apple.com/documentation/storekit/skpaymenttransaction/error) property to determine what happened.
+    ///
+    ///
     #[doc(alias = "SKPaymentTransactionStateFailed")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Failed: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/restored?language=objc)
+    /// A transaction that restores content previously purchased by the user.
+    ///
+    /// ## Discussion
+    ///
+    /// Read the [`originalTransaction`](https://developer.apple.com/documentation/storekit/skpaymenttransaction/original) property to obtain information about the original purchase.
+    ///
+    ///
     #[doc(alias = "SKPaymentTransactionStateRestored")]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
     pub const Restored: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate/deferred?language=objc)
+    /// A transaction that is in the queue, but its final status is pending external action such as Ask to Buy.
+    ///
+    /// ## Discussion
+    ///
+    /// Update your UI to show the deferred state, and wait for another callback that indicates the final status.
+    ///
+    ///
     #[doc(alias = "SKPaymentTransactionStateDeferred")]
     #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)"]
     pub const Deferred: Self = Self(4);
@@ -44,7 +68,13 @@ unsafe impl RefEncode for SKPaymentTransactionState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransaction?language=objc)
+    /// An object in the payment queue.
+    ///
+    /// ## Overview
+    ///
+    /// A payment transaction is created whenever a payment is added to the payment queue. The system delivers transactions to your app when the App Store finishes processing the payment. Completed transactions provide a receipt and transaction identifier that your app can use to save a permanent record of the processed payment.
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]

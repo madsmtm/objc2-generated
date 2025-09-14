@@ -6,28 +6,59 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationrightrule?language=objc)
+/// Indicates a rule delegation key.
+///
+/// ## Discussion
+///
+/// Instead of specifying exact behavior, some rules are shipped with the system and may be used as delegate rules. Use this with any of the delegate rule definition constants.
+///
+///
 pub const kAuthorizationRightRule: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"rule\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleisadmin?language=objc)
+/// Indicates a delegate rule definition constant specifying that the user must be an administrator.
 pub const kAuthorizationRuleIsAdmin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"is-admin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateassessionuser?language=objc)
+/// Indicates a delegate rule definition constant specifying that the user must authenticate as the session owner (logged-in user).
 pub const kAuthorizationRuleAuthenticateAsSessionUser: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-session-owner\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateasadmin?language=objc)
+/// Indicates a delegate rule definition constant specifying that the user must authenticate as an administrator.
 pub const kAuthorizationRuleAuthenticateAsAdmin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"authenticate-admin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassallow?language=objc)
+/// Indicates a delegate rule definition constant that always allows the specified right.
 pub const kAuthorizationRuleClassAllow: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"allow\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationruleclassdeny?language=objc)
+/// Indicates a delegate rule definition constant that always denies the specified right.
 pub const kAuthorizationRuleClassDeny: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"deny\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationcomment?language=objc)
+/// Indicates comments for a rule.
+///
+/// ## Discussion
+///
+/// The comments appear in the policy database for the administrator to understand what the rule is for. Rule comments are not the same as localized descriptions which are presented to the user.
+///
+///
 pub const kAuthorizationComment: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comment\0") };
 extern "C-unwind" {
+    /// Retrieves a right definition as a dictionary.
+    ///
+    /// Parameters:
+    /// - rightName: An ASCII character string representing the right name. Wildcard right names are valid.
+    ///
+    /// - rightDefinition: A reference to a dictionary. On return, this points to a dictionary of keys that define the right. Passing `nil` checks if the right is defined. You should release the memory used by the returned dictionary.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// You do not need an authorization reference to use this function because the policy database is world readable.
+    ///
+    ///
     /// Retrieves a right definition as a dictionary.  There are no restrictions to keep anyone from retrieving these definitions.
     ///
     ///
@@ -44,8 +75,6 @@ extern "C-unwind" {
     ///
     /// - `right_name` must be a valid pointer.
     /// - `right_definition` must be a valid pointer or null.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightget(_:_:)?language=objc)
     pub fn AuthorizationRightGet(
         right_name: NonNull<c_char>,
         right_definition: *mut *const CFDictionary,
@@ -53,6 +82,61 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Creates or updates a right entry in the policy database.
+    ///
+    /// Parameters:
+    /// - authRef: A valid authorization reference used to authorize modifications.
+    ///
+    /// - rightName: An ASCII character string representing the right name. The policy database does not accept wildcard right names.
+    ///
+    /// - rightDefinition: Either a doc://com.apple.documentation/documentation/corefoundation/cfdictionary-rum containing keys defining the rules or a doc://com.apple.documentation/documentation/corefoundation/cfstring-rfh representing the name of another right whose rules you wish to duplicate. See [Policy Database Constants](https://developer.apple.com/documentation/security/policy-database-constants) for some possible values.
+    ///
+    /// - descriptionKey: A string used as a key for looking up localized descriptions. If no localization is found, this is the description itself. This parameter is optional; pass `NULL` if you do not require it.
+    ///
+    /// - bundle: A bundle to get localizations from if not the main bundle. This parameter is optional; pass `NULL` if you do not require it.
+    ///
+    /// - localeTableName: A string representing a table name from which to get localizations. This parameter is optional; pass `NULL` if you have no localizations or you wish to use the localizations available in `Localizable.strings`.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The right you create must be an explicit right with no wildcards. Wildcard rights are for use by system administrators for site configuration. You can use this function to create a new right or modify an existing right. For example:
+    ///
+    /// ```c
+    /// AuthorizationRightSet(NULL, "com.ifoo.ifax.send",
+    /// CFSTR(kAuthorizationRuleIsAdmin), CFSTR("Authorize sending  of a fax"), NULL, NULL);
+    /// ```
+    ///
+    /// adds a rule for letting administrators send faxes. This example creates a right named `“com.ifoo.ifax.send”` and sets the rules to require the user to be an administrator by using the [`kAuthorizationRuleIsAdmin`](https://developer.apple.com/documentation/security/kauthorizationruleisadmin) constant. This example also sets a comment to let the system administrator know that the right authorizes administrators to send a fax.
+    ///
+    /// Because the first parameter is `NULL`, a new [`AuthorizationRef`](https://developer.apple.com/documentation/security/authorizationref) object is created internally and disposed of. If you need to further use the object (for example, when calling [`AuthorizationExecuteWithPrivileges`](https://developer.apple.com/documentation/security/authorizationexecutewithprivileges)), you must explicitly create the object and pass it in as the first argument to [`AuthorizationRightSet`](https://developer.apple.com/documentation/security/authorizationrightset(_:_:_:_:_:_:)), then free it with a call to [`AuthorizationFree`](https://developer.apple.com/documentation/security/authorizationfree(_:_:)).
+    ///
+    /// To specify additional attributes for the right, you can pass a dictionary in the `rightDefinition` parameter as shown in the following example.
+    ///
+    /// ```c
+    /// CFStringRef keys[2] = {CFSTR(kRightRule), CFSTR(kRightComment)};
+    /// CFStringRef values[2] = {CFSTR(kAuthorizationRuleIsAdmin), CFSTR("authorizes  sending of 1 fax message")};
+    /// AuthorizationRef authRef;
+    /// CFDictionaryRef aDict;
+    /// aDict = CFDictionaryCreate(NULL, (void *)keys, (void *)values, 2,  &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    /// AuthorizationCreate(NULL, NULL, 0, &authRef);
+    /// AuthorizationRightSet(authRef, "com.ifoo.ifax.send", aDict,  CFSTR("Authorize sending  of a fax"), NULL, NULL);
+    /// CFRelease(aDict);
+    /// ...
+    /// AuthorizationFree(authRef, kAuthorizationFlagDefaults);
+    /// ```
+    ///
+    /// This call creates the same right as before, but adds a specific right comment to the rules definition.
+    ///
+    /// When you specify comments, you should be specific about what you need to authorize. For example, the means of proof required for [`kAuthorizationRuleAuthenticateAsAdmin`](https://developer.apple.com/documentation/security/kauthorizationruleauthenticateasadmin) (a username and password) should not be included here since that rule might be configured differently.
+    ///
+    ///
     /// Create or update a right entry.  Only normal rights can be registered (wildcard rights are denied); wildcard rights are considered to be put in by an administrator putting together a site configuration.
     ///
     ///
@@ -82,8 +166,6 @@ extern "C-unwind" {
     /// - `auth_ref` must be a valid pointer.
     /// - `right_name` must be a valid pointer.
     /// - `right_definition` should be of the correct type.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightset(_:_:_:_:_:_:)?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightSet(
         auth_ref: AuthorizationRef,
@@ -96,6 +178,25 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Removes a right from the policy database.
+    ///
+    /// Parameters:
+    /// - authRef: A valid authorization reference used to authorize modifications.
+    ///
+    /// - rightName: An ASCII character string representing the right name. This function does not accept wildcard right names.
+    ///
+    ///
+    /// ## Return Value
+    ///
+    /// A result code. See [Authorization Services Result Codes](https://developer.apple.com/documentation/security/authorization-services-result-codes).
+    ///
+    ///
+    ///
+    /// ## Discussion
+    ///
+    /// The right you remove must be an explicit right with no wildcards. Wildcard rights are for use by system administrators for site configuration.
+    ///
+    ///
     /// Request to remove a right from the policy database.
     ///
     ///
@@ -107,8 +208,6 @@ extern "C-unwind" {
     ///
     /// - `auth_ref` must be a valid pointer.
     /// - `right_name` must be a valid pointer.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationrightremove(_:_:)?language=objc)
     #[cfg(feature = "Authorization")]
     pub fn AuthorizationRightRemove(
         auth_ref: AuthorizationRef,

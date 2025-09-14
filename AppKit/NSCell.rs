@@ -9,19 +9,19 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype?language=objc)
+/// Constants for specifying how a cell represents its data (as text or as an image).
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellType(pub NSUInteger);
 impl NSCellType {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/nullcelltype?language=objc)
+    /// Cell displays nothing.
     #[doc(alias = "NSNullCellType")]
     pub const NullCellType: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/textcelltype?language=objc)
+    /// Cell displays text.
     #[doc(alias = "NSTextCellType")]
     pub const TextCellType: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype/imagecelltype?language=objc)
+    /// Cell displays images.
     #[doc(alias = "NSImageCellType")]
     pub const ImageCellType: Self = Self(2);
 }
@@ -34,61 +34,97 @@ unsafe impl RefEncode for NSCellType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute?language=objc)
+/// Constants for specifying how a button behaves when pressed and how it displays its state.
+///
+/// ## Overview
+///
+/// These constants are used by the [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) and [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell) classes.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellAttribute(pub NSUInteger);
 impl NSCellAttribute {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celldisabled?language=objc)
+    /// Does not let the user manipulate the cell.
     #[doc(alias = "NSCellDisabled")]
     pub const CellDisabled: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellstate?language=objc)
+    /// The cell’s state.
+    ///
+    /// ## Discussion
+    ///
+    /// The cell’s state can be [`NSMixedState`](https://developer.apple.com/documentation/appkit/nsmixedstate), [`NSOffState`](https://developer.apple.com/documentation/appkit/nsoffstate), or [`NSOnState`](https://developer.apple.com/documentation/appkit/nsonstate).
+    ///
+    ///
     #[doc(alias = "NSCellState")]
     pub const CellState: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/pushincell?language=objc)
+    /// Determines whether the cell’s image and text appear to be shifted down and to the right.
     #[doc(alias = "NSPushInCell")]
     pub const PushInCell: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celleditable?language=objc)
+    /// Lets the user edit the cell’s contents.
     #[doc(alias = "NSCellEditable")]
     pub const CellEditable: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/changegraycell?language=objc)
+    /// If the cell’s state is `NSMixedState` or `NSOnState`, displays the cell’s image as darkened.
     #[doc(alias = "NSChangeGrayCell")]
     pub const ChangeGrayCell: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhighlighted?language=objc)
+    /// Draws the cell with a highlighted appearance.
     #[doc(alias = "NSCellHighlighted")]
     pub const CellHighlighted: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbycontents?language=objc)
+    /// If the cell is pushed in, displays the cell’s alternate image.
     #[doc(alias = "NSCellLightsByContents")]
     pub const CellLightsByContents: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbygray?language=objc)
+    /// If the cell is pushed in, displays the cell’s image as darkened.
     #[doc(alias = "NSCellLightsByGray")]
     pub const CellLightsByGray: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/changebackgroundcell?language=objc)
+    /// If the cell’s state is `NSMixedState` or `NSOnState`, changes the cell’s background color from gray to white.
     #[doc(alias = "NSChangeBackgroundCell")]
     pub const ChangeBackgroundCell: Self = Self(8);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/celllightsbybackground?language=objc)
+    /// If the cell is pushed in, changes the cell’s background color from gray to white.
     #[doc(alias = "NSCellLightsByBackground")]
     pub const CellLightsByBackground: Self = Self(9);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellisbordered?language=objc)
+    /// Draws a border around the cell.
     #[doc(alias = "NSCellIsBordered")]
     pub const CellIsBordered: Self = Self(10);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasoverlappingimage?language=objc)
+    /// Controls the position of the cell’s image: places the image over any text in the cell.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`NSCellHasImageHorizontal`](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimagehorizontal) for more details.
+    ///
+    ///
     #[doc(alias = "NSCellHasOverlappingImage")]
     pub const CellHasOverlappingImage: Self = Self(11);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimagehorizontal?language=objc)
+    /// Controls the position of the cell’s image: places the image on the right of any text in the cell.
+    ///
+    /// ## Discussion
+    ///
+    /// Together, `NSCellHasImageOnLeftOrBottom`, `NSCellHasImageHorizontal`, and `NSCellHasOverlappingImage` control the position of the cell’s image and text. To place the image above, set none of them. To place the image below, set `NSCellHasImageOnLeftOrBottom`. To place the image to the right, set `NSCellHasImageHorizontal`. To place the image to the left, set `NSCellHasImageHorizontal` and `NSCellHasImageOnLeftOrBottom`. To place the image directly over, set `NSCellHasOverlappingImage`.
+    ///
+    ///
     #[doc(alias = "NSCellHasImageHorizontal")]
     pub const CellHasImageHorizontal: Self = Self(12);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimageonleftorbottom?language=objc)
+    /// Controls the position of the cell’s image: places the image on the left of or below any text in the cell.
+    ///
+    /// ## Discussion
+    ///
+    /// See [`NSCellHasImageHorizontal`](https://developer.apple.com/documentation/appkit/nscell/attribute/cellhasimagehorizontal) for more details.
+    ///
+    ///
     #[doc(alias = "NSCellHasImageOnLeftOrBottom")]
     pub const CellHasImageOnLeftOrBottom: Self = Self(13);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellchangescontents?language=objc)
+    /// If the cell’s state is `NSMixedState` or `NSOnState`, displays the cell’s alternate image.
     #[doc(alias = "NSCellChangesContents")]
     pub const CellChangesContents: Self = Self(14);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellisinsetbutton?language=objc)
+    /// Insets the cell’s contents from the border.
+    ///
+    /// ## Discussion
+    ///
+    /// By default, the cell’s contents are inset by 2 points. This constant is ignored if the cell has no border.
+    ///
+    ///
     #[doc(alias = "NSCellIsInsetButton")]
     pub const CellIsInsetButton: Self = Self(15);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute/cellallowsmixedstate?language=objc)
+    /// Lets the cell’s state be `NSMixedState`, as well as `NSOffState` and `NSOnState`.
     #[doc(alias = "NSCellAllowsMixedState")]
     pub const CellAllowsMixedState: Self = Self(16);
 }
@@ -101,37 +137,43 @@ unsafe impl RefEncode for NSCellAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition?language=objc)
+/// A constant for specifying the position of a button’s image relative to its title.
+///
+/// ## Overview
+///
+/// Use these constants with the [`imagePosition`](https://developer.apple.com/documentation/appkit/nsbutton/imageposition) property of [`NSButton`](https://developer.apple.com/documentation/appkit/nsbutton) and [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell).
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellImagePosition(pub NSUInteger);
 impl NSCellImagePosition {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/noimage?language=objc)
+    /// The cell doesn’t display an image.
     #[doc(alias = "NSNoImage")]
     pub const NoImage: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageonly?language=objc)
+    /// The cell displays an image but not a title.
     #[doc(alias = "NSImageOnly")]
     pub const ImageOnly: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageleft?language=objc)
+    /// The image is to the left of the title.
     #[doc(alias = "NSImageLeft")]
     pub const ImageLeft: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageright?language=objc)
+    /// The image is to the right of the title.
     #[doc(alias = "NSImageRight")]
     pub const ImageRight: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imagebelow?language=objc)
+    /// The image is below the title.
     #[doc(alias = "NSImageBelow")]
     pub const ImageBelow: Self = Self(4);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageabove?language=objc)
+    /// The image is above the title.
     #[doc(alias = "NSImageAbove")]
     pub const ImageAbove: Self = Self(5);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageoverlaps?language=objc)
+    /// The image overlaps the title.
     #[doc(alias = "NSImageOverlaps")]
     pub const ImageOverlaps: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imageleading?language=objc)
+    /// The image is on the title’s leading edge.
     #[doc(alias = "NSImageLeading")]
     pub const ImageLeading: Self = Self(7);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition/imagetrailing?language=objc)
+    /// The image is on the title’s trailing edge.
     #[doc(alias = "NSImageTrailing")]
     pub const ImageTrailing: Self = Self(8);
 }
@@ -144,31 +186,52 @@ unsafe impl RefEncode for NSCellImagePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling?language=objc)
+/// Constants that specify a cell’s image scaling behavior.
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageScaling(pub NSUInteger);
 impl NSImageScaling {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallydown?language=objc)
+    /// If it is too large for the destination, scale the image down while preserving the aspect ratio.
     #[doc(alias = "NSImageScaleProportionallyDown")]
     pub const ScaleProportionallyDown: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleaxesindependently?language=objc)
+    /// Scale each dimension to exactly fit destination.
+    ///
+    /// ## Discussion
+    ///
+    /// This setting does not preserve the aspect ratio of the image.
+    ///
+    ///
     #[doc(alias = "NSImageScaleAxesIndependently")]
     pub const ScaleAxesIndependently: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scalenone?language=objc)
+    /// Do not scale the image.
     #[doc(alias = "NSImageScaleNone")]
     pub const ScaleNone: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallyupordown?language=objc)
+    /// Scale the image to its maximum possible dimensions while both staying within the destination area and preserving its aspect ratio.
     #[doc(alias = "NSImageScaleProportionallyUpOrDown")]
     pub const ScaleProportionallyUpOrDown: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscaleproportionally?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`NSImageScaleProportionallyDown`](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleproportionallydown).
+    ///
+    ///
     #[deprecated = "Use NSImageScaleProportionallyDown instead"]
     pub const NSScaleProportionally: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscaletofit?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`NSImageScaleAxesIndependently`](https://developer.apple.com/documentation/appkit/nsimagescaling/scaleaxesindependently).
+    ///
+    ///
     #[deprecated = "Use NSImageScaleAxesIndependently instead"]
     pub const NSScaleToFit: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling/nsscalenone?language=objc)
+    ///
+    /// ## Discussion
+    ///
+    /// Use [`NSImageScaleNone`](https://developer.apple.com/documentation/appkit/nsimagescaling/scalenone).
+    ///
+    ///
     #[deprecated = "Use NSImageScaleNone instead"]
     pub const NSScaleNone: Self = Self(2);
 }
@@ -181,39 +244,51 @@ unsafe impl RefEncode for NSImageScaling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue?language=objc)
+/// A constant that indicates whether a control is on, off, or in a mixed state.
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSControlStateValue = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/mixed?language=objc)
+/// A constant value that indicates a control is in a mixed state, neither on nor off.
+///
+/// ## Discussion
+///
+/// For example, if a checkbox displays the state of more than one selected row in a table and the items have different states, then the checkbox’s state is mixed.
+///
+///
 pub static NSControlStateValueMixed: NSControlStateValue = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/off?language=objc)
+/// A constant value that indicates a control is off or unselected.
 pub static NSControlStateValueOff: NSControlStateValue = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/on?language=objc)
+/// A constant value that indicates a control is on or selected.
 pub static NSControlStateValueOn: NSControlStateValue = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask?language=objc)
+/// Constants for specifying what happens when a button is pressed or is displaying its alternate state.
+///
+/// ## Overview
+///
+/// These contents are used by the [`highlightsBy`](https://developer.apple.com/documentation/appkit/nsbuttoncell/highlightsby) and [`showsStateBy`](https://developer.apple.com/documentation/appkit/nsbuttoncell/showsstateby) methods of [`NSButtonCell`](https://developer.apple.com/documentation/appkit/nsbuttoncell).
+///
+///
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellStyleMask: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstylemask/nsnocellmask?language=objc)
+/// The button cell doesn’t change.
         #[doc(alias = "NSNoCellMask")]
         const NoCellMask = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/contentscellmask?language=objc)
+/// The button cell displays its alternate icon and/or title.
         #[doc(alias = "NSContentsCellMask")]
         const ContentsCellMask = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/pushincellmask?language=objc)
+/// The button cell “pushes in” if it has a border.
         #[doc(alias = "NSPushInCellMask")]
         const PushInCellMask = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/changegraycellmask?language=objc)
+/// The button cell swaps the “control color” (the [`controlColor`](https://developer.apple.com/documentation/appkit/nscolor/controlcolor) method of `NSColor`) and white pixels on its background and icon.
         #[doc(alias = "NSChangeGrayCellMask")]
         const ChangeGrayCellMask = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask/changebackgroundcellmask?language=objc)
+/// Same as `NSChangeGrayCellMask`, but only background pixels are changed.
         #[doc(alias = "NSChangeBackgroundCellMask")]
         const ChangeBackgroundCellMask = 8;
     }
@@ -227,22 +302,28 @@ unsafe impl RefEncode for NSCellStyleMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint?language=objc)
+/// Constants for specifying a cell’s tint color.
+///
+/// ## Overview
+///
+/// These constants are used by the [`controlTint`](https://developer.apple.com/documentation/appkit/nscell/controltint) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlTint(pub NSUInteger);
 impl NSControlTint {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/defaultcontroltint?language=objc)
+    /// The current default tint setting.
     #[doc(alias = "NSDefaultControlTint")]
     pub const DefaultControlTint: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/bluecontroltint?language=objc)
+    /// Aqua control tint.
     #[doc(alias = "NSBlueControlTint")]
     pub const BlueControlTint: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/graphitecontroltint?language=objc)
+    /// Graphite control tint.
     #[doc(alias = "NSGraphiteControlTint")]
     pub const GraphiteControlTint: Self = Self(6);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint/clearcontroltint?language=objc)
+    /// Clear control tint.
     #[doc(alias = "NSClearControlTint")]
     pub const ClearControlTint: Self = Self(7);
 }
@@ -255,25 +336,36 @@ unsafe impl RefEncode for NSControlTint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum?language=objc)
+/// A constant for specifying a cell’s size.
+///
+/// ## Overview
+///
+/// These constants are used by the [`controlSize`](https://developer.apple.com/documentation/appkit/nscell/controlsize) property.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlSize(pub NSUInteger);
 impl NSControlSize {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/regular?language=objc)
+    /// The default control size.
     #[doc(alias = "NSControlSizeRegular")]
     pub const Regular: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/small?language=objc)
+    /// A size smaller than the default control size.
+    ///
+    /// ## Discussion
+    ///
+    /// This constant is for controls that can’t be resized in one direction, such as push buttons, radio buttons, checkboxes, sliders, scroll bars, pop-up buttons, tabs, and progress indicators. Use a small system font with a small control.
+    ///
+    ///
     #[doc(alias = "NSControlSizeSmall")]
     pub const Small: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/mini?language=objc)
+    /// The smallest control size.
     #[doc(alias = "NSControlSizeMini")]
     pub const Mini: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/large?language=objc)
+    /// A size larger than the default control size.
     #[doc(alias = "NSControlSizeLarge")]
     pub const Large: Self = Self(3);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum/extralarge?language=objc)
     #[doc(alias = "NSControlSizeExtraLarge")]
     pub const ExtraLarge: Self = Self(4);
 }
@@ -287,7 +379,17 @@ unsafe impl RefEncode for NSControlSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell?language=objc)
+    /// A mechanism for displaying text or images in a view object without the overhead of a full [`NSView`](https://developer.apple.com/documentation/appkit/nsview) subclass.
+    ///
+    /// ## Overview
+    ///
+    /// Cells are used by most of the [`NSControl`](https://developer.apple.com/documentation/appkit/nscontrol) classes to implement their internal workings.
+    ///
+    /// ### Designated Initializers
+    ///
+    /// When subclassing `NSCell` you must implement all of the designated initializers. Those methods include [`init`](https://developer.apple.com/documentation/appkit/nscell/init()), [`initWithCoder:`](https://developer.apple.com/documentation/appkit/nscell/init(coder:)), [`initTextCell:`](https://developer.apple.com/documentation/appkit/nscell/init(textcell:)), and [`initImageCell:`](https://developer.apple.com/documentation/appkit/nscell/init(imagecell:)).
+    ///
+    ///
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1142,23 +1244,23 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult?language=objc)
+/// Constants used by the [`hitTestForEvent:inRect:ofView:`](https://developer.apple.com/documentation/appkit/nscell/hittest(for:in:of:)) method to determine the effect of an event.
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellHitResult(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellHitResult: NSUInteger {
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult/nscellhitnone?language=objc)
+/// An empty area, or did not hit in the cell.
         #[doc(alias = "NSCellHitNone")]
         const None = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/contentarea?language=objc)
+/// A content area in the cell.
         #[doc(alias = "NSCellHitContentArea")]
         const ContentArea = 1<<0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/editabletextarea?language=objc)
+/// An editable text area of the cell.
         #[doc(alias = "NSCellHitEditableTextArea")]
         const EditableTextArea = 1<<1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult/trackablearea?language=objc)
+/// A trackable area in the cell.
         #[doc(alias = "NSCellHitTrackableArea")]
         const TrackableArea = 1<<2;
     }
@@ -1202,22 +1304,46 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle?language=objc)
+/// Background styles to apply to a view’s cell.
+///
+/// ## Overview
+///
+/// Apply these styles to the [`backgroundStyle`](https://developer.apple.com/documentation/appkit/nscell/backgroundstyle) or [`interiorBackgroundStyle`](https://developer.apple.com/documentation/appkit/nscell/interiorbackgroundstyle) properties of an [`NSCell`](https://developer.apple.com/documentation/appkit/nscell) object.
+///
+///
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackgroundStyle(pub NSInteger);
 impl NSBackgroundStyle {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/normal?language=objc)
+    /// A style that reflects the predominant color scheme of the view’s appearance.
     #[doc(alias = "NSBackgroundStyleNormal")]
     pub const Normal: Self = Self(0);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/emphasized?language=objc)
+    /// A style that adds emphasis to the background using an alternate color or visual effect.
+    ///
+    /// ## Discussion
+    ///
+    /// You might use this style to show selection. You might need to alter the appearance of the cell’s content to achieve the needed emphasis.
+    ///
+    ///
     #[doc(alias = "NSBackgroundStyleEmphasized")]
     pub const Emphasized: Self = Self(1);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/raised?language=objc)
+    /// A style that makes the background appear higher than the content drawn on it.
+    ///
+    /// ## Discussion
+    ///
+    /// You might need to inset the cell’s content to achieve this effect.
+    ///
+    ///
     #[doc(alias = "NSBackgroundStyleRaised")]
     pub const Raised: Self = Self(2);
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/lowered?language=objc)
+    /// A style that makes the background appear lower than the content drawn on it.
+    ///
+    /// ## Discussion
+    ///
+    /// You might need to emboss the cell’s content to achieve this effect.
+    ///
+    ///
     #[doc(alias = "NSBackgroundStyleLowered")]
     pub const Lowered: Self = Self(3);
 }
@@ -1248,7 +1374,37 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawthreepartimage(_:_:_:_:_:_:_:_:)?language=objc)
+/// Draws a three-part tiled image.
+///
+/// Parameters:
+/// - frame: The rectangle (specified in the current coordinate system) in which to draw the images.
+///
+/// - startCap: For a horizontal three-part image, this is the image located at the left edge of the frame rectangle. For a vertical three-part image, this image appears at the top of the screen in an unflipped coordinate system and at the bottom of the screen in a flipped coordinate system.
+///
+/// - centerFill: The image used to tile the space between the `startCap` and `endCap` images.
+///
+/// - endCap: For a horizontal three-part image, this is the image located at the right edge of the frame rectangle. For a vertical three-part image, this image appears at the bottom of the screen in an unflipped coordinate system and at the top of the screen in a flipped coordinate system.
+///
+/// - vertical: Specify [`true`](https://developer.apple.com/documentation/swift/true) if the images should be stacked on top of one another to create a vertically oriented element. Specify [`false`](https://developer.apple.com/documentation/swift/false) if the images should be laid out side-by-side to create a horizontally oriented element.
+///
+/// - op: The compositing operation to use when rendering the images.
+///
+/// - alphaFraction: The alpha value to apply to the rendered image. This value can range between 0.0 and 1.0, with 0.0 being fully transparent and 1.0 being fully opaque.
+///
+/// - flipped: Specify [`true`](https://developer.apple.com/documentation/swift/true) if you are drawing the images in a flipped coordinate system; otherwise, specify [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+/// ## Discussion
+///
+/// This function is typically used to draw custom cells (such as the backgrounds for push button and slider controls) that are capable of being resized along a single axis only. Cells of this type are comprised of fixed-size end cap images and a center area that is filled by tiling the specified center image as many times as needed to fill the gap. These cells allow you to create sophisticated looking controls that can grow and shrink without distorting the control’s overall appearance.
+///
+/// You should prefer the use of this function over your own custom code for handling multi-part images whose size can change. This function correctly manages the subtle behaviors needed to handle resolution independence issues and to avoid visual artifacts caused by tiling the various images.
+///
+/// When drawing a horizontally oriented control, the images in the `startCap`, `centerFill`, and `endCap` parameters should all have the same height, and that height should match the height of the frame rectangle. If an image’s height does not match the height of the frame rectangle, it is scaled until it does match, which might yield less desirable results. For vertically oriented controls, the image widths are scaled instead of the heights.
+///
+/// The `flipped` parameter lets you reorient the contents of each image when drawing in a flipped coordinate system. By default, images use an internal coordinate system that is not flipped. Rendering such an image in a flipped coordinate system would therefore cause the image to appear upside down. Passing [`true`](https://developer.apple.com/documentation/swift/true) for the `flipped` parameter adjusts the image’s internal coordinate system to draw it correctly in a flipped environment.
+///
+///
 #[cfg(all(
     feature = "NSGraphics",
     feature = "NSImage",
@@ -1291,7 +1447,47 @@ pub extern "C-unwind" fn NSDrawThreePartImage(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawninepartimage(_:_:_:_:_:_:_:_:_:_:_:_:_:)?language=objc)
+/// Draws a nine-part tiled image.
+///
+/// Parameters:
+/// - frame: The rectangle (specified in the current coordinate system) in which to draw the images.
+///
+/// - topLeftCorner: The image to display in the top-left corner.
+///
+/// - topEdgeFill: The image used to tile the space between the `topLeftCorner` and `topRightCorner` images.
+///
+/// - topRightCorner: The image to display in the top-right corner.
+///
+/// - leftEdgeFill: The image used to tile the space between the `topLeftCorner` and `bottomLeftCorner` images.
+///
+/// - centerFill: The image used to tile the center area between the other eight images.
+///
+/// - rightEdgeFill: The image used to tile the space between the `topRightCorner` and `bottomRightCorner` images.
+///
+/// - bottomLeftCorner: The image to display in the bottom-left corner.
+///
+/// - bottomEdgeFill: The image used to tile the space between the `bottomLeftCorner` and `bottomRightCorner` images.
+///
+/// - bottomRightCorner: The image to display in the bottom-right corner.
+///
+/// - op: The compositing operation to use when rendering the images.
+///
+/// - alphaFraction: The alpha value to apply to the rendered image. This value can range between 0.0 and 1.0, with 0.0 being fully transparent and 1.0 being fully opaque.
+///
+/// - flipped: Specify [`true`](https://developer.apple.com/documentation/swift/true) if you are drawing the images in a flipped coordinate system; otherwise, specify [`false`](https://developer.apple.com/documentation/swift/false).
+///
+///
+/// ## Discussion
+///
+/// This function is typically used to draw custom cells that are capable of being resized both vertically and horizontally. Cells of this type are comprised of four fixed-size corner images along and a set of edge and center images that are used to fill the gaps between the corners. These cells allow you to create sophisticated looking controls that can grow and shrink in any direction without distorting the control’s overall appearance.
+///
+/// You should prefer the use of this function over your own custom code for handling multi-part images whose size can change. This function correctly manages the subtle behaviors needed to handle resolution independence issues and to avoid visual artifacts caused by tiling the various images.
+///
+/// This function uses the top-left and bottom-right corner images to determine the widths and heights of the edge areas that need to be filled. If the width or height of the bottom-left and top-right images are not sized appropriately, they may be scaled to fill their corner area. Edge areas between the corners are tiled using the corresponding image. Similarly, the center area is tiled using the specified center image.
+///
+/// The `flipped` parameter lets you reorient the contents of each image when drawing in a flipped coordinate system. By default, images use an internal coordinate system that is not flipped. Rendering such an image in a flipped coordinate system would therefore cause the image to appear upside down. Passing [`true`](https://developer.apple.com/documentation/swift/true) for the `flipped` parameter adjusts the image’s internal coordinate system to draw it correctly in a flipped environment.
+///
+///
 #[cfg(all(
     feature = "NSGraphics",
     feature = "NSImage",
@@ -1410,68 +1606,92 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/light?language=objc)
+/// The background is a light color.
+///
+/// ## Discussion
+///
+/// Dark content contrasts well with this background.
+///
+///
 #[deprecated]
 pub static NSBackgroundStyleLight: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Normal.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/dark?language=objc)
+/// The background is a dark color.
+///
+/// ## Discussion
+///
+/// Light content contrasts well with this background.
+///
+///
 #[deprecated]
 pub static NSBackgroundStyleDark: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Emphasized.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/statevalue?language=objc)
+/// Constants for specifying a cell’s state and are used mostly for buttons.
+///
+/// ## Discussion
+///
+/// These constants are described in [Cell States](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ControlCell/Concepts/CellStates.html#//apple_ref/doc/uid/20000069).
+///
+///
 #[deprecated]
 pub type NSCellStateValue = NSControlStateValue;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmixedstate?language=objc)
+/// The corresponding feature is in effect somewhere.
 #[deprecated]
 pub static NSMixedState: NSControlStateValue = NSControlStateValueMixed;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoffstate?language=objc)
+/// The corresponding feature is in effect nowhere.
 #[deprecated]
 pub static NSOffState: NSControlStateValue = NSControlStateValueOff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonstate?language=objc)
+/// The corresponding feature is in effect everywhere.
 #[deprecated]
 pub static NSOnState: NSControlStateValue = NSControlStateValueOn;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsregularcontrolsize?language=objc)
+/// The default control size.
 #[deprecated]
 pub static NSRegularControlSize: NSControlSize = NSControlSize(NSControlSize::Regular.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssmallcontrolsize?language=objc)
+/// A size that is smaller than the default control size.
 #[deprecated]
 pub static NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Small.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminicontrolsize?language=objc)
+/// The control has a smaller size than `NSSmallControlSize`.
 #[deprecated]
 pub static NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0);
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/currentcontroltintdidchangenotification?language=objc)
+    /// Sent after the user changes control tint preference.
+    ///
+    /// ## Discussion
+    ///
+    /// The notification object is `NSApp`. This notification does not contain a `userInfo` dictionary.
+    ///
+    ///
     #[deprecated = "Changes to the accent color can be manually observed by implementing -viewDidChangeEffectiveAppearance in a NSView subclass, or by Key-Value Observing the -effectiveAppearance property on NSApplication. Views are automatically redisplayed when the accent color changes."]
     pub static NSControlTintDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanytype?language=objc)
+/// Any value is allowed.
 #[deprecated = "Use formatters instead"]
 pub const NSAnyType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinttype?language=objc)
+/// Must be between `INT_MIN` and `INT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSIntType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositiveinttype?language=objc)
+/// Must be between 1 and `INT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveIntType: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloattype?language=objc)
+/// Must be between `–FLT_MAX` and `FLT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSFloatType: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositivefloattype?language=objc)
+/// Must be between `FLT_MIN` and `FLT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveFloatType: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdoubletype?language=objc)
+/// Must be between `–FLT_MAX` and `FLT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSDoubleType: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositivedoubletype?language=objc)
+/// Must be between `FLT_MIN` and `FLT_MAX`.
 #[deprecated = "Use formatters instead"]
 pub const NSPositiveDoubleType: c_uint = 7;

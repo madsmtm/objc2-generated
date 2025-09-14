@@ -10,23 +10,26 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
+    /// A key that specifies the extension information dictionary.
     /// The CoreMediaIO extension info dictionary key.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensioninfodictionarykey?language=objc)
     pub static CMIOExtensionInfoDictionaryKey: &'static NSString;
 }
 
 extern "C" {
+    /// A key that specifies the mach service name.
     /// A key contained in the Info.plist that specifies the mach service name.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionmachservicenamekey?language=objc)
     pub static CMIOExtensionMachServiceNameKey: &'static NSString;
 }
 
 extern_class!(
-    /// A CMIOExtensionProviderProperties describes CoreMediaIO extension provider properties.
+    /// An object that manages the properties of an extension provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproviderproperties?language=objc)
+    /// ## Overview
+    ///
+    /// Create an instance of this object to manage the provider’s property state.
+    ///
+    ///
+    /// A CMIOExtensionProviderProperties describes CoreMediaIO extension provider properties.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionProviderProperties;
@@ -151,7 +154,13 @@ impl CMIOExtensionProviderProperties {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionprovidersource?language=objc)
+    /// A protocol for objects that act as provider sources.
+    ///
+    /// ## Overview
+    ///
+    /// Create a class that adopts this protocol to configure provider properties and manage its client connections.
+    ///
+    ///
     pub unsafe trait CMIOExtensionProviderSource: NSObjectProtocol {
         #[cfg(feature = "CMIOExtensionProperties")]
         /// Connect a client to the provider.
@@ -219,9 +228,14 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// A CMIOExtensionProvider describes a CoreMediaIO extension provider.
+    /// An object that manages device connections for a provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionprovider?language=objc)
+    /// ## Overview
+    ///
+    /// An extension provider manages device connections and provides the [`startServiceWithProvider:`](https://developer.apple.com/documentation/coremediaio/cmioextensionprovider/startservice(provider:)) class method that you call to bootstrap the service.
+    ///
+    ///
+    /// A CMIOExtensionProvider describes a CoreMediaIO extension provider.
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CMIOExtensionProvider;

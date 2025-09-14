@@ -6,9 +6,17 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a characteristic's descriptor.
+    /// An object that provides further information about a remote peripheral’s characteristic.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbdescriptor?language=objc)
+    /// ## Overview
+    ///
+    /// [`CBDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbdescriptor) and its subclass [`CBMutableDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbmutabledescriptor) represent a descriptor of a peripheral’s characteristic. In partcular, [`CBDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbdescriptor) objects represent the descriptors of a remote peripheral’s characteristic. Descriptors provide further information about a characteristic’s value. For example, they may describe the value in human-readable form and describe how to format the value for presentation purposes. Characteristic descriptors also indicate whether a characteristic’s value indicates or notifies a client (a central) when the value of the characteristic changes.
+    ///
+    /// [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) details six predefined descriptors and their corresponding value types. [`CBDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbdescriptor) lists the predefined descriptors and the [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) constants that represent them.
+    ///
+    /// (TODO table: Table { header: "row", extended_data: None, rows: [[[Paragraph { inline_content: [Text { text: "Descriptor type" }] }], [Paragraph { inline_content: [Text { text: "Descriptor constant" }] }]], [[Paragraph { inline_content: [Text { text: "Characteristic extended properties" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDCharacteristicExtendedPropertiesString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Characteristic user description" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDCharacteristicUserDescriptionString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Client characteristic configuration" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDClientCharacteristicConfigurationString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Server characteristic configuration" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDServerCharacteristicConfigurationString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Characteristic format" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDCharacteristicFormatString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]], [[Paragraph { inline_content: [Text { text: "Characteristic aggregate format" }] }], [Paragraph { inline_content: [Reference { identifier: "doc://com.apple.corebluetooth/documentation/CoreBluetooth/CBUUIDCharacteristicAggregateFormatString", is_active: true, overriding_title: None, overriding_title_inline_content: None }] }]]], alignments: None, metadata: None })
+    ///
+    /// Represents a characteristic's descriptor.
     #[unsafe(super(CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]
@@ -63,6 +71,15 @@ impl CBDescriptor {
 }
 
 extern_class!(
+    /// An object that provides additional information about a local peripheral’s characteristic.
+    ///
+    /// ## Overview
+    ///
+    /// You use the [`CBMutableDescriptor`](https://developer.apple.com/documentation/corebluetooth/cbmutabledescriptor) class to create a local characteristic descriptor. After you create a descriptor and associate it with a local characteristic, you can publish it to the peripheral’s local database using the [`addService:`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager/add(_:)) method of the [`CBPeripheralManager`](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanager) class. This also publishes the characteristic and local service to which the descriptor belongs. After you publish a local descriptor, Core Bluetooth caches the descriptor and you can no longer make changes to it.
+    ///
+    /// [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) details predefined descriptor types and their corresponding value types. That said, only two of these are currently supported when creating local, mutable descriptors: the characteristic user description descriptor and the characteristic format descriptor. [`CBUUID`](https://developer.apple.com/documentation/corebluetooth/cbuuid) declares these as the constants [`CBUUIDCharacteristicUserDescriptionString`](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicuserdescriptionstring) and [`CBUUIDCharacteristicFormatString`](https://developer.apple.com/documentation/corebluetooth/cbuuidcharacteristicformatstring), respectively. The system automatically creates the extended properties descriptor and the client configuration descriptor, depending on the properties of the characteristic to which the descriptor belongs.
+    ///
+    ///
     /// Used to create a local characteristic descriptor, which can be added to the local database via
     /// <code>
     /// CBPeripheralManager
@@ -94,8 +111,6 @@ extern_class!(
     /// Configuration
     /// </code>
     /// descriptors will be created automatically upon publication of the parent service, depending on the properties of the characteristic itself.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmutabledescriptor?language=objc)
     #[unsafe(super(CBDescriptor, CBAttribute, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CBAttribute")]

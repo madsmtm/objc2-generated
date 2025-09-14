@@ -11,7 +11,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/social/slcomposeserviceviewcontroller?language=objc)
+    /// A view controller that you present from your share app extension, allowing the user to compose social media posts.
+    ///
+    /// ## Overview
+    ///
+    /// The [`SLComposeServiceViewController`](https://developer.apple.com/documentation/social/slcomposeserviceviewcontroller) class provides a standard compose view, and you can present it for social sharing extensions on iOS and macOS. By default, the compose view includes items such as an editable text view and an indication of remaining characters, in addition to support for previewing attachments and displaying configuration items, such as an account or privacy picker.
+    ///
+    /// The compose view controller gets items for the content and preview areas from the [`extensionContext`](https://developer.apple.com/documentation/uikit/uiviewcontroller/extensioncontext) property of the extension’s [`NSExtensionContext`](https://developer.apple.com/documentation/foundation/nsextensioncontext) object.
+    ///
+    ///
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
